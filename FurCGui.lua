@@ -3,17 +3,12 @@ FurC.KnowledgeFilter 	= "All (Accountwide)"
 FurC.SearchString 		= ""
 FurC.ScrollSortUp 		= true
 local checkWasUpdated	= false
-local task = LibStub("LibAsync"):Create("FurnitureCatalogue_ScanDataFiles")
+local task = LibStub("LibAsync"):Create("FurnitureCatalogue_updateLineVisibility")
+local otherTask = LibStub("LibAsync"):Create("FurnitureCatalogue_ToggleGui")
+local async = LibStub("LibAsync"):Create("FurnitureCatalogue_forLoop")
 
 local function p(output, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10)
 	FurC.DebugOut(output, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10)
-end
-
-
-
-
-local function matchFilter(recipeArray)		
-	return FurC.MatchFilter(recipeArray)
 end
 
 -- ruthlessly stolen from TextureIt
@@ -57,13 +52,12 @@ function FurC.SortTable(tTable, sortKey, SortOrderUp)
 	return sortTable(tTable, sortKey, SortOrderUp)
 end
 
-function FurC.Sort(myTable)	
+function sort(myTable)	
 	local sortName, sortDirection = FurC.GetSortParams()	
 	sortName = sortName or "itemName"
 	local sortUp = ((ZO_SORT_ORDER_UP and sortDirection == "up") or ZO_SORT_ORDER_DOWN)	
 	return sortTable(myTable, sortName, sortUp)		
 end
-
 
 local headerHeight = FurCGui_Header:GetHeight()
 
@@ -76,45 +70,46 @@ end
 local function updateLineVisibility()
 	FurC.CalculateMaxLines()
 	
-	local function fillLine(curLine, curData, lineIndex)
 	
+	local function fillLine(curLine, curData, lineIndex)	
 		if nil == curLine then return end
 		
 		curLine:SetHidden(lineIndex > FurCGui_ListHolder.maxLines)
-		
-		if curData == nil then
+		if curData == nil or curLine:IsHidden() then
 			curLine.itemLink = ""
+			curLine.itemId 	 = 0
 			curLine.icon:SetTexture(nil)
 			curLine.icon:SetAlpha(0)
 			curLine.text:SetText("")
 			curLine.mats:SetText("")
 		else
-			local r, g, b, a = 255, 255, 255, 1
-			if (curData.itemQuality) then
-				color = GetItemQualityColor(curData.itemQuality)
-				r, g, b, a = color:UnpackRGBA()
-			end
-			curLine.itemLink = curData.itemLink
-			curLine.icon:SetTexture(curData.icon)
+			curLine.itemLink 	= curData.itemLink
+			curLine.itemId 	 	= curData.itemId
+			curLine.icon:SetTexture(GetItemLinkIcon(curData.itemLink))
 			curLine.icon:SetAlpha(1)
-			local text = zo_strformat(SI_TOOLTIP_ITEM_NAME, curData.itemName)
-			local mats = zo_strformat(curData.itemMats)
+			local text 			=  curData.itemLink:gsub("H1", "H0")
 			curLine.text:SetText((curData.isFavorite and "* " or "").. text)
-			curLine.text:SetColor(r, g, b, a)
-			curLine.mats:SetText(mats)
+			curLine.mats:SetText(FurC.GetItemDescription(curData.itemId, curData))
 		end
 	end
 	
-	local offset = FurCGui_ListHolder.dataOffset or 0
-	local curLine, curData
-	
-	for i=1, FurCGui_ListHolder:GetNumChildren() do
-		curLine = FurCGui_ListHolder.lines[i]
-		curData = FurCGui_ListHolder.dataLines[offset + i]
-		fillLine(curLine, curData, i)			
-	end
-	FurCGui_ListHolder_Slider:SetMinMax(1, #FurCGui_ListHolder.dataLines)
-	FurC.IsLoading(false)
+	task:Call(function()
+		local maxLines = FurCGui_ListHolder.maxLines
+		local dataLines = FurCGui_ListHolder.dataLines
+			
+		local offset =	FurCGui_ListHolder_Slider:GetValue()
+		if offset > #dataLines then offset = 0 end
+		
+		local curLine, curData
+		
+		for i=1, FurCGui_ListHolder:GetNumChildren() do
+			curLine = FurCGui_ListHolder.lines[i]
+			curData = FurCGui_ListHolder.dataLines[offset + i]
+			fillLine(curLine, curData, i)			
+		end
+		FurCGui_ListHolder_Slider:SetMinMax(0, #dataLines)
+		FurC.IsLoading(false)
+	end)
 end
 function FurC.UpdateLineVisibility()
 	updateLineVisibility()
@@ -124,70 +119,68 @@ function FurC.IsLoading(isBuffering)
 	FurCGui_ListHolder:SetHidden(isBuffering)
 	FurCGui_Wait:SetHidden(not isBuffering)
 end
+
+local function tblCopy(tbl)
+	local ret = {}
+	for key, value in pairs(tbl) do
+		ret[key] = value
+	end
+	return ret
+end
+
 -- fill the shown item list with items that match current filter(s)
-local function updateScrollDataLinesData(useDefaults, calledRecursively)
-	task:Call(function() 
-		FurC.IsLoading(true)
-	end)
-	:Then(function() 
-		
+local function updateScrollDataLinesData(useDefaults)
+	local dataLines = {}
+	task:Call(function()
 		local index = 0
 		
 		FurC.LastFilter = useDefaults
 		FurC.SetFilter(useDefaults)
+
+		data = FurC.settings.data		
 	
-		local seenLinks = {}
-		
-		data = FurC.settings.data
-		
-		local dataLines = {}
-		-- async:For(pairs(data)):Do( function(itemId, item)
-		for itemId, item in pairs(data) do
-			seenLinks[item.itemLink] = item.itemLink
-			if FurC.MatchFilter(item, refreshedControl) then			
-				tempDataLine = {
-					itemLink	= item.itemLink, 	
-					icon 		= item.iconFile,
-					itemName 	= item.itemName or GetItemLinkName(iLink),					
-					itemMats	= FurC.GetMats(iLink, false, true, item),
-					itemQuality	= item.itemQuality,
-					filter		= filterType,
-					isFavorite	= item.favorite
-				}			
-				table.insert(dataLines, tempDataLine)		
+		local itemLink
+		 -- async:For(pairs(data)):Do( function(itemId, recipeArray)
+		for itemId, recipeArray in pairs(data) do	
+			if FurC.MatchFilter(itemId, recipeArray) then
+				itemLink = FurC.GetItemLink(itemId)
+				if itemLink then
+					tempDataLine 			= tblCopy(recipeArray)
+					tempDataLine.itemId		= itemId
+					tempDataLine.itemLink	= itemLink				
+					tempDataLine.itemName	= GetItemLinkName(itemLink)
+					table.insert(dataLines, tempDataLine)
+				end				
 			end
-		end
-		-- end)
+		 end
+		 -- end)
 		
-		if dataLines == {} and FurC.GetDropdownChoice("Character") > 1 and not calledRecursively then
-			FurC.ScanRecipeFile()
-			return updateScrollDataLinesData(useDefaults, true)
-		end
-				
-		dataLines = FurC.Sort(dataLines)
+		end)
+	:Then(function()
+		dataLines = sort(dataLines)
 		FurCGui_ListHolder.dataLines = dataLines
-		FurC_RecipeCount:SetText(#dataLines)
-		if #dataLines < FurCGui_ListHolder.maxLines then 
-			FurCGui_ListHolder.dataOffset = 0
-		else
-			FurCGui_ListHolder.dataOffset = math.min(FurCGui_ListHolder_Slider:GetValue(), (#dataLines - FurCGui_ListHolder.maxLines))
-		end		
+		FurC_RecipeCount:SetText(#dataLines)		
+		
 		if refreshFilter then 		
-			FurCGui_Empty:SetHidden(#dataLines > 0)			
-		end			
-	end)
-	:Then(function() updateLineVisibility() end)
+			FurCGui_Empty:SetHidden(#dataLines > 0)		
+		end	
+	end):
+	Then(updateLineVisibility)
+	
 end
 
 function FurC.UpdateGui(useDefaults)
 	if FurCGui:IsHidden() then return end
-	updateScrollDataLinesData(useDefaults)	
+	otherTask
+	:Call(function() FurC.IsLoading(true) end)
+	:Then(function() updateScrollDataLinesData(useDefaults) end)
+	:Then(updateLineVisibility)	
 end
 
 function FurC.UpdateInventoryScroll()
 	local index = 0
-	
-	FurCGui_ListHolder.dataOffset = math.max((FurCGui_ListHolder.dataOffset or 0), FurCGui_ListHolder.dataOffset)
+	FurCGui_ListHolder.dataOffset = FurCGui_ListHolder.dataOffset or 0
+	FurCGui_ListHolder.dataOffset = math.max(FurCGui_ListHolder.dataOffset, 0)
 	------------------------------------------------------
 	if (FurCGui_ListHolder.dataOffset < 0) then 
 		FurCGui_ListHolder.dataOffset = 0
@@ -256,22 +249,7 @@ function FurC.ApplyLineTemplate()
 	task:Call(function() updateLineVisibility() end)
 end
 
-function FurC.Donate(control, mouseButton)
 
-	local amount = 2000
-	if mouseButton == 2 then 
-		amount = 10000
-	elseif mouseButton == 3 then
-		amount = 25000
-	end
-	
-	SCENE_MANAGER:Show('mailSend')
-	zo_callLater(function()
-	ZO_MailSendToField:SetText("@manavortex")
-	ZO_MailSendSubjectField:SetText("Thank you for Furniture Catalogue!")
-	QueueMoneyAttachment(amount)
-	ZO_MailSendBodyField:TakeFocus() end, 200)
-end
 
 local addedDropdownCharacterNames = {}
 
@@ -309,6 +287,14 @@ local function createInventoryDropdown(dropdownName)
 				local entry = entries[i]
 				local control = entries[i].item
 				control.tooltip = choicesTooltips[i]
+				if (i == FURC_LUXURY and FurC.GetMergeLuxuryAndSales() or 
+				i == FURC_CROWN and FurC.GetHideCrownStoreEntry() or 
+				i == FURC_RUMOUR and FurC.GetHideRumourRecipesEntry() 
+				) then
+				
+				
+				end
+
 				if control.tooltip then 
 					entry.onMouseEnter = control:GetHandler("OnMouseEnter")
 					entry.onMouseExit = control:GetHandler("OnMouseExit")
@@ -505,9 +491,7 @@ end
 
 function FurnitureCatalogue_Toggle()
 	SCENE_MANAGER:ToggleTopLevel(FurCGui)
-	if FurCGui:IsHidden() then return end
 	FurC.UpdateGui(FurC.GetResetDropdownChoice())
-	FurCGui_ListHolder_Slider:SetValue(1)
 end
 
 

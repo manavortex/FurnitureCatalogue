@@ -1,82 +1,84 @@
+FURC_AV_RAZ = "Razoufa"
+FURC_AV_MUL = "Mulvise Valyn"
+
 FurC.AchievementVendors[FURC_CLOCKWORK] = {
 	["The Brass Citadel, Market"] = {
-		["Razoufa"] = {
-			["|H1:item:134285:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Active Fabrication Tank
-				["itemPrice"] 	= 75000, 
-				["achievement"] = "|H1:achievement:2049:0:0|h|h", -- Hero of Clockwork City
+		[FURC_AV_RAZ] = {
+			[134285] = { -- Active Fabrication Tank
+				itemPrice 	= 75000, 
+				achievement = 2049, -- Hero of Clockwork City
 			},	
-			["|H1:item:134286:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Clockwork Stylus
-				["itemPrice"] = 3000, 
-				["achievement"] = "|H1:achievement:2068:0:0|h|h", -- CC Adventurer
+			[134286] = { -- Clockwork Stylus
+				itemPrice = 3000, 
+				achievement = 2068, -- CC Adventurer
 			},	
-			["|H1:item:134289:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Energetic Anima Core
-				["itemPrice"] = 15000, 
-				["achievement"] = "", -- Brass Fortress Quarter Master
+			[134289] = { -- Energetic Anima Core
+				itemPrice = 15000, 
+				achievement = 2072, -- Brass Fortress Quarter Master
 			},	
-			["|H1:item:134284:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Mysterious Clockwork Sphere
-				["itemPrice"] = 35000, 
-				["achievement"] = "|H1:achievement:2018:0:0|h|h", -- CC Master explorer
+			[134284] = { -- Mysterious Clockwork Sphere
+				itemPrice = 35000, 
+				achievement = 2018, -- CC Master explorer
 			},	
-			["|H1:item:134288:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Skeleton Key Replica
-				["itemPrice"] = 7500, 
-				["achievement"] = "", -- The Burden Of Knowledge
+			[134288] = { -- Skeleton Key Replica
+				itemPrice = 7500, 
+				achievement = 2064, -- The Burden Of Knowledge
 			},	
-			["|H1:item:134283:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- The motionless Guardian
-				["itemPrice"] = 12000, 
-				["achievement"] = "", -- Honorary Blackfeather
+			[134283] = { -- The motionless Guardian
+				itemPrice = 12000, 
+				achievement = 2067, -- Honorary Blackfeather
 			},	
-			["|H1:item:134547:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- The Truth in Sequence
-				["itemPrice"] = 20000, 
-				["achievement"] = "", -- Grand Adventurer
+			[134547] = { -- The Truth in Sequence
+				itemPrice = 20000, 
+				achievement = 2069, -- Grand Adventurer
 			},	
 		},
-		["Mulvise Valyn"] = {
-			["|H1:item:134304:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Boulder, Basalt Slap
-				["itemPrice"] = 1000, 
+		[FURC_AV_MUL] = {
+			[134304] = { -- Boulder, Basalt Slap
+				itemPrice = 1000, 
 			},	
-			["|H1:item:134292:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Boulder, Metallic Rubble
-				["itemPrice"] = 500, 
+			[134292] = { -- Boulder, Metallic Rubble
+				itemPrice = 500, 
 			},	
-			["|H1:item:134293:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Boulder, Metallic Shard
-				["itemPrice"] = 500, 
+			[134293] = { -- Boulder, Metallic Shard
+				itemPrice = 500, 
 			},	
-			["|H1:item:134305:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Clockwork Junk Heap, Small
-				["itemPrice"] = 1000, 
+			[134305] = { -- Clockwork Junk Heap, Small
+				itemPrice = 1000, 
 			},	
-			["|H1:item:134303:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Rock, Basalt Slab
-				["itemPrice"] = 500, 
+			[134303] = { -- Rock, Basalt Slab
+				itemPrice = 500, 
 			},	
-			["|H1:item:134296:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Rocks, Sintered Cluster
-				["itemPrice"] = 1000, 
+			[134296] = { -- Rocks, Sintered Cluster
+				itemPrice = 1000, 
 			},	
-			["|H1:item:134294:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Rocks, Sintered Column
-				["itemPrice"] = 1000, 
+			[134294] = { -- Rocks, Sintered Column
+				itemPrice = 1000, 
 			},	
-			["|H1:item:134295:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Rocks, Sintered Pile
-				["itemPrice"] = 1000, 
+			[134295] = { -- Rocks, Sintered Pile
+				itemPrice = 1000, 
 			},	
-			["|H1:item:134297:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Scavenged Grating, Narrow
-				["itemPrice"] = 500, 
+			[134297] = { -- Scavenged Grating, Narrow
+				itemPrice = 500, 
 			},	
-			["|H1:item:134298:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Scavenged Grating, Wide
-				["itemPrice"] = 500, 
+			[134298] = { -- Scavenged Grating, Wide
+				itemPrice = 500, 
 			},	
-			["|H1:item:134301:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Scavenged Plate, Ornate
-				["itemPrice"] = 500, 
+			[134301] = { -- Scavenged Plate, Ornate
+				itemPrice = 500, 
 			},	
-			["|H1:item:134299:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Scavenged Plate, Plain
-				["itemPrice"] = 500, 
+			[134299] = { -- Scavenged Plate, Plain
+				itemPrice = 500, 
 			},	
-			["|H1:item:134300:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Scavenged Plate, Wide
-				["itemPrice"] = 500, 
+			[134300] = { -- Scavenged Plate, Wide
+				itemPrice = 500, 
 			},	
-			["|H1:item:134302:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Scavenged Support, Straight
-				["itemPrice"] = 500, 
+			[134302] = { -- Scavenged Support, Straight
+				itemPrice = 500, 
 			},
 		},
 	},
 }
-if GetAPIVersion() == 100020 then FurC.AchievementVendors[FURC_CLOCKWORK] = {} end
 
 function tableMerge(t1, t2)
 	if nil == t2 and nil == t1 then 

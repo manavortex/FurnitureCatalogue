@@ -1,129 +1,120 @@
 FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
 FurC.LuxuryFurnisher[FURC_HOMESTEAD] = {
+			
+	-- April, 22-24			
+	[120842] = {	-- Craglorn Chair, Serpent
+		itemPrice 	= 2500,
+	},
+	[120840] = {	-- Craglorn Coffer, Ornate
+		itemPrice 	= 5000,
+	},
+	[120823] = {	-- Craglorn Urn, Standing
+		itemPrice 	= 7500,
+	},			
+	[120823] = {	-- Sigil Stand
+		itemPrice 	= 15000,
+	},			
+	[120815] = {	-- Sigil, Akatosh
+		itemPrice 	= 20000,
+	},			
+	[120816] = {	-- Sigil, Arkay
+		itemPrice 	= 20000,
+	},		
+	[120817] = {	-- Sigil, Dibella
+		itemPrice 	= 20000,
+	},		
+	[120818] = {	-- Sigil, Julianos
+		itemPrice 	= 20000,
+	},
+	
+	
+	[120824] = {	-- Body Cage
+		itemPrice 	= 5000,
+	},
+	[120829] = {	-- Torture Rack
+		itemPrice 	= 5000,
+	},
+	
+	-- April, 14 - 16
+	[120888] = {	-- Bat Blossom
+		itemPrice 	= 10000,
+	},
+	[120889] = {	-- Glow Bush, Purple
+		itemPrice 	= 20000,
+	},			
+	-- April, 7-9
+	[120885] = {	-- Alik'r Cactus
+		itemPrice 	= 2000,
+	},
+	[120884] = {	-- Buckthorn
+		itemPrice 	= 4000,
+	},
+	[120883] = {	-- Voidflower
+		itemPrice 	= 5000,
+	},
+	[120886] = {	-- White Hosta
+		itemPrice 	= 3000,
+	},				
+	[120846] = {	-- Dock Rope Wheel
+		itemPrice 	= 2500,
+	},
 
-	["Hollow City, Cicero's General Goods"] = {
-		["Zanil Theran, Luxury Furnisher"]	= {			
-			
-			-- May, 12-15
-			["|H1:item:120824:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Body Cage
-				["itemPrice"] = 2500,
-			},
-			["|H1:item:120829:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Torture Rack
-				["itemPrice"] = 5000,
-			},
-			["|H1:item:120828:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Torture Wheel
-				["itemPrice"] = 100000,
-			},				
-			
-			-- April, 22-24			
-			["|H1:item:120842:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Craglorn Chair, Serpent
-				["itemPrice"] = 2500,
-			},
-			["|H1:item:120840:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Craglorn Coffer, Ornate
-				["itemPrice"] = 5000,
-			},
-			["|H1:item:120823:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Craglorn Urn, Standing
-				["itemPrice"] = 7500,
-			},			
-			["|H1:item:120823:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Sigil Stand
-				["itemPrice"] = 15000,
-			},			
-			["|H1:item:120815:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Sigil, Akatosh
-				["itemPrice"] = 20000,
-			},			
-			["|H1:item:120816:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Sigil, Arkay
-				["itemPrice"] = 20000,
-			},		
-			["|H1:item:120817:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Sigil, Dibella
-				["itemPrice"] = 20000,
-			},		
-			["|H1:item:120818:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Sigil, Julianos
-				["itemPrice"] = 20000,
-			},
-			
-			-- April, 14 - 16
-			["|H1:item:120888:5:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Bat Blossom
-				["itemPrice"] = 10000,
-			},
-			["|H1:item:120889:5:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Glow Bush, Purple
-				["itemPrice"] = 20000,
-			},
-			
-			-- April, 7-9
-			["|H1:item:120885:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Alik'r Cactus
-				["itemPrice"] = 2000,
-			},
-			["|H1:item:120884:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Buckthorn
-				["itemPrice"] = 4000,
-			},
-			["|H1:item:120883:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Voidflower
-				["itemPrice"] = 5000,
-			},
-			["|H1:item:120886:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- White Hosta
-				["itemPrice"] = 3000,
-			},				
-			["|H1:item:120846:4:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Dock Rope Wheel
-				["itemPrice"] = 2500,
-			},
-		
-		
-		
-			["|H1:item:121268:5:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Fisher's Catch of the Day Rack
-				["itemPrice"] = 5000,
-			},
-		
-			["|H1:item:120850:5:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Harbor Floats
-				["itemPrice"] = 5000,
-			},
-			
-			
-			
-			["|H1:item:120806:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Hew'S Bane Candlestick
-				["itemPrice"] = 2500,
-			},
-		
-			["|H1:item:120805:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Hew's Bane Rug
-				["itemPrice"] = 5000,
-			},
-		
-			["|H1:item:120807:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Hew's Bane Well
-				["itemPrice"] = 10000,
-			},
-			
-			
-		
-			["|H1:item:120798:4:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Wedding Blossoms, Blue
-				["itemPrice"] = 2500,
-			},
-			["|H1:item:120799:4:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Wedding Blossoms, Peach
-				["itemPrice"] = 2500,
-			},
-			["|H1:item:120800:5:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Wedding Curtain
-				["itemPrice"] = 7500,
-			},
-			["|H1:item:120893:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Wedding Gazebo
-				["itemPrice"] = 50000,
-			},
-			["|H1:item:120801:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Wedding Lantern
-				["itemPrice"] = 5000,
-			},
-			["|H1:item:120797:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Wedding Flower Trellis
-				["itemPrice"] = 10000,
-			},
-			["|H1:item:120802:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Shrine of Mara, Decorative
-				["itemPrice"] = 50000,
-			},
-			["|H1:item:121266:5:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Hew’s Bane Lantern
-				["itemPrice"] = 5000,
-			},
-			["|H1:item:121267:4:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Hew’s Bane Merchant’s Basket
-				["itemPrice"] = 2500,
-			},
-			["|H1:item:120803:5:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Hew’s Bane Bed, Royal
-				["itemPrice"] = 20000,
-			},
-		},
-	},	
+
+
+	[121268] = {	-- Fisher's Catch of the Day Rack
+		itemPrice 	= 5000,
+	},
+
+	[120850] = { -- Harbor Floats
+		itemPrice 	= 5000,
+	},
+	
+	
+	
+	[120806] = {	-- Hew'S Bane Candlestick
+		itemPrice 	= 2500,
+	},
+
+	[120805] = {	-- Hew's Bane Rug
+		itemPrice 	= 5000,
+	},
+
+	[120807] = {	-- Hew's Bane Well
+		itemPrice 	= 10000,
+	},
+	
+	
+
+	[120798] = {	-- Wedding Blossoms, Blue
+		itemPrice 	= 2500,
+	},
+	[120799] = {	-- Wedding Blossoms, Peach
+		itemPrice 	= 2500,
+	},
+	[120800] = {	-- Wedding Curtain
+		itemPrice 	= 7500,
+	},
+	[120893] = {	-- Wedding Gazebo
+		itemPrice 	= 50000,
+	},
+	[120801] = {	-- Wedding Lantern
+		itemPrice 	= 5000,
+	},
+	[120797] = {	-- Wedding Flower Trellis
+		itemPrice 	= 10000,
+	},
+	[120802] = {	-- Shrine of Mara, Decorative
+		itemPrice 	= 50000,
+	},
+	[121266] = {	-- Hew’s Bane Lantern
+		itemPrice 	= 5000,
+	},
+	[121267] = {	-- Hew’s Bane Merchant’s Basket
+		itemPrice 	= 2500,
+	},
+	[120803] = {	-- Hew’s Bane Bed, Royal
+		itemPrice 	= 20000,
+	},
 	
 }

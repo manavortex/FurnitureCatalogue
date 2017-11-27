@@ -8,6 +8,7 @@ function FurC.CreateSettings(savedVars, defaults)
 	 	author = FurC.author,
 		version = FurC.version,
 		registerForRefresh = true,
+		registerForDefaults = true,
 		slashCommand = "/furc",	}
 
 	LAM:RegisterAddonPanel("FurnitureCatalogue_OptionsPanel", panelData)

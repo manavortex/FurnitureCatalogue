@@ -1,223 +1,223 @@
 FurC.AchievementVendors[FURC_REACH] = {
 	["Coldharbour, Cicero's General Goods"] = {
-		["Krrztrrb"] = {
-			["|H1:item:130273:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Boulder, Coldharbour Fan
-				["itemPrice"] = 5000, 
+		[FURC_AV_KRR] = {
+			[130273] = { -- Boulder, Coldharbour Fan
+				itemPrice 	= 5000, 
 			},
-			["|H1:item:130274:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Boulder, Coldharbour Shard
-				["itemPrice"] = 5000, 
+			[130274] = { -- Boulder, Coldharbour Shard
+				itemPrice 	= 5000, 
 			},
-			["|H1:item:130275:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Boulder, Coldharbour Spikes
-				["itemPrice"] = 5000, 
+			[130275] = { -- Boulder, Coldharbour Spikes
+				itemPrice 	= 5000, 
 			},
-			["|H1:item:130276:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Boulder, Coldharbour Spikes
-				["itemPrice"] = 250, 
+			[130276] = { -- Boulder, Coldharbour Spikes
+				itemPrice 	= 250, 
 			},
-			["|H1:item:131421:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Sapling, Withered Thicket
-				["itemPrice"] = 250, 
+			[131421] = { -- Sapling, Withered Thicket
+				itemPrice 	= 250, 
 			},
-			["|H1:item:130279:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Tree, Petrified AShen
-				["itemPrice"] = 2500, 
+			[130279] = { -- Tree, Petrified AShen
+				itemPrice 	= 2500, 
 			},
-			["|H1:item:130278:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Tree, Strong Withered
-				["itemPrice"] = 5000, 
+			[130278] = { -- Tree, Strong Withered
+				itemPrice 	= 5000, 
 			},
-			["|H1:item:130277:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Tree, Towering Withered
-				["itemPrice"] = 5000, 
+			[130277] = { -- Tree, Towering Withered
+				itemPrice 	= 5000, 
 			},
 		}
 	},
 	 ["Glenumbra, Daggerfall, The Rosy Lion"] = {
-		["Rohzika"] = {
+		[FURC_AV_ROH] = {
 			
-			["|H1:item:120706:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Boulder, Giant Mossy
-				["itemPrice"] = 100,
+			[120706] = {		-- Boulder, Giant Mossy
+				itemPrice 	= 100,
 			},
-			["|H1:item:130309:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Boulder, Swampy Growth
-				["itemPrice"] = 250,
+			[130309] = {		-- Boulder, Swampy Growth
+				itemPrice 	= 250,
 			},
-			["|H1:item:132221:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Lily Pads, Swamp Cluster
-				["itemPrice"] = 5000,
+			[132221] = {		-- Lily Pads, Swamp Cluster
+				itemPrice 	= 5000,
 			},
-			["|H1:item:130287:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Log, Fallen Laurel
-				["itemPrice"] = 250,
+			[130287] = {		-- Log, Fallen Laurel
+				itemPrice 	= 250,
 			},
-			["|H1:item:130288:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Log, Fallen Pine
-				["itemPrice"] = 250,
+			[130288] = {		-- Log, Fallen Pine
+				itemPrice 	= 250,
 			},
-			["|H1:item:130286:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Log, Rotten Log
-				["itemPrice"] = 250,
+			[130286] = {		-- Log, Rotten Log
+				itemPrice 	= 250,
 			},
-			["|H1:item:130307:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Rocks, Swampy Slan
-				["itemPrice"] = 250,
+			[130307] = {		-- Rocks, Swampy Slan
+				itemPrice 	= 250,
 			},
-			["|H1:item:130304:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Saplings, Marsh Cluster
-				["itemPrice"] = 250,
+			[130304] = {		-- Saplings, Marsh Cluster
+				itemPrice 	= 250,
 			},
-			["|H1:item:130303:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Shrug, Swamp Sprig
-				["itemPrice"] = 250,
+			[130303] = {		-- Shrug, Swamp Sprig
+				itemPrice 	= 250,
 			},
-			["|H1:item:130289:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Stump, Mossy Cypress
-				["itemPrice"] = 250,
+			[130289] = {		-- Stump, Mossy Cypress
+				itemPrice 	= 250,
 			},
-			["|H1:item:130290:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Stump, Rotten Hollow
-				["itemPrice"] = 250,
+			[130290] = {		-- Stump, Rotten Hollow
+				itemPrice 	= 250,
 			},
-			["|H1:item:130315:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Tree, Ancient Rotten
-				["itemPrice"] = 7500,
+			[130315] = {		-- Tree, Ancient Rotten
+				itemPrice 	= 7500,
 			},
-			["|H1:item:130310:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Tree, Dead Marsh
-				["itemPrice"] = 7500,
+			[130310] = {		-- Tree, Dead Marsh
+				itemPrice 	= 7500,
 			},
-			["|H1:item:130312:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Tree, Dead Pine
-				["itemPrice"] = 2500,
+			[130312] = {		-- Tree, Dead Pine
+				itemPrice 	= 2500,
 			},
-			["|H1:item:130311:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Tree, Dead Swamp
-				["itemPrice"] = 5000,
+			[130311] = {		-- Tree, Dead Swamp
+				itemPrice 	= 5000,
 			},
-			["|H1:item:130313:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Tree, Gnarled Marsh
-				["itemPrice"] = 5000,
+			[130313] = {		-- Tree, Gnarled Marsh
+				itemPrice 	= 5000,
 			},
-			["|H1:item:130314:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Tree, Withering Marsh
-				["itemPrice"] = 2500,
+			[130314] = {		-- Tree, Withering Marsh
+				itemPrice 	= 2500,
 			},
 			
 		},
 	},
 	["the Undaunted Enclaves"] = {
 		["Undaunted Quartermaster"] = {
-			["|H1:item:131428:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Horn of the Reachclans
-				["itemPrice"] = 50000, 
+			[131428] = { -- Horn of the Reachclans
+				itemPrice 	= 50000, 
 			},
-			["|H1:item:131429:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Vine, Bloodroot Wiggler
-				["itemPrice"] = 5000, 
+			[131429] = { -- Vine, Bloodroot Wiggler
+				itemPrice 	= 5000, 
 			},
-			["|H1:item:131432:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Vine, Bloodroot Stem
-				["itemPrice"] = 5000, 
+			[131432] = { -- Vine, Bloodroot Stem
+				itemPrice 	= 5000, 
 			},
-			["|H1:item:131430:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Vine, Bloodroot Mangler
-				["itemPrice"] = 5000, 
+			[131430] = { -- Vine, Bloodroot Mangler
+				itemPrice 	= 5000, 
 			},
-			["|H1:item:131431:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Vine, Bloodroot Grasper
-				["itemPrice"] = 5000, 
+			[131431] = { -- Vine, Bloodroot Grasper
+				itemPrice 	= 5000, 
 			},
 			
 		},
 	},
 	["Eastmarch"] = {
-		["Frohilde Snow-Hair"] = {
-			["|H1:item:132215:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Boulder, Granite Cap
-				["itemPrice"] = 1000, 
+		[FURC_AV_FRO] = {
+			[132215] = { -- Boulder, Granite Cap
+				itemPrice 	= 1000, 
 			},
-			["|H1:item:132213:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Boulder, Granite Chunk
-				["itemPrice"] = 1000, 
+			[132213] = { -- Boulder, Granite Chunk
+				itemPrice 	= 1000, 
 			},
-			["|H1:item:132214:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Boulder, Granite Slab
-				["itemPrice"] = 1000, 
+			[132214] = { -- Boulder, Granite Slab
+				itemPrice 	= 1000, 
 			},
-			["|H1:item:132217:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Rock, Granite Chunk
-				["itemPrice"] = 5000, 
+			[132217] = { -- Rock, Granite Chunk
+				itemPrice 	= 5000, 
 			},
-			["|H1:item:132209:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Sapling, Foothills Pine
-				["itemPrice"] = 250, 
+			[132209] = { -- Sapling, Foothills Pine
+				itemPrice 	= 250, 
 			},
-			["|H1:item:132212:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Shrub, Mountain Thistle
-				["itemPrice"] = 250, 
+			[132212] = { -- Shrub, Mountain Thistle
+				itemPrice 	= 250, 
 			},
-			["|H1:item:132220:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Stones, Granite Cluster
-				["itemPrice"] = 250, 
+			[132220] = { -- Stones, Granite Cluster
+				itemPrice 	= 250, 
 			},
-			["|H1:item:132219:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Stones, Granite Group
-				["itemPrice"] = 250, 
+			[132219] = { -- Stones, Granite Group
+				itemPrice 	= 250, 
 			},
-			["|H1:item:132218:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Stones, Granite Pair
-				["itemPrice"] = 250, 
+			[132218] = { -- Stones, Granite Pair
+				itemPrice 	= 250, 
 			},
-			["|H1:item:132210:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Tree, Ancient Cedar
-				["itemPrice"] = 2500, 
+			[132210] = { -- Tree, Ancient Cedar
+				itemPrice 	= 2500, 
 			},
-			["|H1:item:132207:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Tree, Ancient Mountain Pine
-				["itemPrice"] = 1000, 
+			[132207] = { -- Tree, Ancient Mountain Pine
+				itemPrice 	= 1000, 
 			},
-			["|H1:item:132208:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Tree, Foothills Pine
-				["itemPrice"] = 1000, 
+			[132208] = { -- Tree, Foothills Pine
+				itemPrice 	= 1000, 
 			},
-			["|H1:item:132205:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Tree, Hardy Cedar
-				["itemPrice"] = 250, 
+			[132205] = { -- Tree, Hardy Cedar
+				itemPrice 	= 250, 
 			},
-			["|H1:item:132206:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Tree, Towering Mountain Pine
-				["itemPrice"] = 1000, 
+			[132206] = { -- Tree, Towering Mountain Pine
+				itemPrice 	= 1000, 
 			},
 			
 		},
 	},
 	["Auridon, Skywatch"] = {
-		["Maladdiq"] = {
-			["|H1:item:120652:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Boulder, Flat Lichen
-				["itemPrice"] = 100, 
+		[FURC_AV_MAL] = {
+			[120652] = { -- Boulder, Flat Lichen
+				itemPrice 	= 100, 
 			},			
-			["|H1:item:120651:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Boulder, Grey Saddle
-				["itemPrice"] = 100, 
+			[120651] = { -- Boulder, Grey Saddle
+				itemPrice 	= 100, 
 			},			
-			["|H1:item:120648:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Boulder, Lichen Covered
-				["itemPrice"] = 100, 
+			[120648] = { -- Boulder, Lichen Covered
+				itemPrice 	= 100, 
 			},
 			
-			["|H1:item:120672:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Hedge, Green Short
-				["itemPrice"] = 1000, 
+			[120672] = { -- Hedge, Green Short
+				itemPrice 	= 1000, 
 			},			
-			["|H1:item:120673:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Hedge, Long Horseshoe
-				["itemPrice"] = 2500, 
+			[120673] = { -- Hedge, Long Horseshoe
+				itemPrice 	= 2500, 
 			},			
-			["|H1:item:120671:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Hedge, Small Horseshoe
-				["itemPrice"] = 1250, 
+			[120671] = { -- Hedge, Small Horseshoe
+				itemPrice 	= 1250, 
 			},			
-			["|H1:item:120674:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Hedge, Tall Green
-				["itemPrice"] = 1250, 
+			[120674] = { -- Hedge, Tall Green
+				itemPrice 	= 1250, 
 			},			
-			["|H1:item:121005:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Hedge, Wall Arc
-				["itemPrice"] = 3000, 
+			[121005] = { -- Hedge, Wall Arc
+				itemPrice 	= 3000, 
 			},
 			
-			["|H1:item:120653:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Rock, Slanted Lichen
-				["itemPrice"] = 100, 
+			[120653] = { -- Rock, Slanted Lichen
+				itemPrice 	= 100, 
 			},			
-			["|H1:item:120655:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Stone, Slanted Lichen
-				["itemPrice"] = 100, 
+			[120655] = { -- Stone, Slanted Lichen
+				itemPrice 	= 100, 
 			},			
-			["|H1:item:120654:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Stone, Slanted Rough
-				["itemPrice"] = 100, 
+			[120654] = { -- Stone, Slanted Rough
+				itemPrice 	= 100, 
 			},			
-			["|H1:item:120656:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Stones, Gray Mossy
-				["itemPrice"] = 100, 
+			[120656] = { -- Stones, Gray Mossy
+				itemPrice 	= 100, 
 			},			
-			["|H1:item:120675:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Topiary, Manicured Evergreen
-				["itemPrice"] = 2000, 
+			[120675] = { -- Topiary, Manicured Evergreen
+				itemPrice 	= 2000, 
 			},
-			["|H1:item:120676:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Topiary, Pruned Evergreen
-				["itemPrice"] = 1000, 
+			[120676] = { -- Topiary, Pruned Evergreen
+				itemPrice 	= 1000, 
 			},
 			
-			["|H1:item:120658:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Tree, Sturdy Jungle
-				["itemPrice"] = 250, 
+			[120658] = { -- Tree, Sturdy Jungle
+				itemPrice 	= 250, 
 			},
-			["|H1:item:120664:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Tree, Tiered Light Cherry
-				["itemPrice"] = 15000, 
+			[120664] = { -- Tree, Tiered Light Cherry
+				itemPrice 	= 15000, 
 			},
-			["|H1:item:120665:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Tree, Tiered Pink Cherry
-				["itemPrice"] = 15000, 
+			[120665] = { -- Tree, Tiered Pink Cherry
+				itemPrice 	= 15000, 
 			},			
-			["|H1:item:120666:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Tree, Tiered White Cherry
-				["itemPrice"] = 25000, 
+			[120666] = { -- Tree, Tiered White Cherry
+				itemPrice 	= 25000, 
 			},			
-			["|H1:item:120657:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Tree, twisted Pink cherry
-				["itemPrice"] = 15000, 
+			[120657] = { -- Tree, twisted Pink cherry
+				itemPrice 	= 15000, 
 			},			
-			["|H1:item:120667:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Tree, twisted white cherry
-				["itemPrice"] = 12000, 
+			[120667] = { -- Tree, twisted white cherry
+				itemPrice 	= 12000, 
 			},			
-			["|H1:item:120659:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Trees, Crooked Swamp
-				["itemPrice"] = 100, 
+			[120659] = { -- Trees, Crooked Swamp
+				itemPrice 	= 100, 
 			},
 			
 		},

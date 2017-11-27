@@ -8,8 +8,6 @@ FurC 								= FurnitureCatalogue
 FurC.DevDebug						= false
 FurC.AccountName					= GetDisplayName() 
 
-
-
 FurC.AchievementVendors				= {}
 FurC.LuxuryFurnisher				= {}
 FurC.Recipes						= {}
@@ -27,13 +25,17 @@ FurC.ClockworkData					= {}
 
 
 -- versioning
-_G["FURC_HOMESTEAD"]				= 2
-_G["FURC_MORROWIND"]				= 3
-_G["FURC_REACH"]					= 4
-_G["FURC_CLOCKWORK"]				= 5
-
-FurnitureCatalogue.version			= 1.9106
-FurC.gameVersion					= FURC_REACH
+FURC_HOMESTEAD					= 2
+FURC_MORROWIND					= 3
+FURC_REACH						= 4
+FURC_CLOCKWORK					= 5
+	
+FURC_LOC_HOLLOW_CITY 			= "Hollow City, Cicero's General Goods"
+FURC_AV_ZANILTHERAN				= "Zanil Theran, Luxury Furnisher"
+	
+	
+FurC.version					= 2.0
+FurC.gameVersion				= FURC_CLOCKWORK
 
 local defaults 					= {
 
@@ -78,7 +80,7 @@ local defaults 					= {
 	hideRumourEntry				= false,
 	hideCrownStoreEntry			= true,
 	wipeDatabase				= false,
-	startupSilently				= false,
+	startupSilently				= true,
 		
 	visibility					= {
 		hud						= true,
@@ -86,63 +88,69 @@ local defaults 					= {
 	}
 }
 
-local sourceIndicesKeys = {
-	[1] 						= "off",
-	[2] 						= "favorites",
-	[3] 						= "craft_all",
-	[4] 						= "craft_known",
-	[5] 						= "craft_unknown",
-	[6] 						= "purch_gold",
-	[7] 						= "purch_ap",
-	[8] 						= "crownstore",
-	[9] 						= "rumour",
-	[10] 						= "luxury",
-	[11] 						= "other"
-}
+FURC_NONE				= 1
+FURC_FAVE 				= FURC_NONE +1
+FURC_CRAFTING			= FURC_FAVE +1
+FURC_CRAFTING_KNOWN		= FURC_CRAFTING +1
+FURC_CRAFTING_UNKNOWN	= FURC_CRAFTING_KNOWN +1
+FURC_VENDOR 			= FURC_CRAFTING_UNKNOWN +1
+FURC_PVP 				= FURC_VENDOR +1
+FURC_CROWN 				= FURC_PVP +1
+FURC_RUMOUR 			= FURC_CROWN +1
+FURC_LUXURY 			= FURC_RUMOUR +1
+FURC_OTHER 				= FURC_LUXURY +1
+FURC_ROLLIS 			= FURC_OTHER +1
+FURC_DROP 				= FURC_ROLLIS +1
+FURC_JUSTICE 			= FURC_DROP +1
+FURC_FISHING 			= FURC_JUSTICE +1
+FURC_GUILDSTORE 		= FURC_FISHING +1
+FURC_VENDOR_FESTIVAL 	= FURC_GUILDSTORE +1
 
-FurC.sourceIndices	= {		
-	off 						= 1,
-	favorites 					= 2,
-	craft_all 					= 3,
-	craft_known 				= 4,
-	craft_unknown 				= 5,
-	purch_gold 					= 6,
-	purch_ap 					= 7,
-	crownstore 					= 8,
-	rumour 						= 9,
-	luxury 						= 10,
-	other  						= 11
+
+
+FURC_EMPTY_STRING 		= ""
+
+
+local sourceIndicesKeys = {
+	[FURC_NONE] 						= "off",
+	[FURC_FAVE] 						= "favorites",
+	[FURC_CRAFTING] 					= "craft_all",
+	[FURC_CRAFTING_KNOWN] 				= "craft_known",
+	[FURC_CRAFTING_UNKNOWN] 			= "craft_unknown",
+	[FURC_VENDOR] 						= "purch_gold",
+	[FURC_PVP] 							= "purch_ap",
+	[FURC_CROWN] 						= "crownstore",
+	[FURC_RUMOUR] 						= "rumour",
+	[FURC_LUXURY] 						= "luxury",
+	[FURC_OTHER] 						= "other"
 }
-local sourceIndices				= FurC.sourceIndices
-local sI 						= sourceIndices
 
 local choicesSource = {
-	[sI.off]			= "Source filter: off", 
-	[sI.favorites] 		= "Favorites", 
-	[sI.craft_all] 		= "Craftable: All", 
-	[sI.craft_known] 	= "Craftable: Known", 
-	[sI.craft_unknown] 	= "Craftable: Unknown", 
-	[sI.purch_gold] 	= "Purchaseable (gold)",
-	[sI.purch_ap] 		= "Purchaseable (AP)",
-	[sI.crownstore] 	= "Crown Store",
-	[sI.rumour] 		= "Rumour items",
-	[sI.luxury] 		= "Luxury items",
-	[sI.other] 			= "Other",		
+	[FURC_NONE]				= "Source filter: off", 
+	[FURC_FAVE] 			= "Favorites", 
+	[FURC_CRAFTING] 		= "Craftable: All", 
+	[FURC_CRAFTING_KNOWN] 	= "Craftable: Known", 
+	[FURC_CRAFTING_UNKNOWN] = "Craftable: Unknown", 
+	[FURC_VENDOR] 			= "Purchaseable (gold)",
+	[FURC_PVP] 				= "Purchaseable (AP)",
+	[FURC_CROWN] 			= "Crown Store",
+	[FURC_RUMOUR] 			= "Rumour items",
+	[FURC_LUXURY] 			= "Luxury items",
+	[FURC_OTHER] 			= "Other",
 }
 local tooltipsSource = {
-	[sI.off]			= "disables this filter", 
-	[sI.favorites] 		= "Shows your favorites", 
-	[sI.craft_all] 		= "Shows all craftable items", 
-	[sI.craft_known] 	= "Shows only known craftable items", 
-	[sI.craft_unknown] 	= "Shows only unknown craftable items", 
-	[sI.purch_gold] 	= "Shows only items that cannot be crafted",
-	[sI.purch_ap] 		= "Items that are sold for alliance points",
-	[sI.crownstore] 	= "Shows items that can only be acquired from crown store",
-	[sI.rumour] 		= "Items and recipes that have been datamined, but haven't been confirmed existing",
-	[sI.luxury] 		= "Items that at some point were sold by Zanil Theran, Cicero's General Goods, Coldharbour",
-	[sI.other] 			= "Shows items that can be farmed/stolen/found",
+	[FURC_NONE]				= "disables this filter", 
+	[FURC_FAVE] 			= "Shows your favorites", 
+	[FURC_CRAFTING] 		= "Shows all craftable items", 
+	[FURC_CRAFTING_KNOWN] 	= "Shows only known craftable items", 
+	[FURC_CRAFTING_UNKNOWN] = "Shows only unknown craftable items", 
+	[FURC_VENDOR] 			= "Shows only items that cannot be crafted",
+	[FURC_PVP] 				= "Items that are sold for alliance points",
+	[FURC_CROWN] 			= "Shows items that can only be acquired from crown store",
+	[FURC_RUMOUR] 			= "Items and recipes that have been datamined, but haven't been confirmed existing",
+	[FURC_LUXURY] 			= "Items that at some point were sold by Zanil Theran, Cicero's General Goods, Coldharbour",
+	[FURC_OTHER] 			= "Shows items that can be farmed/stolen/found",
 }
-
 FurnitureCatalogue.DropdownData = {
 	ChoicesVersion	= {
 		[1] = "Version filter: off", 
@@ -170,17 +178,6 @@ FurnitureCatalogue.DropdownData = {
 	TooltipsSource 	= {},	
 }
 
-_G["FURC_CRAFTING"] = 1
-_G["FURC_VENDOR"] 	= 2
-_G["FURC_ROLLIS"] 	= 3
-_G["FURC_DROP"] 	= 4
-_G["FURC_JUSTICE"] 	= 5
-_G["FURC_FISHING"] 	= 6
-_G["FURC_STORE"] 	= 7
-_G["FURC_CROWN"] 	= 8
-_G["FURC_RUMOUR"] 	= 9
-_G["FURC_PVP"] 		= 10
-_G["FURC_LUXURY"] 	= 11
 
 
 
@@ -223,22 +220,7 @@ end
 
 local function setupSourceDropdown()	
 
-	if FurC.GetMergeLuxuryAndSales() then
-        table.remove(choicesSource, 	sourceIndices.luxury)
-        table.remove(tooltipsSource, 	sourceIndices.luxury)
-        table.remove(sourceIndicesKeys, 	sourceIndices.luxury)
-    end
-	 if FurC.GetHideCrownStoreEntry() then	-- 8
-        table.remove(choicesSource, 	sourceIndices.crownstore)
-        table.remove(tooltipsSource, 	sourceIndices.crownstore)
-        table.remove(sourceIndicesKeys, 	sourceIndices.crownstore)
-    end
-    if FurC.GetHideRumourRecipesEntry() then
-        table.remove(choicesSource, 	sourceIndices.rumour)
-        table.remove(tooltipsSource, 	sourceIndices.rumour)
-        table.remove(sourceIndicesKeys, 	sourceIndices.rumour)
-    end
-   
+  
    FurnitureCatalogue.DropdownData.ChoicesSource  = choicesSource
    FurnitureCatalogue.DropdownData.TooltipsSource = tooltipsSource
    

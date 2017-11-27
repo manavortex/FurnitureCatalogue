@@ -1,126 +1,129 @@
 FurC.PVP = FurC.PVP or {}
+FURC_CYRO = "Cyrodiil"
+FURC_IC = "Imperial City"
+FURC_ITEMSOURCE_VENDOR = "Furnishing vendor"
 FurC.PVP[FURC_HOMESTEAD] = {
-	["Cyrodiil"] = {
-		["Furnishing Vendor"] = {
-			["|H1:item:119656:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Pennant, Small
-				["itemPrice"] = 200, 
-				["achievement"] = "|H1:achievement:92:0:0|h|h",	-- Volunteer
+	[FURC_ITEMSOURCE_VENDOR] = {
+		[FURC_CYRO] = {		
+			[119656] = {	-- Pennant, Small
+				itemPrice 	= 200, 
+				achievement = 92,	-- Volunteer
 			}, 
-			["|H1:item:119656:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Wall Banner, Small
-				["itemPrice"] = 400, 
-				["achievement"] = "|H1:achievement:93:0:0|h|h",	-- Recruit
+			[119656] = {	-- Wall Banner, Small
+				itemPrice 	= 400, 
+				achievement = 93,	-- Recruit
 			}, 
-			["|H1:item:119635:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Wall Banner, Medium
-				["itemPrice"] = 600, 
-				["achievement"] = "|H1:achievement:94:0:0|h|h",	-- Tyro
+			[119635] = {	-- Wall Banner, Medium
+				itemPrice 	= 600, 
+				achievement = 94,	-- Tyro
 			}, 
-			["|H1:item:119636:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Camp Banner
-				["itemPrice"] = 1000, 
-				["achievement"] = "|H1:achievement:95:0:0|h|h",	-- Legionary
+			[119636] = {	-- Camp Banner
+				itemPrice 	= 1000, 
+				achievement = 95,	-- Legionary
 			}, 
-			["|H1:item:119675:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Defaced Covenant Flag
-				["itemPrice"] = 2000, 
-				["achievement"] = "|H1:achievement:110:0:0|h|h",
+			[119675] = {	-- Defaced Covenant Flag
+				itemPrice 	= 2000, 
+				achievement = 110,
 			}, 
-			["|H1:item:119629:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Defaced Dominion Flag
-				["itemPrice"] = 2000, 
-				["achievement"] = "|H1:achievement:110:0:0|h|h",
+			[119629] = {	-- Defaced Dominion Flag
+				itemPrice 	= 2000, 
+				achievement = 110,
 			}, 
-			["|H0:item:119637:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Wall Banner, Large
-				["itemPrice"] = 3000, 
-				["achievement"] = "|H1:achievement:96:0:0|h|h",	-- Veteran
+			[119637] = {	-- Wall Banner, Large
+				itemPrice 	= 3000, 
+				achievement = 96,	-- Veteran
 			}, 
-			["|H0:item:119638:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Point Capture Flag
-				["itemPrice"] = 4000, 
-				["achievement"] = "|H1:achievement:97:0:0|h|h",	-- Corporal
+			[119638] = {	-- Point Capture Flag
+				itemPrice 	= 4000, 
+				achievement = 97,	-- Corporal
 			}, 
-			["|H1:item:119639:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Spare figurehead
-				["itemPrice"] = 5000, 
-				["achievement"] = "|H1:achievement:98:0:0|h|h", -- Sergeant
+			[119639] = {	-- Spare figurehead
+				itemPrice 	= 5000, 
+				achievement = 98, -- Sergeant
 			}, 
-			["|H1:item:119655:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Keep Pennant
-				["itemPrice"] = 8000, 
-				["achievement"] = "|H1:achievement:113:0:0|h|h", -- Grand Warlord
+			[119655] = {	-- Keep Pennant
+				itemPrice 	= 8000, 
+				achievement = 113, -- Grand Warlord
 			}, 
-			["|H1:item:119617:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Flaming Oil
-				["itemPrice"] = 10000, 
-				["achievement"] = "|H1:achievement:104:0:0|h|h",	-- Tribune
+			[119617] = {	-- Flaming Oil
+				itemPrice 	= 10000, 
+				achievement = 104,	-- Tribune
 			}, 
-			["|H1:item:119642:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Scattershot Catapult
-				["itemPrice"] = 15000, 
-				["achievement"] = "|H1:achievement:100:0:0|h|h",	-- Captain
+			[119642] = {	-- Scattershot Catapult
+				itemPrice 	= 15000, 
+				achievement = 100,	-- Captain
 			}, 
-			["|H1:item:120002:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Dueling Banner
-				["itemPrice"] = 20000, 
-				["achievement"] = "|H1:achievement:1689:0:0|h|h",
+			[120002] = {	-- Dueling Banner
+				itemPrice 	= 20000, 
+				achievement = 1689,
 			}, 
-			["|H1:item:119641:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Ballista
-				["itemPrice"] = 20000, 
-				["achievement"] = "|H1:achievement:99:0:0|h|h",
+			[119641] = {	-- Ballista
+				itemPrice 	= 20000, 
+				achievement = 99,
 			}, 
-			["|H1:item:119644:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Battering ram
-				["itemPrice"] = 25000, 
-				["achievement"] = "|H1:achievement:102:0:0|h|h",
+			[119644] = {	-- Battering ram
+				itemPrice 	= 25000, 
+				achievement = 102,
 			}, 
-			["|H1:item:119646:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Oil Catapult
-				["itemPrice"] = 25000, 
-				["achievement"] = "|H1:achievement:104:0:0|h|h",
+			[119646] = {	-- Oil Catapult
+				itemPrice 	= 25000, 
+				achievement = 104,
 			}, 
-			["|H1:item:119653:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Cold fire ballista
-				["itemPrice"] = 30000, 
-				["achievement"] = "|H1:achievement:111:0:0|h|h",
+			[119653] = {	-- Cold fire ballista
+				itemPrice 	= 30000, 
+				achievement = 111,
 			}, 
-			["|H1:item:119645:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Fire Ballista
-				["itemPrice"] = 30000, 
-				["achievement"] = "|H1:achievement:103:0:0|h|h", -- Colonel
+			[119645] = {	-- Fire Ballista
+				itemPrice 	= 30000, 
+				achievement = 103, -- Colonel
 			},  
-			["|H1:item:119649:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Lightning Ballista
-				["itemPrice"] = 30000, 
-				["achievement"] = "|H1:achievement:107:0:0|h|h",
+			[119649] = {	-- Lightning Ballista
+				itemPrice 	= 30000, 
+				achievement = 107,
 			},  
-			["|H1:item:119650:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Meatbag Catapult
-				["itemPrice"] = 30000, 
-				["achievement"] = "|H1:achievement:107:0:0|h|h",
+			[119650] = {	-- Meatbag Catapult
+				itemPrice 	= 30000, 
+				achievement = 107,
 			},  
-			["|H1:item:119643:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Stone Trebuchet
-				["itemPrice"] = 40000, 
-				["achievement"] = "|H1:achievement:108:0:0|h|h",
+			[119643] = {	-- Stone Trebuchet
+				itemPrice 	= 40000, 
+				achievement = 108,
 			},  
-			["|H1:item:119647:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Fire
-				["itemPrice"] = 45000, 
-				["achievement"] = "|H1:achievement:105:0:0|h|h",
+			[119647] = {	-- Fire
+				itemPrice 	= 45000, 
+				achievement = 105,
 			},  
-			["|H1:item:119654:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Cold Fire
-				["itemPrice"] = 50000, 
-				["achievement"] = "|H1:achievement:112:0:0|h|h",
+			[119654] = {	-- Cold Fire
+				itemPrice 	= 50000, 
+				achievement = 112,
 			},  
-			["|H1:item:119648:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Forward Camp
-				["itemPrice"] = 50000, 
-				["achievement"] = "|H1:achievement:106:0:0|h|h",
+			[119648] = {	-- Forward Camp
+				itemPrice 	= 50000, 
+				achievement = 106,
 			}, 
-			["|H1:item:119651:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Iceball Treb
-				["itemPrice"] = 50000, 
-				["achievement"] = "|H1:achievement:109:0:0|h|h",
+			[119651] = {	-- Iceball Treb
+				itemPrice 	= 50000, 
+				achievement = 109,
 			}, 
-			["|H1:item:120079:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Transitus shrine
-				["itemPrice"] = 100000, 
-				["achievement"] = "|H1:achievement:114:0:0|h|h",
+			[120079] = {	-- Transitus shrine
+				itemPrice 	= 100000, 
+				achievement = 114,
 			}, 
-			["|H1:item:120075:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Elder Scroll
-				["itemPrice"] = 200000, 
-				["achievement"] = "|H1:achievement:935:0:0|h|h",
+			[120075] = {	-- Elder Scroll
+				itemPrice 	= 200000, 
+				achievement = 935,
 			}, 
-			["|H1:item:120038:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Throne
-				["itemPrice"] = 250000, 
-				["achievement"] = "|H1:achievement:935:0:0|h|h",
+			[120038] = {	-- Throne
+				itemPrice 	= 250000, 
+				achievement = 935,
 			}, 
 		},
 		["Imperial City"] = {
-			["|H1:item:119983:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Imperial Banner
-				["itemPrice"] = 15000, 
+			[119983] = {	-- Imperial Banner
+				itemPrice 	= 15000, 
 			}, 
-			["|H1:item:119982:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Molag Bal Brazier
-				["itemPrice"] = 25000, 
+			[119982] = {	-- Molag Bal Brazier
+				itemPrice 	= 25000, 
 			}, 
 		}
 	}

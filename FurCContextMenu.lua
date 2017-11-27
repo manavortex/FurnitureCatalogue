@@ -1,12 +1,13 @@
 FurC_LinkHandlerBackup_OnLinkMouseUp = nil
 
-function AddFurnitureShoppingListMenuEntry(itemLink, calledFromFurC)
+function AddFurnitureShoppingListMenuEntry(itemId, calledFromFurC)
 	if calledFromFurC then
 		if (not FurC.GetEnableShoppingList()) then return end
 		if (nil ==	moc()) or (nil == FurnitureShoppingListAdd) then return end
 		local controlName = moc():GetName() or ""
 		if nil == moc():GetName():match("_ListItem_") then return end
 	end
+	local itemLink = FurC.GetItemLink(itemId)
 	if nil == FurC.Find(itemLink) then return end
 	AddCustomMenuItem(" Add 1 to shopping list", 
 		function() 
@@ -30,13 +31,13 @@ function AddFurnitureShoppingListMenuEntry(itemLink, calledFromFurC)
 
 end
 
-local function addMenuItems(recipeArray)
+local function addMenuItems(itemLink, recipeArray)
 	
+	recipeArray = recipeArray or FurC.Find(itemLink)
 	if (nil == recipeArray) then return end
 	-- ClearMenu()	
-	local itemLink = recipeArray.itemLink
-	local itemType, sItemType = GetItemLinkItemType(itemLink)
 	if not (IsItemLinkPlaceableFurniture(itemLink) or IsItemLinkFurnitureRecipe(itemLink)) then return end
+	local itemType, sItemType = GetItemLinkItemType(itemLink)
 	
 	AddCustomMenuItem("- |cD3B830Furniture|r:", 
 		function() FurC.ToChat(itemLink) end, 
@@ -48,12 +49,12 @@ local function addMenuItems(recipeArray)
 		MENU_ADD_OPTION_LABEL
 	)
 	
-	if not recipeArray.craftable then		
+	if recipeArray.origin ~= FURC_CRAFTING then		
 		AddCustomMenuItem(" Post item source", 
 			function() FurC.PrintSource(itemLink, recipeArray) end,	
 			MENU_ADD_OPTION_LABEL
 		)		
-	elseif (recipeArray.craftable) then
+	else
 		if nil == recipeArray.blueprint then 
 			AddCustomMenuItem(" Post recipe", 
 			function() FurC.PrintRecipe(itemLink, recipeArray) end,	
@@ -76,13 +77,12 @@ local function addMenuItems(recipeArray)
 end
 
 function FurC_HandleClickEvent(itemLink, button, control)		-- button being mouseButton here
-	
 	if (type(itemLink) == 'string' and #itemLink > 0) then
 		local handled = LINK_HANDLER:FireCallbacks(LINK_HANDLER.LINK_MOUSE_UP_EVENT, itemLink, button, ZO_LinkHandler_ParseLink(itemLink))
 		if (not handled) then	
 			FurC_LinkHandlerBackup_OnLinkMouseUp(itemLink, button, control)		
 			if (button == 2 and itemLink ~= '') then
-				addMenuItems(FurC.Find(itemLink))			            
+				addMenuItems(itemLink, FurC.Find(itemLink))			            
 			end 			
 			ShowMenu(control)
         end
@@ -131,7 +131,7 @@ function FurC_HandleInventoryContextMenu(control)
 	if nil == recipeArray then return end  
 
 	zo_callLater(function() 
-		addMenuItems(recipeArray)	
+		addMenuItems(itemLink, recipeArray)	
 		ShowMenu()
 	end, 50)
 
@@ -142,15 +142,17 @@ end
 function FurC.OnControlMouseUp(control, button)
 	
 	if nil == control then return end
+
 	if button ~= 2 then return end
 	local itemLink = control.itemLink
+	
 	if nil == itemLink then return end
-	local ary = FurC.Find(itemLink)
-	if nil == ary then return end
+	local recipeArray = FurC.Find(itemLink)
+	if nil == recipeArray then return end
 	zo_callLater(function() 
 		ItemTooltip:SetHidden(true)
 		ClearMenu()
-		addMenuItems(ary)	
+		addMenuItems(itemLink, recipeArray)
 		ShowMenu()
 	end, 50)	
 	

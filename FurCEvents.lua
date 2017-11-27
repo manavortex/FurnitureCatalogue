@@ -20,11 +20,9 @@ local function createIcon(control)
 end
 
 local function getItemKnowledge(itemLink)
-	if FurC.GetUseInventoryIconsOnChar()  then
-		return FurC.CanCraft(itemLink)
-	else
-		return not FurC.IsUnknown(itemLink)
-	end
+	local canCraft = FurC.CanCraft(FurC.GetItemId(itemLink)) 
+	return (FurC.GetUseInventoryIconsOnChar() and canCraft) or not canCraft
+	
 end
 
 local function updateItemInInventory(control)

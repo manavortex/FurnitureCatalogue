@@ -18,2062 +18,2077 @@ end
 
 local jesterVendor = {
 	-- tree, Jester's Large
-	["|H1:item:120994:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"]	= {
-		["itemPrice"] = 15000, 
-		["itemAchievement"] = "|H1:achievement:1723:0:0|h|h",
+	[120994]	= {
+		itemPrice 	= 15000, 
+		achievement  	= 1723,
 	},
 	-- tree, Jester's Small
-	["|H1:item:118529:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"]	= {
-		["itemPrice"] = 5000, 
-		["itemAchievement"] = "|H1:achievement:1723:0:0|h|h",
+	[118529]	= {
+		itemPrice 	= 5000, 
+		achievement  	= 1723,
 	},
 	-- Banner of Mayhem
-	["|H1:item:126720:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"]	= {
-		["itemPrice"] = 5000, 
-		["itemAchievement"] = "|H1:achievement:1883:0:0|h|h",
+	[126720]	= {
+		itemPrice 	= 5000, 
+		achievement  	= 1883,
 	},
 	-- Corpse of Mayhem, Argonian
-	["|H1:item:126721:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"]	= {
-		["itemPrice"] = 15000, 
-		["itemAchievement"] = "|H1:achievement:1888:0:0|h|h",
+	[126721]	= {
+		itemPrice 	= 15000, 
+		achievement  	= 1888,
 	},
 	-- Corpse of Mayhem, Khajiit
-	["|H1:item:126722:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"]	= {
-		["itemPrice"] = 15000, 
-		["itemAchievement"] = "|H1:achievement:1888:0:0|h|h",
+	[126722]	= {
+		itemPrice 	= 15000, 
+		achievement  	= 1888,
 	},
 	-- Corpse of Mayhem, Orc
-	["|H1:item:126723:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"]	= {
-		["itemPrice"] = 15000, 
-		["itemAchievement"] = "|H1:achievement:1888:0:0|h|h",
+	[126723]	= {
+		itemPrice 	= 15000, 
+		achievement  	= 1888,
 	},
 	-- Probably-Not-Punch-Bowl of Mayhem
-	["|H1:item:126724:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"]	= {
-		["itemPrice"] = 30000, 
-		["itemAchievement"] = "|H1:achievement:1892:0:0|h|h",
+	[126724]	= {
+		itemPrice 	= 30000, 
+		achievement  	= 1892,
 	},
 	-- Stamdard of Mayhem
-	["|H1:item:126719:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"]	= {
-		["itemPrice"] = 2500, 
-		["itemAchievement"] = "|H1:achievement:1883:0:0|h|h",
+	[126719]	= {
+		itemPrice 	= 2500, 
+		achievement  	= 1883,
 	},
 }
 
 local capitalVendor = {
-	["|H1:item:119987:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Coldharbour Urn
-		["itemPrice"] = 5000,
-		["itemAchievement"] = "",		
+	[119987] = {		-- Coldharbour Urn
+		itemPrice 	= 5000,
 	},
-	["|H1:item:120037:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Decorative Skyshard
-		["itemPrice"] = 25000, 
-		["itemAchievement"] = "|H1:achievement:1009:0:0|h|h",		
+	[120037] = {		-- Decorative Skyshard
+		itemPrice 	= 25000, 
+		achievement  	= 1009,		
 	},
-	["|H1:item:120001:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Decorative Treasure Chest
-		["itemPrice"] = 10000, 
-		["itemAchievement"] = "",		
+	[120001] = {		-- Decorative Treasure Chest
+		itemPrice 	= 10000, 
+		achievement  	= "",		
 	},
-	["|H1:item:119994:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Depleted Sigil Stone
-		["itemPrice"] = 5000, 
-		["itemAchievement"] = "",		
+	[119994] = {		-- Depleted Sigil Stone
+		itemPrice 	= 5000, 
+		achievement  	= "",		
 	},
-	["|H1:item:120066:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Display Craft Bag
-		["itemPrice"] = 5000, 
-		["itemAchievement"] = "",		
+	[120066] = {		-- Display Craft Bag
+		itemPrice 	= 5000, 
+		achievement  	= "",		
 	},
-	["|H1:item:120043:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Fishing Vessel
-		["itemPrice"] = 100000, 
-		["itemAchievement"] = "",		
+	[120043] = {		-- Fishing Vessel
+		itemPrice 	= 100000, 
+		achievement  	= "",		
 	},
-	["|H1:item:120056:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Hanging Map of Tamriel
-		["itemPrice"] = 10000,
-		["itemAchievement"] = "",		
+	[120056] = {		-- Hanging Map of Tamriel
+		itemPrice 	= 10000,
+		achievement  	= "",		
 	},
-	["|H1:item:119993:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Lantern of Anguish
-		["itemPrice"] = 5000,
-		["itemAchievement"] = "",		
+	[119993] = {		-- Lantern of Anguish
+		itemPrice 	= 5000,
+		achievement  	= "",		
 	},
-	["|H1:item:120039:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Primal Altar to Hircine
-		["itemPrice"] = 50000,
-		["itemAchievement"] = "|H1:achievement:1009:0:0|h|h",		
+	[120039] = {		-- Primal Altar to Hircine
+		itemPrice 	= 50000,
+		achievement  	= 1009,		
 	},
-	["|H1:item:119989:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Replica Black Soulgem
-		["itemPrice"] = 2500,
-		["itemAchievement"] = "",		
+	[119989] = {		-- Replica Black Soulgem
+		itemPrice 	= 2500,
+		achievement  	= "",		
 	},
-	["|H1:item:119988:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Replica Soul Gem
-		["itemPrice"] = 500,
-		["itemAchievement"] = "",		
+	[119988] = {		-- Replica Soul Gem
+		itemPrice 	= 500,
+		achievement  	= "",		
 	},
-	["|H1:item:119995:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Silent Sentinel
-		["itemPrice"] = 20000,
-		["itemAchievement"] = "",		
+	[119995] = {		-- Silent Sentinel
+		itemPrice 	= 20000,
+		achievement  	= "",		
 	},
-	["|H1:item:119990:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Soul Gem Case
-		["itemPrice"] = 4000,
-		["itemAchievement"] = "",		
+	[119990] = {		-- Soul Gem Case
+		itemPrice 	= 4000,
+		achievement  	= "",		
 	},
-	["|H1:item:119992:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Soul Gem Crate
-		["itemPrice"] = 5000,
-		["itemAchievement"] = "",		
+	[119992] = {		-- Soul Gem Crate
+		itemPrice 	= 5000,
+		achievement  	= "",		
 	},
-	["|H1:item:119996:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Soul Gem Stand
-		["itemPrice"] = 4000,
-		["itemAchievement"] = "",		
+	[119996] = {		-- Soul Gem Stand
+		itemPrice 	= 4000,
+		achievement  	= "",		
 	},
-	["|H1:item:119991:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Spare Flesh Atronach Parts
+	[119991] = {		-- Spare Flesh Atronach Parts
 	
-		["itemPrice"] = 10000,
-		["itemAchievement"] = "",		
+		itemPrice 	= 10000,
+		achievement  	= "",		
 	},
-	["|H1:item:119873:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Tamrith Coffin
-		["itemPrice"] = 20000,
-		["itemAchievement"] = "|H1:achievement:1010:0:0|h|h",		
+	[119873] = {		-- Tamrith Coffin
+		itemPrice 	= 20000,
+		achievement  	= 1010,		
 	},
-	["|H1:item:119872:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Tamrith Coffin Lid
-		["itemPrice"] = 5000,
-		["itemAchievement"] = "|H1:achievement:1010:0:0|h|h",		
+	[119872] = {		-- Tamrith Coffin Lid
+		itemPrice 	= 5000,
+		achievement  	= 1010,		
 	},
-	["|H1:item:120064:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- DC shield
-		["itemPrice"] = 10000,
-		["itemAchievement"] = "|H1:achievement:61:0:0|h|h",		
+	[120064] = {		-- DC shield
+		itemPrice 	= 10000,
+		achievement  	= 61,		
 	},
-	["|H1:item:120063:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- AD shield
-		["itemPrice"] = 10000,
-		["itemAchievement"] = "|H1:achievement:618:0:0|h|h",		
+	[120063] = {		-- AD shield
+		itemPrice 	= 10000,
+		achievement  	= 618,		
 	},
-	["|H1:item:120065:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- EP shield
-		["itemPrice"] = 10000,
-		["itemAchievement"] = "|H1:achievement:617:0:0|h|h",		
+	[120065] = {		-- EP shield
+		itemPrice 	= 10000,
+		achievement  	= 617,		
 	},
 }
 
 local furnishingVendor = {
-		["|H1:item:120998:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Block,Wood Cutting
-			["itemPrice"] = 100,
+		[120998] = {	-- Block,Wood Cutting
+			itemPrice 	= 100,
 		},		
-		["|H1:item:117994:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Rough Block,Stone Slab
-			["itemPrice"] = 100,
+		[117994] = {	-- Rough Block,Stone Slab
+			itemPrice 	= 100,
 		},
-		["|H1:item:117971:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Rough Clothesline,Post
-			["itemPrice"] = 100,
+		[117971] = {	-- Rough Clothesline,Post
+			itemPrice 	= 100,
 		},
-		["|H1:item:117980:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Rough Firewood,Fireplace
-			["itemPrice"] = 100,
+		[117980] = {	-- Rough Firewood,Fireplace
+			itemPrice 	= 100,
 		},
-		["|H1:item:117982:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Rough Firewood,Stack
-			["itemPrice"] = 100,
+		[117982] = {	-- Rough Firewood,Stack
+			itemPrice 	= 100,
 		},
-		["|H1:item:117977:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Rough Stool,Round
-			["itemPrice"] = 100,
+		[117977] = {	-- Rough Stool,Round
+			itemPrice 	= 100,
 		},
-		["|H1:item:117990:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Tea Table,Carved
-			["itemPrice"] = 250,
+		[117990] = {	-- Tea Table,Carved
+			itemPrice 	= 250,
 		},
 				
 }
 	
 local morrowindStones = {
-	["|H1:item:120563:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Stone,Jagged Grey
-		["itemPrice"] = 100 ,
+	[120563] = {	-- Stone,Jagged Grey
+		itemPrice 	= 100 ,
 	},
-	["|H1:item:120570:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Stone,Slanted Grey
-		["itemPrice"] = 100 ,
+	[120570] = {	-- Stone,Slanted Grey
+		itemPrice 	= 100 ,
 	},
-	["|H1:item:120571:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Pebbles,Stacked Grey
-		["itemPrice"] = 100,
+	[120571] = {	-- Pebbles,Stacked Grey
+		itemPrice 	= 100,
 	},
-	["|H1:item:120564:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Pebbles,Stacked Weathered
-		["itemPrice"] = 100 ,
+	[120564] = {	-- Pebbles,Stacked Weathered
+		itemPrice 	= 100 ,
 	},
-	["|H1:item:120572:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Rocks,Jagged Set
-		["itemPrice"] = 100,
+	[120572] = {	-- Rocks,Jagged Set
+		itemPrice 	= 100,
 	},
 }
 
 local structures = {
-	["|H1:item:117984:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Rough Block, Dark Stone
-		["itemPrice"] = 100, 
+	[117984] = {		-- Rough Block, Dark Stone
+		itemPrice 	= 100, 
 	}, 
-	["|H1:item:117983:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Rough Block, Light Stone
-		["itemPrice"] = 100, 
+	[117983] = {		-- Rough Block, Light Stone
+		itemPrice 	= 100, 
 	}, 
-	["|H1:item:117995:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Rough Block, Stone Brick
-		["itemPrice"] = 100, 
+	[117995] = {		-- Rough Block, Stone Brick
+		itemPrice 	= 100, 
 	}, 
-	["|H1:item:117993:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Rough Block, Stone Chunk
-		["itemPrice"] = 100, 
+	[117993] = {		-- Rough Block, Stone Chunk
+		itemPrice 	= 100, 
 	}, 
-	["|H1:item:117992:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Rough Block, Stone Section
-		["itemPrice"] = 100, 
+	[117992] = {		-- Rough Block, Stone Section
+		itemPrice 	= 100, 
 	}, 
-	["|H1:item:117994:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Rough Block, Stone Slab
-		["itemPrice"] = 100, 
+	[117994] = {		-- Rough Block, Stone Slab
+		itemPrice 	= 100, 
 	}, 	
 	
-	["|H1:item:117961:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Rough Block, Woodcutter's
-		["itemPrice"] = 100, 
+	[117961] = {		-- Rough Block, Woodcutter's
+		itemPrice 	= 100, 
 	}, 
 	
-	["|H1:item:117987:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Rough Plank, Long
-		["itemPrice"] = 100, 
+	[117987] = {		-- Rough Plank, Long
+		itemPrice 	= 100, 
 	}, 
-	["|H1:item:117961:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Rough Planks, Narrow
-		["itemPrice"] = 100, 
+	[117961] = {		-- Rough Planks, Narrow
+		itemPrice 	= 100, 
 	}, 
-	["|H1:item:117988:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Rough Planks, Platform
-		["itemPrice"] = 100, 
+	[117988] = {		-- Rough Planks, Platform
+		itemPrice 	= 100, 
 	}, 
-	["|H1:item:117989:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Rough Plank, Wide
-		["itemPrice"] = 100, 
+	[117989] = {		-- Rough Plank, Wide
+		itemPrice 	= 100, 
 	},
-	["|H1:item:117973:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Rough Crate, Dry
-		["itemPrice"] = 100, 
+	[117973] = {		-- Rough Crate, Dry
+		itemPrice 	= 100, 
 	}, 
 
 }		
 
 local boxes = {
-	["|H1:item:120998:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Block,Wood Cutting
-				["itemPrice"] = 100,
+	[120998] = {	-- Block,Wood Cutting
+				itemPrice 	= 100,
 	},		
-	["|H1:item:117959:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Rough Container, Shipping
-		["itemPrice"] = 100, 
+	[117959] = {		-- Rough Container, Shipping
+		itemPrice 	= 100, 
 	}, 
 	
-	["|H1:item:117959:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Rough Box, Slatted
-		["itemPrice"] = 100, 
+	[117959] = {		-- Rough Box, Slatted
+		itemPrice 	= 100, 
 	}, 
-	["|H1:item:117931:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Rough Crate Lid
-		["itemPrice"] = 100, 
+	[117931] = {		-- Rough Crate Lid
+		itemPrice 	= 100, 
 	}, 
-	["|H1:item:117957:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Rough Crate, Cracked
-		["itemPrice"] = 100, 
+	[117957] = {		-- Rough Crate, Cracked
+		itemPrice 	= 100, 
 	}, 
-	["|H1:item:117958:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Rough Crate, Empty
-		["itemPrice"] = 100, 
+	[117958] = {		-- Rough Crate, Empty
+		itemPrice 	= 100, 
 	}, 
-	["|H1:item:117930:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Rough Crate, Open
-		["itemPrice"] = 100, 
+	[117930] = {		-- Rough Crate, Open
+		itemPrice 	= 100, 
 	}, 
-	["|H1:item:117953:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Rough Crate, Sealed
-		["itemPrice"] = 100, 
+	[117953] = {		-- Rough Crate, Sealed
+		itemPrice 	= 100, 
 	}, 
-	["|H1:item:117928:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Rough Crate, Sturdy
-		["itemPrice"] = 100, 
+	[117928] = {		-- Rough Crate, Sturdy
+		itemPrice 	= 100, 
 	}, 		
 }
 
 local laundry = {
-		["|H1:item:117968:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Rough Clothesline, Full
-			["itemPrice"] = 100, 
+		[117968] = {		-- Rough Clothesline, Full
+			itemPrice 	= 100, 
 		}, 
-		["|H1:item:117970:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Rough Clothesline, Half
-			["itemPrice"] = 100, 
+		[117970] = {		-- Rough Clothesline, Half
+			itemPrice 	= 100, 
 		}, 
-		["|H1:item:117969:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Rough Clothesline, Long
-			["itemPrice"] = 100, 
+		[117969] = {		-- Rough Clothesline, Long
+			itemPrice 	= 100, 
 		}, 
-		["|H1:item:117972:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Rough Clothesline, Short
-			["itemPrice"] = 100, 
+		[117972] = {		-- Rough Clothesline, Short
+			itemPrice 	= 100, 
 		}, 
-		["|H1:item:117971:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Rough Clothesline, Post
-			["itemPrice"] = 100, 
+		[117971] = {		-- Rough Clothesline, Post
+			itemPrice 	= 100, 
 		}, 
-		["|H1:item:117966:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Rough Tarp, Oversized
-			["itemPrice"] = 100, 
+		[117966] = {		-- Rough Tarp, Oversized
+			itemPrice 	= 100, 
 		}, 
-		["|H1:item:117967:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Rough Tarp, Standard
-			["itemPrice"] = 100, 
+		[117967] = {		-- Rough Tarp, Standard
+			itemPrice 	= 100, 
 		}, 
 }
 
 local fishing_trip = {
 	
-		["|H1:item:117965:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Rough Campfire, Doused
-			["itemPrice"] = 100, 
+		[117965] = {		-- Rough Campfire, Doused
+			itemPrice 	= 100, 
 		}, 
-		["|H1:item:117978:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Rough Rod, Fishing
-			["itemPrice"] = 100, 
+		[117978] = {		-- Rough Rod, Fishing
+			itemPrice 	= 100, 
 		}, 
-		["|H1:item:117979:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Rough Spear, Fishing
-			["itemPrice"] = 100, 
+		[117979] = {		-- Rough Spear, Fishing
+			itemPrice 	= 100, 
 		}, 
-		["|H1:item:117977:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Rough Stool, Fishing
-			["itemPrice"] = 100, 
+		[117977] = {		-- Rough Stool, Fishing
+			itemPrice 	= 100, 
 		}, 
 		
 
 }
 	
 local bookList = {
-	["|H1:item:120197:3:1:0:0:0:0:0:0:0:0:0:0:0:1:0:0:1:0:0:0|h|h"] = { -- 16 accords of madness, vol vi
-		["itemValue"] = 500,
+	[120197] = { -- 16 accords of madness, vol vi
+		itemPrice = 500,
 	},
-	["|H1:item:120121:3:1:0:0:0:0:0:0:0:0:0:0:0:1:0:0:1:0:0:0|h|h"] = { -- The Glenmoril Wyrd
-		["itemValue"] = 500,
+	[120121] = { -- The Glenmoril Wyrd
+		itemPrice = 500,
 	},
-	["|H1:item:120112:3:1:0:0:0:0:0:0:0:0:0:0:0:1:0:0:1:0:0:0|h|h"] = { -- Legend of the fallen drotto
-		["itemValue"] = 500,
+	[120112] = { -- Legend of the fallen drotto
+		itemPrice = 500,
 	},
-	["|H1:item:120115:3:1:0:0:0:0:0:0:0:0:0:0:0:1:0:0:1:0:0:0|h|h"] = { -- The Posting of the hunt
-		["itemValue"] = 500,
+	[120115] = { -- The Posting of the hunt
+		itemPrice = 500,
 	},
-	["|H1:item:120117:3:1:0:0:0:0:0:0:0:0:0:0:0:1:0:0:1:0:0:0|h|h"] = { -- The Viridian Sentinel
-		["itemValue"] = 500,
+	[120117] = { -- The Viridian Sentinel
+		itemPrice = 500,
 	},
-	["|H1:item:120120:3:1:0:0:0:0:0:0:0:0:0:0:0:1:0:0:1:0:0:0|h|h"] = { -- Ancient Scrolls of the Dwemer IV
-		["itemValue"] = 500,
+	[120120] = { -- Ancient Scrolls of the Dwemer IV
+		itemPrice = 500,
 	},
-	["|H1:item:120181:3:1:0:0:0:0:0:0:0:0:0:0:0:1:0:0:1:0:0:0|h|h"] = { -- Antecedent of Dwemer Law
-		["itemValue"] = 500,
+	[120181] = { -- Antecedent of Dwemer Law
+		itemPrice = 500,
 	},
-	["|H1:item:120116:3:1:0:0:0:0:0:0:0:0:0:0:0:1:0:0:1:0:0:0|h|h"] = { -- Aspects of Lord Hircine
-		["itemValue"] = 500,
+	[120116] = { -- Aspects of Lord Hircine
+		itemPrice = 500,
 	},
-	["|H1:item:120114:3:1:0:0:0:0:0:0:0:0:0:0:0:1:0:0:1:0:0:0|h|h"] = { -- Bangkorai, Shield of High Rock
-		["itemValue"] = 500,
+	[120114] = { -- Bangkorai, Shield of High Rock
+		itemPrice = 500,
 	},
-	["|H1:item:120104:3:1:0:0:0:0:0:0:0:0:0:0:0:1:0:0:1:0:0:0|h|h"] = { -- Bloodfiends of Rivenspire
-		["itemValue"] = 500,
+	[120104] = { -- Bloodfiends of Rivenspire
+		itemPrice = 500,
 	},
-	["|H1:item:120132:4:1:0:0:0:0:0:0:0:0:0:0:0:1:0:0:1:0:0:0|h|h"] = { -- Circus of Cheerful Slaughter
-		["itemValue"] = 5000,
+	[120132] = { -- Circus of Cheerful Slaughter
+		itemPrice = 5000,
 	},
-	["|H1:item:120186:3:1:0:0:0:0:0:0:0:0:0:0:0:1:0:0:1:0:0:0|h|h"] = { -- Dwemer Inquiries, Vol I
-		["itemValue"] = 500,
+	[120186] = { -- Dwemer Inquiries, Vol I
+		itemPrice = 500,
 	},
-	["|H1:item:120187:3:1:0:0:0:0:0:0:0:0:0:0:0:1:0:0:1:0:0:0|h|h"] = { -- Dwemer Inquiries, Vol II
-		["itemValue"] = 500,
+	[120187] = { -- Dwemer Inquiries, Vol II
+		itemPrice = 500,
 	},
-	["|H1:item:120188:3:1:0:0:0:0:0:0:0:0:0:0:0:1:0:0:1:0:0:0|h|h"] = { -- Dwemer Inquiries, Vol III
-		["itemValue"] = 500,
+	[120188] = { -- Dwemer Inquiries, Vol III
+		itemPrice = 500,
 	},
-	["|H1:item:120106:3:1:0:0:0:0:0:0:0:0:0:0:0:1:0:0:1:0:0:0|h|h"] = { -- House-Folk of Silverhoof
-		["itemValue"] = 500,
+	[120106] = { -- House-Folk of Silverhoof
+		itemPrice = 500,
 	},
-	["|H1:item:120111:3:1:0:0:0:0:0:0:0:0:0:0:0:1:0:0:1:0:0:0|h|h"] = { -- House Ravenwatch Proclamation
-		["itemValue"] = 500,
+	[120111] = { -- House Ravenwatch Proclamation
+		itemPrice = 500,
 	},
-	["|H1:item:120108:3:1:0:0:0:0:0:0:0:0:0:0:0:1:0:0:1:0:0:0|h|h"] = { -- House Tamrith - A recent history
-		["itemValue"] = 500,
+	[120108] = { -- House Tamrith - A recent history
+		itemPrice = 500,
 	},
-	["|H1:item:120113:3:1:0:0:0:0:0:0:0:0:0:0:0:1:0:0:1:0:0:0|h|h"] = { -- Living with Lycantrophy
-		["itemValue"] = 500,
+	[120113] = { -- Living with Lycantrophy
+		itemPrice = 500,
 	},
-	["|H1:item:120194:3:1:0:0:0:0:0:0:0:0:0:0:0:1:0:0:1:0:0:0|h|h"] = { -- Myths of Sheogorath, Vol 1
-		["itemValue"] = 500,
+	[120194] = { -- Myths of Sheogorath, Vol 1
+		itemPrice = 500,
 	},
-	["|H1:item:120110:3:1:0:0:0:0:0:0:0:0:0:0:0:1:0:0:1:0:0:0|h|h"] = { -- Myths of Sheogorath, Vol 2
-		["itemValue"] = 500,
+	[120110] = { -- Myths of Sheogorath, Vol 2
+		itemPrice = 500,
 	},
-	["|H1:item:120195:3:1:0:0:0:0:0:0:0:0:0:0:0:1:0:0:1:0:0:0|h|h"] = { -- Myths of Sheogorath, Vol 2
-		["itemValue"] = 500,
+	[120195] = { -- Myths of Sheogorath, Vol 2
+		itemPrice = 500,
 	},
-	["|H1:item:120236:3:1:0:0:0:0:0:0:0:0:0:0:0:1:0:0:1:0:0:0|h|h"] = { -- Proper Life: Three CHants
-		["itemValue"] = 500,
+	[120236] = { -- Proper Life: Three CHants
+		itemPrice = 500,
 	},
-	["|H1:item:120133:4:1:0:0:0:0:0:0:0:0:0:0:0:1:0:0:1:0:0:0|h|h"] = { -- Robier's Vegetable Garden
-		["itemValue"] = 5000,
+	[120133] = { -- Robier's Vegetable Garden
+		itemPrice = 5000,
 	},
-	["|H1:item:120109:3:1:0:0:0:0:0:0:0:0:0:0:0:1:0:0:1:0:0:0|h|h"] = { -- Shornhelm, city of the north
-		["itemValue"] = 500,
+	[120109] = { -- Shornhelm, city of the north
+		itemPrice = 500,
 	},
-	["|H1:item:120102:3:1:0:0:0:0:0:0:0:0:0:0:0:1:0:0:1:0:0:0|h|h"] = { -- The Barrows of Westmark Moor
-		["itemValue"] = 500,
+	[120102] = { -- The Barrows of Westmark Moor
+		itemPrice = 500,
 	},
-	["|H1:item:120232:3:1:0:0:0:0:0:0:0:0:0:0:0:1:0:0:1:0:0:0|h|h"] = { -- The Cantatas of Vivec
-		["itemValue"] = 500,
+	[120232] = { -- The Cantatas of Vivec
+		itemPrice = 500,
 	},
-	["|H1:item:120190:3:1:0:0:0:0:0:0:0:0:0:0:0:1:0:0:1:0:0:0|h|h"] = { -- The Homilies of Blessed Almalexia
-		["itemValue"] = 500,
+	[120190] = { -- The Homilies of Blessed Almalexia
+		itemPrice = 500,
 	},
-	["|H1:item:120191:3:1:0:0:0:0:0:0:0:0:0:0:0:1:0:0:1:0:0:0|h|h"] = { -- The Legendary Scourge
-		["itemValue"] = 500,
+	[120191] = { -- The Legendary Scourge
+		itemPrice = 500,
 	},
-	["|H1:item:120192:3:1:0:0:0:0:0:0:0:0:0:0:0:1:0:0:1:0:0:0|h|h"] = { -- The LUsty Argonian Maid 1
-		["itemValue"] = 500,
+	[120192] = { -- The LUsty Argonian Maid 1
+		itemPrice = 500,
 	},
-	["|H1:item:120193:3:1:0:0:0:0:0:0:0:0:0:0:0:1:0:0:1:0:0:0|h|h"] = { -- The LUsty Argonian Maid 2
-		["itemValue"] = 500,
+	[120193] = { -- The LUsty Argonian Maid 2
+		itemPrice = 500,
 	},
-	["|H1:item:120199:3:1:0:0:0:0:0:0:0:0:0:0:0:1:0:0:1:0:0:0|h|h"] = { -- Wabbajack
-		["itemValue"] = 500,
+	[120199] = { -- Wabbajack
+		itemPrice = 500,
 	},
-	["|H1:item:120235:3:1:0:0:0:0:0:0:0:0:0:0:0:1:0:0:1:0:0:0|h|h"] = { -- Ode to the Tundrastriders
-		["itemValue"] = 500,
+	[120235] = { -- Ode to the Tundrastriders
+		itemPrice = 500,
 	},
-	["|H1:item:120237:3:1:0:0:0:0:0:0:0:0:0:0:0:1:0:0:1:0:0:0|h|h"] = { -- Song of the Askelde men
-		["itemValue"] = 500,
+	[120237] = { -- Song of the Askelde men
+		itemPrice = 500,
 	},
-	["|H1:item:120230:3:1:0:0:0:0:0:0:0:0:0:0:0:1:0:0:1:0:0:0|h|h"] = { -- Battle of Glenumbra Moors
-		["itemValue"] = 500,
+	[120230] = { -- Battle of Glenumbra Moors
+		itemPrice = 500,
 	},
-	["|H1:item:120231:3:1:0:0:0:0:0:0:0:0:0:0:0:1:0:0:1:0:0:0|h|h"] = { -- Book of Dawn and Dusk
-		["itemValue"] = 500,
+	[120231] = { -- Book of Dawn and Dusk
+		itemPrice = 500,
 	},
-	["|H1:item:120196:3:1:0:0:0:0:0:0:0:0:0:0:0:1:0:0:1:0:0:0|h|h"] = { -- Warrior's Charge
-		["itemValue"] = 500,
+	[120196] = { -- Warrior's Charge
+		itemPrice = 500,
 	},
-	["|H1:item:120082:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120082] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120083:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120083] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120084:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120084] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120085:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120085] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120086:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120086] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120087:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120087] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120088:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120088] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120089:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120089] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120090:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120090] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120091:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120091] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120092:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120092] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120093:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120093] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120094:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120094] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120095:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120095] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120096:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120096] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120097:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120097] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120098:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120098] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120099:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120099] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120100:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120100] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120101:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120101] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120103:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120103] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120105:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120105] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120107:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120107] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120118:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120118] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120119:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120119] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120122:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120122] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120123:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120123] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120124:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120124] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120125:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120125] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120126:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120126] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120127:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120127] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120128:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120128] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120129:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120129] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120130:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120130] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120131:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120131] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120134:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120134] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120135:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120135] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120136:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120136] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120137:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120137] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120138:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120138] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120139:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120139] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120140:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120140] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120141:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120141] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120142:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120142] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120143:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120143] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120144:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120144] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120145:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120145] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120146:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120146] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120147:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120147] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120148:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120148] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120149:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120149] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120150:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120150] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120151:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120151] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120152:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120152] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120153:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120153] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120154:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120154] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120155:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120155] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120156:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120156] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120157:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120157] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120158:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120158] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120159:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120159] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120160:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120160] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120161:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120161] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120162:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120162] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120163:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120163] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120164:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120164] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120165:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120165] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120166:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120166] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120167:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120167] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120168:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120168] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120169:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120169] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120170:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120170] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120171:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120171] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120172:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120172] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120173:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120173] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120174:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120174] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120175:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120175] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120176:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120176] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120177:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120177] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120178:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120178] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120179:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120179] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120180:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120180] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120182:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120182] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120183:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120183] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120184:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120184] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120185:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120185] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120189:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120189] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120197:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120197] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120198:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120198] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120200:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120200] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120201:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120201] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120202:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120202] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120203:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120203] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120204:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120204] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120205:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120205] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120206:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120206] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120207:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120207] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120208:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120208] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120209:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120209] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120210:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120210] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120211:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120211] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120212:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120212] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120213:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120213] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120214:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120214] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120215:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120215] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120216:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120216] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120217:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120217] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120218:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120218] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120219:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120219] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120220:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120220] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120221:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120221] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120222:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120222] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120223:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120223] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120224:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120224] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120225:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120225] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120226:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120226] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120227:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120227] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120228:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120228] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120229:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120229] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120231:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120231] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120233:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120233] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120234:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120234] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120238:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120238] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120239:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120239] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120240:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120240] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120241:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120241] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120242:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120242] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120243:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120243] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120244:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120244] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120245:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120245] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120246:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120246] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120247:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120247] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120248:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120248] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120249:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120249] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120250:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120250] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120251:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120251] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120252:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120252] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120253:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120253] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120254:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120254] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120255:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120255] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120256:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120256] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120257:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120257] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120258:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120258] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120259:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120259] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120260:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120260] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120261:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120261] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120262:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120262] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120263:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120263] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120264:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120264] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120265:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120265] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120266:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120266] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120267:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120267] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120268:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120268] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120269:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120269] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120270:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120270] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120271:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120271] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120272:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120272] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120273:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120273] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120274:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120274] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120275:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120275] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120276:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120276] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120277:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120277] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120278:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120278] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120279:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120279] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120280:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120280] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120281:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120281] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120282:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120282] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120283:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120283] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120284:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120284] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120285:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120285] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120286:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120286] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120287:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120287] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120288:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120288] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120289:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120289] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120290:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120290] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120291:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120291] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120292:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120292] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120293:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120293] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120294:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120294] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120295:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120295] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120296:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120296] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120297:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120297] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120298:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120298] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120299:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120299] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120300:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120300] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120301:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120301] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120302:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120302] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120303:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120303] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120304:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120304] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120305:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120305] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120306:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120306] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120307:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120307] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120308:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120308] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120309:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120309] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120310:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120310] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120311:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120311] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120312:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120312] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120313:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120313] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120314:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120314] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120315:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120315] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120316:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120316] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120317:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120317] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120318:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120318] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120319:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120319] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120320:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120320] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120321:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120321] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120322:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120322] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120323:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120323] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120324:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120324] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120325:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120325] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120326:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120326] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120327:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120327] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120328:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120328] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120329:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120329] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120330:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120330] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120331:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120331] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120332:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120332] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120333:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120333] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120334:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120334] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120335:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120335] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120336:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120336] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120337:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120337] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120338:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120338] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120339:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120339] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120340:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120340] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120341:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120341] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120342:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120342] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120343:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120343] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120344:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120344] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120345:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120345] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120346:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120346] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120347:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120347] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120348:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120348] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120349:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120349] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120350:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120350] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120351:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120351] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120352:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120352] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120353:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120353] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120354:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120354] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120355:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120355] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120356:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120356] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120357:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120357] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120358:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120358] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120359:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120359] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120360:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120360] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120361:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120361] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120362:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120362] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120363:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120363] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120364:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120364] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120365:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120365] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120366:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120366] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120367:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120367] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120368:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120368] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120369:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120369] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120370:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120370] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120371:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120371] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120372:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120372] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120373:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120373] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120374:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120374] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120375:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120375] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120376:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120376] = {
+		itemPrice = 500,
 	}, 
-	["|H1:item:120406:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120406] = {
+		itemPrice = 500,
 	},
-	["|H1:item:120407:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {
-		["itemValue"] = 500,
+	[120407] = {
+		itemPrice = 500,
 	},
 }	
 
 FurC.Books[FURC_HOMESTEAD] = bookList	
 --[[
 			[""] = {		-- 
-				["itemPrice"] = 100,
+				itemPrice 	= 100,
 			},	
 ]]	
 	
 local miscVendor = tableMerge(tableMerge(tableMerge(structures, boxes), laundry), fishing_trip)
-		
+
+FURC_AV_NAR = "Narwaawende"
+FURC_AV_LTS = "Listens-To-Sea"
+FURC_AV_HER = "Heralda Garscroft"
+FURC_AV_FRO = "Frohilde Snow-Hair"
+FURC_AV_LOT = "Lozotusk"
+FURC_AV_ROH = "Rohzika"
+FURC_AV_ATH = "Athragor"
+FURC_AV_MAL = "Maladdiq"
+FURC_AV_KRR = "Krrztrrb"
+FURC_AV_ENC = "enchanters"
+FURC_AV_ALC = "alchemists"
+FURC_AV_OUT = "Outlaw Refuge, Merchant"
+FURC_AV_COO = "cooks"
+FURC_AV_CLO = "clothiers"
+FURC_AV_CAR = "carpenters"
+FURC_AV_BSM = "blacksmiths"
+
+
 FurC.AchievementVendors[FURC_HOMESTEAD] = {
 	
 	["any Alliance Capital"] = {		
-		["Narwaawende"] = capitalVendor,		
-		["Heralda Garscroft"] = jesterVendor,
+		[FURC_AV_NAR] = capitalVendor,		
+		[FURC_AV_HER] = jesterVendor,
 	},
 	-- location name
 	["Mournhold Bank"] = {
 		-- vendor name
-		["Listens-To-Sea"]	  = {
-			["|H1:item:119908:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Swamp Anemone
-				["itemPrice"] = 15000,
-				["version"]		= 2,
+		[FURC_AV_LTS]	  = {
+			[119908] = {	-- Swamp Anemone
+				itemPrice 	= 15000,
 			},
-			["|H1:item:119914:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Touch of Plague
-				["itemPrice"] = 500,
-				["version"]		= 2,
+			[119914] = {	-- Touch of Plague
+				itemPrice 	= 500,
 			},
-			["|H1:item:119913:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Tribunal Altar
-				["itemPrice"] = 25000,
+			[119913] = {	-- Tribunal Altar
+				itemPrice 	= 25000,
 			},
-			["|H1:item:119911:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Tribunal Rug
-				["itemPrice"] = 5000,
+			[119911] = {	-- Tribunal Rug
+				itemPrice 	= 5000,
 			},
-			["|H1:item:119910:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Veloth's Reliquary
-				["itemPrice"] = 50000,
+			[119910] = {	-- Veloth's Reliquary
+				itemPrice 	= 50000,
 			},
 		},
-		["Frohilde Snow-Hair"] = {
-			["|H1:item:120567:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Bush,Vibrant Barberry
-				["itemPrice"] = 250,
+		[FURC_AV_FRO] = {
+			[120567] = {	-- Bush,Vibrant Barberry
+				itemPrice 	= 250,
 			},
-			["|H1:item:120566:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Fern Plant,Healthy Green
-				["itemPrice"] = 100,
+			[120566] = {	-- Fern Plant,Healthy Green
+				itemPrice 	= 100,
 			},
-			["|H1:item:120574:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Mushroom,Huge Chanterelle
-				["itemPrice"] = 250,
+			[120574] = {	-- Mushroom,Huge Chanterelle
+				itemPrice 	= 250,
 			},
-			["|H1:item:120568:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Mushroom,Tall Chanterelle
-				["itemPrice"] = 250,
+			[120568] = {	-- Mushroom,Tall Chanterelle
+				itemPrice 	= 250,
 			},				
 		},			
 				
 	},
 	["Dhalmora, Bal Foyen"] = {
 		
-		["Frohilde Snow-Hair"] = {
-			["|H1:item:120502:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Flower, Grandmother Hibiscus
-				["itemPrice"] = 1000,
+		[FURC_AV_FRO] = {
+			[120502] = {	-- Flower, Grandmother Hibiscus
+				itemPrice 	= 1000,
 			},
-			["|H1:item:120621:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Plant, Red Aloe
-				["itemPrice"] = 250,
+			[120621] = {	-- Plant, Red Aloe
+				itemPrice 	= 250,
 			},
-			["|H1:item:120620:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Plant, Red Aloe Succulent
-				["itemPrice"] = 250,
+			[120620] = {	-- Plant, Red Aloe Succulent
+				itemPrice 	= 250,
 			},
-			["|H1:item:120618:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Tree, Gnarled Ashflower
-				["itemPrice"] = 5000,
+			[120618] = {	-- Tree, Gnarled Ashflower
+				itemPrice 	= 5000,
 			},
-			["|H1:item:120619:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Tree, Twisted Ashflower
-				["itemPrice"] = 7500,
+			[120619] = {	-- Tree, Twisted Ashflower
+				itemPrice 	= 7500,
 			},
-			["|H1:item:120622:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Vines, Clustered Ivy
-				["itemPrice"] = 600,
+			[120622] = {	-- Vines, Clustered Ivy
+				itemPrice 	= 600,
 			},
 				
 		}, 
-		["Listens-To-Sea"]	  = {
-			["|H1:item:120956:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Atmoran Eagle Totem Medallion
-				["itemPrice"] = 3000,
+		[FURC_AV_LTS]	  = {
+			[120956] = {	-- Atmoran Eagle Totem Medallion
+				itemPrice 	= 3000,
 			},
-			["|H1:item:120954:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Atmoran Snake Totem Medallion
-				["itemPrice"] = 3000,
+			[120954] = {	-- Atmoran Snake Totem Medallion
+				itemPrice 	= 3000,
 			},
-			["|H1:item:120955:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Atmoran Whale Totem Medallion
-				["itemPrice"] = 3000,
+			[120955] = {	-- Atmoran Whale Totem Medallion
+				itemPrice 	= 3000,
 			},
 		},	
 			
 	},
 	["Stonefalls, Ebonheart"] = {
 	
-		["Frohilde Snow-Hair"] = {
-			["|H1:item:120502:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Flower, Grandmother Hibiscus
-				["itemPrice"] = 1000,
+		[FURC_AV_FRO] = {
+			[120502] = {	-- Flower, Grandmother Hibiscus
+				itemPrice 	= 1000,
 			},
-			["|H1:item:121028:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Hedge, Dense Low Wall
-				["itemPrice"] = 1300,
-			},
-			
-			["|H1:item:121284:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Dark Elf Column Lantern
-				["itemPrice"] = 250,
+			[121028] = {	-- Hedge, Dense Low Wall
+				itemPrice 	= 1300,
 			},
 			
-			["|H1:item:120621:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Plant, Red Aloe
-				["itemPrice"] = 250,
-			},["|H1:item:120620:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Plant, Red Aloe Succulent
-				["itemPrice"] = 250,
+			[121284] = {	-- Dark Elf Column Lantern
+				itemPrice 	= 250,
 			},
-			["|H1:item:120618:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Tree, Gnarled Ashflower
-				["itemPrice"] = 5000,
+			
+			[120621] = {	-- Plant, Red Aloe
+				itemPrice 	= 250,
+			},[120620] = {	-- Plant, Red Aloe Succulent
+				itemPrice 	= 250,
 			},
-			["|H1:item:120619:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Tree, Twisted Ashflower
-				["itemPrice"] = 7500,
+			[120618] = {	-- Tree, Gnarled Ashflower
+				itemPrice 	= 5000,
 			},
-			["|H1:item:120622:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Vines, Clustered Ivy
-				["itemPrice"] = 600,
+			[120619] = {	-- Tree, Twisted Ashflower
+				itemPrice 	= 7500,
 			},
-			["|H1:item:120680:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Topiary, Fragile Cypress
-				["itemPrice"] = 2500,
+			[120622] = {	-- Vines, Clustered Ivy
+				itemPrice 	= 600,
 			},
-			["|H1:item:120681:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Topiary, Pruned Cypress
-				["itemPrice"] = 1100,
+			[120680] = {	-- Topiary, Fragile Cypress
+				itemPrice 	= 2500,
 			},
-			["|H1:item:120677:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Tree, Autumn Cherry Blossom
-				["itemPrice"] = 15000,
+			[120681] = {	-- Topiary, Pruned Cypress
+				itemPrice 	= 1100,
+			},
+			[120677] = {	-- Tree, Autumn Cherry Blossom
+				itemPrice 	= 15000,
 			},
 		},
 		
-		["Listens-To-Sea"]	  = {
-			["|H1:item:119890:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Blood Fountain
-				["itemPrice"] = 100000,
+		[FURC_AV_LTS]	  = {
+			[119890] = {	-- Blood Fountain
+				itemPrice 	= 100000,
 			},
-			["|H1:item:119889:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Daedric Sconce
-				["itemPrice"] = 5000,
+			[119889] = {	-- Daedric Sconce
+				itemPrice 	= 5000,
 			},
-			["|H1:item:119888:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Lacquered Kwama Egg
-				["itemPrice"] = 1000,
+			[119888] = {	-- Lacquered Kwama Egg
+				itemPrice 	= 1000,
 			},
-			["|H1:item:119892:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Remnant of Balreth
-				["itemPrice"] = 15000,
+			[119892] = {	-- Remnant of Balreth
+				itemPrice 	= 15000,
 			},
-			["|H1:item:119887:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Serien's Stand
-				["itemPrice"] = 10000,
+			[119887] = {	-- Serien's Stand
+				itemPrice 	= 10000,
 			},
 		},	
 			
 	},
 	["Eastmarch, Fort Amol"] = {
 	
-		["Frohilde Snow-Hair"] = miscVendor, 
+		[FURC_AV_FRO] = miscVendor, 
 		
 		
-		["Listens-To-Sea"]	  = {
-			["|H1:item:119905:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Dragon Shrine Altar
-				["itemPrice"] = 20000,
+		[FURC_AV_LTS]	  = {
+			[119905] = {	-- Dragon Shrine Altar
+				itemPrice 	= 20000,
 			},
-			["|H1:item:119901:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Lob's Challenge Horn
-				["itemPrice"] = 1000,
+			[119901] = {	-- Lob's Challenge Horn
+				itemPrice 	= 1000,
 			},
-			["|H1:item:119904:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Standing Slab
-				["itemPrice"] = 1000,
+			[119904] = {	-- Standing Slab
+				itemPrice 	= 1000,
 			},
-			["|H1:item:119906:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Throne of the Skald King
-				["itemPrice"] = 50000,
+			[119906] = {	-- Throne of the Skald King
+				itemPrice 	= 50000,
 			},
-			["|H1:item:119907:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Visage of the Skald
-				["itemPrice"] = 25000,
+			[119907] = {	-- Visage of the Skald
+				itemPrice 	= 25000,
 			},
 		},	
 			
 	},	
 	["Shadowfen, Alten Corimont"] = {
 		
-		["Frohilde Snow-Hair"] = { 
-			["|H1:item:120502:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Flower, Grandmother Hibiscus
-				["itemPrice"] = 1000,
+		[FURC_AV_FRO] = { 
+			[120502] = {	-- Flower, Grandmother Hibiscus
+				itemPrice 	= 1000,
 			},
-			["|H1:item:120630:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Pebble, Stacked Lichen
-				["itemPrice"] = 100,
+			[120630] = {	-- Pebble, Stacked Lichen
+				itemPrice 	= 100,
 			},
-			["|H1:item:120631:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Pebble, Stacked Mossy
-				["itemPrice"] = 100,
+			[120631] = {	-- Pebble, Stacked Mossy
+				itemPrice 	= 100,
 			},
-			["|H1:item:120637:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Plant, Dry Spike
-				["itemPrice"] = 100,
+			[120637] = {	-- Plant, Dry Spike
+				itemPrice 	= 100,
 			},
-			["|H1:item:120627:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Rocks, Stacked Angular
-				["itemPrice"] = 100,
+			[120627] = {	-- Rocks, Stacked Angular
+				itemPrice 	= 100,
 			},
-			["|H1:item:120628:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Rocks, Slanted Mossy
-				["itemPrice"] = 100,
+			[120628] = {	-- Rocks, Slanted Mossy
+				itemPrice 	= 100,
 			},
-			["|H1:item:120629:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Rocks, Smooth Mossy
-				["itemPrice"] = 100,
+			[120629] = {	-- Rocks, Smooth Mossy
+				itemPrice 	= 100,
 			},
-			["|H1:item:120634:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Tree, Towering Swamp Palm
-				["itemPrice"] = 250,
+			[120634] = {	-- Tree, Towering Swamp Palm
+				itemPrice 	= 250,
 			},
-			["|H1:item:120634:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Tree, Mud Palm
-				["itemPrice"] = 250,
+			[120634] = {	-- Tree, Mud Palm
+				itemPrice 	= 250,
 			},
 		
 		}, 
 		
-		["Listens-To-Sea"]	  = {
-			["|H1:item:119897:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Argonian Egg
-				["itemPrice"] = 1000,
+		[FURC_AV_LTS]	  = {
+			[119897] = {	-- Argonian Egg
+				itemPrice 	= 1000,
 			},
-			["|H1:item:119893:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Mimic Hist Tree
-				["itemPrice"] = 20000,
+			[119893] = {	-- Mimic Hist Tree
+				itemPrice 	= 20000,
 			},
-			["|H1:item:119900:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Oblivion Stone
-				["itemPrice"] = 5000,
+			[119900] = {	-- Oblivion Stone
+				itemPrice 	= 5000,
 			},
-			["|H1:item:119898:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Replica Mnemic Egg
-				["itemPrice"] = 100000,
+			[119898] = {	-- Replica Mnemic Egg
+				itemPrice 	= 100000,
 			},
-			["|H1:item:119899:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Replica Stone Nest
-				["itemPrice"] = 10000,
+			[119899] = {	-- Replica Stone Nest
+				itemPrice 	= 10000,
 			},
 		},
 		
 	},
 	["Riften, Market, Armorer"] = {
 		
-		["Frohilde Snow-Hair"] = { 
-			["|H1:item:120502:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Flower, Grandmother Hibiscus
-				["itemPrice"] = 1000,
+		[FURC_AV_FRO] = { 
+			[120502] = {	-- Flower, Grandmother Hibiscus
+				itemPrice 	= 1000,
 			},
-			["|H1:item:120492:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Boulder, Flat , Weathered
-				["itemPrice"] = 100,
+			[120492] = {	-- Boulder, Flat , Weathered
+				itemPrice 	= 100,
 			},
-			["|H1:item:120496:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Fern, dead
-				["itemPrice"] = 100,
+			[120496] = {	-- Fern, dead
+				itemPrice 	= 100,
 			},
-			["|H1:item:120494:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Pebble, Stacked, Weathered
-				["itemPrice"] = 100,
+			[120494] = {	-- Pebble, Stacked, Weathered
+				itemPrice 	= 100,
 			},
-			["|H1:item:120493:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Rock, Slanted, Tan
-				["itemPrice"] = 100,
+			[120493] = {	-- Rock, Slanted, Tan
+				itemPrice 	= 100,
 			},
-			["|H1:item:120495:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Sapling, Budding Red
-				["itemPrice"] = 100,
+			[120495] = {	-- Sapling, Budding Red
+				itemPrice 	= 100,
 			},
-			["|H1:item:120500:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Sapling, Tender Autumn
-				["itemPrice"] = 100,
+			[120500] = {	-- Sapling, Tender Autumn
+				itemPrice 	= 100,
 			},
-			["|H1:item:120499:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Sapling, Tender Harvest
-				["itemPrice"] = 250,
+			[120499] = {	-- Sapling, Tender Harvest
+				itemPrice 	= 250,
 			},
 		}, 
 		
-		["Listens-To-Sea"]	  = {
-			["|H1:item:119915:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Ancient Cultist Totem
-				["itemPrice"] = 5000,
+		[FURC_AV_LTS]	  = {
+			[119915] = {	-- Ancient Cultist Totem
+				itemPrice 	= 5000,
 			},
-			["|H1:item:119918:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Statue of the Wolf
-				["itemPrice"] = 7500,
+			[119918] = {	-- Statue of the Wolf
+				itemPrice 	= 7500,
 			},
-			["|H1:item:119922:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Torn Worm Cult Banner
-				["itemPrice"] = 10000,
+			[119922] = {	-- Torn Worm Cult Banner
+				itemPrice 	= 10000,
 			},
-			["|H1:item:119920:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Totem of the Reach
-				["itemPrice"] = 40000,
+			[119920] = {	-- Totem of the Reach
+				itemPrice 	= 40000,
 			},
-			["|H1:item:119916:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {	-- Ysgramor Statue
-				["itemPrice"] = 20000,
+			[119916] = {	-- Ysgramor Statue
+				itemPrice 	= 20000,
 			},
 		},		
 	}, 
 
 	
 	["Alik'r, Kozanzet, Sweetwater Inn"] = {
-		["Lozotusk"] = {
-			["|H1:item:119879:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"]	= { 		-- Kneeling Ansei Statue
-				["itemPrice"] = 15000, 
+		[FURC_AV_LOT] = {
+			[119879]	= { 		-- Kneeling Ansei Statue
+				itemPrice 	= 15000, 
 			}, 
-			["|H1:item:119877:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"]	= { 		-- Reconstructed Necromantic Focus
-				["itemPrice"] = 5000, 
+			[119877]	= { 		-- Reconstructed Necromantic Focus
+				itemPrice 	= 5000, 
 			},  
-			["|H1:item:119880:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"]	= { 		-- Replica Of Shattered Ansei Sword
-				["itemPrice"] = 35000, 
+			[119880]	= { 		-- Replica Of Shattered Ansei Sword
+				itemPrice 	= 35000, 
 			},  
-			["|H1:item:119878:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"]	= { 		-- Standing Ansei Statue
-				["itemPrice"] = 15000, 
+			[119878]	= { 		-- Standing Ansei Statue
+				itemPrice 	= 15000, 
 			},  
-			["|H1:item:119876:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"]	= { 		-- Tu'whacca's Braizer
-				["itemPrice"] = 5000,
+			[119876]	= { 		-- Tu'whacca's Braizer
+				itemPrice 	= 5000,
 			}, 
 		}, 
-		["Rohzika"] = miscVendor,
+		[FURC_AV_ROH] = miscVendor,
 	},
 	["Bangkorai, Evermore"] = {
-		["Lozotusk"] = {
-			["|H1:item:119885:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- ceremonial Redguard vessel
-				["itemPrice"] = 3000, 
+		[FURC_AV_LOT] = {
+			[119885] = {		-- ceremonial Redguard vessel
+				itemPrice 	= 3000, 
 			}, 
-			["|H1:item:119882:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Damaged Knight of St. Pelin statue
-				["itemPrice"] = 5000, 
+			[119882] = {		-- Damaged Knight of St. Pelin statue
+				itemPrice 	= 5000, 
 			}, 
-			["|H1:item:119883:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Evermore Mourning Banner
-				["itemPrice"] = 4000, 
+			[119883] = {		-- Evermore Mourning Banner
+				itemPrice 	= 4000, 
 			}, 
-			["|H1:item:119881:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Glenmoril Wyrd Stone
-				["itemPrice"] = 5000, 
+			[119881] = {		-- Glenmoril Wyrd Stone
+				itemPrice 	= 5000, 
 			}, 
-			["|H1:item:119884:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Ragged Imperial Banner
-				["itemPrice"] = 4000, 
+			[119884] = {		-- Ragged Imperial Banner
+				itemPrice 	= 4000, 
 			}, 
 			
 		}, 
-		["Rohzika"] = {
-			["|H1:item:120449:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Bush, Desert Scrub
-				["itemPrice"] = 100, 
+		[FURC_AV_ROH] = {
+			[120449] = {		-- Bush, Desert Scrub
+				itemPrice 	= 100, 
 			}, 
-			["|H1:item:120457:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Pebble, smooth desert
-				["itemPrice"] = 100,
+			[120457] = {		-- Pebble, smooth desert
+				itemPrice 	= 100,
 			}, 
-			["|H1:item:120461:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Cactus, Desert Wine
-				["itemPrice"] = 500,
+			[120461] = {		-- Cactus, Desert Wine
+				itemPrice 	= 500,
 			}, 
-			["|H1:item:120452:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Pebble, smooth grey
-				["itemPrice"] = 100,
+			[120452] = {		-- Pebble, smooth grey
+				itemPrice 	= 100,
 			}, 
-			["|H1:item:120460:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Plant, green water
-				["itemPrice"] = 100,
+			[120460] = {		-- Plant, green water
+				itemPrice 	= 100,
 			}, 
-			["|H1:item:120450:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- plant, squat Yucca
-				["itemPrice"] = 100,
+			[120450] = {		-- plant, squat Yucca
+				itemPrice 	= 100,
 			}, 
-			["|H1:item:120462:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Plant, tall flowering Yucca
-				["itemPrice"] = 100,
+			[120462] = {		-- Plant, tall flowering Yucca
+				itemPrice 	= 100,
 			}, 
-			["|H1:item:120440:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Rocks, Scattered, Weatherd
-				["itemPrice"] = 100,
+			[120440] = {		-- Rocks, Scattered, Weatherd
+				itemPrice 	= 100,
 			}, 
-			["|H1:item:120454:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Rocks, Stacked Desert
-				["itemPrice"] = 100,
+			[120454] = {		-- Rocks, Stacked Desert
+				itemPrice 	= 100,
 			}, 
-			["|H1:item:120438:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Rocks, Stacked Weathered
-				["itemPrice"] = 100,
+			[120438] = {		-- Rocks, Stacked Weathered
+				itemPrice 	= 100,
 			}, 
-			["|H1:item:120441:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Sapling, Short Highland
-				["itemPrice"] = 100,
+			[120441] = {		-- Sapling, Short Highland
+				itemPrice 	= 100,
 			}, 
-			["|H1:item:120443:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Sapling, Strong Highland
-				["itemPrice"] = 100,
+			[120443] = {		-- Sapling, Strong Highland
+				itemPrice 	= 100,
 			}, 
-			["|H1:item:120443:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Sapling, Tall Highland
-				["itemPrice"] = 100,
+			[120443] = {		-- Sapling, Tall Highland
+				itemPrice 	= 100,
 			}, 
-			["|H1:item:120442:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Sapling, Squat Highland
-				["itemPrice"] = 100,
+			[120442] = {		-- Sapling, Squat Highland
+				itemPrice 	= 100,
 			}, 
-			["|H1:item:120459:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Shrub, Browncrub
-				["itemPrice"] = 100,
+			[120459] = {		-- Shrub, Browncrub
+				itemPrice 	= 100,
 			}, 
-			["|H1:item:120458:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Shrub, Speckled Forest
-				["itemPrice"] = 250,
+			[120458] = {		-- Shrub, Speckled Forest
+				itemPrice 	= 250,
 			}, 
-			["|H1:item:120446:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Small Juniper Tree
-				["itemPrice"] = 100,
+			[120446] = {		-- Small Juniper Tree
+				itemPrice 	= 100,
 			}, 
-			["|H1:item:120451:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Stones, Smooth Gray
-				["itemPrice"] = 100,
+			[120451] = {		-- Stones, Smooth Gray
+				itemPrice 	= 100,
 			}, 
-			["|H1:item:120455:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Stone, stacked desert
-				["itemPrice"] = 100,
+			[120455] = {		-- Stone, stacked desert
+				itemPrice 	= 100,
 			}, 
-			["|H1:item:120439:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Stone, tapered weathered
-				["itemPrice"] = 100,
+			[120439] = {		-- Stone, tapered weathered
+				itemPrice 	= 100,
 			}, 
-			["|H1:item:120445:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Sturdy Juniper Tree
-				["itemPrice"] = 100,
+			[120445] = {		-- Sturdy Juniper Tree
+				itemPrice 	= 100,
 			}, 
-			["|H1:item:120453:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Tree, hardened Juniper
-				["itemPrice"] = 100,
+			[120453] = {		-- Tree, hardened Juniper
+				itemPrice 	= 100,
 			},  
-			["|H1:item:120448:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Tree, old Juniper
-				["itemPrice"] = 100,
+			[120448] = {		-- Tree, old Juniper
+				itemPrice 	= 100,
 			}, 
 			
 		}, 
 	},
 	["Bethnikh, near tavern"] = {
-		["Lozotusk"] = {
-			["|H1:item:119984:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Pirate Banner
-				["itemPrice"] = 10000,
+		[FURC_AV_LOT] = {
+			[119984] = {		-- Pirate Banner
+				itemPrice 	= 10000,
 			},
 		}, 
-		["Rohzika"] = miscVendor,
+		[FURC_AV_ROH] = miscVendor,
 	},
 	["Glenumbra, Daggerfall, The Rosy Lion"] = {
-		["Lozotusk"] = {
-			["|H1:item:119855:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Wyrstone
-				["itemPrice"] = 2500,
+		[FURC_AV_LOT] = {
+			[119855] = {		-- Wyrstone
+				itemPrice 	= 2500,
 			},
-			["|H1:item:119856:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Torn Lion Guard Banner
-				["itemPrice"] = 5000,
+			[119856] = {		-- Torn Lion Guard Banner
+				itemPrice 	= 5000,
 			},
-			["|H1:item:119862:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Hagraven Totem
-				["itemPrice"] = 5000,
+			[119862] = {		-- Hagraven Totem
+				itemPrice 	= 5000,
 			},
-			["|H1:item:119857:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Breton Gravewatcher Statue
-				["itemPrice"] = 25000,
+			[119857] = {		-- Breton Gravewatcher Statue
+				itemPrice 	= 25000,
 			},
-			["|H1:item:119858:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Bloodthorn Vines, small
-				["itemPrice"] = 5000,
+			[119858] = {		-- Bloodthorn Vines, small
+				itemPrice 	= 5000,
 			},
 		}, 
-		["Rohzika"] = {
-			["|H1:item:121011:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Trees, young autumn birch
-				["itemPrice"] = 100,
+		[FURC_AV_ROH] = {
+			[121011] = {		-- Trees, young autumn birch
+				itemPrice 	= 100,
 			},
-			["|H1:item:120713:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Trees, Towering Autumn Birch
-				["itemPrice"] = 250,
+			[120713] = {		-- Trees, Towering Autumn Birch
+				itemPrice 	= 250,
 			},
-			["|H1:item:120720:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Shrubs, Small Berry
-				["itemPrice"] = 100,
+			[120720] = {		-- Shrubs, Small Berry
+				itemPrice 	= 100,
 			},
-			["|H1:item:120718:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Shrub, Dense Forest
-				["itemPrice"] = 100,
+			[120718] = {		-- Shrub, Dense Forest
+				itemPrice 	= 100,
 			},
-			["|H1:item:120717:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Shrub, Autumn Forest
-				["itemPrice"] = 100,
+			[120717] = {		-- Shrub, Autumn Forest
+				itemPrice 	= 100,
 			},
-			["|H1:item:120711:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Sapling, Young Birch
-				["itemPrice"] = 250,
+			[120711] = {		-- Sapling, Young Birch
+				itemPrice 	= 250,
 			},
-			["|H1:item:120716:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Sapling, Autumn Cluster
-				["itemPrice"] = 100,
+			[120716] = {		-- Sapling, Autumn Cluster
+				itemPrice 	= 100,
 			},
-			["|H1:item:120708:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Rocks, Craggy set
-				["itemPrice"] = 100,
+			[120708] = {		-- Rocks, Craggy set
+				itemPrice 	= 100,
 			},
-			["|H1:item:120527:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Fern Plant, Green Curly
-				["itemPrice"] = 100,
+			[120527] = {		-- Fern Plant, Green Curly
+				itemPrice 	= 100,
 			},
-			["|H1:item:120707:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Boulder, Mossy Weathered
-				["itemPrice"] = 100,
+			[120707] = {		-- Boulder, Mossy Weathered
+				itemPrice 	= 100,
 			},
-			["|H1:item:120705:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Boulder, Mossy Grey
-				["itemPrice"] = 100,
+			[120705] = {		-- Boulder, Mossy Grey
+				itemPrice 	= 100,
 			},
-			["|H1:item:120706:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Boulder, Giant Mossy
-				["itemPrice"] = 100,
+			[120706] = {		-- Boulder, Giant Mossy
+				itemPrice 	= 100,
 			},
 			
 		},
 	},
 	["Rivenspire, Shornhelm, Dead Wolf Inn"] = {
-		["Lozotusk"] = {
-			["|H1:item:119871:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Wagon of DETH
-				["itemPrice"] = 25000,
+		[FURC_AV_LOT] = {
+			[119871] = {		-- Wagon of DETH
+				itemPrice 	= 25000,
 			},
-			["|H1:item:120951:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Hope of Rivenspire
-				["itemPrice"] = 5000,
+			[120951] = {		-- Hope of Rivenspire
+				itemPrice 	= 5000,
 			},
-			["|H1:item:119875:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Gargoyle Statue
-				["itemPrice"] = 50000,
+			[119875] = {		-- Gargoyle Statue
+				itemPrice 	= 50000,
 			},
-			["|H1:item:120040:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Crimson-Stained Bowl
-				["itemPrice"] = 2500,
+			[120040] = {		-- Crimson-Stained Bowl
+				itemPrice 	= 2500,
 			},
-			["|H1:item:119870:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Constellation: The Tower
-				["itemPrice"] = 10000,
+			[119870] = {		-- Constellation: The Tower
+				itemPrice 	= 10000,
 			},
-			["|H1:item:119869:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Constellation: The Shadow
-				["itemPrice"] = 10000,
+			[119869] = {		-- Constellation: The Shadow
+				itemPrice 	= 10000,
 			},
-			["|H1:item:119868:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Constellation: The Ritual
-				["itemPrice"] = 10000,
+			[119868] = {		-- Constellation: The Ritual
+				itemPrice 	= 10000,
 			},
 		}, 
-		["Rohzika"] = {
-			["|H1:item:120578:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Sapling, Young Aspen
-				["itemPrice"] = 100,
+		[FURC_AV_ROH] = {
+			[120578] = {		-- Sapling, Young Aspen
+				itemPrice 	= 100,
 			},
-			["|H1:item:120576:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Sapling ,Fragile Aspen
-				["itemPrice"] = 100,
+			[120576] = {		-- Sapling ,Fragile Aspen
+				itemPrice 	= 100,
 			},
-			["|H1:item:120579:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Flower, Stout Hibiscus
-				["itemPrice"] = 250,
+			[120579] = {		-- Flower, Stout Hibiscus
+				itemPrice 	= 250,
 			},
-			["|H1:item:120580:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Flower, Healthy Hibiscus
-				["itemPrice"] = 250,
+			[120580] = {		-- Flower, Healthy Hibiscus
+				itemPrice 	= 250,
 			},
 		}, 
 	},
 	["Stormhaven, Wayrest, Merchant district"] = {
-		["Lozotusk"] = {
-			["|H1:item:119865:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Wayrest Guillotine
-				["itemPrice"] = 75000,
+		[FURC_AV_LOT] = {
+			[119865] = {		-- Wayrest Guillotine
+				itemPrice 	= 75000,
 			},
-			["|H1:item:119867:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Vaermina Statue
-				["itemPrice"] = 75000,
+			[119867] = {		-- Vaermina Statue
+				itemPrice 	= 75000,
 			},
-			["|H1:item:119864:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Spirit Warden Azura Statue
-				["itemPrice"] = 75000,
+			[119864] = {		-- Spirit Warden Azura Statue
+				itemPrice 	= 75000,
 			},
-			["|H1:item:119866:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Replica Dreamshard
-				["itemPrice"] = 2000,
+			[119866] = {		-- Replica Dreamshard
+				itemPrice 	= 2000,
 			},
-			["|H1:item:119863:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Knights of the Flame Banner
-				["itemPrice"] = 10000,
+			[119863] = {		-- Knights of the Flame Banner
+				itemPrice 	= 10000,
 			},
 		}, 
-		["Rohzika"] = {
+		[FURC_AV_ROH] = {
 			
-			["|H1:item:120582:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Tree, Yellowing Oak
-				["itemPrice"] = 20000,
+			[120582] = {		-- Tree, Yellowing Oak
+				itemPrice 	= 20000,
 			},
-			["|H1:item:120442:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Sapling, Squat Highland
-				["itemPrice"] = 100,
+			[120442] = {		-- Sapling, Squat Highland
+				itemPrice 	= 100,
 			},
-			["|H1:item:120444:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Sapling, Tall Highland
-				["itemPrice"] = 100,
+			[120444] = {		-- Sapling, Tall Highland
+				itemPrice 	= 100,
 			},
-			["|H1:item:120443:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Sapling, strong Highland
-				["itemPrice"] = 100,
+			[120443] = {		-- Sapling, strong Highland
+				itemPrice 	= 100,
 			},
 		}
 	},
 	
 	["Skywatch, Auridon"]	= {
-		["Athragor"] = {
-			["|H1:item:119823:5:1:0:0:0:0:0:0:0:0:0:0:0:1:0:0:1:0:0:0|h|h"] = {		-- Tanzelwil Culanda Stone
-				["itemPrice"] = 5000,
+		[FURC_AV_ATH] = {
+			[119823] = {		-- Tanzelwil Culanda Stone
+				itemPrice 	= 5000,
 			},
-			["|H1:item:119824:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Veiled Crystal
-				["itemPrice"] = 5000,
+			[119824] = {		-- Veiled Crystal
+				itemPrice 	= 5000,
 			},
-			["|H1:item:119825:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Mehrunes Dagon Brazier
-				["itemPrice"] = 10000,
+			[119825] = {		-- Mehrunes Dagon Brazier
+				itemPrice 	= 10000,
 			},
-			["|H1:item:119826:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- High Elf Throne
-				["itemPrice"] = 25000,	
+			[119826] = {		-- High Elf Throne
+				itemPrice 	= 25000,	
 			},
-			["|H1:item:119827:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Ancient High Elf Statue
-				["itemPrice"] = 35000,
+			[119827] = {		-- Ancient High Elf Statue
+				itemPrice 	= 35000,
 			},
 		},
 	},
 	["Greenshade, Marbruk"] = {
-		["Maladdiq"] = {
-			["|H1:item:119839:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { 		-- Fern Plant, Vibrant
-				["itemPrice"] = 100, 
+		[FURC_AV_MAL] = {
+			[119839] = { 		-- Fern Plant, Vibrant
+				itemPrice 	= 100, 
 			}, 
-			["|H1:item:120599:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { 		-- Fern, Healthy Green
-				["itemPrice"] = 100, 
+			[120599] = { 		-- Fern, Healthy Green
+				itemPrice 	= 100, 
 			}, 
-			["|H1:item:120595:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { 		-- Fern, Lush
-				["itemPrice"] = 100, 
+			[120595] = { 		-- Fern, Lush
+				itemPrice 	= 100, 
 			}, 
-			["|H1:item:120595:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { 		-- Fern, Young, Healthy
-				["itemPrice"] = 100, 
+			[120595] = { 		-- Fern, Young, Healthy
+				itemPrice 	= 100, 
 			}, 
-			["|H1:item:120598:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { 		-- Plants, Low weeds
-				["itemPrice"] = 100, 
+			[120598] = { 		-- Plants, Low weeds
+				itemPrice 	= 100, 
 			}, 
-			["|H1:item:120588:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { 		-- Rock, Slanted Algae
-				["itemPrice"] = 100, 
+			[120588] = { 		-- Rock, Slanted Algae
+				itemPrice 	= 100, 
 			}, 
-			["|H1:item:120590:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { 		-- Rocks, Smooth Set
-				["itemPrice"] = 100, 
+			[120590] = { 		-- Rocks, Smooth Set
+				itemPrice 	= 100, 
 			}, 
-			["|H1:item:120592:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { 		-- Saplings, Highland Cluster
-				["itemPrice"] = 100, 
+			[120592] = { 		-- Saplings, Highland Cluster
+				itemPrice 	= 100, 
 			}, 
-			["|H1:item:120593:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { 		-- Saplings, Twin Highland
-				["itemPrice"] = 100, 
+			[120593] = { 		-- Saplings, Twin Highland
+				itemPrice 	= 100, 
 			}, 
-			["|H1:item:120589:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { 		-- Stone, Slanted Weathered
-				["itemPrice"] = 100, 
+			[120589] = { 		-- Stone, Slanted Weathered
+				itemPrice 	= 100, 
 			}, 
-			["|H1:item:120591:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { 		-- Tree, Vibrant Privet
-				["itemPrice"] = 250, 
+			[120591] = { 		-- Tree, Vibrant Privet
+				itemPrice 	= 250, 
 			}, 		
 			
 		}, 
 
 		
-		["Athragor"] = {
-			["|H1:item:119839:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { 		-- Fires of the WIlderking
-				["itemPrice"] = 4000, 
+		[FURC_AV_ATH] = {
+			[119839] = { 		-- Fires of the WIlderking
+				itemPrice 	= 4000, 
 			}, 
-			["|H1:item:119841:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { 		-- Hectahame Arboretum Relic
-				["itemPrice"] = 10000, 
+			[119841] = { 		-- Hectahame Arboretum Relic
+				itemPrice 	= 10000, 
 			}, 
-			["|H1:item:120991:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { 		-- Rise of the Silvenaar
-				["itemPrice"] = 5000, 
+			[120991] = { 		-- Rise of the Silvenaar
+				itemPrice 	= 5000, 
 			}, 
-			["|H1:item:119840:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { 		-- Sea Elf Banner
-				["itemPrice"] = 10000, 
+			[119840] = { 		-- Sea Elf Banner
+				itemPrice 	= 10000, 
 			}, 
-			["|H1:item:119842:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { 		-- 
-				["itemPrice"] = 7500, 
+			[119842] = { 		-- 
+				itemPrice 	= 7500, 
 			}, 
 		},
 		
 	},
 	["Khenarthi's Roost, Mistral"] = {
-			["Maladdiq"] = miscVendor,
-			["Athragor"] = {
-				["|H1:item:119986:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Maomer Totem
-					["itemPrice"] = 100000,
+			[FURC_AV_MAL] = miscVendor,
+			[FURC_AV_ATH] = {
+				[119986] = {		-- Maomer Totem
+					itemPrice 	= 100000,
 				},	
 			},
 	},
 	["Malabal Tor, Vulkwaesten, tavern"] = {
-			["Maladdiq"] = {
-				["|H1:item:120529:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Fern Cluster, Healthy
-					["itemPrice"] = 100,
+			[FURC_AV_MAL] = {
+				[120529] = {		-- Fern Cluster, Healthy
+					itemPrice 	= 100,
 				},	
-				["|H1:item:120531:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Fern Fronts, Healthy Green
-					["itemPrice"] = 100,
+				[120531] = {		-- Fern Fronts, Healthy Green
+					itemPrice 	= 100,
 				},	
-				["|H1:item:120530:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Fern Fronds, Sunburst
-					["itemPrice"] = 100,
+				[120530] = {		-- Fern Fronds, Sunburst
+					itemPrice 	= 100,
 				},	
-				["|H1:item:120527:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Fern Plant, Green Curly
-					["itemPrice"] = 100,
+				[120527] = {		-- Fern Plant, Green Curly
+					itemPrice 	= 100,
 				},	
-				["|H1:item:120528:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Fern Plant, Sturdy Mature
-					["itemPrice"] = 100,
+				[120528] = {		-- Fern Plant, Sturdy Mature
+					itemPrice 	= 100,
 				},	
-				["|H1:item:120640:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Fern, Budding Forest
-					["itemPrice"] = 100,
+				[120640] = {		-- Fern, Budding Forest
+					itemPrice 	= 100,
 				},	
-				["|H1:item:120641:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Fern, Low Red
-					["itemPrice"] = 100,
+				[120641] = {		-- Fern, Low Red
+					itemPrice 	= 100,
 				},	
-				["|H1:item:120642:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Mushrooms, Brown Gilled
-					["itemPrice"] = 100,
+				[120642] = {		-- Mushrooms, Brown Gilled
+					itemPrice 	= 100,
 				},	
-				["|H1:item:120534:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Mushroom, Bruising Webcap
-					["itemPrice"] = 250,
+				[120534] = {		-- Mushroom, Bruising Webcap
+					itemPrice 	= 250,
 				},	
-				["|H1:item:120532:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Mushrooms, Poison Pax Cluster
-					["itemPrice"] = 100,
+				[120532] = {		-- Mushrooms, Poison Pax Cluster
+					itemPrice 	= 100,
 				},	
-				["|H1:item:120533:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Mushrooms, Poison Pax Group
-					["itemPrice"] = 100,
+				[120533] = {		-- Mushrooms, Poison Pax Group
+					itemPrice 	= 100,
 				},	
-				["|H1:item:120638:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Rock, Slanted Weathered
-					["itemPrice"] = 100,
+				[120638] = {		-- Rock, Slanted Weathered
+					itemPrice 	= 100,
 				},	
-				["|H1:item:120523:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Rocks, Mossy Cluster
-					["itemPrice"] = 100,
+				[120523] = {		-- Rocks, Mossy Cluster
+					itemPrice 	= 100,
 				},	
-				["|H1:item:120524:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Rocks, Mossy Set
-					["itemPrice"] = 100,
+				[120524] = {		-- Rocks, Mossy Set
+					itemPrice 	= 100,
 				},	
-				["|H1:item:120639:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Stones, Smooth Mossy
-					["itemPrice"] = 100,
+				[120639] = {		-- Stones, Smooth Mossy
+					itemPrice 	= 100,
 				},	
-				["|H1:item:120525:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Tree, Mossy Swamp
-					["itemPrice"] = 100,
+				[120525] = {		-- Tree, Mossy Swamp
+					itemPrice 	= 100,
 				},	
-				["|H1:item:120643:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Vines, Curtain Ivy
-					["itemPrice"] = 750,
+				[120643] = {		-- Vines, Curtain Ivy
+					itemPrice 	= 750,
 				},	
-				["|H1:item:120645:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Vines, Draped Ivy
-					["itemPrice"] = 750,
+				[120645] = {		-- Vines, Draped Ivy
+					itemPrice 	= 750,
 				},	
-				["|H1:item:120644:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Vines, Lush Ivy
-					["itemPrice"] = 600,
+				[120644] = {		-- Vines, Lush Ivy
+					itemPrice 	= 600,
 				},					
 			},
-			["Athragor"] = {
-				["|H1:item:119847:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Handfast
-					["itemPrice"] = 25000,
+			[FURC_AV_ATH] = {
+				[119847] = {		-- Handfast
+					itemPrice 	= 25000,
 				},	
-				["|H1:item:119846:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Handfast Pedestal
-					["itemPrice"] = 5000,
+				[119846] = {		-- Handfast Pedestal
+					itemPrice 	= 5000,
 				},	
-				["|H1:item:119845:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Wood Elf Union Trellis
-					["itemPrice"] = 15000,
+				[119845] = {		-- Wood Elf Union Trellis
+					itemPrice 	= 15000,
 				},	
-				["|H1:item:119845:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Wood Orc Dream Catcher
-					["itemPrice"] = 4000,
+				[119845] = {		-- Wood Orc Dream Catcher
+					itemPrice 	= 4000,
 				},	
-				["|H1:item:119844:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Wood Orc Malacath Banner
-					["itemPrice"] = 10000,
+				[119844] = {		-- Wood Orc Malacath Banner
+					itemPrice 	= 10000,
 				},	
 			},
 	},
 	["Grahtwood, Redfur Trading Post"] = {
-			["Maladdiq"] = miscVendor,
-			["Athragor"] = {
-				["|H1:item:119834:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Aulus's Captive Audience
-					["itemPrice"] = 10000,
+			[FURC_AV_MAL] = miscVendor,
+			[FURC_AV_ATH] = {
+				[119834] = {		-- Aulus's Captive Audience
+					itemPrice 	= 10000,
 				},	
-				["|H1:item:119836:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Guardian Mane
-					["itemPrice"] = 10000,
+				[119836] = {		-- Guardian Mane
+					itemPrice 	= 10000,
 				},	
-				["|H1:item:119837:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Orrery Control Pillar Replica
-					["itemPrice"] = 10000,
+				[119837] = {		-- Orrery Control Pillar Replica
+					itemPrice 	= 10000,
 				},	
-				["|H1:item:119835:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Ukaezai's Ward
-					["itemPrice"] = 10000,
+				[119835] = {		-- Ukaezai's Ward
+					itemPrice 	= 10000,
 				},	
-				["|H1:item:119838:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Valenwood Brazier
-					["itemPrice"] = 400,
+				[119838] = {		-- Valenwood Brazier
+					itemPrice 	= 400,
 				},	
 			},
 	},
 	
 	["Reaper's March, Rawl'Kha, Market"] = {
-			["Maladdiq"] = {
+			[FURC_AV_MAL] = {
 				
-				["|H1:item:120558:2:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Sapling, Eucalyptus Shrub
-					["itemPrice"] = 100,
+				[120558] = {		-- Sapling, Eucalyptus Shrub
+					itemPrice 	= 100,
 				},	
-				["|H1:item:120725:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Boulder, Mossy Crag
-					["itemPrice"] = 100,
+				[120725] = {		-- Boulder, Mossy Crag
+					itemPrice 	= 100,
 				},	
-				["|H1:item:121285:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Tree, Ancient Banyan
-					["itemPrice"] = 25000,
+				[121285] = {		-- Tree, Ancient Banyan
+					itemPrice 	= 25000,
 				},	
-				["|H1:item:121286:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Tree, Giant Cypress
-					["itemPrice"] = 5000,
+				[121286] = {		-- Tree, Giant Cypress
+					itemPrice 	= 5000,
 				},	
-				["|H1:item:121287:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Tree, Towering Cypress
-					["itemPrice"] = 5000,
+				[121287] = {		-- Tree, Towering Cypress
+					itemPrice 	= 5000,
 				},	
-				["|H1:item:119578:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Trees, Towering Palm Cluster
-					["itemPrice"] = 100,
+				[119578] = {		-- Trees, Towering Palm Cluster
+					itemPrice 	= 100,
 				},	
-				["|H1:item:120741:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Trees, Towering Wax Palm
-					["itemPrice"] = 250,
+				[120741] = {		-- Trees, Towering Wax Palm
+					itemPrice 	= 250,
 				},	
-				["|H1:item:120742:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Tree, Twisted Banyan
-					["itemPrice"] = 25000,
+				[120742] = {		-- Tree, Twisted Banyan
+					itemPrice 	= 25000,
 				},	
 			},
-			["Athragor"] = {
-				["|H1:item:120703:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Khajiiti Column, Spiked
-					["itemPrice"] = 4000,
+			[FURC_AV_ATH] = {
+				[120703] = {		-- Khajiiti Column, Spiked
+					itemPrice 	= 4000,
 				},	
-				["|H1:item:119848:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Colovian Projection Crystal
-					["itemPrice"] = 5000,
+				[119848] = {		-- Colovian Projection Crystal
+					itemPrice 	= 5000,
 				},	
-				["|H1:item:119853:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Full Moons Tile
-					["itemPrice"] = 5000,
+				[119853] = {		-- Full Moons Tile
+					itemPrice 	= 5000,
 				},	
-				["|H1:item:119850:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Khajiiti Shrine Guardian Statue
-					["itemPrice"] = 20000,
+				[119850] = {		-- Khajiiti Shrine Guardian Statue
+					itemPrice 	= 20000,
 				},	
-				["|H1:item:119849:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Moonmont Lunar Altar
-					["itemPrice"] = 15000,
+				[119849] = {		-- Moonmont Lunar Altar
+					itemPrice 	= 15000,
 				},	
-				["|H1:item:119854:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- New Moon Tile
-					["itemPrice"] = 5000,
+				[119854] = {		-- New Moon Tile
+					itemPrice 	= 5000,
 				},
-				["|H1:item:119852:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Waning Moons Tile
-					["itemPrice"] = 5000,
+				[119852] = {		-- Waning Moons Tile
+					itemPrice 	= 5000,
 				},	
-				["|H1:item:119851:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Waxing Moons Wall Tile
-					["itemPrice"] = 5000,
+				[119851] = {		-- Waxing Moons Wall Tile
+					itemPrice 	= 5000,
 				},	
 			},
 	},
 	["Craglorn, Belkarth Woodworking store"] = {
-		["Lozotusk"] = {
-			["|H1:item:119933:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Craglorn Brazier
-				["itemPrice"] = 5000,
+		[FURC_AV_LOT] = {
+			[119933] = {		-- Craglorn Brazier
+				itemPrice 	= 5000,
 			},	
-			["|H1:item:119934:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Craglorn Sconce
-				["itemPrice"] = 5000,
+			[119934] = {		-- Craglorn Sconce
+				itemPrice 	= 5000,
 			},	
-			["|H1:item:119931:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Craglorn Tapestrie 
-				["itemPrice"] = 35000,
+			[119931] = {		-- Craglorn Tapestrie 
+				itemPrice 	= 35000,
 			},	
-			["|H1:item:119925:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Nirncrux Bowl
-				["itemPrice"] = 4000,
+			[119925] = {		-- Nirncrux Bowl
+				itemPrice 	= 4000,
 			},	
-			["|H1:item:119935:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Observatory Banner
-				["itemPrice"] = 25000,
+			[119935] = {		-- Observatory Banner
+				itemPrice 	= 25000,
 			},	
-			["|H1:item:119923:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Serpent Stone
-				["itemPrice"] = 5000,
+			[119923] = {		-- Serpent Stone
+				itemPrice 	= 5000,
 			},		
-			["|H1:item:119929:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Snake Prayer Tile
-				["itemPrice"] = 5000,
+			[119929] = {		-- Snake Prayer Tile
+				itemPrice 	= 5000,
 			},	
-			["|H1:item:119930:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Totem of the Serpent
-				["itemPrice"] = 10000,
+			[119930] = {		-- Totem of the Serpent
+				itemPrice 	= 10000,
 			},	
 			
 		}, 
-		["Krrztrrb"] = {
-			["|H1:item:120964:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Boulder, Craggy Heap
-				["itemPrice"] = 100,
+		[FURC_AV_KRR] = {
+			[120964] = {		-- Boulder, Craggy Heap
+				itemPrice 	= 100,
 			},	
-			["|H1:item:120963:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Boulder, Jagged Crag
-				["itemPrice"] = 100,
+			[120963] = {		-- Boulder, Jagged Crag
+				itemPrice 	= 100,
 			},	
-			["|H1:item:120552:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Bush, Flowering Scrub
-				["itemPrice"] = 250,
+			[120552] = {		-- Bush, Flowering Scrub
+				itemPrice 	= 250,
 			},	
-			["|H1:item:120555:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Flowers, Healthy Goldenrod
-				["itemPrice"] = 250,
+			[120555] = {		-- Flowers, Healthy Goldenrod
+				itemPrice 	= 250,
 			},	
-			["|H1:item:120551:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Plant, Healthy Sage
-				["itemPrice"] = 100,
+			[120551] = {		-- Plant, Healthy Sage
+				itemPrice 	= 100,
 			},	
-			["|H1:item:120977:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Plant, Strong Sage
-				["itemPrice"] = 100,
+			[120977] = {		-- Plant, Strong Sage
+				itemPrice 	= 100,
 			},	
-			["|H1:item:120966:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Rock, Craggy Rubble
-				["itemPrice"] = 100,
+			[120966] = {		-- Rock, Craggy Rubble
+				itemPrice 	= 100,
 			},	
-			["|H1:item:120539:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Rock, Jagged Craggy
-				["itemPrice"] = 100,
+			[120539] = {		-- Rock, Jagged Craggy
+				itemPrice 	= 100,
 			},	
-			["|H1:item:120969:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Sapling, Crabapple
-				["itemPrice"] = 100,
+			[120969] = {		-- Sapling, Crabapple
+				itemPrice 	= 100,
 			},	
-			["|H1:item:120972:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Sapling, Desert
-				["itemPrice"] = 100,
+			[120972] = {		-- Sapling, Desert
+				itemPrice 	= 100,
 			},	
-			["|H1:item:120548:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Sapling, Leaning Ash
-				["itemPrice"] = 100,
+			[120548] = {		-- Sapling, Leaning Ash
+				itemPrice 	= 100,
 			},	
-			["|H1:item:120973:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Sapling, Mountain
-				["itemPrice"] = 100,
+			[120973] = {		-- Sapling, Mountain
+				itemPrice 	= 100,
 			},	
-			["|H1:item:120983:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Sapling, Mountain
-				["itemPrice"] = 100,
+			[120983] = {		-- Sapling, Mountain
+				itemPrice 	= 100,
 			},	
-			["|H1:item:120971:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Sapling, Tall Scrub
-				["itemPrice"] = 100,
+			[120971] = {		-- Sapling, Tall Scrub
+				itemPrice 	= 100,
 			},	
-			["|H1:item:120982:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Sapling, Twisted
-				["itemPrice"] = 100,
+			[120982] = {		-- Sapling, Twisted
+				itemPrice 	= 100,
 			},	
-			["|H1:item:120553:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Sapling, Young Scrub
-				["itemPrice"] = 100,
+			[120553] = {		-- Sapling, Young Scrub
+				itemPrice 	= 100,
 			},	
-			["|H1:item:120976:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Sapling, Juniper Cluster
-				["itemPrice"] = 100,
+			[120976] = {		-- Sapling, Juniper Cluster
+				itemPrice 	= 100,
 			},	
-			["|H1:item:120981:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Sapling, Desert Scrub
-				["itemPrice"] = 100,
+			[120981] = {		-- Sapling, Desert Scrub
+				itemPrice 	= 100,
 			},	
-			["|H1:item:120967:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Stone, Angled Grey
-				["itemPrice"] = 100,
+			[120967] = {		-- Stone, Angled Grey
+				itemPrice 	= 100,
 			},	
-			["|H1:item:120975:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Tree, Angled Ash
-				["itemPrice"] = 100,
+			[120975] = {		-- Tree, Angled Ash
+				itemPrice 	= 100,
 			},	
-			["|H1:item:120543:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Tree, Blooming Crabapple
-				["itemPrice"] = 6000,
+			[120543] = {		-- Tree, Blooming Crabapple
+				itemPrice 	= 6000,
 			},	
-			["|H1:item:120549:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Tree, Large Twisted Ash
-				["itemPrice"] = 250,
+			[120549] = {		-- Tree, Large Twisted Ash
+				itemPrice 	= 250,
 			},	
-			["|H1:item:120547:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Tree, Leaning Ash
-				["itemPrice"] = 250,
+			[120547] = {		-- Tree, Leaning Ash
+				itemPrice 	= 250,
 			},	
-			["|H1:item:120970:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Tree, Sturdy Crabapple
-				["itemPrice"] = 13000,
+			[120970] = {		-- Tree, Sturdy Crabapple
+				itemPrice 	= 13000,
 			},	
-			["|H1:item:120974:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Tree, Sturdy Summer
-				["itemPrice"] = 250,
+			[120974] = {		-- Tree, Sturdy Summer
+				itemPrice 	= 250,
 			},	
-			["|H1:item:120550:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Tree, Twisted
-				["itemPrice"] = 100,
+			[120550] = {		-- Tree, Twisted
+				itemPrice 	= 100,
 			},	
 			
 		},
@@ -2081,120 +2096,120 @@ FurC.AchievementVendors[FURC_HOMESTEAD] = {
 
 	["Coldharbour, Hollow City, Cicero's General Good"] = {
 	
-		["Lozotusk"] = {
-			["|H1:item:119828:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Ayleid Throne
-				["itemPrice"] = 500000,
+		[FURC_AV_LOT] = {
+			[119828] = {		-- Ayleid Throne
+				itemPrice 	= 500000,
 			},
-			["|H1:item:119830:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Coldharbour Chandelier
-				["itemPrice"] = 25000,
+			[119830] = {		-- Coldharbour Chandelier
+				itemPrice 	= 25000,
 			},
-			["|H1:item:119831:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Cowering Statue
-				["itemPrice"] = 10000,
+			[119831] = {		-- Cowering Statue
+				itemPrice 	= 10000,
 			},
-			["|H1:item:119832:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Light of Meridia
-				["itemPrice"] = 10000,
+			[119832] = {		-- Light of Meridia
+				itemPrice 	= 10000,
 			},
-			["|H1:item:119833:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Molag Bal Banner
-				["itemPrice"] = 20000,
+			[119833] = {		-- Molag Bal Banner
+				itemPrice 	= 20000,
 			},
-			["|H1:item:119829:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Shackle Control Stone
-				["itemPrice"] = 25000,
+			[119829] = {		-- Shackle Control Stone
+				itemPrice 	= 25000,
 			},
 		},
-		["Krrztrrb"] = boxes,
+		[FURC_AV_KRR] = boxes,
 	}, 
 	
 	["Gold Coast, Kvatch"] = { 
-		["Athragor"] = {
-			["|H1:item:119947:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Banner of the Kvatch Guard
-				["itemPrice"] = 150000,
+		[FURC_AV_ATH] = {
+			[119947] = {		-- Banner of the Kvatch Guard
+				itemPrice 	= 150000,
 			},
-			["|H1:item:119697:0:0:0:0:0:0:0:0:0:0:0:0:0:0:10:0:0:0:0:0|h|h"] = {	-- Blade of Woe, Replica
-				["itemPrice"] = 25000,
+			[119697] = {	-- Blade of Woe, Replica
+				itemPrice 	= 25000,
 			},
-			["|H1:item:119941:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Brotherhood Poison Vial
-				["itemPrice"] = 2500,
+			[119941] = {		-- Brotherhood Poison Vial
+				itemPrice 	= 2500,
 			},
-			["|H1:item:119945:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Dark Brotherhood Banner
-				["itemPrice"] = 10000,
+			[119945] = {		-- Dark Brotherhood Banner
+				itemPrice 	= 10000,
 			},
-			["|H1:item:119953:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Dark Ledger
-				["itemPrice"] = 50000,
+			[119953] = {		-- Dark Ledger
+				itemPrice 	= 50000,
 			},
-			["|H1:item:119937:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Gold Coast Estate Keg
-				["itemPrice"] = 500000,
+			[119937] = {		-- Gold Coast Estate Keg
+				itemPrice 	= 500000,
 			},
-			["|H1:item:120950:0:0:0:0:0:0:0:0:0:0:0:0:0:0:10:0:0:0:0:0|h|h"] = {		-- Hanging Hourglass
-				["itemPrice"] = 15000,
+			[120950] = {		-- Hanging Hourglass
+				itemPrice 	= 15000,
 			},
-			["|H1:item:119939:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Hourglass Rug
-				["itemPrice"] = 10000,
+			[119939] = {		-- Hourglass Rug
+				itemPrice 	= 10000,
 			},
-			["|H1:item:119951:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Litany of Blood
-				["itemPrice"] = 25000,
+			[119951] = {		-- Litany of Blood
+				itemPrice 	= 25000,
 			},
-			["|H1:item:119944:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Order of the Hour banner
-				["itemPrice"] = 5000,
+			[119944] = {		-- Order of the Hour banner
+				itemPrice 	= 5000,
 			},
-			["|H1:item:119950:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Preserved Sweetrolls
-				["itemPrice"] = 500,
+			[119950] = {		-- Preserved Sweetrolls
+				itemPrice 	= 500,
 			},
-			["|H1:item:119940:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Sanctuary Sconce
-				["itemPrice"] = 10000,
+			[119940] = {		-- Sanctuary Sconce
+				itemPrice 	= 10000,
 			},
-			["|H1:item:119948:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Statue of the Mother
-				["itemPrice"] = 100000,
+			[119948] = {		-- Statue of the Mother
+				itemPrice 	= 100000,
 			},
 		}, 
-		["Frohilde Snow-Hair"] = structures, 
+		[FURC_AV_FRO] = structures, 
 	}, 
 	
 	["Hew's Bane"] = {
-		["Listens-To-Sea"] = {
-			["|H1:item:119965:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Abah's Landing Banner
-				["itemPrice"] = 10000,
+		[FURC_AV_LTS] = {
+			[119965] = {		-- Abah's Landing Banner
+				itemPrice 	= 10000,
 			},
-			["|H1:item:119961:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- An Adoring Fan
-				["itemPrice"] = 2500,
+			[119961] = {		-- An Adoring Fan
+				itemPrice 	= 2500,
 			},
-			["|H1:item:119969:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Banner of TAneth
-				["itemPrice"] = 10000,
+			[119969] = {		-- Banner of TAneth
+				itemPrice 	= 10000,
 			},
-			["|H1:item:119968:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Distracting Harpy Egg
-				["itemPrice"] = 1500,
+			[119968] = {		-- Distracting Harpy Egg
+				itemPrice 	= 1500,
 			},
-			["|H1:item:120989:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Hanging Wedding Lantern
-				["itemPrice"] = 3000,
+			[120989] = {		-- Hanging Wedding Lantern
+				itemPrice 	= 3000,
 			},
-			["|H1:item:119974:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Hiding Place
-				["itemPrice"] = 1000,
+			[119974] = {		-- Hiding Place
+				itemPrice 	= 1000,
 			},
-			["|H1:item:119974:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Iron Wheel Banner
-				["itemPrice"] = 15000,
+			[119974] = {		-- Iron Wheel Banner
+				itemPrice 	= 15000,
 			},
-			["|H1:item:119960:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Jar of Green Dye
-				["itemPrice"] = 500,
+			[119960] = {		-- Jar of Green Dye
+				itemPrice 	= 500,
 			},
-			["|H1:item:120990:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Large Covered Well
-				["itemPrice"] = 15000,
+			[120990] = {		-- Large Covered Well
+				itemPrice 	= 15000,
 			},
-			["|H1:item:120952:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Opulent Dowry Chest
-				["itemPrice"] = 50000,
+			[120952] = {		-- Opulent Dowry Chest
+				itemPrice 	= 50000,
 			},
-			["|H1:item:119955:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Pale Garden Flowers
-				["itemPrice"] = 500,
+			[119955] = {		-- Pale Garden Flowers
+				itemPrice 	= 500,
 			},
-			["|H1:item:119954:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Reliquary Skull 
-				["itemPrice"] = 25000,
+			[119954] = {		-- Reliquary Skull 
+				itemPrice 	= 25000,
 			},
-			["|H1:item:119954:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Statue of Shadows
-				["itemPrice"] = 25000,
+			[119954] = {		-- Statue of Shadows
+				itemPrice 	= 25000,
 			},
-			["|H1:item:119967:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Vibrant Garden Flowers
-				["itemPrice"] = 500,
+			[119967] = {		-- Vibrant Garden Flowers
+				itemPrice 	= 500,
 			},
-			["|H1:item:119963:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Yokudan Puzzle Column
-				["itemPrice"] = 5000,
+			[119963] = {		-- Yokudan Puzzle Column
+				itemPrice 	= 5000,
 			},
 		}, 
 		["Rohiza"] = structures,
@@ -2202,179 +2217,177 @@ FurC.AchievementVendors[FURC_HOMESTEAD] = {
 	
 	["Orsinium"] = {
 		
-		["Lozotusk"] = {
-			["|H1:item:119979:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Fur Throne
-				["itemPrice"] = 25000,
+		[FURC_AV_LOT] = {
+			[119979] = {		-- Fur Throne
+				itemPrice 	= 25000,
 			},
-			["|H1:item:119976:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Orc Adventuring Backpack
-				["itemPrice"] = 500,
+			[119976] = {		-- Orc Adventuring Backpack
+				itemPrice 	= 500,
 			},
-			["|H1:item:119978:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Orcish Battle Totem
-				["itemPrice"] = 7500,
+			[119978] = {		-- Orcish Battle Totem
+				itemPrice 	= 7500,
 			},
-			["|H1:item:119980:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Orcish Totem
-				["itemPrice"] = 10000,
+			[119980] = {		-- Orcish Totem
+				itemPrice 	= 10000,
 			},
-			["|H1:item:119977:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Orcish War Totem
-				["itemPrice"] = 5000,
+			[119977] = {		-- Orcish War Totem
+				itemPrice 	= 5000,
 			},
-			["|H1:item:119975:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Orsinium Cart
-				["itemPrice"] = 10000,
+			[119975] = {		-- Orsinium Cart
+				itemPrice 	= 10000,
 			},
-			["|H1:item:119981:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Throne of the Orc King
-				["itemPrice"] = 50000,
+			[119981] = {		-- Throne of the Orc King
+				itemPrice 	= 50000,
 			},
 		}, 
 		
-		["Maladdiq"] = {
-			["|H0:item:117955:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Box, Slatted
-				["itemPrice"] = 100,
+		[FURC_AV_MAL] = {
+			[117955] = {		-- Box, Slatted
+				itemPrice 	= 100,
 			},
-			["|H1:item:117964:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Rough Fire, doused
-				["itemPrice"] = 100,
+			[117964] = {		-- Rough Fire, doused
+				itemPrice 	= 100,
 			},
-			["|H1:item:117985:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Rough Bread, Morsel
-				["itemPrice"] = 100,
+			[117985] = {		-- Rough Bread, Morsel
+				itemPrice 	= 100,
 			},
-			["|H1:item:117981:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Rough Firewood, Smoldering
-				["itemPrice"] = 100,
+			[117981] = {		-- Rough Firewood, Smoldering
+				itemPrice 	= 100,
 			},
-			["|H1:item:117976:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Rough Hay Bed, Sloppy
-				["itemPrice"] = 100,
+			[117976] = {		-- Rough Hay Bed, Sloppy
+				itemPrice 	= 100,
 			},
-			["|H1:item:117976:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Rough Hay Bed, Covered
-				["itemPrice"] = 100,
+			[117976] = {		-- Rough Hay Bed, Covered
+				itemPrice 	= 100,
 			},
-			["|H1:item:117974:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Rough Hay Bed, Tidy
-				["itemPrice"] = 100,
+			[117974] = {		-- Rough Hay Bed, Tidy
+				itemPrice 	= 100,
 			},
-			["|H1:item:117986:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = {		-- Rough Plank, Long
-				["itemPrice"] = 100,
+			[117986] = {		-- Rough Plank, Long
+				itemPrice 	= 100,
 			},
 		
 		},
 		
 	},
 	
-	["any city"] = {
-	
-		["enchanters"] = {
-			["|H1:item:120050:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Enchanter's Sign
-				["itemPrice"] = 5000, 
+	["any city"] = {	
+		[FURC_AV_ENC] = {
+			[120050] = { -- Enchanter's Sign
+				itemPrice 	= 5000, 
 			},
-			["|H1:item:120051:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Enchanting Gem
-				["itemPrice"] = 5000, 
-				["achievement"] = "|H1:achievement:1317:0:0|h|h",
+			[120051] = { -- Enchanting Gem
+				itemPrice 	= 5000, 
+				achievement = 1317,
 			},
-		}, 
-		
-		["alchemists"] = {
-			["|H1:item:120044:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Alchemy sign
-				["itemPrice"] = 10000, 
-				["achievement"] = "|H1:achievement:1031:0:0|h|h",
+		}, 		
+		[FURC_AV_ALC] = {
+			[120044] = { -- Alchemy sign
+				itemPrice 	= 10000, 
+				achievement = 1031,
 			},
-			["|H1:item:120058:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Harvester's Herbs
-				["itemPrice"] = 1000, 
+			[120058] = { -- Harvester's Herbs
+				itemPrice 	= 1000, 
 			},
-			["|H1:item:120045:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Poison Satchel
-				["itemPrice"] = 5000, 
-				["achievement"] = "|H1:achievement:1464:0:0|h|h"
+			[120045] = { -- Poison Satchel
+				itemPrice 	= 5000, 
+				achievement = 1464
 			},
 		}, 
-		["cooks"] = {
-			["|H1:item:120053:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Chef's Cleaver
-				["itemPrice"] = 2500, 
-				["achievement"] = "|H1:achievement:1028:0:1407821618|h|h",
+		[FURC_AV_COO] = {
+			[120053] = { -- Chef's Cleaver
+				itemPrice 	= 2500, 
+				achievement = 1028,
 			},
-			["|H1:item:120052:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Provisioner's Sign
-				["itemPrice"] = 5000, 
-				["achievement"] = "|H1:achievement:1035:0:0|h|h",
-			},
-		},
-		["clothiers"] = {
-			["|H1:item:120048:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- clothier's sign
-				["itemPrice"] = 5000, 
-				["achievement"] = "|H1:achievement:1033:0:1476729139|h|h",
-			},
-			["|H1:item:120060:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Harvester's Critter Trap
-				["itemPrice"] = 5000,  
-				["achievement"] = "|H1:achievement:68:0:1423725309|h|h", 
-			},
-			["|H1:item:120061:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Harvester's Garden Shrub
-				["itemPrice"] = 10000,  
-				["achievement"] = "|H1:achievement:68:0:1423725309|h|h", 
+			[120052] = { -- Provisioner's Sign
+				itemPrice 	= 5000, 
+				achievement = 1035,
 			},
 		},
-		["carpenters"] = {
-			["|H1:item:120057:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Harvester's Woodpile
-				["itemPrice"] = 1000, 
-				["achievement"] = "|H1:achievement:68:0:1423725309|h|h", 
+		[FURC_AV_CLO] = {
+			[120048] = { -- clothier's sign
+				itemPrice 	= 5000, 
+				achievement = 1033,
 			},
-			["|H1:item:120054:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Woodworker's Sign
-				["itemPrice"] = 5000, 
-				["achievement"] = "|H1:achievement:1036:0:1476770252|h|h", 
+			[120060] = { -- Harvester's Critter Trap
+				itemPrice 	= 5000,  
+				achievement = 68, 
+			},
+			[120061] = { -- Harvester's Garden Shrub
+				itemPrice 	= 10000,  
+				achievement = 68, 
 			},
 		},
-		["blacksmiths"] = {
+		[FURC_AV_CAR] = {
+			[120057] = { -- Harvester's Woodpile
+				itemPrice 	= 1000, 
+				achievement = 68, 
+			},
+			[120054] = { -- Woodworker's Sign
+				itemPrice 	= 5000, 
+				achievement = 1036, 
+			},
+		},
+		[FURC_AV_BSM] = {
 			
-			["|H1:item:120046:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Blacksmith's Sign
-				["itemPrice"] = 5000, 
-				["achievement"] = "|H1:achievement:1032:0:1476784952|h|h",
+			[120046] = { -- Blacksmith's Sign
+				itemPrice 	= 5000, 
+				achievement = 1032,
 			},
-			["|H1:item:120059:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Harvester's Ore
-				["itemPrice"] = 1000, 
-				["achievement"] = "|H1:achievement:68:0:1423725309|h|h", 
+			[120059] = { -- Harvester's Ore
+				itemPrice 	= 1000, 
+				achievement = 68, 
 			},
-			["|H1:item:120062:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Smith's Bellow
-				["itemPrice"] = 10000, 
-				["achievement"] = "|H1:achievement:1022:0:1411682663|h|h", 
+			[120062] = { -- Smith's Bellow
+				itemPrice 	= 10000, 
+				achievement = 1022, 
 			},
 		},
-		["Outlaw Refuge, Merchant"] = {
-			["|H1:item:120028:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Death Marker
-				["itemPrice"] = 5000, 
+		[FURC_AV_OUT] = {
+			[120028] = { -- Death Marker
+				itemPrice 	= 5000, 
 			},
-			["|H1:item:120033:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Decorative Safebox
-				["itemPrice"] = 5000, 
-				["achievement"] = "|H1:achievement:1200:0:0|h|h", -- Safebox Cracker
+			[120033] = { -- Decorative Safebox
+				itemPrice 	= 5000, 
+				achievement = 1200, -- Safebox Cracker
 			},
-			["|H1:item:120032:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Decorative Thieves Trove
-				["itemPrice"] = 5000, 
-				["achievement"] = "", -- No Stash Left Behind
+			[120032] = { -- Decorative Thieves Trove
+				itemPrice 	= 5000, 
+				achievement = "", -- No Stash Left Behind
 			},
-			["|H1:item:120957:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Faded fence banner
-				["itemPrice"] = 10000, 
-				["achievement"] = "Ledgerdmain Rank 20", 
+			[120957] = { -- Faded fence banner
+				itemPrice 	= 10000, 
+				achievement = "Ledgerdmain Rank 20", 
 			},
-			["|H1:item:120027:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Mass Tombstone
-				["itemPrice"] = 10000, 
+			[120027] = { -- Mass Tombstone
+				itemPrice 	= 10000, 
 			},
-			["|H1:item:120026:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Mountain of Loot
-				["itemPrice"] = 10000, 
-				["achievement"] = "", -- Black Market Mogul
+			[120026] = { -- Mountain of Loot
+				itemPrice 	= 10000, 
+				achievement = "", -- Black Market Mogul
 			},
-			["|H1:item:120029:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Noble Pocket Lint
-				["itemPrice"] = 1000, 
-				["achievement"] = "|H1:achievement:1192:322:0|h|h",-- Sneak Thief Extraordinaire
+			[120029] = { -- Noble Pocket Lint
+				itemPrice 	= 1000, 
+				achievement = 1192,-- Sneak Thief Extraordinaire
 			},
-			["|H1:item:120023:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Outlaw Banner
-				["itemPrice"] = 5000, 
-				["achievement"] = "Ledgerdmain Rank 20",
+			[120023] = { -- Outlaw Banner
+				itemPrice 	= 5000, 
+				achievement = "Ledgerdmain Rank 20",
 			},
-			["|H1:item:120025:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Pile of Coins
-				["itemPrice"] = 2500, 
-				["achievement"] = "|H1:achievement:1196:0:0|h|h", -- Felonious Recompense
+			[120025] = { -- Pile of Coins
+				itemPrice 	= 2500, 
+				achievement = 1196, -- Felonious Recompense
 			},
-			["|H1:item:120030:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Pocket Change
-				["itemPrice"] = 500, 
+			[120030] = { -- Pocket Change
+				itemPrice 	= 500, 
 			},
-			["|H1:item:120031:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Replica Key, Blank
-				["itemPrice"] = 1000, 
-				["achievement"] = "|H1:achievement:1208:0:0|h|h", -- Master Burglar
+			[120031] = { -- Replica Key, Blank
+				itemPrice 	= 1000, 
+				achievement = 1208, -- Master Burglar
 			},
-			["|H1:item:120993:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Scales of Felonious Recompense
-				["itemPrice"] = 5000, 
-				["achievement"] = "|H1:achievement:1196:0:0|h|h", -- Felonious Recompense
+			[120993] = { -- Scales of Felonious Recompense
+				itemPrice 	= 5000, 
+				achievement = 1196, -- Felonious Recompense
 			},
 		},
 
@@ -2383,41 +2396,41 @@ FurC.AchievementVendors[FURC_HOMESTEAD] = {
 	["the Mages' guild"] = {
 		["the Mystic as part of a collection"] = {},
 		["the Mystic"] = {		
-			["|H1:item:120003:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- cheese cutter
-				["itemPrice"] = 5000, 
+			[120003] = { -- cheese cutter
+				itemPrice 	= 5000, 
 			},
-			["|H1:item:120011:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Mages' Guild Banner
-				["itemPrice"] = 10000, 
+			[120011] = { -- Mages' Guild Banner
+				itemPrice 	= 10000, 
 			},		
 		}
 					
 	},
 	["the Fighters' guild"] = {
 		["Hall Steward"] = {
-			["|H1:item:120019:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { --Broken Chain
-				["itemPrice"] = 50000, 
+			[120019] = { --Broken Chain
+				itemPrice 	= 50000, 
 			},
-			["|H1:item:119999:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Daedric Chest
-				["itemPrice"] = 10000, 
+			[119999] = { -- Daedric Chest
+				itemPrice 	= 10000, 
 			},
-			["|H1:item:120948:0:0:0:0:0:0:0:0:0:0:0:0:0:0:10:0:0:0:0:0|h|h"] = { -- Dark Anchor Pinion
-				["itemPrice"] = 100000, 
+			[120948] = { -- Dark Anchor Pinion
+				itemPrice 	= 100000, 
 			},
-			["|H1:item:120019:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Fighters' Guild Banner
-				["itemPrice"] = 10000, 
+			[120019] = { -- Fighters' Guild Banner
+				itemPrice 	= 10000, 
 			},			
 		},
 	},
 	["the Undaunted Enclaves"] = {
 		["Undaunted Quartermaster"] = {
-			["|H1:item:120036:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Undaunted Banner
-				["itemPrice"] = 15000, 
+			[120036] = { -- Undaunted Banner
+				itemPrice 	= 15000, 
 			},
-			["|H1:item:120035:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Undaunted Chest
-				["itemPrice"] = 5000, 
+			[120035] = { -- Undaunted Chest
+				itemPrice 	= 5000, 
 			},
-			["|H1:item:120034:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Undaunted Mug
-				["itemPrice"] = 1000, 
+			[120034] = { -- Undaunted Mug
+				itemPrice 	= 1000, 
 			},			
 		},
 	},
@@ -2428,55 +2441,55 @@ function FurC.SetupHomesteadItems()
 	
 	FurC.AchievementVendors[FURC_HOMESTEAD]["the Mages' guild"]["the Mystic as part of a collection"] = bookList
 	
-	listTable = FurC.AchievementVendors[FURC_HOMESTEAD]["Dhalmora, Bal Foyen"]["Frohilde Snow-Hair"]
+	listTable = FurC.AchievementVendors[FURC_HOMESTEAD]["Dhalmora, Bal Foyen"][FURC_AV_FRO]
 	addTable = tableMerge(furnishingVendor, morrowindStones)	
 	listTable = tableMerge(listTable, addTable)
 			
-	listTable = FurC.AchievementVendors[FURC_HOMESTEAD]["Mournhold Bank"]["Frohilde Snow-Hair"]			
+	listTable = FurC.AchievementVendors[FURC_HOMESTEAD]["Mournhold Bank"][FURC_AV_FRO]			
 	listTable = tableMerge(listTable, addTable)	
 	
-	listTable = FurC.AchievementVendors[FURC_HOMESTEAD]["Stonefalls, Ebonheart"]["Frohilde Snow-Hair"]			
+	listTable = FurC.AchievementVendors[FURC_HOMESTEAD]["Stonefalls, Ebonheart"][FURC_AV_FRO]			
 	listTable = tableMerge(listTable, addTable)	
 	
-	listTable = FurC.AchievementVendors[FURC_HOMESTEAD]["Shadowfen, Alten Corimont"]["Frohilde Snow-Hair"]
+	listTable = FurC.AchievementVendors[FURC_HOMESTEAD]["Shadowfen, Alten Corimont"][FURC_AV_FRO]
 	addTable = furnishingVendor
 	listTable = tableMerge(listTable, addTable)		
 	
-	listTable = FurC.AchievementVendors[FURC_HOMESTEAD]["Riften, Market, Armorer"]["Frohilde Snow-Hair"]
+	listTable = FurC.AchievementVendors[FURC_HOMESTEAD]["Riften, Market, Armorer"][FURC_AV_FRO]
 	addTable = furnishingVendor
 	listTable = tableMerge(listTable, addTable)	
 	
-	listTable = FurC.AchievementVendors[FURC_HOMESTEAD]["Bangkorai, Evermore"]["Rohzika"]
+	listTable = FurC.AchievementVendors[FURC_HOMESTEAD]["Bangkorai, Evermore"][FURC_AV_ROH]
 	listTable = tableMerge(listTable, addTable)
 	
-	listTable = FurC.AchievementVendors[FURC_HOMESTEAD]["Stormhaven, Wayrest, Merchant district"]["Rohzika"]
+	listTable = FurC.AchievementVendors[FURC_HOMESTEAD]["Stormhaven, Wayrest, Merchant district"][FURC_AV_ROH]
 	listTable = tableMerge(listTable, addTable)
 	
-	listTable = FurC.AchievementVendors[FURC_HOMESTEAD]["Greenshade, Marbruk"]["Maladdiq"]
+	listTable = FurC.AchievementVendors[FURC_HOMESTEAD]["Greenshade, Marbruk"][FURC_AV_MAL]
 	listTable = tableMerge(listTable, addTable)
 	
-	listTable = FurC.AchievementVendors[FURC_HOMESTEAD]["Malabal Tor, Vulkwaesten, tavern"]["Maladdiq"]
+	listTable = FurC.AchievementVendors[FURC_HOMESTEAD]["Malabal Tor, Vulkwaesten, tavern"][FURC_AV_MAL]
 	listTable = tableMerge(listTable, addTable)
 	
-	listTable = FurC.AchievementVendors[FURC_HOMESTEAD]["Reaper's March, Rawl'Kha, Market"]["Maladdiq"]
+	listTable = FurC.AchievementVendors[FURC_HOMESTEAD]["Reaper's March, Rawl'Kha, Market"][FURC_AV_MAL]
 	listTable = tableMerge(listTable, structures)
 		
-	listTable = FurC.AchievementVendors[FURC_HOMESTEAD]["Grahtwood, Redfur Trading Post"]["Maladdiq"]
+	listTable = FurC.AchievementVendors[FURC_HOMESTEAD]["Grahtwood, Redfur Trading Post"][FURC_AV_MAL]
 	listTable = tableMerge(listTable, furnishingVendor)
 			
-	listTable = FurC.AchievementVendors[FURC_HOMESTEAD]["Craglorn, Belkarth Woodworking store"]["Krrztrrb"]
+	listTable = FurC.AchievementVendors[FURC_HOMESTEAD]["Craglorn, Belkarth Woodworking store"][FURC_AV_KRR]
 	listTable = tableMerge(listTable, furnishingVendor)
 			
-	listTable = FurC.AchievementVendors[FURC_HOMESTEAD]["Coldharbour, Hollow City, Cicero's General Good"]["Krrztrrb"]
+	listTable = FurC.AchievementVendors[FURC_HOMESTEAD]["Coldharbour, Hollow City, Cicero's General Good"][FURC_AV_KRR]
 	listTable = tableMerge(listTable, structures)	
 	
-	listTable = FurC.AchievementVendors[FURC_HOMESTEAD]["Gold Coast, Kvatch"]["Frohilde Snow-Hair"]
+	listTable = FurC.AchievementVendors[FURC_HOMESTEAD]["Gold Coast, Kvatch"][FURC_AV_FRO]
 	listTable = tableMerge(listTable, furnishingVendor)
 	
 	listTable = FurC.AchievementVendors[FURC_HOMESTEAD]["Hew's Bane"]["Rohiza"]
 	listTable = tableMerge(listTable, furnishingVendor)
 	
-	listTable = FurC.AchievementVendors[FURC_HOMESTEAD]["Orsinium"]["Maladdiq"]
+	listTable = FurC.AchievementVendors[FURC_HOMESTEAD]["Orsinium"][FURC_AV_MAL]
 	listTable = tableMerge(listTable, furnishingVendor)
 	
 	listTable = FurC.AchievementVendors[FURC_HOMESTEAD]["Glenumbra, Daggerfall, The Rosy Lion"]["Rohiza"]
@@ -2485,7 +2498,7 @@ function FurC.SetupHomesteadItems()
 	listTable = FurC.AchievementVendors[FURC_HOMESTEAD]["Rivenspire, Shornhelm, Dead Wolf Inn"]["Rohiza"]
 	listTable = tableMerge(listTable, furnishingVendor)	
 
-	listTable = FurC.AchievementVendors[FURC_HOMESTEAD]["Orsinium"]["Maladdiq"]
+	listTable = FurC.AchievementVendors[FURC_HOMESTEAD]["Orsinium"][FURC_AV_MAL]
 	listTable = tableMerge(listTable, structures)	
 
 	

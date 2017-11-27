@@ -10,43 +10,41 @@ local function tryColorize(text)
 	return text:gsub("cannot craft", "|cFF0000cannot craft|r"):gsub("Can be crafted", "|c00FF00Can be crafted|r")
 end
 
+local function addTooltipData(control, itemLink)
 
-local function addTooltipData(control, itemOrBlueprintLink)
 	if FurC.GetDisableTooltips() then return end
+	local itemId, recipeArray = nil
+	if nil == itemLink or FURC_EMPTY_STRING == itemLink then return end
+	local isRecipe = IsItemLinkFurnitureRecipe(itemLink)
 	
-	if nil == itemOrBlueprintLink then return end
-
-	local recipeArray = FurC.Find(itemOrBlueprintLink)		
+	itemLink = (isRecipe and GetItemLinkRecipeResultItemLink(itemLink)) or itemLink
 	
-	if (not recipeArray) or ({} == recipeArray) then return end			-- Find does not return nil, empty table instead
 
 	
-	local itemLink 	= recipeArray.itemLink
-	local isRecipe 	= (itemOrBlueprintLink ~= itemLink)
-	local unknown 	= FurC.IsUnknown(itemLink, recipeArray)
-	local stringTable = { }
-
-
+	
+	itemId = FurC.GetItemId(itemLink)
+	recipeArray = FurC.Find(itemLink)
+	
+	if not recipeArray then return end			-- Find does not return nil, empty table instead
+	
+	local unknown 	= not FurC.CanCraft(itemId, recipeArray)
+	local stringTable = {}
 	
 	local function add(t, arg)
 		if nil ~= arg then t[#t + 1] = arg end
 		return t
 	end
+	
 	-- if craftable:
-	if recipeArray.craftable then
-		-- check for known/unknown
-		if unknown then 
-			if (not FurC.GetHideUnknown()) then
-				stringTable = add(stringTable, tryColorize(recipeArray["source"]))
-			end
-		else
-			if (not FurC.GetHideKnowledge()) then
-				stringTable = add(stringTable, tryColorize(recipeArray["source"]))
-			end
+	if recipeArray.origin == FURC_CRAFTING then
+		if unknown and not FurC.GetHideUnknown() then 
+			stringTable = add(stringTable, tryColorize(FURC_STRING_UNKNOWN))			
+		elseif not FurC.GetHideKnowledge() then
+			stringTable = add(stringTable, tryColorize(FurC.GetCrafterList(recipeArray)))
 		end
 		
 		if not isRecipe and (not FurC.GetHideCraftingStation()) then
-			stringTable = add(stringTable, FurC.PrintCraftingStation(recipeArray))
+			stringTable = add(stringTable, FurC.PrintCraftingStation(itemId, recipeArray))
 		end
 		-- check if we should show mats
 		if not(FurC.GetHideMats() or isRecipe) then
@@ -54,13 +52,12 @@ local function addTooltipData(control, itemOrBlueprintLink)
 		end
 	else
 		if not FurC.GetHideSource() then
-			stringTable = add(stringTable, recipeArray.source)
+			stringTable = add(stringTable, FurC.GetItemDescription(itemId, recipeArray, itemLink))
 		end
 		stringTable = add(stringTable, recipeArray.achievement)
 
 	end
-	stringTable = add(stringTable, recipeArray.comment)
-
+	
 	if #stringTable == 0 then return end
 
 	control:AddVerticalPadding(8)
@@ -77,12 +74,12 @@ local function TooltipHook(tooltipControl, method, linkFunc)
 	
 	tooltipControl[method] = function(self, ...)
 		origMethod(self, ...)
-		task:Call(addTooltipData(self, linkFunc(...)))		
+		addTooltipData(self, linkFunc(...))
 	end
 end
 
 local function ReturnItemLink(itemLink)
-	return itemLink
+	return FurC.GetItemLink(itemLink)
 end
 
 do
@@ -90,16 +87,16 @@ do
 	-- hook real late
 	local function HookToolTips()
 		EVENT_MANAGER:UnregisterForUpdate(identifier)
-		TooltipHook(ItemTooltip, "SetBagItem", GetItemLink)
-		TooltipHook(ItemTooltip, "SetTradeItem", GetTradeItemLink)
-		TooltipHook(ItemTooltip, "SetBuybackItem", GetBuybackItemLink)
-		TooltipHook(ItemTooltip, "SetStoreItem", GetStoreItemLink)
-		TooltipHook(ItemTooltip, "SetAttachedMailItem", GetAttachedItemLink)
-		TooltipHook(ItemTooltip, "SetLootItem", GetLootItemLink)
-		TooltipHook(ItemTooltip, "SetTradingHouseItem", GetTradingHouseSearchResultItemLink)
-		TooltipHook(ItemTooltip, "SetTradingHouseListing", GetTradingHouseListingItemLink)
-		TooltipHook(ItemTooltip, "SetLink", ReturnItemLink)
-		TooltipHook(PopupTooltip, "SetLink", ReturnItemLink)
+		TooltipHook(ItemTooltip, 	"SetBagItem", 				GetItemLink)
+		TooltipHook(ItemTooltip, 	"SetTradeItem", 			GetTradeItemLink)
+		TooltipHook(ItemTooltip, 	"SetBuybackItem",			GetBuybackItemLink)
+		TooltipHook(ItemTooltip, 	"SetStoreItem", 			GetStoreItemLink)
+		TooltipHook(ItemTooltip, 	"SetAttachedMailItem", 		GetAttachedItemLink)
+		TooltipHook(ItemTooltip, 	"SetLootItem", 				GetLootItemLink)
+		TooltipHook(ItemTooltip, 	"SetTradingHouseItem", 		GetTradingHouseSearchResultItemLink)
+		TooltipHook(ItemTooltip, 	"SetTradingHouseListing", 	GetTradingHouseListingItemLink)
+		TooltipHook(ItemTooltip, 	"SetLink", 					ReturnItemLink)
+		TooltipHook(PopupTooltip, 	"SetLink", 					ReturnItemLink)
 	end
 	-- hook late
 	local function DeferHookToolTips()

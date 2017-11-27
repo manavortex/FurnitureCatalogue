@@ -1,77 +1,76 @@
 FurC.Recipes = FurC.Recipes or {}
 FurC.Recipes[FURC_CLOCKWORK] = {	
-	["|H1:item:134527:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, --Design: Clockwork Meal, Dish
-	["|H1:item:134512:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, --Diagram: Clockwork Table, Octagonal
-	["|H1:item:134478:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, --Formula: Fabricant Saplings, Electrum
-	["|H1:item:134495:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, --Diagram: Clockwork Pump, Horizontal
-	["|H1:item:134499:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, --Praxis: Clockwork Control Panel, Double
-	["|H1:item:134531:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, --Diagram: Clockwork Sequence Plaque, Single
-	["|H1:item:134543:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, --Diagram: Clockwork Wall Machinery, Arched
-	["|H1:item:134479:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, --Formula: Fabricant Tree, Electrum
-	["|H1:item:134486:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, --Diagram: Clockwork Barrel, Sealed
-	["|H1:item:134505:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, --Diagram: Clockwork Drafting Table, Flat
-	["|H1:item:134509:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, --Diagram: Clockwork Cabinet, Sequence Plaque Storag
-	["|H1:item:134500:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, --Diagram: Clockwork Furnace, Socketed
-	["|H1:item:134484:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, --Formula: Fabricant Shrub, Gold
-	["|H1:item:134496:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, --Praxis: Clockwork Switch, Sturdy
-	["|H1:item:134541:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, --Diagram: Clockwork Wall Machinery, Rectangular
-	["|H1:item:134490:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, --Diagram: Clockwork Crate, Wide
-	["|H1:item:134476:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, --Formula: Fabricant Tree, Gnarled Cypress
-	["|H1:item:134504:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, --Diagram: Clockwork Drafting Table, Raised
-	["|H1:item:132188:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, --Praxis: Ayleid Bookshelf, Cluttered
-	["|H1:item:134477:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, --Formula: Fabricant Trees, Clustered Maple
-	["|H1:item:134518:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, --Diagram: Clockwork Coffer, Robust
-	["|H1:item:134515:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, --Diagram: Clockwork Wardrobe, Precision Engineered
-	["|H1:item:134526:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, --Design: Clockwork Meal, Plate
-	["|H1:item:134513:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, --Diagram: Clockwork Nightstand, Octagonal
-	["|H1:item:134546:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, --Design: Clockwork Paste Dispenser, Empty
-	["|H1:item:134492:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, --Diagram: Clockwork Crate, Large Open
-	["|H1:item:134487:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, --Diagram: Clockwork Barrel, Wide
-	["|H1:item:134493:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, --Formula: Clockwork Lamppost, Gas
-	["|H1:item:134485:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, --Formula: Fabricant Shrub, Copper
-	["|H1:item:134506:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, --Diagram: Clockwork Sequence Spool, Single
-	["|H1:item:134525:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, --Diagram: Clockwork Mug, Reinforced
-	["|H1:item:134582:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, --Diagram: Clockwork Shelf, Wall
-	["|H1:item:134545:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, --Praxis: Clockwork Charging Station, Factotum
-	["|H1:item:134508:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, --Diagram: Clockwork Lectern, Empty
-	["|H1:item:134520:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, --Design: Clockwork Cup, Recycled Water
-	["|H1:item:134488:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, --Diagram: Clockwork Keg, Sturdy
-	["|H1:item:134542:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, --Diagram: Clockwork Wall Machinery, Circular
-	["|H1:item:134540:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, --Praxis: Clockwork Illuminator, Compact
-	["|H1:item:134516:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, --Design: Clockwork Bowl, Large Nutriment Paste
-	["|H1:item:134538:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, --Praxis: Clockwork Illuminator, Capsule Tower
-	["|H1:item:134517:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, --Design: Clockwork Bowl, Nutriment Paste
-	["|H1:item:134537:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, --Praxis: Clockwork Illuminator, Powered Capsule
-	["|H1:item:134536:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, --Praxis: Clockwork Illuminator, Solitary Capsule
-	["|H1:item:134497:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, --Diagram: Clockwork Vent, Octagonal Fan
-	["|H1:item:134535:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, --Praxis: Clockwork Illuminator, Personal Desk
-	["|H1:item:134534:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, --Diagram: Clockwork Surveyor's Tripod, Calibrated
-	["|H1:item:134483:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, --Formula: Fabricant Shrubs, Beryl
-	["|H1:item:134533:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, --Diagram: Clockwork Flask Stand, Tall
-	["|H1:item:134494:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, --Diagram: Clockwork Pump, Vertical
-	["|H1:item:134489:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, --Diagram: Clockwork Crate, Square
-	["|H1:item:134532:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, --Diagram: Clockwork Flask Stand, Short
-	["|H1:item:134530:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, --Diagram: Clockwork Sequence Plaques, Unfolded
-	["|H1:item:134491:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, --Diagram: Clockwork Crate, Large Closed
-	["|H1:item:134529:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, --Diagram: Clockwork Sequence Plaques, Folded
-	["|H1:item:134528:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, --Diagram: Clockwork Scales, Precision Calibrated
-	["|H1:item:134524:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, --Praxis: Clockwork Mortar and Pestle, Sintered
-	["|H1:item:134523:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, --Praxis: Clockwork Measuring Cup, Sintered
-	["|H1:item:134522:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, --Design: Clockwork Goblet, Recycled Water
-	["|H1:item:134511:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, --Diagram: Clockwork Table, Beveled
-	["|H1:item:134521:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, --Diagram: Clockwork Goblet, Empty
-	["|H1:item:134544:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, --Praxis: Clockwork Charging Station, Animo Core
-	["|H1:item:134519:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, --Diagram: Clockwork Cup, Empty
-	["|H1:item:134502:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, --Diagram: Clockwork Chair, Practical
-	["|H1:item:134514:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, --Diagram: Clockwork Table, Grand
-	["|H1:item:134510:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, --Diagram: Clockwork Stool, Practical
-	["|H1:item:134539:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, --Praxis: Clockwork Illuminator, Compact Stand
-	["|H1:item:134507:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, --Diagram: Clockwork Sequence Spool, Triple
-	["|H1:item:134482:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, --Formula: Fabricant Tree, Cobalt Spruce
-	["|H1:item:134481:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, --Formula: Fabricant Tree, Miniature Cherry Blossom
-	["|H1:item:134503:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, --Diagram: Clockwork Chair, Reinforced
-	["|H1:item:134501:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, --Diagram: Clockwork Somnolostation
-	["|H1:item:134480:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, --Formula: Fabricant Tree, Vibrant Cherry Blossom
-	["|H1:item:134498:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, --Praxis: Clockwork Control Panel, Single
+	134527, -- Design: Clockwork Meal, Dish
+	134512, -- Diagram: Clockwork Table, Octagonal
+	134478, -- Formula: Fabricant Saplings, Electrum
+	134495, -- Diagram: Clockwork Pump, Horizontal
+	134499, -- Praxis: Clockwork Control Panel, Double
+	134531, -- Diagram: Clockwork Sequence Plaque, Single
+	134543, -- Diagram: Clockwork Wall Machinery, Arched
+	134479, -- Formula: Fabricant Tree, Electrum
+	134486, -- Diagram: Clockwork Barrel, Sealed
+	134505, -- Diagram: Clockwork Drafting Table, Flat
+	134509, -- Diagram: Clockwork Cabinet, Sequence Plaque Storag
+	134500, -- Diagram: Clockwork Furnace, Socketed
+	134484, -- Formula: Fabricant Shrub, Gold
+	134496, -- Praxis: Clockwork Switch, Sturdy
+	134541, -- Diagram: Clockwork Wall Machinery, Rectangular
+	134490, -- Diagram: Clockwork Crate, Wide
+	134476, -- Formula: Fabricant Tree, Gnarled Cypress
+	134504, -- Diagram: Clockwork Drafting Table, Raised
+	132188, -- Praxis: Ayleid Bookshelf, Cluttered
+	134477, -- Formula: Fabricant Trees, Clustered Maple
+	134518, -- Diagram: Clockwork Coffer, Robust
+	134515, -- Diagram: Clockwork Wardrobe, Precision Engineered
+	134526, -- Design: Clockwork Meal, Plate
+	134513, -- Diagram: Clockwork Nightstand, Octagonal
+	134546, -- Design: Clockwork Paste Dispenser, Empty
+	134492, -- Diagram: Clockwork Crate, Large Open
+	134487, -- Diagram: Clockwork Barrel, Wide
+	134493, -- Formula: Clockwork Lamppost, Gas
+	134485, -- Formula: Fabricant Shrub, Copper
+	134506, -- Diagram: Clockwork Sequence Spool, Single
+	134525, -- Diagram: Clockwork Mug, Reinforced
+	134582, -- Diagram: Clockwork Shelf, Wall
+	134545, -- Praxis: Clockwork Charging Station, Factotum
+	134508, -- Diagram: Clockwork Lectern, Empty
+	134520, -- Design: Clockwork Cup, Recycled Water
+	134488, -- Diagram: Clockwork Keg, Sturdy
+	134542, -- Diagram: Clockwork Wall Machinery, Circular
+	134540, -- Praxis: Clockwork Illuminator, Compact
+	134516, -- Design: Clockwork Bowl, Large Nutriment Paste
+	134538, -- Praxis: Clockwork Illuminator, Capsule Tower
+	134517, -- Design: Clockwork Bowl, Nutriment Paste
+	134537, -- Praxis: Clockwork Illuminator, Powered Capsule
+	134536, -- Praxis: Clockwork Illuminator, Solitary Capsule
+	134497, -- Diagram: Clockwork Vent, Octagonal Fan
+	134535, -- Praxis: Clockwork Illuminator, Personal Desk
+	134534, -- Diagram: Clockwork Surveyor's Tripod, Calibrated
+	134483, -- Formula: Fabricant Shrubs, Beryl
+	134533, -- Diagram: Clockwork Flask Stand, Tall
+	134494, -- Diagram: Clockwork Pump, Vertical
+	134489, -- Diagram: Clockwork Crate, Square
+	134532, -- Diagram: Clockwork Flask Stand, Short
+	134530, -- Diagram: Clockwork Sequence Plaques, Unfolded
+	134491, -- Diagram: Clockwork Crate, Large Closed
+	134529, -- Diagram: Clockwork Sequence Plaques, Folded
+	134528, -- Diagram: Clockwork Scales, Precision Calibrated
+	134524, -- Praxis: Clockwork Mortar and Pestle, Sintered
+	134523, -- Praxis: Clockwork Measuring Cup, Sintered
+	134522, -- Design: Clockwork Goblet, Recycled Water
+	134511, -- Diagram: Clockwork Table, Beveled
+	134521, -- Diagram: Clockwork Goblet, Empty
+	134544, -- Praxis: Clockwork Charging Station, Animo Core
+	134519, -- Diagram: Clockwork Cup, Empty
+	134502, -- Diagram: Clockwork Chair, Practical
+	134514, -- Diagram: Clockwork Table, Grand
+	134510, -- Diagram: Clockwork Stool, Practical
+	134539, -- Praxis: Clockwork Illuminator, Compact Stand
+	134507, -- Diagram: Clockwork Sequence Spool, Triple
+	134482, -- Formula: Fabricant Tree, Cobalt Spruce
+	134481, -- Formula: Fabricant Tree, Miniature Cherry Blossom
+	134503, -- Diagram: Clockwork Chair, Reinforced
+	134501, -- Diagram: Clockwork Somnolostation
+	134480, -- Formula: Fabricant Tree, Vibrant Cherry Blossom
+	134498, -- Praxis: Clockwork Control Panel, Single
 }
-if GetAPIVersion() == 100020 then FurC.Recipes[FURC_CLOCKWORK] = {} end

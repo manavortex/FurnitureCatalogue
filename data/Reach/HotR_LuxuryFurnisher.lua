@@ -1,134 +1,128 @@
 FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
 FurC.LuxuryFurnisher[FURC_REACH] = {
-	["Hollow City, Cicero's General Goods"] = {
-		["Zanil Theran, Luxury Furnisher"]	= {	
+
+	-- Oct. 21
+	[132155] = { -- Witch's Torch, Wretched
+		itemPrice 	= 5000,
+	},	
+	[132154] = { -- Witch's Totem, Bog
+		itemPrice 	= 50000,
+	},	
+	[132153] = { -- Witch's Tree, Captive
+		itemPrice 	= 35000,
+	},	
+	
+	-- Oct. 14
+	[119977] = { -- Orcish War Totem
+		itemPrice 	= 5000,
+	},	
+	[119978] = { -- Orcish Battle Totem
+		itemPrice 	= 7500,
+	},	
+	[119980] = { -- Orchish Totem
+		itemPrice 	= 10000,
+	},	
+	
+	-- Oct. 7
+	[132145] = { -- Orsinium Tent, Chief’s
+		itemPrice 	= 5000,
+	},	
+	[132146] = { -- Orsinium Relief, Malacath
+		itemPrice 	= 25000,
+	},	
+	[132148] = { -- Orsinium Statue, Head
+		itemPrice 	= 25000,
+	},	
+	[132147] = { -- Orsinium Statue, Honor’s Rest
+		itemPrice 	= 25000,
+	},				
+	
+	-- Sept. 30
+	[132144] = { -- Reach Briarheart, Blood Red
+		itemPrice 	= 15000,
+	},	
+	[132141] = { -- Reach Skull, Mammoth
+		itemPrice 	= 50000,
+	},	
+	[132142] = { -- Reach Tent, Camp
+		itemPrice 	= 2500,
+	},
+	 
+	 
+	-- Sept. 23rd
+	[131435] = { -- Reach Bowl, Nirncrux
+		itemPrice 	= 5000,
+	},	
+	[131438] = { -- Reach Grinder, Nirncrux
+		itemPrice 	= 50000,
+	},	
+	[131436] = { -- Reach Vine, Bloodroot Sprout
+		itemPrice 	= 15000,
+	},	
+	[131437] = { -- Reach Vine, Bloodroot Tendril
+		itemPrice 	= 20000,
+	},	
+	
+	-- Craglorn items
+	[120844] = { -- Craglorn Brazier, Ornate
+		itemPrice 	= 15000,
+	},
+	[120842] = { -- Craglorn Chair, Serpent
+		itemPrice 	= 2500,
+	},	
+	[120843] = { -- Craglorn Skull, Carved
+		itemPrice 	= 35000,
+	},	
+	[120845] = { -- Craglorn Sword Sconce
+		itemPrice 	= 5000,
+	},	
+	[120841] = { -- Craglorn Urn, Standing
+		itemPrice 	= 7500,
+	},
+	
+	
+	
+	-- Sept. 2nd + 3rd
+	[120832] = { -- Blue Crystal Spire
+		itemPrice 	= 12000,
+	},	
+	[120834] = { -- Blue Flame Brazier
+		itemPrice 	= 5000,
+	},	
+	[121272] = { -- Great Soul Gem
+		itemPrice 	= 20000,
+	},	
+	
+	
+	-- Aug 26+27
+	[120831] = { -- Blue Crystal Cluster
+		itemPrice 	= 10834,
+	},	
+	[120833] = { -- Blue Crystal Fragments
+		itemPrice 	= 8125,
+	},	
+	[120830] = { -- Blue Flame Candles
+		itemPrice 	= 2500,
+	},	
+	[121273] = { -- Soul Gem, Grand
+		itemPrice 	= 5417,
+	},	
+	
+	-- August 19-20
+	[126579] = { -- Velothi Altar, Sacrificial
+		itemPrice 	= 10834,
+	},			
+	[126576] = { -- Velothi Kneeler, Prayer
+		itemPrice 	= 3000,
+	},
+	
+	[126577] = { -- Velothi Podium of Recitation
+		itemPrice 	= 37500,
+	},
+	
+	[126578] = { -- Velothi Burial Urn
+		itemPrice 	= 10834,
+	},
 			
-			
-			
-			-- Oct. 21
-			["|H1:item:132155:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Witch's Torch, Wretched
-				["itemPrice"] = 5000,
-			},	
-			["|H1:item:132154:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Witch's Totem, Bog
-				["itemPrice"] = 50000,
-			},	
-			["|H1:item:132153:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Witch's Tree, Captive
-				["itemPrice"] = 35000,
-			},	
-			
-			-- Oct. 14
-			["|H1:item:119977:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Orcish War Totem
-				["itemPrice"] = 5000,
-			},	
-			["|H1:item:119978:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Orcish Battle Totem
-				["itemPrice"] = 7500,
-			},	
-			["|H1:item:119980:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Orchish Totem
-				["itemPrice"] = 10000,
-			},	
-			
-			-- Oct. 7
-			["|H1:item:132145:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Orsinium Tent, Chief’s
-				["itemPrice"] = 5000,
-			},	
-			["|H1:item:132146:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Orsinium Relief, Malacath
-				["itemPrice"] = 25000,
-			},	
-			["|H1:item:132148:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Orsinium Statue, Head
-				["itemPrice"] = 25000,
-			},	
-			["|H1:item:132147:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Orsinium Statue, Honor’s Rest
-				["itemPrice"] = 25000,
-			},				
-			
-			-- Sept. 30
-			["|H1:item:132144:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Reach Briarheart, Blood Red
-				["itemPrice"] = 15000,
-			},	
-			["|H1:item:132141:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Reach Skull, Mammoth
-				["itemPrice"] = 50000,
-			},	
-			["|H1:item:132142:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Reach Tent, Camp
-				["itemPrice"] = 2500,
-			},
-			 
-			 
-			-- Sept. 23rd
-			["|H1:item:131435:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Reach Bowl, Nirncrux
-				["itemPrice"] = 5000,
-			},	
-			["|H1:item:131438:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Reach Grinder, Nirncrux
-				["itemPrice"] = 50000,
-			},	
-			["|H1:item:131436:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Reach Vine, Bloodroot Sprout
-				["itemPrice"] = 15000,
-			},	
-			["|H1:item:131437:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Reach Vine, Bloodroot Tendril
-				["itemPrice"] = 20000,
-			},	
-			
-			-- Craglorn items
-			["|H1:item:120844:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Craglorn Brazier, Ornate
-				["itemPrice"] = 15000,
-			},
-			["|H1:item:120842:4:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Craglorn Chair, Serpent
-				["itemPrice"] = 2500,
-			},	
-			["|H1:item:120843:6:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Craglorn Skull, Carved
-				["itemPrice"] = 35000,
-			},	
-			["|H1:item:120845:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Craglorn Sword Sconce
-				["itemPrice"] = 5000,
-			},	
-			["|H1:item:120841:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Craglorn Urn, Standing
-				["itemPrice"] = 7500,
-			},
-			
-			
-			
-			-- Sept. 2nd + 3rd
-			["|H1:item:120832:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Blue Crystal Spire
-				["itemPrice"] = 12000,
-			},	
-			["|H1:item:120834:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Blue Flame Brazier
-				["itemPrice"] = 5000,
-			},	
-			["|H1:item:121272:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Great Soul Gem
-				["itemPrice"] = 20000,
-			},	
-			
-			
-			-- Aug 26+27
-			["|H1:item:120831:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Blue Crystal Cluster
-				["itemPrice"] = 10834,
-			},	
-			["|H1:item:120833:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Blue Crystal Fragments
-				["itemPrice"] = 8125,
-			},	
-			["|H1:item:120830:4:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Blue Flame Candles
-				["itemPrice"] = 2500,
-			},	
-			["|H1:item:121273:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Soul Gem, Grand
-				["itemPrice"] = 5417,
-			},	
-			
-			-- August 19-20
-			["|H1:item:126579:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Velothi Altar, Sacrificial
-				["itemPrice"] = 10834,
-			},			
-			["|H1:item:126576:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Velothi Kneeler, Prayer
-				["itemPrice"] = 3000,
-			},
-			
-			["|H1:item:126577:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Velothi Podium of Recitation
-				["itemPrice"] = 37500,
-			},
-			
-			["|H1:item:126578:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = { -- Velothi Burial Urn
-				["itemPrice"] = 10834,
-			},
-			
-		},
-	},		
 }

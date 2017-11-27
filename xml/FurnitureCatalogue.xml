@@ -275,7 +275,7 @@
 			<Dimensions x="35" y="35" />
 			<OnMouseEnter>	FurC.GuiVirtualMouseOver(self)	</OnMouseEnter>
 			<OnMouseExit>	FurC.GuiVirtualMouseOut(self)	</OnMouseExit>
-			<OnMouseUp>		FurC.GuiQualityMouseUp(self)	</OnMouseUp>
+			<OnMouseUp>		FurC.GuiQualityMouseUp(self, button)	</OnMouseUp>
 		</Button>
 		<Button name="FurC_CraftingTypeFilterButton" virtual="true">
 			<Dimensions x="40" y="40" />

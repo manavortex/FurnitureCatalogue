@@ -1,49 +1,99 @@
+-- use constants because it's a huge performance gain due to how LUA handles strings... at least unless siri lied :P
+
+local FURC_CANBEPICKED 					= "can be pickpocketed"
+local FURC_CANBEPICKED_WW				= FURC_CANBEPICKED .. " from woodworkers"
+local FURC_CANBEPICKED_ASS 				= FURC_CANBEPICKED .. " from outlaws and assassins"
+local FURC_CANBEPICKED_GUARD	 		= FURC_CANBEPICKED .. " from guards"
+	
+local FURC_CANBESTOLEN 					= "can be stolen"
+local FURC_CANBESTOLENINCC 				= FURC_CANBESTOLEN .. " in Clockwork City"
+local FURC_CANBESTOLEN_SCHOLARS 		= FURC_CANBESTOLEN .. " from scholars"
+local FURC_CANBESTOLEN_NERDS	 		= FURC_CANBESTOLEN_SCHOLARS .. " and mages"
+local FURC_CANBESTOLEN_RELIG	 		= FURC_CANBESTOLEN .. " from priests and pilgrims"
+	
+local FURC_AUTOMATON 					= "from automatons"
+local FURC_AUTOMATON_CC					= FURC_AUTOMATON .. " in Clockwork City"
+local FURC_AUTOMATON_VV					= FURC_AUTOMATON .. " on Vvardenfell"
+local FURC_TOMBS 						= "Ancestor tombs and ruins on Vvardenfell"
+	
+local FURC_PLANTS						= "from harvesting plants"
+	
+local FURC_HARVEST						= "from harvesting nodes"
+local FURC_HARVEST_CHARBOR				= FURC_HARVEST .. " in Coldharbour"
+	
+local FURC_CANBEFISHED 					= "can be fished"
+
+local FURC_CROWNSTORESOURCE				= "Crown Store "
+local FURC_CROWNSTORE_TEN				= FURC_CROWNSTORESOURCE .. "(10)"
+local FURC_CROWNSTORE_FIFTEEN			= FURC_CROWNSTORESOURCE .. "(15)"
+local FURC_CROWNSTORE_TWENTY			= FURC_CROWNSTORESOURCE .. "(20)"
+local FURC_CROWNSTORE_FOURTYFIVE		= FURC_CROWNSTORESOURCE .. "(45)"
+local FURC_CROWNSTORE_EIGHTY			= FURC_CROWNSTORESOURCE .. "(80)"
+local FURC_CROWNSTORE_NINETYFIVE		= FURC_CROWNSTORESOURCE .. "(95)"
+local FURC_CROWNSTORE_ONETWENTY			= FURC_CROWNSTORESOURCE .. "(120)"
+local FURC_CROWNSTORE_SEVENFIFTY		= FURC_CROWNSTORESOURCE .. "(750)"
+local FURC_CROWNSTORE_ONEONEHUNDRED		= FURC_CROWNSTORESOURCE .. "(1100)"
+
+local FURC_DAEDRA_SOURCE				= "from Daedra and Dolmen chests"
+local FURC_DB							= "The Dark Brotherhood supplies vendor hands these out "
+local FURC_DB_POISON					= FURC_DB .. "with poison"
+local FURC_DB_SNEAKY					= FURC_DB .. "as a way to be sneaky"
+	
+local FURC_DAILY_ASHLANDERS			= "Ashlander daily quest rewards"
+	
+local FURC_PLUNDERSKULL				= "Drops from Plunder Skulls during Witches' Festival"
+
+
 FurC.MiscItemSources 	= {
 	
 	[FURC_CLOCKWORK] = { -- Reach	
-			[FURC_DROP] = {	
-				["|H1:item:134407:4:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = "from automatons in Clockwork City", -- Torso, Obsolete
-				["|H1:item:134404:4:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = "from automatons in Clockwork City", -- Factotum Knee, Obsolete
-				["|H1:item:134408:4:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = "from automatons in Clockwork City", -- Factotum Elbow, Obsolete
-				["|H1:item:134405:4:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = "from automatons in Clockwork City", -- Factotum Arm, Obsolete
-				["|H1:item:134409:4:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = "from automatons in Clockwork City", -- Factotum Head, Obsolete
-				["|H1:item:134406:4:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = "from automatons in Clockwork City", -- Factotum Body, Obsolete
-			},
+		[FURC_DROP] = {	
+			[134407] = FURC_AUTOMATON_CC,			-- Torso, Obsolete
+			[134404] = FURC_AUTOMATON_CC,			-- Factotum Knee, Obsolete
+			[134408] = FURC_AUTOMATON_CC,			-- Factotum Elbow, Obsolete
+			[134405] = FURC_AUTOMATON_CC,			-- Factotum Arm, Obsolete
+			[134409] = FURC_AUTOMATON_CC,			-- Factotum Head, Obsolete
+			[134406] = FURC_AUTOMATON_CC,			-- Factotum Body, Obsolete
+			
+			
+		},
 		[FURC_JUSTICE] 	= {
-				["|H1:item:134411:3:1:0:0:0:0:0:0:0:0:0:0:0:16:0:0:0:0:0:0|h|h"] = "can be stolen in Clockwork City", -- Ventilation shaft
-				["|H1:item:134415:4:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = "can be stolen in Clockwork City", -- Clockwork Dial Calipers, Handheld
-				["|H1:item:134412:3:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = "can be stolen in Clockwork City", -- Clockwork Piston, Miniature
-				["|H1:item:134410:3:1:0:0:0:0:0:0:0:0:0:0:0:16:0:0:0:0:0:0|h|h"] = "can be stolen in Clockwork City", -- Clockwork Crank, Miniature
-				["|H1:item:134411:3:1:0:0:0:0:0:0:0:0:0:0:0:16:0:0:0:1:0:0|h|h"] = "can be stolen in Clockwork City", -- Clockwork Gear Shaft, Miniature
-				["|H1:item:134400:2:1:0:0:0:0:0:0:0:0:0:0:0:16:0:0:0:0:0:0|h|h"] = "can be pickpocketedd", -- Soft Leather, Stacked
-				["|H1:item:134417:4:1:0:0:0:0:0:0:0:0:0:0:0:16:0:0:0:0:0:0|h|h"] = "can be pickpocketed", -- Calipers, Handheld
-				["|H1:item:134399:2:1:0:0:0:0:0:0:0:0:0:0:0:16:0:0:0:0:0:0|h|h"] = "can be pickpocketed", -- Quality Fabric, Folded
+			[134411] = FURC_CANBESTOLENINCC, 		-- Ventilation shaft
+			[134415] = FURC_CANBESTOLENINCC, 		-- Clockwork Dial Calipers, Handheld
+			[134412] = FURC_CANBESTOLENINCC, 		-- Clockwork Piston, Miniature
+			[134410] = FURC_CANBESTOLENINCC, 		-- Clockwork Crank, Miniature
+			[134411] = FURC_CANBESTOLENINCC, 		-- Clockwork Gear Shaft, Miniature
+			[134400] = FURC_CANBEPICKED, 			-- Soft Leather, Stacked
+			[134417] = FURC_CANBEPICKED, 			-- Calipers, Handheld
+			[134399] = FURC_CANBEPICKED, 			-- Quality Fabric, Folded
+			[117939] = FURC_CANBEPICKED_WW, 		-- Rough Axe, Practical
 		},
 		[FURC_CROWN] 	= {
-				["|H1:item:134266:3:1:0:0:0:0:0:0:0:0:0:0:0:65:0:0:1:0:0:0|h|h"] = "Crown Store (80)", -- Daedric Books, Stacked
-				["|H1:item:134265:4:1:0:0:0:0:0:0:0:0:0:0:0:65:0:0:1:0:0:0|h|h"] = "Crown Store (80)", -- Daedric Books, Piled
-				}
+			[134266] = FURC_CROWNSTORE_EIGHTY, 		-- Daedric Books, Stacked
+			[134265] = FURC_CROWNSTORE_EIGHTY, 		-- Daedric Books, Piled			
+			
+		}
 	},
 		
 	[FURC_REACH] = { -- Reach		
 		[FURC_JUSTICE] 	= {
-			["|H1:item:130191:6:1:0:0:0:0:0:0:0:0:0:0:0:16:0:0:0:1:0:0|h|h"] = "Can be stolen", -- Shivering Cheese		
-			["|H1:item:118206:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = "Can be stolen from outlaws and assassins", -- Gaming dice
+			[130191] = FURC_CANBESTOLEN, 			-- Shivering Cheese		
+			[118206] = FURC_CANBEPICKED_WW, 		-- Gaming dice
 		},
 		[FURC_CROWN] 	= {
-			["|H1:item:131423:6:1:0:0:0:0:0:0:0:0:0:0:0:65:0:0:1:0:0:0|h|h"] = "Crown Store (750)",
+			[131423] = FURC_CROWNSTORE_SEVENFIFTY,
 		},
 		[FURC_DROP] 	= {
 			-- Coldharbour items
-			["|H1:item:130284:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = "from harvesting nodes in Coldharbour", -- Glowstalk, Seedlings
-			["|H1:item:131422:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = "from harvesting nodes in Coldharbour", -- Flower Patch, Glowstalks
-			["|H1:item:130283:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = "from harvesting nodes in Coldharbour", -- Glowstalk, Sprout
-			["|H1:item:130285:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = "from harvesting nodes in Coldharbour", -- Glowstalk, Young
-			["|H1:item:131420:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = "from harvesting nodes in Coldharbour", -- Shrub, Glowing Thistle
-			["|H1:item:130281:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = "from harvesting nodes in Coldharbour", -- Glowstalk, Towering
-			["|H1:item:130282:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = "from harvesting nodes in Coldharbour", -- Glowstalk, Strong
+			[130284] = FURC_HARVEST_CHARBOR, 		-- Glowstalk, Seedlings
+			[131422] = FURC_HARVEST_CHARBOR, 		-- Flower Patch, Glowstalks
+			[130283] = FURC_HARVEST_CHARBOR, 		-- Glowstalk, Sprout
+			[130285] = FURC_HARVEST_CHARBOR, 		-- Glowstalk, Young
+			[131420] = FURC_HARVEST_CHARBOR, 		-- Shrub, Glowing Thistle
+			[130281] = FURC_HARVEST_CHARBOR, 		-- Glowstalk, Towering
+			[130282] = FURC_HARVEST_CHARBOR, 		-- Glowstalk, Strong
 			
-			["|H1:item:130067:3:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = "from Daedra and Dolmen chests", -- Daedric Chain Segment
+			[130067] = FURC_DAEDRA_SOURCE, 			-- Daedric Chain Segment
 		},
 		
 	},
@@ -51,85 +101,112 @@ FurC.MiscItemSources 	= {
 		[FURC_DROP] 	= {
 			
 			-- Dwemer parts
-			["|H1:item:126660:3:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = "Drops from automatons in Vvardenfell", -- Dwemer Gear, Tiered
-			["|H1:item:126659:3:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = "Drops from automatons in Vvardenfell", -- Dwemer Gear, Flat
+			[126660] = FURC_AUTOMATON_VV, 			-- Dwemer Gear, Tiered
+			[126659] = FURC_AUTOMATON_VV, 			-- Dwemer Gear, Flat
 		
 			-- lootable in tombs
-			["|H1:item:126773:4:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = "Ancestor tombs and ruins on Vvardenfell", -- Velothi Caisson, Crypt
-			["|H1:item:126704:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = "Ancestor tombs and ruins on Vvardenfell", 
+			[126773] = FURC_TOMBS, 					-- Velothi Caisson, Crypt
+			[126704] = FURC_TOMBS, 
 			-- Velothi Shroud, Majesty
-			["|H1:item:126706:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = "Ancestor tombs and ruins on Vvardenfell", 
+			[126706] = FURC_TOMBS, 
 			-- Velothi Shroud, Knowledge
-			["|H1:item:126701:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = "Ancestor tombs and ruins on Vvardenfell", 
+			[126701] = FURC_TOMBS, 
 			-- Velothi Shroud, Nerevar
-			["|H1:item:126753:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = "Ancestor tombs and ruins on Vvardenfell", 
+			[126753] = FURC_TOMBS, 
 			-- Velothi Cerecloth, Austere
-			["|H1:item:126758:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = "Ancestor tombs and ruins on Vvardenfell", 
+			[126758] = FURC_TOMBS, 
 			-- Velothi Mat, Prayer
-			["|H1:item:126764:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = "Ancestor tombs and ruins on Vvardenfell", 
+			[126764] = FURC_TOMBS, 
 			-- Velothi Shroud, Prowess
-			["|H1:item:126702:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = "Ancestor tombs and ruins on Vvardenfell", 
+			[126702] = FURC_TOMBS, 
 			-- Velothi Shroud, Reverance			
-			["|H1:item:126700:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = "Ancestor tombs and ruins on Vvardenfell", 
+			[126700] = FURC_TOMBS, 
 		
 			-- Ashlander dailies
-			["|H1:item:126119:6:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = "Ashlander daily quest rewards", -- Crimson Shard of Moonshadow
-			["|H1:item:126393:4:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = "Ashlander daily quest rewards", -- Crimson Shard of Moonshadow
+			[126119] = FURC_DAILY_ASHLANDERS, 		-- Crimson Shard of Moonshadow
+			[126393] = FURC_DAILY_ASHLANDERS, 		-- Crimson Shard of Moonshadow
 		
 			-- drops from plants
-			["|H1:item:125631:3:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = "from harvesting plants", -- Plants, Ash Frond
-			["|H1:item:125647:3:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = "from harvesting plants", -- Plants, Ash Frond
-			["|H1:item:131420:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = "from harvesting plants", -- Plants, Ash Frond
-			["|H1:item:125553:4:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = "from harvesting plants", -- Flowers, Netch Cabbage Stalks
+			[125631] = FURC_PLANTS, 					-- Plants, Ash Frond
+			[125647] = FURC_PLANTS, 					-- Plants, Ash Frond
+			[131420] = FURC_PLANTS, 					-- Plants, Ash Frond
+			[125553] = FURC_PLANTS, 					-- Flowers, Netch Cabbage Stalks
 			
 		},
 		[FURC_CROWN] 	= {
-			[""] = "", 			
 		},
 		[FURC_JUSTICE] 	= {
-			["|H1:item:126481:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = "Can be stolen from priests and pilgrims", -- Indoril Incense, Burning
+			[126481] = FURC_CANBESTOLEN_RELIG, 		-- Indoril Incense, Burning
 		},
 	},
 	[FURC_HOMESTEAD]	= {
 		[FURC_JUSTICE] 	= {
 				-- stealing
-			["|H1:item:118489:3:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = "Can be stolen from scholars", -- Papers, Stack
-			["|H1:item:118528:4:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = "Can be stolen", -- Signed Contract
-			["|H1:item:118487:3:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = "Can be stolen from scholars", -- Letter, Personal
-			["|H1:item:120008:4:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = "Can be stolen from scholars and mages", -- Lesser Soul Gem, Empty
-			["|H1:item:120005:4:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = "Can be stolen from scholars and mages", -- Medium Soul Gem, Empty
+			[118489] = FURC_CANBESTOLEN_SCHOLARS, 	-- Papers, Stack
+			[118528] = FURC_CANBESTOLEN, 			-- Signed Contract
+			[118487] = FURC_CANBESTOLEN_SCHOLARS, 	-- Letter, Personal
+			[120008] = FURC_CANBESTOLEN_NERDS, 		-- Lesser Soul Gem, Empty
+			[120005] = FURC_CANBESTOLEN_NERDS, 		-- Medium Soul Gem, Empty
 				
 			-- Bounty Sheets
-			["|H1:item:118711:6:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = "Can be pickpocketed from guards", -- Argonian Male
-			["|H1:item:118709:6:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = "Can be pickpocketed from guards", -- Breton Male
-			["|H1:item:118712:6:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = "Can be pickpocketed from guards", -- Breton Woman
-			["|H1:item:118715:6:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = "Can be pickpocketed from guards", -- Colovian Man
-			["|H1:item:118710:6:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = "Can be pickpocketed from guards", -- High Elf Male
-			["|H1:item:118714:6:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = "Can be pickpocketed from guards", -- Imperial Man
-			["|H1:item:118713:6:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = "Can be pickpocketed from guards", -- Khajiiti Male
-			["|H1:item:118716:6:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = "Can be pickpocketed from guards", -- Orc Female
-			["|H1:item:118717:6:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = "Can be pickpocketed from guards", -- Orc Male
-			
-		},
-		[FURC_FISHING] 	= {
-			-- fishing
-			["|H1:item:118902:6:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = "Can be fished", -- Coral, Sun
-			["|H1:item:118903:6:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = "Can be fished", -- Coral, Crown
-			["|H1:item:118896:4:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = "Can be fished", -- Seashell, Sandcake
-			["|H1:item:118901:3:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = "Can be fished", -- Sea sponge
-			["|H1:item:121269:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = "Can be fished", -- Ocean Antler Coral
+			[118711] = FURC_CANBEPICKED_GUARD, 				-- Argonian Male
+			[118709] = FURC_CANBEPICKED_GUARD, 				-- Breton Male
+			[118712] = FURC_CANBEPICKED_GUARD, 				-- Breton Woman
+			[118715] = FURC_CANBEPICKED_GUARD, 				-- Colovian Man
+			[118710] = FURC_CANBEPICKED_GUARD, 				-- High Elf Male
+			[118714] = FURC_CANBEPICKED_GUARD, 				-- Imperial Man
+			[118713] = FURC_CANBEPICKED_GUARD, 				-- Khajiiti Male
+			[118716] = FURC_CANBEPICKED_GUARD, 				-- Orc Female
+			[118717] = FURC_CANBEPICKED_GUARD, 				-- Orc Male
+					
 		},		
-		[FURC_DROP]		= { 
-			["|H1:item:121058:4:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = "The Dark Brotherhood supplies vendor hands these out as 'something to be less noticeable'", -- Candles of Silence		
+		[FURC_FISHING] 	= {		
+			-- fishing		
+			[118902] = FURC_CANBEFISHED, 					-- Coral, Sun
+			[118903] = FURC_CANBEFISHED, 					-- Coral, Crown
+			[118896] = FURC_CANBEFISHED, 					-- Seashell, Sandcake
+			[118901] = FURC_CANBEFISHED, 					-- Sea sponge
+			[121269] = FURC_CANBEFISHED, 					-- Ocean Antler Coral
+		},				
+		[FURC_DROP]		= { 		
+			[121058] = FURC_DB_SNEAKY, 						-- Candles of Silence		
+					
+			[119936] = FURC_DB_POISON, 						-- Poisoned Blood				
+			[119938] = FURC_DB_POISON, 						-- Light and Shadow			
+			[119952] = FURC_DB_POISON, 						-- Sacrificial Heart			
+		}, 		
+		[FURC_CROWN]	= {		
+			[118096] = FURC_CROWNSTORE_TEN, 				-- Bread, Plain
+			[118098] = FURC_CROWNSTORE_TEN, 				-- Common Bowl, Serving
+			[118061] = FURC_CROWNSTORE_FIFTEEN, 			-- Chicken Dinner, Display
+			[118062] = FURC_CROWNSTORE_FIFTEEN, 			-- Chicken Meal, Display
+			[118056] = FURC_CROWNSTORE_FIFTEEN, 			-- Common Stewpot, Hanging
+			[118121] = FURC_CROWNSTORE_FIFTEEN, 			-- Knife, Carving
+			[118066] = FURC_CROWNSTORE_FIFTEEN, 			-- Steak Dinner
 			
-			["|H1:item:119936:1:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = "The Dark Brotherhood supplies vendor hands these out with poison", -- Poisoned Blood			
+			[118057] = FURC_CROWNSTORE_TWENTY, 				-- Sack of Beans
+			[118060] = FURC_CROWNSTORE_TWENTY, 				-- Sack of Grain
+			[118059] = FURC_CROWNSTORE_TWENTY, 				-- Sack of Millet,
+			[118058] = FURC_CROWNSTORE_TWENTY, 				-- Sack of Rice
 			
-			["|H1:item:119938:1:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = "The Dark Brotherhood supplies vendor hands these out with poison", -- Light and Shadow
+		
+
+			[118064] = FURC_CROWNSTORE_FOURTYFIVE, 			-- Common Barrel, Dry
+			[118065] = FURC_CROWNSTORE_FOURTYFIVE, 			-- Common Cargo Crate, Dry
+			[118064] = FURC_CROWNSTORE_FOURTYFIVE, 			-- Common Barrel, Dry
 			
-			["|H1:item:119952:1:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = "The Dark Brotherhood supplies vendor hands these out with poison", -- Sacrificial Heart			
+			[118053] = FURC_CROWNSTORE_EIGHTY, 				-- Common Campfire, Outdoor
+			[118054] = FURC_CROWNSTORE_EIGHTY, 				-- Common Firepit, Outdoor
+			[118055] = FURC_CROWNSTORE_EIGHTY, 				-- Common Firepit, Piled
+			[118126] = FURC_CROWNSTORE_NINETYFIVE, 			-- Plaque, Standard
+			
+			[118068] = FURC_CROWNSTORE_ONETWENTY, 			-- Simple Brown Banner
+			[118069] = FURC_CROWNSTORE_ONETWENTY, 			-- Simple Gray Banner
+			[118071] = FURC_CROWNSTORE_ONETWENTY, 			-- Simple Red Banner
+			[118070] = FURC_CROWNSTORE_ONETWENTY, 			-- Simple Purple Banner
+			
+			[115698] = FURC_CROWNSTORE_ONEONEHUNDRED, 		-- Khajiit Statue, Guardian
 		}
 	},
-	
-
-	
 }
+

@@ -1,60 +1,38 @@
 FurC.RumourRecipes = {	
-	["|H1:item:118126:6:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, -- Plaque, Standard	
-	["|H1:item:118290:6:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, -- Antlers, Wall Mount
-	["|H1:item:118299:6:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, -- Bottle, Beaker
-	["|H1:item:118300:6:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, -- Bottle, Poison	
-	["|H1:item:118064:3:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, -- Common Barrel, Dry
-	["|H1:item:118053:3:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, -- Common Campfire, Outdoor
-	["|H1:item:118065:3:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, -- Common Cargo Crate, Dry
-	["|H1:item:118054:3:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, -- Common Firepit, Outdoor
-	["|H1:item:118055:3:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, -- Common Firepit, Piled
-	["|H1:item:118287:6:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, -- Carcass, Brown Hare
-	["|H1:item:118288:6:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, -- Deer Carcass, Hanging
-	["|H1:item:118291:6:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, -- Durzog Head, Wall Mount
-	["|H1:item:118294:6:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, -- Echatere Horns, Wall Mount
-	["|H1:item:118292:6:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, -- Elk Head, Wall Mount
-	["|H1:item:118293:6:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, -- Echatere, Wall Mount
-	["|H1:item:118282:6:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, -- Carcass, Fresh Goose
-	["|H1:item:118295:6:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, -- Haj Mota Head, Wall Mount
-	["|H1:item:118289:6:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, -- Haj Mota Shell, Wall Mount
-	["|H1:item:118284:6:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, -- Horn, Display, Cracked
-	["|H1:item:118283:6:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, -- Horn, Display, Huge
-	["|H1:item:115698:6:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, -- Khajiit Statue, Guardian
-	["|H1:item:118296:6:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, -- Mantikora Head, Wall Mount
-	["|H1:item:118297:6:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, -- Mantikora Horns, Wall Mount
-	["|H1:item:116473:6:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, -- Orcish Effigy, Mammoth
-	["|H1:item:118285:6:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, -- Carcass, Fresh Pheasant
-	["|H1:item:118242:6:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, -- Rug, Bearskin	
-	["|H1:item:118096:3:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, -- Bread, Plain
-	["|H1:item:118061:3:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, -- Chicken Dinner, Display
-	["|H1:item:118062:3:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, -- Chicken Meal, Display
-	["|H1:item:118064:3:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, -- Common Barrel, Dry
-	["|H1:item:118098:3:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, -- Common Bowl, Serving
-	["|H1:item:118053:3:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, -- Common Campfire, Outdoor
-	["|H1:item:118065:3:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, -- Common Cargo Crate, Dry
-	["|H1:item:118054:3:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, -- Common Firepit, Outdoor
-	["|H1:item:118055:3:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, -- Common Firepit, Piled
-	["|H1:item:118056:3:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, -- Common Stewpot, Hanging
-	["|H1:item:118000:3:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, -- Garlic String, Display
-	["|H1:item:118121:3:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, -- Knife, Carving
-	["|H1:item:118119:3:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, -- Minecart, Empty
-	["|H1:item:118120:3:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, -- Minecart, Push
-	["|H1:item:118066:3:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, -- Steak Dinner
-	["|H1:item:118057:3:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, -- Sack of Beans
-	["|H1:item:118060:3:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, -- Sack of Grain
-	["|H1:item:118059:3:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, -- Sack of Millet,
-	["|H1:item:118058:3:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, -- Sack of Rice
-	["|H1:item:118068:3:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, -- Simple Brown Banner
-	["|H1:item:118069:3:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, -- Simple Gray Banner
-	["|H1:item:118071:3:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, -- Simple Red Banner
-	["|H1:item:118070:3:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, -- Simple Purple Banner
-	["|H1:item:117991:3:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, -- Stool, Carved	
+	118290, -- Antlers, Wall Mount
+	118299, -- Bottle, Beaker
+	118300, -- Bottle, Poison	
 	
-	["|H1:item:118278:4:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, -- Plaque, Bordered Deer Antlers
-	["|H1:item:132199:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, -- Telvanni Tower, Miniature
-	["|H1:item:132197:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, -- Death Skeleton, Shrouded
-	["|H1:item:121198:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, -- Shelf, Poison
-	["|H1:item:118304:6:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true, -- Shelf, Poison
+	
+	118291, -- Durzog Head, Wall Mount
+	118294, -- Echatere Horns, Wall Mount
+	118293, -- Echatere, Wall Mount
+	118295, -- Haj Mota Head, Wall Mount
+	118289, -- Haj Mota Shell, Wall Mount
+	118284, -- Horn, Display, Cracked
+	118283, -- Horn, Display, Huge
+	
+	118296, -- Mantikora Head, Wall Mount
+	118297, -- Mantikora Horns, Wall Mount
+	116473, -- Orcish Effigy, Mammoth
+	118242, -- Rug, Bearskin
+	
+	
+	118053, -- Common Campfire, Outdoor
+	118065, -- Common Cargo Crate, Dry
+	118054, -- Common Firepit, Outdoor
+	118055, -- Common Firepit, Piled
+	
+	118000, -- Garlic String, Display
+	
+	118119, -- Minecart, Empty
+	118120, -- Minecart, Push
+	117991, -- Stool, Carved	
+	118278, -- Plaque, Bordered Deer Antlers
+	132199, -- Telvanni Tower, Miniature
+	132197, -- Death Skeleton, Shrouded
+	121198, -- Shelf, Poison
+	118304, -- Shelf, Poison
 	
 	
 }

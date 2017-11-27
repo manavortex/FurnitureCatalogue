@@ -143,32 +143,47 @@ function FurC.GuiShowFilterTooltip(control, label)
 	label = control.tooltip or label
 	FurC.GuiShowTooltip(control, label)
 end
+local currentLink, currentId
 
-function FurC.GuiLineOnMouseEnter(lineControl)	
+
+function FurC.GuiLineOnMouseEnter(lineControl)
+	currentLink, currentId = nil
+	
 	if not lineControl or not lineControl.itemLink or lineControl.itemLink == "" then return end
-	FurC.CurrentLink = lineControl.itemLink
+	currentLink = lineControl.itemLink
+	currentId = lineControl.itemId
+	
+	if nil == currentLink then return end
+	
+		
 	InitializeTooltip(ItemTooltip, lineControl, LEFT, 0, 0, 0)
-	ItemTooltip:SetLink(lineControl.itemLink)	
+	ItemTooltip:SetLink(currentLink)
 end
 function FurC.GuiLineOnMouseExit(lineControl)
 	ItemTooltip:SetHidden(true)
 end
 
-function FurC.EnterDebugMode()
-	function FurC.OnControlDoubleClick(control)
-		local itemLink = control.itemLink
-		if nil == itemLink then return end		
-		local itemId = FurC.GetItemId(itemLink)
-		FurC.ToChat("[\"".. itemLink .. "\"] = true, -- " .. GetItemLinkName(itemLink))		
+function FurC.Donate(control, mouseButton)
+
+	local amount = 2000
+	if mouseButton == 2 then 
+		amount = 10000
+	elseif mouseButton == 3 then
+		amount = 25000
 	end
+	
+	SCENE_MANAGER:Show('mailSend')
+	zo_callLater(function()
+	ZO_MailSendToField:SetText("@manavortex")
+	ZO_MailSendSubjectField:SetText("Thank you for Furniture Catalogue!")
+	QueueMoneyAttachment(amount)
+	ZO_MailSendBodyField:TakeFocus() end, 200)
 end
-if GetWorldName() == "PTS" then 
-	FurC.EnterDebugMode()
-else 
-	function FurC.OnControlDoubleClick(control)
-		FurC.ToChat(control.itemLink)
-	end
+
+function FurC.OnControlDoubleClick(control)
+	FurC.ToChat(control.itemLink)
 end
+
 
 function FurC.GuiVirtualMouseOver(control)
 	FurC.GuiShowTooltip(control, control.tooltip)
@@ -178,7 +193,8 @@ function FurC.GuiVirtualMouseOut(control)
 end
 
 
-function FurC.GuiQualityMouseUp(control)
+function FurC.GuiQualityMouseUp(control, button)
+if button == 2 then FurC.SetFilterQuality(0) end
 	FurC.SetFilterQuality(control.quality)
 end
 function FurC.GuiCraftingTypeMouseUp(control)

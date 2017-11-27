@@ -4,44 +4,41 @@ FurC.Rollis_Recipes = FurC.Rollis_Recipes or {}
 
 FurC.Rollis[FURC_HOMESTEAD] = {
 	-- Alchemy station
-	["|H1:item:118328:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = "Sold by |cd68957Rollis Hlaalu|r for |ce5da4035 Vouchers|r", 
+	[118328] = 35, 
 	-- Blacksmithing station
-	["|H1:item:119781:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = "Sold by |cd68957Rollis Hlaalu|r for |ce5da4035 Vouchers|r",
+	[119781] = 35,
 	-- Clothing station
-	["|H1:item:119707:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = "Sold by |cd68957Rollis Hlaalu|r for |ce5da4035 Vouchers|r", 
+	[119707] = 35, 
 	-- Dye Station
-	["|H1:item:118329:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = "Sold by |cd68957Rollis Hlaalu|r for |ce5da4035 Vouchers|r",	
+	[118329] = 35,	
 	-- Enchanting station
-	["|H1:item:118330:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = "Sold by |cd68957Rollis Hlaalu|r for |ce5da4035 Vouchers|r", 
+	[118330] = 35, 
 	-- Provisioning station
-	["|H1:item:118327:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = "Sold by |cd68957Rollis Hlaalu|r for |ce5da4035 Vouchers|r", 
+	[118327] = 35, 
 	-- Woodworking station
-	["|H1:item:119744:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = "Sold by |cd68957Rollis Hlaalu|r for |ce5da4035 Vouchers|r", 
+	[119744] = 35, 
 	
 	-- Attunable Blacksmithing station
-	["|H1:item:119594:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = "Sold by |cd68957Rollis Hlaalu|r for |ce5da40250 Vouchers|r", 
+	[119594] = 250, 
 	-- Attunable Clothing station
-	["|H1:item:119821:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = "Sold by |cd68957Rollis Hlaalu|r for |ce5da40250 Vouchers|r", 
+	[119821] = 250, 
 	-- Attunable Woodworking station
-	["|H1:item:119822:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = "Sold by |cd68957Rollis Hlaalu|r for |ce5da40250 Vouchers|r", 	
+	[119822] = 250, 	
 }
 
 FurC.Rollis_Recipes[FURC_HOMESTEAD] = {
-	 ["|H1:item:121200:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true,	-- Cabinet, Poisonmaker's
-	 ["|H1:item:121166:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true,	-- Heirloom Podium, Skinning
-	 ["|H1:item:121168:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true,	-- Tools, Case
-	 ["|H1:item:121214:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true,	-- Mortar + Pestle
-	 ["|H1:item:121163:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true,	-- Orcish Skull Goblet, Full
-	 ["|H1:item:121163:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true,	-- Apparatus, Boiler
-	 ["|H1:item:121165:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true,	-- Apparatus, Gem Caliper
-	 ["|H1:item:121197:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true,	-- Bottle, Poison Elixir
-	 ["|H1:item:121164:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true,	-- Case of Vials
-	 ["|H1:item:121209:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true,	-- Orcish Tapestry, Spear
-	 ["|H1:item:121207:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true,	-- Target Skeleton
-	 ["|H1:item:121315:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true,	-- Robust Target Skeleton
-	 ["|H1:item:126582:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true,	-- Target Centurion
-	 ["|H1:item:126583:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true,	-- Robust Target Centurion
+	 121200,	-- Cabinet, Poisonmaker's
+	 121166,	-- Heirloom Podium, Skinning
+	 121168,	-- Tools, Case
+	 121214,	-- Mortar + Pestle
+	 121163,	-- Orcish Skull Goblet, Full
+	 121163,	-- Apparatus, Boiler
+	 121165,	-- Apparatus, Gem Caliper
+	 121197,	-- Bottle, Poison Elixir
+	 121164,	-- Case of Vials
+	 121209,	-- Orcish Tapestry, Spear
+	 121207,	-- Target Skeleton
+	 121315,	-- Robust Target Skeleton
+	 126582,	-- Target Centurion
+	 126583,	-- Robust Target Centurion
 }
-
--- itemSource = zo_strformat("Sold by |cd68957<<1>>|r in |cd68957<<2>>|r for |ce5da40<<3>>|r", vendorName, zoneName, itemPrice) 
-				
