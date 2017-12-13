@@ -3,8 +3,6 @@ FurC.Recipes[FURC_CLOCKWORK] = {
 	134527, -- Design: Clockwork Meal, Dish
 	134512, -- Diagram: Clockwork Table, Octagonal
 	134478, -- Formula: Fabricant Saplings, Electrum
-	134495, -- Diagram: Clockwork Pump, Horizontal
-	134499, -- Praxis: Clockwork Control Panel, Double
 	134531, -- Diagram: Clockwork Sequence Plaque, Single
 	134543, -- Diagram: Clockwork Wall Machinery, Arched
 	134479, -- Formula: Fabricant Tree, Electrum
@@ -14,7 +12,6 @@ FurC.Recipes[FURC_CLOCKWORK] = {
 	134500, -- Diagram: Clockwork Furnace, Socketed
 	134484, -- Formula: Fabricant Shrub, Gold
 	134496, -- Praxis: Clockwork Switch, Sturdy
-	134541, -- Diagram: Clockwork Wall Machinery, Rectangular
 	134490, -- Diagram: Clockwork Crate, Wide
 	134476, -- Formula: Fabricant Tree, Gnarled Cypress
 	134504, -- Diagram: Clockwork Drafting Table, Raised
@@ -36,7 +33,6 @@ FurC.Recipes[FURC_CLOCKWORK] = {
 	134508, -- Diagram: Clockwork Lectern, Empty
 	134520, -- Design: Clockwork Cup, Recycled Water
 	134488, -- Diagram: Clockwork Keg, Sturdy
-	134542, -- Diagram: Clockwork Wall Machinery, Circular
 	134540, -- Praxis: Clockwork Illuminator, Compact
 	134516, -- Design: Clockwork Bowl, Large Nutriment Paste
 	134538, -- Praxis: Clockwork Illuminator, Capsule Tower

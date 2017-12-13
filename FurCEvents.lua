@@ -1,7 +1,5 @@
 local em	= EVENT_MANAGER
-local function p(output, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10)
-	FurC.DebugOut(output, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10)
-end
+local p 	= FurC.DebugOut -- debug function calling zo_strformat with up to 10 args
 
 local function onRecipeLearned(eventCode, recipeListIndex, recipeIndex)
 	p("Recipe learned: <<1>>, <<2>>, <<3>>", GetRecipeResultItemLink(recipeListIndex, recipeIndex, LINK_STYLE_BRACKETS), recipeListIndex, recipeIndex)
@@ -20,8 +18,11 @@ local function createIcon(control)
 end
 
 local function getItemKnowledge(itemLink)
-	local canCraft = FurC.CanCraft(FurC.GetItemId(itemLink)) 
-	return (FurC.GetUseInventoryIconsOnChar() and canCraft) or not canCraft
+	local recipeArray = FurC.Find(itemLink)
+	if FurC.GetUseInventoryIconsOnChar() then
+		return FurC.CanCraft(itemId, recipeArray) 
+	end
+	return FurC.IsAccountKnown(itemId, recipeArray)
 	
 end
 
@@ -38,13 +39,14 @@ local function updateItemInInventory(control)
 		icon:SetHidden(true)
 		return
 	end
-		local known = getItemKnowledge(itemLink)
+	local known = getItemKnowledge(itemLink)
+
+	local hidden = known and FurC.GetHideKnownInventoryIcons() or (not FurC.GetUseInventoryIcons())
+	icon:SetHidden(hidden)
 	
-		local hidden = known and FurC.GetHideKnownInventoryIcons() or (not FurC.GetUseInventoryIcons())
-		icon:SetHidden(hidden)
-		
-		local templateName = "FurC_SlotIconKnown" .. ((known and "Yes") or "No")
-		WINDOW_MANAGER:ApplyTemplateToControl(icon, templateName) 
+	local templateName = "FurC_SlotIconKnown" .. ((known and "Yes") or "No")
+	
+	WINDOW_MANAGER:ApplyTemplateToControl(icon, templateName) 
 	
 end
 

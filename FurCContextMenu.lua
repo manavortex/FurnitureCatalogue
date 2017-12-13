@@ -55,19 +55,14 @@ local function addMenuItems(itemLink, recipeArray)
 			MENU_ADD_OPTION_LABEL
 		)		
 	else
-		if nil == recipeArray.blueprint then 
+		if nil ~= recipeArray.blueprint then 
 			AddCustomMenuItem(" Post recipe", 
-			function() FurC.PrintRecipe(itemLink, recipeArray) end,	
+			function() FurC.ToChat(FurC.GetItemLink(recipeArray.blueprint)) end,	
 				MENU_ADD_OPTION_LABEL
-			)
-		else
-			AddCustomMenuItem(" Post recipe", 
-			function() FurC.ToChat(recipeArray.blueprint) end,	
-				MENU_ADD_OPTION_LABEL
-			)
+			)		
 		end
-		AddCustomMenuItem(" Post material only", 
-			function() FurC.PrintMats(itemLink, nil, nil, recipeArray, true) end, 
+		AddCustomMenuItem(" Post material", 
+			function() FurC.ToChat(FurC.GetMats(itemLink, recipeArray, true)) end, 
 			MENU_ADD_OPTION_LABEL
 		)
 		AddFurnitureShoppingListMenuEntry(itemLink, true)

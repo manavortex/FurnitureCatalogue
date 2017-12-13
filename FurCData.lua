@@ -1,15 +1,14 @@
-local currentChar	= nil
-local apiVersion 	= 10020
-local task = LibStub("LibAsync"):Create("FurnitureCatalogue_ScanDataFiles")
-local task2 = LibStub("LibAsync"):Create("FurnitureCatalogue_ScanCharacterKnowledge")
-local characterAlliance = GetUnitAlliance('player')
+local currentChar				= FurnitureCatalogue.CharacterName
+local task 						= LibStub("LibAsync"):Create("FurnitureCatalogue_ScanDataFiles")
+local task2 					= LibStub("LibAsync"):Create("FurnitureCatalogue_ScanCharacterKnowledge")
+local characterAlliance 		= GetUnitAlliance('player')
 
-local NUMBER_TYPE 	= "number"
-local STRING_TYPE 	= "string"
-local STRING_EMPTY 	= ""
+local NUMBER_TYPE 				= "number"
+local STRING_TYPE 				= "string"
+local STRING_EMPTY 				= ""
 
-local FURC_STRING_CRAFTABLE_BY = "Can be crafted by "
-local FURC_STRING_CANNOT_CRAFT = "You cannot craft this yet"
+local lastLink 					= nil
+local recipeArray 				= nil
 
 local FURC_STRING_TRADINGHOUSE = "Seen in trading house"
 
@@ -59,14 +58,22 @@ end
 local function makeMaterial(recipeKey, recipeArray, forcePlaintext)	
 
 	if nil == recipeArray or (nil == recipeArray.blueprint and nil == recipeArray.recipeIndex and nil == recipeArray.recipeListIndex) then 
-		return "invalid recipe array" 
+		return "couldn't get material list, please re-scan character knowledge" 
 	end
 	local ret = ""
-	for ingredientLink, qty in pairs(FurC.GetIngredients(recipeKey, recipeArray)) do
-		ret = zo_strformat("<<1>> <<2>>x <<3>>, ", ret, qty, ingredientLink)
+	local ingredients = FurC.GetIngredients(recipeKey, recipeArray)
+	for ingredientLink, qty in pairs(ingredients) do
+		 ret = zo_strformat("<<1>> <<2>>x <<3>>, ", ret, qty, ingredientLink)
 	end
 
 	if #ret == 0 then return "couldn't make materials for " .. tostring(blueprint) end
+	if forcePlaintext and #ret > 177 then 
+		ret = ""
+		for ingredientLink, qty in pairs(ingredients) do
+			ret = zo_strformat("<<1>> <<2>>x <<3>>, ", ret, qty, GetItemLinkName(ingredientLink))
+		end
+		return ret:sub(0, -3)
+	end
 	return ret:sub(0, -4)
 	
 end
@@ -96,7 +103,7 @@ end
 
 local function parseFurnitureItem(itemLink)					-- saves to DB, returns recipeArray
 
-	if not IsItemLinkPlaceableFurniture(itemLink) then return end
+	if not (IsItemLinkPlaceableFurniture(itemLink)) then return end
 	
 	local recipeKey 					= getItemId(itemLink)
 	local recipeArray 					= FurC.settings.data[recipeKey]
@@ -104,7 +111,7 @@ local function parseFurnitureItem(itemLink)					-- saves to DB, returns recipeAr
 	
 	recipeArray = {}
 	
-	addDatabaseEntry(recipeKey, recipeArray)	
+	addDatabaseEntry(recipeKey, recipeArray)
 	
 	return recipeArray
 end
@@ -115,9 +122,10 @@ local function parseBlueprint(blueprintLink)				-- saves to DB, returns recipeAr
 	local itemLink 		= GetItemLinkRecipeResultItemLink(blueprintLink, LINK_STYLE_BRACKETS)
 	local blueprintId 	= getItemId(blueprintLink)
 	local recipeKey 	= getItemId(itemLink)
-	if nil == itemLink or nil == recipeKey or nil == GetItemLinkName(itemLink) then 
-		p("error when parsing the blueprint link ".. tostring(blueprintLink))
-	return end	
+	if nil == recipeKey or -- we don't have a key to access the database
+		nil == itemLink or -- we don't have an item link to parse
+		nil == GetItemLinkName(itemLink) -- we didn't find an item result for our recipe
+	then return end	
 	
 	local recipeArray 	= FurC.settings.data[recipeKey] 
 	
@@ -125,24 +133,21 @@ local function parseBlueprint(blueprintLink)				-- saves to DB, returns recipeAr
 		recipeArray = {} 
 		recipeArray.origin 							= FURC_CRAFTING
 		recipeArray.characters						= {}
-		recipeArray.craftingSkill					= GetItemLinkCraftingSkillType(itemLink)
+		recipeArray.craftingSkill					= GetItemLinkCraftingSkillType(blueprintLink)
 		addDatabaseEntry(recipeKey, recipeArray)
 	end
 	
-	recipeArray.blueprint = recipeArray.blueprint or getItemId(blueprintLink)
+	recipeArray.blueprint 	= recipeArray.blueprint or getItemId(blueprintLink)
 	
 	if (IsItemLinkRecipeKnown(blueprintLink)) then 
 		recipeArray.characters[getCurrentChar()] 	= true
 	end
 	
-	
-	
 	return recipeArray
 	
 end
 
-local lastLink = nil
-local recipeArray = nil 
+ 
 
 function FurC.Find(itemOrBlueprintLink)						-- sets recipeArray, returns it - calls scanItemLink
 	-- p("scanItemLink(<<1>>)...", itemOrBlueprintLink)		-- do not return empty arrays. If this returns nil, abort!
@@ -191,37 +196,39 @@ end
 function FurC.Fave(itemLink, recipeArray)
 	recipeArray = recipeArray or FurC.Find(itemLink)
 	recipeArray.favorite = not recipeArray.favorite
+	if not recipeArray.favorite then 
+		recipeArray.favorite = nil 
+	end
+	
 	FurC.UpdateGui()
 end
+
 
 local function scanRecipeIndices(recipeListIndex, recipeIndex)		-- returns recipeArray or nil, initialises
 	
 	local itemLink = GetRecipeResultItemLink(recipeListIndex, recipeIndex, LINK_STYLE_BRACKETS)
-	if nil == itemLink or (not IsItemLinkPlaceableFurniture(itemLink)) then return {} end	
+	if nil == itemLink or #itemLink == 0 or not IsItemLinkPlaceableFurniture(itemLink) then return end	
 	
 	local recipeKey = getItemId(itemLink)
 	
-	local recipeArray = FurC.settings["data"][recipeKey]
+	local recipeArray 			= FurC.settings["data"][recipeKey] or {}
+	recipeArray.origin 			= FURC_CRAFTING
+	recipeArray.version			= recipeArray.version or 2		
+	recipeArray.recipeListIndex = recipeArray.recipeListIndex or recipeListIndex
+	recipeArray.recipeIndex 	= recipeArray.recipeIndex or recipeIndex
 	
-	local known, _, _, _, _, _, filterType = GetRecipeInfo(recipeListIndex, recipeIndex)
-	
-	if (nil == recipeArray) then 
+	recipeArray.characters		= recipeArray.characters or {}		
 		
-		recipeArray 				= {}
-			
-		recipeArray.origin 			= FURC_CRAFTING
-		recipeArray.version			= recipeArray.version or 3		
-		recipeArray.recipeListIndex = recipeListIndex
-		recipeArray.recipeIndex 	= recipeIndex
-		addDatabaseEntry(recipeKey, recipeArray)
-		
-	end
-	recipeArray.characters		= recipeArray.characters or {}	
-	if known then
-		recipeArray.characters[getCurrentChar()] 	= known
-		FurC.settings.accountCharacters[getCurrentChar()] = FurC.settings.accountCharacters[getCurrentChar()] or known
-	end
+
 	
+	if GetRecipeInfo(recipeListIndex, recipeIndex) then
+		recipeArray.characters[getCurrentChar()] 	= true
+		FurC.settings.accountCharacters = FurC.settings.accountCharacters or {}
+		FurC.settings.accountCharacters[getCurrentChar()] = FurC.settings.accountCharacters[getCurrentChar()] or true
+	end
+
+	
+	addDatabaseEntry(recipeKey, recipeArray)	
 	return recipeArray 
 	
 end
@@ -230,11 +237,19 @@ function FurC.TryCreateRecipeEntry(recipeListIndex, recipeIndex)	-- returns scan
 	return scanRecipeIndices(recipeListIndex, recipeIndex)
 end
 
-function FurC.CanCraft(recipeKey, recipeArray)
-	if recipeKey == nil then return false end
+function FurC.IsAccountKnown(recipeKey, recipeArray)
+	if recipeKey == nil and recipeArray == nil then return false end
 	recipeArray = recipeArray or FurC.settings.data[recipeKey]
-	if nil == recipeArray or nil == recipeArray.characters or {} == recipeArray.characters then return false end
-	return recipeArray.characters[getCurrentChar()]
+	return not (nil == recipeArray or nil == recipeArray.characters or NonContiguousCount(recipeArray.characters) == 0)
+end
+
+function FurC.CanCraft(recipeKey, recipeArray)
+	if recipeKey == nil  and recipeArray == nil then return false end
+	recipeArray = recipeArray or FurC.settings.data[recipeKey]
+	if FurC.IsAccountKnown(recipeKey, recipeArray) then 
+		return recipeArray.characters[getCurrentChar()]
+	end
+	return false
 end
 
 function FurC.GetCraftingSkillType(recipeKey, recipeArray)
@@ -263,6 +278,7 @@ local function scanCharacter()
 	end 
 	p(("|c2266ffFurniture Catalogue|r|cffffff: Character scan complete...|r"))
 end
+FurC.ScanCharacter = scanCharacter
 
 function FurC.RescanRumourRecipes()
 	
@@ -286,12 +302,17 @@ local recipeArray
 local function scanFromFiles(shouldScanCharacter)  
 	local function parseZoneData(zoneName, zoneData, versionNumber, origin)
 		for vendorName, vendorData in pairs(zoneData) do
-			for itemId, itemData in pairs(vendorData) do
-					 
-					recipeArray 				= {}
-					recipeArray.origin			= origin
-					recipeArray.version			= versionNumber	
-					addDatabaseEntry(itemId, recipeArray)
+			for itemId, itemData in pairs(vendorData) do			 
+			
+				recipeArray = parseFurnitureItem(FurC.GetItemLink(itemId), true) 
+				if not recipeArray then 
+					p("Error when scanning <<1>>", itemId) 
+					return
+				end
+				recipeArray.origin			= origin
+				recipeArray.version			= versionNumber	
+				addDatabaseEntry(itemId, recipeArray)
+				
 			end
 		end	
 	end
@@ -299,22 +320,25 @@ local function scanFromFiles(shouldScanCharacter)
 		local recipeKey, recipeArray
 		local function scanArray(ary, versionNumber, origin)
 			if nil == ary then return end
+			
 			for key, recipeId in ipairs(ary) do
 				local recipeLink = FurC.GetItemLink(recipeId)
-				local itemLink = GetItemLinkRecipeResultItemLink(recipeLink)
-				recipeArray = parseBlueprint(recipeLink)
+			
+				local itemLink = GetItemLinkRecipeResultItemLink(recipeLink) or FurC.GetItemLink(recipeId)
+				recipeArray = FurC.Find(itemLink) or parseBlueprint(recipeLink) or parseFurnitureItem(itemLink)
 				if nil == recipeArray then 
-					p("scanRecipeFile: error for <<1>>", recipeLink)
+					p("scanRecipeFile: error for <<1>> (ID was <<2>>)", recipeLink, recipeId)
 				else
-					recipeKey = getItemId(recipeArray.itemId)
+					recipeKey 					= getItemId(itemLink)
 					recipeArray.version 	 	= versionNumber
 					recipeArray.origin 			= origin
-					addDatabaseEntry(getItemId(itemLink), recipeArray)
+					recipeArray.blueprint		= recipeId
+					addDatabaseEntry(recipeKey, recipeArray)
 				end		
 			end
 		end	
 		
-		for versionNumber, versionData in pairs(FurC.Recipes) do
+		for versionNumber, versionData in pairs(FurC.Recipes) do	
 			scanArray(versionData, versionNumber, FURC_CRAFTING)
 		end
 		for versionNumber, versionData in pairs(FurC.RollisRecipes) do
@@ -448,8 +472,8 @@ end
 
 local function getScanFromFiles()
 
-	if (FurC.settings.databaseVersion < FurC.version) then
-		FurC.settings.databaseVersion = FurC.version
+	if (FurC.settings.version < FurC.version) then
+		FurC.settings.version = FurC.version
 		return true
 	end
 	
@@ -477,20 +501,6 @@ function FurC.ScanRecipes(shouldScanFiles, shouldScanCharacter)								-- return
 end
 
 
-function FurC.GetCrafterList(recipeArray)
-	if nil == recipeArray or {} == recipeArray or not recipeArray.origin == FURC_CRAFTING then 
-		return "FurC.GetCrafterList called for a non-craftable"
-	end
-	if nil == recipeArray.characters or {} == recipeArray.characters then 
-		return FURC_STRING_CANNOT_CRAFT
-	end
-	local ret = FURC_STRING_CRAFTABLE_BY
-	for characterName, characterKnowledge in pairs(recipeArray.characters) do
-		ret = zo_strformat("<<1>> <<2>>, ", ret, characterName)
-	end
-	return ret:sub(0, -3)
-end
-
 function FurC.GetItemDescription(recipeKey, recipeArray)
 	recipeArray = recipeArray or FurC.Find(recipeKey, recipeArray)
 	if not recipeArray then return "" end
@@ -509,8 +519,7 @@ function FurC.GetItemDescription(recipeKey, recipeArray)
 		return FurC.getFestivalVendorSource(recipeKey, recipeArray)
 	elseif origin == FURC_PVP then
 		return FurC.getPvpSource(recipeKey, recipeArray)
-	elseif origin == FURC_RUMOUR then
-		
+	elseif origin == FURC_RUMOUR then		
 		return FurC.getRumourSource(recipeKey, recipeArray)
 	else 
 		itemSource = FurC.GetMiscItemSource(recipeKey, recipeArray)

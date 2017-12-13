@@ -1,24 +1,6 @@
 local db		= FurnitureCatalogue.settings["data"]
---	data recipeArray structure: 
---	[itemId] = {
---		["itemName"]		= name,
---		["blueprint"]		= itemLink,
---		["characters"]		= {},
---		["itemLink"]		= itemLink,
---		["numIngredients"]	= number,
---		["tradeskillType"]	= number,
---		["recipeListIndex"]	= number,
---		["recipeIndex"]		= number,
---		["source"]			= constant,
---		["ingredients"]	= {
---			[i1ItemLink]		= count,		
---			[i2ItemLink]		= count,		
---		},		
---	}
 
-local function p(output, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10)
-	FurC.DebugOut(output, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10)
-end
+local p 		= FurC.DebugOut -- debug function calling zo_strformat with up to 10 args
 
 
 function FurC.PrintCraftingStation(itemId, recipeArray)
@@ -98,17 +80,4 @@ end
 local function capitalise(str)
 	str = str:gsub("^(%l)(%w*)", function(a,b) return string.upper(a)..b end)
 	return str
-end
-
-
-function FurC.PrintRecipe(itemLink, recipeArray)	
-	if nil == recipeArray then recipeArray = FurC.Find(itemLink) end
-	if nil == recipeArray then 
-		return prefillChatBox(itemLink)
-	end
-	
-	local ingredients = FurC.GetMats(itemLink, recipeArray, forcePlaintext)
-	if not recipeArray.origin == FURC_CRAFTING then ingredients = stripColor(ingredients) end
-	
-	prefillChatBox(zo_strformat("<<1>>: <<2>>", recipeArray.itemId, ingredients))
 end

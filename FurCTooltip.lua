@@ -1,11 +1,10 @@
 local async = LibStub("LibAsync")
 local task = async:Create("FurnitureCatalogue_Tooltip")
 
-local function p(...)
-	FurC.DebugOut(...)
-end
+local p 		= FurC.DebugOut -- debug function calling zo_strformat with up to 10 args
 
-local function tryColorize(text)
+local function tryColorize(text, datInteger)
+	if nil == text then text = datInteger end
 	if (not FurC.GetColouredTooltips()) or not text then return text end
 	return text:gsub("cannot craft", "|cFF0000cannot craft|r"):gsub("Can be crafted", "|c00FF00Can be crafted|r")
 end
@@ -19,9 +18,6 @@ local function addTooltipData(control, itemLink)
 	
 	itemLink = (isRecipe and GetItemLinkRecipeResultItemLink(itemLink)) or itemLink
 	
-
-	
-	
 	itemId = FurC.GetItemId(itemLink)
 	recipeArray = FurC.Find(itemLink)
 	
@@ -29,6 +25,11 @@ local function addTooltipData(control, itemLink)
 	
 	local unknown 	= not FurC.CanCraft(itemId, recipeArray)
 	local stringTable = {}
+
+	-- d(itemLink .. "'s character array: " )
+	-- d(recipeArray.characters)
+	-- d(itemLink .. "'s crafter list: ")
+	-- d(FurC.GetCrafterList(recipeArray))
 	
 	local function add(t, arg)
 		if nil ~= arg then t[#t + 1] = arg end
@@ -37,9 +38,8 @@ local function addTooltipData(control, itemLink)
 	
 	-- if craftable:
 	if recipeArray.origin == FURC_CRAFTING then
-		if unknown and not FurC.GetHideUnknown() then 
-			stringTable = add(stringTable, tryColorize(FURC_STRING_UNKNOWN))			
-		elseif not FurC.GetHideKnowledge() then
+		
+		if unknown and not FurC.GetHideUnknown() or not FurC.GetHideKnowledge() then
 			stringTable = add(stringTable, tryColorize(FurC.GetCrafterList(recipeArray)))
 		end
 		
@@ -47,8 +47,8 @@ local function addTooltipData(control, itemLink)
 			stringTable = add(stringTable, FurC.PrintCraftingStation(itemId, recipeArray))
 		end
 		-- check if we should show mats
-		if not(FurC.GetHideMats() or isRecipe) then
-			stringTable = add(stringTable, FurC.GetMats(itemLink, true, false, recipeArray):gsub(", ", "\n"))
+		if not (FurC.GetHideMats() or isRecipe) then
+			stringTable = add(stringTable, FurC.GetMats(itemLink, recipeArray, true):gsub(", ", "\n"))
 		end
 	else
 		if not FurC.GetHideSource() then
@@ -58,11 +58,13 @@ local function addTooltipData(control, itemLink)
 
 	end
 	
+	-- d(stringTable)
+	
 	if #stringTable == 0 then return end
 
 	control:AddVerticalPadding(8)
 	ZO_Tooltip_AddDivider(control)
-
+	
 	for i = 1, #stringTable do
 		control:AddLine(zo_strformat("<<C:1>>", stringTable[i]))
 	end

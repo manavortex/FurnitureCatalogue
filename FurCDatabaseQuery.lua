@@ -4,6 +4,8 @@ local vendorColor 	= "d68957"
 local goldColor 	= "e5da40"
 local apColor 		= "25C31E"
 local tvColor		= "5EA4FF"
+local p 			= FurC.DebugOut -- debug function calling zo_strformat with up to 10 args
+
 
 local function colorise(str, col)
 	str = tostring(str)
@@ -154,7 +156,22 @@ function FurC.getRumourSource(recipeKey, recipeArray)
 	return (recipeArray.blueprint and FURC_RUMOUR_SOURCE_RECIPE) or FURC_RUMOUR_SOURCE_ITEM	
 end
 
+local FURC_STRING_CRAFTABLE_BY = "Can be crafted by "
+local FURC_STRING_CANNOT_CRAFT = "You cannot craft this yet"
 
+function FurC.GetCrafterList(recipeArray)
+	if nil == recipeArray or recipeArray.origin ~= FURC_CRAFTING then 
+		return "FurC.GetCrafterList called for a non-craftable"
+	end
+	if nil == recipeArray.characters or NonContiguousCount(recipeArray.characters) == 0 then 
+		return FURC_STRING_CANNOT_CRAFT
+	end
+	local ret = FURC_STRING_CRAFTABLE_BY
+	for characterName, characterKnowledge in pairs(recipeArray.characters) do
+		ret = zo_strformat("<<1>> <<2>>, ", ret, characterName)
+	end
+	return ret:sub(0, -3)
+end
 
 function FurC.Export()
 	

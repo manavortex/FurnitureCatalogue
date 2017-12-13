@@ -3,7 +3,7 @@ FURC_AV_MUL = "Mulvise Valyn"
 
 FurC.AchievementVendors[FURC_CLOCKWORK] = {
 	["The Brass Citadel, Market"] = {
-		[FURC_AV_RAZ] = {
+		["Razoufa"] = {
 			[134285] = { -- Active Fabrication Tank
 				itemPrice 	= 75000, 
 				achievement = 2049, -- Hero of Clockwork City
@@ -33,7 +33,7 @@ FurC.AchievementVendors[FURC_CLOCKWORK] = {
 				achievement = 2069, -- Grand Adventurer
 			},	
 		},
-		[FURC_AV_MUL] = {
+		["Mulvise Valyn"] = {
 			[134304] = { -- Boulder, Basalt Slap
 				itemPrice = 1000, 
 			},	

@@ -1,49 +1,49 @@
 FurC.Recipes = FurC.Recipes or {}
 FurC.Recipes[FURC_REACH] = {	
-	[132179] = true,
-	[132168] = true,
-	[132178] = true,
-	[132176] = true,
-	[132177] = true,
-	[132188] = true,
-	[132180] = true,
-	[132169] = true,
-	[132195] = true,
-	[132194] = true,
-	[132186] = true,
-	[132170] = true,
-	[132192] = true,
-	[132167] = true,
-	[132193] = true,
-	[132191] = true,
-	[132182] = true,
-	[132190] = true,
-	[132183] = true,
-	[132181] = true,
-	[132189] = true,
-	[132196] = true,
-	[132187] = true,
-	[132184] = true,
-	[132175] = true,
-	[132185] = true,
-	[132173] = true,
-	[132174] = true,
-	[132172] = true,
-	[132171] = true,
+	132179,
+	132168,
+	132178,
+	132176,
+	132177,
+	132188,
+	132180,
+	132169,
+	132195,
+	132194,
+	132186,
+	132170,
+	132192,
+	132167,
+	132193,
+	132191,
+	132182,
+	132190,
+	132183,
+	132181,
+	132189,
+	132196,
+	132187,
+	132184,
+	132175,
+	132185,
+	132173,
+	132174,
+	132172,
+	132171,
 	
 	
 	-- witches festival ayleid stuff
-	[132342] = true, -- Ayleid Table, Carved
-	[132343] = true, -- Ayleid Bench, Carved
-	[132344] = true, -- Ayleid Brazier, Welkynd Holder
-	[132187] = true, -- Ayleid Bookcase, Cluttered
-	[132188] = true, -- Ayleid Bookshelf, Cluttered
-	[132189] = true, -- Ayleid Brazier, Fiery
+	132342, -- Ayleid Table, Carved
+	132343, -- Ayleid Bench, Carved
+	132344, -- Ayleid Brazier, Welkynd Holder
+	132187, -- Ayleid Bookcase, Cluttered
+	132188, -- Ayleid Bookshelf, Cluttered
+	132189, -- Ayleid Brazier, Fiery
 	
 	-- witches festival
-	[132167] = true,	-- Praxis, Hagraven Cauldron, Rough Stone
-	[132196] = true, -- Pattern: Witches Corpse, Wrapped",
-	[132173] = true, -- Blueprint: Witches Brazier, Primitive Log",
-	[132179] = true, -- Blueprint: Witches Totem, Antler Charms",
+	132167,	-- Praxis, Hagraven Cauldron, Rough Stone
+	132196, -- Pattern: Witches Corpse, Wrapped",
+	132173, -- Blueprint: Witches Brazier, Primitive Log",
+	132179, -- Blueprint: Witches Totem, Antler Charms",
 	
 }

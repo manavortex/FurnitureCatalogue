@@ -34,5 +34,12 @@ FurC.RumourRecipes = {
 	121198, -- Shelf, Poison
 	118304, -- Shelf, Poison
 	
+	119441, -- Steak, Display
+	119442, -- Teapot, Common
+	
+	119454, -- Plaque, Large
+	119455, -- Plaque, Standard
+	
+	119466, -- Podium, Engraved
 	
 }

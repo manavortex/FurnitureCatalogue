@@ -1,6 +1,4 @@
-local function p(output, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10)
-	FurC.DebugOut(output, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10)
-end
+local p 						= FurC.DebugOut -- debug function calling zo_strformat with up to 10 args
 
 local searchString 				= ""
 local dropdownChoiceVersion		= 1
@@ -21,7 +19,7 @@ local sourceIndices
 
 local recipeArray, itemId, itemLink, itemType, sItemType, itemName, recipeIndex, recipeListIndex
 
-function FurC.SetFilter(useDefaults)
+function FurC.SetFilter(useDefaults, skipRefresh)
 	sourceIndices 					= FurC.SourceIndices
 	searchString 					= FurC.GetSearchFilter()	
 	
@@ -31,12 +29,12 @@ function FurC.SetFilter(useDefaults)
 		dropdownChoiceCharacter 	= FurC.GetDefaultDropdownChoice("Character")
 	else
 		dropdownChoiceVersion		= tonumber(FurC.GetDropdownChoice("Version"))
-		ddSource		= FurC.GetDropdownChoice("Source")
+		ddSource					= FurC.GetDropdownChoice("Source")
 		dropdownChoiceCharacter 	= FurC.GetDropdownChoice("Character")
 	end
 	
 	-- we need to hold the text here, in case it's not "All"
-	ddTextCharacter		= FurC.GetDropdownChoiceTextual("Character")
+	ddTextCharacter				= FurC.GetDropdownChoiceTextual("Character")
 
 	qualityFilter 				= FurC.GetFilterQuality()
 	craftingTypeFilter			= FurC.GetFilterCraftingType()
@@ -44,7 +42,10 @@ function FurC.SetFilter(useDefaults)
 	hideRumours					= FurC.GetHideRumourRecipes()
 	mergeLuxuryAndSales 		= FurC.GetHideCrownStoreItems()
 	hideCrownStore 				= FurC.GetMergeLuxuryAndSales()
-	FurC.UpdateGui()
+	
+	if not skipRefresh then 
+		zo_callLater(FurC.UpdateLineVisibility, 200)
+	end
 end
 
 function FurC.InitFilters()
@@ -56,20 +57,20 @@ function FurC.InitFilters()
 end
 
 
-local function isRecipeArrayKnown(recipeArray)
-	 if dropdownChoiceCharacter == 1 then 
-		 for name, value in pairs(recipeArray.characters) do
+local function isRecipeArrayKnown()
+	if nil == recipeArray or nil == recipeArray.characters then return end
+	 if dropdownChoiceCharacter == 1 then 		
+		for name, value in pairs(recipeArray.characters) do
 			if (value) then return true end
-		 end
+		end
 	 else
 		return recipeArray.characters[ddTextCharacter]
 	end
 end
 
 -- Version: All, Homestead, Morrowind
-local function matchVersionDropdown(recipeArray)
-	if dropdownChoiceVersion == 1 or not recipeArray.version then return true end
-	return recipeArray.version == dropdownChoiceVersion 	
+local function matchVersionDropdown()
+	return dropdownChoiceVersion == 1 or recipeArray.version == dropdownChoiceVersion 	
 end
 	
 local function shouldBeHidden()
@@ -79,10 +80,10 @@ end
 
 -- Source: All, All (craftable), Craftable (known), craftable (unknown), purchaseable
 local function matchSourceDropdown()	
+	
 	-- "All", don't care	
 	if FURC_NONE						== ddSource then  -- All
 		return true
-	elseif shouldBeHidden() 						then return false 
 	elseif FURC_CRAFTING_KNOWN 			== ddSource then 
 		return recipeArray.origin 		== FURC_CRAFTING and isRecipeArrayKnown(recipeArray)
 	elseif FURC_CRAFTING_UNKNOWN 		== ddSource then 
@@ -103,19 +104,14 @@ local function matchSourceDropdown()
 		)
 	else return recipeArray.origin  == ddSource end
 	
+	
 	-- we're checking character knowledge
 	return 1 == dropdownChoiceCharacter or recipeArray.origin == FURC_CRAFTING	
 	
 end
--- Character: Accountwide, crafter1, crafter2...
-local function matchCharacterDropdown()
-	if dropdownChoiceCharacter == 1 then return true end	
-	local characters = recipeArray.characters
-	return characters and {} ~= characters and characters[ddTextCharacter]	
-end
 
 local function matchDropdownFilter()	
-	return matchVersionDropdown() and matchSourceDropdown() and matchCharacterDropdown(recipeArray)	
+	return matchVersionDropdown() and matchSourceDropdown()
 end
 
 local function stringMatch(s1, s2) 
@@ -147,8 +143,8 @@ end
 function FurC.MatchFilter(currentItemId, currentRecipeArray)
 
 	itemId = currentItemId
-	recipeArray = currentRecipeArray or FurC.Find(itemId)
 	itemLink = FurC.GetItemLink(itemId) 
+	recipeArray = currentRecipeArray or FurC.Find(itemLink)
 	itemType, sItemType = GetItemLinkItemType(itemLink)
 	
 	

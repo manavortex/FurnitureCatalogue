@@ -131,6 +131,7 @@ FurC.MiscItemSources 	= {
 			[125647] = FURC_PLANTS, 					-- Plants, Ash Frond
 			[131420] = FURC_PLANTS, 					-- Plants, Ash Frond
 			[125553] = FURC_PLANTS, 					-- Flowers, Netch Cabbage Stalks
+			[125551] = FURC_PLANTS, 					-- Flowers, Netch Cabbage
 			
 		},
 		[FURC_CROWN] 	= {

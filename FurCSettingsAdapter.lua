@@ -1,8 +1,6 @@
-local task = LibStub("LibAsync"):Create("FurnitureCatalogue_Settings")
+local task 		= LibStub("LibAsync"):Create("FurnitureCatalogue_Settings")
 
-local function p(output, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10)
-	FurC.DebugOut(output, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10)
-end
+local p 		= FurC.DebugOut -- debug function calling zo_strformat with up to 10 args
 
 function FurC.GetDontScanTradingHouse()
 	return FurC.settings["dontScanTradingHouse"]
@@ -269,16 +267,15 @@ local dropdownData = FurC.DropdownData
 -- Version: All, Homestead, Morrowind
 function FurC.SetDropdownChoice(dropdownName, textValue, dropdownIndex)
 	textValue = textValue or FurC.GetDefaultDropdownChoice(dropdownName)
-	local dropdownIndex = dropdownIndex or getDropdownIndex(dropdownName, textValue)
-	p("FurC.SetDropdownChoice(<<1>>, <<2>> (Index: <<3>>))", dropdownName, textValue, dropdownIndex)
-
+	local dropdownIndex = dropdownIndex or getDropdownIndex(dropdownName, textValue) or 0
 	
+	-- p("FurC.SetDropdownChoice(<<1>>, <<2>> (Index: <<3>>))", dropdownName, textValue, dropdownIndex)	
 
 	-- if we're setting the dropdown menu "source" to "purchaseable", set "character" to "All"
 	FurC.DropdownChoices[dropdownName] = dropdownIndex
 	
 	if dropdownName == "Source" then
-		if dropdownIndex and dropdownIndex > FURC_CRAFTING_UNKNOWN or dropdownIndex < FURC_CRAFTING then
+		if dropdownIndex > FURC_CRAFTING_UNKNOWN or dropdownIndex < FURC_CRAFTING then
 			FurC.DropdownChoices["Character"] = 1
 			FurC_DropdownCharacter:GetNamedChild("SelectedItemText"):SetText(FurnitureCatalogue.DropdownData.ChoicesCharacter[1])
 		end
@@ -291,8 +288,10 @@ function FurC.SetDropdownChoice(dropdownName, textValue, dropdownIndex)
 			FurC_DropdownSource:GetNamedChild("SelectedItemText"):SetText(FurnitureCatalogue.DropdownData.ChoicesSource[knownIndex])
 		end
 	end
+	
 	FurC.DropdownChoices[dropdownName] = dropdownIndex
-	FurC.UpdateGui()
+	
+	zo_callLater(function() FurC.UpdateGui() end, 500)
 	
 end
 
@@ -416,7 +415,7 @@ function FurC.DeleteCharacter(characterName)
 	
 	for key, value in pairs(FurC.settings.accountCharacters) do
 		if value == characterName then
-			FurC.settings.accountCharacters[key] = nil
+			FurC.settings.accountCharacters[key] = false
 		end
 	end
 		
@@ -434,8 +433,8 @@ function FurC.DeleteCharacter(characterName)
 			return
 		end		
 	end
-	d("... deleted. Entry will disappear from settings dropdown after the next reloadui.")
-	-- FurC.RefreshGuiDropdown()
+	d(zo_strformat("<<1>> deleted from |c2266ffFurniture Catalogue|r database. Entry will disappear from settings dropdown after the next reloadui.", characterName))
+
 end
 
 function FurC.GetCurrentCharacterName()

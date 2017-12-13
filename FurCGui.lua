@@ -7,50 +7,9 @@ local task = LibStub("LibAsync"):Create("FurnitureCatalogue_updateLineVisibility
 local otherTask = LibStub("LibAsync"):Create("FurnitureCatalogue_ToggleGui")
 local async = LibStub("LibAsync"):Create("FurnitureCatalogue_forLoop")
 
-local function p(output, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10)
-	FurC.DebugOut(output, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10)
-end
 
--- ruthlessly stolen from TextureIt
-local function sortTable(tTable, sortKey, SortOrderUp)
-	local keys = {}
-	for k in pairs(tTable) do table.insert(keys, k) end
-	table.sort(keys, function(a, b)  
-		if nil == tTable[a] or nil == tTable[b] then
-			
-		elseif nil == tTable[a][sortKey] then
-			d(tTable[a])
-		elseif nil == tTable[b][sortKey] then
-			d(tTable[b])
-		else
-		if SortOrderUp then 
-			return tTable[a][sortKey] > tTable[b][sortKey] 
-		else
-			return tTable[a][sortKey] < tTable[b][sortKey] 
-		end
-		end
-		
-	end)
-	
-	local ret = {}
-	local scannedLinks = {}
-	local itemLink, entry
-	for _, k in ipairs(keys) do 
-		entry = tTable[k]
-		-- d(entry)
-		itemLink = entry["itemLink"]
-		ingredients = entry["ingredients"]
-		local index = scannedLinks[itemLink] or k
-		
-		table.insert(ret, entry)		
-	end
-	
-	return ret
-end
-
-function FurC.SortTable(tTable, sortKey, SortOrderUp)
-	return sortTable(tTable, sortKey, SortOrderUp)
-end
+local p 		= FurC.DebugOut -- debug function calling zo_strformat with up to 10 args
+local sortTable = FurC.SortTable
 
 function sort(myTable)	
 	local sortName, sortDirection = FurC.GetSortParams()	
@@ -67,15 +26,18 @@ function FurC.CalculateMaxLines()
 	return FurCGui_ListHolder.maxLines
 end
 
-local function updateLineVisibility()
-	FurC.CalculateMaxLines()
+local function updateLineVisibility()	
 	
 	
 	local function fillLine(curLine, curData, lineIndex)	
 		if nil == curLine then return end
 		
-		curLine:SetHidden(lineIndex > FurCGui_ListHolder.maxLines)
-		if curData == nil or curLine:IsHidden() then
+		local dataLines = FurCGui_ListHolder.dataLines
+		local maxLines = FurCGui_ListHolder.maxLines
+		
+		local hidden = lineIndex > #dataLines or lineIndex > maxLines
+		curLine:SetHidden(hidden)
+		if nil == curData or curLine:IsHidden() then
 			curLine.itemLink = ""
 			curLine.itemId 	 = 0
 			curLine.icon:SetTexture(nil)
@@ -88,17 +50,27 @@ local function updateLineVisibility()
 			curLine.icon:SetTexture(GetItemLinkIcon(curData.itemLink))
 			curLine.icon:SetAlpha(1)
 			local text 			=  curData.itemLink:gsub("H1", "H0")
-			curLine.text:SetText((curData.isFavorite and "* " or "").. text)
+			curLine.text:SetText((curData.favorite and "* " or "").. text)
 			curLine.mats:SetText(FurC.GetItemDescription(curData.itemId, curData))
 		end
 	end
 	
+	local isEmpty = #FurCGui_ListHolder.dataLines == 0
+	
+	FurCGui_ListHolder:SetHidden(	isEmpty)
+	FurCGui_Empty:SetHidden(		not	isEmpty)
+	
+	if isEmpty then return end
+	
+	FurC.CalculateMaxLines()
+	
 	task:Call(function()
 		local maxLines = FurCGui_ListHolder.maxLines
 		local dataLines = FurCGui_ListHolder.dataLines
-			
+		
 		local offset =	FurCGui_ListHolder_Slider:GetValue()
 		if offset > #dataLines then offset = 0 end
+		FurCGui_ListHolder_Slider:SetValue(offset)
 		
 		local curLine, curData
 		
@@ -108,35 +80,30 @@ local function updateLineVisibility()
 			fillLine(curLine, curData, i)			
 		end
 		FurCGui_ListHolder_Slider:SetMinMax(0, #dataLines)
-		FurC.IsLoading(false)
+		
 	end)
 end
 function FurC.UpdateLineVisibility()
 	updateLineVisibility()
 end
 
-function FurC.IsLoading(isBuffering)
-	FurCGui_ListHolder:SetHidden(isBuffering)
+function FurC.IsLoading(isBuffering)	
+	
 	FurCGui_Wait:SetHidden(not isBuffering)
-end
+	
+	local isEmpty = #FurCGui_ListHolder.dataLines == 0
+	
+	FurCGui_ListHolder:SetHidden(isBuffering or isEmpty)
+	FurCGui_Empty:SetHidden(isBuffering or not isEmpty)
 
-local function tblCopy(tbl)
-	local ret = {}
-	for key, value in pairs(tbl) do
-		ret[key] = value
-	end
-	return ret
 end
 
 -- fill the shown item list with items that match current filter(s)
-local function updateScrollDataLinesData(useDefaults)
+local function updateScrollDataLinesData()
 	local dataLines = {}
 	task:Call(function()
 		local index = 0
 		
-		FurC.LastFilter = useDefaults
-		FurC.SetFilter(useDefaults)
-
 		data = FurC.settings.data		
 	
 		local itemLink
@@ -145,7 +112,7 @@ local function updateScrollDataLinesData(useDefaults)
 			if FurC.MatchFilter(itemId, recipeArray) then
 				itemLink = FurC.GetItemLink(itemId)
 				if itemLink then
-					tempDataLine 			= tblCopy(recipeArray)
+					tempDataLine 			= ZO_DeepTableCopy({}, recipeArray)
 					tempDataLine.itemId		= itemId
 					tempDataLine.itemLink	= itemLink				
 					tempDataLine.itemName	= GetItemLinkName(itemLink)
@@ -159,32 +126,34 @@ local function updateScrollDataLinesData(useDefaults)
 	:Then(function()
 		dataLines = sort(dataLines)
 		FurCGui_ListHolder.dataLines = dataLines
-		FurC_RecipeCount:SetText(#dataLines)		
-		
-		if refreshFilter then 		
-			FurCGui_Empty:SetHidden(#dataLines > 0)		
-		end	
-	end):
-	Then(updateLineVisibility)
+		FurC_RecipeCount:SetText(#dataLines)
+	end)
 	
 end
 
+
 function FurC.UpdateGui(useDefaults)
 	if FurCGui:IsHidden() then return end
-	otherTask
-	:Call(function() FurC.IsLoading(true) end)
-	:Then(function() updateScrollDataLinesData(useDefaults) end)
-	:Then(updateLineVisibility)	
+	
+	otherTask:Call(function()
+		
+		FurC.IsLoading(true) 
+		FurC.LastFilter = useDefaults
+		FurC.SetFilter(useDefaults, true)
+	end)
+	:Then(updateScrollDataLinesData)
+	:Then(function()  zo_callLater(function() 
+	
+		FurC.IsLoading(false)
+		updateLineVisibility() 
+		
+	end, 200) end)
 end
 
 function FurC.UpdateInventoryScroll()
 	local index = 0
 	FurCGui_ListHolder.dataOffset = FurCGui_ListHolder.dataOffset or 0
 	FurCGui_ListHolder.dataOffset = math.max(FurCGui_ListHolder.dataOffset, 0)
-	------------------------------------------------------
-	if (FurCGui_ListHolder.dataOffset < 0) then 
-		FurCGui_ListHolder.dataOffset = 0
-	end
 	
 	FurC.CalculateMaxLines()
 	
@@ -249,249 +218,247 @@ function FurC.ApplyLineTemplate()
 	task:Call(function() updateLineVisibility() end)
 end
 
-
-
 local addedDropdownCharacterNames = {}
 
-local function createInventoryDropdown(dropdownName)
-	local controlName 		= "FurC_Dropdown"..dropdownName
-	local control 			= _G[tostring(controlName)]
-	local dropdownData 		= FurnitureCatalogue.DropdownData
-	local validChoices 		= dropdownData["Choices"..dropdownName]
-	local choicesTooltips 	= dropdownData["Tooltips"..dropdownName]
-	local comboBox	
-	if control.comboBox ~= nil then
-		comboBox = control.comboBox
-	else
-		comboBox = ZO_ComboBox_ObjectFromContainer(control)
-		control.comboBox = comboBox
-	end
+local function createGui()
 	
-	-- ruthlessly stolen from LAM
-	local function SetupTooltips(comboBox, choicesTooltips)
-		local function ShowTooltip(control)
-			InitializeTooltip(InformationTooltip, control, TOPRIGHT, -10, 0, TOPLEFT)
-			SetTooltipText(InformationTooltip, control.tooltip)
-			InformationTooltipTopLevel:BringWindowToTop()
+	local function createInventoryScroll()
+		-- FurC.DebugOut("CreateInventoryScroll")
+
+		local function createLine(i, predecessor)
+			
+			predecessor = predecessor or FurCGui_ListHolder
+			
+			local line = WINDOW_MANAGER:CreateControlFromVirtual("FurC_ListItem_".. i, FurCGui_ListHolder, FurC.SlotTemplate)
+			line.icon 	= line:GetNamedChild("Button"):GetNamedChild("Icon")
+			line.text 	= line:GetNamedChild("Name")
+			line.mats 	= line:GetNamedChild("Mats")
+
+			line:SetHidden(false)
+			line:SetMouseEnabled(true)
+
+			if i == 1 then
+				line:SetAnchor(TOPLEFT, FurCGui_ListHolder, TOPLEFT, 0, 4)
+				line:SetAnchor(TOPRIGHT, FurCGui_ListHolder, TOPRIGHT, 0, 0)
+			else
+				line:SetAnchor(TOPLEFT, predecessor, BOTTOMLEFT, 0, 0)
+				line:SetAnchor(TOPRIGHT, predecessor, BOTTOMRIGHT, 0, 0)
+			end
+
+			return line
 		end
-		local function HideTooltip(control)
-			ClearTooltip(InformationTooltip)
+		
+		FurCGui_ListHolder.dataOffset = 0
+		FurCGui_ListHolder.maxLines = 60
+		FurCGui_ListHolder.dataLines = {}
+		FurCGui_ListHolder.lines = {}
+		FurCGui_ListHolder.NameSort = FurCGui_Header_SortBar:GetNamedChild("_Name")
+		FurCGui_ListHolder.NameSort.icon = FurCGui_ListHolder.NameSort:GetNamedChild("_Button")
+		FurCGui_ListHolder.QualitySort = FurCGui_Header_SortBar:GetNamedChild("_Quality")
+		FurCGui_ListHolder.QualitySort.icon = FurCGui_ListHolder.QualitySort:GetNamedChild("_Button")
+
+		--local width = 250 -- FurCGui_ListHolder:GetWidth()
+		local text = "       No Collected Data"
+
+		for i=1, FurCGui_ListHolder.maxLines do
+			FurCGui_ListHolder.lines[i] = createLine(i, predecessor)
+			predecessor = FurCGui_ListHolder.lines[i]
 		end
 
-		-- allow for tooltips on the drop down entries
-		local originalShow = comboBox.ShowDropdownInternal
-		comboBox.ShowDropdownInternal = function(comboBox)
-			originalShow(comboBox)
-			local entries = ZO_Menu.items
-			for i = 1, #entries do
-				local entry = entries[i]
-				local control = entries[i].item
-				control.tooltip = choicesTooltips[i]
-				if (i == FURC_LUXURY and FurC.GetMergeLuxuryAndSales() or 
-				i == FURC_CROWN and FurC.GetHideCrownStoreEntry() or 
-				i == FURC_RUMOUR and FurC.GetHideRumourRecipesEntry() 
-				) then
-				
-				
+		-- setup slider
+		FurCGui_ListHolder_Slider:SetMinMax(0, #FurCGui_ListHolder.dataLines - FurCGui_ListHolder.maxLines)
+
+		return FurCGui_ListHolder.lines
+	end
+
+	local function createQualityFilters()
+		local buttons = {}
+		local quality = 0
+		local function createQualityFilter(name, color, tooltip)
+			local parent 		= FurC_QualityFilter
+			
+			local predecessor 	= buttons[#buttons] or parent
+			local controlType	= "FurC_QualityFilterButton"
+			
+			local button 		= WINDOW_MANAGER:CreateControlFromVirtual(parent:GetName()..name, parent, controlType)
+			button:SetNormalTexture(	"FurnitureCatalogue/textures/" .. string.lower(name) .. "_up.dds")
+			button:SetMouseOverTexture(	"FurnitureCatalogue/textures/" .. string.lower(name) .. "_over.dds")
+			button:SetPressedTexture(	"FurnitureCatalogue/textures/" .. string.lower(name) .. "_down.dds")
+			button.quality 		= quality
+			button.tooltip 		= tooltip	
+			
+
+			local otherAnchor 		= ((predecessor == parent) and LEFT) or RIGHT
+			local xOffset		= ((predecessor == parent) and 0) or 6
+			button:SetAnchor(LEFT, predecessor, otherAnchor, xOffset)
+			quality = quality +1
+			
+			return button
+			
+		end
+
+		
+		buttons[quality+1]	= createQualityFilter("All", 		nil, 					"All Items")
+		
+		buttons[quality+1]	= createQualityFilter("White", 		ITEM_QUALITY_NORMAL, 	"White quality")
+		buttons[quality+1]	= createQualityFilter("Magic", 		ITEM_QUALITY_MAGIC, 	"Magic quality")
+		buttons[quality+1]	= createQualityFilter("Arcane", 	ITEM_QUALITY_ARCANE, 	"Superior quality")
+		buttons[quality+1]	= createQualityFilter("Artifact",	ITEM_QUALITY_ARTIFACT, 	"Epic quality")
+		buttons[quality+1]	= createQualityFilter("Legendary",  ITEM_QUALITY_LEGENDARY, "Legendary qualiry")
+		
+		FurC.GuiElements.qualityButtons = buttons
+		
+	end
+		
+	local function createCraftingTypeFilters()
+		local buttons = {}
+		
+		local function createCraftingTypeFilter(craftingType, textureName)
+			local parent 				= FurC_TypeFilter
+			local predecessor 			= buttons[#buttons] or parent
+			
+			local name 					= parent:GetName() .. "Button" .. tostring(craftingType)
+			
+			local button 				= WINDOW_MANAGER:CreateControlFromVirtual(name, parent, "FurC_CraftingTypeFilterButton")
+			
+			button:SetNormalTexture(	textureName .. "_up.dds")
+			button:SetMouseOverTexture(	textureName .. "_over.dds")
+			button:SetPressedTexture(	textureName .. "_down.dds")
+			button.craftingType 		= craftingType	
+			button.tooltip 				= craftingType > 0 and GetCraftingSkillName(craftingType) or GetString("SI_ITEMFILTERTYPE", ITEMFILTERTYPE_ALL)
+			
+			local otherAnchor 			= ((predecessor == parent) and TOPLEFT) or TOPRIGHT
+			button:SetAnchor(TOPLEFT, predecessor, otherAnchor, 0)
+			
+			return button
+			
+		end
+		
+		buttons[CRAFTING_TYPE_INVALID]			= createCraftingTypeFilter(CRAFTING_TYPE_INVALID, 			"esoui/art/inventory/inventory_tabicon_all")	
+		buttons[CRAFTING_TYPE_BLACKSMITHING]	= createCraftingTypeFilter(CRAFTING_TYPE_BLACKSMITHING, 	"esoui/art/inventory/inventory_tabicon_craftbag_blacksmithing")
+		buttons[CRAFTING_TYPE_CLOTHIER]			= createCraftingTypeFilter(CRAFTING_TYPE_CLOTHIER, 			"esoui/art/inventory/inventory_tabicon_craftbag_clothing")
+		buttons[CRAFTING_TYPE_ENCHANTING]		= createCraftingTypeFilter(CRAFTING_TYPE_ENCHANTING,		"esoui/art/inventory/inventory_tabicon_craftbag_enchanting")
+		buttons[CRAFTING_TYPE_ALCHEMY]			= createCraftingTypeFilter(CRAFTING_TYPE_ALCHEMY, 			"esoui/art/inventory/inventory_tabicon_craftbag_alchemy")
+		buttons[CRAFTING_TYPE_WOODWORKING]		= createCraftingTypeFilter(CRAFTING_TYPE_WOODWORKING, 		"esoui/art/inventory/inventory_tabicon_craftbag_woodworking")
+		buttons[CRAFTING_TYPE_PROVISIONING]		= createCraftingTypeFilter(CRAFTING_TYPE_PROVISIONING, 		"esoui/art/inventory/inventory_tabicon_craftbag_provisioning")
+		
+		FurC.GuiElements.craftingTypeFilters 	= buttons
+		
+	end
+	
+	local function createInventoryDropdown(dropdownName)
+		local controlName 		= "FurC_Dropdown"..dropdownName
+		local control 			= _G[tostring(controlName)]
+		local dropdownData 		= FurnitureCatalogue.DropdownData
+		local validChoices 		= dropdownData["Choices"..dropdownName]
+		local choicesTooltips 	= dropdownData["Tooltips"..dropdownName]
+		local comboBox	
+		if control.comboBox ~= nil then
+			comboBox = control.comboBox
+		else
+			comboBox = ZO_ComboBox_ObjectFromContainer(control)
+			control.comboBox = comboBox
+		end
+		
+		-- ruthlessly stolen from LAM
+		local function SetupTooltips(comboBox, choicesTooltips)
+			local function ShowTooltip(control)
+				InitializeTooltip(InformationTooltip, control, TOPRIGHT, -10, 0, TOPLEFT)
+				SetTooltipText(InformationTooltip, control.tooltip)
+				InformationTooltipTopLevel:BringWindowToTop()
+			end
+			local function HideTooltip(control)
+				ClearTooltip(InformationTooltip)
+			end
+
+			-- allow for tooltips on the drop down entries
+			local originalShow = comboBox.ShowDropdownInternal
+			comboBox.ShowDropdownInternal = function(comboBox)
+				originalShow(comboBox)
+				local entries = ZO_Menu.items
+				for i = 1, #entries do
+					local entry = entries[i]
+					local control = entries[i].item
+					control.tooltip = choicesTooltips[i]
+					if (i == FURC_LUXURY and FurC.GetMergeLuxuryAndSales() or 
+					i == FURC_CROWN 	and FurC.GetHideCrownStoreEntry() or 
+					i == FURC_RUMOUR 	and FurC.GetHideRumourRecipesEntry() 
+					) then
+					
+					
+					end
+
+					if control.tooltip then 
+						entry.onMouseEnter = control:GetHandler("OnMouseEnter")
+						entry.onMouseExit = control:GetHandler("OnMouseExit")
+						ZO_PreHookHandler(control, "OnMouseEnter", ShowTooltip)
+						ZO_PreHookHandler(control, "OnMouseExit", HideTooltip)
+					end
 				end
+			end
 
-				if control.tooltip then 
-					entry.onMouseEnter = control:GetHandler("OnMouseEnter")
-					entry.onMouseExit = control:GetHandler("OnMouseExit")
-					ZO_PreHookHandler(control, "OnMouseEnter", ShowTooltip)
-					ZO_PreHookHandler(control, "OnMouseExit", HideTooltip)
+			local originalHide = comboBox.HideDropdownInternal
+			comboBox.HideDropdownInternal = function(self)
+				local entries = ZO_Menu.items
+				for i = 1, #entries do
+					local entry = entries[i]
+					local control = entries[i].item
+					control:SetHandler("OnMouseEnter", entry.onMouseEnter)
+					control:SetHandler("OnMouseExit", entry.onMouseExit)
+					control.tooltip = nil
 				end
+				originalHide(self)
 			end
 		end
 
-		local originalHide = comboBox.HideDropdownInternal
-		comboBox.HideDropdownInternal = function(self)
-			local entries = ZO_Menu.items
-			for i = 1, #entries do
-				local entry = entries[i]
-				local control = entries[i].item
-				control:SetHandler("OnMouseEnter", entry.onMouseEnter)
-				control:SetHandler("OnMouseExit", entry.onMouseExit)
-				control.tooltip = nil
+		function OnItemSelect(control, choiceText, somethingElse)
+			local dropdownName = tostring(control.m_name):gsub("FurC_Dropdown", "")
+			FurC.SetDropdownChoice(dropdownName, choiceText)
+			PlaySound(SOUNDS.POSITIVE_CLICK)
+		end
+
+		comboBox:SetSortsItems(false)
+		local originalShow = comboBox.ShowDropdownInternal	
+
+		if dropdownName == "Character" then
+			for _, characterName in ipairs(FurC.GetAccountCrafters()) do
+				addedDropdownCharacterNames[characterName] = true
+				table.insert(validChoices, characterName)
+				table.insert(dropdownData["Tooltips"..dropdownName], zo_strformat("recipes for <<1>>", characterName))
 			end
-			originalHide(self)
 		end
-	end
 
-	function OnItemSelect(control, choiceText, somethingElse)
-		local dropdownName = tostring(control.m_name):gsub("FurC_Dropdown", "")
-		FurC.SetDropdownChoice(dropdownName, choiceText)
-	  	PlaySound(SOUNDS.POSITIVE_CLICK)
-	end
-
-	comboBox:SetSortsItems(false)
-	local originalShow = comboBox.ShowDropdownInternal	
-
-	if dropdownName == "Character" then
-		for _, characterName in ipairs(FurC.GetAccountCrafters()) do		
-			addedDropdownCharacterNames[characterName] = true
-			table.insert(validChoices, characterName)
-			table.insert(dropdownData["Tooltips"..dropdownName], zo_strformat("<<1>>'s recipes", characterName))
-		end
-	end
-
-	for i = 1, #validChoices do 
-		entry = comboBox:CreateItemEntry(validChoices[i], OnItemSelect)
-		comboBox:AddItem(entry)
-		if validChoices[i] == FurC.GetDropdownChoiceTextual(dropdownName) then
-			comboBox:SetSelectedItem(validChoices[i])
-		end
-	end
-	
-	SetupTooltips(comboBox, dropdownData["Tooltips"..dropdownName])
-	
-	return control
-end
-
-function FurC.RefreshGuiDropdown()
-
-	local validChoices = FurC.DropdownChoices
-	local comboBox = FurC_Dropdown.comboBox
-
-	local characters = FurC.GetAccountCrafters()
-	if nil ~= characters then
-		for _, characterName in ipairs(characters) do    	
-			if characterName and not addedDropdownCharacterNames[characterName] then
-				entry = comboBox:CreateItemEntry(validChoices[i], OnItemSelect)		
-				comboBox:AddItem(entry)
+		for i = 1, #validChoices do 
+			entry = comboBox:CreateItemEntry(validChoices[i], OnItemSelect)
+			comboBox:AddItem(entry)
+			if validChoices[i] == FurC.GetDropdownChoiceTextual(dropdownName) then
+				comboBox:SetSelectedItem(validChoices[i])
 			end
-		end	
-	end	
-	
-end
-
-local function createQualityFilters()
-	local buttons = {}
-	local quality = 0
-	local function createQualityFilter(name, color, tooltip)
-		local parent 		= FurC_QualityFilter
+		end
 		
-		local predecessor 	= buttons[#buttons] or parent
-		local controlType	= "FurC_QualityFilterButton"
+		SetupTooltips(comboBox, dropdownData["Tooltips"..dropdownName])
 		
-		local button 		= WINDOW_MANAGER:CreateControlFromVirtual(parent:GetName()..name, parent, controlType)
-		button:SetNormalTexture(	"FurnitureCatalogue/textures/" .. string.lower(name) .. "_up.dds")
-		button:SetMouseOverTexture(	"FurnitureCatalogue/textures/" .. string.lower(name) .. "_over.dds")
-		button:SetPressedTexture(	"FurnitureCatalogue/textures/" .. string.lower(name) .. "_down.dds")
-		button.quality 		= quality
-		button.tooltip 		= tooltip	
-		
-
-		local otherAnchor 		= ((predecessor == parent) and LEFT) or RIGHT
-		local xOffset		= ((predecessor == parent) and 0) or 6
-		button:SetAnchor(LEFT, predecessor, otherAnchor, xOffset)
-		quality = quality +1
-		
-		return button
-		
+		return control
 	end
 
 	
-	buttons[quality+1]	= createQualityFilter("All", 		nil, 					"All Items")
-	
-	buttons[quality+1]	= createQualityFilter("White", 		ITEM_QUALITY_NORMAL, 	"White quality")
-	buttons[quality+1]	= createQualityFilter("Magic", 		ITEM_QUALITY_MAGIC, 	"Magic quality")
-	buttons[quality+1]	= createQualityFilter("Arcane", 	ITEM_QUALITY_ARCANE, 	"Superior quality")
-	buttons[quality+1]	= createQualityFilter("Artifact",	ITEM_QUALITY_ARTIFACT, 	"Epic quality")
-	buttons[quality+1]	= createQualityFilter("Legendary",  ITEM_QUALITY_LEGENDARY, "Legendary qualiry")
-	
-	FurC.GuiElements.qualityButtons = buttons
-	
-end
-
-local function createCraftingTypeFilters()
-	local buttons = {}
-	
-	local function createCraftingTypeFilter(craftingType, textureName)
-		local parent 				= FurC_TypeFilter
-		local predecessor 			= buttons[#buttons] or parent
-		
-		local name 					= parent:GetName() .. "Button" .. tostring(craftingType)
-		
-		local button 				= WINDOW_MANAGER:CreateControlFromVirtual(name, parent, "FurC_CraftingTypeFilterButton")
-		
-		button:SetNormalTexture(	textureName .. "_up.dds")
-		button:SetMouseOverTexture(	textureName .. "_over.dds")
-		button:SetPressedTexture(	textureName .. "_down.dds")
-		button.craftingType 		= craftingType	
-		button.tooltip 				= craftingType > 0 and GetCraftingSkillName(craftingType) or GetString("SI_ITEMFILTERTYPE", ITEMFILTERTYPE_ALL)
-		
-		local otherAnchor 			= ((predecessor == parent) and TOPLEFT) or TOPRIGHT
-		button:SetAnchor(TOPLEFT, predecessor, otherAnchor, 0)
-		
-		return button
-		
-	end
-	
-	buttons[CRAFTING_TYPE_INVALID]			= createCraftingTypeFilter(CRAFTING_TYPE_INVALID, 			"esoui/art/inventory/inventory_tabicon_all")	
-	buttons[CRAFTING_TYPE_BLACKSMITHING]	= createCraftingTypeFilter(CRAFTING_TYPE_BLACKSMITHING, 	"esoui/art/inventory/inventory_tabicon_craftbag_blacksmithing")
-	buttons[CRAFTING_TYPE_CLOTHIER]			= createCraftingTypeFilter(CRAFTING_TYPE_CLOTHIER, 			"esoui/art/inventory/inventory_tabicon_craftbag_clothing")
-	buttons[CRAFTING_TYPE_WOODWORKING]		= createCraftingTypeFilter(CRAFTING_TYPE_WOODWORKING, 		"esoui/art/inventory/inventory_tabicon_craftbag_woodworking")
-	buttons[CRAFTING_TYPE_ENCHANTING]		= createCraftingTypeFilter(CRAFTING_TYPE_ENCHANTING,		"esoui/art/inventory/inventory_tabicon_craftbag_enchanting")
-	buttons[CRAFTING_TYPE_ALCHEMY]			= createCraftingTypeFilter(CRAFTING_TYPE_ALCHEMY, 			"esoui/art/inventory/inventory_tabicon_craftbag_alchemy")
-	buttons[CRAFTING_TYPE_PROVISIONING]		= createCraftingTypeFilter(CRAFTING_TYPE_PROVISIONING, 		"esoui/art/inventory/inventory_tabicon_craftbag_provisioning")
-	
-	FurC.GuiElements.craftingTypeFilters 	= buttons
-	
-end
-
-local function createLine(i, predecessor)
-	
-	predecessor = predecessor or FurCGui_ListHolder
-	
-	local line = WINDOW_MANAGER:CreateControlFromVirtual("FurC_ListItem_".. i, FurCGui_ListHolder, FurC.SlotTemplate)
-	line.icon 	= line:GetNamedChild("Button"):GetNamedChild("Icon")
-	line.text 	= line:GetNamedChild("Name")
-	line.mats 	= line:GetNamedChild("Mats")
-
-	line:SetHidden(false)
-	line:SetMouseEnabled(true)
-
-	if i == 1 then
-		line:SetAnchor(TOPLEFT, FurCGui_ListHolder, TOPLEFT, 0, 4)
-		line:SetAnchor(TOPRIGHT, FurCGui_ListHolder, TOPRIGHT, 0, 0)
-	else
-		line:SetAnchor(TOPLEFT, predecessor, BOTTOMLEFT, 0, 0)
-		line:SetAnchor(TOPRIGHT, predecessor, BOTTOMRIGHT, 0, 0)
-	end
-
-	return line
-end
-
-local function createInventoryScroll()
-	-- FurC.DebugOut("CreateInventoryScroll")
-
-	FurCGui_ListHolder.dataOffset = 0
-	FurCGui_ListHolder.maxLines = 60
-	FurCGui_ListHolder.dataLines = {}
-	FurCGui_ListHolder.lines = {}
-	FurCGui_ListHolder.NameSort = FurCGui_Header_SortBar:GetNamedChild("_Name")
-	FurCGui_ListHolder.NameSort.icon = FurCGui_ListHolder.NameSort:GetNamedChild("_Button")
-	FurCGui_ListHolder.QualitySort = FurCGui_Header_SortBar:GetNamedChild("_Quality")
-	FurCGui_ListHolder.QualitySort.icon = FurCGui_ListHolder.QualitySort:GetNamedChild("_Button")
-
-	--local width = 250 -- FurCGui_ListHolder:GetWidth()
-	local text = "       No Collected Data"
-
-	for i=1, FurCGui_ListHolder.maxLines do
-		FurCGui_ListHolder.lines[i] = createLine(i, predecessor)
-		predecessor = FurCGui_ListHolder.lines[i]
-	end
-
-	-- setup slider
-	FurCGui_ListHolder_Slider:SetMinMax(0, #FurCGui_ListHolder.dataLines - FurCGui_ListHolder.maxLines)
-
-	return FurCGui_ListHolder.lines
+	createInventoryScroll()
+	createQualityFilters()
+	createCraftingTypeFilters()
+	createInventoryDropdown("Source")	
+	createInventoryDropdown("Version")	
+	createInventoryDropdown("Character")
+	FurC.ChangeTemplateFromButton(FurC.GetTinyUi())
+	FurC.SetFontSize(FurC.GetFontSize())
+	FurC.LoadFrameInfo()
+	FurC.InitFilters()
 end
 
 function FurnitureCatalogue_Toggle()
 	SCENE_MANAGER:ToggleTopLevel(FurCGui)
-	FurC.UpdateGui(FurC.GetResetDropdownChoice())
+	if FurCGui:IsHidden() then return end
+	FurCGui_Empty:SetHidden(true)
+	zo_callLater(function() FurC.UpdateGui(FurC.GetResetDropdownChoice()) end, 500)
 end
 
 
@@ -505,20 +472,13 @@ function FurC.InitGui()
 		control:SetWidth(settings.width)		
 	end
 
-	createInventoryScroll()
-	createQualityFilters()
-	createCraftingTypeFilters()
-	createInventoryDropdown("Source")	
-	createInventoryDropdown("Version")	
-	createInventoryDropdown("Character")
-	FurC.ChangeTemplateFromButton(FurC.GetTinyUi())
-	FurC.SetFontSize(FurC.GetFontSize())
-	FurC.LoadFrameInfo()
-	FurC.InitFilters()
+	createGui()
+	
 	
 	local slider = FurCGui_ListHolder_Slider
 	slider:SetMinMax(1, #FurCGui_ListHolder.dataLines)
 	
+	FurC.UpdateGui(FurC.GetResetDropdownChoice())
 	
 	SCENE_MANAGER:RegisterTopLevel(FurCGui, false)
 end

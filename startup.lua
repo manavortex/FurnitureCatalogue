@@ -25,66 +25,63 @@ FurC.ClockworkData					= {}
 
 
 -- versioning
-FURC_HOMESTEAD					= 2
-FURC_MORROWIND					= 3
-FURC_REACH						= 4
-FURC_CLOCKWORK					= 5
-	
-FURC_LOC_HOLLOW_CITY 			= "Hollow City, Cicero's General Goods"
-FURC_AV_ZANILTHERAN				= "Zanil Theran, Luxury Furnisher"
-	
-	
-FurC.version					= 2.0
-FurC.gameVersion				= FURC_CLOCKWORK
+FURC_HOMESTEAD						= 2
+FURC_MORROWIND						= 3
+FURC_REACH							= 4
+FURC_CLOCKWORK						= 5
+		
+FURC_LOC_HOLLOW_CITY 				= "Hollow City, Cicero's General Goods"
+FURC_AV_ZANILTHERAN					= "Zanil Theran, Luxury Furnisher"
+		
+		
+FurC.version						= 2.0
 
-local defaults 					= {
-
-	hideMats					= true,
-	dontScanTradingHouse 		= false,
-	enableDebug 				= false,
-		
-	filterCraftingType 			= {},
-	filterQuality 				= {},
-		
-	data						= {},	-- item database
-	databaseVersion				= 0.1,
-	resetDropdownChoice			= false,
-	useTinyUi					= false,
-	useInventoryIcons			= true,
-	fontSize					= 18,
-		
-	gui							= {		
-		lastX					= 100,
-		lastY					= 100,
-		width					= 650,
-		height 					= 550,		
+local defaults 						= {
+	
+	hideMats						= true,
+	dontScanTradingHouse 			= false,
+	enableDebug 					= false,
+			
+	filterCraftingType 				= {},
+	filterQuality 					= {},
+			
+	resetDropdownChoice				= false,
+	useTinyUi						= false,
+	useInventoryIcons				= true,
+	fontSize						= 18,
+			
+	gui								= {		
+		lastX						= 100,
+		lastY						= 100,
+		width						= 650,
+		height 						= 550,		
+	},			
+	dropdownDefaults				= {
+		Source						= 1, 
+		Character					= 1, 
+		Version						= 1, 	
 	},		
-	dropdownDefaults			= {
-		Source					= 1, 
-		Character				= 1, 
-		Version					= 1, 	
-	},	
-		
-	accountCharacters			= {},	
-		
-	version 					= 1.6,
-		
-	-- tooltips	
-	disableTooltips				= false,
-	coloredTooltips 			= true,
-	hideKnowledge				= false,
-		
-	hideBooks					= true, 
-	hideDoubtfuls				= true,
-	hideCrownstore				= true,
-	hideRumourEntry				= false,
-	hideCrownStoreEntry			= true,
-	wipeDatabase				= false,
-	startupSilently				= true,
-		
-	visibility					= {
-		hud						= true,
-		hudui					= true,
+			
+	accountCharacters				= {},	
+			
+	version 						= 2.0,
+			
+	-- tooltips		
+	disableTooltips					= false,
+	coloredTooltips 				= true,
+	hideKnowledge					= false,
+			
+	hideBooks						= true, 
+	hideDoubtfuls					= true,
+	hideCrownstore					= true,
+	hideRumourEntry					= false,
+	hideCrownStoreEntry				= true,
+	wipeDatabase					= false,
+	startupSilently					= true,
+			
+	visibility						= {
+		hud							= true,
+		hudui						= true,
 	}
 }
 
@@ -126,31 +123,32 @@ local sourceIndicesKeys = {
 }
 
 local choicesSource = {
-	[FURC_NONE]				= "Source filter: off", 
-	[FURC_FAVE] 			= "Favorites", 
-	[FURC_CRAFTING] 		= "Craftable: All", 
-	[FURC_CRAFTING_KNOWN] 	= "Craftable: Known", 
-	[FURC_CRAFTING_UNKNOWN] = "Craftable: Unknown", 
-	[FURC_VENDOR] 			= "Purchaseable (gold)",
-	[FURC_PVP] 				= "Purchaseable (AP)",
-	[FURC_CROWN] 			= "Crown Store",
-	[FURC_RUMOUR] 			= "Rumour items",
-	[FURC_LUXURY] 			= "Luxury items",
-	[FURC_OTHER] 			= "Other",
+	[FURC_NONE]							= "Source filter: off", 
+	[FURC_FAVE] 						= "Favorites", 
+	[FURC_CRAFTING] 					= "Craftable: All", 
+	[FURC_CRAFTING_KNOWN] 				= "Craftable: Known", 
+	[FURC_CRAFTING_UNKNOWN] 			= "Craftable: Unknown", 
+	[FURC_VENDOR] 						= "Purchaseable (gold)",
+	[FURC_PVP] 							= "Purchaseable (AP)",
+	[FURC_CROWN] 						= "Crown Store",
+	[FURC_RUMOUR] 						= "Rumour items",
+	[FURC_LUXURY] 						= "Luxury items",
+	[FURC_OTHER] 						= "Other",
 }
 local tooltipsSource = {
-	[FURC_NONE]				= "disables this filter", 
-	[FURC_FAVE] 			= "Shows your favorites", 
-	[FURC_CRAFTING] 		= "Shows all craftable items", 
-	[FURC_CRAFTING_KNOWN] 	= "Shows only known craftable items", 
-	[FURC_CRAFTING_UNKNOWN] = "Shows only unknown craftable items", 
-	[FURC_VENDOR] 			= "Shows only items that cannot be crafted",
-	[FURC_PVP] 				= "Items that are sold for alliance points",
-	[FURC_CROWN] 			= "Shows items that can only be acquired from crown store",
-	[FURC_RUMOUR] 			= "Items and recipes that have been datamined, but haven't been confirmed existing",
-	[FURC_LUXURY] 			= "Items that at some point were sold by Zanil Theran, Cicero's General Goods, Coldharbour",
-	[FURC_OTHER] 			= "Shows items that can be farmed/stolen/found",
+	[FURC_NONE]							= "disables this filter", 
+	[FURC_FAVE] 						= "Shows your favorites", 
+	[FURC_CRAFTING] 					= "Shows all craftable items", 
+	[FURC_CRAFTING_KNOWN] 				= "Shows only known craftable items", 
+	[FURC_CRAFTING_UNKNOWN] 			= "Shows only unknown craftable items", 
+	[FURC_VENDOR] 						= "Shows only items that cannot be crafted",
+	[FURC_PVP] 							= "Items that are sold for alliance points",
+	[FURC_CROWN] 						= "Shows items that can only be acquired from crown store",
+	[FURC_RUMOUR] 						= "Items and recipes that have been datamined, but haven't been confirmed existing",
+	[FURC_LUXURY] 						= "Items that at some point were sold by Zanil Theran, Cicero's General Goods, Coldharbour",
+	[FURC_OTHER] 						= "Shows items that can be farmed/stolen/found",
 }
+
 FurnitureCatalogue.DropdownData = {
 	ChoicesVersion	= {
 		[1] = "Version filter: off", 
@@ -244,33 +242,25 @@ end
 function FurnitureCatalogue_Initialize(eventCode, addOnName)
 	if (addOnName ~= "FurnitureCatalogue") then return end
 	
-	FurnitureCatalogue.settings 	= ZO_SavedVars:NewAccountWide("FurnitureCatalogue_Settings", 1, nil, defaults)	
+	FurnitureCatalogue.settings 	= ZO_SavedVars:NewAccountWide("FurnitureCatalogue_Settings", 2, nil, defaults)	
 	
 
 	if FurC.AccountName == "@manavortex" or FurC.AccountName == "@Manorin" then
-		FurnitureCatalogue.devSettings 	= ZO_SavedVars:NewAccountWide("_FurC_DevData", 1, nil, {})
+		FurnitureCatalogue.devSettings 	= ZO_SavedVars:NewAccountWide("_FurC_DevData", 2, nil, {})
 		SLASH_COMMANDS["/furc_dev"] = FurnitureCatalogue_ToggleDev
 	end
 	
 	-- initialise setting, also setup the "source" dropdown for the menu
-	FurC.settings.data = FurC.settings.data or {}	
-	FurC.settings.filterCraftingType 		= {}
-	FurC.settings.filterQuality 			= {}
+	FurC.settings.data 							= FurC.settings.data or {}	
+	FurC.settings.filterCraftingType 			= {}
+	FurC.settings.filterQuality 				= {}
 	setupSourceDropdown()
 	
 	FurnitureCatalogue.CreateSettings(FurnitureCatalogue.settings, defaults, FurnitureCatalogue)	
 	
 	FurnitureCatalogue.CharacterName = zo_strformat(GetUnitName('player'))
 	
-	if GetAPIVersion() == 10020 then 
-		FurnitureCatalogue.DropdownData.ChoicesVersion[5] = nil
-		FurnitureCatalogue.DropdownData.TooltipsVersion[5] = nil
-	end
-	
-	
 	FurC.RegisterEvents()
-	
-	
 	
 	FurnitureCatalogue.InitGui()
 		FurnitureCatalogue.CreateTooltips()
@@ -279,14 +269,20 @@ function FurnitureCatalogue_Initialize(eventCode, addOnName)
 	FurC.SetupInventoryRecipeIcons()
 	
 	local scanFiles = false
-	if FurC.settings.version < FurC.version then
-		FurC.settings.version = FurC.version
+	if FurC.settings.version 		< FurC.version then
+		-- if FurC.settings.version 	< 2 then
+			-- d("Welcome to FurnitureCatalogue 2.0! The databank will be reset")
+			-- FurC.settings.data 		= {} 
+			-- FurC.settings.version 		= 2
+		-- else
+		-- end
+			FurC.settings.version 		= FurC.version		
 		scanFiles = true
 	end
 	
 	FurnitureCatalogue.ScanRecipes(scanFiles, not FurC.GetSkipInitialScan())
-	FurC.settings.databaseVersion = FurC.version
-	SLASH_COMMANDS["/fur"] 		= FurnitureCatalogue_Toggle
+	FurC.settings.databaseVersion 	= FurC.version
+	SLASH_COMMANDS["/fur"] 			= FurnitureCatalogue_Toggle
 	
 	
 	FurC.SetFilter(true)

@@ -2,1081 +2,1077 @@ FurC.Recipes = FurC.Recipes or {}
 
 FurC.Recipes[FURC_HOMESTEAD] = {
 
-	[115721] = true, -- Argonian Chimney Stack
-	[115722] = true, -- Argonian Rack, Sturdy
-	[115723] = true, -- Argonian Shelves, Half
-	[115724] = true, -- Argonian Shelves, Full
-	[115725] = true, -- Argonian Snakes on a Rope
-	[115726] = true, -- Argonian Dried Leaves
-	[115727] = true, -- Argonian Lattice, Rough
-	[115728] = true, -- Argonian Tarp, Woven
-	[115729] = true, -- Argonian Tarp, Sturdy
-	[115730] = true, -- Argonian Counter, Long
-	[115731] = true, -- Argonian Pole, Split
-	[115732] = true, -- Argonian Stool, Roped
-	[115733] = true, -- Argonian Chair, Rough
-	[115734] = true, -- Argonian Table, Rough
-	[115735] = true, -- Argonian Cup, Tall
-	[115736] = true, -- Argonian Cup, Short
-	[115737] = true, -- Argonian Bowl, Wooden
-	[115738] = true, -- Argonian Baskets, Double
-	[115739] = true, -- Argonian Basket, Serving
-	[115740] = true, -- Argonian Mug, Tooth
-	[115741] = true, -- Argonian Ramekin, Hardened
-	[115742] = true, -- Argonian Pan, Frying
-	[115743] = true, -- Argonian Banner, Hanging
-	[115744] = true, -- Argonian Post, Sturdy
-	[115745] = true, -- Argonian Post, Rough
-	[115746] = true, -- Argonian Mat, Tidy Reed
-	[115747] = true, -- Argonian Mat, Rolled Reed
-	[115748] = true, -- Argonian Mat, Reed
-	[115749] = true, -- Argonian Tent, Reed
-	[115750] = true, -- Argonian Canopy, Reed
-	[115751] = true, -- Argonian Basket, Closed
-	[115752] = true, -- Argonian Bin, Woven
-	[115753] = true, -- Argonian Totem, Painted Skull
-	[115754] = true, -- Argonian Rack, Drying
-	[115755] = true, -- Argonian Totem, Frilled Skull
-	[115756] = true, -- Argonian Cage, Rat
-	[115757] = true, -- Argonian Cage, Bird
-	[115758] = true, -- Argonian Wind Chimes
-	[115759] = true, -- Argonian Bar, Woven Corner
-	[115760] = true, -- Argonian Snakes in a Basket
-	[115761] = true, -- Argonian Bed, Woven
-	[115762] = true, -- Argonian Bench"] = true, Woven
-	[115763] = true, -- Argonian Chair, Woven
-	[115764] = true, -- Argonian Trunk, Sturdy
-	[115765] = true, -- Argonian Bookshelf, Woven
-	[115766] = true, -- Argonian Dresser, Sturdy
-	[115767] = true, -- Argonian Shelf, Woven
-	[115768] = true, -- Argonian Bookcase, Sturdy
-	[115769] = true, -- Argonian Stool, Woven
-	[115770] = true, -- Argonian Table, Formal
-	[115771] = true, -- Argonian End Table, Woven
-	[115772] = true, -- Argonian Bowl, Serving
-	[115773] = true, -- Argonian Cup, Bordered
-	[115774] = true, -- Argonian Basket, Woven
-	[115775] = true, -- Argonian Bowl, Bordered
-	[115776] = true, -- Argonian Ramekin, Bordered
-	[115777] = true, -- Argonian Urn, Clawfoot
-	[115778] = true, -- Argonian Tray, Woven
-	[115779] = true, -- Argonian Curtain, Woven
-	[115780] = true, -- Argonian Curtains, Woven
-	[115781] = true, -- Argonian Medallion, Stone
-	[115782] = true, -- Argonian Scaleskin, Pale
-	[115783] = true, -- Argonian Scaleskin, Striped
-	[115784] = true, -- Argonian Scaleskin, Faded
-	[115785] = true, -- Argonian Lamppost
-	[115787] = true, -- Argonian Canopy, Frilled
-	[115788] = true, -- Argonian Canopy, Skull
-	[115789] = true, -- Argonian Canopy, Scaled
-	[115790] = true, -- Argonian Trunk, Painted
-	[115791] = true, -- Argonian Chest, Carved
-	[115792] = true, -- Argonian Skull, Crocodile
-	[115793] = true, -- Argonian Totem of the Snake
-	[115794] = true, -- Argonian Skull, Lizard
-	[115795] = true, -- Argonian Bone Chimes
-	[115796] = true, -- Argonian Hamper, Woven
-	[115799] = true, -- Argonian Table, Horn
-	[115800] = true, -- Argonian Curtain of Smoke
-	[115801] = true, -- Argonian Curtain of the Nest
-	[115802] = true, -- Argonian Drum, Ceremonial
-	[115803] = true, -- Argonian Bowl, Ritual
-	[115804] = true, -- Argonian Jug, Ritual
-	[115805] = true, -- Argonian Pot, Ritual
-	[115806] = true, -- Argonian Pestle, Bone
-	[115807] = true, -- Argonian Seat of Authority
-	[115808] = true, -- Argonian Seat of Honor
-	[115809] = true, -- Argonian Mortar and Pestle, Bone
-	[115810] = true, -- Argonian Mortar, Bone
-	[115811] = true, -- Argonian Pedestal, Altar
-	[115812] = true, -- Argonian Censer
-	[115813] = true, -- Argonian Relic, Small Serpent
-	[115814] = true, -- Argonian Relic, Serpent
-	[115815] = true, -- Argonian Seat of Comfort
-	[115816] = true, -- Argonian Divider, Stretched
-	[115817] = true, -- Argonian Bedroll, Woven
-	[115818] = true, -- Argonian Banners, Frilled
-	[115819] = true, -- Argonian Banner, Half Hands
-	[115820] = true, -- Argonian Post, Frilled
-	[115821] = true, -- Argonian Lanterns, String
-	[115822] = true, -- Argonian Lanterns, Strand
-	[115823] = true, -- Argonian Light, Stick
-	[115824] = true, -- Argonian Lamp, Mud
-	[115825] = true, -- Argonian Brazier, Mud
-	[115826] = true, -- Argonian Lights, Branch
-	[115827] = true, -- Argonian Bark, Painted
-	[115828] = true, -- Argonian Relic, Basin
-	[115829] = true, -- Argonian Totem of Skulls
-	[115830] = true, -- Argonian Gravestick
-	[115831] = true, -- Argonian Tree of Lights
-	[115832] = true, -- Argonian Tile, Inscribed
-	[115833] = true, -- Wood Elf Stool, Leather
-	[115834] = true, -- Wood Elf Counter, Long Leather
-	[115835] = true, -- Wood Elf Shelf, Tiered
-	[115836] = true, -- Wood Elf Table, Leather
-	[115837] = true, -- Wood Elf Bar, Sturdy
-	[115838] = true, -- Wood Elf Bar, Long
-	[115839] = true, -- Wood Elf Bar, Drying
-	[115840] = true, -- Wood Elf Bar, Short
-	[115841] = true, -- Wood Elf Rack, Brace
-	[115842] = true, -- Wood Elf Divider, Stretched
-	[115843] = true, -- Wood Elf Divider, Narrow
-	[115844] = true, -- Wood Elf Vase, Swirled
-	[115845] = true, -- Wood Elf Urn, Scratched
-	[115846] = true, -- Wood Elf Urn, Deer
-	[115847] = true, -- Wood Elf Cup, Ceramic
-	[115848] = true, -- Wood Elf Cup, Chipped
-	[115849] = true, -- Wood Elf Cup, Striped
-	[115850] = true, -- Wood Elf Pedestal, Engraved
-	[115851] = true, -- Wood Elf Basin, Stone
-	[115852] = true, -- Wood Elf Awning, Leather
-	[115853] = true, -- Wood Elf Canopy, Leather
-	[115854] = true, -- Wood Elf Bedding, Scattered
-	[115855] = true, -- Wood Elf Grinding Stone
-	[115856] = true, -- Wood Elf Hide, Heavy
-	[115857] = true, -- Wood Elf Wall Hide, Pierced
-	[115858] = true, -- Wood Elf Wall Hide, Fur
-	[115859] = true, -- Wood Elf Wall Hide, Spotted
-	[115860] = true, -- Wood Elf Cauldron, Stone
-	[115861] = true, -- Wood Elf Tent, Sturdy
-	[115862] = true, -- Wood Elf Chair, Leather
-	[115863] = true, -- Wood Elf Bookcase, Leather
-	[115864] = true, -- Wood Elf Table, Formal
-	[115865] = true, -- Wood Elf Barrel, Ceramic
-	[115866] = true, -- Wood Elf Cask, Ceramic
-	[115867] = true, -- Wood Elf Bladder, Fermenting
-	[115868] = true, -- Wood Elf Cauldron, Ceramic
-	[115869] = true, -- Wood Elf Hammock, Single
-	[115870] = true, -- Wood Elf Hammock, Double
-	[115871] = true, -- Wood Elf Rack, Single
-	[115872] = true, -- Wood Elf Rack, Double
-	[115873] = true, -- Wood Elf Divider, Relaxed
-	[115874] = true, -- Wood Elf Divider, Taut
-	[115875] = true, -- Wood Elf Vessel, Tiered Ceramic
-	[115876] = true, -- Wood Elf Vessel, Tiered Painted
-	[115877] = true, -- Wood Elf Pitcher, Painted
-	[115878] = true, -- Wood Elf Pitcher, Marked
-	[115879] = true, -- Wood Elf Vase, Painted
-	[115880] = true, -- Wood Elf Vase, Chipped
-	[115881] = true, -- Wood Elf Pitcher, Chipped
-	[115882] = true, -- Wood Elf Pitcher, Ceramic
-	[115883] = true, -- Wood Elf Bowl, Striped
-	[115884] = true, -- Wood Elf Canopy, Braced
-	[115885] = true, -- Wood Elf Bedding, Layered
-	[115886] = true, -- Wood Elf Censer, Hanging
-	[115887] = true, -- Wood Elf Tent, Frame
-	[115888] = true, -- Wood Elf Rack, Meat
-	[115889] = true, -- Wood Elf Totem, Framed
-	[115890] = true, -- Wood Elf Totem, Skull
-	[115891] = true, -- Wood Elf Trough"] = true, Slop
-	[115892] = true, -- Wood Elf Bin, Blue Feathers
-	[115893] = true, -- Wood Elf Bin, Feathers
-	[115894] = true, -- Wood Elf Cask, Painted
-	[121371] = true, -- Wood Elf Hearth, Forest
-	[121309] = true, -- High Elf Medal, Winged
-	[115895] = true, -- Wood Elf Fish Dish
-	[115896] = true, -- Wood Elf Tapestry, Painted
-	[115897] = true, -- Wood Elf Tapestry, Deer
-	[115898] = true, -- Wood Elf Tapestry, Vine
-	[115899] = true, -- Wood Elf Canopy, Spine
-	[115900] = true, -- Wood Elf Bedding, Padded
-	[115901] = true, -- Wood Elf Skull and Bones
-	[115902] = true, -- Wood Elf Bone Chimes
-	[115903] = true, -- Wood Elf Rack, Dried Fish
-	[115904] = true, -- Wood Elf Rack, Dried Meat
-	[115906] = true, -- Breton Stall, Merchant
-	[115907] = true, -- Breton Cart, Wheelbarrow
-	[115908] = true, -- Breton Bed, Bunk
-	[115909] = true, -- Breton Bed, Single
-	[115910] = true, -- Breton Pew, Windowed
-	[115911] = true, -- Breton Bench"] = true, Plain
-	[115912] = true, -- Breton Nightstand, Open
-	[115913] = true, -- Breton Bookcase, Tall
-	[115914] = true, -- Breton Chair, Slatted
-	[115915] = true, -- Breton Chair, Windowed
-	[115916] = true, -- Breton Shelves, Double
-	[115917] = true, -- Breton Rack, Barrel
-	[115918] = true, -- Breton Dresser, Open
-	[115919] = true, -- Breton Desk
-	[115920] = true, -- Breton Table, Dining
-	[115921] = true, -- Breton Trestle, Sturdy
-	[115922] = true, -- Breton Table, Kitchen
-	[115923] = true, -- Breton Shelf, Long
-	[115924] = true, -- Breton Pitcher, Ceramic
-	[115925] = true, -- Breton Carpet, Bordered
-	[115926] = true, -- Breton Carpet, Square
-	[115927] = true, -- Breton Amphora, Ceramic
-	[115928] = true, -- Breton Vase, Ceramic
-	[115929] = true, -- Breton Lightpost, Single
-	[115930] = true, -- Breton Sconce, Sturdy Torch
-	[115931] = true, -- Breton Street Post, Stone
-	[115932] = true, -- Breton Sconce, Torch
-	[115933] = true, -- Breton Street Post, Plain
-	[115934] = true, -- Breton Bed, Four-poster
-	[115935] = true, -- Breton Bed, Full
-	[115936] = true, -- Breton Pew, Knotwork
-	[115937] = true, -- Breton Bench"] = true, Knotwork
-	[115938] = true, -- Breton Bookcase, Knotwork
-	[115939] = true, -- Breton Chair, Rocking
-	[115940] = true, -- Breton Chest, Knotwork
-	[115941] = true, -- Breton Hutch"] = true, Knotwork
-	[115942] = true, -- Breton Cupboard, Knotwork
-	[115943] = true, -- Breton Chest of Drawers
-	[115944] = true, -- Breton Counter, Long Cabinet
-	[115945] = true, -- Breton Shelf, Barrel Rack
-	[115946] = true, -- Breton Stool, Plain
-	[115947] = true, -- Breton Desk, Knotwork
-	[115948] = true, -- Breton Table, Round
-	[115949] = true, -- Breton Table, Square
-	[115950] = true, -- Breton Shelf, Scrolled
-	[115951] = true, -- Breton Rack, Wine
-	[115952] = true, -- Breton Carpet, Full
-	[115953] = true, -- Breton Rug, Starburst
-	[115954] = true, -- Breton Carpet, Dark
-	[115955] = true, -- Breton Pottery, Lid
-	[115956] = true, -- Breton Urn, Glazed
-	[115957] = true, -- Breton Amphora, Glazed
-	[115959] = true, -- Breton Vase, Glazed
-	[115961] = true, -- Breton Streetlight, Arched Stone
-	[115962] = true, -- Breton Streetlight, Paired Stone
-	[115963] = true, -- Breton Cart, Covered Open
-	[115964] = true, -- Breton Stall, Vending
-	[115965] = true, -- Breton Lightpost, Arched
-	[115966] = true, -- Breton Streetlight, Paired
-	[115967] = true, -- Breton Figure, Stone
-	[115968] = true, -- Breton Chandelier, Wrought Iron
-	[115969] = true, -- Breton Curtains, Window
-	[115970] = true, -- Breton Bed, Canopy
-	[115971] = true, -- Breton Sideboard, Knotwork
-	[115972] = true, -- Breton Chair, Padded
-	[115973] = true, -- Breton Armchair, Padded
-	[115974] = true, -- Breton Cabinet, Knotwork
-	[115975] = true, -- Breton Curio, Knotwork
-	[115976] = true, -- Breton Drapes, Grand
-	[115977] = true, -- Breton Coffer, Knotwork
-	[115978] = true, -- Breton Cradle, Infant
-	[115979] = true, -- Breton Dresser, Knotwork
-	[115980] = true, -- Breton Counter, Corner
-	[115981] = true, -- Breton Counter, Cabinet
-	[115982] = true, -- Breton Mirror, Knotwork
-	[115983] = true, -- Breton Nightstand, Knotwork
-	[115984] = true, -- Breton Divider, Folded Knotwork
-	[115985] = true, -- Breton Divider, Curved Knotwork
-	[115986] = true, -- Breton Stool, Padded
-	[115987] = true, -- Breton Desk, Scholar's
-	[115988] = true, -- Breton Table, Formal
-	[115989] = true, -- Breton Trestle, Formal
-	[115990] = true, -- Breton Rug, Bordered
-	[115991] = true, -- Breton Runner, Bordered
-	[115992] = true, -- Breton Carpet, Bordered
-	[115993] = true, -- Breton Medallion, Lion
-	[115994] = true, -- Breton Tablecloth"] = true, Blue
-	[115995] = true, -- Breton Lamp, Oil
-	[115996] = true, -- Breton Tablecloth"] = true, Striped
-	[115997] = true, -- Breton Footlocker, Knotwork
-	[115998] = true, -- Breton Armoire, Knotwork
-	[115999] = true, -- Breton Cart, Palanquin
-	[116000] = true, -- Breton Tapestry, Vines
-	[116001] = true, -- Breton Tapestry, Boughs
-	[116002] = true, -- Breton Urn Lid, Striated
-	[116003] = true, -- Breton Urn, Striated
-	[116004] = true, -- Breton Lamp, Hanging
-	[116005] = true, -- Breton Streetlight, Full Stone
-	[116006] = true, -- Breton Vase, Delicate
-	[116007] = true, -- Breton Streetlight, Full
-	[116008] = true, -- Breton Sconce, Floor
-	[116009] = true, -- Breton Sconce, Grand
-	[116010] = true, -- Breton Candelabra, Formal
-	[116011] = true, -- Breton Sconce, Wall
-	[116012] = true, -- Dark Elf Cart, Merchant
-	[116013] = true, -- Dark Elf Rack, Barrel
-	[116014] = true, -- Dark Elf Armchair, Angled
-	[116015] = true, -- Dark Elf Chest of Drawers
-	[116016] = true, -- Dark Elf Bed, Single
-	[116017] = true, -- Dark Elf Table, Formal
-	[116018] = true, -- Dark Elf Shelf, Wall
-	[116019] = true, -- Dark Elf Urn, Banded
-	[116020] = true, -- Dark Elf Basin, Ringed
-	[116021] = true, -- Dark Elf Runner, Bordered
-	[116022] = true, -- Dark Elf Carpet, Mottled
-	[116023] = true, -- Dark Elf Carpet, Patterned
-	[116024] = true, -- Dark Elf Tapestry, Emblazoned
-	[116025] = true, -- Dark Elf Candle, Claw Base
-	[116026] = true, -- Dark Elf Lantern, Oil
-	[116027] = true, -- Dark Elf Streetpost, Banner
-	[116028] = true, -- Dark Elf Streetpost, Banners
-	[116029] = true, -- Dark Elf Wagon, Merchant
-	[116030] = true, -- Dark Elf Caravan, Cargo
-	[116031] = true, -- Dark Elf Dresser, Angled
-	[116032] = true, -- Dark Elf Bookcase, Sectioned
-	[116033] = true, -- Dark Elf Chair, Angled
-	[116034] = true, -- Dark Elf Counter, Bar
-	[116035] = true, -- Dark Elf Wardrobe, Scaled
-	[116036] = true, -- Dark Elf Desk, Angled
-	[116037] = true, -- Dark Elf Bed, Full
-	[116038] = true, -- Dark Elf Pillow, Body
-	[116039] = true, -- Dark Elf Stool, Angled
-	[116040] = true, -- Dark Elf Table, Tea
-	[116041] = true, -- Dark Elf Trestle, Scaled
-	[116042] = true, -- Dark Elf Wine Rack, Sturdy
-	[116043] = true, -- Dark Elf Shelf, Barrel
-	[116044] = true, -- Dark Elf Pot, Scaled
-	[116045] = true, -- Dark Elf Decanter, Glass
-	[116046] = true, -- Dark Elf Cruet, Glass
-	[116047] = true, -- Dark Elf Flags, Hanging
-	[116048] = true, -- Dark Elf Cauldron, Banded
-	[116049] = true, -- Dark Elf Carpet, Mossy
-	[116050] = true, -- Dark Elf Carpet, Fungal
-	[116051] = true, -- Dark Elf Rug, Fungal
-	[116052] = true, -- Dark Elf Hook, Wall
-	[116053] = true, -- Dark Elf Lantern, Caged
-	[116054] = true, -- Dark Elf Lantern, Hanging
-	[116055] = true, -- Dark Elf Streetlamp, Stone
-	[116056] = true, -- Dark Elf Streetlamps, Stone
-	[116057] = true, -- Dark Elf Sofa, Angled
-	[116058] = true, -- Dark Elf Bed, Canopy
-	[116059] = true, -- Dark Elf Counter, Corner
-	[116060] = true, -- Dark Elf Counter, Block
-	[116061] = true, -- Dark Elf Nightstand, Angled
-	[116062] = true, -- Dark Elf Pillow, Cushion
-	[116063] = true, -- Dark Elf Pillow, Roll
-	[116064] = true, -- Dark Elf Divider, Folded
-	[116065] = true, -- Dark Elf End Table, Angled
-	[116066] = true, -- Dark Elf Trunk, Buckled
-	[116067] = true, -- Dark Elf Wardrobe, Angled
-	[116068] = true, -- Dark Elf Kettle Cooker
-	[116069] = true, -- Dark Elf Pot, Banded
-	[116070] = true, -- Dark Elf Carpet, Ashen
-	[116071] = true, -- Dark Elf Rug, Mossy
-	[116072] = true, -- Dark Elf Rug, Striated
-	[116073] = true, -- Dark Elf Medallion, Tribunal
-	[116074] = true, -- Dark Elf Censer, Hanging
-	[116075] = true, -- Dark Elf Thurible, Caged
-	[116077] = true, -- Dark Elf Cauldron, Ringed
-	[116078] = true, -- Dark Elf Lantern, Ashen
-	[116079] = true, -- Dark Elf Candelabra, Angled
-	[116080] = true, -- Dark Elf Candle, Votive Tray
-	[116081] = true, -- Khajiit Firepit, Brick
-	[116082] = true, -- Khajiit Loft, Reed
-	[116083] = true, -- Khajiit Dresser, Faded
-	[116084] = true, -- Khajiit Stool, Crescent
-	[116085] = true, -- Khajiit End Table, Faded
-	[116086] = true, -- Khajiit Drapes, Tattered
-	[116087] = true, -- Khajiit Bottle, Amber
-	[116088] = true, -- Khajiit Flask, Amber
-	[116089] = true, -- Khajiit Carpet, Crescent Moons
-	[116090] = true, -- Khajiit Vase, Amber
-	[116091] = true, -- Khajiit Banner, Moons
-	[116092] = true, -- Khajiit Banner, Crescents
-	[116093] = true, -- Khajiit Candle, Clawfoot
-	[116094] = true, -- Khajiit Frame, Arched
-	[116095] = true, -- Khajiit Banner, Claw
-	[116096] = true, -- Khajiit Bed, Fur
-	[116097] = true, -- Khajiit Bedding, Padded
-	[116098] = true, -- Khajiit Signpost, Fortified
-	[116099] = true, -- Khajiit Bed, Faded
-	[116100] = true, -- Khajiit Bench"] = true, Padded
-	[116101] = true, -- Khajiit Bookshelf, Arched
-	[116102] = true, -- Khajiit Trunk, Arched
-	[116103] = true, -- Khajiit Counter, Faded
-	[116104] = true, -- Khajiit Nightstand, Gilded
-	[116105] = true, -- Khajiit Table, Formal
-	[116106] = true, -- Khajiit Jug, Amber
-	[116107] = true, -- Khajiit Pitcher, Amber
-	[116108] = true, -- Khajiit Carpet, Sun
-	[116109] = true, -- Khajiit Cushion, Long
-	[116110] = true, -- Khajiit Cushion, Single
-	[116111] = true, -- Khajiit Carafe, Amber
-	[116112] = true, -- Khajiit Decanter, Amber
-	[116113] = true, -- Khajiit Banner, Hooked
-	[116114] = true, -- Khajiit Brazier, Claw
-	[116115] = true, -- Khajiit Basin, Claw
-	[116116] = true, -- Khajiit Lantern, Hanging
-	[116117] = true, -- Khajiit Tent, Mercantile
-	[116118] = true, -- Khajiit Tent, Storage
-	[116119] = true, -- Khajiit Wagon, Reed
-	[116120] = true, -- Khajiit Curtains, Moons
-	[116121] = true, -- Khajiit Barstool, Clawfoot
-	[116122] = true, -- Khajiit Barstool, Padded
-	[116123] = true, -- Khajiit Skooma Bubbler
-	[116124] = true, -- Khajiit Tent, Vacation
-	[116125] = true, -- Khajiit Bed, Canopy
-	[116126] = true, -- Khajiit Couch"] = true, Padded
-	[116127] = true, -- Khajiit Bookcase, Arched
-	[116128] = true, -- Khajiit Footlocker, Arched
-	[116129] = true, -- Khajiit Counter, Long Cabinet
-	[116130] = true, -- Khajiit Desk, Faded
-	[116131] = true, -- Khajiit Divider, Folding
-	[116132] = true, -- Khajiit Table, Round
-	[116133] = true, -- Khajiit Wardrobe, Arched
-	[116134] = true, -- Khajiit Rug, Moons
-	[116135] = true, -- Khajiit Drapes, Grand
-	[116136] = true, -- Khajiit Pillow, Crescents
-	[116137] = true, -- Khajiit Vial, Amber
-	[116138] = true, -- Khajiit Urn, Amber
-	[116139] = true, -- Khajiit Vessel, Amber
-	[116140] = true, -- Khajiit Candles, Clawfoot
-	[116141] = true, -- Khajiit Sofa, Padded
-	[116142] = true, -- Khajiit Pillow, Roll
-	[116143] = true, -- Khajiit Rug, Sun
-	[116144] = true, -- Khajiit Brazier, Hanging
-	[116145] = true, -- Khajiit Sconce, Spiked
-	[116146] = true, -- Khajiit Candle-Filled Lamp
-	[116147] = true, -- Nord Cart, Hay
-	[116148] = true, -- Nord Trunk, Heavy
-	[116149] = true, -- Nord Hutch"] = true, Rough
-	[116150] = true, -- Nord Dresser, Rough
-	[116151] = true, -- Nord Nightstand, Rough
-	[116152] = true, -- Nord Lantern, Cage
-	[116153] = true, -- Nord Pot, Ceramic
-	[116154] = true, -- Nord Urn, Ceramic
-	[116155] = true, -- Nord Bed, Single
-	[116156] = true, -- Nord Bench"] = true, Braced
-	[116157] = true, -- Nord Stool, Rough
-	[116158] = true, -- Nord Table, Kitchen
-	[116159] = true, -- Nord Shelf, Wall
-	[116160] = true, -- Nord Shelf, Braced
-	[116161] = true, -- Nord Pot, Covered
-	[116162] = true, -- Nord Pot, Stew
-	[116163] = true, -- Nord Candle, Tealight
-	[116164] = true, -- Nord Candleholder, Cup
-	[116165] = true, -- Nord Torch"] = true, Triple
-	[116166] = true, -- Nord Cart, Cargo
-	[116167] = true, -- Nord Trunk, Faded
-	[116168] = true, -- Nord Cauldron, Glazed
-	[116169] = true, -- Nord Pot, Chunky Stew
-	[116170] = true, -- Nord Amphora, Glazed
-	[116171] = true, -- Nord Vase, Bent
-	[116172] = true, -- Nord Bed, Sleigh
-	[116173] = true, -- Nord Bench"] = true, Plank
-	[116174] = true, -- Nord Bookshelf, Alcove
-	[116175] = true, -- Nord Chair, Braced
-	[116176] = true, -- Nord Counter, Long
-	[116177] = true, -- Nord Dresser, Braced
-	[116178] = true, -- Nord Stool, Braced
-	[116179] = true, -- Nord Table, Dining
-	[116180] = true, -- Nord Table, Round
-	[116181] = true, -- Nord Table, Braced
-	[116182] = true, -- Nord Trestle, Braced
-	[116183] = true, -- Nord Footlocker, Braced
-	[116184] = true, -- Nord Armoire, Lattice
-	[116185] = true, -- Nord Rack, Wine
-	[116186] = true, -- Nord Crockpot, Carrot Soup
-	[116187] = true, -- Nord Crockpot, Covered
-	[116188] = true, -- Nord Tapestry, Dragon
-	[116189] = true, -- Nord Lantern, Hanging
-	[116190] = true, -- Nord Drinking Horn, Empty
-	[116191] = true, -- Nord Cart, Covered
-	[116192] = true, -- Nord Chest, Latched
-	[116193] = true, -- Nord Urn, Braided
-	[116194] = true, -- Nord Bed, Canopy
-	[116195] = true, -- Nord Bookcase, Alcove
-	[116196] = true, -- Nord Chair, Lattice
-	[116197] = true, -- Nord Counter, Corner
-	[116198] = true, -- Nord Counter, Cabinet
-	[116199] = true, -- Nord Desk, Tied
-	[116200] = true, -- Nord Nightstand, Braced
-	[116201] = true, -- Nord Divider, Folding
-	[116202] = true, -- Nord Table, Great
-	[116203] = true, -- Nord Table, Formal
-	[116204] = true, -- Nord Table, Game
-	[116205] = true, -- Nord Trestle, Tied
-	[116206] = true, -- Nord Rug, Bearskin
-	[116207] = true, -- Nord Banner, Knotwork
-	[116208] = true, -- Nord Tapestry, Ship
-	[116209] = true, -- Nord Candle, Antler
-	[116210] = true, -- Nord Chandelier, Antler
-	[116211] = true, -- Nord Streetlamps, Stone
-	[116212] = true, -- Nord Lamppost, Stone
-	[116213] = true, -- Nord Brazier, Hanging
-	[116216] = true, -- Nord Trunk, Buckled
-	[118916] = true, -- High Elf Wagon, Covered
-	[118917] = true, -- High Elf Bed, Winged Double
-	[118918] = true, -- High Elf Bench"] = true, Covered
-	[118919] = true, -- High Elf Bookshelf, Winged
-	[118920] = true, -- High Elf Armoire, Winged
-	[118921] = true, -- High Elf Bookcase, Winged
-	[118922] = true, -- High Elf Dresser, Corner
-	[118923] = true, -- High Elf Chair, Regal Verdant
-	[118924] = true, -- High Elf Chair, Regal Winged
-	[118925] = true, -- High Elf Trunk, Jeweled
-	[118926] = true, -- High Elf Counter, Block
-	[118927] = true, -- High Elf Cabinet, Corner
-	[118928] = true, -- High Elf Desk, Regal Winged
-	[118929] = true, -- High Elf Dresser, Winged
-	[118930] = true, -- High Elf Divider, Delicate
-	[118931] = true, -- High Elf Divider, Carved
-	[118932] = true, -- High Elf Table, Tea
-	[118933] = true, -- High Elf Stool, Covered
-	[118934] = true, -- High Elf End Table, Winged
-	[118935] = true, -- High Elf Table, Winged Formal
-	[118936] = true, -- High Elf Table, Winged Kitchen
-	[118937] = true, -- High Elf Trestle, Winged
-	[118938] = true, -- High Elf Bowl, Serving
-	[118939] = true, -- High Elf Pot, Hanging
-	[118940] = true, -- High Elf Basin, Standing
-	[118941] = true, -- High Elf Platter, Winged
-	[118942] = true, -- High Elf Carpet, Eagle
-	[118943] = true, -- High Elf Tapestry, Eagle
-	[118944] = true, -- High Elf Vase, Winged
-	[118945] = true, -- High Elf Decanter, Glass
-	[118946] = true, -- High Elf Goblet, Winged
-	[118947] = true, -- High Elf Goblet, Glass
-	[118948] = true, -- High Elf Brazier, Winged
-	[118949] = true, -- High Elf Chandelier, Winged
-	[118950] = true, -- High Elf Candle, Winged
-	[118951] = true, -- High Elf Lamppost, Stone
-	[118952] = true, -- High Elf Candelabra, Winged
-	[118953] = true, -- High Elf Crest, Winged
-	[118954] = true, -- High Elf Streetlight, Stone
-	[118955] = true, -- Breton Cart, Covered Closed
-	[118956] = true, -- High Elf Wagon, Sturdy
-	[118957] = true, -- High Elf Bed, Winged
-	[118958] = true, -- High Elf Bed, Verdant
-	[118959] = true, -- High Elf Chest of Drawers
-	[118960] = true, -- High Elf Bookcase, Verdant
-	[118961] = true, -- High Elf Chair, Verdant
-	[118962] = true, -- High Elf Chair, Winged
-	[118963] = true, -- High Elf Bar, Overhanging
-	[118964] = true, -- High Elf Desk, Verdant
-	[118965] = true, -- High Elf Dresser, Verdant
-	[118966] = true, -- High Elf End Table, Verdant
-	[118967] = true, -- High Elf Table, Verdant Formal
-	[118968] = true, -- High Elf Table, Verdant Kitchen
-	[118969] = true, -- High Elf Trestle, Verdant
-	[118970] = true, -- High Elf Trunk, Winged
-	[118971] = true, -- High Elf Wine Rack, Folding
-	[118972] = true, -- High Elf Platter, Gilded
-	[118973] = true, -- High Elf Carpet, Water-Themed
-	[118974] = true, -- High Elf Carpet, Tree-Themed
-	[118975] = true, -- High Elf Tapestry, Water-Themed
-	[118976] = true, -- High Elf Tapestry, Tree-Themed
-	[118977] = true, -- High Elf Carafe, Gilded
-	[118978] = true, -- High Elf Vase, Gilded
-	[118979] = true, -- High Elf Bottle, Winged
-	[118980] = true, -- High Elf Flute, Wine
-	[118981] = true, -- High Elf Basin, Winged
-	[118982] = true, -- High Elf Lamppost, Spiked
-	[118983] = true, -- High Elf Lamp, Oil
-	[118984] = true, -- High Elf Bed, Bunk
-	[118985] = true, -- High Elf Bed, Single
-	[118986] = true, -- High Elf Bench"] = true, Curved
-	[118987] = true, -- High Elf Bookshelf, Verdant
-	[118988] = true, -- High Elf Counter, Long Cabinet
-	[118989] = true, -- High Elf Desk, Sturdy
-	[118990] = true, -- High Elf Dresser, Sturdy
-	[118991] = true, -- High Elf Stool, Curved
-	[118992] = true, -- High Elf End Table, Sturdy
-	[118993] = true, -- High Elf Table, Sturdy Formal
-	[118994] = true, -- High Elf Table, Sturdy Kitchen
-	[118995] = true, -- High Elf Trestle, Sturdy
-	[118996] = true, -- High Elf Shelf, Short
-	[118997] = true, -- High Elf Shelf, Long
-	[118998] = true, -- High Elf Basin, Gilded
-	[118999] = true, -- High Elf Cup, Gilded
-	[119000] = true, -- High Elf Flask, Gilded
-	[119001] = true, -- High Elf Plate, Dinner
-	[119002] = true, -- High Elf Carpet, Rustic
-	[119003] = true, -- High Elf Tapestry, Rustic
-	[119004] = true, -- High Elf Candleholder, Sturdy
-	[119005] = true, -- Orcish Tent, Shingled
-	[119006] = true, -- Orcish Platform, Block
-	[119007] = true, -- Orcish Counter, Island Stall
-	[119008] = true, -- Orcish Wash Tub
-	[119009] = true, -- Orcish Bedding, Stone
-	[119010] = true, -- Orcish Bedding, Fur
-	[119011] = true, -- Orcish Table, Block
-	[119012] = true, -- Orcish Table, Braced Formal
-	[119013] = true, -- Orcish Table, Braced Kitchen
-	[119014] = true, -- Orcish Trunk, Braced
-	[119015] = true, -- Orcish Bench"] = true, Cabled
-	[119016] = true, -- Orcish Shelves, Braced
-	[119017] = true, -- Orcish Bar, Long Block
-	[119018] = true, -- Orcish Counter, Block
-	[119019] = true, -- Orcish Bar, Side
-	[119020] = true, -- Orcish Shelf, Long
-	[119021] = true, -- Orcish Shelf, Short
-	[119022] = true, -- Orcish Stool, Cabled
-	[119023] = true, -- Orcish Bowl, Rugged
-	[119024] = true, -- Orcish Mug, Rugged
-	[119025] = true, -- Orcish Canister, Rugged
-	[119026] = true, -- Orcish Cask, Rugged
-	[119027] = true, -- Orcish Carpet, Fringed
-	[119028] = true, -- Orcish Brazier, Smoldering
-	[119029] = true, -- Orcish Lantern, Hooded
-	[119030] = true, -- Orcish Banner, Faded
-	[119031] = true, -- Orcish Banner, Worn
-	[119032] = true, -- Breton Chamberstick, Short
-	[119033] = true, -- Breton Chamberstick, Tall
-	[119034] = true, -- Orcish Canopy, Shingled
-	[119035] = true, -- Orcish Shelter, Shingled
-	[119036] = true, -- Orcish Platform, Stage
-	[119037] = true, -- Orcish Sack, Grain
-	[119038] = true, -- Orcish Sack, Flour
-	[119039] = true, -- Orcish Sack, Bean
-	[119040] = true, -- Orcish Bucket, Cistern
-	[119041] = true, -- Orcish Curtain, Folding
-	[119042] = true, -- Orcish Curtain, Curved
-	[119043] = true, -- Orcish Armchair, Peaked
-	[119044] = true, -- Orcish Pew, Peaked
-	[119045] = true, -- Orcish Bedding, Peaked
-	[119046] = true, -- Orcish Bookshelf, Engraved
-	[119047] = true, -- Orcish Bunkbed, Leather
-	[119048] = true, -- Orcish Chair, Peaked
-	[119049] = true, -- Orcish Trunk, Heavy
-	[119050] = true, -- Orcish Desk, Engraved
-	[119051] = true, -- Orcish Bar, Long Branded Block
-	[119052] = true, -- Orcish Counter, Branded
-	[119053] = true, -- Orcish Cabinet, Branded
-	[119054] = true, -- Orcish Dresser, Open
-	[119055] = true, -- Orcish Nightstand, Open
-	[119056] = true, -- Orcish Table, Engraved
-	[119057] = true, -- Orcish Trestle, Engraved
-	[119058] = true, -- Orcish Table, Kitchen
-	[119059] = true, -- Orcish Table, Formal
-	[119060] = true, -- Orcish Footlocker, Buckled
-	[119061] = true, -- Orcish Bowl, Stone
-	[119062] = true, -- Orcish Goblet, Stone
-	[119063] = true, -- Orcish Plate, Stone
-	[119064] = true, -- Orcish Saucer, Stone
-	[119065] = true, -- Orcish Vessel, Sealed Ceramic
-	[119066] = true, -- Orcish Urn, Ceramic
-	[119067] = true, -- Orcish Lantern, Hanging
-	[119068] = true, -- Orcish Brazier, Pedestal
-	[119069] = true, -- Orcish Chandelier, Practical
-	[119070] = true, -- Orcish Sconce, Caged
-	[119071] = true, -- Orcish Banner, Hammer Fist
-	[119072] = true, -- Orcish Strongbox, Buckled
-	[119073] = true, -- Orcish Trunk, Buckled
-	[119074] = true, -- Orcish Chest, Buckled
-	[119075] = true, -- Orcish Chair, Peaked
-	[119076] = true, -- Orcish Throne, Stone
-	[119077] = true, -- Orcish Throne, Engraved
-	[119078] = true, -- Orcish Capsule, Sealed
-	[119079] = true, -- Orcish Armoire, Peaked
-	[119080] = true, -- Orcish Bed, Peaked
-	[119081] = true, -- Orcish Bookcase, Peaked
-	[119082] = true, -- Orcish Bookshelf, Peaked
-	[119083] = true, -- Orcish Sideboard, Engraved
-	[119084] = true, -- Orcish Cabinet, Engraved
-	[119085] = true, -- Orcish Hutch"] = true, Engraved
-	[119086] = true, -- Orcish Coffer, Bolted
-	[119087] = true, -- Orcish Cupboards, Peaked
-	[119088] = true, -- Orcish Dresser, Engraved
-	[119089] = true, -- Orcish Cabinet, Bedside
-	[119090] = true, -- Orcish Counter, Corner
-	[119091] = true, -- Orcish Hutch"] = true, Storage
-	[119092] = true, -- Orcish Shelves, Storage
-	[119093] = true, -- Orcish Nightstand, Engraved
-	[119094] = true, -- Orcish Divider, Folded
-	[119095] = true, -- Orcish Divider, Curved
-	[119096] = true, -- Orcish Table, Game
-	[119097] = true, -- Orcish Table, Grand
-	[119098] = true, -- Orcish Throne, Peaked
-	[119099] = true, -- Orcish Stein, Horn
-	[119100] = true, -- Orcish Mug, Horn
-	[119101] = true, -- Orcish Knife, Kitchen
-	[119102] = true, -- Orcish Backpack
-	[119103] = true, -- Orcish Bowl, Buffed
-	[119104] = true, -- Orcish Platter, Serving
-	[119105] = true, -- Orcish Urn, Sealed
-	[119106] = true, -- Orcish Tapestry, Axe
-	[119107] = true, -- Orcish Tapestry, Heroes
-	[119108] = true, -- Orcish Tapestry, Sword
-	[119109] = true, -- Orcish Vessel, Sealed
-	[119110] = true, -- Orcish Cauldron, Sealed
-	[119111] = true, -- Orcish Candleholder, Horn
-	[119112] = true, -- Orcish Candlestick, Horn
-	[119113] = true, -- Orcish Candle Sconce, Horn
-	[119114] = true, -- Orcish Brazier, Bordered
-	[119115] = true, -- Orcish Brazier, Hanging
-	[119116] = true, -- Orcish Brazier, Tabletop
-	[119117] = true, -- Orcish Brazier, Floor
-	[119118] = true, -- Orcish Sconce, Bordered
-	[119119] = true, -- Orcish Sconce, Scrolled
-	[119120] = true, -- Orcish Cradle, Peaked
-	[121306] = true, -- Orcish Figurine, Strength
-	[119121] = true, -- Orcish Mirror, Peaked
-	[119122] = true, -- Orcish Tapestry, War
-	[119123] = true, -- Orcish Chandelier, Spiked
-	[119124] = true, -- Redguard Carriage, Practical
-	[119125] = true, -- Redguard Cart, Practical
-	[119126] = true, -- Redguard Wagon, Merchant
-	[119127] = true, -- Redguard Cart, Work
-	[119128] = true, -- Redguard Bin, Roped
-	[119129] = true, -- Redguard Bin, Sealed
-	[119130] = true, -- Redguard Pot, Sealed
-	[119131] = true, -- Redguard Pot, Capped
-	[119132] = true, -- Redguard Desk, Florid
-	[119133] = true, -- Redguard Rack, Barrel
-	[119134] = true, -- Redguard Bar, Long Cabinet
-	[119135] = true, -- Redguard Trunk, Heavy
-	[119136] = true, -- Redguard Bed, Wide
-	[119137] = true, -- Redguard Bed, Full
-	[119138] = true, -- Redguard Couch"] = true, Bolted
-	[119139] = true, -- Redguard Bench"] = true, Slatted
-	[119140] = true, -- Redguard Armchair, Slatted
-	[119141] = true, -- Redguard Chair, Backless
-	[119142] = true, -- Redguard Chair, Slatted
-	[119143] = true, -- Redguard Desk, Sturdy
-	[119144] = true, -- Redguard Nightstand, Sturdy
-	[119145] = true, -- Redguard Table, Sturdy
-	[119146] = true, -- Redguard Stool, Sturdy
-	[119147] = true, -- Redguard Stool, Block
-	[119148] = true, -- Redguard Shelf, Sturdy
-	[119149] = true, -- Redguard Pot, Hanging Brushed
-	[119150] = true, -- Redguard Kabobs, Wax
-	[119151] = true, -- Redguard Vessel, Lacquered
-	[119152] = true, -- Redguard Urn, Lacquered
-	[119153] = true, -- Redguard Pot, Ceramic
-	[119154] = true, -- Redguard Curtain, Smoky
-	[119155] = true, -- Redguard Curtain, Desert Rose
-	[119156] = true, -- Redguard Banner, Post
-	[119157] = true, -- Redguard Candlestick, Practical
-	[119158] = true, -- Redguard Candleholder, Practical
-	[119159] = true, -- Redguard Candelabra, Practical
-	[119160] = true, -- Redguard Well, Covered
-	[119161] = true, -- Redguard Cup, Empty
-	[119162] = true, -- Redguard Cup, Full
-	[119163] = true, -- Redguard Caravan, Practical
-	[119164] = true, -- Redguard Carriage, Merchant
-	[119165] = true, -- Redguard Vase, Lacquered
-	[119166] = true, -- Redguard Pot, Lacquered
-	[119167] = true, -- Redguard Amphora, Polished
-	[119168] = true, -- Redguard Cask, Sealed
-	[119169] = true, -- Redguard Keg, Hefty
-	[119170] = true, -- Redguard Couch"] = true, Padded
-	[119171] = true, -- Redguard Cabinet, Inlaid
-	[119172] = true, -- Redguard Armchair, Cushioned
-	[119173] = true, -- Redguard Cupboard, Lattice
-	[119174] = true, -- Redguard Vanity, Florid
-	[119175] = true, -- Redguard Counter, Corner
-	[119176] = true, -- Redguard Counter, Cabinet
-	[119177] = true, -- Redguard Shelf, Barrel
-	[119178] = true, -- Redguard Nightstand, Florid
-	[119179] = true, -- Redguard Divider, Florid
-	[119180] = true, -- Redguard Sofa, Desert Flame
-	[119181] = true, -- Redguard Tuffet, Flames
-	[119182] = true, -- Redguard Stool, Padded
-	[119183] = true, -- Redguard Bed, Wide Grand
-	[119184] = true, -- Redguard Bed, Full Arched
-	[119185] = true, -- Redguard Bowl, Hanging Star
-	[119186] = true, -- Redguard Urn, Star
-	[119187] = true, -- Redguard Footlocker, Braced
-	[119188] = true, -- Redguard Table, Grand Oasis
-	[119189] = true, -- Redguard Table, Oasis
-	[119190] = true, -- Redguard End Table, Oasis
-	[119191] = true, -- Redguard Trunk, Bolted
-	[119192] = true, -- Redguard Wine Rack, Sturdy
-	[119193] = true, -- Redguard Shelf, Arched
-	[119194] = true, -- Redguard Wardrobe, Inlaid
-	[119195] = true, -- Redguard Kabobs, Plate
-	[119196] = true, -- Redguard Runner, Sun
-	[119197] = true, -- Redguard Mat, Sunset
-	[119198] = true, -- Redguard Carpet, Dunes
-	[119199] = true, -- Redguard Tapestry, Lattice
-	[119200] = true, -- Redguard Satchel, Heavy
-	[119201] = true, -- Redguard Goblet, Empty
-	[119202] = true, -- Redguard Goblet, Full
-	[119203] = true, -- Redguard Spittoon, Gilded
-	[119204] = true, -- Redguard Cauldron, Clawfoot
-	[119205] = true, -- Redguard Sconce, Polished
-	[119206] = true, -- Redguard Mug, Empty
-	[119207] = true, -- Redguard Mug, Full
-	[119208] = true, -- Redguard Tankard, Empty
-	[119209] = true, -- Redguard Tankard, Full
-	[119210] = true, -- Redguard Streetlamp, Single
-	[119211] = true, -- Redguard Streetlamps, Paired
-	[119212] = true, -- Redguard Streetlamps, Triple
-	[119213] = true, -- Redguard Brazier, Robust
-	[119214] = true, -- Redguard Candlestick, Polished
-	[119215] = true, -- Redguard Candleholder, Polished
-	[119216] = true, -- Redguard Well, Arched
-	[119217] = true, -- Redguard Bowl, Gilded
-	[119218] = true, -- Redguard Censer, Hanging Bell
-	[119219] = true, -- Redguard Censer, Hanging Horn
-	[119220] = true, -- Redguard Basket, Closed
-	[119221] = true, -- Redguard Mat, Meditation
-	[119222] = true, -- Redguard Mat, Desert Sun
-	[119223] = true, -- Redguard Mat, Sunrise
-	[119224] = true, -- Redguard Awning, Desert Flame
-	[119225] = true, -- Redguard Tent, Scaled Flames
-	[119226] = true, -- Redguard Canopy, Dawn
-	[119228] = true, -- Redguard Caravan, Cargo
-	[119229] = true, -- Redguard Caravan, Merchant
-	[119230] = true, -- Redguard Brazier, Garish
-	[119231] = true, -- Redguard Urn, Mural
-	[119232] = true, -- Redguard Pillow, Sunset
-	[119233] = true, -- Redguard Pillow, Oasis
-	[119234] = true, -- Redguard Pillow, Florid Oasis
-	[119235] = true, -- Redguard Pillow Roll, Oasis
-	[119236] = true, -- Redguard Throw Pillow, Oasis
-	[119238] = true, -- Redguard Bed, Wide Canopy
-	[119239] = true, -- Redguard Couch"] = true, Slatted
-	[119240] = true, -- Redguard Bench"] = true, Padded
-	[119241] = true, -- Redguard Wardrobe, Braced
-	[119242] = true, -- Redguard Bookcase, Arched
-	[119243] = true, -- Redguard Wardrobe, Sturdy
-	[119244] = true, -- Redguard Bookcase, Piled
-	[119245] = true, -- Redguard Bookcase, Full
-	[119246] = true, -- Redguard Armchair, Starry
-	[119247] = true, -- Redguard Chair, Starry
-	[119248] = true, -- Redguard Desk, Bolted
-	[119249] = true, -- Redguard Vanity, Bolted
-	[119250] = true, -- Redguard Nightstand, Bolted
-	[119251] = true, -- Redguard Pot, Hanging Garish
-	[119252] = true, -- Redguard Table, Formal
-	[119253] = true, -- Redguard Table, Game
-	[119254] = true, -- Redguard Divider, Lattice
-	[119255] = true, -- Redguard Stool, Starry
-	[119256] = true, -- Redguard Footstool, Starry
-	[119257] = true, -- Redguard Cupboard, Sturdy
-	[119258] = true, -- Redguard Shelf, Bolted
-	[119259] = true, -- Redguard Wine Rack, Inlaid
-	[119260] = true, -- Redguard Bench"] = true, Arc
-	[119261] = true, -- Redguard Pot, Mosaic
-	[119262] = true, -- Redguard Pot, Hanging Mosaic
-	[119263] = true, -- Redguard Slices, Wax
-	[119264] = true, -- Redguard Runner, Oasis
-	[119265] = true, -- Redguard Mat, Desert
-	[119266] = true, -- Redguard Carpet, Mirage
-	[119267] = true, -- Redguard Tapestry, Oasis
-	[119268] = true, -- Redguard Chalice, Empty
-	[119269] = true, -- Redguard Chalice, Full
-	[119270] = true, -- Redguard Hourglass of Desert Sands
-	[119271] = true, -- Redguard Jar, Oasis
-	[119272] = true, -- Redguard Vase, Baroque
-	[119273] = true, -- Redguard Bottle, Delicate
-	[119274] = true, -- Redguard Jar, Baroque
-	[119275] = true, -- Redguard Decanter, Delicate
-	[119276] = true, -- Redguard Lantern, Delicate
-	[119277] = true, -- Redguard Streetlamps, Full
-	[119278] = true, -- Redguard Candelabra, Twisted
-	[119279] = true, -- Redguard Candelabra, Polished
-	[119280] = true, -- Redguard Chandelier, Polished
-	[119281] = true, -- Redguard Chandelier, Polished Grated
-	[119282] = true, -- Redguard Awning, Oasis
-	[119283] = true, -- Redguard Tent, Starry
-	[119284] = true, -- Redguard Firepit, Stone
-	[119285] = true, -- Redguard Counter, Block Island
-	[119286] = true, -- Redguard Counter, Bar Island
-	[119287] = true, -- Redguard Counter, Grill
-	[119288] = true, -- Redguard Brazier, Enchanted
-	[119290] = true, -- Redguard Canopy, Stars
-	[119291] = true, -- Redguard Pillow, Lattice Flames
-	[119292] = true, -- Redguard Pillow, Florid Flames
-	[119293] = true, -- Redguard Pillow, Florid Sunset
-	[119295] = true, -- Redguard Table, Inlaid
-	[119296] = true, -- Redguard Table, Grand Inlaid
-	[119297] = true, -- Redguard End Table, Tea
-	[119298] = true, -- Redguard Pillow Roll, Desert Flame
-	[119299] = true, -- Redguard Throw Pillow, Desert Flame
-	[119300] = true, -- Redguard Tuffet, Oasis
-	[119301] = true, -- Redguard End Table, Inlaid
-	[119302] = true, -- Redguard Decanter, Glass
-	[119303] = true, -- Redguard Bottle, Stained Glass
-	[119304] = true, -- Redguard Vial, Stained Glass
-	[119305] = true, -- Redguard Carpet, Oasis
-	[119306] = true, -- Redguard Mat, Mirage
-	[119307] = true, -- Redguard Mat, Starburst
-	[119308] = true, -- Redguard Lantern, Cannister
-	[119309] = true, -- Redguard Lamp, Caged
-	[119310] = true, -- Redguard Lantern, Caged
-	[119311] = true, -- Redguard Lantern, Caged Stand
-	[119312] = true, -- Redguard Tapestry, Starry	
-	[121373] = true, -- Redguard Censer, Hanging Bulb
-	[119314] = true, -- Rough Stretcher, Military
-	[119317] = true, -- Rough Crate, Reinforced
-	[119325] = true, -- Rough Bag, Burlap
-	[119328] = true, -- Rough Hatchet, Practical
-	[119330] = true, -- Rough Knife, Butcher
-	[119331] = true, -- Rough Bowl, Common
-	[119338] = true, -- Rough Platform, Stage
-	[119342] = true, -- Rough Crate, Bolted
-	[119344] = true, -- Rough Box, Boarded
-	[119348] = true, -- Rough Container, Cargo
-	[119350] = true, -- Rough Bedroll, Basic
-	[119351] = true, -- Lettuce, Display
-	[119352] = true, -- Pumpkin, Display
-	[119353] = true, -- Winter Squash"] = true, Display
-	[119354] = true, -- Beet String, Display
-	[119355] = true, -- Garlic String, Display
-	[119356] = true, -- Beets, Display
-	[119357] = true, -- Common Counter, Island Stall
-	[119358] = true, -- Common Barrel, Sealed
-	[119359] = true, -- Common Basket, Closed
-	[119360] = true, -- Common Basket, Lid
-	[119361] = true, -- Common Basket, Open
-	[119362] = true, -- Common Basket, Tall
-	[119363] = true, -- Common Bucket, Basic
-	[119364] = true, -- Common Bucket, Rope
-	[119365] = true, -- Common Cargo, Covered
-	[119366] = true, -- Common Crate, Sealed
-	[119367] = true, -- Common Washtub, Empty
-	[119368] = true, -- Footstool, Block
-	[119369] = true, -- Common Trough
-	[119370] = true, -- Common Wheelbarrow, Flat
-	[119371] = true, -- Common Wheelbarrow, Barrel
-	[119372] = true, -- Common Wheelbarrow, Sided
-	[119373] = true, -- Apple, Display
-	[119374] = true, -- Common Pack, Backpack
-	[119375] = true, -- Common Pack, Satchel
-	[119376] = true, -- Banana, Wax
-	[119377] = true, -- Common Bowl of Soup, Display
-	[119378] = true, -- Carrots, Wax
-	[119379] = true, -- Common Cleaver, Cooking
-	[119380] = true, -- Common Pot, Cooking
-	[119381] = true, -- Grapes, Wax
-	[119382] = true, -- Common Inkwell, Practical
-	[119383] = true, -- Common Plate, Simple
-	[119384] = true, -- Common Plate, Setting
-	[119385] = true, -- Sugar Pumpkin, Wax
-	[119386] = true, -- Radish"] = true, Wax
-	[119387] = true, -- Bowl, Serving
-	[119388] = true, -- Common Bowl of Stew, Display
-	[119389] = true, -- Common Platter, Serving
-	[119390] = true, -- Common Skillet, Practical
-	[119391] = true, -- Common Candle, Set
-	[119392] = true, -- Common Candles, Pair
-	[119393] = true, -- Common Candle, Lasting
-	[119394] = true, -- Common Bookrest, Practical
-	[119395] = true, -- Common Post, Flag Pole
-	[119396] = true, -- Common Lantern, Hanging
-	[119397] = true, -- Common Lantern, Stationary
-	[119399] = true, -- Common Post, Sign Holder
-	[119400] = true, -- Hammer, Forge
-	[119401] = true, -- Tongs, Forge
-	[119402] = true, -- Potato, Wax
-	[119403] = true, -- Common Table, Slanted
-	[119404] = true, -- Common Cage, Hunting
-	[119405] = true, -- Common Trap, Hunting
-	[119406] = true, -- Common Cargo, Sealed
-	[119407] = true, -- Common Cargo, Reinforced
-	[119408] = true, -- Simple Blue Banner
-	[119413] = true, -- Cauldron of Soup
-	[119416] = true, -- Cauldron of Stew
-	[119418] = true, -- Cauldron, Covered
-	[119420] = true, -- Cart, Sided
-	[119421] = true, -- Coffin, Lid
-	[119422] = true, -- Coffin, Case
-	[119423] = true, -- Keg
-	[119424] = true, -- Cleaver, Butcher's
-	[119425] = true, -- Hearty Bread
-	[119426] = true, -- Bread, Plain
-	[119427] = true, -- Cheese Wedge
-	[119428] = true, -- Common Bowl, Serving
-	[119429] = true, -- Ham, Display
-	[119432] = true, -- Hourglass, Common
-	[119437] = true, -- Pie, Display
-	[119438] = true, -- Baked Potato, Display
-	[119439] = true, -- Pot Pie, Display
-	[119440] = true, -- Pie Dish"] = true, Empty
-	[119441] = true, -- Steak, Display
-	[119442] = true, -- Teapot, Common
-	[119443] = true, -- Drumstick
-	[119444] = true, -- Candle, Group
-	[119445] = true, -- Lantern, Stationary
-	[119446] = true, -- Lantern, Hanging
-	[119447] = true, -- Candles, Lasting
-	[119448] = true, -- Minecart, Empty
-	[119449] = true, -- Minecart, Push
-	[119450] = true, -- Knife, Carving
-	[119451] = true, -- Kennel, Locked
-	[119454] = true, -- Plaque, Large
-	[119455] = true, -- Plaque, Standard
-	[119456] = true, -- Plaque, Small
-	[119462] = true, -- Plums, Bunch
-	[119463] = true, -- Tangerines, Bunch
-	[119464] = true, -- Peaches, Bunch
-	[119465] = true, -- Oranges, Bunch
-	[119466] = true, -- Podium, Engraved
-	[119467] = true, -- Cured Meat
-	[119468] = true, -- Cured Meats
-	[119469] = true, -- Cured Meat Chunks
-	[119470] = true, -- Cured Meat Chunk
-	[119471] = true, -- Cured Meat Pile
-	[119472] = true, -- Cured Meat Hock
-	[119476] = true, -- Grilling Rack
-	[119477] = true, -- Basket of Apples
-	[119478] = true, -- Basket of Apples, Full
-	[119479] = true, -- Basket of Lettuce
-	[119480] = true, -- Basket of Gourds
-	[119481] = true, -- Basket of Corn
-	[119482] = true, -- Basket of Tomatoes
-	[119483] = true, -- Gibbet, Single
-	[119484] = true, -- Bottle, Elixir
-	[119485] = true, -- Bottle, Liquor
-	[119486] = true, -- Vial, Delicate
-	[119487] = true, -- Pie Dish"] = true, Display
-	[119488] = true, -- Bottle, Wine
-	[119489] = true, -- Candle Set, Ritual
-	[119490] = true, -- Horn, Ritual
-	[119491] = true, -- Cured Meat Shank
-	[119518] = true, -- Cage, Wild Animal
-	[119520] = true, -- Cage, Covered
-	[119524] = true, -- Stockade
-	[119525] = true, -- Bread, Braided
-	[119526] = true, -- Goblet, Wine
-	[119527] = true, -- Bread, Round
-	[119529] = true, -- Bread Loaves, Round
-	[119532] = true, -- Bread, Hearty Loaves
-	[119533] = true, -- Box of Plums
-	[119539] = true, -- Sweetroll
-	[119540] = true, -- Desk, Engraved
-	[119541] = true, -- Fish"] = true, Small
-	[119542] = true, -- Fish"] = true, Medium
-	[119543] = true, -- Fish"] = true, Large
-	[119592] = true, -- Target Skeleton, Humanoid
+	115721, -- Argonian Chimney Stack
+	115722, -- Argonian Rack, Sturdy
+	115723, -- Argonian Shelves, Half
+	115724, -- Argonian Shelves, Full
+	115725, -- Argonian Snakes on a Rope
+	115726, -- Argonian Dried Leaves
+	115727, -- Argonian Lattice, Rough
+	115728, -- Argonian Tarp, Woven
+	115729, -- Argonian Tarp, Sturdy
+	115730, -- Argonian Counter, Long
+	115731, -- Argonian Pole, Split
+	115732, -- Argonian Stool, Roped
+	115733, -- Argonian Chair, Rough
+	115734, -- Argonian Table, Rough
+	115735, -- Argonian Cup, Tall
+	115736, -- Argonian Cup, Short
+	115737, -- Argonian Bowl, Wooden
+	115738, -- Argonian Baskets, Double
+	115739, -- Argonian Basket, Serving
+	115740, -- Argonian Mug, Tooth
+	115741, -- Argonian Ramekin, Hardened
+	115742, -- Argonian Pan, Frying
+	115743, -- Argonian Banner, Hanging
+	115744, -- Argonian Post, Sturdy
+	115745, -- Argonian Post, Rough
+	115746, -- Argonian Mat, Tidy Reed
+	115747, -- Argonian Mat, Rolled Reed
+	115748, -- Argonian Mat, Reed
+	115749, -- Argonian Tent, Reed
+	115750, -- Argonian Canopy, Reed
+	115751, -- Argonian Basket, Closed
+	115752, -- Argonian Bin, Woven
+	115753, -- Argonian Totem, Painted Skull
+	115754, -- Argonian Rack, Drying
+	115755, -- Argonian Totem, Frilled Skull
+	115756, -- Argonian Cage, Rat
+	115757, -- Argonian Cage, Bird
+	115758, -- Argonian Wind Chimes
+	115759, -- Argonian Bar, Woven Corner
+	115760, -- Argonian Snakes in a Basket
+	115761, -- Argonian Bed, Woven
+	115762, -- Argonian Bench", Woven
+	115763, -- Argonian Chair, Woven
+	115764, -- Argonian Trunk, Sturdy
+	115765, -- Argonian Bookshelf, Woven
+	115766, -- Argonian Dresser, Sturdy
+	115767, -- Argonian Shelf, Woven
+	115768, -- Argonian Bookcase, Sturdy
+	115769, -- Argonian Stool, Woven
+	115770, -- Argonian Table, Formal
+	115771, -- Argonian End Table, Woven
+	115772, -- Argonian Bowl, Serving
+	115773, -- Argonian Cup, Bordered
+	115774, -- Argonian Basket, Woven
+	115775, -- Argonian Bowl, Bordered
+	115776, -- Argonian Ramekin, Bordered
+	115777, -- Argonian Urn, Clawfoot
+	115778, -- Argonian Tray, Woven
+	115779, -- Argonian Curtain, Woven
+	115780, -- Argonian Curtains, Woven
+	115781, -- Argonian Medallion, Stone
+	115782, -- Argonian Scaleskin, Pale
+	115783, -- Argonian Scaleskin, Striped
+	115784, -- Argonian Scaleskin, Faded
+	115785, -- Argonian Lamppost
+	115787, -- Argonian Canopy, Frilled
+	115788, -- Argonian Canopy, Skull
+	115789, -- Argonian Canopy, Scaled
+	115790, -- Argonian Trunk, Painted
+	115791, -- Argonian Chest, Carved
+	115792, -- Argonian Skull, Crocodile
+	115793, -- Argonian Totem of the Snake
+	115794, -- Argonian Skull, Lizard
+	115795, -- Argonian Bone Chimes
+	115796, -- Argonian Hamper, Woven
+	115799, -- Argonian Table, Horn
+	115800, -- Argonian Curtain of Smoke
+	115801, -- Argonian Curtain of the Nest
+	115802, -- Argonian Drum, Ceremonial
+	115803, -- Argonian Bowl, Ritual
+	115804, -- Argonian Jug, Ritual
+	115805, -- Argonian Pot, Ritual
+	115806, -- Argonian Pestle, Bone
+	115807, -- Argonian Seat of Authority
+	115808, -- Argonian Seat of Honor
+	115809, -- Argonian Mortar and Pestle, Bone
+	115810, -- Argonian Mortar, Bone
+	115811, -- Argonian Pedestal, Altar
+	115812, -- Argonian Censer
+	115813, -- Argonian Relic, Small Serpent
+	115814, -- Argonian Relic, Serpent
+	115815, -- Argonian Seat of Comfort
+	115816, -- Argonian Divider, Stretched
+	115817, -- Argonian Bedroll, Woven
+	115818, -- Argonian Banners, Frilled
+	115819, -- Argonian Banner, Half Hands
+	115820, -- Argonian Post, Frilled
+	115821, -- Argonian Lanterns, String
+	115822, -- Argonian Lanterns, Strand
+	115823, -- Argonian Light, Stick
+	115824, -- Argonian Lamp, Mud
+	115825, -- Argonian Brazier, Mud
+	115826, -- Argonian Lights, Branch
+	115827, -- Argonian Bark, Painted
+	115828, -- Argonian Relic, Basin
+	115829, -- Argonian Totem of Skulls
+	115830, -- Argonian Gravestick
+	115831, -- Argonian Tree of Lights
+	115832, -- Argonian Tile, Inscribed
+	115833, -- Wood Elf Stool, Leather
+	115834, -- Wood Elf Counter, Long Leather
+	115835, -- Wood Elf Shelf, Tiered
+	115836, -- Wood Elf Table, Leather
+	115837, -- Wood Elf Bar, Sturdy
+	115838, -- Wood Elf Bar, Long
+	115839, -- Wood Elf Bar, Drying
+	115840, -- Wood Elf Bar, Short
+	115841, -- Wood Elf Rack, Brace
+	115842, -- Wood Elf Divider, Stretched
+	115843, -- Wood Elf Divider, Narrow
+	115844, -- Wood Elf Vase, Swirled
+	115845, -- Wood Elf Urn, Scratched
+	115846, -- Wood Elf Urn, Deer
+	115847, -- Wood Elf Cup, Ceramic
+	115848, -- Wood Elf Cup, Chipped
+	115849, -- Wood Elf Cup, Striped
+	115850, -- Wood Elf Pedestal, Engraved
+	115851, -- Wood Elf Basin, Stone
+	115852, -- Wood Elf Awning, Leather
+	115853, -- Wood Elf Canopy, Leather
+	115854, -- Wood Elf Bedding, Scattered
+	115855, -- Wood Elf Grinding Stone
+	115856, -- Wood Elf Hide, Heavy
+	115857, -- Wood Elf Wall Hide, Pierced
+	115858, -- Wood Elf Wall Hide, Fur
+	115859, -- Wood Elf Wall Hide, Spotted
+	115860, -- Wood Elf Cauldron, Stone
+	115861, -- Wood Elf Tent, Sturdy
+	115862, -- Wood Elf Chair, Leather
+	115863, -- Wood Elf Bookcase, Leather
+	115864, -- Wood Elf Table, Formal
+	115865, -- Wood Elf Barrel, Ceramic
+	115866, -- Wood Elf Cask, Ceramic
+	115867, -- Wood Elf Bladder, Fermenting
+	115868, -- Wood Elf Cauldron, Ceramic
+	115869, -- Wood Elf Hammock, Single
+	115870, -- Wood Elf Hammock, Double
+	115871, -- Wood Elf Rack, Single
+	115872, -- Wood Elf Rack, Double
+	115873, -- Wood Elf Divider, Relaxed
+	115874, -- Wood Elf Divider, Taut
+	115875, -- Wood Elf Vessel, Tiered Ceramic
+	115876, -- Wood Elf Vessel, Tiered Painted
+	115877, -- Wood Elf Pitcher, Painted
+	115878, -- Wood Elf Pitcher, Marked
+	115879, -- Wood Elf Vase, Painted
+	115880, -- Wood Elf Vase, Chipped
+	115881, -- Wood Elf Pitcher, Chipped
+	115882, -- Wood Elf Pitcher, Ceramic
+	115883, -- Wood Elf Bowl, Striped
+	115884, -- Wood Elf Canopy, Braced
+	115885, -- Wood Elf Bedding, Layered
+	115886, -- Wood Elf Censer, Hanging
+	115887, -- Wood Elf Tent, Frame
+	115888, -- Wood Elf Rack, Meat
+	115889, -- Wood Elf Totem, Framed
+	115890, -- Wood Elf Totem, Skull
+	115891, -- Wood Elf Trough", Slop
+	115892, -- Wood Elf Bin, Blue Feathers
+	115893, -- Wood Elf Bin, Feathers
+	115894, -- Wood Elf Cask, Painted
+	121371, -- Wood Elf Hearth, Forest
+	121309, -- High Elf Medal, Winged
+	115895, -- Wood Elf Fish Dish
+	115896, -- Wood Elf Tapestry, Painted
+	115897, -- Wood Elf Tapestry, Deer
+	115898, -- Wood Elf Tapestry, Vine
+	115899, -- Wood Elf Canopy, Spine
+	115900, -- Wood Elf Bedding, Padded
+	115901, -- Wood Elf Skull and Bones
+	115902, -- Wood Elf Bone Chimes
+	115903, -- Wood Elf Rack, Dried Fish
+	115904, -- Wood Elf Rack, Dried Meat
+	115906, -- Breton Stall, Merchant
+	115907, -- Breton Cart, Wheelbarrow
+	115908, -- Breton Bed, Bunk
+	115909, -- Breton Bed, Single
+	115910, -- Breton Pew, Windowed
+	115911, -- Breton Bench", Plain
+	115912, -- Breton Nightstand, Open
+	115913, -- Breton Bookcase, Tall
+	115914, -- Breton Chair, Slatted
+	115915, -- Breton Chair, Windowed
+	115916, -- Breton Shelves, Double
+	115917, -- Breton Rack, Barrel
+	115918, -- Breton Dresser, Open
+	115919, -- Breton Desk
+	115920, -- Breton Table, Dining
+	115921, -- Breton Trestle, Sturdy
+	115922, -- Breton Table, Kitchen
+	115923, -- Breton Shelf, Long
+	115924, -- Breton Pitcher, Ceramic
+	115925, -- Breton Carpet, Bordered
+	115926, -- Breton Carpet, Square
+	115927, -- Breton Amphora, Ceramic
+	115928, -- Breton Vase, Ceramic
+	115929, -- Breton Lightpost, Single
+	115930, -- Breton Sconce, Sturdy Torch
+	115931, -- Breton Street Post, Stone
+	115932, -- Breton Sconce, Torch
+	115933, -- Breton Street Post, Plain
+	115934, -- Breton Bed, Four-poster
+	115935, -- Breton Bed, Full
+	115936, -- Breton Pew, Knotwork
+	115937, -- Breton Bench", Knotwork
+	115938, -- Breton Bookcase, Knotwork
+	115939, -- Breton Chair, Rocking
+	115940, -- Breton Chest, Knotwork
+	115941, -- Breton Hutch", Knotwork
+	115942, -- Breton Cupboard, Knotwork
+	115943, -- Breton Chest of Drawers
+	115944, -- Breton Counter, Long Cabinet
+	115945, -- Breton Shelf, Barrel Rack
+	115946, -- Breton Stool, Plain
+	115947, -- Breton Desk, Knotwork
+	115948, -- Breton Table, Round
+	115949, -- Breton Table, Square
+	115950, -- Breton Shelf, Scrolled
+	115951, -- Breton Rack, Wine
+	115952, -- Breton Carpet, Full
+	115953, -- Breton Rug, Starburst
+	115954, -- Breton Carpet, Dark
+	115955, -- Breton Pottery, Lid
+	115956, -- Breton Urn, Glazed
+	115957, -- Breton Amphora, Glazed
+	115959, -- Breton Vase, Glazed
+	115961, -- Breton Streetlight, Arched Stone
+	115962, -- Breton Streetlight, Paired Stone
+	115963, -- Breton Cart, Covered Open
+	115964, -- Breton Stall, Vending
+	115965, -- Breton Lightpost, Arched
+	115966, -- Breton Streetlight, Paired
+	115967, -- Breton Figure, Stone
+	115968, -- Breton Chandelier, Wrought Iron
+	115969, -- Breton Curtains, Window
+	115970, -- Breton Bed, Canopy
+	115971, -- Breton Sideboard, Knotwork
+	115972, -- Breton Chair, Padded
+	115973, -- Breton Armchair, Padded
+	115974, -- Breton Cabinet, Knotwork
+	115975, -- Breton Curio, Knotwork
+	115976, -- Breton Drapes, Grand
+	115977, -- Breton Coffer, Knotwork
+	115978, -- Breton Cradle, Infant
+	115979, -- Breton Dresser, Knotwork
+	115980, -- Breton Counter, Corner
+	115981, -- Breton Counter, Cabinet
+	115982, -- Breton Mirror, Knotwork
+	115983, -- Breton Nightstand, Knotwork
+	115984, -- Breton Divider, Folded Knotwork
+	115985, -- Breton Divider, Curved Knotwork
+	115986, -- Breton Stool, Padded
+	115987, -- Breton Desk, Scholar's
+	115988, -- Breton Table, Formal
+	115989, -- Breton Trestle, Formal
+	115990, -- Breton Rug, Bordered
+	115991, -- Breton Runner, Bordered
+	115992, -- Breton Carpet, Bordered
+	115993, -- Breton Medallion, Lion
+	115994, -- Breton Tablecloth", Blue
+	115995, -- Breton Lamp, Oil
+	115996, -- Breton Tablecloth", Striped
+	115997, -- Breton Footlocker, Knotwork
+	115998, -- Breton Armoire, Knotwork
+	115999, -- Breton Cart, Palanquin
+	116000, -- Breton Tapestry, Vines
+	116001, -- Breton Tapestry, Boughs
+	116002, -- Breton Urn Lid, Striated
+	116003, -- Breton Urn, Striated
+	116004, -- Breton Lamp, Hanging
+	116005, -- Breton Streetlight, Full Stone
+	116006, -- Breton Vase, Delicate
+	116007, -- Breton Streetlight, Full
+	116008, -- Breton Sconce, Floor
+	116009, -- Breton Sconce, Grand
+	116010, -- Breton Candelabra, Formal
+	116011, -- Breton Sconce, Wall
+	116012, -- Dark Elf Cart, Merchant
+	116013, -- Dark Elf Rack, Barrel
+	116014, -- Dark Elf Armchair, Angled
+	116015, -- Dark Elf Chest of Drawers
+	116016, -- Dark Elf Bed, Single
+	116017, -- Dark Elf Table, Formal
+	116018, -- Dark Elf Shelf, Wall
+	116019, -- Dark Elf Urn, Banded
+	116020, -- Dark Elf Basin, Ringed
+	116021, -- Dark Elf Runner, Bordered
+	116022, -- Dark Elf Carpet, Mottled
+	116023, -- Dark Elf Carpet, Patterned
+	116024, -- Dark Elf Tapestry, Emblazoned
+	116025, -- Dark Elf Candle, Claw Base
+	116026, -- Dark Elf Lantern, Oil
+	116027, -- Dark Elf Streetpost, Banner
+	116028, -- Dark Elf Streetpost, Banners
+	116029, -- Dark Elf Wagon, Merchant
+	116030, -- Dark Elf Caravan, Cargo
+	116031, -- Dark Elf Dresser, Angled
+	116032, -- Dark Elf Bookcase, Sectioned
+	116033, -- Dark Elf Chair, Angled
+	116034, -- Dark Elf Counter, Bar
+	116035, -- Dark Elf Wardrobe, Scaled
+	116036, -- Dark Elf Desk, Angled
+	116037, -- Dark Elf Bed, Full
+	116038, -- Dark Elf Pillow, Body
+	116039, -- Dark Elf Stool, Angled
+	116040, -- Dark Elf Table, Tea
+	116041, -- Dark Elf Trestle, Scaled
+	116042, -- Dark Elf Wine Rack, Sturdy
+	116043, -- Dark Elf Shelf, Barrel
+	116044, -- Dark Elf Pot, Scaled
+	116045, -- Dark Elf Decanter, Glass
+	116046, -- Dark Elf Cruet, Glass
+	116047, -- Dark Elf Flags, Hanging
+	116048, -- Dark Elf Cauldron, Banded
+	116049, -- Dark Elf Carpet, Mossy
+	116050, -- Dark Elf Carpet, Fungal
+	116051, -- Dark Elf Rug, Fungal
+	116052, -- Dark Elf Hook, Wall
+	116053, -- Dark Elf Lantern, Caged
+	116054, -- Dark Elf Lantern, Hanging
+	116055, -- Dark Elf Streetlamp, Stone
+	116056, -- Dark Elf Streetlamps, Stone
+	116057, -- Dark Elf Sofa, Angled
+	116058, -- Dark Elf Bed, Canopy
+	116059, -- Dark Elf Counter, Corner
+	116060, -- Dark Elf Counter, Block
+	116061, -- Dark Elf Nightstand, Angled
+	116062, -- Dark Elf Pillow, Cushion
+	116063, -- Dark Elf Pillow, Roll
+	116064, -- Dark Elf Divider, Folded
+	116065, -- Dark Elf End Table, Angled
+	116066, -- Dark Elf Trunk, Buckled
+	116067, -- Dark Elf Wardrobe, Angled
+	116068, -- Dark Elf Kettle Cooker
+	116069, -- Dark Elf Pot, Banded
+	116070, -- Dark Elf Carpet, Ashen
+	116071, -- Dark Elf Rug, Mossy
+	116072, -- Dark Elf Rug, Striated
+	116073, -- Dark Elf Medallion, Tribunal
+	116074, -- Dark Elf Censer, Hanging
+	116075, -- Dark Elf Thurible, Caged
+	116077, -- Dark Elf Cauldron, Ringed
+	116078, -- Dark Elf Lantern, Ashen
+	116079, -- Dark Elf Candelabra, Angled
+	116080, -- Dark Elf Candle, Votive Tray
+	116081, -- Khajiit Firepit, Brick
+	116082, -- Khajiit Loft, Reed
+	116083, -- Khajiit Dresser, Faded
+	116084, -- Khajiit Stool, Crescent
+	116085, -- Khajiit End Table, Faded
+	116086, -- Khajiit Drapes, Tattered
+	116087, -- Khajiit Bottle, Amber
+	116088, -- Khajiit Flask, Amber
+	116089, -- Khajiit Carpet, Crescent Moons
+	116090, -- Khajiit Vase, Amber
+	116091, -- Khajiit Banner, Moons
+	116092, -- Khajiit Banner, Crescents
+	116093, -- Khajiit Candle, Clawfoot
+	116094, -- Khajiit Frame, Arched
+	116095, -- Khajiit Banner, Claw
+	116096, -- Khajiit Bed, Fur
+	116097, -- Khajiit Bedding, Padded
+	116098, -- Khajiit Signpost, Fortified
+	116099, -- Khajiit Bed, Faded
+	116100, -- Khajiit Bench", Padded
+	116101, -- Khajiit Bookshelf, Arched
+	116102, -- Khajiit Trunk, Arched
+	116103, -- Khajiit Counter, Faded
+	116104, -- Khajiit Nightstand, Gilded
+	116105, -- Khajiit Table, Formal
+	116106, -- Khajiit Jug, Amber
+	116107, -- Khajiit Pitcher, Amber
+	116108, -- Khajiit Carpet, Sun
+	116109, -- Khajiit Cushion, Long
+	116110, -- Khajiit Cushion, Single
+	116111, -- Khajiit Carafe, Amber
+	116112, -- Khajiit Decanter, Amber
+	116113, -- Khajiit Banner, Hooked
+	116114, -- Khajiit Brazier, Claw
+	116115, -- Khajiit Basin, Claw
+	116116, -- Khajiit Lantern, Hanging
+	116117, -- Khajiit Tent, Mercantile
+	116118, -- Khajiit Tent, Storage
+	116119, -- Khajiit Wagon, Reed
+	116120, -- Khajiit Curtains, Moons
+	116121, -- Khajiit Barstool, Clawfoot
+	116122, -- Khajiit Barstool, Padded
+	116123, -- Khajiit Skooma Bubbler
+	116124, -- Khajiit Tent, Vacation
+	116125, -- Khajiit Bed, Canopy
+	116126, -- Khajiit Couch", Padded
+	116127, -- Khajiit Bookcase, Arched
+	116128, -- Khajiit Footlocker, Arched
+	116129, -- Khajiit Counter, Long Cabinet
+	116130, -- Khajiit Desk, Faded
+	116131, -- Khajiit Divider, Folding
+	116132, -- Khajiit Table, Round
+	116133, -- Khajiit Wardrobe, Arched
+	116134, -- Khajiit Rug, Moons
+	116135, -- Khajiit Drapes, Grand
+	116136, -- Khajiit Pillow, Crescents
+	116137, -- Khajiit Vial, Amber
+	116138, -- Khajiit Urn, Amber
+	116139, -- Khajiit Vessel, Amber
+	116140, -- Khajiit Candles, Clawfoot
+	116141, -- Khajiit Sofa, Padded
+	116142, -- Khajiit Pillow, Roll
+	116143, -- Khajiit Rug, Sun
+	116144, -- Khajiit Brazier, Hanging
+	116145, -- Khajiit Sconce, Spiked
+	116146, -- Khajiit Candle-Filled Lamp
+	116147, -- Nord Cart, Hay
+	116148, -- Nord Trunk, Heavy
+	116149, -- Nord Hutch", Rough
+	116150, -- Nord Dresser, Rough
+	116151, -- Nord Nightstand, Rough
+	116152, -- Nord Lantern, Cage
+	116153, -- Nord Pot, Ceramic
+	116154, -- Nord Urn, Ceramic
+	116155, -- Nord Bed, Single
+	116156, -- Nord Bench", Braced
+	116157, -- Nord Stool, Rough
+	116158, -- Nord Table, Kitchen
+	116159, -- Nord Shelf, Wall
+	116160, -- Nord Shelf, Braced
+	116161, -- Nord Pot, Covered
+	116162, -- Nord Pot, Stew
+	116163, -- Nord Candle, Tealight
+	116164, -- Nord Candleholder, Cup
+	116165, -- Nord Torch", Triple
+	116166, -- Nord Cart, Cargo
+	116167, -- Nord Trunk, Faded
+	116168, -- Nord Cauldron, Glazed
+	116169, -- Nord Pot, Chunky Stew
+	116170, -- Nord Amphora, Glazed
+	116171, -- Nord Vase, Bent
+	116172, -- Nord Bed, Sleigh
+	116173, -- Nord Bench", Plank
+	116174, -- Nord Bookshelf, Alcove
+	116175, -- Nord Chair, Braced
+	116176, -- Nord Counter, Long
+	116177, -- Nord Dresser, Braced
+	116178, -- Nord Stool, Braced
+	116179, -- Nord Table, Dining
+	116180, -- Nord Table, Round
+	116181, -- Nord Table, Braced
+	116182, -- Nord Trestle, Braced
+	116183, -- Nord Footlocker, Braced
+	116184, -- Nord Armoire, Lattice
+	116185, -- Nord Rack, Wine
+	116186, -- Nord Crockpot, Carrot Soup
+	116187, -- Nord Crockpot, Covered
+	116188, -- Nord Tapestry, Dragon
+	116189, -- Nord Lantern, Hanging
+	116190, -- Nord Drinking Horn, Empty
+	116191, -- Nord Cart, Covered
+	116192, -- Nord Chest, Latched
+	116193, -- Nord Urn, Braided
+	116194, -- Nord Bed, Canopy
+	116195, -- Nord Bookcase, Alcove
+	116196, -- Nord Chair, Lattice
+	116197, -- Nord Counter, Corner
+	116198, -- Nord Counter, Cabinet
+	116199, -- Nord Desk, Tied
+	116200, -- Nord Nightstand, Braced
+	116201, -- Nord Divider, Folding
+	116202, -- Nord Table, Great
+	116203, -- Nord Table, Formal
+	116204, -- Nord Table, Game
+	116205, -- Nord Trestle, Tied
+	116206, -- Nord Rug, Bearskin
+	116207, -- Nord Banner, Knotwork
+	116208, -- Nord Tapestry, Ship
+	116209, -- Nord Candle, Antler
+	116210, -- Nord Chandelier, Antler
+	116211, -- Nord Streetlamps, Stone
+	116212, -- Nord Lamppost, Stone
+	116213, -- Nord Brazier, Hanging
+	116216, -- Nord Trunk, Buckled
+	118916, -- High Elf Wagon, Covered
+	118917, -- High Elf Bed, Winged Double
+	118918, -- High Elf Bench", Covered
+	118919, -- High Elf Bookshelf, Winged
+	118920, -- High Elf Armoire, Winged
+	118921, -- High Elf Bookcase, Winged
+	118922, -- High Elf Dresser, Corner
+	118923, -- High Elf Chair, Regal Verdant
+	118924, -- High Elf Chair, Regal Winged
+	118925, -- High Elf Trunk, Jeweled
+	118926, -- High Elf Counter, Block
+	118927, -- High Elf Cabinet, Corner
+	118928, -- High Elf Desk, Regal Winged
+	118929, -- High Elf Dresser, Winged
+	118930, -- High Elf Divider, Delicate
+	118931, -- High Elf Divider, Carved
+	118932, -- High Elf Table, Tea
+	118933, -- High Elf Stool, Covered
+	118934, -- High Elf End Table, Winged
+	118935, -- High Elf Table, Winged Formal
+	118936, -- High Elf Table, Winged Kitchen
+	118937, -- High Elf Trestle, Winged
+	118938, -- High Elf Bowl, Serving
+	118939, -- High Elf Pot, Hanging
+	118940, -- High Elf Basin, Standing
+	118941, -- High Elf Platter, Winged
+	118942, -- High Elf Carpet, Eagle
+	118943, -- High Elf Tapestry, Eagle
+	118944, -- High Elf Vase, Winged
+	118945, -- High Elf Decanter, Glass
+	118946, -- High Elf Goblet, Winged
+	118947, -- High Elf Goblet, Glass
+	118948, -- High Elf Brazier, Winged
+	118949, -- High Elf Chandelier, Winged
+	118950, -- High Elf Candle, Winged
+	118951, -- High Elf Lamppost, Stone
+	118952, -- High Elf Candelabra, Winged
+	118953, -- High Elf Crest, Winged
+	118954, -- High Elf Streetlight, Stone
+	118955, -- Breton Cart, Covered Closed
+	118956, -- High Elf Wagon, Sturdy
+	118957, -- High Elf Bed, Winged
+	118958, -- High Elf Bed, Verdant
+	118959, -- High Elf Chest of Drawers
+	118960, -- High Elf Bookcase, Verdant
+	118961, -- High Elf Chair, Verdant
+	118962, -- High Elf Chair, Winged
+	118963, -- High Elf Bar, Overhanging
+	118964, -- High Elf Desk, Verdant
+	118965, -- High Elf Dresser, Verdant
+	118966, -- High Elf End Table, Verdant
+	118967, -- High Elf Table, Verdant Formal
+	118968, -- High Elf Table, Verdant Kitchen
+	118969, -- High Elf Trestle, Verdant
+	118970, -- High Elf Trunk, Winged
+	118971, -- High Elf Wine Rack, Folding
+	118972, -- High Elf Platter, Gilded
+	118973, -- High Elf Carpet, Water-Themed
+	118974, -- High Elf Carpet, Tree-Themed
+	118975, -- High Elf Tapestry, Water-Themed
+	118976, -- High Elf Tapestry, Tree-Themed
+	118977, -- High Elf Carafe, Gilded
+	118978, -- High Elf Vase, Gilded
+	118979, -- High Elf Bottle, Winged
+	118980, -- High Elf Flute, Wine
+	118981, -- High Elf Basin, Winged
+	118982, -- High Elf Lamppost, Spiked
+	118983, -- High Elf Lamp, Oil
+	118984, -- High Elf Bed, Bunk
+	118985, -- High Elf Bed, Single
+	118986, -- High Elf Bench", Curved
+	118987, -- High Elf Bookshelf, Verdant
+	118988, -- High Elf Counter, Long Cabinet
+	118989, -- High Elf Desk, Sturdy
+	118990, -- High Elf Dresser, Sturdy
+	118991, -- High Elf Stool, Curved
+	118992, -- High Elf End Table, Sturdy
+	118993, -- High Elf Table, Sturdy Formal
+	118994, -- High Elf Table, Sturdy Kitchen
+	118995, -- High Elf Trestle, Sturdy
+	118996, -- High Elf Shelf, Short
+	118997, -- High Elf Shelf, Long
+	118998, -- High Elf Basin, Gilded
+	118999, -- High Elf Cup, Gilded
+	119000, -- High Elf Flask, Gilded
+	119001, -- High Elf Plate, Dinner
+	119002, -- High Elf Carpet, Rustic
+	119003, -- High Elf Tapestry, Rustic
+	119004, -- High Elf Candleholder, Sturdy
+	119005, -- Orcish Tent, Shingled
+	119006, -- Orcish Platform, Block
+	119007, -- Orcish Counter, Island Stall
+	119008, -- Orcish Wash Tub
+	119009, -- Orcish Bedding, Stone
+	119010, -- Orcish Bedding, Fur
+	119011, -- Orcish Table, Block
+	119012, -- Orcish Table, Braced Formal
+	119013, -- Orcish Table, Braced Kitchen
+	119014, -- Orcish Trunk, Braced
+	119015, -- Orcish Bench", Cabled
+	119016, -- Orcish Shelves, Braced
+	119017, -- Orcish Bar, Long Block
+	119018, -- Orcish Counter, Block
+	119019, -- Orcish Bar, Side
+	119020, -- Orcish Shelf, Long
+	119021, -- Orcish Shelf, Short
+	119022, -- Orcish Stool, Cabled
+	119023, -- Orcish Bowl, Rugged
+	119024, -- Orcish Mug, Rugged
+	119025, -- Orcish Canister, Rugged
+	119026, -- Orcish Cask, Rugged
+	119027, -- Orcish Carpet, Fringed
+	119028, -- Orcish Brazier, Smoldering
+	119029, -- Orcish Lantern, Hooded
+	119030, -- Orcish Banner, Faded
+	119031, -- Orcish Banner, Worn
+	119032, -- Breton Chamberstick, Short
+	119033, -- Breton Chamberstick, Tall
+	119034, -- Orcish Canopy, Shingled
+	119035, -- Orcish Shelter, Shingled
+	119036, -- Orcish Platform, Stage
+	119037, -- Orcish Sack, Grain
+	119038, -- Orcish Sack, Flour
+	119039, -- Orcish Sack, Bean
+	119040, -- Orcish Bucket, Cistern
+	119041, -- Orcish Curtain, Folding
+	119042, -- Orcish Curtain, Curved
+	119043, -- Orcish Armchair, Peaked
+	119044, -- Orcish Pew, Peaked
+	119045, -- Orcish Bedding, Peaked
+	119046, -- Orcish Bookshelf, Engraved
+	119047, -- Orcish Bunkbed, Leather
+	119048, -- Orcish Chair, Peaked
+	119049, -- Orcish Trunk, Heavy
+	119050, -- Orcish Desk, Engraved
+	119051, -- Orcish Bar, Long Branded Block
+	119052, -- Orcish Counter, Branded
+	119053, -- Orcish Cabinet, Branded
+	119054, -- Orcish Dresser, Open
+	119055, -- Orcish Nightstand, Open
+	119056, -- Orcish Table, Engraved
+	119057, -- Orcish Trestle, Engraved
+	119058, -- Orcish Table, Kitchen
+	119059, -- Orcish Table, Formal
+	119060, -- Orcish Footlocker, Buckled
+	119061, -- Orcish Bowl, Stone
+	119062, -- Orcish Goblet, Stone
+	119063, -- Orcish Plate, Stone
+	119064, -- Orcish Saucer, Stone
+	119065, -- Orcish Vessel, Sealed Ceramic
+	119066, -- Orcish Urn, Ceramic
+	119067, -- Orcish Lantern, Hanging
+	119068, -- Orcish Brazier, Pedestal
+	119069, -- Orcish Chandelier, Practical
+	119070, -- Orcish Sconce, Caged
+	119071, -- Orcish Banner, Hammer Fist
+	119072, -- Orcish Strongbox, Buckled
+	119073, -- Orcish Trunk, Buckled
+	119074, -- Orcish Chest, Buckled
+	119075, -- Orcish Chair, Peaked
+	119076, -- Orcish Throne, Stone
+	119077, -- Orcish Throne, Engraved
+	119078, -- Orcish Capsule, Sealed
+	119079, -- Orcish Armoire, Peaked
+	119080, -- Orcish Bed, Peaked
+	119081, -- Orcish Bookcase, Peaked
+	119082, -- Orcish Bookshelf, Peaked
+	119083, -- Orcish Sideboard, Engraved
+	119084, -- Orcish Cabinet, Engraved
+	119085, -- Orcish Hutch", Engraved
+	119086, -- Orcish Coffer, Bolted
+	119087, -- Orcish Cupboards, Peaked
+	119088, -- Orcish Dresser, Engraved
+	119089, -- Orcish Cabinet, Bedside
+	119090, -- Orcish Counter, Corner
+	119091, -- Orcish Hutch", Storage
+	119092, -- Orcish Shelves, Storage
+	119093, -- Orcish Nightstand, Engraved
+	119094, -- Orcish Divider, Folded
+	119095, -- Orcish Divider, Curved
+	119096, -- Orcish Table, Game
+	119097, -- Orcish Table, Grand
+	119098, -- Orcish Throne, Peaked
+	119099, -- Orcish Stein, Horn
+	119100, -- Orcish Mug, Horn
+	119101, -- Orcish Knife, Kitchen
+	119102, -- Orcish Backpack
+	119103, -- Orcish Bowl, Buffed
+	119104, -- Orcish Platter, Serving
+	119105, -- Orcish Urn, Sealed
+	119106, -- Orcish Tapestry, Axe
+	119107, -- Orcish Tapestry, Heroes
+	119108, -- Orcish Tapestry, Sword
+	119109, -- Orcish Vessel, Sealed
+	119110, -- Orcish Cauldron, Sealed
+	119111, -- Orcish Candleholder, Horn
+	119112, -- Orcish Candlestick, Horn
+	119113, -- Orcish Candle Sconce, Horn
+	119114, -- Orcish Brazier, Bordered
+	119115, -- Orcish Brazier, Hanging
+	119116, -- Orcish Brazier, Tabletop
+	119117, -- Orcish Brazier, Floor
+	119118, -- Orcish Sconce, Bordered
+	119119, -- Orcish Sconce, Scrolled
+	119120, -- Orcish Cradle, Peaked
+	121306, -- Orcish Figurine, Strength
+	119121, -- Orcish Mirror, Peaked
+	119122, -- Orcish Tapestry, War
+	119123, -- Orcish Chandelier, Spiked
+	119124, -- Redguard Carriage, Practical
+	119125, -- Redguard Cart, Practical
+	119126, -- Redguard Wagon, Merchant
+	119127, -- Redguard Cart, Work
+	119128, -- Redguard Bin, Roped
+	119129, -- Redguard Bin, Sealed
+	119130, -- Redguard Pot, Sealed
+	119131, -- Redguard Pot, Capped
+	119132, -- Redguard Desk, Florid
+	119133, -- Redguard Rack, Barrel
+	119134, -- Redguard Bar, Long Cabinet
+	119135, -- Redguard Trunk, Heavy
+	119136, -- Redguard Bed, Wide
+	119137, -- Redguard Bed, Full
+	119138, -- Redguard Couch", Bolted
+	119139, -- Redguard Bench", Slatted
+	119140, -- Redguard Armchair, Slatted
+	119141, -- Redguard Chair, Backless
+	119142, -- Redguard Chair, Slatted
+	119143, -- Redguard Desk, Sturdy
+	119144, -- Redguard Nightstand, Sturdy
+	119145, -- Redguard Table, Sturdy
+	119146, -- Redguard Stool, Sturdy
+	119147, -- Redguard Stool, Block
+	119148, -- Redguard Shelf, Sturdy
+	119149, -- Redguard Pot, Hanging Brushed
+	119150, -- Redguard Kabobs, Wax
+	119151, -- Redguard Vessel, Lacquered
+	119152, -- Redguard Urn, Lacquered
+	119153, -- Redguard Pot, Ceramic
+	119154, -- Redguard Curtain, Smoky
+	119155, -- Redguard Curtain, Desert Rose
+	119156, -- Redguard Banner, Post
+	119157, -- Redguard Candlestick, Practical
+	119158, -- Redguard Candleholder, Practical
+	119159, -- Redguard Candelabra, Practical
+	119160, -- Redguard Well, Covered
+	119161, -- Redguard Cup, Empty
+	119162, -- Redguard Cup, Full
+	119163, -- Redguard Caravan, Practical
+	119164, -- Redguard Carriage, Merchant
+	119165, -- Redguard Vase, Lacquered
+	119166, -- Redguard Pot, Lacquered
+	119167, -- Redguard Amphora, Polished
+	119168, -- Redguard Cask, Sealed
+	119169, -- Redguard Keg, Hefty
+	119170, -- Redguard Couch", Padded
+	119171, -- Redguard Cabinet, Inlaid
+	119172, -- Redguard Armchair, Cushioned
+	119173, -- Redguard Cupboard, Lattice
+	119174, -- Redguard Vanity, Florid
+	119175, -- Redguard Counter, Corner
+	119176, -- Redguard Counter, Cabinet
+	119177, -- Redguard Shelf, Barrel
+	119178, -- Redguard Nightstand, Florid
+	119179, -- Redguard Divider, Florid
+	119180, -- Redguard Sofa, Desert Flame
+	119181, -- Redguard Tuffet, Flames
+	119182, -- Redguard Stool, Padded
+	119183, -- Redguard Bed, Wide Grand
+	119184, -- Redguard Bed, Full Arched
+	119185, -- Redguard Bowl, Hanging Star
+	119186, -- Redguard Urn, Star
+	119187, -- Redguard Footlocker, Braced
+	119188, -- Redguard Table, Grand Oasis
+	119189, -- Redguard Table, Oasis
+	119190, -- Redguard End Table, Oasis
+	119191, -- Redguard Trunk, Bolted
+	119192, -- Redguard Wine Rack, Sturdy
+	119193, -- Redguard Shelf, Arched
+	119194, -- Redguard Wardrobe, Inlaid
+	119195, -- Redguard Kabobs, Plate
+	119196, -- Redguard Runner, Sun
+	119197, -- Redguard Mat, Sunset
+	119198, -- Redguard Carpet, Dunes
+	119199, -- Redguard Tapestry, Lattice
+	119200, -- Redguard Satchel, Heavy
+	119201, -- Redguard Goblet, Empty
+	119202, -- Redguard Goblet, Full
+	119203, -- Redguard Spittoon, Gilded
+	119204, -- Redguard Cauldron, Clawfoot
+	119205, -- Redguard Sconce, Polished
+	119206, -- Redguard Mug, Empty
+	119207, -- Redguard Mug, Full
+	119208, -- Redguard Tankard, Empty
+	119209, -- Redguard Tankard, Full
+	119210, -- Redguard Streetlamp, Single
+	119211, -- Redguard Streetlamps, Paired
+	119212, -- Redguard Streetlamps, Triple
+	119213, -- Redguard Brazier, Robust
+	119214, -- Redguard Candlestick, Polished
+	119215, -- Redguard Candleholder, Polished
+	119216, -- Redguard Well, Arched
+	119217, -- Redguard Bowl, Gilded
+	119218, -- Redguard Censer, Hanging Bell
+	119219, -- Redguard Censer, Hanging Horn
+	119220, -- Redguard Basket, Closed
+	119221, -- Redguard Mat, Meditation
+	119222, -- Redguard Mat, Desert Sun
+	119223, -- Redguard Mat, Sunrise
+	119224, -- Redguard Awning, Desert Flame
+	119225, -- Redguard Tent, Scaled Flames
+	119226, -- Redguard Canopy, Dawn
+	119228, -- Redguard Caravan, Cargo
+	119229, -- Redguard Caravan, Merchant
+	119230, -- Redguard Brazier, Garish
+	119231, -- Redguard Urn, Mural
+	119232, -- Redguard Pillow, Sunset
+	119233, -- Redguard Pillow, Oasis
+	119234, -- Redguard Pillow, Florid Oasis
+	119235, -- Redguard Pillow Roll, Oasis
+	119236, -- Redguard Throw Pillow, Oasis
+	119238, -- Redguard Bed, Wide Canopy
+	119239, -- Redguard Couch", Slatted
+	119240, -- Redguard Bench", Padded
+	119241, -- Redguard Wardrobe, Braced
+	119242, -- Redguard Bookcase, Arched
+	119243, -- Redguard Wardrobe, Sturdy
+	119244, -- Redguard Bookcase, Piled
+	119245, -- Redguard Bookcase, Full
+	119246, -- Redguard Armchair, Starry
+	119247, -- Redguard Chair, Starry
+	119248, -- Redguard Desk, Bolted
+	119249, -- Redguard Vanity, Bolted
+	119250, -- Redguard Nightstand, Bolted
+	119251, -- Redguard Pot, Hanging Garish
+	119252, -- Redguard Table, Formal
+	119253, -- Redguard Table, Game
+	119254, -- Redguard Divider, Lattice
+	119255, -- Redguard Stool, Starry
+	119256, -- Redguard Footstool, Starry
+	119257, -- Redguard Cupboard, Sturdy
+	119258, -- Redguard Shelf, Bolted
+	119259, -- Redguard Wine Rack, Inlaid
+	119260, -- Redguard Bench", Arc
+	119261, -- Redguard Pot, Mosaic
+	119262, -- Redguard Pot, Hanging Mosaic
+	119263, -- Redguard Slices, Wax
+	119264, -- Redguard Runner, Oasis
+	119265, -- Redguard Mat, Desert
+	119266, -- Redguard Carpet, Mirage
+	119267, -- Redguard Tapestry, Oasis
+	119268, -- Redguard Chalice, Empty
+	119269, -- Redguard Chalice, Full
+	119270, -- Redguard Hourglass of Desert Sands
+	119271, -- Redguard Jar, Oasis
+	119272, -- Redguard Vase, Baroque
+	119273, -- Redguard Bottle, Delicate
+	119274, -- Redguard Jar, Baroque
+	119275, -- Redguard Decanter, Delicate
+	119276, -- Redguard Lantern, Delicate
+	119277, -- Redguard Streetlamps, Full
+	119278, -- Redguard Candelabra, Twisted
+	119279, -- Redguard Candelabra, Polished
+	119280, -- Redguard Chandelier, Polished
+	119281, -- Redguard Chandelier, Polished Grated
+	119282, -- Redguard Awning, Oasis
+	119283, -- Redguard Tent, Starry
+	119284, -- Redguard Firepit, Stone
+	119285, -- Redguard Counter, Block Island
+	119286, -- Redguard Counter, Bar Island
+	119287, -- Redguard Counter, Grill
+	119288, -- Redguard Brazier, Enchanted
+	119290, -- Redguard Canopy, Stars
+	119291, -- Redguard Pillow, Lattice Flames
+	119292, -- Redguard Pillow, Florid Flames
+	119293, -- Redguard Pillow, Florid Sunset
+	119295, -- Redguard Table, Inlaid
+	119296, -- Redguard Table, Grand Inlaid
+	119297, -- Redguard End Table, Tea
+	119298, -- Redguard Pillow Roll, Desert Flame
+	119299, -- Redguard Throw Pillow, Desert Flame
+	119300, -- Redguard Tuffet, Oasis
+	119301, -- Redguard End Table, Inlaid
+	119302, -- Redguard Decanter, Glass
+	119303, -- Redguard Bottle, Stained Glass
+	119304, -- Redguard Vial, Stained Glass
+	119305, -- Redguard Carpet, Oasis
+	119306, -- Redguard Mat, Mirage
+	119307, -- Redguard Mat, Starburst
+	119308, -- Redguard Lantern, Cannister
+	119309, -- Redguard Lamp, Caged
+	119310, -- Redguard Lantern, Caged
+	119311, -- Redguard Lantern, Caged Stand
+	119312, -- Redguard Tapestry, Starry	
+	121373, -- Redguard Censer, Hanging Bulb
+	119314, -- Rough Stretcher, Military
+	119317, -- Rough Crate, Reinforced
+	119325, -- Rough Bag, Burlap
+	119328, -- Rough Hatchet, Practical
+	119330, -- Rough Knife, Butcher
+	119331, -- Rough Bowl, Common
+	119338, -- Rough Platform, Stage
+	119342, -- Rough Crate, Bolted
+	119344, -- Rough Box, Boarded
+	119348, -- Rough Container, Cargo
+	119350, -- Rough Bedroll, Basic
+	119351, -- Lettuce, Display
+	119352, -- Pumpkin, Display
+	119353, -- Winter Squash", Display
+	119354, -- Beet String, Display
+	119355, -- Garlic String, Display
+	119356, -- Beets, Display
+	119357, -- Common Counter, Island Stall
+	119358, -- Common Barrel, Sealed
+	119359, -- Common Basket, Closed
+	119360, -- Common Basket, Lid
+	119361, -- Common Basket, Open
+	119362, -- Common Basket, Tall
+	119363, -- Common Bucket, Basic
+	119364, -- Common Bucket, Rope
+	119365, -- Common Cargo, Covered
+	119366, -- Common Crate, Sealed
+	119367, -- Common Washtub, Empty
+	119368, -- Footstool, Block
+	119369, -- Common Trough
+	119370, -- Common Wheelbarrow, Flat
+	119371, -- Common Wheelbarrow, Barrel
+	119372, -- Common Wheelbarrow, Sided
+	119373, -- Apple, Display
+	119374, -- Common Pack, Backpack
+	119375, -- Common Pack, Satchel
+	119376, -- Banana, Wax
+	119377, -- Common Bowl of Soup, Display
+	119378, -- Carrots, Wax
+	119379, -- Common Cleaver, Cooking
+	119380, -- Common Pot, Cooking
+	119381, -- Grapes, Wax
+	119382, -- Common Inkwell, Practical
+	119383, -- Common Plate, Simple
+	119384, -- Common Plate, Setting
+	119385, -- Sugar Pumpkin, Wax
+	119386, -- Radish", Wax
+	119387, -- Bowl, Serving
+	119388, -- Common Bowl of Stew, Display
+	119389, -- Common Platter, Serving
+	119390, -- Common Skillet, Practical
+	119391, -- Common Candle, Set
+	119392, -- Common Candles, Pair
+	119393, -- Common Candle, Lasting
+	119394, -- Common Bookrest, Practical
+	119395, -- Common Post, Flag Pole
+	119396, -- Common Lantern, Hanging
+	119397, -- Common Lantern, Stationary
+	119399, -- Common Post, Sign Holder
+	119400, -- Hammer, Forge
+	119401, -- Tongs, Forge
+	119402, -- Potato, Wax
+	119403, -- Common Table, Slanted
+	119404, -- Common Cage, Hunting
+	119405, -- Common Trap, Hunting
+	119406, -- Common Cargo, Sealed
+	119407, -- Common Cargo, Reinforced
+	119408, -- Simple Blue Banner
+	119413, -- Cauldron of Soup
+	119416, -- Cauldron of Stew
+	119418, -- Cauldron, Covered
+	119420, -- Cart, Sided
+	119421, -- Coffin, Lid
+	119422, -- Coffin, Case
+	119423, -- Keg
+	119424, -- Cleaver, Butcher's
+	119425, -- Hearty Bread
+	119426, -- Bread, Plain
+	119427, -- Cheese Wedge
+	119428, -- Common Bowl, Serving
+	119429, -- Ham, Display
+	119432, -- Hourglass, Common
+	119437, -- Pie, Display
+	119438, -- Baked Potato, Display
+	119439, -- Pot Pie, Display
+	119440, -- Pie Dish", Empty
+	119443, -- Drumstick
+	119444, -- Candle, Group
+	119445, -- Lantern, Stationary
+	119446, -- Lantern, Hanging
+	119447, -- Candles, Lasting
+	119448, -- Minecart, Empty
+	119449, -- Minecart, Push
+	119450, -- Knife, Carving
+	119451, -- Kennel, Locked
+	119462, -- Plums, Bunch
+	119463, -- Tangerines, Bunch
+	119464, -- Peaches, Bunch
+	119465, -- Oranges, Bunch
+	119467, -- Cured Meat
+	119468, -- Cured Meats
+	119469, -- Cured Meat Chunks
+	119470, -- Cured Meat Chunk
+	119471, -- Cured Meat Pile
+	119472, -- Cured Meat Hock
+	119476, -- Grilling Rack
+	119477, -- Basket of Apples
+	119478, -- Basket of Apples, Full
+	119479, -- Basket of Lettuce
+	119480, -- Basket of Gourds
+	119481, -- Basket of Corn
+	119482, -- Basket of Tomatoes
+	119483, -- Gibbet, Single
+	119484, -- Bottle, Elixir
+	119485, -- Bottle, Liquor
+	119486, -- Vial, Delicate
+	119487, -- Pie Dish", Display
+	119488, -- Bottle, Wine
+	119489, -- Candle Set, Ritual
+	119490, -- Horn, Ritual
+	119491, -- Cured Meat Shank
+	119518, -- Cage, Wild Animal
+	119520, -- Cage, Covered
+	119524, -- Stockade
+	119525, -- Bread, Braided
+	119526, -- Goblet, Wine
+	119527, -- Bread, Round
+	119529, -- Bread Loaves, Round
+	119532, -- Bread, Hearty Loaves
+	119533, -- Box of Plums
+	119539, -- Sweetroll
+	119540, -- Desk, Engraved
+	119541, -- Fish", Small
+	119542, -- Fish", Medium
+	119543, -- Fish", Large
+	119592, -- Target Skeleton, Humanoid
 	
 	
 	-- Rollis's recipes
-	[121200] = true, -- Cabinet, Poisonmaker's
-	[121166] = true, -- Podium, Skinning
-	[121168] = true, -- Tools, Case
-	[121199] = true, -- Mortar and Pestle
-	[121214] = true, -- Orcish Skull Goblet, Full
-	[121163] = true, -- Apparatus, Boiler
-	[121197] = true, -- Bottle, Poison Elixir
-	[121164] = true, -- Case of Vials
-	[121209] = true, -- Orcish Tapestry, Spear
-	[121207] = true, -- Orcish Table with Fur
-	[121207] = true, -- Orcish Table with Fur
-	[121315] = true, -- Target Skeleton, Robust Humanoid
-	[119592] = true, -- Target Skeleton, Humanoid
+	121200, -- Cabinet, Poisonmaker's
+	121166, -- Podium, Skinning
+	121168, -- Tools, Case
+	121199, -- Mortar and Pestle
+	121214, -- Orcish Skull Goblet, Full
+	121163, -- Apparatus, Boiler
+	121197, -- Bottle, Poison Elixir
+	121164, -- Case of Vials
+	121209, -- Orcish Tapestry, Spear
+	121207, -- Orcish Table with Fur
+	121207, -- Orcish Table with Fur
+	121315, -- Target Skeleton, Robust Humanoid
+	119592, -- Target Skeleton, Humanoid
 	
-	[121311] = true, -- Breton Throne	
-	[121120] = true, -- Chair, Carved
-	[121308] = true, -- High Elf Banner, Gilded
+	121311, -- Breton Throne	
+	121120, -- Chair, Carved
+	121308, -- High Elf Banner, Gilded
 	
-	[121546] = true, -- Argonian Box, Woven
-	[121374] = true, -- Redguard Censer, Hanging Disc
-	[121108] = true, -- Simple Brown Banner
-	[121310] = true, -- High Elf Sconce, Winged
-	[121307] = true, -- Orcish Brazier, Pillar
-	[121218] = true, -- Redguard Oven, Clay
-	[116214] = true, -- Nord Banner, Bear
-	[121208] = true, -- Orcish Table with Furs
-	[121203] = true, -- Khajiit Brazier, Enchanted
-	[121201] = true, -- Sack of Beans
+	121546, -- Argonian Box, Woven
+	121374, -- Redguard Censer, Hanging Disc
+	121108, -- Simple Brown Banner
+	121310, -- High Elf Sconce, Winged
+	121307, -- Orcish Brazier, Pillar
 	
-	[115786] = true, -- Argonian Skiff, Common Reed
+	-- 116214, -- Nord Banner, Bear
+	-- 115786, -- Argonian Skiff, Common Reed
 	
-	[121111] = true, -- Simple Red Banner 
-	[121110] = true, -- Simple Purple Banner 
-	[121109] = true, -- Simple Gray Banner 
-	[121372] = true, -- Noble Standing Cauldron 
+	
+	121208, -- Orcish Table with Furs
+	121203, -- Khajiit Brazier, Enchanted
+	121201, -- Sack of Beans
+	
+	
+	121111, -- Simple Red Banner 
+	121110, -- Simple Purple Banner 
+	121109, -- Simple Gray Banner 
+	121372, -- Noble Standing Cauldron 
 		
-	[121101] = true, -- Sack of Millet, 
-	[121100] = true, -- Common Stewpot, Hanging 
-	[121091] = true, -- Stool, Carved 
-	[121059] = true, -- Rough Cup, Empty 
+	121101, -- Sack of Millet, 
+	121100, -- Common Stewpot, Hanging 
+	121091, -- Stool, Carved 
+	121059, -- Rough Cup, Empty 
 	
-	[121313] = true, -- Wood Elf Throne, Vine
-	[121104] = true, -- Common Quill, Feather
+	121313, -- Wood Elf Throne, Vine
+	121104, -- Common Quill, Feather
 	
-	[121305] = true, -- Redguard Chandelier, Dark
-	[121304] = true, -- Redguard Chandelier, Grated
-	[121366] = true, -- Orcish Tapestry, Hunt
-	[121365] = true, -- High Elf Tapestry, Gilded
+	121305, -- Redguard Chandelier, Dark
+	121304, -- Redguard Chandelier, Grated
+	121366, -- Orcish Tapestry, Hunt
+	121365, -- High Elf Tapestry, Gilded
 }

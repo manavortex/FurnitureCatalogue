@@ -1,6 +1,6 @@
 ## Title: FurnitureCatalogue
 ## Author: manavortex
-## Version: 1.15
+## Version: 2.0.3
 ## APIVersion: 100020 100021
 ## SavedVariables: FurnitureCatalogue_Settings _FurC_DevData
 
@@ -61,6 +61,8 @@ data\MiscItemSources.lua
 data\Homestead\H_Cyrodiil.lua
 
 data\RumourRecipes.lua
+
+FurCUtil.lua
 
 FurCDatabaseQuery.lua
 FurCData.lua
