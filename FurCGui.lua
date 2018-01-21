@@ -51,7 +51,8 @@ local function updateLineVisibility()
 			curLine.icon:SetAlpha(1)
 			local text 			=  curData.itemLink:gsub("H1", "H0")
 			curLine.text:SetText(((curData.favorite and "* ") or "").. text)
-			curLine.mats:SetText(FurC.GetItemDescription(curData.itemId, curData))
+			local mats = FurC.GetItemDescription(curData.itemId, curData)
+			curLine.mats:SetText(mats)
 		end
 	end
 	

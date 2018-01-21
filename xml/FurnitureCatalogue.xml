@@ -137,7 +137,7 @@
 								</Control> 	
 							</Controls>
 						</Control>
-						<!-- -- 3rd bar <!-- -->
+						<!-- 3rd bar -->
 						<Control name="$(parent)_Bar3" mouseEnabled="true">
 							
 							<Dimensions y="55" />
@@ -191,7 +191,7 @@
 						</Control>						
 						
 						
-						<!-- -- bar #4, sorts the list holder <!-- -->
+						<!-- #4, sorts the list holder -->
 						<Control name="$(parent)_SortBar" mouseEnabled="true">
 
 							<Anchor point="TOPLEFT" relativeTo="$(parent)_Bar3" relativePoint="BOTTOMLEFT" offsetX="25" offsetY="20"/>
