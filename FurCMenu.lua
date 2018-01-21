@@ -10,65 +10,48 @@ function FurC.CreateSettings(savedVars, defaults)
 		registerForRefresh = true,
 		registerForDefaults = true,
 		slashCommand = "/furc",	}
-
-	LAM:RegisterAddonPanel("FurnitureCatalogue_OptionsPanel", panelData)
+	LAM:RegisterAddonPanel("FurC_OptionsPanel", panelData)
 	local optionsData = { -- optionsData
 
 		-- first section
 		{ -- checkbox: Debug output
 			type = "checkbox",
-			name = "Enable debug output",
+			name = GetString(SI_FURC_STRING_MENU_DEBUG),
 			tooltip = "",
 			getFunc = function() return FurC.GetEnableDebug() end,
 			setFunc = function(value) FurC.SetEnableDebug(value) end
 		},		
 		{ -- button: Reset database
 			type = "button",
-			name = "|cFF0000Reset database|r",
-			tooltip = "This will reset the furniture database.",
-			warning = "All your data will be reset. Only recipe knowledge for this character will be considered.",			
+			name 	= GetString(SI_FURC_STRING_MENU_RESET_DB_NAME),
+			tooltip = GetString(SI_FURC_STRING_MENU_RESET_DB_TT),
+			warning = GetString(SI_FURC_STRING_MENU_RESET_DB_WARNING),	
 			func = function() 
 				FurC.WipeDatabase()
 			end,
 		},	
 		{ -- button: Reset database
-			type = "button",
-			name = "Re-scan Rumour recipes",
-			width= "half",
-			tooltip = "Will update the rumour recipes against the updated list",	
-			func = function() 
-				FurC.RescanRumourRecipes()
-			end,
-		},	
-		{ -- button: export
-			type = "button",
-			name = "Export",
-			width = "half",
-			tooltip = ("Will create an alphabetically sorted list of the item names you can craft.\n" ..
-						"You can find this list in the savedVars file, search for [\"export\"]."),
-			warning = "Will reload UI when done",
-			func = function() 
-				FurC.Export()
-				d(	"|c2266ffFurniture catalogue|r|cFFFFFF export complete |r\n"..
-					"|cFFFFFFYou can find the generated data in |rElder Scrolls Online\live\SavedVariables \n" .. 
-					"|cFFFFFFFind |r|c2266ffFurnitureCatalogue.lua |cFFFFFFand search for |r[\"export\"]")
-			end,
+			type 	= "button",
+			name 	= GetString(SI_FURC_STRING_MENU_RESCAN_RUMOUR_NAME),
+			width	= "half",
+			tooltip = GetString(SI_FURC_STRING_MENU_RESCAN_RUMOUR_TT),	
+			func 	= function() FurC.RescanRumourRecipes() end,
 		},				
 		{ -- button: Re-scan data
-			type = "button",
-			name = "Scan files",
-			tooltip = "Will run a full scan of the data in Furniture Catalogue's files",
-			width = "half",
-			func = function() 
+			type 	= "button",
+			name	= GetString(SI_FURC_STRING_MENU_SCAN_FILES_NAME),
+			tooltip = GetString(SI_FURC_STRING_MENU_SCAN_FILES_TT),
+			width 	= "half",
+			func 	= function() 
 				FurC.ScanRecipes(true, false)
 				FurC.UpdateGui()
 			end,
 		},		
 		{ -- button: Re-scan data
-			type = "button",
-			name = "Scan character",
-			tooltip = "Will run a full scan of your known furniture recipes and update the database accordingly",
-			width = "half",
+			type 	= "button",
+			name 	= GetString(SI_FURC_STRING_MENU_SCAN_CHAR_NAME), 
+			tooltip = GetString(SI_FURC_STRING_MENU_SCAN_CHAR_TT), 
+			width 	= "half",
 			func = function() 
 				FurC.ScanRecipes(false, true)
 				FurC.UpdateGui()
@@ -76,11 +59,9 @@ function FurC.CreateSettings(savedVars, defaults)
 		},	
 		{ -- dropdown: delete character
 			type = "dropdown",
-			name = "delete character",
-			tooltip = ("Deletes all knowledge for this character from the database. \n" .. 
-				"Character will be scanned again the next time they log in with the add-on enabled. \n" ..
-				"Character name won't show up in the dropdown if they don't know any recipes!"),
-			warning = "Character knowledge will be wiped immediately",
+			name = GetString(SI_FURC_STRING_MENU_DELETE_CHAR_NAME), 
+			tooltip = GetString(SI_FURC_STRING_MENU_DELETE_CHAR_TT),
+			warning = GetString(SI_FURC_STRING_MENU_DELETE_CHAR_WARNING),
 			choices = FurC.GetAccountCharacters(),
 			getFunc = function() return end,
 			setFunc = function(value) 
@@ -97,8 +78,8 @@ function FurC.CreateSettings(savedVars, defaults)
 			name = "Furniture Shopping List",
 		},
 		{ -- checkbox: Enable
-			type = "checkbox",
-			name = "Enable integration?",
+			type 	= "checkbox",
+			name 	= GetString(SI_FURC_STRING_MENU_ENABLE_SHOPPINGLIST),
 			getFunc = function() return (FurC.GetEnableShoppingList()) end,
 			setFunc = function(value) FurC.SetEnableShoppingList(value) end
 		},		
@@ -113,9 +94,9 @@ function FurC.CreateSettings(savedVars, defaults)
 		},		
 		
 		{ -- checkbox: Skip Initial Scan
-			type = "checkbox",
-			name = "Skip Initial Scan?",
-			tooltip = "Check this to not scan your character's recipes on login. \nThanks to votan's awesome LibAsync the lag is gone now in any case..",
+			type 	= "checkbox",
+			name 	= GetString(SI_FURC_STRING_MENU_SKIP_INITIALSCAN),
+			tooltip = GetString(SI_FURC_STRING_MENU_SKIP_INITIALSCAN_TT),
 			getFunc = function() return FurC.GetSkipInitialScan() end,
 			setFunc = function(value) FurC.SetSkipInitialScan(value) end
 		},		
@@ -124,25 +105,25 @@ function FurC.CreateSettings(savedVars, defaults)
 		-- =======================================================================================
 		{	-- header: Inventory and bank
 			type = "submenu",
-			name = "Inventory and bank icons",
+			name = GetString(SI_FURC_STRING_MENU_HEADER_ICONS),
 			controls = {
 				{ -- checkbox: Add items to known/unknown recipes?
-					type = "checkbox",
-					name = "Add items to known/unknown recipes?",
-					tooltip = "This might cause a slight lag upon opening inventory..",
+					type 	= "checkbox",
+					name 	= GetString(SI_FURC_STRING_MENU_ADD_ITEMS_NAME),
+					tooltip = GetString(SI_FURC_STRING_MENU_ADD_ITEMS_TT),
 					getFunc = function() return FurC.GetUseInventoryIcons() end,
 					setFunc = function(value) FurC.SetUseInventoryIcons(value) end
 				},
 				{ -- checkbox: Only mark unknown recipes
-					type = "checkbox",
-					name = "Only mark unknown recipes?",
+					type 	= "checkbox",
+					name 	= GetString(SI_FURC_STRING_MENU_IT_UNKNOWN_NAME),
 					getFunc = function() return FurC.GetHideKnownInventoryIcons() end,
 					setFunc = function(value) FurC.SetHideKnownInventoryIcons(value) end
 				},
 				{ -- checkbox: Add items to known/unknown recipes?
-					type = "checkbox",
-					name = "Only for this character?",
-					tooltip = "Will be accountwide otherwise.",
+					type 	= "checkbox",
+					name 	= GetString(SI_FURC_STRING_MENU_IT_THIS_ONLY), 
+					tooltip = GetString(SI_FURC_STRING_MENU_IT_THIS_ONLY_TT), 
 					getFunc = function() return FurC.GetUseInventoryIconsOnChar() end,
 					setFunc = function(value) FurC.SetUseInventoryIconsOnChar(value) end
 				},	
@@ -156,65 +137,62 @@ function FurC.CreateSettings(savedVars, defaults)
 			name = "User Interface",
 		},
 		{ -- checkbox: use small interface?
-			type = "checkbox",
-			name = "Use tiny interface?",
-			tooltip = (
-				"Use a smaller interface (Craft Store like). \n" ..
-				"You can toggle this from the UI by clicking the +/- button."
-			),
+			type 	= "checkbox",
+			name 	= GetString(SI_FURC_STRING_MENU_USETINY),
+			tooltip = GetString(SI_FURC_STRING_MENU_USETINY_TT),
 			getFunc = function() return FurC.GetTinyUi() end,
 			setFunc = function(value) FurC.SetTinyUi(value) end
 		},
 		{ -- checkbox: use small interface?
-			type = "checkbox",
-			name = "Start silently?",
-			tooltip = "Suppress startup message",
+			type 	= "checkbox",
+			name 	= GetString(SI_FURC_STRING_MENU_STARTSILENT),
+			tooltip = GetString(SI_FURC_STRING_MENU_STARTSILENT_TT),
 			getFunc = function() return FurC.GetStartupSilently() end,
 			setFunc = function(value) FurC.SetStartupSilently(value) end
 		},
 		{ -- slider: font size
-			type = "slider",
-			name = "Font size",
-			tooltip = "adjust font size for FurnitureCatalogue here",
+			type 	= "slider",
+			name 	= GetString(SI_FURC_STRING_MENU_FONTSIZE),
+			tooltip = GetString(SI_FURC_STRING_MENU_FONTSIZE_TT),
 			min 	= 10, 
 			max 	= 28,
 			getFunc = function() return FurC.GetFontSize() end,
 			setFunc = function(value) FurC.SetFontSize(value) end
 		},
 		{	type = "submenu",
-			name = "Default dropdown values",
+			name = GetString(SI_FURC_STRING_MENU_DEFAULT_DD),
 			controls = {
 				{ -- description: Default dropdown
 					type = "description",
-					name = "Will be set on initial launch",
-					text = ("These will not reset if you open and close the UI" ),
+					name = GetString(SI_FURC_STRING_MENU_DEFAULT_DD_USE),
+					text = GetString(SI_FURC_STRING_MENU_DEFAULT_DD_USE_TT),
 				},
 				
 				{ -- checkbox: Persistent?
-					type = "checkbox",
-					name = "Reset filters when closing UI?",
-					tooltip = "If you check this, opening and closing will cause the filters to reset to whatever you set below.",
+					type 	= "checkbox",
+					name 	= GetString(SI_FURC_STRING_MENU_DEFAULT_DD_RESET),
+					tooltip = GetString(SI_FURC_STRING_MENU_DEFAULT_DD_RESET_TT),
 					getFunc = function() return FurC.GetResetDropdownChoice() end,
 					setFunc = function(value) FurC.SetResetDropdownChoice(value) end
 				},
 				
 				{ -- dropdown: default source
-					type = "dropdown",
-					name = "default source filter",
+					type 	= "dropdown",
+					name 	= GetString(SI_FURC_STRING_MENU_DEFAULT_DD_SOURCE),
 					choices = FurnitureCatalogue.DropdownData.ChoicesSource,
 					getFunc = function() return FurC.GetDefaultDropdownChoiceText("Source") end,
 					setFunc = function(value) FurC.SetDefaultDropdownChoice("Source", value) end
 				},	
 				{ -- dropdown: default character
-					type = "dropdown",
-					name = "default character filter",
+					type 	= "dropdown",
+					name 	= GetString(SI_FURC_STRING_MENU_DEFAULT_DD_CHAR),
 					choices = FurnitureCatalogue.DropdownData.ChoicesCharacter,
 					getFunc = function() return FurC.GetDefaultDropdownChoiceText("Character") end,
 					setFunc = function(value) FurC.SetDefaultDropdownChoice("Character", value) end
 				},		
 				{ -- dropdown: default version
 					type = "dropdown",
-					name = "default version filter",
+					name 	= GetString(SI_FURC_STRING_MENU_DEFAULT_DD_VERSION),
 					choices = FurnitureCatalogue.DropdownData.ChoicesVersion,
 					getFunc = function() return FurC.GetDefaultDropdownChoiceText("Version") end,
 					setFunc = function(value) FurC.SetDefaultDropdownChoice("Version", value) end
@@ -227,7 +205,7 @@ function FurC.CreateSettings(savedVars, defaults)
 		-- submenu: Catalogue filtering
 		-- =======================================================================================
 		{	type = "submenu",
-			name = "Catalogue filtering",
+			name = GetString(SI_FURC_STRING_MENU_FILTERING),
 			controls = {
 			
 				-- ===============================================================================
@@ -235,25 +213,25 @@ function FurC.CreateSettings(savedVars, defaults)
 				-- ===============================================================================
 				{	-- header: Mages guild books
 					type = "header",
-					name = "Mages guild books",
+					name = GetString(SI_FURC_STRING_MENU_FILTER_BOOKS),
 				},		
 				{ -- checkbox: Hide Mages' guild books
-					type = "checkbox",
-					name = "Hide books?",
-					tooltip = "A real book lover knows where everything is by heart. Hide books from Furniture Catalogue?",
+					type 	= "checkbox",
+					name 	= GetString(SI_FURC_STRING_MENU_FILTER_BOOKS_N),
+					tooltip = GetString(SI_FURC_STRING_MENU_FILTER_BOOKS_TT), 
 					getFunc = function() return FurC.GetHideBooks() end,
 					setFunc = function(value) FurC.SetHideBooks(value) end
 				},
 				
 				{	-- header: Luxury items
-					type = "header",
-					name = "Luxury Furnishings",
+					type 	= "header",
+					name 	= GetString(SI_FURC_STRING_MENU_LUXURY),
 				},		
 				{ -- checkbox: Hide Mages' guild books
-					type = "checkbox",
-					name = "Treat luxury items as purchaseables?",
-					tooltip = "This will show everything that was sold by Zanil Theran under 'purchaseable' and deactvates the custom filter",
-					warning = "Hiding the dropdown entry requires UI reload (won't happen automatically for your convenience)",
+					type 	= "checkbox",
+					name 	= GetString(SI_FURC_STRING_MENU_LUXURY_N),
+					tooltip = GetString(SI_FURC_STRING_MENU_LUXURY_TT),
+					warning = GetString(SI_FURC_STRING_MENU_LUXURY_WARN),
 					getFunc = function() return FurC.GetMergeLuxuryAndSales() end,
 					setFunc = function(value) FurC.SetMergeLuxuryAndSales(value) end
 				},
@@ -263,22 +241,17 @@ function FurC.CreateSettings(savedVars, defaults)
 				-- header: Rumour Recipes
 				-- ===============================================================================
 				{	-- header: rumour recipes
-					type = "header",
-					name = "Rumour Recipes",
+					type 	= "header",
+					name 	= "Rumour Recipes",
 				},
 				{ -- checkbox: Hide doubtful recipes
-					type = "description",
-					name = "Rumour Recipes",
-					text = (
-						"The furniture database contains a list of recipes that I have datamined.\n" .. 
-						"However, not all of those have been seen in-game.\n " ..
-						"Enable this option to exclude them from the default filters.\n" .. 
-						"You can still view them with their own filter, which you can disable below."
-						),
+					type 	= "description",
+					name 	= GetString(SI_FURC_STRING_MENU_RUMOUR), 
+					text 	= GetString(SI_FURC_STRING_MENU_RUMOUR_DESC),
 				},
 				{ -- checkbox: Hide doubtful recipes
-					type = "checkbox",
-					name = "Hide rumour recipes?",
+					type 	= "checkbox",
+					name 	= GetString(SI_FURC_STRING_MENU_RUMOUR_N), 
 					getFunc = function() return FurC.GetHideRumourRecipes() end,
 					setFunc = function(value) FurC.SetHideRumourRecipes(value) end
 				},
@@ -288,42 +261,35 @@ function FurC.CreateSettings(savedVars, defaults)
 				},
 				{ -- checkbox: Hide doubtful recipes
 					type = "description",
-					name = "Crown store items",
-					text = (
-						"The furniture database will update whenever the tooltip shows a furniture item. \n" ..
-						"Some items can only be acquired via crown store. \n"..
-						"Check this box to exclude them from the default filters (disable crown store filter below)."
-					),
+					name = GetString(SI_FURC_STRING_MENU_CROWN),
+					text = GetString(SI_FURC_STRING_MENU_CROWN_DESC),
 				},
 				{ -- checkbox: Hide doubtful recipes
-					type = "checkbox",
-					name = "Hide crown store items?",
+					type 	= "checkbox",
+					name 	= GetString(SI_FURC_STRING_MENU_CROWN_N),
 					getFunc = function() return FurC.GetHideCrownStoreItems() end,
 					setFunc = function(value) FurC.SetHideCrownStoreItems(value) end
 				},
 				{	-- header: rumour recipes
 					type = "header",
-					name = "Hide menu entries?",
+					name = GetString(SI_FURC_STRING_MENU_HIDE_MENU),
 				},
 				{ -- checkbox: Hide doubtful recipes
 					type = "description",
-					name = "Hide menu entries",
-					text = (
-						"Hides \"Crown store\" and \"Rumour recipes\" from the dropdown\n"
-						.. "activated for crown store by default, as there aren't any items yet"
-					),
+					name = GetString(SI_FURC_STRING_MENU_HIDE_MENU),
+					text = GetString(SI_FURC_STRING_MENU_HIDE_MENU_TT),
 				},
 				{ -- checkbox: Hide rumour recipes menu entry
-					type = "checkbox",
-					name = "Hide \"Rumour recipes\"",
-					warning = "Requires UI reload (won't happen automatically for your convenience)",
+					type 	= "checkbox",
+					name 	= GetString(SI_FURC_STRING_MENU_HIDE_MENU_RUMOUR),
+					warning = GetString(SI_FURC_STRING_MENU_HIDE_MENU_TT),
 					getFunc = function() return FurC.GetHideRumourRecipesEntry() end,
 					setFunc = function(value) FurC.SetHideRumourRecipesEntry(value) end
 				},
 				{ -- checkbox: Hide doubtful recipes
-					type = "checkbox",
-					name = "Hide crown store drop down entry?",
-					warning = "Requires UI reload (won't happen automatically for your convenience)",
+					type 	= "checkbox",
+					name 	= GetString(SI_FURC_STRING_MENU_HIDE_MENU_CROWN),
+					warning = GetString(SI_FURC_STRING_MENU_HIDE_MENU_TT),
 					getFunc = function() return FurC.GetHideCrownStoreEntry() end,
 					setFunc = function(value) FurC.SetHideCrownStoreEntry(value) end
 				},
@@ -334,27 +300,27 @@ function FurC.CreateSettings(savedVars, defaults)
 		-- header: Tooltip
 		-- =======================================================================================
 		{	-- header: Tooltip
-			type = "header",
-			name = "Tooltip",
+			type 	= "header",
+			name 	= "Tooltip",
 		},		
 		{ -- checkbox: Disable
-			type = "checkbox",
-			name = "Enable tooltips?",
-			getFunc = function() return (not FurC.GetDisableTooltips()) end,
-			setFunc = function(value) FurC.SetDisableTooltips(not value) end
+			type 		= "checkbox",
+			name 		= GetString(SI_FURC_STRING_MENU_TOOLTIP),
+			getFunc 	= function() return (not FurC.GetDisableTooltips()) end,
+			setFunc 	= function(value) FurC.SetDisableTooltips(not value) end
 		},
 		{ -- checkbox: Colorize tooltips for clarity?
 			type 		= "checkbox",
-			name 		= "Colorize tooltips for clarity?",
-			tooltip 	= "Will colour 'can' and 'cannot'",
+			name 		= GetString(SI_FURC_STRING_MENU_TOOLTIP_COLOR),
+			tooltip 	= GetString(SI_FURC_STRING_MENU_TOOLTIP_COLOR_TT),
 			disabled 	= FurC.GetDisableTooltips(), 
 			getFunc 	= function() return FurC.GetColouredTooltips() end,
 			setFunc 	= function(value) FurC.SetColouredTooltips(value) end
 		},
 		{ -- checkbox: Hide 'known by' from tooltip
 			type 		= "checkbox",
-			name 		= "Hide if item is known",
-			tooltip 	= "Hides 'can be crafted by...' from tooltip",
+			name 		= GetString(SI_FURC_STRING_MENU_TOOLTIP_HIDE_KNOWN),
+			tooltip 	= GetString(SI_FURC_STRING_MENU_TOOLTIP_HIDE_KNOWN_TT), 
 			width		= "half",
 			disabled 	= FurC.GetDisableTooltips(), 
 			getFunc 	= function() return (FurC.GetHideKnowledge()) end,
@@ -362,8 +328,8 @@ function FurC.CreateSettings(savedVars, defaults)
 		},
 		{ -- checkbox: Hide 'known by' from tooltip
 			type 		= "checkbox",
-			name 		= "Hide if item is unknown",
-			tooltip 	= "Hides 'you cannot craft this yet'",
+			name 		= GetString(SI_FURC_STRING_MENU_TOOLTIP_HIDE_UNKNOWN), 
+			tooltip 	= GetString(SI_FURC_STRING_MENU_TOOLTIP_HIDE_UNKNOWN_TT),
 			width		= "half",
 			disabled 	= FurC.GetDisableTooltips(), 
 			getFunc 	= function() return (FurC.GetHideUnknown()) end,
@@ -371,7 +337,7 @@ function FurC.CreateSettings(savedVars, defaults)
 		},
 		{ -- checkbox: Hide item source
 			type 		= "checkbox",
-			name 		= "Hide item source?",
+			name 		= GetString(SI_FURC_STRING_MENU_TOOLTIP_HIDE_SOURCE), 
 			tooltip 	= "",
 			disabled 	= FurC.GetDisableTooltips(), 
 			getFunc 	= function() return (FurC.GetHideSource()) end,
@@ -379,7 +345,7 @@ function FurC.CreateSettings(savedVars, defaults)
 		},
 		{ -- checkbox: Hide item source
 			type 		= "checkbox",
-			name 		= "Hide crafting station?",
+			name 		= GetString(SI_FURC_STRING_MENU_TOOLTIP_HIDE_STATION), 
 			tooltip 	= "",
 			disabled 	= FurC.GetDisableTooltips(), 
 			getFunc 	= function() return (FurC.GetHideCraftingStation()) end,
@@ -387,7 +353,7 @@ function FurC.CreateSettings(savedVars, defaults)
 		},		
 		{ -- checkbox: Hide materials from tooltip
 			type 		= "checkbox",
-			name 		= "Hide material on tooltip?",
+			name 		= GetString(SI_FURC_STRING_MENU_TOOLTIP_HIDE_MATERIAL), 
 			tooltip 	= "",
 			disabled 	= FurC.GetDisableTooltips(), 
 			getFunc 	= function() return (FurC.GetHideMats()) end,
@@ -395,5 +361,5 @@ function FurC.CreateSettings(savedVars, defaults)
 		}, 
 	} -- optionsData end
 
-	LAM:RegisterOptionControls("FurnitureCatalogue_OptionsPanel", optionsData)
+	LAM:RegisterOptionControls("FurC_OptionsPanel", optionsData)
 end

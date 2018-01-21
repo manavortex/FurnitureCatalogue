@@ -6,7 +6,7 @@ local p 		= FurC.DebugOut -- debug function calling zo_strformat with up to 10 a
 function FurC.PrintCraftingStation(itemId, recipeArray)
 	local craftingType = FurC.GetCraftingSkillType(itemId, recipeArray)
 	if not craftingType or not GetCraftingSkillName(craftingType) then return "" end
-	return " (" .. GetCraftingSkillName(craftingType) .. ")" 
+	return string.format(" (%s)", GetCraftingSkillName(craftingType))
 end
 
 local function prefillChatBox(output, refresh)
@@ -55,10 +55,10 @@ function FurC.PrintSource(itemLink, recipeArray)
 	if nil == recipeArray then recipeArray = FurC.Find(itemLink) end
 	if nil == recipeArray then return end
 	
-	local source = stripColor(recipeArray["source"])
-	local output = zo_strformat("<<1>>: <<2>>", itemLink, source)
+	local source = FurC.GetItemDescription(FurC.GetItemId(itemLink), recipeArray, true)
+	local output = string.format("%s: %s", itemLink, source)
 	if recipeArray.achievement and recipeArray.achievement ~= "" then
-		output = output .. ", requires " .. recipeArray.achievement
+		output = string.format("%s, requires %s", output, recipeArray.achievement)
 	end	
 		
 	FurC.ToChat(output, true)

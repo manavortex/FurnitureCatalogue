@@ -78,7 +78,22 @@ FurC.AchievementVendors[FURC_CLOCKWORK] = {
 			},
 		},
 	},
+	
+	["any Alliance Capital"] = {		
+		[FURC_AV_HER] = {
+			[134291] = { -- New Life Bonfire
+				itemPrice = 10000, 
+				achievement = 1671,
+			},
+			[134290] = { -- New Life Celebrant's Standard
+				itemPrice = 2500, 
+				achievement = 1674,
+			}
+		},
+	},
 }
+
+
 
 function tableMerge(t1, t2)
 	if nil == t2 and nil == t1 then 

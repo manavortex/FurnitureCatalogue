@@ -2,6 +2,7 @@ local FurC 		= FurnitureCatalogue
 local control 	= FurnitureCatalogueControl
 FurC.Visible	= false
 
+local LAM = LibStub:GetLibrary("LibAddonMenu-2.0")
 
 local function p(output, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10)
 	FurC.DebugOut(output, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10)
@@ -9,13 +10,13 @@ end
 
 
 function FurC.LoadFrameInfo(calledFrom)
-	local settings = FurC.settings["gui"]
+	local settings = FurC.settings.gui
 	
 	FurCGui:ClearAnchors()
-	FurCGui:SetAnchor(TOPLEFT, GuiRoot, TOPLEFT, settings["lastX"], settings["lastY"])
+	FurCGui:SetAnchor(TOPLEFT, GuiRoot, TOPLEFT, settings.lastX, settings.lastY)
 
-	FurCGui:SetWidth(settings["width"])
-	FurCGui:SetHeight(settings["height"])
+	FurCGui:SetWidth(settings.width)
+	FurCGui:SetHeight(settings.height)
 	
 	zo_callLater(function() FurC.UpdateInventoryScroll() end, 100)
 	
@@ -24,10 +25,10 @@ end
 function FurC.SaveFrameInfo(calledFrom)	
 	local settings = FurC.settings["gui"]
 
-	settings["lastX"]	= FurCGui:GetLeft()
-	settings["lastY"]	= FurCGui:GetTop()
-	settings["width"]	= FurCGui:GetWidth()
-	settings["height"]	= FurCGui:GetHeight()
+	settings.lastX	= FurCGui:GetLeft()
+	settings.lastY	= FurCGui:GetTop()
+	settings.width	= FurCGui:GetWidth()
+	settings.height	= FurCGui:GetHeight()
 	
 	FurC.UpdateInventoryScroll()
 	
@@ -70,11 +71,10 @@ function FurC.GUIButtonRefreshOnMouseUp(control, mouseButton)
 	elseif mouseButton == 2 then
 		FurC.ScanRecipes(true, false)
 	elseif mouseButton == 3 then
-		local LAM = LibStub:GetLibrary("LibAddonMenu-2.0")
 		if LAM and LAM.util then 			
 			LAM.util.ShowConfirmationDialog(
-				"Really re-create furniture database?", 
-				"This will re-create the FurnitureCatalogue database from scratch", 
+				GetString(SI_FURC_DIALOGUE_RESET_DB_HEADER), 
+				GetString(SI_FURC_DIALOGUE_RESET_DB_BODY), 
 				forceRefresh
 			)
 		end
@@ -104,9 +104,11 @@ function FurC.GuiOnSearchBoxClick(control, mouseButton, doubleClick)
 	end	
 end
 
+local FURC_S_FILTERDEFAULT = GetString(SI_FURC_TEXTBOX_FILTER_DEFAULT)
+
 function FurC.GuiOnSearchBoxFocusOut(control)
 	if control:GetText() and control:GetText() ~= "" then return end
-	FurC_SearchBoxText:SetText("Filter by text search")
+	FurC_SearchBoxText:SetText(FURC_S_FILTERDEFAULT)
 end
 
 function FurC.GuiOnScroll(control, delta)
@@ -130,7 +132,6 @@ function FurC.GuiOnScroll(control, delta)
 	slider:SetValue(FurCGui_ListHolder.dataOffset)
 
 	FurC.GuiLineOnMouseEnter(moc())
-	--FurC:UpdateTooltip(FurC_ITEM_TOOLTIP, true)
 end
 
 function FurC.GuiOnSliderUpdate(slider, value)
@@ -243,8 +244,8 @@ function FurC.UpdateDropdownChoice(dropdownName, value)
 	InformationTooltip:SetHidden(true)
 	value = value or FurC.GetDropdownChoiceTextual(dropdownName)
 	
-	local controlName = "FurC_Dropdown"..dropdownName
-	local control = _G["controlName"]
+	local controlName 	= "FurC_Dropdown"..dropdownName
+	local control 		= _G[controlName]
 	if nil == control then return end
 	control:GetNamedChild("SelectedItemText"):SetText(value)
 end

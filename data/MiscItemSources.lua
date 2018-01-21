@@ -10,6 +10,7 @@ local FURC_CANBESTOLENINCC 				= FURC_CANBESTOLEN .. " in Clockwork City"
 local FURC_CANBESTOLEN_SCHOLARS 		= FURC_CANBESTOLEN .. " from scholars"
 local FURC_CANBESTOLEN_NERDS	 		= FURC_CANBESTOLEN_SCHOLARS .. " and mages"
 local FURC_CANBESTOLEN_RELIG	 		= FURC_CANBESTOLEN .. " from priests and pilgrims"
+local FURC_CANBESTOLEN_THIEF	 		= FURC_CANBESTOLEN .. " from thieves"
 	
 local FURC_AUTOMATON 					= "from automatons"
 local FURC_AUTOMATON_CC					= FURC_AUTOMATON .. " in Clockwork City"
@@ -23,6 +24,8 @@ local FURC_HARVEST_CHARBOR				= FURC_HARVEST .. " in Coldharbour"
 	
 local FURC_CANBEFISHED 					= "can be fished"
 
+local FURC_CROWNSTORE_CRATE_F_ATRO		= "Crown Crates (Flame Atronach)"
+
 local FURC_CROWNSTORESOURCE				= "Crown Store "
 local FURC_CROWNSTORE_TEN				= FURC_CROWNSTORESOURCE .. "(10)"
 local FURC_CROWNSTORE_FIFTEEN			= FURC_CROWNSTORESOURCE .. "(15)"
@@ -30,8 +33,11 @@ local FURC_CROWNSTORE_TWENTY			= FURC_CROWNSTORESOURCE .. "(20)"
 local FURC_CROWNSTORE_FOURTYFIVE		= FURC_CROWNSTORESOURCE .. "(45)"
 local FURC_CROWNSTORE_EIGHTY			= FURC_CROWNSTORESOURCE .. "(80)"
 local FURC_CROWNSTORE_NINETYFIVE		= FURC_CROWNSTORESOURCE .. "(95)"
+local FURC_CROWNSTORE_ONEHUNDRED		= FURC_CROWNSTORESOURCE .. "(100)"
 local FURC_CROWNSTORE_ONETWENTY			= FURC_CROWNSTORESOURCE .. "(120)"
+local FURC_CROWNSTORE_FOURHUNDRED		= FURC_CROWNSTORESOURCE .. "(400)"
 local FURC_CROWNSTORE_SEVENFIFTY		= FURC_CROWNSTORESOURCE .. "(750)"
+local FURC_CROWNSTORE_ONEK				= FURC_CROWNSTORESOURCE .. "(1000)"
 local FURC_CROWNSTORE_ONEONEHUNDRED		= FURC_CROWNSTORESOURCE .. "(1100)"
 
 local FURC_DAEDRA_SOURCE				= "from Daedra and Dolmen chests"
@@ -46,6 +52,28 @@ local FURC_PLUNDERSKULL				= "Drops from Plunder Skulls during Witches' Festival
 
 FurC.MiscItemSources 	= {
 	
+	[FURC_DRAGONS] = { -- Reach	
+		[FURC_DROP] = {	
+		
+			
+		},
+		[FURC_JUSTICE] 	= {
+		},
+		[FURC_CROWN] 	= {
+		
+			[130212] = FURC_CROWNSTORE_ONEK, 		-- Daedric Worship: The Ayleids
+			[134970] = FURC_CROWNSTORE_ONEHUNDRED, 	-- Mushrooms, Glowing Sprawl
+			[134947] = FURC_CROWNSTORE_ONEHUNDRED, 	-- Mushrooms, Glowing Field
+			[134948] = FURC_CROWNSTORE_FOURHUNDRED,	-- Mushrooms, Glowing Cluster
+			[134971] = FURC_CROWNSTORE_FOURHUNDRED,	-- Candles, Votive Group
+			[134872] = FURC_CROWNSTORE_FOURHUNDRED,	-- Ancient Nord Brazier, Dragon Crest
+			[134863] = FURC_CROWNSTORE_FOURHUNDRED,	-- Ancient Nord Sconce, Dragon Crest
+			[134972] = FURC_CROWNSTORE_FOURHUNDRED,	-- Brotherhood Brazier, Wrought Iron
+			[134849] = FURC_CROWNSTORE_FOURHUNDRED,	-- Monarch Butterfly Flock  
+			[134848] = FURC_CROWNSTORE_FOURHUNDRED,	-- Blue Butterfly Flock  
+			
+		}
+	},
 	[FURC_CLOCKWORK] = { -- Reach	
 		[FURC_DROP] = {	
 			[134407] = FURC_AUTOMATON_CC,			-- Torso, Obsolete
@@ -60,10 +88,12 @@ FurC.MiscItemSources 	= {
 		[FURC_JUSTICE] 	= {
 			[134411] = FURC_CANBESTOLENINCC, 		-- Ventilation shaft
 			[134415] = FURC_CANBESTOLENINCC, 		-- Clockwork Dial Calipers, Handheld
+			[134413] = FURC_CANBESTOLENINCC, 		-- Clockwork Magnifier, Handheld 
 			[134412] = FURC_CANBESTOLENINCC, 		-- Clockwork Piston, Miniature
 			[134410] = FURC_CANBESTOLENINCC, 		-- Clockwork Crank, Miniature
 			[134411] = FURC_CANBESTOLENINCC, 		-- Clockwork Gear Shaft, Miniature
 			[134400] = FURC_CANBEPICKED, 			-- Soft Leather, Stacked
+			[134401] = FURC_CANBEPICKED, 			-- Soft Leather, Folded
 			[134417] = FURC_CANBEPICKED, 			-- Calipers, Handheld
 			[134399] = FURC_CANBEPICKED, 			-- Quality Fabric, Folded
 			[117939] = FURC_CANBEPICKED_WW, 		-- Rough Axe, Practical
@@ -78,7 +108,7 @@ FurC.MiscItemSources 	= {
 	[FURC_REACH] = { -- Reach		
 		[FURC_JUSTICE] 	= {
 			[130191] = FURC_CANBESTOLEN, 			-- Shivering Cheese		
-			[118206] = FURC_CANBEPICKED_WW, 		-- Gaming dice
+			[118206] = FURC_CANBESTOLEN_THIEF, 		-- Gaming dice
 		},
 		[FURC_CROWN] 	= {
 			[131423] = FURC_CROWNSTORE_SEVENFIFTY,
@@ -121,6 +151,8 @@ FurC.MiscItemSources 	= {
 			[126702] = FURC_TOMBS, 
 			-- Velothi Shroud, Reverance			
 			[126700] = FURC_TOMBS, 
+			-- Velothi Shroud, Honor			
+			[126703] = FURC_TOMBS, 
 		
 			-- Ashlander dailies
 			[126119] = FURC_DAILY_ASHLANDERS, 		-- Crimson Shard of Moonshadow
@@ -132,6 +164,8 @@ FurC.MiscItemSources 	= {
 			[131420] = FURC_PLANTS, 					-- Plants, Ash Frond
 			[125553] = FURC_PLANTS, 					-- Flowers, Netch Cabbage Stalks
 			[125551] = FURC_PLANTS, 					-- Flowers, Netch Cabbage
+			[125543] = FURC_PLANTS, 					-- Fern, Ashen
+			[125633] = FURC_PLANTS, 					-- Plants, Hanging Pitcher Pair
 			
 		},
 		[FURC_CROWN] 	= {
@@ -145,6 +179,7 @@ FurC.MiscItemSources 	= {
 				-- stealing
 			[118489] = FURC_CANBESTOLEN_SCHOLARS, 	-- Papers, Stack
 			[118528] = FURC_CANBESTOLEN, 			-- Signed Contract
+			[118890] = FURC_CANBESTOLEN, 			-- Skull, Human
 			[118487] = FURC_CANBESTOLEN_SCHOLARS, 	-- Letter, Personal
 			[120008] = FURC_CANBESTOLEN_NERDS, 		-- Lesser Soul Gem, Empty
 			[120005] = FURC_CANBESTOLEN_NERDS, 		-- Medium Soul Gem, Empty
@@ -168,6 +203,14 @@ FurC.MiscItemSources 	= {
 			[118896] = FURC_CANBEFISHED, 					-- Seashell, Sandcake
 			[118901] = FURC_CANBEFISHED, 					-- Sea sponge
 			[121269] = FURC_CANBEFISHED, 					-- Ocean Antler Coral
+			[118338] = FURC_CANBEFISHED, 					-- Fish, Bass
+			[118339] = FURC_CANBEFISHED, 					-- Fish, Salmon 
+			[118337] = FURC_CANBEFISHED, 					-- Fish, Trout
+			[120753] = FURC_CANBEFISHED, 					-- Kelp, Green Pile 
+			[120755] = FURC_CANBEFISHED, 					-- Kelp, Lush Pile 
+			[120754] = FURC_CANBEFISHED, 					-- Kelp, Small Pile 
+			[118897] = FURC_CANBEFISHED, 					-- Seashell, Pink Scallop
+			[118898] = FURC_CANBEFISHED, 					-- Seashell, White Scallop
 		},				
 		[FURC_DROP]		= { 		
 			[121058] = FURC_DB_SNEAKY, 						-- Candles of Silence		
@@ -190,6 +233,8 @@ FurC.MiscItemSources 	= {
 			[118059] = FURC_CROWNSTORE_TWENTY, 				-- Sack of Millet,
 			[118058] = FURC_CROWNSTORE_TWENTY, 				-- Sack of Rice
 			
+			[134473] = FURC_CROWNSTORE_CRATE_F_ATRO, 			-- Malacath Banner
+			
 		
 
 			[118064] = FURC_CROWNSTORE_FOURTYFIVE, 			-- Common Barrel, Dry
@@ -211,3 +256,6 @@ FurC.MiscItemSources 	= {
 	},
 }
 
+if GetAPIVersion() ~= 100022 then 
+	FurC.MiscItemSources[FURC_DRAGONS] 	= {}
+end

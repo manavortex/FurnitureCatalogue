@@ -29,6 +29,7 @@ FURC_HOMESTEAD						= 2
 FURC_MORROWIND						= 3
 FURC_REACH							= 4
 FURC_CLOCKWORK						= 5
+FURC_DRAGONS						= 6
 		
 FURC_LOC_HOLLOW_CITY 				= "Hollow City, Cicero's General Goods"
 FURC_AV_ZANILTHERAN					= "Zanil Theran, Luxury Furnisher"
@@ -101,7 +102,7 @@ FURC_DROP 				= FURC_ROLLIS +1
 FURC_JUSTICE 			= FURC_DROP +1
 FURC_FISHING 			= FURC_JUSTICE +1
 FURC_GUILDSTORE 		= FURC_FISHING +1
-FURC_VENDOR_FESTIVAL 	= FURC_GUILDSTORE +1
+FURC_FESTIVAL_DROP 		= FURC_GUILDSTORE +1
 
 
 
@@ -156,6 +157,7 @@ FurnitureCatalogue.DropdownData = {
 		[3] = "Morrowind", 
 		[4] = "Horns of the Reach", 
 		[5] = "Clockwork City", 
+		[6] = "Dragon Bones", 
 	},
 	TooltipsVersion	= {
 		[1] = "disables this filter", 
@@ -163,6 +165,7 @@ FurnitureCatalogue.DropdownData = {
 		[3] = "YOU N\'WAH!", 
 		[4] = "Because all we needed were more Reachmen", 
 		[5] = "Where the flywheels churn and the brass is pretty", 
+		[6] = "If you got this from Narsis Dren, well...", 
 	},
 	ChoicesCharacter  = {
 		[1]	= "Character filter: off", 
@@ -270,12 +273,6 @@ function FurnitureCatalogue_Initialize(eventCode, addOnName)
 	
 	local scanFiles = false
 	if FurC.settings.version 		< FurC.version then
-		-- if FurC.settings.version 	< 2 then
-			-- d("Welcome to FurnitureCatalogue 2.0! The databank will be reset")
-			-- FurC.settings.data 		= {} 
-			-- FurC.settings.version 		= 2
-		-- else
-		-- end
 			FurC.settings.version 		= FurC.version		
 		scanFiles = true
 	end

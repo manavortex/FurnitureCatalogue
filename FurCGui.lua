@@ -3,9 +3,9 @@ FurC.KnowledgeFilter 	= "All (Accountwide)"
 FurC.SearchString 		= ""
 FurC.ScrollSortUp 		= true
 local checkWasUpdated	= false
-local task = LibStub("LibAsync"):Create("FurnitureCatalogue_updateLineVisibility")
-local otherTask = LibStub("LibAsync"):Create("FurnitureCatalogue_ToggleGui")
-local async = LibStub("LibAsync"):Create("FurnitureCatalogue_forLoop")
+local task 				= LibStub("LibAsync"):Create("FurnitureCatalogue_updateLineVisibility")
+local otherTask 		= LibStub("LibAsync"):Create("FurnitureCatalogue_ToggleGui")
+local async 			= LibStub("LibAsync"):Create("FurnitureCatalogue_forLoop")
 
 
 local p 		= FurC.DebugOut -- debug function calling zo_strformat with up to 10 args
@@ -14,7 +14,7 @@ local sortTable = FurC.SortTable
 function sort(myTable)	
 	local sortName, sortDirection = FurC.GetSortParams()	
 	sortName = sortName or "itemName"
-	local sortUp = ((ZO_SORT_ORDER_UP and sortDirection == "up") or ZO_SORT_ORDER_DOWN)	
+	local sortUp = ((ZO_SORT_ORDER_UP and sortDirection == "up") or ZO_SORT_ORDER_DOWN)
 	return sortTable(myTable, sortName, sortUp)		
 end
 
@@ -50,7 +50,7 @@ local function updateLineVisibility()
 			curLine.icon:SetTexture(GetItemLinkIcon(curData.itemLink))
 			curLine.icon:SetAlpha(1)
 			local text 			=  curData.itemLink:gsub("H1", "H0")
-			curLine.text:SetText((curData.favorite and "* " or "").. text)
+			curLine.text:SetText(((curData.favorite and "* ") or "").. text)
 			curLine.mats:SetText(FurC.GetItemDescription(curData.itemId, curData))
 		end
 	end
@@ -169,8 +169,8 @@ function FurC.SetLineHeight(applyTemplate)
 	local curLine
 	local size = FurC.GetFontSize()
 		
-	local nameFont = "$(".. ((FurC.GetTinyUi() and "MEDIUM_FONT") or "BOLD_FONT") ..")|$(KB_"..size..")|soft-shadow-thin"
-	local matsFont = "$(MEDIUM_FONT)|$(KB_"..size..")|soft-shadow-thin" 
+	local nameFont = string.format("$(%s)|$(KB_%s)|soft-shadow-thin", (FurC.GetTinyUi() and "MEDIUM_FONT") or "BOLD_FONT", size)
+	local matsFont = string.format("$(MEDIUM_FONT|$(KB_%s)|soft-shadow-thin", size)
 
 	for i = 1, #FurCGui_ListHolder.lines do	
 		curLine = FurCGui_ListHolder.lines[i]
@@ -281,9 +281,10 @@ local function createGui()
 			local controlType	= "FurC_QualityFilterButton"
 			
 			local button 		= WINDOW_MANAGER:CreateControlFromVirtual(parent:GetName()..name, parent, controlType)
-			button:SetNormalTexture(	"FurnitureCatalogue/textures/" .. string.lower(name) .. "_up.dds")
-			button:SetMouseOverTexture(	"FurnitureCatalogue/textures/" .. string.lower(name) .. "_over.dds")
-			button:SetPressedTexture(	"FurnitureCatalogue/textures/" .. string.lower(name) .. "_down.dds")
+			local ctrlName		= string.lower(name)	
+			button:SetNormalTexture(	string.format("FurnitureCatalogue/textures/%s_up.dds", 		ctrlName))
+			button:SetNormalTexture(	string.format("FurnitureCatalogue/textures/%s_over.dds", 	ctrlName))
+			button:SetNormalTexture(	string.format("FurnitureCatalogue/textures/%s_down.dds", 	ctrlName))
 			button.quality 		= quality
 			button.tooltip 		= tooltip	
 			
@@ -304,7 +305,7 @@ local function createGui()
 		buttons[quality+1]	= createQualityFilter("Magic", 		ITEM_QUALITY_MAGIC, 	"Magic quality")
 		buttons[quality+1]	= createQualityFilter("Arcane", 	ITEM_QUALITY_ARCANE, 	"Superior quality")
 		buttons[quality+1]	= createQualityFilter("Artifact",	ITEM_QUALITY_ARTIFACT, 	"Epic quality")
-		buttons[quality+1]	= createQualityFilter("Legendary",  ITEM_QUALITY_LEGENDARY, "Legendary qualiry")
+		buttons[quality+1]	= createQualityFilter("Legendary",  ITEM_QUALITY_LEGENDARY, "Legendary quality")
 		
 		FurC.GuiElements.qualityButtons = buttons
 		
@@ -321,11 +322,11 @@ local function createGui()
 			
 			local button 				= WINDOW_MANAGER:CreateControlFromVirtual(name, parent, "FurC_CraftingTypeFilterButton")
 			
-			button:SetNormalTexture(	textureName .. "_up.dds")
-			button:SetMouseOverTexture(	textureName .. "_over.dds")
-			button:SetPressedTexture(	textureName .. "_down.dds")
+			button:SetNormalTexture(	string.format("%s%s", textureName, "_up.dds"))
+			button:SetMouseOverTexture(	string.format("%s%s", textureName, "_over.dds"))
+			button:SetPressedTexture(	string.format("%s%s", textureName,"_down.dds"))
 			button.craftingType 		= craftingType	
-			button.tooltip 				= craftingType > 0 and GetCraftingSkillName(craftingType) or GetString("SI_ITEMFILTERTYPE", ITEMFILTERTYPE_ALL)
+			button.tooltip 				= (craftingType > 0 and GetCraftingSkillName(craftingType)) or GetString("SI_ITEMFILTERTYPE", ITEMFILTERTYPE_ALL)
 			
 			local otherAnchor 			= ((predecessor == parent) and TOPLEFT) or TOPRIGHT
 			button:SetAnchor(TOPLEFT, predecessor, otherAnchor, 0)
@@ -347,11 +348,11 @@ local function createGui()
 	end
 	
 	local function createInventoryDropdown(dropdownName)
-		local controlName 		= "FurC_Dropdown"..dropdownName
-		local control 			= _G[tostring(controlName)]
+		local controlName 		= string.format("%s%s", "FurC_Dropdown", dropdownName)
+		local control 			= _G[controlName]
 		local dropdownData 		= FurnitureCatalogue.DropdownData
-		local validChoices 		= dropdownData["Choices"..dropdownName]
-		local choicesTooltips 	= dropdownData["Tooltips"..dropdownName]
+		local validChoices 		= dropdownData[string.format("%s%s", "Choices", dropdownName)]
+		local choicesTooltips 	= dropdownData[string.format("%s%s", "Tooltips", dropdownName)]
 		local comboBox	
 		if control.comboBox ~= nil then
 			comboBox = control.comboBox
@@ -424,7 +425,7 @@ local function createGui()
 			for _, characterName in ipairs(FurC.GetAccountCrafters()) do
 				addedDropdownCharacterNames[characterName] = true
 				table.insert(validChoices, characterName)
-				table.insert(dropdownData["Tooltips"..dropdownName], zo_strformat("recipes for <<1>>", characterName))
+				table.insert(dropdownData["Tooltips"..dropdownName], string.format("%s%s", GetString(SI_FURC_STRING_RECIPESFORCHAR), characterName))
 			end
 		end
 

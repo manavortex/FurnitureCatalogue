@@ -1235,7 +1235,7 @@ FurC.AchievementVendors[FURC_HOMESTEAD] = {
 	
 	["any Alliance Capital"] = {		
 		[FURC_AV_NAR] = capitalVendor,		
-		[FURC_AV_HER] = jesterVendor,
+		[FURC_AV_HER] = jesterVendor1,
 	},
 	-- location name
 	["Mournhold Bank"] = {

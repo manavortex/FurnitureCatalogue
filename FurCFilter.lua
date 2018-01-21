@@ -6,7 +6,7 @@ local dropdownTextVersion		= "All"
 local ddSource		= 1
 local dropdownTextSource		= "All"
 local dropdownChoiceCharacter	= 1
-local ddTextCharacter		= "Accountwide"
+local ddTextCharacter			= "Accountwide"
 local qualityFilter 			= {}
 local craftingTypeFilter 		= {}
 
@@ -20,12 +20,13 @@ local sourceIndices
 local recipeArray, itemId, itemLink, itemType, sItemType, itemName, recipeIndex, recipeListIndex
 
 function FurC.SetFilter(useDefaults, skipRefresh)
+	ClearTooltip(InformationTooltip)
 	sourceIndices 					= FurC.SourceIndices
 	searchString 					= FurC.GetSearchFilter()	
 	
 	if useDefaults then		
 		dropdownChoiceVersion		= tonumber(FurC.GetDefaultDropdownChoice("Version"))
-		ddSource		= FurC.GetDefaultDropdownChoice("Source")
+		ddSource					= FurC.GetDefaultDropdownChoice("Source")
 		dropdownChoiceCharacter 	= FurC.GetDefaultDropdownChoice("Character")
 	else
 		dropdownChoiceVersion		= tonumber(FurC.GetDropdownChoice("Version"))
@@ -40,8 +41,8 @@ function FurC.SetFilter(useDefaults, skipRefresh)
 	craftingTypeFilter			= FurC.GetFilterCraftingType()
 	hideBooks					= FurC.GetHideBooks()
 	hideRumours					= FurC.GetHideRumourRecipes()
-	mergeLuxuryAndSales 		= FurC.GetHideCrownStoreItems()
-	hideCrownStore 				= FurC.GetMergeLuxuryAndSales()
+	mergeLuxuryAndSales 		= FurC.GetMergeLuxuryAndSales()
+	hideCrownStore 				= FurC.GetHideCrownStoreItems()
 	
 	if not skipRefresh then 
 		zo_callLater(FurC.UpdateLineVisibility, 200)
@@ -87,16 +88,17 @@ local function matchSourceDropdown()
 	elseif FURC_CRAFTING_KNOWN 			== ddSource then 
 		return recipeArray.origin 		== FURC_CRAFTING and isRecipeArrayKnown(recipeArray)
 	elseif FURC_CRAFTING_UNKNOWN 		== ddSource then 
-		return recipeArray.origin 		== FURC_CRAFTING and not isRecipeArrayKnown(recipeArray)	
+		return recipeArray.origin 		== FURC_CRAFTING and not isRecipeArrayKnown(recipeArray)
 	elseif FURC_FAVE 					== ddSource then
 		return recipeArray.favorite
 	elseif FURC_VENDOR 					== ddSource then 
-		return (recipeArray.origin 		== FURC_VENDOR or recipeArray.origin == FURC_VENDOR_FESTIVAL or 
+		return (recipeArray.origin 		== FURC_VENDOR or recipeArray.origin == FURC_ROLLIS or 
 		(mergeLuxuryAndSales and recipeArray.origin == FURC_LUXURY))
 	elseif FURC_RUMOUR 					== ddSource then
 		return recipeArray.origin 		== FURC_RUMOUR
 	elseif FURC_OTHER					== ddSource then 
 		return (
+			recipeArray.origin == FURC_FESTIVAL_DROP or
 			recipeArray.origin == FURC_DROP 	or 
 			recipeArray.origin == FURC_FISHING 	or 
 			recipeArray.origin == FURC_JUSTICE 	or 

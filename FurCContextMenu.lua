@@ -1,5 +1,9 @@
 FurC_LinkHandlerBackup_OnLinkMouseUp = nil
 
+local FURC_S_SHOPPINGLIST_1 = GetString(SI_FURC_ONE_TO_SHOPPINGLIST)
+local FURC_S_SHOPPINGLIST_5 = GetString(SI_FURC_FIVE_TO_SHOPPINGLIST)
+local FURC_S_TOGGLE_SL = GetString(SI_FURC_TOGGLE_SHOPPINGLIST)
+
 function AddFurnitureShoppingListMenuEntry(itemId, calledFromFurC)
 	if calledFromFurC then
 		if (not FurC.GetEnableShoppingList()) then return end
@@ -9,12 +13,12 @@ function AddFurnitureShoppingListMenuEntry(itemId, calledFromFurC)
 	end
 	local itemLink = FurC.GetItemLink(itemId)
 	if nil == FurC.Find(itemLink) then return end
-	AddCustomMenuItem(" Add 1 to shopping list", 
+	AddCustomMenuItem(FURC_S_SHOPPINGLIST_1, 
 		function() 
 			FurnitureShoppingListAdd(itemLink) 			
 		end,	
-	MENU_ADD_OPTION_LABEL)	
-	AddCustomMenuItem(" Add 5 to shopping list", 
+	MENU_ADD_OPTION_LABEL)
+	AddCustomMenuItem(FURC_S_SHOPPINGLIST_5, 
 		function() 
 			FurnitureShoppingListAdd(itemLink) 			
 			FurnitureShoppingListAdd(itemLink) 			
@@ -23,7 +27,7 @@ function AddFurnitureShoppingListMenuEntry(itemId, calledFromFurC)
 			FurnitureShoppingListAdd(itemLink) 			
 		end,	
 	MENU_ADD_OPTION_LABEL)
-	AddCustomMenuItem(" Toggle shopping list", 
+	AddCustomMenuItem(FURC_S_TOGGLE_SL, 
 		function() 
 			FurnitureShoppingListWindow_Toggle()			
 		end,	
@@ -35,34 +39,32 @@ local function addMenuItems(itemLink, recipeArray)
 	
 	recipeArray = recipeArray or FurC.Find(itemLink)
 	if (nil == recipeArray) then return end
-	-- ClearMenu()	
-	if not (IsItemLinkPlaceableFurniture(itemLink) or IsItemLinkFurnitureRecipe(itemLink)) then return end
-	local itemType, sItemType = GetItemLinkItemType(itemLink)
+	-- ClearMenu()
 	
-	AddCustomMenuItem("- |cD3B830Furniture|r:", 
+	AddCustomMenuItem(GetString(SI_FURC_MENU_HEADER), 
 		function() FurC.ToChat(itemLink) end, 
 		MENU_ADD_OPTION_LABEL
 	)
-	local faveText = FurC.IsFavorite(itemLink, recipeArray) and " Remove Favorite" or " Add Favorite"
+	local faveText = FurC.IsFavorite(itemLink, recipeArray) and GetString(SI_FURC_REMOVE_FAVE) or GetString(SI_FURC_ADD_FAVE)
 	AddCustomMenuItem(faveText, 
 		function() FurC.Fave(itemLink, recipeArray) end, 
 		MENU_ADD_OPTION_LABEL
 	)
 	
 	if recipeArray.origin ~= FURC_CRAFTING then		
-		AddCustomMenuItem(" Post item source", 
+		AddCustomMenuItem(GetString(SI_FURC_POST_ITEMSOURCE), 
 			function() FurC.PrintSource(itemLink, recipeArray) end,	
 			MENU_ADD_OPTION_LABEL
 		)		
 	else
 		if nil ~= recipeArray.blueprint then 
-			AddCustomMenuItem(" Post recipe", 
+			AddCustomMenuItem(GetString(SI_FURC_POST_RECIPE), 
 			function() FurC.ToChat(FurC.GetItemLink(recipeArray.blueprint)) end,	
 				MENU_ADD_OPTION_LABEL
 			)		
 		end
-		AddCustomMenuItem(" Post material", 
-			function() FurC.ToChat(FurC.GetMats(itemLink, recipeArray, true)) end, 
+		AddCustomMenuItem(GetString(SI_FURC_POST_MATERIAL), 
+			function() FurC.ToChat(itemLink .. ": " .. FurC.GetMats(itemLink, recipeArray, true)) end, 
 			MENU_ADD_OPTION_LABEL
 		)
 		AddFurnitureShoppingListMenuEntry(itemLink, true)
@@ -87,19 +89,15 @@ end
 
 function FurC_HandleMouseEnter(inventorySlot)
 	local inventorySlot = moc()
+	
 	if nil == inventorySlot or nil == inventorySlot.dataEntry then return end
 	local data = inventorySlot.dataEntry.data
 	if nil == data then return end	
 	
-	local bagId, slotIndex = data["bagId"], data["slotIndex"]
-	if slotIndex == lastSlot then 
-		FurC.CurrentLink = nil
-		else
-		
-		FurC.CurrentLink = GetItemLink(bagId, slotIndex)
-	end
+	local bagId, slotIndex = data.bagId, data.slotIndex
+	FurC.CurrentLink = GetItemLink(bagId, slotIndex)
 	if nil == FurC.CurrentLink then return end
-	lastSlot = slotIndex
+	
 end
 
 
@@ -123,6 +121,7 @@ function FurC_HandleInventoryContextMenu(control)
     end	
 	
 	local recipeArray = FurC.Find(itemLink)
+	-- d(recipeArray)
 	if nil == recipeArray then return end  
 
 	zo_callLater(function() 
@@ -157,6 +156,8 @@ function FurC.InitRightclickMenu()
 	FurC_LinkHandlerBackup_OnLinkMouseUp = ZO_LinkHandler_OnLinkMouseUp
 	ZO_LinkHandler_OnLinkMouseUp = function(itemLink, button, control) FurC_HandleClickEvent(itemLink, button, control) end
 	ZO_PreHook('ZO_InventorySlot_OnMouseEnter', FurC_HandleMouseEnter)
-	ZO_PreHook('ZO_InventorySlot_ShowContextMenu', function(rowControl) FurC_HandleInventoryContextMenu(rowControl) end)
+	ZO_PreHook('ZO_InventorySlot_ShowContextMenu', function(rowControl) 
+		FurC_HandleInventoryContextMenu(rowControl) 
+	end)
 end
 

@@ -15,28 +15,28 @@ FurC.EventItems[FURC_REACH] = {
 	]]
 	["Witches' Festival"] = {
 		["Plunder Skull"] = {
-			130326, --Witches Brazier, Primitive Log",
-			130337, --Witches Corpse, Wrapped",
-			130336, --Witches Remains, Hagraven",
-			130325, --Witches Totem, Emphatic Warning",
-			130334, --Witches Totem, Antler Charms",
-			130327, --Witches Totem, Wooden Rack",
-			130328, --Witches Skull, Horned Ram",
-			130332, --Witches Totem, Bone Charms",
-			130340, --Witches Totem, Gnarled Vines and Skull",
-			130338, --Witches Bones, Offering",
-			131434, -- Witch's Festival, Cursed Totem,			
-			132154, -- Witch's Totem, Bog",
-			
-			130302, -- Shrub, Burnt Brush"
-			130298,	-- Branch, Curved Laurel
-			130296,	-- Branch, Sturdy Laurel
-			130295,	-- Branch, Sturdy Burnt
-			130293,	-- Branch, Forked Burnt
-			130293,	-- Branch, Curved Burnt
-			130301,	-- Saplings, Burnt Sparse
-			130299,	-- Saplings, Burnt Cluster
-			130300,	-- Saplings, Burnt Tall
+			[130326] = true, --Witches Brazier, Primitive Log",
+			[130337] = true, --Witches Corpse, Wrapped",
+			[130336] = true, --Witches Remains, Hagraven",
+			[130325] = true, --Witches Totem, Emphatic Warning",
+			[130334] = true, --Witches Totem, Antler Charms",
+			[130327] = true, --Witches Totem, Wooden Rack",
+			[130328] = true, --Witches Skull, Horned Ram",
+			[130332] = true, --Witches Totem, Bone Charms",
+			[130340] = true, --Witches Totem, Gnarled Vines and Skull", 
+			[130339] = true, --Witches Totem, Twisted Vines and Skull
+			[130338] = true, --Witches Bones, Offering",
+			[131434] = true, -- Witch's Festival, Cursed Totem,			
+			[132154] = true, -- Witch's Totem, Bog",			
+			[130302] = true, -- Shrub, Burnt Brush"
+			[130298] = true,	-- Branch, Curved Laurel
+			[130296] = true,	-- Branch, Sturdy Laurel
+			[130295] = true,	-- Branch, Sturdy Burnt
+			[130293] = true,	-- Branch, Forked Burnt
+			[130293] = true,	-- Branch, Curved Burnt
+			[130301] = true,	-- Saplings, Burnt Sparse
+			[130299] = true,	-- Saplings, Burnt Cluster
+			[130300] = true,	-- Saplings, Burnt Tall
 		
 
 		}

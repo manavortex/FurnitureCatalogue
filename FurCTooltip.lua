@@ -11,6 +11,7 @@ end
 
 local function addTooltipData(control, itemLink)
 
+	
 	if FurC.GetDisableTooltips() then return end
 	local itemId, recipeArray = nil
 	if nil == itemLink or FURC_EMPTY_STRING == itemLink then return end
@@ -18,9 +19,11 @@ local function addTooltipData(control, itemLink)
 	
 	itemLink = (isRecipe and GetItemLinkRecipeResultItemLink(itemLink)) or itemLink
 	
-	itemId = FurC.GetItemId(itemLink)
+	itemId 		= FurC.GetItemId(itemLink)
 	recipeArray = FurC.Find(itemLink)
 	
+	-- |H0:item:118206:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h
+
 	if not recipeArray then return end			-- Find does not return nil, empty table instead
 	
 	local unknown 	= not FurC.CanCraft(itemId, recipeArray)
@@ -28,7 +31,7 @@ local function addTooltipData(control, itemLink)
 
 	-- d(itemLink .. "'s character array: " )
 	-- d(recipeArray.characters)
-	-- d(itemLink .. "'s crafter list: ")
+	-- d(itemLink .. "'s crafter list: ""
 	-- d(FurC.GetCrafterList(recipeArray))
 	
 	local function add(t, arg)
@@ -37,12 +40,10 @@ local function addTooltipData(control, itemLink)
 	end
 	
 	-- if craftable:
-	if recipeArray.origin == FURC_CRAFTING then
-		
+	if isRecipe or recipeArray.origin == FURC_CRAFTING then		
 		if unknown and not FurC.GetHideUnknown() or not FurC.GetHideKnowledge() then
 			stringTable = add(stringTable, tryColorize(FurC.GetCrafterList(recipeArray)))
-		end
-		
+		end		
 		if not isRecipe and (not FurC.GetHideCraftingStation()) then
 			stringTable = add(stringTable, FurC.PrintCraftingStation(itemId, recipeArray))
 		end
@@ -52,13 +53,12 @@ local function addTooltipData(control, itemLink)
 		end
 	else
 		if not FurC.GetHideSource() then
-			stringTable = add(stringTable, FurC.GetItemDescription(itemId, recipeArray, itemLink))
+			stringTable = add(stringTable, FurC.GetItemDescription(itemId, recipeArray))
 		end
 		stringTable = add(stringTable, recipeArray.achievement)
-
 	end
 	
-	-- d(stringTable)
+	
 	
 	if #stringTable == 0 then return end
 

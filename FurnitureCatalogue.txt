@@ -1,8 +1,8 @@
 ## Title: FurnitureCatalogue
 ## Author: manavortex
-## Version: 2.0.3
-## APIVersion: 100020 100021
-## SavedVariables: FurnitureCatalogue_Settings _FurC_DevData
+## Version: 2.0.15
+## APIVersion: 100021
+## SavedVariables: FurnitureCatalogue_Settings 
 
 libs\LibStub\LibStub.lua
 libs\LibAsync\LibAsync.lua
@@ -23,6 +23,9 @@ libs\LibAddonMenu-2.0\controls\slider.lua
 libs\LibAddonMenu-2.0\controls\texture.lua
 libs\LibAddonMenu-2.0\controls\iconpicker.lua
 libs\LibAddonMenu-2.0\controls\divider.lua
+
+locale\en.lua
+locale\$(language).lua
 
 xml\Bindings.xml
 xml\FurnitureCatalogue.xml
