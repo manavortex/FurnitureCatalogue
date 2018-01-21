@@ -171,7 +171,7 @@ function FurC.SetLineHeight(applyTemplate)
 	local size = FurC.GetFontSize()
 		
 	local nameFont = string.format("$(%s)|$(KB_%s)|soft-shadow-thin", (FurC.GetTinyUi() and "MEDIUM_FONT") or "BOLD_FONT", size)
-	local matsFont = string.format("$(MEDIUM_FONT|$(KB_%s)|soft-shadow-thin", size)
+	local matsFont = string.format("$(MEDIUM_FONT)|$(KB_%s)|soft-shadow-thin", size)
 
 	for i = 1, #FurCGui_ListHolder.lines do	
 		curLine = FurCGui_ListHolder.lines[i]
@@ -179,7 +179,7 @@ function FurC.SetLineHeight(applyTemplate)
 			WINDOW_MANAGER:ApplyTemplateToControl(curLine, FurC.SlotTemplate)
 		end
 		curLine:GetNamedChild("Name"):SetFont(nameFont)
-		curLine.mats:SetFont(matsFont)
+		curLine:GetNamedChild("Mats"):SetFont(matsFont)
 		curLine:SetHeight( size + (FurC.GetTinyUi() and 8 or 20))
 	end
 	FurC.CalculateMaxLines()
@@ -242,10 +242,9 @@ local function createGui()
 				line:SetAnchor(TOPLEFT, FurCGui_ListHolder, TOPLEFT, 0, 4)
 				line:SetAnchor(TOPRIGHT, FurCGui_ListHolder, TOPRIGHT, 0, 0)
 			else
-				line:SetAnchor(TOPLEFT, predecessor, BOTTOMLEFT, 0, 0)
-				line:SetAnchor(TOPRIGHT, predecessor, BOTTOMRIGHT, 0, 0)
+				line:SetAnchor(TOPLEFT, predecessor, BOTTOMLEFT, 	0, 0)
+				line:SetAnchor(TOPRIGHT, predecessor, BOTTOMRIGHT, 	0, 0)
 			end
-
 			return line
 		end
 		

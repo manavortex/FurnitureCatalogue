@@ -289,8 +289,7 @@
 			<OnMouseEnter>			FurC.GuiLineOnMouseEnter(self)				</OnMouseEnter>
 			<OnMouseExit>			FurC.GuiLineOnMouseExit(self)				</OnMouseExit>
 			<OnMouseUp>				FurC.OnControlMouseUp(self, button)			</OnMouseUp>	
-			<OnMouseDoubleClick>	FurC.OnControlDoubleClick(self) 			</OnMouseDoubleClick>
-			
+			<OnMouseDoubleClick>	FurC.OnControlDoubleClick(self) 			</OnMouseDoubleClick>			
 			
 			<Controls>
 				<Texture name="$(parent)Bg" textureFile="EsoUI/Art/Miscellaneous/listItem_backdrop.dds" alpha="0.4">
@@ -334,15 +333,14 @@
 					<Dimensions x="1"/>
 					<Anchor point="TOPLEFT" relativePoint="TOPLEFT" offsetX="0" offsetY="3" />
 				</Button>
-
 				<Label name="$(parent)Name" font="ZoFontGame" wrapMode="ELLIPSIS" verticalAlignment="CENTER">
 					<Dimensions y="50"  x="230"/>
 					<Anchor point="TOPLEFT" 	relativeTo="$(parent)Button" relativePoint="TOPRIGHT" />
 					<Anchor point="BOTTOMLEFT" 	relativeTo="$(parent)Button" relativePoint="BOTTOMRIGHT" />
 				</Label>
 				<Label name="$(parent)Mats" font="ZoFontGame" wrapMode="ELLIPSIS" verticalAlignment="LEFT">
-					<Dimensions y="50" />
-					<Anchor point="TOPLEFT" relativeTo="$(parent)Name" relativePoint="TOPRIGHT" offsetX="18"/>
+					<Dimensions y="50"  />
+					<Anchor point="TOPLEFT" 	relativeTo="$(parent)Name" relativePoint="TOPRIGHT" offsetX="18"/>
 					<Anchor point="BOTTOMRIGHT" relativeTo="$(parent)" relativePoint="BOTTOMRIGHT" offsetX="0" offsetY="-10"/>
 				</Label>
 
