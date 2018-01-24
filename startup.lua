@@ -31,11 +31,8 @@ FURC_REACH							= 4
 FURC_CLOCKWORK						= 5
 FURC_DRAGONS						= 6
 		
-FURC_LOC_HOLLOW_CITY 				= "Hollow City, Cicero's General Goods"
-FURC_AV_ZANILTHERAN					= "Zanil Theran, Luxury Furnisher"
 		
-		
-FurC.version						= 2.0
+FurC.version						= 2.017
 
 local defaults 						= {
 	
@@ -124,54 +121,54 @@ local sourceIndicesKeys = {
 }
 
 local choicesSource = {
-	[FURC_NONE]							= "Source filter: off", 
-	[FURC_FAVE] 						= "Favorites", 
-	[FURC_CRAFTING] 					= "Craftable: All", 
-	[FURC_CRAFTING_KNOWN] 				= "Craftable: Known", 
-	[FURC_CRAFTING_UNKNOWN] 			= "Craftable: Unknown", 
-	[FURC_VENDOR] 						= "Purchaseable (gold)",
-	[FURC_PVP] 							= "Purchaseable (AP)",
-	[FURC_CROWN] 						= "Crown Store",
-	[FURC_RUMOUR] 						= "Rumour items",
-	[FURC_LUXURY] 						= "Luxury items",
-	[FURC_OTHER] 						= "Other",
+	[FURC_NONE]							= GetString(SI_FURC_NONE),			
+	[FURC_FAVE] 						= GetString(SI_FURC_FAVE), 			
+	[FURC_CRAFTING] 					= GetString(SI_FURC_CRAFTING), 		
+	[FURC_CRAFTING_KNOWN] 				= GetString(SI_FURC_CRAFTING_KNOWN), 	
+	[FURC_CRAFTING_UNKNOWN] 			= GetString(SI_FURC_CRAFTING_UNKNOWN),
+	[FURC_VENDOR] 						= GetString(SI_FURC_VENDOR), 			
+	[FURC_PVP] 							= GetString(SI_FURC_PVP), 			
+	[FURC_CROWN] 						= GetString(SI_FURC_CROWN), 			
+	[FURC_RUMOUR] 						= GetString(SI_FURC_RUMOUR), 			
+	[FURC_LUXURY] 						= GetString(SI_FURC_LUXURY), 			
+	[FURC_OTHER] 						= GetString(SI_FURC_OTHER), 			
 }
 local tooltipsSource = {
-	[FURC_NONE]							= "disables this filter", 
-	[FURC_FAVE] 						= "Shows your favorites", 
-	[FURC_CRAFTING] 					= "Shows all craftable items", 
-	[FURC_CRAFTING_KNOWN] 				= "Shows only known craftable items", 
-	[FURC_CRAFTING_UNKNOWN] 			= "Shows only unknown craftable items", 
-	[FURC_VENDOR] 						= "Shows only items that cannot be crafted",
-	[FURC_PVP] 							= "Items that are sold for alliance points",
-	[FURC_CROWN] 						= "Shows items that can only be acquired from crown store",
-	[FURC_RUMOUR] 						= "Items and recipes that have been datamined, but haven't been confirmed existing",
-	[FURC_LUXURY] 						= "Items that at some point were sold by Zanil Theran, Cicero's General Goods, Coldharbour",
-	[FURC_OTHER] 						= "Shows items that can be farmed/stolen/found",
+	[FURC_NONE]							= GetString(SI_FURC_NONE_TT),			
+	[FURC_FAVE] 						= GetString(SI_FURC_FAVE_TT), 			
+	[FURC_CRAFTING] 					= GetString(SI_FURC_CRAFTING_TT), 		
+	[FURC_CRAFTING_KNOWN] 				= GetString(SI_FURC_CRAFTING_KNOWN_TT), 	
+	[FURC_CRAFTING_UNKNOWN] 			= GetString(SI_FURC_CRAFTING_UNKNOWN_TT),
+	[FURC_VENDOR] 						= GetString(SI_FURC_VENDOR_TT), 			
+	[FURC_PVP] 							= GetString(SI_FURC_PVP_TT), 			
+	[FURC_CROWN] 						= GetString(SI_FURC_CROWN_TT), 			
+	[FURC_RUMOUR] 						= GetString(SI_FURC_RUMOUR_TT), 			
+	[FURC_LUXURY] 						= GetString(SI_FURC_LUXURY_TT), 			
+	[FURC_OTHER] 						= GetString(SI_FURC_OTHER_TT), 			
 }
 
 FurnitureCatalogue.DropdownData = {
 	ChoicesVersion	= {
-		[1] = "Version filter: off", 
-		[2] = "Homestead", 
-		[3] = "Morrowind", 
-		[4] = "Horns of the Reach", 
-		[5] = "Clockwork City", 
-		[6] = "Dragon Bones", 
+		[1] = GetString(SI_FURC_FILTER_VERSION_OFF), 
+		[2] = GetString(SI_FURC_FILTER_VERSION_HS	),
+		[3] = GetString(SI_FURC_FILTER_VERSION_M	),
+		[4] = GetString(SI_FURC_FILTER_VERSION_R	),
+		[5] = GetString(SI_FURC_FILTER_VERSION_CC	),
+		[6] = GetString(SI_FURC_FILTER_VERSION_DRAGON),
 	},
 	TooltipsVersion	= {
-		[1] = "disables this filter", 
-		[2] = "Items released in Homestead update", 
-		[3] = "YOU N\'WAH!", 
-		[4] = "Because all we needed were more Reachmen", 
-		[5] = "Where the flywheels churn and the brass is pretty", 
-		[6] = "If you got this from Narsis Dren, well...", 
+		[1] =  GetString(SI_FURC_FILTER_VERSION_OFF_TT), 
+		[2] =  GetString(SI_FURC_FILTER_VERSION_HS_TT),
+		[3] =  GetString(SI_FURC_FILTER_VERSION_M_TT),
+		[4] =  GetString(SI_FURC_FILTER_VERSION_R_TT),
+		[5] =  GetString(SI_FURC_FILTER_VERSION_CC_TT),
+		[6] =  GetString(SI_FURC_FILTER_VERSION_DRAGON_TT),
 	},
 	ChoicesCharacter  = {
-		[1]	= "Character filter: off", 
+		[1]	= GetString(SI_FURC_FILTER_CHAR_OFF), 
 	},
 	TooltipsCharacter = {
-		[1]	= "disables this filter", 
+		[1]	= GetString(SI_FURC_FILTER_CHAR_OFF_TT), 
 	},
 	
 	-- will be set in setupSourceDropdown

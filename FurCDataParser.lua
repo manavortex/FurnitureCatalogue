@@ -18,19 +18,17 @@ local function prefillChatBox(output, refresh)
 	if not refresh then 
 		output = editControl:GetText() .. output	
 	elseif CHAT_SYSTEM.textEntry.editControl:HasFocus() then
-	editControl:Clear()		
-	end
-	
+		editControl:Clear()
+	end	
 	
 	-- trying to get rid of that double click error...
 	if IsProtectedFunction("StartChatInput") then
 		CallSecureProtected("StartChatInput", output)
 	else
 		StartChatInput(output)
-	end
-	
-		
+	end		
 end
+
 function FurC.ToChat(output, refresh)
 	if type(output) == "number" then 
 		output = FurC.GetItemLink(output)

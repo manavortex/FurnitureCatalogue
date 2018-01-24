@@ -29,11 +29,7 @@ local function addTooltipData(control, itemLink)
 	local unknown 	= not FurC.CanCraft(itemId, recipeArray)
 	local stringTable = {}
 
-	-- d(itemLink .. "'s character array: " )
-	-- d(recipeArray.characters)
-	-- d(itemLink .. "'s crafter list: ""
-	-- d(FurC.GetCrafterList(recipeArray))
-	
+
 	local function add(t, arg)
 		if nil ~= arg then t[#t + 1] = arg end
 		return t
@@ -56,9 +52,7 @@ local function addTooltipData(control, itemLink)
 			stringTable = add(stringTable, FurC.GetItemDescription(itemId, recipeArray))
 		end
 		stringTable = add(stringTable, recipeArray.achievement)
-	end
-	
-	
+	end	
 	
 	if #stringTable == 0 then return end
 

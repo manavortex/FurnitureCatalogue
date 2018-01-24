@@ -42,17 +42,17 @@ local function getLuxurySource(recipeKey, recipeArray, stripColor)
 	
 	local itemData = versionData[recipeKey]
 	
-	if nil ~= itemData then		
+	if nil ~= itemData then
+		local weekendString = (nil == itemData.itemDate and "") or zo_strformat(GetString(SI_FURC_STRING_WEEKEND_AROUND), itemData.itemDate)
 		return zo_strformat(
 			GetString(SI_FURC_STRING_WASSOLDBY),
 			colorise(GetString(SI_FURC_STRING_ASSHOLE), vendorColor, stripColor),
 			colorise(GetString(SI_FURC_STRING_HC), vendorColor, stripColor),
-			colorise(itemData.itemPrice, goldColor, stripColor)
+			colorise(itemData.itemPrice, goldColor, stripColor), 
+			weekendString
 		)
-	end
-	
-	return GetString(SI_FURC_STRING_FETCHER)
-	
+	end	
+	return GetString(SI_FURC_STRING_FETCHER)	
 end
 FurC.getLuxurySource = getLuxurySource
 
@@ -163,7 +163,7 @@ function FurC.GetCrafterList(recipeArray)
 	if nil == recipeArray.characters or NonContiguousCount(recipeArray.characters) == 0 then 
 		return GetString(SI_FURC_STRING_CANNOT_CRAFT)
 	end
-	local ret = GetString(FURC_STRING_CRAFTABLE_BY)
+	local ret = GetString(SI_FURC_STRING_CRAFTABLE_BY)
 	for characterName, characterKnowledge in pairs(recipeArray.characters) do
 		ret = string.format("%s %s, ", ret, characterName)
 	end

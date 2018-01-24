@@ -1,10 +1,12 @@
-﻿
+﻿local filterDisabled = "disables this filter"
 local strings = {
 
+	-- Furniture Shopping List
 	SI_FURC_ONE_TO_SHOPPINGLIST = 				"Add 1 to shopping list",
 	SI_FURC_FIVE_TO_SHOPPINGLIST = 				"Add 5 to shopping list",
 	SI_FURC_TOGGLE_SHOPPINGLIST = 				" Toggle shopping list",
-		
+	
+	-- GUI and debug
 	SI_FURC_MENU_HEADER = 						"- |cD3B830Furniture|r:",
 	SI_FURC_REMOVE_FAVE = 						" Remove Favorite",
 	SI_FURC_ADD_FAVE = 							" Add Favorite",
@@ -28,7 +30,8 @@ local strings = {
 	SI_FURC_STRING_AP =							" AP",
 	SI_FURC_STRING_ASSHOLE = 					"Zanil Theran",
 	SI_FURC_STRING_HC = 						"Hollow City",
-	SI_FURC_STRING_WASSOLDBY = 					"Was sold by <<1>> in <<2>> (<<3>>)",
+	SI_FURC_STRING_WASSOLDBY = 					"Was sold by <<1>> in <<2>> (<<3>>) <<4>>",
+	SI_FURC_STRING_WEEKEND_AROUND = 			"(around <<1>>)",
 	SI_FURC_STRING_ROLLIS = 					"Sold by |cd68957Rollis Hlaalu|r",
 	SI_FURC_STRING_FAUSTINA = 					"Sold by |cd68957Faustina Curio|r",
 	SI_FURC_FOR_VOUCHERS_1, 					"for |ce5da40",
@@ -37,6 +40,7 @@ local strings = {
 	SI_FURC_STRING_RECIPELEARNED = 				"Recipe learned: <<1>> <<2>> <<3>>",
 	SI_FURC_STRING_RECIPESFORCHAR = 			"recipes for <<1>>",
 	SI_FURC_STRING_VENDOR =						"Sold by <<1>> (<<2>><<3>>)",
+	
 	-- =============================== --
 	-- ============ MENU ============= -- 
 	-- =============================== --
@@ -89,12 +93,11 @@ local strings = {
 	SI_FURC_STRING_MENU_RUMOUR = 				"Rumour recipes",
 	SI_FURC_STRING_MENU_RUMOUR_DESC = 		 	"The furniture database contains a list of recipes that I have datamined.\nHowever, not all of those have been seen in-game.\nEnable this option to exclude them from the default filters.\nYou can still view them with their own filter, which you can disable below.",
 
-	SI_FURC_STRING_MENU_RUMOUR_N = 			"Hide rumour recipes?",
-	SI_FURC_STRING_MENU_CROWN = 			"Crown store items",
-	SI_FURC_STRING_MENU_CROWN_N = 			"Hide crown store items?",
-	SI_FURC_STRING_MENU_CROWN_DESC = 		"The furniture database will update whenever the tooltip shows a furniture item. \nSome items can only be acquired via crown store. \nCheck this box to exclude them from the default filters (disable crown store filter below).",
-
-							
+	SI_FURC_STRING_MENU_RUMOUR_N = 				"Hide rumour recipes?",
+	SI_FURC_STRING_MENU_CROWN = 				"Crown store items",
+	SI_FURC_STRING_MENU_CROWN_N = 				"Hide crown store items?",
+	SI_FURC_STRING_MENU_CROWN_DESC = 			"The furniture database will update whenever the tooltip shows a furniture item. \nSome items can only be acquired via crown store. \nCheck this box to exclude them from the default filters (disable crown store filter below).",
+						
 	SI_FURC_STRING_MENU_HIDE_MENU = 				"Hide menu entries?",
 	SI_FURC_STRING_MENU_HIDE_MENU_TT = 				"Hides \"Crown store\" and \"Rumour recipes\" from the dropdown \nactivated for crown store by default, as there aren't any items yet",
 	SI_FURC_STRING_MENU_HIDE_MENU_RUMOUR = 			"Hide \"Rumour recipes\" drop down entry?",
@@ -110,10 +113,66 @@ local strings = {
 	SI_FURC_STRING_MENU_TOOLTIP_HIDE_SOURCE =  		"Hide item source?",
 	SI_FURC_STRING_MENU_TOOLTIP_HIDE_STATION =  	"Hide crafting station?",
 	SI_FURC_STRING_MENU_TOOLTIP_HIDE_MATERIAL =  	"Hide material?",
+	
+	-- =============================== --
+	-- ==== GUI: Dropdown entries ==== -- 
+	-- =============================== --
+
+	SI_FURC_NONE 									= "Source filter: off", 
+	SI_FURC_FAVE 									= "Favorites", 
+	SI_FURC_CRAFTING								= "Craftable: All", 
+	SI_FURC_CRAFTING_KNOWN							= "Craftable: Known", 
+	SI_FURC_CRAFTING_UNKNOWN						= "Craftable: Unknown", 
+	SI_FURC_VENDOR									= "Purchaseable (gold)",
+	SI_FURC_PVP										= "Purchaseable (AP)",
+	SI_FURC_CROWN									= "Crown Store",
+	SI_FURC_RUMOUR									= "Rumour items",
+	SI_FURC_LUXURY									= "Luxury items",
+	SI_FURC_OTHER									= "Other",
+						
+	SI_FURC_FILTER_VERSION_OFF						= "Version filter: off", 
+	SI_FURC_FILTER_VERSION_HS						= "Homestead", 
+	SI_FURC_FILTER_VERSION_M						= "Morrowind", 
+	SI_FURC_FILTER_VERSION_R						= "Horns of the Reach", 
+	SI_FURC_FILTER_VERSION_CC						= "Clockwork City", 
+	SI_FURC_FILTER_VERSION_DRAGON					= "Dragon Bones", 
+	
+	-- =============================== --
+	-- = GUI: Dropdown entry tooltip = -- 
+	-- =============================== --
+	
+	SI_FURC_NONE_TT 								= "disables this filter", 
+	SI_FURC_FAVE_TT 								= "Shows your favorites", 
+	SI_FURC_CRAFTING_TT								= "Shows all craftable items", 
+	SI_FURC_CRAFTING_KNOWN_TT						= "Shows only known craftable items", 
+	SI_FURC_CRAFTING_UNKNOWN_TT						= "Shows only unknown craftable items", 
+	SI_FURC_VENDOR_TT								= "Shows only items that cannot be crafted",
+	SI_FURC_PVP_TT									= "Items that are sold for alliance points",
+	SI_FURC_CROWN_TT								= "Shows items that can only be acquired from crown store",
+	SI_FURC_RUMOUR_TT								= "Items and recipes that have been datamined, but haven't been confirmed existing",
+	SI_FURC_LUXURY_TT								= "Items that at some point were sold by Zanil Theran, Cicero's General Goods, Coldharbour",
+	SI_FURC_OTHER_TT								= "Shows items that can be farmed/stolen/found",
+				
+	SI_FURC_FILTER_VERSION_OFF_TT					= filterDisabled, 	
+	SI_FURC_FILTER_VERSION_HS_TT					= "Items released in Homestead update", 
+	SI_FURC_FILTER_VERSION_M_TT						= "YOU N\'WAH!", 
+	SI_FURC_FILTER_VERSION_R_TT						= "Because all we needed were more Reachmen", 
+	SI_FURC_FILTER_VERSION_CC_TT					= "Where the flywheels churn and the brass is pretty", 
+	SI_FURC_FILTER_VERSION_DRAGON_TT				= "If you got this from Narsis Dren, well...", 
+	
+	
+	SI_FURC_FILTER_CHAR_OFF							= "Character filter: off", 
+	SI_FURC_FILTER_CHAR_OFF_TT						= filterDisabled, 
+	
+	-- =============================== --
+	-- ========= GUI: Heading ======== -- 
+	-- =============================== --
+	
+	SI_FURC_LABEL_ENTRIES							= " entries -", 
 }
 
 
 for stringId, stringValue in pairs(strings) do
 	ZO_CreateStringId(stringId, stringValue)
-	SafeAddVersion(stringId, 1)
+	SafeAddVersion(stringId, 2)
 end

@@ -441,7 +441,6 @@ local function createGui()
 		
 		return control
 	end
-
 	
 	createInventoryScroll()
 	createQualityFilters()
@@ -453,6 +452,7 @@ local function createGui()
 	FurC.SetFontSize(FurC.GetFontSize())
 	FurC.LoadFrameInfo()
 	FurC.InitFilters()
+	
 end
 
 function FurnitureCatalogue_Toggle()
@@ -480,6 +480,8 @@ function FurC.InitGui()
 	slider:SetMinMax(1, #FurCGui_ListHolder.dataLines)
 	
 	FurC.UpdateGui(FurC.GetResetDropdownChoice())
+	
+	FurC_Label:GetNamedChild("_2"):SetText(GetString(SI_FURC_LABEL_ENTRIES))
 	
 	SCENE_MANAGER:RegisterTopLevel(FurCGui, false)
 end
