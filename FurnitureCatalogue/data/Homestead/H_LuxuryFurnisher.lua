@@ -21,8 +21,7 @@ FurC.LuxuryFurnisher[FURC_HOMESTEAD] = {
 	[120818] = {	-- Sigil, Julianos
 		itemPrice 	= 20000,
 		itemDate	= "2017-04-28",
-	},
-	
+	},	
 	
 	[120824] = {	-- Body Cage
 		itemPrice 	= 5000,
