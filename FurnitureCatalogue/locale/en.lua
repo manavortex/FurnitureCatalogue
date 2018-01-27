@@ -32,14 +32,16 @@ local strings = {
 	SI_FURC_STRING_HC = 						"Hollow City",
 	SI_FURC_STRING_WASSOLDBY = 					"Was sold by <<1>> in <<2>> (<<3>>) <<4>>",
 	SI_FURC_STRING_WEEKEND_AROUND = 			"(around <<1>>)",
-	SI_FURC_STRING_ROLLIS = 					"Sold by |cd68957Rollis Hlaalu|r",
-	SI_FURC_STRING_FAUSTINA = 					"Sold by |cd68957Faustina Curio|r",
-	SI_FURC_FOR_VOUCHERS_1, 					"for |ce5da40",
-	SI_FURC_FOR_VOUCHERS_2, 					"|h vouchers",
-	SI_FURC_FESTIVAL_DROP = 					"can be acquired during <<1>> (<<2>>)",
+	
+	SI_FURC_STRING_ROLLIS = 					"Sold by |cd68957Rollis Hlaalu|r<<1>><<2>><<3>>",
+	SI_FURC_STRING_FAUSTINA = 					"Sold by |cd68957Faustina Curio|r<<1>><<2>><<3>>",
+	SI_FURC_STRING_FOR_VOUCHERS =				" for |ce5da40<<1>>|h vouchers",
+	
+	SI_FURC_FESTIVAL_DROP = 					"can be acquired during <<1>> (<<2>>)",	
 	SI_FURC_STRING_RECIPELEARNED = 				"Recipe learned: <<1>> <<2>> <<3>>",
 	SI_FURC_STRING_RECIPESFORCHAR = 			"recipes for <<1>>",
 	SI_FURC_STRING_VENDOR =						"Sold by <<1>> (<<2>><<3>>)",
+	SI_FURC_STRING_VOUCHER_VENDOR =				"Sold by either Rollis Hlaalu or Faustina Curio",
 	
 	-- =============================== --
 	-- ============ MENU ============= -- 

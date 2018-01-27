@@ -17,19 +17,20 @@ end
 local function getRollisSource(recipeKey, recipeArray)
 	recipeArray = recipeArray or FurC.Find(recipeKey)
 	if not recipeArray then return end
+	
 	local versionData = FurC.Rollis[recipeArray.version]
-	local isFaustinaRecipe = false
-
-	isFaustinaRecipe = nil == versionData
-	versionData = versionData or FurC.Faustina[recipeArray.version]
-
-	if not versionData then return end
-	local originString = (isFaustinaRecipe and GetString(SI_FURC_STRING_FAUSTINA)) or GetString(SI_FURC_STRING_ROLLIS)
-	if nil ~= versionData[recipeKey] then 
-		return  zo_strformat(originString, GetString(SI_FURC_FOR_VOUCHERS_1), versionData[recipeKey], GetString(SI_FURC_FOR_VOUCHERS_2))		
+	
+	if nil ~= versionData and nil ~= versionData[recipeKey] then 
+		local itemPrice = zo_strformat(GetString(SI_FURC_STRING_FOR_VOUCHERS), versionData[recipeKey])
+		return  zo_strformat(GetString(SI_FURC_STRING_ROLLIS), itemPrice)		
+	end
+	versionData = FurC.Faustina[recipeArray.version]
+	if nil ~= versionData and nil ~= versionData[recipeKey] then
+		local itemPrice = zo_strformat(GetString(SI_FURC_STRING_FOR_VOUCHERS), versionData[recipeKey])
+		return  zo_strformat(GetString(SI_FURC_STRING_FAUSTINA), itemPrice)
 	end
 	
-	return originString
+	return GetString(SI_FURC_STRING_VOUCHER_VENDOR)
 end
 FurC.getRollisSource = getRollisSource
 
