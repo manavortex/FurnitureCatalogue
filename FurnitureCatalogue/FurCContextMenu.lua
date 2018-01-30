@@ -57,7 +57,12 @@ local function addMenuItems(itemLink, recipeArray)
 			MENU_ADD_OPTION_LABEL
 		)		
 	else
-		if nil ~= recipeArray.blueprint then 
+		if IsItemLinkFurnitureRecipe(itemLink) then 
+			AddCustomMenuItem(GetString(SI_FURC_POST_ITEM), 
+			function() FurC.ToChat(GetItemLinkRecipeResultItemLink(itemLink)) end,	
+				MENU_ADD_OPTION_LABEL
+			)	
+		elseif nil ~= recipeArray.blueprint then 
 			AddCustomMenuItem(GetString(SI_FURC_POST_RECIPE), 
 			function() FurC.ToChat(FurC.GetItemLink(recipeArray.blueprint)) end,	
 				MENU_ADD_OPTION_LABEL

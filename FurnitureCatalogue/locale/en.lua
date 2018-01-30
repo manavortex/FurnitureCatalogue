@@ -34,6 +34,7 @@ local strings = {
 	SI_FURC_ADD_FAVE = 							" Add Favorite",
 	SI_FURC_POST_ITEMSOURCE = 					" Post item source",
 	SI_FURC_POST_RECIPE = 						" Post recipe",
+	SI_FURC_POST_ITEM = 						" Post item",
 	SI_FURC_POST_MATERIAL = 					" Post material",
 	SI_FURC_DIALOGUE_RESET_DB_HEADER = 			"Really re-create furniture database?",
 	SI_FURC_DIALOGUE_RESET_DB_BODY = 			"This will re-create the FurnitureCatalogue database from scratch",
