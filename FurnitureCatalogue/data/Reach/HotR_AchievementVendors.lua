@@ -1,6 +1,6 @@
 FurC.AchievementVendors[FURC_REACH] = {
 	["Coldharbour, Cicero's General Goods"] = {
-		[FURC_AV_KRR] = {
+		[GetString(FURC_AV_KRR)] = {
 			[130273] = { -- Boulder, Coldharbour Fan
 				itemPrice 	= 5000, 
 			},
@@ -28,7 +28,7 @@ FurC.AchievementVendors[FURC_REACH] = {
 		}
 	},
 	 ["Glenumbra, Daggerfall, The Rosy Lion"] = {
-		[FURC_AV_ROH] = {
+		[GetString(FURC_AV_ROH)] = {
 			
 			[120706] = {		-- Boulder, Giant Mossy
 				itemPrice 	= 100,
@@ -105,7 +105,7 @@ FurC.AchievementVendors[FURC_REACH] = {
 		},
 	},
 	["Eastmarch"] = {
-		[FURC_AV_FRO] = {
+		[GetString(FURC_AV_FRO)] = {
 			[132215] = { -- Boulder, Granite Cap
 				itemPrice 	= 1000, 
 			},
@@ -152,7 +152,7 @@ FurC.AchievementVendors[FURC_REACH] = {
 		},
 	},
 	["Auridon, Skywatch"] = {
-		[FURC_AV_MAL] = {
+		[GetString(FURC_AV_MAL)] = {
 			[120652] = { -- Boulder, Flat Lichen
 				itemPrice 	= 100, 
 			},			
@@ -198,7 +198,7 @@ FurC.AchievementVendors[FURC_REACH] = {
 				itemPrice 	= 1000, 
 			},
 			
-			[120658] = { -- Tree, Sturdy Jungle
+			[120670] = { -- Tree, Sturdy Jungle 
 				itemPrice 	= 250, 
 			},
 			[120664] = { -- Tree, Tiered Light Cherry
@@ -218,6 +218,12 @@ FurC.AchievementVendors[FURC_REACH] = {
 			},			
 			[120659] = { -- Trees, Crooked Swamp
 				itemPrice 	= 100, 
+			},
+			[120668] = {		-- Tree, Squat Pink Cherry
+				itemPrice 	= 10000,
+			},
+			[120669] = {		-- Tree, Squat White Cherry
+				itemPrice 	= 10000,
 			},
 			
 		},

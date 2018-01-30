@@ -1,7 +1,6 @@
-FURC_AV_RAZ = "Razoufa"
-FURC_AV_MUL = "Mulvise Valyn"
-
 FurC.AchievementVendors[FURC_CLOCKWORK] = {
+
+
 	["The Brass Citadel, Market"] = {
 		["Razoufa"] = {
 			[134285] = { -- Active Fabrication Tank
@@ -80,7 +79,7 @@ FurC.AchievementVendors[FURC_CLOCKWORK] = {
 	},
 	
 	["any Alliance Capital"] = {		
-		[FURC_AV_HER] = {
+		[GetString(FURC_AV_HER)] = {
 			[134291] = { -- New Life Bonfire
 				itemPrice = 10000, 
 				achievement = 1671,

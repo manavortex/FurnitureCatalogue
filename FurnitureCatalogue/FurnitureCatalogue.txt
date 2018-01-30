@@ -1,6 +1,6 @@
 ## Title: FurnitureCatalogue
 ## Author: manavortex
-## Version: 2.0.18
+## Version: 2.0.19
 ## APIVersion: 100021
 ## SavedVariables: FurnitureCatalogue_Settings 
 

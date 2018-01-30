@@ -330,7 +330,7 @@ FurC.AchievementVendors[FURC_MORROWIND] = {
 		},
 	},
 	["any Alliance Capital"] = {				
-		[FURC_AV_HER] = {
+		[GetString(FURC_AV_HER)] = {
 			[126720]	= { -- Banner of Mayhem
 				itemPrice 		= 5000, 		
 				achievement 	= 1883, -- Mayhem Connaiseour
