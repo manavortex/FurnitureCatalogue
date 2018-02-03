@@ -33,9 +33,11 @@ local strings = {
 	SI_FURC_STRING_WASSOLDBY = 					"Was sold by <<1>> in <<2>> (<<3>>) <<4>>",
 	SI_FURC_STRING_WEEKEND_AROUND = 			"(around <<1>>)",
 	
-	SI_FURC_STRING_ROLLIS = 					"Sold by |cd68957Rollis Hlaalu|r<<1>><<2>><<3>>",
-	SI_FURC_STRING_FAUSTINA = 					"Sold by |cd68957Faustina Curio|r<<1>><<2>><<3>>",
-	SI_FURC_STRING_FOR_VOUCHERS =				" for |ce5da40<<1>>|h vouchers",
+	SI_FURC_STRING_WRIT_VENDOR =				"Master Writ Vendor",
+	SI_FURC_STRING_WRIT_VENDOR_TT =				"Obtainable for Master Writs in your alliance's capital",
+	SI_FURC_STRING_ROLLIS = 					"Sold by |cd68957Rollis Hlaalu|r <<1>>",
+	SI_FURC_STRING_FAUSTINA = 					"Sold by |cd68957Faustina Curio|r <<1>>",
+	SI_FURC_STRING_FOR_VOUCHERS =				"for <<1>> vouchers",
 	
 	SI_FURC_FESTIVAL_DROP = 					"can be acquired during <<1>> (<<2>>)",
 	SI_FURC_STRING_RECIPELEARNED = 				"Recipe learned: <<1>> <<2>> <<3>>",
@@ -57,7 +59,7 @@ local strings = {
 	SI_FURC_STRING_MENU_SCAN_FILES_TT = 		"Will run a full scan of the data in Furniture Catalogue's files",
 	SI_FURC_STRING_MENU_SCAN_CHAR_NAME = 		"Scan character",
 	SI_FURC_STRING_MENU_SCAN_CHAR_TT = 			"Will run a full scan of your known furniture recipes and update the database accordingly",
-	SI_FURC_STRING_MENU_DELETE_CHAR_NAME =	"delete character",
+	SI_FURC_STRING_MENU_DELETE_CHAR_NAME =		"delete character data",
 	SI_FURC_STRING_MENU_DELETE_CHAR_TT =		"Deletes all knowledge for this character from the database. \nCharacter will be scanned again the next time they log in with the add-on enabled. \n Character name won't show up in the dropdown if they don't know any recipes!",
 	SI_FURC_STRING_MENU_DELETE_CHAR_WARNING =	"Character knowledge will be wiped immediately",
 	SI_FURC_STRING_MENU_ENABLE_SHOPPINGLIST =	"Enable integration?",

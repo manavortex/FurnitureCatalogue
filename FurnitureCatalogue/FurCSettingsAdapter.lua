@@ -20,6 +20,7 @@ function FurC.GetHideRumourRecipes()
 end
 function FurC.SetHideRumourRecipes(value)
 	FurC.settings["hideDoubtfuls"] = value
+	FurC.updateDropdownData()
 	FurC.UpdateGui()
 end
 function FurC.GetHideCrownStoreItems()
@@ -27,6 +28,7 @@ function FurC.GetHideCrownStoreItems()
 end
 function FurC.SetHideCrownStoreItems(value)
 	FurC.settings["hideCrownstore"] = value
+	FurC.updateDropdownData()
 	FurC.UpdateGui()
 end
 function FurC.GetHideRumourRecipesEntry()
@@ -34,12 +36,16 @@ function FurC.GetHideRumourRecipesEntry()
 end
 function FurC.SetHideRumourRecipesEntry(value)
 	FurC.settings["hideRumourEntry"] = value
+	FurC.updateDropdownData()
+	FurC.UpdateGui()
 end
 function FurC.GetHideCrownStoreEntry()
 	return FurC.settings["hideCrownStoreEntry"]
 end
 function FurC.SetHideCrownStoreEntry(value)
 	FurC.settings["hideCrownStoreEntry"] = value
+	FurC.updateDropdownData()
+	FurC.UpdateGui()
 end
 
 

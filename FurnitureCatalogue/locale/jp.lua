@@ -33,9 +33,12 @@ local strings = {
 	SI_FURC_STRING_WASSOLDBY = 					"Was sold by <<1>> in <<2>> (<<3>>) <<4>>",
 	SI_FURC_STRING_WEEKEND_AROUND = 			"(around <<1>>)",
 	
-	SI_FURC_STRING_ROLLIS = 					"Sold by |cd68957Rollis Hlaalu|r<<1>><<2>><<3>>",
-	SI_FURC_STRING_FAUSTINA = 					"Sold by |cd68957Faustina Curio|r<<1>><<2>><<3>>",
-	SI_FURC_STRING_FOR_VOUCHERS =				" for |ce5da40<<1>>|h vouchers",
+	SI_FURC_STRING_WRIT_VENDOR =				"Master Writ Vendor",
+	SI_FURC_STRING_WRIT_VENDOR_TT =				"Obtainable for Master Writs in your alliance's capital",
+	
+	SI_FURC_STRING_ROLLIS = 					"Sold by |cd68957Rollis Hlaalu|r <<1>>",
+	SI_FURC_STRING_FAUSTINA = 					"Sold by |cd68957Faustina Curio|r <<1>>",
+	SI_FURC_STRING_FOR_VOUCHERS =				"for <<1>> vouchers",
 	
 	SI_FURC_FESTIVAL_DROP = 					"can be acquired during <<1>> (<<2>>)",
 	SI_FURC_STRING_RECIPELEARNED = 				"Recipe learned: <<1>> <<2>> <<3>>",

@@ -354,12 +354,10 @@ local function createGui()
 		local validChoices 		= dropdownData[string.format("%s%s", "Choices", dropdownName)]
 		local choicesTooltips 	= dropdownData[string.format("%s%s", "Tooltips", dropdownName)]
 		local comboBox	
-		if control.comboBox ~= nil then
-			comboBox = control.comboBox
-		else
-			comboBox = ZO_ComboBox_ObjectFromContainer(control)
-			control.comboBox = comboBox
-		end
+		
+		
+		control.comboBox = control.comboBox or ZO_ComboBox_ObjectFromContainer(control)
+		comboBox = control.comboBox
 		
 		-- ruthlessly stolen from LAM
 		local function SetupTooltips(comboBox, choicesTooltips)
@@ -377,17 +375,11 @@ local function createGui()
 			comboBox.ShowDropdownInternal = function(comboBox)
 				originalShow(comboBox)
 				local entries = ZO_Menu.items
-				for i = 1, #entries do
+				for i = 1, #entries do					
+					
 					local entry = entries[i]
 					local control = entries[i].item
-					control.tooltip = choicesTooltips[i]
-					if (i == FURC_LUXURY and FurC.GetMergeLuxuryAndSales() or 
-					i == FURC_CROWN 	and FurC.GetHideCrownStoreEntry() or 
-					i == FURC_RUMOUR 	and FurC.GetHideRumourRecipesEntry() 
-					) then
-					
-					
-					end
+					control.tooltip = choicesTooltips[i]	
 
 					if control.tooltip then 
 						entry.onMouseEnter = control:GetHandler("OnMouseEnter")
@@ -395,6 +387,7 @@ local function createGui()
 						ZO_PreHookHandler(control, "OnMouseEnter", ShowTooltip)
 						ZO_PreHookHandler(control, "OnMouseExit", HideTooltip)
 					end
+					
 				end
 			end
 
@@ -426,10 +419,10 @@ local function createGui()
 				addedDropdownCharacterNames[characterName] = true
 				table.insert(validChoices, characterName)
 				table.insert(dropdownData["Tooltips"..dropdownName], string.format("%s%s", GetString(SI_FURC_STRING_RECIPESFORCHAR), characterName))
-			end
+			end			
 		end
 
-		for i = 1, #validChoices do 
+		for i = 1, #validChoices do
 			entry = comboBox:CreateItemEntry(validChoices[i], OnItemSelect)
 			comboBox:AddItem(entry)
 			if validChoices[i] == FurC.GetDropdownChoiceTextual(dropdownName) then

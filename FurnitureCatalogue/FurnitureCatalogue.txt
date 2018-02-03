@@ -1,8 +1,9 @@
 ## Title: FurnitureCatalogue
 ## Author: manavortex
-## Version: 2.0.19
+## Version: 2.1.1
 ## APIVersion: 100021
 ## SavedVariables: FurnitureCatalogue_Settings 
+## OptionalDependsOn: pChat 
 
 libs\LibStub\LibStub.lua
 libs\LibAsync\LibAsync.lua

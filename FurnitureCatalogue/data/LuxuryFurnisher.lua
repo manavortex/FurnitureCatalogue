@@ -5,6 +5,20 @@ FurC.LuxuryFurnisher[FURC_CLOCKWORK] = {
 	
 	
 	
+	[134469] = { -- Ayleid Constellation Stele, the Mage
+		itemPrice	= 20000,
+		itemDate	= "2018-02-30",
+	},
+	[134470] = { -- Ayleid Constellation Stele, Thief
+		itemPrice	= 20000,
+		itemDate	= "2018-02-30",
+	},
+	[134471] = { -- Ayleid Constellation Stele, Warrior
+		itemPrice	= 20000,
+		itemDate	= "2018-02-30",
+	},
+	
+	
 	[134466] = { -- Ayleid Sconce, Empty
 		itemPrice	= 4000,
 		itemDate	= "2018-01-27",

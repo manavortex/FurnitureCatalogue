@@ -95,57 +95,100 @@ FURC_RUMOUR 			= FURC_CROWN +1
 FURC_LUXURY 			= FURC_RUMOUR +1
 FURC_OTHER 				= FURC_LUXURY +1
 FURC_ROLLIS 			= FURC_OTHER +1
-FURC_DROP 				= FURC_ROLLIS +1
+FURC_WRIT_VENDOR 		= FURC_ROLLIS +1
+FURC_DROP 				= FURC_WRIT_VENDOR +1
 FURC_JUSTICE 			= FURC_DROP +1
 FURC_FISHING 			= FURC_JUSTICE +1
 FURC_GUILDSTORE 		= FURC_FISHING +1
 FURC_FESTIVAL_DROP 		= FURC_GUILDSTORE +1
 
-
+local function updateSourceIndices()
+	FURC_CROWN 				= FURC_PVP + tonumber((FurC.GetHideCrownStoreEntry() and 0) or 1)
+	FURC_RUMOUR 			= FURC_CROWN + tonumber((FurC.GetHideRumourRecipesEntry() and 0) or 1)
+	FURC_LUXURY 			= FURC_RUMOUR + tonumber((FurC.GetMergeLuxuryAndSales() and 0) or 1)
+	FURC_OTHER 				= FURC_LUXURY +1
+	FURC_ROLLIS 			= FURC_OTHER +1
+	FURC_WRIT_VENDOR 		= FURC_ROLLIS +1
+	FURC_DROP 				= FURC_WRIT_VENDOR +1
+	FURC_JUSTICE 			= FURC_DROP +1
+	FURC_FISHING 			= FURC_JUSTICE +1
+	FURC_GUILDSTORE 		= FURC_FISHING +1
+	FURC_FESTIVAL_DROP 		= FURC_GUILDSTORE +1	
+end
+FurC.updateSourceIndices = updateSourceIndices
 
 FURC_EMPTY_STRING 		= ""
+local sourceIndicesKeys = {}
+local function getSourceIndicesKeys()
+	updateSourceIndices()
+	sourceIndicesKeys[FURC_NONE] 						= "off"
+	sourceIndicesKeys[FURC_FAVE] 						= "favorites"
+	sourceIndicesKeys[FURC_CRAFTING] 					= "craft_all"
+	sourceIndicesKeys[FURC_CRAFTING_KNOWN] 				= "craft_known"
+	sourceIndicesKeys[FURC_CRAFTING_UNKNOWN] 			= "craft_unknown"
+	sourceIndicesKeys[FURC_VENDOR] 						= "purch_gold"
+	sourceIndicesKeys[FURC_PVP] 						= "purch_ap"	
+	if not FurC.GetHideCrownStoreEntry() then
+		sourceIndicesKeys[FURC_CROWN] 					= "crownstore"
+	end
+	sourceIndicesKeys[FURC_WRIT_VENDOR] 				= "writ_vendor"
+	if not FurC.GetHideRumourRecipesEntry() then
+		sourceIndicesKeys[FURC_RUMOUR] 					= "rumour"
+	end		
+	if not FurC.GetMergeLuxuryAndSales() then
+		sourceIndicesKeys[FURC_LUXURY] 					= "luxury"
+	end
+	sourceIndicesKeys[FURC_OTHER] 						= "other"
+	
+	
+	
+	return sourceIndicesKeys
+end
 
 
-local sourceIndicesKeys = {
-	[FURC_NONE] 						= "off",
-	[FURC_FAVE] 						= "favorites",
-	[FURC_CRAFTING] 					= "craft_all",
-	[FURC_CRAFTING_KNOWN] 				= "craft_known",
-	[FURC_CRAFTING_UNKNOWN] 			= "craft_unknown",
-	[FURC_VENDOR] 						= "purch_gold",
-	[FURC_PVP] 							= "purch_ap",
-	[FURC_CROWN] 						= "crownstore",
-	[FURC_RUMOUR] 						= "rumour",
-	[FURC_LUXURY] 						= "luxury",
-	[FURC_OTHER] 						= "other"
-}
+local choicesSource = {}
+local function getChoicesSource()
+	choicesSource[FURC_NONE]						= GetString(SI_FURC_NONE)		
+	choicesSource[FURC_FAVE] 						= GetString(SI_FURC_FAVE)		
+	choicesSource[FURC_CRAFTING] 					= GetString(SI_FURC_CRAFTING)	
+	choicesSource[FURC_CRAFTING_KNOWN] 				= GetString(SI_FURC_CRAFTING_KNOWN)	
+	choicesSource[FURC_CRAFTING_UNKNOWN] 			= GetString(SI_FURC_CRAFTING_UNKNOWN)
+	choicesSource[FURC_VENDOR] 						= GetString(SI_FURC_VENDOR)	
+	choicesSource[FURC_PVP] 						= GetString(SI_FURC_PVP)
+	choicesSource[FURC_WRIT_VENDOR] 				= GetString(SI_FURC_STRING_WRIT_VENDOR)
+	if not FurC.GetHideCrownStoreEntry() then
+		choicesSource[FURC_CROWN] 					= GetString(SI_FURC_CROWN)
+	end
+	if not FurC.GetHideRumourRecipesEntry() then
+		choicesSource[FURC_RUMOUR] 					= GetString(SI_FURC_LUXURY)
+	end		
+	if not FurC.GetMergeLuxuryAndSales() then
+		choicesSource[FURC_LUXURY] 					= GetString(SI_FURC_OTHER)
+	end
+	return choicesSource
+end
 
-local choicesSource = {
-	[FURC_NONE]							= GetString(SI_FURC_NONE),			
-	[FURC_FAVE] 						= GetString(SI_FURC_FAVE), 			
-	[FURC_CRAFTING] 					= GetString(SI_FURC_CRAFTING), 		
-	[FURC_CRAFTING_KNOWN] 				= GetString(SI_FURC_CRAFTING_KNOWN), 	
-	[FURC_CRAFTING_UNKNOWN] 			= GetString(SI_FURC_CRAFTING_UNKNOWN),
-	[FURC_VENDOR] 						= GetString(SI_FURC_VENDOR), 			
-	[FURC_PVP] 							= GetString(SI_FURC_PVP), 			
-	[FURC_CROWN] 						= GetString(SI_FURC_CROWN), 			
-	[FURC_RUMOUR] 						= GetString(SI_FURC_RUMOUR), 			
-	[FURC_LUXURY] 						= GetString(SI_FURC_LUXURY), 			
-	[FURC_OTHER] 						= GetString(SI_FURC_OTHER), 			
-}
-local tooltipsSource = {
-	[FURC_NONE]							= GetString(SI_FURC_NONE_TT),			
-	[FURC_FAVE] 						= GetString(SI_FURC_FAVE_TT), 			
-	[FURC_CRAFTING] 					= GetString(SI_FURC_CRAFTING_TT), 		
-	[FURC_CRAFTING_KNOWN] 				= GetString(SI_FURC_CRAFTING_KNOWN_TT), 	
-	[FURC_CRAFTING_UNKNOWN] 			= GetString(SI_FURC_CRAFTING_UNKNOWN_TT),
-	[FURC_VENDOR] 						= GetString(SI_FURC_VENDOR_TT), 			
-	[FURC_PVP] 							= GetString(SI_FURC_PVP_TT), 			
-	[FURC_CROWN] 						= GetString(SI_FURC_CROWN_TT), 			
-	[FURC_RUMOUR] 						= GetString(SI_FURC_RUMOUR_TT), 			
-	[FURC_LUXURY] 						= GetString(SI_FURC_LUXURY_TT), 			
-	[FURC_OTHER] 						= GetString(SI_FURC_OTHER_TT), 			
-}
+local tooltipsSource = {}
+local function getTooltipsSource()
+	tooltipsSource[FURC_NONE]						= GetString(SI_FURC_NONE_TT)		
+	tooltipsSource[FURC_FAVE] 						= GetString(SI_FURC_FAVE_TT)		
+	tooltipsSource[FURC_CRAFTING] 					= GetString(SI_FURC_CRAFTING_TT)	
+	tooltipsSource[FURC_CRAFTING_KNOWN] 			= GetString(SI_FURC_CRAFTING_KNOWN_TT)	
+	tooltipsSource[FURC_CRAFTING_UNKNOWN] 			= GetString(SI_FURC_CRAFTING_UNKNOWN_TT)
+	tooltipsSource[FURC_VENDOR] 					= GetString(SI_FURC_VENDOR_TT)	
+	tooltipsSource[FURC_PVP] 						= GetString(SI_FURC_PVP_TT)
+	tooltipsSource[FURC_WRIT_VENDOR] 				= GetString(SI_FURC_STRING_WRIT_VENDOR_TT)
+	if not FurC.GetHideCrownStoreEntry() then
+		tooltipsSource[FURC_CROWN] 					= GetString(SI_FURC_CROWN_TT)
+	end
+	if not FurC.GetHideRumourRecipesEntry() then
+		tooltipsSource[FURC_RUMOUR] 				= GetString(SI_FURC_LUXURY_TT)
+	end		
+	if not FurC.GetMergeLuxuryAndSales() then
+		tooltipsSource[FURC_LUXURY] 				= GetString(SI_FURC_OTHER_TT)
+	end
+	return tooltipsSource
+end
 
 FurnitureCatalogue.DropdownData = {
 	ChoicesVersion	= {
@@ -177,7 +220,22 @@ FurnitureCatalogue.DropdownData = {
 }
 
 
+local function updateDropdownData()
+	updateSourceIndices()
+	FurnitureCatalogue.DropdownData.ChoicesSource  = getChoicesSource()
+	FurnitureCatalogue.DropdownData.TooltipsSource = getTooltipsSource()
+end
+FurnitureCatalogue.updateDropdownData = updateDropdownData
 
+local function setupSourceDropdown()
+	updateDropdownData()   
+	sourceIndices = {}
+
+	for idx, key in pairs(getSourceIndicesKeys()) do
+		sourceIndices[key] = idx
+	end
+	FurC.SourceIndices = sourceIndices
+end
 
 function FurnitureCatalogue.DebugOut(output, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10)
 	if not FurC.GetEnableDebug() then return end		
@@ -208,27 +266,14 @@ function FurnitureCatalogue.DebugOut(output, a1, a2, a3, a4, a5, a6, a7, a8, a9,
 	end	
 end
 
-local function p(output, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10)
-	FurC.DebugOut(output, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10)
+local function p(...)
+	FurC.DebugOut(...)
 end
 
 function whoami()
 	return FurnitureCatalogue.CharacterName
 end
 
-local function setupSourceDropdown()	
-
-  
-   FurnitureCatalogue.DropdownData.ChoicesSource  = choicesSource
-   FurnitureCatalogue.DropdownData.TooltipsSource = tooltipsSource
-   
-	sourceIndices = {}
-	
-	for idx, key in pairs(sourceIndicesKeys) do
-		sourceIndices[key] = idx
-	end
-	FurC.SourceIndices = sourceIndices
-end
 
 function FurnitureCatalogue_ToggleDev(arg)
 	if arg == 0 or arg == "true" then
@@ -256,7 +301,7 @@ function FurnitureCatalogue_Initialize(eventCode, addOnName)
 	FurC.settings.filterQuality 				= {}
 	setupSourceDropdown()
 	
-	FurnitureCatalogue.CreateSettings(FurnitureCatalogue.settings, defaults, FurnitureCatalogue)	
+	FurnitureCatalogue.CreateSettings(FurnitureCatalogue.settings, defaults, FurnitureCatalogue)
 	
 	FurnitureCatalogue.CharacterName = zo_strformat(GetUnitName('player'))
 	
@@ -277,8 +322,7 @@ function FurnitureCatalogue_Initialize(eventCode, addOnName)
 	FurnitureCatalogue.ScanRecipes(scanFiles, not FurC.GetSkipInitialScan())
 	FurC.settings.databaseVersion 	= FurC.version
 	SLASH_COMMANDS["/fur"] 			= FurnitureCatalogue_Toggle
-	
-	
+
 	FurC.SetFilter(true)
 	EVENT_MANAGER:UnregisterForEvent("FurnitureCatalogue", EVENT_ADD_ON_LOADED)
 	

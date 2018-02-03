@@ -4,6 +4,7 @@ local vendorColor 	= "d68957"
 local goldColor 	= "e5da40"
 local apColor 		= "25C31E"
 local tvColor		= "5EA4FF"
+local voucherColor	= "82BCFF"
 local p 			= FurC.DebugOut -- debug function calling zo_strformat with up to 10 args 
 
 
@@ -21,13 +22,14 @@ local function getRollisSource(recipeKey, recipeArray)
 	local versionData = FurC.Rollis[recipeArray.version]
 	
 	if nil ~= versionData and nil ~= versionData[recipeKey] then 
-		local itemPrice = zo_strformat(GetString(SI_FURC_STRING_FOR_VOUCHERS), versionData[recipeKey])
-		return  zo_strformat(GetString(SI_FURC_STRING_ROLLIS), itemPrice)		
+		local itemPrice = zo_strformat(GetString(SI_FURC_STRING_FOR_VOUCHERS), colorise(versionData[recipeKey], voucherColor))
+		return zo_strformat(GetString(SI_FURC_STRING_ROLLIS), itemPrice)		
 	end
+	
 	versionData = FurC.Faustina[recipeArray.version]
 	if nil ~= versionData and nil ~= versionData[recipeKey] then
-		local itemPrice = zo_strformat(GetString(SI_FURC_STRING_FOR_VOUCHERS), versionData[recipeKey])
-		return  zo_strformat(GetString(SI_FURC_STRING_FAUSTINA), itemPrice)
+		local itemPrice = zo_strformat(GetString(SI_FURC_STRING_FOR_VOUCHERS), colorise(versionData[recipeKey], voucherColor))
+		return zo_strformat(GetString(SI_FURC_STRING_FAUSTINA), itemPrice)
 	end
 	
 	return GetString(SI_FURC_STRING_VOUCHER_VENDOR)
