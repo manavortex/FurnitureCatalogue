@@ -3,7 +3,10 @@ FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
 FurC.LuxuryFurnisher[FURC_CLOCKWORK] = {
 	
-	
+	[117876] = {	-- Wedding Curtain, Wide 
+		itemPrice 	= 7500,
+		itemDate	= "2018-02-10",
+	},
 	
 	[134469] = { -- Ayleid Constellation Stele, the Mage
 		itemPrice	= 20000,

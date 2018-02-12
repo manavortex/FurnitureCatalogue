@@ -968,7 +968,6 @@ FurC.Recipes[FURC_HOMESTEAD] = {
 	119428, -- Common Bowl, Serving
 	119429, -- Ham, Display
 	119432, -- Hourglass, Common
-	119437, -- Pie, Display
 	119438, -- Baked Potato, Display
 	119439, -- Pot Pie, Display
 	119440, -- Pie Dish", Empty

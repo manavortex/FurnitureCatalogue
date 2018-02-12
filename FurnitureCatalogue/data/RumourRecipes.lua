@@ -42,4 +42,9 @@ FurC.RumourRecipes = {
 	
 	119466, -- Podium, Engraved
 	
+	119437, -- Pie, Display
+	
+	121161, -- Ram Horns, Mounted
+	121216, -- Redguard Divider, Gilded
+	
 }

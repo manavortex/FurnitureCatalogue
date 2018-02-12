@@ -40,20 +40,3 @@ FurC.Rollis[FURC_DRAGONS] = {
 FurC.Rollis_Recipes[FURC_DRAGONS] = {
 	[133576] = 50, 
 }
-
-
-
-if GetAPIVersion() ~= 100022 then 
-	FurC.FaustinaRecipes[FURC_DRAGONS] 	= {}
-	FurC.Rollis_Recipes[FURC_DRAGONS] 	= {}
-	FurC.Rollis[FURC_DRAGONS] 			= {}
-	FurC.Faustina[FURC_DRAGONS] 		= {}
-	FurC.Rollis_Recipes[FURC_MORROWIND] = {
-		 132194,	-- Mammoth Cheese
-		 132191,	-- Dwarven Gyroscope, Masterwork
-		 132190,	-- Mages' Apparatus, Master
-		 132192,	-- Dres Sewing Kit
-		 132193,	-- Hlaalu Bathtub
-		 132195,	-- Telvanni Candelabra
-	}
-end

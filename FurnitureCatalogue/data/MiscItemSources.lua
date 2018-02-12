@@ -153,6 +153,10 @@ FurC.MiscItemSources 	= {
 			[126700] = FURC_TOMBS, 
 			-- Velothi Shroud, Honor			
 			[126703] = FURC_TOMBS, 
+			--  Velothi Shroud, Mourning
+			[126572] = FURC_TOMBS, 
+			--  Velothi Shroud, Mysteries
+			[126757] = FURC_TOMBS, 
 		
 			-- Ashlander dailies
 			[126119] = FURC_DAILY_ASHLANDERS, 		-- Crimson Shard of Moonshadow
@@ -255,7 +259,3 @@ FurC.MiscItemSources 	= {
 		}
 	},
 }
-
-if GetAPIVersion() ~= 100022 then 
-	FurC.MiscItemSources[FURC_DRAGONS] 	= {}
-end
