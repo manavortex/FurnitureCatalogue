@@ -7,6 +7,9 @@ Thumbs.db
 ehthumbs.db
 ehthumbs_vista.db
 
+textures/
+textures/*
+
 # Folder config file
 Desktop.ini
 
