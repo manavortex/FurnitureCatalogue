@@ -39,7 +39,7 @@ FurCEvents.lua
 
 data\Morrowind\M_Recipes.lua
 data\Homestead\H_Recipes.lua
-data\Homestead\HotR_Recipes.lua
+data\Reach\HotR_Recipes.lua
 data\Recipes.lua
 
 data\Homestead\H_AchievementVendors.lua

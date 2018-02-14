@@ -48,6 +48,7 @@ local FURC_DB_SNEAKY					= FURC_DB .. "as a way to be sneaky"
 local FURC_DAILY_ASHLANDERS			= "Ashlander daily quest rewards"
 	
 local FURC_PLUNDERSKULL				= "Drops from Plunder Skulls during Witches' Festival"
+local FURC_DROP_CHEST_VVARDENFELL	= "From chests on Vvardenfell"
 
 
 FurC.MiscItemSources 	= {
@@ -157,6 +158,9 @@ FurC.MiscItemSources 	= {
 			[126572] = FURC_TOMBS, 
 			--  Velothi Shroud, Mysteries
 			[126757] = FURC_TOMBS, 
+			
+			
+			[126467] = FURC_DROP_CHEST_VVARDENFELL,  -- Telvanni Painting, Valley
 		
 			-- Ashlander dailies
 			[126119] = FURC_DAILY_ASHLANDERS, 		-- Crimson Shard of Moonshadow
