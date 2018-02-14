@@ -47,5 +47,7 @@ FurC.RumourRecipes = {
 	121161, -- Ram Horns, Mounted
 	121216, -- Redguard Divider, Gilded
 	127032, -- Dres Carpet, Fertile Peat
+	121207, -- Orcish Table with Fur_S_
+	
 	
 }

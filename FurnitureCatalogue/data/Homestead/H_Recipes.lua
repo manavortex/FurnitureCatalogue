@@ -1052,7 +1052,7 @@ FurC.Recipes[FURC_HOMESTEAD] = {
 	-- 115786, -- Argonian Skiff, Common Reed
 	
 	
-	121208, -- Orcish Table with Furs
+	121207, -- Orcish Table with Fur
 	121203, -- Khajiit Brazier, Enchanted
 	121201, -- Sack of Beans
 	
