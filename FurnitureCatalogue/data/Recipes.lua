@@ -1,4 +1,8 @@
 FurC.Recipes = FurC.Recipes or {}
+FurC.Recipes[FURC_DRAGONS] = {	
+	127101, -- Velothi Brazier, Temple - talked to a Russian who sold it
+
+}
 FurC.Recipes[FURC_CLOCKWORK] = {	
 	134527, -- Design: Clockwork Meal, Dish
 	134512, -- Diagram: Clockwork Table, Octagonal

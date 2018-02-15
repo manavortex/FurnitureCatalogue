@@ -50,4 +50,7 @@ FurC.RumourRecipes = {
 	121207, -- Orcish Table with Fur_S_
 	
 	
+	127102, -- Tribunal Tablet of Almalexia
+	
+	
 }
