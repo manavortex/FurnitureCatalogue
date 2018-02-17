@@ -152,15 +152,15 @@ FurC.LuxuryFurnisher[FURC_HOMESTEAD] = {
 
 	[120802] = {	-- Shrine of Mara, Decorative
 		itemPrice 	= 50000,
-		itemDate	= "2017-03-03",
+		itemDate	= "2018-02-17",
 	},
 	[120799] = {	-- Wedding Blossoms, Peach
 		itemPrice 	= 2500,
-		itemDate	= "2017-03-03",
+		itemDate	= "2018-02-17",
 	},
 	[120893] = {	-- Wedding Gazebo
 		itemPrice 	= 50000,
-		itemDate	= "2017-03-03",
+		itemDate	= "2018-02-17",
 	},
 	
 	[120798] = {	-- Wedding Blossoms, Blue
