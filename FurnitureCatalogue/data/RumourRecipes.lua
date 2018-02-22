@@ -49,8 +49,10 @@ FurC.RumourRecipes = {
 	127032, -- Dres Carpet, Fertile Peat
 	121207, -- Orcish Table with Fur_S_
 	
+	118118, -- Candles, Lasting
+	115395, -- Nord Drinking Horn, Display
 	
-	127102, -- Tribunal Tablet of Almalexia
+	
 	
 	
 }

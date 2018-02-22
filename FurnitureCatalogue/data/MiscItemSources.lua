@@ -136,31 +136,25 @@ FurC.MiscItemSources 	= {
 			[126659] = FURC_AUTOMATON_VV, 			-- Dwemer Gear, Flat
 		
 			-- lootable in tombs
+			[126754] = FURC_TOMBS, 					-- Velothi Shroud, Seeker
+			[126705] = FURC_TOMBS, 					-- Velothi Shroud, Wisdom				
+			[126704] = FURC_TOMBS, 					-- Velothi Shroud, Majesty
+			[126706] = FURC_TOMBS, 					-- Velothi Shroud, Knowledge
+			[126701] = FURC_TOMBS, 					-- Velothi Shroud, Nerevar
+			[126764] = FURC_TOMBS, 					-- Velothi Shroud, Prowess
+			[126702] = FURC_TOMBS, 					-- Velothi Shroud, Reverance			
+			[126700] = FURC_TOMBS, 					-- Velothi Shroud, Honor			
+			[126703] = FURC_TOMBS, 					-- Velothi Shroud, Mourning
+			[126572] = FURC_TOMBS, 					-- Velothi Shroud, Mysteries
+			
 			[126773] = FURC_TOMBS, 					-- Velothi Caisson, Crypt
-			[126704] = FURC_TOMBS, 
-			-- Velothi Shroud, Majesty
-			[126706] = FURC_TOMBS, 
-			-- Velothi Shroud, Knowledge
-			[126701] = FURC_TOMBS, 
-			-- Velothi Shroud, Nerevar
-			[126753] = FURC_TOMBS, 
-			-- Velothi Cerecloth, Austere
-			[126758] = FURC_TOMBS, 
-			-- Velothi Mat, Prayer
-			[126764] = FURC_TOMBS, 
-			-- Velothi Shroud, Prowess
-			[126702] = FURC_TOMBS, 
-			-- Velothi Shroud, Reverance			
-			[126700] = FURC_TOMBS, 
-			-- Velothi Shroud, Honor			
-			[126703] = FURC_TOMBS, 
-			--  Velothi Shroud, Mourning
-			[126572] = FURC_TOMBS, 
-			--  Velothi Shroud, Mysteries
+			[126753] = FURC_TOMBS,					-- Velothi Cerecloth, Austere
+			[126758] = FURC_TOMBS,					-- Velothi Mat, Prayer
 			[126757] = FURC_TOMBS, 
 			
 			
-			[126467] = FURC_DROP_CHEST_VVARDENFELL,  -- Telvanni Painting, Valley
+			[126467] = FURC_DROP_CHEST_VVARDENFELL,  -- Telvanni Painting, Modest Valley
+			[126464] = FURC_DROP_CHEST_VVARDENFELL,  -- Telvanni Painting, Oversized Valley
 		
 			-- Ashlander dailies
 			[126119] = FURC_DAILY_ASHLANDERS, 		-- Crimson Shard of Moonshadow
