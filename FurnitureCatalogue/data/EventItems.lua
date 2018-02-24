@@ -36,7 +36,7 @@ FurC.EventItems[FURC_REACH] = {
 			[130293] = true,	-- Branch, Curved Burnt
 			[130301] = true,	-- Saplings, Burnt Sparse
 			[130299] = true,	-- Saplings, Burnt Cluster
-			[130300] = true,	-- Saplings, Burnt Tall
+			[130300] = "occasionally found in wood nodes",	-- Saplings, Burnt Tall
 		
 
 		}

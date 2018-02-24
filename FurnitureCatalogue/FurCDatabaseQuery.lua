@@ -131,6 +131,11 @@ local function getEventDropSource(recipeKey, recipeArray, stripColor)
 							colorise(eventName, 			vendorColor, stripColor), 
 							colorise(eventItemSource, 		vendorColor, stripColor)
 						)
+						local additionalsource = tostring(eventSourceData[recipeKey]) or ""
+						if #additionalsource > 4 then 
+							itemPriceString = itemPriceString .. "\n" .. additionalsource
+						end	
+						return itemPriceString
 					end
 				end		
 			end 
