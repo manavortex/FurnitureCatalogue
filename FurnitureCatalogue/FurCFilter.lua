@@ -81,14 +81,14 @@ end
 
 -- Source: All, All (craftable), Craftable (known), craftable (unknown), purchaseable
 local function matchSourceDropdown()	
-	
+	 
 	-- "All", don't care	
 	if FURC_NONE						== ddSource then  -- All
 		return true
 	elseif FURC_CRAFTING_KNOWN 			== ddSource then 
 		return recipeArray.origin 		== FURC_CRAFTING and isRecipeArrayKnown(recipeArray)
 	elseif FURC_CRAFTING_UNKNOWN 		== ddSource then 
-		return recipeArray.origin 		== FURC_CRAFTING and not isRecipeArrayKnown(recipeArray)
+		return recipeArray.origin 		== FURC_CRAFTING and not isRecipeArrayKnown(recipeArray) 
 	elseif FURC_FAVE 					== ddSource then
 		return recipeArray.favorite
 	elseif FURC_VENDOR 					== ddSource then 

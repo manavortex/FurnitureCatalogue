@@ -1,8 +1,7 @@
 FurC.RumourRecipes = {	
 	118290, -- Antlers, Wall Mount
 	118299, -- Bottle, Beaker
-	118300, -- Bottle, Poison	
-	
+	118300, -- Bottle, Poison
 	
 	118291, -- Durzog Head, Wall Mount
 	118294, -- Echatere Horns, Wall Mount
@@ -13,10 +12,17 @@ FurC.RumourRecipes = {
 	118283, -- Horn, Display, Huge
 	
 	118296, -- Mantikora Head, Wall Mount
-	118297, -- Mantikora Horns, Wall Mount
-	116473, -- Orcish Effigy, Mammoth
-	118242, -- Rug, Bearskin
+	118297, -- Mantikora Horns, Wall Mount	
+	118242, -- Rug, Bearskin	
 	
+	121207, -- Recipe: Orcish Table with Fur_S_ 	
+	121210, -- Recipe: Orcish Throne, Skull
+	121212, -- Recipe: Orcish Effigy, Bear	
+	121213, -- Recipe: Orcish Skull Goblet, Empty
+	
+	116473, -- Orcish Effigy, Mammoth 
+	116474, -- Orcish Effigy, Bear	
+	116433, -- Orcish Table with Fur_S
 	
 	118053, -- Common Campfire, Outdoor
 	118065, -- Common Cargo Crate, Dry
@@ -47,12 +53,8 @@ FurC.RumourRecipes = {
 	121161, -- Ram Horns, Mounted
 	121216, -- Redguard Divider, Gilded
 	127032, -- Dres Carpet, Fertile Peat
-	121207, -- Orcish Table with Fur_S_
 	
 	118118, -- Candles, Lasting
 	115395, -- Nord Drinking Horn, Display
-	
-	
-	
 	
 }

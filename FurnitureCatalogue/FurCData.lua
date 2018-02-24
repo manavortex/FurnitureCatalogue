@@ -432,10 +432,10 @@ local function scanFromFiles(shouldScanCharacter)
 			if #itemLink == 0 then itemLink = blueprintLink end
 			local itemId = getItemId(itemLink)
 			recipeArray = parseBlueprint(blueprintLink) or parseFurnitureItem(itemLink) or {}
-			
 			if blueprintId ~= itemId then 
 				recipeArray.blueprint = blueprintId
 			end
+			recipeArray.recipeListIndex, recipeArray.recipeIndex =  GetItemLinkGrantedRecipeIndices(blueprintLink)
 			recipeArray.origin = FURC_RUMOUR
 			recipeArray.verion = FURC_HOMESTEAD
 			addDatabaseEntry(itemId, recipeArray)
