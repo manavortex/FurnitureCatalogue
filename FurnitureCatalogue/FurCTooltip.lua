@@ -11,7 +11,6 @@ end
 
 local function addTooltipData(control, itemLink)
 
-	
 	if FurC.GetDisableTooltips() then return end
 	local itemId, recipeArray = nil
 	if nil == itemLink or FURC_EMPTY_STRING == itemLink then return end

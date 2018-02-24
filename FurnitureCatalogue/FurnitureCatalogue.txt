@@ -1,6 +1,6 @@
 ## Title: FurnitureCatalogue
 ## Author: manavortex
-## Version: 2.1.7
+## Version: 2.2.1
 ## APIVersion: 100022
 ## SavedVariables: FurnitureCatalogue_Settings 
 ## OptionalDependsOn: pChat 
@@ -41,6 +41,7 @@ data\Morrowind\M_Recipes.lua
 data\Homestead\H_Recipes.lua
 data\Reach\HotR_Recipes.lua
 data\Recipes.lua
+data\RecipeSources.lua
 
 data\Homestead\H_AchievementVendors.lua
 data\Morrowind\M_AchievementVendors.lua

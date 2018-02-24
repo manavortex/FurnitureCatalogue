@@ -11,7 +11,7 @@ local async 			= LibStub("LibAsync"):Create("FurnitureCatalogue_forLoop")
 local p 		= FurC.DebugOut -- debug function calling zo_strformat with up to 10 args
 local sortTable = FurC.SortTable
 
-function sort(myTable)	
+local function sort(myTable)	
 	local sortName, sortDirection = FurC.GetSortParams()	
 	sortName = sortName or "itemName"
 	local sortUp = ((ZO_SORT_ORDER_UP and sortDirection == "up") or ZO_SORT_ORDER_DOWN)
@@ -84,9 +84,7 @@ local function updateLineVisibility()
 		
 	end)
 end
-function FurC.UpdateLineVisibility()
-	updateLineVisibility()
-end
+FurC.UpdateLineVisibility =	updateLineVisibility
 
 function FurC.IsLoading(isBuffering)	
 	

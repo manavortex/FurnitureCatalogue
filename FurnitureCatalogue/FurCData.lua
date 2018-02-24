@@ -306,16 +306,17 @@ local function scanFromFiles(shouldScanCharacter)
 			end
 		end	
 	end
+	
 	local function scanRecipeFile()
 		local recipeKey, recipeArray
 		local function scanArray(ary, versionNumber, origin)
 			if nil == ary then return end
 			
 			for key, recipeId in ipairs(ary) do
-				local recipeLink = FurC.GetItemLink(recipeId)
-			
+				local recipeLink = FurC.GetItemLink(recipeId)			
 				local itemLink = GetItemLinkRecipeResultItemLink(recipeLink) or FurC.GetItemLink(recipeId)
 				recipeArray = FurC.Find(itemLink) or parseBlueprint(recipeLink) or parseFurnitureItem(itemLink)
+				local recipeListIndex, recipeIndex = GetItemLinkGrantedRecipeIndices(recipeLink)
 				if nil == recipeArray then 
 					p("scanRecipeFile: error for <<1>> (ID was <<2>>)", recipeLink, recipeId)
 				else
