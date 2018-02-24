@@ -60,7 +60,7 @@ local strings = {
 	SI_FURC_STRING_MENU_SCAN_FILES_TT = 		"Will run a full scan of the data in Furniture Catalogue's files",
 	SI_FURC_STRING_MENU_SCAN_CHAR_NAME = 		"Scan character",
 	SI_FURC_STRING_MENU_SCAN_CHAR_TT = 			"Will run a full scan of your known furniture recipes and update the database accordingly",
-	SI_FURC_STRING_MENU_DELETE_CHAR_NAME =	"delete character",
+	SI_FURC_STRING_MENU_DELETE_CHAR_NAME =		"delete character",
 	SI_FURC_STRING_MENU_DELETE_CHAR_TT =		"Deletes all knowledge for this character from the database. \nCharacter will be scanned again the next time they log in with the add-on enabled. \n Character name won't show up in the dropdown if they don't know any recipes!",
 	SI_FURC_STRING_MENU_DELETE_CHAR_WARNING =	"Character knowledge will be wiped immediately",
 	SI_FURC_STRING_MENU_ENABLE_SHOPPINGLIST =	"Enable integration?",
@@ -133,6 +133,7 @@ local strings = {
 	SI_FURC_CROWN									= "Crown Store",
 	SI_FURC_RUMOUR									= "Rumour items",
 	SI_FURC_LUXURY									= "Luxury items",
+	SI_FURC_RUMOUR									= "Rumour items",
 	SI_FURC_OTHER									= "Other",
 						
 	SI_FURC_FILTER_VERSION_OFF						= "Version filter: off", 

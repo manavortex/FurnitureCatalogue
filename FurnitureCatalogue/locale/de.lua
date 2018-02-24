@@ -132,6 +132,7 @@ local strings = {
 	SI_FURC_CROWN									= "Crown Store",
 	SI_FURC_RUMOUR									= "Rumour items",
 	SI_FURC_LUXURY									= "Luxury items",
+	SI_FURC_RUMOUR									= "Rumour items",
 	SI_FURC_OTHER									= "Other",
 						
 	SI_FURC_FILTER_VERSION_OFF						= "Version filter: off", 

@@ -140,8 +140,6 @@ local function getSourceIndicesKeys()
 	end
 	sourceIndicesKeys[FURC_OTHER] 						= "other"
 	
-	
-	
 	return sourceIndicesKeys
 end
 
@@ -160,10 +158,10 @@ local function getChoicesSource()
 		choicesSource[FURC_CROWN] 					= GetString(SI_FURC_CROWN)
 	end
 	if not FurC.GetHideRumourRecipesEntry() then
-		choicesSource[FURC_RUMOUR] 					= GetString(SI_FURC_LUXURY)
+		choicesSource[FURC_RUMOUR] 					= GetString(SI_FURC_RUMOUR)
 	end		
 	if not FurC.GetMergeLuxuryAndSales() then
-		choicesSource[FURC_LUXURY] 					= GetString(SI_FURC_OTHER)
+		choicesSource[FURC_LUXURY] 					= GetString(SI_FURC_LUXURY)
 	end
 	return choicesSource
 end
@@ -182,10 +180,10 @@ local function getTooltipsSource()
 		tooltipsSource[FURC_CROWN] 					= GetString(SI_FURC_CROWN_TT)
 	end
 	if not FurC.GetHideRumourRecipesEntry() then
-		tooltipsSource[FURC_RUMOUR] 				= GetString(SI_FURC_LUXURY_TT)
+		tooltipsSource[FURC_RUMOUR] 				= GetString(SI_FURC_RUMOUR_TT)
 	end		
 	if not FurC.GetMergeLuxuryAndSales() then
-		tooltipsSource[FURC_LUXURY] 				= GetString(SI_FURC_OTHER_TT)
+		tooltipsSource[FURC_LUXURY] 				= GetString(SI_FURC_LUXURY_TT)
 	end
 	return tooltipsSource
 end

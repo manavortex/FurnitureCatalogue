@@ -155,6 +155,12 @@ function FurC.GetMiscItemSource(recipeKey, recipeArray)
 	return originData[recipeKey]
 end
 
+local function getRecipeSource(recipeKey, recipeArray)
+	if nil == recipeKey and nil == recipeArray then return end
+	if nil == FurC.RecipeSources then return end
+	return FurC.RecipeSources[recipeKey]
+end
+FurC.getRecipeSource = getRecipeSource
 function FurC.getRumourSource(recipeKey, recipeArray)
 	return (recipeArray.blueprint and GetString(SI_FURC_RUMOUR_SOURCE_RECIPE)) or GetString(SI_FURC_RUMOUR_SOURCE_ITEM)
 end
