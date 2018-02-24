@@ -161,7 +161,7 @@ local function getRecipeSource(recipeKey, recipeArray)
 	
 	recipeKey = recipeArray.blueprint or recipeKey	
 	
-	return FurC.getRumourSource(recipeKey, recipeArray) or FurC.RecipeSources[recipeKey]
+	return (recipeArray.origin == FURC_RUMOUR and FurC.getRumourSource(recipeKey, recipeArray)) or FurC.RecipeSources[recipeKey]
 end
 FurC.getRecipeSource = getRecipeSource
 
