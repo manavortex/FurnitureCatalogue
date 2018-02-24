@@ -7,7 +7,6 @@ local tvColor		= "5EA4FF"
 local voucherColor	= "82BCFF"
 local p 			= FurC.DebugOut -- debug function calling zo_strformat with up to 10 args 
 
-
 local function colorise(str, col, ret)
 	str = tostring(str)
 	if str:find("%d000$") then str = str:gsub("000$", "k") end
@@ -158,9 +157,14 @@ end
 local function getRecipeSource(recipeKey, recipeArray)
 	if nil == recipeKey and nil == recipeArray then return end
 	if nil == FurC.RecipeSources then return end
-	return FurC.RecipeSources[recipeKey]
+	recipeArray = recipeArray or FurC.Find(recipeKey)	
+	
+	recipeKey = recipeArray.blueprint or recipeKey	
+	
+	return FurC.getRumourSource(recipeKey, recipeArray) or FurC.RecipeSources[recipeKey]
 end
 FurC.getRecipeSource = getRecipeSource
+
 function FurC.getRumourSource(recipeKey, recipeArray)
 	return (recipeArray.blueprint and GetString(SI_FURC_RUMOUR_SOURCE_RECIPE)) or GetString(SI_FURC_RUMOUR_SOURCE_ITEM)
 end
