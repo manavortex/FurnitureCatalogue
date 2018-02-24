@@ -2,14 +2,18 @@ FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
 
 FurC.LuxuryFurnisher[FURC_DRAGONS] = {
-
-}
-FurC.LuxuryFurnisher[FURC_CLOCKWORK] = {
-	
 	[117875] = {	-- Wedding Gazebo, Bare
 		itemPrice 	= 35000,
 		itemDate	= "2018-02-17",
+	},	
+	[134824] = {	-- Redguard Tent, Rounded Silk
+		itemPrice 	= 100000,
+		itemDate	= "2018-02-24",
 	},
+}
+FurC.LuxuryFurnisher[FURC_CLOCKWORK] = {
+	
+
 	
 	[117876] = {	-- Wedding Curtain, Wide 
 		itemPrice 	= 7500,

@@ -161,6 +161,9 @@ end
 
 function FurC.GetCrafterList(recipeArray)
 	if nil == recipeArray or recipeArray.origin ~= FURC_CRAFTING then 
+		if recipeArray.origin == FURC_RUMOUR then
+			return FurC.getRumourSource(recipeKey, recipeArray) 
+		end
 		return "FurC.GetCrafterList called for a non-craftable"
 	end
 	if nil == recipeArray.characters or NonContiguousCount(recipeArray.characters) == 0 then 
