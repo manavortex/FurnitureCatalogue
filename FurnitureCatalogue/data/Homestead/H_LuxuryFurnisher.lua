@@ -121,22 +121,6 @@ FurC.LuxuryFurnisher[FURC_HOMESTEAD] = {
 	
 	
 	
-	[120806] = {	-- Hew'S Bane Candlestick
-		itemPrice 	= 2500,
-		itemDate	= "2017-03-17",
-	},
-
-	[120805] = {	-- Hew's Bane Rug
-		itemPrice 	= 5000,
-		itemDate	= "2017-03-17",
-	},
-
-	[120807] = {	-- Hew's Bane Well
-		itemPrice 	= 10000,
-		itemDate	= "2017-03-17",
-	},
-	
-	
 	[120803] = {	-- Hew’s Bane Bed, Royal
 		itemPrice 	= 20000,
 		itemDate	= "2018-02-24",

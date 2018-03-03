@@ -28,15 +28,16 @@ FurC.EventItems[FURC_REACH] = {
 			[130338] = true, 	-- Witches Bones, Offering",
 			[131434] = true, 	-- Witch's Festival, Cursed Totem,			
 			[132154] = true, 	-- Witch's Totem, Bog",			
-			[130302] = true, 	-- Shrub, Burnt Brush"
-			[130298] = true,	-- Branch, Curved Laurel
-			[130296] = true,	-- Branch, Sturdy Laurel
-			[130295] = true,	-- Branch, Sturdy Burnt
-			[130293] = true,	-- Branch, Forked Burnt
-			[130293] = true,	-- Branch, Curved Burnt
-			[130301] = true,	-- Saplings, Burnt Sparse
-			[130299] = true,	-- Saplings, Burnt Cluster
+			[130302] = "occasionally found in wood nodes", 	-- Shrub, Burnt Brush"
+			[130298] = "occasionally found in wood nodes",	-- Branch, Curved Laurel
+			[130296] = "occasionally found in wood nodes",	-- Branch, Sturdy Laurel
+			[130295] = "occasionally found in wood nodes",	-- Branch, Sturdy Burnt
+			[130293] = "occasionally found in wood nodes",	-- Branch, Forked Burnt
+			[130293] = "occasionally found in wood nodes",	-- Branch, Curved Burnt
+			[130301] = "occasionally found in wood nodes",	-- Saplings, Burnt Sparse
+			[130299] = "occasionally found in wood nodes",	-- Saplings, Burnt Cluster
 			[130300] = "occasionally found in wood nodes",	-- Saplings, Burnt Tall
+			[130297] = "occasionally found in wood nodes",	-- Branch, Forked Laurel
 		
 
 		}
