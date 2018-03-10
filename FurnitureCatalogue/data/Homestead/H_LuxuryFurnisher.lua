@@ -106,20 +106,6 @@ FurC.LuxuryFurnisher[FURC_HOMESTEAD] = {
 
 
 
-	[121268] = {	-- Fisher's Catch of the Day Rack
-		itemPrice 	= 5000,
-		itemDate	= "2017-03-24",
-	},
-	[120850] = { -- Harbor Floats
-		itemPrice 	= 5000,
-		itemDate	= "2017-03-24",
-	},
-	[120846] = { -- Dock Rope Wheel
-		itemPrice 	= 3000,
-		itemDate	= "2017-03-24",
-	},
-	
-	
 	
 	[120803] = {	-- Hew’s Bane Bed, Royal
 		itemPrice 	= 20000,
