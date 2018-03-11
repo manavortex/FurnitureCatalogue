@@ -140,9 +140,10 @@ end
 
 
 function FurC.Find(itemOrBlueprintLink)						-- sets recipeArray, returns it - calls scanItemLink
-	-- p("scanItemLink(<<1>>)...", itemOrBlueprintLink)		-- do not return empty arrays. If this returns nil, abort!
 	
-	if nil == itemOrBlueprintLink then return end
+	if nil == itemOrBlueprintLink or #itemOrBlueprintLink == 0 then return end
+	if tonumber(itemOrBlueprintLink) == itemOrBlueprintLink then itemOrBlueprintLink = FurC.GetItemLink(itemOrBlueprintLink) end
+	p("scanItemLink(<<1>>)...", itemOrBlueprintLink)		-- do not return empty arrays. If this returns nil, abort!
 		
 	if itemOrBlueprintLink == lastLink and nil ~= recipeArray then 
 		return recipeArray
@@ -150,12 +151,13 @@ function FurC.Find(itemOrBlueprintLink)						-- sets recipeArray, returns it - c
 		recipeArray = nil 
 		lastLink = itemOrBlueprintLink
 	end
-	
+		
 	if IsItemLinkFurnitureRecipe(itemOrBlueprintLink) then 
 		recipeArray = parseBlueprint(itemOrBlueprintLink)
 	elseif IsItemLinkPlaceableFurniture(itemOrBlueprintLink) then 		
 		recipeArray = parseFurnitureItem(itemOrBlueprintLink)	
 	end	
+	
 	return recipeArray
 end
 
@@ -325,7 +327,7 @@ local function scanFromFiles(shouldScanCharacter)
 					recipeArray.origin 			= origin
 					recipeArray.blueprint		= recipeId
 					addDatabaseEntry(recipeKey, recipeArray)
-				end		
+				end
 			end
 		end	
 		
@@ -333,10 +335,10 @@ local function scanFromFiles(shouldScanCharacter)
 			scanArray(versionData, versionNumber, FURC_CRAFTING)
 		end
 		for versionNumber, versionData in pairs(FurC.RollisRecipes) do
-			scanArray(versionData, versionNumber, FURC_ROLLIS)
+			scanArray(versionData, versionNumber, FURC_CRAFTING)
 		end
 		for versionNumber, versionData in pairs(FurC.FaustinaRecipes) do
-			scanArray(versionData, versionNumber, FURC_ROLLIS)
+			scanArray(versionData, versionNumber, FURC_CRAFTING)
 		end
 	end
 	
@@ -501,7 +503,7 @@ function FurC.GetItemDescription(recipeKey, recipeArray, stripColor)
 	recipeArray = recipeArray or FurC.Find(recipeKey, recipeArray)
 	if not recipeArray then return "" end
 	local origin = recipeArray.origin
-	if origin == FURC_CRAFTING then
+	if origin == FURC_CRAFTING or origin == FURC_WRIT_VENDOR then
 		return FurC.GetMats(recipeKey, recipeArray, stripColor)
 	elseif origin == FURC_ROLLIS then
 		return FurC.getRollisSource(recipeKey, recipeArray, stripColor)
@@ -516,7 +518,7 @@ function FurC.GetItemDescription(recipeKey, recipeArray, stripColor)
 	elseif origin == FURC_PVP then
 		return FurC.getPvpSource(recipeKey, recipeArray, stripColor)
 	elseif origin == FURC_RUMOUR then		
-		return FurC.getRumourSource(recipeKey, recipeArray), stripColor
+		return FurC.getRumourSource(recipeKey, recipeArray, stripColor)
 	else 
 		itemSource = FurC.GetMiscItemSource(recipeKey, recipeArray, stripColor)
 	end
