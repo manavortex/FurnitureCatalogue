@@ -204,7 +204,6 @@ FurC.MiscItemSources 	= {
 			[118903] = FURC_CANBEFISHED, 					-- Coral, Crown
 			[118896] = FURC_CANBEFISHED, 					-- Seashell, Sandcake
 			[118901] = FURC_CANBEFISHED, 					-- Sea sponge
-			[121269] = FURC_CANBEFISHED, 					-- Ocean Antler Coral
 			[118338] = FURC_CANBEFISHED, 					-- Fish, Bass
 			[118339] = FURC_CANBEFISHED, 					-- Fish, Salmon 
 			[118337] = FURC_CANBEFISHED, 					-- Fish, Trout

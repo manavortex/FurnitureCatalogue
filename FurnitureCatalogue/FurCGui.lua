@@ -357,6 +357,10 @@ local function createGui()
 		control.comboBox = control.comboBox or ZO_ComboBox_ObjectFromContainer(control)
 		comboBox = control.comboBox
 		
+		local function HideTooltip(control)
+			ClearTooltip(InformationTooltip)
+		end
+			
 		-- ruthlessly stolen from LAM
 		local function SetupTooltips(comboBox, choicesTooltips)
 			local function ShowTooltip(control)
@@ -364,9 +368,7 @@ local function createGui()
 				SetTooltipText(InformationTooltip, control.tooltip)
 				InformationTooltipTopLevel:BringWindowToTop()
 			end
-			local function HideTooltip(control)
-				ClearTooltip(InformationTooltip)
-			end
+			
 
 			-- allow for tooltips on the drop down entries
 			local originalShow = comboBox.ShowDropdownInternal
@@ -377,8 +379,7 @@ local function createGui()
 					
 					local entry = entries[i]
 					local control = entries[i].item
-					control.tooltip = choicesTooltips[i]	
-
+					control.tooltip = choicesTooltips[i]
 					if control.tooltip then 
 						entry.onMouseEnter = control:GetHandler("OnMouseEnter")
 						entry.onMouseExit = control:GetHandler("OnMouseExit")
@@ -399,6 +400,7 @@ local function createGui()
 					control:SetHandler("OnMouseExit", entry.onMouseExit)
 					control.tooltip = nil
 				end
+				HideTooltip(self)
 				originalHide(self)
 			end
 		end
@@ -406,6 +408,7 @@ local function createGui()
 		function OnItemSelect(control, choiceText, somethingElse)
 			local dropdownName = tostring(control.m_name):gsub("FurC_Dropdown", "")
 			FurC.SetDropdownChoice(dropdownName, choiceText)
+			HideTooltip(control)
 			PlaySound(SOUNDS.POSITIVE_CLICK)
 		end
 
@@ -416,7 +419,7 @@ local function createGui()
 			for _, characterName in ipairs(FurC.GetAccountCrafters()) do
 				addedDropdownCharacterNames[characterName] = true
 				table.insert(validChoices, characterName)
-				table.insert(dropdownData["Tooltips"..dropdownName], string.format("%s%s", GetString(SI_FURC_STRING_RECIPESFORCHAR), characterName))
+				table.insert(dropdownData["Tooltips"..dropdownName], zo_strformat(GetString(SI_FURC_STRING_RECIPESFORCHAR), characterName))
 			end			
 		end
 

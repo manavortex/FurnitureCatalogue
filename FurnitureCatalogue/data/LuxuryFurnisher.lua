@@ -2,16 +2,28 @@ FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
 
 FurC.LuxuryFurnisher[FURC_DRAGONS] = {
-	[117875] = {	-- Wedding Gazebo, Bare
-		itemPrice 	= 35000,
-		itemDate	= "2018-02-17",
-	},	
-	[134824] = {	-- Redguard Tent, Rounded Silk
+
+	
+	[134828] = {	-- Antler Coral, Branched Spiree
 		itemPrice 	= 100000,
-		itemDate	= "2018-02-24",
+		itemDate	= "2018-03-17", 
 	},
-}
-FurC.LuxuryFurnisher[FURC_CLOCKWORK] = {
+	[120847] = {	-- Dock Winch 
+		itemPrice 	= 10000,
+		itemDate	= "2018-03-17", 
+	},
+	[120849] = {	-- Anchor
+		itemPrice 	= 10000,  
+		itemDate	= "2018-03-17",
+	},
+	[120848] = {	-- Fishing Pole Rack
+		itemPrice 	= 2500,
+		itemDate	= "2018-03-17",
+	},
+	[121269] = {	-- Ocean Antler Coral 
+		itemPrice 	= 7500,
+		itemDate	= "2017-03-31",
+	},
 	
 	
 	[121268] = {	-- Fisher's Catch of the Day Rack
@@ -34,8 +46,6 @@ FurC.LuxuryFurnisher[FURC_CLOCKWORK] = {
 		itemPrice 	= 5000,
 		itemDate	= "2018-03-10",
 	},
-	
-	
 	
 	
 	[120806] = {	-- Hew'S Bane Candlestick
@@ -77,6 +87,19 @@ FurC.LuxuryFurnisher[FURC_CLOCKWORK] = {
 		itemPrice	= 20000,
 		itemDate	= "2018-02-30",
 	},
+	
+
+	[117875] = {	-- Wedding Gazebo, Bare
+		itemPrice 	= 35000,
+		itemDate	= "2018-02-17",
+	},	
+	[134824] = {	-- Redguard Tent, Rounded Silk
+		itemPrice 	= 100000,
+		itemDate	= "2018-02-24",
+	},
+}
+FurC.LuxuryFurnisher[FURC_CLOCKWORK] = {
+	
 	
 	
 	[134466] = { -- Ayleid Sconce, Empty

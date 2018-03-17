@@ -86,23 +86,6 @@ FurC.LuxuryFurnisher[FURC_HOMESTEAD] = {
 		itemDate	= "2017-04-07",
 	},				
 	
-	
-	[120847] = {	-- Dock Winch 
-		itemPrice 	= 10000,
-		itemDate	= "2017-03-31",
-	},
-	[120846] = {	-- Anchor
-		itemPrice 	= 4500,
-		itemDate	= "2017-03-31",
-	},
-	[120848] = {	-- Fishing Pole Rack
-		itemPrice 	= 2500,
-		itemDate	= "2017-03-31",
-	},
-	[121269] = {	-- Ocean Antler Coral 
-		itemPrice 	= 7500,
-		itemDate	= "2017-03-31",
-	},
 
 
 
