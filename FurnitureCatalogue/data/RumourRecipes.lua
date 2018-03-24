@@ -24,7 +24,6 @@ FurC.RumourRecipes = {
 	116474, -- Orcish Effigy, Bear	
 	116433, -- Orcish Table with Fur_S
 	
-	118053, -- Common Campfire, Outdoor
 	118065, -- Common Cargo Crate, Dry
 	118054, -- Common Firepit, Outdoor
 	118055, -- Common Firepit, Piled
@@ -52,7 +51,6 @@ FurC.RumourRecipes = {
 	
 	121161, -- Ram Horns, Mounted
 	121216, -- Redguard Divider, Gilded
-	127032, -- Dres Carpet, Fertile Peat
 	
 	118118, -- Candles, Lasting
 	115395, -- Nord Drinking Horn, Display

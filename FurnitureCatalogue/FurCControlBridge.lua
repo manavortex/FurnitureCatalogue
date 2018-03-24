@@ -101,13 +101,16 @@ function FurC.GuiOnSearchBoxClick(control, mouseButton, doubleClick)
 	FurC_SearchBoxText:SetText("")
 	if mouseButton == 2 or doubleClick then		
 		control:SetText("")	
-	end	
+	end
 end
 
 local FURC_S_FILTERDEFAULT = GetString(SI_FURC_TEXTBOX_FILTER_DEFAULT)
 
 function FurC.GuiOnSearchBoxFocusOut(control)
-	if control:GetText() and control:GetText() ~= "" then return end
+	if control:GetText() and control:GetText() ~= "" then 
+        FurC.GuiOnSliderUpdate(FurCGui_ListHolder_Slider, 0)
+		FurC.UpdateGui()
+    end
 	FurC_SearchBoxText:SetText(FURC_S_FILTERDEFAULT)
 end
 

@@ -16,9 +16,8 @@ local function getCurrentChar()
 	if nil == currentChar then currentChar = zo_strformat(GetUnitName("player")) end
 	return currentChar
 end
-local function p(...)
-	FurC.DebugOut(...)
-end
+
+local p = FurC.DebugOut
 
 local function startupMessage(text)
 	if FurC.GetStartupSilently() then return end
@@ -33,7 +32,8 @@ local function getItemId(itemLink)
 end
 FurC.GetItemId = getItemId
 
-local function getItemLink(itemId)	
+local function getItemLink(itemId)
+    if nil == itemId then return end
 	itemId = tostring(itemId)
 	if #itemId > 55 then return itemId end
 	if #itemId < 4 then return end 
@@ -141,8 +141,9 @@ end
 
 function FurC.Find(itemOrBlueprintLink)						-- sets recipeArray, returns it - calls scanItemLink
 	
-	if nil == itemOrBlueprintLink or #itemOrBlueprintLink == 0 then return end
+    
 	if tonumber(itemOrBlueprintLink) == itemOrBlueprintLink then itemOrBlueprintLink = FurC.GetItemLink(itemOrBlueprintLink) end
+	if nil == itemOrBlueprintLink or #itemOrBlueprintLink == 0 then return end
 	p("scanItemLink(<<1>>)...", itemOrBlueprintLink)		-- do not return empty arrays. If this returns nil, abort!
 		
 	if itemOrBlueprintLink == lastLink and nil ~= recipeArray then 
@@ -370,7 +371,7 @@ local function scanFromFiles(shouldScanCharacter)
 			for eventName, eventData in pairs(versionData) do
 				for eventItemSource, eventItemData in pairs(eventData) do
 					for itemId, _ in pairs(eventItemData) do
-						recipeArray = {}
+						recipeArray             = {}
 						recipeArray.craftable 	= false					
 						recipeArray.version 	= versionNumber
 						recipeArray.origin 		= FURC_FESTIVAL_DROP

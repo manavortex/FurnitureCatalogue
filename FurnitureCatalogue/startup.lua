@@ -73,7 +73,7 @@ local defaults 						= {
 	hideDoubtfuls					= true,
 	hideCrownstore					= true,
 	hideRumourEntry					= false,
-	hideCrownStoreEntry				= true,
+	hideCrownStoreEntry				= false,
 	wipeDatabase					= false,
 	startupSilently					= true,
 			
@@ -103,10 +103,22 @@ FURC_GUILDSTORE 		= FURC_FISHING +1
 FURC_FESTIVAL_DROP 		= FURC_GUILDSTORE +1
 
 local function updateSourceIndices()
-	FURC_CROWN 				= FURC_PVP + tonumber((FurC.GetHideCrownStoreEntry() and 0) or 1)
-	FURC_RUMOUR 			= FURC_CROWN + tonumber((FurC.GetHideRumourRecipesEntry() and 0) or 1)
-	FURC_LUXURY 			= FURC_RUMOUR + tonumber((FurC.GetMergeLuxuryAndSales() and 0) or 1)
-	FURC_OTHER 				= FURC_LUXURY +1
+    
+    local previousIndex = FURC_PVP
+    if not FurC.GetHideCrownStoreEntry() then 
+        FURC_CROWN 				= previousIndex + 1
+        previousIndex           = FURC_CROWN
+    end
+    if not FurC.GetHideRumourRecipesEntry() then 
+        FURC_RUMOUR 			= previousIndex + 1
+        previousIndex           = FURC_RUMOUR
+    end
+    if not FurC.GetMergeLuxuryAndSales() then 
+        FURC_LUXURY 			= previousIndex + 1
+        previousIndex           = FURC_LUXURY
+    end
+    
+	FURC_OTHER 				= previousIndex +1
 	FURC_ROLLIS 			= FURC_OTHER +1
 	FURC_WRIT_VENDOR 		= FURC_ROLLIS +1
 	FURC_DROP 				= FURC_WRIT_VENDOR +1
@@ -165,6 +177,7 @@ local function getChoicesSource()
 	end
 	return choicesSource
 end
+FurC.GetChoicesSource = getChoicesSource
 
 local tooltipsSource = {}
 local function getTooltipsSource()
@@ -229,7 +242,7 @@ local function setupSourceDropdown()
 	updateDropdownData()   
 	sourceIndices = {}
 
-	for idx, key in pairs(getSourceIndicesKeys()) do
+	for idx, key in ipairs(getSourceIndicesKeys()) do
 		sourceIndices[key] = idx
 	end
 	FurC.SourceIndices = sourceIndices
@@ -306,6 +319,8 @@ function FurnitureCatalogue_Initialize(eventCode, addOnName)
 	FurC.RegisterEvents()
 	
 	FurnitureCatalogue.InitGui()
+    FurC.SetHideRumourRecipesEntry(false)
+    FurC.SetHideCrownStoreEntry(false)
 		FurnitureCatalogue.CreateTooltips()
 	FurC.InitRightclickMenu()
 	

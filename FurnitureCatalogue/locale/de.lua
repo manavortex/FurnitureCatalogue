@@ -96,6 +96,7 @@ local strings = {
 	SI_FURC_STRING_MENU_LUXURY_WARN = 			"Hiding the dropdown entry requires UI reload (won't happen automatically for your convenience)",
 	SI_FURC_STRING_MENU_RUMOUR = 				"Rumour recipes",
 	SI_FURC_STRING_MENU_RUMOUR_DESC = 		 	"The furniture database contains a list of recipes that I have datamined.\nHowever, not all of those have been seen in-game.\nEnable this option to exclude them from the default filters.\nYou can still view them with their own filter, which you can disable below.",
+	SI_FURC_STRING_MENU_FILTER_ALL_ON_TEXT =    "Search filtered items when doing a text search with no dropdown filters set?",
 
 	SI_FURC_STRING_MENU_RUMOUR_N = 				"Hide rumour recipes?",
 	SI_FURC_STRING_MENU_CROWN = 				"Crown store items",

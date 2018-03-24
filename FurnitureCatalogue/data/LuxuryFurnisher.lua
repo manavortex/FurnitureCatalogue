@@ -3,6 +3,28 @@ FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
 FurC.LuxuryFurnisher[FURC_DRAGONS] = {
 
+	-- April, 7-9
+	[120885] = {	-- Alik'r Cactus
+		itemPrice 	= 2000,
+		itemDate	= "2018-03-24",
+	},
+	[120884] = {	-- Buckthorn
+		itemPrice 	= 4000,
+		itemDate	= "2018-03-24",
+	},
+	[120883] = {	-- Voidflower
+		itemPrice 	= 5000,
+		itemDate	= "2018-03-24",
+	},
+	[134829] = {	-- Fern, Woody Slough
+		itemPrice 	= 3000,
+		itemDate	= "2018-03-24",
+	},		
+	[120886] = {	-- White Hosta
+		itemPrice 	= 3000,
+		itemDate	= "2018-03-24",
+	},				
+	
 	
 	[134828] = {	-- Antler Coral, Branched Spiree
 		itemPrice 	= 100000,

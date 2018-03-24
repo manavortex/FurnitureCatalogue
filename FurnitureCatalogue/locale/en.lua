@@ -123,7 +123,22 @@ local strings = {
 	SI_FURC_STRING_MENU_CROWN = 				"Crown store items",
 	SI_FURC_STRING_MENU_CROWN_N = 				"Hide crown store items?",
 	SI_FURC_STRING_MENU_CROWN_DESC = 			"The furniture database will update whenever the tooltip shows a furniture item. \nSome items can only be acquired via crown store. \nCheck this box to exclude them from the default filters (disable crown store filter below).",
-						
+	
+    -- Filter text search
+    SI_FURC_STRING_MENU_HEADER_F_ALL_ON_TEXT =  "Filter settings for text search",
+    SI_FURC_STRING_MENU_F_ALL_ON_TEXT =         "Configure this filter",
+    SI_FURC_STRING_MENU_HEADER_F_ALL_DESC =     "Configure filter settings for text search with disabled dropdowns. \nThese settings will only take effect when you have not set a source, character or version filter.",
+    
+    SI_FURC_STRING_MENU_FILTER_ALL_ON_TEXT =    "Search filtered items when doing a text search with no dropdown filters set?",
+    SI_FURC_STRING_MENU_FILTER_ALL_ON_TEXT_TT = "When doing a text search without any dropdown ",
+    SI_FURC_STRING_MENU_FALL_HIDE_BOOKS =       "Hide books anyway",
+    SI_FURC_STRING_MENU_FALL_HIDE_BOOKS_TT =    "Even when filtering all items, still hide books?",
+    SI_FURC_STRING_MENU_FALL_HIDE_CROWN =       "Hide crown store items anyway",
+    SI_FURC_STRING_MENU_FALL_HIDE_CROWN_TT =    "Even when filtering all items, still hide crown store items?",
+    SI_FURC_STRING_MENU_FALL_HIDE_RUMOUR =      "Hide rumour items anyway",
+    SI_FURC_STRING_MENU_FALL_HIDE_RUMOUR_TT =   "Even when filtering all items, still hide rumour items?",
+    
+    -- Hide menu entries
 	SI_FURC_STRING_MENU_HIDE_MENU = 				"Hide menu entries?",
 	SI_FURC_STRING_MENU_HIDE_MENU_TT = 				"Hides \"Crown store\" and \"Rumour recipes\" from the dropdown \nactivated for crown store by default, as there aren't any items yet",
 	SI_FURC_STRING_MENU_HIDE_MENU_RUMOUR = 			"Hide \"Rumour recipes\" drop down entry?",
@@ -196,6 +211,27 @@ local strings = {
 	-- =============================== --
 	
 	SI_FURC_LABEL_ENTRIES							= " entries -", 
+    
+    -- =============================== --
+	-- ========= Item Sources ======== -- 
+	-- =============================== --
+	SI_FURC_CANBEPICKED 					        = "can be pickpocketed",
+	SI_FURC_CANBESTOLEN 					        = "can be stolen",
+    SI_FURC_CROWNSTORESOURCE				        = "Crown Store ",
+    SI_FURC_CANBEFISHED				                = "can be fished",
+    SI_FURC_HARVEST				                    = "from harvesting nodes",
+    SI_FURC_PLANTS						            = "from harvesting plants",
+    SI_FURC_SCAMBOX						            = "Crown Crates",
+    SI_FURC_AUTOMATON						        = "from automatons",
+    SI_FURC_TOMBS 						            = "Ancestor tombs and ruins on Vvardenfell",
+    SI_FURC_DAEDRA_SOURCE 						    = "from Daedra and Dolmen chests",
+    SI_FURC_DB					                    = "The Dark Brotherhood supplies vendor hands these out ",
+    SI_FURC_DB_POISON					            = "with poison",
+    SI_FURC_DB_STEALTH					            = "as a way to be less obtrusive",
+    SI_FURC_DAILY_ASHLANDERS			            = "Ashlander daily quest rewards",
+    SI_FURC_PLUNDERSKULL			                = "Drops from Plunder Skulls during Witches' Festival",
+    SI_FURC_DROP_CHEST_VVARDENFELL	                = "From chests on Vvardenfell",
+    SI_FURC_FLAME_ATRONACH	                        = "Flame Atronach",
 }
 
 

@@ -14,6 +14,7 @@ local hideBooks 				= false
 local hideRumours				= false
 local hideCrownStore			= false
 local mergeLuxuryAndSales		= false
+local filterAllOnTextSearch		= false
 
 local sourceIndices 
 
@@ -44,6 +45,12 @@ function FurC.SetFilter(useDefaults, skipRefresh)
 	mergeLuxuryAndSales 		= FurC.GetMergeLuxuryAndSales()
 	hideCrownStore 				= FurC.GetHideCrownStoreItems()
 	
+    -- ignore filtered items when no dropdown filter is set and there's a text search?
+    filterAllOnTextSearch       = FurC.GetFilterAllOnText() and #searchString > 0 and 
+                                    FURC_NONE == ddSource and
+                                    FURC_NONE == dropdownChoiceVersion and
+                                    FURC_NONE == dropdownChoiceCharacter
+    
 	if not skipRefresh then 
 		zo_callLater(FurC.UpdateLineVisibility, 200)
 	end
@@ -100,13 +107,12 @@ local function matchSourceDropdown()
 	elseif FURC_OTHER					== ddSource then 
 		return (
 			recipeArray.origin == FURC_FESTIVAL_DROP or
-			recipeArray.origin == FURC_DROP 	or 
-			recipeArray.origin == FURC_FISHING 	or 
-			recipeArray.origin == FURC_JUSTICE 	or 
+			recipeArray.origin == FURC_DROP 	     or 
+			recipeArray.origin == FURC_FISHING 	     or 
+			recipeArray.origin == FURC_JUSTICE 	     or 
 			recipeArray.origin == FURC_GUILDSTORE
 		)
 	else return recipeArray.origin  == ddSource end
-	
 	
 	-- we're checking character knowledge
 	return 1 == dropdownChoiceCharacter or recipeArray.origin == FURC_CRAFTING	
@@ -117,19 +123,17 @@ local function matchDropdownFilter()
 	return matchVersionDropdown() and matchSourceDropdown()
 end
 
-local function stringMatch(s1, s2) 
-	return nil ~= string.match(string.lower(s1), string.lower(s2))
-end
-
 local function matchSearchString()
-	if searchString == "" then return true end
-	return stringMatch(GetItemLinkName(itemLink), searchString)
+	if #searchString == 0 then return true end
+    local caseSensitive = nil ~= string.match(searchString, "%u")
+    local itemName = GetItemLinkName(itemLink)
+    local matchme = (caseSensitive and itemName) or string.lower(itemName)
+    return string.match(matchme, searchString)
 end
 
 local function matchCraftingTypeFilter()
 	if not recipeArray.origin == FURC_CRAFTING then return false end
-	local filterType = FurC.GetCraftingSkillType(itemId, recipeArray)
-	
+	local filterType = FurC.GetCraftingSkillType(itemId, recipeArray)	
 	return filterType and filterType > 0 and craftingTypeFilter[filterType]
 end
 local function matchQualityFilter()
@@ -137,7 +141,7 @@ local function matchQualityFilter()
 end
 
 local function filterBooks(itemId, recipeArray)
-	if not hideBooks then return false end
+	if not (hideBooks or filterAllOnTextSearch and FurC.GetFilterAllOnTextNoBooks()) then return false end
 	local versionData = FurC.Books[recipeArray.version]
 	if nil == versionData then return end 
 	return nil ~= versionData[itemId]	
@@ -146,18 +150,29 @@ end
 function FurC.MatchFilter(currentItemId, currentRecipeArray)
 
 	itemId = currentItemId
-	itemLink = FurC.GetItemLink(itemId) 
+	itemLink = FurC.GetItemLink(itemId)
 	recipeArray = currentRecipeArray or FurC.Find(itemLink)
 	itemType, sItemType = GetItemLinkItemType(itemLink)
 	
-	
-	if shouldBeHidden()															then return false end	
-	if not matchSearchString() 													then return false end	
-	if not matchDropdownFilter()												then return false end
+    if  filterBooks(itemId, recipeArray)			                        then return false end  
+    
+    if recipeArray.origin == FURC_RUMOUR then
+        if filterAllOnTextSearch then return not FurC.GetFilterAllOnTextNoRumour() end
+        return hideRumours and recipeArray.origin == FURC_RUMOUR
+    end
+    
+    if recipeArray.origin == FURC_CROWN then
+        if filterAllOnTextSearch then return not FurC.GetFilterAllOnTextNoCrown() end
+        return hideCrownStore and ddSource ~= FURC_CROWN
+    end
+    
+    if not filterAllOnTextSearch then
+        if not matchDropdownFilter()                                            then return false end            
+    end
+    
+    if not matchSearchString() 												    then return false end    
 	if not (FurC.settings.filterCraftingTypeAll or matchCraftingTypeFilter())	then return false end
 	if not (FurC.settings.filterQualityAll 		or matchQualityFilter())		then return false end
-	
-	if filterBooks(itemId, recipeArray)			then return false end
 	
 	return true
 	

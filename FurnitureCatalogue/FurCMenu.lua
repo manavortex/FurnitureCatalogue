@@ -175,11 +175,10 @@ function FurC.CreateSettings(savedVars, defaults)
 					getFunc = function() return FurC.GetResetDropdownChoice() end,
 					setFunc = function(value) FurC.SetResetDropdownChoice(value) end
 				},
-				
 				{ -- dropdown: default source
 					type 	= "dropdown",
 					name 	= GetString(SI_FURC_STRING_MENU_DEFAULT_DD_SOURCE),
-					choices = FurnitureCatalogue.DropdownData.ChoicesSource,
+					choices = FurC.GetChoicesSource(),
 					getFunc = function() return FurC.GetDefaultDropdownChoiceText("Source") end,
 					setFunc = function(value) FurC.SetDefaultDropdownChoice("Source", value) end
 				},	
@@ -207,7 +206,50 @@ function FurC.CreateSettings(savedVars, defaults)
 		{	type = "submenu",
 			name = GetString(SI_FURC_STRING_MENU_FILTERING),
 			controls = {
-			
+                 {	type = "submenu",
+                    name = GetString(SI_FURC_STRING_MENU_HEADER_F_ALL_ON_TEXT),
+                    controls = {
+                        { -- description: Default dropdown
+                            type = "description",
+                            name = GetString(SI_FURC_STRING_MENU_F_ALL_ON_TEXT),
+                            text = GetString(SI_FURC_STRING_MENU_HEADER_F_ALL_DESC),
+                        },
+                        
+                        { -- checkbox: Filter everything when text searching without dropdown
+                            type 	= "checkbox",
+                            name 	= GetString(SI_FURC_STRING_MENU_FILTER_ALL_ON_TEXT),
+                            tooltip = GetString(SI_FURC_STRING_MENU_FILTER_ALL_ON_TEXT_TT),                            
+                            getFunc = function() return FurC.GetFilterAllOnText() end,
+                            setFunc = function(value) FurC.SetFilterAllOnText(value) end
+                        },                        
+                        { -- checkbox: Exclude books from these
+                            type 	= "checkbox",
+                            name 	= GetString(SI_FURC_STRING_MENU_FALL_HIDE_BOOKS),
+                            tooltip = GetString(SI_FURC_STRING_MENU_FALL_HIDE_BOOKS_TT), 
+                            getFunc = function() return FurC.GetFilterAllOnTextNoBooks() end,
+                            setFunc = function(value) FurC.SetFilterAllOnTextNoBooks(value) end,
+                            disabled = not FurC.GetFilterAllOnText()
+                        },
+                        { -- checkbox: Exclude crown store items from these
+                            type 	= "checkbox",
+                            name 	= GetString(SI_FURC_STRING_MENU_FALL_HIDE_CROWN),
+                            tooltip = GetString(SI_FURC_STRING_MENU_FALL_HIDE_CROWN_TT), 
+                            getFunc = function() return FurC.GetFilterAllOnTextNoCrown() end,
+                            setFunc = function(value) FurC.GetFilterAllOnTextNoCrown(value) end,
+                            disabled = not FurC.GetFilterAllOnText()
+                        },
+                        { -- checkbox: Exclude crown store items from these
+                            type 	= "checkbox",
+                            name 	= GetString(SI_FURC_STRING_MENU_FALL_HIDE_RUMOUR),
+                            tooltip = GetString(SI_FURC_STRING_MENU_FALL_HIDE_RUMOUR_TT), 
+                            getFunc = function() return FurC.GetFilterAllOnTextNoRumour() end,
+                            setFunc = function(value) FurC.GetFilterAllOnTextNoRumour(value) end,
+                            disabled = not FurC.GetFilterAllOnText()
+                        },
+                    },           
+                },           
+				
+                
 				-- ===============================================================================
 				-- header: Mages guild books
 				-- ===============================================================================
@@ -270,6 +312,7 @@ function FurC.CreateSettings(savedVars, defaults)
 					getFunc = function() return FurC.GetHideCrownStoreItems() end,
 					setFunc = function(value) FurC.SetHideCrownStoreItems(value) end
 				},
+                --[[
 				{	-- header: rumour recipes
 					type = "header",
 					name = GetString(SI_FURC_STRING_MENU_HIDE_MENU),
@@ -293,6 +336,7 @@ function FurC.CreateSettings(savedVars, defaults)
 					getFunc = function() return FurC.GetHideCrownStoreEntry() end,
 					setFunc = function(value) FurC.SetHideCrownStoreEntry(value) end
 				},
+                ]]
 			},
 		},		
 		

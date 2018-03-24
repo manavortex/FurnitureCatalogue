@@ -1,18 +1,32 @@
-FurC.EventItems[FURC_REACH] = {
-	--[[
+FurC.Books = FurC.Books or {}
+FurC.Books[FURC_MORROWIND] = {
+    [126157] = {},
+    [126158] = {},
+    [126159] = {},
+    [126160] = {},
+    [126161] = {},
+    [126162] = {},
+    [126163] = {},
+    [126164] = {},
+}
+
+FurC.EventItems[FURC_MORROWIND] = {
 	["Midyear Mayhem"] = {
-		["Boon Box"] = {
-			126157:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true,	-- Song of Pelinal, #1
-			126158:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true,	-- Song of Pelinal, #2
-			126159:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true,	-- Song of Pelinal, #3
-			126160:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true,	-- Song of Pelinal, #4
-			126161:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true,	-- Song of Pelinal, #5
-			126162:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true,	-- Song of Pelinal, #6
-			126163:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true,	-- Song of Pelinal, #7
-			126164:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"] = true,	-- Song of Pelinal, #8			
-		}
-	}	
-	]]
+		["Boon Box"] = {            
+			[126157] = true,	-- Song of Pelinal, #1
+			[126158] = true,	-- Song of Pelinal, #2
+			[126159] = true,	-- Song of Pelinal, #3
+			[126160] = true,	-- Song of Pelinal, #4
+			[126161] = true,	-- Song of Pelinal, #5
+			[126162] = true,	-- Song of Pelinal, #6
+			[126163] = true,	-- Song of Pelinal, #7
+			[126164] = true,	-- Song of Pelinal, #8			
+			[118053] = true, 	-- Common Campfire, Outdoor
+		},
+	},	
+}
+FurC.EventItems[FURC_REACH] = {
+    
 	["Witches' Festival"] = {
 		["Plunder Skull"] = {
 			[130326] = true, 	-- Witches Brazier, Primitive Log",

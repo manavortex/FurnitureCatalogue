@@ -102,6 +102,7 @@ local strings = {
 	SI_FURC_STRING_MENU_CROWN = 				"Crown store items",
 	SI_FURC_STRING_MENU_CROWN_N = 				"Hide crown store items?",
 	SI_FURC_STRING_MENU_CROWN_DESC = 			"The furniture database will update whenever the tooltip shows a furniture item. \nSome items can only be acquired via crown store. \nCheck this box to exclude them from the default filters (disable crown store filter below).",
+	SI_FURC_STRING_MENU_FILTER_ALL_ON_TEXT =    "Search filtered items when doing a text search with no dropdown filters set?",
 						
 	SI_FURC_STRING_MENU_HIDE_MENU = 				"Hide menu entries?",
 	SI_FURC_STRING_MENU_HIDE_MENU_TT = 				"Hides \"Crown store\" and \"Rumour recipes\" from the dropdown \nactivated for crown store by default, as there aren't any items yet",

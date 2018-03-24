@@ -49,6 +49,39 @@ function FurC.SetHideCrownStoreEntry(value)
 end
 
 
+function FurC.GetFilterAllOnText()
+	return FurC.settings["filterAllOnText"]
+end
+function FurC.SetFilterAllOnText(value)
+	FurC.settings["filterAllOnText"] = value
+	FurC.UpdateGui()
+end
+
+function FurC.GetFilterAllOnTextNoRumour()
+	return FurC.settings["filterAllOnTextNoRumour"]
+end
+function FurC.GetFilterAllOnTextNoRumour(value)
+	FurC.settings["filterAllOnTextNoRumour"] = value
+	FurC.UpdateGui()
+end
+
+function FurC.GetFilterAllOnTextNoBooks()
+	return FurC.settings["filterAllOnTextNoBooks"]
+end
+function FurC.GetFilterAllOnTextNoBooks(value)
+	FurC.settings["filterAllOnTextNoBooks"] = value
+	FurC.UpdateGui()
+end
+
+function FurC.GetFilterAllOnTextNoCrown()
+	return FurC.settings["filterAllOnTextNoCrown"]
+end
+function FurC.GetFilterAllOnTextNoCrown(value)
+	FurC.settings["filterAllOnTextNoCrown"] = value
+	FurC.UpdateGui()
+end
+
+
 
 function FurC.GetFontSize()
 	if FurC.settings["fontSize"] < 10 then 
@@ -158,9 +191,7 @@ function FurC.SetFilterQuality(quality)
 		end		
 	else	
 		filterArray[quality] = not filterArray[quality]
-	end
-	
-	
+	end	
 	FurC.settings.filterQualityAll = not containsTrue(filterArray)
 	
 	for key, control in pairs (controls) do
@@ -206,22 +237,18 @@ function FurC.GetSearchFilter()
 	
 	return FurC.SearchFilter or ""
 end
-function FurC.GuiSetSearchboxTextFrom(control)
 
+function FurC.GuiSetSearchboxTextFrom(control)
 	-- call asynchronely to prevent lagging. Praise votan.
-	task:Call(function() 
+	task:Call(function()
 		local text = control:GetText()
-		if (text == "") then
-			control:GetNamedChild("Text"):SetText("Filter by text search")
-		else
-			control:GetNamedChild("Text"):SetText("")
-		end
+        control:GetNamedChild("Text"):SetText((text == "" and "Filter by text search") or "")
+		
 		FurC.SearchFilter = text
 		
 		FurC.GuiOnSliderUpdate(FurCGui_ListHolder_Slider, 0)
 		FurC.UpdateGui()
 	end)
-	
 end
 
 function FurC.GetHideBooks()

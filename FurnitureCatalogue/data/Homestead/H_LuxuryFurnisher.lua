@@ -68,24 +68,6 @@ FurC.LuxuryFurnisher[FURC_HOMESTEAD] = {
 		itemDate	= "2017-04-14",
 	},			
 	
-	-- April, 7-9
-	[120885] = {	-- Alik'r Cactus
-		itemPrice 	= 2000,
-		itemDate	= "2017-04-07",
-	},
-	[120884] = {	-- Buckthorn
-		itemPrice 	= 4000,
-		itemDate	= "2017-04-07",
-	},
-	[120883] = {	-- Voidflower
-		itemPrice 	= 5000,
-		itemDate	= "2017-04-07",
-	},
-	[120886] = {	-- White Hosta
-		itemPrice 	= 3000,
-		itemDate	= "2017-04-07",
-	},				
-	
 
 
 
