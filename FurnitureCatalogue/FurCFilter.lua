@@ -155,21 +155,22 @@ function FurC.MatchFilter(currentItemId, currentRecipeArray)
 	itemType, sItemType = GetItemLinkItemType(itemLink)
 	
     if  filterBooks(itemId, recipeArray)			                        then return false end  
+   
     
     if recipeArray.origin == FURC_RUMOUR then
-        if filterAllOnTextSearch then return not FurC.GetFilterAllOnTextNoRumour() end
-        return hideRumours and recipeArray.origin == FURC_RUMOUR
+        if filterAllOnTextSearch and not FurC.GetFilterAllOnTextNoRumour() then return false end
+        if (hideRumours and recipeArray.origin == FURC_RUMOUR) then return false end
     end
     
     if recipeArray.origin == FURC_CROWN then
-        if filterAllOnTextSearch then return not FurC.GetFilterAllOnTextNoCrown() end
-        return hideCrownStore and ddSource ~= FURC_CROWN
+        if filterAllOnTextSearch and FurC.GetFilterAllOnTextNoCrown() then return false end
+        if hideCrownStore and ddSource ~= FURC_CROWN then return false end
     end
     
-    if not filterAllOnTextSearch then
-        if not matchDropdownFilter()                                            then return false end            
-    end
+    if not (filterAllOnTextSearch or  matchDropdownFilter()) then return false end            
     
+    
+     if not matchSearchString                                                then return false end 
     if not matchSearchString() 												    then return false end    
 	if not (FurC.settings.filterCraftingTypeAll or matchCraftingTypeFilter())	then return false end
 	if not (FurC.settings.filterQualityAll 		or matchQualityFilter())		then return false end
