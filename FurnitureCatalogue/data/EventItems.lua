@@ -10,6 +10,14 @@ FurC.Books[FURC_MORROWIND] = {
     [126164] = {},
 }
 
+FurC.EventItems[FURC_DRAGONS] = {
+    ["Jester Festival"] = {
+		["Jester Boxes"] = {
+			[134680] = true, 	-- Jester Box
+		}
+	}
+    
+}
 FurC.EventItems[FURC_MORROWIND] = {
 	["Midyear Mayhem"] = {
 		["Boon Box"] = {            
