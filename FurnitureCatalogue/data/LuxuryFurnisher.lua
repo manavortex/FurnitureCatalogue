@@ -3,6 +3,24 @@ FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
 FurC.LuxuryFurnisher[FURC_DRAGONS] = {
 
+	[134830] = {	-- Flowers, Blue Starbloom
+		itemPrice 	= 15000,
+		itemDate	= "2017-03-31",
+	},	
+	[120888] = {	-- Bat Bloom
+		itemPrice 	= 10000,
+		itemDate	= "2017-03-31",
+	},	
+	[120887] = {	-- Fan Bush
+		itemPrice 	= 1000,
+		itemDate	= "2017-03-31",
+	},
+	[120889] = {	-- Glow Bush, Purple
+		itemPrice 	= 20000,
+		itemDate	= "2017-03-31",
+	},		
+
+
 	-- April, 7-9
 	[120885] = {	-- Alik'r Cactus
 		itemPrice 	= 2000,

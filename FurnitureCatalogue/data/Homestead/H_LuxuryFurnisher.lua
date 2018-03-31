@@ -53,20 +53,7 @@ FurC.LuxuryFurnisher[FURC_HOMESTEAD] = {
 		itemDate	= "2017-05-05",
 	},	
 	
-	
-	-- April, 14 - 16
-	[120888] = {	-- Bat Bloom
-		itemPrice 	= 10000,
-		itemDate	= "2017-04-14",
-	},	
-	[120887] = {	-- Fan Bush
-		itemPrice 	= 1000,
-		itemDate	= "2017-04-14",
-	},
-	[120889] = {	-- Glow Bush, Purple
-		itemPrice 	= 20000,
-		itemDate	= "2017-04-14",
-	},			
+		
 	
 
 
