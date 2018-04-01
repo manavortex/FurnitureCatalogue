@@ -95,44 +95,16 @@ FURC_RUMOUR 			= FURC_CROWN +1
 FURC_LUXURY 			= FURC_RUMOUR +1
 FURC_OTHER 				= FURC_LUXURY +1
 FURC_ROLLIS 			= FURC_OTHER +1
-FURC_WRIT_VENDOR 		= FURC_ROLLIS +1
-FURC_DROP 				= FURC_WRIT_VENDOR +1
-FURC_JUSTICE 			= FURC_DROP +1
+FURC_DROP 				= FURC_ROLLIS +1
+FURC_WRIT_VENDOR 		= FURC_DROP +1
+FURC_JUSTICE 			= FURC_WRIT_VENDOR +1
 FURC_FISHING 			= FURC_JUSTICE +1
 FURC_GUILDSTORE 		= FURC_FISHING +1
 FURC_FESTIVAL_DROP 		= FURC_GUILDSTORE +1
-
-local function updateSourceIndices()
-    
-    local previousIndex = FURC_PVP
-    if not FurC.GetHideCrownStoreEntry() then 
-        FURC_CROWN 				= previousIndex + 1
-        previousIndex           = FURC_CROWN
-    end
-    if not FurC.GetHideRumourRecipesEntry() then 
-        FURC_RUMOUR 			= previousIndex + 1
-        previousIndex           = FURC_RUMOUR
-    end
-    if not FurC.GetMergeLuxuryAndSales() then 
-        FURC_LUXURY 			= previousIndex + 1
-        previousIndex           = FURC_LUXURY
-    end
-    
-	FURC_OTHER 				= previousIndex +1
-	FURC_ROLLIS 			= FURC_OTHER +1
-	FURC_WRIT_VENDOR 		= FURC_ROLLIS +1
-	FURC_DROP 				= FURC_WRIT_VENDOR +1
-	FURC_JUSTICE 			= FURC_DROP +1
-	FURC_FISHING 			= FURC_JUSTICE +1
-	FURC_GUILDSTORE 		= FURC_FISHING +1
-	FURC_FESTIVAL_DROP 		= FURC_GUILDSTORE +1	
-end
-FurC.updateSourceIndices = updateSourceIndices
-
 FURC_EMPTY_STRING 		= ""
+
 local sourceIndicesKeys = {}
 local function getSourceIndicesKeys()
-	updateSourceIndices()
 	sourceIndicesKeys[FURC_NONE] 						= "off"
 	sourceIndicesKeys[FURC_FAVE] 						= "favorites"
 	sourceIndicesKeys[FURC_CRAFTING] 					= "craft_all"
@@ -140,21 +112,14 @@ local function getSourceIndicesKeys()
 	sourceIndicesKeys[FURC_CRAFTING_UNKNOWN] 			= "craft_unknown"
 	sourceIndicesKeys[FURC_VENDOR] 						= "purch_gold"
 	sourceIndicesKeys[FURC_PVP] 						= "purch_ap"	
-	if not FurC.GetHideCrownStoreEntry() then
-		sourceIndicesKeys[FURC_CROWN] 					= "crownstore"
-	end
-	sourceIndicesKeys[FURC_WRIT_VENDOR] 				= "writ_vendor"
-	if not FurC.GetHideRumourRecipesEntry() then
-		sourceIndicesKeys[FURC_RUMOUR] 					= "rumour"
-	end		
-	if not FurC.GetMergeLuxuryAndSales() then
-		sourceIndicesKeys[FURC_LUXURY] 					= "luxury"
-	end
-	sourceIndicesKeys[FURC_OTHER] 						= "other"
-	
+	sourceIndicesKeys[FURC_CROWN] 					    = "crownstore"	
+    sourceIndicesKeys[FURC_RUMOUR] 					    = "rumour"		
+    sourceIndicesKeys[FURC_LUXURY] 					    = "luxury"	
+	sourceIndicesKeys[FURC_OTHER] 						= "other"	
+	sourceIndicesKeys[FURC_WRIT_VENDOR] 				= "writ_vendor"	
 	return sourceIndicesKeys
 end
-
+FurC.GetSourceIndicesKeys = getSourceIndicesKeys
 
 local choicesSource = {}
 local function getChoicesSource()
@@ -166,15 +131,11 @@ local function getChoicesSource()
 	choicesSource[FURC_VENDOR] 						= GetString(SI_FURC_VENDOR)	
 	choicesSource[FURC_PVP] 						= GetString(SI_FURC_PVP)
 	choicesSource[FURC_WRIT_VENDOR] 				= GetString(SI_FURC_STRING_WRIT_VENDOR)
-	if not FurC.GetHideCrownStoreEntry() then
-		choicesSource[FURC_CROWN] 					= GetString(SI_FURC_CROWN)
-	end
-	if not FurC.GetHideRumourRecipesEntry() then
-		choicesSource[FURC_RUMOUR] 					= GetString(SI_FURC_RUMOUR)
-	end		
-	if not FurC.GetMergeLuxuryAndSales() then
-		choicesSource[FURC_LUXURY] 					= GetString(SI_FURC_LUXURY)
-	end
+	choicesSource[FURC_CROWN] 					    = GetString(SI_FURC_CROWN)
+	choicesSource[FURC_RUMOUR] 					    = GetString(SI_FURC_RUMOUR)	
+    choicesSource[FURC_LUXURY] 					    = GetString(SI_FURC_LUXURY)
+	choicesSource[FURC_OTHER] 				        = GetString(SI_FURC_OTHER)
+	
 	return choicesSource
 end
 FurC.GetChoicesSource = getChoicesSource
@@ -188,16 +149,12 @@ local function getTooltipsSource()
 	tooltipsSource[FURC_CRAFTING_UNKNOWN] 			= GetString(SI_FURC_CRAFTING_UNKNOWN_TT)
 	tooltipsSource[FURC_VENDOR] 					= GetString(SI_FURC_VENDOR_TT)	
 	tooltipsSource[FURC_PVP] 						= GetString(SI_FURC_PVP_TT)
+    tooltipsSource[FURC_CROWN] 					    = GetString(SI_FURC_CROWN_TT)
 	tooltipsSource[FURC_WRIT_VENDOR] 				= GetString(SI_FURC_STRING_WRIT_VENDOR_TT)
-	if not FurC.GetHideCrownStoreEntry() then
-		tooltipsSource[FURC_CROWN] 					= GetString(SI_FURC_CROWN_TT)
-	end
-	if not FurC.GetHideRumourRecipesEntry() then
-		tooltipsSource[FURC_RUMOUR] 				= GetString(SI_FURC_RUMOUR_TT)
-	end		
-	if not FurC.GetMergeLuxuryAndSales() then
-		tooltipsSource[FURC_LUXURY] 				= GetString(SI_FURC_LUXURY_TT)
-	end
+    tooltipsSource[FURC_RUMOUR] 				    = GetString(SI_FURC_RUMOUR_TT)
+    tooltipsSource[FURC_LUXURY] 				    = GetString(SI_FURC_LUXURY_TT)
+	tooltipsSource[FURC_OTHER] 				        = GetString(SI_FURC_OTHER_TT)
+	
 	return tooltipsSource
 end
 
@@ -232,7 +189,6 @@ FurnitureCatalogue.DropdownData = {
 
 
 local function updateDropdownData()
-	updateSourceIndices()
 	FurnitureCatalogue.DropdownData.ChoicesSource  = getChoicesSource()
 	FurnitureCatalogue.DropdownData.TooltipsSource = getTooltipsSource()
 end

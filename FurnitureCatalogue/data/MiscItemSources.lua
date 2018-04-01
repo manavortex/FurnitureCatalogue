@@ -39,17 +39,16 @@ FurC.MiscItemSources 	= {
 	
 	[FURC_DRAGONS] = { -- Reach	
 		[FURC_DROP] = {
-            [130209] = GetString(SI_FURC_DRAGON_DUNGEON_DROP), 	-- Mushrooms, Puspocket Group
-            [130210] = GetString(SI_FURC_DRAGON_DUNGEON_DROP), 	-- Mushrooms, Puspocket Cluster
-            [130211] = GetString(SI_FURC_DRAGON_DUNGEON_DROP), 	-- Mushroom, Puspocket Sporecap
-            [130212] = GetString(SI_FURC_DRAGON_DUNGEON_DROP), 	-- Mushroom, Large Puspocket
-            [130213] = GetString(SI_FURC_DRAGON_DUNGEON_DROP), 	-- Mushroom, Tall Puspocket
-            [130214] = GetString(SI_FURC_DRAGON_DUNGEON_DROP), 	-- Mushrooms, Large Puspocket Cluster
+            [134909] = GetString(SI_FURC_DRAGON_DUNGEON_DROP), 	-- Mushrooms, Puspocket Group
+            [134910] = GetString(SI_FURC_DRAGON_DUNGEON_DROP), 	-- Mushrooms, Puspocket Cluster
+            [134911] = GetString(SI_FURC_DRAGON_DUNGEON_DROP), 	-- Mushroom, Puspocket Sporecap
+            [134912] = GetString(SI_FURC_DRAGON_DUNGEON_DROP), 	-- Mushroom, Large Puspocket
+            [134913] = GetString(SI_FURC_DRAGON_DUNGEON_DROP), 	-- Mushroom, Tall Puspocket
+            [134914] = GetString(SI_FURC_DRAGON_DUNGEON_DROP), 	-- Mushrooms, Large Puspocket Cluster
         },
         
 		[FURC_JUSTICE] 	= {},
-		[FURC_CROWN] 	= {		
-			[130212] = getCrownStorePriceString(1000), 	-- Daedric Worship: The Ayleids
+		[FURC_CROWN] 	= {
 			[134970] = getCrownStorePriceString(100), 	-- Mushrooms, Glowing Sprawl
 			[134947] = getCrownStorePriceString(100), 	-- Mushrooms, Glowing Field
 			[134948] = getCrownStorePriceString(400),	-- Mushrooms, Glowing Cluster
@@ -59,12 +58,14 @@ FurC.MiscItemSources 	= {
 			[134972] = getCrownStorePriceString(400),	-- Brotherhood Brazier, Wrought Iron
 			[134849] = getCrownStorePriceString(400),	-- Monarch Butterfly Flock  
 			[134848] = getCrownStorePriceString(400),	-- Blue Butterfly Flock  
-			[94100]  = getCrownStorePriceString(50),	-- Imperial Shelf, Swirled
+			[94100]  = getCrownStorePriceString(50),	-- Imperial BookCase, Swirled
+			[130211]  = getCrownStorePriceString(50),	-- Books, Ordered Row 
+			[130210]  = getCrownStorePriceString(50),	-- Books, Scattered Row 
 		}
 	},
 	[FURC_CLOCKWORK] = { -- Reach	
 		[FURC_DROP] = {	
-			[134407] = FURC_AUTOMATON_CC,			-- Torso, Obsolete
+			[134407] = FURC_AUTOMATON_CC,			-- Factotum Torso, Obsolete
 			[134404] = FURC_AUTOMATON_CC,			-- Factotum Knee, Obsolete
 			[134408] = FURC_AUTOMATON_CC,			-- Factotum Elbow, Obsolete
 			[134405] = FURC_AUTOMATON_CC,			-- Factotum Arm, Obsolete
