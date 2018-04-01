@@ -45,6 +45,8 @@ local strings = {
 	SI_FURC_STRING_RECIPESFORCHAR = 			"recipes for <<1>>",
 	SI_FURC_STRING_VENDOR =						"Sold by <<1>> (<<2>><<3>>)",
 	SI_FURC_STRING_VOUCHER_VENDOR =				"Sold by either Rollis Hlaalu or Faustina Curio",
+	SI_FURC_CHESTS =                            "From treasure chests",
+	SI_FURC_VVARDENFELL_PAINTING =              "extremely rarely from safeboxes or treasure chests",
 	
 	-- =============================== --
 	-- ============ MENU ============= -- 
@@ -176,6 +178,32 @@ local strings = {
 	-- =============================== --
 	
 	SI_FURC_LABEL_ENTRIES							= " entries -", 
+    
+    
+      
+    -- =============================== --
+	-- ========= Item Sources ======== -- 
+	-- =============================== --
+	SI_FURC_CANBEPICKED 					        = "can be pickpocketed",
+	SI_FURC_CANBESTOLEN 					        = "can be stolen",
+    SI_FURC_CROWNSTORESOURCE				        = "Crown Store ",
+    SI_FURC_CANBEFISHED				                = "can be fished",
+    SI_FURC_HARVEST				                    = "from harvesting nodes",
+    SI_FURC_PLANTS						            = "from harvesting plants",
+    SI_FURC_SCAMBOX						            = "Crown Crates",
+    SI_FURC_AUTOMATON						        = "from automatons",
+    SI_FURC_TOMBS 						            = "Ancestor tombs and ruins on Vvardenfell",
+    SI_FURC_DAEDRA_SOURCE 						    = "from Daedra and Dolmen chests",
+    SI_FURC_DB					                    = "The Dark Brotherhood supplies vendor hands these out ",
+    SI_FURC_DB_POISON					            = "with poison",
+    SI_FURC_DB_STEALTH					            = "as a way to be less obtrusive",
+    SI_FURC_DAILY_ASHLANDERS			            = "Ashlander daily quest rewards",
+    SI_FURC_PLUNDERSKULL			                = "Drops from Plunder Skulls during Witches' Festival",
+    SI_FURC_DROP_CHEST_VVARDENFELL	                = "Extremely rarely from chests on Vvardenfell",
+    SI_FURC_FLAME_ATRONACH	                        = "Flame Atronach",
+	SI_FURC_CHESTS                                  = "from treasure chests",
+	SI_FURC_VVARDENFELL_PAINTING                    = "extremely rarely from safeboxes",
+	SI_FURC_DRAGON_DUNGEON_DROP                     = "Fang Lair/Scalecaller Peak",
 }
 
 

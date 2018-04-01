@@ -11,6 +11,9 @@ local FURC_CANBESTOLEN_NERDS	= FURC_CANBESTOLEN_SCHOLARS      .. " and mages"
 local FURC_CANBESTOLEN_RELIG	= GetString(SI_FURC_CANBESTOLEN) .. " from priests and pilgrims"
 local FURC_CANBESTOLEN_THIEF	= GetString(SI_FURC_CANBESTOLEN) .. " from thieves"
 local FURC_CANBESTOLEN_WW	    = GetString(SI_FURC_CANBESTOLEN) .. " from woodworkers"
+
+
+local FURC_CANBESTOLEN_WROTHGAR	= GetString(SI_FURC_CANBESTOLEN) .. " in Wrothgar"
 	
 local FURC_AUTOMATON_CC			= GetString(SI_FURC_AUTOMATON) .. " in Clockwork City"
 local FURC_AUTOMATON_VV			= GetString(SI_FURC_AUTOMATON) .. " on Vvardenfell"
@@ -19,7 +22,6 @@ local FURC_HARVEST_CHARBOR		= GetString(SI_FURC_HARVEST) .. " in Coldharbour"
 
 local FURC_SCAMBOX_F_ATRO		= zo_strformat("<<1>> (<<2>>)", 
                                                 GetString(SI_FURC_SCAMBOX), GetString(SI_FURC_FLAME_ATRONACH))
-
 
 local FURC_DB_POISON			= zo_strformat("<<1>> <<2>>", GetString(SI_FURC_DB), GetString(SI_FURC_DB_POISON))
 local FURC_DB_SNEAKY			= zo_strformat("<<1>> <<2>>", GetString(SI_FURC_DB), GetString(SI_FURC_DB_STEALTH))
@@ -36,7 +38,15 @@ end
 FurC.MiscItemSources 	= {
 	
 	[FURC_DRAGONS] = { -- Reach	
-		[FURC_DROP] = {},
+		[FURC_DROP] = {
+            [130209] = GetString(SI_FURC_DRAGON_DUNGEON_DROP), 	-- Mushrooms, Puspocket Group
+            [130210] = GetString(SI_FURC_DRAGON_DUNGEON_DROP), 	-- Mushrooms, Puspocket Cluster
+            [130211] = GetString(SI_FURC_DRAGON_DUNGEON_DROP), 	-- Mushroom, Puspocket Sporecap
+            [130212] = GetString(SI_FURC_DRAGON_DUNGEON_DROP), 	-- Mushroom, Large Puspocket
+            [130213] = GetString(SI_FURC_DRAGON_DUNGEON_DROP), 	-- Mushroom, Tall Puspocket
+            [130214] = GetString(SI_FURC_DRAGON_DUNGEON_DROP), 	-- Mushrooms, Large Puspocket Cluster
+        },
+        
 		[FURC_JUSTICE] 	= {},
 		[FURC_CROWN] 	= {		
 			[130212] = getCrownStorePriceString(1000), 	-- Daedric Worship: The Ayleids
@@ -63,12 +73,13 @@ FurC.MiscItemSources 	= {
 			
 		},
 		[FURC_JUSTICE] 	= {
-			[134411] = FURC_CANBESTOLENINCC, 		    -- Ventilation shaft
-			[134415] = FURC_CANBESTOLENINCC, 		    -- Clockwork Dial Calipers, Handheld
-			[134413] = FURC_CANBESTOLENINCC, 		    -- Clockwork Magnifier, Handheld 
-			[134412] = FURC_CANBESTOLENINCC, 		    -- Clockwork Piston, Miniature
 			[134410] = FURC_CANBESTOLENINCC, 		    -- Clockwork Crank, Miniature
 			[134411] = FURC_CANBESTOLENINCC, 		    -- Clockwork Gear Shaft, Miniature
+			[134412] = FURC_CANBESTOLENINCC, 		    -- Clockwork Piston, Miniature
+			[134413] = FURC_CANBESTOLENINCC, 		    -- Clockwork Magnifier, Handheld 
+			[134414] = FURC_CANBESTOLENINCC, 		    -- Clockwork Micrometer, Handheld
+			[134415] = FURC_CANBESTOLENINCC, 		    -- Clockwork Dial Calipers, Handheld
+			[134416] = FURC_CANBESTOLENINCC, 		    -- Clockwork Slide Calipers, Handheld
 			[134402] = GetString(SI_FURC_CANBESTOLEN), 	-- Spool, Empty
 			[134400] = GetString(SI_FURC_CANBESTOLEN), 	-- Soft Leather, Stacked
 			[134401] = GetString(SI_FURC_CANBESTOLEN), 	-- Soft Leather, Folded
@@ -130,8 +141,34 @@ FurC.MiscItemSources 	= {
 			[126757] = GetString(SI_FURC_TOMBS), 
 			
 			
-			[126467] = GetString(SI_FURC_DROP_CHEST_VVARDENFELL),  -- Telvanni Painting, Modest Valley
-			[126464] = GetString(SI_FURC_DROP_CHEST_VVARDENFELL),  -- Telvanni Painting, Oversized Valley
+			[126462] = GetString(SI_FURC_DROP_CHEST_VVARDENFELL),     -- Telvanni Painting, Oversized Volcanic
+			[126463] = GetString(SI_FURC_DROP_CHEST_VVARDENFELL),     -- Telvanni Painting, Oversized Forest
+			[126464] = GetString(SI_FURC_DROP_CHEST_VVARDENFELL),     -- Telvanni Painting, Oversized Valley
+			
+            [126465] = GetString(SI_FURC_DROP_CHEST_VVARDENFELL),     -- Telvanni Painting, Modest Volcanic
+			[126466] = GetString(SI_FURC_DROP_CHEST_VVARDENFELL),     -- Telvanni Painting, Modest Forest            
+			[126467] = GetString(SI_FURC_DROP_CHEST_VVARDENFELL),     -- Telvanni Painting, Modest Valley
+			
+            [126468] = GetString(SI_FURC_DROP_CHEST_VVARDENFELL),     -- Telvanni Painting, Classic Volcanic
+            [126469] = GetString(SI_FURC_DROP_CHEST_VVARDENFELL),     -- Telvanni Painting, Classic Forest
+            [126470] = GetString(SI_FURC_DROP_CHEST_VVARDENFELL),     -- Telvanni Painting, Classic Valley
+            
+            
+			[126592] = GetString(SI_FURC_VVARDENFELL_PAINTING),     -- Velothi Panels, Volcano
+			[126593] = GetString(SI_FURC_VVARDENFELL_PAINTING),     -- Velothi Tryptich, Volcano
+			[126594] = GetString(SI_FURC_VVARDENFELL_PAINTING),     -- Velothi Painting, Classic Volcano
+			[126595] = GetString(SI_FURC_VVARDENFELL_PAINTING),     -- Velothi Painting, Modest Volcano
+			[126596] = GetString(SI_FURC_VVARDENFELL_PAINTING),     -- Velothi Tapestry, Volcano
+			[126597] = GetString(SI_FURC_VVARDENFELL_PAINTING),     -- Velothi Painting, Oversized Volcano
+			
+            [126598] = GetString(SI_FURC_VVARDENFELL_PAINTING),     -- Velothi Panels, Waterfall
+            [126599] = GetString(SI_FURC_VVARDENFELL_PAINTING),     -- Velothi Tryptich, Geyser
+			[126600] = GetString(SI_FURC_VVARDENFELL_PAINTING),     -- Velothi Tapestry, Geyser
+			[126601] = GetString(SI_FURC_VVARDENFELL_PAINTING),     -- Velothi Painting, Oversized Geyser
+			[126602] = GetString(SI_FURC_VVARDENFELL_PAINTING),     -- Velothi Painting, Classic Geyser
+			[126603] = GetString(SI_FURC_VVARDENFELL_PAINTING),     -- Velothi Painting, Modest Geyser
+			[126604] = GetString(SI_FURC_VVARDENFELL_PAINTING),     -- Velothi Panels, Geyser
+            
 		
 			-- Ashlander dailies
 			[126119] = GetString(SI_FURC_DAILY_ASHLANDERS), 		-- Crimson Shard of Moonshadow
@@ -145,6 +182,9 @@ FurC.MiscItemSources 	= {
 			[125551] = GetString(SI_FURC_PLANTS), 					-- Flowers, Netch Cabbage
 			[125543] = GetString(SI_FURC_PLANTS), 					-- Fern, Ashen
 			[125633] = GetString(SI_FURC_PLANTS), 					-- Plants, Hanging Pitcher Pair
+			
+            
+            [126592] = GetString(SI_FURC_PLANTS), 					-- Plants, Hanging Pitcher Pair
 			
 		},
 		[FURC_CROWN] 	= {
@@ -173,6 +213,9 @@ FurC.MiscItemSources 	= {
 			[118713] = FURC_CANBEPICKED_GUARD, 				-- Khajiiti Male
 			[118716] = FURC_CANBEPICKED_GUARD, 				-- Orc Female
 			[118717] = FURC_CANBEPICKED_GUARD, 				-- Orc Male
+			
+            [116512] = FURC_CANBESTOLEN_WROTHGAR,		    -- Orcish Carpet Blood
+            
 					
 		},		
 		[FURC_FISHING] 	= {		
@@ -189,14 +232,29 @@ FurC.MiscItemSources 	= {
 			[120754] = GetString(SI_FURC_CANBEFISHED), 		-- Kelp, Small Pile 
 			[118897] = GetString(SI_FURC_CANBEFISHED), 		-- Seashell, Pink Scallop
 			[118898] = GetString(SI_FURC_CANBEFISHED), 		-- Seashell, White Scallop
+			[118899] = GetString(SI_FURC_CANBEFISHED), 		-- Seashell, Starfish
+			[118900] = GetString(SI_FURC_CANBEFISHED), 		-- Seashell, Noble Starfish
+     
 		},				
 		[FURC_DROP]		= { 		
 			[121058] = FURC_DB_SNEAKY, 						-- Candles of Silence		
 					
 			[119936] = FURC_DB_POISON, 						-- Poisoned Blood				
 			[119938] = FURC_DB_POISON, 						-- Light and Shadow			
-			[119952] = FURC_DB_POISON, 						-- Sacrificial Heart			
-		}, 		
+			[119952] = FURC_DB_POISON, 						-- Sacrificial Heart
+            
+            -- Paintings
+			[118216] = GetString(SI_FURC_CHESTS), 		        -- Painting of Spring, Sturdy
+			[118217] = GetString(SI_FURC_CHESTS), 		        -- Painting of Pasture, Sturdy
+			[118218] = GetString(SI_FURC_CHESTS), 		        -- Painting of Creek, Sturdy	
+			[118219] = GetString(SI_FURC_CHESTS), 		        -- Painting of Lakes, Sturdy
+			[118220] = GetString(SI_FURC_CHESTS), 		        -- Painting of Crags, Sturdy	
+			[118221] = GetString(SI_FURC_CHESTS), 		        -- Painting of Summer, Sturdy	
+			[118222] = GetString(SI_FURC_CHESTS), 		        -- Painting of Jungle, Sturdy
+			[118223] = GetString(SI_FURC_CHESTS), 		        -- Painting of Palms, Sturdy
+			[190912] = GetString(SI_FURC_CHESTS), 		        -- Painting of Lake, Sturdy	
+            
+        }, 		
 		[FURC_CROWN]	= {		
 			[118096] = getCrownStorePriceString(10), 			-- Bread, Plain
 			[118098] = getCrownStorePriceString(10), 			-- Common Bowl, Serving

@@ -230,8 +230,11 @@ local strings = {
     SI_FURC_DB_STEALTH					            = "as a way to be less obtrusive",
     SI_FURC_DAILY_ASHLANDERS			            = "Ashlander daily quest rewards",
     SI_FURC_PLUNDERSKULL			                = "Drops from Plunder Skulls during Witches' Festival",
-    SI_FURC_DROP_CHEST_VVARDENFELL	                = "From chests on Vvardenfell",
+    SI_FURC_DROP_CHEST_VVARDENFELL	                = "Extremely rarely from chests on Vvardenfell",
     SI_FURC_FLAME_ATRONACH	                        = "Flame Atronach",
+	SI_FURC_CHESTS                                  = "from treasure chests",
+	SI_FURC_VVARDENFELL_PAINTING                    = "extremely rarely from safeboxes",
+	SI_FURC_DRAGON_DUNGEON_DROP                     = "Fang Lair/Scalecaller Peak",
 }
 
 

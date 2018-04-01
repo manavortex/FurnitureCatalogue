@@ -53,12 +53,7 @@ FurC.LuxuryFurnisher[FURC_HOMESTEAD] = {
 		itemDate	= "2017-05-05",
 	},	
 	
-		
-	
-
-
-
-	
+			
 	[120803] = {	-- Hew’s Bane Bed, Royal
 		itemPrice 	= 20000,
 		itemDate	= "2018-02-24",

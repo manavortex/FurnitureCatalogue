@@ -56,4 +56,5 @@ FurC.RumourRecipes = {
 	115395, -- Nord Drinking Horn, Display
 	121203, -- Khajiit Brazier, Enchanted
 	
+    
 }
