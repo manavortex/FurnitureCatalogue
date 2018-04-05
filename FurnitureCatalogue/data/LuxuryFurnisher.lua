@@ -49,7 +49,7 @@ FurC.LuxuryFurnisher[FURC_DRAGONS] = {
 		itemDate	= "2018-03-17", 
 	},
 	[120847] = {	-- Dock Winch 
-		itemPrice 	= 10000,
+		itemPrice 	= 4000,
 		itemDate	= "2018-03-17", 
 	},
 	[120849] = {	-- Anchor

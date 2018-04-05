@@ -2169,7 +2169,7 @@ FurC.AchievementVendors[FURC_HOMESTEAD] = {
 	
 		[GetString(FURC_AV_LOT)] = {
 			[119828] = {		-- Ayleid Throne
-				itemPrice 	= 500000,
+				itemPrice 	= 50000,
 			},
 			[119830] = {		-- Coldharbour Chandelier
 				itemPrice 	= 25000,
