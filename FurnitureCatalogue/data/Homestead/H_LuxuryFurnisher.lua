@@ -5,27 +5,7 @@ FurC.LuxuryFurnisher[FURC_HOMESTEAD] = {
 	[120821] = {	-- Sigil Stendarr
 		itemPrice 	= 15000, 
 		itemDate	= "2017-04-28",
-	},				
-	[120823] = {	-- Sigil Stand
-		itemPrice 	= 15000,
-		itemDate	= "2017-04-28",
-	},			
-	[120815] = {	-- Sigil, Akatosh
-		itemPrice 	= 20000,
-		itemDate	= "2017-04-28",
-	},			
-	[120816] = {	-- Sigil, Arkay
-		itemPrice 	= 20000,
-		itemDate	= "2017-04-28",
-	},		
-	[120817] = {	-- Sigil, Dibella
-		itemPrice 	= 20000,
-		itemDate	= "2017-04-28",
-	},		
-	[120818] = {	-- Sigil, Julianos
-		itemPrice 	= 20000,
-		itemDate	= "2017-04-28",
-	},	
+	},
 	
 	[120824] = {	-- Body Cage
 		itemPrice 	= 5000,

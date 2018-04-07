@@ -13,7 +13,39 @@ FurC.AchievementVendors[FURC_DRAGONS] = {
 	},
 }
 
-
+local bookList = {
+	[134553] = { -- The Truth in Sequence, Volume 1 
+		itemPrice = 2000,
+	},
+	[134554] = { -- The Truth in Sequence, Volume 2
+		itemPrice = 2000,
+	},
+	[134555] = { -- The Truth in Sequence, Volume 3
+		itemPrice = 2000,
+	},
+	[134556] = { -- The Truth in Sequence, Volume 4 
+		itemPrice = 2000,
+	},
+	[134557] = { -- The Truth in Sequence, Volume 5
+		itemPrice = 2000,
+	},
+	[134558] = { -- The Truth in Sequence, Volume 6
+		itemPrice = 2000,
+	},
+	[134559] = { -- The Truth in Sequence, Volume 7
+		itemPrice = 2000,
+	},
+	[134560] = { -- The Truth in Sequence, Volume 8
+		itemPrice = 2000, 
+	},
+	[134561] = { -- The Truth in Sequence, Volume 9
+		itemPrice = 2000,
+	},
+	[134562] = { -- The Truth in Sequence, Volume 10
+		itemPrice = 2000,
+	},
+}
+FurC.Books[FURC_CLOCKWORK   ] = bookList	
 FurC.AchievementVendors[FURC_CLOCKWORK] = {
 
 
