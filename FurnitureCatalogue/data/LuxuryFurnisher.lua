@@ -1,9 +1,35 @@
 FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 FurC.LuxuryFurnisher[FURC_DRAGONS] = {
 
-	[120823] = {	-- Sigil Stand
+	[134832] = {	-- Basin of the Divines
 		itemPrice 	= 15000,
 		itemDate	= "2018-04-07",
+	},	
+    [120823] = {	-- Sigil Stand 
+		itemPrice 	= 15000,
+		itemDate	= "2018-04-14",
+	},
+    [120819] = {	-- Sigil, Kynareth
+		itemPrice 	= 20000,
+		itemDate	= "2018-04-14",
+	},
+    [120820] = {	-- Sigil, Mara
+		itemPrice 	= 20000,
+		itemDate	= "2018-04-14",
+	},
+    [120821] = {	-- Sigil, Stendarr
+		itemPrice 	= 20000,
+		itemDate	= "2018-04-14",
+	},
+    [120822] = {	-- Sigil, Zenithar
+		itemPrice 	= 20000,
+		itemDate	= "2018-04-14",
+	},
+    
+    
+    [120823] = {	-- Sigil Stand
+		itemPrice 	= 15000,
+		itemDate	= "2018-04-14",
 	},
 	[120815] = {	-- Sigil, Akatosh
 		itemPrice 	= 20000,

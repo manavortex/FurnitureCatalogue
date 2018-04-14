@@ -181,6 +181,7 @@ FurC.MiscItemSources 	= {
 			[131420] = GetString(SI_FURC_PLANTS), 					-- Plants, Ash Frond
 			[125553] = GetString(SI_FURC_PLANTS), 					-- Flowers, Netch Cabbage Stalks
 			[125551] = GetString(SI_FURC_PLANTS), 					-- Flowers, Netch Cabbage
+			[125552] = GetString(SI_FURC_PLANTS), 					-- Flowers, Netch Cabbage Patch 
 			[125543] = GetString(SI_FURC_PLANTS), 					-- Fern, Ashen
 			[125633] = GetString(SI_FURC_PLANTS), 					-- Plants, Hanging Pitcher Pair
 			
