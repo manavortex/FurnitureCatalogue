@@ -1,9 +1,29 @@
 FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 FurC.LuxuryFurnisher[FURC_DRAGONS] = {
 
+	[134833] = {	-- Gibbet, Hanging Hooked
+		itemPrice 	= 75000,
+		itemDate	= "2018-04-21",
+	},	
+    
+	[120826] = {	-- Iron Cross
+		itemPrice 	= 10000,
+		itemDate	= "2017-04-21",
+	},
+	[120825] = {	-- Iron Cross, Large
+		itemPrice 	= 25000,
+		itemDate	= "2017-04-21",
+	},	
+	[120827] = {	-- Iron Maiden, Chained
+		itemPrice 	= 20000,
+		itemDate	= "2017-04-21",
+	},	
+	
+    
+    
 	[134832] = {	-- Basin of the Divines
-		itemPrice 	= 15000,
-		itemDate	= "2018-04-07",
+		itemPrice 	= 35000,
+		itemDate	= "2018-04-14",
 	},	
     [120823] = {	-- Sigil Stand 
 		itemPrice 	= 15000,
@@ -29,7 +49,7 @@ FurC.LuxuryFurnisher[FURC_DRAGONS] = {
     
     [120823] = {	-- Sigil Stand
 		itemPrice 	= 15000,
-		itemDate	= "2018-04-14",
+		itemDate	= "2018-04-07",
 	},
 	[120815] = {	-- Sigil, Akatosh
 		itemPrice 	= 20000,

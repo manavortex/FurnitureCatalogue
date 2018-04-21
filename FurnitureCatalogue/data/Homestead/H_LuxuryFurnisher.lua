@@ -20,19 +20,6 @@ FurC.LuxuryFurnisher[FURC_HOMESTEAD] = {
 		itemDate	= "2017-05-12",
 	},
 	
-	[120826] = {	-- Iron Cross
-		itemPrice 	= 10000,
-		itemDate	= "2017-05-05",
-	},
-	[120825] = {	-- Iron Cross, Large
-		itemPrice 	= 25000,
-		itemDate	= "2017-05-05",
-	},	
-	[120827] = {	-- Iron Maiden, Chained
-		itemPrice 	= 50000,
-		itemDate	= "2017-05-05",
-	},	
-	
 			
 	[120803] = {	-- Hew’s Bane Bed, Royal
 		itemPrice 	= 20000,

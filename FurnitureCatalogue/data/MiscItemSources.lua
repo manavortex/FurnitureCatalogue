@@ -185,6 +185,8 @@ FurC.MiscItemSources 	= {
 			[125543] = GetString(SI_FURC_PLANTS), 					-- Fern, Ashen
 			[125633] = GetString(SI_FURC_PLANTS), 					-- Plants, Hanging Pitcher Pair
 			
+            [130280] = GetString(SI_FURC_WW), 					    -- Sapling, Petrified Ashen
+			
             
             [126592] = GetString(SI_FURC_PLANTS), 					-- Plants, Hanging Pitcher Pair
 			

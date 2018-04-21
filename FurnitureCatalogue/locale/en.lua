@@ -220,6 +220,7 @@ local strings = {
     SI_FURC_CROWNSTORESOURCE				        = "Crown Store ",
     SI_FURC_CANBEFISHED				                = "can be fished",
     SI_FURC_HARVEST				                    = "from harvesting nodes",
+    SI_FURC_WW				                        = "occasionally found in wood nodes",
     SI_FURC_PLANTS						            = "from harvesting plants",
     SI_FURC_SCAMBOX						            = "Crown Crates",
     SI_FURC_AUTOMATON						        = "from automatons",

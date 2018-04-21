@@ -50,16 +50,16 @@ FurC.EventItems[FURC_REACH] = {
 			[130338] = true, 	-- Witches Bones, Offering",
 			[131434] = true, 	-- Witch's Festival, Cursed Totem,			
 			[132154] = true, 	-- Witch's Totem, Bog",			
-			[130302] = "occasionally found in wood nodes", 	-- Shrub, Burnt Brush"
-			[130298] = "occasionally found in wood nodes",	-- Branch, Curved Laurel
-			[130296] = "occasionally found in wood nodes",	-- Branch, Sturdy Laurel
-			[130295] = "occasionally found in wood nodes",	-- Branch, Sturdy Burnt
-			[130293] = "occasionally found in wood nodes",	-- Branch, Forked Burnt
-			[130293] = "occasionally found in wood nodes",	-- Branch, Curved Burnt
-			[130301] = "occasionally found in wood nodes",	-- Saplings, Burnt Sparse
-			[130299] = "occasionally found in wood nodes",	-- Saplings, Burnt Cluster
-			[130300] = "occasionally found in wood nodes",	-- Saplings, Burnt Tall
-			[130297] = "occasionally found in wood nodes",	-- Branch, Forked Laurel
+			[130302] = GetString(SI_FURC_WW), 	-- Shrub, Burnt Brush"
+			[130298] = GetString(SI_FURC_WW),	-- Branch, Curved Laurel
+			[130296] = GetString(SI_FURC_WW),	-- Branch, Sturdy Laurel
+			[130295] = GetString(SI_FURC_WW),	-- Branch, Sturdy Burnt
+			[130293] = GetString(SI_FURC_WW),	-- Branch, Forked Burnt
+			[130293] = GetString(SI_FURC_WW),	-- Branch, Curved Burnt
+			[130301] = GetString(SI_FURC_WW),	-- Saplings, Burnt Sparse
+			[130299] = GetString(SI_FURC_WW),	-- Saplings, Burnt Cluster
+			[130300] = GetString(SI_FURC_WW),	-- Saplings, Burnt Tall
+			[130297] = GetString(SI_FURC_WW),	-- Branch, Forked Laurel
 		
 
 		}
