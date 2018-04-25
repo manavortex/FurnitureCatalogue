@@ -1,6 +1,6 @@
 ## Title: FurnitureCatalogue
 ## Author: manavortex
-## Version: 2.2.13
+## Version: 2.2.14
 ## APIVersion: 100022
 ## SavedVariables: FurnitureCatalogue_Settings 
 ## OptionalDependsOn: pChat 
@@ -36,6 +36,8 @@ startup.lua
 FurCSettingsAdapter.lua
 FurCMenu.lua
 FurCEvents.lua
+
+$(APIVersion).lua
 
 data\Morrowind\M_Recipes.lua
 data\Homestead\H_Recipes.lua
