@@ -1,6 +1,29 @@
 FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 FurC.LuxuryFurnisher[FURC_DRAGONS] = {
 
+
+	[134834] = {	-- Bandages, Blood-Soaked
+		itemPrice 	= 2000,
+		itemDate	= "2018-04-28",
+	},
+	[134835] = {	-- Orcish Burial Urn, Exhumed
+		itemPrice 	= 20000,
+		itemDate	= "2018-04-28",
+	},
+	[120824] = {	-- Body Cage
+		itemPrice 	= 5000,
+		itemDate	= "2018-04-28",
+	},
+	[120829] = {	-- Torture Rack
+		itemPrice 	= 5000,
+		itemDate	= "2018-04-28",
+	},	
+	[120828] = {	-- Torture Wheel
+		itemPrice 	= 100000,
+		itemDate	= "2018-04-28",
+	},
+
+
 	[134833] = {	-- Gibbet, Hanging Hooked
 		itemPrice 	= 75000,
 		itemDate	= "2018-04-21",

@@ -7,18 +7,6 @@ FurC.LuxuryFurnisher[FURC_HOMESTEAD] = {
 		itemDate	= "2017-04-28",
 	},
 	
-	[120824] = {	-- Body Cage
-		itemPrice 	= 5000,
-		itemDate	= "2017-05-12",
-	},
-	[120829] = {	-- Torture Rack
-		itemPrice 	= 5000,
-		itemDate	= "2017-05-12",
-	},	
-	[120828] = {	-- Torture Wheel
-		itemPrice 	= 100000,
-		itemDate	= "2017-05-12",
-	},
 	
 			
 	[120803] = {	-- Hew’s Bane Bed, Royal
