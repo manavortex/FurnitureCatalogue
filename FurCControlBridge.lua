@@ -158,8 +158,7 @@ function FurC.GuiLineOnMouseEnter(lineControl)
 	currentId = lineControl.itemId
 	
 	if nil == currentLink then return end
-	
-		
+			
 	InitializeTooltip(ItemTooltip, lineControl, LEFT, 0, 0, 0)
 	ItemTooltip:SetLink(currentLink)
 end

@@ -130,7 +130,6 @@ local function updateScrollDataLinesData()
 	
 end
 
-
 function FurC.UpdateGui(useDefaults)
 	if FurCGui:IsHidden() then return end
 	

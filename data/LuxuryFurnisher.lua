@@ -2,6 +2,20 @@ FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 FurC.LuxuryFurnisher[FURC_DRAGONS] = {
 
 
+	[134836] = {	-- Necromancer's Brazier, Flame
+		itemPrice 	= 10000,
+		itemDate	= "2018-05-04",
+	},
+	[134838] = {	-- Necromancer's Spire, Alcove 
+		itemPrice 	= 75000,
+		itemDate	= "2018-05-04",
+	},
+	[134837] = {	-- Necromancer's Spire, Narrow 
+		itemPrice 	= 50000,
+		itemDate	= "2018-05-04",
+	},
+    
+    
 	[134834] = {	-- Bandages, Blood-Soaked
 		itemPrice 	= 2000,
 		itemDate	= "2018-04-28",

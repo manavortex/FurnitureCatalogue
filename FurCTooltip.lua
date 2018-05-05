@@ -23,8 +23,10 @@ local function addTooltipData(control, itemLink)
 	
 	-- |H0:item:118206:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h
 
-	if not recipeArray then return end			-- Find does not return nil, empty table instead
+	if not recipeArray then return end
 	
+    if FurC.IsDebugging then  d(zo_strformat("<<1>>: <<2>>", itemId, itemLink)) end
+    
 	local unknown 	= not FurC.CanCraft(itemId, recipeArray)
 	local stringTable = {}
 

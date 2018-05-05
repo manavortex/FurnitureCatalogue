@@ -5,6 +5,11 @@ local strings = {
 	FURC_AV_MUL									= "Mulvise Valyn",
 									
 	FURC_AV_NAR									= "Narwaawende",
+	FURC_AV_ALI									= "Alinor, Riverside Market",
+	FURC_AV_UNW									= "Unwotil",
+	FURC_AV_CUR									= "Curininwe",
+	FURC_AV_NAL									= "Nalirsewen",
+	FURC_AV_TAR									= "Tarmimn",
 	FURC_AV_LTS									= "Listens-To-Sea",
 	FURC_AV_HER									= "Heralda Garscroft",
 	FURC_AV_FRO									= "Frohilde Snow-Hair",
@@ -20,6 +25,7 @@ local strings = {
 	FURC_AV_CLO									= "clothiers",
 	FURC_AV_CAR									= "carpenters",
 	FURC_AV_BSM									= "blacksmiths",
+	FURC_AV_ARTAEUM								= "Artaeum",
 
 	
 	
@@ -49,19 +55,20 @@ local strings = {
 	SI_FURC_RUMOUR_SOURCE_ITEM =				"This item has been datamined, but not seen in-game",
 	SI_FURC_STRING_CRAFTABLE_BY =				"Can be crafted by ",
 	SI_FURC_STRING_CANNOT_CRAFT =				"You cannot craft this yet",
-	SI_FURC_STRING_VENDOR =						"Sold by <<1>> (<<2>>, <<3>>)",
+	SI_FURC_STRING_VENDOR = 					"sold by <<1>> in <<2>> (<<3>><<4>>)",
 	SI_FURC_STRING_AP =							" AP",
 	SI_FURC_STRING_ASSHOLE = 					"Zanil Theran",
 	SI_FURC_STRING_HC = 						"Hollow City",
 	SI_FURC_STRING_WASSOLDBY = 					"Was sold by <<1>> in <<2>> (<<3>>) <<4>>",
 	SI_FURC_STRING_WEEKEND_AROUND = 			"(around <<1>>)",
-	
+	SI_FURC_REQUIRES_QUEST                      = ", requires quest ",
+	SI_FURC_REQUIRES_ACHIEVEMENT                = ", requires ",
+	SI_FURC_PSIJIC_RANK                         = "Psijic Order Rank ",
 	SI_FURC_STRING_WRIT_VENDOR =				"Master Writ Vendor",
 	SI_FURC_STRING_WRIT_VENDOR_TT =				"Obtainable for Master Writs in your alliance's capital",
 	SI_FURC_STRING_ROLLIS = 					"Sold by |cd68957Rollis Hlaalu|r <<1>>",
 	SI_FURC_STRING_FAUSTINA = 					"Sold by |cd68957Faustina Curio|r <<1>>",
 	SI_FURC_STRING_FOR_VOUCHERS =				"for <<1>> vouchers",
-	
 	SI_FURC_FESTIVAL_DROP = 					"can be acquired during <<1>> (<<2>>)",	
 	SI_FURC_STRING_RECIPELEARNED = 				"Recipe learned: <<1>> <<2>> <<3>>",
 	SI_FURC_STRING_RECIPESFORCHAR = 			"recipes for <<1>>",
@@ -178,6 +185,8 @@ local strings = {
 	SI_FURC_FILTER_VERSION_R						= "Horns of the Reach", 
 	SI_FURC_FILTER_VERSION_CC						= "Clockwork City", 
 	SI_FURC_FILTER_VERSION_DRAGON					= "Dragon Bones", 
+	SI_FURC_FILTER_VERSION_ALTMER					= "Summerset", 
+	SI_FURC_FILTER_VERSION_ALTMER_TT                = "",
 	
 	-- =============================== --
 	-- = GUI: Dropdown entry tooltip = -- 
@@ -236,6 +245,10 @@ local strings = {
 	SI_FURC_CHESTS                                  = "from treasure chests",
 	SI_FURC_VVARDENFELL_PAINTING                    = "extremely rarely from safeboxes",
 	SI_FURC_DRAGON_DUNGEON_DROP                     = "Fang Lair/Scalecaller Peak",
+	SI_FURC_ITEMSOURCE_UNKNOWN_YET                  = "This item has been found in the sources/recipes for Summerset! \nIts origin isn't known yet.",
+	SI_FURC_ITEMSOURCE_ITEMPACK                     = "This item is part of the Crown Store item pack ",
+	
+	SI_FURC_SEEN_IN_GUILDSTORE                      = "Seen in Guild Store",
 }
 
 

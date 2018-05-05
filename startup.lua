@@ -1,7 +1,7 @@
 FurnitureCatalogue 					= {}
 FurnitureCatalogue.name				= "FurnitureCatalogue"
 FurnitureCatalogue.author			= "manavortex"
-FurnitureCatalogue.version          = "2.2.15"
+FurnitureCatalogue.version          = "2.3.0"
 FurnitureCatalogue.CharacterName	= nil
 FurnitureCatalogue.settings			= {}	
 	
@@ -17,7 +17,7 @@ FurC.RollisRecipes					= {}
 FurC.Books							= {}
 FurC.EventItems						= {}
 FurC.PVP							= {}
-
+FurC.MiscItemSources                = {}
 FurC.HomesteadData 					= {}
 FurC.MorrowindData 					= {}
 FurC.ReachHornData 					= {}
@@ -31,9 +31,9 @@ FURC_MORROWIND						= 3
 FURC_REACH							= 4
 FURC_CLOCKWORK						= 5
 FURC_DRAGONS						= 6
-		
-		
-FurC.version						= 2.017
+FURC_ALTMER						    = 7
+			
+FurC.version						= 2.2
 
 local defaults 						= {
 	
@@ -187,7 +187,10 @@ FurnitureCatalogue.DropdownData = {
 	ChoicesSource	= {},
 	TooltipsSource 	= {},	
 }
-
+if GetAPIVersion() == 100023 then 
+    FurnitureCatalogue.DropdownData.ChoicesVersion[FURC_ALTMER] = GetString(SI_FURC_FILTER_VERSION_ALTMER)
+    FurnitureCatalogue.DropdownData.TooltipsVersion[FURC_ALTMER] = GetString(SI_FURC_FILTER_VERSION_ALTMER_TT)
+end
 
 local function updateDropdownData()
 	FurnitureCatalogue.DropdownData.ChoicesSource  = getChoicesSource()
@@ -294,6 +297,9 @@ function FurnitureCatalogue_Initialize(eventCode, addOnName)
 	SLASH_COMMANDS["/fur"] 			= FurnitureCatalogue_Toggle
 
 	FurC.SetFilter(true)
+    
+    FurC.IsDebugging = GetWorldName() == "PTS" and GetUnitDisplayName("player") == "@manavortex"
+    
 	EVENT_MANAGER:UnregisterForEvent("FurnitureCatalogue", EVENT_ADD_ON_LOADED)
 	
 end

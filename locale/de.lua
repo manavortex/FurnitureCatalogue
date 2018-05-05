@@ -26,7 +26,7 @@ local strings = {
 	SI_FURC_RUMOUR_SOURCE_ITEM =				"This item has been datamined, but not seen in-game",
 	SI_FURC_STRING_CRAFTABLE_BY =				"Can be crafted by ",
 	SI_FURC_STRING_CANNOT_CRAFT =				"You cannot craft this yet",
-	SI_FURC_STRING_VENDOR = 					"sold by <<1>> in <<2>> (<<3>>, <<4>>)",
+	SI_FURC_STRING_VENDOR = 					"sold by <<1>> in <<2>> (<<3>><<4>>)",
 	SI_FURC_STRING_AP =							" AP",
 	SI_FURC_STRING_ASSHOLE = 					"Zanil Theran",
 	SI_FURC_STRING_HC = 						"Hollow City",
@@ -42,7 +42,7 @@ local strings = {
 	SI_FURC_FESTIVAL_DROP = 					"can be acquired during <<1>> (<<2>>)",
 	SI_FURC_STRING_RECIPELEARNED = 				"Recipe learned: <<1>> <<2>> <<3>>",
 	SI_FURC_STRING_RECIPESFORCHAR = 			"recipes for <<1>>",
-	SI_FURC_STRING_VENDOR =						"Sold by <<1>> (<<2>><<3>>)",
+	
 	SI_FURC_STRING_VOUCHER_VENDOR =				"Sold by either Rollis Hlaalu or Faustina Curio",
 	SI_FURC_CHESTS =                            "From treasure chests",
 	SI_FURC_VVARDENFELL_PAINTING =              "extremely rarely from safeboxes or treasure chests",

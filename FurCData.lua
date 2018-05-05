@@ -302,7 +302,7 @@ local function scanFromFiles(shouldScanCharacter)
 					else
 				
 					recipeArray.origin			= origin
-					recipeArray.version			= versionNumber	
+					recipeArray.version			= versionNumber
 					addDatabaseEntry(itemId, recipeArray)
 				end
 				
@@ -447,11 +447,11 @@ local function scanFromFiles(shouldScanCharacter)
 	FurC.IsLoading(true)
 	
 	task:Call(scanRollis)
+	:Then(scanMiscItemFile)
 	:Then(scanRecipeFile)
 	:Then(scanVendorFiles)
 	:Then(scanRollis)
 	:Then(scanFestivalFiles)
-	:Then(scanMiscItemFile)
 	:Then(scanRumourRecipes)
 	:Then(
 	function() 
@@ -501,6 +501,7 @@ function FurC.ScanRecipes(shouldScanFiles, shouldScanCharacter)								-- return
 end
 
 function FurC.GetItemDescription(recipeKey, recipeArray, stripColor)
+FurC.settings.emptyItemSources =  FurC.settings.emptyItemSources or {}
 	recipeArray = recipeArray or FurC.Find(recipeKey, recipeArray)
 	if not recipeArray then return "" end
 	local origin = recipeArray.origin
@@ -511,7 +512,7 @@ function FurC.GetItemDescription(recipeKey, recipeArray, stripColor)
 	elseif origin == FURC_LUXURY then
 		return FurC.getLuxurySource(recipeKey, recipeArray, stripColor)	
 	elseif origin == FURC_GUILDSTORE then
-		return FURC_STRING_TRADINGHOUSE
+		return GetString(SI_FURC_SEEN_IN_GUILDSTORE)
 	elseif origin == FURC_VENDOR then
 		return FurC.getAchievementVendorSource(recipeKey, recipeArray, stripColor)
 	elseif origin == FURC_FESTIVAL_DROP then
@@ -523,5 +524,8 @@ function FurC.GetItemDescription(recipeKey, recipeArray, stripColor)
 	else 
 		itemSource = FurC.GetMiscItemSource(recipeKey, recipeArray, stripColor)
 	end
+    if not itemSource then
+        FurC.settings.emptyItemSources[recipeKey] = ", --" .. GetItemLinkName(FurC.GetItemLink(recipeKey))
+    end
 	return itemSource or GetString(SI_FURC_ITEMSOURCE_EMPTY)
 end

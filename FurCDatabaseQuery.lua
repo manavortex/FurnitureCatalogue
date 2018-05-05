@@ -14,6 +14,12 @@ local function colorise(str, col, ret)
 	return string.format("|c%s%s|r", col, str)
 end
 
+local function makeAchievementLink(achievementId)
+    if not achievementId then return end
+    if tonumber(achievementId) ~= achievementId then return GetString(SI_FURC_REQUIRES_QUEST) ..achievementId end
+    return GetString(SI_FURC_REQUIRES_ACHIEVEMENT) .. GetAchievementLink(achievementId)
+end
+
 local function getRollisSource(recipeKey, recipeArray)
 	recipeArray = recipeArray or FurC.Find(recipeKey)
 	if not recipeArray then return end
@@ -83,7 +89,7 @@ local function getPvpSource(recipeKey, recipeArray, stripColor)
 	
 end
 FurC.getPvpSource = getPvpSource
-
+local typeTable = "table"
 local function getAchievementVendorSource(recipeKey, recipeArray, stripColor)
 
 	recipeArray = recipeArray or FurC.Find(recipeKey)
@@ -104,7 +110,7 @@ local function getAchievementVendorSource(recipeKey, recipeArray, stripColor)
 					colorise(vendorName, 				vendorColor, stripColor), 
 					colorise(zoneName, 					vendorColor, stripColor), 
 					colorise(databaseEntry.itemPrice, 	goldColor, 	 stripColor), 
-					""
+                    makeAchievementLink(databaseEntry.achievement)
 				)
 			end
 		end
@@ -162,11 +168,13 @@ end
 local function getRecipeSource(recipeKey, recipeArray)
 	if nil == recipeKey and nil == recipeArray then return end
 	if nil == FurC.RecipeSources then return end
-	recipeArray = recipeArray or FurC.Find(recipeKey)	
+	recipeArray = recipeArray or FurC.Find(recipeKey)
 	
-	recipeKey = recipeArray.blueprint or recipeKey	
+	recipeKey = recipeArray.blueprint or recipeKey
 	
-	return (recipeArray.origin == FURC_RUMOUR and FurC.getRumourSource(recipeKey, recipeArray)) or FurC.RecipeSources[recipeKey]
+    -- d(recipeKey)
+	return (recipeArray.origin == FURC_RUMOUR and FurC.getRumourSource(recipeKey, recipeArray)) 
+        or FurC.RecipeSources[recipeKey]
 end
 FurC.getRecipeSource = getRecipeSource
 
@@ -178,9 +186,7 @@ function FurC.GetCrafterList(itemLink, recipeArray)
 	if nil == recipeArray and nil == itemLink then return end
 	recipeArray = recipeArray or FurC.Find(itemLink)
 	if nil == recipeArray then 
-		d("")
-		d(recipeArray)
-		zo_strformat("FurC.GetCrafterList called for a non-craftable")		
+		return zo_strformat("FurC.GetCrafterList called for a non-craftable")		
 	end
 	
 	if nil == recipeArray.characters or NonContiguousCount(recipeArray.characters) == 0 then 
