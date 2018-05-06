@@ -12,6 +12,7 @@ end
 local defaultDebugString = "[<<1>>] = <<2>>, -- <<3>>"
 local function tryCreateDebugOutput(itemId, itemLink)
     if not FurC.IsDebugging then return end 
+    itemId = itemId or FurC.GetItemId(itemLink)
     local price = 0
     local control = moc()
     local debugString = defaultDebugString
@@ -35,6 +36,10 @@ local function addTooltipData(control, itemLink)
 	if nil == itemLink or FURC_EMPTY_STRING == itemLink then return end
 	local isRecipe = IsItemLinkFurnitureRecipe(itemLink)
 	
+    if not isRecipe or IsItemLinkPlaceableFurniture(itemLink) then return end
+    
+    tryCreateDebugOutput(itemId, itemLink)
+    
 	itemLink = (isRecipe and GetItemLinkRecipeResultItemLink(itemLink)) or itemLink
 	
 	itemId 		= FurC.GetItemId(itemLink)
@@ -44,7 +49,6 @@ local function addTooltipData(control, itemLink)
 
 	if not recipeArray then return end
 	
-    tryCreateDebugOutput(itemId, itemLink)
     
     
 	local unknown 	= not FurC.CanCraft(itemId, recipeArray)
@@ -63,7 +67,7 @@ local function addTooltipData(control, itemLink)
 			if crafterList then 
 				stringTable = add(stringTable, tryColorize(crafterList))
 			end
-		end		
+		end
 		if not isRecipe and (not FurC.GetHideCraftingStation()) then
 			stringTable = add(stringTable, FurC.PrintCraftingStation(itemId, recipeArray))
 		end

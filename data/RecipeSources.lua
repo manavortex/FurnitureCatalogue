@@ -27,6 +27,8 @@ local function soldBy(vendorName, locationName, price, requirement)
         requirement
     )
 end
+
+
 local artaeum = GetString(FURC_AV_ARTAEUM)
 local nalirsewen = GetString(FURC_AV_NAL)
 
@@ -41,5 +43,49 @@ FurC.RecipeSources = {
     [139491] = soldBy(nalirsewen, artaeum, 10000,   rank(4)),  -- Praxis: Psijic Lighting Globe, Small 
     [139497] = soldBy(nalirsewen, artaeum, 100000,  rank(10)), -- Praxis: Psijic Table, Grand
     [139492] = soldBy(nalirsewen, artaeum, 20000,   rank(5)),  -- Praxis: Psijic Table, Scalloped
-    [139494] = soldBy(nalirsewen, artaeum, 20000,   rank(7)),  -- Praxis: Psijic Table, Six-Fold Symmetry 
-}  
+    [139494] = soldBy(nalirsewen, artaeum, 20000,   rank(7)),  -- Praxis: Psijic Table, Six-Fold Symmetry
+}
+
+local rolisRecipes = {
+    [134987] = 125, -- Blueprint: Hlaalu Gaming Table, "Foxes & Felines"
+    [134986] = 125, -- Design: Miniature Garden, Bottled
+    [134983] = 125, -- Diagram: Hlaalu Gong
+    [134982] = 125, -- Formula: Alchemical Apparatus, Master
+    [134984] = 125, -- Pattern: Clothier's Form, Brass
+    [134985] = 125, -- Praxis: Hlaalu Trinket Box, Curious Turtle
+    [126582] = 275, -- Praxis: Target Centurion, Dwarf-Brass
+    [126583] = 450, -- Praxis: Target Centurion, Robust Refabricated
+    [119592] = 125, -- Praxis: Target Skeleton, Humanoid
+    [121315] = 200, -- Praxis: Target Skeleton, Robust Humanoid
+    [139486] = 125, -- Sketch: High Elf Ancestor Clock, Celestial
+}
+local faustinaRecipes = {
+    [121200] = 100, -- Blueprint: Cabinet, Poisonmaker's
+    [121166] = 100, -- Blueprint: Podium, Skinning
+    [132195] = 100, -- Blueprint: Telvanni Candelabra, Masterwork
+    [121168] = 100, -- Blueprint: Tools, Case
+    [132194] = 100, -- Design: Mammoth Cheese, Mastercrafted
+    [121199] = 100, -- Design: Mortar and Pestle
+    [121214] = 100, -- Design: Orcish Skull Goblet, Full
+    [121163] = 100, -- Diagram: Apparatus, Boiler
+    [121165] = 100, -- Diagram: Apparatus, Gem Calipers
+    [132191] = 100, -- Diagram: Dwarven Gyroscope, Masterwork
+    [121197] = 100, -- Formula: Bottle, Poison Elixir
+    [121164] = 100, -- Formula: Case of Vials
+    [132190] = 100, -- Formula: Mages Apparatus, Master
+    [132192] = 100, -- Pattern: Dres Sewing Kit, Master's
+    [121209] = 100, -- Pattern: Orcish Tapestry, Spear
+    [132193] = 100, -- Praxis: Hlaalu Bath Tub, Masterwork
+    [121207] = 100, -- Praxis: Orcish Table with Fur
+}
+
+for itemId, itemPrice in pairs(rolisRecipes) do 
+    local priceString = zo_strformat(GetString(SI_FURC_STRING_FOR_VOUCHERS), itemPrice, voucherColor)
+    FurC.RecipeSources[itemId] = zo_strformat(GetString(SI_FURC_STRING_ROLLIS), priceString)
+end
+local unsurpassedCrafter = GetAchievementLink(1801)
+for itemId, itemPrice in pairs(faustinaRecipes) do 
+    local priceString = zo_strformat(GetString(SI_FURC_STRING_FOR_VOUCHERS), itemPrice, voucherColor)
+    local soldByFaustinaFor = zo_strformat(GetString(SI_FURC_STRING_FAUSTINA), priceString)
+    FurC.RecipeSources[itemId] = soldByFaustinaFor .. requires .. unsurpassedCrafter
+end

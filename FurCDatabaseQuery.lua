@@ -168,7 +168,9 @@ end
 local function getRecipeSource(recipeKey, recipeArray)
 	if nil == recipeKey and nil == recipeArray then return end
 	if nil == FurC.RecipeSources then return end
-	recipeArray = recipeArray or FurC.Find(recipeKey)
+    if nil ~= FurC.RecipeSources[recipeKey] then return FurC.RecipeSources[recipeKey] end
+	
+    recipeArray = recipeArray or FurC.Find(recipeKey)
 	
 	recipeKey = recipeArray.blueprint or recipeKey
 	
