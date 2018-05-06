@@ -344,7 +344,7 @@ local function scanFromFiles(shouldScanCharacter)
 	end
 	
 	local function scanRollis()
-		for versionNumber, versionData in pairs(FurC.Rollis) do
+		for versionNumber, versionData in pairs(FurC.Rolis) do
 			for itemId, itemSource in pairs(versionData) do
 				recipeArray = parseFurnitureItem(FurC.GetItemLink(recipeId), true)
 				if nil ~= recipeArray then 

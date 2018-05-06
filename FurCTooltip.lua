@@ -9,6 +9,25 @@ local function tryColorize(text, datInteger)
 	return text:gsub("cannot craft", "|cFF0000cannot craft|r"):gsub("Can be crafted", "|c00FF00Can be crafted|r")
 end
 
+local defaultDebugString = "[<<1>>] = <<2>>, -- <<3>>"
+local function tryCreateDebugOutput(itemId, itemLink)
+    if not FurC.IsDebugging then return end 
+    local price = 0
+    local control = moc()
+    local debugString = defaultDebugString
+    if control and control.dataEntry then 
+        local data = control.dataEntry.data or {}
+        if 0 == data.currencyQuantity1 then
+            price = data.stackBuyPrice
+            debugString = "[<<1>>] = { -- <<3>>\n\titemPrice = <<2>>,\n\t--achievement = 0, \n},"
+        else
+            price = data.currencyQuantity1
+        end
+    end
+    d(zo_strformat(debugString, itemId, price, GetItemLinkName(itemLink))) 
+    
+end
+
 local function addTooltipData(control, itemLink)
 
 	if FurC.GetDisableTooltips() then return end
@@ -25,7 +44,8 @@ local function addTooltipData(control, itemLink)
 
 	if not recipeArray then return end
 	
-    if FurC.IsDebugging then  d(zo_strformat("<<1>>: <<2>>", itemId, itemLink)) end
+    tryCreateDebugOutput(itemId, itemLink)
+    
     
 	local unknown 	= not FurC.CanCraft(itemId, recipeArray)
 	local stringTable = {}

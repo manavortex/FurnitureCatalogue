@@ -1,8 +1,8 @@
-FurC.Rollis 		= FurC.Rollis or {}
+FurC.Rolis 		= FurC.Rolis or {}
 FurC.Rollis_Recipes = FurC.Rollis_Recipes or {}
 
 
-FurC.Rollis[FURC_HOMESTEAD] = {
+FurC.Rolis[FURC_HOMESTEAD] = {
 	-- Alchemy station
 	[118328] = 35, 
 	-- Blacksmithing station

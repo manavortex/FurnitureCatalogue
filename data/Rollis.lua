@@ -26,11 +26,12 @@ FurC.FaustinaRecipes[FURC_DRAGONS] = {
 	 132195,	-- Telvanni Candelabra
 	 121166,	-- Podium, Skinning
 }
+
 FurC.Faustina[FURC_DRAGONS] = {
 	[134675] = 1500,
 }
 
-FurC.Rollis[FURC_DRAGONS] = {
+FurC.Rolis[FURC_DRAGONS] = {
 	134983,
 	134984,
 	134985,

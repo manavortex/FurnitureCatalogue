@@ -739,3 +739,9 @@ FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 FurC.LuxuryFurnisher[FURC_ALTMER] = {
 
 }
+
+
+FurC.Faustina[FURC_ALTMER] = {
+    [139391] = 10, -- Master Craftsman's Banner, Hanging
+	[137870] = 125, -- Basic Jewelry Crafting Station
+}

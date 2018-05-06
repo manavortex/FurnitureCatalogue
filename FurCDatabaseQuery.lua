@@ -24,7 +24,7 @@ local function getRollisSource(recipeKey, recipeArray)
 	recipeArray = recipeArray or FurC.Find(recipeKey)
 	if not recipeArray then return end
 	
-	local versionData = FurC.Rollis[recipeArray.version]
+	local versionData = FurC.Rolis[recipeArray.version]
 	
 	if nil ~= versionData and nil ~= versionData[recipeKey] then 
 		local itemPrice = zo_strformat(GetString(SI_FURC_STRING_FOR_VOUCHERS), colorise(versionData[recipeKey], voucherColor))

@@ -1,7 +1,7 @@
 FurnitureCatalogue 					= {}
 FurnitureCatalogue.name				= "FurnitureCatalogue"
 FurnitureCatalogue.author			= "manavortex"
-FurnitureCatalogue.version          = "2.3.0"
+FurnitureCatalogue.version          = "2.3.1"
 FurnitureCatalogue.CharacterName	= nil
 FurnitureCatalogue.settings			= {}	
 	
@@ -12,7 +12,7 @@ FurC.AccountName					= GetDisplayName()
 FurC.AchievementVendors				= {}
 FurC.LuxuryFurnisher				= {}
 FurC.Recipes						= {}
-FurC.Rollis							= {}
+FurC.Rolis							= {}
 FurC.RollisRecipes					= {}
 FurC.Books							= {}
 FurC.EventItems						= {}
