@@ -35,20 +35,18 @@ local function addTooltipData(control, itemLink)
 	local itemId, recipeArray = nil
 	if nil == itemLink or FURC_EMPTY_STRING == itemLink then return end
 	local isRecipe = IsItemLinkFurnitureRecipe(itemLink)
-	
-    if not isRecipe or IsItemLinkPlaceableFurniture(itemLink) then return end
     
     tryCreateDebugOutput(itemId, itemLink)
     
 	itemLink = (isRecipe and GetItemLinkRecipeResultItemLink(itemLink)) or itemLink
 	
+    if not (isRecipe or IsItemLinkPlaceableFurniture(itemLink)) then return end
 	itemId 		= FurC.GetItemId(itemLink)
 	recipeArray = FurC.Find(itemLink)
 	
 	-- |H0:item:118206:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h
 
 	if not recipeArray then return end
-	
     
     
 	local unknown 	= not FurC.CanCraft(itemId, recipeArray)
