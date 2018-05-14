@@ -252,7 +252,7 @@ FurC.MiscItemSources[FURC_HOMESTEAD]	= {
         [118221] = GetString(SI_FURC_CHESTS), 		        -- Painting of Summer, Sturdy	
         [118222] = GetString(SI_FURC_CHESTS), 		        -- Painting of Jungle, Sturdy
         [118223] = GetString(SI_FURC_CHESTS), 		        -- Painting of Palms, Sturdy
-        [190912] = GetString(SI_FURC_CHESTS), 		        -- Painting of Lake, Sturdy	
+        
         
     }, 		
     [FURC_CROWN]	= {		

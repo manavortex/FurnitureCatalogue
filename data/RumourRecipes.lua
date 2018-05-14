@@ -15,7 +15,7 @@ FurC.RumourRecipes = {
 	118297, -- Mantikora Horns, Wall Mount	
 	118242, -- Rug, Bearskin	
 	
-	121207, -- Recipe: Orcish Table with Fur_S_ 	
+	121208, -- Recipe: Orcish Table with Fur_S_ 	
 	121210, -- Recipe: Orcish Throne, Skull
 	121212, -- Recipe: Orcish Effigy, Bear	
 	121213, -- Recipe: Orcish Skull Goblet, Empty
@@ -58,7 +58,10 @@ FurC.RumourRecipes = {
     
     
 	121217, -- Redguard Lamp, Oil
-    121215, -- Redguard Canopy, Dusk
+    121215, -- Redguard Canopy, Dusk 
 	
     
+	119426, -- Bread, Plain
+	121102, -- Chicken Dinner, Display 
+	121103, -- Chicken Meal, Display
 }

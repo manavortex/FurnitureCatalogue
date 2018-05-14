@@ -256,7 +256,7 @@ end
 
 -- initialization stuff
 function FurnitureCatalogue_Initialize(eventCode, addOnName)
-	if (addOnName ~= "FurnitureCatalogue") then return end
+	if (addOnName ~= FurnitureCatalogue.name) then return end
 	
 	FurnitureCatalogue.settings 	= ZO_SavedVars:NewAccountWide("FurnitureCatalogue_Settings", 2, nil, defaults)	
 	

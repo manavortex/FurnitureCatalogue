@@ -446,13 +446,12 @@ local function scanFromFiles(shouldScanCharacter)
 	end
 	FurC.IsLoading(true)
 	
-	task:Call(scanRollis)
+	task:Call(scanRecipeFile)
 	:Then(scanMiscItemFile)
-	:Then(scanRecipeFile)
+	:Then(scanRollis)
 	:Then(scanVendorFiles)
 	:Then(scanRollis)
 	:Then(scanFestivalFiles)
-	:Then(scanRumourRecipes)
 	:Then(
 	function() 
 		if shouldScanCharacter then 
@@ -461,6 +460,7 @@ local function scanFromFiles(shouldScanCharacter)
 			startupMessage(GetString(SI_FURC_VERBOSE_STARTUP))
 		end
 	end)
+	:Then(scanRumourRecipes)
 	:Then(FurC.UpdateGui)
 	startupMessage(GetString(SI_FURC_VERBOSE_DB_UPTODATE))
 	
