@@ -11,30 +11,30 @@ end
 
 function FurC.LoadFrameInfo(calledFrom)
 	local settings = FurC.settings.gui
-	
+
 	FurCGui:ClearAnchors()
 	FurCGui:SetAnchor(TOPLEFT, GuiRoot, TOPLEFT, settings.lastX, settings.lastY)
 
 	FurCGui:SetWidth(settings.width)
 	FurCGui:SetHeight(settings.height)
-	
+
 	zo_callLater(function() FurC.UpdateInventoryScroll() end, 100)
-	
+
 end
 
-function FurC.SaveFrameInfo(calledFrom)	
+function FurC.SaveFrameInfo(calledFrom)
 	local settings = FurC.settings["gui"]
 
 	settings.lastX	= FurCGui:GetLeft()
 	settings.lastY	= FurCGui:GetTop()
 	settings.width	= FurCGui:GetWidth()
 	settings.height	= FurCGui:GetHeight()
-	
+
 	FurC.UpdateInventoryScroll()
-	
+
 end
 
-function FurC.OnResizeStop()	
+function FurC.OnResizeStop()
 
 	FurC.SaveFrameInfo()
 	FurC.UpdateLineVisibility()
@@ -43,17 +43,17 @@ function FurC.OnResizeStop()
 end
 
 function FurC.ChangeTemplateFromButton(value)
-	
+
 	local control = FurCGui_Header_Bar1_TemplateLarge
 	local otherControl = FurCGui_Header_Bar1_TemplateTiny
-	
-	if value then 
+
+	if value then
 		otherControl = FurCGui_Header_Bar1_TemplateLarge
 		control = FurCGui_Header_Bar1_TemplateTiny
-	end	
+	end
 	control:SetHidden(true)
 	otherControl:SetHidden(false)
-	
+
 	FurC.SetTinyUi(value)
 end
 
@@ -65,16 +65,16 @@ local function forceRefresh()
 	FurC.WipeDatabase()
 end
 
-function FurC.GUIButtonRefreshOnMouseUp(control, mouseButton)	
+function FurC.GUIButtonRefreshOnMouseUp(control, mouseButton)
 	if mouseButton == 1 then
-		FurC.ScanRecipes(false, true)	
+		FurC.ScanRecipes(false, true)
 	elseif mouseButton == 2 then
 		FurC.ScanRecipes(true, false)
 	elseif mouseButton == 3 then
-		if LAM and LAM.util then 			
+		if LAM and LAM.util then
 			LAM.util.ShowConfirmationDialog(
-				GetString(SI_FURC_DIALOGUE_RESET_DB_HEADER), 
-				GetString(SI_FURC_DIALOGUE_RESET_DB_BODY), 
+				GetString(SI_FURC_DIALOGUE_RESET_DB_HEADER),
+				GetString(SI_FURC_DIALOGUE_RESET_DB_BODY),
 				forceRefresh
 			)
 		end
@@ -86,7 +86,7 @@ function FurC.GuiShowTooltip(control, tooltiptext, reAnchor)
 	InformationTooltip:SetHidden(false)
 	InformationTooltip:ClearLines()
 	InformationTooltip:AddLine(tooltiptext)
-	
+
 	if reAnchor then
 		InformationTooltip:ClearAnchors()
 		InformationTooltip:SetAnchor(TOPRIGHT, control, TOPLEFT, -10)
@@ -99,15 +99,15 @@ end
 
 function FurC.GuiOnSearchBoxClick(control, mouseButton, doubleClick)
 	FurC_SearchBoxText:SetText("")
-	if mouseButton == 2 or doubleClick then		
-		control:SetText("")	
+	if mouseButton == 2 or doubleClick then
+		control:SetText("")
 	end
 end
 
 local FURC_S_FILTERDEFAULT = GetString(SI_FURC_TEXTBOX_FILTER_DEFAULT)
 
 function FurC.GuiOnSearchBoxFocusOut(control)
-	if control:GetText() and control:GetText() ~= "" then 
+	if control:GetText() and control:GetText() ~= "" then
         FurC.GuiOnSliderUpdate(FurCGui_ListHolder_Slider, 0)
 		FurC.UpdateGui()
     end
@@ -131,7 +131,7 @@ function FurC.GuiOnScroll(control, delta)
 
 	FurC.UpdateInventoryScroll()
 
-	
+
 	slider:SetValue(FurCGui_ListHolder.dataOffset)
 
 	FurC.GuiLineOnMouseEnter(moc())
@@ -152,13 +152,13 @@ local currentLink, currentId
 
 function FurC.GuiLineOnMouseEnter(lineControl)
 	currentLink, currentId = nil
-	
+
 	if not lineControl or not lineControl.itemLink or lineControl.itemLink == "" then return end
 	currentLink = lineControl.itemLink
 	currentId = lineControl.itemId
-	
+
 	if nil == currentLink then return end
-			
+
 	InitializeTooltip(ItemTooltip, lineControl, LEFT, 0, 0, 0)
 	ItemTooltip:SetLink(currentLink)
 end
@@ -169,12 +169,12 @@ end
 function FurC.Donate(control, mouseButton)
 
 	local amount = 2000
-	if mouseButton == 2 then 
+	if mouseButton == 2 then
 		amount = 10000
 	elseif mouseButton == 3 then
 		amount = 25000
 	end
-	
+
 	SCENE_MANAGER:Show('mailSend')
 	zo_callLater(function()
 	ZO_MailSendToField:SetText("@manavortex")
@@ -206,12 +206,12 @@ end
 
 
 local sortBy		= nil
-local sortDirection = "down" 
+local sortDirection = "down"
 
 local function getButtonTex(key)
-	if key ~= sortBy then 
+	if key ~= sortBy then
 		return "esoui/art/miscellaneous/list_sortheader_icon_neutral.dds"
-	end	
+	end
 	return "esoui/art/miscellaneous/list_sortheader_icon_sort" .. sortDirection .. ".dds"
 end
 
@@ -220,18 +220,18 @@ function FurC.GetSortParams()
 end
 
 function FurC.GuiOnSort(key)
-	
+
 	-- set icon texture
-	if sortBy and sortBy == key then 
+	if sortBy and sortBy == key then
 		sortDirection = ((sortDirection == "up" and "down") or "up")
 	else
 		sortBy = key
-		sortDirection = "up"		
+		sortDirection = "up"
 	end
 
 	FurCGui_Header_SortBar_Name_Button:SetNormalTexture(getButtonTex("itemName"))
 	FurCGui_Header_SortBar_Quality_Button:SetNormalTexture(getButtonTex("itemQuality"))
-	
+
 	FurC.UpdateGui()
 end
 
@@ -245,13 +245,13 @@ function FurC.UpdateDropdownChoice(dropdownName, value)
 	end
 	InformationTooltip:SetHidden(true)
 	value = value or FurC.GetDropdownChoiceTextual(dropdownName)
-	
+
 	local controlName 	= "FurC_Dropdown"..dropdownName
 	local control 		= _G[controlName]
 	if nil == control then return end
 	control:GetNamedChild("SelectedItemText"):SetText(value)
 end
 
-function FurC.RefreshCounter()	
+function FurC.RefreshCounter()
 	FurC_RecipeCount:SetText(#FurCGui_ListHolder.dataLines)
 end

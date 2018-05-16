@@ -84,7 +84,7 @@ end
 
 
 function FurC.GetFontSize()
-	if FurC.settings["fontSize"] < 10 then 
+	if FurC.settings["fontSize"] < 10 then
 		FurC.settings["fontSize"] = 10
 	end
 	return FurC.settings["fontSize"]
@@ -93,12 +93,12 @@ function FurC.SetFontSize(value)
 	if nil == value then value = FurC.GetFontSize() end
 	if value == 0 then value = 18 end
 	FurC.settings["fontSize"] = value
-	
+
 	local size = tostring(value)
 
-	
+
 	FurC.SetLineHeight()
-		
+
 	task:Call(function()	FurC.UpdateGui() end)
 end
 
@@ -106,10 +106,10 @@ end
 ---------------------------
 --------- Tooltip ---------
 ---------------------------
-function FurC.GetDisableTooltips()	
+function FurC.GetDisableTooltips()
 	return FurC.settings["disableTooltips"]
 end
-function FurC.SetDisableTooltips(value) 
+function FurC.SetDisableTooltips(value)
 	FurC.settings["disableTooltips"] = value
 end
 
@@ -165,12 +165,31 @@ end
 -------- /Tooltip ---------
 ---------------------------
 
+
+---------------------------
+------- IconDisplay -------
+---------------------------
+
+function FurC.GetShowIconOnLeft()
+	return FurC.settings["showIconOnLeft"] == nil or
+		   FurC.settings["showIconOnLeft"] == true
+end
+function FurC.SetShowIconOnLeft(value)
+	FurC.settings["showIconOnLeft"] = value
+end
+
+---------------------------
+------ /IconDisplay -------
+---------------------------
+
+
 ---------------------------
 --------- Filters ---------
 ---------------------------
 
+
 local function containsTrue(ary)
-	for key, value in pairs(ary) do 
+	for key, value in pairs(ary) do
 		if value then return true end
 	end
 end
@@ -181,22 +200,22 @@ end
 function FurC.SetFilterQuality(quality)
 
 	local controls = FurC.GuiElements.qualityButtons
-	local filterArray = FurC.settings.filterQuality	
-	
+	local filterArray = FurC.settings.filterQuality
+
 	quality = quality or 0
-	
+
 	if quality == 0 then
 		for key, value in pairs (filterArray) do
-			FurC.settings.filterQuality[key] = false			
-		end		
-	else	
+			FurC.settings.filterQuality[key] = false
+		end
+	else
 		filterArray[quality] = not filterArray[quality]
-	end	
+	end
 	FurC.settings.filterQualityAll = not containsTrue(filterArray)
-	
+
 	for key, control in pairs (controls) do
 		control:SetState((filterArray[key-1] and BSTATE_PRESSED) or BSTATE_NORMAL)
-	end	
+	end
 	FurC.GuiOnScroll(nil, 0)
 	FurC.SetFilter()
 	FurC.UpdateGui()
@@ -206,24 +225,24 @@ function FurC.GetFilterCraftingType()
 	return FurC.settings.filterCraftingType
 end
 function FurC.SetFilterCraftingType(craftingType)
-	
+
 	local controls 		= 	FurC.GuiElements.craftingTypeFilters
-	local filterArray 	= 	FurC.settings.filterCraftingType	
-	
+	local filterArray 	= 	FurC.settings.filterCraftingType
+
 	if craftingType == 0 then
 		for key, value in pairs (filterArray) do
-			filterArray[key] = false		
+			filterArray[key] = false
 		end
 	else
 		filterArray[craftingType] = not filterArray[craftingType]
 	end
-	
+
 	FurC.settings.filterCraftingTypeAll = not containsTrue(filterArray)
-	
+
 	for key, control in pairs (controls) do
 		control:SetState((filterArray[key] and BSTATE_PRESSED) or BSTATE_NORMAL)
-	end	
-		
+	end
+
 	FurC.GuiOnScroll(FurCGui_ListHolder_Slider, 0)
 	FurC.SetFilter()
 	FurC.UpdateGui()
@@ -234,7 +253,7 @@ function FurC.GetSearchFilter()
 	if (not FurC.SearchFilter) or FurC.SearchFilter == "Filter by text search" then
 		FurC.SearchFilter = FurC_SearchBox:GetText() or ""
 	end
-	
+
 	return FurC.SearchFilter or ""
 end
 
@@ -243,9 +262,9 @@ function FurC.GuiSetSearchboxTextFrom(control)
 	task:Call(function()
 		local text = control:GetText()
         control:GetNamedChild("Text"):SetText((text == "" and "Filter by text search") or "")
-		
+
 		FurC.SearchFilter = text
-		
+
 		FurC.GuiOnSliderUpdate(FurCGui_ListHolder_Slider, 0)
 		FurC.UpdateGui()
 	end)
@@ -301,12 +320,12 @@ local dropdownData = FurC.DropdownData
 function FurC.SetDropdownChoice(dropdownName, textValue, dropdownIndex)
 	textValue = textValue or FurC.GetDefaultDropdownChoice(dropdownName)
 	local dropdownIndex = dropdownIndex or getDropdownIndex(dropdownName, textValue) or 0
-	
-	-- p("FurC.SetDropdownChoice(<<1>>, <<2>> (Index: <<3>>))", dropdownName, textValue, dropdownIndex)	
+
+	-- p("FurC.SetDropdownChoice(<<1>>, <<2>> (Index: <<3>>))", dropdownName, textValue, dropdownIndex)
 
 	-- if we're setting the dropdown menu "source" to "purchaseable", set "character" to "All"
 	FurC.DropdownChoices[dropdownName] = dropdownIndex
-	
+
 	if dropdownName == "Source" then
 		if dropdownIndex > FURC_CRAFTING_UNKNOWN or dropdownIndex < FURC_CRAFTING then
 			FurC.DropdownChoices["Character"] = 1
@@ -321,11 +340,11 @@ function FurC.SetDropdownChoice(dropdownName, textValue, dropdownIndex)
 			FurC_DropdownSource:GetNamedChild("SelectedItemText"):SetText(FurnitureCatalogue.DropdownData.ChoicesSource[knownIndex])
 		end
 	end
-	
+
 	FurC.DropdownChoices[dropdownName] = dropdownIndex
-	
+
 	zo_callLater(function() FurC.UpdateGui() end, 500)
-	
+
 end
 
 function FurC.GetDefaultDropdownChoiceText(dropdownName)
@@ -355,7 +374,7 @@ function FurC.GetDropdownChoiceTextual(dropdownName)
 	return FurC.DropdownData["Choices"..dropdownName][value]
 end
 function FurC.GetDefaultDropdownChoiceTextual()
-	return FurC.DropdownData["Choices"..dropdownName][FurC.GetDefaultDropdownChoice(dropdownName)]	
+	return FurC.DropdownData["Choices"..dropdownName][FurC.GetDefaultDropdownChoice(dropdownName)]
 end
 
 function FurC.GetAccountCrafters()
@@ -435,36 +454,36 @@ end
 
 function FurC.WipeDatabase()
 	d("|cFFFFFFresetting |r|c2266ffFurniture Catalogue |r|cFFFFFFdata...|r")
-	FurC.settings.data = {} 
-	FurC.settings.accountCharacters = {} 
-	FurC.settings.excelExport = {} 
+	FurC.settings.data = {}
+	FurC.settings.accountCharacters = {}
+	FurC.settings.excelExport = {}
 	FurC.ScanRecipes(true, true)
 	-- d("FurnitureCatalogue: Scan complete")
 end
 
 function FurC.DeleteCharacter(characterName)
-	
+
 	d("Now deleting recipe knowledge for " .. characterName)
-	
+
 	for key, value in pairs(FurC.settings.accountCharacters) do
 		if value == characterName then
 			FurC.settings.accountCharacters[key] = false
 		end
 	end
-		
+
 	for recipeKey, recipeArray in pairs(FurC.settings.data) do
 		if recipeArray.craftable then
 			recipeArray.characters[characterName] = nil
 		end
 	end
-	
+
 	local guiDropdownEntries = FurC_Dropdown.comboBox.m_sortedItems
 	if nil == guiDropdownEntries then return end
 	for index, data in pairs(guiDropdownEntries) do
 		if data.name == characterName then
 			FurC_Dropdown.comboBox.m_sortedItems[index] = nil
 			return
-		end		
+		end
 	end
 	d(zo_strformat("<<1>> deleted from |c2266ffFurniture Catalogue|r database. Entry will disappear from settings dropdown after the next reloadui.", characterName))
 
@@ -475,5 +494,3 @@ function FurC.GetCurrentCharacterName()
 	return FurC.CharacterName
 end
 
-
- 

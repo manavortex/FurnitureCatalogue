@@ -6,7 +6,7 @@ FurC.LuxuryFurnisher[FURC_DRAGONS] = {
 		itemPrice 	= 10000,
 		itemDate	= "2018-05-12",
 	},
-	[134840] = {	-- Necromancer's Spire, Compact 
+	[134840] = {	-- Necromancer's Spire, Compact
 		itemPrice 	= 75000,
 		itemDate	= "2018-05-12",
 	},
@@ -14,21 +14,21 @@ FurC.LuxuryFurnisher[FURC_DRAGONS] = {
 		itemPrice 	= 100000,
 		itemDate	= "2018-05-12",
 	},
-    
+
 	[134836] = {	-- Necromancer's Brazier, Flame
 		itemPrice 	= 10000,
 		itemDate	= "2018-05-04",
 	},
-	[134838] = {	-- Necromancer's Spire, Alcove 
+	[134838] = {	-- Necromancer's Spire, Alcove
 		itemPrice 	= 75000,
 		itemDate	= "2018-05-04",
 	},
-	[134837] = {	-- Necromancer's Spire, Narrow 
+	[134837] = {	-- Necromancer's Spire, Narrow
 		itemPrice 	= 50000,
 		itemDate	= "2018-05-04",
 	},
-    
-    
+
+
 	[134834] = {	-- Bandages, Blood-Soaked
 		itemPrice 	= 2000,
 		itemDate	= "2018-04-28",
@@ -44,7 +44,7 @@ FurC.LuxuryFurnisher[FURC_DRAGONS] = {
 	[120829] = {	-- Torture Rack
 		itemPrice 	= 5000,
 		itemDate	= "2018-04-28",
-	},	
+	},
 	[120828] = {	-- Torture Wheel
 		itemPrice 	= 100000,
 		itemDate	= "2018-04-28",
@@ -54,8 +54,8 @@ FurC.LuxuryFurnisher[FURC_DRAGONS] = {
 	[134833] = {	-- Gibbet, Hanging Hooked
 		itemPrice 	= 75000,
 		itemDate	= "2018-04-21",
-	},	
-    
+	},
+
 	[120826] = {	-- Iron Cross
 		itemPrice 	= 10000,
 		itemDate	= "2017-04-21",
@@ -63,19 +63,19 @@ FurC.LuxuryFurnisher[FURC_DRAGONS] = {
 	[120825] = {	-- Iron Cross, Large
 		itemPrice 	= 25000,
 		itemDate	= "2017-04-21",
-	},	
+	},
 	[120827] = {	-- Iron Maiden, Chained
 		itemPrice 	= 20000,
 		itemDate	= "2017-04-21",
-	},	
-	
-    
-    
+	},
+
+
+
 	[134832] = {	-- Basin of the Divines
 		itemPrice 	= 35000,
 		itemDate	= "2018-04-14",
-	},	
-    [120823] = {	-- Sigil Stand 
+	},
+    [120823] = {	-- Sigil Stand
 		itemPrice 	= 15000,
 		itemDate	= "2018-04-14",
 	},
@@ -95,8 +95,8 @@ FurC.LuxuryFurnisher[FURC_DRAGONS] = {
 		itemPrice 	= 20000,
 		itemDate	= "2018-04-14",
 	},
-    
-    
+
+
     [120823] = {	-- Sigil Stand
 		itemPrice 	= 15000,
 		itemDate	= "2018-04-07",
@@ -121,7 +121,7 @@ FurC.LuxuryFurnisher[FURC_DRAGONS] = {
 		itemPrice 	= 50000,
 		itemDate	= "2018-04-07",
 	},
-    
+
 	[134830] = {	-- Flowers, Blue Starbloom
 		itemPrice 	= 15000,
 		itemDate	= "2018-03-31",
@@ -465,3 +465,4 @@ FurC.LuxuryFurnisher[FURC_CLOCKWORK] = {
 		itemDate	= "2017-10-27",
 	},
 }
+

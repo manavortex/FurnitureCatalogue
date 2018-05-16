@@ -1,11 +1,11 @@
 local function getCrownStorePriceString(price)
     return string.format("%s (%u)", GetString(SI_FURC_CROWNSTORESOURCE), price)
-end	
+end
 
 FurC.MiscItemSources[FURC_ALTMER] 	= {
     [FURC_DROP] = {},
     [FURC_RUMOUR] = {
-    
+
         [139265] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- High Elf Fountain, Four-Way Timeworn",
         [139292] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- High Elf Chalice, Ornate",
         [139171] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- Psijic Table, Six-fold Symmetry",
@@ -22,7 +22,7 @@ FurC.MiscItemSources[FURC_ALTMER] 	= {
         [139212] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- High Elf Streetlight, Wrought Iron",
         [139110] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- Limestone Shelf, Large",
         [139275] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- High Elf Amphora, Embossed",
-        
+
         [139201] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- High Elf Sconce, Arched Glass",
         [139296] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- High Elf Meal, Individual",
         [139116] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- Limestone Retaining Wall, Long",
@@ -58,7 +58,7 @@ FurC.MiscItemSources[FURC_ALTMER] 	= {
         [139125] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- Tree, Blooming Ginkgo",
         [139220] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- High Elf Wardrobe, Polished",
         [139323] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- High Elf Tapestry, Royal Gryphons",
-        
+
         [139182] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- High Elf Sarcophagus, Wedge",
         [139120] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- Sapling, Young Shade",
         [139215] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- High Elf Bed, Overhang Full",
@@ -95,12 +95,12 @@ FurC.MiscItemSources[FURC_ALTMER] 	= {
         [139221] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- High Elf Bench, Verdant",
         [139097] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- Spiral Skein Glowstalks, Sprouts",
         [139261] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- High Elf Divider, Polished",
-        
+
         [139096] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- Daedric Urn, Sealed",
         [139186] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- High Elf Stairway, Timeworn",
         [139253] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- Scrimshaw, Sea Monster",
         [139059] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- Ivory, Polished",
-        
+
         [139191] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- High Elf Wall, Stone Long",
         [139211] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- High Elf Streetlight, Paired Wrought Iron",
         [139076] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- Painting of Ancient Road, Refined",
@@ -169,7 +169,7 @@ FurC.MiscItemSources[FURC_ALTMER] 	= {
         [139284] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- High Elf Display Stand, Marble",
         [139203] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- High Elf Brazier, Standing Coals",
         [139086] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- High Elf Writing Desk, Noble",
-        
+
         [139311] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- High Elf Windowbox, Blue Wisteria",
         [139272] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- High Elf Amphora, Delicate",
         [139207] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- High Elf Sconce, Candles Tall",
@@ -177,8 +177,8 @@ FurC.MiscItemSources[FURC_ALTMER] 	= {
         [139077] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- Coral Formation, Bulwark",
         [139480] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- Plants, Redtop Grass Tuft",
         [139162] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- Webs, Cone",
-        
-        
+
+
         [139390] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- High Elf Cabinet, Noble",
         [139147] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- Plants, Scarlet Sawleaf",
         [139205] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- High Elf Candelabra, Wrought Iron",
@@ -186,28 +186,28 @@ FurC.MiscItemSources[FURC_ALTMER] 	= {
         [139188] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- High Elf Wall, Stone Corner",
         [139315] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- High Elf Carpet, Alinor Crescent",
         [139233] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- High Elf Nightstand, Noble",
-        
+
         [139074] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- Painting of Aldmeri Ruins, Refined",
         [139251] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- Scrimshaw Jewelry Box, Vineyard",
         [139320] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- High Elf Carpet, Intricate",
-        
-        
+
+
         [139254] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- Scrimshaw, Ship",
         [139381] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- Evergloam Wispstone",
         [139294] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- High Elf Plate, Embossed",
         [139242] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- High Elf Trunk, Noble",
         [139240] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- High Elf Trunk, Peaked",
         [139224] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- High Elf Armchair, Noble",
-        
+
         [139095] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- Daedric Drinking Bowl, Ritual",
         [139274] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- High Elf Urn, Stemmed",
-        
+
         [139239] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- High Elf Wall Mirror, Verdant",
         [139375] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- High Elf Amphora, Portrait",
         [139376] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- Alinor Banner, Hanging",
-        
-        
-        
+
+
+
         [139112] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- Limestone Border, Boulders",
         [139369] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- Abyssal Pearl, Sealed",
         [139368] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- High Elf Bathing Robes, Decorative",
@@ -216,7 +216,7 @@ FurC.MiscItemSources[FURC_ALTMER] 	= {
         [139248] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- Figurine, The Sea-Monster's Surprise",
         [139328] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- Coral Spire, Branched",
         [139107] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- Coral Shelf, Flat",
-        
+
         [139327] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- Coral Spire, Sturdy",
         [139357] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- Mind Trap Coral Formation, Tree Antler",
         [139193] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- High Elf Fence, Tall",
@@ -256,7 +256,7 @@ FurC.MiscItemSources[FURC_ALTMER] 	= {
         [139129] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- Tree, Young Mangrove",
         [139091] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- High Elf Ancestor Clock, Celestial",
         [139364] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- Sload Neural Tree, Active",
-        
+
         [139219] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- High Elf Bookshelf, Polished",
         [139325] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- High Elf Statue, Orator",
         [139317] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- High Elf Carpet, Vibrant",
@@ -328,7 +328,7 @@ FurC.MiscItemSources[FURC_ALTMER] 	= {
         [139080] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- Coral Formation, Ancient Pillar Polyps",
         [139064] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- Flowers, Hummingbird Mint",
         [139214] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- High Elf Bed, Canopy Full",
-        
+
         [139271] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- High Elf Urn, Gilded",
         [139346] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- Flowers, Lizard Tail Patch",
         [139300] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- High Elf Bowl, Millet",
@@ -339,15 +339,15 @@ FurC.MiscItemSources[FURC_ALTMER] 	= {
         [139206] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- High Elf Sconce, Candles",
         [139335] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- Tree, Shade Ancient",
         [139088] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- High Elf Table Runner, Verdant",
-        
+
         [139189] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- High Elf Post, Stone Wall",
         [139163] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- Mephala, The Webspinner",
         [139124] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- Sapling, Summerset Spruce",
     },
-        
+
     [FURC_JUSTICE] 	= {},
     [FURC_CROWN] 	= {
-      [140220] = GetString(SI_FURC_ITEMSOURCE_ITEMPACK) .. "'Trappings of Mephala Worship'"    
+      [140220] = GetString(SI_FURC_ITEMSOURCE_ITEMPACK) .. "'Trappings of Mephala Worship'"
     }
 }
 
@@ -358,51 +358,51 @@ FurC.AchievementVendors[FURC_ALTMER] = {
     [GetString(FURC_AV_ALI)] = {
 		[GetString(FURC_AV_UNW)] = {
 			[139122] = { -- Bush, Summerset Spruce
-				itemPrice 	= 100, 
-			},	
+				itemPrice 	= 100,
+			},
 			[139107] = { -- Coral Shelf, Flat
-				itemPrice 	= 100, 
-			},	
+				itemPrice 	= 100,
+			},
 			[139108] = { --  Coral Shelf, Large
-				itemPrice 	= 250, 
-			},	
+				itemPrice 	= 250,
+			},
 			[139127] = { -- Hedge, Overgrown
-				itemPrice 	= 100, 
-			},	
+				itemPrice 	= 100,
+			},
 			[139128] = { -- Hedge, Overgrown long
 				itemPrice 	= 100,
 			},
-			[139112] = { -- Limestone Border, Boulders 
+			[139112] = { -- Limestone Border, Boulders
 				itemPrice 	= 100,
 			},
-			[139113] = { -- Limestone Border, Pebbles 
+			[139113] = { -- Limestone Border, Pebbles
 				itemPrice 	= 100,
 			},
-			[139111] = { -- Limestone Border, Stones 
+			[139111] = { -- Limestone Border, Stones
 				itemPrice 	= 100,
 			},
 			[139114] = { -- Limestone Retaining Wall, Curved
 				itemPrice 	= 100,
-			},	
+			},
 			[139116] = { -- Limestone Retaining Wall, Long
 				itemPrice 	= 100,
-			},	
+			},
 			[139115] = { -- Limestone Retaining Wall, Short
 				itemPrice 	= 100,
-			},	
+			},
 			[139109] = { -- Limestone Shelf, Curved
 				itemPrice 	= 100,
-			},	
+			},
 			[139110] = { -- Limestone Shelf, Large
 				itemPrice 	= 250,
-			},	
+			},
 			[139117] = { -- Limestone Stairway, Natural
 				itemPrice 	= 100,
-			},	
+			},
 			[139126] = { -- Sapling, Gingko
 				itemPrice 	= 100,
 			},
-			[139121] = { -- Sapling, Growing Shade 
+			[139121] = { -- Sapling, Growing Shade
 				itemPrice 	= 100,
 			},
 			[139132] = { -- Sapling, Sea Grapes
@@ -414,7 +414,7 @@ FurC.AchievementVendors[FURC_ALTMER] = {
 			[139120] = { -- Sapling, Young Shade
 				itemPrice 	= 100,
 			},
-			[139130] = { -- Saplings, Mangrove 
+			[139130] = { -- Saplings, Mangrove
 				itemPrice 	= 100,
 			},
 			[139125] = { -- Tree, Blooming Gingko
@@ -441,110 +441,110 @@ FurC.AchievementVendors[FURC_ALTMER] = {
 			[139129] = { -- Tree, Young Mangrove
 				itemPrice 	= 100,
 			},
-			[139135] = { -- Tree, Young Poplar 
+			[139135] = { -- Tree, Young Poplar
 				itemPrice 	= 100,
 			},
 			[139133] = { -- Tree, Young Sea Grapes
 				itemPrice 	= 100,
 			},
-        },	
-    
+        },
+
         [GetString(FURC_AV_TAR)] = {
             [139369] = { -- Abyssal Pearl, Sealed
-                itemPrice 	= 75000, 
+                itemPrice 	= 75000,
                 achievement = 2101, -- Back to the Abyss
-            },	
-            [139388] = { -- Banner of the House of Reveries, Hanging 
-                itemPrice 	= 10000, 
-                achievement = "Manor of Masques", -- 
-            },	
-            [139377] = { -- Banner of the Sapiarchs, Hanging 
-                itemPrice 	= 10000, 
+            },
+            [139388] = { -- Banner of the House of Reveries, Hanging
+                itemPrice 	= 10000,
+                achievement = "Manor of Masques", --
+            },
+            [139377] = { -- Banner of the Sapiarchs, Hanging
+                itemPrice 	= 10000,
                 achievement = 2204, -- Resolute Guardian
-            },	
+            },
             [139393] = { -- Cloudrest Banner, hanging
-                itemPrice 	= 10000, 
+                itemPrice 	= 10000,
                 achievement = 2131, -- Cloudrest Completed
-            },	
+            },
             [139379] = { -- Coral Formation, Luminescent
-                itemPrice 	= 15000, 
+                itemPrice 	= 15000,
                 achievement = 2202, -- Precious Pearl
-            },	
+            },
             [139380] = { -- Crystal Tower Key, Replica
-                itemPrice 	= 150000, 
+                itemPrice 	= 150000,
                 achievement = 2208, -- What Must Be Done
-            },	
+            },
             [139371] = { -- Crystal Tower Stand
-                itemPrice 	= 50000, 
+                itemPrice 	= 50000,
                 achievement = 2193, -- Savior of Summerset
-            },	 
+            },
             [139386] = { -- Direnni Banner, Hanging
-                itemPrice 	= 10000, 
-                achievement = "Lauriel's Lament", -- 
-            },	
-            [139302] = { -- Display Case, Exhibit 
-                itemPrice 	= 25000, 
+                itemPrice 	= 10000,
+                achievement = "Lauriel's Lament", --
+            },
+            [139302] = { -- Display Case, Exhibit
+                itemPrice 	= 25000,
                 achievement = 2203, -- Mind Games
-            },	
+            },
             [139374] = { -- Enchanted Text, Illusory Forest
-                itemPrice 	= 100000, 
+                itemPrice 	= 100000,
                 achievement = 2209, -- Summerset Grand Adventurer
-            },	
+            },
             [139381] = { -- Evergloam Wispstone
-                itemPrice 	= 75000, 
+                itemPrice 	= 75000,
                 achievement = 2207, -- Enemy of my enemy
-            },	
+            },
             [139326] = { -- High Elf Statue, Kinlady
-                itemPrice 	= 20000, 
+                itemPrice 	= 20000,
                 achievement = 2204, -- Resolute Guardian
-            },	
+            },
             [139373] = { -- High Elf Wine Press, Display
-                itemPrice 	= 50000, 
+                itemPrice 	= 50000,
                 achievement = 2007, -- Summerset Cave Delver
             },
-            [139387] = { -- Lillandril Banner 
-                itemPrice 	= 10000, 
-                achievement = "Murder in Lilandril", 
+            [139387] = { -- Lillandril Banner
+                itemPrice 	= 10000,
+                achievement = "Murder in Lilandril",
             },
-            [139372] = { -- Mind Trap Kelp, Adult 
-                itemPrice 	= 20000, 
+            [139372] = { -- Mind Trap Kelp, Adult
+                itemPrice 	= 20000,
                 achievement = 2203, -- Mind Games
             },
-            [139383] = { -- Psijic Control Globe, Inactive 
-                itemPrice 	= 50000, 
+            [139383] = { -- Psijic Control Globe, Inactive
+                itemPrice 	= 50000,
                 achievement = 2206, -- Unreliable Narrator
             },
-            [139370] = { -- Replica of the Transparent Law 
-                itemPrice 	= 100000, 
+            [139370] = { -- Replica of the Transparent Law
+                itemPrice 	= 100000,
                 achievement = 2193, -- Saviour of Summerset
             },
-            [139378] = { -- Shimmerene Banner, Hanging 
-                itemPrice 	= 10000, 
+            [139378] = { -- Shimmerene Banner, Hanging
+                itemPrice 	= 10000,
                 achievement = 2194, -- The Good of Many
             },
-            [139446] = { -- Spiral Skein Coral, Brittle-Vein 
-                itemPrice 	= 10000, 
+            [139446] = { -- Spiral Skein Coral, Brittle-Vein
+                itemPrice 	= 10000,
                 achievement = 2008, -- Summerset Pathfinder
             },
-            [139382] = { -- Spiral Skein Coral, Elkhorn 
-                itemPrice 	= 1000, 
+            [139382] = { -- Spiral Skein Coral, Elkhorn
+                itemPrice 	= 1000,
                 achievement = 2205, -- Sweet Dreams
             },
-            [139392] = { -- Sunhold Banner, Hanging 
-                itemPrice 	= 10000, 
+            [139392] = { -- Sunhold Banner, Hanging
+                itemPrice 	= 10000,
                 achievement = 2095, -- Sunhold Group Event
             },
-            [139385] = { -- The Keeper's Oath 
-                itemPrice 	= 75000, 
+            [139385] = { -- The Keeper's Oath
+                itemPrice 	= 75000,
                 achievement = 2099, -- Relics of Summerset
             },
-            [139384] = { -- Waterfall, Small Everlasting 
-                itemPrice 	= 75000, 
+            [139384] = { -- Waterfall, Small Everlasting
+                itemPrice 	= 75000,
                 achievement = 2197, -- Divine Magistrate
             },
         },
-    },	
-    
+    },
+
 }
 
 FurC.Books[FURC_ALTMER] = {}
@@ -554,20 +554,20 @@ FurC.Recipes[FURC_ALTMER] = {
     139571, --Sketch: Figurine, the Sea-Monster's Surprise
     139572, --Sketch: Figurine, the Taming of the Gryphon
     139486, --Sketch: High Elf Ancestor Clock, Celestial
-    139613, --Sketch: High Elf Chalice, Delicate 
+    139613, --Sketch: High Elf Chalice, Delicate
     139615, --Sketch: High Elf Chalice, Ornate
     139616, --Sketch: High Elf Goblet, Silver Ornate
     139612, --Sketch: High Elf Goblet, Silver Plain
-    139614, --Sketch: High Elf Goblet, Silver Stamped 
+    139614, --Sketch: High Elf Goblet, Silver Stamped
     139611, --Sketch: High Elf Goblet, Simple
-    139257, --Sketch: Scrimshaw Jewelery Box, Floral 
-    139252, --Sketch: Scrimshaw Jewelery Box, Verdant Oval 
+    139257, --Sketch: Scrimshaw Jewelery Box, Floral
+    139252, --Sketch: Scrimshaw Jewelery Box, Verdant Oval
     139251, --Sketch: Scrimshaw Jewelery Box, Vineyard
     139256, --Sketch: Scrimshaw, Ancient Vessel
     139255, --Sketch: Scrimshaw, Octopus
     139253, --Sketch: Scrimshaw, Sea Monster
     139254, --Sketch: Scrimshaw, Ship
-    
+
     139514, -- Praxis: High Elf Wall, Stone Long",
     139546, -- Praxis: High Elf Bench, Marble",
     139556, -- Blueprint: High Elf Nightstand, Noble",
@@ -731,8 +731,8 @@ FurC.Recipes[FURC_ALTMER] = {
     139570, -- Blueprint: High Elf Jewelry Box, Octagonal",
     139648, -- Design: High Elf Amphora, Portrait",
     139484, -- Blueprint: High Elf Writing Desk, Noble",
-    
-    
+
+
 }
 
 FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
@@ -745,3 +745,4 @@ FurC.Faustina[FURC_ALTMER] = {
     [139391] = 10, -- Master Craftsman's Banner, Hanging
 	[137870] = 125, -- Basic Jewelry Crafting Station
 }
+

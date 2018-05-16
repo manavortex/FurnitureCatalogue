@@ -14,3 +14,4 @@ FurC.EventItems[FURC_MORROWIND]["Midyear Mayhem"] = {}
 FurC.EventItems[FURC_MORROWIND]["Midyear Mayhem"]["Boon Box"] = t
 
 FurC.Books[FURC_MORROWIND] = t
+

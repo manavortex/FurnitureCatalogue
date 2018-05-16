@@ -1,5 +1,5 @@
 FurC.Recipes = FurC.Recipes or {}
-FurC.Recipes[FURC_REACH] = {	
+FurC.Recipes[FURC_REACH] = {
 	132179,
 	132168,
 	132178,
@@ -30,8 +30,8 @@ FurC.Recipes[FURC_REACH] = {
 	132174,
 	132172,
 	132171,
-	
-	
+
+
 	-- witches festival ayleid stuff
 	132342, -- Ayleid Table, Carved
 	132343, -- Ayleid Bench, Carved
@@ -39,11 +39,10 @@ FurC.Recipes[FURC_REACH] = {
 	132187, -- Ayleid Bookcase, Cluttered
 	132188, -- Ayleid Bookshelf, Cluttered
 	132189, -- Ayleid Brazier, Fiery
-	
+
 	-- witches festival
 	132167,	-- Praxis, Hagraven Cauldron, Rough Stone
 	132196, -- Pattern: Witches Corpse, Wrapped",
 	132173, -- Blueprint: Witches Brazier, Primitive Log",
 	132179, -- Blueprint: Witches Totem, Antler Charms",
-	
 }

@@ -4,7 +4,7 @@ FurC.Faustina			= FurC.Faustina 		or {}
 
 
 FurC.Rollis_Recipes[FURC_CLOCKWORK] = {
-	[133576] = 50, 
+	[133576] = 50,
 }
 
 FurC.FaustinaRecipes[FURC_DRAGONS] = {
@@ -17,7 +17,7 @@ FurC.FaustinaRecipes[FURC_DRAGONS] = {
 	 121165,	-- Apparatus, Gem Caliper
 	 121197,	-- Bottle, Poison Elixir
 	 121164,	-- Case of Vials
-	 121209,	-- Orcish Tapestry, Spear 
+	 121209,	-- Orcish Tapestry, Spear
 	 132194,	-- Mammoth Cheese
 	 132191,	-- Dwarven Gyroscope, Masterwork
 	 132190,	-- Mages' Apparatus, Master
@@ -36,8 +36,9 @@ FurC.Rolis[FURC_DRAGONS] = {
 	134984,
 	134985,
 	134986,
-	134987, 
+	134987,
 }
 FurC.Rollis_Recipes[FURC_DRAGONS] = {
-	[133576] = 50, 
+	[133576] = 50,
 }
+
