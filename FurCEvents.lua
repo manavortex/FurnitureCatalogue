@@ -11,14 +11,14 @@ local wm = WINDOW_MANAGER
 
 local function createIcon(control)
 	local icon
+	icon = wm:CreateControlFromVirtual(control:GetName().."FurCIcon", control, "FurC_SlotIconKnownYes")
 	if FurC.settings["showIconOnLeft"] == nil or
 	   FurC.settings["showIconOnLeft"] == true then
-		icon = wm:CreateControlFromVirtual(control:GetName().."FurCIcon", control, "FurC_SlotIconKnownYes")
 		icon:SetAnchor(BOTTOMLEFT, control:GetNamedChild("Button"), BOTTOMLEFT, -15, -10)
-		icon:SetHidden(true)
 	else
-		icon = control:GetNamedChild("TraitInfo")
+		icon:SetAnchor(TOPLEFT, control:GetNamedChild("TraitInfo"), TOPLEFT, 0, 0)
 	end
+	icon:SetHidden(true)
 	control.icon = icon
 	return icon
 end
@@ -53,6 +53,10 @@ local function updateItemInInventory(control)
 	local templateName = "FurC_SlotIconKnown" .. ((known and "Yes") or "No")
 
 	WINDOW_MANAGER:ApplyTemplateToControl(icon, templateName)
+
+	icon.data = {tooltipText = ((known and "Item is Known") or "Item is UnKnown")}
+    icon:SetHandler("OnMouseEnter", ZO_Options_OnMouseEnter)
+    icon:SetHandler("OnMouseExit", ZO_Options_OnMouseExit)
 
 end
 
