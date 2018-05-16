@@ -884,7 +884,7 @@ FurC.Recipes[FURC_HOMESTEAD] = {
 	119309, -- Redguard Lamp, Caged
 	119310, -- Redguard Lantern, Caged
 	119311, -- Redguard Lantern, Caged Stand
-	119312, -- Redguard Tapestry, Starry	
+	119312, -- Redguard Tapestry, Starry
 	121373, -- Redguard Censer, Hanging Bulb
 	119314, -- Rough Stretcher, Military
 	119317, -- Rough Crate, Reinforced
@@ -1021,8 +1021,8 @@ FurC.Recipes[FURC_HOMESTEAD] = {
 	119542, -- Fish", Medium
 	119543, -- Fish", Large
 	119592, -- Target Skeleton, Humanoid
-	
-	
+
+
 	-- Rollis's recipes
 	121200, -- Cabinet, Poisonmaker's
 	121166, -- Podium, Skinning
@@ -1037,41 +1037,42 @@ FurC.Recipes[FURC_HOMESTEAD] = {
 	121207, -- Orcish Table with Fur
 	121315, -- Target Skeleton, Robust Humanoid
 	119592, -- Target Skeleton, Humanoid
-	
-	121311, -- Breton Throne	
+
+	121311, -- Breton Throne
 	121120, -- Chair, Carved
 	121308, -- High Elf Banner, Gilded
-	
+
 	121546, -- Argonian Box, Woven
 	121374, -- Redguard Censer, Hanging Disc
 	121108, -- Simple Brown Banner
 	121310, -- High Elf Sconce, Winged
 	121307, -- Orcish Brazier, Pillar
-	
+
 	-- 116214, -- Nord Banner, Bear
 	-- 115786, -- Argonian Skiff, Common Reed
-	
-	
+
+
 	121207, -- Orcish Table with Fur
 	121203, -- Khajiit Brazier, Enchanted
 	121201, -- Sack of Beans
-	
-	
-	121111, -- Simple Red Banner 
-	121110, -- Simple Purple Banner 
-	121109, -- Simple Gray Banner 
-	121372, -- Noble Standing Cauldron 
-		
-	121101, -- Sack of Millet, 
-	121100, -- Common Stewpot, Hanging 
-	121091, -- Stool, Carved 
-	121059, -- Rough Cup, Empty 
-	
+
+
+	121111, -- Simple Red Banner
+	121110, -- Simple Purple Banner
+	121109, -- Simple Gray Banner
+	121372, -- Noble Standing Cauldron
+
+	121101, -- Sack of Millet,
+	121100, -- Common Stewpot, Hanging
+	121091, -- Stool, Carved
+	121059, -- Rough Cup, Empty
+
 	121313, -- Wood Elf Throne, Vine
 	121104, -- Common Quill, Feather
-	
+
 	121305, -- Redguard Chandelier, Dark
 	121304, -- Redguard Chandelier, Grated
 	121366, -- Orcish Tapestry, Hunt
 	121365, -- High Elf Tapestry, Gilded
 }
+

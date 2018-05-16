@@ -6,5 +6,6 @@ FurC.EventItems[FURC_HOMESTEAD] = {
 			[134680] = true, 	-- Banner, Jester's Standard
 		}
 	}
-	
+
 }
+

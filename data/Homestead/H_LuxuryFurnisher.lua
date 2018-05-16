@@ -1,14 +1,14 @@
 FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
 FurC.LuxuryFurnisher[FURC_HOMESTEAD] = {
-				
+
 	[120821] = {	-- Sigil Stendarr
-		itemPrice 	= 15000, 
+		itemPrice 	= 15000,
 		itemDate	= "2017-04-28",
 	},
-	
-	
-			
+
+
+
 	[120803] = {	-- Hew’s Bane Bed, Royal
 		itemPrice 	= 20000,
 		itemDate	= "2018-02-24",
@@ -34,7 +34,7 @@ FurC.LuxuryFurnisher[FURC_HOMESTEAD] = {
 		itemPrice 	= 50000,
 		itemDate	= "2018-02-17",
 	},
-	
+
 	[120798] = {	-- Wedding Blossoms, Blue
 		itemPrice 	= 2500,
 		itemDate	= "2018-02-10",
@@ -51,5 +51,5 @@ FurC.LuxuryFurnisher[FURC_HOMESTEAD] = {
 		itemPrice 	= 10000,
 		itemDate	= "2018-02-10",
 	},
-	
 }
+

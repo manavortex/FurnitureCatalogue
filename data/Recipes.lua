@@ -1,13 +1,13 @@
 FurC.Recipes = FurC.Recipes or {}
-FurC.Recipes[FURC_DRAGONS] = {	
+FurC.Recipes[FURC_DRAGONS] = {
 	127101, -- Velothi Brazier, Temple - talked to a Russian who sold it
-	127102, -- Praxis: Tribunal Tablet of Almalexia, comfirmed by Almariel 
+	127102, -- Praxis: Tribunal Tablet of Almalexia, comfirmed by Almariel
 	134999, -- Praxis: Table, Blackmarrow Slab, drops in Fang Lair
 	127054,	-- Pattern: Redoran Table Runner, Gilded Ochre
 	134998,	-- Pattern: Jester's Pavillon, Open
 
 }
-FurC.Recipes[FURC_CLOCKWORK] = {	
+FurC.Recipes[FURC_CLOCKWORK] = {
 	134527, -- Design: Clockwork Meal, Dish
 	134512, -- Diagram: Clockwork Table, Octagonal
 	134478, -- Formula: Fabricant Saplings, Electrum
@@ -78,3 +78,4 @@ FurC.Recipes[FURC_CLOCKWORK] = {
 	134480, -- Formula: Fabricant Tree, Vibrant Cherry Blossom
 	134498, -- Praxis: Clockwork Control Panel, Single
 }
+
