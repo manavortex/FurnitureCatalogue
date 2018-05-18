@@ -155,7 +155,8 @@ function FurC.CreateSettings(savedVars, defaults)
 			name 	= GetString(SI_FURC_STRING_MENU_SHOWICONONLEFT),
 			tooltip = GetString(SI_FURC_STRING_MENU_SHOWICONONLEFT_TT),
 			getFunc = function() return FurC.GetShowIconOnLeft() end,
-			setFunc = function(value) FurC.SetShowIconOnLeft(value) end
+			setFunc = function(value) FurC.SetShowIconOnLeft(value) end,
+			requiresReload = true
 		},
 		{ -- slider: font size
 			type 	= "slider",
