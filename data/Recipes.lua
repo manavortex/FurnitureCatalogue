@@ -1,81 +1,187 @@
+if GetAPIVersion() < 100023 then return end
 FurC.Recipes = FurC.Recipes or {}
-FurC.Recipes[FURC_DRAGONS] = {
-	127101, -- Velothi Brazier, Temple - talked to a Russian who sold it
-	127102, -- Praxis: Tribunal Tablet of Almalexia, comfirmed by Almariel
-	134999, -- Praxis: Table, Blackmarrow Slab, drops in Fang Lair
-	127054,	-- Pattern: Redoran Table Runner, Gilded Ochre
-	134998,	-- Pattern: Jester's Pavillon, Open
 
-}
-FurC.Recipes[FURC_CLOCKWORK] = {
-	134527, -- Design: Clockwork Meal, Dish
-	134512, -- Diagram: Clockwork Table, Octagonal
-	134478, -- Formula: Fabricant Saplings, Electrum
-	134531, -- Diagram: Clockwork Sequence Plaque, Single
-	134543, -- Diagram: Clockwork Wall Machinery, Arched
-	134479, -- Formula: Fabricant Tree, Electrum
-	134486, -- Diagram: Clockwork Barrel, Sealed
-	134505, -- Diagram: Clockwork Drafting Table, Flat
-	134509, -- Diagram: Clockwork Cabinet, Sequence Plaque Storag
-	134500, -- Diagram: Clockwork Furnace, Socketed
-	134484, -- Formula: Fabricant Shrub, Gold
-	134496, -- Praxis: Clockwork Switch, Sturdy
-	134490, -- Diagram: Clockwork Crate, Wide
-	134476, -- Formula: Fabricant Tree, Gnarled Cypress
-	134504, -- Diagram: Clockwork Drafting Table, Raised
-	132188, -- Praxis: Ayleid Bookshelf, Cluttered
-	134477, -- Formula: Fabricant Trees, Clustered Maple
-	134518, -- Diagram: Clockwork Coffer, Robust
-	134515, -- Diagram: Clockwork Wardrobe, Precision Engineered
-	134526, -- Design: Clockwork Meal, Plate
-	134513, -- Diagram: Clockwork Nightstand, Octagonal
-	134546, -- Design: Clockwork Paste Dispenser, Empty
-	134492, -- Diagram: Clockwork Crate, Large Open
-	134487, -- Diagram: Clockwork Barrel, Wide
-	134493, -- Formula: Clockwork Lamppost, Gas
-	134485, -- Formula: Fabricant Shrub, Copper
-	134506, -- Diagram: Clockwork Sequence Spool, Single
-	134525, -- Diagram: Clockwork Mug, Reinforced
-	134582, -- Diagram: Clockwork Shelf, Wall
-	134545, -- Praxis: Clockwork Charging Station, Factotum
-	134508, -- Diagram: Clockwork Lectern, Empty
-	134520, -- Design: Clockwork Cup, Recycled Water
-	134488, -- Diagram: Clockwork Keg, Sturdy
-	134540, -- Praxis: Clockwork Illuminator, Compact
-	134516, -- Design: Clockwork Bowl, Large Nutriment Paste
-	134538, -- Praxis: Clockwork Illuminator, Capsule Tower
-	134517, -- Design: Clockwork Bowl, Nutriment Paste
-	134537, -- Praxis: Clockwork Illuminator, Powered Capsule
-	134536, -- Praxis: Clockwork Illuminator, Solitary Capsule
-	134497, -- Diagram: Clockwork Vent, Octagonal Fan
-	134535, -- Praxis: Clockwork Illuminator, Personal Desk
-	134534, -- Diagram: Clockwork Surveyor's Tripod, Calibrated
-	134483, -- Formula: Fabricant Shrubs, Beryl
-	134533, -- Diagram: Clockwork Flask Stand, Tall
-	134494, -- Diagram: Clockwork Pump, Vertical
-	134489, -- Diagram: Clockwork Crate, Square
-	134532, -- Diagram: Clockwork Flask Stand, Short
-	134530, -- Diagram: Clockwork Sequence Plaques, Unfolded
-	134491, -- Diagram: Clockwork Crate, Large Closed
-	134529, -- Diagram: Clockwork Sequence Plaques, Folded
-	134528, -- Diagram: Clockwork Scales, Precision Calibrated
-	134524, -- Praxis: Clockwork Mortar and Pestle, Sintered
-	134523, -- Praxis: Clockwork Measuring Cup, Sintered
-	134522, -- Design: Clockwork Goblet, Recycled Water
-	134511, -- Diagram: Clockwork Table, Beveled
-	134521, -- Diagram: Clockwork Goblet, Empty
-	134544, -- Praxis: Clockwork Charging Station, Animo Core
-	134519, -- Diagram: Clockwork Cup, Empty
-	134502, -- Diagram: Clockwork Chair, Practical
-	134514, -- Diagram: Clockwork Table, Grand
-	134510, -- Diagram: Clockwork Stool, Practical
-	134539, -- Praxis: Clockwork Illuminator, Compact Stand
-	134507, -- Diagram: Clockwork Sequence Spool, Triple
-	134482, -- Formula: Fabricant Tree, Cobalt Spruce
-	134481, -- Formula: Fabricant Tree, Miniature Cherry Blossom
-	134503, -- Diagram: Clockwork Chair, Reinforced
-	134501, -- Diagram: Clockwork Somnolostation
-	134480, -- Formula: Fabricant Tree, Vibrant Cherry Blossom
-	134498, -- Praxis: Clockwork Control Panel, Single
+FurC.Recipes[FURC_ALTMER] = {
+    139573, --Sketch: Figurine, the Fish and the Unicorn
+    139571, --Sketch: Figurine, the Sea-Monster's Surprise
+    139572, --Sketch: Figurine, the Taming of the Gryphon
+    139486, --Sketch: High Elf Ancestor Clock, Celestial
+    139613, --Sketch: High Elf Chalice, Delicate
+    139615, --Sketch: High Elf Chalice, Ornate
+    139616, --Sketch: High Elf Goblet, Silver Ornate
+    139612, --Sketch: High Elf Goblet, Silver Plain
+    139614, --Sketch: High Elf Goblet, Silver Stamped
+    139611, --Sketch: High Elf Goblet, Simple
+    139257, --Sketch: Scrimshaw Jewelery Box, Floral
+    139252, --Sketch: Scrimshaw Jewelery Box, Verdant Oval
+    139251, --Sketch: Scrimshaw Jewelery Box, Vineyard
+    139256, --Sketch: Scrimshaw, Ancient Vessel
+    139255, --Sketch: Scrimshaw, Octopus
+    139253, --Sketch: Scrimshaw, Sea Monster
+    139254, --Sketch: Scrimshaw, Ship
+
+    139514, -- Praxis: High Elf Wall, Stone Long",
+    139546, -- Praxis: High Elf Bench, Marble",
+    139556, -- Blueprint: High Elf Nightstand, Noble",
+    139538, -- Blueprint: High Elf Bed, Overhang Full",
+    139640, -- Pattern: High Elf Rug, Alinor Seal",
+    139524, -- Diagram: High Elf Sconce, Arched Glass",
+    139565, -- Blueprint: High Elf Trunk, Noble",
+    139540, -- Blueprint: High Elf Bed, Polished Full",
+    139550, -- Blueprint: High Elf Armchair, Polished",
+    139631, -- Praxis: High Elf Potted Plant, Twin Saplings",
+    139512, -- Praxis: High Elf Post, Stone Wall",
+    139511, -- Praxis: High Elf Wall, Stone Corner",
+    139609, -- Diagram: High Elf Table Setting, Complete",
+    139536, -- Blueprint: High Elf Bed, Noble Full",
+    139585, -- Diagram: Fireplace Grate, Wrought Iron",
+    139604, -- Praxis: High Elf Shrine,  Limestone Raised",
+    139575, -- Sketch: Scrimshaw Jewelry Box, Verdant Oval",
+    139588, -- Praxis: High Elf Fountain, Four-Way Timeworn",
+    139608, -- Praxis: High Elf Wall Shrine, Marble",
+    139569, -- Blueprint: High Elf Jewelry Box, Peaked",
+    139541, -- Blueprint: High Elf Bed, Noble Single",
+    139601, -- Praxis: High Elf Bowl, Stemmed Limestone",
+    139574, -- Sketch: Scrimshaw Jewelry Box, Vineyard",
+    139579, -- Sketch: Scrimshaw, Ancient Vessel",
+    139548, -- Blueprint: High Elf Armchair, Overhang",
+    139632, -- Praxis: High Elf Windowbox, Purple Wisteria",
+    139587, -- Praxis: High Elf Fireplace, Ornate",
+    139577, -- Sketch: Scrimshaw, Ship",
+    139582, -- Diagram: High Elf Pot, Patterned",
+    139486, -- Sketch: High Elf Ancestor Clock, Celestial",
+    139581, -- Diagram: High Elf Pot, Hanging Stamped",
+    139558, -- Blueprint: High Elf Counter, Polished Drawers",
+    139622, -- Blueprint: High Elf Bowl, Carved Wood",
+    139498, -- Praxis: High Elf Archway, Timeworn",
+    139593, -- Blueprint: High Elf Table, Noble Intimate",
+    139637, -- Pattern: High Elf Carpet, Alinor Crescent",
+    139634, -- Pattern: High Elf Curtains, Tall Drawn",
+    139534, -- Diagram: High Elf Streetlight, Paired Wrought Iron",
+    139503, -- Praxis: High Elf Floor, Ballroom Timeworn",
+    139544, -- Blueprint: High Elf Bench, Verdant",
+    139649, -- Blueprint: High Elf Cabinet, Noble",
+    139559, -- Blueprint: High Elf Counter, Polished Corner",
+    139490, -- Blueprint: Psijic Table, Small",
+    139520, -- Diagram: High Elf Sconce, Crenellated",
+    139487, -- Praxis: Book Row, Levitating",
+    139485, -- Blueprint: High Elf Pew, Polished",
+    139647, -- Praxis: High Elf Statue, Orator",
+    139603, -- Praxis: High Elf Shrine, Limestone",
+    139529, -- Diagram: High Elf Sconce, Candles",
+    139532, -- Blueprint: High Elf Candles, Stand",
+    139494, -- Praxis: Psijic Table, Six-fold Symmetry",
+    139525, -- Diagram: High Elf Sconce, Lantern",
+    139627, -- Blueprint: Display Case, Large",
+    139516, -- Praxis: High Elf Fence, Tall",
+    139572, -- Sketch: Figurine, The Taming of the Gryphon",
+    139557, -- Blueprint: High Elf Winerack, Polished",
+    139617, -- Diagram: High Elf Plate, Embossed",
+    139518, -- Praxis: High Elf Archway, Tall",
+    139630, -- Praxis: High Elf Potted Plant, Double Tiered",
+    139620, -- Diagram: High Elf Bread Basket, Wrought Iron",
+    139613, -- Sketch: High Elf Chalice, Delicate",
+    139519, -- Diagram: High Elf Sconce, Arched",
+    139505, -- Praxis: High Elf Sarcophagus, Wedge",
+    139545, -- Blueprint: High Elf Armchair, Backless Verdant",
+    139586, -- Diagram: Fireplace Tools, Wrought Iron",
+    139506, -- Praxis: High Elf Sarcophagus, Peaked",
+    139497, -- Praxis: Psijic Table, Grand",
+    139642, -- Pattern: High Elf Carpet, Intricate",
+    139625, -- Blueprint: Display Case, Standing Arched",
+    139612, -- Sketch: High Elf Goblet, Silver Plain",
+    139598, -- Design: High Elf Amphora, Embossed",
+    139507, -- Praxis: High Elf Plinth, Sarcophagus",
+    139599, -- Diagram: High Elf Urn, Bronze",
+    139638, -- Pattern: High Elf Carpet, Verdant",
+    139583, -- Blueprint: High Elf Divider, Noble",
+    139639, -- Pattern: High Elf Carpet, Vibrant",
+    139619, -- Design: High Elf Meal, Individual",
+    139614, -- Sketch: High Elf Goblet, Silver Stamped",
+    139495, -- Praxis: Psijic Lighting Globe, Large",
+    139646, -- Praxis: High Elf Statue, Kinlord",
+    139645, -- Pattern: High Elf Tapestry, Royal Gryphons",
+    139595, -- Design: High Elf Amphora, Delicate",
+    139542, -- Blueprint: High Elf Bookshelf, Polished",
+    139644, -- Pattern: High Elf Tapestry, Alinor Dusk",
+    139643, -- Pattern: High Elf Tapestry, Alinor Dawn",
+    139571, -- Sketch: Figurine, The Sea-Monster's Surprise",
+    139530, -- Diagram: High Elf Sconce, Candles Tall",
+    139605, -- Praxis: High Elf Pot, Limestone",
+    139566, -- Blueprint: High Elf Trunk, Spired",
+    139624, -- Blueprint: Display Case, Standing",
+    139513, -- Praxis: High Elf Wall, Stone",
+    139635, -- Pattern: High Elf Curtains, Drawn",
+    139539, -- Blueprint: High Elf Bed, Polished Single",
+    139567, -- Blueprint: High Elf Jewelry Box, Noble",
+    139629, -- Praxis: High Elf Potted Plant, Triple Tiered",
+    139628, -- Praxis: High Elf Potted Plant, Perpetual Bloom",
+    139626, -- Blueprint: Display Case, Specimen",
+    139636, -- Pattern: High Elf Drapes, Noble",
+    139543, -- Blueprint: High Elf Wardrobe, Polished",
+    139493, -- Pattern: Psijic Banner",
+    139623, -- Design: High Elf Bowl, Millet",
+    139584, -- Blueprint: High Elf Divider, Polished",
+    139510, -- Praxis: High Elf Stairway, Timeworn Wide",
+    139488, -- Praxis: Book Stack, Levitating",
+    139621, -- Design: High Elf Pie Dish, Cherry Pie",
+    139618, -- Diagram: High Elf Platter, Scalloped",
+    139564, -- Blueprint: High Elf Trunk, Engraved",
+    139526, -- Diagram: High Elf Brazier, Standing Coals",
+    139501, -- Praxis: High Elf Bookshelf Wall, Timeworn",
+    139535, -- Diagram: High Elf Streetlight, Wrought Iron",
+    139615, -- Sketch: High Elf Chalice, Ornate",
+    139537, -- Blueprint: High Elf Bed, Canopy Full",
+    139533, -- Diagram: High Elf Brazier, Hanging Coals",
+    139492, -- Praxis: Psijic Table, Scalloped",
+    139594, -- Design: High Elf Urn, Gilded",
+    139528, -- Diagram: High Elf Candelabra, Wrought Iron",
+    139633, -- Praxis: High Elf Windowbox, Blue Wisteria",
+    139531, -- Blueprint: High Elf Candles, Tall Stand",
+    139504, -- Praxis: High Elf Column, Timeworn",
+    139641, -- Pattern: High Elf Runner, Royal",
+    139611, -- Sketch: High Elf Goblet, Simple",
+    139610, -- Design: High Elf Meal, Complete Setting",
+    139554, -- Blueprint: High Elf Nightstand, Scalloped",
+    139551, -- Blueprint: High Elf Armchair, Backless Polished",
+    139521, -- Diagram: High Elf Lantern, Hanging",
+    139499, -- Praxis: High Elf Column, Heavy Timeworn",
+    139607, -- Praxis: High Elf Display Stand, Marble",
+    139500, -- Praxis: High Elf Pedestal, Timeworn",
+    139606, -- Praxis: High Elf Display Stand, Marble Wide",
+    139527, -- Diagram: High Elf Brazier, Noble",
+    139602, -- Praxis: High Elf Urn, Limestone Large",
+    139547, -- Blueprint: High Elf Armchair, Noble",
+    139508, -- Praxis: High Elf Sarcophagus, Open",
+    139573, -- Sketch: Figurine, The Fish and the Unicorn",
+    139553, -- Blueprint: High Elf Desk, Mirrored",
+    139597, -- Design: High Elf Urn, Stemmed",
+    139517, -- Praxis: High Elf Fence, Tall Long",
+    139491, -- Praxis: Psijic Lighting Globe, Small",
+    139489, -- Blueprint: Psijic Chair, Arched",
+    139596, -- Design: High Elf Amphora, Slender",
+    139600, -- Praxis: High Elf Bowl, Shallow Limestone",
+    139509, -- Praxis: High Elf Stairway, Timeworn",
+    139515, -- Praxis: High Elf Post, Tall Fence",
+    139591, -- Praxis: High Elf Table, Decorative Marble",
+    139590, -- Praxis: High Elf Table, Round Marble",
+    139589, -- Praxis: High Elf Fountain, Timeworn",
+    139592, -- Blueprint: High Elf Table, Noble Grand",
+    139552, -- Blueprint: High Elf Desk, Polished",
+    139578, -- Sketch: Scrimshaw, Octopus",
+    139580, -- Sketch: Scrimshaw Jewelry Box, Floral",
+    139549, -- Blueprint: High Elf Chair, Polished",
+    139496, -- Pattern: Psijic Banner, Large",
+    139576, -- Sketch: Scrimshaw, Sea Monster",
+    139502, -- Praxis: High Elf Column, Slender Timeworn",
+    139568, -- Blueprint: High Elf Jewelry Box, Polished",
+    139523, -- Diagram: High Elf Sconce, Wrought Glass",
+    139616, -- Sketch: High Elf Goblet, Silver Ornate",
+    139563, -- Blueprint: High Elf Trunk, Peaked",
+    139522, -- Diagram: High Elf Lantern, Stationary",
+    139555, -- Blueprint: High Elf Nightstand, Octagonal",
+    139570, -- Blueprint: High Elf Jewelry Box, Octagonal",
+    139648, -- Design: High Elf Amphora, Portrait",
+    139484, -- Blueprint: High Elf Writing Desk, Noble",
 }
 

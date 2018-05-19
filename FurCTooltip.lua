@@ -3,15 +3,14 @@ local task = async:Create("FurnitureCatalogue_Tooltip")
 
 local p 		= FurC.DebugOut -- debug function calling zo_strformat with up to 10 args
 
-local function tryColorize(text, datInteger)
-	if nil == text then text = datInteger end
-	if (not FurC.GetColouredTooltips()) or not text then return text end
+local function tryColorize(text)
+	if not (text and FurC.GetColouredTooltips()) then return text end
 	return text:gsub("cannot craft", "|cFF0000cannot craft|r"):gsub("Can be crafted", "|c00FF00Can be crafted|r")
 end
 
 local defaultDebugString = "[<<1>>] = <<2>>, -- <<3>>"
 local function tryCreateDebugOutput(itemId, itemLink)
-    if not FurC.IsDebugging then return end
+    if not (FurC.DevDebug and FurCGui:IsHidden()) then return end
     itemId = itemId or FurC.GetItemId(itemLink)
     local price = 0
     local control = moc()
@@ -26,7 +25,6 @@ local function tryCreateDebugOutput(itemId, itemLink)
         end
     end
     d(zo_strformat(debugString, itemId, price, GetItemLinkName(itemLink)))
-
 end
 
 local function addTooltipData(control, itemLink)

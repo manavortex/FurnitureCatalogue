@@ -1,6 +1,6 @@
 ## Title: FurnitureCatalogue
 ## Author: manavortex
-## Version: 2.3.3
+## Version: 2.4
 ## APIVersion: 100022 100023
 ## SavedVariables: FurnitureCatalogue_Settings 
 ## OptionalDependsOn: pChat 
@@ -40,34 +40,40 @@ FurCEvents.lua
 
 $(APIVersion).lua
 
-data\Morrowind\M_Recipes.lua
-data\Homestead\H_Recipes.lua
-data\Reach\HotR_Recipes.lua
-data\Recipes.lua
-data\RecipeSources.lua
+data\02_Morrowind\M_Recipes.lua
+data\01_Homestead\H_Recipes.lua
+data\03_Reach\HotR_Recipes.lua
+data\04_Clockwork\CC_Recipes.lua
+data\05_Dragonbones\DragonB_Recipes.lua
 
-data\Homestead\H_AchievementVendors.lua
-data\Morrowind\M_AchievementVendors.lua
-data\Reach\HotR_AchievementVendors.lua
+data\01_Homestead\H_Cyrodiil.lua
+
+data\01_Homestead\H_AchievementVendors.lua
+data\02_Morrowind\M_AchievementVendors.lua
+data\03_Reach\HotR_AchievementVendors.lua
+data\04_Clockwork\CC_AchievementVendors.lua
 data\AchievementVendors.lua
 
 data\LuxuryFurnisher.lua
-data\Homestead\H_LuxuryFurnisher.lua
-data\Morrowind\M_LuxuryFurnisher.lua
-data\Reach\HotR_LuxuryFurnisher.lua
+data\01_Homestead\H_LuxuryFurnisher.lua
+data\02_Morrowind\M_LuxuryFurnisher.lua
+data\03_Reach\HotR_LuxuryFurnisher.lua
+data\04_Clockwork\CC_LuxuryFurnisher.lua
+data\04_Clockwork\DragonB_LuxuryFurnisher.lua
 
-data\Homestead\H_Rollis.lua
-data\Reach\HotR_Rollis.lua
-data\Rollis.lua
+data\01_Homestead\H_Rolis.lua
+data\03_Reach\HotR_Rolis.lua
+data\Rolis.lua
 
-data\Homestead\H_EventItems.lua
-data\Morrowind\M_EventItems.lua
+data\01_Homestead\H_EventItems.lua
+data\02_Morrowind\M_EventItems.lua
 data\EventItems.lua
 
 data\$(APIVersion).lua
 data\MiscItemSources.lua
+data\Recipes.lua
+data\RecipeSources.lua
 
-data\Homestead\H_Cyrodiil.lua
 
 
 

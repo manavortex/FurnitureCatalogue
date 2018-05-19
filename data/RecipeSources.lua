@@ -1,10 +1,6 @@
-
-local vendorColor 	= "d68957"
-local goldColor 	= "e5da40"
-local apColor 		= "25C31E"
-local tvColor		= "5EA4FF"
-local voucherColor	= "82BCFF"
-local p 			= FurC.DebugOut -- debug function calling zo_strformat with up to 10 args
+local vendorColor 	= FurC.Const.vendorColor
+local goldColor 	= FurC.Const.goldColor
+local voucherColor	= FurC.Const.voucherColor
 
 local function colorise(str, col, ret)
 	str = tostring(str)
@@ -12,11 +8,11 @@ local function colorise(str, col, ret)
 	if ret then return str end
 	return string.format("|c%s%s|r", col, str)
 end
+
 local requires = GetString(SI_FURC_REQUIRES_ACHIEVEMENT)
 local psijicRank = GetString(SI_FURC_PSIJIC_RANK)
-local function rank(aNumber)
-    return requires .. psijicRank .. aNumber
-end
+
+local function rank(aNumber) return requires .. psijicRank .. aNumber end
 
 local function soldBy(vendorName, locationName, price, requirement)
     return zo_strformat(
@@ -29,8 +25,8 @@ local function soldBy(vendorName, locationName, price, requirement)
 end
 
 
-local artaeum = GetString(FURC_AV_ARTAEUM)
-local nalirsewen = GetString(FURC_AV_NAL)
+local artaeum       = GetString(FURC_AV_ARTAEUM)
+local nalirsewen    = GetString(FURC_AV_NAL)
 
 FurC.RecipeSources = {
     [139489] = soldBy(nalirsewen, artaeum, 5000,    rank(2)),  -- Blueprint: Psijic Chair, Arched
@@ -81,10 +77,12 @@ local faustinaRecipes = {
 
 for itemId, itemPrice in pairs(rolisRecipes) do
     local priceString = zo_strformat(GetString(SI_FURC_STRING_FOR_VOUCHERS), itemPrice, voucherColor)
-    FurC.RecipeSources[itemId] = zo_strformat(GetString(SI_FURC_STRING_ROLLIS), priceString)
+    FurC.RecipeSources[itemId] = zo_strformat(GetString(SI_FURC_STRING_Rolis), priceString)
 end
-local unsurpassedCrafter = GetAchievementLink(1801)
+
+
 for itemId, itemPrice in pairs(faustinaRecipes) do
+    local unsurpassedCrafter = GetAchievementLink(1801)
     local priceString = zo_strformat(GetString(SI_FURC_STRING_FOR_VOUCHERS), itemPrice, voucherColor)
     local soldByFaustinaFor = zo_strformat(GetString(SI_FURC_STRING_FAUSTINA), priceString)
     FurC.RecipeSources[itemId] = soldByFaustinaFor .. requires .. unsurpassedCrafter

@@ -20,7 +20,7 @@ local function makeAchievementLink(achievementId)
     return GetString(SI_FURC_REQUIRES_ACHIEVEMENT) .. GetAchievementLink(achievementId)
 end
 
-local function getRollisSource(recipeKey, recipeArray)
+local function getRolisSource(recipeKey, recipeArray)
 	recipeArray = recipeArray or FurC.Find(recipeKey)
 	if not recipeArray then return end
 
@@ -28,7 +28,7 @@ local function getRollisSource(recipeKey, recipeArray)
 
 	if nil ~= versionData and nil ~= versionData[recipeKey] then
 		local itemPrice = zo_strformat(GetString(SI_FURC_STRING_FOR_VOUCHERS), colorise(versionData[recipeKey], voucherColor))
-		return zo_strformat(GetString(SI_FURC_STRING_ROLLIS), itemPrice)
+		return zo_strformat(GetString(SI_FURC_STRING_Rolis), itemPrice)
 	end
 
 	versionData = FurC.Faustina[recipeArray.version]
@@ -39,7 +39,7 @@ local function getRollisSource(recipeKey, recipeArray)
 
 	return GetString(SI_FURC_STRING_VOUCHER_VENDOR)
 end
-FurC.getRollisSource = getRollisSource
+FurC.getRolisSource = getRolisSource
 
 
 local function getLuxurySource(recipeKey, recipeArray, stripColor)

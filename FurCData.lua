@@ -335,7 +335,7 @@ local function scanFromFiles(shouldScanCharacter)
 		for versionNumber, versionData in pairs(FurC.Recipes) do
 			scanArray(versionData, versionNumber, FURC_CRAFTING)
 		end
-		for versionNumber, versionData in pairs(FurC.RollisRecipes) do
+		for versionNumber, versionData in pairs(FurC.RolisRecipes) do
 			scanArray(versionData, versionNumber, FURC_CRAFTING)
 		end
 		for versionNumber, versionData in pairs(FurC.FaustinaRecipes) do
@@ -343,13 +343,13 @@ local function scanFromFiles(shouldScanCharacter)
 		end
 	end
 
-	local function scanRollis()
+	local function scanRolis()
 		for versionNumber, versionData in pairs(FurC.Rolis) do
 			for itemId, itemSource in pairs(versionData) do
 				recipeArray = parseFurnitureItem(FurC.GetItemLink(recipeId), true)
 				if nil ~= recipeArray then
 					recipeArray.version = versionNumber
-					recipeArray.origin = FURC_ROLLIS
+					recipeArray.origin = FURC_Rolis
 					addDatabaseEntry(itemId, recipeArray)
 				end
 			end
@@ -359,7 +359,7 @@ local function scanFromFiles(shouldScanCharacter)
 				recipeArray = parseFurnitureItem(FurC.GetItemLink(recipeId), true)
 				if nil ~= recipeArray then
 					recipeArray.version = versionNumber
-					recipeArray.origin = FURC_ROLLIS
+					recipeArray.origin = FURC_Rolis
 					addDatabaseEntry(itemId, recipeArray)
 				end
 			end
@@ -448,9 +448,9 @@ local function scanFromFiles(shouldScanCharacter)
 
 	task:Call(scanRecipeFile)
 	:Then(scanMiscItemFile)
-	:Then(scanRollis)
+	:Then(scanRolis)
 	:Then(scanVendorFiles)
-	:Then(scanRollis)
+	:Then(scanRolis)
 	:Then(scanFestivalFiles)
 	:Then(
 	function()
@@ -507,8 +507,8 @@ FurC.settings.emptyItemSources =  FurC.settings.emptyItemSources or {}
 	local origin = recipeArray.origin
 	if origin == FURC_CRAFTING or origin == FURC_WRIT_VENDOR then
 		return FurC.GetMats(recipeKey, recipeArray, stripColor)
-	elseif origin == FURC_ROLLIS then
-		return FurC.getRollisSource(recipeKey, recipeArray, stripColor)
+	elseif origin == FURC_Rolis then
+		return FurC.getRolisSource(recipeKey, recipeArray, stripColor)
 	elseif origin == FURC_LUXURY then
 		return FurC.getLuxurySource(recipeKey, recipeArray, stripColor)
 	elseif origin == FURC_GUILDSTORE then

@@ -185,12 +185,12 @@ end
 function FurC.ApplyLineTemplate()
 
 	local function resizeDropdowns(controlSize)
-		local controlList = {
+		local contRolist = {
 			[1] = FurC_DropdownSource,
 			[2] = FurC_DropdownCharacter,
 			[3] = FurC_DropdownVersion
 		}
-		for _, control in pairs(controlList) do
+		for _, control in pairs(contRolist) do
 			control:SetWidth(controlSize)
 		end
 		FurC_Search:SetWidth(controlSize-19)

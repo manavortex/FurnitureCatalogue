@@ -35,7 +35,7 @@ local strings = {
 	
 	SI_FURC_STRING_WRIT_VENDOR =				"Master Writ Vendor",
 	SI_FURC_STRING_WRIT_VENDOR_TT =				"Obtainable for Master Writs in your alliance's capital",
-	SI_FURC_STRING_ROLLIS = 					"Sold by |cd68957Rolis Hlaalu|r <<1>>",
+	SI_FURC_STRING_Rolis = 					"Sold by |cd68957Rolis Hlaalu|r <<1>>",
 	SI_FURC_STRING_FAUSTINA = 					"Sold by |cd68957Faustina Curio|r <<1>>",
 	SI_FURC_STRING_FOR_VOUCHERS =				"for <<1>> vouchers",
 	

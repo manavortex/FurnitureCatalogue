@@ -1,28 +1,25 @@
 FurnitureCatalogue 					= {}
 FurnitureCatalogue.name				= "FurnitureCatalogue"
 FurnitureCatalogue.author			= "manavortex"
-FurnitureCatalogue.version          = "2.3.3"
+FurnitureCatalogue.version          = "2.4"
 FurnitureCatalogue.CharacterName	= nil
 FurnitureCatalogue.settings			= {}
 
 FurC 								= FurnitureCatalogue
-FurC.DevDebug						= false
+FurC.DevDebug						= string.find(GetWorldName(), "PTS") and GetUnitDisplayName("player") == "@manavortex"
 FurC.AccountName					= GetDisplayName()
 
 FurC.AchievementVendors				= {}
 FurC.LuxuryFurnisher				= {}
 FurC.Recipes						= {}
 FurC.Rolis							= {}
-FurC.RollisRecipes					= {}
+FurC.Faustina						= {}
+FurC.RolisRecipes					= {}
+FurC.FaustinaRecipes				= {}
 FurC.Books							= {}
 FurC.EventItems						= {}
 FurC.PVP							= {}
 FurC.MiscItemSources                = {}
-FurC.HomesteadData 					= {}
-FurC.MorrowindData 					= {}
-FurC.ReachHornData 					= {}
-FurC.Cyrodiil						= {}
-FurC.ClockworkData					= {}
 
 
 -- versioning
@@ -32,6 +29,14 @@ FURC_REACH							= 4
 FURC_CLOCKWORK						= 5
 FURC_DRAGONS						= 6
 FURC_ALTMER						    = 7
+
+FurC.Const                          = {
+    vendorColor     = "d68957",
+    goldColor 	    = "e5da40",
+    apColor 	    = "25C31E",
+    tvColor		    = "5EA4FF",
+    voucherColor	= "82BCFF",
+}
 
 FurC.version						= 2.2
 
@@ -95,8 +100,8 @@ FURC_CROWN 				= FURC_PVP +1
 FURC_RUMOUR 			= FURC_CROWN +1
 FURC_LUXURY 			= FURC_RUMOUR +1
 FURC_OTHER 				= FURC_LUXURY +1
-FURC_ROLLIS 			= FURC_OTHER +1
-FURC_DROP 				= FURC_ROLLIS +1
+FURC_Rolis 			= FURC_OTHER +1
+FURC_DROP 				= FURC_Rolis +1
 FURC_WRIT_VENDOR 		= FURC_DROP +1
 FURC_JUSTICE 			= FURC_WRIT_VENDOR +1
 FURC_FISHING 			= FURC_JUSTICE +1
@@ -298,10 +303,14 @@ function FurnitureCatalogue_Initialize(eventCode, addOnName)
 
 	FurC.SetFilter(true)
 
-    FurC.IsDebugging = GetWorldName() == "PTS" and GetUnitDisplayName("player") == "@manavortex"
-
 	EVENT_MANAGER:UnregisterForEvent("FurnitureCatalogue", EVENT_ADD_ON_LOADED)
 
+end
+
+if "@manavortex" == FurC.AccountName or "@Manorin" == FurC.AccountName then 
+    SLASH_COMMANDS["/furc_debug"] = function() 
+        FurC.DevDebug = not FurC.DevDebug 
+    end
 end
 
 ZO_CreateStringId("SI_BINDING_NAME_TOGGLE_FURNITURE_CATALOGUE", "Toggle Furniture Catalogue")
