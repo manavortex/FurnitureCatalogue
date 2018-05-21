@@ -11,8 +11,9 @@ local FURC_CANBESTOLEN_NERDS	= FURC_CANBESTOLEN_SCHOLARS      .. " and mages"
 local FURC_CANBESTOLEN_RELIG	= GetString(SI_FURC_CANBESTOLEN) .. " from priests and pilgrims"
 local FURC_CANBESTOLEN_THIEF	= GetString(SI_FURC_CANBESTOLEN) .. " from thieves"
 local FURC_CANBESTOLEN_WW	    = GetString(SI_FURC_CANBESTOLEN) .. " from woodworkers"
+local FURC_CANBESTOLEN_WW	    = GetString(FURC_CANBESTOLEN_DRUNKARDS) .. " from drunkards"
 
-
+local FURC_PLANTS_VVARDENFELL   = GetString(FURC_PLANTS) .. " on Vvardenfell"
 local FURC_CANBESTOLEN_WROTHGAR	= GetString(SI_FURC_CANBESTOLEN) .. " in Wrothgar"
 
 local FURC_AUTOMATON_CC			= GetString(SI_FURC_AUTOMATON) .. " in Clockwork City"
@@ -32,6 +33,11 @@ end
 
 local function getScamboxString(scamboxVersion)
     return string.format("%s (%s)", GetString(SI_FURC_SCAMBOX), GetString(scamboxVersion))
+end
+local function getHouseString(houseId1, houseId2)
+    local houseName = GetCollectibleName(houseId1)
+    if houseId2 then houseName = houseName .. ", " .. GetCollectibleName(houseId2) end
+    return zo_strformat(GetString(SI_FURC_HOUSE), houseName)
 end
 
 FurC.MiscItemSources[FURC_DRAGONS] = { -- Reach
@@ -102,13 +108,13 @@ FurC.MiscItemSources[FURC_REACH] = { -- Reach
     },
     [FURC_DROP] 	= {
         -- Coldharbour items
-        [130284] = FURC_HARVEST_CHARBOR, 		-- Glowstalk, Seedlings
-        [131422] = FURC_HARVEST_CHARBOR, 		-- Flower Patch, Glowstalks
-        [130283] = FURC_HARVEST_CHARBOR, 		-- Glowstalk, Sprout
-        [130285] = FURC_HARVEST_CHARBOR, 		-- Glowstalk, Young
-        [131420] = FURC_HARVEST_CHARBOR, 		-- Shrub, Glowing Thistle
-        [130281] = FURC_HARVEST_CHARBOR, 		-- Glowstalk, Towering
-        [130282] = FURC_HARVEST_CHARBOR, 		-- Glowstalk, Strong
+        [130284] = GetString(SI_FURC_HARVEST), 		                -- Glowstalk, Seedlings
+        [131422] = GetString(SI_FURC_HARVEST), 		                -- Flower Patch, Glowstalks
+        [130283] = GetString(SI_FURC_HARVEST), 		                -- Glowstalk, Sprout
+        [130285] = GetString(SI_FURC_HARVEST), 		                -- Glowstalk, Young
+        [131420] = GetString(SI_FURC_HARVEST), 		                -- Shrub, Glowing Thistle
+        [130281] = GetString(SI_FURC_HARVEST), 		                -- Glowstalk, Towering
+        [130282] = GetString(SI_FURC_HARVEST), 		                -- Glowstalk, Strong
 
         [130067] = GetString(SI_FURC_DAEDRA_SOURCE), 			-- Daedric Chain Segment
     },
@@ -129,8 +135,10 @@ FurC.MiscItemSources[FURC_MORROWIND]	= { -- Morrowind
         [126764] = GetString(SI_FURC_TOMBS), 					-- Velothi Shroud, Prowess
         [126702] = GetString(SI_FURC_TOMBS), 					-- Velothi Shroud, Reverance
         [126700] = GetString(SI_FURC_TOMBS), 					-- Velothi Shroud, Honor
-        [126703] = GetString(SI_FURC_TOMBS), 					-- Velothi Shroud, Mourning
-        [126572] = GetString(SI_FURC_TOMBS), 					-- Velothi Shroud, Mysteries
+        [126703] = GetString(SI_FURC_TOMBS), 					-- Velothi Shroud, Mysteries
+        [126752] = GetString(SI_FURC_TOMBS), 					-- Velothi Shroud, Discovery
+        [126755] = GetString(SI_FURC_TOMBS), 					-- Velothi Shroud, Change
+        [126756] = GetString(SI_FURC_TOMBS), 					-- Velothi Shroud, Mercy
 
         [126773] = GetString(SI_FURC_TOMBS), 					-- Velothi Caisson, Crypt
         [126753] = GetString(SI_FURC_TOMBS),					-- Velothi Cerecloth, Austere
@@ -158,6 +166,11 @@ FurC.MiscItemSources[FURC_MORROWIND]	= { -- Morrowind
         [126596] = GetString(SI_FURC_VVARDENFELL_PAINTING),     -- Velothi Tapestry, Volcano
         [126597] = GetString(SI_FURC_VVARDENFELL_PAINTING),     -- Velothi Painting, Oversized Volcano
 
+        [126605] = GetString(SI_FURC_VVARDENFELL_PAINTING),     -- Velothi Tryptich, Waterfall
+        [126606] = GetString(SI_FURC_VVARDENFELL_PAINTING),     -- Velothi Tapestry, Waterfall
+        [126607] = GetString(SI_FURC_VVARDENFELL_PAINTING),     -- Velothi Painting, Oversized Waterfall
+        [126608] = GetString(SI_FURC_VVARDENFELL_PAINTING),     -- Velothi Painting, Classic Waterfall
+        [126609] = GetString(SI_FURC_VVARDENFELL_PAINTING),     -- Velothi Painting, Modest Waterfall
         [126598] = GetString(SI_FURC_VVARDENFELL_PAINTING),     -- Velothi Panels, Waterfall
         [126599] = GetString(SI_FURC_VVARDENFELL_PAINTING),     -- Velothi Tryptich, Geyser
         [126600] = GetString(SI_FURC_VVARDENFELL_PAINTING),     -- Velothi Tapestry, Geyser
@@ -172,25 +185,69 @@ FurC.MiscItemSources[FURC_MORROWIND]	= { -- Morrowind
         [126393] = GetString(SI_FURC_DAILY_ASHLANDERS), 		-- Crimson Shard of Moonshadow
 
         -- drops from plants
-        [125631] = GetString(SI_FURC_PLANTS), 					-- Plants, Ash Frond
-        [125647] = GetString(SI_FURC_PLANTS), 					-- Plants, Ash Frond
-        [131420] = GetString(SI_FURC_PLANTS), 					-- Plants, Ash Frond
-        [125553] = GetString(SI_FURC_PLANTS), 					-- Flowers, Netch Cabbage Stalks
-        [125551] = GetString(SI_FURC_PLANTS), 					-- Flowers, Netch Cabbage
-        [125552] = GetString(SI_FURC_PLANTS), 					-- Flowers, Netch Cabbage Patch
-        [125543] = GetString(SI_FURC_PLANTS), 					-- Fern, Ashen
-        [125633] = GetString(SI_FURC_PLANTS), 					-- Plants, Hanging Pitcher Pair
-
-        [130280] = GetString(SI_FURC_WW), 					    -- Sapling, Petrified Ashen
-
+        [125631] = FURC_PLANTS_VVARDENFELL, 		            -- Plants, Ash Frond
+        [125647] = FURC_PLANTS_VVARDENFELL, 		            -- Plants, Ash Frond
+        [131420] = FURC_PLANTS_VVARDENFELL, 		            -- Plants, Ash Frond
+        [125553] = FURC_PLANTS_VVARDENFELL, 		            -- Flowers, Netch Cabbage Stalks
+        [125551] = FURC_PLANTS_VVARDENFELL, 		            -- Flowers, Netch Cabbage
+        [125552] = FURC_PLANTS_VVARDENFELL, 		            -- Flowers, Netch Cabbage Patch
+        [125543] = FURC_PLANTS_VVARDENFELL, 		            -- Fern, Ashen
+        [125633] = FURC_PLANTS_VVARDENFELL, 		            -- Plants, Hanging Pitcher Pair
+                                                                
+        [125551] = FURC_PLANTS_VVARDENFELL, 		            -- Flowers, Netch Cabbage			
+        [125552] = FURC_PLANTS_VVARDENFELL, 		            -- Flowers, Netch Cabbage Patch	
+        [125553] = FURC_PLANTS_VVARDENFELL, 		            -- Flowers, Netch Cabbage Stalks	
+        [125562] = FURC_PLANTS_VVARDENFELL, 		            -- Grass, Foxtail Cluster			
+        [125595] = FURC_PLANTS_VVARDENFELL, 		            -- Mushroom, Poison Pax Shelf		
+        [125596] = FURC_PLANTS_VVARDENFELL, 		            -- Mushroom, Poison Pax Stool		
+        [125600] = FURC_PLANTS_VVARDENFELL, 		            -- Mushroom, Spongecap Patch		
+        [125606] = FURC_PLANTS_VVARDENFELL, 		            -- Mushroom, Young Milkcap			
+        [125608] = FURC_PLANTS_VVARDENFELL, 		            -- Mushrooms, Buttercake Cluster	
+        [125609] = FURC_PLANTS_VVARDENFELL, 		            -- Mushrooms, Buttercake Stack		
+        [125613] = FURC_PLANTS_VVARDENFELL, 		            -- Mushrooms, Lavaburst Sprouts	
+        [125590] = FURC_PLANTS_VVARDENFELL, 		            -- Mushrooms, Lavaburst Cluster	
+        [125617] = FURC_PLANTS_VVARDENFELL, 		            -- Plant, Bitter Stalk				
+        [125618] = FURC_PLANTS_VVARDENFELL, 		            -- Plant, Golden Lichen			
+        [125619] = FURC_PLANTS_VVARDENFELL, 		            -- Plant, Hanging Pitcher			
+        [125620] = FURC_PLANTS_VVARDENFELL, 		            -- Plant, Hefty Elkhorn			
+        [125621] = FURC_PLANTS_VVARDENFELL, 		            -- Plant, Lava Brier				
+        [125622] = FURC_PLANTS_VVARDENFELL, 		            -- Plant, Lava Leaf				
+        [125630] = FURC_PLANTS_VVARDENFELL, 		            -- Plant, Young Elkhorn			
+        [125631] = FURC_PLANTS_VVARDENFELL, 		            -- Plants, Ash Frond				
+        [125632] = FURC_PLANTS_VVARDENFELL, 		            -- Plants, Hanging Pitcher Cluster	
+        [125633] = FURC_PLANTS_VVARDENFELL, 		            -- Plants, Hanging Pitcher Pair	
+        [125634] = FURC_PLANTS_VVARDENFELL, 		            -- Plants, Lava Pitcher Cluster	
+        [125635] = FURC_PLANTS_VVARDENFELL, 		            -- Plants, Lava Pitcher Shoots		
+        [125636] = FURC_PLANTS_VVARDENFELL, 		            -- Plants, Swamp Pitcher Cluster	
+        [125637] = FURC_PLANTS_VVARDENFELL, 		            -- Plants, Swamp Pitcher Shoots	
+        [125647] = FURC_PLANTS_VVARDENFELL, 		            -- Shrub, Bitter Brush				
+        [125648] = FURC_PLANTS_VVARDENFELL, 		            -- Shrub, Bitter Cluster			
+        [125649] = FURC_PLANTS_VVARDENFELL, 		            -- Shrub, Flowering Dusk			
+        [125650] = FURC_PLANTS_VVARDENFELL, 		            -- Shrub, Golden Lichen			
+        [125670] = FURC_PLANTS_VVARDENFELL, 		            -- Toadstool, Bloodtooth			
+        [125671] = FURC_PLANTS_VVARDENFELL, 		            -- Toadstool, Bloodtooth Cap		
+        [125672] = FURC_PLANTS_VVARDENFELL, 		            -- Toadstool, Bloodtooth Cluster	
+        
+        [126759] = GetString(SI_FURC_QUESTREWARD) .. " Suran",  -- Sir Sock's Ball of Yarn
 
         [126592] = GetString(SI_FURC_PLANTS), 					-- Plants, Hanging Pitcher Pair
 
     },
     [FURC_CROWN] 	= {
+        [125566] = getHouseString(1243),        -- Hlaalu Shed, Enclosed
+        [125568] = getHouseString(1243),        -- Hlaalu Sidewalk, Sillar Stone
+        [125577] = getHouseString(1243),        -- Hlaalu Wall Post, Sillar Stone
+        [125579] = getHouseString(1243),        -- Hlaalu Well, Braced Sillar Stone
+        [125573] = getHouseString(1243, 1244),  -- Hlaalu Streetlamp, Paper
+        [125565] = getHouseString(1244),        -- Hlaalu Lantern, Hanging Paper
+        [125567] = getHouseString(1244),        -- Hlaalu Shed, Open
+        [125580] = getHouseString(1244),        -- Hlaalu Well, Covered Sillar Stone
+        [118663] = getHouseString(1078, 1079),  -- Dark Elf Bed of Coals
+       
     },
     [FURC_JUSTICE] 	= {
-        [126481] = FURC_CANBESTOLEN_RELIG, 		-- Indoril Incense, Burning
+        [126481] = FURC_CANBESTOLEN_RELIG .. " on Vvardenfell", -- Indoril Incense, Burning
+        [126772] = FURC_CANBESTOLEN_THIEF 		-- Khajiiti Ponder sphere
     },
 }
 FurC.MiscItemSources[FURC_HOMESTEAD]	= {
@@ -213,6 +270,9 @@ FurC.MiscItemSources[FURC_HOMESTEAD]	= {
         [118713] = FURC_CANBEPICKED_GUARD, 				-- Khajiiti Male
         [118716] = FURC_CANBEPICKED_GUARD, 				-- Orc Female
         [118717] = FURC_CANBEPICKED_GUARD, 				-- Orc Male
+        
+        
+        [121055] = FURC_CANBESTOLEN_DRUNKARDS, 			-- Breton Mug, Full
 
         [116512] = FURC_CANBESTOLEN_WROTHGAR,		    -- Orcish Carpet Blood
 
@@ -252,6 +312,11 @@ FurC.MiscItemSources[FURC_HOMESTEAD]	= {
         [118221] = GetString(SI_FURC_CHESTS), 		        -- Painting of Summer, Sturdy
         [118222] = GetString(SI_FURC_CHESTS), 		        -- Painting of Jungle, Sturdy
         [118223] = GetString(SI_FURC_CHESTS), 		        -- Painting of Palms, Sturdy
+        [118265] = GetString(SI_FURC_CHESTS), 		        -- Painting of Winter, Bolted
+        [118266] = GetString(SI_FURC_CHESTS), 		        -- Painting of Bridge, Bolted
+        [118267] = GetString(SI_FURC_CHESTS), 		        -- Painting of Autumn, Bolted
+        [118268] = GetString(SI_FURC_CHESTS), 		        -- Painting of Great Ruins, Bolted
+        
 
 
     },

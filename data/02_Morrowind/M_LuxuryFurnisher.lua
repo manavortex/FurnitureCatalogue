@@ -11,12 +11,12 @@ FurC.LuxuryFurnisher[FURC_MORROWIND] = {
 		itemPrice 	= 5417,
 		itemDate	= "2017-08-11",
 	},
-	[126575] = { -- Velothi Shroud, Mourning
-		itemPrice 	= 5417,
+	[126575] = { -- Velothi Seat, Meditation
+		itemPrice 	= 10834,
 		itemDate	= "2017-08-11",
 	},
-	[126576] = { -- Velothi Seat, Meditation
-		itemPrice 	= 10834,
+	[126572] = { -- Velothi Shroud, Mourning
+		itemPrice 	= 5417,
 		itemDate	= "2017-08-11",
 	},
 
@@ -152,7 +152,7 @@ FurC.LuxuryFurnisher[FURC_MORROWIND] = {
 
 	-- June, 9-11
 	[120808] = {	-- Statue Base, Circular
-		itemPrice 	= 10000,
+		itemPrice 	= 5417,
 		itemDate	= "2017-06-09",
 	},
 	[120811] = {	-- Statue, Justice

@@ -1,7 +1,7 @@
 ## Title: FurnitureCatalogue
 ## Author: manavortex
-## Version: 2.4.2
-## APIVersion: 100022 100023
+## Version: 2.4.3
+## APIVersion: 100023
 ## SavedVariables: FurnitureCatalogue_Settings 
 ## OptionalDependsOn: pChat 
 
@@ -59,7 +59,7 @@ data\01_Homestead\H_LuxuryFurnisher.lua
 data\02_Morrowind\M_LuxuryFurnisher.lua
 data\03_Reach\HotR_LuxuryFurnisher.lua
 data\04_Clockwork\CC_LuxuryFurnisher.lua
-data\04_Clockwork\DragonB_LuxuryFurnisher.lua
+data\05_Dragonbones\DragonB_LuxuryFurnisher.lua
 
 data\01_Homestead\H_Rolis.lua
 data\03_Reach\HotR_Rolis.lua

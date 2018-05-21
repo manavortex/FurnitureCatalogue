@@ -29,10 +29,27 @@ FurC.LuxuryFurnisher[FURC_REACH] = {
 		itemPrice 	= 10000,
 		itemDate	= "2017-10-13",
 	},
+    
+	[132149] = { -- Orcish War Totem
+		itemPrice 	= 20000,
+		itemDate	= "2017-10-13",
+	},
+	[132150] = { -- Orcish Battle Totem
+		itemPrice 	= 20000,
+		itemDate	= "2017-10-13",
+	},
+	[132151] = { -- Orchish Totem
+		itemPrice 	= 20000,
+		itemDate	= "2017-10-13",
+	},
+	[132152] = { -- Orchish Totem
+		itemPrice 	= 35000,
+		itemDate	= "2017-10-13",
+	},
 
 	-- Oct. 7
 	[132145] = { -- Orsinium Tent, Chief’s
-		itemPrice 	= 5000,
+		itemPrice 	= 15000,
 		itemDate	= "2017-10-06",
 	},
 	[132146] = { -- Orsinium Relief, Malacath
@@ -77,7 +94,7 @@ FurC.LuxuryFurnisher[FURC_REACH] = {
 		itemDate	= "2017-09-22",
 	},
 	[131437] = { -- Reach Vine, Bloodroot Tendril
-		itemPrice 	= 20000,
+		itemPrice 	= 25000,
 		itemDate	= "2017-09-22",
 	},
 

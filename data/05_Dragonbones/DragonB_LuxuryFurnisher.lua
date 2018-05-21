@@ -10,7 +10,7 @@ FurC.LuxuryFurnisher[FURC_DRAGONS] = {
 		itemDate	= "2018-05-19",
 	},
 	[120809] = {	-- Statue Base, Square
-		itemPrice 	= 10000,
+		itemPrice 	= 5000,
 		itemDate	= "2018-05-19",
 	},
 	[120810] = {	-- Statue, Faith
@@ -27,7 +27,7 @@ FurC.LuxuryFurnisher[FURC_DRAGONS] = {
 		itemDate	= "2018-05-12",
 	},
 	[134840] = {	-- Necromancer's Spire, Compact
-		itemPrice 	= 75000,
+		itemPrice 	= 25000,
 		itemDate	= "2018-05-12",
 	},
 	[134841] = {	-- Necromancer's Spire, Huge
@@ -147,7 +147,7 @@ FurC.LuxuryFurnisher[FURC_DRAGONS] = {
 		itemDate	= "2018-03-31",
 	},
 	[120888] = {	-- Bat Bloom
-		itemPrice 	= 10000,
+		itemPrice 	= 15000,
 		itemDate	= "2018-03-31",
 	},
 	[120887] = {	-- Fan Bush

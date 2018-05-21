@@ -66,13 +66,14 @@ local strings = {
 	SI_FURC_PSIJIC_RANK                         = "Psijic Order Rank ",
 	SI_FURC_STRING_WRIT_VENDOR =				"Master Writ Vendor",
 	SI_FURC_STRING_WRIT_VENDOR_TT =				"Obtainable for Master Writs in your alliance's capital",
-	SI_FURC_STRING_Rolis = 					"Sold by |cd68957Rolis Hlaalu|r <<1>>",
+	SI_FURC_STRING_Rolis = 					    "Sold by |cd68957Rolis Hlaalu|r <<1>>",
 	SI_FURC_STRING_FAUSTINA = 					"Sold by |cd68957Faustina Curio|r <<1>>",
 	SI_FURC_STRING_FOR_VOUCHERS =				"for <<1>> vouchers",
 	SI_FURC_FESTIVAL_DROP = 					"can be acquired during <<1>> (<<2>>)",
 	SI_FURC_STRING_RECIPELEARNED = 				"Recipe learned: <<1>> <<2>> <<3>>",
 	SI_FURC_STRING_RECIPESFORCHAR = 			"recipes for <<1>>",
 	SI_FURC_STRING_VOUCHER_VENDOR =				"Sold by either Rolis Hlaalu or Faustina Curio",
+    SI_FURC_QUESTREWARD =                       "Reward for a quest in ",
 
 	-- =============================== --
 	-- ============ MENU ============= --
@@ -234,6 +235,7 @@ local strings = {
     SI_FURC_WW				                        = "occasionally found in wood nodes",
     SI_FURC_PLANTS						            = "from harvesting plants",
     SI_FURC_SCAMBOX						            = "Crown Crates",
+    SI_FURC_HOUSE						            = "From a furnished purchase of <<1>>",
     SI_FURC_AUTOMATON						        = "from automatons",
     SI_FURC_TOMBS 						            = "Ancestor tombs and ruins on Vvardenfell",
     SI_FURC_DAEDRA_SOURCE 						    = "from Daedra and Dolmen chests",
