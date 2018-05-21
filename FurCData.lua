@@ -173,7 +173,7 @@ end
 function FurC.GetEntry(itemOrBlueprintLink)
 	local itemLink =  (IsItemLinkFurnitureRecipe(itemOrBlueprintLink) and GetRecipeResultItemLink(itemOrBlueprintLink)) or itemOrBlueprintLink
 	local recipeArray = FurC.Find(itemLink)
-	d(string.format("Trying to get entry for %s: %s", itemLink, recipeArray))
+	-- d(string.format("Trying to get entry for %s: %s", itemLink, recipeArray))
 	if not recipeArray then return end
 	local itemId = getItemId(itemOrBlueprintLink)
 	if recipeArray.blueprint then

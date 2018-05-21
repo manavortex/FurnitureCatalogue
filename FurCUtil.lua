@@ -8,9 +8,11 @@ function FurC.SortTable(tTable, sortKey, SortOrderUp)
 		if nil == tTable[a] or nil == tTable[b] then
 
 		elseif nil == tTable[a][sortKey] then
-			d(tTable[a])
+            return false
+			-- d(tTable[a])
 		elseif nil == tTable[b][sortKey] then
-			d(tTable[b])
+            return true
+			-- d(tTable[b])
 		else
 			if SortOrderUp then
 				return tTable[a][sortKey] > tTable[b][sortKey]
