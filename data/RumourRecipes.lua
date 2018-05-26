@@ -34,7 +34,7 @@ FurC.RumourRecipes = {
 	118120, -- Minecart, Push
 	117991, -- Stool, Carved
 	118278, -- Plaque, Bordered Deer Antlers
-	132199, -- Telvanni Tower, Miniature
+	-- 132199, -- Telvanni Tower, Miniature
 	-- 132197, -- Death Skeleton, Shrouded
 	121198, -- Shelf, Poison
 	118304, -- Shelf, Poison
