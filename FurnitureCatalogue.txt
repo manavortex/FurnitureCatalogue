@@ -1,6 +1,6 @@
 ## Title: FurnitureCatalogue
 ## Author: manavortex
-## Version: 2.4.6
+## Version: 2.4.7
 ## APIVersion: 100023
 ## SavedVariables: FurnitureCatalogue_Settings 
 ## OptionalDependsOn: pChat 

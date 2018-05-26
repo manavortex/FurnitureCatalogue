@@ -153,7 +153,10 @@ function FurC.MatchFilter(currentItemId, currentRecipeArray)
 	itemLink = FurC.GetItemLink(itemId)
 	recipeArray = currentRecipeArray or FurC.Find(itemLink)
 	itemType, sItemType = GetItemLinkItemType(itemLink)
-
+    if 0 == itemType and 0 == sItemType then 
+        p("invalid item type for <<1>>", currentItemId)
+        return false 
+    end
     if  filterBooks(itemId, recipeArray)			                        then return false end
 
 
