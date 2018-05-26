@@ -150,23 +150,6 @@ FurC.LuxuryFurnisher[FURC_MORROWIND] = {
 		itemDate	= "2017-06-16",
 	},
 
-	-- June, 9-11
-	[120808] = {	-- Statue Base, Circular
-		itemPrice 	= 5417,
-		itemDate	= "2017-06-09",
-	},
-	[120811] = {	-- Statue, Justice
-		itemPrice 	= 25000,
-		itemDate	= "2017-06-09",
-	},
-	[120814] = {	-- Statue, Order
-		itemPrice 	= 25000,
-		itemDate	= "2017-06-09",
-	},
-	[120813] = {	-- Statue, Truth
-		itemPrice 	= 25000,
-		itemDate	= "2017-06-09",
-	},
 
 }
 

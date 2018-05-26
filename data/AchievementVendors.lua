@@ -140,11 +140,11 @@ FurC.AchievementVendors[FURC_ALTMER] = {
                 achievement = 2207, -- Enemy of my enemy
             },
             [139326] = { -- High Elf Statue, Kinlady
-                itemPrice 	= 20000,
+                itemPrice 	= 50000,
                 achievement = 2204, -- Resolute Guardian
             },
             [139373] = { -- High Elf Wine Press, Display
-                itemPrice 	= 50000,
+                itemPrice 	= 20000,
                 achievement = 2007, -- Summerset Cave Delver
             },
             [139387] = { -- Lillandril Banner
@@ -189,7 +189,6 @@ FurC.AchievementVendors[FURC_ALTMER] = {
             },
         },
     },
-
 }
 
 

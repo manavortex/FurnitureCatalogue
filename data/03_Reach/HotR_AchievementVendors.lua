@@ -148,6 +148,9 @@ FurC.AchievementVendors[FURC_REACH] = {
 			[132206] = { -- Tree, Towering Mountain Pine
 				itemPrice 	= 1000,
 			},
+            [132211] = { -- Ferns, Mountain Cluster
+                itemPrice = 250,
+            }
 
 		},
 	},

@@ -27,6 +27,8 @@ local FURC_SCAMBOX_F_ATRO		= zo_strformat("<<1>> (<<2>>)",
 local FURC_DB_POISON			= zo_strformat("<<1>> <<2>>", GetString(SI_FURC_DB), GetString(SI_FURC_DB_POISON))
 local FURC_DB_SNEAKY			= zo_strformat("<<1>> <<2>>", GetString(SI_FURC_DB), GetString(SI_FURC_DB_STEALTH))
 
+local FURC_FISHING_SUMMERSET    = GetString(SI_FURC_CANBEFISHED) .. " on Summerset"
+
 local function getCrownStorePriceString(price)
     return string.format("%s (%u)", GetString(SI_FURC_CROWNSTORESOURCE), price)
 end
@@ -40,6 +42,24 @@ local function getHouseString(houseId1, houseId2)
     return zo_strformat(GetString(SI_FURC_HOUSE), houseName)
 end
 
+FurC.MiscItemSources[FURC_ALTMER] = {
+    [FURC_CROWN] = {
+        [130206] = getCrownStorePriceString(370), 	-- Ayleid Apparatus, Welkynd
+    }, 
+    [FURC_DROP] = {
+        [139066] = GetString(SI_FURC_HARVEST),      -- Plant, Redtop Grass
+        
+        [139060] = GetString(SI_FURC_GEYSIR),  -- Giant Clam, Ancient
+    },
+    [FURC_FISHING] = {
+        [139080] = FURC_FISHING_SUMMERSET,  -- Coral Formation, Ancient Pillar Polyps
+        [139079] = FURC_FISHING_SUMMERSET,  -- Coral Formation, Fan Cluster
+        [139081] = FURC_FISHING_SUMMERSET,  -- Plant, Sea Grapes  
+        [139084] = FURC_FISHING_SUMMERSET,  -- Plants, Pearlwort Cluster
+        [139085] = FURC_FISHING_SUMMERSET,  -- Plants, Pearlwort Cluster
+    }
+    
+} -- Reach
 FurC.MiscItemSources[FURC_DRAGONS] = { -- Reach
     [FURC_DROP] = {
         [134909] = GetString(SI_FURC_DRAGON_DUNGEON_DROP), 	-- Mushrooms, Puspocket Group

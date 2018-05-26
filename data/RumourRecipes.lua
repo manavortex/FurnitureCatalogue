@@ -64,5 +64,8 @@ FurC.RumourRecipes = {
 	119426, -- Bread, Plain
 	121102, -- Chicken Dinner, Display
 	121103, -- Chicken Meal, Display
+    
+    118127, -- Plaque, Small
+    118288, -- Deer Carcass, Hanging
 }
 

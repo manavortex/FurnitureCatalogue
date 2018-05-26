@@ -74,7 +74,7 @@ local strings = {
 	SI_FURC_STRING_RECIPESFORCHAR = 			"recipes for <<1>>",
 	SI_FURC_STRING_VOUCHER_VENDOR =				"Sold by either Rolis Hlaalu or Faustina Curio",
     SI_FURC_QUESTREWARD =                       "Reward for a quest in ",
-
+    SI_FURC_GEYSIR =                            "Drops from geysir reward clams on Summerset",
 	-- =============================== --
 	-- ============ MENU ============= --
 	-- =============================== --
