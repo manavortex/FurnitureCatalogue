@@ -33,11 +33,10 @@ FurC.MiscItemSources[FURC_ALTMER] 	= {
         [139067] = GetString(SI_FURC_EXISITING_ITEMSOURCE_UNKNOWN_YET), -- Flower, Yellow Oleander
         [139082] = GetString(SI_FURC_EXISITING_ITEMSOURCE_UNKNOWN_YET), -- Plants, Ruby Glasswort Patch
         [139068] = GetString(SI_FURC_EXISITING_ITEMSOURCE_UNKNOWN_YET), -- Plants, Springwheeze    
-        [139073] = GetString(SI_FURC_EXISITING_ITEMSOURCE_UNKNOWN_YET), -- Painting of Summerset Coast, Refined
-        
-    }
+        [139073] = GetString(SI_FURC_EXISITING_ITEMSOURCE_UNKNOWN_YET), -- Painting of Summerset Coast, Refined        
+    },
+    
     [FURC_RUMOUR] = {
-
         [139353] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- Mind Trap Coral Spire, Bulbous
         [139149] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- Plant, Scarlet Fleshfrond
         [139139] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- Nocturnal, Mistress of Shadows
@@ -148,11 +147,12 @@ FurC.MiscItemSources[FURC_ALTMER] 	= {
         [139064] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- Flowers, Hummingbird Mint
         [139346] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- Flowers, Lizard Tail Patch
         [139335] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- Tree, Shade Ancient
-    }
-    [FURC_JUSTICE] 	= {}
+    },
+    [FURC_JUSTICE] 	= {
+    },
     [FURC_CROWN] 	= {
       [140220] = GetString(SI_FURC_ITEMSOURCE_ITEMPACK) .. "'Trappings of Mephala Worship'"
-    }
+    },
 }
 
 FurC.EventItems[FURC_ALTMER] = {}
