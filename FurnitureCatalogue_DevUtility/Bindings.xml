@@ -1,0 +1,11 @@
+<Bindings>
+    <Layer name="SI_KEYBINDINGS_CATEGORY_GENERAL">
+        <Category name="Furniture Catalogue Dev">
+            <Action name="FURC_CONCAT_TO_TEXTBOX">
+                <Down>
+					FurnitureCatalogueDevUtility_AddToTextbox()
+				</Down>
+            </Action>
+        </Category>
+    </Layer>
+</Bindings>

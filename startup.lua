@@ -1,7 +1,7 @@
 FurnitureCatalogue 					= {}
 FurnitureCatalogue.name				= "FurnitureCatalogue"
 FurnitureCatalogue.author			= "manavortex"
-FurnitureCatalogue.version          = "2.4.81"
+FurnitureCatalogue.version          = "2.5.0"
 FurnitureCatalogue.CharacterName	= nil
 FurnitureCatalogue.settings			= {}
 
@@ -251,25 +251,11 @@ function whoami()
 end
 
 
-function FurnitureCatalogue_ToggleDev(arg)
-	if arg == 0 or arg == "true" then
-		FurC.DevDebug = true
-	else
-		FurC.DevDebug = false
-	end
-end
-
 -- initialization stuff
 function FurnitureCatalogue_Initialize(eventCode, addOnName)
 	if (addOnName ~= FurnitureCatalogue.name) then return end
 
 	FurnitureCatalogue.settings 	= ZO_SavedVars:NewAccountWide("FurnitureCatalogue_Settings", 2, nil, defaults)
-
-
-	if FurC.AccountName == "@manavortex" or FurC.AccountName == "@Manorin" then
-		FurnitureCatalogue.devSettings 	= ZO_SavedVars:NewAccountWide("_FurC_DevData", 2, nil, {})
-		SLASH_COMMANDS["/furc_dev"] = FurnitureCatalogue_ToggleDev
-	end
 
 	-- initialise setting, also setup the "source" dropdown for the menu
 	FurC.settings.data 							= FurC.settings.data or {}
@@ -305,12 +291,6 @@ function FurnitureCatalogue_Initialize(eventCode, addOnName)
 
 	EVENT_MANAGER:UnregisterForEvent("FurnitureCatalogue", EVENT_ADD_ON_LOADED)
 
-end
-
-if "@manavortex" == FurC.AccountName or "@Manorin" == FurC.AccountName then 
-    SLASH_COMMANDS["/furc_debug"] = function() 
-        FurC.DevDebug = not FurC.DevDebug 
-    end
 end
 
 ZO_CreateStringId("SI_BINDING_NAME_TOGGLE_FURNITURE_CATALOGUE", "Toggle Furniture Catalogue")

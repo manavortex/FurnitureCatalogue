@@ -41,13 +41,6 @@ local function getItemLink(itemId)
 end
 FurC.GetItemLink = getItemLink
 
-local function trySaveDevDebug(recipeArray)
-	if not (FurC.AccountName == "@manavortex" or FurC.AccountName == "@Manorin") then return end
-	if recipeArray.origin ~= FURC_DROP then return end
-	itemLink = (nil ~= recipeArray.blueprintLink and recipeArray.blueprintLink) or recipeArray.itemId
-	FurnitureCatalogue.devSettings[itemLink] = "true, -- " .. GetItemLinkName(itemLink)
-end
-
 local function addDatabaseEntry(recipeKey, recipeArray)
 	if recipeKey and recipeArray and {} ~= recipeArray then
 		FurC.settings.data[recipeKey] = recipeArray

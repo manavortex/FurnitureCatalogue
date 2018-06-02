@@ -3,17 +3,39 @@ local function whoami()
     return GetUnitDisplayName(UNITTAG_PLAYER)
 end
 
-local isMana = whoami() == "@manavortex" or whoami() == "@Manorin"
-if not isMana then return end
+local isMana    = string.find(whoami(), "@manavortex") or string.find(whoami(), "@Manorin") 
+if not isMana   then return end
+
 
 local control   = FurCDevControl
 FurCDevUtility  = {}
 local this      = FurCDevUtility
-this.name       = "FurCDevUtility"
+this.name       = "FurnitureCatalogue_DevUtility"
 this.control    = control
 this.textbox    = FurCDevControlBox
-
 local active = string.find(GetWorldName(), "PTS")
+
+
+local function p(output, a1, a2, a3, a4, a5)
+    
+	if a5 then
+		d(zo_strformat(output, a1, a2, a3, a4, a5))
+	elseif a4 then
+		d(zo_strformat(output, a1, a2, a3, a4))
+	elseif a3 then
+		d(zo_strformat(output, a1, a2, a3))
+	elseif a2 then
+		d(zo_strformat(output, a1, a2))
+	elseif a1 then
+		d(zo_strformat(output, a1))
+	elseif output then
+		d(zo_strformat(output))
+	else
+		d("\n")
+	end
+end
+this.p          = p
+
 
 local function set_active(status)
     if nil == status then status = not this.active  end
@@ -27,12 +49,6 @@ local function setHidden(status)
 end
 FurCDevUtility.setHidden = setHidden
 
-local function clearControl()
-    control:GetNamedChild("_textbox"):Clear()
-end
-FurCDevUtility.clearControl = clearControl
-
-
 local activeStr = "active"
 local showStr   = "show"
 local hideStr   = "hide"
@@ -45,7 +61,7 @@ function slash_cmd(arg1)
     elseif arg1 == hideStr then
         setHidden(true)
     else
-        d("set active")
+        d("/furcdev -> active to set active, show to show, hide to hide")
     end
 end
 SLASH_COMMANDS["/furcdev"] = slash_cmd
@@ -53,12 +69,17 @@ SLASH_COMMANDS["/furcdev"] = slash_cmd
 function FurCDevUtility_Initialize(eventCode, addonName)
 
 	if addonName ~= this.name then return end
-    
     this.textbox = FurCDevControlBox
-    FurCDevControl.InitRightclickMenu()
+    this.textbox:SetMaxInputChars(3000)
+    this.InitRightclickMenu()
     
     EVENT_MANAGER:UnregisterForEvent("FurCDevUtility", EVENT_ADD_ON_LOADED)
 end
 
+function FurnitureCatalogueDevUtility_AddToTextbox()
+    FurCDevControl_HandleInventoryContextMenu(moc())
+end
+
+ZO_CreateStringId("FURC_CONCAT_TO_TEXTBOX", "Add to FurC Dev utility control")
 EVENT_MANAGER:RegisterForEvent("FurCDevUtility", EVENT_ADD_ON_LOADED, FurCDevUtility_Initialize)
 
