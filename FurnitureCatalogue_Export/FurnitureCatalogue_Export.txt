@@ -1,7 +1,7 @@
 ## Title: FurnitureCatalogue_Export
 ## Author: manavortex
 ## Version: 1.0.1
-## APIVersion: 100022
+## APIVersion: 100023
 ## SavedVariables: FurnitureCatalogue_Export
 ## DependsOn: FurnitureCatalogue
 

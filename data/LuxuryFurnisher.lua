@@ -2,20 +2,17 @@ FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 FurC.LuxuryFurnisher[FURC_ALTMER] = {
     
 	[134845] = {	-- Brotherhood  Tapestry, Small
-		itemPrice 	= ,
+		itemPrice 	= 5000,
 		itemDate	= "2018-06-02",
 	},
-
 	[120837] = {	-- Brotherhood Window, Stained Glass
 		itemPrice 	= 100000,
 		itemDate	= "2018-06-02",
 	},
-
 	[121271] = {	-- Brotherhood Tapestry
 		itemPrice 	= 10000,
 		itemDate	= "2018-06-02",
 	},
-
 	[120835] = {	-- Brotherhood Candelabra, Table
 		itemPrice 	= 2500,
 		itemDate	= "2018-06-02",

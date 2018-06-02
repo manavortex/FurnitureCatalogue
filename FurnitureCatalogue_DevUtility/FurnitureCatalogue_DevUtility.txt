@@ -1,0 +1,10 @@
+## Title: FurnitureCatalogue_DevUtility
+## Author: manavortex
+## Description: This is a utility addon that helps me generate text entries for the data files. It won't even activate if you're not me, so feel free to unload it.
+## Version: 1.0.0
+## APIVersion: 100023
+## DependsOn: FurnitureCatalogue
+
+xml.xml
+00_startup.lua
+ContextMenu.lua
