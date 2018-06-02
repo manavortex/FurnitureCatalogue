@@ -44,12 +44,13 @@ end
 
 FurC.MiscItemSources[FURC_ALTMER] = {
     [FURC_CROWN] = {
-        [130206] = getCrownStorePriceString(370), 	-- Ayleid Apparatus, Welkynd
+        [130206] = getCrownStorePriceString(370), 	                -- Ayleid Apparatus, Welkynd
     }, 
     [FURC_DROP] = {
-        [139066] = GetString(SI_FURC_HARVEST),      -- Plant, Redtop Grass
+        [139066] = GetString(SI_FURC_HARVEST),                      -- Plant, Redtop Grass
         
-        [139060] = GetString(SI_FURC_GEYSIR),  -- Giant Clam, Ancient
+        [139060] = GetString(SI_FURC_GEYSIR),                       -- Giant Clam, Ancient
+        [139073] = GetString(SI_FURC_QUESTREWARD) .. "Lilandril"    -- Painting of Summerset Coast, Refined
     },
     [FURC_FISHING] = {
         [139080] = FURC_FISHING_SUMMERSET,  -- Coral Formation, Ancient Pillar Polyps
@@ -57,6 +58,9 @@ FurC.MiscItemSources[FURC_ALTMER] = {
         [139081] = FURC_FISHING_SUMMERSET,  -- Plant, Sea Grapes  
         [139084] = FURC_FISHING_SUMMERSET,  -- Plants, Pearlwort Cluster
         [139085] = FURC_FISHING_SUMMERSET,  -- Plants, Pearlwort Cluster
+        [139068] = FURC_FISHING_SUMMERSET,  -- Plants, Springwheeze
+        [139077] = FURC_FISHING_SUMMERSET,  -- Coral Formation, Bulwark
+        [139078] = FURC_FISHING_SUMMERSET,  -- Coral Formation, Pillar Polyps    
     }
     
 } -- Reach

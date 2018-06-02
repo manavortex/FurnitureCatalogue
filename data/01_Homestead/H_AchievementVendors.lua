@@ -2354,7 +2354,7 @@ FurC.AchievementVendors[FURC_HOMESTEAD] = {
 	},
 
 	["any city"] = {
-		[FURC_AV_ENC] = {
+		[GetString(FURC_AV_ENC)] = {
 			[120050] = { -- Enchanter's Sign
 				itemPrice 	= 5000,
 			},

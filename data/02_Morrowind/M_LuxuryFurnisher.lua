@@ -133,22 +133,6 @@ FurC.LuxuryFurnisher[FURC_MORROWIND] = {
 		itemDate	= "2017-06-23",
 	},
 
-	-- June, 16
-
-	[120837] = {	-- Brotherhood Window, Stained Glass
-		itemPrice 	= 107143,
-		itemDate	= "2017-06-16",
-	},
-
-	[121271] = {	-- Brotherhood Tapestry
-		itemPrice 	= 10834,
-		itemDate	= "2017-06-16",
-	},
-
-	[120835] = {	-- Brotherhood Candelabra, Table
-		itemPrice 	= 2500,
-		itemDate	= "2017-06-16",
-	},
 
 
 }
