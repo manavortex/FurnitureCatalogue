@@ -1,5 +1,15 @@
+local UNITTAG_PLAYER = "player"
+local function whoami()
+    return GetUnitDisplayName(UNITTAG_PLAYER)
+end
+
+local isMana    = string.find(whoami(), "@manavortex") or string.find(whoami(), "@Manorin") 
+if not isMana   then return end
+
+
+
 FurCDevControl_LinkHandlerBackup_OnLinkMouseUp  = nil
-local this                                      = FurCDevUtility
+local this                                      = FurCDevUtility or {}
 this.textbox                                    = this.textbox or FurCDevControlBox
 local textbox                                   = this.textbox
 
