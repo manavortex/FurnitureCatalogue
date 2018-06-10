@@ -75,6 +75,7 @@ local strings = {
 	SI_FURC_STRING_VOUCHER_VENDOR =				"Sold by either Rolis Hlaalu or Faustina Curio",
     SI_FURC_QUESTREWARD =                       "Reward for a quest in ",
     SI_FURC_GEYSIR =                            "Drops from geysir reward clams on Summerset",
+    SI_FURC_GIANT_CLAM =                        "Drops from giant clams and geysir reward clams on Summerset",
 	-- =============================== --
 	-- ============ MENU ============= --
 	-- =============================== --
@@ -245,6 +246,7 @@ local strings = {
     SI_FURC_DAILY_ASHLANDERS			            = "Ashlander daily quest rewards",
     SI_FURC_PLUNDERSKULL			                = "Drops from Plunder Skulls during Witches' Festival",
     SI_FURC_DROP_CHEST_VVARDENFELL	                = "Extremely rarely from chests on Vvardenfell",
+    SI_FURC_DROP                                    = "This item is a drop ", 
     SI_FURC_FLAME_ATRONACH	                        = "Flame Atronach",
 	SI_FURC_CHESTS                                  = "from treasure chests",
 	SI_FURC_VVARDENFELL_PAINTING                    = "extremely rarely from safeboxes",

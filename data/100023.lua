@@ -20,7 +20,6 @@ FurC.MiscItemSources[FURC_ALTMER] 	= {
         [139146] = GetString(SI_FURC_EXISITING_ITEMSOURCE_UNKNOWN_YET), -- Crystals, Midnight Bloom
         [139145] = GetString(SI_FURC_EXISITING_ITEMSOURCE_UNKNOWN_YET), -- Crystals, Midnight Tower
         [139077] = GetString(SI_FURC_EXISITING_ITEMSOURCE_UNKNOWN_YET), -- Coral Formation, Bulwark
-        [139059] = GetString(SI_FURC_EXISITING_ITEMSOURCE_UNKNOWN_YET), -- Ivory, Polished
         [139076] = GetString(SI_FURC_EXISITING_ITEMSOURCE_UNKNOWN_YET), -- Painting of Ancient Road, Refined
         [139333] = GetString(SI_FURC_EXISITING_ITEMSOURCE_UNKNOWN_YET), -- Coral Formation, Trees Capped
         [139334] = GetString(SI_FURC_EXISITING_ITEMSOURCE_UNKNOWN_YET), -- Coral Formation, Tree Capped

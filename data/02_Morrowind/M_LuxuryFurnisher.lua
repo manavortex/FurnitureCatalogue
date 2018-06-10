@@ -115,23 +115,6 @@ FurC.LuxuryFurnisher[FURC_MORROWIND] = {
 	},
 
 
-	-- June, 23 - 26
-	[121270] = {	-- Brotherhood Banner, Large
-		itemPrice 	= 27084,
-		itemDate	= "2017-06-23",
-	},
-	[120836] = {	-- Brotherhood Candelabra, Floor
-		itemPrice 	= 8125,
-		itemDate	= "2017-06-23",
-	},
-	[120839] = {	-- Brotherhood Ledger, Stand
-		itemPrice 	= 4000,
-		itemDate	= "2017-06-23",
-	},
-	[120838] = {	-- Brotherhood Plaque, Wolf
-		itemPrice 	= 27084,
-		itemDate	= "2017-06-23",
-	},
 
 
 

@@ -23,11 +23,14 @@ local FURC_HARVEST_CHARBOR		= GetString(SI_FURC_HARVEST) .. " in Coldharbour"
 
 local FURC_SCAMBOX_F_ATRO		= zo_strformat("<<1>> (<<2>>)",
                                                 GetString(SI_FURC_SCAMBOX), GetString(SI_FURC_FLAME_ATRONACH))
-
+                                                
 local FURC_DB_POISON			= zo_strformat("<<1>> <<2>>", GetString(SI_FURC_DB), GetString(SI_FURC_DB_POISON))
 local FURC_DB_SNEAKY			= zo_strformat("<<1>> <<2>>", GetString(SI_FURC_DB), GetString(SI_FURC_DB_STEALTH))
 
-local FURC_FISHING_SUMMERSET    = GetString(SI_FURC_CANBEFISHED) .. " on Summerset"
+local onSummerset               = " on Summerset"
+
+local FURC_FISHING_SUMMERSET    = GetString(SI_FURC_CANBEFISHED) .. onSummerset
+local FURC_DROP_ALTMER          = GetString(SI_FURC_DROP) .. onSummerset
 
 local function getCrownStorePriceString(price)
     return string.format("%s (%u)", GetString(SI_FURC_CROWNSTORESOURCE), price)
@@ -47,9 +50,12 @@ FurC.MiscItemSources[FURC_ALTMER] = {
         [130206] = getCrownStorePriceString(370), 	                -- Ayleid Apparatus, Welkynd
     }, 
     [FURC_DROP] = {
+    
+        [139059] = GetString(FURC_DROP_ALTMER),                     -- Ivory, Polished - Foryn had one, can't remember where I got it
         [139066] = GetString(SI_FURC_HARVEST),                      -- Plant, Redtop Grass
         
-        [139060] = GetString(SI_FURC_GEYSIR),                       -- Giant Clam, Ancient
+        [139060] = GetString(SI_FURC_GIANT_CLAM),                       -- Giant Clam, Ancient
+        [139062] = GetString(SI_FURC_GIANT_CLAM),                       -- Pearl, Large
         [139073] = GetString(SI_FURC_QUESTREWARD) .. "Lilandril"    -- Painting of Summerset Coast, Refined
     },
     [FURC_FISHING] = {
