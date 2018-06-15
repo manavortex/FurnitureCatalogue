@@ -41,6 +41,20 @@ local function getItemLink(itemId)
 end
 FurC.GetItemLink = getItemLink
 
+local function printItemLink(itemId)
+    if nil == itemId then return end
+	itemId = tostring(itemId)
+    local itemLink = nil
+	if #itemId > 55 then 
+        itemLink = itemId 
+    end
+    itemLink = itemLink or zo_strformat("|H1:item:<<1>>:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h", itemId)
+	d(zo_strformat("[<<1>>] = '',\t\t-- <<2>>", itemId, GetItemLinkName(itemLink)))
+end
+FurC.PrintItemLink = printItemLink
+
+
+
 local function addDatabaseEntry(recipeKey, recipeArray)
 	if recipeKey and recipeArray and {} ~= recipeArray then
 		FurC.settings.data[recipeKey] = recipeArray
