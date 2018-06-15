@@ -35,46 +35,39 @@ function AddFurnitureShoppingListMenuEntry(itemId, calledFromFurC)
 
 end
 
+local cachedItemLink, cachedRecipeArray
+
+local function toChat()             FurC.ToChat(cachedItemLink) end
+local function fave()               FurC.Fave(cachedItemLink) end
+local function postItemSource()     FurC.ToChat(GetItemLinkRecipeResultItemLink(cachedItemLink)) end
+local function postRecipe()         FurC.ToChat(FurC.GetItemLink(cachedRecipeArray.blueprint)) end
+local function postRecipeResult()   FurC.ToChat(GetItemLinkRecipeResultItemLink(cachedItemLink)) end
+local function postMaterial()       FurC.ToChat(itemLink .. ": " .. FurC.GetMats(cachedItemLink, cachedRecipeArray, true)) end
+
+
 local function addMenuItems(itemLink, recipeArray)
 
 	recipeArray = recipeArray or FurC.Find(itemLink)
-	if (nil == recipeArray) then return end
-	-- ClearMenu()
-
-	AddCustomMenuItem(GetString(SI_FURC_MENU_HEADER),
-		function() FurC.ToChat(itemLink) end,
-		MENU_ADD_OPTION_LABEL
-	)
+	if not recipeArray or recipeArray == {} then return end
+    
+    cachedItemLink = itemLink
+    cachedRecipeArray = recipeArray
+    
+	AddCustomMenuItem(GetString(SI_FURC_MENU_HEADER), toChat, MENU_ADD_OPTION_LABEL)
+    
 	local faveText = FurC.IsFavorite(itemLink, recipeArray) and GetString(SI_FURC_REMOVE_FAVE) or GetString(SI_FURC_ADD_FAVE)
-	AddCustomMenuItem(faveText,
-		function() FurC.Fave(itemLink, recipeArray) end,
-		MENU_ADD_OPTION_LABEL
-	)
+	AddCustomMenuItem(faveText, fave, MENU_ADD_OPTION_LABEL)
 
 	if recipeArray.origin ~= FURC_CRAFTING then
-		AddCustomMenuItem(GetString(SI_FURC_POST_ITEMSOURCE),
-			function() FurC.PrintSource(itemLink, recipeArray) end,
-			MENU_ADD_OPTION_LABEL
-		)
+		AddCustomMenuItem(GetString(SI_FURC_POST_ITEMSOURCE), postItemSource, MENU_ADD_OPTION_LABEL)
 	else
 		if IsItemLinkFurnitureRecipe(itemLink) then
-			AddCustomMenuItem(GetString(SI_FURC_POST_ITEM),
-			function() FurC.ToChat(GetItemLinkRecipeResultItemLink(itemLink)) end,
-				MENU_ADD_OPTION_LABEL
-			)
-		elseif nil ~= recipeArray.blueprint then
-			AddCustomMenuItem(GetString(SI_FURC_POST_RECIPE),
-			function() FurC.ToChat(FurC.GetItemLink(recipeArray.blueprint)) end,
-				MENU_ADD_OPTION_LABEL
-			)
-		end
-		AddCustomMenuItem(GetString(SI_FURC_POST_MATERIAL),
-			function() FurC.ToChat(itemLink .. ": " .. FurC.GetMats(itemLink, recipeArray, true)) end,
-			MENU_ADD_OPTION_LABEL
-		)
+			AddCustomMenuItem(GetString(SI_FURC_POST_ITEM), postRecipeResult, MENU_ADD_OPTION_LABEL)
+            AddCustomMenuItem(GetString(SI_FURC_POST_RECIPE), postRecipe, MENU_ADD_OPTION_LABEL)		
+		end        
+		AddCustomMenuItem(GetString(SI_FURC_POST_MATERIAL), postMaterial, MENU_ADD_OPTION_LABEL)
 		AddFurnitureShoppingListMenuEntry(itemLink, true)
 	end
-	-- ShowMenu()
 
 end
 

@@ -50,12 +50,13 @@ FurC.MiscItemSources[FURC_ALTMER] = {
         [130206] = getCrownStorePriceString(370), 	                -- Ayleid Apparatus, Welkynd
     }, 
     [FURC_DROP] = {
-    
-        [139059] = GetString(FURC_DROP_ALTMER),                     -- Ivory, Polished - Foryn had one, can't remember where I got it
+        
+        [139059] = GetString(FURC_DROP),                            -- Ivory, Polished - Foryn had one, can't remember where I got it
         [139066] = GetString(SI_FURC_HARVEST),                      -- Plant, Redtop Grass
         
-        [139060] = GetString(SI_FURC_GIANT_CLAM),                       -- Giant Clam, Ancient
-        [139062] = GetString(SI_FURC_GIANT_CLAM),                       -- Pearl, Large
+        [139060] = GetString(SI_FURC_GIANT_CLAM),                   -- Giant Clam, Ancient
+        [139062] = GetString(SI_FURC_GIANT_CLAM),                   -- Pearl, Large
+        
         [139073] = GetString(SI_FURC_QUESTREWARD) .. "Lilandril"    -- Painting of Summerset Coast, Refined
     },
     [FURC_FISHING] = {

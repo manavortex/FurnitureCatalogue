@@ -100,20 +100,6 @@ FurC.LuxuryFurnisher[FURC_MORROWIND] = {
 	},
 
 
-	-- July 1st - 2nd
-	[126560] = {	-- Dwarven fountain, forged
-		itemPrice 	= 53571,
-		itemDate	= "2017-06-30",
-	},
-	[126564] = {	-- Dwarven Clock, Deactivated
-		itemPrice 	= 16250,
-		itemDate	= "2017-06-30",
-	},
-	[126561] = {	-- Dwarven Pillar, Forged
-		itemPrice 	= 10834,
-		itemDate	= "2017-06-30",
-	},
-
 
 
 

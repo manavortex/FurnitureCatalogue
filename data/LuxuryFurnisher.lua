@@ -1,6 +1,24 @@
 FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 FurC.LuxuryFurnisher[FURC_ALTMER] = {
     
+	--
+	[126560] = {	-- Dwarven fountain, forged
+		itemPrice 	= 50000,
+		itemDate	= "2017-06-16",
+	},
+	[126564] = {	-- Dwarven Clock, Deactivated
+		itemPrice 	= 15000,
+		itemDate	= "2017-06-16",
+	},
+	[126561] = {	-- Dwarven Pillar, Forged
+		itemPrice 	= 10000,
+		itemDate	= "2017-06-16",
+	},
+	[139092] = {	-- Dwarven Engine, Fused 
+		itemPrice 	= 24000,
+		itemDate	= "2017-06-16",
+	},
+
 	-- June, 23 - 26
 	[121270] = {	-- Brotherhood Banner, Large
 		itemPrice 	= 25000,
