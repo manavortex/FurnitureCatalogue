@@ -103,7 +103,7 @@ local function matchSourceDropdown()
 	elseif FURC_RUMOUR 					== ddSource then
 		return recipeArray.origin 		== FURC_RUMOUR
 	elseif FURC_WRIT_VENDOR 			== ddSource then
-		return recipeArray.origin 		== FURC_Rolis
+		return recipeArray.origin 		== FURC_ROLIS
 	elseif FURC_OTHER					== ddSource then
 		return (
 			recipeArray.origin == FURC_FESTIVAL_DROP or

@@ -353,20 +353,20 @@ local function scanFromFiles(shouldScanCharacter)
 	local function scanRolis()
 		for versionNumber, versionData in pairs(FurC.Rolis) do
 			for itemId, itemSource in pairs(versionData) do
-				recipeArray = parseFurnitureItem(FurC.GetItemLink(recipeId), true)
+				recipeArray = parseFurnitureItem(FurC.GetItemLink(itemId), true)
 				if nil ~= recipeArray then
 					recipeArray.version = versionNumber
-					recipeArray.origin = FURC_Rolis
+					recipeArray.origin = FURC_ROLIS
 					addDatabaseEntry(itemId, recipeArray)
 				end
 			end
 		end
 		for versionNumber, versionData in pairs(FurC.Faustina) do
 			for itemId, itemSource in pairs(versionData) do
-				recipeArray = parseFurnitureItem(FurC.GetItemLink(recipeId), true)
+				recipeArray = parseFurnitureItem(FurC.GetItemLink(itemId), true)
 				if nil ~= recipeArray then
 					recipeArray.version = versionNumber
-					recipeArray.origin = FURC_Rolis
+					recipeArray.origin = FURC_ROLIS
 					addDatabaseEntry(itemId, recipeArray)
 				end
 			end
@@ -455,7 +455,6 @@ local function scanFromFiles(shouldScanCharacter)
 
 	task:Call(scanRecipeFile)
 	:Then(scanMiscItemFile)
-	:Then(scanRolis)
 	:Then(scanVendorFiles)
 	:Then(scanRolis)
 	:Then(scanFestivalFiles)
@@ -514,7 +513,7 @@ FurC.settings.emptyItemSources =  FurC.settings.emptyItemSources or {}
 	local origin = recipeArray.origin
 	if origin == FURC_CRAFTING or origin == FURC_WRIT_VENDOR then
 		return FurC.GetMats(recipeKey, recipeArray, stripColor)
-	elseif origin == FURC_Rolis then
+	elseif origin == FURC_ROLIS then
 		return FurC.getRolisSource(recipeKey, recipeArray, stripColor)
 	elseif origin == FURC_LUXURY then
 		return FurC.getLuxurySource(recipeKey, recipeArray, stripColor)

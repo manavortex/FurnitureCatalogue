@@ -39,7 +39,7 @@ local cachedItemLink, cachedRecipeArray
 
 local function toChat()             FurC.ToChat(cachedItemLink) end
 local function fave()               FurC.Fave(cachedItemLink) end
-local function postItemSource()     FurC.ToChat(GetItemLinkRecipeResultItemLink(cachedItemLink)) end
+local function postItemSource()     FurC.ToChat(FurC.GetItemDescription(cachedItemLink, cachedRecipeArray, true)) end
 local function postRecipe()         FurC.ToChat(FurC.GetItemLink(cachedRecipeArray.blueprint)) end
 local function postRecipeResult()   FurC.ToChat(GetItemLinkRecipeResultItemLink(cachedItemLink)) end
 local function postMaterial()       FurC.ToChat(itemLink .. ": " .. FurC.GetMats(cachedItemLink, cachedRecipeArray, true)) end
@@ -59,13 +59,13 @@ local function addMenuItems(itemLink, recipeArray)
 	AddCustomMenuItem(faveText, fave, MENU_ADD_OPTION_LABEL)
 
 	if recipeArray.origin ~= FURC_CRAFTING then
-		AddCustomMenuItem(GetString(SI_FURC_POST_ITEMSOURCE), postItemSource, MENU_ADD_OPTION_LABEL)
+		AddCustomMenuItem(GetString(SI_FURC_POST_ITEMSOURCE),   postItemSource, MENU_ADD_OPTION_LABEL)
 	else
 		if IsItemLinkFurnitureRecipe(itemLink) then
-			AddCustomMenuItem(GetString(SI_FURC_POST_ITEM), postRecipeResult, MENU_ADD_OPTION_LABEL)
-            AddCustomMenuItem(GetString(SI_FURC_POST_RECIPE), postRecipe, MENU_ADD_OPTION_LABEL)		
+			AddCustomMenuItem(GetString(SI_FURC_POST_ITEM),     postRecipeResult, MENU_ADD_OPTION_LABEL)
+            AddCustomMenuItem(GetString(SI_FURC_POST_RECIPE),   postRecipe, MENU_ADD_OPTION_LABEL)		
 		end        
-		AddCustomMenuItem(GetString(SI_FURC_POST_MATERIAL), postMaterial, MENU_ADD_OPTION_LABEL)
+		AddCustomMenuItem(GetString(SI_FURC_POST_MATERIAL),     postMaterial, MENU_ADD_OPTION_LABEL)
 		AddFurnitureShoppingListMenuEntry(itemLink, true)
 	end
 
