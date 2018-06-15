@@ -61,7 +61,6 @@ local function updateItemInInventory(control)
 end
 
 function FurC.SetupInventoryRecipeIcons(calledRecursively)
-	if nil ~= ResearchAssistant then return end
 	local function isValidBag(bagId, inventory)
 		if bagId == BAG_WORN 				then return false end
 		if bagId == BAG_VIRTUAL 			then return false end
