@@ -111,7 +111,8 @@ function FurC.GuiOnSearchBoxFocusOut(control)
         FurC.GuiOnSliderUpdate(FurCGui_ListHolder_Slider, 0)
 		FurC.UpdateGui()
     end
-	FurC_SearchBoxText:SetText(FURC_S_FILTERDEFAULT)
+    local text = FurC_SearchBox:GetText()
+    FurC_SearchBoxText:SetText((#text == 0 and FURC_S_FILTERDEFAULT) or "")
 end
 
 function FurC.GuiOnScroll(control, delta)

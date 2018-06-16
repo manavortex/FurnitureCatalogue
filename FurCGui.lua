@@ -129,23 +129,29 @@ local function updateScrollDataLinesData()
 	end)
 
 end
+local FURC_S_FILTERDEFAULT = GetString(SI_FURC_TEXTBOX_FILTER_DEFAULT)
+local cachedDefaults
+local function startLoading()
+    FurC.IsLoading(true)
+    local text = FurC_SearchBox:GetText()
+    FurC_SearchBoxText:SetText((#text == 0 and FURC_S_FILTERDEFAULT) or "")
+    FurC.LastFilter = useDefaults
+    FurC.SetFilter(useDefaults, true)
+end
+local function stopLoading()
+    FurC.IsLoading(false)
+    updateLineVisibility()
+end
+local function stopLoadingWithDelay()
+    zo_callLater(stopLoading, 500)
+end
 
 function FurC.UpdateGui(useDefaults)
 	if FurCGui:IsHidden() then return end
-
-	otherTask:Call(function()
-
-		FurC.IsLoading(true)
-		FurC.LastFilter = useDefaults
-		FurC.SetFilter(useDefaults, true)
-	end)
+    cachedDefaults = useDefaults
+	otherTask:Call(startLoading)
 	:Then(updateScrollDataLinesData)
-	:Then(function()  zo_callLater(function()
-
-		FurC.IsLoading(false)
-		updateLineVisibility()
-
-	end, 200) end)
+	:Then(stopLoadingWithDelay)
 end
 
 function FurC.UpdateInventoryScroll()

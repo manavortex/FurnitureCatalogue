@@ -249,20 +249,21 @@ function FurC.SetFilterCraftingType(craftingType)
 end
 
 
+local FURC_S_FILTERDEFAULT = GetString(SI_FURC_TEXTBOX_FILTER_DEFAULT)
+
 function FurC.GetSearchFilter()
-	if (not FurC.SearchFilter) or FurC.SearchFilter == "Filter by text search" then
+	if (not FurC.SearchFilter) or FurC.SearchFilter == FURC_S_FILTERDEFAULT then
 		FurC.SearchFilter = FurC_SearchBox:GetText() or ""
 	end
-
 	return FurC.SearchFilter or ""
 end
-
 function FurC.GuiSetSearchboxTextFrom(control)
+    control = control or FurC_SearchBox
 	-- call asynchronely to prevent lagging. Praise votan.
 	task:Call(function()
-		local text = control:GetText()
-        control:GetNamedChild("Text"):SetText((text == "" and "Filter by text search") or "")
-
+		local text = FurC_SearchBox:GetText()
+        FurC_SearchBoxText:SetText((#text == 0 and FURC_S_FILTERDEFAULT) or "")
+        
 		FurC.SearchFilter = text
 
 		FurC.GuiOnSliderUpdate(FurCGui_ListHolder_Slider, 0)
