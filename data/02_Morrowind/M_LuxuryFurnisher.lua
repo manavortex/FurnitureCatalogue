@@ -85,20 +85,6 @@ FurC.LuxuryFurnisher[FURC_MORROWIND] = {
 	},
 
 
-	-- July 8 - July 9
-	[126562] = {	-- Dwarven Crystal Mechanism
-		itemPrice 	= 53571,
-		itemDate	= "2017-07-07",
-	},
-	[126563] = {	-- Dwarven Orrery, Reference
-		itemPrice 	= 27084,
-		itemDate	= "2017-07-07",
-	},
-	[126559] = {	-- Dwarven Schematics, technical
-		itemPrice 	= 8125,
-		itemDate	= "2017-07-07",
-	},
-
 
 
 

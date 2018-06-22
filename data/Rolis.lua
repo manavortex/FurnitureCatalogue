@@ -7,7 +7,6 @@ FurC.Faustina[FURC_ALTMER] = {
     [139391] = 10, -- Master Craftsman's Banner, Hanging
 	[137870] = 125, -- Basic Jewelry Crafting Station
 }
-if GetAPIVersion() < 100023 then FurC.Faustina[FURC_ALTMER] = {} end
 
 
 FurC.FaustinaRecipes[FURC_DRAGONS] = {
@@ -31,7 +30,7 @@ FurC.FaustinaRecipes[FURC_DRAGONS] = {
 }
 
 FurC.Faustina[FURC_DRAGONS] = {
-	[134675] = 1500,
+	[134675] = 500,
 }
 
 FurC.Rolis[FURC_DRAGONS] = {
