@@ -2,7 +2,7 @@ FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 FurC.LuxuryFurnisher[FURC_ALTMER] = {
     
     
-    [139094= { -- Daedric Altar, Periyte
+    [139094] = { -- Daedric Altar, Periyte
 		itemPrice 	= 40000,
 		itemDate	= "2016-06-30",
 	},
