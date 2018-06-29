@@ -1,6 +1,27 @@
 FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 FurC.LuxuryFurnisher[FURC_ALTMER] = {
     
+    
+    [139094= { -- Daedric Altar, Periyte
+		itemPrice 	= 40000,
+		itemDate	= "2016-06-30",
+	},
+
+	-- July 15 - July 16
+	[126567] = {	-- Daedric Sarcophagus, Sealed
+		itemPrice 	= 10000,
+		itemDate	= "2016-06-30",
+	},
+	[126565] = {	-- Daedric Platform, Sarcophagus
+		itemPrice 	= 8000,
+		itemDate	= "2016-06-30",
+	},
+	[126566] = {	-- Daedric Brazier, Ritual
+		itemPrice 	= 25000,
+		itemDate	= "2016-06-30",
+	},
+
+    
 	[126562] = {	-- Dwarven Crystal Mechanism
 		itemPrice 	= 50000,
 		itemDate	= "2018-06-23",

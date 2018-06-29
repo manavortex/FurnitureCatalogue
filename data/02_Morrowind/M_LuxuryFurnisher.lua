@@ -70,20 +70,6 @@ FurC.LuxuryFurnisher[FURC_MORROWIND] = {
 		itemDate	= "2017-07-21",
 	},
 
-	-- July 15 - July 16
-	[126567] = {	-- Daedric Brazier, Ritual
-		itemPrice 	= 10834,
-		itemDate	= "2017-07-14",
-	},
-	[126565] = {	-- Daedric Platform, Sarcophagus
-		itemPrice 	= 8125,
-		itemDate	= "2017-07-14",
-	},
-	[126566] = {	-- Daedric Sarcophagus, Sealed
-		itemPrice 	= 27084,
-		itemDate	= "2017-07-14",
-	},
-
 
 
 

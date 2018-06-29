@@ -61,14 +61,16 @@ local function addMenuItems(itemLink, recipeArray)
 	if recipeArray.origin ~= FURC_CRAFTING then
 		AddCustomMenuItem(GetString(SI_FURC_POST_ITEMSOURCE),   postItemSource, MENU_ADD_OPTION_LABEL)
 	else
-		if IsItemLinkFurnitureRecipe(itemLink) then
+        local isRecipe 
+		if isRecipe then
 			AddCustomMenuItem(GetString(SI_FURC_POST_ITEM),     postRecipeResult, MENU_ADD_OPTION_LABEL)
-            AddCustomMenuItem(GetString(SI_FURC_POST_RECIPE),   postRecipe, MENU_ADD_OPTION_LABEL)		
-		end        
+		end
+        if isRecipe or recipeArray.blueprint then
+             AddCustomMenuItem(GetString(SI_FURC_POST_RECIPE),   postRecipe, MENU_ADD_OPTION_LABEL)		
+        end        
 		AddCustomMenuItem(GetString(SI_FURC_POST_MATERIAL),     postMaterial, MENU_ADD_OPTION_LABEL)
 		AddFurnitureShoppingListMenuEntry(itemLink, true)
 	end
-
 end
 
 function FurC_HandleClickEvent(itemLink, button, control)		-- button being mouseButton here
