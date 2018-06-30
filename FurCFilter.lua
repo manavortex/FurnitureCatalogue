@@ -21,7 +21,8 @@ local sourceIndices
 local recipeArray, itemId, itemLink, itemType, sItemType, itemName, recipeIndex, recipeListIndex
 
 function FurC.SetFilter(useDefaults, skipRefresh)
-	ClearTooltip(InformationTooltip)
+	
+    ClearTooltip(InformationTooltip)
 	sourceIndices 					= FurC.SourceIndices
 	searchString 					= FurC.GetSearchFilter()
 
@@ -64,8 +65,8 @@ function FurC.InitFilters()
 	FurC.SetDropdownChoice("Version", FurC.GetDefaultDropdownChoiceText("Version"), FurC.GetDefaultDropdownChoice("Version"))
 end
 
-
 local function isRecipeArrayKnown()
+
 	if nil == recipeArray or nil == recipeArray.characters then return end
 	 if dropdownChoiceCharacter == 1 then
 		for name, value in pairs(recipeArray.characters) do
@@ -90,21 +91,24 @@ end
 local function matchSourceDropdown()
 
 	-- "All", don't care
-	if FURC_NONE						== ddSource then  -- All
+	if FURC_NONE					== ddSource then
 		return true
-	elseif FURC_CRAFTING_KNOWN 			== ddSource then
-		return recipeArray.origin 		== FURC_CRAFTING and isRecipeArrayKnown(recipeArray)
-	elseif FURC_CRAFTING_UNKNOWN 		== ddSource then
-		return recipeArray.origin 		== FURC_CRAFTING and not isRecipeArrayKnown(recipeArray)
-	elseif FURC_FAVE 					== ddSource then
+    end
+    if recipeArray.origin == FURC_CRAFTING then 
+        return ddSource == FURC_CRAFTING
+               or (FURC_CRAFTING_KNOWN == ddSource and isRecipeArrayKnown(recipeArray)) 
+               or (FURC_CRAFTING_UNKNOWN == ddSource)
+    end
+	if FURC_FAVE 					== ddSource then
 		return recipeArray.favorite
-	elseif FURC_VENDOR 					== ddSource then
+    end
+	if FURC_VENDOR 					== ddSource then
 		return (recipeArray.origin 		== FURC_VENDOR or (mergeLuxuryAndSales and recipeArray.origin == FURC_LUXURY))
-	elseif FURC_RUMOUR 					== ddSource then
-		return recipeArray.origin 		== FURC_RUMOUR
-	elseif FURC_WRIT_VENDOR 			== ddSource then
+    end
+	if FURC_WRIT_VENDOR 			== ddSource then
 		return recipeArray.origin 		== FURC_ROLIS
-	elseif FURC_OTHER					== ddSource then
+    end
+	if FURC_OTHER					== ddSource then
 		return (
 			recipeArray.origin == FURC_FESTIVAL_DROP or
 			recipeArray.origin == FURC_DROP 	     or
@@ -112,10 +116,10 @@ local function matchSourceDropdown()
 			recipeArray.origin == FURC_JUSTICE 	     or
 			recipeArray.origin == FURC_GUILDSTORE
 		)
-	else return recipeArray.origin  == ddSource end
-
+    end
 	-- we're checking character knowledge
-	return 1 == dropdownChoiceCharacter or recipeArray.origin == FURC_CRAFTING
+	return recipeArray.origin  == ddSource 
+        
 
 end
 
@@ -164,7 +168,7 @@ function FurC.MatchFilter(currentItemId, currentRecipeArray)
         if filterAllOnTextSearch and not FurC.GetFilterAllOnTextNoRumour() then
             return false
         end
-        if hideRumours then return false end
+        if hideRumours and ddSource ~= FURC_RUMOUR then return false end
     end
 
     if recipeArray.origin == FURC_CROWN then

@@ -7,7 +7,6 @@ FurC.MiscItemSources[FURC_ALTMER][FURC_RUMOUR] = {
     
     [139093] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- Dwarven Centurion Hammer, Detached
     
-    [139094] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- Daedric Altar, Peryite
     [139095] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- Daedric Drinking Bowl, Ritual
     [139096] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- Daedric Urn, Sealed        
     
