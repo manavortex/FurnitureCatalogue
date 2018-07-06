@@ -4,6 +4,7 @@ local function whoami()
 end
 
 local isMana    = string.find(whoami(), "@manavortex") or string.find(whoami(), "@Manorin") 
+if not isMana then return end
 
 
 FurCDevControl_LinkHandlerBackup_OnLinkMouseUp  = nil
@@ -148,7 +149,7 @@ end
 
 
 
-function FurCDevUtility.OnControlMouseUp(control, button)
+function this.OnControlMouseUp(control, button)
     if not isMana   then return end
     
 	if (not control) or button ~= 2 then return end
@@ -167,7 +168,7 @@ function FurCDevUtility.OnControlMouseUp(control, button)
 
 end
 
-function FurCDevUtility.InitRightclickMenu()
+function this.InitRightclickMenu()
     if not isMana   then return end
 	FurCDevControl_LinkHandlerBackup_OnLinkMouseUp = ZO_LinkHandler_OnLinkMouseUp
 	ZO_LinkHandler_OnLinkMouseUp = function(itemLink, button, control)
