@@ -56,19 +56,6 @@ FurC.LuxuryFurnisher[FURC_MORROWIND] = {
 		itemDate	= "2017-07-28",
 	},
 
-	-- July 22 - July 23
-	[126571] = {	-- Daedric Chandelier, Spiked
-		itemPrice 	= 8125,
-		itemDate	= "2017-07-21",
-	},
-	[126569] = {	-- Daedric Chest, Sealed
-		itemPrice 	= 8125,
-		itemDate	= "2017-07-21",
-	},
-	[126570] = {	-- Daedric Throne, Skulls
-		itemPrice 	= 0,
-		itemDate	= "2017-07-21",
-	},
 
 
 

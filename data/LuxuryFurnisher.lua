@@ -2,6 +2,29 @@ FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 FurC.LuxuryFurnisher[FURC_ALTMER] = {
     
     
+	[139096] = {	-- Daedric Urn, Sealed
+		itemPrice 	= 1000,
+		itemDate	= "2018-07-07",
+	},
+    [139095] = {	-- Daedric Drinking Bowl, Ritual 
+		itemPrice 	= 650,
+		itemDate	= "2018-07-07",
+	},
+    [126571] = {	-- Daedric Chandelier, Spiked
+		itemPrice 	= 8000,
+		itemDate	= "2018-07-07",
+	},
+	[126569] = {	-- Daedric Chest, Sealed
+		itemPrice 	= 8000,
+		itemDate	= "2018-07-07",
+	},
+	[126570] = {	-- Daedric Throne, Skulls
+		itemPrice 	= 25000,
+		itemDate	= "2018-07-07",
+	},
+
+    
+    
     [139094] = { -- Daedric Altar, Periyte
 		itemPrice 	= 40000,
 		itemDate	= "2016-06-30",

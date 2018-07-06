@@ -1,12 +1,12 @@
 FurnitureCatalogue 					= {}
 FurnitureCatalogue.name				= "FurnitureCatalogue"
 FurnitureCatalogue.author			= "manavortex"
-FurnitureCatalogue.version          = "2.5.8"
+FurnitureCatalogue.version          = "2.5.9"
 FurnitureCatalogue.CharacterName	= nil
 FurnitureCatalogue.settings			= {}
 
 FurC 								= FurnitureCatalogue
-FurC.DevDebug						= string.find(GetWorldName(), "PTS") and GetUnitDisplayName("player") == "@manavortex"
+FurC.DevDebug						= GetUnitDisplayName("player") == "@manavortex"
 FurC.AccountName					= GetDisplayName()
 
 FurC.AchievementVendors				= {}
