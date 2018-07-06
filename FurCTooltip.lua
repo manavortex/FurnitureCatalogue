@@ -34,7 +34,7 @@ local function addTooltipData(control, itemLink)
 	if nil == itemLink or FURC_EMPTY_STRING == itemLink then return end
 	local isRecipe = IsItemLinkFurnitureRecipe(itemLink)
 
-    tryCreateDebugOutput(itemId, itemLink)
+    -- tryCreateDebugOutput(itemId, itemLink)
 
 	itemLink = (isRecipe and GetItemLinkRecipeResultItemLink(itemLink)) or itemLink
 
