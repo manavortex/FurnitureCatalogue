@@ -451,22 +451,23 @@ local function scanFromFiles(shouldScanCharacter)
 			addDatabaseEntry(itemId, recipeArray)
 		end
 	end
-	FurC.IsLoading(true)
-
-	task:Call(scanRecipeFile)
-	:Then(scanMiscItemFile)
-	:Then(scanVendorFiles)
-	:Then(scanRolis)
-	:Then(scanFestivalFiles)
-	:Then(
-	function()
-		if shouldScanCharacter then
+    local function scanCharacterOrMaybeNot()
+        if shouldScanCharacter then
 			scanCharacter()
 		else
 			startupMessage(GetString(SI_FURC_VERBOSE_STARTUP))
 		end
-	end)
+    end
+    
+	FurC.IsLoading(true)
+
+	task:Call(scanMiscItemFile)
 	:Then(scanRumourRecipes)
+	:Then(scanRecipeFile)
+	:Then(scanVendorFiles)
+	:Then(scanRolis)
+	:Then(scanFestivalFiles)
+	:Then(scanCharacterOrMaybeNot)
 	:Then(FurC.UpdateGui)
 	startupMessage(GetString(SI_FURC_VERBOSE_DB_UPTODATE))
 
@@ -507,7 +508,8 @@ function FurC.ScanRecipes(shouldScanFiles, shouldScanCharacter)								-- return
 end
 
 function FurC.GetItemDescription(recipeKey, recipeArray, stripColor)
-FurC.settings.emptyItemSources =  FurC.settings.emptyItemSources or {}
+    recipeKey = FurC.GetItemId(recipeKey)
+    FurC.settings.emptyItemSources =  FurC.settings.emptyItemSources or {}
 	recipeArray = recipeArray or FurC.Find(recipeKey, recipeArray)
 	if not recipeArray then return "" end
 	local origin = recipeArray.origin

@@ -1,6 +1,7 @@
 FurC.Recipes = FurC.Recipes or {}
 
 FurC.Recipes[FURC_ALTMER] = {
+
     139573, --Sketch: Figurine, the Fish and the Unicorn
     139571, --Sketch: Figurine, the Sea-Monster's Surprise
     139572, --Sketch: Figurine, the Taming of the Gryphon

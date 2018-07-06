@@ -2,15 +2,17 @@ FurC_LinkHandlerBackup_OnLinkMouseUp = nil
 
 local FURC_S_SHOPPINGLIST_1 = GetString(SI_FURC_ONE_TO_SHOPPINGLIST)
 local FURC_S_SHOPPINGLIST_5 = GetString(SI_FURC_FIVE_TO_SHOPPINGLIST)
-local FURC_S_TOGGLE_SL = GetString(SI_FURC_TOGGLE_SHOPPINGLIST)
+local FURC_S_TOGGLE_SL      = GetString(SI_FURC_TOGGLE_SHOPPINGLIST)
 
 function AddFurnitureShoppingListMenuEntry(itemId, calledFromFurC)
-	if calledFromFurC then
+	
+    if calledFromFurC then
 		if (not FurC.GetEnableShoppingList()) then return end
 		if (nil ==	moc()) or (nil == FurnitureShoppingListAdd) then return end
 		local controlName = moc():GetName() or ""
 		if nil == moc():GetName():match("_ListItem_") then return end
 	end
+    
 	local itemLink = FurC.GetItemLink(itemId)
 	if nil == FurC.Find(itemLink) then return end
 	AddCustomMenuItem(FURC_S_SHOPPINGLIST_1,
@@ -61,14 +63,20 @@ local function addMenuItems(itemLink, recipeArray)
 	if recipeArray.origin ~= FURC_CRAFTING then
 		AddCustomMenuItem(GetString(SI_FURC_POST_ITEMSOURCE),   postItemSource, MENU_ADD_OPTION_LABEL)
 	else
-        local isRecipe 
-		if isRecipe then
+    
+    -- if it's a recipe: Allow posting item
+		if IsItemLinkFurnitureRecipe(itemLink) then
 			AddCustomMenuItem(GetString(SI_FURC_POST_ITEM),     postRecipeResult, MENU_ADD_OPTION_LABEL)
-		end
-        if isRecipe or recipeArray.blueprint then
-             AddCustomMenuItem(GetString(SI_FURC_POST_RECIPE),   postRecipe, MENU_ADD_OPTION_LABEL)		
-        end        
+        
+    -- if it's not a recipe, but we hold a recipe: allow posting recipe
+		elseif recipeArray.blueprint then
+             AddCustomMenuItem(GetString(SI_FURC_POST_RECIPE),  postRecipe, MENU_ADD_OPTION_LABEL)		
+        end
+    
+    -- post material list
 		AddCustomMenuItem(GetString(SI_FURC_POST_MATERIAL),     postMaterial, MENU_ADD_OPTION_LABEL)
+    
+    -- will do nothing if preferences not met
 		AddFurnitureShoppingListMenuEntry(itemLink, true)
 	end
 end
@@ -112,11 +120,11 @@ function FurC_HandleInventoryContextMenu(control)
 	or st == SLOT_TYPE_TRADING_HOUSE_POST_ITEM then
         local bagId, slotId = ZO_Inventory_GetBagAndIndex(control)
         itemLink = GetItemLink(bagId, slotId, linkStyle)
-    end
-    if st == SLOT_TYPE_TRADING_HOUSE_ITEM_RESULT then
+    elseif st == SLOT_TYPE_STORE_BUY then 
+        itemLink = GetStoreItemLink(control.index)
+    elseif st == SLOT_TYPE_TRADING_HOUSE_ITEM_RESULT then
         itemLink = GetTradingHouseSearchResultItemLink(ZO_Inventory_GetSlotIndex(control), linkStyle)
-    end
-    if st == SLOT_TYPE_TRADING_HOUSE_ITEM_LISTING then
+    elseif st == SLOT_TYPE_TRADING_HOUSE_ITEM_LISTING then
         itemLink = GetTradingHouseListingItemLink(ZO_Inventory_GetSlotIndex(control), linkStyle)
     end
 
