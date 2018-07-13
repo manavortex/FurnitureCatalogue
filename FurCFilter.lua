@@ -87,6 +87,14 @@ local function shouldBeHidden()
 	(ddSource ~= FURC_CROWN and recipeArray.origin == FURC_CROWN and hideCrownStore)
 end
 
+local validSourcesForOther = {
+    [FURC_FESTIVAL_DROP]    = true, 
+    [FURC_DROP]             = true, 
+    [FURC_FISHING]          = true, 
+    [FURC_JUSTICE]          = true, 
+    [FURC_GUILDSTORE]       = true, 
+}
+
 -- Source: All, All (craftable), Craftable (known), craftable (unknown), purchaseable
 local function matchSourceDropdown()
 
@@ -95,27 +103,21 @@ local function matchSourceDropdown()
 		return true
     end
     if recipeArray.origin == FURC_CRAFTING then 
-        return ddSource == FURC_CRAFTING
-               or (FURC_CRAFTING_KNOWN == ddSource and isRecipeArrayKnown(recipeArray)) 
-               or (FURC_CRAFTING_UNKNOWN == ddSource)
+        if ddSource == FURC_CRAFTING then return true end
+        local matchingDropdownSource = (isRecipeArrayKnown(recipeArray) and FURC_CRAFTING_KNOWN) or FURC_CRAFTING_UNKNOWN
+        return matchingDropdownSource == ddSource
     end
-	if FURC_FAVE 					== ddSource then
+	if FURC_FAVE 					    == ddSource then
 		return recipeArray.favorite
     end
-	if FURC_VENDOR 					== ddSource then
+	if FURC_VENDOR 					    == ddSource then
 		return (recipeArray.origin 		== FURC_VENDOR or (mergeLuxuryAndSales and recipeArray.origin == FURC_LUXURY))
     end
-	if FURC_WRIT_VENDOR 			== ddSource then
+	if FURC_WRIT_VENDOR 			    == ddSource then
 		return recipeArray.origin 		== FURC_ROLIS
     end
-	if FURC_OTHER					== ddSource then
-		return (
-			recipeArray.origin == FURC_FESTIVAL_DROP or
-			recipeArray.origin == FURC_DROP 	     or
-			recipeArray.origin == FURC_FISHING 	     or
-			recipeArray.origin == FURC_JUSTICE 	     or
-			recipeArray.origin == FURC_GUILDSTORE
-		)
+	if FURC_OTHER					    == ddSource then
+		return validSourcesForOther[recipeArray.origin]
     end
 	-- we're checking character knowledge
 	return recipeArray.origin  == ddSource 

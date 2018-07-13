@@ -38,27 +38,6 @@ FurC.LuxuryFurnisher[FURC_MORROWIND] = {
 		itemDate	= "2017-08-04",
 	},
 
-	--July 29 + 30
-	[126587] = {	-- Vvardenfell Glowstalk, Sprout
-		itemPrice 	= 2500,
-		itemDate	= "2017-07-28",
-	},
-	[126585] = {	-- Vvardenfell Glowstalk, Strong
-		itemPrice 	= 10834,
-		itemDate	= "2017-07-28",
-	},
-	[126580] = {	-- Vvardenfell Glowstalk, Towering
-		itemPrice 	= 16250,
-		itemDate	= "2017-07-28",
-	},
-	[126586] = {	-- Vvardenfell Glowstalk, Young
-		itemPrice 	= 5417,
-		itemDate	= "2017-07-28",
-	},
-
-
-
-
 
 
 

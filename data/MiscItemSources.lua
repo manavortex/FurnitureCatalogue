@@ -524,6 +524,10 @@ FurC.MiscItemSources[FURC_HOMESTEAD]	= {
         [118069] = getCrownPrice(120), 			-- Simple Gray Banner
         [118071] = getCrownPrice(120), 			-- Simple Red Banner
         [118070] = getCrownPrice(120), 			-- Simple Purple Banner
+        
+        
+        [120607] = getCrownPrice(50), 			-- Sapling, Lanky Ash
+        
 
         [115698] = getCrownPrice(1100), 		-- Khajiit Statue, Guardian
     }
