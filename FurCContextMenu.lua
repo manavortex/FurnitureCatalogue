@@ -47,6 +47,9 @@ local function postRecipeResult()   FurC.ToChat(GetItemLinkRecipeResultItemLink(
 local function postMaterial()       FurC.ToChat(cachedItemLink .. ": " .. FurC.GetMats(cachedItemLink, cachedRecipeArray, true)) end
 
 
+local function doNothing() return end
+
+local S_DIVIDER     = "-"
 local function addMenuItems(itemLink, recipeArray)
 
 	recipeArray = recipeArray or FurC.Find(itemLink)
@@ -55,7 +58,12 @@ local function addMenuItems(itemLink, recipeArray)
     cachedItemLink = itemLink
     cachedRecipeArray = recipeArray
     
-	AddCustomMenuItem(GetString(SI_FURC_MENU_HEADER), toChat, MENU_ADD_OPTION_LABEL)
+    if not FurC.GetSkipDivider() then 
+        AddCustomMenuItem(S_DIVIDER,    doNothing, MENU_ADD_OPTION_LABEL)
+    
+    end
+        AddCustomMenuItem(GetString(SI_FURC_MENU_HEADER), toChat, MENU_ADD_OPTION_LABEL)
+    
     
 	local faveText = FurC.IsFavorite(itemLink, recipeArray) and GetString(SI_FURC_REMOVE_FAVE) or GetString(SI_FURC_ADD_FAVE)
 	AddCustomMenuItem(faveText, fave, MENU_ADD_OPTION_LABEL)

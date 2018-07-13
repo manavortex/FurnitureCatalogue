@@ -1,14 +1,11 @@
 local UNITTAG_PLAYER = "player"
-local function whoami()
-    return GetUnitDisplayName(UNITTAG_PLAYER)
-end
 
-local isMana    = string.find(whoami(), "@manavortex") or string.find(whoami(), "@Manorin") 
+local this                                      = FurCDevUtility or {}
+
+local isMana    = string.find(GetDisplayName(), "@manavortex") or string.find(GetDisplayName(), "@Manorin") 
 if not isMana then return end
 
-
 FurCDevControl_LinkHandlerBackup_OnLinkMouseUp  = nil
-local this                                      = FurCDevUtility or {}
 this.textbox                                    = this.textbox or FurCDevControlBox
 local textbox                                   = this.textbox
 
@@ -24,45 +21,58 @@ local cachedItemIds = {}
 
 local function showTextbox()
     if not isMana   then return end
-    this.textbox:GetParent():SetHidden(false)
-    this.textbox:SetHidden(false)
+    this.control:SetHidden(false)
 end
 function this.clearControl()
     if not isMana   then return end
     this.textbox:Clear()
     ZO_ClearTable(cachedItemIds)
+    this.control():SetHidden(true)
 end
-
 function this.selectEntireTextbox()
-    if not isMana   then return end
-    if this.control:IsHidden() then return end
+    if (not isMana) or this.control:IsHidden() then return end
     local text = textbox:GetText() or ""
     textbox:SetSelection(0, #text)
 end
+function this.onTextboxTextChanged()
+    if not isMana   then return end
+    if this.control:IsHidden() then return end
+    local text = textbox:GetText() or ""
+    if #text > 0 then return end
+    this.clearControl()
+end
 
-local defaultDebugString = "[%d] = GetString(SI_FURC_EXISITING_ITEMSOURCE_UNKNOWN_YET), -- %s"
-local debugStringWithPrice = "[%d] = { -- %s\n   itemPrice = %d, \n},"
-local debugStringWithAchievement = "[%d] = {--%s\n    itemPrice = %d,\n   --achievement = 0, \n},"
-local debugStringForRecipe = "%d, -- %s"
+local s4             = "    "
+local s8             = "        "
+local s_default            = (s4 .. "[%d] = GetString(SI_FURC_EXISITING_ITEMSOURCE_UNKNOWN_YET)," .. s8 .. "-- %w")
+local s_withPrice          = (s4 .. "[%d] = {" .. s8 .. "-- %s\n" .. s8 .. 
+                                            "itemPrice = %d,\n" .. s4 .. 
+                                           "},")
+local s_withAchievement    = (s4 .. "[%d] = {" .. s8 .. "--%w\n" .. s8 .. 
+                                                "itemPrice = %d,\n" .. s8 .. 
+                                                "achievement = 0,\n" .. s4 .. 
+                                            "},")
+local s_forRecipe          = (s4 .. "%d, -- %s")
 
 local function makeOutput()
     if not isMana   then return end
 
-    local debugString 
-    local isRecipe = IsItemLinkFurnitureRecipe(cachedItemLink)
+    local isRecipe      = IsItemLinkFurnitureRecipe(cachedItemLink)
+    local debugString   = (isRecipe and s_forRecipe) or s_default
     
-    cachedPrice = cachedPrice or 0
-    cachedName = cachedName or GetItemLinkName(cachedItemLink)
+    cachedPrice         = cachedPrice or 0
+    cachedName          = cachedName or GetItemLinkName(cachedItemLink)
     
-    if isRecipe then 
-         debugString = debugStringForRecipe
-    elseif 0 < cachedPrice then 
-        debugString = debugStringWithPrice
-    elseif not cachedCanBuy then 
-        debugString = debugStringWithAchievement
-    else
-        debugString = defaultDebugString
+    
+     
+    if 0 < cachedPrice then 
+        debugString = s_withPrice
     end
+    
+    if not (cachedCanBuy or isRecipe) then 
+        debugString = s_withAchievement 
+    end
+    
     
     return string.format(debugString, FurC.GetItemId(cachedItemLink), cachedName, cachedPrice)
 end
@@ -83,17 +93,19 @@ local function concatToTextbox()
     this.textbox:SetText(textSoFar .. makeOutput())
     showTextbox()
 end
+local function doNothing() return end
 
-local S_ADD_TO_BOX = "Add data to textbox"
+local S_ADD_TO_BOX  = "Add data to textbox"
+local S_DIVIDER     = "-"
 local function addMenuItems()
+	AddCustomMenuItem(S_DIVIDER,    doNothing, MENU_ADD_OPTION_LABEL)
 	AddCustomMenuItem(S_ADD_TO_BOX, concatToTextbox, MENU_ADD_OPTION_LABEL)
 end
 
+
 function FurCDevControl_HandleClickEvent(itemLink, button, control)		-- button being mouseButton here
     if not isMana   then return end
-    cachedItemLink  = itemLink
-    cachedControl   = control
-    cachedName      = GetItemLinkName(cachedItemLink)
+
     if (type(itemLink) == 'string' and #itemLink > 0) then
 		local handled = LINK_HANDLER:FireCallbacks(LINK_HANDLER.LINK_MOUSE_UP_EVENT, itemLink, button, ZO_LinkHandler_ParseLink(itemLink))
 		if (not handled) then
@@ -106,8 +118,6 @@ function FurCDevControl_HandleClickEvent(itemLink, button, control)		-- button b
         end
     end
 end
-
-
 
 -- thanks Randactyl for helping me with the handler :)
 function FurCDevControl_HandleInventoryContextMenu(control)
@@ -124,7 +134,7 @@ function FurCDevControl_HandleInventoryContextMenu(control)
         local bagId, slotId = ZO_Inventory_GetBagAndIndex(control)
         cachedItemLink = GetItemLink(bagId, slotId, linkStyle)
         name     = GetItemLinkName(cachedItemLink)
-        price    = nil
+        price    = 0
     elseif st == SLOT_TYPE_STORE_BUY then
         local storeEntryIndex = control.index or 0    
         _, name, _, price, _, meetsRequirementsToBuy, _, _, _, 
@@ -142,12 +152,10 @@ function FurCDevControl_HandleInventoryContextMenu(control)
 	zo_callLater(function()
 		addMenuItems()
 		ShowMenu()
-	end, 50)
+	end, 100)
 
 
 end
-
-
 
 function this.OnControlMouseUp(control, button)
     if not isMana   then return end

@@ -60,9 +60,16 @@ end
 function FurC.GetFilterAllOnTextNoRumour()
 	return FurC.settings["filterAllOnTextNoRumour"]
 end
-function FurC.GetFilterAllOnTextNoRumour(value)
+function FurC.SetFilterAllOnTextNoRumour(value)
 	FurC.settings["filterAllOnTextNoRumour"] = value
 	FurC.UpdateGui()
+end
+
+function FurC.GetSkipDivider()
+	return FurC.settings["skipDivider"]
+end
+function FurC.SetSkipDivider(value)
+	FurC.settings["skipDivider"] = value
 end
 
 function FurC.GetFilterAllOnTextNoBooks()
@@ -257,18 +264,34 @@ function FurC.GetSearchFilter()
 	end
 	return FurC.SearchFilter or ""
 end
+
+local alreadySearching  = false
+local alreadyReset      = false
+local function resetSearch()
+    alreadySearching = false
+    alreadyReset     = false
+end
+local function doSearchOnUpdate()
+    
+    if alreadyReset then return end
+    if alreadySearching then 
+        alreadyReset = true
+        zo_callLater(resetSearch, 200)
+        return    
+    end
+    local text = FurC_SearchBox:GetText()
+    FurC_SearchBoxText:SetText((#text == 0 and FURC_S_FILTERDEFAULT) or "")
+    
+    FurC.SearchFilter = text
+
+    FurC.GuiOnSliderUpdate(FurCGui_ListHolder_Slider, 0)
+    FurC.UpdateGui()
+end
+
 function FurC.GuiSetSearchboxTextFrom(control)
     control = control or FurC_SearchBox
 	-- call asynchronely to prevent lagging. Praise votan.
-	task:Call(function()
-		local text = FurC_SearchBox:GetText()
-        FurC_SearchBoxText:SetText((#text == 0 and FURC_S_FILTERDEFAULT) or "")
-        
-		FurC.SearchFilter = text
-
-		FurC.GuiOnSliderUpdate(FurCGui_ListHolder_Slider, 0)
-		FurC.UpdateGui()
-	end)
+	task:Call(doSearchOnUpdate)
 end
 
 function FurC.GetHideBooks()

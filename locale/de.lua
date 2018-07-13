@@ -1,17 +1,45 @@
 local filterDisabled = "disables this filter"
 local strings = {
 
+	FURC_AV_RAZ									= "Razoufa",
+	FURC_AV_MUL									= "Mulvise Valyn",
+
+	FURC_AV_NAR									= "Narwaawende",
+	FURC_AV_ALI									= "Alinor, Riverside Market",
+	FURC_AV_UNW									= "Unwotil",
+	FURC_AV_CUR									= "Curininwe",
+	FURC_AV_NAL									= "Nalirsewen",
+	FURC_AV_TAR									= "Tarmimn",
+	FURC_AV_LTS									= "Listens-To-Sea",
+	FURC_AV_HER									= "Heralda Garscroft",
+	FURC_AV_FRO									= "Frohilde Snow-Hair",
+	FURC_AV_LOT									= "Lozotusk",
+	FURC_AV_ROH									= "Rohzika",
+	FURC_AV_ATH									= "Athragor",
+	FURC_AV_MAL									= "Maladdiq",
+	FURC_AV_KRR									= "Krrztrrb",
+	FURC_AV_ENC									= "enchanters",
+	FURC_AV_ALC									= "alchemists",
+	FURC_AV_OUT									= "Outlaw Refuge, Merchant",
+	FURC_AV_COO									= "cooks",
+	FURC_AV_CLO									= "clothiers",
+	FURC_AV_CAR									= "carpenters",
+	FURC_AV_BSM									= "blacksmiths",
+	FURC_AV_ARTAEUM								= "Artaeum",
+    FURC_AV_CAPITAL                             = "any capital city",
+
 	-- Furniture Shopping List
 	SI_FURC_ONE_TO_SHOPPINGLIST = 				"Add 1 to shopping list",
 	SI_FURC_FIVE_TO_SHOPPINGLIST = 				"Add 5 to shopping list",
 	SI_FURC_TOGGLE_SHOPPINGLIST = 				" Toggle shopping list",
-	
+
 	-- GUI and debug
 	SI_FURC_MENU_HEADER = 						"- |cD3B830Furniture|r:",
 	SI_FURC_REMOVE_FAVE = 						" Remove Favorite",
 	SI_FURC_ADD_FAVE = 							" Add Favorite",
 	SI_FURC_POST_ITEMSOURCE = 					" Post item source",
 	SI_FURC_POST_RECIPE = 						" Post recipe",
+	SI_FURC_POST_ITEM = 						" Post item",
 	SI_FURC_POST_MATERIAL = 					" Post material",
 	SI_FURC_DIALOGUE_RESET_DB_HEADER = 			"Really re-create furniture database?",
 	SI_FURC_DIALOGUE_RESET_DB_BODY = 			"This will re-create the FurnitureCatalogue database from scratch",
@@ -32,23 +60,23 @@ local strings = {
 	SI_FURC_STRING_HC = 						"Hollow City",
 	SI_FURC_STRING_WASSOLDBY = 					"Was sold by <<1>> in <<2>> (<<3>>) <<4>>",
 	SI_FURC_STRING_WEEKEND_AROUND = 			"(around <<1>>)",
-	
+	SI_FURC_REQUIRES_QUEST                      = ", requires quest ",
+	SI_FURC_REQUIRES_ACHIEVEMENT                = ", requires ",
+	SI_FURC_PSIJIC_RANK                         = "Psijic Order Rank ",
 	SI_FURC_STRING_WRIT_VENDOR =				"Master Writ Vendor",
 	SI_FURC_STRING_WRIT_VENDOR_TT =				"Obtainable for Master Writs in your alliance's capital",
-	SI_FURC_STRING_Rolis = 					"Sold by |cd68957Rolis Hlaalu|r <<1>>",
+	SI_FURC_STRING_Rolis = 					    "Sold by |cd68957Rolis Hlaalu|r <<1>>",
 	SI_FURC_STRING_FAUSTINA = 					"Sold by |cd68957Faustina Curio|r <<1>>",
 	SI_FURC_STRING_FOR_VOUCHERS =				"for <<1>> vouchers",
-	
 	SI_FURC_FESTIVAL_DROP = 					"can be acquired during <<1>> (<<2>>)",
 	SI_FURC_STRING_RECIPELEARNED = 				"Recipe learned: <<1>> <<2>> <<3>>",
 	SI_FURC_STRING_RECIPESFORCHAR = 			"recipes for <<1>>",
-	
 	SI_FURC_STRING_VOUCHER_VENDOR =				"Sold by either Rolis Hlaalu or Faustina Curio",
-	SI_FURC_CHESTS =                            "From treasure chests",
-	SI_FURC_VVARDENFELL_PAINTING =              "extremely rarely from safeboxes or treasure chests",
-    
+    SI_FURC_QUESTREWARD =                       "Reward for a quest in ",
+    SI_FURC_GEYSIR =                            "Drops from geysir reward clams on Summerset",
+    SI_FURC_GIANT_CLAM =                        "Drops from giant clams and geysir reward clams on Summerset",
 	-- =============================== --
-	-- ============ MENU ============= -- 
+	-- ============ MENU ============= --
 	-- =============================== --
 
 	SI_FURC_STRING_MENU_DEBUG = 				"Enable debug output",
@@ -61,7 +89,7 @@ local strings = {
 	SI_FURC_STRING_MENU_SCAN_FILES_TT = 		"Will run a full scan of the data in Furniture Catalogue's files",
 	SI_FURC_STRING_MENU_SCAN_CHAR_NAME = 		"Scan character",
 	SI_FURC_STRING_MENU_SCAN_CHAR_TT = 			"Will run a full scan of your known furniture recipes and update the database accordingly",
-	SI_FURC_STRING_MENU_DELETE_CHAR_NAME =		"delete character data",
+	SI_FURC_STRING_MENU_DELETE_CHAR_NAME =		"delete character",
 	SI_FURC_STRING_MENU_DELETE_CHAR_TT =		"Deletes all knowledge for this character from the database. \nCharacter will be scanned again the next time they log in with the add-on enabled. \n Character name won't show up in the dropdown if they don't know any recipes!",
 	SI_FURC_STRING_MENU_DELETE_CHAR_WARNING =	"Character knowledge will be wiped immediately",
 	SI_FURC_STRING_MENU_ENABLE_SHOPPINGLIST =	"Enable integration?",
@@ -74,10 +102,12 @@ local strings = {
 	SI_FURC_STRING_MENU_IT_THIS_ONLY = 			"Only for this character?",
 	SI_FURC_STRING_MENU_IT_THIS_ONLY_TT = 		"Will be accountwide otherwise.",
 	SI_FURC_STRING_MENU_USETINY = 	 			"Use tiny interface?",
-	SI_FURC_STRING_MENU_USETINY_TT = 	 		"Use a smaller interface (Craft Store like). \nYou can toggle this from the UI by clicking the +/- button.",		
+	SI_FURC_STRING_MENU_USETINY_TT = 	 		"Use a smaller interface (Craft Store like). \nYou can toggle this from the UI by clicking the +/- button.",
 
 	SI_FURC_STRING_MENU_STARTSILENT = 	 		"Start silently?",
 	SI_FURC_STRING_MENU_STARTSILENT_TT = 	 	"Suppress startup message",
+	SI_FURC_STRING_MENU_SHOWICONONLEFT = 		"Show Known/Unknown icon on left?",
+	SI_FURC_STRING_MENU_SHOWICONONLEFT_TT =		"Show Green Check/Red X icon on left or right of the inventory item (requires reloadui)",
 	SI_FURC_STRING_MENU_FONTSIZE = 	 			"Font size",
 	SI_FURC_STRING_MENU_FONTSIZE_TT = 	 		"adjust font size for FurnitureCatalogue here",
 	SI_FURC_STRING_MENU_DEFAULT_DD = 	 		"Default dropdown values",
@@ -98,13 +128,27 @@ local strings = {
 	SI_FURC_STRING_MENU_LUXURY_WARN = 			"Hiding the dropdown entry requires UI reload (won't happen automatically for your convenience)",
 	SI_FURC_STRING_MENU_RUMOUR = 				"Rumour recipes",
 	SI_FURC_STRING_MENU_RUMOUR_DESC = 		 	"The furniture database contains a list of recipes that I have datamined.\nHowever, not all of those have been seen in-game.\nEnable this option to exclude them from the default filters.\nYou can still view them with their own filter, which you can disable below.",
-	SI_FURC_STRING_MENU_FILTER_ALL_ON_TEXT =    "Search filtered items when doing a text search with no dropdown filters set?",
 
 	SI_FURC_STRING_MENU_RUMOUR_N = 				"Hide rumour recipes?",
 	SI_FURC_STRING_MENU_CROWN = 				"Crown store items",
 	SI_FURC_STRING_MENU_CROWN_N = 				"Hide crown store items?",
 	SI_FURC_STRING_MENU_CROWN_DESC = 			"The furniture database will update whenever the tooltip shows a furniture item. \nSome items can only be acquired via crown store. \nCheck this box to exclude them from the default filters (disable crown store filter below).",
-						
+
+    -- Filter text search
+    SI_FURC_STRING_MENU_HEADER_F_ALL_ON_TEXT =  "Filter settings for text search",
+    SI_FURC_STRING_MENU_F_ALL_ON_TEXT =         "Configure this filter",
+    SI_FURC_STRING_MENU_HEADER_F_ALL_DESC =     "Configure filter settings for text search with disabled dropdowns. \nThese settings will only take effect when you have not set a source, character or version filter.",
+
+    SI_FURC_STRING_MENU_FILTER_ALL_ON_TEXT =    "Search filtered items when doing a text search with no dropdown filters set?",
+    SI_FURC_STRING_MENU_FILTER_ALL_ON_TEXT_TT = "When doing a text search without any dropdown ",
+    SI_FURC_STRING_MENU_FALL_HIDE_BOOKS =       "Hide books anyway",
+    SI_FURC_STRING_MENU_FALL_HIDE_BOOKS_TT =    "Even when filtering all items, still hide books?",
+    SI_FURC_STRING_MENU_FALL_HIDE_CROWN =       "Hide crown store items anyway",
+    SI_FURC_STRING_MENU_FALL_HIDE_CROWN_TT =    "Even when filtering all items, still hide crown store items?",
+    SI_FURC_STRING_MENU_FALL_HIDE_RUMOUR =      "Hide rumour items anyway",
+    SI_FURC_STRING_MENU_FALL_HIDE_RUMOUR_TT =   "Even when filtering all items, still hide rumour items?",
+
+    -- Hide menu entries
 	SI_FURC_STRING_MENU_HIDE_MENU = 				"Hide menu entries?",
 	SI_FURC_STRING_MENU_HIDE_MENU_TT = 				"Hides \"Crown store\" and \"Rumour recipes\" from the dropdown \nactivated for crown store by default, as there aren't any items yet",
 	SI_FURC_STRING_MENU_HIDE_MENU_RUMOUR = 			"Hide \"Rumour recipes\" drop down entry?",
@@ -120,16 +164,16 @@ local strings = {
 	SI_FURC_STRING_MENU_TOOLTIP_HIDE_SOURCE =  		"Hide item source?",
 	SI_FURC_STRING_MENU_TOOLTIP_HIDE_STATION =  	"Hide crafting station?",
 	SI_FURC_STRING_MENU_TOOLTIP_HIDE_MATERIAL =  	"Hide material?",
-	
+
 	-- =============================== --
-	-- ==== GUI: Dropdown entries ==== -- 
+	-- ==== GUI: Dropdown entries ==== --
 	-- =============================== --
 
-	SI_FURC_NONE 									= "Source filter: off", 
-	SI_FURC_FAVE 									= "Favorites", 
-	SI_FURC_CRAFTING								= "Craftable: All", 
-	SI_FURC_CRAFTING_KNOWN							= "Craftable: Known", 
-	SI_FURC_CRAFTING_UNKNOWN						= "Craftable: Unknown", 
+	SI_FURC_NONE 									= "Source filter: off",
+	SI_FURC_FAVE 									= "Favorites",
+	SI_FURC_CRAFTING								= "Craftable: All",
+	SI_FURC_CRAFTING_KNOWN							= "Craftable: Known",
+	SI_FURC_CRAFTING_UNKNOWN						= "Craftable: Unknown",
 	SI_FURC_VENDOR									= "Purchaseable (gold)",
 	SI_FURC_PVP										= "Purchaseable (AP)",
 	SI_FURC_CROWN									= "Crown Store",
@@ -137,23 +181,25 @@ local strings = {
 	SI_FURC_LUXURY									= "Luxury items",
 	SI_FURC_RUMOUR									= "Rumour items",
 	SI_FURC_OTHER									= "Other",
-						
-	SI_FURC_FILTER_VERSION_OFF						= "Version filter: off", 
-	SI_FURC_FILTER_VERSION_HS						= "Homestead", 
-	SI_FURC_FILTER_VERSION_M						= "Morrowind", 
-	SI_FURC_FILTER_VERSION_R						= "Horns of the Reach", 
-	SI_FURC_FILTER_VERSION_CC						= "Clockwork City", 
-	SI_FURC_FILTER_VERSION_DRAGON					= "Dragon Bones", 
-	
+
+	SI_FURC_FILTER_VERSION_OFF						= "Version filter: off",
+	SI_FURC_FILTER_VERSION_HS						= "Homestead",
+	SI_FURC_FILTER_VERSION_M						= "Morrowind",
+	SI_FURC_FILTER_VERSION_R						= "Horns of the Reach",
+	SI_FURC_FILTER_VERSION_CC						= "Clockwork City",
+	SI_FURC_FILTER_VERSION_DRAGON					= "Dragon Bones",
+	SI_FURC_FILTER_VERSION_ALTMER					= "Summerset",
+	SI_FURC_FILTER_VERSION_ALTMER_TT                = "",
+
 	-- =============================== --
-	-- = GUI: Dropdown entry tooltip = -- 
+	-- = GUI: Dropdown entry tooltip = --
 	-- =============================== --
-	
-	SI_FURC_NONE_TT 								= "disables this filter", 
-	SI_FURC_FAVE_TT 								= "Shows your favorites", 
-	SI_FURC_CRAFTING_TT								= "Shows all craftable items", 
-	SI_FURC_CRAFTING_KNOWN_TT						= "Shows only known craftable items", 
-	SI_FURC_CRAFTING_UNKNOWN_TT						= "Shows only unknown craftable items", 
+
+	SI_FURC_NONE_TT 								= "disables this filter",
+	SI_FURC_FAVE_TT 								= "Shows your favorites",
+	SI_FURC_CRAFTING_TT								= "Shows all craftable items",
+	SI_FURC_CRAFTING_KNOWN_TT						= "Shows only known craftable items",
+	SI_FURC_CRAFTING_UNKNOWN_TT						= "Shows only unknown craftable items",
 	SI_FURC_VENDOR_TT								= "Shows only items that cannot be crafted",
 	SI_FURC_PVP_TT									= "Items that are sold for alliance points",
 	SI_FURC_CROWN_TT								= "Shows items that can only be acquired from crown store",
@@ -178,7 +224,6 @@ local strings = {
 	
 	SI_FURC_LABEL_ENTRIES							= " entries -", 
     
-      
     -- =============================== --
 	-- ========= Item Sources ======== -- 
 	-- =============================== --
@@ -187,8 +232,10 @@ local strings = {
     SI_FURC_CROWNSTORESOURCE				        = "Crown Store ",
     SI_FURC_CANBEFISHED				                = "can be fished",
     SI_FURC_HARVEST				                    = "from harvesting nodes",
+    SI_FURC_WW				                        = "occasionally found in wood nodes",
     SI_FURC_PLANTS						            = "from harvesting plants",
     SI_FURC_SCAMBOX						            = "Crown Crates",
+    SI_FURC_HOUSE						            = "From a furnished purchase of <<1>>",
     SI_FURC_AUTOMATON						        = "from automatons",
     SI_FURC_TOMBS 						            = "Ancestor tombs and ruins on Vvardenfell",
     SI_FURC_DAEDRA_SOURCE 						    = "from Daedra and Dolmen chests",
@@ -198,12 +245,18 @@ local strings = {
     SI_FURC_DAILY_ASHLANDERS			            = "Ashlander daily quest rewards",
     SI_FURC_PLUNDERSKULL			                = "Drops from Plunder Skulls during Witches' Festival",
     SI_FURC_DROP_CHEST_VVARDENFELL	                = "Extremely rarely from chests on Vvardenfell",
+    SI_FURC_DROP                                    = "This item is a drop ", 
+    SI_FURC_DROP_ALTMER                             = "This item is a drop on Summerset", 
     SI_FURC_FLAME_ATRONACH	                        = "Flame Atronach",
 	SI_FURC_CHESTS                                  = "from treasure chests",
 	SI_FURC_VVARDENFELL_PAINTING                    = "extremely rarely from safeboxes",
 	SI_FURC_DRAGON_DUNGEON_DROP                     = "Fang Lair/Scalecaller Peak",
+	SI_FURC_ITEMSOURCE_UNKNOWN_YET                  = "This item has been found in the sources/recipes for Summerset! \nIts origin isn't known yet.",
+	SI_FURC_EXISITING_ITEMSOURCE_UNKNOWN_YET        = "This item has been confirmed existing, but its origin isn't known yet.",
+	SI_FURC_ITEMSOURCE_ITEMPACK                     = "This item is part of the Crown Store item pack ",
+	
+	SI_FURC_SEEN_IN_GUILDSTORE                      = "Seen in Guild Store",
 }
-
 
 for stringId, stringValue in pairs(strings) do
 	ZO_CreateStringId(stringId, stringValue)

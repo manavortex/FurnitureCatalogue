@@ -114,7 +114,7 @@ FurC.AchievementVendors[FURC_CLOCKWORK] = {
 		},
 	},
 
-	["any Alliance Capital"] = {
+	[GetString(FURC_AV_CAPITAL)] = {
 		[GetString(FURC_AV_HER)] = {
 			[134291] = { -- New Life Bonfire
 				itemPrice = 10000,

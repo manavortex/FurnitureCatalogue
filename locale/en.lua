@@ -26,8 +26,7 @@ local strings = {
 	FURC_AV_CAR									= "carpenters",
 	FURC_AV_BSM									= "blacksmiths",
 	FURC_AV_ARTAEUM								= "Artaeum",
-
-
+    FURC_AV_CAPITAL                             = "any capital city",
 
 	-- Furniture Shopping List
 	SI_FURC_ONE_TO_SHOPPINGLIST = 				"Add 1 to shopping list",
@@ -129,7 +128,10 @@ local strings = {
 	SI_FURC_STRING_MENU_LUXURY_WARN = 			"Hiding the dropdown entry requires UI reload (won't happen automatically for your convenience)",
 	SI_FURC_STRING_MENU_RUMOUR = 				"Rumour recipes",
 	SI_FURC_STRING_MENU_RUMOUR_DESC = 		 	"The furniture database contains a list of recipes that I have datamined.\nHowever, not all of those have been seen in-game.\nEnable this option to exclude them from the default filters.\nYou can still view them with their own filter, which you can disable below.",
-
+    SI_FURC_STRING_CONTEXTMENU_DIVIDER =        "Don't use divider in context menu?", 
+    SI_FURC_STRING_CONTEXTMENU_DIVIDER_TT =     "Adds a divider to the context manu above the - Furniture entry. Check to disable", 
+    
+    
 	SI_FURC_STRING_MENU_RUMOUR_N = 				"Hide rumour recipes?",
 	SI_FURC_STRING_MENU_CROWN = 				"Crown store items",
 	SI_FURC_STRING_MENU_CROWN_N = 				"Hide crown store items?",

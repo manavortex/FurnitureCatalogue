@@ -167,6 +167,14 @@ function FurC.CreateSettings(savedVars, defaults)
 			getFunc = function() return FurC.GetFontSize() end,
 			setFunc = function(value) FurC.SetFontSize(value) end
 		},
+		{ -- checkbox: use right click menu divider?
+			type 	= "checkbox",
+			name 	= GetString(SI_FURC_STRING_CONTEXTMENU_DIVIDER),
+			tooltip = GetString(SI_FURC_STRING_CONTEXTMENU_DIVIDER_TT),
+			getFunc = function() return FurC.GetSkipDivider() end,
+			setFunc = function(value) FurC.SetSkipDivider(value) end,
+			requiresReload = true
+		},
 		{	type = "submenu",
 			name = GetString(SI_FURC_STRING_MENU_DEFAULT_DD),
 			controls = {
@@ -251,7 +259,7 @@ function FurC.CreateSettings(savedVars, defaults)
                             name 	= GetString(SI_FURC_STRING_MENU_FALL_HIDE_RUMOUR),
                             tooltip = GetString(SI_FURC_STRING_MENU_FALL_HIDE_RUMOUR_TT),
                             getFunc = function() return FurC.GetFilterAllOnTextNoRumour() end,
-                            setFunc = function(value) FurC.GetFilterAllOnTextNoRumour(value) end,
+                            setFunc = function(value) FurC.SetFilterAllOnTextNoRumour(value) end,
                             disabled = not FurC.GetFilterAllOnText()
                         },
                     },

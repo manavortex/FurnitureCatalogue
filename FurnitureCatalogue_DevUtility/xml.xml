@@ -15,7 +15,6 @@
                         mouseOver	="/esoui/art/buttons/decline_over.dds"
                      />	
                 </Button>
-                
                 <Button name="$(parent)_clear" inherits="ZO_ButtonBehaviorClickSound" >
                     <OnClicked>FurCDevUtility.clearControl()</OnClicked>
                     <Dimensions x="40" y="40" />									
@@ -29,9 +28,9 @@
                 
                 <EditBox name="$(parent)Box" inherits="ZO_DefaultEditMultiLine ZO_DefaultEditForDarkBackdrop" >
                     <Anchor point="TOPLEFT" relativeTo="$(parent)" relativePoint="TOPLEFT" offsetX="50" offsetY="50"/>
-                    <Anchor point="BOTTOMRIGHT" relativeTo="$(parent)" relativePoint="BOTTOMRIGHT" offsetX="50"/>
-                    
+                    <Anchor point="BOTTOMRIGHT" relativeTo="$(parent)" relativePoint="BOTTOMRIGHT" offsetX="50"/>                    
                     <OnFocusGained>FurCDevUtility.selectEntireTextbox()</OnFocusGained>
+                    <OnTextChanged>FurCDevUtility.onTextboxTextChanged()</OnTextChanged>
                 </EditBox>
                 
             </Controls>

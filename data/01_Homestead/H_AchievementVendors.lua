@@ -64,90 +64,97 @@ local jesterVendor = {
 }
 
 local capitalVendor = {
+
 	[119987] = {		-- Coldharbour Urn
 		itemPrice 	= 5000,
+		achievement = 993,
 	},
-	[120037] = {		-- Decorative Skyshard
-		itemPrice 	= 25000,
-		achievement  	= 1009,
-	},
-	[120001] = {		-- Decorative Treasure Chest
-		itemPrice 	= 10000,
-		achievement  	= "",
-	},
-	[119994] = {		-- Depleted Sigil Stone
-		itemPrice 	= 5000,
-		achievement  	= "",
-	},
-	[120066] = {		-- Display Craft Bag
-		itemPrice 	= 5000,
-		achievement  	= "",
-	},
-	[120043] = {		-- Fishing Vessel
-		itemPrice 	= 100000,
-		achievement  	= "",
-	},
-	[120056] = {		-- Hanging Map of Tamriel
-		itemPrice 	= 10000,
-		achievement  	= "",
-	},
-	[119993] = {		-- Lantern of Anguish
-		itemPrice 	= 5000,
-		achievement  	= "",
-	},
-	[120039] = {		-- Primal Altar to Hircine
-		itemPrice 	= 50000,
-		achievement  	= 1009,
-	},
-	[119989] = {		-- Replica Black Soulgem
-		itemPrice 	= 2500,
-		achievement  	= "",
-	},
-	[119988] = {		-- Replica Soul Gem
-		itemPrice 	= 500,
-		achievement  	= "",
-	},
-	[119995] = {		-- Silent Sentinel
-		itemPrice 	= 20000,
-		achievement  	= "",
-	},
-	[119990] = {		-- Soul Gem Case
-		itemPrice 	= 4000,
-		achievement  	= "",
-	},
-	[119992] = {		-- Soul Gem Crate
-		itemPrice 	= 5000,
-		achievement  	= "",
-	},
-	[119996] = {		-- Soul Gem Stand
-		itemPrice 	= 4000,
-		achievement  	= "",
-	},
-	[119991] = {		-- Spare Flesh Atronach Parts
+    [120064] = { -- Covenant Hero Shield
+       itemPrice    = 10000, 
+		achievement = 61,
+    },
+    [120037] = { -- Decorative Skyshard
+       itemPrice    = 25000, 
+       achievement  = 989,
+    },
+    [120001] = { -- Decorative Treasure Chest
+       itemPrice    = 10000,
+       achievement  = 22,
+    },
+    [119994] = { -- Depleted Sigil Stone
+       itemPrice    = 5000, 
+       achievement  = 1000,
+    },
+    [120066] = { -- Display Craft Bag
+       itemPrice    = 5000, 
+       achievement  = "ESO+",
+    },
+    [120063] = { -- Dominion Hero Shield
+       itemPrice    = 10000, 
+		achievement = 618,
+    },
+    [120043] = { -- Fishing Vessel
+       itemPrice    = 25000, 
+       achievement  = 494,
+    },
+    [120056] = { -- Hanging Map of Tamriel
+       itemPrice    = 10000,  
+       achievement  = 867,
+    },
+    [119993] = { -- Lantern of Anguish
+        itemPrice   = 5000, 
+        achievement = 999,
+    },
+    [120065] = { -- Pact Hero Shield
+       itemPrice    = 10000, 
+		achievement = 617,
+    },
+    [120039] = { -- Primal Altar to Hircine
+       itemPrice    = 50000,  
+       achievement  = 1009,
+    },
+    [119989] = { -- Replica Black Soul Gem
+       itemPrice    = 2500,  
+       achievement  = 995,
+    },
+    [119988] = { -- Replica Soul Gem
+       itemPrice    = 500,  
+       achievement  = 994,
+    },
+    [119995] = { -- Silent Sentinel
+       itemPrice    = 20000,  
+       achievement  = 1001,
+    },
+    [119990] = { -- Soul Gem Case
+       itemPrice    = 4000,  
+       achievement  = 996,
+    },
+    [119992] = { -- Soul Gem Crate
+       itemPrice    = 5000,  
+       achievement  = 998,
+    },
+    [119996] = { -- Soul Gem Stand
+       itemPrice    = 4000,  
+       achievement  = 1002,
+    },
+    [119991] = { -- Spare Flesh Atronach Parts
+       itemPrice    = 10000,  
+       achievement  = 997,
+    },
+    [119873] = { -- Tamrith Coffin
+       itemPrice    = 20000,  
+       achievement  = 1010,
+    },
+    [119872] = { -- Tamrith Coffin Lid
+       itemPrice    = 5000,  
+       achievement  = 1010,
+    },
+    [119997] = { -- The Final Threat
+       itemPrice    = 100000,  
+       achievement  = 1003,
+    },
 
-		itemPrice 	= 10000,
-		achievement  	= "",
-	},
-	[119873] = {		-- Tamrith Coffin
-		itemPrice 	= 20000,
-		achievement  	= 1010,
-	},
-	[119872] = {		-- Tamrith Coffin Lid
-		itemPrice 	= 5000,
-		achievement  	= 1010,
-	},
-	[120064] = {		-- DC shield
-		itemPrice 	= 10000,
-		achievement  	= 61,
-	},
-	[120063] = {		-- AD shield
-		itemPrice 	= 10000,
-		achievement  	= 618,
-	},
-	[120065] = {		-- EP shield
-		itemPrice 	= 10000,
-		achievement  	= 617,
-	},
+
 }
 
 local furnishingVendor = {
@@ -1220,7 +1227,7 @@ local miscVendor = tableMerge(tableMerge(tableMerge(structures, boxes), laundry)
 
 FurC.AchievementVendors[FURC_HOMESTEAD] = {
 
-	["any Alliance Capital"] = {
+	[GetString(FURC_AV_CAPITAL)] = {
 		[GetString(FURC_AV_NAR)] = capitalVendor,
 		[GetString(FURC_AV_HER)] = jesterVendor,
 	},

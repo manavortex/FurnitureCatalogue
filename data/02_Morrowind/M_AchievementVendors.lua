@@ -329,7 +329,7 @@ FurC.AchievementVendors[FURC_MORROWIND] = {
 			},
 		},
 	},
-	["any Alliance Capital"] = {
+	[GetString(FURC_AV_CAPITAL)] = {
 		[GetString(FURC_AV_HER)] = {
 			[126720]	= { -- Banner of Mayhem
 				itemPrice 		= 5000,
