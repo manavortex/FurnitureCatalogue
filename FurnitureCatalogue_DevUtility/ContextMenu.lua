@@ -10,7 +10,6 @@ this.textbox                                    = this.textbox or FurCDevControl
 local textbox                                   = this.textbox
 
 local cachedItemLink
-local cachedControl
 local cachedName
 local cachedPrice
 local cachedCanBuy
@@ -27,7 +26,7 @@ function this.clearControl()
     if not isMana   then return end
     this.textbox:Clear()
     ZO_ClearTable(cachedItemIds)
-    this.control():SetHidden(true)
+    this.control:SetHidden(true)
 end
 function this.selectEntireTextbox()
     if (not isMana) or this.control:IsHidden() then return end
@@ -42,14 +41,16 @@ function this.onTextboxTextChanged()
     this.clearControl()
 end
 
+local s3             = "   "
 local s4             = "    "
 local s8             = "        "
-local s_default            = (s4 .. "[%d] = GetString(SI_FURC_EXISITING_ITEMSOURCE_UNKNOWN_YET)," .. s8 .. "-- %w")
+-- local s_default            = (s4 .. "[%d] = GetString(SI_FURC_EXISITING_ITEMSOURCE_UNKNOWN_YET)," .. s4 .. "-- %s\n")
+local s_default            = (s4 .. "[%d] = getCrownStorePrice(99)," .. s8 .. "   " .. "-- %s")
 local s_withPrice          = (s4 .. "[%d] = {" .. s8 .. "-- %s\n" .. s8 .. 
-                                            "itemPrice = %d,\n" .. s4 .. 
+                                            "itemPrice" .. s3 .. "= %d,\n" .. s4 .. 
                                            "},")
-local s_withAchievement    = (s4 .. "[%d] = {" .. s8 .. "--%w\n" .. s8 .. 
-                                                "itemPrice = %d,\n" .. s8 .. 
+local s_withAchievement    = (s4 .. "[%d] = {" .. s8 .. "--%s\n" .. s8 .. 
+                                                "itemPrice" .. s3 .. "= %d,\n" .. s8 .. 
                                                 "achievement = 0,\n" .. s4 .. 
                                             "},")
 local s_forRecipe          = (s4 .. "%d, -- %s")
@@ -60,21 +61,16 @@ local function makeOutput()
     local isRecipe      = IsItemLinkFurnitureRecipe(cachedItemLink)
     local debugString   = (isRecipe and s_forRecipe) or s_default
     
-    cachedPrice         = cachedPrice or 0
     cachedName          = cachedName or GetItemLinkName(cachedItemLink)
     
+    if 0 < (cachedPrice or 0)           then debugString = s_withPrice end    
+    if not (cachedCanBuy or isRecipe)   then debugString = s_withAchievement  end
     
-     
-    if 0 < cachedPrice then 
-        debugString = s_withPrice
+    if #(textbox:GetText() or "") == 0 then 
+        debugString = debugString:sub(5, #debugString)
     end
     
-    if not (cachedCanBuy or isRecipe) then 
-        debugString = s_withAchievement 
-    end
-    
-    
-    return string.format(debugString, FurC.GetItemId(cachedItemLink), cachedName, cachedPrice)
+    return string.format(debugString .. "\n", FurC.GetItemId(cachedItemLink), cachedName, cachedPrice)
 end
 
 local function isItemIdCached()
@@ -84,15 +80,24 @@ local function isItemIdCached()
     return false
 end
 
-local linebreak = "\n"
-local function concatToTextbox()
-    if not isMana   then return end
-    if isItemIdCached() then return end
+local function concatToTextbox(itemId)
+
+    if (not isMana) or isItemIdCached() then return end
     local textSoFar = this.textbox:GetText() or ""
-    textSoFar = (#textSoFar > 0 and textSoFar .. linebreak) or textSoFar
     this.textbox:SetText(textSoFar .. makeOutput())
     showTextbox()
 end
+function this.concatToTextbox (itemId)
+    if itemId then 
+        cachedItemLink  = FurC.GetItemLink(itemId)
+        cachedCanBuy    = true
+        cachedName      = GetItemLinkName(cachedItemLink)
+        cachedPrice     = 0
+    end
+    concatToTextbox()
+end
+
+
 local function doNothing() return end
 
 local S_ADD_TO_BOX  = "Add data to textbox"
@@ -123,7 +128,7 @@ end
 function FurCDevControl_HandleInventoryContextMenu(control)
     if not isMana   then return end
     control = control or moc()
-    local name, price, meetsRequirementsToBuy, currencyQuantity1, currencyQuantity2
+    local name, price, canBuy, currencyQuantity1, currencyQuantity2
     
 	local st = ZO_InventorySlot_GetType(control)
     cachedItemLink = nil
@@ -135,24 +140,24 @@ function FurCDevControl_HandleInventoryContextMenu(control)
         cachedItemLink = GetItemLink(bagId, slotId, linkStyle)
         name     = GetItemLinkName(cachedItemLink)
         price    = 0
+        canBuy   = true
     elseif st == SLOT_TYPE_STORE_BUY then
         local storeEntryIndex = control.index or 0    
-        _, name, _, price, _, meetsRequirementsToBuy, _, _, _, 
+        _, name, _, price, _, canBuy, _, _, _, 
         _, currencyQuantity1, _, currencyQuantity2 = GetStoreEntryInfo(storeEntryIndex)
         cachedItemLink = GetStoreItemLink(storeEntryIndex)
     end
     
-    cachedControl   = control
     cachedName      = name
-    cachedPrice     = price
-    cachedCanBuy    = meetsRequirementsToBuy
+    cachedPrice     = price or 0
+    cachedCanBuy    = canBuy
     
     if not FurC.Find(cachedItemLink) then return end
     
 	zo_callLater(function()
 		addMenuItems()
 		ShowMenu()
-	end, 100)
+	end, 80)
 
 
 end
@@ -165,7 +170,6 @@ function this.OnControlMouseUp(control, button)
 	if not control.itemLink or #control.itemLink == 0 then return end
     
     cachedItemLink  = control.itemLink
-    cachedControl   = control    
     
 	zo_callLater(function()
 		ItemTooltip:SetHidden(true)

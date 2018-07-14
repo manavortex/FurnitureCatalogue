@@ -472,10 +472,7 @@ local function scanFromFiles(shouldScanCharacter)
 	startupMessage(GetString(SI_FURC_VERBOSE_DB_UPTODATE))
 
 end
-
-function FurC.ScanFromFiles(scanCharacterKnowledge)
-	return scanFromFiles(scanCharacterKnowledge)
-end
+FurC.ScanFromFiles = scanFromFiles
 
 local function getScanFromFiles()
 

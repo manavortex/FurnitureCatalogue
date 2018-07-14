@@ -33,22 +33,22 @@ local bookList = {
 	},
 }
 
-FurC.Books[FURC_CLOCKWORK   ] = bookList
+FurC.Books[FURC_CLOCKWORK] = bookList
 FurC.AchievementVendors[FURC_CLOCKWORK] = {
-
-
+    
 	["The Brass Citadel, Market"] = {
+        ["Razoufa as part of a collection"] = bookList,
 		["Razoufa"] = {
 			[134285] = { -- Active Fabrication Tank
 				itemPrice 	= 75000,
 				achievement = 2049, -- Hero of Clockwork City
 			},
 			[134286] = { -- Clockwork Stylus
-				itemPrice = 3000,
+				itemPrice   = 3000,
 				achievement = 2068, -- CC Adventurer
 			},
 			[134289] = { -- Energetic Anima Core
-				itemPrice = 15000,
+				itemPrice   = 15000,
 				achievement = 2072, -- Brass Fortress Quarter Master
 			},
 			[134284] = { -- Mysterious Clockwork Sphere

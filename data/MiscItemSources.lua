@@ -278,6 +278,7 @@ FurC.MiscItemSources[FURC_CLOCKWORK] = { -- Reach
 
     }
 }
+  
 
 FurC.MiscItemSources[FURC_REACH] = { -- Reach
     [FURC_JUSTICE] 	= {
@@ -509,6 +510,8 @@ FurC.MiscItemSources[FURC_HOMESTEAD]	= {
         [118060] = getCrownPrice(20), 				    -- Sack of Grain
         [118059] = getCrownPrice(20), 				    -- Sack of Millet,
         [118058] = getCrownPrice(20), 				    -- Sack of Rice
+        [118351] = getCrownPrice(25),                   -- Box of Peaches
+
 
         [134473] = getScamboxString(SI_FURC_FLAME_ATRONACH),    -- Malacath Banner
 
@@ -516,7 +519,7 @@ FurC.MiscItemSources[FURC_HOMESTEAD]	= {
         [118065] = getCrownPrice(45), 			-- Common Cargo Crate, Dry
         [118064] = getCrownPrice(45), 			-- Common Barrel, Dry
 
-        [118054] = getCrownPrice(80), 			-- Common Firepit, Outdoor
+        [118054] = getCrownPrice(80),           -- Common Firepit, Outdoor
         [118055] = getCrownPrice(80), 			-- Common Firepit, Piled
         [118126] = getCrownPrice(95), 			-- Plaque, Standard
 
@@ -525,10 +528,44 @@ FurC.MiscItemSources[FURC_HOMESTEAD]	= {
         [118071] = getCrownPrice(120), 			-- Simple Red Banner
         [118070] = getCrownPrice(120), 			-- Simple Purple Banner
         
-        
+         
+        [94098] = getCrownPrice(95),            -- Imperial Bed, Single
+
         [120607] = getCrownPrice(50), 			-- Sapling, Lanky Ash
         
 
         [115698] = getCrownPrice(1100), 		-- Khajiit Statue, Guardian
+    },
+    [FURC_RUMOUR]   = {
+         
+        [118290] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM),           -- Antlers, Wall Mount
+        [118299] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM),           -- Bottle, Beaker
+        [118300] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM),           -- Bottle, Poison
+        [118291] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM),           -- Durzog Head, Wall Mount
+        [118294] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM),           -- Echatere Horns, Wall Mount
+        [118293] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM),           -- Echatere, Wall Mount
+        [118295] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM),           -- Haj Mota Head, Wall Mount
+        [118289] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM),           -- Haj Mota Shell, Wall Mount
+        [118284] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM),           -- Horn, Display, Cracked
+        [118283] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM),           -- Horn, Display, Huge
+        [118296] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM),           -- Mantikora Head, Wall Mount
+        [118297] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM),           -- Mantikora Horns, Wall Mount
+        [118242] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM),           -- Rug, Bearskin
+        [116473] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM),           -- Orcish Effigy, Mammoth
+        [116474] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM),           -- Orcish Effigy, Bear
+        [116433] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM),           -- Orcish Desk with Furs
+        [118065] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM),           -- Common Cargo Crate, Dry
+        [118054] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM),           -- Common Firepit, Outdoor
+        [118055] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM),           -- Common Firepit, Piled
+        [118000] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM),           -- Garlic String, Display
+        [118119] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM),           -- Minecart, Empty
+        [118120] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM),           -- Minecart, Push
+        [117991] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM),           -- Stool, Carved
+        [118278] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM),           -- Plaque, Bordered Deer Antlers
+        [118304] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM),           -- Shelf, Poison
+        [118118] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM),           -- Candles, Lasting
+        [115395] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM),           -- Nord Drinking Horn, Display
+        [118127] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM),           -- Plaque, Small
+        [118288] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM),           -- Deer Carcass, Hanging
     }
 }

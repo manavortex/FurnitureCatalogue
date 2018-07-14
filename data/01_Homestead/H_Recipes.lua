@@ -43,7 +43,7 @@ FurC.Recipes[FURC_HOMESTEAD] = {
 	115759, -- Argonian Bar, Woven Corner
 	115760, -- Argonian Snakes in a Basket
 	115761, -- Argonian Bed, Woven
-	115762, -- Argonian Bench", Woven
+	115762, -- Argonian Bench, Woven
 	115763, -- Argonian Chair, Woven
 	115764, -- Argonian Trunk, Sturdy
 	115765, -- Argonian Bookshelf, Woven
@@ -169,7 +169,7 @@ FurC.Recipes[FURC_HOMESTEAD] = {
 	115888, -- Wood Elf Rack, Meat
 	115889, -- Wood Elf Totem, Framed
 	115890, -- Wood Elf Totem, Skull
-	115891, -- Wood Elf Trough", Slop
+	115891, -- Wood Elf Trough, Slop
 	115892, -- Wood Elf Bin, Blue Feathers
 	115893, -- Wood Elf Bin, Feathers
 	115894, -- Wood Elf Cask, Painted
@@ -190,7 +190,7 @@ FurC.Recipes[FURC_HOMESTEAD] = {
 	115908, -- Breton Bed, Bunk
 	115909, -- Breton Bed, Single
 	115910, -- Breton Pew, Windowed
-	115911, -- Breton Bench", Plain
+	115911, -- Breton Bench, Plain
 	115912, -- Breton Nightstand, Open
 	115913, -- Breton Bookcase, Tall
 	115914, -- Breton Chair, Slatted
@@ -216,11 +216,11 @@ FurC.Recipes[FURC_HOMESTEAD] = {
 	115934, -- Breton Bed, Four-poster
 	115935, -- Breton Bed, Full
 	115936, -- Breton Pew, Knotwork
-	115937, -- Breton Bench", Knotwork
+	115937, -- Breton Bench, Knotwork
 	115938, -- Breton Bookcase, Knotwork
 	115939, -- Breton Chair, Rocking
 	115940, -- Breton Chest, Knotwork
-	115941, -- Breton Hutch", Knotwork
+	115941, -- Breton Hutch, Knotwork
 	115942, -- Breton Cupboard, Knotwork
 	115943, -- Breton Chest of Drawers
 	115944, -- Breton Counter, Long Cabinet
@@ -271,9 +271,9 @@ FurC.Recipes[FURC_HOMESTEAD] = {
 	115991, -- Breton Runner, Bordered
 	115992, -- Breton Carpet, Bordered
 	115993, -- Breton Medallion, Lion
-	115994, -- Breton Tablecloth", Blue
+	115994, -- Breton Tablecloth, Blue
 	115995, -- Breton Lamp, Oil
-	115996, -- Breton Tablecloth", Striped
+	115996, -- Breton Tablecloth, Striped
 	115997, -- Breton Footlocker, Knotwork
 	115998, -- Breton Armoire, Knotwork
 	115999, -- Breton Cart, Palanquin
@@ -376,7 +376,7 @@ FurC.Recipes[FURC_HOMESTEAD] = {
 	116097, -- Khajiit Bedding, Padded
 	116098, -- Khajiit Signpost, Fortified
 	116099, -- Khajiit Bed, Faded
-	116100, -- Khajiit Bench", Padded
+	116100, -- Khajiit Bench, Padded
 	116101, -- Khajiit Bookshelf, Arched
 	116102, -- Khajiit Trunk, Arched
 	116103, -- Khajiit Counter, Faded
@@ -402,7 +402,7 @@ FurC.Recipes[FURC_HOMESTEAD] = {
 	116123, -- Khajiit Skooma Bubbler
 	116124, -- Khajiit Tent, Vacation
 	116125, -- Khajiit Bed, Canopy
-	116126, -- Khajiit Couch", Padded
+	116126, -- Khajiit Couch, Padded
 	116127, -- Khajiit Bookcase, Arched
 	116128, -- Khajiit Footlocker, Arched
 	116129, -- Khajiit Counter, Long Cabinet
@@ -425,14 +425,14 @@ FurC.Recipes[FURC_HOMESTEAD] = {
 	116146, -- Khajiit Candle-Filled Lamp
 	116147, -- Nord Cart, Hay
 	116148, -- Nord Trunk, Heavy
-	116149, -- Nord Hutch", Rough
+	116149, -- Nord Hutch, Rough
 	116150, -- Nord Dresser, Rough
 	116151, -- Nord Nightstand, Rough
 	116152, -- Nord Lantern, Cage
 	116153, -- Nord Pot, Ceramic
 	116154, -- Nord Urn, Ceramic
 	116155, -- Nord Bed, Single
-	116156, -- Nord Bench", Braced
+	116156, -- Nord Bench, Braced
 	116157, -- Nord Stool, Rough
 	116158, -- Nord Table, Kitchen
 	116159, -- Nord Shelf, Wall
@@ -441,7 +441,7 @@ FurC.Recipes[FURC_HOMESTEAD] = {
 	116162, -- Nord Pot, Stew
 	116163, -- Nord Candle, Tealight
 	116164, -- Nord Candleholder, Cup
-	116165, -- Nord Torch", Triple
+	116165, -- Nord Torch, Triple
 	116166, -- Nord Cart, Cargo
 	116167, -- Nord Trunk, Faded
 	116168, -- Nord Cauldron, Glazed
@@ -449,7 +449,7 @@ FurC.Recipes[FURC_HOMESTEAD] = {
 	116170, -- Nord Amphora, Glazed
 	116171, -- Nord Vase, Bent
 	116172, -- Nord Bed, Sleigh
-	116173, -- Nord Bench", Plank
+	116173, -- Nord Bench, Plank
 	116174, -- Nord Bookshelf, Alcove
 	116175, -- Nord Chair, Braced
 	116176, -- Nord Counter, Long
@@ -493,7 +493,7 @@ FurC.Recipes[FURC_HOMESTEAD] = {
 	116216, -- Nord Trunk, Buckled
 	118916, -- High Elf Wagon, Covered
 	118917, -- High Elf Bed, Winged Double
-	118918, -- High Elf Bench", Covered
+	118918, -- High Elf Bench, Covered
 	118919, -- High Elf Bookshelf, Winged
 	118920, -- High Elf Armoire, Winged
 	118921, -- High Elf Bookcase, Winged
@@ -561,7 +561,7 @@ FurC.Recipes[FURC_HOMESTEAD] = {
 	118983, -- High Elf Lamp, Oil
 	118984, -- High Elf Bed, Bunk
 	118985, -- High Elf Bed, Single
-	118986, -- High Elf Bench", Curved
+	118986, -- High Elf Bench, Curved
 	118987, -- High Elf Bookshelf, Verdant
 	118988, -- High Elf Counter, Long Cabinet
 	118989, -- High Elf Desk, Sturdy
@@ -590,7 +590,7 @@ FurC.Recipes[FURC_HOMESTEAD] = {
 	119012, -- Orcish Table, Braced Formal
 	119013, -- Orcish Table, Braced Kitchen
 	119014, -- Orcish Trunk, Braced
-	119015, -- Orcish Bench", Cabled
+	119015, -- Orcish Bench, Cabled
 	119016, -- Orcish Shelves, Braced
 	119017, -- Orcish Bar, Long Block
 	119018, -- Orcish Counter, Block
@@ -660,13 +660,13 @@ FurC.Recipes[FURC_HOMESTEAD] = {
 	119082, -- Orcish Bookshelf, Peaked
 	119083, -- Orcish Sideboard, Engraved
 	119084, -- Orcish Cabinet, Engraved
-	119085, -- Orcish Hutch", Engraved
+	119085, -- Orcish Hutch, Engraved
 	119086, -- Orcish Coffer, Bolted
 	119087, -- Orcish Cupboards, Peaked
 	119088, -- Orcish Dresser, Engraved
 	119089, -- Orcish Cabinet, Bedside
 	119090, -- Orcish Counter, Corner
-	119091, -- Orcish Hutch", Storage
+	119091, -- Orcish Hutch, Storage
 	119092, -- Orcish Shelves, Storage
 	119093, -- Orcish Nightstand, Engraved
 	119094, -- Orcish Divider, Folded
@@ -714,8 +714,8 @@ FurC.Recipes[FURC_HOMESTEAD] = {
 	119135, -- Redguard Trunk, Heavy
 	119136, -- Redguard Bed, Wide
 	119137, -- Redguard Bed, Full
-	119138, -- Redguard Couch", Bolted
-	119139, -- Redguard Bench", Slatted
+	119138, -- Redguard Couch, Bolted
+	119139, -- Redguard Bench, Slatted
 	119140, -- Redguard Armchair, Slatted
 	119141, -- Redguard Chair, Backless
 	119142, -- Redguard Chair, Slatted
@@ -746,7 +746,7 @@ FurC.Recipes[FURC_HOMESTEAD] = {
 	119167, -- Redguard Amphora, Polished
 	119168, -- Redguard Cask, Sealed
 	119169, -- Redguard Keg, Hefty
-	119170, -- Redguard Couch", Padded
+	119170, -- Redguard Couch, Padded
 	119171, -- Redguard Cabinet, Inlaid
 	119172, -- Redguard Armchair, Cushioned
 	119173, -- Redguard Cupboard, Lattice
@@ -813,8 +813,8 @@ FurC.Recipes[FURC_HOMESTEAD] = {
 	119235, -- Redguard Pillow Roll, Oasis
 	119236, -- Redguard Throw Pillow, Oasis
 	119238, -- Redguard Bed, Wide Canopy
-	119239, -- Redguard Couch", Slatted
-	119240, -- Redguard Bench", Padded
+	119239, -- Redguard Couch, Slatted
+	119240, -- Redguard Bench, Padded
 	119241, -- Redguard Wardrobe, Braced
 	119242, -- Redguard Bookcase, Arched
 	119243, -- Redguard Wardrobe, Sturdy
@@ -834,7 +834,7 @@ FurC.Recipes[FURC_HOMESTEAD] = {
 	119257, -- Redguard Cupboard, Sturdy
 	119258, -- Redguard Shelf, Bolted
 	119259, -- Redguard Wine Rack, Inlaid
-	119260, -- Redguard Bench", Arc
+	119260, -- Redguard Bench, Arc
 	119261, -- Redguard Pot, Mosaic
 	119262, -- Redguard Pot, Hanging Mosaic
 	119263, -- Redguard Slices, Wax
@@ -899,9 +899,8 @@ FurC.Recipes[FURC_HOMESTEAD] = {
 	119350, -- Rough Bedroll, Basic
 	119351, -- Lettuce, Display
 	119352, -- Pumpkin, Display
-	119353, -- Winter Squash", Display
+	119353, -- Winter Squash, Display
 	119354, -- Beet String, Display
-	119355, -- Garlic String, Display
 	119356, -- Beets, Display
 	119357, -- Common Counter, Island Stall
 	119358, -- Common Barrel, Sealed
@@ -932,7 +931,7 @@ FurC.Recipes[FURC_HOMESTEAD] = {
 	119383, -- Common Plate, Simple
 	119384, -- Common Plate, Setting
 	119385, -- Sugar Pumpkin, Wax
-	119386, -- Radish", Wax
+	119386, -- Radish, Wax
 	119387, -- Bowl, Serving
 	119388, -- Common Bowl of Stew, Display
 	119389, -- Common Platter, Serving
@@ -953,7 +952,6 @@ FurC.Recipes[FURC_HOMESTEAD] = {
 	119405, -- Common Trap, Hunting
 	119406, -- Common Cargo, Sealed
 	119407, -- Common Cargo, Reinforced
-	119408, -- Simple Blue Banner
 	119413, -- Cauldron of Soup
 	119416, -- Cauldron of Stew
 	119418, -- Cauldron, Covered
@@ -963,22 +961,16 @@ FurC.Recipes[FURC_HOMESTEAD] = {
 	119423, -- Keg
 	119424, -- Cleaver, Butcher's
 	119425, -- Hearty Bread
-	119426, -- Bread, Plain
 	119427, -- Cheese Wedge
-	119428, -- Common Bowl, Serving
 	119429, -- Ham, Display
 	119432, -- Hourglass, Common
 	119438, -- Baked Potato, Display
 	119439, -- Pot Pie, Display
-	119440, -- Pie Dish", Empty
+	119440, -- Pie Dish, Empty
 	119443, -- Drumstick
 	119444, -- Candle, Group
 	119445, -- Lantern, Stationary
 	119446, -- Lantern, Hanging
-	119447, -- Candles, Lasting
-	119448, -- Minecart, Empty
-	119449, -- Minecart, Push
-	119450, -- Knife, Carving
 	119451, -- Kennel, Locked
 	119462, -- Plums, Bunch
 	119463, -- Tangerines, Bunch
@@ -1001,7 +993,7 @@ FurC.Recipes[FURC_HOMESTEAD] = {
 	119484, -- Bottle, Elixir
 	119485, -- Bottle, Liquor
 	119486, -- Vial, Delicate
-	119487, -- Pie Dish", Display
+	119487, -- Pie Dish, Display
 	119488, -- Bottle, Wine
 	119489, -- Candle Set, Ritual
 	119490, -- Horn, Ritual
@@ -1017,11 +1009,35 @@ FurC.Recipes[FURC_HOMESTEAD] = {
 	119533, -- Box of Plums
 	119539, -- Sweetroll
 	119540, -- Desk, Engraved
-	119541, -- Fish", Small
-	119542, -- Fish", Medium
-	119543, -- Fish", Large
+	119541, -- Fish, Small
+	119542, -- Fish, Medium
+	119543, -- Fish, Large
 	119592, -- Target Skeleton, Humanoid
 
+	121311, -- Breton Throne
+	121120, -- Chair, Carved
+	121308, -- High Elf Banner, Gilded
+
+	121546, -- Argonian Box, Woven
+	121374, -- Redguard Censer, Hanging Disc
+	121310, -- High Elf Sconce, Winged
+	121307, -- Orcish Brazier, Pillar
+
+	-- 116214, -- Nord Banner, Bear
+	-- 115786, -- Argonian Skiff, Common Reed
+
+	121207, -- Orcish Table with Fur	
+
+	121372, -- Noble Standing Cauldron
+	121059, -- Rough Cup, Empty
+
+	121313, -- Wood Elf Throne, Vine
+	121104, -- Common Quill, Feather
+
+	121305, -- Redguard Chandelier, Dark
+	121304, -- Redguard Chandelier, Grated
+	121366, -- Orcish Tapestry, Hunt
+	121365, -- High Elf Tapestry, Gilded
 
 	-- Rolis's recipes
 	121200, -- Cabinet, Poisonmaker's
@@ -1038,41 +1054,5 @@ FurC.Recipes[FURC_HOMESTEAD] = {
 	121315, -- Target Skeleton, Robust Humanoid
 	119592, -- Target Skeleton, Humanoid
 
-	121311, -- Breton Throne
-	121120, -- Chair, Carved
-	121308, -- High Elf Banner, Gilded
-
-	121546, -- Argonian Box, Woven
-	121374, -- Redguard Censer, Hanging Disc
-	121108, -- Simple Brown Banner
-	121310, -- High Elf Sconce, Winged
-	121307, -- Orcish Brazier, Pillar
-
-	-- 116214, -- Nord Banner, Bear
-	-- 115786, -- Argonian Skiff, Common Reed
-
-
-	121207, -- Orcish Table with Fur
-	121203, -- Khajiit Brazier, Enchanted
-	121201, -- Sack of Beans
-
-
-	121111, -- Simple Red Banner
-	121110, -- Simple Purple Banner
-	121109, -- Simple Gray Banner
-	121372, -- Noble Standing Cauldron
-
-	121101, -- Sack of Millet,
-	121100, -- Common Stewpot, Hanging
-	121091, -- Stool, Carved
-	121059, -- Rough Cup, Empty
-
-	121313, -- Wood Elf Throne, Vine
-	121104, -- Common Quill, Feather
-
-	121305, -- Redguard Chandelier, Dark
-	121304, -- Redguard Chandelier, Grated
-	121366, -- Orcish Tapestry, Hunt
-	121365, -- High Elf Tapestry, Gilded
 }
 

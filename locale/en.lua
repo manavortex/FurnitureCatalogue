@@ -248,6 +248,7 @@ local strings = {
     SI_FURC_DAILY_ASHLANDERS			            = "Ashlander daily quest rewards",
     SI_FURC_PLUNDERSKULL			                = "Drops from Plunder Skulls during Witches' Festival",
     SI_FURC_DROP_CHEST_VVARDENFELL	                = "Extremely rarely from chests on Vvardenfell",
+    SI_FURC_VV_PAINTING	                            = "Extremely rarely from chests or lockboxes on Vvardenfell",
     SI_FURC_DROP                                    = "This item is a drop ", 
     SI_FURC_DROP_ALTMER                             = "This item is a drop on Summerset", 
     SI_FURC_FLAME_ATRONACH	                        = "Flame Atronach",
