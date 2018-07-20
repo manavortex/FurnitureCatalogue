@@ -192,7 +192,8 @@ local strings = {
 	SI_FURC_FILTER_VERSION_CC						= "Clockwork City",
 	SI_FURC_FILTER_VERSION_DRAGON					= "Dragon Bones",
 	SI_FURC_FILTER_VERSION_ALTMER					= "Summerset",
-	SI_FURC_FILTER_VERSION_ALTMER_TT                = "",
+	SI_FURC_FILTER_VERSION_WEREWOLF					= "Wolfhunter",
+	
 
 	-- =============================== --
 	-- = GUI: Dropdown entry tooltip = --
@@ -216,7 +217,8 @@ local strings = {
 	SI_FURC_FILTER_VERSION_R_TT						= "Because all we needed were more Reachmen", 
 	SI_FURC_FILTER_VERSION_CC_TT					= "Where the flywheels churn and the brass is pretty", 
 	SI_FURC_FILTER_VERSION_DRAGON_TT				= "If you got this from Narsis Dren, well...", 
-	
+	SI_FURC_FILTER_VERSION_ALTMER_TT                = "Still think the Dunmer are bad?",
+	SI_FURC_FILTER_VERSION_WEREWOLF_TT              = "In Soviet Hunting Ground, werewolf hunt you",
 	
 	SI_FURC_FILTER_CHAR_OFF							= "Character filter: off", 
 	SI_FURC_FILTER_CHAR_OFF_TT						= filterDisabled, 

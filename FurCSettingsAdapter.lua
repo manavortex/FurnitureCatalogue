@@ -1,13 +1,5 @@
 local task 		= LibStub("LibAsync"):Create("FurnitureCatalogue_Settings")
-
 local p 		= FurC.DebugOut -- debug function calling zo_strformat with up to 10 args
-
-function FurC.GetDontScanTradingHouse()
-	return FurC.settings["dontScanTradingHouse"]
-end
-function FurC.SetDontScanTradingHouse(value)
-	FurC.settings["dontScanTradingHouse"] = value
-end
 
 function FurC.GetEnableDebug()
 	return FurC.settings["enableDebug"]
@@ -31,23 +23,6 @@ function FurC.SetHideCrownStoreItems(value)
 	FurC.updateDropdownData()
 	FurC.UpdateGui()
 end
-function FurC.GetHideRumourRecipesEntry()
-	return FurC.settings["hideRumourEntry"]
-end
-function FurC.SetHideRumourRecipesEntry(value)
-	FurC.settings["hideRumourEntry"] = value
-	FurC.updateDropdownData()
-	FurC.UpdateGui()
-end
-function FurC.GetHideCrownStoreEntry()
-	return FurC.settings["hideCrownStoreEntry"]
-end
-function FurC.SetHideCrownStoreEntry(value)
-	FurC.settings["hideCrownStoreEntry"] = value
-	FurC.updateDropdownData()
-	FurC.UpdateGui()
-end
-
 
 function FurC.GetFilterAllOnText()
 	return FurC.settings["filterAllOnText"]

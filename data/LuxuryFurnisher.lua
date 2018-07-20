@@ -1,6 +1,28 @@
 FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 FurC.LuxuryFurnisher[FURC_ALTMER] = {
-    
+    [139098] = {        -- Darkshade Glowstalks, Inquisitive
+        itemPrice   = 45000,
+		itemDate	= "2018-07-21",
+    },
+	-- August 5+6
+	[126611] = { -- Vvardenfell Anemone, Sprout
+		itemPrice 	= 5417,
+		itemDate	= "2018-07-21",
+	},
+	[126612] = { -- Vvardenfell Anemone, Strong
+		itemPrice 	= 27084,
+		itemDate	= "2018-07-21",
+	},
+	[126610] = { -- Vvardenfell Coral Plant,
+		itemPrice 	= 10834,
+		itemDate	= "2018-07-21",
+	},
+	[126591] = { -- Vvardenfell Coral Plant, Young
+		itemPrice 	= 5417,
+		itemDate	= "2018-07-21",
+	},
+
+
     [139097] = { -- Spiral Skein Glowstalks, Sprouts
        itemPrice = 8000, 
 		itemDate	= "2018-07-14",

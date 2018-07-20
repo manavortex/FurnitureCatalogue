@@ -1,13 +1,11 @@
 FurnitureCatalogue 					= {}
 FurnitureCatalogue.name				= "FurnitureCatalogue"
 FurnitureCatalogue.author			= "manavortex"
-FurnitureCatalogue.version          = "2.5.14"
+FurnitureCatalogue.version          = "2.5.15"
 FurnitureCatalogue.CharacterName	= nil
 FurnitureCatalogue.settings			= {}
 
 FurC 								= FurnitureCatalogue
-FurC.DevDebug						= GetUnitDisplayName("player") == "@manavortex"
-FurC.AccountName					= GetDisplayName()
 
 FurC.AchievementVendors				= {}
 FurC.LuxuryFurnisher				= {}
@@ -21,7 +19,6 @@ FurC.EventItems						= {}
 FurC.PVP							= {}
 FurC.MiscItemSources                = {}
 
-
 -- versioning
 FURC_HOMESTEAD						= 2
 FURC_MORROWIND						= 3
@@ -29,6 +26,7 @@ FURC_REACH							= 4
 FURC_CLOCKWORK						= 5
 FURC_DRAGONS						= 6
 FURC_ALTMER						    = 7
+FURC_WEREWOLF					    = 8
 
 FurC.Const                          = {
     vendorColor     = "d68957",
@@ -46,6 +44,7 @@ local defaults 						= {
 	dontScanTradingHouse 			= false,
 	enableDebug 					= false,
 
+	data 				            = {},
 	filterCraftingType 				= {},
 	filterQuality 					= {},
 
@@ -60,6 +59,7 @@ local defaults 						= {
 		width						= 650,
 		height 						= 550,
 	},
+    
 	dropdownDefaults				= {
 		Source						= 1,
 		Character					= 1,
@@ -83,10 +83,6 @@ local defaults 						= {
 	wipeDatabase					= false,
 	startupSilently					= true,
 
-	visibility						= {
-		hud							= true,
-		hudui						= true,
-	}
 }
 
 FURC_NONE				= 1
@@ -172,6 +168,7 @@ FurnitureCatalogue.DropdownData = {
 		[4] = GetString(SI_FURC_FILTER_VERSION_R	),
 		[5] = GetString(SI_FURC_FILTER_VERSION_CC	),
 		[6] = GetString(SI_FURC_FILTER_VERSION_DRAGON),
+		[7] = GetString(SI_FURC_FILTER_VERSION_ALTMER),
 	},
 	TooltipsVersion	= {
 		[1] =  GetString(SI_FURC_FILTER_VERSION_OFF_TT),
@@ -180,6 +177,7 @@ FurnitureCatalogue.DropdownData = {
 		[4] =  GetString(SI_FURC_FILTER_VERSION_R_TT),
 		[5] =  GetString(SI_FURC_FILTER_VERSION_CC_TT),
 		[6] =  GetString(SI_FURC_FILTER_VERSION_DRAGON_TT),
+		[7] = GetString(SI_FURC_FILTER_VERSION_ALTMER_TT),
 	},
 	ChoicesCharacter  = {
 		[1]	= GetString(SI_FURC_FILTER_CHAR_OFF),
@@ -192,9 +190,9 @@ FurnitureCatalogue.DropdownData = {
 	ChoicesSource	= {},
 	TooltipsSource 	= {},
 }
-if GetAPIVersion() == 100023 then
-    FurnitureCatalogue.DropdownData.ChoicesVersion[FURC_ALTMER] = GetString(SI_FURC_FILTER_VERSION_ALTMER)
-    FurnitureCatalogue.DropdownData.TooltipsVersion[FURC_ALTMER] = GetString(SI_FURC_FILTER_VERSION_ALTMER_TT)
+if GetAPIVersion() == 100024 then
+    FurnitureCatalogue.DropdownData.ChoicesVersion[FURC_WEREWOLF] = GetString(SI_FURC_FILTER_VERSION_WEREWOLF)
+    FurnitureCatalogue.DropdownData.TooltipsVersion[FURC_WEREWOLF] = GetString(SI_FURC_FILTER_VERSION_WEREWOLF_TT)
 end
 
 local function updateDropdownData()
@@ -257,10 +255,7 @@ function FurnitureCatalogue_Initialize(eventCode, addOnName)
 
 	FurnitureCatalogue.settings 	= ZO_SavedVars:NewAccountWide("FurnitureCatalogue_Settings", 2, nil, defaults)
 
-	-- initialise setting, also setup the "source" dropdown for the menu
-	FurC.settings.data 							= FurC.settings.data or {}
-	FurC.settings.filterCraftingType 			= {}
-	FurC.settings.filterQuality 				= {}
+	-- setup the "source" dropdown for the menu	
 	setupSourceDropdown()
 
 	FurnitureCatalogue.CreateSettings(FurnitureCatalogue.settings, defaults, FurnitureCatalogue)
@@ -269,9 +264,7 @@ function FurnitureCatalogue_Initialize(eventCode, addOnName)
 
 	FurC.RegisterEvents()
 
-	FurnitureCatalogue.InitGui()
-    FurC.SetHideRumourRecipesEntry(false)
-    FurC.SetHideCrownStoreEntry(false)
+	FurC.InitGui()
 	FurnitureCatalogue.CreateTooltips()
 	FurC.InitRightclickMenu()
 

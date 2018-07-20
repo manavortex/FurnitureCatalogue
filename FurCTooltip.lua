@@ -8,24 +8,6 @@ local function tryColorize(text)
 	return text:gsub("cannot craft", "|cFF0000cannot craft|r"):gsub("Can be crafted", "|c00FF00Can be crafted|r")
 end
 
-local defaultDebugString = "[<<1>>] = <<2>>, -- <<3>>"
-local function tryCreateDebugOutput(itemId, itemLink)
-    if not (FurC.DevDebug and FurCGui:IsHidden()) then return end
-    itemId = itemId or FurC.GetItemId(itemLink)
-    local price = 0
-    local control = moc()
-    local debugString = defaultDebugString
-    if control and control.dataEntry then
-        local data = control.dataEntry.data or {}
-        if 0 == data.currencyQuantity1 then
-            price = data.stackBuyPrice
-            debugString = "[<<1>>] = { -- <<3>>\n\titemPrice = <<2>>,\n\t--achievement = 0, \n},"
-        else
-            price = data.currencyQuantity1
-        end
-    end
-    d(zo_strformat(debugString, itemId, price, GetItemLinkName(itemLink)))
-end
 
 local function addTooltipData(control, itemLink)
 
@@ -33,8 +15,6 @@ local function addTooltipData(control, itemLink)
 	local itemId, recipeArray = nil
 	if nil == itemLink or FURC_EMPTY_STRING == itemLink then return end
 	local isRecipe = IsItemLinkFurnitureRecipe(itemLink)
-
-    -- tryCreateDebugOutput(itemId, itemLink)
 
 	itemLink = (isRecipe and GetItemLinkRecipeResultItemLink(itemLink)) or itemLink
 

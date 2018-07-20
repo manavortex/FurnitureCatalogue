@@ -328,31 +328,6 @@ function FurC.CreateSettings(savedVars, defaults)
 					getFunc = function() return FurC.GetHideCrownStoreItems() end,
 					setFunc = function(value) FurC.SetHideCrownStoreItems(value) end
 				},
-                --[[
-				{	-- header: rumour recipes
-					type = "header",
-					name = GetString(SI_FURC_STRING_MENU_HIDE_MENU),
-				},
-				{ -- checkbox: Hide doubtful recipes
-					type = "description",
-					name = GetString(SI_FURC_STRING_MENU_HIDE_MENU),
-					text = GetString(SI_FURC_STRING_MENU_HIDE_MENU_TT),
-				},
-				{ -- checkbox: Hide rumour recipes menu entry
-					type 	= "checkbox",
-					name 	= GetString(SI_FURC_STRING_MENU_HIDE_MENU_RUMOUR),
-					warning = GetString(SI_FURC_STRING_MENU_HIDE_MENU_TT),
-					getFunc = function() return FurC.GetHideRumourRecipesEntry() end,
-					setFunc = function(value) FurC.SetHideRumourRecipesEntry(value) end
-				},
-				{ -- checkbox: Hide doubtful recipes
-					type 	= "checkbox",
-					name 	= GetString(SI_FURC_STRING_MENU_HIDE_MENU_CROWN),
-					warning = GetString(SI_FURC_STRING_MENU_HIDE_MENU_TT),
-					getFunc = function() return FurC.GetHideCrownStoreEntry() end,
-					setFunc = function(value) FurC.SetHideCrownStoreEntry(value) end
-				},
-                ]]
 			},
 		},
 
