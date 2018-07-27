@@ -19,13 +19,13 @@ FurC.LuxuryFurnisher[FURC_ALTMER] = {
 		itemPrice 	= 5000,
 		itemDate	= "2018-07-28",
 	},
-    [139099] = {        -- Dark Elf Brazier, Ancestral Tomb
+    [139099] = { -- Dark Elf Brazier, Ancestral Tomb
         itemPrice   = 15000,
 		itemDate	= "2018-07-28",
     },
 
     
-    [139098] = {        -- Darkshade Glowstalks, Inquisitive
+    [139098] = { -- Darkshade Glowstalks, Inquisitive
         itemPrice   = 45000,
 		itemDate	= "2018-07-21",
     },
