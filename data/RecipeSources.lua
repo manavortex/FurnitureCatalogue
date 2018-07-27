@@ -46,9 +46,7 @@ local rolisRecipes = {
     [134987] = 125, -- Blueprint: Hlaalu Gaming Table, "Foxes & Felines"
     [134986] = 125, -- Design: Miniature Garden, Bottled
     [134983] = 125, -- Diagram: Hlaalu Gong
-    [134982] = 125, -- Formula: Alchemical Apparatus, Master
     [134984] = 125, -- Pattern: Clothier's Form, Brass
-    [134985] = 125, -- Praxis: Hlaalu Trinket Box, Curious Turtle
     [126582] = 275, -- Praxis: Target Centurion, Dwarf-Brass
     [126583] = 450, -- Praxis: Target Centurion, Robust Refabricated
     [119592] = 125, -- Praxis: Target Skeleton, Humanoid
@@ -73,6 +71,11 @@ local faustinaRecipes = {
     [121209] = 100, -- Pattern: Orcish Tapestry, Spear
     [132193] = 100, -- Praxis: Hlaalu Bath Tub, Masterwork
     [121207] = 100, -- Praxis: Orcish Table with Fur
+    [134986] = 100, -- Design: Miniature Garden, Bottled
+    [134982] = 100, -- Formula: Alchemical Apparatus, Master
+    [134984] = 100, -- Pattern: Clothier's Form, Brass
+    [134985] = 100, -- Praxis: Hlaalu Trinket Box, Curious Turtle
+
 }
 
 for itemId, itemPrice in pairs(rolisRecipes) do

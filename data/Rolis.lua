@@ -27,6 +27,7 @@ FurC.FaustinaRecipes[FURC_DRAGONS] = {
 	 132193,	-- Hlaalu Bathtub
 	 132195,	-- Telvanni Candelabra
 	 121166,	-- Podium, Skinning
+	 134986,	-- Podium, Skinning
 }
 
 FurC.Faustina[FURC_DRAGONS] = {
@@ -39,15 +40,9 @@ FurC.Rolis[FURC_DRAGONS] = {
 	134985,
 	134986,
 	134987,
+	[133576] = 1250,
 }
 
-FurC.Rolis_Recipes[FURC_DRAGONS] = {
-	[133576] = 50,
-}
-
-FurC.Rolis_Recipes[FURC_CLOCKWORK] = {
-	[133576] = 50,
-}
 
 
 FurC.Rolis_Recipes[FURC_HOMESTEAD] = {

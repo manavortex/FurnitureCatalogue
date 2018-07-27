@@ -45,11 +45,12 @@ data\05_Dragonbones\DragonB_Recipes.lua
 
 data\01_Homestead\H_Cyrodiil.lua
 
+data\AchievementVendors.lua
 data\01_Homestead\H_AchievementVendors.lua
 data\02_Morrowind\M_AchievementVendors.lua
 data\03_Reach\HotR_AchievementVendors.lua
 data\04_Clockwork\CC_AchievementVendors.lua
-data\AchievementVendors.lua
+data\05_Dragonbones\AchievementVendors.lua
 
 data\LuxuryFurnisher.lua
 data\01_Homestead\H_LuxuryFurnisher.lua

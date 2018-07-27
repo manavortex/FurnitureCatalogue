@@ -1,5 +1,30 @@
 FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 FurC.LuxuryFurnisher[FURC_ALTMER] = {
+    
+    
+	-- August 5+6
+	[126573] = { -- Velothi Candle, Mourning
+		itemPrice 	= 5000,
+		itemDate	= "2018-07-28",
+	},
+	[126574] = { -- Velothi Cerecloth, Prayer
+		itemPrice 	= 5000,
+		itemDate	= "2018-07-28",
+	},
+	[126575] = { -- Velothi Seat, Meditation
+		itemPrice 	= 10000,
+		itemDate	= "2018-07-28",
+	},
+	[126572] = { -- Velothi Shroud, Mourning
+		itemPrice 	= 5000,
+		itemDate	= "2018-07-28",
+	},
+    [139099] = {        -- Dark Elf Brazier, Ancestral Tomb
+        itemPrice   = 15000,
+		itemDate	= "2018-07-28",
+    },
+
+    
     [139098] = {        -- Darkshade Glowstalks, Inquisitive
         itemPrice   = 45000,
 		itemDate	= "2018-07-21",

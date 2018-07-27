@@ -10,7 +10,7 @@ local FURC_CANBESTOLEN_NERDS	= FURC_CANBESTOLEN_SCHOLARS      .. " and mages"
 local FURC_CANBESTOLEN_RELIG	= GetString(SI_FURC_CANBESTOLEN) .. " from priests and pilgrims"
 local FURC_CANBESTOLEN_THIEF	= GetString(SI_FURC_CANBESTOLEN) .. " from thieves"
 local FURC_CANBESTOLEN_WW	    = GetString(SI_FURC_CANBESTOLEN) .. " from woodworkers"
-local FURC_CANBESTOLEN_WW	    = GetString(FURC_CANBESTOLEN_DRUNKARDS) .. " from drunkards"
+local FURC_CANBESTOLEN_DRUNK    = GetString(SI_FURC_CANBESTOLEN) .. " from drunkards"
 
 local FURC_PLANTS_VVARDENFELL   = GetString(FURC_PLANTS) .. " on Vvardenfell"
 local FURC_CANBESTOLEN_WROTHGAR	= GetString(SI_FURC_CANBESTOLEN) .. " in Wrothgar"
@@ -452,7 +452,7 @@ FurC.MiscItemSources[FURC_HOMESTEAD]	= {
         [118716] = FURC_CANBEPICKED_GUARD, 				-- Orc Female
         [118717] = FURC_CANBEPICKED_GUARD, 				-- Orc Male
 
-        [121055] = FURC_CANBESTOLEN_DRUNKARDS, 			-- Breton Mug, Full
+        [121055] = FURC_CANBESTOLEN_DRUNK, 			    -- Breton Mug, Full
 
         [116512] = FURC_CANBESTOLEN_WROTHGAR,		    -- Orcish Carpet Blood
 

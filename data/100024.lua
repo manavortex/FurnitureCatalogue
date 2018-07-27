@@ -37,7 +37,6 @@ FurC.MiscItemSources[FURC_WEREWOLF][FURC_RUMOUR] = {
     [141855] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- Decorative Hollowjack Wraith-Lantern",
     [141856] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- Decorative Hollowjack Daedra-Skull",
     [141857] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- Ritual Chalice, Hircine",
-    [141858] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- Banner of the Silver Dawn",
     [141869] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- Alinor Potted Plant, Cypress",
     [141870] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- Raven-Perch Cemetery Wreath",
     [141875] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- Witches Festival Scarecrow",
@@ -83,6 +82,23 @@ FurC.MiscItemSources[FURC_WEREWOLF][FURC_RUMOUR] = {
    
         
 }
+
+FurC.AchievementVendors[FURC_WEREWOLF] = {
+	["the Undaunted Enclaves"] = {
+		["Undaunted Quartermaster"] = {
+			[141858] = {        --Banner of the Silver Dawn
+                itemPrice   = 15000,
+                achievement = 2152,
+            },
+            [141857] = {        --Ritual Chalice, Hircine
+                itemPrice   = 5000,
+                achievement = 2162,
+            },
+
+		},
+	},
+}
+
 
 FurC.EventItems[FURC_WEREWOLF] = {}
 
