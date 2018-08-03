@@ -160,23 +160,4 @@ FurC.LuxuryFurnisher[FURC_REACH] = {
 		itemDate	= "2017-08-25",
 	},
 
-	-- August 19-20
-	[126579] = { -- Velothi Altar, Sacrificial
-		itemPrice 	= 10834,
-		itemDate	= "2017-08-18",
-	},
-	[126576] = { -- Velothi Kneeler, Prayer
-		itemPrice 	= 3000,
-		itemDate	= "2017-08-18",
-	},
-
-	[126577] = { -- Velothi Podium of Recitation
-		itemPrice 	= 37500,
-		itemDate	= "2017-08-18",
-	},
-
-	[126578] = { -- Velothi Burial Urn
-		itemPrice 	= 10834,
-		itemDate	= "2017-08-18",
-	},
 }
