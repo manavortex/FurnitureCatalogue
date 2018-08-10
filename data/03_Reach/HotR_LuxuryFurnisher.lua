@@ -142,22 +142,6 @@ FurC.LuxuryFurnisher[FURC_REACH] = {
 	},
 
 
-	-- Aug 26+27
-	[120831] = { -- Blue Crystal Cluster
-		itemPrice 	= 10834,
-		itemDate	= "2017-08-25",
-	},
-	[120833] = { -- Blue Crystal Fragments
-		itemPrice 	= 8125,
-		itemDate	= "2017-08-25",
-	},
-	[120830] = { -- Blue Flame Candles
-		itemPrice 	= 2500,
-		itemDate	= "2017-08-25",
-	},
-	[121273] = { -- Soul Gem, Grand
-		itemPrice 	= 5417,
-		itemDate	= "2017-08-25",
-	},
+	
 
 }
