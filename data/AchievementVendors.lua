@@ -1,3 +1,28 @@
+FurC.AchievementVendors[FURC_WEREWOLF] = {
+	["the Undaunted Enclaves"] = {
+		["Undaunted Quartermaster"] = {
+			[141858] = {        --Banner of the Silver Dawn
+                itemPrice   = 15000,
+                achievement = 2152,
+            },
+            [141857] = {        --Ritual Chalice, Hircine
+                itemPrice   = 5000,
+                achievement = 2162,
+            },
+
+		},
+	},
+	
+	GetString(FURC_AV_ALI)] = {
+		[GetString(FURC_AV_UNW)] = {
+	
+			[141824] = {  
+				itemPrice 	= 100,
+			}
+		}
+	}
+}
+
 FurC.AchievementVendors[FURC_ALTMER] = {
 
     [GetString(FURC_AV_ALI)] = {

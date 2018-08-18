@@ -59,32 +59,34 @@ local function addMenuItems(itemLink, recipeArray)
     cachedRecipeArray = recipeArray
     
     if not FurC.GetSkipDivider() then 
-        AddCustomMenuItem(S_DIVIDER,    doNothing, MENU_ADD_OPTION_LABEL)
-    
+        AddCustomMenuItem(S_DIVIDER,    doNothing, MENU_ADD_OPTION_LABEL)    
     end
-        AddCustomMenuItem(GetString(SI_FURC_MENU_HEADER), toChat, MENU_ADD_OPTION_LABEL)
+	
+	AddCustomMenuItem(GetString(SI_FURC_MENU_HEADER), toChat, MENU_ADD_OPTION_LABEL)
     
     
 	local faveText = FurC.IsFavorite(itemLink, recipeArray) and GetString(SI_FURC_REMOVE_FAVE) or GetString(SI_FURC_ADD_FAVE)
 	AddCustomMenuItem(faveText, fave, MENU_ADD_OPTION_LABEL)
-
+	
+	local isRecipe = IsItemLinkFurnitureRecipe(itemLink)
+	
+	-- if we hold a recipe: allow posting recipe
+	if not isRecipe and recipeArray.blueprint then
+		AddCustomMenuItem(GetString(SI_FURC_POST_RECIPE),  postRecipe, MENU_ADD_OPTION_LABEL)		
+		
+    -- if it's a recipe: Allow posting item
+	elseif isRecipe then
+		AddCustomMenuItem(GetString(SI_FURC_POST_ITEM),     postRecipeResult, MENU_ADD_OPTION_LABEL)
+	end
+	
 	if recipeArray.origin ~= FURC_CRAFTING then
 		AddCustomMenuItem(GetString(SI_FURC_POST_ITEMSOURCE),   postItemSource, MENU_ADD_OPTION_LABEL)
 	else
     
-    -- if it's a recipe: Allow posting item
-		if IsItemLinkFurnitureRecipe(itemLink) then
-			AddCustomMenuItem(GetString(SI_FURC_POST_ITEM),     postRecipeResult, MENU_ADD_OPTION_LABEL)
-        
-    -- if it's not a recipe, but we hold a recipe: allow posting recipe
-		elseif recipeArray.blueprint then
-             AddCustomMenuItem(GetString(SI_FURC_POST_RECIPE),  postRecipe, MENU_ADD_OPTION_LABEL)		
-        end
-    
-    -- post material list
+		-- post material list
 		AddCustomMenuItem(GetString(SI_FURC_POST_MATERIAL),     postMaterial, MENU_ADD_OPTION_LABEL)
     
-    -- will do nothing if preferences not met
+		-- will do nothing if preferences not met
 		AddFurnitureShoppingListMenuEntry(itemLink, true)
 	end
 end

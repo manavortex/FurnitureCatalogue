@@ -1,19 +1,20 @@
 FurC.Recipes = FurC.Recipes or {}
 
 FurC.Recipes[FURC_WEREWOLF] = {
-    141904, -- Blueprint: Alinor Bookshelf, Grand Full",
-    141905, -- Praxis: Alinor Gaming Table, Punctilious Conflict",
-    141906, -- Formula: Artist's Palette, Pigment",
-    141907, -- Design: Alinor Grape Stomping Tub",
-    141896, -- Sketch: Figurine, The Dragon's Glare",
-    141897, -- Praxis: Obelisk, Lord Hircine Ritual",
-    141898, -- Praxis: Ritual Stone, Hircine",
-    141899, -- Praxis: Sacrificial Altar, Hircine",
-    141900, -- Blueprint: Ritual Fetish, Hircine",
-    141901, -- Pattern: Psijic Banner, Long",
-    141902, -- Schematic: Relic Vault, Impenetrable",
-    141903, -- Pattern: Alinor Bed, Levitating",    
+    141904, -- Blueprint: Alinor Bookshelf, Grand Full,
+    141905, -- Praxis: Alinor Gaming Table, Punctilious Conflict,
+    141906, -- Formula: Artist's Palette, Pigment,
+    141907, -- Design: Alinor Grape Stomping Tub,
+    141896, -- Sketch: Figurine, The Dragon's Glare,
+    141897, -- Praxis: Obelisk, Lord Hircine Ritual,
+    141898, -- Praxis: Ritual Stone, Hircine,
+    141899, -- Praxis: Sacrificial Altar, Hircine,
+    -- 141900, -- Blueprint: Ritual Fetish, Hircine item drops, blueprint not?
+    141901, -- Pattern: Psijic Banner, Long,
+    141902, -- Schematic: Relic Vault, Impenetrable,
+    141903, -- Pattern: Alinor Bed, Levitating,    
 }
+
 FurC.Recipes[FURC_ALTMER] = {
 
     139573, --Sketch: Figurine, the Fish and the Unicorn

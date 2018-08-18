@@ -162,7 +162,7 @@ function FurC.GetMiscItemSource(recipeKey, recipeArray)
 	if not versionFiles then return end
 	local originData = versionFiles[recipeArray.origin]
 	if nil == originData then return end
-	return originData[recipeKey]
+	return string.format("%s: %s", FurC.GetItemLink(recipeKey), originData[recipeKey])
 end
 
 local function getRecipeSource(recipeKey, recipeArray)
