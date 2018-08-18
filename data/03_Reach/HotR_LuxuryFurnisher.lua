@@ -2,7 +2,7 @@ FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
 FurC.LuxuryFurnisher[FURC_REACH] = {
 
-	-- Oct. 21
+-- Oct. 21
 	[132155] = { -- Witch's Torch, Wretched
 		itemPrice 	= 5000,
 		itemDate	= "2017-10-20",
@@ -124,21 +124,6 @@ FurC.LuxuryFurnisher[FURC_REACH] = {
 	[120840] = { -- Craglorn Coffer, Ornate
 		itemPrice 	= 5000,
 		itemDate	= "2017-09-08, 2017-04-21",
-	},
-
-
-	-- Sept. 2nd + 3rd
-	[120832] = { -- Blue Crystal Spire
-		itemPrice 	= 12000,
-		itemDate	= "2017-09-01",
-	},
-	[120834] = { -- Blue Flame Brazier
-		itemPrice 	= 5000,
-		itemDate	= "2017-09-01",
-	},
-	[121272] = { -- Great Soul Gem
-		itemPrice 	= 20000,
-		itemDate	= "2017-09-01",
 	},
 
 

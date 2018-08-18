@@ -458,11 +458,22 @@ local function scanFromFiles(shouldScanCharacter)
 			startupMessage(GetString(SI_FURC_VERBOSE_STARTUP))
 		end
     end
+	local function rescanRumourRecipes()
+		-- make sure that all rumour items 
+		for recipeKey, recipeArray in pairs(FurC.settings.data) do
+			if FurC.RumourRecipes[recipeKey] or recipeArray.blueprint and FurC.RumourRecipes[recipeArray.blueprint] then
+			
+			end
+		end
+	end
     
 	FurC.IsLoading(true)
 
-	task:Call(scanMiscItemFile)
-	:Then(scanRecipeFile)
+	-- task:Call(scanMiscItemFile)
+	-- :Then(scanRecipeFile)
+	
+	task:Call(scanRecipeFile)
+	:Then(scanMiscItemFile)
 	:Then(scanVendorFiles)
 	:Then(scanRolis)
 	:Then(scanFestivalFiles)

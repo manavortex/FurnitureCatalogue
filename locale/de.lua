@@ -251,6 +251,7 @@ local strings = {
 	SI_FURC_CHESTS                                  = "from treasure chests",
 	SI_FURC_VVARDENFELL_PAINTING                    = "extremely rarely from safeboxes",
 	SI_FURC_DRAGON_DUNGEON_DROP                     = "Fang Lair/Scalecaller Peak",
+	SI_FURC_WW_DUNGEON_DROP                     	= "Monster Hunter Keep/March of the Sacrifices",
 	SI_FURC_ITEMSOURCE_UNKNOWN_YET                  = "This item has been found in the sources/recipes for Summerset! \nIts origin isn't known yet.",
 	SI_FURC_EXISITING_ITEMSOURCE_UNKNOWN_YET        = "This item has been confirmed existing, but its origin isn't known yet.",
 	SI_FURC_ITEMSOURCE_ITEMPACK                     = "This item is part of the Crown Store item pack ",

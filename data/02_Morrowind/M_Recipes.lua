@@ -281,7 +281,6 @@ FurC.Recipes[FURC_MORROWIND] = {
 	127098, -- Telvanni Lantern, Organic Azure
 	126839, -- Daedric Platform, Ashen
 	127074, -- Indoril Brazier, Knotwork
-	121107, -- Steak Dinner
 	126876, -- Dwarven Candlestick, Orrery
 	121105, -- Common Barrel, Dry
 	121103, -- Chicken Meal, Display

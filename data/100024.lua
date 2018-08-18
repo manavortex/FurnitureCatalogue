@@ -3,6 +3,10 @@ local function getCrownStorePriceString(price)
 end
 
 FurC.MiscItemSources[FURC_WEREWOLF] = FurC.MiscItemSources[FURC_WEREWOLF] or {}
+	
+FurC.MiscItemSources[FURC_WEREWOLF][FURC_DROP] = {  
+	[141851] = GetString(SI_FURC_WW_DUNGEON_DROP), 			-- Bear Skull, Fresh",
+}
 FurC.MiscItemSources[FURC_WEREWOLF][FURC_RUMOUR] = {  
     [141824] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- Vines, Sun-Bronzed Ivy Cluster",
     [141825] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- Relic Vault, Impenetrable",
@@ -30,7 +34,7 @@ FurC.MiscItemSources[FURC_WEREWOLF][FURC_RUMOUR] = {
     [141848] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- Animal Bones, Jumbled",
     [141849] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- Animal Bones, Fresh",
     [141850] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- Bear Skeleton, Picked Clean",
-    [141851] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- Bear Skull, Fresh",
+    
     [141852] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- Ritual Fetish, Hircine",
     [141853] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- Statue of Hircine's Bitter Mercy",
     [141854] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- Decorative Hollowjack Flame-Skull",
