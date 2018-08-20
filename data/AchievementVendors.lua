@@ -13,7 +13,7 @@ FurC.AchievementVendors[FURC_WEREWOLF] = {
 		},
 	},
 	
-	GetString(FURC_AV_ALI)] = {
+	[GetString(FURC_AV_ALI)] = {
 		[GetString(FURC_AV_UNW)] = {
 	
 			[141824] = {  
