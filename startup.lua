@@ -1,7 +1,7 @@
 FurnitureCatalogue 					= {}
 FurnitureCatalogue.name				= "FurnitureCatalogue"
 FurnitureCatalogue.author			= "manavortex"
-FurnitureCatalogue.version          = "2.6.1"
+FurnitureCatalogue.version          = "2.6.2"
 FurnitureCatalogue.CharacterName	= nil
 FurnitureCatalogue.settings			= {}
 
@@ -35,8 +35,6 @@ FurC.Const                          = {
     tvColor		    = "5EA4FF",
     voucherColor	= "82BCFF",
 }
-
-FurC.version						= 2.2
 
 local defaults 						= {
 

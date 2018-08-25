@@ -151,7 +151,7 @@ local function getEventDropSource(recipeKey, recipeArray, stripColor)
 end
 FurC.getEventDropSource = getEventDropSource
 
-function FurC.GetMiscItemSource(recipeKey, recipeArray)
+function FurC.GetMiscItemSource(recipeKey, recipeArray, attachItemLink)
 	if not recipeArray or not recipeArray.version or not recipeArray.origin then return end
 
 	if recipeArray.origin == FURC_RUMOUR then
@@ -162,7 +162,7 @@ function FurC.GetMiscItemSource(recipeKey, recipeArray)
 	if not versionFiles then return end
 	local originData = versionFiles[recipeArray.origin]
 	if nil == originData then return end
-	return string.format("%s: %s", FurC.GetItemLink(recipeKey), originData[recipeKey])
+	return (not attachItemLink and originData[recipeKey]) or string.format("%s: %s", FurC.GetItemLink(recipeKey), originData[recipeKey])
 end
 
 local function getRecipeSource(recipeKey, recipeArray)

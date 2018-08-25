@@ -41,10 +41,10 @@ local cachedItemLink, cachedRecipeArray
 
 local function toChat()             FurC.ToChat(cachedItemLink) end
 local function fave()               FurC.Fave(cachedItemLink) end
-local function postItemSource()     FurC.ToChat(FurC.GetItemDescription(cachedItemLink, cachedRecipeArray, true)) end
+local function postItemSource()     FurC.ToChat(FurC.GetItemDescription(cachedItemLink, cachedRecipeArray, true, true)) end
 local function postRecipe()         FurC.ToChat(FurC.GetItemLink(cachedRecipeArray.blueprint)) end
 local function postRecipeResult()   FurC.ToChat(GetItemLinkRecipeResultItemLink(cachedItemLink)) end
-local function postMaterial()       FurC.ToChat(cachedItemLink .. ": " .. FurC.GetMats(cachedItemLink, cachedRecipeArray, true)) end
+local function postMaterial()       FurC.ToChat(FurC.GetMats(cachedItemLink, cachedRecipeArray, true, true)) end
 
 
 local function doNothing() return end

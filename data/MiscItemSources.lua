@@ -21,6 +21,7 @@ local FURC_AUTOMATON_VV			= GetString(SI_FURC_AUTOMATON) .. " on Vvardenfell"
 local FURC_HARVEST_CHARBOR		= GetString(SI_FURC_HARVEST) .. " in Coldharbour"
 
 local FURC_SCAMBOX_F_ATRO		= zo_strformat("<<1>> (<<2>>)", GetString(SI_FURC_SCAMBOX), GetString(SI_FURC_FLAME_ATRONACH))
+local FURC_SCAMBOX_DWEMER		= zo_strformat("<<1>> (<<2>>)", GetString(SI_FURC_SCAMBOX), GetString(SI_FURC_DWEMER))
 
 local FURC_DB_POISON			= zo_strformat("<<1>> <<2>>", GetString(SI_FURC_DB), GetString(SI_FURC_DB_POISON))
 local FURC_DB_SNEAKY			= zo_strformat("<<1>> <<2>>", GetString(SI_FURC_DB), GetString(SI_FURC_DB_STEALTH))
@@ -34,9 +35,6 @@ local function getCrownPrice(price)
     return string.format("%s (%u)", GetString(SI_FURC_CROWNSTORESOURCE), price)
 end
 
-local function getScamboxString(scamboxVersion)
-    return string.format("%s (%s)", GetString(SI_FURC_SCAMBOX), GetString(scamboxVersion))
-end
 local function getHouseString(houseId1, houseId2)
     local houseName = GetCollectibleName(houseId1)
     if houseId2 then houseName = houseName .. ", " .. GetCollectibleName(houseId2) end
@@ -494,6 +492,8 @@ FurC.MiscItemSources[FURC_MORROWIND]	= {             -- Morrowind
         [126759] = questRewardSuran,                    -- Sir Sock's Ball of Yarn
 
         [126592] = GetString(SI_FURC_PLANTS), 			-- Plants, Hanging Pitcher Pair
+		
+        [126039] = FURC_SCAMBOX_DWEMER, 				-- Statue of masked Clavicus Vile with Barbas
 
     },
     [FURC_CROWN] 	= {
@@ -595,7 +595,7 @@ FurC.MiscItemSources[FURC_HOMESTEAD]	= {
         [118351] = getCrownPrice(25),                   -- Box of Peaches
 
 
-        [134473] = getScamboxString(SI_FURC_FLAME_ATRONACH),    -- Malacath Banner
+        [134473] = FURC_SCAMBOX_F_ATRO,    		-- Malacath Banner
 
         [118064] = getCrownPrice(45), 			-- Common Barrel, Dry
         [118065] = getCrownPrice(45), 			-- Common Cargo Crate, Dry

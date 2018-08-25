@@ -255,6 +255,7 @@ local strings = {
     SI_FURC_DROP                                    = "This item is a drop ", 
     SI_FURC_DROP_ALTMER                             = "This item is a drop on Summerset", 
     SI_FURC_FLAME_ATRONACH	                        = "Flame Atronach",
+    SI_FURC_DWEMER	                        		= "Dwemer",
 	SI_FURC_CHESTS                                  = "from treasure chests",
 	SI_FURC_VVARDENFELL_PAINTING                    = "extremely rarely from safeboxes",
 	SI_FURC_DRAGON_DUNGEON_DROP                     = "Fang Lair/Scalecaller Peak",

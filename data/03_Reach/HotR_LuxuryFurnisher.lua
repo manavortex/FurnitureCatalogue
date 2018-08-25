@@ -113,18 +113,6 @@ FurC.LuxuryFurnisher[FURC_REACH] = {
 	},
 
 
-	[120842] = { -- Craglorn Chair, Serpent
-		itemPrice 	= 2500,
-		itemDate	= "2017-09-08, 2017-04-21",
-	},
-	[120841] = { -- Craglorn Urn, Standing
-		itemPrice 	= 7500,
-		itemDate	= "2017-09-08, 2017-04-21",
-	},
-	[120840] = { -- Craglorn Coffer, Ornate
-		itemPrice 	= 5000,
-		itemDate	= "2017-09-08, 2017-04-21",
-	},
 
 
 	

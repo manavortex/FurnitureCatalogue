@@ -515,30 +515,30 @@ function FurC.ScanRecipes(shouldScanFiles, shouldScanCharacter)								-- return
 	end
 end
 
-function FurC.GetItemDescription(recipeKey, recipeArray, stripColor)
+function FurC.GetItemDescription(recipeKey, recipeArray, stripColor, attachItemLink)
     recipeKey = FurC.GetItemId(recipeKey)
     FurC.settings.emptyItemSources =  FurC.settings.emptyItemSources or {}
 	recipeArray = recipeArray or FurC.Find(recipeKey, recipeArray)
 	if not recipeArray then return "" end
 	local origin = recipeArray.origin
 	if origin == FURC_CRAFTING or origin == FURC_WRIT_VENDOR then
-		return FurC.GetMats(recipeKey, recipeArray, stripColor)
+		return FurC.GetMats(recipeKey, recipeArray, stripColor, attachItemLink)
 	elseif origin == FURC_ROLIS then
-		return FurC.getRolisSource(recipeKey, recipeArray, stripColor)
+		return FurC.getRolisSource(recipeKey, recipeArray, stripColor, attachItemLink)
 	elseif origin == FURC_LUXURY then
-		return FurC.getLuxurySource(recipeKey, recipeArray, stripColor)
+		return FurC.getLuxurySource(recipeKey, recipeArray, stripColor, attachItemLink)
 	elseif origin == FURC_GUILDSTORE then
 		return GetString(SI_FURC_SEEN_IN_GUILDSTORE)
 	elseif origin == FURC_VENDOR then
-		return FurC.getAchievementVendorSource(recipeKey, recipeArray, stripColor)
+		return FurC.getAchievementVendorSource(recipeKey, recipeArray, stripColor, attachItemLink)
 	elseif origin == FURC_FESTIVAL_DROP then
-		return FurC.getEventDropSource(recipeKey, recipeArray, stripColor)
+		return FurC.getEventDropSource(recipeKey, recipeArray, stripColor, attachItemLink)
 	elseif origin == FURC_PVP then
-		return FurC.getPvpSource(recipeKey, recipeArray, stripColor)
+		return FurC.getPvpSource(recipeKey, recipeArray, stripColor, attachItemLink)
 	elseif origin == FURC_RUMOUR then
-		return FurC.getRumourSource(recipeKey, recipeArray, stripColor)
+		return FurC.getRumourSource(recipeKey, recipeArray, stripColor, attachItemLink)
 	else
-		itemSource = FurC.GetMiscItemSource(recipeKey, recipeArray, stripColor)
+		itemSource = FurC.GetMiscItemSource(recipeKey, recipeArray, stripColor, attachItemLink)
 	end
     if not itemSource then
         FurC.settings.emptyItemSources[recipeKey] = ", --" .. GetItemLinkName(FurC.GetItemLink(recipeKey))
