@@ -14,12 +14,16 @@ FurC.AchievementVendors[FURC_WEREWOLF] = {
 	},
 	
 	[GetString(FURC_AV_ALI)] = {
+<<<<<<< HEAD
+		[GetString(FURC_AV_UNW)] = {	
+=======
 		[GetString(FURC_AV_UNW)] = {
 	
+>>>>>>> 30c9ffd40c6702fb9b73440e6ecdce59de8778d5
 			[141824] = {  
 				itemPrice 	= 100,
-			}
-		}
+			},
+		},
 	}
 }
 
