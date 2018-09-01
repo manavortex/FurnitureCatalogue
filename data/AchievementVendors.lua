@@ -16,11 +16,30 @@ FurC.AchievementVendors[FURC_WEREWOLF] = {
 	[GetString(FURC_AV_ALI)] = {
 		[GetString(FURC_AV_UNW)] = {
 	
+			
+		}
+	}, 
+	
+	["Glenumbra, Daggerfall, The Rosy Lion"] = {
+		
+		[GetString(FURC_AV_ROH)] = {
 			[141824] = {  
 				itemPrice 	= 100,
-			}
+			},
+			[141819] = {  
+				itemPrice 	= 500,
+			},
+			[141818] = {  
+				itemPrice 	= 100,
+			},
+			[141817] = {  
+				itemPrice 	= 750,
+			},
+			[141816] = {  
+				itemPrice 	= 500,
+			},
 		}
-	}
+	},
 }
 
 FurC.AchievementVendors[FURC_ALTMER] = {

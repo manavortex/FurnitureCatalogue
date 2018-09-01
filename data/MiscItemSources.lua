@@ -44,13 +44,11 @@ end
 FurC.MiscItemSources[FURC_WEREWOLF] = {
 	[FURC_DROP] = {
 		[141851] = GetString(SI_FURC_WW_DUNGEON_DROP), 		  	-- Bear Skull, Fresh
-		[141838] = GetString(SI_FURC_WW_DUNGEON_DROP), 			-- Ritual Stone, Hircine
-		[141839] = GetString(SI_FURC_WW_DUNGEON_DROP), 			-- Sacrificial Altar, Hircine
 		[141850] = GetString(SI_FURC_WW_DUNGEON_DROP), 			-- Bear Skeleton, Picked Clean
 		[141847] = GetString(SI_FURC_WW_DUNGEON_DROP), 			-- Animal Bones, Gnawed
 		[141848] = GetString(SI_FURC_WW_DUNGEON_DROP), 			-- Animal Bones, Jumbled
 		[141849] = GetString(SI_FURC_WW_DUNGEON_DROP), 			-- Animal Bones, Fresh
-		[141852] = GetString(SI_FURC_WW_DUNGEON_DROP), 			-- Ritual Fetish, Hircine
+		
 	},
 	[FURC_RUMOUR] = {  
 		--  found on TTC [141825] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), 	-- Relic Vault, Impenetrable
@@ -141,7 +139,6 @@ FurC.MiscItemSources[FURC_ALTMER] = {
         [139069] = getCrownPrice(410),              -- Painting of Griffin Nest, Refined
         [139070] = getCrownPrice(410),              -- Painting of College of the Sapiarchs, Refined
         [139071] = getCrownPrice(410),              -- Painting of High Elf Tower, Refined
-        [139072] = getCrownPrice(410),              -- Painting of Monastery of Serene Harmony, Refined
         [139073] = getCrownPrice(410),              -- Painting of Summerset Coast, Refined  
         [139074] = getCrownPrice(410),              -- Painting of Aldmeri Ruins, Refined
         [139075] = getCrownPrice(410),              -- Painting of Sinkhole, Refined
@@ -285,6 +282,7 @@ FurC.MiscItemSources[FURC_ALTMER] = {
         [139063] = GetString(SI_FURC_GIANT_CLAM),   -- Pearl, Enormous
 
         [139073] = questRewardLilandril             -- Painting of Summerset Coast, Refined
+        [139072] = GetString(SI_FURC_ELF_PIC),		-- Painting of Monastery of Serene Harmony, Refined
     },
     [FURC_FISHING] = {
         [139080] = FURC_FISHING_SUMMERSET,  -- Coral Formation, Ancient Pillar Polyps
