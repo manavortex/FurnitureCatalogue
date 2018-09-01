@@ -9,20 +9,11 @@ FurC.AchievementVendors[FURC_WEREWOLF] = {
                 itemPrice   = 5000,
                 achievement = 2162,
             },
-
 		},
 	},
 	
 	[GetString(FURC_AV_ALI)] = {
-		[GetString(FURC_AV_UNW)] = {
-	
-			
-		}
-	}, 
-	
-	["Glenumbra, Daggerfall, The Rosy Lion"] = {
-		
-		[GetString(FURC_AV_ROH)] = {
+		[GetString(FURC_AV_UNW)] = {		
 			[141824] = {  
 				itemPrice 	= 100,
 			},
@@ -37,6 +28,24 @@ FurC.AchievementVendors[FURC_WEREWOLF] = {
 			},
 			[141816] = {  
 				itemPrice 	= 500,
+			},			
+		}
+	}, 
+	
+	["Glenumbra, Daggerfall, The Rosy Lion"] = {
+		
+		[GetString(FURC_AV_ROH)] = {
+			[130305] = {        -- Stone, Mossy Swamp
+				itemPrice   = 100,
+			},
+			[130306] = {        -- Stones, Gray Swampy
+				itemPrice   = 100,
+			},
+			[130292] = {        -- Stump, Fetid Swamp
+				itemPrice   = 100,
+			},
+			[130291] = {        -- Stump, Rotten Pine
+				itemPrice   = 100,
 			},
 		}
 	},
