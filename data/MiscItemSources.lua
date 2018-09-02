@@ -281,7 +281,7 @@ FurC.MiscItemSources[FURC_ALTMER] = {
         [139062] = GetString(SI_FURC_GIANT_CLAM),   -- Pearl, Large
         [139063] = GetString(SI_FURC_GIANT_CLAM),   -- Pearl, Enormous
 
-        [139073] = questRewardLilandril             -- Painting of Summerset Coast, Refined
+        [139073] = questRewardLilandril,            -- Painting of Summerset Coast, Refined
         [139072] = GetString(SI_FURC_ELF_PIC),		-- Painting of Monastery of Serene Harmony, Refined
     },
     [FURC_FISHING] = {
