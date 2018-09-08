@@ -3,6 +3,30 @@ FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
 FurC.LuxuryFurnisher[FURC_WEREWOLF] = {
 	
+	[139105] = {        -- Reach Grinding Stones, Nirncrux
+        itemPrice   = 4500,	
+		itemDate	= "2018-09-08",
+    },
+
+	-- Sept. 23rd
+	[131435] = { -- Reach Bowl, Nirncrux
+		itemPrice 	= 5000,
+		itemDate	= "2018-09-08",
+	},
+	[131438] = { -- Reach Grinder, Nirncrux
+		itemPrice 	= 50000,
+		itemDate	= "2018-09-08",
+	},
+	[131436] = { -- Reach Vine, Bloodroot Sprout
+		itemPrice 	= 15000,
+		itemDate	= "2018-09-08",
+	},
+	[131437] = { -- Reach Vine, Bloodroot Tendril
+		itemPrice 	= 25000,
+		itemDate	= "2018-09-08",
+	},
+
+
 	[120844] = {        -- Craglorn Brazier, Ornate
         itemPrice   = 15000,		
 		itemDate	= "2018-09-01",

@@ -80,23 +80,4 @@ FurC.LuxuryFurnisher[FURC_REACH] = {
 	},
 
 
-	-- Sept. 23rd
-	[131435] = { -- Reach Bowl, Nirncrux
-		itemPrice 	= 5000,
-		itemDate	= "2017-09-22",
-	},
-	[131438] = { -- Reach Grinder, Nirncrux
-		itemPrice 	= 50000,
-		itemDate	= "2017-09-22",
-	},
-	[131436] = { -- Reach Vine, Bloodroot Sprout
-		itemPrice 	= 15000,
-		itemDate	= "2017-09-22",
-	},
-	[131437] = { -- Reach Vine, Bloodroot Tendril
-		itemPrice 	= 25000,
-		itemDate	= "2017-09-22",
-	},
-
-
 }

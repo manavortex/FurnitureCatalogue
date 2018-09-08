@@ -55,8 +55,7 @@ FurC.MiscItemSources[FURC_ALTMER][FURC_RUMOUR] = {
     
     [139103] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- Craglorn Display Case, Sealed
     [139104] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- Craglorn Relief, Serpent
-    
-    [139105] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- Reach Grinding Stones, Nirncrux        
+       
     [139106] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- Reach Briarheart, Corpse Blue
     
     [139137] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), -- Tapestry, Nocturnal

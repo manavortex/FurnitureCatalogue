@@ -12,6 +12,19 @@ FurC.AchievementVendors[FURC_WEREWOLF] = {
 		},
 	},
 	
+
+	["Hew's Bane"] = {
+		[GetString(FURC_AV_LTS)] = {
+			[119966] = {        -- Iron Wheel Banner
+				itemPrice   = 15000,
+			},
+			[119971] = {        -- Statue of Shadows
+				itemPrice   = 25000,
+			},
+			
+		}
+	}, 
+	
 	[GetString(FURC_AV_ALI)] = {
 		[GetString(FURC_AV_UNW)] = {		
 			[141824] = {  

@@ -128,7 +128,6 @@ FurC.MiscItemSources[FURC_ALTMER] = {
     [FURC_CROWN] = {
         [130206] = getCrownPrice(370), 	            -- Ayleid Apparatus, Welkynd
 
-        [139061] = getCrownPrice(20),               -- Giant Clam, Sealed
 
         [139064] = getCrownPrice(20), 	            -- Flowers, Hummingbird Mint
         [139065] = getCrownPrice(20), 	            -- Flowers, Lizard Tail
