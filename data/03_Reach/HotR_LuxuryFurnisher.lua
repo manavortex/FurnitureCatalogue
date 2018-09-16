@@ -65,19 +65,6 @@ FurC.LuxuryFurnisher[FURC_REACH] = {
 		itemDate	= "2017-10-06",
 	},
 
-	-- Sept. 30
-	[132144] = { -- Reach Briarheart, Blood Red
-		itemPrice 	= 15000,
-		itemDate	= "2017-09-29",
-	},
-	[132141] = { -- Reach Skull, Mammoth
-		itemPrice 	= 50000,
-		itemDate	= "2017-09-29",
-	},
-	[132142] = { -- Reach Tent, Camp
-		itemPrice 	= 2500,
-		itemDate	= "2017-09-29",
-	},
 
 
 }

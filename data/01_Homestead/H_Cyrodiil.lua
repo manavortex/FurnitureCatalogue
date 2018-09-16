@@ -9,6 +9,10 @@ FurC.PVP[FURC_HOMESTEAD] = {
 				itemPrice 	= 200,
 				achievement = 92,	-- Volunteer
 			},
+			[119634] = {	-- Pact Wall Banner, Small
+				itemPrice 	= 400,
+				achievement = 93,	-- Recruit
+			},
 			[119656] = {	-- Wall Banner, Small
 				itemPrice 	= 400,
 				achievement = 93,	-- Recruit

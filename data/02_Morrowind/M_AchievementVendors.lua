@@ -92,6 +92,10 @@ FurC.AchievementVendors[FURC_MORROWIND] = {
 				itemPrice 		= 10000,
 				achievement 	= 1867,  -- Morrowind Grand Adventurer
 			},
+			[126622] = { -- Banner of House Indoril
+				itemPrice 		= 126624,
+				achievement 	= 1867,  -- Morrowind Grand Adventurer
+			},
 			[126628] = { -- Banner, Morag Tong
 				itemPrice 		= 25000,
 				achievement 	= 1870,  -- Naryu's Confidant
@@ -180,6 +184,10 @@ FurC.AchievementVendors[FURC_MORROWIND] = {
 			[126641] = { -- Triptych of the Triune
 				itemPrice 		= 20000,
 				achievement 	= 1827,  -- The Pilgrim's Path
+			},
+			[126794] = { -- Sermon 37
+				itemPrice 		= 50000,
+				achievement 	= 1868,  -- Saviour of Morrowind
 			},
 		},
 		["Uzipa"] = {
