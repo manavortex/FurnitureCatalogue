@@ -31,7 +31,7 @@ function FurC.SaveFrameInfo(calledFrom)
 	settings.width	= FurCGui:GetWidth()
 	settings.height	= FurCGui:GetHeight()
 
-	FurC.UpdateInventoryScroll()
+  FurC.UpdateInventoryScroll()
 
 end
 
@@ -49,8 +49,8 @@ function FurC.ChangeTemplateFromButton(value)
 	local otherControl = FurCGui_Header_Bar1_TemplateTiny
 
 	if value then
-		otherControl = FurCGui_Header_Bar1_TemplateLarge
-		control = FurCGui_Header_Bar1_TemplateTiny
+		otherControl  = FurCGui_Header_Bar1_TemplateLarge
+		control       = FurCGui_Header_Bar1_TemplateTiny
 	end
 	control:SetHidden(true)
 	otherControl:SetHidden(false)
@@ -116,7 +116,6 @@ function FurC.GuiOnScroll(control, delta)
 	if delta == 0 then return end
 
 	local slider = FurCGui_ListHolder_Slider
---	slider.locked = true
 	-- negative delta means scrolling down
 
 	local value = (FurCGui_ListHolder.dataOffset - delta)
@@ -127,7 +126,6 @@ function FurC.GuiOnScroll(control, delta)
 	FurCGui_ListHolder.dataOffset  = value
 
 	FurC.UpdateInventoryScroll()
-
 
 	slider:SetValue(FurCGui_ListHolder.dataOffset)
 

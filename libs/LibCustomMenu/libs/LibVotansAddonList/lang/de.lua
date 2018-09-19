@@ -1,4 +1,4 @@
-﻿SafeAddString(SI_VOTANS_ADDONLIST_LIBS, "Bibliotheken")
+SafeAddString(SI_VOTANS_ADDONLIST_LIBS, "Bibliotheken")
 SafeAddString(SI_VOTANS_ADDONLIST_LIB, "Bibliothek")
 SafeAddString(SI_VOTANS_ADDONLIST_OUTDATED, "Kompatibilität mit der aktuellen Spielversion unbekannt.\nBitte informieren Sie sich, ob eine aktualisierte Version verfügbar ist oder Probleme bekannt sind.")
 SafeAddString(SI_ADDON_MANAGER_LOAD_OUT_OF_DATE_ADDONS, "Erweiterungen anderer Spielversionen zulassen", 1)

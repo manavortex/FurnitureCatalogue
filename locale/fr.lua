@@ -1,4 +1,4 @@
-﻿local filterDisabled = "disables this filter"
+local filterDisabled = "disables this filter"
 local strings = {
 
 	FURC_AV_RAZ									= "Razoufa",
