@@ -46,7 +46,7 @@ FurC.LuxuryFurnisher[FURC_REACH] = {
 		itemPrice 	= 35000,
 		itemDate	= "2017-10-13",
 	},
-
+	
 	-- Oct. 7
 	[132145] = { -- Orsinium Tent, Chief’s
 		itemPrice 	= 15000,

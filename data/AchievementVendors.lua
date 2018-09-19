@@ -1,13 +1,13 @@
 FurC.AchievementVendors[FURC_WEREWOLF] = {
 	["the Undaunted Enclaves"] = {
 		["Undaunted Quartermaster"] = {
+			[141857] = {        --Ritual Chalice, Hircine
+                itemPrice   = 5000,
+                achievement = 2162,
+            },
 			[141858] = {        --Banner of the Silver Dawn
                 itemPrice   = 15000,
                 achievement = 2152,
-            },
-            [141857] = {        --Ritual Chalice, Hircine
-                itemPrice   = 5000,
-                achievement = 2162,
             },
 		},
 	},
@@ -20,8 +20,7 @@ FurC.AchievementVendors[FURC_WEREWOLF] = {
 			},
 			[119971] = {        -- Statue of Shadows
 				itemPrice   = 25000,
-			},
-			
+			},			
 		}
 	}, 
 	

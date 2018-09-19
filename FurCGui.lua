@@ -1,12 +1,12 @@
-FurC.SlotTemplate		= "FurC_SlotTemplate"
-FurC.KnowledgeFilter 	= "All (Accountwide)"
-FurC.SearchString 		= ""
-FurC.ScrollSortUp 		= true
-local checkWasUpdated	= false
-local task 				= LibStub("LibAsync"):Create("FurnitureCatalogue_updateLineVisibility")
-local otherTask 		= LibStub("LibAsync"):Create("FurnitureCatalogue_ToggleGui")
-local async 			= LibStub("LibAsync"):Create("FurnitureCatalogue_forLoop")
-
+FurC.SlotTemplate			= "FurC_SlotTemplate"
+FurC.KnowledgeFilter 		= "All (Accountwide)"
+FurC.SearchString 			= ""
+FurC.ScrollSortUp 			= true
+local task 					= LibStub("LibAsync"):Create("FurnitureCatalogue_updateLineVisibility")
+local otherTask 			= LibStub("LibAsync"):Create("FurnitureCatalogue_ToggleGui")
+local async 				= LibStub("LibAsync"):Create("FurnitureCatalogue_forLoop")
+local FURC_S_FILTERDEFAULT 	= GetString(SI_FURC_TEXTBOX_FILTER_DEFAULT)
+local cachedDefaults
 
 local p 		= FurC.DebugOut -- debug function calling zo_strformat with up to 10 args
 local sortTable = FurC.SortTable
@@ -26,35 +26,57 @@ function FurC.CalculateMaxLines()
 	return FurCGui_ListHolder.maxLines
 end
 
-local function updateLineVisibility()
+local function fillLine(curLine, curData, lineIndex)
+	if nil == curLine or nil == curData then return end
 
+	local dataLines = FurCGui_ListHolder.dataLines
+	local maxLines = FurCGui_ListHolder.maxLines
 
-	local function fillLine(curLine, curData, lineIndex)
-		if nil == curLine then return end
-
-		local dataLines = FurCGui_ListHolder.dataLines
-		local maxLines = FurCGui_ListHolder.maxLines
-
-		local hidden = lineIndex > #dataLines or lineIndex > maxLines
-		curLine:SetHidden(hidden)
-		if nil == curData or curLine:IsHidden() then
-			curLine.itemLink = ""
-			curLine.itemId 	 = 0
-			curLine.icon:SetTexture(nil)
-			curLine.icon:SetAlpha(0)
-			curLine.text:SetText("")
-			curLine.mats:SetText("")
-		else
-			curLine.itemLink 	= curData.itemLink
-			curLine.itemId 	 	= curData.itemId
-			curLine.icon:SetTexture(GetItemLinkIcon(curData.itemLink))
-			curLine.icon:SetAlpha(1)
-			local text 			=  curData.itemLink:gsub("H1", "H0")
-			curLine.text:SetText(((curData.favorite and "* ") or "").. text)
-			local mats = FurC.GetItemDescription(curData.itemId, curData)
-			curLine.mats:SetText(mats)
-		end
+	local hidden = lineIndex > #dataLines or lineIndex > maxLines
+	curLine:SetHidden(hidden)
+	if nil == curData or curLine:IsHidden() then
+		curLine.itemLink = ""
+		curLine.itemId 	 = 0
+		curLine.icon:SetTexture(nil)
+		curLine.icon:SetAlpha(0)
+		curLine.text:SetText("")
+		curLine.mats:SetText("")
+	else
+		curLine.itemLink 	= curData.itemLink
+		curLine.itemId 	 	= curData.itemId
+		curLine.icon:SetTexture(GetItemLinkIcon(curData.itemLink))
+		curLine.icon:SetAlpha(1)
+		local text 			=  curData.itemLink:gsub("H1", "H0")
+		curLine.text:SetText(((curData.favorite and "* ") or "").. text)
+		local mats = FurC.GetItemDescription(curData.itemId, curData)
+		curLine.mats:SetText(mats)
 	end
+end
+
+local function refreshLineContainer()
+	p("refreshLineContainer")
+	local maxLines 	= FurC.CalculateMaxLines()
+	local dataLines = FurCGui_ListHolder.dataLines
+
+	local offset =	FurCGui_ListHolder_Slider:GetValue()
+	if offset > #dataLines then offset = 0 end
+	FurCGui_ListHolder_Slider:SetValue(offset)
+
+	local curLine, curData
+
+	for i=1, FurCGui_ListHolder:GetNumChildren() do
+		curLine = FurCGui_ListHolder.lines[i]
+		curData = FurCGui_ListHolder.dataLines[offset + i]
+		fillLine(curLine, curData, i)
+	end
+	FurCGui_ListHolder_Slider:SetMinMax(0, #dataLines)
+end
+
+function FurC.UpdateLineVisibility()
+	if FurCGui:IsHidden() then return end
+	
+	p("FurC.UpdateLineVisibility()")
+	
 
 	local isEmpty = #FurCGui_ListHolder.dataLines == 0
 
@@ -62,29 +84,10 @@ local function updateLineVisibility()
 	FurCGui_Empty:SetHidden(		not	isEmpty)
 
 	if isEmpty then return end
-
-	FurC.CalculateMaxLines()
-
-	task:Call(function()
-		local maxLines = FurCGui_ListHolder.maxLines
-		local dataLines = FurCGui_ListHolder.dataLines
-
-		local offset =	FurCGui_ListHolder_Slider:GetValue()
-		if offset > #dataLines then offset = 0 end
-		FurCGui_ListHolder_Slider:SetValue(offset)
-
-		local curLine, curData
-
-		for i=1, FurCGui_ListHolder:GetNumChildren() do
-			curLine = FurCGui_ListHolder.lines[i]
-			curData = FurCGui_ListHolder.dataLines[offset + i]
-			fillLine(curLine, curData, i)
-		end
-		FurCGui_ListHolder_Slider:SetMinMax(0, #dataLines)
-
-	end)
+	
+	refreshLineContainer()
 end
-FurC.UpdateLineVisibility =	updateLineVisibility
+local updateLineVisibility = FurC.UpdateLineVisibility
 
 function FurC.IsLoading(isBuffering)
 
@@ -129,32 +132,44 @@ local function updateScrollDataLinesData()
 	end)
 
 end
-local FURC_S_FILTERDEFAULT = GetString(SI_FURC_TEXTBOX_FILTER_DEFAULT)
-local cachedDefaults
+
+
+
 local function startLoading()
     FurC.IsLoading(true)
-    local text = FurC_SearchBox:GetText()
-    FurC_SearchBoxText:SetText((#text == 0 and FURC_S_FILTERDEFAULT) or "")
-    FurC.LastFilter = useDefaults
-    FurC.SetFilter(useDefaults, true)
+    FurC.RefreshFilters(cachedDefaults, true)
 end
 local function stopLoading()
     FurC.IsLoading(false)
-    updateLineVisibility()
+    FurC.UpdateLineVisibility()
 end
 local function stopLoadingWithDelay()
     zo_callLater(stopLoading, 500)
 end
 
-function FurC.UpdateGui(useDefaults)
+
+function FurC.RefreshContainer()
+	cachedDefaults = false
+	otherTask:Cancel()
+	otherTask:Call(startLoading)
+	:Then(updateScrollDataLinesData)
+	:Then(stopLoadingWithDelay)
+end
+
+-- will do a full UI refresh
+function FurC.UpdateGui(useDefaults, skipRefresh)
+	
 	if FurCGui:IsHidden() then return end
+	p("FurC.UpdateGui(<<1>>)", tostring(useDefaults))
     cachedDefaults = useDefaults
+	otherTask:Cancel()
 	otherTask:Call(startLoading)
 	:Then(updateScrollDataLinesData)
 	:Then(stopLoadingWithDelay)
 end
 
 function FurC.UpdateInventoryScroll()
+	p("FurC.UpdateInventoryScroll()")
 	local index = 0
 	FurCGui_ListHolder.dataOffset = FurCGui_ListHolder.dataOffset or 0
 	FurCGui_ListHolder.dataOffset = math.max(FurCGui_ListHolder.dataOffset, 0)
@@ -165,7 +180,6 @@ function FurC.UpdateInventoryScroll()
 	if total > 0 then
 		FurCGui_ListHolder_Slider:SetMinMax(0, total)
 	end
-
 	updateLineVisibility()
 end
 
@@ -449,21 +463,31 @@ local function createGui()
 	createInventoryDropdown("Character")
 	FurC.ChangeTemplateFromButton(FurC.GetTinyUi())
 	FurC.SetFontSize(FurC.GetFontSize())
-	FurC.LoadFrameInfo()
-	FurC.InitFilters()
+	FurC.LoadFrameInfo(true)
+	-- FurC.InitFilters()
+end
 
+local function showGui()
+	FurC.UpdateGui(FurC.GetResetDropdownChoice())
 end
 
 function FurnitureCatalogue_Toggle()
+	
+	p("\n")
+	p("\n")
 	SCENE_MANAGER:ToggleTopLevel(FurCGui)
-	if FurCGui:IsHidden() then return end
+	if FurCGui:IsHidden() then 
+		FurC.FilterTask:Cancel()
+		return 
+	end
 	FurCGui_Empty:SetHidden(true)
-	zo_callLater(function() FurC.UpdateGui(FurC.GetResetDropdownChoice()) end, 500)
+	zo_callLater(showGui, 500)
 end
 
 
 function FurC.InitGui()
 
+	p("FurC.InitGui()")
 	local control = FurCGui
 	local settings = FurC.settings["gui"]
 	FurC.GuiElements = {}
@@ -483,5 +507,7 @@ function FurC.InitGui()
 	FurC_Label:GetNamedChild("_2"):SetText(GetString(SI_FURC_LABEL_ENTRIES))
 
 	SCENE_MANAGER:RegisterTopLevel(FurCGui, false)
+	
+	FurC.RefreshFilters(true, true)
 end
 

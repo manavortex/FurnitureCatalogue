@@ -18,6 +18,8 @@ local strings = {
 	FURC_AV_ATH									= "Athragor",
 	FURC_AV_MAL									= "Maladdiq",
 	FURC_AV_KRR									= "Krrztrrb",
+	FURC_AV_HAR									= "Harnwulf",
+	FURC_AV_ADO									= "Adosa Veralor",
 	FURC_AV_ENC									= "enchanters",
 	FURC_AV_ALC									= "alchemists",
 	FURC_AV_OUT									= "Outlaw Refuge, Merchant",
@@ -195,6 +197,7 @@ local strings = {
 	SI_FURC_FILTER_VERSION_DRAGON					= "Dragon Bones",
 	SI_FURC_FILTER_VERSION_ALTMER					= "Summerset",
 	SI_FURC_FILTER_VERSION_WEREWOLF					= "Wolfhunter",
+	SI_FURC_FILTER_VERSION_SLAVES					= "Murkmire",
 	
 
 	-- =============================== --
@@ -221,6 +224,7 @@ local strings = {
 	SI_FURC_FILTER_VERSION_DRAGON_TT				= "If you got this from Narsis Dren, well...", 
 	SI_FURC_FILTER_VERSION_ALTMER_TT                = "Still think the Dunmer are bad?",
 	SI_FURC_FILTER_VERSION_WEREWOLF_TT              = "In Soviet Hunting Ground, werewolf hunt you",
+	SI_FURC_FILTER_VERSION_SLAVES_TT              	= "ToDo: Think of horrible pun about Argonians",
 	
 	SI_FURC_FILTER_CHAR_OFF							= "Character filter: off", 
 	SI_FURC_FILTER_CHAR_OFF_TT						= filterDisabled, 

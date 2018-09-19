@@ -168,16 +168,16 @@
 									<Anchor point="BOTTOMLEFT" 	relativeTo="FurC_TypeFilter" relativePoint="BOTTOMRIGHT" offsetX="9" />
 									<Dimensions x="215" />
 									<Controls>
-
+										
 										<EditBox name="$(parent)Box"  inherits="ZO_InventorySearchBox" >
 
 											<Anchor point="TOPLEFT" relativeTo="$(parent)" relativePoint="TOPLEFT" offsetX="-40" offsetY="-10"/>
 											<Anchor point="TOPRIGHT" relativeTo="$(parent)" relativePoint="TOPRIGHT" offsetX="-20" offsetY="0"/>
 
-											<OnTextChanged>FurC.GuiSetSearchboxTextFrom(self)</OnTextChanged>
-											<OnMouseUp>FurC.GuiOnSearchBoxClick(self, button)</OnMouseUp>
-											<OnMouseDoubleClick>FurC.GuiOnSearchBoxClick(self, nil, true)</OnMouseDoubleClick>
-											<OnFocusLost>FurC.GuiOnSearchBoxFocusOut(self)</OnFocusLost>
+											<OnTextChanged> FurC.GuiSetSearchboxTextFrom(self) </OnTextChanged>
+											<OnMouseUp> FurC.GuiOnSearchBoxClick(self, button) </OnMouseUp>
+											<OnMouseDoubleClick> FurC.GuiOnSearchBoxClick(self, nil, true) </OnMouseDoubleClick>
+											<OnFocusLost> FurC.GuiOnSearchBoxFocusOut(self) </OnFocusLost>
 
 										</EditBox>
 									</Controls>

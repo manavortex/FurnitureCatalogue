@@ -50,7 +50,7 @@ end
 function FurC.GetFilterAllOnTextNoBooks()
 	return FurC.settings["filterAllOnTextNoBooks"]
 end
-function FurC.GetFilterAllOnTextNoBooks(value)
+function FurC.SetFilterAllOnTextNoBooks(value)
 	FurC.settings["filterAllOnTextNoBooks"] = value
 	FurC.UpdateGui()
 end
@@ -58,7 +58,7 @@ end
 function FurC.GetFilterAllOnTextNoCrown()
 	return FurC.settings["filterAllOnTextNoCrown"]
 end
-function FurC.GetFilterAllOnTextNoCrown(value)
+function FurC.SetFilterAllOnTextNoCrown(value)
 	FurC.settings["filterAllOnTextNoCrown"] = value
 	FurC.UpdateGui()
 end
@@ -80,8 +80,6 @@ function FurC.SetFontSize(value)
 
 
 	FurC.SetLineHeight()
-
-	task:Call(function()	FurC.UpdateGui() end)
 end
 
 
@@ -199,8 +197,7 @@ function FurC.SetFilterQuality(quality)
 		control:SetState((filterArray[key-1] and BSTATE_PRESSED) or BSTATE_NORMAL)
 	end
 	FurC.GuiOnScroll(nil, 0)
-	FurC.SetFilter()
-	FurC.UpdateGui()
+	FurC.RefreshFilters()
 end
 
 function FurC.GetFilterCraftingType()
@@ -226,13 +223,11 @@ function FurC.SetFilterCraftingType(craftingType)
 	end
 
 	FurC.GuiOnScroll(FurCGui_ListHolder_Slider, 0)
-	FurC.SetFilter()
-	FurC.UpdateGui()
+	FurC.RefreshFilters()
 end
 
 
 local FURC_S_FILTERDEFAULT = GetString(SI_FURC_TEXTBOX_FILTER_DEFAULT)
-
 function FurC.GetSearchFilter()
 	if (not FurC.SearchFilter) or FurC.SearchFilter == FURC_S_FILTERDEFAULT then
 		FurC.SearchFilter = FurC_SearchBox:GetText() or ""
@@ -240,33 +235,11 @@ function FurC.GetSearchFilter()
 	return FurC.SearchFilter or ""
 end
 
-local alreadySearching  = false
-local alreadyReset      = false
-local function resetSearch()
-    alreadySearching = false
-    alreadyReset     = false
-end
-local function doSearchOnUpdate()
-    
-    if alreadyReset then return end
-    if alreadySearching then 
-        alreadyReset = true
-        zo_callLater(resetSearch, 200)
-        return    
-    end
-    local text = FurC_SearchBox:GetText()
-    FurC_SearchBoxText:SetText((#text == 0 and FURC_S_FILTERDEFAULT) or "")
-    
-    FurC.SearchFilter = text
-
-    FurC.GuiOnSliderUpdate(FurCGui_ListHolder_Slider, 0)
-    FurC.UpdateGui()
-end
 
 function FurC.GuiSetSearchboxTextFrom(control)
     control = control or FurC_SearchBox
-	-- call asynchronely to prevent lagging. Praise votan.
-	task:Call(doSearchOnUpdate)
+	FurC.SearchFilter = control:GetText()
+	FurC.RefreshFilters()
 end
 
 function FurC.GetHideBooks()
@@ -274,14 +247,14 @@ function FurC.GetHideBooks()
 end
 function FurC.SetHideBooks(value)
 	FurC.settings["hideBooks"] = value
-	FurC.UpdateGui()
+	FurC.RefreshFilters()
 end
 function FurC.GetMergeLuxuryAndSales()
 	return FurC.settings["mergeLuxuryAndSales"]
 end
 function FurC.SetMergeLuxuryAndSales(value)
-	FurC.settings["mergeLuxuryAndSales"] = value
-	FurC.UpdateGui()
+	FurC.settings["mergeLuxuryAndSales"] = value	
+	FurC.RefreshFilters()
 end
 
 

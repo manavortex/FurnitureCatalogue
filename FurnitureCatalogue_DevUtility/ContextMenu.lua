@@ -61,7 +61,7 @@ local function makeOutput()
     local isRecipe      = IsItemLinkFurnitureRecipe(cachedItemLink)
     local debugString   = (isRecipe and s_forRecipe) or s_default
     
-    cachedName          = cachedName or GetItemLinkName(cachedItemLink)
+    cachedName          = cachedName or GetItemLinkName(cachedItemLink) or ""
     
     if 0 < (cachedPrice or 0)           then debugString = s_withPrice end    
     if not (cachedCanBuy or isRecipe)   then debugString = s_withAchievement  end
@@ -69,42 +69,39 @@ local function makeOutput()
     if #(textbox:GetText() or "") == 0 then 
         debugString = debugString:sub(5, #debugString)
     end
-    
-    return string.format(debugString .. "\n", FurC.GetItemId(cachedItemLink), cachedName, cachedPrice)
+    local itemId = GetItemLinkItemId(cachedItemLink) or 0	
+	return string.format(debugString .. "\n", itemId, (cachedName or 0), (cachedPrice or 0))
 end
 
 local function isItemIdCached()
     local itemId = FurC.GetItemId(cachedItemLink)
+	if not itemId then return false end
     if cachedItemIds[itemId] then return true end
     cachedItemIds[itemId] = true
     return false
 end
 
 local function concatToTextbox(itemId)
-
     if (not isMana) or isItemIdCached() then return end
     local textSoFar = this.textbox:GetText() or ""
     this.textbox:SetText(textSoFar .. makeOutput())
     showTextbox()
 end
-function this.concatToTextbox (itemId)
-    if itemId then 
-        cachedItemLink  = FurC.GetItemLink(itemId)
-        cachedCanBuy    = true
-        cachedName      = GetItemLinkName(cachedItemLink)
-        cachedPrice     = 0
-    end
-    concatToTextbox()
+local function idToChat(itemId)
+	d("idToChat " .. itemId)
+	d(itemId)
+	FurC.ToChat(itemId, true)
 end
-
 
 local function doNothing() return end
 
 local S_ADD_TO_BOX  = "Add data to textbox"
+local S_ID_TO_CHAT  = "ID to chat"
 local S_DIVIDER     = "-"
 local function addMenuItems()
-	AddCustomMenuItem(S_DIVIDER,    doNothing, MENU_ADD_OPTION_LABEL)
-	AddCustomMenuItem(S_ADD_TO_BOX, concatToTextbox, MENU_ADD_OPTION_LABEL)
+	AddCustomMenuItem(S_DIVIDER,    doNothing,		 MENU_ADD_OPTION_LABEL)
+	AddCustomMenuItem(S_ADD_TO_BOX,	concatToTextbox, MENU_ADD_OPTION_LABEL)
+	AddCustomMenuItem(S_ID_TO_CHAT,	idToChat, 		 MENU_ADD_OPTION_LABEL)
 end
 
 
@@ -112,6 +109,8 @@ function FurCDevControl_HandleClickEvent(itemLink, button, control)		-- button b
     if not isMana   then return end
 
     if (type(itemLink) == 'string' and #itemLink > 0) then
+		cachedItemLink = itemLink
+		cachedName = GetItemLinkName(itemLink)
 		local handled = LINK_HANDLER:FireCallbacks(LINK_HANDLER.LINK_MOUSE_UP_EVENT, itemLink, button, ZO_LinkHandler_ParseLink(itemLink))
 		if (not handled) then
 			FurCDevControl_LinkHandlerBackup_OnLinkMouseUp(itemLink, button, control)
@@ -170,7 +169,7 @@ function this.OnControlMouseUp(control, button)
 	if not control.itemLink or #control.itemLink == 0 then return end
     
     cachedItemLink  = control.itemLink
-    
+    d(cachedItemLink)
 	zo_callLater(function()
 		ItemTooltip:SetHidden(true)
 		ClearMenu()

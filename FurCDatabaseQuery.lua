@@ -165,24 +165,25 @@ function FurC.GetMiscItemSource(recipeKey, recipeArray, attachItemLink)
 	return (not attachItemLink and originData[recipeKey]) or string.format("%s: %s", FurC.GetItemLink(recipeKey), originData[recipeKey])
 end
 
-local function getRecipeSource(recipeKey, recipeArray)
-	if nil == recipeKey and nil == recipeArray then return end
-	if nil == FurC.RecipeSources then return end
-    if nil ~= FurC.RecipeSources[recipeKey] then return FurC.RecipeSources[recipeKey] end
-
-    recipeArray = recipeArray or FurC.Find(recipeKey)
-
-	recipeKey = recipeArray.blueprint or recipeKey
-
-    -- d(recipeKey)
-	return (recipeArray.origin == FURC_RUMOUR and FurC.getRumourSource(recipeKey, recipeArray))
-        or FurC.RecipeSources[recipeKey]
-end
-FurC.getRecipeSource = getRecipeSource
 
 function FurC.getRumourSource(recipeKey, recipeArray)
 	return (recipeArray.blueprint and GetString(SI_FURC_RUMOUR_SOURCE_RECIPE)) or GetString(SI_FURC_RUMOUR_SOURCE_ITEM)
 end
+
+
+local function getRecipeSource(recipeKey, recipeArray)
+	if nil == recipeKey or nil == FurC.RecipeSources then return end
+	
+    if nil ~= FurC.RecipeSources[recipeKey] then return FurC.RecipeSources[recipeKey] end
+    recipeArray = recipeArray or FurC.Find(recipeKey)
+	
+	if nil == recipeArray then return end
+
+	if recipeArray.origin == FURC_RUMOUR then return FurC.getRumourSource(recipeKey, recipeArray) end
+	
+	return FurC.RecipeSources[recipeArray.blueprint or recipeKey]
+end
+FurC.getRecipeSource = getRecipeSource
 
 function FurC.GetCrafterList(itemLink, recipeArray)
 	if nil == recipeArray and nil == itemLink then return end

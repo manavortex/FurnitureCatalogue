@@ -51,13 +51,6 @@ FurC.MiscItemSources[FURC_WEREWOLF] = {
 		
 	},
 	[FURC_RUMOUR] = {  
-		--  found on TTC [141825] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), 	-- Relic Vault, Impenetrable
-		--  found on TTC [141826] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), 	-- Alinor Bed, Levitating
-		--  found on TTC [141827] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), 	-- Alinor Bookshelf, Grand Full
-		--  found on TTC [141828] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), 	-- Alinor Gaming Table, Punctilious Conflict
-		--  found on TTC [141829] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), 	-- Artist's Palette, Pigment
-		--  found on TTC [141830] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), 	-- Alinor Grape Stomping Tub
-		--  found on TTC [141831] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), 	-- Figurine, The Dragon's Glare
 		[141832] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), 	-- Tree, Robust Fig
 		[141833] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), 	-- Tree, Ancient Fig
 		[141834] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), 	-- Tree, Towering Fig
@@ -74,7 +67,6 @@ FurC.MiscItemSources[FURC_WEREWOLF] = {
 		[141854] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), 	-- Decorative Hollowjack Flame-Skull
 		[141855] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), 	-- Decorative Hollowjack Wraith-Lantern
 		[141856] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), 	-- Decorative Hollowjack Daedra-Skull
-		[141857] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), 	-- Ritual Chalice, Hircine
 		[141869] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), 	-- Alinor Potted Plant, Cypress
 		[141870] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), 	-- Raven-Perch Cemetery Wreath
 		[141875] = GetString(SI_FURC_ITEMSOURCE_UNKNOWN_YET), 	-- Witches Festival Scarecrow

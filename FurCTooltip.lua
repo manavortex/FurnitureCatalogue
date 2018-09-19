@@ -47,7 +47,7 @@ local function addTooltipData(control, itemLink)
 		if not isRecipe and (not FurC.GetHideCraftingStation()) then
 			stringTable = add(stringTable, FurC.PrintCraftingStation(itemId, recipeArray))
 		end
-		if isRecipe then
+		if isRecipe or recipeArray.origin == FURC_CRAFTING then
 			stringTable = add(stringTable, FurC.getRecipeSource(itemId, recipeArray))
 		end
 		-- check if we should show mats

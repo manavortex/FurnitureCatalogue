@@ -1,19 +1,21 @@
 local em	= EVENT_MANAGER
 local p 	= FurC.DebugOut -- debug function calling zo_strformat with up to 10 args
 
-local function onRecipeLearned(eventCode, recipeListIndex, recipeIndex)
-	p(FURC_STRING_RECIPELEARNED, GetRecipeResultItemLink(recipeListIndex, recipeIndex, LINK_STYLE_BRACKETS), recipeListIndex, recipeIndex)
-	FurC.TryCreateRecipeEntry(recipeListIndex, recipeIndex)
-	FurC.UpdateGui()
+
+local function executeRecipeScan()
+	FurC.ScanCharacter()
+	em:RegisterForEvent("FurnitureCatalogue", EVENT_RECIPE_LEARNED, onRecipeLearned)
+end
+local function onRecipeLearned(eventCode, recipeListIndex, recipeIndex)	
+	em:UnregisterForEvent("FurnitureCatalogue", EVENT_RECIPE_LEARNED)
+	zo_callLater(executeRecipeScan, 500)
 end
 
 local wm = WINDOW_MANAGER
-
 local function createIcon(control)
-	local icon
-	icon = wm:CreateControlFromVirtual(control:GetName().."FurCIcon", control, "FurC_SlotIconKnownYes")
-	if FurC.settings["showIconOnLeft"] == nil or
-	   FurC.settings["showIconOnLeft"] == true then
+	local icon = wm:CreateControlFromVirtual(control:GetName().."FurCIcon", control, "FurC_SlotIconKnownYes")
+	local showLeft = FurC.settings.showIconOnLeft
+	if showLeft or nil == showLeft then
 		icon:SetAnchor(BOTTOMLEFT, control:GetNamedChild("Button"), BOTTOMLEFT, -15, -10)
 	else
 		icon:SetAnchor(TOPLEFT, control:GetNamedChild("TraitInfo"), TOPLEFT, 0, 0)

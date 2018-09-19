@@ -3,7 +3,7 @@ local p 						= FurC.DebugOut -- debug function calling zo_strformat with up to 
 local searchString 				= ""
 local dropdownChoiceVersion		= 1
 local dropdownTextVersion		= "All"
-local ddSource		= 1
+local ddSource					= 1
 local dropdownTextSource		= "All"
 local dropdownChoiceCharacter	= 1
 local ddTextCharacter			= "Accountwide"
@@ -20,7 +20,19 @@ local sourceIndices
 
 local recipeArray, itemId, itemLink, itemType, sItemType, itemName, recipeIndex, recipeListIndex
 
-function FurC.SetFilter(useDefaults, skipRefresh)
+local useDefaults
+local filterTask = FurC.FilterTask
+function FurC.RefreshFilters(filterUseDefaults, skipRefresh)
+	useDefaults = filterUseDefaults
+	filterTask:Cancel()
+	filterTask:Call(FurC.SetFilter)
+	if skipRefresh then return end
+	filterTask:Then(FurC.RefreshContainer)
+end
+
+function FurC.SetFilter()
+		
+	p("FurC.SetFilter(<<1>>)", tostring(useDefaults))
 	
     ClearTooltip(InformationTooltip)
 	sourceIndices 					= FurC.SourceIndices
@@ -42,27 +54,24 @@ function FurC.SetFilter(useDefaults, skipRefresh)
 	qualityFilter 				= FurC.GetFilterQuality()
 	craftingTypeFilter			= FurC.GetFilterCraftingType()
 	hideBooks					= FurC.GetHideBooks()
-	hideRumours					= FurC.GetHideRumourRecipes()
 	mergeLuxuryAndSales 		= FurC.GetMergeLuxuryAndSales()
-	hideCrownStore 				= FurC.GetHideCrownStoreItems()
+	
+	-- p("Version: <<1>>, Source: <<2>>, Character: <<3>>, qualityFilter: <<4>>, ", 
+	-- dropdownChoiceVersion, ddSource, dropdownChoiceCharacter, qualityFilter)
 
-    -- ignore filtered items when no dropdown filter is set and there's a text search?
-    filterAllOnTextSearch       = FurC.GetFilterAllOnText() and #searchString > 0 and
-                                    FURC_NONE == ddSource and
-                                    FURC_NONE == dropdownChoiceVersion and
-                                    FURC_NONE == dropdownChoiceCharacter
+	
+    -- ignore filtered items when there's a text search?
+	-- TODO this is broken
+	showBooksOnTextSearch, showRumoursOnTextSearch, showCrownStoreOnTextSearch = false, false, false
+	
+	if #searchString > 0 and FurC.GetFilterAllOnText() then
+		showBooksOnTextSearch		= not FurC.GetFilterAllOnTextNoBooks()
+		showRumoursOnTextSearch		= not FurC.GetFilterAllOnTextNoRumour() and FurC.GetHideRumourRecipes() and ddSource ~= FURC_RUMOUR
+		showCrownStoreOnTextSearch 	= not FurC.GetFilterAllOnTextNoCrown() and FurC.GetHideCrownStoreItems() and ddSource ~= FURC_CROWN
+	end    		
 
-	if not skipRefresh then
-		zo_callLater(FurC.UpdateLineVisibility, 200)
-	end
-end
-
-function FurC.InitFilters()
-	FurC.SetFilterCraftingType(0)
-	FurC.SetFilterQuality(0)
-	FurC.SetDropdownChoice("Source", FurC.GetDefaultDropdownChoiceText("Source"), FurC.GetDefaultDropdownChoice("Source"))
-	FurC.SetDropdownChoice("Character", FurC.GetDefaultDropdownChoiceText("Character"), FurC.GetDefaultDropdownChoice("Character"))
-	FurC.SetDropdownChoice("Version", FurC.GetDefaultDropdownChoiceText("Version"), FurC.GetDefaultDropdownChoice("Version"))
+	p("showRumours: <<1>>, showCrownStore: <<2>>", tostring(showRumoursOnTextSearch), tostring(showCrownStoreOnTextSearch))
+	
 end
 
 local function isRecipeArrayKnown()
@@ -82,10 +91,6 @@ local function matchVersionDropdown()
 	return dropdownChoiceVersion == 1 or recipeArray.version == dropdownChoiceVersion
 end
 
-local function shouldBeHidden()
-	return (ddSource ~= FURC_RUMOUR and recipeArray.origin == FURC_RUMOUR and hideRumours) or
-	(ddSource ~= FURC_CROWN and recipeArray.origin == FURC_CROWN and hideCrownStore)
-end
 
 local validSourcesForOther = {
     [FURC_FESTIVAL_DROP]    = true, 
@@ -119,9 +124,9 @@ local function matchSourceDropdown()
 	if FURC_OTHER					    == ddSource then
 		return validSourcesForOther[recipeArray.origin]
     end
-	-- we're checking character knowledge
-	return recipeArray.origin  == ddSource 
-        
+	
+	-- we're checking character knowledge	
+	return recipeArray.origin  == ddSource
 
 end
 
@@ -146,8 +151,14 @@ local function matchQualityFilter()
 	return qualityFilter[GetItemLinkQuality(itemLink)]
 end
 
-local function filterBooks(itemId, recipeArray)
-	if not (hideBooks or filterAllOnTextSearch and FurC.GetFilterAllOnTextNoBooks()) then return false end
+local function shouldBeHidden()
+	if recipeArray.origin == FURC_RUMOUR then
+		return not (showRumours or ddSource == FURC_RUMOUR)
+	end
+	if recipeArray.origin == FURC_CROWN then 
+		return not (showCrownStore or ddSource == FURC_CROWN)
+	end
+	if (not hideBooks) or showBooksOnTextSearch then return false end
 	local versionData = FurC.Books[recipeArray.version]
 	if nil == versionData then return end
 	return nil ~= versionData[itemId]
@@ -158,27 +169,19 @@ function FurC.MatchFilter(currentItemId, currentRecipeArray)
 	itemId = currentItemId
 	itemLink = FurC.GetItemLink(itemId)
 	recipeArray = currentRecipeArray or FurC.Find(itemLink)
+	
+	-- hide rumour, crown store items and books? 
+	if shouldBeHidden(itemId, recipeArray) then return false end
+	
 	itemType, sItemType = GetItemLinkItemType(itemLink)
     if 0 == itemType and 0 == sItemType then 
-        p("invalid item type for <<1>>", currentItemId)
+        p("invalid item type for <<1>> (<<2>>)", currentItemId, FurC.GetItemLink(currentItemId))
         return false 
     end
-    if  filterBooks(itemId, recipeArray)			                        then return false end
 
 
-    if recipeArray.origin == FURC_RUMOUR then
-        if filterAllOnTextSearch and not FurC.GetFilterAllOnTextNoRumour() then
-            return false
-        end
-        if hideRumours and ddSource ~= FURC_RUMOUR then return false end
-    end
 
-    if recipeArray.origin == FURC_CROWN then
-        if filterAllOnTextSearch and FurC.GetFilterAllOnTextNoCrown() then return false end
-        if hideCrownStore and ddSource ~= FURC_CROWN then return false end
-    end
-
-    if not (filterAllOnTextSearch  or  matchDropdownFilter()) then return false end
+	if not matchDropdownFilter() then return false end
 
 
     if not matchSearchString() 												    then return false end

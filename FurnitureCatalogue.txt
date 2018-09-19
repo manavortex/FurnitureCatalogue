@@ -1,7 +1,7 @@
- ## Title: FurnitureCatalogue
+## Title: FurnitureCatalogue
 ## Author: manavortex
-## Version: 2.65
-## APIVersion: 100024
+## Version: 2.66
+## APIVersion: 100024 100025
 ## SavedVariables: FurnitureCatalogue_Settings 
 ## OptionalDependsOn: pChat 
 
@@ -60,7 +60,6 @@ data\04_Clockwork\CC_LuxuryFurnisher.lua
 data\05_Dragonbones\DragonB_LuxuryFurnisher.lua
 
 data\01_Homestead\H_Rolis.lua
-data\03_Reach\HotR_Rolis.lua
 data\Rolis.lua
 
 data\01_Homestead\H_EventItems.lua
@@ -69,11 +68,12 @@ data\EventItems.lua
 
 data\MiscItemSources.lua
 data\Recipes.lua
-data\RecipeSources.lua
 
 data\RumourRecipes.lua
 
 data\$(APIVersion).lua
+
+data\RecipeSources.lua
 
 FurCUtil.lua
 

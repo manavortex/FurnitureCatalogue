@@ -57,6 +57,9 @@ FurC.PrintItemLink = printItemLink
 
 local function addDatabaseEntry(recipeKey, recipeArray)
 	if recipeKey and recipeArray and {} ~= recipeArray then
+		if tonumber(recipeKey) == 10 or tonumber(recipeKey) == 125 or tonumber(recipeKey) == 500 then 			
+			error(debug.traceback()) 
+		end
 		FurC.settings.data[recipeKey] = recipeArray
 	end
 end
@@ -105,20 +108,17 @@ end
 local function parseFurnitureItem(itemLink, override)					-- saves to DB, returns recipeArray
 
 	if not (
-	override or IsItemLinkPlaceableFurniture(itemLink)
-	or  GetItemLinkItemType(itemLink) == ITEMTYPE_FURNITURE
+		override or IsItemLinkPlaceableFurniture(itemLink)
+		or  GetItemLinkItemType(itemLink) == ITEMTYPE_FURNITURE
 	) then return end
 
 	local recipeKey 					= getItemId(itemLink)
 	local recipeArray 					= FurC.settings.data[recipeKey]
 	if nil ~= recipeArray then return recipeArray end
 
-	recipeArray = {}
-
-	addDatabaseEntry(recipeKey, recipeArray)
-
-	return recipeArray
+	return {}
 end
+FurC.ParseFurnitureItem = parseFurnitureItem
 
 local function parseBlueprint(blueprintLink)				-- saves to DB, returns recipeArray
 
@@ -151,7 +151,7 @@ function FurC.Find(itemOrBlueprintLink)						-- sets recipeArray, returns it - c
 
 	if tonumber(itemOrBlueprintLink) == itemOrBlueprintLink then itemOrBlueprintLink = FurC.GetItemLink(itemOrBlueprintLink) end
 	if nil == itemOrBlueprintLink or #itemOrBlueprintLink == 0 then return end
-	p("scanItemLink(<<1>>)...", itemOrBlueprintLink)		-- do not return empty arrays. If this returns nil, abort!
+	-- p("scanItemLink(<<1>>)...", itemOrBlueprintLink)		-- do not return empty arrays. If this returns nil, abort!
 
 	if itemOrBlueprintLink == lastLink and nil ~= recipeArray then
 		return recipeArray
@@ -204,6 +204,7 @@ function FurC.Fave(itemLink, recipeArray)
 	FurC.UpdateGui()
 end
 
+local isPts = "PTS" == GetWorldName()
 local function scanRecipeIndices(recipeListIndex, recipeIndex)		-- returns recipeArray or nil, initialises
 
 	local itemLink = GetRecipeResultItemLink(recipeListIndex, recipeIndex, LINK_STYLE_BRACKETS)
@@ -212,6 +213,11 @@ local function scanRecipeIndices(recipeListIndex, recipeIndex)		-- returns recip
 	local recipeKey = getItemId(itemLink)
 
 	local recipeArray 			= FurC.settings.data[recipeKey] or {}
+	
+	if not isPts and {} ~= recipeArray and recipeArray.origin == FURC_RUMOUR then 
+		p("overwriting rumour recipe <<1>> (<<2>>)", recipeArray.blueprint, itemLink)
+	end
+	
 	recipeArray.origin 			= FURC_CRAFTING
 	recipeArray.version			= recipeArray.version or 2
 	recipeArray.recipeListIndex = recipeArray.recipeListIndex or recipeListIndex
@@ -304,8 +310,8 @@ local function scanFromFiles(shouldScanCharacter)
 			for itemId, itemData in pairs(vendorData) do
 
 				recipeArray = parseFurnitureItem(FurC.GetItemLink(itemId), true)
-				if not recipeArray then
-						p("Error when scanning <<1>>", itemId)
+				if not recipeArray or itemId < 10 then
+						p("parseZoneData: Error when scanning <<1>>", itemId)
 					else
 
 					recipeArray.origin			= origin
@@ -319,50 +325,53 @@ local function scanFromFiles(shouldScanCharacter)
 
 	local function scanRecipeFile()
 		local recipeKey, recipeArray
-		local function scanArray(ary, versionNumber, origin)
+		local function scanArray(ary, versionNumber, origin, itemIdIsKey)
 			if nil == ary then return end
 
-			for key, recipeId in ipairs(ary) do
+			for key, recipeId in pairs(ary) do
+				if itemIdIsKey then recipeId = key end
 				local recipeLink = FurC.GetItemLink(recipeId)
 				local itemLink = GetItemLinkRecipeResultItemLink(recipeLink) or FurC.GetItemLink(recipeId)
 				recipeArray = FurC.Find(itemLink) or parseBlueprint(recipeLink) or parseFurnitureItem(itemLink)
-				local recipeListIndex, recipeIndex = GetItemLinkGrantedRecipeIndices(recipeLink)
 				if nil == recipeArray then
-					p("scanRecipeFile: error for <<1>> (ID was <<2>>)", recipeLink, recipeId)
+					p("scanRecipeFile: error for <<1>> (<<2>>)", recipeId, recipeLink)
 				else
+					local recipeListIndex, recipeIndex = GetItemLinkGrantedRecipeIndices(recipeLink)
 					recipeKey 					= getItemId(itemLink)
 					recipeArray.version 	 	= versionNumber
 					recipeArray.origin 			= origin
 					recipeArray.blueprint		= recipeId
+					recipeArray.recipeListIndex = recipeArray.recipeListIndex or recipeListIndex
+					recipeArray.recipeIndex 	= recipeArray.recipeIndex or recipeIndex
 					addDatabaseEntry(recipeKey, recipeArray)
 				end
 			end
-		end
+		end		
 
 		for versionNumber, versionData in pairs(FurC.Recipes) do
 			scanArray(versionData, versionNumber, FURC_CRAFTING)
 		end
 		for versionNumber, versionData in pairs(FurC.RolisRecipes) do
-			scanArray(versionData, versionNumber, FURC_CRAFTING)
+			scanArray(versionData, versionNumber, FURC_CRAFTING, true)
 		end
 		for versionNumber, versionData in pairs(FurC.FaustinaRecipes) do
-			scanArray(versionData, versionNumber, FURC_CRAFTING)
+			scanArray(versionData, versionNumber, FURC_CRAFTING, true)
 		end
 	end
 
 	local function scanRolis()
 		for versionNumber, versionData in pairs(FurC.Rolis) do
-			for itemId, itemSource in pairs(versionData) do
+			for itemId, itemPrice in pairs(versionData) do
 				recipeArray = parseFurnitureItem(FurC.GetItemLink(itemId), true)
 				if nil ~= recipeArray then
-					recipeArray.version = versionNumber
+					recipeArray.version = versionNumber					
 					recipeArray.origin = FURC_ROLIS
 					addDatabaseEntry(itemId, recipeArray)
 				end
 			end
 		end
 		for versionNumber, versionData in pairs(FurC.Faustina) do
-			for itemId, itemSource in pairs(versionData) do
+			for itemId, itemPrice in pairs(versionData) do
 				recipeArray = parseFurnitureItem(FurC.GetItemLink(itemId), true)
 				if nil ~= recipeArray then
 					recipeArray.version = versionNumber
@@ -395,12 +404,12 @@ local function scanFromFiles(shouldScanCharacter)
 				for itemId, itemSource in pairs(originData) do
 					local itemLink = FurC.GetItemLink(itemId)
 					recipeArray = parseFurnitureItem(FurC.GetItemLink(itemId))
-					if nil ~= recipeArray then
+					if not recipeArray or itemId < 10 then 
+						p("scanMiscItemFile: Error when scanning <<1>> (origin <<2>>) -> <<3>>", itemId, origin, itemLink)
+					else
 						recipeArray.version = versionNumber
 						recipeArray.origin  = origin
 						addDatabaseEntry(itemId, recipeArray)
-					else
-						p("scanMiscItemFile: Error when scanning <<1>> (<<2>>) -> <<3>>", itemLink, itemId, origin)
 					end
 				end
 			end
@@ -420,8 +429,7 @@ local function scanFromFiles(shouldScanCharacter)
 
 		for versionNumber, vendorData in pairs(FurC.LuxuryFurnisher) do
 			for itemId, itemData in pairs(vendorData) do
-					 local recipeArray 			= {}
-
+					local recipeArray 			= {}
 					recipeArray.origin			= FURC_LUXURY
 					recipeArray.version			= versionNumber
 					addDatabaseEntry(itemId, recipeArray)

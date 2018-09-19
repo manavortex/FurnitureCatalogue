@@ -274,7 +274,6 @@ FurC.Recipes[FURC_MORROWIND] = {
 	126583, -- Target Centurion, Robust Refabricated
 	126884, -- Dwarven Vessel, Sealed
 	121189, -- Haj Mota Head, Wall Mount
-	121188, -- Echatere Horns, Wall Mount
 	121184, -- Antlers, Wall Mount
 	127091, -- Hlaalu Lantern, Oversized Vellum
 	121174, -- Sack of Grain

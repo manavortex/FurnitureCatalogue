@@ -1,7 +1,7 @@
 FurnitureCatalogue 					= {}
 FurnitureCatalogue.name				= "FurnitureCatalogue"
 FurnitureCatalogue.author			= "manavortex"
-FurnitureCatalogue.version          = 2.65
+FurnitureCatalogue.version          = 2.66
 FurnitureCatalogue.CharacterName	= nil
 FurnitureCatalogue.settings			= {}
 
@@ -19,6 +19,9 @@ FurC.EventItems						= {}
 FurC.PVP							= {}
 FurC.MiscItemSources                = {}
 
+-- for search so it doesn't lag
+FurC.FilterTask =  LibStub("LibAsync"):Create("FurnitureCatalogue_FilterOnTextSearch")
+
 -- versioning
 FURC_HOMESTEAD						= 2
 FURC_MORROWIND						= 3
@@ -27,6 +30,7 @@ FURC_CLOCKWORK						= 5
 FURC_DRAGONS						= 6
 FURC_ALTMER						    = 7
 FURC_WEREWOLF					    = 8
+FURC_SLAVES						    = 9
 
 FurC.Const                          = {
     vendorColor     = "d68957",
@@ -155,27 +159,32 @@ local function getTooltipsSource()
     tooltipsSource[FURC_LUXURY] 				    = GetString(SI_FURC_LUXURY_TT)
 	tooltipsSource[FURC_OTHER] 				        = GetString(SI_FURC_OTHER_TT)
 
-	return tooltipsSource
+return tooltipsSource
 end
 
 FurnitureCatalogue.DropdownData = {
+	
 	ChoicesVersion	= {
-		[1] = GetString(SI_FURC_FILTER_VERSION_OFF),
-		[2] = GetString(SI_FURC_FILTER_VERSION_HS	),
-		[3] = GetString(SI_FURC_FILTER_VERSION_M	),
-		[4] = GetString(SI_FURC_FILTER_VERSION_R	),
-		[5] = GetString(SI_FURC_FILTER_VERSION_CC	),
-		[6] = GetString(SI_FURC_FILTER_VERSION_DRAGON),
-		[7] = GetString(SI_FURC_FILTER_VERSION_ALTMER),
+		[1] 				= GetString(SI_FURC_FILTER_VERSION_OFF),
+		[FURC_HOMESTEAD] 	= GetString(SI_FURC_FILTER_VERSION_HS	),
+		[FURC_MORROWIND] 	= GetString(SI_FURC_FILTER_VERSION_M	),
+		[FURC_REACH] 		= GetString(SI_FURC_FILTER_VERSION_R	),
+		[FURC_CLOCKWORK] 	= GetString(SI_FURC_FILTER_VERSION_CC	),
+		[FURC_DRAGONS] 		= GetString(SI_FURC_FILTER_VERSION_DRAGON),
+		[FURC_ALTMER] 		= GetString(SI_FURC_FILTER_VERSION_ALTMER),
+		[FURC_WEREWOLF] 	= GetString(SI_FURC_FILTER_VERSION_WEREWOLF),
+		[FURC_SLAVES] 		= GetString(SI_FURC_FILTER_VERSION_SLAVES),
 	},
 	TooltipsVersion	= {
-		[1] =  GetString(SI_FURC_FILTER_VERSION_OFF_TT),
-		[2] =  GetString(SI_FURC_FILTER_VERSION_HS_TT),
-		[3] =  GetString(SI_FURC_FILTER_VERSION_M_TT),
-		[4] =  GetString(SI_FURC_FILTER_VERSION_R_TT),
-		[5] =  GetString(SI_FURC_FILTER_VERSION_CC_TT),
-		[6] =  GetString(SI_FURC_FILTER_VERSION_DRAGON_TT),
-		[7] = GetString(SI_FURC_FILTER_VERSION_ALTMER_TT),
+		[1] 				=  GetString(SI_FURC_FILTER_VERSION_OFF_TT),
+		[FURC_HOMESTEAD] 	=  GetString(SI_FURC_FILTER_VERSION_HS_TT),
+		[FURC_MORROWIND] 	=  GetString(SI_FURC_FILTER_VERSION_M_TT),
+		[FURC_REACH] 		=  GetString(SI_FURC_FILTER_VERSION_R_TT),
+		[FURC_CLOCKWORK] 	=  GetString(SI_FURC_FILTER_VERSION_CC_TT),
+		[FURC_DRAGONS] 		=  GetString(SI_FURC_FILTER_VERSION_DRAGON_TT),
+		[FURC_ALTMER] 		= GetString(SI_FURC_FILTER_VERSION_ALTMER_TT),
+		[FURC_WEREWOLF] 	= GetString(SI_FURC_FILTER_VERSION_WEREWOLF_TT),
+		[FURC_SLAVES] 		= GetString(SI_FURC_FILTER_VERSION_SLAVES_TT),
 	},
 	ChoicesCharacter  = {
 		[1]	= GetString(SI_FURC_FILTER_CHAR_OFF),
@@ -270,15 +279,13 @@ function FurnitureCatalogue_Initialize(eventCode, addOnName)
 
 	local scanFiles = false
 	if FurC.settings.version 		< FurC.version then
-			FurC.settings.version 		= FurC.version
+		FurC.settings.version 		= FurC.version
 		scanFiles = true
 	end
 
 	FurnitureCatalogue.ScanRecipes(scanFiles, not FurC.GetSkipInitialScan())
 	FurC.settings.databaseVersion 	= FurC.version
 	SLASH_COMMANDS["/fur"] 			= FurnitureCatalogue_Toggle
-
-	FurC.SetFilter(true)
 
 	EVENT_MANAGER:UnregisterForEvent("FurnitureCatalogue", EVENT_ADD_ON_LOADED)
 

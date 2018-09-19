@@ -18,6 +18,7 @@ function FurC.LoadFrameInfo(calledFrom)
 	FurCGui:SetWidth(settings.width)
 	FurCGui:SetHeight(settings.height)
 
+	if calledFrom then return end
 	zo_callLater(function() FurC.UpdateInventoryScroll() end, 100)
 
 end
@@ -103,16 +104,11 @@ function FurC.GuiOnSearchBoxClick(control, mouseButton, doubleClick)
 		control:SetText("")
 	end
 end
-
-local FURC_S_FILTERDEFAULT = GetString(SI_FURC_TEXTBOX_FILTER_DEFAULT)
-
 function FurC.GuiOnSearchBoxFocusOut(control)
-	if control:GetText() and control:GetText() ~= "" then
-        FurC.GuiOnSliderUpdate(FurCGui_ListHolder_Slider, 0)
-		FurC.UpdateGui()
-    end
-    local text = FurC_SearchBox:GetText()
+    control = control or FurC_SearchBox
+	local text = control:GetText()
     FurC_SearchBoxText:SetText((#text == 0 and FURC_S_FILTERDEFAULT) or "")
+	FurC.RefreshFilters()
 end
 
 function FurC.GuiOnScroll(control, delta)
