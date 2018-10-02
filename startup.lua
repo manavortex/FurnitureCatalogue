@@ -1,7 +1,7 @@
 FurnitureCatalogue 					= {}
 FurnitureCatalogue.name				= "FurnitureCatalogue"
 FurnitureCatalogue.author			= "manavortex"
-FurnitureCatalogue.version          = 2.63
+FurnitureCatalogue.version          = 2.80
 FurnitureCatalogue.CharacterName	= nil
 FurnitureCatalogue.settings			= {}
 
@@ -263,7 +263,8 @@ function FurnitureCatalogue_Initialize(eventCode, addOnName)
 	FurC.RegisterEvents()
 
 	FurC.InitGui()
-	FurnitureCatalogue.CreateTooltips()
+
+	FurnitureCatalogue.CreateTooltips()
 	FurC.InitRightclickMenu()
 
 	FurC.SetupInventoryRecipeIcons()
