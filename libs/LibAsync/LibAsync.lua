@@ -98,7 +98,6 @@ local function Scheduler()
 		if job then
 			runTime = GetGameTimeMilliseconds()
 			DoJob(job)
-			spendTime = spendTime - 0.001
 		else
 			-- Finished
 			running = false

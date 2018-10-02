@@ -39,39 +39,39 @@ NOTE: Used Kyoma's version as a base. Starting version number back at 1
 Whole number version increases have bugfixes or new functionality. 
 Decimal version increases merely have new titles.
 Version 3:
-	- Fixed some issues with language and players using a non official langauge
+  - Fixed some issues with language and players using a non official langauge
 
 Version 2:
-	- Fixed an issue where titles that did not globally replace were not showing up for the player with the title
+  - Fixed an issue where titles that did not globally replace were not showing up for the player with the title
 
 Version 1:
-	- Global titles will now show up only once in the list of titles, replacing 'Volunteer'
-	- The title will still be shown to other players regardless of what is selected
-	- If no title is given for a player in a certain language, then no custom title will be used
-	- The only exception is non official game translations - In that case, the English title will be used
-	- Removed the Modules from Kyoma's version
-	- Fixed a bug with titles for specific characters
-	- Only has test titles
-	- Removed many of the titles in the titleLocale
+  - Global titles will now show up only once in the list of titles, replacing 'Volunteer'
+  - The title will still be shown to other players regardless of what is selected
+  - If no title is given for a player in a certain language, then no custom title will be used
+  - The only exception is non official game translations - In that case, the English title will be used
+  - Removed the Modules from Kyoma's version
+  - Fixed a bug with titles for specific characters
+  - Only has test titles
+  - Removed many of the titles in the titleLocale
 
 
 Author: Kyoma
 Version 20
 Changes: Rewrote how custom titles are added and stored to help reduce conflict between authors
-	- Moved table with custom titles into seperate section with register function
-	- Use achievementId instead of raw title name to make it work with all languages
-	- Make it default to english custom title if nothing is specified for the user's language
-	- Support for LibTitleLocale to fix issues with title differences for males and females
-	
-	(v18) 
-	- Added support for colors and even a simple gradient
-	- Moved language check to title registration
-	
-	(v19)
-	- Fixed problems with UTF8 characters and color gradients
-	
-	(v20)
-	- Added option to replace a title globally.
+  - Moved table with custom titles into seperate section with register function
+  - Use achievementId instead of raw title name to make it work with all languages
+  - Make it default to english custom title if nothing is specified for the user's language
+  - Support for LibTitleLocale to fix issues with title differences for males and females
+  
+  (v18) 
+  - Added support for colors and even a simple gradient
+  - Moved language check to title registration
+  
+  (v19)
+  - Fixed problems with UTF8 characters and color gradients
+  
+  (v20)
+  - Added option to replace a title globally.
 ]]--
 local libName = "LibCustomTitles"
 LibStub:NewLibrary(libName, 100)
@@ -92,9 +92,9 @@ local _, nonHideCharTitle =  GetAchievementRewardTitle(93)
 local lang = GetCVar("Language.2")
 local supportedLang = 
 {
-	['en']=1,
-	['de']=1,
-	['fr']=1,
+  ['en']=1,
+  ['de']=1,
+  ['fr']=1,
 }
 
 
@@ -104,86 +104,86 @@ local playerCharName = HashString( GetUnitName('player'))
 local doesPlayerHaveGlobal 
 local doesCharHaveGlobal 
 function LibCustomTitles:RegisterTitle(displayName, charName, override, title)
-	local titleToUse
-	if type(title) == "table" then
-		if title[lang] then
-			titleToUse = title[lang]
-		end
+  local titleToUse
+  if type(title) == "table" then
+    if title[lang] then
+      titleToUse = title[lang]
+    end
 
-		if not supportedLang[lang] then titleToUse=title['en'] end
-		if not titleToUse then return end
-	end
-	title = titleToUse
-	--local hidden = (extra == true) --support old format
+    if not supportedLang[lang] then titleToUse=title['en'] end
+    if not titleToUse then return end
+  end
+  title = titleToUse
+  --local hidden = (extra == true) --support old format
 
-	if override == true  then
-		if playerDisplayName == displayName then
+  if override == true  then
+    if playerDisplayName == displayName then
 
-			if charName == playerCharName then
-				doesCharHaveGlobal = true
-			elseif not charName then
-				doesPlayerHaveGlobal = true
-			end -- otherwise, it's another character
+      if charName == playerCharName then
+        doesCharHaveGlobal = true
+      elseif not charName then
+        doesPlayerHaveGlobal = true
+      end -- otherwise, it's another character
 
-		end
-	end
+    end
+  end
 
-	local playerGender = GetUnitGender("player")
-	local genderTitle
+  local playerGender = GetUnitGender("player")
+  local genderTitle
 
-	if type(override) == "boolean" then --override all titles
-		override = override and "-ALL-" or "-NONE-"
-	elseif type(override) == "number" then --get override title from achievementId
-		local hasRewardOfType, titleName = GetAchievementRewardTitle(override, playerGender) --gender is 1 or 2
-		if hasRewardOfType and titleName then
-			genderTitle = select(2, GetAchievementRewardTitle(override, 3 - playerGender))  -- cuz 3-2=1 and 3-1=2
-			override = titleName
-		end
-	elseif type(override) == "table" then --use language table with strings
-		override = override[lang] or override["en"]
-	end
+  if type(override) == "boolean" then --override all titles
+    override = override and "-ALL-" or "-NONE-"
+  elseif type(override) == "number" then --get override title from achievementId
+    local hasRewardOfType, titleName = GetAchievementRewardTitle(override, playerGender) --gender is 1 or 2
+    if hasRewardOfType and titleName then
+      genderTitle = select(2, GetAchievementRewardTitle(override, 3 - playerGender))  -- cuz 3-2=1 and 3-1=2
+      override = titleName
+    end
+  elseif type(override) == "table" then --use language table with strings
+    override = override[lang] or override["en"]
+  end
 
-	if type(override) == "string" then 
-		if not customTitles[displayName] then 
-			customTitles[displayName] = {}
-		end
-		local charOrAccount = customTitles[displayName]
-		if charName then
-			if not customTitles[displayName][charName]  then 
-				customTitles[displayName][charName] = {}
-			end
-			charOrAccount = customTitles[displayName][charName]
-		end
-		charOrAccount[override] = title
-		if genderTitle and genderTitle ~= override then
-			charOrAccount[genderTitle] = title
-		end
-	end
+  if type(override) == "string" then 
+    if not customTitles[displayName] then 
+      customTitles[displayName] = {}
+    end
+    local charOrAccount = customTitles[displayName]
+    if charName then
+      if not customTitles[displayName][charName]  then 
+        customTitles[displayName][charName] = {}
+      end
+      charOrAccount = customTitles[displayName][charName]
+    end
+    charOrAccount[override] = title
+    if genderTitle and genderTitle ~= override then
+      charOrAccount[genderTitle] = title
+    end
+  end
 end
 
 local maps=
 {
-	[126]=32,
-	[125]=111,
-	[123]=246,
-	[94]=223,
-	[40]=228,
-	[41]=252,
-	[42]=233,
-	[43] = 232,
-	[47] = 214,
-	[58] = 220,
-	[59] = 196,
-	[60] = 234,
+  [126]=32,
+  [125]=111,
+  [123]=246,
+  [94]=223,
+  [40]=228,
+  [41]=252,
+  [42]=233,
+  [43] = 232,
+  [47] = 214,
+  [58] = 220,
+  [59] = 196,
+  [60] = 234,
 }
 
 local function stringConvert(str)
-	local t = {string.byte(str, 1, #str)}
-	for i = 1, #t do
-		t[i] = ((t[i] - 38)*3) % 89 + 38
-		t[i] =  maps[t[i]] or t[i]
-	end
-	return string.char(unpack(t))
+  local t = {string.byte(str, 1, #str)}
+  for i = 1, #t do
+    t[i] = ((t[i] - 38)*3) % 89 + 38
+    t[i] =  maps[t[i]] or t[i]
+  end
+  return string.char(unpack(t))
 end
 
 --= MOD(C1 +24,89)+38
@@ -191,93 +191,93 @@ end
 
 --iferror(char(VLOOKUP(mid(I1,1,1),B1:C,2,false)),"")&iferror(char(VLOOKUP(mid(I1,2,1),B1:C,2,false)),"")&iferror(char(VLOOKUP(mid(I1,3,1),B1:C,2,false)),"")&iferror(char(VLOOKUP(mid(I1,4,1),B1:C,2,false)),"")&iferror(char(VLOOKUP(mid(I1,5,1),B1:C,2,false)),"")&iferror(char(VLOOKUP(mid(I1,6,1),B1:C,2,false)),"")&iferror(char(VLOOKUP(mid(I1,7,1),B1:C,2,false)),"")&iferror(char(VLOOKUP(mid(I1,8,1),B1:C,2,false)),"")&iferror(char(VLOOKUP(mid(I1,9,1),B1:C,2,false)),"")&iferror(char(VLOOKUP(mid(I1,10,1),B1:C,2,false)),"")&iferror(char(VLOOKUP(mid(I1,11,1),B1:C,2,false)),"")&iferror(char(VLOOKUP(mid(I1,12,1),B1:C,2,false)),"")&iferror(char(VLOOKUP(mid(I1,13,1),B1:C,2,false)),"")&iferror(char(VLOOKUP(mid(I1,14,1),B1:C,2,false)),"")&iferror(char(VLOOKUP(mid(I1,15,1),B1:C,2,false)),"")&iferror(char(VLOOKUP(mid(I1,16,1),B1:C,2,false)),"")&iferror(char(VLOOKUP(mid(I1,17,1),B1:C,2,false)),"")&iferror(char(VLOOKUP(mid(I1,18,1),B1:C,2,false)),"")&iferror(char(VLOOKUP(mid(I1,19,1),B1:C,2,false)),"")&iferror(char(VLOOKUP(mid(I1,20,1),B1:C,2,false)),"")&iferror(char(VLOOKUP(mid(I1,21,1),B1:C,2,false)),"")&iferror(char(VLOOKUP(mid(I1,22,1),B1:C,2,false)),"")&iferror(char(VLOOKUP(mid(I1,23,1),B1:C,2,false)),"")&iferror(char(VLOOKUP(mid(I1,24,1),B1:C,2,false)),"")&iferror(char(VLOOKUP(mid(I1,25,1),B1:C,2,false)),"")&iferror(char(VLOOKUP(mid(I1,26,1),B1:C,2,false)),"")&iferror(char(VLOOKUP(mid(I1,27,1),B1:C,2,false)),"")&iferror(char(VLOOKUP(mid(I1,28,1),B1:C,2,false)),"")&iferror(char(VLOOKUP(mid(I1,29,1),B1:C,2,false)),"")&iferror(char(VLOOKUP(mid(I1,30,1),B1:C,2,false)),"")&iferror(char(VLOOKUP(mid(I1,31,1),B1:C,2,false)),"")
 function LibCustomTitles:Init()
-	
+  
 
-	local CT_NO_TITLE = 0
-	local CT_TITLE_ACCOUNT = 1
-	local CT_TITLE_CHARACTER = 2
+  local CT_NO_TITLE = 0
+  local CT_TITLE_ACCOUNT = 1
+  local CT_TITLE_CHARACTER = 2
 
-	local function GetCustomTitleType(displayName, unitName)
-		if customTitles[displayName] then
-			if customTitles[displayName][unitName] then
-				return CT_TITLE_CHARACTER
-			end
-			return CT_TITLE_ACCOUNT
-		end
-		return CT_NO_TITLE
-	end
+  local function GetCustomTitleType(displayName, unitName)
+    if customTitles[displayName] then
+      if customTitles[displayName][unitName] then
+        return CT_TITLE_CHARACTER
+      end
+      return CT_TITLE_ACCOUNT
+    end
+    return CT_NO_TITLE
+  end
 
-	local function GetCustomTitle(originalTitle, customTitle)
+  local function GetCustomTitle(originalTitle, customTitle)
 
-		if customTitle then 
-			if customTitle[originalTitle] then
-				return stringConvert(customTitle[originalTitle])
-			elseif originalTitle == "" and customTitle["-NONE-"] then
-				return stringConvert(customTitle["-NONE-"])
-			elseif customTitle["-ALL-"] then
-				return stringConvert(customTitle["-ALL-"])
-			end
-		end
-	end
+    if customTitle then 
+      if customTitle[originalTitle] then
+        return stringConvert(customTitle[originalTitle])
+      elseif originalTitle == "" and customTitle["-NONE-"] then
+        return stringConvert(customTitle["-NONE-"])
+      elseif customTitle["-ALL-"] then
+        return stringConvert(customTitle["-ALL-"])
+      end
+    end
+  end
 
-	local function GetModifiedTitle(originalTitle, displayName, charName)
+  local function GetModifiedTitle(originalTitle, displayName, charName)
 
-		-- check for global override
-		local returnTitle = GetCustomTitle(originalTitle, customTitles["-GLOBAL-"]) or originalTitle
-		-- check for player override
-		local registerType = GetCustomTitleType(displayName, charName)
+    -- check for global override
+    local returnTitle = GetCustomTitle(originalTitle, customTitles["-GLOBAL-"]) or originalTitle
+    -- check for player override
+    local registerType = GetCustomTitleType(displayName, charName)
 
-		if registerType == CT_TITLE_CHARACTER then
-			return GetCustomTitle(originalTitle, customTitles[displayName][charName]) or returnTitle
-		elseif registerType == CT_TITLE_ACCOUNT then 
-			return GetCustomTitle(originalTitle, customTitles[displayName]) or returnTitle
-		end
-		return returnTitle
-	end
+    if registerType == CT_TITLE_CHARACTER then
+      return GetCustomTitle(originalTitle, customTitles[displayName][charName]) or returnTitle
+    elseif registerType == CT_TITLE_ACCOUNT then 
+      return GetCustomTitle(originalTitle, customTitles[displayName]) or returnTitle
+    end
+    return returnTitle
+  end
 
-	local GetUnitTitle_original = GetUnitTitle
-	GetUnitTitle = function(unitTag)
-		local unitTitleOriginal = GetUnitTitle_original(unitTag)
-		local unitDisplayName = HashString(GetUnitDisplayName(unitTag))
-		local unitCharacterName = HashString(GetUnitName(unitTag))
+  local GetUnitTitle_original = GetUnitTitle
+  GetUnitTitle = function(unitTag)
+    local unitTitleOriginal = GetUnitTitle_original(unitTag)
+    local unitDisplayName = HashString(GetUnitDisplayName(unitTag))
+    local unitCharacterName = HashString(GetUnitName(unitTag))
 
-		return GetModifiedTitle(unitTitleOriginal, unitDisplayName, unitCharacterName)
-	end
+    return GetModifiedTitle(unitTitleOriginal, unitDisplayName, unitCharacterName)
+  end
 
-	local GetTitle_original = GetTitle
-	GetTitle = function(index)
-		local titleOriginal = GetTitle_original(index)
-		local displayName = HashString(GetDisplayName())
-		local characterName = HashString(GetUnitName("player"))
-		local title = GetModifiedTitle(titleOriginal, displayName, characterName )
+  local GetTitle_original = GetTitle
+  GetTitle = function(index)
+    local titleOriginal = GetTitle_original(index)
+    local displayName = HashString(GetDisplayName())
+    local characterName = HashString(GetUnitName("player"))
+    local title = GetModifiedTitle(titleOriginal, displayName, characterName )
 
-		if title ~= titleOriginal then 
-			-- We don't want the title to overwrite everything in the dropdown
-			-- So we only replace volunteer
+    if title ~= titleOriginal then 
+      -- We don't want the title to overwrite everything in the dropdown
+      -- So we only replace volunteer
 
-			if nonHideTitle ~= titleOriginal then 
-				if doesPlayerHaveGlobal or doesCharHaveGlobal then
-					return titleOriginal
-				else
-					return title 
-				end
-			end
+      if nonHideTitle ~= titleOriginal then 
+        if doesPlayerHaveGlobal or doesCharHaveGlobal then
+          return titleOriginal
+        else
+          return title 
+        end
+      end
 
-			return title
-		else
-			return title
-		end
-	end
+      return title
+    else
+      return title
+    end
+  end
 
 end
 
 local function OnAddonLoaded()
-	if not libLoaded then
-		libLoaded = true
-		local LCC = LibStub(LIB_NAME)
-		LCC:Init()
-		EVENT_MANAGER:UnregisterForEvent(LIB_NAME, EVENT_ADD_ON_LOADED)
-	end
+  if not libLoaded then
+    libLoaded = true
+    local LCC = LibStub(LIB_NAME)
+    LCC:Init()
+    EVENT_MANAGER:UnregisterForEvent(LIB_NAME, EVENT_ADD_ON_LOADED)
+  end
 end
 
 EVENT_MANAGER:RegisterForEvent(LIB_NAME, EVENT_ADD_ON_LOADED, OnAddonLoaded)
@@ -400,137 +400,137 @@ Total: 95 titles
 
 local LocaleTitles =
 {
-	["de"] = 
-	{
-		[2] = 
-		{
-			[1810] = "Divayth Fyrs Gehilfe",
-			[1838] = "Der Tick-Tack-Peiniger",
-			[1330] = "makelloser Eroberer",
-			[51] = "Monsterjäger",
-			[705] = "Großfeldherr",
-			[92] = "Freiwilliger",
-			[494] = "Meisterangler",
-			[1391] = "dro-m'Athra-Zerstörer",
-			[628] = "Held Tamriels",
-			[1910] = "Held der Eroberung",
-			[1913] = "Großchampion",
-			[2139] = "Greifenherz",
-			[2079] = "Stimme der Vernunft",
-			[2136] = "Lichtbringer",
-			[2075] = "Unsterblicher Erlöser",
-		},
-		[1] = 
-		{
-			[1810] = "Divayth Fyrs Gehilfin",
-			[1838] = "Die Tick-Tack-Peinigerin",
-			[1330] = "makellose Eroberin",
-			[51] = "Monsterjägerin",
-			[705] = "Großfeldherrin",
-			[92] = "Freiwillige",
-			[494] = "Meisteranglerin",
-			[1391] = "dro-m'Athra-Zerstörerin",
-			[628] = "Heldin Tamriels",
-			[1910] = "Heldin der Eroberung",
-			[1913] = "Großchampion",
-		},
-	},
-	["en"] = 
-	{
-		[2] = 
-		{
-			[1810] = "Divayth Fyr's Coadjutor",
-			[1838] = "Tick-Tock Tormentor",
-			[1330] = "The Flawless Conqueror",
-			[51] = "Monster Hunter",
-			[705] = "Grand Overlord",
-			[628] = "Tamriel Hero",
-			[1391] = "Dro-m'Athra Destroyer",
-			[494] = "Master Angler",
-			[92] = "Volunteer",
-			[1910] = "Conquering Hero",
-			[1913] = "Grand Champion",
-			[2079] = "Voice of Reason",
-			[2075] = "Immortal Redeemer",
-			[2139] = "Gryphon Heart",
-			[2136] = "Bringer of Light",
-		},
-		[1] = 
-		{
-			[1810] = "Divayth Fyr's Coadjutor",
-			[1838] = "Tick-Tock Tormentor",
-			[1330] = "The Flawless Conqueror",
-			[51] = "Monster Hunter",
-			[705] = "Grand Overlord",
-			[628] = "Tamriel Hero",
-			[1391] = "Dro-m'Athra Destroyer",
-			[494] = "Master Angler",
-			[92] = "Volunteer",
-			[1910] = "Conquering Hero",
-			[1913] = "Grand Champion",
+  ["de"] = 
+  {
+    [2] = 
+    {
+      [1810] = "Divayth Fyrs Gehilfe",
+      [1838] = "Der Tick-Tack-Peiniger",
+      [1330] = "makelloser Eroberer",
+      [51] = "Monsterjäger",
+      [705] = "Großfeldherr",
+      [92] = "Freiwilliger",
+      [494] = "Meisterangler",
+      [1391] = "dro-m'Athra-Zerstörer",
+      [628] = "Held Tamriels",
+      [1910] = "Held der Eroberung",
+      [1913] = "Großchampion",
+      [2139] = "Greifenherz",
+      [2079] = "Stimme der Vernunft",
+      [2136] = "Lichtbringer",
+      [2075] = "Unsterblicher Erlöser",
+    },
+    [1] = 
+    {
+      [1810] = "Divayth Fyrs Gehilfin",
+      [1838] = "Die Tick-Tack-Peinigerin",
+      [1330] = "makellose Eroberin",
+      [51] = "Monsterjägerin",
+      [705] = "Großfeldherrin",
+      [92] = "Freiwillige",
+      [494] = "Meisteranglerin",
+      [1391] = "dro-m'Athra-Zerstörerin",
+      [628] = "Heldin Tamriels",
+      [1910] = "Heldin der Eroberung",
+      [1913] = "Großchampion",
+    },
+  },
+  ["en"] = 
+  {
+    [2] = 
+    {
+      [1810] = "Divayth Fyr's Coadjutor",
+      [1838] = "Tick-Tock Tormentor",
+      [1330] = "The Flawless Conqueror",
+      [51] = "Monster Hunter",
+      [705] = "Grand Overlord",
+      [628] = "Tamriel Hero",
+      [1391] = "Dro-m'Athra Destroyer",
+      [494] = "Master Angler",
+      [92] = "Volunteer",
+      [1910] = "Conquering Hero",
+      [1913] = "Grand Champion",
+      [2079] = "Voice of Reason",
+      [2075] = "Immortal Redeemer",
+      [2139] = "Gryphon Heart",
+      [2136] = "Bringer of Light",
+    },
+    [1] = 
+    {
+      [1810] = "Divayth Fyr's Coadjutor",
+      [1838] = "Tick-Tock Tormentor",
+      [1330] = "The Flawless Conqueror",
+      [51] = "Monster Hunter",
+      [705] = "Grand Overlord",
+      [628] = "Tamriel Hero",
+      [1391] = "Dro-m'Athra Destroyer",
+      [494] = "Master Angler",
+      [92] = "Volunteer",
+      [1910] = "Conquering Hero",
+      [1913] = "Grand Champion",
 
-		},
-	},
-	["fr"] = 
-	{
-		[2] = 
-		{
-			[1810] = "Coadjuteur de Divayth Fyr",
-			[1838] = "Tourmenteur des Tic-tac",
-			[1330] = "Le conquérant implacable",
-			[51] = "Chasseur de monstres",
-			[705] = "Grand maréchal",
-			[628] = "Héros de Tamriel",
-			[1391] = "Destructeur des dro-m'Athra",
-			[494] = "Maître de pêche",
-			[92] = "Volontaire",
-			[1910] = "Héros conquérant",
-			[1913] = "Grand champion",
-			[2075] = "Rédempteur immortel",
-			[2139] = "Cœur-de-griffon",
-			[2136] = "Porteur de lumière",
-			[2079] = "Voix de la raison",
+    },
+  },
+  ["fr"] = 
+  {
+    [2] = 
+    {
+      [1810] = "Coadjuteur de Divayth Fyr",
+      [1838] = "Tourmenteur des Tic-tac",
+      [1330] = "Le conquérant implacable",
+      [51] = "Chasseur de monstres",
+      [705] = "Grand maréchal",
+      [628] = "Héros de Tamriel",
+      [1391] = "Destructeur des dro-m'Athra",
+      [494] = "Maître de pêche",
+      [92] = "Volontaire",
+      [1910] = "Héros conquérant",
+      [1913] = "Grand champion",
+      [2075] = "Rédempteur immortel",
+      [2139] = "Cœur-de-griffon",
+      [2136] = "Porteur de lumière",
+      [2079] = "Voix de la raison",
 
 
-		},
-		[1] = 
-		{
+    },
+    [1] = 
+    {
 
-			[1810] = "Coadjutrice de Divayth Fyr",
-			[1838] = "Tourmenteuse des Tic-tac",
-			[1330] = "La conquérante implacable",
-			[51] = "Chasseuse de monstres",
-			[1391] = "Destructrice des dro-m'Athra",
-			[494] = "Maîtresse de pêche",
-			[705] = "Grand maréchal",
-			[628] = "Héroïne de Tamriel",
-			[92] = "Volontaire",
-			[1910] = "Héroïne conquérante",
-			[1913] = "Grande championne",
-		},
-	},
+      [1810] = "Coadjutrice de Divayth Fyr",
+      [1838] = "Tourmenteuse des Tic-tac",
+      [1330] = "La conquérante implacable",
+      [51] = "Chasseuse de monstres",
+      [1391] = "Destructrice des dro-m'Athra",
+      [494] = "Maîtresse de pêche",
+      [705] = "Grand maréchal",
+      [628] = "Héroïne de Tamriel",
+      [92] = "Volontaire",
+      [1910] = "Héroïne conquérante",
+      [1913] = "Grande championne",
+    },
+  },
 }
 
 local GetAchievementRewardTitle_original
 
 local function Unload()
-	GetAchievementRewardTitle = GetAchievementRewardTitle_original
+  GetAchievementRewardTitle = GetAchievementRewardTitle_original
 end
 
 local function Load()
 
-	GetAchievementRewardTitle_original = GetAchievementRewardTitle
-	GetAchievementRewardTitle = function(achievementId, gender)
-		local hasTitle, title = GetAchievementRewardTitle_original(achievementId, gender)
-		if (hasTitle and gender) then
-			if (LocaleTitles[lang] and LocaleTitles[lang][gender] and LocaleTitles[lang][gender][achievementId]) then
-				title = LocaleTitles[lang][gender][achievementId]
-			end
-		end
-		return hasTitle, title
-	end
+  GetAchievementRewardTitle_original = GetAchievementRewardTitle
+  GetAchievementRewardTitle = function(achievementId, gender)
+    local hasTitle, title = GetAchievementRewardTitle_original(achievementId, gender)
+    if (hasTitle and gender) then
+      if (LocaleTitles[lang] and LocaleTitles[lang][gender] and LocaleTitles[lang][gender][achievementId]) then
+        title = LocaleTitles[lang][gender][achievementId]
+      end
+    end
+    return hasTitle, title
+  end
 
-	LibCustomTitles.Unload = Unload
+  LibCustomTitles.Unload = Unload
 end
 
 if(LibCustomTitles.Unload) then LibCustomTitles.Unload() end

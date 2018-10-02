@@ -1,8 +1,8 @@
 ## Title: LibAsync
 ## Author: votan
-## APIVersion: 100023 100024
-## AddOnVersion: 170
-## Version: 1.7
+## APIVersion: 100024 100025
+## AddOnVersion: 171
+## Version: 1.7.1
 ## Description: A share scheduler for deferred actions
 ## DependsOn: LibStub
 
