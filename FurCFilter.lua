@@ -101,15 +101,15 @@ local function matchSourceDropdown()
 	-- "All", don't care
 	if FURC_NONE					== ddSource then
 		return true
-    end
-    if recipeArray.origin == FURC_CRAFTING then 
-        if ddSource == FURC_CRAFTING then return true end
-        local matchingDropdownSource = (isRecipeArrayKnown(recipeArray) and FURC_CRAFTING_KNOWN) or FURC_CRAFTING_UNKNOWN
-        return matchingDropdownSource == ddSource
-    end
+  end
 	if FURC_FAVE 					    == ddSource then
 		return recipeArray.favorite
-    end
+  end
+  if recipeArray.origin == FURC_CRAFTING then 
+      if ddSource == FURC_CRAFTING then return true end
+      local matchingDropdownSource = (isRecipeArrayKnown(recipeArray) and FURC_CRAFTING_KNOWN) or FURC_CRAFTING_UNKNOWN
+      return matchingDropdownSource == ddSource
+  end
 	if FURC_VENDOR 					    == ddSource then
 		return (recipeArray.origin 		== FURC_VENDOR or (mergeLuxuryAndSales and recipeArray.origin == FURC_LUXURY))
     end

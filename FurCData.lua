@@ -151,7 +151,7 @@ function FurC.Find(itemOrBlueprintLink)						-- sets recipeArray, returns it - c
 
 	if tonumber(itemOrBlueprintLink) == itemOrBlueprintLink then itemOrBlueprintLink = FurC.GetItemLink(itemOrBlueprintLink) end
 	if nil == itemOrBlueprintLink or #itemOrBlueprintLink == 0 then return end
-	p("scanItemLink(<<1>>)...", itemOrBlueprintLink)		-- do not return empty arrays. If this returns nil, abort!
+	-- p("scanItemLink(<<1>>)...", itemOrBlueprintLink)		-- do not return empty arrays. If this returns nil, abort!
 
 	if itemOrBlueprintLink == lastLink and nil ~= recipeArray then
 		return recipeArray

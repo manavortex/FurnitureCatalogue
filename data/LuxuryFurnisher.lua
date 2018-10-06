@@ -2,6 +2,30 @@ FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
 
 FurC.LuxuryFurnisher[FURC_WEREWOLF] = {
+  
+  [141758] = {        -- Orcish Wagon, Merchant
+    itemPrice   = 15000,
+    itemDate  = "2018-10-06",
+  },  
+  -- Oct. 7
+  [132145] = { -- Orsinium Tent, Chief’s
+    itemPrice   = 15000,
+    itemDate  = "2018-10-06",
+  },
+  [132146] = { -- Orsinium Relief, Malacath
+    itemPrice   = 25000,
+    itemDate  = "2018-10-06",
+  },
+  [132148] = { -- Orsinium Statue, Head
+    itemPrice   = 25000,
+    itemDate  = "2018-10-06",
+  },
+  [132147] = { -- Orsinium Statue, Honor’s Rest
+    itemPrice   = 25000,
+    itemDate  = "2018-10-06",
+  },
+
+  
   [141756] = {        -- Mushrooms, Aether Cup Cluster
         itemPrice   = 10000,
     itemDate  = "2018-09-29",
@@ -305,19 +329,19 @@ FurC.LuxuryFurnisher[FURC_ALTMER] = {
   --
   [126560] = {  -- Dwarven fountain, forged
     itemPrice   = 50000,
-    itemDate  = "2017-06-16",
+    itemDate  = "2018-06-16",
   },
   [126564] = {  -- Dwarven Clock, Deactivated
     itemPrice   = 15000,
-    itemDate  = "2017-06-16",
+    itemDate  = "2018-06-16",
   },
   [126561] = {  -- Dwarven Pillar, Forged
     itemPrice   = 10000,
-    itemDate  = "2017-06-16",
+    itemDate  = "2018-06-16",
   },
   [139092] = {  -- Dwarven Engine, Fused 
     itemPrice   = 24000,
-    itemDate  = "2017-06-16",
+    itemDate  = "2018-06-16",
   },
 
   -- June, 23 - 26

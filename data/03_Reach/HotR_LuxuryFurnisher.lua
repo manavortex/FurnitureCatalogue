@@ -47,25 +47,6 @@ FurC.LuxuryFurnisher[FURC_REACH] = {
     itemPrice   = 35000,
     itemDate  = "2017-10-13",
   },
-  
-  -- Oct. 7
-  [132145] = { -- Orsinium Tent, Chief’s
-    itemPrice   = 15000,
-    itemDate  = "2017-10-06",
-  },
-  [132146] = { -- Orsinium Relief, Malacath
-    itemPrice   = 25000,
-    itemDate  = "2017-10-06",
-  },
-  [132148] = { -- Orsinium Statue, Head
-    itemPrice   = 25000,
-    itemDate  = "2017-10-06",
-  },
-  [132147] = { -- Orsinium Statue, Honor’s Rest
-    itemPrice   = 25000,
-    itemDate  = "2017-10-06",
-  },
-
 
 
 }
