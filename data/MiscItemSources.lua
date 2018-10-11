@@ -48,6 +48,9 @@ FurC.MiscItemSources[FURC_WEREWOLF] = {
     [141847] = GetString(SI_FURC_WW_DUNGEON_DROP),       -- Animal Bones, Gnawed
     [141848] = GetString(SI_FURC_WW_DUNGEON_DROP),       -- Animal Bones, Jumbled
     [141849] = GetString(SI_FURC_WW_DUNGEON_DROP),       -- Animal Bones, Fresh
+	
+	
+    [141921] = GetString(SI_FURC_SLAVES_PREQUEST),       -- Murkmire Bowl, Geometric Pattern
     
   },
   [FURC_RUMOUR] = {  
@@ -90,7 +93,6 @@ FurC.MiscItemSources[FURC_WEREWOLF] = {
     [141767] = GetString(SI_FURC_DATAMINED_UNCLEAR),   -- Ayleid Constellation Stele, The Lady
     [141778] = GetString(SI_FURC_DATAMINED_UNCLEAR),   -- Target Wraith-of-Crows
     [141920] = GetString(SI_FURC_DATAMINED_UNCLEAR),   -- Murkmire Brazier, Ceremonial
-    [141921] = GetString(SI_FURC_DATAMINED_UNCLEAR),   -- Murkmire Bowl, Geometric Pattern
     [141922] = GetString(SI_FURC_DATAMINED_UNCLEAR),   -- Murkmire Dish, Geometric Pattern
     [141923] = GetString(SI_FURC_DATAMINED_UNCLEAR),   -- Murkmire Amphora, Seed Pattern
     [141924] = GetString(SI_FURC_DATAMINED_UNCLEAR),   -- Murkmire Vase, Scale Pattern
@@ -397,15 +399,10 @@ FurC.MiscItemSources[FURC_ALTMER] = {
     [139075] = getCrownPrice(410),              -- Painting of Sinkhole, Refined
     [139076] = getCrownPrice(410),              -- Painting of Ancient Road, Refined
     
-    -- [139077] = getCrownPrice(20),            -- Coral Formation, Bulwark
     [139078] = getCrownPrice(20),               -- Coral Formation, Tree Antler
-    -- [139079] = getCrownPrice(20),            -- Coral Formation, Fan Cluster
-    -- [139080] = getCrownPrice(20),            -- Coral Formation, Ancient Pillar Polyps
-    -- [139081] = getCrownPrice(20),            -- Plants, Sea Grapes
-    -- [139082] = getCrownPrice(20),            -- Plants, Ruby Glasswort Patch
     
     [139083] = getCrownPrice(30),               -- Plants, Grasswort Patch
-    -- [139084] = getCrownPrice(20),            -- Plants, Pearlwort Cluster
+    
     
     [139088] = getCrownPrice(50),               -- Alinor Table Runner, Verdant
     [139089] = getCrownPrice(50),               -- Alinor Table Runner, Coiled
@@ -572,7 +569,11 @@ FurC.MiscItemSources[FURC_ALTMER] = {
     [139063] = GetString(SI_FURC_GIANT_CLAM),   -- Pearl, Enormous
     
     [139073] = questRewardLilandril,            -- Painting of Summerset Coast, Refined
-    [139072] = GetString(SI_FURC_ELF_PIC),    -- Painting of Monastery of Serene Harmony, Refined
+    [139072] = GetString(SI_FURC_ELF_PIC),    	-- Painting of Monastery of Serene Harmony, Refined
+	
+	 [87709] = GetString(SI_FURC_LEVELUP),		-- Imperial Brazier, Spiked
+	 [94098] = GetString(SI_FURC_LEVELUP),		-- Imperial Bed, Single
+	
     
   },
   [FURC_FISHING] = {

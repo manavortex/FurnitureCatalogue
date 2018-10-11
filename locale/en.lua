@@ -79,6 +79,9 @@ local strings = {
   SI_FURC_GEYSIR =                      "Drops from geysir reward clams on Summerset",
   SI_FURC_GIANT_CLAM =                  "Drops from giant clams and geysir reward clams on Summerset",
   SI_FURC_ELF_PIC =                     "Drops extremely rarely from treasure chests on Summerset",
+  SI_FURC_LEVELUP =                     "Can be gained as levelup reward",
+  SI_FURC_SLAVES_PREQUEST =             "from Murkmire Prequest reward boxes",
+  
   -- =============================== --
   -- ============ MENU ============= --
   -- =============================== --

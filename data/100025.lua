@@ -93,7 +93,6 @@ FurC.MiscItemSources[FURC_SLAVES]  = {
     [145318] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Gravestone, Small Broken
     [145317] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Gravestone, Broken
     [141920] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Murkmire Brazier, Ceremonial
-    [141921] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Murkmire Bowl, Geometric Pattern
     [141922] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Murkmire Dish, Geometric Pattern
     [141923] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Murkmire Amphora, Seed Pattern
     [141924] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Murkmire Vase, Scale Pattern
