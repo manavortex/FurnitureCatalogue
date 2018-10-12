@@ -51,6 +51,13 @@ FurC.MiscItemSources[FURC_WEREWOLF] = {
 	
 	
     [141921] = GetString(SI_FURC_SLAVES_PREQUEST),       -- Murkmire Bowl, Geometric Pattern
+  
+    [141923] = GetString(SI_FURC_SLAVES_PREQUEST), -- Murkmire Amphora, Seed Pattern
+    [141922] = GetString(SI_FURC_SLAVES_PREQUEST), -- Murkmire Dish, Geometric Pattern
+    [141924] = GetString(SI_FURC_SLAVES_PREQUEST), -- Murkmire Vase, Scale Pattern
+    [141925] = GetString(SI_FURC_SLAVES_PREQUEST), -- Murkmire Hearth Shrine, Sithis Relief
+    [141926] = GetString(SI_FURC_SLAVES_PREQUEST), -- Murkmire Hearth Shrine, Sithis Figure
+    [141920] = GetString(SI_FURC_SLAVES_PREQUEST), -- Murkmire Brazier, Ceremonial
     
   },
   [FURC_RUMOUR] = {  

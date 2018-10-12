@@ -92,12 +92,6 @@ FurC.MiscItemSources[FURC_SLAVES]  = {
     [145576] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Timid Vine-Tongue
     [145318] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Gravestone, Small Broken
     [145317] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Gravestone, Broken
-    [141920] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Murkmire Brazier, Ceremonial
-    [141922] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Murkmire Dish, Geometric Pattern
-    [141923] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Murkmire Amphora, Seed Pattern
-    [141924] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Murkmire Vase, Scale Pattern
-    [141925] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Murkmire Hearth Shrine, Sithis Relief
-    [141926] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Murkmire Hearth Shrine, Sithis Figure
     [145550] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Murkmire Hunting Lure, Grisly
     [145549] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Murkmire Totem, Stone Head
     [141870] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Raven-Perch Cemetery Wreath    
@@ -115,7 +109,8 @@ FurC.MiscItemSources[FURC_SLAVES]  = {
     [145403] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Jel Parchment
     [146047] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- From Old Life To New
     },
-  
+	
+	
     [FURC_CROWN]  = {       
     [145433] = getCrownPrice(1), -- Plant, Rafflesia
     [145459] = getCrownPrice(1), -- Murkmire Kiln, Ancient Stone
