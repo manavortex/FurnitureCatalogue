@@ -2,6 +2,28 @@ FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
 
 FurC.LuxuryFurnisher[FURC_WEREWOLF] = {
+	
+	[141759] = {        -- Orcish Gazebo, Orsinium
+		itemPrice   = 20000,
+		itemDate  = "2018-10-13",
+	},
+	[132152] = {        -- Orsinium Sarcophagus, Warrior's
+		itemPrice   = 35000,
+		itemDate  = "2018-10-13",
+	},
+	[132150] = {        -- Orsinium Totem, Honor
+		itemPrice   = 20000,
+		itemDate  = "2018-10-13",
+	},
+	[132151] = {        -- Orsinium Totem, Obedience
+		itemPrice   = 20000,
+		itemDate  = "2018-10-13",
+	},
+	[132149] = {        -- Orsinium Totem, Strength
+		itemPrice   = 20000,
+		itemDate  = "2018-10-13",
+	},
+
   
   [141758] = {        -- Orcish Wagon, Merchant
     itemPrice   = 15000,

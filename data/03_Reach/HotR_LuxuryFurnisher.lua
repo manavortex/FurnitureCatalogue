@@ -31,22 +31,5 @@ FurC.LuxuryFurnisher[FURC_REACH] = {
     itemDate  = "2017-10-13",
   },
     
-  [132149] = { -- Orcish War Totem
-    itemPrice   = 20000,
-    itemDate  = "2017-10-13",
-  },
-  [132150] = { -- Orcish Battle Totem
-    itemPrice   = 20000,
-    itemDate  = "2017-10-13",
-  },
-  [132151] = { -- Orchish Totem
-    itemPrice   = 20000,
-    itemDate  = "2017-10-13",
-  },
-  [132152] = { -- Orchish Totem
-    itemPrice   = 35000,
-    itemDate  = "2017-10-13",
-  },
-
 
 }
