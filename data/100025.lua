@@ -109,8 +109,8 @@ FurC.MiscItemSources[FURC_SLAVES]  = {
     [145403] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Jel Parchment
     [146047] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- From Old Life To New
     },
-	
-	
+  
+  
     [FURC_CROWN]  = {       
     [145433] = getCrownPrice(1), -- Plant, Rafflesia
     [145459] = getCrownPrice(1), -- Murkmire Kiln, Ancient Stone

@@ -38,10 +38,10 @@ local strings = {
   -- GUI and debug
   SI_FURC_MENU_HEADER =                 "- |cD3B830Furniture|r:",
   SI_FURC_REMOVE_FAVE =                 " Remove Favorite",
-  SI_FURC_ADD_FAVE =               	    " Add Favorite",
+  SI_FURC_ADD_FAVE =                     " Add Favorite",
   SI_FURC_POST_ITEMSOURCE =             " Post item source",
   SI_FURC_POST_RECIPE =                 " Post recipe",
-  SI_FURC_POST_ITEM =             	    " Post item",
+  SI_FURC_POST_ITEM =                   " Post item",
   SI_FURC_POST_MATERIAL =               " Post material",
   SI_FURC_DIALOGUE_RESET_DB_HEADER =    "Really re-create furniture database?",
   SI_FURC_DIALOGUE_RESET_DB_BODY =      "This will re-create the FurnitureCatalogue database from scratch",
