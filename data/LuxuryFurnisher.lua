@@ -7,7 +7,9 @@ FurC.LuxuryFurnisher[FURC_WEREWOLF] = {
     itemPrice   = 5000,
     itemDate  = "2018-10-20",
   },
--- Witch's Torch, Wretched
+
+-- Oct. 21
+[132155] = { -- Witch's Torch, Wretched  
     itemPrice   = 5000,
     itemDate  = "2018-10-20",
   },

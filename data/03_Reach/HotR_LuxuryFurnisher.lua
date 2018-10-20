@@ -2,9 +2,6 @@ FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
 FurC.LuxuryFurnisher[FURC_REACH] = {
 
--- Oct. 21
-[132155] = { 
-  
 
   -- Oct. 14
   [119977] = { -- Orcish War Totem
