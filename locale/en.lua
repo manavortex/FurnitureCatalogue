@@ -263,6 +263,7 @@ local strings = {
   SI_FURC_DROP_ALTMER =           "This item is a drop on Summerset", 
   SI_FURC_FLAME_ATRONACH =        "Flame Atronach",
   SI_FURC_DWEMER =                "Dwemer",
+  SI_FURC_REAPER =                "Reaper's Harvest",
   SI_FURC_CHESTS =                "from treasure chests",
   SI_FURC_VVARDENFELL_PAINTING =  "extremely rarely from safeboxes",
   SI_FURC_CHEST_VV =              "Extremely rarely from chests on Vvardenfell",

@@ -60,7 +60,11 @@ FurC.MiscItemSources[FURC_ALTMER][FURC_RUMOUR] = {
 }
 
 FurC.EventItems[FURC_ALTMER] = {}
-
+    
+-- Removed with Murkmire Live Release, RIP
+-- [126154] = GetString(SI_FURC_DATAMINED_UNCLEAR),  -- Statuette of Azura with Moon and Star
+-- [126155] = GetString(SI_FURC_DATAMINED_UNCLEAR),  -- Statuette of Lord Vivec, Warrior-Poet
+-- [126156] = GetString(SI_FURC_DATAMINED_UNCLEAR),  -- Statuette of Clavicus Vile, Unmasked
 
 FurC.Books[FURC_ALTMER] = {}
 

@@ -22,6 +22,7 @@ local FURC_HARVEST_CHARBOR    = GetString(SI_FURC_HARVEST) .. " in Coldharbour"
 
 local FURC_SCAMBOX_F_ATRO    = zo_strformat("<<1>> (<<2>>)", GetString(SI_FURC_SCAMBOX), GetString(SI_FURC_FLAME_ATRONACH))
 local FURC_SCAMBOX_DWEMER    = zo_strformat("<<1>> (<<2>>)", GetString(SI_FURC_SCAMBOX), GetString(SI_FURC_DWEMER))
+local FURC_SCAMBOX_REAPER    = zo_strformat("<<1>> (<<2>>)", GetString(SI_FURC_SCAMBOX), GetString(SI_FURC_REAPER))
 
 local FURC_DB_POISON         = zo_strformat("<<1>> <<2>>", GetString(SI_FURC_DB), GetString(SI_FURC_DB_POISON))
 local FURC_DB_SNEAKY         = zo_strformat("<<1>> <<2>>", GetString(SI_FURC_DB), GetString(SI_FURC_DB_STEALTH))
@@ -137,7 +138,7 @@ FurC.MiscItemSources[FURC_WEREWOLF] = {
     [120997] = GetString(SI_FURC_DATAMINED_UNCLEAR),  -- Banner, Tattered Blue
     [126118] = GetString(SI_FURC_DATAMINED_UNCLEAR),  -- Banner of Azura
     [130215] = GetString(SI_FURC_DATAMINED_UNCLEAR),  -- Witches' Cauldron, Provisioning
-    [130353] = GetString(SI_FURC_DATAMINED_UNCLEAR),  -- Statuette of Sheogorath, the Mad God
+    
     [126128] = GetString(SI_FURC_DATAMINED_UNCLEAR),  -- The Five Points of the Star
     [126132] = GetString(SI_FURC_DATAMINED_UNCLEAR),  -- Resplendent Sweetroll
     [121015] = GetString(SI_FURC_DATAMINED_UNCLEAR),  -- Shrub, Sparse Green
@@ -153,9 +154,8 @@ FurC.MiscItemSources[FURC_WEREWOLF] = {
     [126146] = GetString(SI_FURC_DATAMINED_UNCLEAR),  -- Banner, Vivec
     [126149] = GetString(SI_FURC_DATAMINED_UNCLEAR),  -- Tapestry, Vivec
     [126150] = GetString(SI_FURC_DATAMINED_UNCLEAR),  -- Tribunal Tablet of Sotha Sil
-    [126154] = GetString(SI_FURC_DATAMINED_UNCLEAR),  -- Statuette of Azura with Moon and Star
-    [126155] = GetString(SI_FURC_DATAMINED_UNCLEAR),  -- Statuette of Lord Vivec, Warrior-Poet
-    [126156] = GetString(SI_FURC_DATAMINED_UNCLEAR),  -- Statuette of Clavicus Vile, Unmasked
+
+    
     [126152] = GetString(SI_FURC_DATAMINED_UNCLEAR),  -- The Cliff-Strider Song
     [121046] = GetString(SI_FURC_DATAMINED_UNCLEAR),  -- Cheeses of Tamriel
     [121049] = GetString(SI_FURC_DATAMINED_UNCLEAR),  -- Parcels, Wrapped
@@ -582,6 +582,7 @@ FurC.MiscItemSources[FURC_ALTMER] = {
    [94098] = GetString(SI_FURC_LEVELUP),    -- Imperial Bed, Single
 
 
+    [130192] = FURC_SCAMBOX_REAPER,  -- Statuette of Sheogorath, the Mad God
   },
   [FURC_FISHING] = {
     [139080] = FURC_FISHING_SUMMERSET,  -- Coral Formation, Ancient Pillar Polyps
