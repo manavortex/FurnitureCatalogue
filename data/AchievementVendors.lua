@@ -1,3 +1,100 @@
+
+FurC.AchievementVendors[FURC_SLAVES] = {
+  ["Murkmire"] = {
+    [GetString(FURC_AV_HAR)] = {
+      [145408] = {          --Argon Pedestal, Replica
+        itemPrice   = 15000,
+        achievement = 0,  -- The river of rebirth
+      },
+      [145406] = {          --Banner, Bright-Throat
+        itemPrice   = 10000,
+        achievement = 2353,  -- murky marketeer 
+      },
+      [145404] = {          --Banner, Dead-Water
+        itemPrice   = 10000,
+        achievement = 2354, -- Cold Blood, Warm Heart 
+      },
+      [145405] = {          --Banner, Rootwater
+        itemPrice   = 10000,
+        achievement = 0,  -- Resplendent Rootmender
+      },
+      [145553] = {          --Grave Stake, Small Glyphed
+        itemPrice   = 5000,
+        achievement = 2330,  -- Surreptiliously Shadowed 
+      },
+      [145549] = {           --Murkmire Totem, Stone Head
+        itemPrice   = 12000,
+        achievement = 0,  -- Art of the Nisswo
+      },
+      [145407] = {          -- Remnant of Argon, Replica
+        itemPrice   = 75000,
+        achievement = 2339,  -- River of Rebirth   
+      },
+      [145412] = {          --Seed Doll, Turtle
+        itemPrice   = 20000,
+        achievement = 2336,  -- Sap-Sleeper 
+      },
+      [145576] = {          --Timid Vine-Tongue
+        itemPrice   = 40000,
+        achievement = 2357,  --  Vine-Tongue Traveler  
+      },
+
+    },
+    [GetString(FURC_AV_ADO)] = {
+      [145551] = {        -- Murkmire Kiln, Derelict
+        itemPrice   = 450,
+      },
+      [145557] = {        -- Plant Cluster, Spadeleaf
+        itemPrice   = 350,
+      },
+      [145414] = {        -- Plant Cluster, Marsh Saplings
+        itemPrice   = 250,
+      },
+      [145417] = {        -- Plant, Bramblebrush
+        itemPrice   = 250,
+      },
+      [145413] = {        -- Plant, Marsh Palm
+        itemPrice   = 350,
+      },
+      [145419] = {        -- Plant, Marshfrond
+        itemPrice   = 400,
+      },
+      [145547] = {        -- Plant, Moorstalk Hive
+        itemPrice   = 1250,
+      },
+      [145416] = {        -- Plant, Purple Spadeleaf
+        itemPrice   = 300,
+      },
+      [145420] = {        -- Plant, Thorny Swamp Lily
+        itemPrice   = 400,
+      },
+      [145418] = {        -- Plant, Young Marshfrond
+        itemPrice   = 250,
+      },
+      [145425] = {        -- Rock, Mossy Marsh
+        itemPrice   = 250,
+      },
+      [145424] = {        -- Rocks, Mossy Marsh Cluster
+        itemPrice   = 750,
+      },
+      [145422] = {        -- Tree Cluster, Young Sycamore
+        itemPrice   = 450,
+      },
+      [145421] = {        -- Tree, Marsh Cypress
+        itemPrice   = 350,
+      },
+      [145423] = {        -- Tree, Mire Mangrove
+        itemPrice   = 4000,
+      },
+      [145415] = {        -- Tree, Mossy Sycamore
+        itemPrice   = 2000,
+      },
+
+    }
+  }
+}
+
+
 FurC.AchievementVendors[FURC_WEREWOLF] = {
   ["the Undaunted Enclaves"] = {
     ["Undaunted Quartermaster"] = {

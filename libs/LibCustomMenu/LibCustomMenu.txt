@@ -1,8 +1,8 @@
 ## Title: LibCustomMenu
 ## Author: votan
-## APIVersion: 100023 100024
-## Version: 6.6
-## AddOnVersion: 660
+## APIVersion: 100024 100025
+## Version: 6.6.2
+## AddOnVersion: 662
 ## DependsOn: LibStub
 ## Description: Fixes in-game bug that causes "Access a private function from insecure code" created by custom context-menu items, sub-menu and divider.
 

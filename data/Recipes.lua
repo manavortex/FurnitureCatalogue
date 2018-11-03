@@ -1,5 +1,89 @@
 FurC.Recipes = FurC.Recipes or {}
 
+FurC.Recipes[FURC_SLAVES] = {
+    
+  145944, -- Praxis: Murkmire Chair, Engraved
+  145945, -- Praxis: Murkmire Bench, Wide
+  145946, -- Praxis: Murkmire Bench, Armless
+  145947, -- Praxis: Murkmire Bed, Enclosed
+  145948, -- Praxis: Murkmire Pedestal, Low
+  145949, -- Praxis: Murkmire Table, Engraved
+  145950, -- Praxis: Murkmire Brazier, Engraved
+  145951, -- Praxis: Murkmire Bookshelf, Grand
+  145952, -- Praxis: Murkmire Bookshelf, Grand Full
+  145953, -- Praxis: Murkmire Sarcophagus, Empty
+  145954, -- Praxis: Murkmire Sarcophagus Lid
+  145955, -- Praxis: Murkmire Bookshelf
+  145956, -- Praxis: Murkmire Bookshelf, Full
+  145957, -- Praxis: Murkmire Platform, Sectioned
+  145958, -- Praxis: Murkmire Pedestal, Winged
+  145959, -- Praxis: Murkmire Totem, Beacon
+  145960, -- Diagram: Murkmire Brazier, Bowl
+  145961, -- Praxis: Murkmire Hearth Shrine, Sithis Rearing
+  145962, -- Praxis: Murkmire Hearth Shrine, Sithis Coiled
+  145963, -- Praxis: Murkmire Hearth Shrine, Sithis Looming
+  145964, -- Praxis: Murkmire Shrine, Sithis Relief
+  145965, -- Praxis: Murkmire Shrine, Sithis Rearing
+  145966, -- Praxis: Murkmire Shrine, Sithis Figure
+  145967, -- Praxis: Murkmire Shrine, Sithis Coiled
+  145968, -- Design: Murkmire Pot, Large Carved
+  145969, -- Design: Bowl of Worms
+  145970, -- Design: Bowl of Guts
+  145971, -- Design: Bowl of Worms, Large
+  145972, -- Design: Grub Kebabs
+  145973, -- Design: Murkmire Berry Strand
+  145974, -- Design: Murkmire Pot, Handmade
+  145975, -- Design: Melon, Wax
+  145976, -- Design: Dragonfruit, Wax
+  145977, -- Blueprint: Murkmire Platter, Large
+  145978, -- Blueprint: Murkmire Plate, Charger
+  145979, -- Praxis: Murkmire Wall, Stone
+  145980, -- Blueprint: Murkmire Bonding Chimes, Domed
+  145981, -- Formula: Murkmire Lantern, Covered
+  145982, -- Formula: Murkmire Lamp, Hanging Bottle
+  145983, -- Formula: Murkmire Lamp, Hanging Conch
+  145984, -- Formula: Murkmire Sconce, Shell
+  145985, -- Formula: Murkmire Brazier, Shell
+  145986, -- Formula: Murkmire Lamp, Shell
+  145987, -- Design: Murkmire Candlepost, Timber
+  145988, -- Design: Murkmire Candlepost, Driftwood
+  145989, -- Design: Murkmire Candles, Bone Group
+  145990, -- Design: Murkmire Candle, Bone Tall
+  145991, -- Design: Murkmire Candle, Bone Squat
+  145992, -- Blueprint: Murkmire Bed, Carved
+  145993, -- Blueprint: Murkmire Wardrobe, Woven
+  145994, -- Blueprint: Murkmire Chair, Woven
+  141899, -- Praxis: Sacrificial Altar, Hircine
+  141900, -- Blueprint: Ritual Fetish, Hircine
+  146004, -- Blueprint: Murkmire Ramp, Reed
+  146005, -- Blueprint: Murkmire Platform, Reed
+  146006, -- Blueprint: Murkmire Gate, Arched
+  146007, -- Blueprint: Murkmire Wall, Straight
+  146008, -- Blueprint: Murkmire Totem Post, Carved
+  146009, -- Blueprint: Murkmire Wall, Corner Curve
+  146010, -- Pattern: Murkmire Tapestry, Hist Gathering
+  146011, -- Pattern: Murkmire Rug, Hist Gathering
+  146012, -- Pattern: Murkmire Rug, Supine Turtle
+  146013, -- Pattern: Murkmire Rug, Crawling Serpents
+  146014, -- Pattern: Murkmire Rug, Lurking Lizard
+  146015, -- Pattern: Murkmire Tapestry, Xanmeer
+  146016, -- Blueprint: Murkmire Bonding Chimes, Simple
+  146017, -- Blueprint: Murkmire Totem, Wolf-Lizard
+  141898, -- Praxis: Ritual Stone, Hircine
+  141897, -- Praxis: Obelisk, Lord Hircine Ritual
+  141896, -- Sketch: Figurine, The Dragon's Glare
+  145995, -- Blueprint: Murkmire Trunk, Leatherbound
+  145999, -- Blueprint: Murkmire Shelf, Reed
+  145996, -- Blueprint: Murkmire Counter, Cabinet
+  145997, -- Blueprint: Murkmire Counter, Low Cabinet
+  145998, -- Blueprint: Murkmire Table, Woven
+  145915, -- Praxis: Murkmire Desk, Engraved
+  146000, -- Blueprint: Murkmire Shelves, Woven
+  146001, -- Blueprint: Murkmire Shelf, Woven Hanging
+  146002, -- Blueprint: Murkmire Ramp, Marshwood
+  146003, -- Blueprint: Murkmire Walkway, Reed
+}
+
 FurC.Recipes[FURC_WEREWOLF] = {
   141896, -- Sketch: Figurine, The Dragon's Glare
   141897, -- Praxis: Obelisk, Lord Hircine Ritual

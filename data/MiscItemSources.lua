@@ -42,6 +42,146 @@ local function getHouseString(houseId1, houseId2)
   return zo_strformat(GetString(SI_FURC_HOUSE), houseName)
 end
 
+FurC.MiscItemSources[FURC_SLAVES]  = {
+    [FURC_RUMOUR]   = {
+    [146048] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- New Life Festive Fir
+    [146049] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Winter Festival Hearth
+    [146050] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Winter Festival Hearthfire
+    [145923] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Lies of the Dread-Father
+    [146052] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Vvardvark Ice Sculpture
+    [146053] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Guar Ice Sculpture
+    [145926] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- That of Void
+    [145927] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Acts of Honoring
+    [145928] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Speakers of Nothing
+    [146057] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- New Life Snowmortal, Human
+    [146058] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- New Life Snowmortal, Argonian
+    [146060] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- New Life Ladle    
+    [146062] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Winter Ouroboros Wreath
+    [145553] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Grave Stake, Small Glyphed
+    [145426] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Murkmire Felucca, Canopied
+    [145427] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Serpent Skull, Colossal
+    [145428] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Murkmire Lantern Post, Covered
+    [145429] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Plant Cluster, Cardinal Flower Large
+    [145430] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Plant, Star Blossom
+    [145431] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Plant, Marsh Nigella
+    [145432] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Plant, Canna Lily
+    [146061] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- New Life Triptych Banner
+    [145434] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Plant, Large Lantern Flower
+    [145435] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Plant, Marsh Mani Flower
+    [145436] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Canopied Felucca, Double Hulled
+    [145437] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Reed Felucca, Double Hulled
+    [145438] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Grave Stake, Large Glyphed
+    [145439] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Grave Stake, Large Fearsome
+    [145440] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Grave Stake, Large Skull
+    [145441] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Grave Stake, Large Serpent
+    [145442] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Grave Stake, Large Twinned
+    [145443] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Murkmire Shrine, Sithis Looming
+    [145444] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Murkmire Totem, Hist Guardian
+    [145445] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- The Sharper Tongue: A Jel Primer
+    [145446] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Sithis, the Hungering Dark
+    [145447] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Murkmire Dais, Engraved
+    [145448] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Murkmire Throne, Engraved
+    [145449] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Stele, Hist Guardians
+    [145450] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Stele, Hist Cultivation
+    [145451] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Shrine, Sithis Figure Anointed
+    [145452] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Shrine, Sithis Looming Anointed
+    [145453] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Plant, Marsh Aloe
+    [145454] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Plant, Marsh Aloe Pod
+    [145455] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Plant, Dendritic Hist Bulb
+    [145456] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Plant, Hist Bulb
+    [145457] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Tree, Banyan
+    [145458] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Tree, Ancient Banyan
+    [141875] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Witches Festival Scarecrow
+    [145462] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Plant, Cardinal Flower
+    [146059] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- New Life Snowmortal, Khajiit
+    [146051] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Mudcrab Ice Sculpture
+    [146054] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- New Life Garland
+    [145467] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- The Way of Shadow
+    [145468] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Wedding Lantern, Hanging
+    [145469] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Redguard Gazebo, Palatial Domed
+    [145470] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Redguard Vase, Golden
+    [145471] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Redguard Raincatcher, Golden
+    [145472] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Antler Coral, Crimson
+    [145473] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Antler Coral, Stout Crimson
+    [145474] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Plant, Flytrap
+    [145475] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Plant, Soulsplinter Weed
+    [145476] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Alinor Shrine, Trinimac
+    [145477] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Alinor Pedestal, Shrine
+    [145478] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Alinor Shrine, Y'ffre
+    [145479] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Iron Maiden, Occupied
+    [145480] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Corpse, Burned Seated
+    [145481] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Corpse, Burned Sprawled
+    [145482] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Wheelbarrow, Bones
+    [145483] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Column, Ossuary
+    [145484] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Dark Elf Statue, Ordinator
+    [145485] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Dark Elf Statue, Knight
+    [145486] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Door, Sweet Mother
+    [145487] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Banner, Order of the Hour
+    [145488] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Banner, Jewelry Crafting
+    [146055] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- New Life Garland Wreath
+    [146056] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- New Life Cookies and Ale
+    [145491] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Static Pitcher
+    [145492] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Gas Blossom
+    [145493] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Lantern Mantis
+    [141854] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Decorative Hollowjack Flame-Skull
+    [145554] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Tree, Towering Snowy Fir
+    [145555] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Tree, Snowy Fir
+    [145597] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Scales of Shadow
+    [145595] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Scuttlebloom
+    [145322] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Music Box, Blood and Glory
+    [145576] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Timid Vine-Tongue
+    [145318] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Gravestone, Small Broken
+    [145317] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Gravestone, Broken
+    [145550] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Murkmire Hunting Lure, Grisly
+    [145549] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Murkmire Totem, Stone Head
+    [141870] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Raven-Perch Cemetery Wreath    
+    [142235] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Music Box, Flickering Shadows    
+    [141856] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Decorative Hollowjack Daedra-Skull
+    [141855] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Decorative Hollowjack Wraith-Lantern
+    [145556] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Tree, Tall Snowy Fir
+    [145396] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Murkmire Tapestry, Hist Gathering Worn
+    [145397] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Murkmire Rug, Hist Gathering Worn
+    [145398] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Murkmire Rug, Supine Turtle Worn
+    [145399] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Murkmire Rug, Crawling Serpents Worn
+    [145400] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Murkmire Rug, Lurking Lizard Worn
+    [145401] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Murkmire Tapestry, Xanmeer Worn
+    [145402] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Fish, Black Marsh
+    [145403] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- Jel Parchment
+    [146047] = GetString(SI_FURC_RUMOUR_SOURCE_ITEM), -- From Old Life To New
+    },
+  
+  
+    [FURC_CROWN]  = {       
+    [145433] = getCrownPrice(1), -- Plant, Rafflesia
+    [145459] = getCrownPrice(1), -- Murkmire Kiln, Ancient Stone
+    [145460] = getCrownPrice(1), -- Plant, Canna Leaves
+    [145461] = getCrownPrice(1), -- Plant Cluster, Cardinal Flower Small
+    [145463] = getCrownPrice(1), -- Plant Cluster, Red Sister Ti
+    [145464] = getCrownPrice(1), -- Plant, Red Sister Ti
+    [145465] = getCrownPrice(1), -- Plant Cluster, Wilted Hist Bulb
+    [145466] = getCrownPrice(1), -- Plant, Wilted Hist Bulb
+    [141939] = getCrownPrice(1), -- Grave, Grasping
+    [145411] = getCrownPrice(1), -- Plant, Lantern Flower
+    [141965] = getCrownPrice(1), -- Hollowjack Lantern, Soaring Dragon
+    [141966] = getCrownPrice(1), -- Hollowjack Lantern, Toothy Grin
+    [141967] = getCrownPrice(1), -- Hollowjack Lantern, Ouroboros
+    [142004] = getCrownPrice(1), -- Specimen Jar, Spare Brain
+    [142005] = getCrownPrice(1), -- Specimen Jar, Monstrous Remains
+    [142003] = getCrownPrice(1), -- Specimen Jar, Eyes
+    [141869] = getCrownPrice(1), -- Alinor Potted Plant, Cypress
+    [141976] = getCrownPrice(1), -- Pumpkin Patch, Display
+    [141853] = getCrownPrice(1), -- Statue of Hircine's Bitter Mercy
+    
+    },
+    [FURC_FISHING]   = {
+        -- fishing
+        -- [118902] = GetString(SI_FURC_CANBEFISHED),     -- Coral, Sun
+    },
+    [FURC_DROP]    = {
+        -- [121058] = FURC_DB_SNEAKY,             -- Candles of Silence
+    },
+    
+}
 FurC.MiscItemSources[FURC_WEREWOLF] = {
   [FURC_DROP] = {
     [141851] = GetString(SI_FURC_WW_DUNGEON_DROP),         -- Bear Skull, Fresh

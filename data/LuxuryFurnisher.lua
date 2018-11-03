@@ -1,13 +1,59 @@
 FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
 
-FurC.LuxuryFurnisher[FURC_WEREWOLF] = {
-  
+FurC.LuxuryFurnisher[FURC_SLAVES] = {
+  [118294] = {        -- Echatere Horns, Wall Mount
+    itemPrice   = 15000,
+    itemDate    = "2018-11-03",
+  },
+  [118286] = {  -- Carcass, Grey Hare
+    itemPrice = 5000,
+    itemDate  = "2018-11-03",
+  },
+  [118281] = {  -- Carcass, Hanging Geese
+    itemPrice = 7000,
+    itemDate  = "2018-11-03",
+  },
+  [118279] = {  -- Deer Head, Wall Mount
+    itemPrice = 15000,
+    itemDate  = "2018-11-03",
+  },
+  [118298] = {  -- Wolf Head, Wall Mount
+    itemPrice = 20000,
+    itemDate  = "2018-11-03",
+  },
+ 
+ 
+ [141761] = {        -- Reach Sapling, Contorted Briarheart
+      itemDate  = "2018-10-27",
+      itemPrice   = 35000,
+    },
+  [132156] = {        -- Briarheart Tree, Replica
+      itemDate  = "2018-10-27",
+      itemPrice   = 100000,
+  },
+  [132158] = {  -- Witch's Remains, Offering
+    itemPrice = 50000,
+    itemDate  = "2018-10-27",
+  },
+  [132157] = {  -- Witch's Remains, Sacrificial
+    itemPrice = 50000,
+    itemDate  = "2018-10-27",
+  },
+  -- Oct 28th
+  [132143] = {  -- Reach Sapling, Briarheart
+    itemPrice = 50000,
+    itemDate  = "2018-10-27",
+  },
   [141760] = {        -- Witch's Tree, Charred
     itemPrice   = 5000,
     itemDate  = "2018-10-20",
   },
 
+}
+
+FurC.LuxuryFurnisher[FURC_WEREWOLF] = {  
+  
 -- Oct. 21
 [132155] = { -- Witch's Torch, Wretched  
     itemPrice   = 5000,

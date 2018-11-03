@@ -193,34 +193,4 @@ FurC.LuxuryFurnisher[FURC_CLOCKWORK] = {
     itemPrice = 25000,
     itemDate  = "2017-11-10",
   },
-  -- Nov. 4th
-  [118286] = {  -- Carcass, Grey Hare
-    itemPrice = 5000,
-    itemDate  = "2017-11-03",
-  },
-  [118281] = {  -- Carcass, Hanging Geese
-    itemPrice = 7000,
-    itemDate  = "2017-11-03",
-  },
-  [118279] = {  -- Deer Head, Wall Mount
-    itemPrice = 15000,
-    itemDate  = "2017-11-03",
-  },
-  [118298] = {  -- Wolf Head, Wall Mount
-    itemPrice = 20000,
-    itemDate  = "2017-11-03",
-  },
-  -- Oct 28th
-  [132143] = {  -- Reach Sapling, Briarheart
-    itemPrice = 50000,
-    itemDate  = "2017-10-27",
-  },
-  [132158] = {  -- Witch's Remains, Offering
-    itemPrice = 50000,
-    itemDate  = "2017-10-27",
-  },
-  [132157] = {  -- Witch's Remains, Sacrificial
-    itemPrice = 50000,
-    itemDate  = "2017-10-27",
-  },
 }
