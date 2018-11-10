@@ -176,21 +176,4 @@ FurC.LuxuryFurnisher[FURC_CLOCKWORK] = {
     itemPrice = 15000,
     itemDate  = "2017-11-17",
   },
-  -- Nov. 11th
-  [118285] = {  -- Carcass, Fresh Pheasant
-    itemPrice = 7500,
-    itemDate  = "2017-11-10",
-  },
-  [118292] = {  -- Elk Head, Wall Mount
-    itemPrice = 20000,
-    itemDate  = "2017-11-10",
-  },
-  [116506] = {  -- Orcish Grand Table with Skins
-    itemPrice = 50000,
-    itemDate  = "2017-11-10",
-  },
-  [118243] = {  -- Tapestry, Echatere Pelt
-    itemPrice = 25000,
-    itemDate  = "2017-11-10",
-  },
 }
