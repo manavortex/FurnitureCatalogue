@@ -1,7 +1,7 @@
 FurnitureCatalogue                = {}
 FurnitureCatalogue.name           = "FurnitureCatalogue"
 FurnitureCatalogue.author         = "manavortex"
-FurnitureCatalogue.version        = 2.86
+FurnitureCatalogue.version        = 2.88
 FurnitureCatalogue.CharacterName  = nil
 FurnitureCatalogue.settings       = {}
 
@@ -134,7 +134,7 @@ local function getChoicesSource()
   choicesSource[FURC_WRIT_VENDOR]         = GetString(SI_FURC_STRING_WRIT_VENDOR)
   choicesSource[FURC_CROWN]               = GetString(SI_FURC_CROWN)
   choicesSource[FURC_RUMOUR]               = GetString(SI_FURC_RUMOUR)
-    choicesSource[FURC_LUXURY]               = GetString(SI_FURC_LUXURY)
+  choicesSource[FURC_LUXURY]               = GetString(SI_FURC_LUXURY)
   choicesSource[FURC_OTHER]                 = GetString(SI_FURC_OTHER)
 
   return choicesSource
@@ -168,6 +168,7 @@ FurnitureCatalogue.DropdownData = {
     [5] = GetString(SI_FURC_FILTER_VERSION_CC  ),
     [6] = GetString(SI_FURC_FILTER_VERSION_DRAGON),
     [7] = GetString(SI_FURC_FILTER_VERSION_ALTMER),
+    [8] = GetString(SI_FURC_FILTER_VERSION_SLAVES),
   },
   TooltipsVersion  = {
     [1] =  GetString(SI_FURC_FILTER_VERSION_OFF_TT),
@@ -177,6 +178,7 @@ FurnitureCatalogue.DropdownData = {
     [5] =  GetString(SI_FURC_FILTER_VERSION_CC_TT),
     [6] =  GetString(SI_FURC_FILTER_VERSION_DRAGON_TT),
     [7] = GetString(SI_FURC_FILTER_VERSION_ALTMER_TT),
+    [8] = GetString(SI_FURC_FILTER_VERSION_SLAVES_TT),
   },
   ChoicesCharacter  = {
     [1]  = GetString(SI_FURC_FILTER_CHAR_OFF),

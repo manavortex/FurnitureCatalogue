@@ -227,7 +227,7 @@ local strings = {
   SI_FURC_FILTER_VERSION_DRAGON_TT =    "If you got this from Narsis Dren, well...", 
   SI_FURC_FILTER_VERSION_ALTMER_TT =    "Still think the Dunmer are bad?",
   SI_FURC_FILTER_VERSION_WEREWOLF_TT =  "In Soviet Hunting Ground, werewolf hunt you",
-  SI_FURC_FILTER_VERSION_SLAVES_TT =    "ToDo: Think of horrible pun about Argonians",
+  SI_FURC_FILTER_VERSION_SLAVES_TT =    "What do Argonian kids learn at school? Hist-Tree.",
   
   SI_FURC_FILTER_CHAR_OFF =     "Character filter: off", 
   SI_FURC_FILTER_CHAR_OFF_TT =  filterDisabled, 

@@ -41,19 +41,18 @@ function this.onTextboxTextChanged()
     this.clearControl()
 end
 
-local s3             = "   "
+local s2             = "  "
 local s4             = "    "
-local s8             = "        "
--- local s_default            = (s4 .. "[%d] = GetString(SI_FURC_EXISITING_ITEMSOURCE_UNKNOWN_YET)," .. s4 .. "-- %s\n")
-local s_default            = (s4 .. "[%d] = getCrownStorePrice(99)," .. s8 .. "   " .. "-- %s")
-local s_withPrice          = (s4 .. "[%d] = {" .. s8 .. "-- %s\n" .. s8 .. 
-                                            "itemPrice" .. s3 .. "= %d,\n" .. s4 .. 
+-- local s_default            = (s2 .. "[%d] = GetString(SI_FURC_EXISITING_ITEMSOURCE_UNKNOWN_YET)," .. s2 .. "-- %s\n")
+local s_default            = (s2 .. "[%d] = getCrownPrice(99)," .. s4 .. "   " .. "-- %s")
+local s_withPrice          = (s2 .. "[%d] = {" .. s4 .. "-- %s\n" .. s4 .. 
+                                            "itemPrice   = %d,\n" .. s2 .. 
                                            "},")
-local s_withAchievement    = (s4 .. "[%d] = {" .. s8 .. "--%s\n" .. s8 .. 
-                                                "itemPrice" .. s3 .. "= %d,\n" .. s8 .. 
-                                                "achievement = 0,\n" .. s4 .. 
+local s_withAchievement    = (s2 .. "[%d] = {" .. s4 .. "--%s\n" .. s4 .. 
+                                                "itemPrice   = %d,\n" .. s4 .. 
+                                                "achievement = 0,\n" .. s2 .. 
                                             "},")
-local s_forRecipe          = (s4 .. "%d, -- %s")
+local s_forRecipe          = (s2 .. "%d, -- %s")
 
 local function makeOutput()
     if not isMana   then return end
@@ -67,10 +66,10 @@ local function makeOutput()
     if not (cachedCanBuy or isRecipe)   then debugString = s_withAchievement  end
     
     if #(textbox:GetText() or "") == 0 then 
-        debugString = debugString:sub(5, #debugString)
+        debugString = debugString:sub(#s2+1, #debugString)
     end
     
-    return string.format(debugString .. "\n", FurC.GetItemId(cachedItemLink), cachedName, cachedPrice)
+    return string.format(debugString .. "\n", tonumber(FurC.GetItemId(cachedItemLink)), cachedName, tonumber(cachedPrice))
 end
 
 local function isItemIdCached()

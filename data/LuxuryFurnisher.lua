@@ -3,6 +3,52 @@ FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
 FurC.LuxuryFurnisher[FURC_SLAVES] = {
   
+  
+  -- Nov. 25th
+  [134424] = {  -- Clockwork Gear Display, Bell Jar
+    itemPrice   = 2500,
+    itemDate  = "2018-11-24",
+  },
+  [134423] = {  -- Clockwork Gear Display, Tall Jar
+    itemPrice   = 3000,
+    itemDate  = "2018-11-24",
+  },
+  [134426] = {  -- Clockwork Globe, Stand
+    itemPrice   = 4000,
+    itemDate  = "2018-11-24",
+  },
+  [134425] = {  -- Clockwork Orrery, Compact
+    itemPrice   = 20000,
+    itemDate  = "2018-11-24",
+  },
+  [134427] = {    -- Clockwork Orrery, Intricate
+    itemPrice   = 100000,
+    itemDate  = "2018-11-24",
+  },
+
+  
+  [134422] = {    -- Clockwork Sextant, Surveyor's
+    itemPrice   = 75000,
+    itemDate  = "2018-11-17",
+  },
+  [134421] = {    -- Clockwork Calibration Guide, The Warrior
+    itemPrice   = 50000,
+    itemDate  = "2018-11-17",
+  },
+  [134420] = {    -- Clockwork Calibration Guide, The Thief
+    itemPrice   = 50000,
+    itemDate  = "2018-11-17",
+  },
+  [134419] = {    -- Clockwork Calibration Guide, The Mage
+    itemPrice   = 50000,
+    itemDate  = "2018-11-17",
+  },
+  [134418] = {    -- Clockwork Telescope, Surveyor's
+    itemPrice   = 15000,
+    itemDate  = "2018-11-17",
+  },
+
+  
   [141762] = {        -- Animal Trap, Welded Open
     itemPrice   = 2500,
     itemDate  = "2018-11-10",
