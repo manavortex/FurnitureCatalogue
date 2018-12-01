@@ -112,17 +112,4 @@ FurC.LuxuryFurnisher[FURC_CLOCKWORK] = {
     itemPrice   = 3000,
     itemDate  = "2017-12-08",
   },
-  -- Dec. 1st
-  [134428] = {  -- Banker's Sign, Large
-    itemPrice   = 12000,
-    itemDate  = "2017-12-01",
-  },
-  [134429] = {  -- Merchant's Sign, Large
-    itemPrice   = 12000,
-    itemDate  = "2017-12-01",
-  },
-  [134430] = {  -- Stablemaster's Sign, Large
-    itemPrice   = 12000,
-    itemDate  = "2017-12-01",
-  },
 }

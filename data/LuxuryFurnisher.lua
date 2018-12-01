@@ -1,8 +1,27 @@
 FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
-
 FurC.LuxuryFurnisher[FURC_SLAVES] = {
-  
+  [141763] = {    -- Banner, Outfit
+    itemPrice   = 12000,
+    itemDate  = "2017-12-01",
+  },
+  [141764] = {    -- Banner, Outfit Small
+    itemPrice   = 5000,
+    itemDate  = "2017-12-01",
+  },
+  -- Dec. 1st
+  [134428] = {  -- Banker's Sign, Large
+    itemPrice   = 12000,
+    itemDate  = "2017-12-01",
+  },
+  [134429] = {  -- Merchant's Sign, Large
+    itemPrice   = 12000,
+    itemDate  = "2017-12-01",
+  },
+  [134430] = {  -- Stablemaster's Sign, Large
+    itemPrice   = 12000,
+    itemDate  = "2017-12-01",
+  },
   
   -- Nov. 25th
   [134424] = {  -- Clockwork Gear Display, Bell Jar
