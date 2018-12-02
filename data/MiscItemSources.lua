@@ -206,6 +206,8 @@ FurC.MiscItemSources[FURC_SLAVES]  = {
     [145435] = getCrownPrice(110),  -- Plant, Marsh Mani Flower
     [145430] = getCrownPrice(55),   -- Plant, Star Blossom
     
+    [145322] = getCrownPrice(800),   -- Music Box, Blood and Glory
+    
   },
   [FURC_FISHING]   = {
     -- fishing
@@ -719,6 +721,7 @@ FurC.MiscItemSources[FURC_ALTMER] = {
     [125459] = getCrownPrice(4000),  -- The Ritual
     [125460] = getCrownPrice(4000),  -- The Mage
     [125461] = getCrownPrice(4000),  -- The Lover
+    [119556] = getCrownPrice(4000),  -- The Atronach
     [126037] = getCrownPrice(4000),  -- Target Centurion, Lambent
     [126038] = getCrownPrice(4000),  -- Target Centurion, Robust Lambent
     [134247] = getCrownPrice(190),  -- Soul Gem Module, Experimental
