@@ -561,6 +561,7 @@ FurC.MiscItemSources[FURC_WEREWOLF] = {
 
 local questRewardLilandril = GetString(SI_FURC_QUESTREWARD) .. "Lilandril"
 local mephalaItemSet = GetString(SI_FURC_ITEMSOURCE_ITEMPACK) .. "'Trappings of Mephala Worship'"
+local newLife2018ItemSet = GetString(SI_FURC_ITEMSOURCE_ITEMPACK) .. "'New Life Festival', 2018"
 FurC.MiscItemSources[FURC_ALTMER] = {
   [FURC_CROWN] = {
     [130206] = getCrownPrice(370),               -- Ayleid Apparatus, Welkynd
@@ -589,6 +590,23 @@ FurC.MiscItemSources[FURC_ALTMER] = {
     
     [139097] = mephalaItemSet,                  -- Spiral Skein Glowstalks, Sprouts
     
+    [146047] = newLife2018ItemSet,              -- Book: From Old Life to New
+    [146048] = newLife2018ItemSet,              -- New Life Festive Fir
+    [146049] = newLife2018ItemSet,              -- Winter Festival Hearth
+    [146050] = newLife2018ItemSet,              -- Wiinter Festival Hearthfire
+    [146051] = newLife2018ItemSet,              -- Mudcrab Ice Sculpture
+    [146052] = newLife2018ItemSet,              -- Vvardvark Ice Sculpture
+    [146053] = newLife2018ItemSet,              -- Guar Ice Scuplture
+    [146054] = newLife2018ItemSet,              -- New Life Garland 6x
+    [146055] = newLife2018ItemSet,              -- New Life Garland Wreath 4x
+    [146056] = newLife2018ItemSet,              -- New Life Cookies and Ale
+    [146057] = newLife2018ItemSet,              -- New Live Snowmortal, Human
+    [146058] = newLife2018ItemSet,              -- New Life Snowmortal, Argonian
+    [146059] = newLife2018ItemSet,              -- New Life Snowmortal, Khajiit
+    [146060] = newLife2018ItemSet,              -- New Life Ladle 2x
+    [146061] = newLife2018ItemSet,              -- New Life Triptych Banner 2x
+    [146062] = newLife2018ItemSet,              -- Winter Ouroboros Wreath
+
     [139126] = getCrownPrice(50),               -- Sapling, Ginkgo
     
     [139140] = getCrownPrice(340),              -- Crystals, Crimson Spray
