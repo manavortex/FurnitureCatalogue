@@ -29,7 +29,7 @@ local db_sneaky             = zo_strformat("<<1>> <<2>>", GetString(SI_FURC_DB),
 
 local sinister_hollowjack   = "Sinister Hollowjack Items"
 
-local itemPackNewLife       = GetString(SI_FURC_ITEMSOURCE_ITEMPACK) .. " New Life Festival"
+local itemPackNewLife2018   = GetString(SI_FURC_ITEMSOURCE_ITEMPACK) .. " New Life Festival 2018"
 local itemPackDeepmire      = GetString(SI_FURC_ITEMSOURCE_ITEMPACK) .. " Deepmire Expedition"
 
 
@@ -152,22 +152,22 @@ FurC.MiscItemSources[FURC_SLAVES]  = {
   },
   
   [FURC_CROWN]  = {   
-    [146048] = itemPackNewLife, -- New Life Festive Fir
-    [146049] = itemPackNewLife, -- Winter Festival Hearth
-    [146050] = itemPackNewLife, -- Winter Festival Hearthfire
-    [146052] = itemPackNewLife, -- Vvardvark Ice Sculpture
-    [146053] = itemPackNewLife, -- Guar Ice Sculpture
-    [146059] = itemPackNewLife, -- New Life Snowmortal, Khajiit
-    [146057] = itemPackNewLife, -- New Life Snowmortal, Human
-    [146058] = itemPackNewLife, -- New Life Snowmortal, Argonian
-    [146060] = itemPackNewLife, -- New Life Ladle    
-    [146062] = itemPackNewLife, -- Winter Ouroboros Wreath
-    [146061] = itemPackNewLife, -- New Life Triptych Banner
-    [146055] = itemPackNewLife, -- New Life Garland Wreath
-    [146056] = itemPackNewLife, -- New Life Cookies and Ale
-    [146047] = itemPackNewLife, -- From Old Life To New
-    [146051] = itemPackNewLife, -- Mudcrab Ice Sculpture
-    [146054] = itemPackNewLife, -- New Life Garland
+    [146048] = itemPackNewLife2018, -- New Life Festive Fir
+    [146049] = itemPackNewLife2018, -- Winter Festival Hearth
+    [146050] = itemPackNewLife2018, -- Winter Festival Hearthfire
+    [146052] = itemPackNewLife2018, -- Vvardvark Ice Sculpture
+    [146053] = itemPackNewLife2018, -- Guar Ice Sculpture
+    [146059] = itemPackNewLife2018, -- New Life Snowmortal, Khajiit
+    [146057] = itemPackNewLife2018, -- New Life Snowmortal, Human
+    [146058] = itemPackNewLife2018, -- New Life Snowmortal, Argonian
+    [146060] = itemPackNewLife2018, -- New Life Ladle    
+    [146062] = itemPackNewLife2018, -- Winter Ouroboros Wreath
+    [146061] = itemPackNewLife2018, -- New Life Triptych Banner
+    [146055] = itemPackNewLife2018, -- New Life Garland Wreath
+    [146056] = itemPackNewLife2018, -- New Life Cookies and Ale
+    [146047] = itemPackNewLife2018, -- From Old Life To New
+    [146051] = itemPackNewLife2018, -- Mudcrab Ice Sculpture
+    [146054] = itemPackNewLife2018, -- New Life Garland
         
     [145427] = itemPackDeepmire,    -- Serpent Skull, Colossal
     
@@ -561,7 +561,6 @@ FurC.MiscItemSources[FURC_WEREWOLF] = {
 
 local questRewardLilandril = GetString(SI_FURC_QUESTREWARD) .. "Lilandril"
 local mephalaItemSet = GetString(SI_FURC_ITEMSOURCE_ITEMPACK) .. "'Trappings of Mephala Worship'"
-local newLife2018ItemSet = GetString(SI_FURC_ITEMSOURCE_ITEMPACK) .. "'New Life Festival', 2018"
 FurC.MiscItemSources[FURC_ALTMER] = {
   [FURC_CROWN] = {
     [130206] = getCrownPrice(370),               -- Ayleid Apparatus, Welkynd
@@ -590,23 +589,6 @@ FurC.MiscItemSources[FURC_ALTMER] = {
     
     [139097] = mephalaItemSet,                  -- Spiral Skein Glowstalks, Sprouts
     
-    [146047] = newLife2018ItemSet,              -- Book: From Old Life to New
-    [146048] = newLife2018ItemSet,              -- New Life Festive Fir
-    [146049] = newLife2018ItemSet,              -- Winter Festival Hearth
-    [146050] = newLife2018ItemSet,              -- Wiinter Festival Hearthfire
-    [146051] = newLife2018ItemSet,              -- Mudcrab Ice Sculpture
-    [146052] = newLife2018ItemSet,              -- Vvardvark Ice Sculpture
-    [146053] = newLife2018ItemSet,              -- Guar Ice Scuplture
-    [146054] = newLife2018ItemSet,              -- New Life Garland 6x
-    [146055] = newLife2018ItemSet,              -- New Life Garland Wreath 4x
-    [146056] = newLife2018ItemSet,              -- New Life Cookies and Ale
-    [146057] = newLife2018ItemSet,              -- New Live Snowmortal, Human
-    [146058] = newLife2018ItemSet,              -- New Life Snowmortal, Argonian
-    [146059] = newLife2018ItemSet,              -- New Life Snowmortal, Khajiit
-    [146060] = newLife2018ItemSet,              -- New Life Ladle 2x
-    [146061] = newLife2018ItemSet,              -- New Life Triptych Banner 2x
-    [146062] = newLife2018ItemSet,              -- Winter Ouroboros Wreath
-
     [139126] = getCrownPrice(50),               -- Sapling, Ginkgo
     
     [139140] = getCrownPrice(340),              -- Crystals, Crimson Spray
