@@ -86,17 +86,4 @@ FurC.LuxuryFurnisher[FURC_CLOCKWORK] = {
     itemPrice   = 3000,
     itemDate  = "2017-12-22",
   },
-  -- Dec. 16th
-  [134435] = {  -- Clockwork Loom, Sturdy
-    itemPrice   = 20000,
-    itemDate  = "2017-12-15",
-  },
-  [134434] = {  -- Quality Fabric, Stacked
-    itemPrice   = 450,
-    itemDate  = "2017-12-15",
-  },
-  [134436] = {  -- Spool, Blue Thread
-    itemPrice   = 450,
-    itemDate  = "2017-12-15",
-  },
 }

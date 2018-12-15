@@ -1,4 +1,4 @@
-FurC.Rolis         = FurC.Rolis or {}
+FurC.Rolis          = FurC.Rolis or {}
 FurC.Rolis_Recipes  = FurC.Rolis_Recipes or {}
 
 

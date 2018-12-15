@@ -2,6 +2,25 @@ FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
 FurC.LuxuryFurnisher[FURC_SLAVES] = {
   
+  -- Dec. 15th
+  [134435] = {  -- Clockwork Loom, Sturdy
+    itemPrice   = 20000,
+    itemDate  = "2018-12-15",
+  },
+  [134434] = {  -- Quality Fabric, Stacked
+    itemPrice   = 450,
+    itemDate  = "2018-12-15",
+  },
+  [134436] = {  -- Spool, Blue Thread
+    itemPrice   = 450,
+    itemDate  = "2018-12-15",
+  },
+  [134437] = {    -- Clockwork Spinning Wheel, Sturdy
+    itemPrice   = 12000,
+    itemDate  = "2018-12-15",
+  },
+
+  
   -- Dec. 8th
   [134432] = {  -- Banker's Sign, Small
     itemPrice   = 3000,
