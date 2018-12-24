@@ -73,17 +73,4 @@ FurC.LuxuryFurnisher[FURC_CLOCKWORK] = {
     itemPrice   = 14000,
     itemDate  = "2017-12-29",
   },
-  -- Dec. 23rd
-  [134439] = {  -- Clockwork Alchemy Flask
-    itemPrice   = 3000,
-    itemDate  = "2017-12-22",
-  },
-  [134438] = {  -- Clockwork Alchemy Rack, Tubes
-    itemPrice   = 3000,
-    itemDate  = "2017-12-22",
-  },
-  [134440] = {  -- Clockwork Alchemy Titration Stand
-    itemPrice   = 3000,
-    itemDate  = "2017-12-22",
-  },
 }

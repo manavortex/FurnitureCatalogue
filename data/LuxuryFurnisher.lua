@@ -2,6 +2,26 @@ FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
 FurC.LuxuryFurnisher[FURC_SLAVES] = {
   
+  -- Dec. 23rd
+  [134439] = {  -- Clockwork Alchemy Flask
+    itemPrice   = 3000,
+    itemDate  = "2018-12-22",
+  },
+  [134438] = {  -- Clockwork Alchemy Rack, Tubes
+    itemPrice   = 3000,
+    itemDate  = "2018-12-22",
+  },
+  [134440] = {  -- Clockwork Alchemy Titration Stand
+    itemPrice   = 3000,
+    itemDate  = "2018-12-22",
+  },
+  [134441] = {    -- Animo Core, Full
+    itemPrice   = 10000,
+    itemDate  = "2018-12-22",
+  },
+
+  
+  
   -- Dec. 15th
   [134435] = {  -- Clockwork Loom, Sturdy
     itemPrice   = 20000,
@@ -46,24 +66,24 @@ FurC.LuxuryFurnisher[FURC_SLAVES] = {
   
   [141763] = {    -- Banner, Outfit
     itemPrice   = 12000,
-    itemDate  = "2017-12-01",
+    itemDate  = "2018-12-01",
   },
   [141764] = {    -- Banner, Outfit Small
     itemPrice   = 5000,
-    itemDate  = "2017-12-01",
+    itemDate  = "2018-12-01",
   },
   -- Dec. 1st
   [134428] = {  -- Banker's Sign, Large
     itemPrice   = 12000,
-    itemDate  = "2017-12-01",
+    itemDate  = "2018-12-01",
   },
   [134429] = {  -- Merchant's Sign, Large
     itemPrice   = 12000,
-    itemDate  = "2017-12-01",
+    itemDate  = "2018-12-01",
   },
   [134430] = {  -- Stablemaster's Sign, Large
     itemPrice   = 12000,
-    itemDate  = "2017-12-01",
+    itemDate  = "2018-12-01",
   },
   
   -- Nov. 25th
