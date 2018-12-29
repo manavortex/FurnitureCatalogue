@@ -52,25 +52,4 @@ FurC.LuxuryFurnisher[FURC_CLOCKWORK] = {
     itemPrice   = 4000,
     itemDate  = "2018-01-05",
   },
-  -- Dec. 30thst
-  [134442] = {  -- Seal of Clan Bagrakh, Stone
-    itemPrice   = 4000,
-    itemDate  = "2017-12-29",
-  },
-  [134443] = {  -- Seal of Clan Fharun, Stone
-    itemPrice   = 4000,
-    itemDate  = "2017-12-29",
-  },
-  [134444] = {  -- Seal of Clan Igrun, Stone
-    itemPrice   = 4000,
-    itemDate  = "2017-12-29",
-  },
-  [134446] = {  -- Ancient Orcish Sarcophagus Lid
-    itemPrice   = 10000,
-    itemDate  = "2017-12-29",
-  },
-  [134445] = {  -- Ancient Orcish Sarcophagus, Peaked
-    itemPrice   = 14000,
-    itemDate  = "2017-12-29",
-  },
 }
