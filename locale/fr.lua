@@ -79,6 +79,9 @@ local strings = {
   SI_FURC_GEYSIR =                      "Drops from geysir reward clams on Summerset",
   SI_FURC_GIANT_CLAM =                  "Drops from giant clams and geysir reward clams on Summerset",
   SI_FURC_ELF_PIC =                     "Drops extremely rarely from treasure chests on Summerset",
+  SI_FURC_LEVELUP =                     "Can be gained as levelup reward",
+  SI_FURC_SLAVES_PREQUEST =             "from Murkmire Prequest reward boxes",
+  
   -- =============================== --
   -- ============ MENU ============= --
   -- =============================== --
@@ -224,7 +227,7 @@ local strings = {
   SI_FURC_FILTER_VERSION_DRAGON_TT =    "If you got this from Narsis Dren, well...", 
   SI_FURC_FILTER_VERSION_ALTMER_TT =    "Still think the Dunmer are bad?",
   SI_FURC_FILTER_VERSION_WEREWOLF_TT =  "In Soviet Hunting Ground, werewolf hunt you",
-  SI_FURC_FILTER_VERSION_SLAVES_TT =    "ToDo: Think of horrible pun about Argonians",
+  SI_FURC_FILTER_VERSION_SLAVES_TT =    "What do Argonian kids learn at school? Hist-Tree.",
   
   SI_FURC_FILTER_CHAR_OFF =     "Character filter: off", 
   SI_FURC_FILTER_CHAR_OFF_TT =  filterDisabled, 
@@ -260,12 +263,13 @@ local strings = {
   SI_FURC_DROP_ALTMER =           "This item is a drop on Summerset", 
   SI_FURC_FLAME_ATRONACH =        "Flame Atronach",
   SI_FURC_DWEMER =                "Dwemer",
+  SI_FURC_REAPER =                "Reaper's Harvest",
   SI_FURC_CHESTS =                "from treasure chests",
   SI_FURC_VVARDENFELL_PAINTING =  "extremely rarely from safeboxes",
   SI_FURC_CHEST_VV =              "Extremely rarely from chests on Vvardenfell",
   SI_FURC_DRAGON_DUNGEON_DROP =   "Fang Lair/Scalecaller Peak",
-  SI_FURC_DATAMINED_UNCLEAR =     "This item has been found in the sources/recipes for Wolfhunter! \nIts origin isn't known yet.",
-  SI_FURC_EXISTING_UNCLEAR =      "This item has been confirmed existing, but its origin isn't known yet.",
+  SI_FURC_DATAMINED_UNCLEAR =     "This item has been found in the sources/recipes for Summerset! \nIts origin isn't known yet.",
+  SI_FURC_DATAMINED_UNCLEAR =     "This item has been confirmed existing, but its origin isn't known yet.",
   SI_FURC_ITEMSOURCE_ITEMPACK =   "This item is part of the Crown Store item pack ",
   
   SI_FURC_SEEN_IN_GUILDSTORE =    "Seen in Guild Store",
