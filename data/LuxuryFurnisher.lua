@@ -2,6 +2,35 @@ FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
 FurC.LuxuryFurnisher[FURC_SLAVES] = {
   
+  [134453] = {  -- Ancient Orcish Counterweight
+    itemPrice   = 20000,
+    itemDate  = "2019-01-05",
+  },
+  [134450] = {  -- Seal of Clan Morkul, Stone
+    itemPrice   = 4000,
+    itemDate  = "2019-01-05",
+  },
+  [134451] = {  -- Seal of Clan Shatul, Stone
+    itemPrice   = 4000,
+    itemDate  = "2019-01-05",
+  },
+  [134452] = {  -- Seal of Clan Tumnosh, Stone
+    itemPrice   = 4000,
+    itemDate  = "2019-01-05",
+  },
+  [134454] = {    -- Seal of Clan Morkul, Metal
+    itemPrice   = 4000,
+    itemDate  = "2019-01-05",
+  },
+  [134455] = {    -- Seal of Clan Shatul, Metal
+    itemPrice   = 4000,
+    itemDate  = "2019-01-05",
+  },
+  [134456] = {    -- Seal of Clan Tumnosh, Metal
+    itemPrice   = 4000,
+    itemDate  = "2019-01-05",
+  },
+
   -- Dec. 30thst
   [134442] = {  -- Seal of Clan Bagrakh, Stone
     itemPrice   = 4000,

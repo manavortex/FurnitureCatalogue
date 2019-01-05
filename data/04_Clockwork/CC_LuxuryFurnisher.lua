@@ -36,20 +36,4 @@ FurC.LuxuryFurnisher[FURC_CLOCKWORK] = {
     itemPrice   = 7500,
     itemDate  = "2018-01-12",
   },
-  [134453] = {  -- Ancient Orcish Counterweight
-    itemPrice   = 20000,
-    itemDate  = "2018-01-05",
-  },
-  [134450] = {  -- Seal of Clan Morkul, Stone
-    itemPrice   = 4000,
-    itemDate  = "2018-01-05",
-  },
-  [134451] = {  -- Seal of Clan Shatul, Stone
-    itemPrice   = 4000,
-    itemDate  = "2018-01-05",
-  },
-  [134452] = {  -- Seal of Clan Tumnosh, Stone
-    itemPrice   = 4000,
-    itemDate  = "2018-01-05",
-  },
 }
