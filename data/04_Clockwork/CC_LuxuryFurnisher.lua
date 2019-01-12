@@ -24,16 +24,5 @@ FurC.LuxuryFurnisher[FURC_CLOCKWORK] = {
     itemPrice  = 450,
     itemDate  = "2018-01-19",
   },
-  [134457] = {  -- Riekling Bedding, Icy Straw
-    itemPrice   = 2500,
-    itemDate  = "2018-01-12",
-  },
-  [134458] = {  -- Riekling Pelt, Boar
-    itemPrice   = 4000,
-    itemDate  = "2018-01-12",
-  },
-  [134459] = {  -- Riekling Pit, Ash and Bone
-    itemPrice   = 7500,
-    itemDate  = "2018-01-12",
-  },
+  
 }
