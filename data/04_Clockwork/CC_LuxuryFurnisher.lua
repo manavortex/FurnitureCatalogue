@@ -1,17 +1,5 @@
 FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 FurC.LuxuryFurnisher[FURC_CLOCKWORK] = {
-  [134466] = { -- Ayleid Sconce, Empty
-    itemPrice  = 4000,
-    itemDate  = "2018-01-27",
-  },
-  [134467] = { -- Culanda Stone ,Glowing
-    itemPrice  = 5000,
-    itemDate  = "2018-01-27",
-  },
-  [134465] = { -- Varla Stone ,Glowing
-    itemPrice  = 5000,
-    itemDate  = "2018-01-27",
-  },
   [134463] = { -- Riekling Brazier, Ceremonial
     itemPrice  = 4000,
     itemDate  = "2018-01-19",

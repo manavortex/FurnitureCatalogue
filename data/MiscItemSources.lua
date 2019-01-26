@@ -832,7 +832,6 @@ FurC.MiscItemSources[FURC_ALTMER] = {
     [134455] = dataminedUnclear,  -- Seal of Clan Shatul, Metal
     [134456] = dataminedUnclear,  -- Seal of Clan Tumnosh, Metal
     [134449] = dataminedUnclear,  -- Seal of Clan Igrun, Metal
-    [134468] = dataminedUnclear,  -- Ayleid Switch, Ancient
     [134474] = dataminedUnclear,  -- Banner, Malacath
   }
 } -- Reach
