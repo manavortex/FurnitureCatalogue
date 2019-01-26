@@ -28,6 +28,7 @@ FURC_DRAGONS              = 6
 FURC_ALTMER               = 7
 FURC_WEREWOLF             = 8
 FURC_SLAVES               = 9
+FURC_WOTL                 = 10
 
 FurC.Const                          = {
     vendorColor   = "d68957",
