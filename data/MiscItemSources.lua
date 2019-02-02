@@ -300,7 +300,6 @@ FurC.MiscItemSources[FURC_WEREWOLF] = {
     [141764] = dataminedUnclear,                    -- Banner, Outfit Small
     [141765] = dataminedUnclear,                    -- Banner, Transmute
     [141766] = dataminedUnclear,                    -- Banner, Transmute Small
-    [141767] = dataminedUnclear,                    -- Ayleid Constellation Stele, The Lady
     [141778] = dataminedUnclear,                    -- Target Wraith-of-Crows
     [141920] = dataminedUnclear,                    -- Murkmire Brazier, Ceremonial
     [141922] = dataminedUnclear,                    -- Murkmire Dish, Geometric Pattern
@@ -318,8 +317,6 @@ FurC.MiscItemSources[FURC_WEREWOLF] = {
     [141817] = dataminedUnclear,                    -- Tree, Ancient Ginkgo
     [141818] = dataminedUnclear,                    -- Shrubs, Dormant Sunbird Cluster
     [141819] = dataminedUnclear,                    -- Shrub, Blooming Sunbird
-    [141768] = dataminedUnclear,                    -- Ayleid Constellation Stele, The Lover
-    [141769] = dataminedUnclear,                    -- Ayleid Constellation Stele, The Atronach
     
     [134251] = dataminedUnclear,                    -- Coldharbour Bookshelf, Filled
     [134252] = dataminedUnclear,                    -- Coldharbour Bookshelf, Black Laboratory
