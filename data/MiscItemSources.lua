@@ -72,28 +72,7 @@ local function getHouseString(houseId1, houseId2)
   return zo_strformat(housesource, houseName)
 end
 
-FurC.MiscItemSources[FURC_WOTL]  = {
-  [FURC_RUMOUR]   = {
-  
-  },
-  
-  [FURC_JUSTICE] = {
-  
-  }, 
-  
-  [FURC_DROP]    = {
-  
-  },
-  
-  [FURC_CROWN]  = {   
-   
-    
-  },
-  [FURC_FISHING]   = {
-     
-  },
-  
-}
+
 FurC.MiscItemSources[FURC_SLAVES]  = {
   [FURC_RUMOUR]   = {
   
@@ -292,14 +271,8 @@ FurC.MiscItemSources[FURC_WEREWOLF] = {
     [141755] = dataminedUnclear,                    -- Mushrooms, Aether Cup Ring
     [141756] = dataminedUnclear,                    -- Mushrooms, Aether Cup Cluster
     [141757] = dataminedUnclear,                    -- Mushrooms, Climbing Aether Cup
-    [141758] = dataminedUnclear,                    -- Orcish Wagon, Merchant
-    [141759] = dataminedUnclear,                    -- Orcish Gazebo, Orsinium
     [141760] = dataminedUnclear,                    -- Witch's Tree, Charred
     [141761] = dataminedUnclear,                    -- Reach Sapling, Contorted Briarheart
-    [141763] = dataminedUnclear,                    -- Banner, Outfit
-    [141764] = dataminedUnclear,                    -- Banner, Outfit Small
-    [141765] = dataminedUnclear,                    -- Banner, Transmute
-    [141766] = dataminedUnclear,                    -- Banner, Transmute Small
     [141778] = dataminedUnclear,                    -- Target Wraith-of-Crows
     [141920] = dataminedUnclear,                    -- Murkmire Brazier, Ceremonial
     [141922] = dataminedUnclear,                    -- Murkmire Dish, Geometric Pattern
@@ -309,7 +282,6 @@ FurC.MiscItemSources[FURC_WEREWOLF] = {
     [141926] = dataminedUnclear,                    -- Murkmire Hearth Shrine, Sithis Figure
     [142003] = dataminedUnclear,                    -- Specimen Jar, Eyes
     [141939] = dataminedUnclear,                    -- Grave, Grasping
-    [141976] = dataminedUnclear,                    -- Pumpkin Patch, Display
     [141967] = dataminedUnclear,                    -- Hollowjack Lantern, Ouroboros
     [141966] = dataminedUnclear,                    -- Hollowjack Lantern, Toothy Grin
     [141965] = dataminedUnclear,                    -- Hollowjack Lantern, Soaring Dragon

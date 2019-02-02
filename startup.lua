@@ -115,8 +115,8 @@ local function getSourceIndicesKeys()
   sourceIndicesKeys[FURC_VENDOR]             = "purch_gold"
   sourceIndicesKeys[FURC_PVP]             = "purch_ap"
   sourceIndicesKeys[FURC_CROWN]               = "crownstore"
-    sourceIndicesKeys[FURC_RUMOUR]               = "rumour"
-    sourceIndicesKeys[FURC_LUXURY]               = "luxury"
+  sourceIndicesKeys[FURC_RUMOUR]               = "rumour"
+  sourceIndicesKeys[FURC_LUXURY]               = "luxury"
   sourceIndicesKeys[FURC_OTHER]             = "other"
   sourceIndicesKeys[FURC_WRIT_VENDOR]         = "writ_vendor"
   return sourceIndicesKeys
@@ -170,6 +170,7 @@ FurnitureCatalogue.DropdownData = {
     [6] = GetString(SI_FURC_FILTER_VERSION_DRAGON),
     [7] = GetString(SI_FURC_FILTER_VERSION_ALTMER),
     [8] = GetString(SI_FURC_FILTER_VERSION_SLAVES),
+    [9] = GetString(SI_FURC_FILTER_VERSION_WEREWOLF),
   },
   TooltipsVersion  = {
     [1] =  GetString(SI_FURC_FILTER_VERSION_OFF_TT),
@@ -180,6 +181,7 @@ FurnitureCatalogue.DropdownData = {
     [6] =  GetString(SI_FURC_FILTER_VERSION_DRAGON_TT),
     [7] = GetString(SI_FURC_FILTER_VERSION_ALTMER_TT),
     [8] = GetString(SI_FURC_FILTER_VERSION_SLAVES_TT),
+    [9] = GetString(SI_FURC_FILTER_VERSION_WEREWOLF_TT),
   },
   ChoicesCharacter  = {
     [1]  = GetString(SI_FURC_FILTER_CHAR_OFF),
@@ -192,9 +194,9 @@ FurnitureCatalogue.DropdownData = {
   ChoicesSource  = {},
   TooltipsSource   = {},
 }
-if GetAPIVersion() == 100024 then
-    FurnitureCatalogue.DropdownData.ChoicesVersion[FURC_WEREWOLF] = GetString(SI_FURC_FILTER_VERSION_WEREWOLF)
-    FurnitureCatalogue.DropdownData.TooltipsVersion[FURC_WEREWOLF] = GetString(SI_FURC_FILTER_VERSION_WEREWOLF_TT)
+if GetAPIVersion() == 100026 then
+    FurnitureCatalogue.DropdownData.ChoicesVersion[FURC_WOTL] = GetString(SI_FURC_FILTER_VERSION_WOTL)
+    FurnitureCatalogue.DropdownData.TooltipsVersion[FURC_WOTL] = GetString(SI_FURC_FILTER_VERSION_WOTL_TT)
 end
 
 local function updateDropdownData()

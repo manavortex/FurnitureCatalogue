@@ -201,6 +201,7 @@ local strings = {
   SI_FURC_FILTER_VERSION_ALTMER =   "Summerset",
   SI_FURC_FILTER_VERSION_WEREWOLF = "Wolfhunter",
   SI_FURC_FILTER_VERSION_SLAVES =   "Murkmire",
+  SI_FURC_FILTER_VERSION_WOTL =   "Wrathstone",
   
 
   -- =============================== --
@@ -228,6 +229,7 @@ local strings = {
   SI_FURC_FILTER_VERSION_ALTMER_TT =    "Still think the Dunmer are bad?",
   SI_FURC_FILTER_VERSION_WEREWOLF_TT =  "In Soviet Hunting Ground, werewolf hunt you",
   SI_FURC_FILTER_VERSION_SLAVES_TT =    "What do Argonian kids learn at school? Hist-Tree.",
+  SI_FURC_FILTER_VERSION_WOTL_TT =    "Wrathstone!",
   
   SI_FURC_FILTER_CHAR_OFF =     "Character filter: off", 
   SI_FURC_FILTER_CHAR_OFF_TT =  filterDisabled, 

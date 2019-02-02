@@ -31,7 +31,7 @@ locale\en.lua
 locale\$(language).lua
 
 xml\Bindings.xml
-xml\FurnitureCatalogue.xml
+xml\FurnitureCatalogue_$(APIVersion).xml
 
 startup.lua
 
