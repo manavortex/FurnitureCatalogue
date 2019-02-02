@@ -239,18 +239,6 @@ FurC.LuxuryFurnisher[FURC_DRAGONS] = {
     itemPrice   = 7500,
     itemDate  = "2018-02-10",
   },
-  [134469] = { -- Ayleid Constellation Stele, the Mage
-    itemPrice  = 20000,
-    itemDate  = "2018-02-30",
-  },
-  [134470] = { -- Ayleid Constellation Stele, Thief
-    itemPrice  = 20000,
-    itemDate  = "2018-02-30",
-  },
-  [134471] = { -- Ayleid Constellation Stele, Warrior
-    itemPrice  = 20000,
-    itemDate  = "2018-02-30",
-  },
   [117875] = {  -- Wedding Gazebo, Bare
     itemPrice   = 35000,
     itemDate  = "2018-02-17",

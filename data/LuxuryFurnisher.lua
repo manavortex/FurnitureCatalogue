@@ -1,7 +1,31 @@
 FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
 FurC.LuxuryFurnisher[FURC_SLAVES] = {
-  
+  [141769] = {    -- Ayleid Constellation Stele, The Atronach
+    itemPrice   = 20000,
+    itemDate  = "2018-02-02",
+  },
+  [141767] = {    -- Ayleid Constellation Stele, The Lady
+    itemPrice   = 20000,
+    itemDate  = "2018-02-02",
+  },
+  [141768] = {    -- Ayleid Constellation Stele, The Lover
+    itemPrice   = 20000,
+    itemDate  = "2018-02-02",
+  },
+  [134469] = { -- Ayleid Constellation Stele, the Mage
+    itemPrice  = 20000,
+    itemDate  = "2018-02-02",
+  },
+  [134470] = { -- Ayleid Constellation Stele, Thief
+    itemPrice  = 20000,
+    itemDate  = "2018-02-02",
+  },
+  [134471] = { -- Ayleid Constellation Stele, Warrior
+    itemPrice  = 20000,
+    itemDate  = "2018-02-02",
+  },
+
   
   [134468] = {    -- Ayleid Switch, Ancient
     itemPrice   = 4000,
