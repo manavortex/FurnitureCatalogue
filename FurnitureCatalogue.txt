@@ -2,7 +2,7 @@
 ## Author: manavortex
 ## AddonVersion: 2.97
 ## Version: 2.97
-## APIVersion: 10025
+## APIVersion: 10025 10026
 ## SavedVariables: FurnitureCatalogue_Settings 
 ## DependsOn: LibCustomMenu LibAddonMenu-2.0
 ## OptionalDependsOn: pChat 
