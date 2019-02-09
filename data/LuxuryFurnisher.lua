@@ -1,6 +1,31 @@
 FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
 FurC.LuxuryFurnisher[FURC_SLAVES] = {
+  [145468] = {    -- Wedding Lantern, Hanging
+    itemPrice   = 5000,
+    itemDate  = "2019-02-09",
+  },
+  [117876] = {  -- Wedding Curtain, Wide
+    itemPrice   = 7500,
+    itemDate  = "2019-02-09",
+  },
+  [120798] = {  -- Wedding Blossoms, Blue
+    itemPrice   = 2500,
+    itemDate  = "2019-02-09",
+  },
+  [120800] = {  -- Wedding Curtain
+    itemPrice   = 7500,
+    itemDate  = "2019-02-09",
+  },
+  [120801] = {  -- Wedding Lantern
+    itemPrice   = 5000,
+    itemDate  = "2019-02-09",
+  },
+  [120797] = {  -- Wedding Flower Trellis
+    itemPrice   = 10000,
+    itemDate  = "2019-02-09",
+  },
+
   [141769] = {    -- Ayleid Constellation Stele, The Atronach
     itemPrice   = 20000,
     itemDate  = "2018-02-02",

@@ -158,6 +158,14 @@ FurC.AchievementVendors[FURC_WEREWOLF] = {
       },
     }
   },
+  ["Reaper's March, Rawl'Kha, Market"] = {
+    
+    [GetString(FURC_AV_MAL)] = {             
+      [120658] = {        -- Tree, Forked Sturdy
+        itemPrice   = 250,
+      },
+    }
+  },
 }
 
 FurC.AchievementVendors[FURC_ALTMER] = {

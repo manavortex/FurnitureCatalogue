@@ -486,7 +486,6 @@ FurC.MiscItemSources[FURC_WEREWOLF] = {
     [130213] = getCrownPrice(430),                  -- Ayleid Cage, Hanging
     [130224] = getCrownPrice(180),                  -- Reachmen Rug, Smooth Skin
     [126830] = getCrownPrice(10),                   -- Mushrooms, Volcanic Cluster
-    [120658] = getCrownPrice(70),                   -- Tree, Forked Sturdy
     [120631] = getCrownPrice(5),                    -- Pebble, Stacked Mossy
     [134326] = getCrownPrice(260),                  -- Clockwork Pump, Horizontal
     [134330] = getCrownPrice(490),                  -- Clockwork Control Panel, Double

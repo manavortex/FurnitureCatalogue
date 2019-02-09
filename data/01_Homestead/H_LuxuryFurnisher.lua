@@ -35,21 +35,5 @@ FurC.LuxuryFurnisher[FURC_HOMESTEAD] = {
     itemDate  = "2018-02-17",
   },
 
-  [120798] = {  -- Wedding Blossoms, Blue
-    itemPrice   = 2500,
-    itemDate  = "2018-02-10",
-  },
-  [120800] = {  -- Wedding Curtain
-    itemPrice   = 7500,
-    itemDate  = "2018-02-10",
-  },
-  [120801] = {  -- Wedding Lantern
-    itemPrice   = 5000,
-    itemDate  = "2018-02-10",
-  },
-  [120797] = {  -- Wedding Flower Trellis
-    itemPrice   = 10000,
-    itemDate  = "2018-02-10",
-  },
 }
 

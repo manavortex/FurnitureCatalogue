@@ -235,10 +235,6 @@ FurC.LuxuryFurnisher[FURC_DRAGONS] = {
     itemPrice   = 100000,
     itemDate  = "2018-03-03",
   },
-  [117876] = {  -- Wedding Curtain, Wide
-    itemPrice   = 7500,
-    itemDate  = "2018-02-10",
-  },
   [117875] = {  -- Wedding Gazebo, Bare
     itemPrice   = 35000,
     itemDate  = "2018-02-17",
