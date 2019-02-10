@@ -203,11 +203,10 @@
                   <OnMouseUp>    FurC.SetShowRumours(not FurC.GetShowRumours())  </OnMouseUp>
                 </Button>
                 
-                <Texture name="FurC_ShowRumoursGlow" textureFile="esoui/art/chatwindow/chat_notification_glow.dds" hidden=true>
-                  <Anchor point="TOPLEFT"   relativeTo="FurC_ShowRumours" relativePoint="TOPLEFT" offsetX="-10" offsetY="-10" />
-                  <Anchor point="BOTTOMRIGHT"   relativeTo="FurC_ShowRumours" relativePoint="BOTTOMRIGHT" offsetX="-10" offsetY="-10" />
+                <Texture name="FurC_ShowRumoursGlow" textureFile="esoui/art/chatwindow/chat_notification_glow.dds" alpha="0.4">
+                  <Anchor point="CENTER"   relativeTo="FurC_ShowRumours" relativePoint="CENTER"   />
+                  <Dimensions x="55" y="60" />
                 </Texture>
-                
                 
               </Controls>
             </Control>
