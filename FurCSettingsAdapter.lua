@@ -64,7 +64,6 @@ function FurC.GetFilterAllOnTextNoCrown(value)
 end
 
 
-
 function FurC.GetFontSize()
   if FurC.settings["fontSize"] < 10 then
     FurC.settings["fontSize"] = 10
@@ -284,6 +283,14 @@ function FurC.SetMergeLuxuryAndSales(value)
   FurC.UpdateGui()
 end
 
+function FurC.GetShowRumours()
+  return FurC.settings["showRumours"]
+end
+function FurC.SetShowRumours(value)
+  FurC.settings["showRumours"] = value
+  FurC_ShowRumours:SetState((value and BSTATE_PRESSED) or BSTATE_DISABLED)
+  FurC.UpdateGui()
+end
 
 ---------------------------
 --------- Dropdown --------

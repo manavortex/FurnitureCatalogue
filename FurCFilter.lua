@@ -39,12 +39,12 @@ function FurC.SetFilter(useDefaults, skipRefresh)
   -- we need to hold the text here, in case it's not "All"
   ddTextCharacter        = FurC.GetDropdownChoiceTextual("Character")
 
-  qualityFilter         = FurC.GetFilterQuality()
+  qualityFilter           = FurC.GetFilterQuality()
   craftingTypeFilter      = FurC.GetFilterCraftingType()
-  hideBooks          = FurC.GetHideBooks()
-  hideRumours          = FurC.GetHideRumourRecipes()
+  hideBooks               = FurC.GetHideBooks()
+  hideRumours             = not FurC.GetShowRumours() and FurC.GetHideRumourRecipes()
   mergeLuxuryAndSales     = FurC.GetMergeLuxuryAndSales()
-  hideCrownStore         = FurC.GetHideCrownStoreItems()
+  hideCrownStore          = FurC.GetHideCrownStoreItems()
 
     -- ignore filtered items when no dropdown filter is set and there's a text search?
     filterAllOnTextSearch       = FurC.GetFilterAllOnText() and #searchString > 0 and
