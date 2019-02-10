@@ -4,7 +4,7 @@
 ## Version: 3.0
 ## APIVersion: 10025 10026
 ## SavedVariables: FurnitureCatalogue_Settings 
-## DependsOn: LibCustomMenu LibAddonMenu-2.0
+## DependsOn: LibStub LibCustomMenu LibAddonMenu-2.0 LibAsync
 ## OptionalDependsOn: pChat 
 
 libs\LibStub\LibStub.lua
