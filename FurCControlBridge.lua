@@ -97,11 +97,8 @@ function FurC.GuiHideTooltip(control)
   InformationTooltip:SetHidden(true)
 end
 
-function FurC.GetRumourTooltip()
-  if FurC.GetShowRumours() then
-    GetString(SI_FURC_HIDE_RUMOUR_TT)
-  end
-  return GetString(SI_FURC_SHOW_RUMOUR_TT)
+function FurC.GetRumourTooltip()  
+  return GetString((FurC.GetShowRumours() and SI_FURC_HIDE_RUMOUR_TT) or SI_FURC_SHOW_RUMOUR_TT)
 end
 
 function FurC.GuiOnSearchBoxClick(control, mouseButton, doubleClick)
@@ -203,9 +200,6 @@ function FurC.GuiVirtualMouseOut(control)
   FurC.GuiHideTooltip(control)
 end
 
-function FurC.GuiToggleShowRumours() 
-  FurC.SetShowRumours(not FurC.GetShowRumours())
-end
 
 function FurC.GuiQualityMouseUp(control, button)
 if button == 2 then FurC.SetFilterQuality(0) end

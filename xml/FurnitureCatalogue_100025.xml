@@ -200,9 +200,13 @@
                   />
                   <OnMouseEnter>  FurC.GuiShowTooltip(self, FurC.GetRumourTooltip())  </OnMouseEnter>
                   <OnMouseExit>  FurC.GuiHideTooltip(self)  </OnMouseExit>
-                  <OnMouseUp>    FurC.GuiToggleShowRumours()  </OnMouseUp>
+                  <OnMouseUp>    FurC.SetShowRumours(not FurC.GetShowRumours())  </OnMouseUp>
                 </Button>
                 
+                <Texture name="FurC_ShowRumoursGlow" textureFile="esoui/art/chatwindow/chat_notification_glow.dds" hidden=true>
+                  <Anchor point="TOPLEFT"   relativeTo="FurC_ShowRumours" relativePoint="TOPLEFT" offsetX="-10" offsetY="-10" />
+                  <Anchor point="BOTTOMRIGHT"   relativeTo="FurC_ShowRumours" relativePoint="BOTTOMRIGHT" offsetX="-10" offsetY="-10" />
+                </Texture>
                 
                 
               </Controls>

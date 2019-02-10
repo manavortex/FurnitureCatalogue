@@ -199,7 +199,7 @@ function FurC.ApplyLineTemplate()
     for _, control in pairs(contRolist) do
       control:SetWidth(controlSize)
     end
-    FurC_Search:SetWidth(controlSize-19)
+    FurC_Search:SetWidth(controlSize-40)
   end
   if FurC.GetTinyUi() then
     FurC.SlotTemplate = "FurC_SlotTemplateTiny"
@@ -451,6 +451,8 @@ local function createGui()
   FurC.SetFontSize(FurC.GetFontSize())
   FurC.LoadFrameInfo()
   FurC.InitFilters()
+  
+  FurC_ShowRumoursGlow:SetHidden(not FurC.GetShowRumours())
 
 end
 

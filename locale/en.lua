@@ -138,8 +138,8 @@ local strings = {
   SI_FURC_STRING_CONTEXTMENU_DIVIDER =      "Don't use divider in context menu?", 
   SI_FURC_STRING_CONTEXTMENU_DIVIDER_TT =   "Adds a divider to the context manu above the - Furniture entry. Check to disable", 
     
-  SI_FURC_SHOW_RUMOUR_TT =                  "Show rumour (unconfirmed) items?",
-  SI_FURC_HIDE_RUMOUR_TT =                  "Only show confirmed items",
+  SI_FURC_SHOW_RUMOUR_TT =                  "Confirmed items only. Click to show rumour items.",
+  SI_FURC_HIDE_RUMOUR_TT =                  "Showing rumour (unconfirmed) items. Click to hide.",
     
   SI_FURC_STRING_MENU_RUMOUR_N =            "Hide rumour recipes?",
   SI_FURC_STRING_MENU_CROWN =               "Crown store items",

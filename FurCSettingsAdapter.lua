@@ -289,6 +289,7 @@ end
 function FurC.SetShowRumours(value)
   FurC.settings["showRumours"] = value
   FurC_ShowRumours:SetState((value and BSTATE_PRESSED) or BSTATE_DISABLED)
+  FurC_ShowRumoursGlow:SetHidden(not value)
   FurC.UpdateGui()
 end
 

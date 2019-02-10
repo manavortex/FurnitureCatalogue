@@ -179,14 +179,14 @@
                   
                   <Anchor point="TOPLEFT"   relativeTo="FurC_TypeFilter" relativePoint="TOPRIGHT" offsetX="9" offsetY="10"/>
                   <Anchor point="BOTTOMLEFT"   relativeTo="FurC_TypeFilter" relativePoint="BOTTOMRIGHT" offsetX="9" />
-                  <Dimensions x="195" />
+                  <Dimensions x="175" />
                   
                   <Controls>   <!-- FurC_Search controls -->                
                     
                     <EditBox name="FurC_SearchBox" inherits="ZO_DefaultEditForBackdrop ZO_EditDefaultText">
                       
                       <Anchor point="TOPLEFT" relativeTo="$(parent)" relativePoint="TOPLEFT" offsetX="-40" offsetY="-10"/>
-                      <Anchor point="TOPRIGHT" relativeTo="$(parent)" relativePoint="TOPRIGHT" offsetX="-20" offsetY="0"/>
+                      <Anchor point="TOPRIGHT" relativeTo="$(parent)" relativePoint="TOPRIGHT" offsetX="0" offsetY="2"/>
                       
                       <OnTextChanged>FurC.GuiSetSearchboxTextFrom(self)</OnTextChanged>
                       <OnMouseUp>FurC.GuiOnSearchBoxClick(self, button)</OnMouseUp>
@@ -194,19 +194,19 @@
                       <OnFocusLost>FurC.GuiOnSearchBoxFocusOut(self)</OnFocusLost>
                       <Controls>
                         <Backdrop name="$(parent)Backdrop" inherits="ZO_SingleLineEditBackdrop_Keyboard" maxHeight="30">
-                          <Anchor point="TOPLEFT" relativeTo="$(parent)" relativePoint="TOPLEFT" offsetY="-5"/>
-                          <Anchor point="TOPRIGHT" relativeTo="$(parent)" relativePoint="TOPRIGHT"/>
+                          <Anchor point="TOPLEFT" relativeTo="$(parent)" relativePoint="TOPLEFT" />
+                          <Anchor point="BOTTOMRIGHT" relativeTo="$(parent)" relativePoint="BOTTOMRIGHT"/>
                           <OnInitialized>self:SetHeight(30)</OnInitialized>
                         </Backdrop>
                         
                       </Controls>
                       
                     </EditBox>
-                  </Controls>
+                    </Controls>
                 </Control>
                 
-                <Button name="FurC_ShowRumours"><Dimensions x="35" y="30" />
-                  <Anchor point="RIGHT"   relativeTo="FurC_Search" relativePoint="RIGHT" offsetX="-5" />
+                <Button name="FurC_ShowRumours"><Dimensions x="30" y="35" />
+                  <Anchor point="RIGHT"   relativeTo="FurC_Search" relativePoint="RIGHT" offsetX="5" offsetY="3"/>
                   <Textures
                     normal    ="esoui/art/chatwindow/chat_notification_disabled.dds"
                     pressed    ="esoui/art/chatwindow/chat_notification_echo.dds"
@@ -214,10 +214,15 @@
                   />
                   <OnMouseEnter>  FurC.GuiShowTooltip(self, FurC.GetRumourTooltip())  </OnMouseEnter>
                   <OnMouseExit>  FurC.GuiHideTooltip(self)  </OnMouseExit>
-                  <OnMouseUp>    FurC.GuiToggleShowRumours()  </OnMouseUp>
+                  <OnMouseUp>    FurC.SetShowRumours(not FurC.GetShowRumours())  </OnMouseUp>
                 </Button>
                 
                 
+        
+                <Texture name="FurC_ShowRumoursGlow" textureFile="esoui/art/chatwindow/chat_notification_glow.dds" alpha="0.4">
+                  <Anchor point="CENTER"   relativeTo="FurC_ShowRumours" relativePoint="CENTER"   />
+                  <Dimensions x="55" y="60" />
+                </Texture>
                 
               </Controls>
             </Control>
