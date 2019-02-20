@@ -27,3 +27,8 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.gitignore.io/api/windows
+
+btm/
+btm/*
+.gitattributes
+
