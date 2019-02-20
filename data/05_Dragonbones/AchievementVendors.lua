@@ -1,17 +1,17 @@
 FurC.AchievementVendors[FURC_DRAGONS] = {
-	["the Undaunted Enclaves"] = {
-		["Undaunted Quartermaster"] = {
-			
+  ["the Undaunted Enclaves"] = {
+    ["Undaunted Quartermaster"] = {
+      
             [134908] = { -- Blackmarrow Banner
-				itemPrice 	= 15000,
-				achievement = 1959, -- Scalecaller Peak Vanquisher
-			},
+        itemPrice   = 15000,
+        achievement = 1959, -- Scalecaller Peak Vanquisher
+      },
             
-			[134907] = {        --Orb of Stone
+      [134907] = {        --Orb of Stone
                 itemPrice   = 50000,
                 achievement = 1975,
             },
 
-		},
-	},
+    },
+  },
 }

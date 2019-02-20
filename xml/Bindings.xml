@@ -3,8 +3,8 @@
         <Category name="Furniture Catalogue">
             <Action name="TOGGLE_FURNITURE_CATALOGUE">
                 <Down>
-					FurnitureCatalogue_Toggle()
-				</Down>
+          FurnitureCatalogue_Toggle()
+        </Down>
             </Action>
         </Category>
     </Layer>
