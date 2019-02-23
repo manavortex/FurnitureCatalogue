@@ -235,8 +235,4 @@ FurC.LuxuryFurnisher[FURC_DRAGONS] = {
     itemPrice   = 100000,
     itemDate  = "2018-03-03",
   }, 
-  [134824] = {  -- Redguard Tent, Rounded Silk
-    itemPrice   = 100000,
-    itemDate  = "2018-02-24",
-  },
 }
