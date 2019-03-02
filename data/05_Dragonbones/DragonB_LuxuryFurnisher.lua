@@ -219,20 +219,5 @@ FurC.LuxuryFurnisher[FURC_DRAGONS] = {
     itemPrice   = 5000,
     itemDate  = "2018-03-10",
   },
-  [120806] = {  -- Hew'S Bane Candlestick
-    itemPrice   = 2500,
-    itemDate  = "2018-03-03",
-  },
-  [120805] = {  -- Hew's Bane Rug
-    itemPrice   = 5000,
-    itemDate  = "2018-03-03",
-  },
-  [120807] = {  -- Hew's Bane Well
-    itemPrice   = 10000,
-    itemDate  = "2018-03-03",
-  },
-  [134825] = {  -- Redguard Tent, Squared Silk
-    itemPrice   = 100000,
-    itemDate  = "2018-03-03",
-  }, 
+
 }

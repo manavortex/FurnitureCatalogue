@@ -1,10 +1,26 @@
 FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
 FurC.LuxuryFurnisher[FURC_WOTL] = {
-  -- [145468] = {    -- Wedding Lantern, Hanging
-    -- itemPrice   = 5000,
-    -- itemDate  = "2019-02-09",
-  -- },
+  [120807] = {    -- Hew's Bane Well
+    itemPrice   = 10000,
+    itemDate  = "2018-03-02",
+  },
+  [120806] = {  -- Hew'S Bane Candlestick
+    itemPrice   = 2500,
+    itemDate  = "2018-03-02",
+  },
+  [120805] = {  -- Hew's Bane Rug
+    itemPrice   = 5000,
+    itemDate  = "2018-03-02",
+  },
+  [120807] = {  -- Hew's Bane Well
+    itemPrice   = 10000,
+    itemDate  = "2018-03-02",
+  },
+  [134825] = {  -- Redguard Tent, Squared Silk
+    itemPrice   = 100000,
+    itemDate  = "2018-03-02",
+  }, 
  
 }
 
