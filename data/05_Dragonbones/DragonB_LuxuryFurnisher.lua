@@ -199,25 +199,5 @@ FurC.LuxuryFurnisher[FURC_DRAGONS] = {
     itemPrice   = 7500,
     itemDate  = "2018-03-31",
   },
-  [121268] = {  -- Fisher's Catch of the Day Rack
-    itemPrice   = 5000,
-    itemDate  = "2018-03-10",
-  },
-  [120850] = { -- Harbor Floats
-    itemPrice   = 5000,
-    itemDate  = "2018-03-10",
-  },
-  [120846] = { -- Dock Rope Wheel
-    itemPrice   = 3000,
-    itemDate  = "2018-03-10",
-  },
-  [134827] = { -- Mooring Line, Coiled
-    itemPrice   = 7500,
-    itemDate  = "2018-03-10",
-  },
-  [134826] = { -- Mooring Line, Tidy
-    itemPrice   = 5000,
-    itemDate  = "2018-03-10",
-  },
 
 }

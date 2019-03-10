@@ -1,6 +1,32 @@
 FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
 FurC.LuxuryFurnisher[FURC_WOTL] = {
+  [145472] = {    -- Antler Coral, Crimson
+    itemPrice   = 50000,
+    itemDate  = "2019-03-10",
+  },
+  [121268] = {  -- Fisher's Catch of the Day Rack
+    itemPrice   = 5000,
+    itemDate  = "2019-03-10",
+  },
+  [120850] = { -- Harbor Floats
+    itemPrice   = 5000,
+    itemDate  = "2019-03-10",
+  },
+  [120846] = { -- Dock Rope Wheel
+    itemPrice   = 3000,
+    itemDate  = "2019-03-10",
+  },
+  [134827] = { -- Mooring Line, Coiled
+    itemPrice   = 7500,
+    itemDate  = "2019-03-10",
+  },
+  [134826] = { -- Mooring Line, Tidy
+    itemPrice   = 5000,
+    itemDate  = "2019-03-10",
+  },
+
+  
   [120807] = {    -- Hew's Bane Well
     itemPrice   = 10000,
     itemDate  = "2018-03-02",

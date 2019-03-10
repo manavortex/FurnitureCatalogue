@@ -15,17 +15,6 @@ FurC.AchievementVendors[FURC_WOTL] = {
     },
   },
 }
-  
-FurC.Recipes[FURC_WOTL] = {
-
-	147656, -- Dark Elf Tent, Canopy,    
-	147657, -- Hlaalu Stove, Chiminea,    
-	147651, -- Silver Kettle, Masterworked,    
-	147652, -- Frog-Caller, Untuned,    
-	147653, -- Pottery Wheel, Ever-Turning,    
-	147654, -- Alchemical Apparatus, Condens
-	147655, -- Hlaalu Salt Lamp, Enchanted,    
-}
 
 local rumourSource          = GetString(SI_FURC_RUMOUR_SOURCE_ITEM)
 FurC.MiscItemSources[FURC_WOTL]  = {
@@ -90,9 +79,6 @@ FurC.MiscItemSources[FURC_WOTL]  = {
         [134474] = rumourSource,     -- Banner, Malacath,    
         [147664] = rumourSource,     -- Dwarven Dais, Conduit,    
         [147599] = rumourSource,     -- Banner of Namira,    
-        [147598] = rumourSource,     -- Hlaalu Stove, Chiminea,    
-        [147597] = rumourSource,     -- Dark Elf Tent, Canopy,    
-        [147593] = rumourSource,     -- Frog-Caller, Untuned,    
         [147584] = rumourSource,     -- Dwarven Rack, Spider Legs,    
         [120857] = rumourSource,     -- Yokudan Sarcophagus Lid,    
         [147505] = rumourSource,     -- Music Box, \"Y'ffre in Every Leaf\",    

@@ -10,14 +10,25 @@ FurC.Faustina[FURC_ALTMER] = {
 }
 
 
-FurC.RolisRecipes[FURC_DRAGONS] = {
-  [141904] = 125, -- Blueprint: Alinor Bookshelf, Grand Full,
-  [141905] = 125, -- Praxis: Alinor Gaming Table, Punctilious Conflict,
-  [141906] = 125, -- Formula: Artist's Palette, Pigment,
-  [141907] = 125, -- Design: Alinor Grape Stomping Tub,
-  [141901] = 125, -- Pattern: Psijic Banner, Long,
-  [141903] = 125, -- Pattern: Alinor Bed, Levitating,    
-  [141902] = 125, -- Schematic: Relic Vault, Impenetrable,
+FurC.RolisRecipes[FURC_WOTL] = {
+
+	[147656] = 125, -- Dark Elf Tent, Canopy,    
+	[147657] = 125, -- Hlaalu Stove, Chiminea,    
+	[147651] = 125, -- Silver Kettle, Masterworked,    
+	[147652] = 125, -- Frog-Caller, Untuned,    
+	[147653] = 125, -- Pottery Wheel, Ever-Turning,    
+	[147654] = 125, -- Alchemical Apparatus, Condens
+	[147655] = 125, -- Hlaalu Salt Lamp, Enchanted,   
+  
+}
+FurC.FaustinaRecipes[FURC_DRAGONS] = {
+  [141904] = 100, -- Blueprint: Alinor Bookshelf, Grand Full,
+  [141905] = 100, -- Praxis: Alinor Gaming Table, Punctilious Conflict,
+  [141906] = 100, -- Formula: Artist's Palette, Pigment,
+  [141907] = 100, -- Design: Alinor Grape Stomping Tub,
+  [141901] = 100, -- Pattern: Psijic Banner, Long,
+  [141903] = 100, -- Pattern: Alinor Bed, Levitating,    
+  [141902] = 100, -- Schematic: Relic Vault, Impenetrable,
 }
 FurC.FaustinaRecipes[FURC_DRAGONS] = {
   
