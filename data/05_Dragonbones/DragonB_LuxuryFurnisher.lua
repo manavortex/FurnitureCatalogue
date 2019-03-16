@@ -179,25 +179,5 @@ FurC.LuxuryFurnisher[FURC_DRAGONS] = {
     itemPrice   = 3000,
     itemDate  = "2018-03-24",
   },
-  [134828] = {  -- Antler Coral, Branched Spiree
-    itemPrice   = 100000,
-    itemDate  = "2018-03-17",
-  },
-  [120847] = {  -- Dock Winch
-    itemPrice   = 4000,
-    itemDate  = "2018-03-17",
-  },
-  [120849] = {  -- Anchor
-    itemPrice   = 10000,
-    itemDate  = "2018-03-17",
-  },
-  [120848] = {  -- Fishing Pole Rack
-    itemPrice   = 2500,
-    itemDate  = "2018-03-17",
-  },
-  [121269] = {  -- Ocean Antler Coral
-    itemPrice   = 7500,
-    itemDate  = "2018-03-31",
-  },
 
 }
