@@ -2,6 +2,86 @@ FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
 FurC.LuxuryFurnisher[FURC_WOTL] = {
   
+  [145476] = {    -- Alinor Shrine, Trinimac
+    itemPrice   = 50000,
+    itemDate  = "2019-04-07",
+  },
+  [145477] = {    -- Alinor Pedestal, Shrine
+    itemPrice   = 10000,
+    itemDate  = "2019-04-07",
+  },
+
+  [120823] = {  -- Sigil Stand
+    itemPrice   = 15000,
+    itemDate  = "2019-04-07",
+  },
+  [120815] = {  -- Sigil, Akatosh
+    itemPrice   = 20000,
+    itemDate  = "2019-04-07",
+  },
+  [120816] = {  -- Sigil, Arkay
+    itemPrice   = 20000,
+    itemDate  = "2019-04-07",
+  },
+  [120817] = {  -- Sigil, Dibella
+    itemPrice   = 20000,
+    itemDate  = "2019-04-07",
+  },
+  [120818] = {  -- Sigil, Julianos
+    itemPrice   = 20000,
+    itemDate  = "2019-04-07",
+  },
+  [134831] = {  -- Altar of the Divines
+    itemPrice   = 50000,
+    itemDate  = "2019-04-07",
+  },
+  
+  [145475] = {    -- Plant, Soulsplinter Weed
+    itemPrice   = 12500,
+    itemDate  = "2019-03-31",
+  },
+  [134830] = {  -- Flowers, Blue Starbloom
+    itemPrice   = 15000,
+    itemDate  = "2019-03-31",
+  },
+  [120888] = {  -- Bat Bloom
+    itemPrice   = 15000,
+    itemDate  = "2019-03-31",
+  },
+  [120887] = {  -- Fan Bush
+    itemPrice   = 1000,
+    itemDate  = "2019-03-31",
+  },
+  [120889] = {  -- Glow Bush, Purple
+    itemPrice   = 20000,
+    itemDate  = "2019-03-31",
+  },
+  
+  [145474] = {    -- Plant, Flytrap
+    itemPrice   = 4000,
+    itemDate  = "2019-03-24",
+  },
+  [120885] = {  -- Alik'r Cactus
+    itemPrice   = 2000,
+    itemDate  = "2019-03-24",
+  },
+  [120884] = {  -- Buckthorn
+    itemPrice   = 4000,
+    itemDate  = "2019-03-24",
+  },
+  [120883] = {  -- Voidflower
+    itemPrice   = 5000,
+    itemDate  = "2019-03-24",
+  },
+  [134829] = {  -- Fern, Woody Slough
+    itemPrice   = 3000,
+    itemDate  = "2019-03-24",
+  },
+  [120886] = {  -- White Hosta
+    itemPrice   = 3000,
+    itemDate  = "2019-03-24",
+  },
+
   
   [134828] = {  -- Antler Coral, Branched Spiree
     itemPrice   = 100000,
@@ -19,6 +99,7 @@ FurC.LuxuryFurnisher[FURC_WOTL] = {
     itemPrice   = 2500,
     itemDate  = "2019-03-17",
   },
+  
   [121269] = {  -- Ocean Antler Coral
     itemPrice   = 7500,
     itemDate  = "2019-03-31",
