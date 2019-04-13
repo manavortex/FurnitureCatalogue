@@ -1,7 +1,36 @@
 FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
 FurC.LuxuryFurnisher[FURC_WOTL] = {
-  
+  [145478] = {    -- Alinor Shrine, Y'ffre
+    itemPrice   = 50000,
+    itemDate  = "2019-04-14",
+  },
+
+  [134832] = {  -- Basin of the Divines
+    itemPrice   = 35000,
+    itemDate  = "2019-04-14",
+  },
+    [120823] = {  -- Sigil Stand
+    itemPrice   = 15000,
+    itemDate  = "2019-04-14",
+  },
+    [120819] = {  -- Sigil, Kynareth
+    itemPrice   = 20000,
+    itemDate  = "2019-04-14",
+  },
+    [120820] = {  -- Sigil, Mara
+    itemPrice   = 20000,
+    itemDate  = "2019-04-14",
+  },
+    [120821] = {  -- Sigil, Stendarr
+    itemPrice   = 20000,
+    itemDate  = "2019-04-14",
+  },
+    [120822] = {  -- Sigil, Zenithar
+    itemPrice   = 20000,
+    itemDate  = "2019-04-14",
+  },
+
   [145476] = {    -- Alinor Shrine, Trinimac
     itemPrice   = 50000,
     itemDate  = "2019-04-07",
