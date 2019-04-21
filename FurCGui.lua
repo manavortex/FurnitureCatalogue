@@ -476,7 +476,6 @@ function FurC.InitGui()
 
   createGui()
 
-
   local slider = FurCGui_ListHolder_Slider
   slider:SetMinMax(1, #FurCGui_ListHolder.dataLines)
 

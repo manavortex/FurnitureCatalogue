@@ -1,8 +1,7 @@
 ## Title: FurnitureCatalogue
 ## Author: manavortex
-## AddonVersion: 3.21111111
-## Version: 3.21111111
-## APIVersion: 100026
+## AddonVersion: 3.3
+## APIVersion: 100026 100027
 ## SavedVariables: FurnitureCatalogue_Settings 
 ## DependsOn: LibStub LibCustomMenu LibAddonMenu-2.0 LibAsync
 ## OptionalDependsOn: pChat 
@@ -13,7 +12,7 @@ locale\en.lua
 locale\$(language).lua
 
 xml\Bindings.xml
-xml\FurnitureCatalogue_$(APIVersion).xml
+xml\FurnitureCatalogue.xml
 
 startup.lua
 

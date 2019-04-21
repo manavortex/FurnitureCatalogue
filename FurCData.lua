@@ -319,18 +319,27 @@ local function scanFromFiles(shouldScanCharacter)
 
   local function scanRecipeFile()
     local recipeKey, recipeArray
+    
+    local function makeKeySet(versionData)
+       local keySet = {}
+       for k, v in pairs(versionData) do 
+         table.insert(keySet, k)
+       end
+       return keySet
+    end
+    
     local function scanArray(ary, versionNumber, origin)
       if nil == ary then return end
-
-      for key, recipeId in ipairs(ary) do
-        local recipeLink = FurC.GetItemLink(recipeId)
+      
+      for _, recipeId in ipairs(ary) do        
+        local recipeLink = FurC.GetItemLink(recipeId) 
         local itemLink = GetItemLinkRecipeResultItemLink(recipeLink) or FurC.GetItemLink(recipeId)
         recipeArray = FurC.Find(itemLink) or parseBlueprint(recipeLink) or parseFurnitureItem(itemLink)
         local recipeListIndex, recipeIndex = GetItemLinkGrantedRecipeIndices(recipeLink)
         if nil == recipeArray then
           p("scanRecipeFile: error for <<1>> (ID was <<2>>)", recipeLink, recipeId)
         else
-          recipeKey           = getItemId(itemLink)
+          recipeKey                = getItemId(itemLink)
           recipeArray.version      = versionNumber
           recipeArray.origin       = origin
           recipeArray.blueprint    = recipeId
@@ -341,12 +350,14 @@ local function scanFromFiles(shouldScanCharacter)
 
     for versionNumber, versionData in pairs(FurC.Recipes) do
       scanArray(versionData, versionNumber, FURC_CRAFTING)
+    end 
+    
+    for versionNumber, versionData in pairs(FurC.RolisRecipes) do     
+      scanArray(makeKeySet(versionData), versionNumber, FURC_CRAFTING)
     end
-    for versionNumber, versionData in pairs(FurC.RolisRecipes) do
-      scanArray(versionData, versionNumber, FURC_CRAFTING)
-    end
-    for versionNumber, versionData in pairs(FurC.FaustinaRecipes) do
-      scanArray(versionData, versionNumber, FURC_CRAFTING)
+    
+    for versionNumber, versionData in pairs(FurC.FaustinaRecipes) do 
+      scanArray(makeKeySet(versionData), versionNumber, FURC_CRAFTING)
     end
   end
 
@@ -546,3 +557,21 @@ function FurC.GetItemDescription(recipeKey, recipeArray, stripColor, attachItemL
   return itemSource or GetString(SI_FURC_ITEMSOURCE_EMPTY)
 end
 
+function IsInFurC(link)
+  link = FurC.GetItemLink(link)
+  
+  if IsItemLinkPlaceableFurniture(link) then 				
+    return nil ~= FurnitureCatalogue.settings.data[ GetItemLinkItemId(link)]
+    
+  elseif IsItemLinkFurnitureRecipe(link) then
+                
+    local resultId	= GetItemLinkItemId(GetItemLinkRecipeResultItemLink(link))
+    
+    return nil ~= FurnitureCatalogue.settings.data[resultId]
+    
+    
+  end
+  
+  return true 
+  
+end

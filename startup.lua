@@ -1,7 +1,7 @@
 FurnitureCatalogue                = {}
 FurnitureCatalogue.name           = "FurnitureCatalogue"
 FurnitureCatalogue.author         = "manavortex"
-FurnitureCatalogue.version        = 3.21111111
+FurnitureCatalogue.version        = 3.211111111
 FurnitureCatalogue.CharacterName  = nil
 FurnitureCatalogue.settings       = {}
 
@@ -29,6 +29,7 @@ FURC_ALTMER               = 7
 FURC_WEREWOLF             = 8
 FURC_SLAVES               = 9
 FURC_WOTL                 = 10
+FURC_KITTY                = 11
 
 FurC.Const                          = {
     vendorColor   = "d68957",
@@ -151,10 +152,10 @@ local function getTooltipsSource()
   tooltipsSource[FURC_CRAFTING_UNKNOWN]       = GetString(SI_FURC_CRAFTING_UNKNOWN_TT)
   tooltipsSource[FURC_VENDOR]           = GetString(SI_FURC_VENDOR_TT)
   tooltipsSource[FURC_PVP]             = GetString(SI_FURC_PVP_TT)
-    tooltipsSource[FURC_CROWN]               = GetString(SI_FURC_CROWN_TT)
+  tooltipsSource[FURC_CROWN]               = GetString(SI_FURC_CROWN_TT)
   tooltipsSource[FURC_WRIT_VENDOR]         = GetString(SI_FURC_STRING_WRIT_VENDOR_TT)
-    tooltipsSource[FURC_RUMOUR]             = GetString(SI_FURC_RUMOUR_TT)
-    tooltipsSource[FURC_LUXURY]             = GetString(SI_FURC_LUXURY_TT)
+  tooltipsSource[FURC_RUMOUR]             = GetString(SI_FURC_RUMOUR_TT)
+  tooltipsSource[FURC_LUXURY]             = GetString(SI_FURC_LUXURY_TT)
   tooltipsSource[FURC_OTHER]                 = GetString(SI_FURC_OTHER_TT)
 
   return tooltipsSource
@@ -171,6 +172,7 @@ FurnitureCatalogue.DropdownData = {
     [7] = GetString(SI_FURC_FILTER_VERSION_ALTMER),
     [8] = GetString(SI_FURC_FILTER_VERSION_SLAVES),
     [9] = GetString(SI_FURC_FILTER_VERSION_WEREWOLF),
+    [10] = GetString(SI_FURC_FILTER_VERSION_WOTL),
   },
   TooltipsVersion  = {
     [1] =  GetString(SI_FURC_FILTER_VERSION_OFF_TT),
@@ -182,6 +184,7 @@ FurnitureCatalogue.DropdownData = {
     [7] = GetString(SI_FURC_FILTER_VERSION_ALTMER_TT),
     [8] = GetString(SI_FURC_FILTER_VERSION_SLAVES_TT),
     [9] = GetString(SI_FURC_FILTER_VERSION_WEREWOLF_TT),
+    [10] = GetString(SI_FURC_FILTER_VERSION_WOTL_TT),
   },
   ChoicesCharacter  = {
     [1]  = GetString(SI_FURC_FILTER_CHAR_OFF),
@@ -194,9 +197,9 @@ FurnitureCatalogue.DropdownData = {
   ChoicesSource  = {},
   TooltipsSource   = {},
 }
-if GetAPIVersion() == 100026 then
-    FurnitureCatalogue.DropdownData.ChoicesVersion[FURC_WOTL] = GetString(SI_FURC_FILTER_VERSION_WOTL)
-    FurnitureCatalogue.DropdownData.TooltipsVersion[FURC_WOTL] = GetString(SI_FURC_FILTER_VERSION_WOTL_TT)
+if GetAPIVersion() == 100027 then
+    FurnitureCatalogue.DropdownData.ChoicesVersion[FURC_KITTY] = GetString(SI_FURC_FILTER_VERSION_KITTY)
+    FurnitureCatalogue.DropdownData.TooltipsVersion[FURC_KITTY] = GetString(SI_FURC_FILTER_VERSION_KITTY_TT)
 end
 
 local function updateDropdownData()
@@ -283,7 +286,7 @@ function FurnitureCatalogue_Initialize(eventCode, addOnName)
 
   FurnitureCatalogue.ScanRecipes(scanFiles, not FurC.GetSkipInitialScan())
   FurC.settings.databaseVersion   = FurC.version
-  SLASH_COMMANDS["/fur"]       = FurnitureCatalogue_Toggle
+  SLASH_COMMANDS["/fur"]          = FurnitureCatalogue_Toggle
 
   FurC.SetFilter(true)
 

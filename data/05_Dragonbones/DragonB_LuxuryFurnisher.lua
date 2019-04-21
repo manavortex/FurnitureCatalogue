@@ -71,25 +71,6 @@ FurC.LuxuryFurnisher[FURC_DRAGONS] = {
   },
 
 
-  [134833] = {  -- Gibbet, Hanging Hooked
-    itemPrice   = 75000,
-    itemDate  = "2018-04-21",
-  },
-
-  [120826] = {  -- Iron Cross
-    itemPrice   = 10000,
-    itemDate  = "2017-04-21",
-  },
-  [120825] = {  -- Iron Cross, Large
-    itemPrice   = 25000,
-    itemDate  = "2017-04-21",
-  },
-  [120827] = {  -- Iron Maiden, Chained
-    itemPrice   = 20000,
-    itemDate  = "2017-04-21",
-  },
-
-
 
 
 }

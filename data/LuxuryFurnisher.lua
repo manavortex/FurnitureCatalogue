@@ -1,11 +1,34 @@
 FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
 FurC.LuxuryFurnisher[FURC_WOTL] = {
+  
+  [145479] = {    -- Iron Maiden, Occupied
+    itemPrice   = 100000,
+    itemDate  = "2019-04-21",
+  },
+
+  [134833] = {  -- Gibbet, Hanging Hooked
+    itemPrice   = 75000,
+    itemDate  = "2018-04-21",
+  },
+
+  [120826] = {  -- Iron Cross
+    itemPrice   = 10000,
+    itemDate  = "2019-04-21",
+  },
+  [120825] = {  -- Iron Cross, Large
+    itemPrice   = 25000,
+    itemDate  = "2019-04-21",
+  },
+  [120827] = {  -- Iron Maiden, Chained
+    itemPrice   = 20000,
+    itemDate  = "2019-04-21",
+  },
+
   [145478] = {    -- Alinor Shrine, Y'ffre
     itemPrice   = 50000,
     itemDate  = "2019-04-14",
   },
-
   [134832] = {  -- Basin of the Divines
     itemPrice   = 35000,
     itemDate  = "2019-04-14",

@@ -244,28 +244,31 @@ local alreadyReset      = false
 local function resetSearch()
     alreadySearching = false
     alreadyReset     = false
-end
+end 
+local lastText = ""
 local function doSearchOnUpdate()
     
     if alreadyReset then return end
     if alreadySearching then 
-        alreadyReset = true
         zo_callLater(resetSearch, 200)
-        return    
+        return   
     end
     local text = FurC_SearchBox:GetText()
-    FurC_SearchBoxText:SetText((#text == 0 and FURC_S_FILTERDEFAULT) or "")
-    
-    FurC.SearchFilter = text
+    if #lastText ~= #text then
+      lastText = text
+      FurC.SearchFilter = text
 
-    FurC.GuiOnSliderUpdate(FurCGui_ListHolder_Slider, 0)
-    FurC.UpdateGui()
+      FurC.GuiOnSliderUpdate(FurCGui_ListHolder_Slider, 0)
+      FurC.UpdateGui()
+    end
 end
 
 function FurC.GuiSetSearchboxTextFrom(control)
     control = control or FurC_SearchBox
   -- call asynchronely to prevent lagging. Praise votan.
+  
   task:Call(doSearchOnUpdate)
+  
 end
 
 function FurC.GetHideBooks()

@@ -19,6 +19,8 @@ local strings = {
   FURC_AV_MAL = "Maladdiq",
   FURC_AV_KRR = "Krrztrrb",
   FURC_AV_HAR = "Harnwulf",
+  FURC_KITTY_LATHA = "Lathathim",
+  FURC_KITTY_YATAVA = "Yatava",
   FURC_AV_ADO = "Adosa Veralor",
   FURC_AV_ENC = "enchanters",
   FURC_AV_ALC = "alchemists",
@@ -204,6 +206,7 @@ local strings = {
   SI_FURC_FILTER_VERSION_WEREWOLF = "Wolfhunter",
   SI_FURC_FILTER_VERSION_SLAVES =   "Murkmire",
   SI_FURC_FILTER_VERSION_WOTL =   "Wrathstone",
+  SI_FURC_FILTER_VERSION_KITTY =   "Elsweyr",
   
 
   -- =============================== --
@@ -232,6 +235,7 @@ local strings = {
   SI_FURC_FILTER_VERSION_WEREWOLF_TT =  "In Soviet Hunting Ground, werewolf hunt you",
   SI_FURC_FILTER_VERSION_SLAVES_TT =    "What do Argonian kids learn at school? Hist-Tree.",
   SI_FURC_FILTER_VERSION_WOTL_TT =    "Wrathstone!",
+  SI_FURC_FILTER_VERSION_KITTY_TT =    "Khajiit has furniture, if you have coin!",
   
   SI_FURC_FILTER_CHAR_OFF =     "Character filter: off", 
   SI_FURC_FILTER_CHAR_OFF_TT =  filterDisabled, 

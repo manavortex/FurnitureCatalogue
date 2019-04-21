@@ -5,22 +5,22 @@ FurC.Faustina         = FurC.Faustina or {}
 
 
 FurC.Faustina[FURC_ALTMER] = {
-  [139391] = 10, -- Master Craftsman's Banner, Hanging
+  [139391] = 10,  -- Master Craftsman's Banner, Hanging
   [137870] = 125, -- Basic Jewelry Crafting Station
 }
 
 
 FurC.RolisRecipes[FURC_WOTL] = {
-
+ 
 	[147656] = 125, -- Dark Elf Tent, Canopy,    
-	[147657] = 125, -- Hlaalu Stove, Chiminea,    
-	[147651] = 125, -- Silver Kettle, Masterworked,    
-	[147652] = 125, -- Frog-Caller, Untuned,    
-	[147653] = 125, -- Pottery Wheel, Ever-Turning,    
-	[147654] = 125, -- Alchemical Apparatus, Condens
-	[147655] = 125, -- Hlaalu Salt Lamp, Enchanted,   
-  
+  [147657] = 125, -- Hlaalu Stove, Chiminea,    
+  [147651] = 125, -- Silver Kettle, Masterworked,   
+  [147652] = 125, -- Frog-Caller, Untuned,    
+  [147653] = 125, -- Pottery Wheel, Ever-Turning,   
+  [147654] = 125, -- Alchemical Apparatus, Condens
+  [147655] = 125, -- Hlaalu Salt Lamp, Enchanted,    
 }
+ 
 FurC.FaustinaRecipes[FURC_DRAGONS] = {
   [141904] = 100, -- Blueprint: Alinor Bookshelf, Grand Full,
   [141905] = 100, -- Praxis: Alinor Gaming Table, Punctilious Conflict,
