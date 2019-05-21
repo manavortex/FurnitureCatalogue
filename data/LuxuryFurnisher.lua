@@ -2,14 +2,107 @@ FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
 FurC.LuxuryFurnisher[FURC_WOTL] = {
   
+  [145484] = {    -- Dark Elf Statue, Ordinator
+    itemPrice   = 20000,
+    itemDate  = "2019-05-19",
+    },
+
+  [134842] = {  -- Ra Gada Statue, Battlemage
+    itemPrice   = 25000,
+    itemDate  = "2019-05-19",
+  },
+  [134843] = {  -- Ra Gada Statue, Battlemage
+    itemPrice   = 25000,
+    itemDate  = "2019-05-19",
+  },
+  [120809] = {  -- Statue Base, Square
+    itemPrice   = 5000,
+    itemDate  = "2019-05-19",
+  },
+  [120810] = {  -- Statue, Faith
+    itemPrice   = 25000,
+    itemDate  = "2019-05-19",
+  },
+  [120812] = {  -- Statue, Light
+    itemPrice   = 25000,
+    itemDate  = "2019-05-19",
+  },
+    
+  
+  
+  [145483] = {    -- Column, Ossuary
+    itemPrice   = 20000,
+    itemDate  = "2019-05-12",
+  },
+
+  [134839] = {  -- Necromancer's Brazier, Cold Flame
+    itemPrice   = 10000,
+    itemDate  = "2019-05-12",
+  },
+  [134840] = {  -- Necromancer's Spire, Compact
+    itemPrice   = 25000,
+    itemDate  = "2019-05-12",
+  },
+  [134841] = {  -- Necromancer's Spire, Huge
+    itemPrice   = 100000,
+    itemDate  = "2019-05-12",
+  },
+
+  
+  [134836] = {  -- Necromancer's Brazier, Flame
+    itemPrice   = 10000,
+    itemDate  = "2019-05-04",
+  },
+  [134838] = {  -- Necromancer's Spire, Alcove
+    itemPrice   = 75000,
+    itemDate  = "2019-05-04",
+  },
+  [134837] = {  -- Necromancer's Spire, Narrow
+    itemPrice   = 50000,
+    itemDate  = "2019-05-04",
+  },
+  [145482] = {    -- Wheelbarrow, Bones
+    itemPrice   = 1000,
+    itemDate  = "2019-05-04",
+  },
+
+  
+  [145480] = {    -- Corpse, Burned Seated
+    itemPrice   = 2500,
+    itemDate  = "2019-04-28",
+  },
+  [145481] = {    -- Corpse, Burned Sprawled
+    itemPrice   = 2500,
+    itemDate  = "2019-04-28",
+  },
+  [134834] = {  -- Bandages, Blood-Soaked
+    itemPrice   = 2000,
+    itemDate  = "2019-04-28",
+  },
+  [134835] = {  -- Orcish Burial Urn, Exhumed
+    itemPrice   = 20000,
+    itemDate  = "2019-04-28",
+  },
+  [120824] = {  -- Body Cage
+    itemPrice   = 5000,
+    itemDate  = "2019-04-28",
+  },
+  [120829] = {  -- Torture Rack
+    itemPrice   = 5000,
+    itemDate  = "2019-04-28",
+  },
+  [120828] = {  -- Torture Wheel
+    itemPrice   = 100000,
+    itemDate  = "2019-04-28",
+  },
+  
   [145479] = {    -- Iron Maiden, Occupied
     itemPrice   = 100000,
     itemDate  = "2019-04-21",
   },
-
   [134833] = {  -- Gibbet, Hanging Hooked
     itemPrice   = 75000,
-    itemDate  = "2018-04-21",
+    itemDate  = "2019-04-21",
   },
 
   [120826] = {  -- Iron Cross

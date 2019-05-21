@@ -338,24 +338,7 @@ FurC.MiscItemSources[FURC_SLAVES]  = {
   
 }
 FurC.MiscItemSources[FURC_WEREWOLF] = {
-  [FURC_DROP] = {
-    [141851] = GetString(SI_FURC_WW_DUNGEON_DROP), -- Bear Skull, Fresh
-    [141850] = GetString(SI_FURC_WW_DUNGEON_DROP), -- Bear Skeleton, Picked Clean
-    [141847] = GetString(SI_FURC_WW_DUNGEON_DROP), -- Animal Bones, Gnawed
-    [141848] = GetString(SI_FURC_WW_DUNGEON_DROP), -- Animal Bones, Jumbled
-    [141849] = GetString(SI_FURC_WW_DUNGEON_DROP), -- Animal Bones, Fresh
-    
-    
-    [141921] = GetString(SI_FURC_SLAVES_PREQUEST), -- Murkmire Bowl, Geometric Pattern
-    
-    [141923] = GetString(SI_FURC_SLAVES_PREQUEST), -- Murkmire Amphora, Seed Pattern
-    [141922] = GetString(SI_FURC_SLAVES_PREQUEST), -- Murkmire Dish, Geometric Pattern
-    [141924] = GetString(SI_FURC_SLAVES_PREQUEST), -- Murkmire Vase, Scale Pattern
-    [141925] = GetString(SI_FURC_SLAVES_PREQUEST), -- Murkmire Hearth Shrine, Sithis Relief
-    [141926] = GetString(SI_FURC_SLAVES_PREQUEST), -- Murkmire Hearth Shrine, Sithis Figure
-    [141920] = GetString(SI_FURC_SLAVES_PREQUEST), -- Murkmire Brazier, Ceremonial
-    
-  },
+  
   [FURC_RUMOUR] = {
     [141832] = dataminedUnclear,                    -- Tree, Robust Fig
     [141833] = dataminedUnclear,                    -- Tree, Ancient Fig
@@ -387,12 +370,7 @@ FurC.MiscItemSources[FURC_WEREWOLF] = {
     [141760] = dataminedUnclear,                    -- Witch's Tree, Charred
     [141761] = dataminedUnclear,                    -- Reach Sapling, Contorted Briarheart
     [141778] = dataminedUnclear,                    -- Target Wraith-of-Crows
-    [141920] = dataminedUnclear,                    -- Murkmire Brazier, Ceremonial
-    [141922] = dataminedUnclear,                    -- Murkmire Dish, Geometric Pattern
-    [141923] = dataminedUnclear,                    -- Murkmire Amphora, Seed Pattern
     [141924] = dataminedUnclear,                    -- Murkmire Vase, Scale Pattern
-    [141925] = dataminedUnclear,                    -- Murkmire Hearth Shrine, Sithis Relief
-    [141926] = dataminedUnclear,                    -- Murkmire Hearth Shrine, Sithis Figure
     [142003] = dataminedUnclear,                    -- Specimen Jar, Eyes
     [141939] = dataminedUnclear,                    -- Grave, Grasping
     [141967] = dataminedUnclear,                    -- Hollowjack Lantern, Ouroboros
@@ -547,7 +525,24 @@ FurC.MiscItemSources[FURC_WEREWOLF] = {
     [130093] = dataminedUnclear,                    -- Coldharbour Compact
     [134890] = dataminedUnclear,                    -- Dibella, Lady of Love
   },
-  
+  [FURC_DROP] = {
+    [141851] = GetString(SI_FURC_WW_DUNGEON_DROP), -- Bear Skull, Fresh
+    [141850] = GetString(SI_FURC_WW_DUNGEON_DROP), -- Bear Skeleton, Picked Clean
+    [141847] = GetString(SI_FURC_WW_DUNGEON_DROP), -- Animal Bones, Gnawed
+    [141848] = GetString(SI_FURC_WW_DUNGEON_DROP), -- Animal Bones, Jumbled
+    [141849] = GetString(SI_FURC_WW_DUNGEON_DROP), -- Animal Bones, Fresh
+    
+    
+    [141921] = GetString(SI_FURC_SLAVES_DAILY), -- Murkmire Bowl, Geometric Pattern
+    
+    [141923] = GetString(SI_FURC_SLAVES_DAILY), -- Murkmire Amphora, Seed Pattern
+    [141922] = GetString(SI_FURC_SLAVES_DAILY), -- Murkmire Dish, Geometric Pattern
+    [141924] = GetString(SI_FURC_SLAVES_DAILY), -- Murkmire Vase, Scale Pattern
+    [141925] = GetString(SI_FURC_SLAVES_DAILY), -- Murkmire Hearth Shrine, Sithis Relief
+    [141926] = GetString(SI_FURC_SLAVES_DAILY), -- Murkmire Hearth Shrine, Sithis Figure
+    [141920] = GetString(SI_FURC_SLAVES_DAILY), -- Murkmire Brazier, Ceremonial
+    
+  },
   [FURC_CROWN] = {
     
     
