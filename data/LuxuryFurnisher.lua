@@ -1,5 +1,57 @@
 FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
+FurC.LuxuryFurnisher[FURC_KITTY] = {
+  
+  
+  [134845] = {  -- Brotherhood  Tapestry, Small
+    itemPrice   = 5000,
+    itemDate  = "2019-06-01",
+  },
+  [120837] = {  -- Brotherhood Window, Stained Glass
+    itemPrice   = 100000,
+    itemDate  = "2019-06-01",
+  },
+  [121271] = {  -- Brotherhood Tapestry
+    itemPrice   = 10000,
+    itemDate  = "2019-06-01",
+  },
+  [120835] = {  -- Brotherhood Candelabra, Table
+    itemPrice   = 2500,
+    itemDate  = "2019-06-01",
+  },
+  [145486] = {    -- Door, Sweet Mother
+    itemDate  = "2019-06-01",
+  itemPrice   = 35000,
+  },
+
+
+  
+  [134844] = {  -- Ra Gada Statue, Forward Scout
+    itemPrice   = 25000,
+    itemDate  = "2019-05-26",
+  },
+  [120808] = {  -- Statue Base, Circular
+    itemPrice   = 2500,
+    itemDate  = "2019-05-26",
+  },
+  [120811] = {  -- Statue, Justice
+    itemPrice   = 25000,
+    itemDate  = "2019-05-26",
+  },
+  [120814] = {  -- Statue, Order
+    itemPrice   = 25000,
+    itemDate  = "2019-05-26",
+  },
+  [120813] = {  -- Statue, Truth
+    itemPrice   = 25000,
+    itemDate  = "2019-05-26",
+  },    
+  [145485] = {    -- Dark Elf Statue, Knight
+    itemPrice   = 20000,
+    itemDate  = "2019-05-26",
+  },
+
+}
 FurC.LuxuryFurnisher[FURC_WOTL] = {
   
   [145484] = {    -- Dark Elf Statue, Ordinator
@@ -376,27 +428,27 @@ FurC.LuxuryFurnisher[FURC_SLAVES] = {
 
   [141769] = {    -- Ayleid Constellation Stele, The Atronach
     itemPrice   = 20000,
-    itemDate  = "2018-02-02",
+    itemDate  = "2019-02-02",
   },
   [141767] = {    -- Ayleid Constellation Stele, The Lady
     itemPrice   = 20000,
-    itemDate  = "2018-02-02",
+    itemDate  = "2019-02-02",
   },
   [141768] = {    -- Ayleid Constellation Stele, The Lover
     itemPrice   = 20000,
-    itemDate  = "2018-02-02",
+    itemDate  = "2019-02-02",
   },
   [134469] = { -- Ayleid Constellation Stele, the Mage
     itemPrice  = 20000,
-    itemDate  = "2018-02-02",
+    itemDate  = "2019-02-02",
   },
   [134470] = { -- Ayleid Constellation Stele, Thief
     itemPrice  = 20000,
-    itemDate  = "2018-02-02",
+    itemDate  = "2019-02-02",
   },
   [134471] = { -- Ayleid Constellation Stele, Warrior
     itemPrice  = 20000,
-    itemDate  = "2018-02-02",
+    itemDate  = "2019-02-02",
   },
 
   
@@ -467,55 +519,55 @@ FurC.LuxuryFurnisher[FURC_SLAVES] = {
   -- Dec. 30thst
   [134442] = {  -- Seal of Clan Bagrakh, Stone
     itemPrice   = 4000,
-    itemDate    = "2019-12-29",
+    itemDate    = "2018-12-29",
   },
   [134443] = {  -- Seal of Clan Fharun, Stone
     itemPrice   = 4000,
-    itemDate    = "2019-12-29",
+    itemDate    = "2018-12-29",
   },
   [134444] = {  -- Seal of Clan Igrun, Stone
     itemPrice   = 4000,
-    itemDate    = "2019-12-29",
+    itemDate    = "2018-12-29",
   },
   [134447] = {    -- Seal of Clan Bagrakh, Metal
     itemPrice   = 4000,
-    itemDate    = "2019-12-29",
+    itemDate    = "2018-12-29",
   },
   [134448] = {    -- Seal of Clan Fharun, Metal
     itemPrice   = 4000,
-    itemDate    = "2019-12-29",
+    itemDate    = "2018-12-29",
   },
   [134449] = {    -- Seal of Clan Igrun, Metal
     itemPrice   = 4000,
-    itemDate    = "2019-12-29",
+    itemDate    = "2018-12-29",
   },
 
   
   [134446] = {  -- Ancient Orcish Sarcophagus Lid
     itemPrice   = 10000,
-    itemDate  = "2019-12-29",
+    itemDate  = "2018-12-29",
   },
   [134445] = {  -- Ancient Orcish Sarcophagus, Peaked
     itemPrice   = 14000,
-    itemDate  = "2019-12-29",
+    itemDate  = "2018-12-29",
   },
   
   -- Dec. 23rd
   [134439] = {  -- Clockwork Alchemy Flask
     itemPrice   = 3000,
-    itemDate  = "2019-12-22",
+    itemDate  = "2018-12-22",
   },
   [134438] = {  -- Clockwork Alchemy Rack, Tubes
     itemPrice   = 3000,
-    itemDate  = "2019-12-22",
+    itemDate  = "2018-12-22",
   },
   [134440] = {  -- Clockwork Alchemy Titration Stand
     itemPrice   = 3000,
-    itemDate  = "2019-12-22",
+    itemDate  = "2018-12-22",
   },
   [134441] = {    -- Animo Core, Full
     itemPrice   = 10000,
-    itemDate  = "2019-12-22",
+    itemDate  = "2018-12-22",
   },
 
   
@@ -523,181 +575,181 @@ FurC.LuxuryFurnisher[FURC_SLAVES] = {
   -- Dec. 15th
   [134435] = {  -- Clockwork Loom, Sturdy
     itemPrice   = 20000,
-    itemDate  = "2019-12-15",
+    itemDate  = "2018-12-15",
   },
   [134434] = {  -- Quality Fabric, Stacked
     itemPrice   = 450,
-    itemDate  = "2019-12-15",
+    itemDate  = "2018-12-15",
   },
   [134436] = {  -- Spool, Blue Thread
     itemPrice   = 450,
-    itemDate  = "2019-12-15",
+    itemDate  = "2018-12-15",
   },
   [134437] = {    -- Clockwork Spinning Wheel, Sturdy
     itemPrice   = 12000,
-    itemDate  = "2019-12-15",
+    itemDate  = "2018-12-15",
   },
 
   
   -- Dec. 8th
   [134432] = {  -- Banker's Sign, Small
     itemPrice   = 3000,
-    itemDate  = "2019-12-08",
+    itemDate  = "2018-12-08",
   },
   [134431] = {  -- Merchant's Sign, Small
     itemPrice   = 3000,
-    itemDate  = "2019-12-08",
+    itemDate  = "2018-12-08",
   },
   [134433] = {  -- Stablemaster's Sign, Small
     itemPrice   = 3000,
-    itemDate  = "2019-12-08",
+    itemDate  = "2018-12-08",
   },
   [141765] = {    -- Banner, Transmute
     itemPrice   = 12000,
-    itemDate  = "2019-12-08",
+    itemDate  = "2018-12-08",
   },
   [141766] = {    -- Banner, Transmute Small
     itemPrice   = 5000,
-    itemDate  = "2019-12-08",
+    itemDate  = "2018-12-08",
   },
 
   
   [141763] = {    -- Banner, Outfit
     itemPrice   = 12000,
-    itemDate  = "2019-12-01",
+    itemDate  = "2018-12-01",
   },
   [141764] = {    -- Banner, Outfit Small
     itemPrice   = 5000,
-    itemDate  = "2019-12-01",
+    itemDate  = "2018-12-01",
   },
   -- Dec. 1st
   [134428] = {  -- Banker's Sign, Large
     itemPrice   = 12000,
-    itemDate  = "2019-12-01",
+    itemDate  = "2018-12-01",
   },
   [134429] = {  -- Merchant's Sign, Large
     itemPrice   = 12000,
-    itemDate  = "2019-12-01",
+    itemDate  = "2018-12-01",
   },
   [134430] = {  -- Stablemaster's Sign, Large
     itemPrice   = 12000,
-    itemDate  = "2019-12-01",
+    itemDate  = "2018-12-01",
   },
   
   -- Nov. 25th
   [134424] = {  -- Clockwork Gear Display, Bell Jar
     itemPrice   = 2500,
-    itemDate  = "2019-11-24",
+    itemDate  = "2018-11-24",
   },
   [134423] = {  -- Clockwork Gear Display, Tall Jar
     itemPrice   = 3000,
-    itemDate  = "2019-11-24",
+    itemDate  = "2018-11-24",
   },
   [134426] = {  -- Clockwork Globe, Stand
     itemPrice   = 4000,
-    itemDate  = "2019-11-24",
+    itemDate  = "2018-11-24",
   },
   [134425] = {  -- Clockwork Orrery, Compact
     itemPrice   = 20000,
-    itemDate  = "2019-11-24",
+    itemDate  = "2018-11-24",
   },
   [134427] = {    -- Clockwork Orrery, Intricate
     itemPrice   = 100000,
-    itemDate  = "2019-11-24",
+    itemDate  = "2018-11-24",
   },
 
   
   [134422] = {    -- Clockwork Sextant, Surveyor's
     itemPrice   = 75000,
-    itemDate  = "2019-11-17",
+    itemDate  = "2018-11-17",
   },
   [134421] = {    -- Clockwork Calibration Guide, The Warrior
     itemPrice   = 50000,
-    itemDate  = "2019-11-17",
+    itemDate  = "2018-11-17",
   },
   [134420] = {    -- Clockwork Calibration Guide, The Thief
     itemPrice   = 50000,
-    itemDate  = "2019-11-17",
+    itemDate  = "2018-11-17",
   },
   [134419] = {    -- Clockwork Calibration Guide, The Mage
     itemPrice   = 50000,
-    itemDate  = "2019-11-17",
+    itemDate  = "2018-11-17",
   },
   [134418] = {    -- Clockwork Telescope, Surveyor's
     itemPrice   = 15000,
-    itemDate  = "2019-11-17",
+    itemDate  = "2018-11-17",
   },
 
   
   [141762] = {        -- Animal Trap, Welded Open
     itemPrice   = 2500,
-    itemDate  = "2019-11-10",
+    itemDate  = "2018-11-10",
   },
 
   -- Nov. 11th
   [118285] = {  -- Carcass, Fresh Pheasant
     itemPrice = 7500,
-    itemDate  = "2019-11-10",
+    itemDate  = "2018-11-10",
   },
   [118292] = {  -- Elk Head, Wall Mount
     itemPrice = 20000,
-    itemDate  = "2019-11-10",
+    itemDate  = "2018-11-10",
   },
   [116506] = {  -- Orcish Grand Table with Skins
     itemPrice = 50000,
-    itemDate  = "2019-11-10",
+    itemDate  = "2018-11-10",
   },
   [118243] = {  -- Tapestry, Echatere Pelt
     itemPrice = 25000,
-    itemDate  = "2019-11-10",
+    itemDate  = "2018-11-10",
   },
   
   [118294] = {        -- Echatere Horns, Wall Mount
     itemPrice   = 15000,
-    itemDate    = "2019-11-03",
+    itemDate    = "2018-11-03",
   },
   [118286] = {  -- Carcass, Grey Hare
     itemPrice = 5000,
-    itemDate  = "2019-11-03",
+    itemDate  = "2018-11-03",
   },
   [118281] = {  -- Carcass, Hanging Geese
     itemPrice = 7000,
-    itemDate  = "2019-11-03",
+    itemDate  = "2018-11-03",
   },
   [118279] = {  -- Deer Head, Wall Mount
     itemPrice = 15000,
-    itemDate  = "2019-11-03",
+    itemDate  = "2018-11-03",
   },
   [118298] = {  -- Wolf Head, Wall Mount
     itemPrice = 20000,
-    itemDate  = "2019-11-03",
+    itemDate  = "2018-11-03",
   },
  
  
  [141761] = {        -- Reach Sapling, Contorted Briarheart
-      itemDate  = "2019-10-27",
+      itemDate  = "2018-10-27",
       itemPrice   = 35000,
     },
   [132156] = {        -- Briarheart Tree, Replica
-      itemDate  = "2019-10-27",
+      itemDate  = "2018-10-27",
       itemPrice   = 100000,
   },
   [132158] = {  -- Witch's Remains, Offering
     itemPrice = 50000,
-    itemDate  = "2019-10-27",
+    itemDate  = "2018-10-27",
   },
   [132157] = {  -- Witch's Remains, Sacrificial
     itemPrice = 50000,
-    itemDate  = "2019-10-27",
+    itemDate  = "2018-10-27",
   },
   -- Oct 28th
   [132143] = {  -- Reach Sapling, Briarheart
     itemPrice = 50000,
-    itemDate  = "2019-10-27",
+    itemDate  = "2018-10-27",
   },
   [141760] = {        -- Witch's Tree, Charred
     itemPrice   = 5000,
-    itemDate  = "2019-10-20",
+    itemDate  = "2018-10-20",
   },
 
 }

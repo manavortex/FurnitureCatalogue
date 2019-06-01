@@ -1,7 +1,7 @@
 FurnitureCatalogue                = {}
 FurnitureCatalogue.name           = "FurnitureCatalogue"
 FurnitureCatalogue.author         = "manavortex"
-FurnitureCatalogue.version        = 3.31111
+FurnitureCatalogue.version        = 3.33
 FurnitureCatalogue.CharacterName  = nil
 FurnitureCatalogue.settings       = {}
 
@@ -18,6 +18,7 @@ FurC.Books                        = {}
 FurC.EventItems                   = {}
 FurC.PVP                          = {}
 FurC.MiscItemSources              = {}
+FurC.RumourRecipes                = {}
 
 -- versioning
 FURC_HOMESTEAD            = 2
@@ -145,18 +146,18 @@ FurC.GetChoicesSource = getChoicesSource
 
 local tooltipsSource = {}
 local function getTooltipsSource()
-  tooltipsSource[FURC_NONE]            = GetString(SI_FURC_NONE_TT)
+  tooltipsSource[FURC_NONE]             = GetString(SI_FURC_NONE_TT)
   tooltipsSource[FURC_FAVE]             = GetString(SI_FURC_FAVE_TT)
-  tooltipsSource[FURC_CRAFTING]           = GetString(SI_FURC_CRAFTING_TT)
-  tooltipsSource[FURC_CRAFTING_KNOWN]       = GetString(SI_FURC_CRAFTING_KNOWN_TT)
-  tooltipsSource[FURC_CRAFTING_UNKNOWN]       = GetString(SI_FURC_CRAFTING_UNKNOWN_TT)
+  tooltipsSource[FURC_CRAFTING]         = GetString(SI_FURC_CRAFTING_TT)
+  tooltipsSource[FURC_CRAFTING_KNOWN]   = GetString(SI_FURC_CRAFTING_KNOWN_TT)
+  tooltipsSource[FURC_CRAFTING_UNKNOWN] = GetString(SI_FURC_CRAFTING_UNKNOWN_TT)
   tooltipsSource[FURC_VENDOR]           = GetString(SI_FURC_VENDOR_TT)
-  tooltipsSource[FURC_PVP]             = GetString(SI_FURC_PVP_TT)
-  tooltipsSource[FURC_CROWN]               = GetString(SI_FURC_CROWN_TT)
-  tooltipsSource[FURC_WRIT_VENDOR]         = GetString(SI_FURC_STRING_WRIT_VENDOR_TT)
-  tooltipsSource[FURC_RUMOUR]             = GetString(SI_FURC_RUMOUR_TT)
-  tooltipsSource[FURC_LUXURY]             = GetString(SI_FURC_LUXURY_TT)
-  tooltipsSource[FURC_OTHER]                 = GetString(SI_FURC_OTHER_TT)
+  tooltipsSource[FURC_PVP]              = GetString(SI_FURC_PVP_TT)
+  tooltipsSource[FURC_CROWN]            = GetString(SI_FURC_CROWN_TT)
+  tooltipsSource[FURC_WRIT_VENDOR]      = GetString(SI_FURC_STRING_WRIT_VENDOR_TT)
+  tooltipsSource[FURC_RUMOUR]           = GetString(SI_FURC_RUMOUR_TT)
+  tooltipsSource[FURC_LUXURY]           = GetString(SI_FURC_LUXURY_TT)
+  tooltipsSource[FURC_OTHER]            = GetString(SI_FURC_OTHER_TT)
 
   return tooltipsSource
 end
@@ -173,6 +174,7 @@ FurnitureCatalogue.DropdownData = {
     [8] = GetString(SI_FURC_FILTER_VERSION_SLAVES),
     [9] = GetString(SI_FURC_FILTER_VERSION_WEREWOLF),
     [10] = GetString(SI_FURC_FILTER_VERSION_WOTL),
+    [11] = GetString(SI_FURC_FILTER_VERSION_KITTY),
   },
   TooltipsVersion  = {
     [1] =  GetString(SI_FURC_FILTER_VERSION_OFF_TT),
@@ -185,6 +187,7 @@ FurnitureCatalogue.DropdownData = {
     [8] = GetString(SI_FURC_FILTER_VERSION_SLAVES_TT),
     [9] = GetString(SI_FURC_FILTER_VERSION_WEREWOLF_TT),
     [10] = GetString(SI_FURC_FILTER_VERSION_WOTL_TT),
+    [11] = GetString(SI_FURC_FILTER_VERSION_KITTY_TT),
   },
   ChoicesCharacter  = {
     [1]  = GetString(SI_FURC_FILTER_CHAR_OFF),
@@ -197,10 +200,6 @@ FurnitureCatalogue.DropdownData = {
   ChoicesSource  = {},
   TooltipsSource   = {},
 }
-if GetAPIVersion() == 100027 then
-    FurnitureCatalogue.DropdownData.ChoicesVersion[FURC_KITTY] = GetString(SI_FURC_FILTER_VERSION_KITTY)
-    FurnitureCatalogue.DropdownData.TooltipsVersion[FURC_KITTY] = GetString(SI_FURC_FILTER_VERSION_KITTY_TT)
-end
 
 local function updateDropdownData()
   FurnitureCatalogue.DropdownData.ChoicesSource  = getChoicesSource()
