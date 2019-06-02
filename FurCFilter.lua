@@ -55,7 +55,7 @@ function FurC.SetFilter(useDefaults, skipRefresh)
                            FURC_NONE == dropdownChoiceCharacter
                            
   showAllRumourOnTextSearch = showAllOnTextSearch and not FurC.GetFilterAllOnTextNoCrown()
-  showAllCrownOnTextSearch = showAllOnTextSearch and not FurC.GetFilterAllOnTextNoCrown()
+  showAllCrownOnTextSearch  = showAllOnTextSearch and not FurC.GetFilterAllOnTextNoCrown()
   
   if skipRefresh then return end
   
@@ -164,10 +164,13 @@ function FurC.MatchFilter(currentItemId, currentRecipeArray)
     p("invalid item type for <<1>>", currentItemId)
     return false 
   end
-  if  filterBooks(itemId, recipeArray)                              then return false end
+  if  filterBooks(itemId, recipeArray)                        then return false end
+  
+  
+  if not matchSearchString()                                  then return false end
   
   if recipeArray.origin == FURC_RUMOUR and hideRumours then
-    if not showAllRumourOnTextSearch then return false end
+    if not showAllRumourOnTextSearch and matchSearchString()  then return false end
     return true
   end
   
@@ -176,10 +179,9 @@ function FurC.MatchFilter(currentItemId, currentRecipeArray)
     return true
   end
   
-  if not (showAllOnTextSearch  or  (matchVersionDropdown() and matchSourceDropdown())) then return false end
+  if not (matchVersionDropdown() and matchSourceDropdown()) then return false end
   
   
-  if not matchSearchString()                             then return false end
   if not (FurC.settings.filterCraftingTypeAll or matchCraftingTypeFilter())  then return false end
   if not (FurC.settings.filterQualityAll     or matchQualityFilter())    then return false end
   
