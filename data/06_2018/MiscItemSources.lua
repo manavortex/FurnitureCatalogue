@@ -37,7 +37,7 @@ local sinister_hollowjack   = "Sinister Hollowjack Items"
 local itemPackNewLife2018   = zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "New Life Festival 2018")
 local itemPackDeepmire      = zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "Deepmire Expedition")
 local itemPackDwemer        = zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "Dwemer")
-local itemPackDwemer        = zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "Lord Vivec")
+local itemPackVivec         = zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "Lord Vivec")
 
 
 local onSummerset           = " on Summerset"

@@ -36,9 +36,9 @@ function FurC.SetHideUIButton(buttonIdentifier, value)
   -- reanchor crownstore button
   FurC_ShowCrowns:ClearAnchors()
   if value then 
-    FurC_ShowCrowns:SetAnchor(RIGHT, FurC_Search, RIGHT, 0)
+    FurC_ShowCrowns:SetAnchor(RIGHT, FurC_Search, RIGHT, 3, 3)
   else
-    FurC_ShowCrowns:SetAnchor(RIGHT, FurC_ShowRumours, LEFT, 8, 3)
+    FurC_ShowCrowns:SetAnchor(RIGHT, FurC_ShowRumours, LEFT, 8, 0)
   end
    
   
@@ -78,7 +78,7 @@ end
 function FurC.GetFilterAllOnTextNoCrown()
   return FurC.settings["filterAllOnTextNoCrown"]
 end
-function FurC.GetFilterAllOnTextNoCrown(value)
+function FurC.SetFilterAllOnTextNoCrown(value)
   FurC.settings["filterAllOnTextNoCrown"] = value
   FurC.UpdateGui()
 end

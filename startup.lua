@@ -204,14 +204,15 @@ local function setupSourceDropdown()
   FurC.SourceIndices = sourceIndices
 end
 
-local logger = LibDebugLogger("MyAddon")
+local logger = (LibDebugLogger and LibDebugLogger("MyAddon")) or nil
 function FurC.DebugOut(...)
-  if logger then logger:Debug(...) end
+  if logger then 
+    logger:Debug(...)  
+  elseif FurC.settings.enableDebug then 
+    zo_strformat(...) 
+  end
 end
-
-local function p(...)
-  FurC.DebugOut(...)
-end
+local p = FurC.DebugOut 
 
 function whoami()
   return FurnitureCatalogue.CharacterName

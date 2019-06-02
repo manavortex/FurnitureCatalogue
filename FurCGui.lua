@@ -452,6 +452,9 @@ local function createGui()
   FurC.LoadFrameInfo()
   FurC.InitFilters() 
   FurC.UpdateDropdowns()
+  
+  -- reanchor it once
+  FurC.SetHideUIButton(FURC_RUMOUR, FurC.GetHideUIButton(FURC_RUMOUR))
   FurC.UpdateHeader()
   
 end
@@ -464,9 +467,8 @@ function FurC.UpdateHeader()
   FurC_ShowRumours:SetHidden(hideRumourButton)
   FurC_ShowRumoursGlow:SetHidden(not showRumours or hideRumourButton)
   
-  if not hideRumourButton then 
+  if not hideRumourButton then
     FurC_ShowRumours:SetState((showRumours and BSTATE_PRESSED) or BSTATE_NORMAL)
-    
   end
   
   local hideCrownButton = FurC.GetHideUIButton(FURC_CROWN)  
@@ -480,8 +482,10 @@ end
 
 
 function FurnitureCatalogue_Toggle()
+  
   SCENE_MANAGER:ToggleTopLevel(FurCGui)
   if FurCGui:IsHidden() then return end
+  
   FurCGui_Empty:SetHidden(true)
   zo_callLater(function() FurC.UpdateGui(FurC.GetResetDropdownChoice()) end, 500)
 end
