@@ -39,12 +39,10 @@ local itemPackDeepmire      = zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK
 local itemPackDwemer        = zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "Dwemer")
 local itemPackVivec         = zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "Lord Vivec")
 
-
 local onSummerset           = " on Summerset"
 local backwaterSwamp        = " in Murkmire"
 local gloriousHome          = " on Vvardenfell"
 local inWrothgar            = " in Vvardenfell"
-
 
 local plants_vvardenfell    = GetString(SI_FURC_PLANTS)      .. gloriousHome
 
