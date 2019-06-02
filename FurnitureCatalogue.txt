@@ -1,12 +1,14 @@
 ## Title: FurnitureCatalogue
 ## Author: manavortex
-## Version: 3.33
+## Version: 3.4
 ## APIVersion: 100027
 ## SavedVariables: FurnitureCatalogue_Settings 
 ## DependsOn: LibStub LibCustomMenu LibAddonMenu-2.0 LibAsync
-## OptionalDependsOn: pChat LibDebugLogger
+## OptionalDependsOn: pChat LibDebugLogger LibDebugViewer
 
 libs\LibCustomTitles\LibCustomTitles.lua
+
+_Constants.lua 
 
 locale\en.lua
 locale\$(language).lua

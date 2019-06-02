@@ -104,7 +104,7 @@ function FurC.CreateSettings(savedVars, defaults)
     -- header: Inventory and bank
     -- =======================================================================================
     {  -- header: Inventory and bank
-      type = "submenu",
+      type = "submenu", -- Inventory and bank icons
       name = GetString(SI_FURC_STRING_MENU_HEADER_ICONS),
       controls = {
         { -- checkbox: Add items to known/unknown recipes?
@@ -175,8 +175,8 @@ function FurC.CreateSettings(savedVars, defaults)
       setFunc = function(value) FurC.SetSkipDivider(value) end,
       requiresReload = true
     },
-    {  type = "submenu",
-      name = GetString(SI_FURC_STRING_MENU_DEFAULT_DD),
+    {  type = "submenu", -- Default dropdown values
+      name = GetString(SI_FURC_STRING_MENU_DEFAULT_DD), 
       controls = {
         { -- description: Default dropdown
           type = "description",
@@ -219,8 +219,8 @@ function FurC.CreateSettings(savedVars, defaults)
     -- =======================================================================================
     -- submenu: Catalogue filtering
     -- =======================================================================================
-    {  type = "submenu",
-      name = GetString(SI_FURC_STRING_MENU_FILTERING),
+    {  type = "submenu", -- Catalogue filtering
+      name = GetString(SI_FURC_STRING_MENU_FILTERING), 
       controls = {
                  {  type = "submenu",
                     name = GetString(SI_FURC_STRING_MENU_HEADER_F_ALL_ON_TEXT),
@@ -250,6 +250,13 @@ function FurC.CreateSettings(savedVars, defaults)
                             type   = "checkbox",
                             name   = GetString(SI_FURC_STRING_MENU_FALL_HIDE_CROWN),
                             tooltip = GetString(SI_FURC_STRING_MENU_FALL_HIDE_CROWN_TT),
+                            getFunc = function() return FurC.GetFilterAllOnTextNoCrown() end,
+                            setFunc = function(value) FurC.GetFilterAllOnTextNoCrown(value) end,
+                            disabled = not FurC.GetFilterAllOnText()
+                        },
+                        { -- checkbox: Exclude crown store items from these
+                            type   = "checkbox",
+                            name   = GetString(SI_FURC_STRING_MENU_FALL_HIDE_CROWN_BUTTON), 
                             getFunc = function() return FurC.GetFilterAllOnTextNoCrown() end,
                             setFunc = function(value) FurC.GetFilterAllOnTextNoCrown(value) end,
                             disabled = not FurC.GetFilterAllOnText()
@@ -313,20 +320,34 @@ function FurC.CreateSettings(savedVars, defaults)
           getFunc = function() return FurC.GetHideRumourRecipes() end,
           setFunc = function(value) FurC.SetHideRumourRecipes(value) end
         },
-        {  -- header: rumour recipes
+        
+        { -- checkbox: Show UI button in search box? 
+          type   = "checkbox",
+          name   = GetString(SI_FURC_STRING_MENU_FALL_HIDE_UI_BUTTON),
+          getFunc = function() return FurC.GetHideUIButton(FURC_RUMOUR) end,
+          setFunc = function(value) FurC.SetHideUIButton(FURC_RUMOUR, value) end
+        },
+        
+        {  -- Crown store items
           type = "header",
           name = "Crown store",
         },
-        { -- checkbox: Hide doubtful recipes
+        { -- The furniture database contains a list of recipes that I have...
           type = "description",
           name = GetString(SI_FURC_STRING_MENU_CROWN),
           text = GetString(SI_FURC_STRING_MENU_CROWN_DESC),
         },
-        { -- checkbox: Hide doubtful recipes
+        { -- checkbox: Hide crown stuff
           type   = "checkbox",
           name   = GetString(SI_FURC_STRING_MENU_CROWN_N),
           getFunc = function() return FurC.GetHideCrownStoreItems() end,
           setFunc = function(value) FurC.SetHideCrownStoreItems(value) end
+        },
+        { -- checkbox: Show UI button in search box? 
+          type   = "checkbox",
+          name   = GetString(SI_FURC_STRING_MENU_FALL_HIDE_UI_BUTTON),
+          getFunc = function() return FurC.GetHideUIButton(FURC_CROWN) end,
+          setFunc = function(value) FurC.SetHideUIButton(FURC_CROWN, value) end
         },
       },
     },

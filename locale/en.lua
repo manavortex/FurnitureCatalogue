@@ -142,11 +142,16 @@ local strings = {
     
   SI_FURC_SHOW_RUMOUR_TT =                  "Confirmed items only. Click to show rumour items.",
   SI_FURC_HIDE_RUMOUR_TT =                  "Showing rumour (unconfirmed) items. Click to hide.",
+  
+  SI_FURC_SHOW_CROWN_TT =                   "Hiding crown store. Click to show.",
+  SI_FURC_HIDE_CROWN_TT =                   "Showing crown store. Click to hide.",
     
   SI_FURC_STRING_MENU_RUMOUR_N =            "Hide rumour recipes?",
+  
   SI_FURC_STRING_MENU_CROWN =               "Crown store items",
   SI_FURC_STRING_MENU_CROWN_N =             "Hide crown store items?",
-  SI_FURC_STRING_MENU_CROWN_DESC =          "The furniture database will update whenever the tooltip shows a furniture item. \nSome items can only be acquired via crown store. \nCheck this box to exclude them from the default filters (disable crown store filter below).",
+  SI_FURC_STRING_MENU_CROWN_DESC =          "The furniture database will update whenever the tooltip shows a furniture item. \nSome items can only be acquired via crown store. \nCheck this box to exclude them from the default filters (you can still see them by selecting 'Crown Store' from source dropdown).",
+  SI_FURC_STRING_MENU_FALL_HIDE_UI_BUTTON = "Hide UI button in search box?", 
 
     -- Filter text search
   SI_FURC_STRING_MENU_HEADER_F_ALL_ON_TEXT =  "Filter settings for text search",
@@ -162,6 +167,7 @@ local strings = {
   SI_FURC_STRING_MENU_FALL_HIDE_RUMOUR =      "Hide rumour items anyway",
   SI_FURC_STRING_MENU_FALL_HIDE_RUMOUR_TT =   "Even when filtering all items, still hide rumour items?",
 
+  
     -- Hide menu entries
   SI_FURC_STRING_MENU_HIDE_MENU =               "Hide menu entries?",
   SI_FURC_STRING_MENU_HIDE_MENU_TT =            "Hides \"Crown store\" and \"Rumour recipes\" from the dropdown \nactivated for crown store by default, as there aren't any items yet",
@@ -278,7 +284,7 @@ local strings = {
   SI_FURC_DRAGON_DUNGEON_DROP =   "Fang Lair/Scalecaller Peak",
   SI_FURC_DATAMINED_UNCLEAR =     "This item has been found in the sources/recipes for Summerset! \nIts origin isn't known yet.",
   SI_FURC_DATAMINED_UNCLEAR =     "This item has been confirmed existing, but its origin isn't known yet.",
-  SI_FURC_ITEMSOURCE_ITEMPACK =   "This item is part of the Crown Store item pack ",
+  SI_FURC_ITEMSOURCE_ITEMPACK =   "Part of the Crown Store item pack [<<1>>] ",
   
   SI_FURC_SEEN_IN_GUILDSTORE =    "Seen in Guild Store",
 }

@@ -1,6 +1,6 @@
 local db    = FurnitureCatalogue.settings["data"]
 
-local p     = FurC.DebugOut -- debug function calling zo_strformat with up to 10 args
+local p     = FurC.DebugOut
 
 
 function FurC.PrintCraftingStation(itemId, recipeArray)

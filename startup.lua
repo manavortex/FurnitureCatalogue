@@ -1,7 +1,7 @@
 FurnitureCatalogue                = {}
 FurnitureCatalogue.name           = "FurnitureCatalogue"
 FurnitureCatalogue.author         = "manavortex"
-FurnitureCatalogue.version        = 3.33
+FurnitureCatalogue.version        = 3.4
 FurnitureCatalogue.CharacterName  = nil
 FurnitureCatalogue.settings       = {}
 
@@ -84,42 +84,28 @@ local defaults             = {
   hideCrownStoreEntry  = false,
   wipeDatabase         = false,
   startupSilently      = true,
+  
+  hideUiButtons = {
+      FURC_RUMOUR = false,
+      FURC_CROWN  = false,      
+  }
 
 }
 
-FURC_NONE        = 1
-FURC_FAVE         = FURC_NONE +1
-FURC_CRAFTING      = FURC_FAVE +1
-FURC_CRAFTING_KNOWN    = FURC_CRAFTING +1
-FURC_CRAFTING_UNKNOWN  = FURC_CRAFTING_KNOWN +1
-FURC_VENDOR       = FURC_CRAFTING_UNKNOWN +1
-FURC_PVP         = FURC_VENDOR +1
-FURC_CROWN         = FURC_PVP +1
-FURC_RUMOUR       = FURC_CROWN +1
-FURC_LUXURY       = FURC_RUMOUR +1
-FURC_OTHER         = FURC_LUXURY +1
-FURC_ROLIS           = FURC_OTHER +1
-FURC_DROP         = FURC_ROLIS +1
-FURC_WRIT_VENDOR     = FURC_DROP +1
-FURC_JUSTICE       = FURC_WRIT_VENDOR +1
-FURC_FISHING       = FURC_JUSTICE +1
-FURC_GUILDSTORE     = FURC_FISHING +1
-FURC_FESTIVAL_DROP     = FURC_GUILDSTORE +1
-FURC_EMPTY_STRING     = ""
 
 local sourceIndicesKeys = {}
 local function getSourceIndicesKeys()
-  sourceIndicesKeys[FURC_NONE]             = "off"
-  sourceIndicesKeys[FURC_FAVE]             = "favorites"
-  sourceIndicesKeys[FURC_CRAFTING]           = "craft_all"
-  sourceIndicesKeys[FURC_CRAFTING_KNOWN]         = "craft_known"
-  sourceIndicesKeys[FURC_CRAFTING_UNKNOWN]       = "craft_unknown"
-  sourceIndicesKeys[FURC_VENDOR]             = "purch_gold"
-  sourceIndicesKeys[FURC_PVP]             = "purch_ap"
+  sourceIndicesKeys[FURC_NONE]                = "off"
+  sourceIndicesKeys[FURC_FAVE]                = "favorites"
+  sourceIndicesKeys[FURC_CRAFTING]            = "craft_all"
+  sourceIndicesKeys[FURC_CRAFTING_KNOWN]      = "craft_known"
+  sourceIndicesKeys[FURC_CRAFTING_UNKNOWN]    = "craft_unknown"
+  sourceIndicesKeys[FURC_VENDOR]              = "purch_gold"
+  sourceIndicesKeys[FURC_PVP]                 = "purch_ap"
   sourceIndicesKeys[FURC_CROWN]               = "crownstore"
-  sourceIndicesKeys[FURC_RUMOUR]               = "rumour"
-  sourceIndicesKeys[FURC_LUXURY]               = "luxury"
-  sourceIndicesKeys[FURC_OTHER]             = "other"
+  sourceIndicesKeys[FURC_RUMOUR]              = "rumour"
+  sourceIndicesKeys[FURC_LUXURY]              = "luxury"
+  sourceIndicesKeys[FURC_OTHER]               = "other"
   sourceIndicesKeys[FURC_WRIT_VENDOR]         = "writ_vendor"
   return sourceIndicesKeys
 end
@@ -161,6 +147,7 @@ local function getTooltipsSource()
 
   return tooltipsSource
 end
+FurC.GetTooltipsSource = getTooltipsSource
 
 FurnitureCatalogue.DropdownData = {
   ChoicesVersion  = {
@@ -201,14 +188,14 @@ FurnitureCatalogue.DropdownData = {
   TooltipsSource   = {},
 }
 
-local function updateDropdownData()
-  FurnitureCatalogue.DropdownData.ChoicesSource  = getChoicesSource()
-  FurnitureCatalogue.DropdownData.TooltipsSource = getTooltipsSource()
-end
-FurnitureCatalogue.updateDropdownData = updateDropdownData
 
-local function setupSourceDropdown()
-  updateDropdownData()
+function FurC.UpdateDropdowns() 
+  FurC.DropdownData.ChoicesSource  = FurC.GetChoicesSource()
+  FurC.DropdownData.TooltipsSource = FurC.GetTooltipsSource()
+end
+
+local function setupSourceDropdown()  
+  FurC.UpdateDropdowns()
   sourceIndices = {}
 
   for idx, key in ipairs(getSourceIndicesKeys()) do
@@ -217,33 +204,9 @@ local function setupSourceDropdown()
   FurC.SourceIndices = sourceIndices
 end
 
-function FurnitureCatalogue.DebugOut(output, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10)
-  if not FurC.GetEnableDebug() then return end
-  if a10 then
-    d(zo_strformat(output, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10))
-  elseif a9 then
-    d(zo_strformat(output, a1, a2, a3, a4, a5, a6, a7, a8, a9))
-  elseif a8 then
-    d(zo_strformat(output, a1, a2, a3, a4, a5, a6, a7, a8))
-  elseif a7 then
-    d(zo_strformat(output, a1, a2, a3, a4, a5, a6, a7))
-  elseif a6 then
-    d(zo_strformat(output, a1, a2, a3, a4, a5, a6))
-  elseif a5 then
-    d(zo_strformat(output, a1, a2, a3, a4, a5))
-  elseif a4 then
-    d(zo_strformat(output, a1, a2, a3, a4))
-  elseif a3 then
-    d(zo_strformat(output, a1, a2, a3))
-  elseif a2 then
-    d(zo_strformat(output, a1, a2))
-  elseif a1 then
-    d(zo_strformat(output, a1))
-  elseif output then
-    d(zo_strformat(output))
-  else
-    d("\n")
-  end
+local logger = LibDebugLogger("MyAddon")
+function FurC.DebugOut(...)
+  if logger then logger:Debug(...) end
 end
 
 local function p(...)

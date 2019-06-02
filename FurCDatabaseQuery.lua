@@ -1,11 +1,11 @@
 local FurC = FurC
 
 local vendorColor   = "d68957"
-local goldColor   = "e5da40"
-local apColor     = "25C31E"
-local tvColor    = "5EA4FF"
+local goldColor     = "e5da40"
+local apColor       = "25C31E"
+local tvColor       = "5EA4FF"
 local voucherColor  = "82BCFF"
-local p       = FurC.DebugOut -- debug function calling zo_strformat with up to 10 args
+local p       = FurC.DebugOut 
 
 local function colorise(str, col, ret)
   str = tostring(str)

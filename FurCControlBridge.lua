@@ -100,6 +100,9 @@ end
 function FurC.GetRumourTooltip()  
   return GetString((FurC.GetShowRumours() and SI_FURC_HIDE_RUMOUR_TT) or SI_FURC_SHOW_RUMOUR_TT)
 end
+function FurC.GetCrownTooltip()  
+  return GetString((FurC.GetShowCrownstore() and SI_FURC_HIDE_CROWN_TT) or SI_FURC_SHOW_CROWN_TT)
+end
 
 function FurC.GuiOnSearchBoxClick(control, mouseButton, doubleClick)
   FurC_SearchBoxText:SetText("")

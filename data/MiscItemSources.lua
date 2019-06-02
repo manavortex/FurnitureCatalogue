@@ -23,8 +23,8 @@ local db_sneaky             = zo_strformat("<<1>> <<2>>", GetString(SI_FURC_DB),
 
 local sinister_hollowjack   = "Sinister Hollowjack Items"
 
-local itemPackNewLife2018   = GetString(SI_FURC_ITEMSOURCE_ITEMPACK) .. " New Life Festival 2018"
-local itemPackDeepmire      = GetString(SI_FURC_ITEMSOURCE_ITEMPACK) .. " Deepmire Expedition"
+local itemPackNewLife2018   = zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "New Life Festival 2018")
+local itemPackDeepmire      = zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "Deepmire Expedition")
 
 
 local stealable             = GetString(SI_FURC_CANBESTOLEN)
@@ -145,8 +145,9 @@ FurC.MiscItemSources[FURC_KITTY]  = {
     }, 
   
   [FURC_JUSTICE] = {
-    [151889] = stealable_elsewhere,                     -- Elsweyr Comb, Grooming    
-    [151893] = stealable_elsewhere,                     -- Elsweyr Fragrance Bottle, Moonlit Tryst 
+    [151889] = stealable_elsewhere, -- Elsweyr Comb, Grooming    
+    [151893] = stealable_elsewhere, -- Elsweyr Fragrance Bottle, Moonlit Tryst 
+    [151899] = stealable_elsewhere, -- Elsweyr Pillow, Night Blues Wide,
   }, 
   
   [FURC_DROP]    = {
@@ -182,7 +183,6 @@ FurC.MiscItemSources[FURC_KITTY]  = {
     [151895] = getCrownPrice(20), -- Elsweyr Cloth, Rolled,
     [151897] = getCrownPrice(20), -- Elsweyr Fabric, Display,
     [151898] = getCrownPrice(20), -- Elsweyr Pillow, Gold-Ruby Roll,
-    [151899] = getCrownPrice(20), -- Elsweyr Pillow, Night Blues Wide,
     [151900] = getCrownPrice(20), -- Elsweyr Pillow, Gold-Ruby Throw,
     [151901] = getCrownPrice(20), -- Elsweyr Bowl, Moon-Sugar,
     [151902] = getCrownPrice(200), -- Elsweyr Sarcophagus, Ancient,

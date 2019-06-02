@@ -12,7 +12,7 @@ function FurC.GetHideRumourRecipes()
 end
 function FurC.SetHideRumourRecipes(value)
   FurC.settings["hideDoubtfuls"] = value
-  FurC.updateDropdownData()
+  FurC.UpdateDropdowns()
   FurC.UpdateGui()
 end
 function FurC.GetHideCrownStoreItems()
@@ -20,8 +20,28 @@ function FurC.GetHideCrownStoreItems()
 end
 function FurC.SetHideCrownStoreItems(value)
   FurC.settings["hideCrownstore"] = value
-  FurC.updateDropdownData()
+  FurC.UpdateDropdowns()
   FurC.UpdateGui()
+end
+
+function FurC.GetHideUIButton(buttonIdentifier)  
+  return FurC.settings.hideUiButtons[buttonIdentifier]  
+end
+
+function FurC.SetHideUIButton(buttonIdentifier, value)
+  FurC.settings.hideUiButtons[buttonIdentifier] = value  
+  FurC.UpdateHeader()
+  if not buttonIdentifier == FURC_RUMOUR then return end
+  
+  -- reanchor crownstore button
+  FurC_ShowCrowns:ClearAnchors()
+  if value then 
+    FurC_ShowCrowns:SetAnchor(RIGHT, FurC_Search, RIGHT, 0)
+  else
+    FurC_ShowCrowns:SetAnchor(RIGHT, FurC_ShowRumours, LEFT, 8, 3)
+  end
+   
+  
 end
 
 function FurC.GetFilterAllOnText()
@@ -293,6 +313,15 @@ function FurC.SetShowRumours(value)
   FurC.settings["showRumours"] = value
   FurC_ShowRumours:SetState((value and BSTATE_PRESSED) or BSTATE_DISABLED)
   FurC_ShowRumoursGlow:SetHidden(not value)
+  FurC.UpdateGui()
+end
+
+function FurC.GetShowCrownstore()
+  return FurC.settings["showCrowns"]
+end
+function FurC.SetShowCrownstore(value)
+  FurC.settings["showCrowns"] = value
+  FurC_ShowCrowns:SetState((value and BSTATE_PRESSED) or BSTATE_DISABLED)
   FurC.UpdateGui()
 end
 

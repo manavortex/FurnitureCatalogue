@@ -54,7 +54,7 @@
                     </Label>
                     <Label name="$(parent)_2" font="$(STONE_TABLET_FONT)|26|soft-shadow-thick" text=" entries -" >
                       <Anchor point="LEFT" relativeTo="FurC_RecipeCount" relativePoint="RIGHT" offsetY="-1"  />
-                    </Label>
+                      </Label>
                   </Controls>
                 </Control>
                 <Button name="$(parent)_Hide">
@@ -206,23 +206,36 @@
                 </Control>
                 
                 <Button name="FurC_ShowRumours"><Dimensions x="30" y="35" />
-                  <Anchor point="RIGHT"   relativeTo="FurC_Search" relativePoint="RIGHT" offsetX="5" offsetY="3"/>
+                  <Anchor point="RIGHT"   relativeTo="FurC_Search" relativePoint="RIGHT" offsetY="3"/>
                   <Textures
                     normal    ="esoui/art/chatwindow/chat_notification_disabled.dds"
                     pressed    ="esoui/art/chatwindow/chat_notification_echo.dds"
                     mouseOver  ="esoui/art/chatwindow/chat_notification_over.dds"
                   />
+                  
                   <OnMouseEnter>  FurC.GuiShowTooltip(self, FurC.GetRumourTooltip())  </OnMouseEnter>
                   <OnMouseExit>  FurC.GuiHideTooltip(self)  </OnMouseExit>
                   <OnMouseUp>    FurC.SetShowRumours(not FurC.GetShowRumours())  </OnMouseUp>
                 </Button>
                 
+                <Button name="FurC_ShowCrowns"><Dimensions x="30" y="25" />
+                  <Anchor point="RIGHT" relativeTo="FurC_ShowRumours" relativePoint="LEFT" offsetX="8" />
+                  <Textures
+                    normal    ="esoui/art/bank/bank_tabicon_gold_up.dds"
+                    pressed    ="esoui/art/bank/bank_tabicon_gold_down.dds"
+                    mouseOver  ="esoui/art/bank/bank_tabicon_gold_over.dds"
+                  />
+                  <OnMouseEnter>  FurC.GuiShowTooltip(self, FurC.GetCrownTooltip())  </OnMouseEnter>
+                  <OnMouseExit>  FurC.GuiHideTooltip(self)  </OnMouseExit>
+                  <OnMouseUp>    FurC.SetShowCrownstore(not FurC.GetShowCrownstore())  </OnMouseUp>
+                </Button>
+                
                 
         
-                <Texture name="FurC_ShowRumoursGlow" textureFile="esoui/art/chatwindow/chat_notification_glow.dds" alpha="0.4">
+                <Texture name="FurC_ShowRumoursGlow" textureFile="esoui/art/chatwindow/chat_notification_glow.dds">
                   <Anchor point="CENTER"   relativeTo="FurC_ShowRumours" relativePoint="CENTER"   />
-                  <Dimensions x="55" y="60" />
-                </Texture>
+                  <Dimensions x="60" y="60" />
+                </Texture>               
                 
               </Controls>
             </Control>

@@ -130,17 +130,22 @@ local strings = {
   SI_FURC_STRING_MENU_LUXURY_N =            "Treat luxury items as purchaseables?",
   SI_FURC_STRING_MENU_LUXURY_TT =           "This will show everything that was sold by Zanil Theran under 'purchaseable' and deactvates the custom filter",
   SI_FURC_STRING_MENU_LUXURY_WARN =         "Hiding the dropdown entry requires UI reload (won't happen automatically for your convenience)",
-  SI_FURC_STRING_MENU_RUMOUR =              "Rumour recipes",
-  SI_FURC_STRING_MENU_RUMOUR_DESC =         "The furniture database contains a list of recipes that I have datamined.\nHowever, not all of those have been seen in-game.\nEnable this option to exclude them from the default filters.\nYou can still view them with their own filter, which you can disable below.",
+  
+  SI_FURC_STRING_MENU_RUMOUR =              "Rumour recipes",    
+  SI_FURC_STRING_MENU_RUMOUR_N =            "Hide rumour recipes?",
+  SI_FURC_STRING_MENU_RUMOUR_DESC =         "The furniture database contains a list of recipes that I have datamined.\nHowever, not all of those have been seen in-game.\nEnable this option to exclude them from the default filters.\nYou can still view them by selecting the corresponding source from the dropdown.",
+  
+  
   SI_FURC_STRING_CONTEXTMENU_DIVIDER =      "Don't use divider in context menu?", 
   SI_FURC_STRING_CONTEXTMENU_DIVIDER_TT =   "Adds a divider to the context manu above the - Furniture entry. Check to disable", 
     
-    
-  SI_FURC_STRING_MENU_RUMOUR_N =            "Hide rumour recipes?",
+  
   SI_FURC_STRING_MENU_CROWN =               "Crown store items",
   SI_FURC_STRING_MENU_CROWN_N =             "Hide crown store items?",
-  SI_FURC_STRING_MENU_CROWN_DESC =          "The furniture database will update whenever the tooltip shows a furniture item. \nSome items can only be acquired via crown store. \nCheck this box to exclude them from the default filters (disable crown store filter below).",
+  SI_FURC_STRING_MENU_CROWN_DESC =          "Some items can only be acquired via crown store. \nCheck this box to exclude them from the default filters (You can still view them by selecting the corresponding source from the dropdown).",
 
+  SI_FURC_STRING_MENU_FALL_SHOW_UI_BUTTON  = "Show UI button in search box?", 
+  
     -- Filter text search
   SI_FURC_STRING_MENU_HEADER_F_ALL_ON_TEXT =  "Filter settings for text search",
   SI_FURC_STRING_MENU_F_ALL_ON_TEXT =         "Configure this filter",
@@ -266,7 +271,7 @@ local strings = {
   SI_FURC_DRAGON_DUNGEON_DROP =   "Fang Lair/Scalecaller Peak",
   SI_FURC_DATAMINED_UNCLEAR =     "This item has been found in the sources/recipes for Summerset! \nIts origin isn't known yet.",
   SI_FURC_DATAMINED_UNCLEAR =     "This item has been confirmed existing, but its origin isn't known yet.",
-  SI_FURC_ITEMSOURCE_ITEMPACK =   "This item is part of the Crown Store item pack ",
+  SI_FURC_ITEMSOURCE_ITEMPACK =   "Part of the Crown Store item pack [<<1>>] ",
   
   SI_FURC_SEEN_IN_GUILDSTORE =    "Seen in Guild Store",
 }

@@ -270,7 +270,7 @@ local strings = {
   SI_FURC_DRAGON_DUNGEON_DROP =   "Fang Lair/Scalecaller Peak",
   SI_FURC_DATAMINED_UNCLEAR =     "This item has been found in the sources/recipes for Summerset! \nIts origin isn't known yet.",
   SI_FURC_DATAMINED_UNCLEAR =     "This item has been confirmed existing, but its origin isn't known yet.",
-  SI_FURC_ITEMSOURCE_ITEMPACK =   "This item is part of the Crown Store item pack ",
+  SI_FURC_ITEMSOURCE_ITEMPACK =   "Part of the Crown Store item pack [<<1>>] ",
   
   SI_FURC_SEEN_IN_GUILDSTORE =    "Seen in Guild Store",
 }

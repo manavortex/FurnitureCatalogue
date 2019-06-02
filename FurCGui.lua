@@ -450,11 +450,34 @@ local function createGui()
   FurC.ChangeTemplateFromButton(FurC.GetTinyUi())
   FurC.SetFontSize(FurC.GetFontSize())
   FurC.LoadFrameInfo()
-  FurC.InitFilters()
+  FurC.InitFilters() 
+  FurC.UpdateDropdowns()
+  FurC.UpdateHeader()
   
-  FurC_ShowRumoursGlow:SetHidden(not FurC.GetShowRumours())
-
 end
+
+function FurC.UpdateHeader()   
+  
+  local hideRumourButton = FurC.GetHideUIButton(FURC_RUMOUR)
+  local showRumours = FurC.GetShowRumours()
+  
+  FurC_ShowRumours:SetHidden(hideRumourButton)
+  FurC_ShowRumoursGlow:SetHidden(not showRumours or hideRumourButton)
+  
+  if not hideRumourButton then 
+    FurC_ShowRumours:SetState((showRumours and BSTATE_PRESSED) or BSTATE_NORMAL)
+    
+  end
+  
+  local hideCrownButton = FurC.GetHideUIButton(FURC_CROWN)  
+  
+  FurC_ShowCrowns:SetHidden(hideCrownButton)
+  if hideCrownButton then return end 
+  
+  FurC_ShowCrowns:SetState((FurC.GetShowCrownstore() and BSTATE_PRESSED) or BSTATE_NORMAL)
+  
+end
+
 
 function FurnitureCatalogue_Toggle()
   SCENE_MANAGER:ToggleTopLevel(FurCGui)
