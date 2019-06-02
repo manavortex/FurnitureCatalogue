@@ -6,7 +6,7 @@
 ## DependsOn: LibStub LibCustomMenu LibAddonMenu-2.0 LibAsync
 ## OptionalDependsOn: pChat LibDebugLogger LibDebugViewer
 
-libs\LibCustomTitles\LibCustomTitles.lua
+libs\LibCustomTitles.lua
 
 _Constants.lua 
 
