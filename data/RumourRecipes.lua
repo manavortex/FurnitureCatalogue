@@ -13,7 +13,6 @@ FurC.RumourRecipes = {
   119437, -- Design: Pie, Display
   121161, -- Design: Ram Horns, Mounted
   121216, -- Blueprint: Redguard Divider, Gilded
-  121203, -- Praxis: Khajiit Brazier, Enchanted
   121217, -- Formula: Redguard Lamp, Oil
   121215, -- Pattern: Redguard Canopy, Dusk
   119426, -- Design: Bread, Plain
@@ -32,7 +31,6 @@ FurC.RumourRecipes = {
   121109, -- Simple Gray Banner
   121108, -- Simple Brown Banner
   119355, -- Garlic String, Display
-  121203, -- Khajiit Brazier, Enchanted
   121091, -- Stool, Carved
   119447, -- Candles, Lasting 
 } 

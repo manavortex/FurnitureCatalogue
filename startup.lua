@@ -1,7 +1,7 @@
 FurnitureCatalogue                = {}
 FurnitureCatalogue.name           = "FurnitureCatalogue"
 FurnitureCatalogue.author         = "manavortex"
-FurnitureCatalogue.version        = 3.41
+FurnitureCatalogue.version        = 3.411
 FurnitureCatalogue.CharacterName  = nil
 FurnitureCatalogue.settings       = {}
 
@@ -20,26 +20,11 @@ FurC.PVP                          = {}
 FurC.MiscItemSources              = {}
 FurC.RumourRecipes                = {}
 
--- versioning
-FURC_HOMESTEAD            = 2
-FURC_MORROWIND            = 3
-FURC_REACH                = 4
-FURC_CLOCKWORK            = 5
-FURC_DRAGONS              = 6
-FURC_ALTMER               = 7
-FURC_WEREWOLF             = 8
-FURC_SLAVES               = 9
-FURC_WOTL                 = 10
-FURC_KITTY                = 11
 
-FurC.Const                          = {
-    vendorColor   = "d68957",
-    goldColor     = "e5da40",
-    apColor       = "25C31E",
-    tvColor       = "5EA4FF",
-    voucherColor  = "82BCFF",
-}
 
+
+
+-- TODO: set up the filtering for FURC_RUMOUR and FURC_CROWN in submenus by origin 
 local defaults             = {
 
   hideMats              = true,
@@ -69,8 +54,6 @@ local defaults             = {
   },
 
   accountCharacters    = {},
-
-  version              = 2.0,
 
   -- tooltips
   disableTooltips      = false,

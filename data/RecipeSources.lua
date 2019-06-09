@@ -1,6 +1,8 @@
-local vendorColor   = FurC.Const.vendorColor
-local goldColor   = FurC.Const.goldColor
-local voucherColor  = FurC.Const.voucherColor
+local colorVendor   = "d68957"
+local colorGold     = "e5da40"
+local colorVoucher  = "25C31E"
+local colorAP       = "5EA4FF"
+local colorTelVar   = "82BCFF"
 
 local function colorise(str, col, ret)
   str = tostring(str)
@@ -17,9 +19,9 @@ local function rank(aNumber) return requires .. psijicRank .. aNumber end
 local function soldBy(vendorName, locationName, price, requirement)
     return zo_strformat(
         GetString(SI_FURC_STRING_VENDOR),
-        colorise(vendorName,   vendorColor, stripColor),
-        colorise(locationName,   vendorColor, stripColor),
-        colorise(price,       goldColor, stripColor),
+        colorise(vendorName,      vendorColor, stripColor),
+        colorise(locationName,    vendorColor, stripColor),
+        colorise(price,           goldColor, stripColor),
         requirement
     )
 end

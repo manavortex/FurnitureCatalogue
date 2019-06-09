@@ -46,6 +46,8 @@ local stealable_elsewhere   = stealable .. elsewhere
 local rumourSource          = GetString(SI_FURC_RUMOUR_SOURCE_ITEM)
 local dataminedUnclear      = GetString(SI_FURC_DATAMINED_UNCLEAR)
 
+local daily_reward          = GetString(SI_FURC_DAILY_ELSWEYR)
+
 
 local crownstoresource      = GetString(SI_FURC_CROWNSTORESOURCE)
 local function getCrownPrice(price)
@@ -151,6 +153,7 @@ FurC.MiscItemSources[FURC_KITTY]  = {
   }, 
   
   [FURC_DROP]    = {
+  [121203]    = daily_reward , -- Praxis: Khajiit Brazier, Enchanted
   
   },
   

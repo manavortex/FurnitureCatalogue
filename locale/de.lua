@@ -259,6 +259,7 @@ local strings = {
   SI_FURC_DB_POISON =             "with poison",
   SI_FURC_DB_STEALTH =            "as a way to be less obtrusive",
   SI_FURC_DAILY_ASH =             "Ashlander daily quest rewards",
+  SI_FURC_DAILY_ELSWEYR =         "Elsweyr daily quest rewards",
   SI_FURC_PLUNDERSKULL =          "Drops from Plunder Skulls during Witches' Festival",
   SI_FURC_VV_PAINTING =           "Extremely rarely from chests or lockboxes on Vvardenfell",
   SI_FURC_DROP =                  "This item is a drop ", 
