@@ -16,22 +16,13 @@ local scambox_string        = GetString(SI_FURC_SCAMBOX)
 local sinister_hollowjack   = "Sinister Hollowjack Items"
 
 local itemPackMoonBishop    = zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "Moon Bishop’s Sanctuary")
-local itemPackMoonBishop    = zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "Moons-Blessed Oasis")
-
-local stealable             = GetString(SI_FURC_CANBESTOLEN)
-
-local stealable_scholars    = stealable ..          " from scholars"
-local stealable_nerds       = stealable_scholars .. " and mages"
-local stealable_priests     = stealable ..          " from priests and pilgrims"
-local stealable_thief       = stealable ..          " from thieves"
-local stealable_woodworkers = stealable ..          " from woodworkers"
-local stealable_drunkards   = stealable ..          " from drunkards"
+local itemPackOasis         = zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "Moons-Blessed Oasis")
 
 local elsewhere             = " in Elsweyr" 
 
-local fishing_elsewhere     = GetString(SI_FURC_CANBEFISHED) .. elsewhere
-local drop_elsewhere        = GetString(SI_FURC_DROP) .. elsewhere
-local stealable_elsewhere   = stealable .. elsewhere
+local fishing_elsewhere     = GetString(SI_FURC_CANBEFISHED)  .. elsewhere
+local drop_elsewhere        = GetString(SI_FURC_DROP)         .. elsewhere
+local stealable_elsewhere   = GetString(SI_FURC_CANBESTOLEN)  .. elsewhere
 
 local rumourSource          = GetString(SI_FURC_RUMOUR_SOURCE_ITEM)
 local dataminedUnclear      = GetString(SI_FURC_DATAMINED_UNCLEAR)
@@ -129,11 +120,10 @@ FurC.MiscItemSources[FURC_KITTY]  = {
   }, 
   
   [FURC_DROP]    = {
-    [121203]    = daily_reward , -- Praxis: Khajiit Brazier, Enchanted
+    [121203]    = daily_reward ,    -- Praxis: Khajiit Brazier, Enchanted
   },
   
   [FURC_CROWN]  = {   
-  
   
     [151838] = itemPackOasis, -- Elsweyr Fountain, Moons-Blessed,
     [151840] = itemPackOasis, -- Plant, Desert Fan,

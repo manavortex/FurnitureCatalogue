@@ -12,23 +12,26 @@ local function colorise(str, col, ret)
 end
 
 local requires = GetString(SI_FURC_REQUIRES_ACHIEVEMENT)
-local psijicRank = GetString(SI_FURC_PSIJIC_RANK)
+local requiresPsijicRank = string.format("%s %s", requires, GetString(SI_FURC_PSIJIC_RANK))
+local rankFormattingString = requiresPsijicRank .. "%d"
 
-local function rank(aNumber) return requires .. psijicRank .. aNumber end
+local function rank(aNumber) return string.format(requiresPsijicRank, aNumber) end
+
+local vendorString = GetString(SI_FURC_STRING_VENDOR)
 
 local function soldBy(vendorName, locationName, price, requirement)
     return zo_strformat(
-        GetString(SI_FURC_STRING_VENDOR),
-        colorise(vendorName,      vendorColor, stripColor),
-        colorise(locationName,    vendorColor, stripColor),
-        colorise(price,           goldColor, stripColor),
+        vendorString,
+        colorise(vendorName,      colorVendor, stripColor),
+        colorise(locationName,    colorVendor, stripColor),
+        colorise(price,           colorGold,   stripColor),
         requirement
     )
 end
 
-
-local artaeum       = GetString(FURC_AV_ARTAEUM)
-local nalirsewen    = GetString(FURC_AV_NAL)
+local daily_reward_elswhere   = GetString(SI_FURC_DAILY_ELSWEYR)
+local artaeum                 = GetString(FURC_AV_ARTAEUM)
+local nalirsewen              = GetString(FURC_AV_NAL)
 
 FurC.RecipeSources = {
     [139489] = soldBy(nalirsewen, artaeum, 5000,    rank(2)),  -- Blueprint: Psijic Chair, Arched
@@ -43,6 +46,8 @@ FurC.RecipeSources = {
     [139497] = soldBy(nalirsewen, artaeum, 100000,  rank(10)), -- Praxis: Psijic Table, Grand
     [139492] = soldBy(nalirsewen, artaeum, 20000,   rank(5)),  -- Praxis: Psijic Table, Scalloped
     [139494] = soldBy(nalirsewen, artaeum, 20000,   rank(7)),  -- Praxis: Psijic Table, Six-Fold Symmetry
+    
+    [121203] = daily_reward_elswhere,                          -- Praxis: Khajiit Brazier, Enchanted
 }
 
 
