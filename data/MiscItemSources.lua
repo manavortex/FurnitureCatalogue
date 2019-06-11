@@ -10,26 +10,16 @@ local pickpocket_guard      = GetString(SI_FURC_CANBEPICKED) .. " from guards"
 local automaton_loot_cc     = GetString(SI_FURC_AUTOMATON) .. " in Clockwork City"
 local automaton_loot_vv     = GetString(SI_FURC_AUTOMATON) .. " on Vvardenfell"
 
-local harvest_coldharbour   = GetString(SI_FURC_HARVEST) .. " in Coldharbour"
 
 local scambox_string        = GetString(SI_FURC_SCAMBOX)
 
-local scambox_fireatro      = zo_strformat("<<1>> (<<2>>)", scambox_string, GetString(SI_FURC_FLAME_ATRONACH))
-local scambox_dwemer        = zo_strformat("<<1>> (<<2>>)", scambox_string, GetString(SI_FURC_DWEMER))
-local scambox_reaper        = zo_strformat("<<1>> (<<2>>)", scambox_string, GetString(SI_FURC_REAPER))
-
-local db_poison             = zo_strformat("<<1>> <<2>>", GetString(SI_FURC_DB), GetString(SI_FURC_DB_POISON))
-local db_sneaky             = zo_strformat("<<1>> <<2>>", GetString(SI_FURC_DB), GetString(SI_FURC_DB_STEALTH))
-
 local sinister_hollowjack   = "Sinister Hollowjack Items"
 
-local itemPackNewLife2018   = zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "New Life Festival 2018")
-local itemPackDeepmire      = zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "Deepmire Expedition")
-
+local itemPackMoonBishop    = zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "Moon Bishop’s Sanctuary")
+local itemPackMoonBishop    = zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "Moons-Blessed Oasis")
 
 local stealable             = GetString(SI_FURC_CANBESTOLEN)
 
-local stealable_cc          = stealable ..          " in Clockwork City"
 local stealable_scholars    = stealable ..          " from scholars"
 local stealable_nerds       = stealable_scholars .. " and mages"
 local stealable_priests     = stealable ..          " from priests and pilgrims"
@@ -47,11 +37,11 @@ local rumourSource          = GetString(SI_FURC_RUMOUR_SOURCE_ITEM)
 local dataminedUnclear      = GetString(SI_FURC_DATAMINED_UNCLEAR)
 
 local daily_reward          = GetString(SI_FURC_DAILY_ELSWEYR)
-
+local priceUnknown          = "?"
 
 local crownstoresource      = GetString(SI_FURC_CROWNSTORESOURCE)
 local function getCrownPrice(price)
-  return string.format("%s (%u)", crownstoresource, price)
+  return ( price < 0 and priceUnknown) or string.format("%s (%u)", crownstoresource, price)
 end
 
 local housesource = GetString(SI_FURC_HOUSE)
@@ -62,31 +52,8 @@ local function getHouseString(houseId1, houseId2)
 end
 
 FurC.MiscItemSources[FURC_KITTY]  = {
+  
   [FURC_RUMOUR]   = {
-    [151824] = rumourSource, -- Lunar Tapestry, The Open Path,
-    [151825] = rumourSource, -- Lunar Tapestry, The Gathering,
-    [151826] = rumourSource, -- Lunar Tapestry, The Dance,
-    [151827] = rumourSource, -- Lunar Tapestry, The Gate,
-    [151828] = rumourSource, -- Lunar Tapestry, The Demon,
-    [151829] = rumourSource, -- Suthay Statue, Nimble Bishop,
-    [151830] = rumourSource, -- Elsweyr Divider, Elegant Wooden,
-    [151832] = rumourSource, -- Elsweyr Ceremonial Lantern, Jone,
-    [151833] = rumourSource, -- Elsweyr Ceremonial Lantern, Jode,
-    [151835] = rumourSource, -- Cathay-Raht Statue, Warrior,
-    [151836] = rumourSource, -- Tojay Statue, Dancer,
-    [151837] = rumourSource, -- Ohmes-Raht Statue, Trickster,
-    [151838] = rumourSource, -- Elsweyr Fountain, Moons-Blessed,
-    [151840] = rumourSource, -- Plant, Desert Fan,
-    [151841] = rumourSource, -- Plant, Tall Desert Fan,
-    [151842] = rumourSource, -- Plant, Cask Palm,
-    [151843] = rumourSource, -- Cactus, Flowering Cluster,
-    [151844] = rumourSource, -- Cactus, Bilberry,
-    [151845] = rumourSource, -- Elsweyr Potted Cactus, Flowering,
-    [151846] = rumourSource, -- Elsweyr Potted Plant, Cask Palm,
-    [151847] = rumourSource, -- Plant, Flowering Desert Aloe,
-    [151848] = rumourSource, -- Trees, Sunset Palm Cluster,
-    [151849] = rumourSource, -- Cactus, Lily Flower,
-    [151850] = rumourSource, -- Tree, Anequina Bonsai,
     [151851] = rumourSource, -- Boulder, Lunar Spine,
     [151852] = rumourSource, -- Boulder, Lunar Spire,
     [151853] = rumourSource, -- Cactus, Lunar Fan,
@@ -114,7 +81,6 @@ FurC.MiscItemSources[FURC_KITTY]  = {
     [152149] = rumourSource, -- Orcish Brazier, Pillar,
     [151894] = rumourSource, -- Elsweyr Mirror, Carved Wall,
     [151904] = rumourSource, -- Glowgrass, Patch,
-    [151906] = rumourSource, -- Robust Target Dro-m'Athra,
     [151909] = rumourSource, -- Music Box, Scalesong,
     [151910] = rumourSource, -- Music Box, Sweetblossom,
     [151913] = rumourSource, -- Rock, Slate,
@@ -128,7 +94,7 @@ FurC.MiscItemSources[FURC_KITTY]  = {
     [151950] = rumourSource, -- Khajiit Path Marker, Lion,
     [151951] = rumourSource, -- Nedic Orb, Ritual,
     [151952] = rumourSource, -- Nedic Stand, Ritual,
-    [151953] = rumourSource, -- Reikling Totem, Skull,
+    [151953] = rumourSource, -- Reikling Totem, Skull (sic)
     [151954] = rumourSource, -- Reachmen Banner, Bull, 
     [147926] = rumourSource, -- Target Iron Atronach, Trial,
     [152148] = rumourSource, -- Orcish Tapestry, Hunt,
@@ -150,14 +116,52 @@ FurC.MiscItemSources[FURC_KITTY]  = {
     [151889] = stealable_elsewhere, -- Elsweyr Comb, Grooming    
     [151893] = stealable_elsewhere, -- Elsweyr Fragrance Bottle, Moonlit Tryst 
     [151899] = stealable_elsewhere, -- Elsweyr Pillow, Night Blues Wide,
+    [151898] = stealable_elsewhere, -- Elsweyr Pillow, Gold-Ruby Roll,
+    [151900] = stealable_elsewhere, -- Elsweyr Pillow, Gold-Ruby Throw,
+    [151895] = stealable_elsewhere, -- Elsweyr Cloth, Rolled,
+    [151643] = stealable_elsewhere, -- Elsweyr Rolling Pin, Well-Worn,
+    [151890] = stealable_elsewhere, -- Elsweyr Hand Mirror, Bronze Oval,
+    [151891] = stealable_elsewhere, -- Elsweyr Hand Mirror, Rectangular,
+    [151897] = stealable_elsewhere, -- Elsweyr Fabric, Display,
+    [151886] = stealable_elsewhere, -- Elsweyr Fan, Handheld,
+    [151887] = stealable_elsewhere, -- Elsweyr Brush, Body,
+    [151888] = stealable_elsewhere, -- Elsweyr Brush, Head,
   }, 
   
   [FURC_DROP]    = {
-  [121203]    = daily_reward , -- Praxis: Khajiit Brazier, Enchanted
-  
+    [121203]    = daily_reward , -- Praxis: Khajiit Brazier, Enchanted
   },
   
   [FURC_CROWN]  = {   
+  
+  
+    [151838] = itemPackOasis, -- Elsweyr Fountain, Moons-Blessed,
+    [151840] = itemPackOasis, -- Plant, Desert Fan,
+    [151841] = itemPackOasis, -- Plant, Tall Desert Fan,
+    [151842] = itemPackOasis, -- Plant, Cask Palm,
+    [151843] = itemPackOasis, -- Cactus, Flowering Cluster,
+    [151844] = itemPackOasis, -- Cactus, Bilberry,
+    [151845] = itemPackOasis, -- Elsweyr Potted Cactus, Flowering,
+    [151846] = itemPackOasis, -- Elsweyr Potted Plant, Cask Palm,
+    [151835] = itemPackOasis, -- Cathay-Raht Statue, Warrior,
+    [151836] = itemPackOasis, -- Tojay Statue, Dancer,
+    [151837] = itemPackOasis, -- Ohmes-Raht Statue, Trickster,
+    [151847] = itemPackOasis, -- Plant, Flowering Desert Aloe,
+    [151848] = itemPackOasis, -- Trees, Sunset Palm Cluster,
+    [151849] = itemPackOasis, -- Cactus, Lily Flower,
+    [151850] = itemPackOasis, -- Tree, Anequina Bonsai,
+  
+    [151906] = itemPackMoonBishop, -- Robust Target Dro-m'Athra,
+    [151829] = itemPackMoonBishop, -- Suthay Statue, Nimble Bishop,
+    [151824] = itemPackMoonBishop, -- Lunar Tapestry, The Open Path,
+    [151825] = itemPackMoonBishop, -- Lunar Tapestry, The Gathering,
+    [151826] = itemPackMoonBishop, -- Lunar Tapestry, The Dance,
+    [151827] = itemPackMoonBishop, -- Lunar Tapestry, The Gate,
+    [151828] = itemPackMoonBishop, -- Lunar Tapestry, The Demon,
+    [151830] = itemPackMoonBishop, -- Elsweyr Divider, Elegant Wooden,
+    [151832] = itemPackMoonBishop, -- Elsweyr Ceremonial Lantern, Jone,
+    [151833] = itemPackMoonBishop, -- Elsweyr Ceremonial Lantern, Jode,
+    
     [151808] = getCrownPrice(10), -- Tree, Fan Palm,
     [151813] = getCrownPrice(10), -- Sapling, Desert Acacia,
     [151816] = getCrownPrice(10), -- Plant, Flowering Thorned Succulent,
@@ -176,17 +180,8 @@ FurC.MiscItemSources[FURC_KITTY]  = {
     [151876] = getCrownPrice(590), -- Elsweyr Tent, Caravan,
     [151877] = getCrownPrice(590), -- Elsweyr Canopy, Bazaar,
     [151878] = getCrownPrice(450), -- Elsweyr Canopy, Peaked,
-    [151886] = getCrownPrice(45), -- Elsweyr Fan, Handheld,
-    [151887] = getCrownPrice(45), -- Elsweyr Brush, Body,
-    [151888] = getCrownPrice(15), -- Elsweyr Brush, Head,
     [151883] = getCrownPrice(240), -- Tree, Towering Iroko,
-    [151890] = getCrownPrice(190), -- Elsweyr Hand Mirror, Bronze Oval,
-    [151891] = getCrownPrice(100), -- Elsweyr Hand Mirror, Rectangular,
     [151892] = getCrownPrice(110), -- Elsweyr Fragrance Bottle, Moons-Blessed,
-    [151895] = getCrownPrice(20), -- Elsweyr Cloth, Rolled,
-    [151897] = getCrownPrice(20), -- Elsweyr Fabric, Display,
-    [151898] = getCrownPrice(20), -- Elsweyr Pillow, Gold-Ruby Roll,
-    [151900] = getCrownPrice(20), -- Elsweyr Pillow, Gold-Ruby Throw,
     [151901] = getCrownPrice(20), -- Elsweyr Bowl, Moon-Sugar,
     [151902] = getCrownPrice(200), -- Elsweyr Sarcophagus, Ancient,
     [151903] = getCrownPrice(200), -- Elsweyr Sarcophagus Lid, Ancient,
@@ -194,10 +189,10 @@ FurC.MiscItemSources[FURC_KITTY]  = {
     [151911] = getCrownPrice(5), -- Rock, Flat Slate,
     [151912] = getCrownPrice(10), -- Stepping Stones, Slate,
     [151914] = getCrownPrice(25), -- Tree, Desert Acacia Tall,
-    [151643] = getCrownPrice(40), -- Elsweyr Rolling Pin, Well-Worn,
     [151804] = getCrownPrice(30), -- Elsweyr Pillar, Rough Wooden,
     [151806] = getCrownPrice(5), -- Rubble Pile, Ancient Stone,
     [151807] = getCrownPrice(5), -- Rock Field, Ancient Stone,
+    [151703] = getCrownPrice(-1), -- Elsweyr Wardrobe, Wide Elegant Wooden,
   },
   [FURC_FISHING]   = {
      

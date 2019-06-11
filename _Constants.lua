@@ -1,15 +1,15 @@
 -- constants for filtering
 -- item sources
 FURC_NONE               = 1
-FURC_FAVE               = FURC_NONE +1                -- 2
-FURC_CRAFTING           = FURC_FAVE +1                -- 3
-FURC_CRAFTING_KNOWN     = FURC_CRAFTING +1            -- 4
-FURC_CRAFTING_UNKNOWN   = FURC_CRAFTING_KNOWN +1      -- 5
-FURC_VENDOR             = FURC_CRAFTING_UNKNOWN +1    -- 6
-FURC_PVP                = FURC_VENDOR +1              -- 7
-FURC_CROWN              = FURC_PVP +1                 -- 8
-FURC_RUMOUR             = FURC_CROWN +1               -- 9
-FURC_LUXURY             = FURC_RUMOUR +1              -- 10
+FURC_RUMOUR             = FURC_NONE +1                -- 2
+FURC_FAVE               = FURC_RUMOUR +1              -- 3
+FURC_CRAFTING           = FURC_FAVE +1                -- 4
+FURC_CRAFTING_KNOWN     = FURC_CRAFTING +1            -- 5
+FURC_CRAFTING_UNKNOWN   = FURC_CRAFTING_KNOWN +1      -- 6
+FURC_VENDOR             = FURC_CRAFTING_UNKNOWN +1    -- 7
+FURC_PVP                = FURC_VENDOR +1              -- 8
+FURC_CROWN              = FURC_PVP +1                 -- 9
+FURC_LUXURY             = FURC_CROWN +1               -- 10
 FURC_OTHER              = FURC_LUXURY +1              -- 12
 FURC_ROLIS              = FURC_OTHER +1               -- 13
 FURC_DROP               = FURC_ROLIS +1               -- 14
@@ -22,13 +22,13 @@ FURC_EMPTY_STRING       = ""
 
 
 -- versioning
-FURC_HOMESTEAD            = 2
-FURC_MORROWIND            = FURC_HOMESTEAD +1         -- 3
-FURC_REACH                = FURC_MORROWIND +1         -- 4
-FURC_CLOCKWORK            = FURC_REACH +1             -- 5
-FURC_DRAGONS              = FURC_CLOCKWORK +1         -- 6
-FURC_ALTMER               = FURC_DRAGONS +1           -- 7
-FURC_WEREWOLF             = FURC_ALTMER +1            -- 8
-FURC_SLAVES               = FURC_WEREWOLF +1          -- 9
-FURC_WOTL                 = FURC_SLAVES +1            -- 10
-FURC_KITTY                = FURC_WOTL + 1             -- 11
+FURC_HOMESTEAD            = 2                         -- 2
+FURC_MORROWIND            = FURC_HOMESTEAD  +1        -- 3
+FURC_REACH                = FURC_MORROWIND  +1        -- 4
+FURC_CLOCKWORK            = FURC_REACH      +1        -- 5
+FURC_DRAGONS              = FURC_CLOCKWORK  +1        -- 6
+FURC_ALTMER               = FURC_DRAGONS    +1        -- 7
+FURC_WEREWOLF             = FURC_ALTMER     +1        -- 8
+FURC_SLAVES               = FURC_WEREWOLF   +1        -- 9
+FURC_WOTL                 = FURC_SLAVES     +1        -- 10
+FURC_KITTY                = FURC_WOTL       +1        -- 11

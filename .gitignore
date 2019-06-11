@@ -1,36 +1,23 @@
 
-# Created by https://www.gitignore.io/api/windows
-
-### Windows ###
-# Windows thumbnail cache files
+##############################
+########## Windows ###########
 Thumbs.db
-ehthumbs.db
-ehthumbs_vista.db
-
-textures/
-textures/*
-
-# Folder config file
 Desktop.ini
-
-# Recycle Bin used on file shares
-$RECYCLE.BIN/
-
-# Windows Installer files
-*.cab
-*.msi
-*.msm
-*.msp
 *.bat
-
-# Windows shortcuts
+*.manifest
 *.lnk
 
-# End of https://www.gitignore.io/api/windows
+
+
+##############################
+##########   OsX   ###########
+*.sublime*
+
+
+##############################
+##########  Stuff  ###########
+package.*
 
 btm/
 btm/*
 .gitattributes
-
-furC.sublime-*
-package.bat

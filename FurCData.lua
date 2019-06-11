@@ -408,7 +408,8 @@ local function scanFromFiles(shouldScanCharacter)
           recipeArray = parseFurnitureItem(FurC.GetItemLink(itemId))
           if nil ~= recipeArray then
             recipeArray.version = versionNumber
-            recipeArray.origin  = origin
+            recipeArray.origin = origin             -- 3.5: moved FURC_RUMOUR to beginning of table so it'll get overwritten
+            
             addDatabaseEntry(itemId, recipeArray)
           else
             p("scanMiscItemFile: Error when scanning <<1>> (<<2>>) -> <<3>>", itemLink, itemId, origin)
@@ -433,7 +434,7 @@ local function scanFromFiles(shouldScanCharacter)
       for itemId, itemData in pairs(vendorData) do
            local recipeArray       = {}
 
-          recipeArray.origin      = FURC_LUXURY
+          recipeArray.origin       = FURC_LUXURY
           recipeArray.version      = versionNumber
           addDatabaseEntry(itemId, recipeArray)
       end
@@ -457,18 +458,18 @@ local function scanFromFiles(shouldScanCharacter)
         recipeArray.blueprint = blueprintId
       end
       recipeArray.recipeListIndex, recipeArray.recipeIndex =  GetItemLinkGrantedRecipeIndices(blueprintLink)
-      recipeArray.origin = FURC_RUMOUR
+      recipeArray.origin = recipeArray.origin or FURC_RUMOUR
       recipeArray.verion = FURC_HOMESTEAD
       addDatabaseEntry(itemId, recipeArray)
     end
   end
-    local function scanCharacterOrMaybeNot()
-        if shouldScanCharacter then
+  local function scanCharacterOrMaybeNot()
+    if shouldScanCharacter then
       scanCharacter()
     else
       startupMessage(GetString(SI_FURC_VERBOSE_STARTUP))
     end
-    end
+  end
   local function rescanRumourRecipes()
     -- make sure that all rumour items 
     for recipeKey, recipeArray in pairs(FurC.settings.data) do
@@ -479,9 +480,6 @@ local function scanFromFiles(shouldScanCharacter)
   end
     
   FurC.IsLoading(true)
-
-  -- task:Call(scanMiscItemFile)
-  -- :Then(scanRecipeFile)
   
   task:Call(scanRecipeFile)
   :Then(scanMiscItemFile)
