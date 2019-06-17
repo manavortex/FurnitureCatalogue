@@ -1,6 +1,29 @@
 FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
 FurC.LuxuryFurnisher[FURC_KITTY] = {
+
+  [147648] = {    -- Dwarven Press Bed, Forge-Sized
+    itemPrice   = 22000,
+    itemDate  = "2019-06-15",
+  },  
+  [126560] = {  -- Dwarven fountain, forged
+    itemPrice   = 50000,
+    itemDate  = "2019-06-15",
+  },
+  [126564] = {  -- Dwarven Clock, Deactivated
+    itemPrice   = 15000,
+    itemDate  = "2019-06-15",
+  },
+  [126561] = {  -- Dwarven Pillar, Forged
+    itemPrice   = 10000,
+    itemDate  = "2019-06-15",
+  },
+  [139092] = {  -- Dwarven Engine, Fused 
+    itemPrice   = 24000,
+    itemDate  = "2019-06-15",
+  },
+
+
   [145487] = {    -- Banner, Order of the Hour
     itemPrice   = 12000,
     itemDate  = "2019-06-09",

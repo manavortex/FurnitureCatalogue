@@ -759,24 +759,6 @@ FurC.LuxuryFurnisher[FURC_ALTMER] = {
     itemDate  = "2018-06-23",
   },
 
-  --
-  [126560] = {  -- Dwarven fountain, forged
-    itemPrice   = 50000,
-    itemDate  = "2018-06-16",
-  },
-  [126564] = {  -- Dwarven Clock, Deactivated
-    itemPrice   = 15000,
-    itemDate  = "2018-06-16",
-  },
-  [126561] = {  -- Dwarven Pillar, Forged
-    itemPrice   = 10000,
-    itemDate  = "2018-06-16",
-  },
-  [139092] = {  -- Dwarven Engine, Fused 
-    itemPrice   = 24000,
-    itemDate  = "2018-06-16",
-  },
-
     
     
 }
