@@ -458,7 +458,7 @@ local function scanFromFiles(shouldScanCharacter)
         recipeArray.blueprint = blueprintId
       end
       recipeArray.recipeListIndex, recipeArray.recipeIndex =  GetItemLinkGrantedRecipeIndices(blueprintLink)
-      recipeArray.origin = recipeArray.origin or FURC_RUMOUR
+      recipeArray.origin = FURC_RUMOUR
       recipeArray.verion = FURC_HOMESTEAD
       addDatabaseEntry(itemId, recipeArray)
     end

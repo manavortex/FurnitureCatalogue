@@ -2,6 +2,28 @@ FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
 FurC.LuxuryFurnisher[FURC_KITTY] = {
 
+  [147647] = {    -- Dwarven Centurion Blade, Detached
+    itemPrice   = 3500,
+    itemDate  = "2019-06-23",
+  },
+  [126562] = {  -- Dwarven Crystal Mechanism
+    itemPrice   = 50000,
+    itemDate  = "2019-06-23",
+  },
+  [126563] = {  -- Dwarven Orrery, Reference
+    itemPrice   = 25000,
+    itemDate  = "2019-06-23",
+  },
+  [126559] = {  -- Dwarven Schematics, technical
+    itemPrice   = 8000,
+    itemDate  = "2019-06-23",
+  },
+  [139093] = {  -- Dwarven Centurion Hammer, Detached
+    itemPrice   = 3000,
+    itemDate  = "2019-06-23",
+  },
+
+
   [147648] = {    -- Dwarven Press Bed, Forge-Sized
     itemPrice   = 22000,
     itemDate  = "2019-06-15",

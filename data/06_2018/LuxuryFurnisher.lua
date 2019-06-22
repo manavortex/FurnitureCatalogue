@@ -741,23 +741,6 @@ FurC.LuxuryFurnisher[FURC_ALTMER] = {
     itemDate  = "2016-06-30",
   },
     
-    
-  [126562] = {  -- Dwarven Crystal Mechanism
-    itemPrice   = 50000,
-    itemDate  = "2018-06-23",
-  },
-  [126563] = {  -- Dwarven Orrery, Reference
-    itemPrice   = 25000,
-    itemDate  = "2018-06-23",
-  },
-  [126559] = {  -- Dwarven Schematics, technical
-    itemPrice   = 8000,
-    itemDate  = "2018-06-23",
-  },
-  [139093] = {  -- Dwarven Centurion Hammer, Detached
-    itemPrice   = 3000,
-    itemDate  = "2018-06-23",
-  },
 
     
     

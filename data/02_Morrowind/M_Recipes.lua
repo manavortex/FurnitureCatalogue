@@ -42,7 +42,6 @@ FurC.Recipes[FURC_MORROWIND] = {
   126954, -- Hlaalu Rack, Barrel
   127051, -- Redoran Mantle Cloth, Crimson Cover
   126937, -- Redoran Stool, Sanded
-  121210, -- Orcish Throne, Skull
   127038, -- Indoril Runner, Sotha Sil
   126916, -- Dres Sideboard, Display
   121198, -- Shelf, Poison
@@ -63,8 +62,6 @@ FurC.Recipes[FURC_MORROWIND] = {
   126837, -- Daedric Urn, Ashen
   126862, -- Dwarven Pipeline Cap, Sealed
   126942, -- Hlaalu Bookcase, Orderly
-  121217, -- Redguard Lamp, Oil
-  121213, -- Orcish Skull Goblet, Empty
   126902, -- Redoran Amphora, Sealed Marble
   126958, -- Hlaalu Nightstand, Formal
   127026, -- Indoril Runner, Almalexia
@@ -85,14 +82,12 @@ FurC.Recipes[FURC_MORROWIND] = {
   126850, -- Dwarven Engine, Fan
   127056, -- Dres Tapestry, Vines
   126938, -- Redoran Armchair, Fungal Cushion
-  121161, -- Ram Horns, Mounted
   126951, -- Redoran End Table, sanded
   121369, -- Redguard Bed, Full Lattice
   126955, -- Hlaalu Cabinet, Clerk
   126988, -- Telvanni Stool, Organic
   126923, -- Redoran Bed, Single Pillow
   126915, -- Dres Trestle, Corridor
-  121216, -- Redguard Divider, Gilded
   126897, -- Dwarven Sconce, Powered
   126893, -- Dwarven Chandelier, Braced
   121313, -- Wood Elf Throne, Vine
@@ -257,7 +252,6 @@ FurC.Recipes[FURC_MORROWIND] = {
   126880, -- Dwarven Amphora, Sealed
   126879, -- Dwarven Jug, Sealed
   121106, -- Common Cargo Crate, Dry
-  121215, -- Redguard Canopy, Dusk
   126896, -- Dwarven Lamppost, Powered
   126859, -- Dwarven Pipeline, Column
   126858, -- Dwarven Pipeline, Full Column
