@@ -1,6 +1,27 @@
 FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
 FurC.LuxuryFurnisher[FURC_KITTY] = {
+  
+  [151915] = {    -- Daedric Key, Coldharbour
+    itemPrice   = 5000,
+    itemDate  = "2016-06-30",
+  },   
+  [139094] = { -- Daedric Altar, Periyte
+    itemPrice   = 40000,
+    itemDate  = "2016-06-30",
+  },
+  [126567] = {  -- Daedric Sarcophagus, Sealed
+    itemPrice   = 10000,
+    itemDate  = "2016-06-30",
+  },
+  [126565] = {  -- Daedric Platform, Sarcophagus
+    itemPrice   = 8000,
+    itemDate  = "2016-06-30",
+  },
+  [126566] = {  -- Daedric Brazier, Ritual
+    itemPrice   = 25000,
+    itemDate  = "2016-06-30",
+  },
 
   [147647] = {    -- Dwarven Centurion Blade, Detached
     itemPrice   = 3500,
