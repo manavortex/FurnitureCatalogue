@@ -2,6 +2,9 @@ FurC.Recipes = FurC.Recipes or {}
 
 FurC.Recipes[FURC_KITTY] = {
     
+  152047, -- Elsweyr Wardrobe, Wide Elegant Wooden
+  139535, -- Alinor Streetlight, Wrought Iron 
+  139525, -- Alinor Sconce, Lantern 
   152238, -- Elsweyr Sarcophagus Lid, Ancient,
   152237, -- Elsweyr Sarcophagus, Ancient,
   152064, -- Elsweyr Table, Low Square

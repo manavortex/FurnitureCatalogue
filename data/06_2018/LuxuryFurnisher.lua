@@ -677,52 +677,8 @@ FurC.LuxuryFurnisher[FURC_ALTMER] = {
   },
 
 
-    [139097] = { -- Spiral Skein Glowstalks, Sprouts
-       itemPrice = 8000, 
-    itemDate  = "2018-07-14",
-    },
-    
-  --July 29 + 30
-  [126587] = {  -- Vvardenfell Glowstalk, Sprout
-    itemPrice   = 2500,
-    itemDate  = "2018-07-14",
-  },
-  [126585] = {  -- Vvardenfell Glowstalk, Strong
-    itemPrice   = 10000,
-    itemDate  = "2018-07-14",
-  },
-  [126580] = {  -- Vvardenfell Glowstalk, Towering
-    itemPrice   = 15000,
-    itemDate  = "2018-07-14",
-  },
-  [126586] = {  -- Vvardenfell Glowstalk, Young
-    itemPrice   = 5000,
-    itemDate  = "2018-07-14",
-  },
 
 
-    
-  [139096] = {  -- Daedric Urn, Sealed
-    itemPrice   = 1000,
-    itemDate  = "2018-07-07",
-  },
-    [139095] = {  -- Daedric Drinking Bowl, Ritual 
-    itemPrice   = 650,
-    itemDate  = "2018-07-07",
-  },
-    [126571] = {  -- Daedric Chandelier, Spiked
-    itemPrice   = 8000,
-    itemDate  = "2018-07-07",
-  },
-  [126569] = {  -- Daedric Chest, Sealed
-    itemPrice   = 8000,
-    itemDate  = "2018-07-07",
-  },
-  [126570] = {  -- Daedric Throne, Skulls
-    itemPrice   = 25000,
-    itemDate  = "2018-07-07",
-  },
-   
  
     
 

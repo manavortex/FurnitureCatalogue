@@ -1,6 +1,107 @@
 FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
 FurC.LuxuryFurnisher[FURC_KITTY] = {
+  [151945] = {    -- Plant, Spore Pod
+    itemPrice   = 450,
+    itemDate  = "2019-07-13",
+  },
+  [139097] = { -- Spiral Skein Glowstalks, Sprouts
+   itemPrice = 8000, 
+    itemDate  = "2019-07-14",
+  },
+    
+  --July 29 + 30
+  [126587] = {  -- Vvardenfell Glowstalk, Sprout
+    itemPrice   = 2500,
+    itemDate  = "2019-07-14",
+  },
+  [126585] = {  -- Vvardenfell Glowstalk, Strong
+    itemPrice   = 10000,
+    itemDate  = "2019-07-14",
+  },
+  [126580] = {  -- Vvardenfell Glowstalk, Towering
+    itemPrice   = 15000,
+    itemDate  = "2019-07-14",
+  },
+  [126586] = {  -- Vvardenfell Glowstalk, Young
+    itemPrice   = 5000,
+    itemDate  = "2019-07-14",
+  },
+
+  [151944] = {    -- Daedric Sconce, Coldharbour
+    itemPrice   = 10000,
+    itemDate  = "2019-07-06",
+  },
+
+  [134845] = {  -- Brotherhood  Tapestry, Small
+    itemPrice   = 5000,
+    itemDate  = "2019-07-06",
+  },
+  [120837] = {  -- Brotherhood Window, Stained Glass
+    itemPrice   = 100000,
+    itemDate  = "2019-07-06",
+  },
+  [121271] = {  -- Brotherhood Tapestry
+    itemPrice   = 10000,
+    itemDate  = "2019-07-06",
+  },
+  [120835] = {  -- Brotherhood Candelabra, Table
+    itemPrice   = 2500,
+    itemDate  = "2019-07-06",
+  },
+  [145486] = {    -- Door, Sweet Mother
+    itemDate  = "2019-07-06",
+    itemPrice   = 35000,
+  },
+    
+  [139096] = {  -- Daedric Urn, Sealed
+    itemPrice   = 1000,
+    itemDate  = "2019-07-06",
+  },
+    [139095] = {  -- Daedric Drinking Bowl, Ritual 
+    itemPrice   = 650,
+    itemDate  = "2019-07-06",
+  },
+    [126571] = {  -- Daedric Chandelier, Spiked
+    itemPrice   = 8000,
+    itemDate  = "2019-07-06",
+  },
+  [126569] = {  -- Daedric Chest, Sealed
+    itemPrice   = 8000,
+    itemDate  = "2019-07-06",
+  },
+  [126570] = {  -- Daedric Throne, Skulls
+    itemPrice   = 25000,
+    itemDate  = "2019-07-06",
+  },
+   
+
+  
+  [134844] = {  -- Ra Gada Statue, Forward Scout
+    itemPrice   = 25000,
+    itemDate  = "2019-05-26",
+  },
+  [120808] = {  -- Statue Base, Circular
+    itemPrice   = 2500,
+    itemDate  = "2019-05-26",
+  },
+  [120811] = {  -- Statue, Justice
+    itemPrice   = 25000,
+    itemDate  = "2019-05-26",
+  },
+  [120814] = {  -- Statue, Order
+    itemPrice   = 25000,
+    itemDate  = "2019-05-26",
+  },
+  [120813] = {  -- Statue, Truth
+    itemPrice   = 25000,
+    itemDate  = "2019-05-26",
+  },    
+  [145485] = {    -- Dark Elf Statue, Knight
+    itemPrice   = 20000,
+    itemDate  = "2019-05-26",
+  },
+
   
   [151915] = {    -- Daedric Key, Coldharbour
     itemPrice   = 5000,
@@ -94,53 +195,6 @@ FurC.LuxuryFurnisher[FURC_KITTY] = {
     itemDate  = "2019-06-09",
   },
   
-  [134845] = {  -- Brotherhood  Tapestry, Small
-    itemPrice   = 5000,
-    itemDate  = "2019-06-01",
-  },
-  [120837] = {  -- Brotherhood Window, Stained Glass
-    itemPrice   = 100000,
-    itemDate  = "2019-06-01",
-  },
-  [121271] = {  -- Brotherhood Tapestry
-    itemPrice   = 10000,
-    itemDate  = "2019-06-01",
-  },
-  [120835] = {  -- Brotherhood Candelabra, Table
-    itemPrice   = 2500,
-    itemDate  = "2019-06-01",
-  },
-  [145486] = {    -- Door, Sweet Mother
-    itemDate  = "2019-06-01",
-  itemPrice   = 35000,
-  },
-
-
-  
-  [134844] = {  -- Ra Gada Statue, Forward Scout
-    itemPrice   = 25000,
-    itemDate  = "2019-05-26",
-  },
-  [120808] = {  -- Statue Base, Circular
-    itemPrice   = 2500,
-    itemDate  = "2019-05-26",
-  },
-  [120811] = {  -- Statue, Justice
-    itemPrice   = 25000,
-    itemDate  = "2019-05-26",
-  },
-  [120814] = {  -- Statue, Order
-    itemPrice   = 25000,
-    itemDate  = "2019-05-26",
-  },
-  [120813] = {  -- Statue, Truth
-    itemPrice   = 25000,
-    itemDate  = "2019-05-26",
-  },    
-  [145485] = {    -- Dark Elf Statue, Knight
-    itemPrice   = 20000,
-    itemDate  = "2019-05-26",
-  },
 
 }
 FurC.LuxuryFurnisher[FURC_WOTL] = {
