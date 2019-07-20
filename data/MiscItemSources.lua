@@ -70,7 +70,6 @@ FurC.MiscItemSources[FURC_KITTY]  = {
     [151885] = rumourSource, -- Tree, Massive Ficus,
     [152145] = rumourSource, -- Orcish Tapestry, War,    
     [152149] = rumourSource, -- Orcish Brazier, Pillar,
-    [151894] = rumourSource, -- Elsweyr Mirror, Carved Wall,
     [151904] = rumourSource, -- Glowgrass, Patch,
     [151909] = rumourSource, -- Music Box, Scalesong,
     [151910] = rumourSource, -- Music Box, Sweetblossom,
@@ -117,6 +116,7 @@ FurC.MiscItemSources[FURC_KITTY]  = {
     [151886] = stealable_elsewhere, -- Elsweyr Fan, Handheld,
     [151887] = stealable_elsewhere, -- Elsweyr Brush, Body,
     [151888] = stealable_elsewhere, -- Elsweyr Brush, Head,
+    [151894] = stealable_elsewhere, -- Elsweyr Mirror, Carved Wall
   }, 
   
   [FURC_DROP]    = {
