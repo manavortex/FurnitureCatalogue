@@ -1,7 +1,24 @@
 FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
 FurC.LuxuryFurnisher[FURC_KITTY] = {
-  
+  [151853] = {    -- Cactus, Lunar Fan
+    itemPrice   = 12000,
+    itemDate  = "2019-07-27",
+  },
+  [151854] = {    -- Cactus, Banded Lunar Multihued Trio
+    itemPrice   = 7500,
+    itemDate  = "2019-07-27",
+  },
+  [151852] = {    -- Boulder, Lunar Spire
+    itemPrice   = 450,
+    itemDate  = "2019-07-27",
+  },
+  [151851] = {    -- Boulder, Lunar Spine
+    itemPrice   = 2500,
+    itemDate  = "2019-07-27",
+  },
+
+
   [151946] = {    -- Flower, Coda
     itemPrice   = 3000,
     itemDate  = "2019-07-21",
