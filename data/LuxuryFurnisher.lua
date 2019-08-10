@@ -1,6 +1,51 @@
 FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
 FurC.LuxuryFurnisher[FURC_KITTY] = {
+  [151947] = {    -- Dark Elf Ash Garden, Communal
+    itemPrice   = 15000,
+    itemDate  = "2019-08-10",
+  },
+  -- August 5+6
+  [126573] = { -- Velothi Candle, Mourning
+    itemPrice   = 5000,
+    itemDate  = "2019-08-10",
+  },
+  [126574] = { -- Velothi Cerecloth, Prayer
+    itemPrice   = 5000,
+    itemDate  = "2019-08-10",
+  },
+  [126575] = { -- Velothi Seat, Meditation
+    itemPrice   = 10000,
+    itemDate  = "2019-08-10",
+  },
+  [126572] = { -- Velothi Shroud, Mourning
+    itemPrice   = 5000,
+    itemDate  = "2019-08-10",
+  },
+    [139099] = { -- Dark Elf Brazier, Ancestral Tomb
+        itemPrice   = 15000,
+    itemDate  = "2019-08-10",
+    },
+
+
+  [151858] = {    -- Elsweyr Altar, Dark Moons
+    itemPrice   = 20000,
+    itemDate  = "2019-08-03",
+  },
+  [151857] = {    -- Elsweyr Gazebo, Ancient Stone
+    itemPrice   = 100000,
+    itemDate  = "2019-08-03",
+  },
+  [151856] = {    -- Elsweyr Sarcophagus Lid, Lunar Champion
+    itemPrice   = 7500,
+    itemDate  = "2019-08-03",
+  },
+  [151855] = {    -- Elsweyr Sarcophagus, Lunar Champion
+    itemPrice   = 4000,
+    itemDate  = "2019-08-03",
+  },
+
+  
   [151853] = {    -- Cactus, Lunar Fan
     itemPrice   = 12000,
     itemDate  = "2019-07-27",
