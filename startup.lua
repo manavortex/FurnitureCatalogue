@@ -145,7 +145,7 @@ FurnitureCatalogue.DropdownData = {
     [9] = GetString(SI_FURC_FILTER_VERSION_WEREWOLF),
     [10] = GetString(SI_FURC_FILTER_VERSION_WOTL),
     [11] = GetString(SI_FURC_FILTER_VERSION_KITTY),
-    [11] = GetString(SI_FURC_FILTER_VERSION_SCALES),
+    [12] = GetString(SI_FURC_FILTER_VERSION_SCALES),
   },
   TooltipsVersion  = {
     [1] =  GetString(SI_FURC_FILTER_VERSION_OFF_TT),

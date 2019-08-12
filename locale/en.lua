@@ -213,7 +213,7 @@ local strings = {
   SI_FURC_FILTER_VERSION_SLAVES =   "Murkmire",
   SI_FURC_FILTER_VERSION_WOTL =   "Wrathstone",
   SI_FURC_FILTER_VERSION_KITTY =   "Elsweyr",
-    SI_FURC_FILTER_VERSION_SCALES = "Scalebreaker",
+  SI_FURC_FILTER_VERSION_SCALES = "Scalebreaker",
   
 
   -- =============================== --
