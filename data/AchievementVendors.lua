@@ -1,4 +1,20 @@
 
+FurC.AchievementVendors[FURC_SCALES] = {
+  ["the Undaunted Enclaves"] = {
+    ["Undaunted Quartermaster"] = {
+     [153750] = {    --Hemo Helot, Benign
+        itemPrice   = 50000, 
+        achievement = 2415, -- Moongrave Fane Vanquisher
+      },
+      [153686] = {    --Plant Cluster, Azureblight Scaleleaf
+        itemPrice   = 3000,
+        achievement = 2425, -- Lair of Marselook Vanquisher
+      },
+
+    },
+  },
+}
+
 FurC.AchievementVendors[FURC_KITTY] = {
   ["Rimmen"] = {
     [GetString(FURC_KITTY_LATHA)] = {
@@ -160,8 +176,7 @@ FurC.AchievementVendors[FURC_WOTL] = {
       [147645] = {    --Dwarven Tonal Arc
         itemPrice   = 15000, 
         achievement = 2260,
-      },
-      
+      },      
       [147638] = {    --Replica Cursed Orb of Meridia
         itemPrice   = 100000,
         achievement = 2270,

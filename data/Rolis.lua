@@ -10,6 +10,16 @@ FurC.Faustina[FURC_ALTMER] = {
 }
 
 
+FurC.RolisRecipes[FURC_KITTY] = {
+  
+  [153734] = 125, -- Design: Provisioning Station, Elsweyr Grill
+  [153729] = 125, -- Diagram: Elsweyr Gate, Masterwork
+  [153733] = 125, -- Formula: Elsweyr Incense, Fragrant
+  [153730] = 125, -- Pattern: Elsweyr Chaise Lounge, Upholstered
+  [153732] = 125, -- Praxis: Elsweyr Statue, Shrine Lion
+  [153735] = 125, -- Sketch: Elsweyr Cage, Filigree
+  
+}
 FurC.RolisRecipes[FURC_WOTL] = {
  
 	[147656] = 125, -- Dark Elf Tent, Canopy,    
