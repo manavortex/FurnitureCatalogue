@@ -1,5 +1,35 @@
 FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
+FurC.LuxuryFurnisher[FURC_SCALES] = {
+  [151948] = {    -- Dark Elf Urn, Bronze Burial
+    itemPrice   = 10000,
+    itemDate  = "2019-08-04",
+  },
+    [139100] = {        -- Dark Elf Ash Garden, Familial
+        itemPrice   = 10000,
+    itemDate  = "2019-08-04",
+    },    
+  [126579] = { -- Velothi Altar, Sacrificial
+    itemPrice   = 10834,
+    itemDate  = "2019-08-04",
+  },
+  [126576] = { -- Velothi Kneeler, Prayer
+    itemPrice   = 3000,
+    itemDate  = "2019-08-04",
+  },
+
+  [126577] = { -- Velothi Podium of Recitation
+    itemPrice   = 37500,
+    itemDate  = "2019-08-04",
+  },
+
+  [126578] = { -- Velothi Burial Urn
+    itemPrice   = 10834,
+    itemDate  = "2019-08-04",
+  },
+    
+
+}
 FurC.LuxuryFurnisher[FURC_KITTY] = {
   [151947] = {    -- Dark Elf Ash Garden, Communal
     itemPrice   = 15000,

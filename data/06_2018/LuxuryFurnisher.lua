@@ -608,29 +608,6 @@ FurC.LuxuryFurnisher[FURC_ALTMER] = {
   },
 
 
-    [139100] = {        -- Dark Elf Ash Garden, Familial
-        itemPrice   = 10000,
-    itemDate  = "2018-08-04",
-    },    
-  [126579] = { -- Velothi Altar, Sacrificial
-    itemPrice   = 10834,
-    itemDate  = "2018-08-04",
-  },
-  [126576] = { -- Velothi Kneeler, Prayer
-    itemPrice   = 3000,
-    itemDate  = "2018-08-04",
-  },
-
-  [126577] = { -- Velothi Podium of Recitation
-    itemPrice   = 37500,
-    itemDate  = "2018-08-04",
-  },
-
-  [126578] = { -- Velothi Burial Urn
-    itemPrice   = 10834,
-    itemDate  = "2018-08-04",
-  },
-    
     
     [139098] = { -- Darkshade Glowstalks, Inquisitive
         itemPrice   = 45000,
