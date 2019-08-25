@@ -1,6 +1,35 @@
 FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
 FurC.LuxuryFurnisher[FURC_SCALES] = {
+
+  [151949] = {    -- Hlaalu Path Marker, Almsivi
+    itemPrice   = 15000,
+    itemDate  = "2019-08-24",
+  },
+
+  [139101] = {        -- Blue Crystal Cluster, Large
+    itemPrice   = 20000,
+    itemDate  = "2019-08-24",
+    },
+  [120831] = { -- Blue Crystal Cluster
+    itemPrice   = 10834,
+    itemDate  = "2019-08-24",
+  },
+  [120833] = { -- Blue Crystal Fragments
+    itemPrice   = 8125,
+    itemDate  = "2019-08-24",
+  },
+  [120830] = { -- Blue Flame Candles
+    itemPrice   = 2500,
+    itemDate  = "2019-08-24",
+  },
+  [121273] = { -- Soul Gem, Grand
+    itemPrice   = 5417,
+    itemDate  = "2019-08-24",
+  },
+
+
+  
   [151948] = {    -- Dark Elf Urn, Bronze Burial
     itemPrice   = 10000,
     itemDate  = "2019-08-04",

@@ -585,29 +585,6 @@ FurC.LuxuryFurnisher[FURC_ALTMER] = {
     itemDate  = "2018-08-18",
   },
 
-
-  [139101] = {        -- Blue Crystal Cluster, Large
-    itemPrice   = 20000,
-    itemDate  = "2018-08-11",
-    },
-  [120831] = { -- Blue Crystal Cluster
-    itemPrice   = 10834,
-    itemDate  = "2018-08-11",
-  },
-  [120833] = { -- Blue Crystal Fragments
-    itemPrice   = 8125,
-    itemDate  = "2018-08-11",
-  },
-  [120830] = { -- Blue Flame Candles
-    itemPrice   = 2500,
-    itemDate  = "2018-08-11",
-  },
-  [121273] = { -- Soul Gem, Grand
-    itemPrice   = 5417,
-    itemDate  = "2018-08-11",
-  },
-
-
     
     [139098] = { -- Darkshade Glowstalks, Inquisitive
         itemPrice   = 45000,
