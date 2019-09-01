@@ -125,6 +125,59 @@ FurC.AchievementVendors[FURC_KITTY] = {
       
     },
     [GetString(FURC_KITTY_YATAVA)] = {
+      [151821] = {    -- Desert Grass, Patch
+        itemPrice   = 150,
+      },
+      [151820] = {    -- Desert Grass, Tall
+        itemPrice   = 100,
+      },
+      [151804] = {    -- Elsweyr Pillar, Rough Wooden
+        itemPrice   = 100,
+      },
+      [153684] = {    -- Plant Cluster, Keet Fern
+        itemPrice   = 100,
+      },
+      [153681] = {    -- Plant Cluster, Palmetto
+        itemPrice   = 150,
+      },
+      [153680] = {    -- Plant Cluster, Tenmar Dija
+        itemPrice   = 300,
+      },
+      [153683] = {    -- Plant Cluster, Zahmia
+        itemPrice   = 150,
+      },
+      [151816] = {    -- Plant, Flowering Thorned Succulent
+        itemPrice   = 100,
+      },
+      [153682] = {    -- Plant, Tropical Bush
+        itemPrice   = 100,
+      },
+      [151807] = {    -- Rock Field, Ancient Stone
+        itemPrice   = 100,
+      },
+      [151806] = {    -- Rubble Pile, Ancient Stone
+        itemPrice   = 100,
+      },
+      [151813] = {    -- Sapling, Desert Acacia
+        itemPrice   = 350,
+      },
+      [153679] = {    -- Tree, Anequine Acacia Arching
+        itemPrice   = 400,
+      },
+      [153688] = {    -- Tree, Anequine Acacia Forking
+        itemPrice   = 300,
+      },
+      [151808] = {    -- Tree, Fan Palm
+        itemPrice   = 100,
+      },
+      [153677] = {    -- Trees, Shade Palm Cluster
+        itemPrice   = 400,
+      },
+      [153678] = {    -- Trees, Towering Palm Cluster
+        itemPrice   = 400,
+      },
+
+      
       [151805] = {    -- Elsweyr Rack, Poles
         itemPrice   = 350,
       },

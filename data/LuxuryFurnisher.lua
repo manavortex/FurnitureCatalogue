@@ -2,6 +2,34 @@ FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
 FurC.LuxuryFurnisher[FURC_SCALES] = {
 
+[151950] = {    -- Khajiit Path Marker, Lion
+    itemPrice   = 75000,
+    itemDate  = "2018-08-31",
+  },
+
+
+  [139102] = {        -- Blue Crystal Spire, Large
+        itemPrice   = 18000,
+    itemDate  = "2018-08-31",
+    },
+
+  -- Sept. 2nd + 3rd
+  [120832] = { -- Blue Crystal Spire
+    itemPrice   = 12000,
+    itemDate  = "2018-08-31",
+  },
+  [120834] = { -- Blue Flame Brazier
+    itemPrice   = 5000,
+    itemDate  = "2018-08-31",
+  },
+  [121272] = { -- Great Soul Gem
+    itemPrice   = 20000,
+    itemDate  = "2018-08-31",
+  },
+
+    
+
+
   [151949] = {    -- Hlaalu Path Marker, Almsivi
     itemPrice   = 15000,
     itemDate  = "2019-08-24",

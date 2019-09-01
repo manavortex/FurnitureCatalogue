@@ -566,26 +566,6 @@ FurC.LuxuryFurnisher[FURC_WEREWOLF] = {
 FurC.LuxuryFurnisher[FURC_ALTMER] = {
 
 
-  [139102] = {        -- Blue Crystal Spire, Large
-        itemPrice   = 18000,
-    itemDate  = "2018-08-18",
-    },
-
-  -- Sept. 2nd + 3rd
-  [120832] = { -- Blue Crystal Spire
-    itemPrice   = 12000,
-    itemDate  = "2018-08-18",
-  },
-  [120834] = { -- Blue Flame Brazier
-    itemPrice   = 5000,
-    itemDate  = "2018-08-18",
-  },
-  [121272] = { -- Great Soul Gem
-    itemPrice   = 20000,
-    itemDate  = "2018-08-18",
-  },
-
-    
     [139098] = { -- Darkshade Glowstalks, Inquisitive
         itemPrice   = 45000,
     itemDate  = "2018-07-21",
