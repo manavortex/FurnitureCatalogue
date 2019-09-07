@@ -545,23 +545,7 @@ FurC.LuxuryFurnisher[FURC_WEREWOLF] = {
     itemDate  = "2018-09-01",
     },
 
-  [139103] = {        -- Craglorn Display Case, Sealed
-        itemPrice   = 10000,
-    itemDate  = "2018-08-25",
-    },
 
-  [120842] = { -- Craglorn Chair, Serpent
-    itemPrice   = 2500,
-    itemDate  = "2018-08-25",
-  },
-  [120841] = { -- Craglorn Urn, Standing
-    itemPrice   = 7500,
-    itemDate  = "2018-08-25",
-  },
-  [120840] = { -- Craglorn Coffer, Ornate
-    itemPrice   = 5000,
-    itemDate  = "2018-08-25",
-  },
 }
 FurC.LuxuryFurnisher[FURC_ALTMER] = {
 
@@ -575,6 +559,7 @@ FurC.LuxuryFurnisher[FURC_ALTMER] = {
 
 
  
+    
     
 
     
