@@ -528,23 +528,6 @@ FurC.LuxuryFurnisher[FURC_WEREWOLF] = {
   },
 
 
-  [120844] = {        -- Craglorn Brazier, Ornate
-        itemPrice   = 15000,    
-    itemDate  = "2018-09-01",
-    },
-    [139104] = {        -- Craglorn Relief, Serpent
-        itemPrice   = 20000,    
-    itemDate  = "2018-09-01",
-    },
-    [120843] = {        -- Craglorn Skull, Carved
-        itemPrice   = 35000,    
-    itemDate  = "2018-09-01",
-    },
-    [120845] = {        -- Craglorn Sword Sconce
-        itemPrice   = 5000,    
-    itemDate  = "2018-09-01",
-    },
-
 
 }
 FurC.LuxuryFurnisher[FURC_ALTMER] = {

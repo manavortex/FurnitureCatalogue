@@ -1,8 +1,28 @@
 FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
 FurC.LuxuryFurnisher[FURC_SCALES] = {
+  [151952] = {    -- Nedic Stand, Ritual
+    itemPrice   = 4000,  
+    itemDate  = "2019-09-14",
+  },
+  [120844] = {        -- Craglorn Brazier, Ornate
+        itemPrice   = 15000,  
+    itemDate  = "2019-09-14",
+    },
+    [139104] = {        -- Craglorn Relief, Serpent
+        itemPrice   = 20000,    
+    itemDate  = "2019-09-14",
+    },
+    [120843] = {        -- Craglorn Skull, Carved
+        itemPrice   = 35000,    
+    itemDate  = "2019-09-14",
+    },
+    [120845] = {        -- Craglorn Sword Sconce
+        itemPrice   = 5000,    
+    itemDate  = "2019-09-14",
+    },
 
-  [151951] = {    -- Nedic Orb, Ritual
+[151951] = {    -- Nedic Orb, Ritual
     itemPrice   = 20000,
     itemDate  = "2019-09-07",
   },
