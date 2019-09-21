@@ -1,5 +1,14 @@
 
 FurC.AchievementVendors[FURC_SCALES] = {
+  
+  
+  ["Imperial City Event"] = {
+    ["Impressario"] = {
+    [153554] = { -- Imperial Mirror, Standing
+        itemPrice   = 1,  
+      }
+  },
+  },
   ["the Undaunted Enclaves"] = {
     ["Undaunted Quartermaster"] = {
      [153750] = {    --Hemo Helot, Benign

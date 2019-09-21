@@ -82,7 +82,6 @@ FurC.MiscItemSources[FURC_KITTY]  = {
     [151950] = rumourSource, -- Khajiit Path Marker, Lion,
     [151951] = rumourSource, -- Nedic Orb, Ritual,
     [151952] = rumourSource, -- Nedic Stand, Ritual,
-    [151953] = rumourSource, -- Reikling Totem, Skull (sic)
     [151954] = rumourSource, -- Reachmen Banner, Bull, 
     [147926] = rumourSource, -- Target Iron Atronach, Trial,
     [152148] = rumourSource, -- Orcish Tapestry, Hunt,

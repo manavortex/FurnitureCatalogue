@@ -1,6 +1,30 @@
 FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
 FurC.LuxuryFurnisher[FURC_SCALES] = {
+  [151953] = {    -- Reikling Totem, Skull (sic)
+    itemPrice   = 1000,
+    itemDate  = "2018-09-21",
+    },
+
+    -- Sept. 23rd
+  [131435] = { -- Reach Bowl, Nirncrux
+    itemPrice   = 5000,
+    itemDate  = "2018-09-21",
+  },
+  [131438] = { -- Reach Grinder, Nirncrux
+    itemPrice   = 50000,
+    itemDate  = "2018-09-21",
+  },
+  [131436] = { -- Reach Vine, Bloodroot Sprout
+    itemPrice   = 15000,
+    itemDate  = "2018-09-21",
+  },
+  [131437] = { -- Reach Vine, Bloodroot Tendril
+    itemPrice   = 25000,
+    itemDate  = "2018-09-21",
+  },
+
+  
   [151952] = {    -- Nedic Stand, Ritual
     itemPrice   = 4000,  
     itemDate  = "2019-09-14",
@@ -20,6 +44,11 @@ FurC.LuxuryFurnisher[FURC_SCALES] = {
     [120845] = {        -- Craglorn Sword Sconce
         itemPrice   = 5000,    
     itemDate  = "2019-09-14",
+    },    
+    
+    
+    [145471] = {        -- Redguard Raincatcher, Golden
+        itemPrice   = 35000,     
     },
 
 [151951] = {    -- Nedic Orb, Ritual
