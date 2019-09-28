@@ -486,29 +486,6 @@ FurC.LuxuryFurnisher[FURC_WEREWOLF] = {
   },
 
 
-  [139106] = {    -- Reach Briarheart, Corpse Blue
-    itemPrice   = 15000,
-    itemDate  = "2018-09-16",
-    },
-  -- Sept. 30
-  [132144] = { -- Reach Briarheart, Blood Red
-    itemPrice   = 15000,
-    itemDate  = "2018-09-16",
-  },
-  [132141] = { -- Reach Skull, Mammoth
-    itemPrice   = 50000,
-    itemDate  = "2018-09-16",
-  },
-  [132142] = { -- Reach Tent, Camp
-    itemPrice   = 2500,
-    itemDate  = "2018-09-16",
-  },
-  
-  [139105] = {        -- Reach Grinding Stones, Nirncrux
-        itemPrice   = 4500,  
-    itemDate  = "2018-09-08",
-    },
-
 
 
 

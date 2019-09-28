@@ -1,6 +1,36 @@
 FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
 FurC.LuxuryFurnisher[FURC_SCALES] = {
+  [151954] = {    -- Reachmen Banner, Bull
+    itemPrice   = 4000,
+    itemDate  = "2019-09-28",
+    },
+
+  
+
+  [139106] = {    -- Reach Briarheart, Corpse Blue
+    itemPrice   = 15000,
+    itemDate  = "2019-09-28",
+    },
+  -- Sept. 30
+  [132144] = { -- Reach Briarheart, Blood Red
+    itemPrice   = 15000,
+    itemDate  = "2019-09-28",
+  },
+  [132141] = { -- Reach Skull, Mammoth
+    itemPrice   = 50000,
+    itemDate  = "2019-09-28",
+  },
+  [132142] = { -- Reach Tent, Camp
+    itemPrice   = 2500,
+    itemDate  = "2019-09-28",
+  },
+  
+  [139105] = {        -- Reach Grinding Stones, Nirncrux
+        itemPrice   = 4500,  
+    itemDate  = "2018-09-08",
+    },
+  
   [151953] = {    -- Reikling Totem, Skull (sic)
     itemPrice   = 1000,
     itemDate  = "2018-09-21",

@@ -1,4 +1,23 @@
 
+FurC.AchievementVendors[FURC_DRAGON2] = {
+  
+  
+  ["Senchal, Marketplace"] = {
+    ["Zadraska"] = {
+    [156677] = {    -- Vines, Verdant Ivy Climber
+      itemPrice   = 750,
+    },
+    [156678] = {    -- Vines, Verdant Ivy Swath
+      itemPrice   = 1250,
+    },
+
+  }, 
+}
+
+if tonumber(GetAPIVersion()) < 100029 then
+  FurC.AchievementVendors[FURC_DRAGON2] = {}
+end
+
 FurC.AchievementVendors[FURC_SCALES] = {
   
   
