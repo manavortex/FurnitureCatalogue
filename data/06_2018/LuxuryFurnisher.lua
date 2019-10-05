@@ -472,20 +472,6 @@ FurC.LuxuryFurnisher[FURC_WEREWOLF] = {
     itemDate  = "2018-09-29",
     },
 
-  [141752] = {        -- Plant, Cerulean Spadeleaf
-    itemPrice   = 1000,
-    itemDate  = "2018-09-22",
-  },
-  [141753] = {        -- Plants, Cerulean Spadeleaf Cluster
-    itemPrice   = 2500,
-    itemDate  = "2018-09-22",
-  },
-  [141754] = {        -- Skull Totem, Hircine Worship
-    itemPrice   = 7500,
-    itemDate  = "2018-09-22",
-  },
-
-
 
 
 

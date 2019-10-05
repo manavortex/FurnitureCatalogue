@@ -1,6 +1,27 @@
 FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
 FurC.LuxuryFurnisher[FURC_SCALES] = {
+  
+  [153689] = {    -- Fern, Cyan
+    itemDate  = "2019-10-05",
+    itemPrice   = 2500,
+  },
+
+  [141752] = {        -- Plant, Cerulean Spadeleaf
+    itemPrice   = 1000,
+    itemDate  = "2019-10-05",
+  },
+  [141753] = {        -- Plants, Cerulean Spadeleaf Cluster
+    itemPrice   = 2500,
+    itemDate  = "2019-10-05",
+  },
+  [141754] = {        -- Skull Totem, Hircine Worship
+    itemPrice   = 7500,
+    itemDate  = "2019-10-05",
+  },
+
+
+  
   [151954] = {    -- Reachmen Banner, Bull
     itemPrice   = 4000,
     itemDate  = "2019-09-28",
