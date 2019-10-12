@@ -459,19 +459,6 @@ FurC.LuxuryFurnisher[FURC_WEREWOLF] = {
   },
 
   
-  [141756] = {        -- Mushrooms, Aether Cup Cluster
-        itemPrice   = 10000,
-    itemDate  = "2018-09-29",
-    },
-    [141755] = {        -- Mushrooms, Aether Cup Ring
-        itemPrice   = 10000,
-    itemDate  = "2018-09-29",
-    },
-    [141757] = {        -- Mushrooms, Climbing Aether Cup
-        itemPrice   = 5000,
-    itemDate  = "2018-09-29",
-    },
-
 
 
 

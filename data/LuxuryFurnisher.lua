@@ -1,7 +1,24 @@
 FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
 FurC.LuxuryFurnisher[FURC_SCALES] = {
-  
+  [153690] = {    -- Flower Cluster, Wyrdbloom
+    itemPrice   = 4000,
+    itemDate  = "2019-10-12",
+  },
+
+  [141756] = {        -- Mushrooms, Aether Cup Cluster
+        itemPrice   = 10000,
+    itemDate  = "2019-10-12",
+    },
+    [141755] = {        -- Mushrooms, Aether Cup Ring
+        itemPrice   = 10000,
+    itemDate  = "2019-10-12",
+    },
+    [141757] = {        -- Mushrooms, Climbing Aether Cup
+        itemPrice   = 5000,
+    itemDate  = "2019-10-12",
+    },
+
   [153689] = {    -- Fern, Cyan
     itemDate  = "2019-10-05",
     itemPrice   = 2500,
