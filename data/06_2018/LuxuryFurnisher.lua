@@ -391,28 +391,11 @@ FurC.LuxuryFurnisher[FURC_SLAVES] = {
     itemPrice = 50000,
     itemDate  = "2018-10-27",
   },
-  [141760] = {        -- Witch's Tree, Charred
-    itemPrice   = 5000,
-    itemDate  = "2018-10-20",
-  },
 
 }
 
 FurC.LuxuryFurnisher[FURC_WEREWOLF] = {  
   
--- Oct. 21
-[132155] = { -- Witch's Torch, Wretched  
-    itemPrice   = 5000,
-    itemDate  = "2018-10-20",
-  },
-  [132154] = { -- Witch's Totem, Bog
-    itemPrice   = 50000,
-    itemDate  = "2018-10-20",
-  },
-  [132153] = { -- Witch's Tree, Captive
-    itemPrice   = 35000,
-    itemDate  = "2018-10-20",
-  },
   
   [141759] = {        -- Orcish Gazebo, Orsinium
     itemPrice   = 20000,
