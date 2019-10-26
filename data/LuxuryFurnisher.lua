@@ -2,6 +2,33 @@ FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
 FurC.LuxuryFurnisher[FURC_SCALES] = {
   
+ [141761] = {        -- Reach Sapling, Contorted Briarheart
+      itemDate  = "2ß19-10-26",
+      itemPrice   = 35000,
+    },
+  [132156] = {        -- Briarheart Tree, Replica
+      itemDate  = "2ß19-10-26",
+      itemPrice   = 100000,
+  },
+  [132158] = {  -- Witch's Remains, Offering
+    itemPrice = 50000,
+    itemDate  = "2ß19-10-26",
+  },
+  [132157] = {  -- Witch's Remains, Sacrificial
+    itemPrice = 50000,
+    itemDate  = "2ß19-10-26",
+  },
+  -- Oct 28th
+  [132143] = {  -- Reach Sapling, Briarheart
+    itemPrice = 50000,
+    itemDate  = "2ß19-10-26",
+  },
+  [153694] = {    -- Tree, Murkmire Ossuary
+    itemPrice   = 50000,
+    itemDate  = "2ß19-10-26",
+  },
+
+  
   [153693] = {    -- Tree, Treehenge Green Lady
     itemPrice   = 50000,
     itemDate  = "2019-10-19",
@@ -1207,25 +1234,25 @@ FurC.LuxuryFurnisher[FURC_SLAVES] = {
  
  
  [141761] = {        -- Reach Sapling, Contorted Briarheart
-      itemDate  = "2018-10-27",
+      itemDate  = "2ß19-10-26",
       itemPrice   = 35000,
     },
   [132156] = {        -- Briarheart Tree, Replica
-      itemDate  = "2018-10-27",
+      itemDate  = "2ß19-10-26",
       itemPrice   = 100000,
   },
   [132158] = {  -- Witch's Remains, Offering
     itemPrice = 50000,
-    itemDate  = "2018-10-27",
+    itemDate  = "2ß19-10-26",
   },
   [132157] = {  -- Witch's Remains, Sacrificial
     itemPrice = 50000,
-    itemDate  = "2018-10-27",
+    itemDate  = "2ß19-10-26",
   },
   -- Oct 28th
   [132143] = {  -- Reach Sapling, Briarheart
     itemPrice = 50000,
-    itemDate  = "2018-10-27",
+    itemDate  = "2ß19-10-26",
   },
   [141760] = {        -- Witch's Tree, Charred
     itemPrice   = 5000,

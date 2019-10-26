@@ -370,27 +370,6 @@ FurC.LuxuryFurnisher[FURC_SLAVES] = {
   },
  
  
- [141761] = {        -- Reach Sapling, Contorted Briarheart
-      itemDate  = "2018-10-27",
-      itemPrice   = 35000,
-    },
-  [132156] = {        -- Briarheart Tree, Replica
-      itemDate  = "2018-10-27",
-      itemPrice   = 100000,
-  },
-  [132158] = {  -- Witch's Remains, Offering
-    itemPrice = 50000,
-    itemDate  = "2018-10-27",
-  },
-  [132157] = {  -- Witch's Remains, Sacrificial
-    itemPrice = 50000,
-    itemDate  = "2018-10-27",
-  },
-  -- Oct 28th
-  [132143] = {  -- Reach Sapling, Briarheart
-    itemPrice = 50000,
-    itemDate  = "2018-10-27",
-  },
 
 }
 
