@@ -54,6 +54,7 @@ FurC.EventItems[FURC_REACH] = {
       [130339] = true,   -- Witches Totem, Twisted Vines and Skull
       [130338] = true,   -- Witches Bones, Offering",
       [131434] = true,   -- Witch's Festival, Cursed Totem,
+      [145318] = true,   -- Small Gravestone
       [130302] = GetString(SI_FURC_WW),   -- Shrub, Burnt Brush"
       [130298] = GetString(SI_FURC_WW),  -- Branch, Curved Laurel
       [130296] = GetString(SI_FURC_WW),  -- Branch, Sturdy Laurel

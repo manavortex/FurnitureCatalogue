@@ -2,6 +2,35 @@ FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
 FurC.LuxuryFurnisher[FURC_SCALES] = {
   
+  [153692] = {    -- Orsinium Well, Covered
+    itemDate  = "2ß19-11-09",
+    itemPrice   = 20000,
+  },
+
+  
+  [141759] = {        -- Orcish Gazebo, Orsinium
+    itemPrice   = 20000,
+    itemDate  = "2ß19-11-09",
+  },
+  [132152] = {        -- Orsinium Sarcophagus, Warrior's
+    itemPrice   = 35000,
+    itemDate  = "2ß19-11-09",
+  },
+  [132150] = {        -- Orsinium Totem, Honor
+    itemPrice   = 20000,
+    itemDate  = "2ß19-11-09",
+  },
+  [132151] = {        -- Orsinium Totem, Obedience
+    itemPrice   = 20000,
+    itemDate  = "2ß19-11-09",
+  },
+  [132149] = {        -- Orsinium Totem, Strength
+    itemPrice   = 20000,
+    itemDate  = "2ß19-11-09",
+  },
+
+  
+  
   [153691] = {    -- Orsinium Sarcophagus, Honor's Rest
     itemPrice   = 25000,
     itemDate  = "2019-11-02",
@@ -29,7 +58,7 @@ FurC.LuxuryFurnisher[FURC_SCALES] = {
     itemDate  = "2019-11-02",
   },
 
-  
+
   
  [141761] = {        -- Reach Sapling, Contorted Briarheart
       itemDate  = "2ß19-10-26",
