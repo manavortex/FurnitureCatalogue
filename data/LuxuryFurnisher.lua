@@ -2,6 +2,35 @@ FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
 FurC.LuxuryFurnisher[FURC_SCALES] = {
   
+  
+  [153695] = {    -- Titan Skull, Colossal
+    itemPrice   = 4000,
+    itemDate    = "2019-11-16",
+    },
+
+  [118294] = {        -- Echatere Horns, Wall Mount
+    itemPrice   = 15000,
+    itemDate    = "2019-11-16",
+  },
+  [118286] = {  -- Carcass, Grey Hare
+    itemPrice = 5000,
+    itemDate  = "2019-11-16",
+  },
+  [118281] = {  -- Carcass, Hanging Geese
+    itemPrice = 7000,
+    itemDate  = "2019-11-16",
+  },
+  [118279] = {  -- Deer Head, Wall Mount
+    itemPrice = 15000,
+    itemDate  = "2019-11-16",
+  },
+  [118298] = {  -- Wolf Head, Wall Mount
+    itemPrice = 20000,
+    itemDate  = "2019-11-16",
+  },
+ 
+  
+  
   [153692] = {    -- Orsinium Well, Covered
     itemDate  = "2ß19-11-09",
     itemPrice   = 20000,
@@ -1269,27 +1298,6 @@ FurC.LuxuryFurnisher[FURC_SLAVES] = {
     itemDate  = "2018-11-10",
   },
   
-  [118294] = {        -- Echatere Horns, Wall Mount
-    itemPrice   = 15000,
-    itemDate    = "2018-11-03",
-  },
-  [118286] = {  -- Carcass, Grey Hare
-    itemPrice = 5000,
-    itemDate  = "2018-11-03",
-  },
-  [118281] = {  -- Carcass, Hanging Geese
-    itemPrice = 7000,
-    itemDate  = "2018-11-03",
-  },
-  [118279] = {  -- Deer Head, Wall Mount
-    itemPrice = 15000,
-    itemDate  = "2018-11-03",
-  },
-  [118298] = {  -- Wolf Head, Wall Mount
-    itemPrice = 20000,
-    itemDate  = "2018-11-03",
-  },
- 
  
  [141761] = {        -- Reach Sapling, Contorted Briarheart
       itemDate  = "2ß19-10-26",
