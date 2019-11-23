@@ -324,29 +324,7 @@ FurC.LuxuryFurnisher[FURC_SLAVES] = {
     itemDate  = "2018-11-17",
   },
 
-  
-  [141762] = {        -- Animal Trap, Welded Open
-    itemPrice   = 2500,
-    itemDate  = "2018-11-10",
-  },
-
-  -- Nov. 11th
-  [118285] = {  -- Carcass, Fresh Pheasant
-    itemPrice = 7500,
-    itemDate  = "2018-11-10",
-  },
-  [118292] = {  -- Elk Head, Wall Mount
-    itemPrice = 20000,
-    itemDate  = "2018-11-10",
-  },
-  [116506] = {  -- Orcish Grand Table with Skins
-    itemPrice = 50000,
-    itemDate  = "2018-11-10",
-  },
-  [118243] = {  -- Tapestry, Echatere Pelt
-    itemPrice = 25000,
-    itemDate  = "2018-11-10",
-  },
+   
   
   [118294] = {        -- Echatere Horns, Wall Mount
     itemPrice   = 15000,

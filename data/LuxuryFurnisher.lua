@@ -2,7 +2,35 @@ FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
 FurC.LuxuryFurnisher[FURC_SCALES] = {
   
+  [153696] = {    -- Taxidermy, Bird of Prey
+    itemPrice   = 2500,
+    itemDate  = "2019-11-23",
+  },
   
+  [141762] = {        -- Animal Trap, Welded Open
+    itemPrice   = 2500,
+    itemDate  = "2019-11-23",
+  },
+
+  -- Nov. 11th
+  [118285] = {  -- Carcass, Fresh Pheasant
+    itemPrice = 7500,
+    itemDate  = "2019-11-23",
+  },
+  [118292] = {  -- Elk Head, Wall Mount
+    itemPrice = 20000,
+    itemDate  = "2019-11-23",
+  },
+  [116506] = {  -- Orcish Grand Table with Skins
+    itemPrice = 50000,
+    itemDate  = "2019-11-23",
+  },
+  [118243] = {  -- Tapestry, Echatere Pelt
+    itemPrice = 25000,
+    itemDate  = "2019-11-23",
+  },
+  
+
   [153695] = {    -- Titan Skull, Colossal
     itemPrice   = 4000,
     itemDate    = "2019-11-16",
@@ -1274,30 +1302,7 @@ FurC.LuxuryFurnisher[FURC_SLAVES] = {
     itemDate  = "2018-11-17",
   },
 
-  
-  [141762] = {        -- Animal Trap, Welded Open
-    itemPrice   = 2500,
-    itemDate  = "2018-11-10",
-  },
 
-  -- Nov. 11th
-  [118285] = {  -- Carcass, Fresh Pheasant
-    itemPrice = 7500,
-    itemDate  = "2018-11-10",
-  },
-  [118292] = {  -- Elk Head, Wall Mount
-    itemPrice = 20000,
-    itemDate  = "2018-11-10",
-  },
-  [116506] = {  -- Orcish Grand Table with Skins
-    itemPrice = 50000,
-    itemDate  = "2018-11-10",
-  },
-  [118243] = {  -- Tapestry, Echatere Pelt
-    itemPrice = 25000,
-    itemDate  = "2018-11-10",
-  },
-  
  
  [141761] = {        -- Reach Sapling, Contorted Briarheart
       itemDate  = "2ß19-10-26",
