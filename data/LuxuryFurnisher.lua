@@ -2,7 +2,31 @@ FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
 FurC.LuxuryFurnisher[FURC_SCALES] = {
   
-    
+  [153701] = {    -- Clockwork Changing Room, Curtained
+    itemPrice   = 20000,
+    itemDate  = "2019-12-14",
+  },
+
+
+  
+  -- Dec. 15th
+  [134435] = {  -- Clockwork Loom, Sturdy
+    itemPrice   = 20000,
+    itemDate  = "2019-12-14",
+  },
+  [134434] = {  -- Quality Fabric, Stacked
+    itemPrice   = 450,
+    itemDate  = "2019-12-14",
+  },
+  [134436] = {  -- Spool, Blue Thread
+    itemPrice   = 450,
+    itemDate  = "2019-12-14",
+  },
+  [134437] = {    -- Clockwork Spinning Wheel, Sturdy
+    itemPrice   = 12000,
+    itemDate  = "2019-12-14",
+  },
+  
   -- Nov. 25th
   [134424] = {  -- Clockwork Gear Display, Bell Jar
     itemPrice   = 2500,
@@ -1250,24 +1274,6 @@ FurC.LuxuryFurnisher[FURC_SLAVES] = {
   },
 
   
-  
-  -- Dec. 15th
-  [134435] = {  -- Clockwork Loom, Sturdy
-    itemPrice   = 20000,
-    itemDate  = "2018-12-15",
-  },
-  [134434] = {  -- Quality Fabric, Stacked
-    itemPrice   = 450,
-    itemDate  = "2018-12-15",
-  },
-  [134436] = {  -- Spool, Blue Thread
-    itemPrice   = 450,
-    itemDate  = "2018-12-15",
-  },
-  [134437] = {    -- Clockwork Spinning Wheel, Sturdy
-    itemPrice   = 12000,
-    itemDate  = "2018-12-15",
-  },
 
   
   -- Dec. 8th
