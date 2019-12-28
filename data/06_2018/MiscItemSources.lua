@@ -997,17 +997,11 @@ FurC.MiscItemSources[FURC_CLOCKWORK] = { -- Reach
     
   },
   [FURC_RUMOUR] = {
-    
-    [134422] = dataminedUnclear,                    -- Clockwork Sextant, Surveyor's
-    [134403] = dataminedUnclear,                    -- Spool, Red Thread
-    [134437] = dataminedUnclear,                    -- Clockwork Spinning Wheel, Sturdy
-    [134441] = dataminedUnclear,                    -- Animo Core, Full
+      
     
     [134384] = dataminedUnclear,                    -- Fabricant Tree, Decorative Electrum
     [134386] = dataminedUnclear,                    -- Fabricant Tree, Forked Cherry Blossom
-    [134389] = dataminedUnclear,                    -- Fabricant Tree, Decorative Brass
-    [134437] = dataminedUnclear,                    -- Clockwork Spinning Wheel, Sturdy
-    [134441] = dataminedUnclear,                    -- Animo Core, Full
+    [134389] = dataminedUnclear,                    -- Fabricant Tree, Decorative Brass 
     [125509] = dataminedUnclear,                    -- Replica Dwarven Crown Crate
     
     
