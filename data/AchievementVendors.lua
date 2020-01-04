@@ -39,7 +39,14 @@ FurC.AchievementVendors[FURC_SCALES] = {
         itemPrice   = 3000,
         achievement = 2425, -- Lair of Marselook Vanquisher
       },
-
+      [153685] = {    --Tree, Azureblight Acacia, thanks Des-demona
+        itemPrice   = 12000,
+        achievement = 2425, -- Lair of Marselook Vanquisher
+      },
+      [153687] = {    --Vine, Azureblight Strangler, thanks Des-demona
+        itemPrice   = 4500,
+        achievement = 2425, -- Lair of Marselook Vanquisher
+      },
     },
   },
 }
