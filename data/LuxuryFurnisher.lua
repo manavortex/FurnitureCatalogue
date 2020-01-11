@@ -2,7 +2,40 @@ FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
 FurC.LuxuryFurnisher[FURC_SCALES] = {
    
-   
+   [156659] = {    -- Orcish Seal, Hammer
+    itemPrice   = 3000,
+    itemDate    = "2019-01-11",
+  },
+  [156658] = {    -- Orcish Seal, Wolf
+    itemPrice   = 3000,
+    itemDate    = "2019-01-11",
+  },
+
+  -- Dec. 30thst
+  [134442] = {  -- Seal of Clan Bagrakh, Stone
+    itemPrice   = 4000,
+    itemDate    = "2019-01-11",
+  },
+  [134443] = {  -- Seal of Clan Fharun, Stone
+    itemPrice   = 4000,
+    itemDate    = "2019-01-11",
+  },
+  [134444] = {  -- Seal of Clan Igrun, Stone
+    itemPrice   = 4000,
+    itemDate    = "2019-01-11",
+  },
+  [134447] = {    -- Seal of Clan Bagrakh, Metal
+    itemPrice   = 4000,
+    itemDate    = "2019-01-11",
+  },
+  [134448] = {    -- Seal of Clan Fharun, Metal
+    itemPrice   = 4000,
+    itemDate    = "2019-01-11",
+  },
+  [134449] = {    -- Seal of Clan Igrun, Metal
+    itemPrice   = 4000,
+    itemDate    = "2019-01-11",
+  },
   
   -- Dec. 8th
   [134432] = {  -- Banker's Sign, Small
