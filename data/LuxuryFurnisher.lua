@@ -2,6 +2,35 @@ FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
 FurC.LuxuryFurnisher[FURC_SCALES] = {
    
+   [156661] = {    -- Orcish Seal, Battle-Axe
+     itemPrice   = 3000,
+    itemDate  = "2020-01-18",
+  },
+  [134450] = {  -- Seal of Clan Morkul, Stone
+    itemPrice   = 4000,
+    itemDate  = "2020-01-18",
+  },
+  [134451] = {  -- Seal of Clan Shatul, Stone
+    itemPrice   = 4000,
+    itemDate  = "2020-01-18",
+  },
+  [134452] = {  -- Seal of Clan Tumnosh, Stone
+    itemPrice   = 4000,
+    itemDate  = "2020-01-18",
+  },
+  [134454] = {    -- Seal of Clan Morkul, Metal
+    itemPrice   = 4000,
+    itemDate  = "2020-01-18",
+  },
+  [134455] = {    -- Seal of Clan Shatul, Metal
+    itemPrice   = 4000,
+    itemDate  = "2020-01-18",
+  },
+  [134456] = {    -- Seal of Clan Tumnosh, Metal
+    itemPrice   = 4000,
+    itemDate  = "2020-01-18",
+  },
+   
    [156659] = {    -- Orcish Seal, Hammer
     itemPrice   = 3000,
     itemDate    = "2019-01-11",
@@ -1302,59 +1331,9 @@ FurC.LuxuryFurnisher[FURC_SLAVES] = {
 
   [134453] = {  -- Ancient Orcish Counterweight
     itemPrice   = 20000,
-    itemDate  = "2019-01-05",
+    itemDate  = "2020-01-18",
   },
-  [134450] = {  -- Seal of Clan Morkul, Stone
-    itemPrice   = 4000,
-    itemDate  = "2019-01-05",
-  },
-  [134451] = {  -- Seal of Clan Shatul, Stone
-    itemPrice   = 4000,
-    itemDate  = "2019-01-05",
-  },
-  [134452] = {  -- Seal of Clan Tumnosh, Stone
-    itemPrice   = 4000,
-    itemDate  = "2019-01-05",
-  },
-  [134454] = {    -- Seal of Clan Morkul, Metal
-    itemPrice   = 4000,
-    itemDate  = "2019-01-05",
-  },
-  [134455] = {    -- Seal of Clan Shatul, Metal
-    itemPrice   = 4000,
-    itemDate  = "2019-01-05",
-  },
-  [134456] = {    -- Seal of Clan Tumnosh, Metal
-    itemPrice   = 4000,
-    itemDate  = "2019-01-05",
-  },
-
-  -- Dec. 30thst
-  [134442] = {  -- Seal of Clan Bagrakh, Stone
-    itemPrice   = 4000,
-    itemDate    = "2018-12-29",
-  },
-  [134443] = {  -- Seal of Clan Fharun, Stone
-    itemPrice   = 4000,
-    itemDate    = "2018-12-29",
-  },
-  [134444] = {  -- Seal of Clan Igrun, Stone
-    itemPrice   = 4000,
-    itemDate    = "2018-12-29",
-  },
-  [134447] = {    -- Seal of Clan Bagrakh, Metal
-    itemPrice   = 4000,
-    itemDate    = "2018-12-29",
-  },
-  [134448] = {    -- Seal of Clan Fharun, Metal
-    itemPrice   = 4000,
-    itemDate    = "2018-12-29",
-  },
-  [134449] = {    -- Seal of Clan Igrun, Metal
-    itemPrice   = 4000,
-    itemDate    = "2018-12-29",
-  },
-
+ 
   
   [134446] = {  -- Ancient Orcish Sarcophagus Lid
     itemPrice   = 10000,
