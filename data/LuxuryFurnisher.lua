@@ -6,6 +6,11 @@ FurC.LuxuryFurnisher[FURC_SCALES] = {
      itemPrice   = 3000,
     itemDate  = "2020-01-18",
   },
+  [156660] = {    -- Orcish Seal, Malacath
+    itemPrice   = 3000,
+    itemDate  = "2020-01-18",
+  },
+
   [134450] = {  -- Seal of Clan Morkul, Stone
     itemPrice   = 4000,
     itemDate  = "2020-01-18",
