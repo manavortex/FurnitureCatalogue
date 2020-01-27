@@ -1,7 +1,7 @@
 FurnitureCatalogue                = {}
 FurnitureCatalogue.name           = "FurnitureCatalogue"
 FurnitureCatalogue.author         = "manavortex"
-FurnitureCatalogue.version        = 3.5611
+FurnitureCatalogue.version        = 3.56111
 FurnitureCatalogue.CharacterName  = nil
 FurnitureCatalogue.settings       = {}
 
@@ -26,7 +26,7 @@ FurC.RumourRecipes                = {}
 
 -- TODO: set up the filtering for FURC_RUMOUR and FURC_CROWN in submenus by origin 
 local defaults             = {
-
+  
   hideMats              = true,
   dontScanTradingHouse  = false,
   enableDebug           = false,
