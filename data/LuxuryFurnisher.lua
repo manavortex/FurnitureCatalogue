@@ -2,6 +2,28 @@ FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
 FurC.LuxuryFurnisher[FURC_SCALES] = {
    
+   [156663] = {    -- Riekling Banner, Boar Pelt
+     itemPrice   = 4000,
+    itemDate  = "2020-02-01",
+  },
+  [134464] = {    -- Riekling Bonfire, Ceremonial
+    itemPrice   = 4000,
+    itemDate  = "2020-02-01",
+  },
+  [134463] = { -- Riekling Brazier, Ceremonial
+    itemPrice  = 4000,
+    itemDate  = "2020-02-01",
+  },
+  [134462] = { -- Riekling Grinding Stone
+    itemPrice  = 450,
+    itemDate  = "2020-02-01",
+  },
+  [134461] = { -- Riekling Tanning Rack, Stretched
+    itemPrice  = 450,
+    itemDate  = "2020-02-01",
+  },
+  
+   
  [156662] = {    -- Riekling Banner, Wolf Pelt
      itemPrice   = 4000,
     itemDate  = "2020-01-25",

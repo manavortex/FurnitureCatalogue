@@ -448,9 +448,7 @@ FurC.MiscItemSources[FURC_WEREWOLF] = {
     [130088] = dataminedUnclear,                    -- Daedric Fragment, Coldharbour
     [134248] = dataminedUnclear,                    -- Grand Mnemograph
     [134249] = dataminedUnclear,                    -- Sotha Sil, The Clockwork God
-    
-    
-    [134464] = dataminedUnclear,                    -- Riekling Bonfire, Ceremonial
+     
     [130090] = dataminedUnclear,                    -- Daedric Sconce, Molag Bal
     [121023] = dataminedUnclear,                    -- Tree, Strong Olive
     [121022] = dataminedUnclear,                    -- Bush, Green Forest
