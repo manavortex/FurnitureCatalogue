@@ -2,6 +2,36 @@ FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
 FurC.LuxuryFurnisher[FURC_SCALES] = {
    
+   [156647] = {    -- Ra Gada Throne, Stone
+    itemDate  = "2020-20-15",   
+     itemPrice   = 50000,
+  },
+
+   
+  [145469] = {    -- Redguard Gazebo, Palatial Domed
+    itemPrice   = 75000,
+    itemDate  = "2020-20-15",    
+  },
+
+  [120802] = {  -- Shrine of Mara, Decorative
+    itemPrice   = 50000,
+    itemDate  = "2020-20-15",
+  },
+  [120799] = {  -- Wedding Blossoms, Peach
+    itemPrice   = 2500,
+    itemDate  = "2020-20-15",
+  },
+  [120893] = {  -- Wedding Gazebo
+    itemPrice   = 50000,
+    itemDate  = "2020-20-15",
+  },
+  [117875] = {    -- Wedding Pergola, Bare
+    itemPrice   = 35000,
+    itemDate  = "2020-20-15",
+  },
+
+   
+   
    [156663] = {    -- Riekling Banner, Boar Pelt
      itemPrice   = 4000,
     itemDate  = "2020-02-01",
@@ -1272,24 +1302,24 @@ FurC.LuxuryFurnisher[FURC_SLAVES] = {
   
   [145469] = {    -- Redguard Gazebo, Palatial Domed
     itemPrice   = 75000,
-    itemDate  = "2019-02-16",    
+    itemDate  = "2020-20-15",    
   },
 
   [120802] = {  -- Shrine of Mara, Decorative
     itemPrice   = 50000,
-    itemDate  = "2019-02-16",
+    itemDate  = "2020-20-15",
   },
   [120799] = {  -- Wedding Blossoms, Peach
     itemPrice   = 2500,
-    itemDate  = "2019-02-16",
+    itemDate  = "2020-20-15",
   },
   [120893] = {  -- Wedding Gazebo
     itemPrice   = 50000,
-    itemDate  = "2019-02-16",
+    itemDate  = "2020-20-15",
   },
   [117875] = {    -- Wedding Pergola, Bare
     itemPrice   = 35000,
-    itemDate  = "2019-02-16",
+    itemDate  = "2020-20-15",
   },
 
 

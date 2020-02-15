@@ -22,28 +22,6 @@ FurC.LuxuryFurnisher[FURC_SLAVES] = {
     itemDate  = "2019-02-23",
   },
   
-  [145469] = {    -- Redguard Gazebo, Palatial Domed
-    itemPrice   = 75000,
-    itemDate  = "2019-02-16",    
-  },
-
-  [120802] = {  -- Shrine of Mara, Decorative
-    itemPrice   = 50000,
-    itemDate  = "2019-02-16",
-  },
-  [120799] = {  -- Wedding Blossoms, Peach
-    itemPrice   = 2500,
-    itemDate  = "2019-02-16",
-  },
-  [120893] = {  -- Wedding Gazebo
-    itemPrice   = 50000,
-    itemDate  = "2019-02-16",
-  },
-  [117875] = {    -- Wedding Pergola, Bare
-    itemPrice   = 35000,
-    itemDate  = "2019-02-16",
-  },
-
 
   [145468] = {    -- Wedding Lantern, Hanging
     itemPrice   = 5000,
