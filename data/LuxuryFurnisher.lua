@@ -2,6 +2,30 @@ FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
 FurC.LuxuryFurnisher[FURC_SCALES] = {
    
+   [156664] = {    -- Ayleid Pillar, Small Empty
+     itemPrice   = 5000,
+    itemDate  = "2020-02-22",
+  },
+  
+  [134468] = {    -- Ayleid Switch, Ancient
+    itemPrice   = 4000,
+    itemDate  = "2020-02-22",
+  },
+  [134466] = { -- Ayleid Sconce, Empty
+    itemPrice  = 4000,
+    itemDate  = "2020-02-22",
+  },
+  [134467] = { -- Culanda Stone ,Glowing
+    itemPrice  = 5000,
+    itemDate  = "2020-02-22",
+  },
+  [134465] = { -- Varla Stone ,Glowing
+    itemPrice  = 5000,
+    itemDate  = "2020-02-22",
+  },
+
+
+   
    [156647] = {    -- Ra Gada Throne, Stone
     itemDate  = "2020-20-15",   
      itemPrice   = 50000,
@@ -1376,19 +1400,19 @@ FurC.LuxuryFurnisher[FURC_SLAVES] = {
   
   [134468] = {    -- Ayleid Switch, Ancient
     itemPrice   = 4000,
-    itemDate  = "2019-01-27",
+    itemDate  = "2020-02-22",
   },
   [134466] = { -- Ayleid Sconce, Empty
     itemPrice  = 4000,
-    itemDate  = "2019-01-27",
+    itemDate  = "2020-02-22",
   },
   [134467] = { -- Culanda Stone ,Glowing
     itemPrice  = 5000,
-    itemDate  = "2019-01-27",
+    itemDate  = "2020-02-22",
   },
   [134465] = { -- Varla Stone ,Glowing
     itemPrice  = 5000,
-    itemDate  = "2019-01-27",
+    itemDate  = "2020-02-22",
   },
 
   
