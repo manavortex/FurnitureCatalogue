@@ -1,6 +1,6 @@
 local currentChar        = FurnitureCatalogue.CharacterName
-local task             = LibStub("LibAsync"):Create("FurnitureCatalogue_ScanDataFiles")
-local task2           = LibStub("LibAsync"):Create("FurnitureCatalogue_ScanCharacterKnowledge")
+local task             = LibAsync:Create("FurnitureCatalogue_ScanDataFiles")
+local task2           = LibAsync:Create("FurnitureCatalogue_ScanCharacterKnowledge")
 local characterAlliance     = GetUnitAlliance('player')
 
 local NUMBER_TYPE         = "number"

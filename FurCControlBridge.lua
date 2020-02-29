@@ -2,7 +2,7 @@ local FurC     = FurnitureCatalogue
 local control   = FurnitureCatalogueControl
 FurC.Visible  = false
 
-local LAM = LibStub:GetLibrary("LibAddonMenu-2.0")
+local LAM = LibAddonMenu2
 
 local function p(output, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10)
   FurC.DebugOut(output, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10)

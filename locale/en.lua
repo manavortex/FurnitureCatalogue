@@ -215,6 +215,7 @@ local strings = {
   SI_FURC_FILTER_VERSION_KITTY =    "Elsweyr",
   SI_FURC_FILTER_VERSION_SCALES =   "Scalebreaker",
   SI_FURC_FILTER_VERSION_DRAGON2 =  "Dragonhold",
+  SI_FURC_FILTER_VERSION_HARROW =   "Harrowstorm",
   
 
   -- =============================== --
@@ -245,7 +246,8 @@ local strings = {
   SI_FURC_FILTER_VERSION_WOTL_TT =    "Wrathstone!",
   SI_FURC_FILTER_VERSION_KITTY_TT =    "Khajiit has furniture, if you have coin!",
   SI_FURC_FILTER_VERSION_SCALES_TT = "Fus Ro Dah?",
-  SI_FURC_FILTER_VERSION_DRAGON2 = "Now with more dragons",
+  SI_FURC_FILTER_VERSION_DRAGON2_TT = "Now with more dragons",
+  SI_FURC_FILTER_VERSION_HARROW_TT = "Climate change is real",
   
   SI_FURC_FILTER_CHAR_OFF =     "Character filter: off", 
   SI_FURC_FILTER_CHAR_OFF_TT =  filterDisabled, 

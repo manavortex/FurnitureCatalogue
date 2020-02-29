@@ -34,3 +34,4 @@ FURC_WOTL                 = FURC_SLAVES     +1        -- 10
 FURC_KITTY                = FURC_WOTL       +1        -- 11
 FURC_SCALES               = FURC_KITTY      +1        -- 12
 FURC_DRAGON2              = FURC_SCALES     +1        -- 13
+FURC_HARROW               = FURC_DRAGON2     +1       -- 14

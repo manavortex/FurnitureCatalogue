@@ -145,8 +145,9 @@ FurnitureCatalogue.DropdownData = {
     [9] = GetString(SI_FURC_FILTER_VERSION_WEREWOLF),
     [10] = GetString(SI_FURC_FILTER_VERSION_WOTL),
     [11] = GetString(SI_FURC_FILTER_VERSION_KITTY),
-    [12] = GetString(SI_FURC_FILTER_VERSION_SCALES),
-    [13] = GetString(SI_FURC_FILTER_VERSION_DRAGON2),
+    [12] = GetString(SI_FURC_FILTER_VERSION_SCALES), 
+    [13] = GetString(SI_FURC_FILTER_VERSION_DRAGON2), 
+    [14] = GetString(SI_FURC_FILTER_VERSION_HARROW),
   },
   TooltipsVersion  = {
     [1] =  GetString(SI_FURC_FILTER_VERSION_OFF_TT),
@@ -160,8 +161,9 @@ FurnitureCatalogue.DropdownData = {
     [9] = GetString(SI_FURC_FILTER_VERSION_WEREWOLF_TT),
     [10] = GetString(SI_FURC_FILTER_VERSION_WOTL_TT),
     [11] = GetString(SI_FURC_FILTER_VERSION_KITTY_TT),
-    [12] = GetString(SI_FURC_FILTER_VERSION_SCALES_TT),
-    [12] = GetString(SI_FURC_FILTER_VERSION_DRAGON2_TT),
+    [12] = GetString(SI_FURC_FILTER_VERSION_SCALES_TT), 
+    [13] = GetString(SI_FURC_FILTER_VERSION_DRAGON2_TT),    
+    [14] = GetString(SI_FURC_FILTER_VERSION_HARROW_TT),
   },
   ChoicesCharacter  = {
     [1]  = GetString(SI_FURC_FILTER_CHAR_OFF),

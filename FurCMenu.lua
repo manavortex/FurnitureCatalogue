@@ -1,6 +1,6 @@
 function FurC.CreateSettings(savedVars, defaults)
 
-  local LAM = LibStub:GetLibrary("LibAddonMenu-2.0")
+  local LAM = LibAddonMenu2
   local panelData = {
     type = "panel",
     name = FurC.name,

@@ -1,4 +1,4 @@
-local async = LibStub("LibAsync")
+local async = LibAsync
 local task = async:Create("FurnitureCatalogue_Tooltip")
 
 local p     = FurC.DebugOut -- debug function calling zo_strformat with up to 10 args

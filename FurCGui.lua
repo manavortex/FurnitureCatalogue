@@ -3,9 +3,9 @@ FurC.KnowledgeFilter   = "All (Accountwide)"
 FurC.SearchString     = ""
 FurC.ScrollSortUp     = true
 local checkWasUpdated  = false
-local task         = LibStub("LibAsync"):Create("FurnitureCatalogue_updateLineVisibility")
-local otherTask     = LibStub("LibAsync"):Create("FurnitureCatalogue_ToggleGui")
-local async       = LibStub("LibAsync"):Create("FurnitureCatalogue_forLoop")
+local task         = LibAsync:Create("FurnitureCatalogue_updateLineVisibility")
+local otherTask     = LibAsync:Create("FurnitureCatalogue_ToggleGui")
+local async       = LibAsync:Create("FurnitureCatalogue_forLoop")
 
 
 local p     = FurC.DebugOut -- debug function calling zo_strformat with up to 10 args
