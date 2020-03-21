@@ -48,7 +48,7 @@ FurC.MiscItemSources[FURC_KITTY]  = {
   
   [FURC_CROWN]   = {
     [153630] = scambox_newmoon .. " (55 gems)", 
-  }
+  },
   [FURC_RUMOUR]   = {
     [151851] = rumourSource, -- Boulder, Lunar Spine,
     [151852] = rumourSource, -- Boulder, Lunar Spire,
