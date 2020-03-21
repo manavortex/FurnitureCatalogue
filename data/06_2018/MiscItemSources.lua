@@ -809,6 +809,7 @@ FurC.MiscItemSources[FURC_ALTMER] = {
     [134275] = getCrownPrice(200),              -- Coldharbour Bin, Black Soul Gem
     [130197] = getCrownPrice(170),              -- Ayleid Bookcase, Filled
     [130199] = getCrownPrice(170),              -- Ayleid Bookshelf, Bare
+    [118491] = getCrownPrice(55),              -- Scroll, Bound
     
   },
   [FURC_DROP] = {

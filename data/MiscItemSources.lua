@@ -12,6 +12,7 @@ local automaton_loot_vv     = GetString(SI_FURC_AUTOMATON) .. " on Vvardenfell"
 
 
 local scambox_string        = GetString(SI_FURC_SCAMBOX)
+local scambox_newmoon       = zo_strformat("<<1>> (<<2>>)", scambox_string, "New Moon")
 
 local sinister_hollowjack   = "Sinister Hollowjack Items"
 
@@ -45,6 +46,9 @@ end
 
 FurC.MiscItemSources[FURC_KITTY]  = {
   
+  [FURC_CROWN]   = {
+    [153630] = scambox_newmoon .. " (55 gems)", 
+  }
   [FURC_RUMOUR]   = {
     [151851] = rumourSource, -- Boulder, Lunar Spine,
     [151852] = rumourSource, -- Boulder, Lunar Spire,
@@ -98,6 +102,7 @@ FurC.MiscItemSources[FURC_KITTY]  = {
     }, 
   
   [FURC_JUSTICE] = {
+    [151892] = stealable_elsewhere, -- Elsweyr Fragrance Bottle, Moons-Blessed
     [151889] = stealable_elsewhere, -- Elsweyr Comb, Grooming    
     [151893] = stealable_elsewhere, -- Elsweyr Fragrance Bottle, Moonlit Tryst 
     [151899] = stealable_elsewhere, -- Elsweyr Pillow, Night Blues Wide,
@@ -167,8 +172,7 @@ FurC.MiscItemSources[FURC_KITTY]  = {
     [151876] = getCrownPrice(590), -- Elsweyr Tent, Caravan,
     [151877] = getCrownPrice(590), -- Elsweyr Canopy, Bazaar,
     [151878] = getCrownPrice(450), -- Elsweyr Canopy, Peaked,
-    [151883] = getCrownPrice(240), -- Tree, Towering Iroko,
-    [151892] = getCrownPrice(110), -- Elsweyr Fragrance Bottle, Moons-Blessed,
+    [151883] = getCrownPrice(240), -- Tree, Towering Iroko, 
     [151901] = getCrownPrice(20), -- Elsweyr Bowl, Moon-Sugar,
     [151902] = getCrownPrice(200), -- Elsweyr Sarcophagus, Ancient,
     [151903] = getCrownPrice(200), -- Elsweyr Sarcophagus Lid, Ancient,

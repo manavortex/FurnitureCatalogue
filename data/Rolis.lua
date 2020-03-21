@@ -3,23 +3,35 @@ FurC.RolisRecipes     = FurC.RolisRecipes or {}
 FurC.FaustinaRecipes  = FurC.FaustinaRecipes or {}
 FurC.Faustina         = FurC.Faustina or {}
 
+FurC.RolisRecipes[FURC_HARROW] = {
+  
+  
+  [159501] = 125, -- Praxis: Khajiit Sigil, Moon Cycle
+  [159499] = 125, -- Pattern: Elsweyr Bed, Senche-Raht
+  [159502] = 125, -- Formula: Elsweyr Mortar and Pestle, Engraved
+  [159498] = 125, -- Diagram: Elsweyr Gong, Ornate
+  [159503] = 125, -- Design: Elsweyr Bread Basket, Feast-Day
+  [159500] = 125, -- Blueprint: Elsweyr Well, Covered
+
+ 
+}
+
+FurC.Faustina[FURC_HARROW] = {
+  
+  [153734] = 100, -- Design: Provisioning Station, Elsweyr Grill
+  [153729] = 100, -- Diagram: Elsweyr Gate, Masterwork
+  [153733] = 100, -- Formula: Elsweyr Incense, Fragrant
+  [153730] = 100, -- Pattern: Elsweyr Chaise Lounge, Upholstered
+  [153732] = 100, -- Praxis: Elsweyr Statue, Shrine Lion
+  [153735] = 100, -- Sketch: Elsweyr Cage, Filigree
+}
 
 FurC.Faustina[FURC_ALTMER] = {
   [139391] = 10,  -- Master Craftsman's Banner, Hanging
   [137870] = 125, -- Basic Jewelry Crafting Station
 }
 
-
-FurC.RolisRecipes[FURC_KITTY] = {
-  
-  [153734] = 125, -- Design: Provisioning Station, Elsweyr Grill
-  [153729] = 125, -- Diagram: Elsweyr Gate, Masterwork
-  [153733] = 125, -- Formula: Elsweyr Incense, Fragrant
-  [153730] = 125, -- Pattern: Elsweyr Chaise Lounge, Upholstered
-  [153732] = 125, -- Praxis: Elsweyr Statue, Shrine Lion
-  [153735] = 125, -- Sketch: Elsweyr Cage, Filigree
-  
-}
+ 
 FurC.RolisRecipes[FURC_WOTL] = {
  
 	[147656] = 125, -- Dark Elf Tent, Canopy,    

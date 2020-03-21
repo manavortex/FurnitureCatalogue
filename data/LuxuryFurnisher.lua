@@ -3,21 +3,65 @@ FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
 
 FurC.LuxuryFurnisher[FURC_HARROW] = {
+  [156648] = {    -- Ra Gada Funerary Statue, Miniature Ibis
+    itemPrice   = 15000,
+    itemDate  = "2020-03-21",
+  },
+ [145470] = {    -- Redguard Vase, Golden
+    itemPrice   = 5000,
+    itemDate  = "2020-03-21",
+  },
+  [120803] = {  -- Hew’s Bane Bed, Royal
+    itemPrice   = 20000,
+    itemDate  = "2020-03-21",
+  },
+  [121266] = {  -- Hew’s Bane Lantern
+    itemPrice   = 5000,
+    itemDate  = "2020-03-21",
+  },
+  [121267] = {  -- Hew’s Bane Merchant’s Basket
+    itemPrice   = 2500,
+    itemDate  = "2020-03-21",
+  },  
+  [134824] = {  -- Redguard Tent, Rounded Silk
+    itemPrice   = 100000,
+    itemDate  = "2020-03-21",
+  },
+  
+  [151864] = {    -- Alinor Maple, Diminutive
+    itemPrice   = 4000,
+    itemDate  = "2020-03-14",
+    },
+  [151865] = {    -- Alinor Maple, Purple
+    itemPrice   = 4000,
+    itemDate  = "2020-03-14",
+  },
+  [151866] = {    -- Alinor Maple, Sinuous
+    itemPrice   = 15000,
+    itemDate  = "2020-03-14",
+  },
+  [151863] = {    -- Alinor Windmill, Decorative
+    itemPrice   = 250000,
+    itemDate  = "2020-03-14",
+  },
+
+  
+  
   [151859] = {    -- Alinor Greenhouse, Summer
     itemPrice   = 100000,
-    itemDate  = "2020-03-207",
+    itemDate  = "2020-03-07",
   },
 [151860] = {    -- Sapling, Blue Wisteria
     itemPrice   = 5000,
-    itemDate  = "2020-03-207",
+    itemDate  = "2020-03-07",
   },
   [151862] = {    -- Tree, Blue Wisteria
     itemPrice   = 7500,
-    itemDate  = "2020-03-207",
+    itemDate  = "2020-03-07",
   },
   [151861] = {    -- Tree, Purple Wisteria
     itemPrice   = 9000,
-    itemDate  = "2020-02-29",
+    itemDate  = "2020-02-07",
   },
 
 

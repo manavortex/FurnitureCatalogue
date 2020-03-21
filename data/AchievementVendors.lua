@@ -1,4 +1,23 @@
 
+
+FurC.AchievementVendors[FURC_HARROW] = {
+  
+ 
+  ["the Undaunted Enclaves"] = {
+    ["Undaunted Quartermaster"] = {
+     [159452] = {    --Gray Reliquary
+        itemPrice   = 25000,
+        achievement = 2549,  
+      },
+      [159453] = {    --Icereach Coven Totem, Emblem
+        itemPrice   = 12000,
+        achievement = 2539,  
+      },
+
+    },
+  },
+}
+
 FurC.AchievementVendors[FURC_DRAGON2] = {
   
   
@@ -11,13 +30,9 @@ FurC.AchievementVendors[FURC_DRAGON2] = {
         itemPrice   = 1250,
       },
 
-    }, 
+}, 
   }
-}
-
-if tonumber(GetAPIVersion()) < 100029 then
-  FurC.AchievementVendors[FURC_DRAGON2] = {}
-end
+} 
 
 FurC.AchievementVendors[FURC_SCALES] = {
   
