@@ -3,6 +3,34 @@ FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
 
 FurC.LuxuryFurnisher[FURC_HARROW] = {
+  
+  [156649] = {    -- Redguard Tent, Rounded Blue
+    itemPrice   = 100000,
+    itemDate  = "2020-03-28",
+  }, 
+  
+  [120807] = {    -- Hew's Bane Well
+    itemPrice   = 10000,
+    itemDate  = "2020-03-28",
+  },
+  [120806] = {  -- Hew'S Bane Candlestick
+    itemPrice   = 2500,
+    itemDate  = "2020-03-28",
+  },
+  [120805] = {  -- Hew's Bane Rug
+    itemPrice   = 5000,
+    itemDate  = "2020-03-28",
+  },
+  [120807] = {  -- Hew's Bane Well
+    itemPrice   = 10000,
+    itemDate  = "2020-03-28",
+  },
+  [134825] = {  -- Redguard Tent, Squared Silk
+    itemPrice   = 100000,
+    itemDate  = "2020-03-28",
+  }, 
+
+  
   [156648] = {    -- Ra Gada Funerary Statue, Miniature Ibis
     itemPrice   = 15000,
     itemDate  = "2020-03-21",
@@ -1374,27 +1402,6 @@ FurC.LuxuryFurnisher[FURC_WOTL] = {
     itemDate  = "2019-03-10",
   },
 
-  
-  [120807] = {    -- Hew's Bane Well
-    itemPrice   = 10000,
-    itemDate  = "2018-03-02",
-  },
-  [120806] = {  -- Hew'S Bane Candlestick
-    itemPrice   = 2500,
-    itemDate  = "2018-03-02",
-  },
-  [120805] = {  -- Hew's Bane Rug
-    itemPrice   = 5000,
-    itemDate  = "2018-03-02",
-  },
-  [120807] = {  -- Hew's Bane Well
-    itemPrice   = 10000,
-    itemDate  = "2018-03-02",
-  },
-  [134825] = {  -- Redguard Tent, Squared Silk
-    itemPrice   = 100000,
-    itemDate  = "2018-03-02",
-  }, 
  
 }
 
