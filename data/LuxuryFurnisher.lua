@@ -1,8 +1,35 @@
-FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
+ FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
 
 
 FurC.LuxuryFurnisher[FURC_HARROW] = {
+  [156653] = {    -- Plant, Luminescent Valeflower
+    itemPrice   = 2500,
+    itemDate  = "2020-04-25",
+    },
+
+  [145475] = {    -- Plant, Soulsplinter Weed
+    itemPrice   = 12500,
+    itemDate  = "2020-04-25",
+  },
+  [134830] = {  -- Flowers, Blue Starbloom
+    itemPrice   = 15000,
+    itemDate  = "2020-04-25",
+  },
+  [120888] = {  -- Bat Bloom
+    itemPrice   = 15000,
+    itemDate  = "2020-04-25",
+  },
+  [120887] = {  -- Fan Bush
+    itemPrice   = 1000,
+    itemDate  = "2020-04-25",
+  },
+  [120889] = {  -- Glow Bush, Purple
+    itemPrice   = 20000,
+    itemDate  = "2020-04-25",
+  },
+  
+  
   
   [156652] = {    -- Garlas Alpinia, Branching
     itemPrice   = 2000,
@@ -1393,27 +1420,6 @@ FurC.LuxuryFurnisher[FURC_WOTL] = {
   [134831] = {  -- Altar of the Divines
     itemPrice   = 50000,
     itemDate  = "2019-04-07",
-  },
-  
-  [145475] = {    -- Plant, Soulsplinter Weed
-    itemPrice   = 12500,
-    itemDate  = "2019-03-31",
-  },
-  [134830] = {  -- Flowers, Blue Starbloom
-    itemPrice   = 15000,
-    itemDate  = "2019-03-31",
-  },
-  [120888] = {  -- Bat Bloom
-    itemPrice   = 15000,
-    itemDate  = "2019-03-31",
-  },
-  [120887] = {  -- Fan Bush
-    itemPrice   = 1000,
-    itemDate  = "2019-03-31",
-  },
-  [120889] = {  -- Glow Bush, Purple
-    itemPrice   = 20000,
-    itemDate  = "2019-03-31",
   },
   
 

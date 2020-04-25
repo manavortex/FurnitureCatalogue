@@ -13,10 +13,12 @@ local cachedItemLink
 local cachedName
 local cachedPrice
 local cachedCanBuy
+local cachedIsLetter
 
 local p = this.p
 
 local cachedItemIds = {}
+
 
 local function showTextbox()
     if not isMana   then return end
@@ -25,7 +27,7 @@ end
 function this.clearControl()
     if not isMana   then return end
     this.textbox:Clear()
-    ZO_ClearTable(cachedItemIds)
+    cachedItemIds = {}
     this.control:SetHidden(true)
 end
 function this.selectEntireTextbox()
@@ -45,6 +47,7 @@ local s2             = "  "
 local s4             = "    "
 -- local s_default            = (s2 .. "[%d] = GetString(SI_FURC_EXISITING_ITEMSOURCE_UNKNOWN_YET)," .. s2 .. "-- %s\n")
 local s_default            = (s2 .. "[%d] = getCrownPrice(99)," .. s4 .. "   " .. "-- %s")
+local s_letter             = (s2 .. "[%d] = rumourSource," .. s4 .. "   " .. "-- %s")
 local s_withPrice          = (s2 .. "[%d] = {" .. s4 .. "-- %s\n" .. s4 .. 
                                             "itemPrice   = %d,\n" .. s2 .. 
                                            "},")
@@ -55,16 +58,18 @@ local s_withAchievement    = (s2 .. "[%d] = {" .. s4 .. "--%s\n" .. s4 ..
 local s_forRecipe          = (s2 .. "%d, -- %s")
 
 local function makeOutput()
-    if not isMana   then return end
-
+    if not cachedItemLink  or not isMana   then return end
+    
+    d(cachedItemLink)
     local isRecipe      = IsItemLinkFurnitureRecipe(cachedItemLink)
     local debugString   = (isRecipe and s_forRecipe) or s_default
     
     cachedName          = cachedName or GetItemLinkName(cachedItemLink)
+    cachedPrice         = cachedPrice or 0
     
-    if 0 < (cachedPrice or 0)           then debugString = s_withPrice end    
-    if not (cachedCanBuy or isRecipe)   then debugString = s_withAchievement  end
-    
+    if 0 < cachedPrice           then debugString = s_withPrice end    
+    if 0 < cachedPrice and not (cachedCanBuy or isRecipe)   then debugString = s_withAchievement  end
+    if cachedIsLetter then debugString = s_letter end
     if #(textbox:GetText() or "") == 0 then 
         debugString = debugString:sub(#s2+1, #debugString)
     end
@@ -73,27 +78,26 @@ local function makeOutput()
 end
 
 local function isItemIdCached()
-    local itemId = FurC.GetItemId(cachedItemLink)
+    local itemId = FurC.GetItemId(cachedItemLink) 
+    if not itemId then return end
     if cachedItemIds[itemId] then return true end
     cachedItemIds[itemId] = true
     return false
 end
 
-local function concatToTextbox(itemId)
-
+local function concatToTextbox()
     if (not isMana) or isItemIdCached() then return end
     local textSoFar = this.textbox:GetText() or ""
-    this.textbox:SetText(textSoFar .. makeOutput())
+    this.textbox:SetText(textSoFar .. makeOutput(itemId))
     showTextbox()
 end
-function this.concatToTextbox (itemId)
-    if itemId then 
+function this.concatToTextbox(itemId)
+    if itemId then
         cachedItemLink  = FurC.GetItemLink(itemId)
-        cachedCanBuy    = true
         cachedName      = GetItemLinkName(cachedItemLink)
         cachedPrice     = 0
+        concatToTextbox()
     end
-    concatToTextbox()
 end
 
 
@@ -109,8 +113,12 @@ end
 
 function FurCDevControl_HandleClickEvent(itemLink, button, control)    -- button being mouseButton here
     if not isMana   then return end
-
+    
     if (type(itemLink) == 'string' and #itemLink > 0) then
+    currentSceneName = SCENE_MANAGER:GetCurrentScene().name
+    cachedCanBuy = currentSceneName == "store"
+    cachedIsLetter = currentSceneName == "mailInbox"
+    cachedItemLink = itemLink
     local handled = LINK_HANDLER:FireCallbacks(LINK_HANDLER.LINK_MOUSE_UP_EVENT, itemLink, button, ZO_LinkHandler_ParseLink(itemLink))
     if (not handled) then
       FurCDevControl_LinkHandlerBackup_OnLinkMouseUp(itemLink, button, control)
@@ -118,7 +126,7 @@ function FurCDevControl_HandleClickEvent(itemLink, button, control)    -- button
       if (button == 2 and itemLink and #itemLink > 0) then
         addMenuItems()
       end
-      ShowMenu(control)
+        ShowMenu(control)
         end
     end
 end
@@ -149,7 +157,7 @@ function FurCDevControl_HandleInventoryContextMenu(control)
     
     cachedName      = name
     cachedPrice     = price or 0
-    cachedCanBuy    = canBuy
+    cachedCanBuy    = canBuy 
     
     if not FurC.Find(cachedItemLink) then return end
     
