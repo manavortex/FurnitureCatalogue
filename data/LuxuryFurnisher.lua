@@ -3,6 +3,15 @@
 
 
 FurC.LuxuryFurnisher[FURC_HARROW] = {
+    
+  [145476] = {    -- Alinor Shrine, Trinimac
+    itemPrice   = 50000,
+    itemDate  = "2020-05-02",
+  },
+  [145477] = {    -- Alinor Pedestal, Shrine
+    itemPrice   = 10000,
+    itemDate  = "2020-05-02",
+  },
   
   [156654] = {    -- Alinor Shrine, Magnus
     itemPrice   = 50000,
@@ -1421,14 +1430,6 @@ FurC.LuxuryFurnisher[FURC_WOTL] = {
     itemDate  = "2019-04-14",
   },
 
-  [145476] = {    -- Alinor Shrine, Trinimac
-    itemPrice   = 50000,
-    itemDate  = "2019-04-07",
-  },
-  [145477] = {    -- Alinor Pedestal, Shrine
-    itemPrice   = 10000,
-    itemDate  = "2019-04-07",
-  },
 
 
  

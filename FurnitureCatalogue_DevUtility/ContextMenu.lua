@@ -129,10 +129,11 @@ function FurCDevControl_HandleClickEvent(itemLink, button, control)    -- button
     if not isMana   then return end
     
     if (type(itemLink) == 'string' and #itemLink > 0) then
-    currentSceneName = SCENE_MANAGER:GetCurrentScene().name
-    cachedCanBuy = currentSceneName == "store"
-    cachedIsLetter = currentSceneName == "mailInbox"
-    cachedItemLink = itemLink
+    currentSceneName  = SCENE_MANAGER:GetCurrentScene().name
+    cachedCanBuy      = currentSceneName == "store"
+    cachedIsLetter    = currentSceneName == "mailInbox"
+    cachedItemLink    = itemLink
+    cachedName        = GetItemLinkName(cachedItemLink)
     
     local handled = LINK_HANDLER:FireCallbacks(LINK_HANDLER.LINK_MOUSE_UP_EVENT, itemLink, button, ZO_LinkHandler_ParseLink(itemLink))
     if (not handled) then
