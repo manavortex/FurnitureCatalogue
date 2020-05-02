@@ -3,6 +3,39 @@
 
 
 FurC.LuxuryFurnisher[FURC_HARROW] = {
+  
+  [156654] = {    -- Alinor Shrine, Magnus
+    itemPrice   = 50000,
+    itemDate  = "2020-05-02",
+  },
+  
+  [120823] = {  -- Sigil Stand
+    itemPrice   = 15000,
+    itemDate  = "2020-05-02",
+  },
+  [120815] = {  -- Sigil, Akatosh
+    itemPrice   = 20000,
+    itemDate  = "2020-05-02",
+  },
+  [120816] = {  -- Sigil, Arkay
+    itemPrice   = 20000,
+    itemDate  = "2020-05-02",
+  },
+  [120817] = {  -- Sigil, Dibella
+    itemPrice   = 20000,
+    itemDate  = "2020-05-02",
+  },
+  [120818] = {  -- Sigil, Julianos
+    itemPrice   = 20000,
+    itemDate  = "2020-05-02",
+  },
+  [134831] = {  -- Altar of the Divines
+    itemPrice   = 50000,
+    itemDate  = "2020-05-02",
+  },
+  
+
+  
   [156653] = {    -- Plant, Luminescent Valeflower
     itemPrice   = 2500,
     itemDate  = "2020-04-25",
@@ -1397,31 +1430,6 @@ FurC.LuxuryFurnisher[FURC_WOTL] = {
     itemDate  = "2019-04-07",
   },
 
-  [120823] = {  -- Sigil Stand
-    itemPrice   = 15000,
-    itemDate  = "2019-04-07",
-  },
-  [120815] = {  -- Sigil, Akatosh
-    itemPrice   = 20000,
-    itemDate  = "2019-04-07",
-  },
-  [120816] = {  -- Sigil, Arkay
-    itemPrice   = 20000,
-    itemDate  = "2019-04-07",
-  },
-  [120817] = {  -- Sigil, Dibella
-    itemPrice   = 20000,
-    itemDate  = "2019-04-07",
-  },
-  [120818] = {  -- Sigil, Julianos
-    itemPrice   = 20000,
-    itemDate  = "2019-04-07",
-  },
-  [134831] = {  -- Altar of the Divines
-    itemPrice   = 50000,
-    itemDate  = "2019-04-07",
-  },
-  
 
  
 }

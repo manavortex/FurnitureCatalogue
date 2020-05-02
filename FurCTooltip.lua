@@ -18,7 +18,7 @@ local function addTooltipData(control, itemLink)
 
   itemLink = (isRecipe and GetItemLinkRecipeResultItemLink(itemLink)) or itemLink
 
-    if not (isRecipe or IsItemLinkPlaceableFurniture(itemLink)) then return end
+  if not (isRecipe or IsItemLinkPlaceableFurniture(itemLink)) then return end
   itemId     = FurC.GetItemId(itemLink)
   recipeArray = FurC.Find(itemLink)
 
@@ -82,6 +82,10 @@ local function TooltipHook(tooltipControl, method, linkFunc)
 end
 
 local function ReturnItemLink(itemLink)
+  if IsShiftKeyDown() then
+    local recipeArray = FurC.Find(itemLink)
+    if recipeArray.blueprint then return FurC.GetItemLink(recipeArray.blueprint) end
+  end
   return FurC.GetItemLink(itemLink)
 end
 
@@ -99,7 +103,7 @@ do
     TooltipHook(ItemTooltip,   "SetTradingHouseItem",     GetTradingHouseSearchResultItemLink)
     TooltipHook(ItemTooltip,   "SetTradingHouseListing",   GetTradingHouseListingItemLink)
     TooltipHook(ItemTooltip,   "SetLink",           ReturnItemLink)
-    TooltipHook(PopupTooltip,   "SetLink",           ReturnItemLink)
+    TooltipHook(PopupTooltip,  "SetLink",           ReturnItemLink)
   end
   -- hook late
   local function DeferHookToolTips()

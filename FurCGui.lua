@@ -26,9 +26,8 @@ function FurC.CalculateMaxLines()
   return FurCGui_ListHolder.maxLines
 end
 
-local function updateLineVisibility()
-
-
+local function updateLineVisibility() 
+  
   local function fillLine(curLine, curData, lineIndex)
     if nil == curLine then return end
 
@@ -38,15 +37,17 @@ local function updateLineVisibility()
     local hidden = lineIndex > #dataLines or lineIndex > maxLines
     curLine:SetHidden(hidden)
     if nil == curData or curLine:IsHidden() then
-      curLine.itemLink = ""
+      curLine.itemLink  = ""
       curLine.itemId    = 0
+      curLine.blueprint = 0
       curLine.icon:SetTexture(nil)
       curLine.icon:SetAlpha(0)
       curLine.text:SetText("")
       curLine.mats:SetText("")
     else
-      curLine.itemLink   = curData.itemLink
+      curLine.itemLink    = curData.itemLink
       curLine.itemId      = curData.itemId
+      curLine.blueprint   = curData.blueprint
       curLine.icon:SetTexture(GetItemLinkIcon(curData.itemLink))
       curLine.icon:SetAlpha(1)
       local text       =  curData.itemLink:gsub("H1", "H0")
@@ -114,6 +115,7 @@ local function updateScrollDataLinesData()
           tempDataLine       = ZO_DeepTableCopy({}, recipeArray)
           tempDataLine.itemId    = itemId
           tempDataLine.itemLink  = itemLink
+          tempDataLine.blueprint = recipeArray.blueprint
           tempDataLine.itemName  = GetItemLinkName(itemLink)
           table.insert(dataLines, tempDataLine)
         end

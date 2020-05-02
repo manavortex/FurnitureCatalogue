@@ -16,28 +16,7 @@ this.name       = "FurnitureCatalogue_DevUtility"
 this.control    = control
 this.textbox    = FurCDevControlBox
 local active = string.find(GetWorldName(), "PTS")
-
-
-local function p(output, a1, a2, a3, a4, a5)
-    
-  if a5 then
-    d(zo_strformat(output, a1, a2, a3, a4, a5))
-  elseif a4 then
-    d(zo_strformat(output, a1, a2, a3, a4))
-  elseif a3 then
-    d(zo_strformat(output, a1, a2, a3))
-  elseif a2 then
-    d(zo_strformat(output, a1, a2))
-  elseif a1 then
-    d(zo_strformat(output, a1))
-  elseif output then
-    d(zo_strformat(output))
-  else
-    d("\n")
-  end
-end
-this.p          = p
-
+local logger = LibDebugLogger(this.name)
 
 local function set_active(status)
     if nil == status then status = not this.active  end

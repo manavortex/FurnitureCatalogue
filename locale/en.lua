@@ -1,7 +1,7 @@
 local filterDisabled = "disables this filter"
 local strings = {
 
-  FURC_AV_RAZ = "Razoufa",
+FURC_AV_RAZ = "Razoufa",
   FURC_AV_MUL = "Mulvise Valyn",
 
   FURC_AV_NAR = "Narwaawende",
@@ -21,6 +21,8 @@ local strings = {
   FURC_AV_HAR = "Harnwulf",
   FURC_KITTY_LATHA = "Lathathim",
   FURC_KITTY_YATAVA = "Yatava",
+  FURC_SKYRIM_MASELA = "Masela",
+  FURC_SKYRIM_NETINDELL = "Netindell",
   FURC_AV_ADO = "Adosa Veralor",
   FURC_AV_ENC = "enchanters",
   FURC_AV_ALC = "alchemists",
@@ -216,6 +218,7 @@ local strings = {
   SI_FURC_FILTER_VERSION_SCALES =   "Scalebreaker",
   SI_FURC_FILTER_VERSION_DRAGON2 =  "Dragonhold",
   SI_FURC_FILTER_VERSION_HARROW =   "Harrowstorm",
+  SI_FURC_FILTER_VERSION_SKYRIM =   "Greymoor",
   
 
   -- =============================== --
@@ -248,6 +251,7 @@ local strings = {
   SI_FURC_FILTER_VERSION_SCALES_TT = "Fus Ro Dah?",
   SI_FURC_FILTER_VERSION_DRAGON2_TT = "Now with more dragons",
   SI_FURC_FILTER_VERSION_HARROW_TT = "Climate change is real",
+  SI_FURC_FILTER_VERSION_SKYRIM_TT =   "Who else is impressed that they're selling Skyrim *again*?",
   
   SI_FURC_FILTER_CHAR_OFF =     "Character filter: off", 
   SI_FURC_FILTER_CHAR_OFF_TT =  filterDisabled, 

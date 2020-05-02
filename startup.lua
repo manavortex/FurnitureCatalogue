@@ -1,7 +1,7 @@
 FurnitureCatalogue                = {}
 FurnitureCatalogue.name           = "FurnitureCatalogue"
 FurnitureCatalogue.author         = "manavortex"
-FurnitureCatalogue.version        = 3.611111111
+FurnitureCatalogue.version        = 3.7
 FurnitureCatalogue.CharacterName  = nil
 FurnitureCatalogue.settings       = {}
 
@@ -149,6 +149,7 @@ FurnitureCatalogue.DropdownData = {
     [13] = GetString(SI_FURC_FILTER_VERSION_DRAGON2), 
     [14] = GetString(SI_FURC_FILTER_VERSION_HARROW),
   },
+  
   TooltipsVersion  = {
     [1] =  GetString(SI_FURC_FILTER_VERSION_OFF_TT),
     [2] =  GetString(SI_FURC_FILTER_VERSION_HS_TT),
@@ -165,6 +166,7 @@ FurnitureCatalogue.DropdownData = {
     [13] = GetString(SI_FURC_FILTER_VERSION_DRAGON2_TT),    
     [14] = GetString(SI_FURC_FILTER_VERSION_HARROW_TT),
   },
+  
   ChoicesCharacter  = {
     [1]  = GetString(SI_FURC_FILTER_CHAR_OFF),
   },
@@ -177,6 +179,10 @@ FurnitureCatalogue.DropdownData = {
   TooltipsSource   = {},
 }
 
+if GetAPIVersion() == 100031 then
+  FurnitureCatalogue.DropdownData.ChoicesVersion[15]  =  GetString(SI_FURC_FILTER_VERSION_SKYRIM)
+  FurnitureCatalogue.DropdownData.TooltipsVersion[15] =  GetString(SI_FURC_FILTER_VERSION_SKYRIM_TT)
+end
 
 function FurC.UpdateDropdowns() 
   FurC.DropdownData.ChoicesSource  = FurC.GetChoicesSource()
