@@ -199,7 +199,7 @@ local function setupSourceDropdown()
   FurC.SourceIndices = sourceIndices
 end
 
-local logger = (LibDebugLogger and LibDebugLogger("MyAddon")) or nil
+local logger = (LibDebugLogger and LibDebugLogger(FurC.name)) or nil
 function FurC.DebugOut(...)
   if logger then 
     logger:Debug(...)  
@@ -252,6 +252,7 @@ function FurnitureCatalogue_Initialize(eventCode, addOnName)
 
 end
 
-ZO_CreateStringId("SI_BINDING_NAME_TOGGLE_FURNITURE_CATALOGUE", "Toggle Furniture Catalogue")
+ZO_CreateStringId("SI_BINDING_NAME_TOGGLE_FURNITURE_CATALOGUE",         "Toggle Furniture Catalogue window")
+ZO_CreateStringId("SI_BINDING_NAME_TOGGLE_FURNITURE_CATALOGUE_RECIPE",  "Toggle Furniture Catalogue blueprint on tooltip")
 EVENT_MANAGER:RegisterForEvent("FurnitureCatalogue", EVENT_ADD_ON_LOADED, FurnitureCatalogue_Initialize)
 

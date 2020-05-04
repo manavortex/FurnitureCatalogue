@@ -16,7 +16,6 @@ this.name       = "FurnitureCatalogue_DevUtility"
 this.control    = control
 this.textbox    = FurCDevControlBox
 local active = string.find(GetWorldName(), "PTS")
-local logger = LibDebugLogger(this.name)
 
 local function set_active(status)
     if nil == status then status = not this.active  end

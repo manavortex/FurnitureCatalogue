@@ -1,8 +1,6 @@
 local UNITTAG_PLAYER = "player"
 local this                                      = FurCDevUtility or {}
 
-
-local logger = LibDebugLogger(this.name)
 local isMana    = string.find(GetDisplayName(), "@manavortex") or string.find(GetDisplayName(), "@Manorin") 
 if not isMana then return end
 

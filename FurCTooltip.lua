@@ -82,7 +82,7 @@ local function TooltipHook(tooltipControl, method, linkFunc)
 end
 
 local function ReturnItemLink(itemLink)
-  if IsShiftKeyDown() then
+  if FurC.showBlueprints then
     local recipeArray = FurC.Find(itemLink)
     if recipeArray.blueprint then return FurC.GetItemLink(recipeArray.blueprint) end
   end
@@ -94,16 +94,16 @@ do
   -- hook real late
   local function HookToolTips()
     EVENT_MANAGER:UnregisterForUpdate(identifier)
-    TooltipHook(ItemTooltip,   "SetBagItem",         GetItemLink)
-    TooltipHook(ItemTooltip,   "SetTradeItem",       GetTradeItemLink)
-    TooltipHook(ItemTooltip,   "SetBuybackItem",      GetBuybackItemLink)
-    TooltipHook(ItemTooltip,   "SetStoreItem",       GetStoreItemLink)
+    TooltipHook(ItemTooltip,   "SetBagItem",              GetItemLink)
+    TooltipHook(ItemTooltip,   "SetTradeItem",            GetTradeItemLink)
+    TooltipHook(ItemTooltip,   "SetBuybackItem",          GetBuybackItemLink)
+    TooltipHook(ItemTooltip,   "SetStoreItem",            GetStoreItemLink)
     TooltipHook(ItemTooltip,   "SetAttachedMailItem",     GetAttachedItemLink)
-    TooltipHook(ItemTooltip,   "SetLootItem",         GetLootItemLink)
+    TooltipHook(ItemTooltip,   "SetLootItem",             GetLootItemLink)
     TooltipHook(ItemTooltip,   "SetTradingHouseItem",     GetTradingHouseSearchResultItemLink)
-    TooltipHook(ItemTooltip,   "SetTradingHouseListing",   GetTradingHouseListingItemLink)
-    TooltipHook(ItemTooltip,   "SetLink",           ReturnItemLink)
-    TooltipHook(PopupTooltip,  "SetLink",           ReturnItemLink)
+    TooltipHook(ItemTooltip,   "SetTradingHouseListing",  GetTradingHouseListingItemLink)
+    TooltipHook(ItemTooltip,   "SetLink",                 ReturnItemLink)
+    TooltipHook(PopupTooltip,  "SetLink",                 ReturnItemLink)
   end
   -- hook late
   local function DeferHookToolTips()

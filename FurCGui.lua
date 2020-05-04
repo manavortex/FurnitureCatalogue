@@ -491,6 +491,9 @@ function FurnitureCatalogue_Toggle()
   FurCGui_Empty:SetHidden(true)
   zo_callLater(function() FurC.UpdateGui(FurC.GetResetDropdownChoice()) end, 500)
 end
+function FurnitureCatalogue_ToggleRecipeDisplay()
+   FurC.showBlueprints = not FurC.showBlueprints
+end
 
 
 function FurC.InitGui()

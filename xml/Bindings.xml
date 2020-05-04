@@ -6,6 +6,11 @@
                   FurnitureCatalogue_Toggle()
                 </Down>
             </Action>
+            <Action name="TOGGLE_FURNITURE_CATALOGUE_RECIPE">
+                <Down>
+                  FurnitureCatalogue_ToggleRecipeDisplay()
+                </Down>
+            </Action>
         </Category>
     </Layer>
 </Bindings>
