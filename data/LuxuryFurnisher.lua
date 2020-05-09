@@ -3,6 +3,43 @@
 
 
 FurC.LuxuryFurnisher[FURC_HARROW] = {
+  
+  [156655] = {    -- Alinor Shrine, Phynaster
+    itemPrice   = 50000,
+    itemDate  = "2020-05-09",
+  },
+
+  [145478] = {    -- Alinor Shrine, Y'ffre
+    itemPrice   = 50000,
+    itemDate  = "2020-05-09",
+  },
+  [134832] = {  -- Basin of the Divines
+    itemPrice   = 35000,
+    itemDate  = "2020-05-09",
+  },
+    [120823] = {  -- Sigil Stand
+    itemPrice   = 15000,
+    itemDate  = "2020-05-09",
+  },
+    [120819] = {  -- Sigil, Kynareth
+    itemPrice   = 20000,
+    itemDate  = "2020-05-09",
+  },
+    [120820] = {  -- Sigil, Mara
+    itemPrice   = 20000,
+    itemDate  = "2020-05-09",
+  },
+    [120821] = {  -- Sigil, Stendarr
+    itemPrice   = 20000,
+    itemDate  = "2020-05-09",
+  },
+    [120822] = {  -- Sigil, Zenithar
+    itemPrice   = 20000,
+    itemDate  = "2020-05-09",
+  },
+
+  
+  
     
   [145476] = {    -- Alinor Shrine, Trinimac
     itemPrice   = 50000,
@@ -1399,35 +1436,6 @@ FurC.LuxuryFurnisher[FURC_WOTL] = {
   [120827] = {  -- Iron Maiden, Chained
     itemPrice   = 20000,
     itemDate  = "2019-04-21",
-  },
-
-  [145478] = {    -- Alinor Shrine, Y'ffre
-    itemPrice   = 50000,
-    itemDate  = "2019-04-14",
-  },
-  [134832] = {  -- Basin of the Divines
-    itemPrice   = 35000,
-    itemDate  = "2019-04-14",
-  },
-    [120823] = {  -- Sigil Stand
-    itemPrice   = 15000,
-    itemDate  = "2019-04-14",
-  },
-    [120819] = {  -- Sigil, Kynareth
-    itemPrice   = 20000,
-    itemDate  = "2019-04-14",
-  },
-    [120820] = {  -- Sigil, Mara
-    itemPrice   = 20000,
-    itemDate  = "2019-04-14",
-  },
-    [120821] = {  -- Sigil, Stendarr
-    itemPrice   = 20000,
-    itemDate  = "2019-04-14",
-  },
-    [120822] = {  -- Sigil, Zenithar
-    itemPrice   = 20000,
-    itemDate  = "2019-04-14",
   },
 
 
