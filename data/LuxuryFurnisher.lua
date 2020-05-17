@@ -3,7 +3,35 @@
 
 
 FurC.LuxuryFurnisher[FURC_HARROW] = {
+  [156668] = {    -- Skeletal Remains, Slumped Over
+    itemPrice   = 10000,
+    itemDate  = "2020-05-16",
+  },
+
   
+  [145479] = {    -- Iron Maiden, Occupied
+    itemPrice   = 100000,
+    itemDate  = "2020-05-16",
+  },
+  [134833] = {  -- Gibbet, Hanging Hooked
+    itemPrice   = 75000,
+    itemDate  = "2020-05-16",
+  },
+
+  [120826] = {  -- Iron Cross
+    itemPrice   = 10000,
+    itemDate  = "2020-05-16",
+  },
+  [120825] = {  -- Iron Cross, Large
+    itemPrice   = 25000,
+    itemDate  = "2020-05-16",
+  },
+  [120827] = {  -- Iron Maiden, Chained
+    itemPrice   = 20000,
+    itemDate  = "2020-05-16",
+  },
+
+
   [156655] = {    -- Alinor Shrine, Phynaster
     itemPrice   = 50000,
     itemDate  = "2020-05-09",
@@ -1415,29 +1443,6 @@ FurC.LuxuryFurnisher[FURC_WOTL] = {
     itemPrice   = 100000,
     itemDate  = "2019-04-28",
   },
-  
-  [145479] = {    -- Iron Maiden, Occupied
-    itemPrice   = 100000,
-    itemDate  = "2019-04-21",
-  },
-  [134833] = {  -- Gibbet, Hanging Hooked
-    itemPrice   = 75000,
-    itemDate  = "2019-04-21",
-  },
-
-  [120826] = {  -- Iron Cross
-    itemPrice   = 10000,
-    itemDate  = "2019-04-21",
-  },
-  [120825] = {  -- Iron Cross, Large
-    itemPrice   = 25000,
-    itemDate  = "2019-04-21",
-  },
-  [120827] = {  -- Iron Maiden, Chained
-    itemPrice   = 20000,
-    itemDate  = "2019-04-21",
-  },
-
 
 
  
