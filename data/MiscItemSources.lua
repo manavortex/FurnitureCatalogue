@@ -13,6 +13,7 @@ local automaton_loot_vv     = GetString(SI_FURC_AUTOMATON) .. " on Vvardenfell"
 
 local scambox_string        = GetString(SI_FURC_SCAMBOX)
 local scambox_newmoon       = zo_strformat("<<1>> (<<2>>)", scambox_string, "New Moon")
+local scambox_gloomspore       = zo_strformat("<<1>> (<<2>>)", scambox_string, "Gloomspore")
 
 local sinister_hollowjack   = "Sinister Hollowjack Items"
 
@@ -46,9 +47,6 @@ end
 
 FurC.MiscItemSources[FURC_KITTY]  = {
   
-  [FURC_CROWN]   = {
-    [153630] = scambox_newmoon .. " (55 gems)", 
-  },
   [FURC_RUMOUR]   = {
     [151851] = rumourSource, -- Boulder, Lunar Spine,
     [151852] = rumourSource, -- Boulder, Lunar Spire,
@@ -123,10 +121,13 @@ FurC.MiscItemSources[FURC_KITTY]  = {
     [121203]    = daily_reward ,    -- Praxis: Khajiit Brazier, Enchanted
     [117906]    = elsweyr_event ,    -- Redguard Urn, Gilded
     [153563]    = elsweyr_event ,    -- Target Bone Goliath, Reanimated
+    [145317] = rumourSource,       -- Gravestone, Broken
   },
   
   [FURC_CROWN]  = {   
   
+    [153630] = scambox_newmoon .. " (55 gems)", 
+    [159436] = scambox_gloomspore,       -- Dwarven Miniature Sun, Portable
     [151838] = itemPackOasis, -- Elsweyr Fountain, Moons-Blessed,
     [151840] = itemPackOasis, -- Plant, Desert Fan,
     [151841] = itemPackOasis, -- Plant, Tall Desert Fan,

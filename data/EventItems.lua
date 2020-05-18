@@ -38,11 +38,23 @@ FurC.EventItems[FURC_MORROWIND] = {
     },
   },
 }
-FurC.EventItems[FURC_REACH] = {
+
+
+FurC.EventItems[FURC_KITTY] = {
 
   ["Witches' Festival"] = {
     ["Plunder Skull"] = {
       
+      [145317] = true,       -- Gravestone, Broken
+    }
+  }
+}
+
+FurC.EventItems[FURC_REACH] = {
+
+  ["Witches' Festival"] = {
+    ["Plunder Skull"] = {
+       
       [130337] = true,   -- Witches Corpse, Wrapped",
       [130336] = true,   -- Witches Remains, Hagraven",
       [130325] = true,   -- Witches Totem, Emphatic Warning",

@@ -45,6 +45,12 @@ local function updateLineVisibility()
       curLine.text:SetText("")
       curLine.mats:SetText("")
     else
+      local recipeArray = FurC.Find(curData.itemLink)
+      if FurC.showBlueprints and recipeArray and recipeArray.blueprint then
+        curLine.itemLink  =   FurC.GetItemLink(recipeArray.blueprint)
+      else 
+        curLine.itemLink    = curData.itemLink
+      end
       curLine.itemLink    = curData.itemLink
       curLine.itemId      = curData.itemId
       curLine.blueprint   = curData.blueprint
@@ -493,6 +499,11 @@ function FurnitureCatalogue_Toggle()
 end
 function FurnitureCatalogue_ToggleRecipeDisplay()
    FurC.showBlueprints = not FurC.showBlueprints
+   local currentLine = moc()
+   if not currentLine then return end
+   FurC.GuiLineOnMouseExit(currentLine)
+   updateLineVisibility()
+   FurC.GuiLineOnMouseEnter(currentLine)
 end
 
 
