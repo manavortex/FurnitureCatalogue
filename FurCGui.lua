@@ -51,7 +51,6 @@ local function updateLineVisibility()
       else 
         curLine.itemLink    = curData.itemLink
       end
-      curLine.itemLink    = curData.itemLink
       curLine.itemId      = curData.itemId
       curLine.blueprint   = curData.blueprint
       curLine.icon:SetTexture(GetItemLinkIcon(curData.itemLink))

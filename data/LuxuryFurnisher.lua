@@ -3,11 +3,46 @@
 
 
 FurC.LuxuryFurnisher[FURC_HARROW] = {
+  
+  [156667] = {    -- Gate, Spiked Iron
+    itemPrice   = 15000,
+    itemDate  = "2020-05-24",
+  },
+
+  [145480] = {    -- Corpse, Burned Seated
+    itemPrice   = 2500,
+    itemDate  = "2020-05-24",
+  },
+  [145481] = {    -- Corpse, Burned Sprawled
+    itemPrice   = 2500,
+    itemDate  = "2020-05-24",
+  },
+  [134834] = {  -- Bandages, Blood-Soaked
+    itemPrice   = 2000,
+    itemDate  = "2020-05-24",
+  },
+  [134835] = {  -- Orcish Burial Urn, Exhumed
+    itemPrice   = 20000,
+    itemDate  = "2020-05-24",
+  },
+  [120824] = {  -- Body Cage
+    itemPrice   = 5000,
+    itemDate  = "2020-05-24",
+  },
+  [120829] = {  -- Torture Rack
+    itemPrice   = 5000,
+    itemDate  = "2020-05-24",
+  },
+  [120828] = {  -- Torture Wheel
+    itemPrice   = 100000,
+    itemDate  = "2020-05-24",
+  },
+
+  
   [156668] = {    -- Skeletal Remains, Slumped Over
     itemPrice   = 10000,
     itemDate  = "2020-05-16",
   },
-
   
   [145479] = {    -- Iron Maiden, Occupied
     itemPrice   = 100000,
@@ -1414,38 +1449,7 @@ FurC.LuxuryFurnisher[FURC_WOTL] = {
     itemDate  = "2019-05-04",
   },
 
-  
-  [145480] = {    -- Corpse, Burned Seated
-    itemPrice   = 2500,
-    itemDate  = "2019-04-28",
-  },
-  [145481] = {    -- Corpse, Burned Sprawled
-    itemPrice   = 2500,
-    itemDate  = "2019-04-28",
-  },
-  [134834] = {  -- Bandages, Blood-Soaked
-    itemPrice   = 2000,
-    itemDate  = "2019-04-28",
-  },
-  [134835] = {  -- Orcish Burial Urn, Exhumed
-    itemPrice   = 20000,
-    itemDate  = "2019-04-28",
-  },
-  [120824] = {  -- Body Cage
-    itemPrice   = 5000,
-    itemDate  = "2019-04-28",
-  },
-  [120829] = {  -- Torture Rack
-    itemPrice   = 5000,
-    itemDate  = "2019-04-28",
-  },
-  [120828] = {  -- Torture Wheel
-    itemPrice   = 100000,
-    itemDate  = "2019-04-28",
-  },
-
-
- 
+   
 }
 
 

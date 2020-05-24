@@ -633,6 +633,7 @@ FurC.MiscItemSources[FURC_WEREWOLF] = {
   }
 }
 
+
 local questRewardLilandril = questRewardString .. "Lilandril"
 local mephalaItemSet = zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "Trappings of Mephala Worship")
 FurC.MiscItemSources[FURC_ALTMER] = {
@@ -828,6 +829,10 @@ FurC.MiscItemSources[FURC_ALTMER] = {
     [94098] = GetString(SI_FURC_LEVELUP),       -- Imperial Bed, Single
     
     
+    [118144] = GetString(SI_FURC_SUMMERSET_PAINTING),       -- Painting of a Forest, Refined
+    [118143] = GetString(SI_FURC_SUMMERSET_PAINTING),       -- Painting of Tree, Refined
+    
+    
     [130192] = scambox_reaper,                  -- Statuette of Sheogorath, the Mad God
   },
   [FURC_FISHING] = {
@@ -844,6 +849,7 @@ FurC.MiscItemSources[FURC_ALTMER] = {
     [139068] = fishing_summerset,                 -- Plants, Springwheeze
   },
   [FURC_RUMOUR] = {
+    
     [130193] = dataminedUnclear,                    -- Robust Target Minotaur Handler
     [130194] = dataminedUnclear,                    -- Target Stone Atronach
     [130195] = dataminedUnclear,                    -- Target Iron Atronach
