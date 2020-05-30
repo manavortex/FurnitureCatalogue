@@ -1,6 +1,31 @@
  FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
 
+FurC.LuxuryFurnisher[FURC_SKYRIM] = {
+  [156656] = {    -- Pedestal, Dark Stone
+    itemPrice   = 4000,
+    itemDate  = "2020-05-30",
+  },
+  
+  [134836] = {  -- Necromancer's Brazier, Flame
+    itemPrice   = 10000,
+    itemDate  = "2020-05-30",
+  },
+  [134838] = {  -- Necromancer's Spire, Alcove
+    itemPrice   = 75000,
+    itemDate  = "2020-05-30",
+  },
+  [134837] = {  -- Necromancer's Spire, Narrow
+    itemPrice   = 50000,
+    itemDate  = "2020-05-30",
+  },
+  [145482] = {    -- Wheelbarrow, Bones
+    itemPrice   = 1000,
+    itemDate  = "2020-05-30",
+  },
+
+}
+
 
 FurC.LuxuryFurnisher[FURC_HARROW] = {
   
@@ -1431,23 +1456,6 @@ FurC.LuxuryFurnisher[FURC_WOTL] = {
     itemDate  = "2019-05-12",
   },
 
-  
-  [134836] = {  -- Necromancer's Brazier, Flame
-    itemPrice   = 10000,
-    itemDate  = "2019-05-04",
-  },
-  [134838] = {  -- Necromancer's Spire, Alcove
-    itemPrice   = 75000,
-    itemDate  = "2019-05-04",
-  },
-  [134837] = {  -- Necromancer's Spire, Narrow
-    itemPrice   = 50000,
-    itemDate  = "2019-05-04",
-  },
-  [145482] = {    -- Wheelbarrow, Bones
-    itemPrice   = 1000,
-    itemDate  = "2019-05-04",
-  },
 
    
 }

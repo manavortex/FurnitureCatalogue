@@ -1,4 +1,118 @@
 
+FurC.AchievementVendors[FURC_SKYRIM] = {
+ 
+  ["Solitude, Dragon's Hearth"] = {
+    [GetString(FURC_SKYRIM_MASELA)] = { 
+      [165809] = {    -- Firelogs, White Pine
+        itemPrice   = 250,
+      },
+      [165817] = {    -- Log, Fallen Winter Pine
+        itemPrice   = 250,
+      },
+      [165810] = {    -- Logs, Twice-Split
+        itemPrice   = 750,
+      },
+      [165822] = {    -- Plant Cluster, Haafingar Underbrush
+        itemPrice   = 250,
+      },
+      [165819] = {    -- Sapling, White Pine
+        itemPrice   = 300,
+      },
+      [165821] = {    -- Shrub, Wild Basil
+        itemPrice   = 250,
+      },
+      [165811] = {    -- Solitude Fence, Stick
+        itemPrice   = 100,
+      },
+      [165812] = {    -- Solitude Fence, Stick Triple
+        itemPrice   = 250,
+      },
+      [165813] = {    -- Solitude Wagon Wheel, Heavy
+        itemPrice   = 250,
+      },
+      [165824] = {    -- Tree, Mountain Mahogany
+        itemPrice   = 300,
+      },
+      [165825] = {    -- Tree, Twisted Mountain Mahogany
+        itemPrice   = 1000,
+      },
+      [165818] = {    -- Tree, White Pine
+        itemPrice   = 900,
+      },
+      [165815] = {    -- Tree, Winter Pine
+        itemPrice   = 900,
+      },
+      [165816] = {    -- Tree, Young Aspen
+        itemPrice   = 300,
+      },
+      [165823] = {    -- Tree, Young Mountain Mahogany
+        itemPrice   = 250,
+      },
+      [165814] = {    -- Tree, Young Winter Pine
+        itemPrice   = 250,
+      },
+
+    }, 
+    [GetString(FURC_SKYRIM_NETINDELL)] = {
+     [166018] = {    --Doll, Heiruna
+    itemPrice   = 2000,
+    achievement = 2645,    -- Western Skyrim Cave Delver
+  },
+  [166020] = {    --Greymoor Keep Banner, Hanging
+    itemPrice   = 10000,
+    achievement = 2724,    -- Threat-Ender
+  },
+  [166016] = {    --Ice Statue, Cowering Wretch
+    itemPrice   = 10000,
+    achievement = 2641,    -- Frozen Coast Explorer
+  },
+  [166021] = {    --Karthwatch Banner, Hanging
+    itemPrice   = 10000,
+    achievement = 2807,    -- Swordthane of Karthwatch
+  },
+  [166024] = {    --Kyne's Aegis Banner, Hanging
+    itemPrice   = 10000,
+    achievement = 2732,    -- Kyne's Aegis Completed
+  },
+  [165990] = {    --Mammoth Cheese, Pungent
+    itemPrice   = 25000,
+    achievement = 2765,    -- Giant Cheese Connoisseur 
+  },
+  [166463] = {    --Map of Western Skyrim, Hanging
+    itemPrice   = 10000,
+    achievement = 2647,    -- Western Skyrim Master Explorer
+  },
+  [166022] = {    --Morthal Banner, Hanging
+    itemPrice   = 10000,
+    achievement = 2760,    -- Shieldthane of Morthal
+  },
+  [166025] = {    --Nord Basket Trap, Fishing
+    itemPrice   = 4000,
+    achievement = 2655,    -- Western Skyrim Master Angler
+
+  },
+  [166026] = {    --Nord Boat, Fishing
+    itemPrice   = 250000,
+    achievement = 2734,    -- Kyne's Aegis Conqueror
+  },
+  [166019] = {    --Replica Throne of Windhelm
+    itemPrice   = 100000,
+    achievement = 2712,    -- Savior of Western Skyrim
+  },
+  [166023] = {    --Solitude Banner, Hanging
+    itemPrice   = 10000,
+    achievement = 2724,    -- Threat-Ender
+  },
+  [166017] = {    --Witch Pike, Quiescent
+    itemPrice   = 15000,
+    achievement = 2716,    -- Champion of Solitude
+  },
+
+
+    },
+  },
+}
+
 
 FurC.AchievementVendors[FURC_HARROW] = {
   
