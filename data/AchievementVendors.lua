@@ -111,7 +111,8 @@ FurC.AchievementVendors[FURC_SKYRIM] = {
 
     },
   },
-}
+  
+} 
 
 
 FurC.AchievementVendors[FURC_HARROW] = {

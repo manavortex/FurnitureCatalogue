@@ -2,6 +2,40 @@
 
 
 FurC.LuxuryFurnisher[FURC_SKYRIM] = {
+  
+  [159447] = {    -- Imperial Statue, Legion Champion
+    itemDate  = "2020-06-13",
+    itemPrice   = 20000,
+  },
+  
+  [145484] = {    -- Dark Elf Statue, Ordinator
+    itemPrice   = 20000,
+    itemDate  = "2020-06-13",
+    },
+
+  [134842] = {  -- Ra Gada Statue, Blademaster
+    itemPrice   = 25000,
+    itemDate  = "2020-06-13",
+  },
+  [134843] = {  -- Ra Gada Statue, Battlemage
+    itemPrice   = 25000,
+    itemDate  = "2020-06-13",
+  },
+  [120809] = {  -- Statue Base, Square
+    itemPrice   = 5000,
+    itemDate  = "2020-06-13",
+  },
+  [120810] = {  -- Statue, Faith
+    itemPrice   = 25000,
+    itemDate  = "2020-06-13",
+  },
+  [120812] = {  -- Statue, Light
+    itemPrice   = 25000,
+    itemDate  = "2020-06-13",
+  },
+    
+
+  
   [156656] = {    -- Pedestal, Dark Stone
     itemPrice   = 4000,
     itemDate  = "2020-05-30",
@@ -1410,32 +1444,6 @@ FurC.LuxuryFurnisher[FURC_KITTY] = {
 }
 FurC.LuxuryFurnisher[FURC_WOTL] = {
   
-  [145484] = {    -- Dark Elf Statue, Ordinator
-    itemPrice   = 20000,
-    itemDate  = "2019-05-19",
-    },
-
-  [134842] = {  -- Ra Gada Statue, Battlemage
-    itemPrice   = 25000,
-    itemDate  = "2019-05-19",
-  },
-  [134843] = {  -- Ra Gada Statue, Battlemage
-    itemPrice   = 25000,
-    itemDate  = "2019-05-19",
-  },
-  [120809] = {  -- Statue Base, Square
-    itemPrice   = 5000,
-    itemDate  = "2019-05-19",
-  },
-  [120810] = {  -- Statue, Faith
-    itemPrice   = 25000,
-    itemDate  = "2019-05-19",
-  },
-  [120812] = {  -- Statue, Light
-    itemPrice   = 25000,
-    itemDate  = "2019-05-19",
-  },
-    
   
   
   [145483] = {    -- Column, Ossuary

@@ -2,6 +2,14 @@ FurC.Recipes = FurC.Recipes or {}
 
 
 FurC.Recipes[FURC_SKYRIM] = {
+  153729, -- Elsweyr Gate, Masterwork,
+  153730, -- Elsweyr Chaise Lounge, Upholstered,
+  153732, -- Elsweyr Statue, Shrine Lion,
+  153733, -- Elsweyr Incense, Fragrant,
+  153735, -- Elsweyr Cage, Filigree,
+  
+  
+  -- I have datamined these on PTS, but on live, the item links are... no longer working.
   166912, -- Solitude Serving Bowl, Wood,
   166913, -- Solitude Serving Dish, Wood,
   166914, -- Solitude Serving Tray, Wood,
