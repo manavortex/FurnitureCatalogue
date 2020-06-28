@@ -22,11 +22,14 @@ local itemPackOasis         = zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK
 
 local elsewhere             = " in Elsweyr" 
 local in_skyrim             = " in Western Skyrim" 
+local in_murkmire           = " in Murkire" 
 
 local fishing_elsewhere     = GetString(SI_FURC_CANBEFISHED)  .. elsewhere
 local drop_elsewhere        = GetString(SI_FURC_DROP)         .. elsewhere
 local stealable_elsewhere   = GetString(SI_FURC_CANBESTOLEN)  .. elsewhere
 local stealable_skyrim      = GetString(SI_FURC_CANBESTOLEN)  .. in_skyrim
+local scrying               = GetString(SI_FURC_CANBESCRYED)
+local scryingMurkmire       = scrying  .. in_murkmire
 
 local rumourSource          = GetString(SI_FURC_RUMOUR_SOURCE_ITEM)
 local dataminedUnclear      = GetString(SI_FURC_DATAMINED_UNCLEAR)
@@ -577,10 +580,12 @@ FurC.MiscItemSources[FURC_SKYRIM]  = {
     [165838] = stealable_skyrim, -- Painting of Nord Ship, Wood",
     [165839] = stealable_skyrim, -- Ursine Wandering Painting, Wood",
     
-    [165859] = GetString(SI_FURC_ITEMSOURCE_SAFEBOX), -- The Dutiful Guar",
   }, 
 
   [FURC_DROP]    = {
+    [165866] = scrying .. " in Stonefalls",       -- Ashen Infernace Gate
+    [165859] = scrying .. " in Bal Foyen",        -- The Dutiful Guar",
+    [165854] = scryingMurkmire,                   -- Nisswo's Soul Tender
 
   },
 

@@ -8,6 +8,8 @@ FurC.Recipes[FURC_SKYRIM] = {
   153733, -- Elsweyr Incense, Fragrant,
   153735, -- Elsweyr Cage, Filigree,
   
+  121091, -- Stool, carved
+  
   
   -- I have datamined these on PTS, but on live, the item links are... no longer working.
   166912, -- Solitude Serving Bowl, Wood,

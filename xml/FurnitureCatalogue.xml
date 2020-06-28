@@ -132,12 +132,12 @@
                 </Control>
                 
                 <Control name="FurC_QualityFilter" mouseEnabled="true">
-                  <Anchor point="TOPLEFT"   relativeTo="FurC_DropdownSource" relativePoint="TOPRIGHT" offsetX = "38" offsetY="3"/>
-                  <Anchor point="BOTTOMRIGHT" relativeTo="FurC_DropdownSource"  relativePoint="BOTTOMRIGHT" offsetX = "300" />
+                  <Anchor point="TOPLEFT"   relativeTo="FurC_DropdownSource" relativePoint="TOPRIGHT" offsetX = "58" offsetY="3"/>
+                  <Anchor point="BOTTOMRIGHT" relativeTo="FurC_DropdownSource"  relativePoint="BOTTOMRIGHT" offsetX = "320" />
                 </Control>
                 
                 <Control name="FurC_DropdownVersion" inherits="ZO_ComboBox" mouseEnabled="true" >
-                  <Anchor point="TOPLEFT"   relativeTo="FurC_QualityFilter" relativePoint="TOPRIGHT" offsetX="10"/>
+                  <Anchor point="TOPLEFT"   relativeTo="FurC_QualityFilter" relativePoint="TOPRIGHT" offsetX="30"/>
                   <Dimensions x="235" y="28" />
                   <OnShow>    FurC.GuiSetupDropdown(self)</OnShow>
                   <OnMouseEnter>  FurC.GuiShowTooltip(self, "Filter: game version", true)</OnMouseEnter>
@@ -170,7 +170,7 @@
                 <!-- Crafting type filter -->
                 <Control name="FurC_TypeFilter" mouseEnabled="true" resizeToFitDescendents="true">
                   <Anchor point="TOPLEFT" relativeTo="FurC_DropdownCharacter" relativePoint="TOPRIGHT" offsetX="17" offsetY="-5" />
-                  <Anchor point="BOTTOMRIGHT" relativeTo="FurC_DropdownCharacter" relativePoint="BOTTOMRIGHT" offsetX="340"/>
+                  <Anchor point="BOTTOMRIGHT" relativeTo="FurC_DropdownCharacter" relativePoint="BOTTOMRIGHT" offsetX="380"/>
                   
                 </Control>
                 
@@ -179,7 +179,7 @@
                   
                   <Anchor point="TOPLEFT"   relativeTo="FurC_TypeFilter" relativePoint="TOPRIGHT" offsetX="9" offsetY="10"/>
                   <Anchor point="BOTTOMLEFT"   relativeTo="FurC_TypeFilter" relativePoint="BOTTOMRIGHT" offsetX="9" />
-                  <Dimensions x="175" />
+                  <Dimensions x="135" />
                   
                   <Controls>   <!-- FurC_Search controls -->                
                     

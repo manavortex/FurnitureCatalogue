@@ -3,6 +3,37 @@
 
 FurC.LuxuryFurnisher[FURC_SKYRIM] = {
   
+  [159450] = {    -- Hourglass Pedestal, Square
+    itemPrice   = 7500,
+    itemDate  = "2020-06-27",
+  },
+  [159449] = {    -- Hourglass Stand, Round
+    itemPrice   = 4000,
+    itemDate  = "2020-06-27",
+  },
+
+  [134845] = {  -- Brotherhood  Tapestry, Small
+    itemPrice   = 5000,
+    itemDate  = "2020-06-27",
+  },
+  [120837] = {  -- Brotherhood Window, Stained Glass
+    itemPrice   = 100000,
+    itemDate  = "2020-06-27",
+  },
+  [121271] = {  -- Brotherhood Tapestry
+    itemPrice   = 10000,
+    itemDate  = "2020-06-27",
+  },
+  [120835] = {  -- Brotherhood Candelabra, Table
+    itemPrice   = 2500,
+    itemDate  = "2020-06-27",
+  },
+  [145486] = {    -- Door, Sweet Mother
+    itemDate  = "2020-06-27",
+    itemPrice   = 35000,
+  },
+    
+  
   [159447] = {    -- Imperial Statue, Legion Champion
     itemDate  = "2020-06-13",
     itemPrice   = 20000,
@@ -1278,27 +1309,6 @@ FurC.LuxuryFurnisher[FURC_KITTY] = {
     itemDate  = "2019-07-06",
   },
 
-  [134845] = {  -- Brotherhood  Tapestry, Small
-    itemPrice   = 5000,
-    itemDate  = "2019-07-06",
-  },
-  [120837] = {  -- Brotherhood Window, Stained Glass
-    itemPrice   = 100000,
-    itemDate  = "2019-07-06",
-  },
-  [121271] = {  -- Brotherhood Tapestry
-    itemPrice   = 10000,
-    itemDate  = "2019-07-06",
-  },
-  [120835] = {  -- Brotherhood Candelabra, Table
-    itemPrice   = 2500,
-    itemDate  = "2019-07-06",
-  },
-  [145486] = {    -- Door, Sweet Mother
-    itemDate  = "2019-07-06",
-    itemPrice   = 35000,
-  },
-    
   [139096] = {  -- Daedric Urn, Sealed
     itemPrice   = 1000,
     itemDate  = "2019-07-06",

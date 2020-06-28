@@ -267,6 +267,7 @@ FURC_AV_RAZ = "Razoufa",
   -- =============================== --
   SI_FURC_CANBEPICKED =           "can be pickpocketed",
   SI_FURC_CANBESTOLEN =           "can be stolen",
+  SI_FURC_CANBESCRYED =           "from scrying",
   SI_FURC_CROWNSTORESOURCE =      "Crown Store ",
   SI_FURC_CANBEFISHED =           "can be fished",
   SI_FURC_HARVEST =               "from harvesting nodes",

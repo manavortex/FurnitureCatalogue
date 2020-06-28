@@ -326,7 +326,7 @@ local function createGui()
 
     local function createCraftingTypeFilter(craftingType, textureName)
       local parent         = FurC_TypeFilter
-      local predecessor       = buttons[#buttons] or parent
+      local predecessor    = buttons[#buttons] or parent
 
       local name           = parent:GetName() .. "Button" .. tostring(craftingType)
 
@@ -345,12 +345,13 @@ local function createGui()
 
     end
 
-    buttons[CRAFTING_TYPE_INVALID]      = createCraftingTypeFilter(CRAFTING_TYPE_INVALID,       "esoui/art/inventory/inventory_tabicon_all")
-    buttons[CRAFTING_TYPE_BLACKSMITHING]  = createCraftingTypeFilter(CRAFTING_TYPE_BLACKSMITHING,   "esoui/art/inventory/inventory_tabicon_craftbag_blacksmithing")
-    buttons[CRAFTING_TYPE_CLOTHIER]      = createCraftingTypeFilter(CRAFTING_TYPE_CLOTHIER,       "esoui/art/inventory/inventory_tabicon_craftbag_clothing")
-    buttons[CRAFTING_TYPE_ENCHANTING]    = createCraftingTypeFilter(CRAFTING_TYPE_ENCHANTING,    "esoui/art/inventory/inventory_tabicon_craftbag_enchanting")
-    buttons[CRAFTING_TYPE_ALCHEMY]      = createCraftingTypeFilter(CRAFTING_TYPE_ALCHEMY,       "esoui/art/inventory/inventory_tabicon_craftbag_alchemy")
-    buttons[CRAFTING_TYPE_WOODWORKING]    = createCraftingTypeFilter(CRAFTING_TYPE_WOODWORKING,     "esoui/art/inventory/inventory_tabicon_craftbag_woodworking")
+    buttons[CRAFTING_TYPE_INVALID]         = createCraftingTypeFilter(CRAFTING_TYPE_INVALID,       "esoui/art/inventory/inventory_tabicon_all")
+    buttons[CRAFTING_TYPE_BLACKSMITHING]   = createCraftingTypeFilter(CRAFTING_TYPE_BLACKSMITHING,   "esoui/art/inventory/inventory_tabicon_craftbag_blacksmithing")
+    buttons[CRAFTING_TYPE_CLOTHIER]        = createCraftingTypeFilter(CRAFTING_TYPE_CLOTHIER,       "esoui/art/inventory/inventory_tabicon_craftbag_clothing")
+    buttons[CRAFTING_TYPE_ENCHANTING]      = createCraftingTypeFilter(CRAFTING_TYPE_ENCHANTING,    "esoui/art/inventory/inventory_tabicon_craftbag_enchanting")
+    buttons[CRAFTING_TYPE_ALCHEMY]         = createCraftingTypeFilter(CRAFTING_TYPE_ALCHEMY,       "esoui/art/inventory/inventory_tabicon_craftbag_alchemy")
+    buttons[CRAFTING_TYPE_WOODWORKING]     = createCraftingTypeFilter(CRAFTING_TYPE_WOODWORKING,     "esoui/art/inventory/inventory_tabicon_craftbag_woodworking")
+    buttons[CRAFTING_TYPE_JEWELRYCRAFTING]    = createCraftingTypeFilter(CRAFTING_TYPE_JEWELRYCRAFTING,     "esoui/art/inventory/inventory_tabicon_craftbag_jewelrycrafting")
     buttons[CRAFTING_TYPE_PROVISIONING]    = createCraftingTypeFilter(CRAFTING_TYPE_PROVISIONING,     "esoui/art/inventory/inventory_tabicon_craftbag_provisioning")
 
     FurC.GuiElements.craftingTypeFilters   = buttons
