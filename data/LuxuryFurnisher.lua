@@ -3,6 +3,34 @@
 
 FurC.LuxuryFurnisher[FURC_SKYRIM] = {
   
+  -- June, 23 - 26
+  [121270] = {  -- Brotherhood Banner, Large
+    itemPrice   = 25000,
+    itemDate  = "2020-07-04",
+  },
+  [120836] = {  -- Brotherhood Candelabra, Floor
+    itemPrice   = 8000,
+    itemDate  = "2020-07-04",
+  },
+  [120839] = {  -- Brotherhood Ledger, Stand
+    itemPrice   = 4000,
+    itemDate  = "2020-07-04",
+  },
+  [120838] = {  -- Brotherhood Plaque, Wolf
+    itemPrice   = 25000,
+    itemDate  = "2020-07-04",
+  },
+  [134846] = {  -- Brotherhood Carpet, Large
+    itemPrice   = 15000,
+    itemDate  = "2020-07-04",
+  },
+  
+  [159451] = {    -- Hourglass Banner, Akatosh
+    itemDate  = "2020-07-04",
+    itemPrice   = 12000,
+  },
+
+  
   [159450] = {    -- Hourglass Pedestal, Square
     itemPrice   = 7500,
     itemDate  = "2020-06-27",
@@ -1428,27 +1456,6 @@ FurC.LuxuryFurnisher[FURC_KITTY] = {
     itemDate  = "2019-06-09",
   },
 
-  -- June, 23 - 26
-  [121270] = {  -- Brotherhood Banner, Large
-    itemPrice   = 25000,
-    itemDate  = "2019-06-09",
-  },
-  [120836] = {  -- Brotherhood Candelabra, Floor
-    itemPrice   = 8000,
-    itemDate  = "2019-06-09",
-  },
-  [120839] = {  -- Brotherhood Ledger, Stand
-    itemPrice   = 4000,
-    itemDate  = "2019-06-09",
-  },
-  [120838] = {  -- Brotherhood Plaque, Wolf
-    itemPrice   = 25000,
-    itemDate  = "2019-06-09",
-  },
-  [134846] = {  -- Brotherhood Carpet, Large
-    itemPrice   = 15000,
-    itemDate  = "2019-06-09",
-  },
   
 
 }
