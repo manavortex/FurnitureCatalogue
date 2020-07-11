@@ -43,8 +43,7 @@ FurC.EventItems[FURC_MORROWIND] = {
 FurC.EventItems[FURC_KITTY] = {
 
   ["Witches' Festival"] = {
-    ["Plunder Skull"] = {
-      
+    ["Plunder Skull"] = {      
       [145317] = true,       -- Gravestone, Broken
     }
   }

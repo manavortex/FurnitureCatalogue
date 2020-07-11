@@ -140,7 +140,6 @@ FurC.MiscItemSources[FURC_SKYRIM]  = {
     [166027] = rumourSource, -- Chaurus Egg, Dormant",
     [166029] = rumourSource, -- Vampiric Fountain, Bat Swarm",
     [166030] = rumourSource, -- Greymoor Tapestry, Harrowstorm",
-    [153751] = rumourSource, -- Volendrung Replica",
     [166044] = rumourSource, -- Watering Trough, Full",
     [153814] = rumourSource, -- Dragon's Treasure Trove",
     [153887] = rumourSource, -- Dragonguard Banner",
@@ -554,7 +553,6 @@ FurC.MiscItemSources[FURC_SKYRIM]  = {
     [165865] = rumourSource, -- Beacon of Tower Zero",
     [165866] = rumourSource, -- Ashen Infernace Gate",
     [165867] = rumourSource, -- Cat's Eye Prism",
-    [165868] = rumourSource, -- Moonlight Mirror",
     [165869] = rumourSource, -- Maormeri Serpent Shrine",
     [156654] = rumourSource, -- Alinor Shrine, Magnus",
     [156655] = rumourSource, -- Alinor Shrine, Phynaster",
@@ -678,7 +676,9 @@ FurC.MiscItemSources[FURC_KITTY]  = {
     [121203]    = daily_reward ,    -- Praxis: Khajiit Brazier, Enchanted
     [117906]    = elsweyr_event ,    -- Redguard Urn, Gilded
     [153563]    = elsweyr_event ,    -- Target Bone Goliath, Reanimated
-    [145317] = rumourSource,       -- Gravestone, Broken
+    [145317]    = "Witches' Festival, Plunder Skull",       -- Gravestone, Broken
+    [153751]    = "In Cyrodiil for Volundrung Vanquisher or Volendrung Wielder",       -- Volendrung Replica TODO set up properly
+
   },
   
   [FURC_CROWN]  = {   

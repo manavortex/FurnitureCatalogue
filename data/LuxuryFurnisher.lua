@@ -3,7 +3,31 @@
 
 FurC.LuxuryFurnisher[FURC_SKYRIM] = {
   
-  -- June, 23 - 26
+  [147648] = {    -- Dwarven Press Bed, Forge-Sized
+    itemPrice   = 22000,
+    itemDate  = "2020-07-11",
+  },  
+  [126560] = {  -- Dwarven fountain, forged
+    itemPrice   = 50000,
+    itemDate  = "2020-07-11",
+  },
+  [126564] = {  -- Dwarven Clock, Deactivated
+    itemPrice   = 15000,
+    itemDate  = "2020-07-11",
+  },
+  [126561] = {  -- Dwarven Pillar, Forged
+    itemPrice   = 10000,
+    itemDate  = "2020-07-11",
+  },
+  [139092] = {  -- Dwarven Engine, Fused 
+    itemPrice   = 24000,
+    itemDate  = "2020-07-11",
+  },
+  [159454] = {  -- Dwarven Crucible, Heavy
+    itemPrice   = 4000,
+    itemDate  = "2020-07-11",
+  },   
+
   [121270] = {  -- Brotherhood Banner, Large
     itemPrice   = 25000,
     itemDate  = "2020-07-04",
@@ -1429,26 +1453,6 @@ FurC.LuxuryFurnisher[FURC_KITTY] = {
   },
 
 
-  [147648] = {    -- Dwarven Press Bed, Forge-Sized
-    itemPrice   = 22000,
-    itemDate  = "2019-06-15",
-  },  
-  [126560] = {  -- Dwarven fountain, forged
-    itemPrice   = 50000,
-    itemDate  = "2019-06-15",
-  },
-  [126564] = {  -- Dwarven Clock, Deactivated
-    itemPrice   = 15000,
-    itemDate  = "2019-06-15",
-  },
-  [126561] = {  -- Dwarven Pillar, Forged
-    itemPrice   = 10000,
-    itemDate  = "2019-06-15",
-  },
-  [139092] = {  -- Dwarven Engine, Fused 
-    itemPrice   = 24000,
-    itemDate  = "2019-06-15",
-  },
 
 
   [145487] = {    -- Banner, Order of the Hour
