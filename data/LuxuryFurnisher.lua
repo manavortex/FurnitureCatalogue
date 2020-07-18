@@ -3,6 +3,31 @@
 
 FurC.LuxuryFurnisher[FURC_SKYRIM] = {
   
+  [159455] = {    -- Dwarven Spider Legs, Inoperative
+    itemPrice   = 3500,
+    itemDate  = "2020-07-18",
+  },
+  [147647] = {    -- Dwarven Centurion Blade, Detached
+    itemPrice   = 3500,
+    itemDate  = "2020-07-18",
+  },
+  [126562] = {  -- Dwarven Crystal Mechanism
+    itemPrice   = 50000,
+    itemDate  = "2020-07-18",
+  },
+  [126563] = {  -- Dwarven Orrery, Reference
+    itemPrice   = 25000,
+    itemDate  = "2020-07-18",
+  },
+  [126559] = {  -- Dwarven Schematics, technical
+    itemPrice   = 8000,
+    itemDate  = "2020-07-18",
+  },
+  [139093] = {  -- Dwarven Centurion Hammer, Detached
+    itemPrice   = 3000,
+    itemDate  = "2020-07-18",
+  },
+  
   [147648] = {    -- Dwarven Press Bed, Forge-Sized
     itemPrice   = 22000,
     itemDate  = "2020-07-11",
@@ -1431,26 +1456,6 @@ FurC.LuxuryFurnisher[FURC_KITTY] = {
     itemDate  = "2016-06-30",
   },
 
-  [147647] = {    -- Dwarven Centurion Blade, Detached
-    itemPrice   = 3500,
-    itemDate  = "2019-06-23",
-  },
-  [126562] = {  -- Dwarven Crystal Mechanism
-    itemPrice   = 50000,
-    itemDate  = "2019-06-23",
-  },
-  [126563] = {  -- Dwarven Orrery, Reference
-    itemPrice   = 25000,
-    itemDate  = "2019-06-23",
-  },
-  [126559] = {  -- Dwarven Schematics, technical
-    itemPrice   = 8000,
-    itemDate  = "2019-06-23",
-  },
-  [139093] = {  -- Dwarven Centurion Hammer, Detached
-    itemPrice   = 3000,
-    itemDate  = "2019-06-23",
-  },
 
 
 
