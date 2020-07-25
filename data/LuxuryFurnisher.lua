@@ -3,6 +3,63 @@
 
 FurC.LuxuryFurnisher[FURC_SKYRIM] = {
   
+  [166002] = {    -- Dark Elf Tomb Marker, Sarano
+    itemPrice   = 5000,
+    itemDate  = "2020-07-25",
+  },
+  [165998] = {    -- Tapestry of a Failed Incarnate, The Fool
+    itemPrice   = 20000,
+    itemDate  = "2020-07-25",
+  },
+  [151947] = {    -- Dark Elf Ash Garden, Communal
+    itemPrice   = 15000,
+    itemDate  = "2020-07-25",
+  },
+  -- August 5+6
+  [126573] = { -- Velothi Candle, Mourning
+    itemPrice   = 5000,
+    itemDate  = "2020-07-25",
+  },
+  [126574] = { -- Velothi Cerecloth, Prayer
+    itemPrice   = 5000,
+    itemDate  = "2020-07-25",
+  },
+  [126575] = { -- Velothi Seat, Meditation
+    itemPrice   = 10000,
+    itemDate  = "2020-07-25",
+  },
+  [126572] = { -- Velothi Shroud, Mourning
+    itemPrice   = 5000,
+    itemDate  = "2020-07-25",
+  },
+    [139099] = { -- Dark Elf Brazier, Ancestral Tomb
+        itemPrice   = 15000,
+    itemDate  = "2020-07-25",
+    },
+
+  
+  [151915] = {    -- Daedric Key, Coldharbour
+    itemPrice   = 5000,
+    itemDate  = "2020-07-25",
+  },   
+  [139094] = { -- Daedric Altar, Periyte
+    itemPrice   = 40000,
+    itemDate  = "2020-07-25",
+  },
+  [126567] = {  -- Daedric Sarcophagus, Sealed
+    itemPrice   = 10000,
+    itemDate  = "2020-07-25",
+  },
+  [126565] = {  -- Daedric Platform, Sarcophagus
+    itemPrice   = 8000,
+    itemDate  = "2020-07-25",
+  },
+  [126566] = {  -- Daedric Brazier, Ritual
+    itemPrice   = 25000,
+    itemDate  = "2020-07-25",
+  },
+
+  
   [159455] = {    -- Dwarven Spider Legs, Inoperative
     itemPrice   = 3500,
     itemDate  = "2020-07-18",
@@ -1269,31 +1326,7 @@ FurC.LuxuryFurnisher[FURC_SCALES] = {
 
 }
 FurC.LuxuryFurnisher[FURC_KITTY] = {
-  [151947] = {    -- Dark Elf Ash Garden, Communal
-    itemPrice   = 15000,
-    itemDate  = "2019-08-10",
-  },
-  -- August 5+6
-  [126573] = { -- Velothi Candle, Mourning
-    itemPrice   = 5000,
-    itemDate  = "2019-08-10",
-  },
-  [126574] = { -- Velothi Cerecloth, Prayer
-    itemPrice   = 5000,
-    itemDate  = "2019-08-10",
-  },
-  [126575] = { -- Velothi Seat, Meditation
-    itemPrice   = 10000,
-    itemDate  = "2019-08-10",
-  },
-  [126572] = { -- Velothi Shroud, Mourning
-    itemPrice   = 5000,
-    itemDate  = "2019-08-10",
-  },
-    [139099] = { -- Dark Elf Brazier, Ancestral Tomb
-        itemPrice   = 15000,
-    itemDate  = "2019-08-10",
-    },
+  
 
 
   [151858] = {    -- Elsweyr Altar, Dark Moons
@@ -1432,28 +1465,6 @@ FurC.LuxuryFurnisher[FURC_KITTY] = {
   [145485] = {    -- Dark Elf Statue, Knight
     itemPrice   = 20000,
     itemDate  = "2019-05-26",
-  },
-
-  
-  [151915] = {    -- Daedric Key, Coldharbour
-    itemPrice   = 5000,
-    itemDate  = "2016-06-30",
-  },   
-  [139094] = { -- Daedric Altar, Periyte
-    itemPrice   = 40000,
-    itemDate  = "2016-06-30",
-  },
-  [126567] = {  -- Daedric Sarcophagus, Sealed
-    itemPrice   = 10000,
-    itemDate  = "2016-06-30",
-  },
-  [126565] = {  -- Daedric Platform, Sarcophagus
-    itemPrice   = 8000,
-    itemDate  = "2016-06-30",
-  },
-  [126566] = {  -- Daedric Brazier, Ritual
-    itemPrice   = 25000,
-    itemDate  = "2016-06-30",
   },
 
 

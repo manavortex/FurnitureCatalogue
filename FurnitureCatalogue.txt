@@ -1,10 +1,10 @@
 ## Title: FurnitureCatalogue
-## Author: manavortex
-## Version: 3.93
+## Author: Manorin
+## Version: 3.94
 ## APIVersion: 100031
 ## SavedVariables: FurnitureCatalogue_Settings 
 ## DependsOn: LibCustomMenu LibAddonMenu-2.0 LibAsync
-## OptionalDependsOn: pChat LibDebugLogger LibDebugViewer
+## OptionalDependsOn: pChat rchat LibDebugLogger LibDebugViewer LibStub
 
 libs\LibCustomTitles.lua
 
