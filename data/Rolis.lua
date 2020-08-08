@@ -11,9 +11,7 @@ FurC.RolisRecipes[FURC_HARROW] = {
   [159502] = 125, -- Formula: Elsweyr Mortar and Pestle, Engraved
   [159498] = 125, -- Diagram: Elsweyr Gong, Ornate
   [159503] = 125, -- Design: Elsweyr Bread Basket, Feast-Day
-  [159500] = 125, -- Blueprint: Elsweyr Well, Covered
-
- 
+  [159500] = 125, -- Blueprint: Elsweyr Well, Covered 
 }
 
 FurC.Faustina[FURC_HARROW] = {

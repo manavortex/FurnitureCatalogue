@@ -216,4 +216,19 @@ function this.InitRightclickMenu()
 	ZO_PreHook('ZO_InventorySlot_ShowContextMenu', function(rowControl)
 		FurCDevControl_HandleInventoryContextMenu(rowControl)
 	end)
+
+	-- TODO Code from Siri, check out
+	-- local function UpdateSlotActions(inventorySlot, slotActions)
+        -- if IsThisSlotASearchTabItemSlot(inventorySlot) then
+            -- slotActions:AddCustomSlotAction(SI_TRADING_HOUSE_REMOVE_PENDING_POST, function()
+                -- -- do something
+            -- end, "")
+        -- end
+        -- return false
+    -- end
+
+    -- local LCM = LibCustomMenu
+    -- LCM:RegisterContextMenu(UpdateSlotActions, LCM.CATEGORY_EARLY)
+	
+	
 end

@@ -1,7 +1,7 @@
 FurnitureCatalogue                = {}
 FurnitureCatalogue.name           = "FurnitureCatalogue"
 FurnitureCatalogue.author         = "manavortex"
-FurnitureCatalogue.version        = 3.96
+FurnitureCatalogue.version        = 4.0
 FurnitureCatalogue.CharacterName  = nil
 FurnitureCatalogue.settings       = {}
 
@@ -19,10 +19,6 @@ FurC.EventItems                   = {}
 FurC.PVP                          = {}
 FurC.MiscItemSources              = {}
 FurC.RumourRecipes                = {}
-
-
-
-
 
 -- TODO: set up the filtering for FURC_RUMOUR and FURC_CROWN in submenus by origin 
 local defaults             = {
@@ -201,11 +197,10 @@ end
 
 local logger = (LibDebugLogger and LibDebugLogger(FurC.name)) or nil
 function FurC.DebugOut(...)
-  if logger then 
-    logger:Debug(...)  
-  elseif FurC.settings.enableDebug then 
-    zo_strformat(...) 
-  end
+  if not FurC.settings.enableDebug then return end
+  if logger then return logger:Debug(...) end  
+  d(zo_strformat(...))
+  
 end
 local p = FurC.DebugOut 
 
