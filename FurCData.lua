@@ -131,7 +131,7 @@ local function parseBlueprint(blueprintLink)        -- saves to DB, returns reci
   then return end
 
   local recipeArray       = FurC.settings.data[recipeKey] or {}
-  recipeArray.origin      = recipeArray.origin      or FURC_CRAFTING
+  recipeArray.origin      = recipeArray.origin or FURC_CRAFTING
   recipeArray.characters    = recipeArray.characters    or {}
   recipeArray.craftingSkill  = recipeArray.craftingSkill    or GetItemLinkCraftingSkillType(blueprintLink)
   recipeArray.blueprint     = recipeArray.blueprint     or getItemId(blueprintLink)
@@ -339,9 +339,11 @@ local function scanFromFiles(shouldScanCharacter)
         if nil == recipeArray then
           p("scanRecipeFile: error for <<1>> (ID was <<2>>)", recipeLink, recipeId)
         else
-          recipeKey                = getItemId(itemLink)
+		  recipeKey                = getItemId(itemLink)
           recipeArray.version      = versionNumber
-          recipeArray.origin       = origin
+		  if (not recipeArray.origin or origin ~= FURC_RUMOUR) then
+			recipeArray.origin       = origin
+		  end
           recipeArray.blueprint    = recipeId
           addDatabaseEntry(recipeKey, recipeArray)
         end
@@ -408,8 +410,9 @@ local function scanFromFiles(shouldScanCharacter)
           recipeArray = parseFurnitureItem(FurC.GetItemLink(itemId))
           if nil ~= recipeArray then
             recipeArray.version = versionNumber
-            recipeArray.origin = origin             -- 3.5: moved FURC_RUMOUR to beginning of table so it'll get overwritten
-            
+			if (not recipeArray.origin or origin ~= FURC_RUMOUR) then
+			  recipeArray.origin       = origin
+		    end -- 3.5: moved FURC_RUMOUR to beginning of table so it'll get overwritten
             addDatabaseEntry(itemId, recipeArray)
           else
             p("scanMiscItemFile: Error when scanning <<1>> (<<2>>) -> <<3>>", itemLink, itemId, origin)
@@ -459,7 +462,7 @@ local function scanFromFiles(shouldScanCharacter)
       end
       recipeArray.recipeListIndex, recipeArray.recipeIndex =  GetItemLinkGrantedRecipeIndices(blueprintLink)
       recipeArray.origin = FURC_RUMOUR
-      recipeArray.verion = FURC_HOMESTEAD
+      recipeArray.verion = recipeArray.version or FURC_HOMESTEAD
       addDatabaseEntry(itemId, recipeArray)
     end
   end
@@ -474,7 +477,7 @@ local function scanFromFiles(shouldScanCharacter)
     -- make sure that all rumour items 
     for recipeKey, recipeArray in pairs(FurC.settings.data) do
       if FurC.RumourRecipes[recipeKey] or recipeArray.blueprint and FurC.RumourRecipes[recipeArray.blueprint] then
-      
+		recipeArray.origin = FURC_RUMOUR
       end
     end
   end

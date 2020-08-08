@@ -20,7 +20,6 @@ FURC_GUILDSTORE         = FURC_FISHING +1             -- 18
 FURC_FESTIVAL_DROP      = FURC_GUILDSTORE +1          -- 19
 FURC_EMPTY_STRING       = ""
 
-
 -- versioning
 FURC_HOMESTEAD            = 2                         -- 2
 FURC_MORROWIND            = FURC_HOMESTEAD  +1        -- 3
