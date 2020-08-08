@@ -1,7 +1,7 @@
 FurnitureCatalogue                = {}
 FurnitureCatalogue.name           = "FurnitureCatalogue"
 FurnitureCatalogue.author         = "manavortex"
-FurnitureCatalogue.version        = 3.95
+FurnitureCatalogue.version        = 3.96
 FurnitureCatalogue.CharacterName  = nil
 FurnitureCatalogue.settings       = {}
 
@@ -31,7 +31,7 @@ local defaults             = {
   dontScanTradingHouse  = false,
   enableDebug           = false,
 
-  data                 = {},
+data                 = {},
   filterCraftingType   = {},
   filterQuality        = {},
 

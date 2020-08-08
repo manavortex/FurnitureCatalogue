@@ -2,6 +2,37 @@ FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
 FurC.LuxuryFurnisher[FURC_SKYRIM] = {
 	
+	[166000] = {    -- Flower Patch, Hawkmoth Cabbage
+		itemPrice   = 4000,
+		itemDate  = "2020-08-08",
+	},
+
+	[151945] = {    -- Plant, Spore Pod
+ 		itemPrice   = 450,
+		itemDate  = "2020-08-08",
+	},
+	[139097] = { -- Spiral Skein Glowstalks, Sprouts
+	itemPrice = 8000, 
+		itemDate  = "2020-08-08",
+	},    
+	--July 29 + 30
+	[126587] = {  -- Vvardenfell Glowstalk, Sprout
+ 		itemPrice   = 2500,
+		itemDate  = "2020-08-08",
+	},
+	[126585] = {  -- Vvardenfell Glowstalk, Strong
+ 		itemPrice   = 10000,
+		itemDate  = "2020-08-08",
+	},
+	[126580] = {  -- Vvardenfell Glowstalk, Towering
+ 		itemPrice   = 15000,
+		itemDate  = "2020-08-08",
+	},
+	[126586] = {  -- Vvardenfell Glowstalk, Young
+ 		itemPrice   = 5000,
+		itemDate  = "2020-08-08",
+	},
+	
 		
 	[165999] = {    -- Tapestry of a Failed Incarnate, The Warseeker
 		itemPrice   = 20000,
@@ -1418,31 +1449,6 @@ FurC.LuxuryFurnisher[FURC_SKYRIM] = {
 	},
 	
 	
-	[151945] = {    -- Plant, Spore Pod
- 		itemPrice   = 450,
-		itemDate  = "2019-07-13",
-	},
-	[139097] = { -- Spiral Skein Glowstalks, Sprouts
-	itemPrice = 8000, 
-		itemDate  = "2019-07-14",
-	},    
-	--July 29 + 30
-	[126587] = {  -- Vvardenfell Glowstalk, Sprout
- 		itemPrice   = 2500,
-		itemDate  = "2019-07-14",
-	},
-	[126585] = {  -- Vvardenfell Glowstalk, Strong
- 		itemPrice   = 10000,
-		itemDate  = "2019-07-14",
-	},
-	[126580] = {  -- Vvardenfell Glowstalk, Towering
- 		itemPrice   = 15000,
-		itemDate  = "2019-07-14",
-	},
-	[126586] = {  -- Vvardenfell Glowstalk, Young
- 		itemPrice   = 5000,
-		itemDate  = "2019-07-14",
-	},
 	
 	
 	[134844] = {  -- Ra Gada Statue, Forward Scout
