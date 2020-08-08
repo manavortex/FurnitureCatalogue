@@ -53,8 +53,8 @@ local function getAchievementId(achievementName)
 	return (#results == 0 and 0) or results[1]
 end
 
-local s2             = "  "
-local s4             = "    "
+local s2             = "\t"
+local s4             = "\t\t"
 -- local s_default            = (s2 .. "[%d] = GetString(SI_FURC_EXISITING_ITEMSOURCE_UNKNOWN_YET)," .. s2 .. "-- %s\n")
 local s_default            = (s2 .. "[%d] = getCrownPrice(99)," .. s4 .. "   " .. "-- %s")
 local s_letter             = (s2 .. "[%d] = rumourSource," .. s4 .. "   " .. "-- %s")
