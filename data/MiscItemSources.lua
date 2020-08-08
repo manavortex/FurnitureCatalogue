@@ -202,7 +202,6 @@ FurC.MiscItemSources[FURC_SKYRIM]  = {
     [159462] = rumourSource, -- Redguard Fence, Wooden",
     [159470] = rumourSource, -- Replica Jubilee Cake 2020",
     [156553] = rumourSource, -- Music Box, That Breezy Night in Bruma",
-    [165860] = rumourSource, -- Eight-Star Chandelier",
     [165861] = rumourSource, -- Golden Idol of Morihaus",
     [165862] = rumourSource, -- Moth Priest's Cleansing Bowl",
     [156554] = rumourSource, -- Music Box, A Frost Melt Melody",
@@ -585,7 +584,7 @@ FurC.MiscItemSources[FURC_SKYRIM]  = {
     [165866] = scrying .. " in Stonefalls",       -- Ashen Infernace Gate
     [165859] = scrying .. " in Bal Foyen",        -- The Dutiful Guar",
     [165854] = scryingMurkmire,                   -- Nisswo's Soul Tender
-
+    [165860] = scrying .. "in Grahtwood",         -- Eight-Star Chandelier",
   },
 
   [FURC_CROWN]  = {   
