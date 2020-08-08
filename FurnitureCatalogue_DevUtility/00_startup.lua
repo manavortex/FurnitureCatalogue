@@ -1,21 +1,29 @@
-
-
-local UNITTAG_PLAYER = "player"
-local function whoami()
-    return GetUnitDisplayName(UNITTAG_PLAYER)
-end
-
-local isMana    = string.find(whoami(), "@manavortex") or string.find(whoami(), "@Manorin") 
-if not isMana   then return end
-
-
 local control   = FurCDevControl
 FurCDevUtility  = {}
 local this      = FurCDevUtility
+
 this.name       = "FurnitureCatalogue_DevUtility"
 this.control    = control
 this.textbox    = FurCDevControlBox
-local active = string.find(GetWorldName(), "PTS")
+local active 	= string.find(GetWorldName(), "PTS")
+
+FurCDevUtility.playersWithDevAccess = {
+	["@manavortex"] = true,		-- the real me
+	["@Manorin"] = true,		-- alt account
+	["@tïm'99"] = true,	 		-- let's hope the ï doesn't destroy everything
+}
+
+local UNITTAG_PLAYER = "player"
+local displayName
+function FurCDevUtility.isDev()
+	displayName = displayName or GetUnitDisplayName(UNITTAG_PLAYER)
+	return FurCDevUtility.playersWithDevAccess[displayName]
+end
+
+if not FurCDevUtility.isDev() then return end
+
+
+
 
 local function set_active(status)
     if nil == status then status = not this.active  end
