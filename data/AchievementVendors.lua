@@ -51,7 +51,10 @@ FurC.AchievementVendors[FURC_SKYRIM] = {
       [165814] = {    -- Tree, Young Winter Pine
         itemPrice   = 250,
       },
-
+      [165820] = {    -- Fern, Sting-Vine
+		itemPrice   = 100,
+	  },
+      
     }, 
     [GetString(FURC_SKYRIM_NETINDELL)] = {
      [166018] = {    --Doll, Heiruna
