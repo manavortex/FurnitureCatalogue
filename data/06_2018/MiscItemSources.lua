@@ -39,6 +39,7 @@ local itemPackDeepmire      = zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK
 local itemPackDwemer        = zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "Dwemer")
 local itemPackVivec         = zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "Lord Vivec")
 local itemPackSwamp         = zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "Shadow and Stone")
+local itemPackMolag         = zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "Molag Bal")
 
 local onSummerset           = " on Summerset"
 local backwaterSwamp        = " in Murkmire"
@@ -475,7 +476,6 @@ FurC.MiscItemSources[FURC_WEREWOLF] = {
     [120859] = dataminedUnclear,                    -- Yokudan Wall Embellishment
     [120855] = dataminedUnclear,                    -- Collected Wanted Poster
     [120854] = dataminedUnclear,                    -- Guard Lamppost
-    [130093] = dataminedUnclear,                    -- Coldharbour Compact
     [134890] = dataminedUnclear,                    -- Dibella, Lady of Love
   },
   [FURC_DROP] = {
@@ -616,9 +616,10 @@ FurC.MiscItemSources[FURC_WEREWOLF] = {
     [139389] = getCrownPrice(200),                  -- Crystal, Crimson Cluster
     [139184] = getCrownPrice(200),                  -- Alinor Plinth, Sarcophagus
     
+    [130093] = itemPackMolag,                       -- Coldharbour Compact
     
     [126138] = itemPackDwemer,                      -- A Guide to Dwemer Mega-Structures    
-    [125516] = itemPackDwemer,                    -- Dwarven Gear Assembly, Grinding
+    [125516] = itemPackDwemer,                      -- Dwarven Gear Assembly, Grinding
     
     [126140] = itemPackVivec,                       -- Vivec's Grand Bed
     [126141] = itemPackVivec,                       -- Vivec's Grand Throne
