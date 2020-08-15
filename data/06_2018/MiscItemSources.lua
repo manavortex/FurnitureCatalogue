@@ -1420,7 +1420,6 @@ FurC.MiscItemSources[FURC_HOMESTEAD]  = {
     [118283] = rumourSource,           -- Horn, Display, Huge
     [118296] = rumourSource,           -- Mantikora Head, Wall Mount
     [118297] = rumourSource,           -- Mantikora Horns, Wall Mount
-    [118242] = rumourSource,           -- Rug, Bearskin
     [116473] = rumourSource,           -- Orcish Effigy, Mammoth
     [116474] = rumourSource,           -- Orcish Effigy, Bear
     [116433] = rumourSource,           -- Orcish Desk with Furs

@@ -42,15 +42,11 @@ local showStr   = "show"
 local hideStr   = "hide"
 function slash_cmd(arg1)
 
-    if arg1 == activeStr then 
-        set_active(true)
-    elseif arg1 == showStr then
-        setHidden(false)
-    elseif arg1 == hideStr then
-        setHidden(true)
-    else
-        d("/furcdev -> active to set active, show to show, hide to hide")
-    end
+    if arg1 == activeStr then return set_active(true) end
+    if arg1 == showStr then return setHidden(false) end
+    if arg1 == hideStr then return setHidden(true) end
+	d("/furcdev -> active to set active, show to show, hide to hide")
+    
 end
 SLASH_COMMANDS["/furcdev"] = slash_cmd
 
