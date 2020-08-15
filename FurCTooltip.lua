@@ -5,7 +5,7 @@ local p     = FurC.DebugOut -- debug function calling zo_strformat with up to 10
 
 local function tryColorize(text)
   if not (text and FurC.GetColouredTooltips()) then return text end
-  return text:gsub("cannot craft", "|cFF0000cannot craft|r"):gsub("Can be crafted", "|c00FF00Can be crafted|r")
+  return text:gsub("cannot craft", "|cFF0000cannot craft"):gsub("Can be crafted", "|c00FF00Can be crafted")
 end
 
 
@@ -19,7 +19,7 @@ local function addTooltipData(control, itemLink)
   itemLink = (isRecipe and GetItemLinkRecipeResultItemLink(itemLink)) or itemLink
 
   if not (isRecipe or IsItemLinkPlaceableFurniture(itemLink)) then return end
-  itemId     = FurC.GetItemId(itemLink)
+  itemId     = GetItemLinkItemId(itemLink)
   recipeArray = FurC.Find(itemLink)
 
   -- |H0:item:118206:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h

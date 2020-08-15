@@ -8,7 +8,7 @@ local function colorise(str, col, ret)
   str = tostring(str)
   if str:find("%d000$") then str = str:gsub("000$", "k") end
   if ret then return str end
-  return string.format("|c%s%s|r", col, str)
+  return string.format("|c%s%s", col, str)
 end
 
 local requires = GetString(SI_FURC_REQUIRES_ACHIEVEMENT)
@@ -45,8 +45,7 @@ FurC.RecipeSources = {
     [139491] = soldBy(nalirsewen, artaeum, 10000,   rank(4)),  -- Praxis: Psijic Lighting Globe, Small
     [139497] = soldBy(nalirsewen, artaeum, 100000,  rank(10)), -- Praxis: Psijic Table, Grand
     [139492] = soldBy(nalirsewen, artaeum, 20000,   rank(5)),  -- Praxis: Psijic Table, Scalloped
-    [139494] = soldBy(nalirsewen, artaeum, 20000,   rank(7)),  -- Praxis: Psijic Table, Six-Fold Symmetry
-    
+    [139494] = soldBy(nalirsewen, artaeum, 20000,   rank(7)),  -- Praxis: Psijic Table, Six-Fold Symmetry    
     [121203] = daily_reward_elswhere,                          -- Praxis: Khajiit Brazier, Enchanted
 }
 

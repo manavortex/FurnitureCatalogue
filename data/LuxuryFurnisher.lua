@@ -2,6 +2,35 @@ FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
 FurC.LuxuryFurnisher[FURC_SKYRIM] = {
 	
+	[166001] = {		-- Plant, Murkmire Snakevine
+		itemPrice   = 7000,
+		itemDate  = "2020-08-15",
+	},
+	
+	[151946] = {    -- Flower, Coda
+ 		itemPrice   = 3000,
+		itemDate  = "2020-08-15",
+    },
+	-- August 5+6
+	[126611] = { -- Vvardenfell Anemone, Sprout
+ 		itemPrice   = 5417,
+		itemDate  = "2020-08-15",
+	},
+	[126612] = { -- Vvardenfell Anemone, Strong
+ 		itemPrice   = 27084,
+		itemDate  = "2020-08-15",
+	},
+	[126610] = { -- Vvardenfell Coral Plant,
+ 		itemPrice   = 10834,
+		itemDate  = "2020-08-15",
+	},
+	[126591] = { -- Vvardenfell Coral Plant, Young
+ 		itemPrice   = 5417,
+		itemDate  = "2020-08-15",
+	},
+	
+
+	
 	[166000] = {    -- Flower Patch, Hawkmoth Cabbage
 		itemPrice   = 4000,
 		itemDate  = "2020-08-08",
@@ -1425,28 +1454,6 @@ FurC.LuxuryFurnisher[FURC_SKYRIM] = {
 		itemDate  = "2019-07-27",
 	},
 	
-	
-	[151946] = {    -- Flower, Coda
- 		itemPrice   = 3000,
-		itemDate  = "2019-07-21",
-    },
-	-- August 5+6
-	[126611] = { -- Vvardenfell Anemone, Sprout
- 		itemPrice   = 5417,
-		itemDate  = "2019-07-21",
-	},
-	[126612] = { -- Vvardenfell Anemone, Strong
- 		itemPrice   = 27084,
-		itemDate  = "2019-07-21",
-	},
-	[126610] = { -- Vvardenfell Coral Plant,
- 		itemPrice   = 10834,
-		itemDate  = "2019-07-21",
-	},
-	[126591] = { -- Vvardenfell Coral Plant, Young
- 		itemPrice   = 5417,
-		itemDate  = "2019-07-21",
-	},
 	
 	
 	

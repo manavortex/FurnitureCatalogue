@@ -17,9 +17,14 @@ local cachedIsLetter
 
 local LAM = LibAddonMenu2
 
-local p = this.p
-
 local cachedItemIds = {}
+
+
+local logger = (LibDebugLogger and LibDebugLogger("FurC Dev")) or nil
+function p(...)
+	if logger then return logger:Debug(...) end
+	d(((tostring(...):find("%%s")) and string.format(...)) or ... )
+end
 
 
 local function showTextbox()
@@ -86,11 +91,11 @@ local function makeOutput()
         debugString = debugString:sub(#s2+1, #debugString)
 	end
     
-    return string.format(debugString .. "\n", tonumber(FurC.GetItemId(cachedItemLink)), cachedName, tonumber(cachedPrice), tonumber(achievementId), cachedAchievementName)
+    return string.format(debugString .. "\n", tonumber(GetItemLinkItemId(cachedItemLink)), cachedName, tonumber(cachedPrice), tonumber(achievementId), cachedAchievementName)
 end
 
 local function isItemIdCached()
-	local itemId = FurC.GetItemId(cachedItemLink) 
+	local itemId = GetItemLinkItemId(cachedItemLink) 
     if not itemId then return end
     if cachedItemIds[itemId] then return true end
     cachedItemIds[itemId] = true

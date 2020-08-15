@@ -46,10 +46,10 @@ local strings = {
   SI_FURC_DIALOGUE_RESET_DB_HEADER =    "Really re-create furniture database?",
   SI_FURC_DIALOGUE_RESET_DB_BODY =      "This will re-create the FurnitureCatalogue database from scratch",
   SI_FURC_TEXTBOX_FILTER_DEFAULT =      "Filter by text search",
-  SI_FURC_DEBUG_CHARSCANCOMPLETE =      "|c2266ffFurniture Catalogue|r|cffffff: Character scan complete...|r",
-  SI_FURC_VERBOSE_STARTUP =             "|c2266ffFurniture Catalogue|r|cffffff: |cffffffIf you miss any recipes, please trigger a scan on your furniture crafter by clicking the refresh button in the UI.|r",
-  SI_FURC_VERBOSE_DB_UPTODATE =         "|c2266ffFurniture Catalogue|r|cffffff: The database is up-to-date.|r",
-  SI_FURC_VERBOSE_SCANNING_DATA_FILE =  "|c2266ffFurniture Catalogue|r|cffffff: Scanning data files...|r",
+  SI_FURC_DEBUG_CHARSCANCOMPLETE =      "Furniture Catalogue: Character scan complete...",
+  SI_FURC_VERBOSE_STARTUP =             "Furniture Catalogue: If you miss any recipes, please trigger a scan on your furniture crafter by clicking the refresh button in the UI.",
+  SI_FURC_VERBOSE_DB_UPTODATE =         "Furniture Catalogue: The database is up-to-date.",
+  SI_FURC_VERBOSE_SCANNING_DATA_FILE =  "Furniture Catalogue: Scanning data files...",
   SI_FURC_VERBOSE_SCANNING_CHARS =      "Not scanning files, scanning character knowledge now...",
   SI_FURC_ITEMSOURCE_EMPTY =            "Item source unknown.\nTry to re-scan files (refresh button right click).\nIf still unknown after, please send a mail with the item link and -source to @manavortex",
   SI_FURC_RUMOUR_SOURCE_RECIPE =        "This recipe has been datamined, but not seen in-game",
@@ -87,7 +87,7 @@ local strings = {
   -- =============================== --
 
   SI_FURC_STRING_MENU_DEBUG =               "Enable debug output",
-  SI_FURC_STRING_MENU_RESET_DB_NAME =       "|cFF0000Reset database|r",
+  SI_FURC_STRING_MENU_RESET_DB_NAME =       "|cFF0000Reset database",
   SI_FURC_STRING_MENU_RESET_DB_TT =         "This will reset the furniture database.",
   SI_FURC_STRING_MENU_RESET_DB_WARNING =    "All your data will be reset. Only recipe knowledge for this character will be considered.",
   SI_FURC_STRING_MENU_RESCAN_RUMOUR_NAME =  "Re-scan Rumour recipes",

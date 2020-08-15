@@ -1,4 +1,13 @@
 --[[ 
+	HOW TO UPDATE FURNITURE CATALOGUE FUR A NEW GAME VERSION
+	
+	1. 	Create the file data\$(APIVersion).lua. You can see the API version for the current patch
+		by calling `GetAPIVersion()` ingame
+		
+	2. A
+}}
+--[[ 
+
   
 local tblIndex = FURC_KITTY
 

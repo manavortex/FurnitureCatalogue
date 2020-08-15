@@ -7,13 +7,11 @@ FurC.Recipes[FURC_MORROWIND] = {
   126865, -- Dwarven Engine, Turbine
   126899, -- Dwarven Sconce, Framework
   121545, -- Redguard Cannister, Gilded
-  121099, -- Common Firepit, Outdoor
   127084, -- Indoril Candelabra, Shrine
   127015, -- Hlaalu Censer, Mesh
   127092, -- Hlaalu Lantern, Classic Vellum
   126869, -- Dwarven Table, Workbench
   126877, -- Dwarven Candlestick, Laboratory
-  121175, -- Geese, Hanging
   127067, -- Dres Jar, Stoneflower
   127075, -- Indoril Brazier, Cauldron
   126941, -- Hlaalu Wardrobe, Formal
@@ -23,28 +21,21 @@ FurC.Recipes[FURC_MORROWIND] = {
   127027, -- Indoril Rug, Almalexia
   126907, -- Hlaalu Settee, Polished
   126978, -- Telvanni Bed, Organic
-  121061, -- Common Firepit, Piled
   126860, -- Dwarven Engine, Boiler
-  121156, -- Papers, Stack
   127080, -- Indoril Candelabra, Shrine Chamber
-  121192, -- Wolf Head, Wall Mount
   126847, -- Indoril Streetlight, Full Stone
   126991, -- Indoril Bellows, Practical
   126834, -- Daedric Candles, Group
-  121183, -- Haj Mota Shell, Wall Mount
-  121187, -- Echatere, Wall Mount
   126890, -- Dwarven Basin, Forged
   127059, -- Hlaalu Banner, Floral
   126963, -- Indoril Footlocker, Fortified
   127023, -- Redoran Plate, Meal
   126582, -- Target Centurion, Dwarf-Brass
-  121206, -- Orcish Desk with Furs
   126954, -- Hlaalu Rack, Barrel
   127051, -- Redoran Mantle Cloth, Crimson Cover
   126937, -- Redoran Stool, Sanded
   127038, -- Indoril Runner, Sotha Sil
   126916, -- Dres Sideboard, Display
-  121198, -- Shelf, Poison
   126898, -- Dwarven Sconce, Barred
   126894, -- Dwarven Chandelier, Framework
   126866, -- Dwarven Pew, Refined
@@ -66,7 +57,6 @@ FurC.Recipes[FURC_MORROWIND] = {
   126958, -- Hlaalu Nightstand, Formal
   127026, -- Indoril Runner, Almalexia
   127018, -- Redoran Incense Holder, Ceramic Pan
-  121193, -- Bottle, Beaker
   126861, -- Dwarven Boiler, Central
   126874, -- Dwarven Candles, Plate
   126854, -- Dwarven Pipe, Elbow
@@ -107,16 +97,12 @@ FurC.Recipes[FURC_MORROWIND] = {
   126947, -- Hlaalu Sideboard, Scholar's
   126875, -- Dwarven Candles, Cup
   127078, -- Indoril Candle, Temple
-  121177, -- Horn, Display, Huge
-  121185, -- Durzog Head, Wall Mount
   127004, -- Dres Cup, Empty Greef
-  121212, -- Orcish Effigy, Bear
   127102, -- Tribunal Tablet of Almalexia
   127101, -- Velothi Brazier, Temple
   126888, -- Dwarven Pot, Sealed
   127100, -- Telvanni Sconce, Organic Azure
   127061, -- Indoril Tapestry, Vivec
-  121171, -- Rug, Bearskin
   127097, -- Telvanni Candelabra, Organic
   127096, -- Telvanni Lamp, Organic Azure
   127094, -- Hlaalu Lantern, Stationary
@@ -127,12 +113,10 @@ FurC.Recipes[FURC_MORROWIND] = {
   127012, -- Indoril Platter, Floral
   126905, -- Hlaalu Cannister, Sealed Azurite
   126946, -- Hlaalu Cabinet of drawers, Clerk
-  121097, -- Plaque, Bordered Deer Antlers
   127086, -- Indoril Chandelier, Knotwork
   127085, -- Indoril Candelabra, Temple
   127083, -- Dres Candles, Meditation
   127081, -- Indoril Sconce, Temple
-  121190, -- Mantikora Head, Wall Mount
   127077, -- Indoril Brazier, Pedestal
   127076, -- Indoril Brazier, Kettle
   127071, -- Indoril Banner, Almalexia
@@ -149,7 +133,6 @@ FurC.Recipes[FURC_MORROWIND] = {
   127057, -- Indoril Tapestry, Almalexia
   127055, -- Telvanni Table Runner, Bordered Azure
   127054, -- Redoran Table Runner, Gilded Ochre
-  121194, -- Bottle, Poison
   126989, -- Telvanni Table, Organic Game
   127052, -- Telvanni Table Runner, Gilded Azure
   127050, -- Redoran Steamer, Iron
@@ -246,12 +229,10 @@ FurC.Recipes[FURC_MORROWIND] = {
   126873, -- Dwarven Bowl, Forged Serving
   126895, -- Dwarven Lantern, Oil
   126885, -- Dwarven Cannister, Sealed
-  121191, -- Mantikora Horns, Wall Mount
   126883, -- Dwarven Platform, Steps
   126882, -- Dwarven Plate, Forged
   126880, -- Dwarven Amphora, Sealed
   126879, -- Dwarven Jug, Sealed
-  121106, -- Common Cargo Crate, Dry
   126896, -- Dwarven Lamppost, Powered
   126859, -- Dwarven Pipeline, Column
   126858, -- Dwarven Pipeline, Full Column
@@ -264,19 +245,13 @@ FurC.Recipes[FURC_MORROWIND] = {
   126838, -- Daedric Base, Ashen
   126985, -- Telvanni End Table, Organic
   126835, -- Daedric Candles, Ritual Set
-  121102, -- Chicken Dinner, Display
   126583, -- Target Centurion, Robust Refabricated
   126884, -- Dwarven Vessel, Sealed
-  121189, -- Haj Mota Head, Wall Mount
-  121184, -- Antlers, Wall Mount
   127091, -- Hlaalu Lantern, Oversized Vellum
-  121174, -- Sack of Grain
   127098, -- Telvanni Lantern, Organic Azure
   126839, -- Daedric Platform, Ashen
   127074, -- Indoril Brazier, Knotwork
   126876, -- Dwarven Candlestick, Orrery
-  121105, -- Common Barrel, Dry
-  121103, -- Chicken Meal, Display
   126944, -- Hlaalu Desk, Scholar's
   121098, -- Common Campfire, Outdoor
   127066, -- Redoran Jar, Jazbay
@@ -288,10 +263,8 @@ FurC.Recipes[FURC_MORROWIND] = {
   126948, -- Hlaalu Dresser, Scroll Drawers
   126864, -- Dwarven Engine, Switch
   126844, -- Daedric Pedestal, Ritual
-  121157, -- Sack of Rice
   126960, -- Dres Divider, Chains
   127079, -- Indoril Candelabra, Temple Chamber
-  121178, -- Horn, Display, Cracked
   127095, -- Hlaalu Lamp, Portable
   126940, -- Redoran Chair, Sanded
   126889, -- Dwarven Urn, Sealed
@@ -306,9 +279,7 @@ FurC.Recipes[FURC_MORROWIND] = {
   126994, -- Redoran Bowl, Empty
   126990, -- Telvanni Table, Organic Grand
   126953, -- Hlaalu End Table, Formal Scales
-  121211, -- Orcish Effigy, Mammoth
   126852, -- Dwarven Pipe, Half Column
-  121205, -- Nord Drinking Horn, Display
   126957, -- Hlaalu Nightstand, Scholar's
   127037, -- Dres Rug, Chains
 }

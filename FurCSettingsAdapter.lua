@@ -492,7 +492,7 @@ end
 
 
 function FurC.WipeDatabase()
-  d("|cFFFFFFresetting |r|c2266ffFurniture Catalogue |r|cFFFFFFdata...|r")
+  d("resetting Furniture Catalogue data...")
   FurC.settings.data = {}
   FurC.settings.accountCharacters = {}
   FurC.settings.excelExport = {}

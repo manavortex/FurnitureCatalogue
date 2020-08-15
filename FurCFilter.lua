@@ -121,8 +121,7 @@ local function matchSourceDropdown()
     return validSourcesForOther[recipeArray.origin]
   end
   -- we're checking character knowledge
-  return recipeArray.origin  == ddSource 
-  
+  return recipeArray.origin  == ddSource   
   
 end
 
@@ -156,16 +155,19 @@ end
 
 function FurC.MatchFilter(currentItemId, currentRecipeArray)
   
-  itemId = currentItemId
-  itemLink = FurC.GetItemLink(itemId)
+  itemLink = FurC.GetItemLink(currentItemId)
   recipeArray = currentRecipeArray or FurC.Find(itemLink)
   itemType, sItemType = GetItemLinkItemType(itemLink)
-  if 0 == itemType and 0 == sItemType then 
-    p("invalid item type for <<1>>", currentItemId)
+  if 0 == itemType and 0 == sItemType then
+	if currentRecipeArray.recipeId then 
+		p("invalid item type for %s (recipe ID %s)", currentItemId, currentRecipeArray.recipeId)
+	else
+		p("invalid item type for %s", currentItemId)
+	end
     return false 
   end
-  if  filterBooks(itemId, recipeArray)                        then return false end
   
+  if  filterBooks(currentItemId, recipeArray)                        then return false end  
   
   if not matchSearchString()                                  then return false end
   

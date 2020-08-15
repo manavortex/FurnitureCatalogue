@@ -11,7 +11,7 @@ local function colorise(str, col, ret)
   str = tostring(str)
   if str:find("%d000$") then str = str:gsub("000$", "k") end
   if ret then return str end
-  return string.format("|c%s%s|r", col, str)
+  return string.format("|c%s%s", col, str)
 end
 
 local function makeAchievementLink(achievementId)

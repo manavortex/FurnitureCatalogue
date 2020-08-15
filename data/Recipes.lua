@@ -257,7 +257,7 @@ FurC.Recipes[FURC_SKYRIM] = {
 
 
 FurC.Recipes[FURC_KITTY] = {
-    
+  121203, -- Praxis: Khajiit Brazier, Enchanted  
   152047, -- Elsweyr Wardrobe, Wide Elegant Wooden
   139535, -- Alinor Streetlight, Wrought Iron 
   139525, -- Alinor Sconce, Lantern 
