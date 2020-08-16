@@ -53,7 +53,7 @@ function FurC.PrintSource(itemLink, recipeArray)
   if nil == recipeArray then recipeArray = FurC.Find(itemLink) end
   if nil == recipeArray then return end
 
-  local source = FurC.GetItemDescription(GetItemLinkItemId(itemLink), recipeArray, true)
+  local source = FurC.GetItemDescription(FurC.GetItemId(itemLink), recipeArray, true)
   local output = string.format("%s: %s", itemLink, source)
   if recipeArray.achievement and recipeArray.achievement ~= "" then
     output = string.format("%s, requires %s", output, recipeArray.achievement)

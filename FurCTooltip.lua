@@ -8,6 +8,11 @@ local function tryColorize(text)
   return text:gsub("cannot craft", "|cFF0000cannot craft"):gsub("Can be crafted", "|c00FF00Can be crafted")
 end
 
+local TYPE_STRING = "string"
+local function add(t, arg)
+	if nil ~= arg and (TYPE_STRING ~= type(t) or #t > 0) then t[#t + 1] = arg end
+	return t
+end
 
 local function addTooltipData(control, itemLink)
 
@@ -31,10 +36,6 @@ local function addTooltipData(control, itemLink)
   local stringTable = {}
 
 
-  local function add(t, arg)
-    if nil ~= arg then t[#t + 1] = arg end
-    return t
-  end
 
   -- if craftable:
   if isRecipe or recipeArray.origin == FURC_CRAFTING then

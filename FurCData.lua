@@ -23,14 +23,14 @@ local function startupMessage(text)
 	p(text)
 end
 
-local getItemId = GetItemLinkItemId
+-- GetItemLinkItemId doesn't work the way I need it
+local function getItemId(itemLink)
+	if nil == itemLink or STRING_EMPTY == itemLink then return end
+	if type(itemLink) == NUMBER_TYPE and itemLink > 9999 then return itemLink end
+	local _, _, _, itemId = ZO_LinkHandler_ParseLink(itemLink)
+	return tonumber(itemId)
+end
 FurC.GetItemId = getItemId
-
-	-- if nil == itemLink or STRING_EMPTY == itemLink then return end
-	-- if type(itemLink) == NUMBER_TYPE and itemLink > 9999 then return itemLink end
-	-- local _, _, _, itemId = ZO_LinkHandler_ParseLink(itemLink)
-	-- return tonumber(itemId)
--- end
 
 local function getItemLink(itemId)
     if nil == itemId then return end
@@ -123,8 +123,8 @@ end
 local function parseBlueprint(blueprintLink)        -- saves to DB, returns recipeArray
 	
 	local itemLink     	= GetItemLinkRecipeResultItemLink(blueprintLink, LINK_STYLE_BRACKETS)
-	local blueprintId   = GetItemLinkItemId(blueprintLink)
-	local recipeKey   	= GetItemLinkItemId(itemLink)
+	local blueprintId   = getItemId(blueprintLink)
+	local recipeKey   	= getItemId(itemLink)
 	if nil == recipeKey or -- we don't have a key to access the database
 		nil == itemLink or -- we don't have an item link to parse
 		nil == GetItemLinkName(itemLink) -- we didn't find an item result for our recipe
@@ -523,45 +523,49 @@ function FurC.ScanRecipes(shouldScanFiles, shouldScanCharacter)                -
 end
 
 function FurC.GetItemDescription(recipeKey, recipeArray, stripColor, attachItemLink)
-    recipeKey = GetItemLinkItemId(recipeKey)
+    recipeKey = getItemId(recipeKey)
     FurC.settings.emptyItemSources =  FurC.settings.emptyItemSources or {}
 	recipeArray = recipeArray or FurC.Find(recipeKey, recipeArray)
 	if not recipeArray then return "" end
+	
 	local origin = recipeArray.origin
 	if origin == FURC_CRAFTING or origin == FURC_WRIT_VENDOR then
 		return FurC.GetMats(recipeKey, recipeArray, stripColor, attachItemLink)
-		elseif origin == FURC_ROLIS then
+	end 
+	if origin == FURC_ROLIS then
 		return FurC.getRolisSource(recipeKey, recipeArray, stripColor, attachItemLink)
-		elseif origin == FURC_LUXURY then
-		return FurC.getLuxurySource(recipeKey, recipeArray, stripColor, attachItemLink)
-		elseif origin == FURC_GUILDSTORE then
+	end 
+	if origin == FURC_LUXURY then
+		return FurC.getLuxurySource(recipeKey, recipeArray, stripColor, attachItemLink) 
+	end 
+	if origin == FURC_GUILDSTORE then
 		return GetString(SI_FURC_SEEN_IN_GUILDSTORE)
-		elseif origin == FURC_VENDOR then
+	end 
+	if origin == FURC_VENDOR then
 		return FurC.getAchievementVendorSource(recipeKey, recipeArray, stripColor, attachItemLink)
-		elseif origin == FURC_FESTIVAL_DROP then
+	end 
+	if origin == FURC_FESTIVAL_DROP then
 		return FurC.getEventDropSource(recipeKey, recipeArray, stripColor, attachItemLink)
-		elseif origin == FURC_PVP then
+	end 
+	if origin == FURC_PVP then
 		return FurC.getPvpSource(recipeKey, recipeArray, stripColor, attachItemLink)
-		elseif origin == FURC_RUMOUR then
+	end 
+	if origin == FURC_RUMOUR then
 		return FurC.getRumourSource(recipeKey, recipeArray, stripColor, attachItemLink)
-		else
-		itemSource = FurC.GetMiscItemSource(recipeKey, recipeArray, stripColor, attachItemLink)
-	end
-    if not itemSource then
-        FurC.settings.emptyItemSources[recipeKey] = ", --" .. GetItemLinkName(FurC.GetItemLink(recipeKey))
-	end
-	return itemSource or GetString(SI_FURC_ITEMSOURCE_EMPTY)
+	end	
+	return FurC.getMiscItemSource(recipeKey, recipeArray, stripColor, attachItemLink)
+
 end
 
 function ShouldBeInFurC(link)
 	link = FurC.GetItemLink(link)
 	
 	if IsItemLinkPlaceableFurniture(link) then 				
-	return nil == FurnitureCatalogue.settings.data[GetItemLinkItemId(link)]
+	return nil == FurnitureCatalogue.settings.data[getItemId(link)]
 	end
     
 	if IsItemLinkFurnitureRecipe(link) then	
-		local resultId	= GetItemLinkItemId(GetItemLinkRecipeResultItemLink(link))    
+		local resultId	= getItemId(GetItemLinkRecipeResultItemLink(link))    
 		return nil ~= FurnitureCatalogue.settings.data[resultId]
     end
 

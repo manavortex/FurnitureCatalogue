@@ -151,20 +151,26 @@ local function getEventDropSource(recipeKey, recipeArray, stripColor)
 end
 FurC.getEventDropSource = getEventDropSource
 
-function FurC.GetMiscItemSource(recipeKey, recipeArray, attachItemLink)
-  if not recipeArray or not recipeArray.version or not recipeArray.origin then return end
-
-  if recipeArray.origin == FURC_RUMOUR then
-    return FurC.getRumourSource(recipeKey, recipeArray)
-  end
-
-  local versionFiles = FurC.MiscItemSources[recipeArray.version]
-  if not versionFiles or not versionFiles[recipeArray.origin] then return end
-  local originData = versionFiles[recipeArray.origin][recipeKey]
-  if not originData then return end
-  
-  return (attachItemLink and string.format("%s: %s", FurC.GetItemLink(recipeKey), originData)) or originData
+	
+local emptyString = GetString(SI_FURC_ITEMSOURCE_EMPTY)
+local function registerEmptyItem(recipeKey)
+	if (recipeKey and tonumber(recipeKey) > 0) then 
+		FurC.settings.emptyItemSources[recipeKey] = ", --" .. GetItemLinkName(FurC.GetItemLink(recipeKey))
+	end
+	return emptyString
 end
+local function getMiscItemSource(recipeKey, recipeArray, attachItemLink)
+	recipeArray = recipeArray or FurC.Find(recipeKey)
+	if not recipeArray or not recipeArray.version or not recipeArray.origin then return registerEmptyItem(recipeKey) end
+
+	local versionFiles = FurC.MiscItemSources[recipeArray.version]
+	if not versionFiles or not versionFiles[recipeArray.origin] then return registerEmptyItem(recipeKey) end
+	local originData = versionFiles[recipeArray.origin][recipeKey]
+	if not originData then return registerEmptyItem(recipeKey) end
+
+	return (attachItemLink and string.format("%s: %s", FurC.GetItemLink(recipeKey), originData)) or originData
+end
+FurC.getMiscItemSource = getMiscItemSource
 
 local function getRecipeSource(recipeKey, recipeArray)
   if nil == recipeKey and nil == recipeArray then return end
