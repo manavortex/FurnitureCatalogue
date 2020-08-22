@@ -1,17 +1,17 @@
-local FurC = FurC
+local FurC = FurC or {}
 
 local vendorColor   = "d68957"
 local goldColor     = "e5da40"
 local apColor       = "25C31E"
 local tvColor       = "5EA4FF"
 local voucherColor  = "82BCFF"
-local p       = FurC.DebugOut 
+local p       		= FurC.DebugOut 
 
 local function colorise(str, col, ret)
   str = tostring(str)
   if str:find("%d000$") then str = str:gsub("000$", "k") end
   if ret then return str end
-  return string.format("|c%s%s", col, str)
+  return string.format("|c%s%s|r", col, str)
 end
 
 local function makeAchievementLink(achievementId)
@@ -42,6 +42,9 @@ end
 FurC.getRolisSource = getRolisSource
 
 
+
+local WEEKEND_DATE = GetString(SI_FURC_STRING_WEEKEND_AROUND)
+local SOLD_BY = GetString(SI_FURC_STRING_WASSOLDBY)
 local function getLuxurySource(recipeKey, recipeArray, stripColor)
   recipeArray = recipeArray or FurC.Find(recipeKey)
   if not recipeArray then return end
@@ -51,9 +54,9 @@ local function getLuxurySource(recipeKey, recipeArray, stripColor)
   local itemData = versionData[recipeKey]
 
   if nil ~= itemData then
-    local weekendString = (nil == itemData.itemDate and "") or zo_strformat(GetString(SI_FURC_STRING_WEEKEND_AROUND), itemData.itemDate)
+    local weekendString = (nil == itemData.itemDate and "") or zo_strformat(WEEKEND_DATE, itemData.itemDate)
     return zo_strformat(
-      GetString(SI_FURC_STRING_WASSOLDBY),
+      SOLD_BY,
       colorise(GetString(SI_FURC_STRING_ASSHOLE), vendorColor, stripColor),
       colorise(GetString(SI_FURC_STRING_HC), vendorColor, stripColor),
       colorise(itemData.itemPrice, goldColor, stripColor),

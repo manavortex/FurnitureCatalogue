@@ -1,12 +1,33 @@
 FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
 FurC.LuxuryFurnisher[FURC_SKYRIM] = {
+
+	[166012] = {		-- Cactus, Tall Lunar Fan
+		itemPrice   = 9000,
+		itemDate  = "2020-08-22",
+	},
+	[151853] = {    -- Cactus, Lunar Fan
+ 		itemPrice   = 12000,
+		itemDate  = "2020-08-22",
+	},
+	[151854] = {    -- Cactus, Banded Lunar Multihued Trio
+ 		itemPrice   = 7500,
+		itemDate  = "2020-08-22",
+	},
+	[151852] = {    -- Boulder, Lunar Spire
+ 		itemPrice   = 450,
+		itemDate  = "2020-08-22",
+	},
+	[151851] = {    -- Boulder, Lunar Spine
+ 		itemPrice   = 2500,
+		itemDate  = "2020-08-22",
+	},
 	
+
 	[166001] = {		-- Plant, Murkmire Snakevine
 		itemPrice   = 7000,
 		itemDate  = "2020-08-15",
-	},
-	
+	},	
 	[151946] = {    -- Flower, Coda
  		itemPrice   = 3000,
 		itemDate  = "2020-08-15",
@@ -1435,27 +1456,6 @@ FurC.LuxuryFurnisher[FURC_SKYRIM] = {
  		itemPrice   = 4000,
 		itemDate  = "2019-08-03",
 	},
-	
-	
-	[151853] = {    -- Cactus, Lunar Fan
- 		itemPrice   = 12000,
-		itemDate  = "2019-07-27",
-	},
-	[151854] = {    -- Cactus, Banded Lunar Multihued Trio
- 		itemPrice   = 7500,
-		itemDate  = "2019-07-27",
-	},
-	[151852] = {    -- Boulder, Lunar Spire
- 		itemPrice   = 450,
-		itemDate  = "2019-07-27",
-	},
-	[151851] = {    -- Boulder, Lunar Spine
- 		itemPrice   = 2500,
-		itemDate  = "2019-07-27",
-	},
-	
-	
-	
 	
 	
 	[134844] = {  -- Ra Gada Statue, Forward Scout

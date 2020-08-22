@@ -120,7 +120,6 @@ FurC.MiscItemSources[FURC_SKYRIM]  = {
     [166009] = rumourSource, -- Vampiric Rug, Triangular Sigil
     [166010] = rumourSource, -- Elsweyr Gateway, Stone Arch
     [166011] = rumourSource, -- Elsweyr Gate, Garden
-    [166012] = rumourSource, -- Cactus, Tall Lunar Fan
     [166027] = rumourSource, -- Chaurus Egg, Dormant
     [166029] = rumourSource, -- Vampiric Fountain, Bat Swarm
     [166030] = rumourSource, -- Greymoor Tapestry, Harrowstorm
@@ -343,9 +342,6 @@ FurC.MiscItemSources[FURC_SKYRIM]  = {
     [165713] = rumourSource, -- Solitude Trunk, Knotwork
     [165714] = rumourSource, -- Solitude Strongbox, Iron Bands
     [165715] = rumourSource, -- Solitude Jewelry Box, Wolf's-Head Pyrograph
-    [165716] = rumourSource, -- Solitude Jewelry Box, Copper and Agate
-    [165717] = rumourSource, -- Solitude Bookcase, Rustic Cabinet
-    [165718] = rumourSource, -- Solitude Bookcase, Rustic Cabinet Filled
     [165719] = rumourSource, -- Solitude Bookcase, Rustic
     [165720] = rumourSource, -- Solitude Bookcase, Rustic Filled
     [165721] = rumourSource, -- Solitude Bookcase, Narrow Rustic
@@ -550,14 +546,8 @@ FurC.MiscItemSources[FURC_SKYRIM]  = {
     [163723] = scrying .. "in Wrothgar",          -- Antique Map of Wrothgar
 
   },
-
-  [FURC_CROWN]  = {   
-
-
-  },
-  [FURC_FISHING]   = {
-
-  },
+  [FURC_CROWN]  = { },
+  [FURC_FISHING]   = { },
   
 } 
 
@@ -566,7 +556,6 @@ FurC.MiscItemSources[FURC_KITTY]  = {
   [FURC_RUMOUR]   = {
     [151851] = rumourSource, -- Boulder, Lunar Spine,
     [151852] = rumourSource, -- Boulder, Lunar Spire,
-    [151853] = rumourSource, -- Cactus, Lunar Fan,
     [151854] = rumourSource, -- Cactus, Banded Lunar Multihued Trio,
     [151855] = rumourSource, -- Elsweyr Sarcophagus, Lunar Champion,
     [151856] = rumourSource, -- Elsweyr Sarcophagus Lid, Lunar Champion,
