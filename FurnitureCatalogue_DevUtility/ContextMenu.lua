@@ -51,11 +51,11 @@ function this.onTextboxTextChanged()
 end
 
 local function getAchievementId(achievementName)
-	local results = {}
-	if AchievementFinder and achievementName and "" ~= achievementName then
-		results = AchievementFinder.FindAchieve(achievementName)
+	local results = AchievementFinder and achievementName and "" ~= achievementName and AchievementFinder.FindAchieve(achievementName) or {}
+	for k, v in pairs(results) do 
+		return k
 	end
-	return (#results == 0 and 0) or results[1]
+	return 0
 end
 
 local s2             = "\t"
@@ -174,7 +174,7 @@ function FurCDevControl_HandleInventoryContextMenu(control)
         -- _, currencyQuantity1, _, currencyQuantity2 = GetStoreEntryInfo(storeEntryIndex)
 		
         icon, name, stack, price, sellPrice, meetsRequirementsToBuy, meetsRequirementsToEquip, quality, questNameColor, currencyType1, currencyQuantity1, currencyType2, currencyQuantity2, entryType, buyStoreFailure, buyErrorStringId = GetStoreEntryInfo(storeEntryIndex)
-        cachedAchievementName = GetErrorString(buyErrorStringId):gsub("Requires ", ""):gsub(" Achievement to purchase.", "")
+        cachedAchievementName = GetErrorString(buyErrorStringId):gsub("Requires ", ""):gsub(" Achievement", ""):gsub(" to purchase.", "")
 		
         cachedItemLink = GetStoreItemLink(storeEntryIndex)
 	end

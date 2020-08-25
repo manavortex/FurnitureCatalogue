@@ -1,4 +1,22 @@
 
+FurC.AchievementVendors[FURC_STONET] = {  
+ 
+  ["the Undaunted Enclaves"] = {
+    ["Undaunted Quartermaster"] = {
+		[167310] = {		--Castle Thorn Gargoyle
+			itemPrice   = 25000,
+			achievement = 2704,		-- Castle Thorn Vanquisher
+		},
+		[167334] = {		--Stone Garden Tank, Rootbound
+			itemPrice   = 75000,
+			achievement = 2694,		-- Stone Garden Vanquisher
+		},
+
+    },
+  },
+}
+
+
 FurC.AchievementVendors[FURC_SKYRIM] = {
  
   ["Solitude, Dragon's Hearth"] = {
