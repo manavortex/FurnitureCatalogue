@@ -2,6 +2,32 @@ FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
 FurC.LuxuryFurnisher[FURC_SKYRIM] = {
 
+
+	[166011] = {		-- Elsweyr Gate, Garden
+		itemPrice   = 25000,
+	},
+	[166010] = {		-- Elsweyr Gateway, Stone Arch
+		itemPrice   = 4500,
+	},
+
+	[151858] = {    -- Elsweyr Altar, Dark Moons
+ 		itemPrice   = 20000,
+		itemDate  = "2019-08-03",
+	},
+	[151857] = {    -- Elsweyr Gazebo, Ancient Stone
+ 		itemPrice   = 100000,
+		itemDate  = "2019-08-03",
+	},
+	[151856] = {    -- Elsweyr Sarcophagus Lid, Lunar Champion
+ 		itemPrice   = 7500,
+		itemDate  = "2019-08-03",
+	},
+	[151855] = {    -- Elsweyr Sarcophagus, Lunar Champion
+ 		itemPrice   = 4000,
+		itemDate  = "2019-08-03",
+	},
+	
+
 	[166012] = {		-- Cactus, Tall Lunar Fan
 		itemPrice   = 9000,
 		itemDate  = "2020-08-22",
@@ -1439,23 +1465,6 @@ FurC.LuxuryFurnisher[FURC_SKYRIM] = {
 	FurC.LuxuryFurnisher[FURC_KITTY] = {
 	
 	
-	
-	[151858] = {    -- Elsweyr Altar, Dark Moons
- 		itemPrice   = 20000,
-		itemDate  = "2019-08-03",
-	},
-	[151857] = {    -- Elsweyr Gazebo, Ancient Stone
- 		itemPrice   = 100000,
-		itemDate  = "2019-08-03",
-	},
-	[151856] = {    -- Elsweyr Sarcophagus Lid, Lunar Champion
- 		itemPrice   = 7500,
-		itemDate  = "2019-08-03",
-	},
-	[151855] = {    -- Elsweyr Sarcophagus, Lunar Champion
- 		itemPrice   = 4000,
-		itemDate  = "2019-08-03",
-	},
 	
 	
 	[134844] = {  -- Ra Gada Statue, Forward Scout
