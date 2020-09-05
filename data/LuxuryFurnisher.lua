@@ -1,30 +1,71 @@
 FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
+FurC.LuxuryFurnisher[FURC_STONET] = {
+	
+
+	[166002] = {    -- Dark Elf Tomb Marker, Sarano
+		itemPrice   = 5000,
+		itemDate  = "2020-09-25",
+	},
+	[165998] = {    -- Tapestry of a Failed Incarnate, The Fool
+		itemPrice   = 20000,
+		itemDate  = "2020-09-25",
+	},
+	[151947] = {    -- Dark Elf Ash Garden, Communal
+		itemPrice   = 15000,
+		itemDate  = "2020-09-25",
+	},
+	-- August 5+6
+	[126573] = { -- Velothi Candle, Mourning
+		itemPrice   = 5000,
+		itemDate  = "2020-09-25",
+	},
+	[126574] = { -- Velothi Cerecloth, Prayer
+		itemPrice   = 5000,
+		itemDate  = "2020-09-25",
+	},
+	[126575] = { -- Velothi Seat, Meditation
+		itemPrice   = 10000,
+		itemDate  = "2020-09-25",
+	},
+	[126572] = { -- Velothi Shroud, Mourning
+		itemPrice   = 5000,
+		itemDate  = "2020-09-25",
+	},
+    [139099] = { -- Dark Elf Brazier, Ancestral Tomb
+		itemPrice   = 15000,
+		itemDate  = "2020-09-25",
+	},
+}
+
+
 FurC.LuxuryFurnisher[FURC_SKYRIM] = {
 
-
+	
 	[166011] = {		-- Elsweyr Gate, Garden
 		itemPrice   = 25000,
+		itemDate  = "2020-09-18",
 	},
 	[166010] = {		-- Elsweyr Gateway, Stone Arch
 		itemPrice   = 4500,
+		itemDate  = "2020-09-18",
 	},
 
 	[151858] = {    -- Elsweyr Altar, Dark Moons
  		itemPrice   = 20000,
-		itemDate  = "2019-08-03",
+		itemDate  = "2020-09-18",
 	},
 	[151857] = {    -- Elsweyr Gazebo, Ancient Stone
  		itemPrice   = 100000,
-		itemDate  = "2019-08-03",
+		itemDate  = "2020-09-18",
 	},
 	[151856] = {    -- Elsweyr Sarcophagus Lid, Lunar Champion
  		itemPrice   = 7500,
-		itemDate  = "2019-08-03",
+		itemDate  = "2020-09-18",
 	},
 	[151855] = {    -- Elsweyr Sarcophagus, Lunar Champion
  		itemPrice   = 4000,
-		itemDate  = "2019-08-03",
+		itemDate  = "2020-09-18",
 	},
 	
 
@@ -140,39 +181,6 @@ FurC.LuxuryFurnisher[FURC_SKYRIM] = {
 	},
 	
 	
-	[166002] = {    -- Dark Elf Tomb Marker, Sarano
-		itemPrice   = 5000,
-		itemDate  = "2020-07-25",
-	},
-	[165998] = {    -- Tapestry of a Failed Incarnate, The Fool
-		itemPrice   = 20000,
-		itemDate  = "2020-07-25",
-	},
-	[151947] = {    -- Dark Elf Ash Garden, Communal
-		itemPrice   = 15000,
-		itemDate  = "2020-07-25",
-	},
-	-- August 5+6
-	[126573] = { -- Velothi Candle, Mourning
-		itemPrice   = 5000,
-		itemDate  = "2020-07-25",
-	},
-	[126574] = { -- Velothi Cerecloth, Prayer
-		itemPrice   = 5000,
-		itemDate  = "2020-07-25",
-	},
-	[126575] = { -- Velothi Seat, Meditation
-		itemPrice   = 10000,
-		itemDate  = "2020-07-25",
-	},
-	[126572] = { -- Velothi Shroud, Mourning
-		itemPrice   = 5000,
-		itemDate  = "2020-07-25",
-	},
-    [139099] = { -- Dark Elf Brazier, Ancestral Tomb
-		itemPrice   = 15000,
-		itemDate  = "2020-07-25",
-	},
 	
 	
 	[151915] = {    -- Daedric Key, Coldharbour

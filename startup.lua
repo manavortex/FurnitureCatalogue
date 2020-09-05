@@ -1,7 +1,7 @@
 FurnitureCatalogue                = {}
 FurnitureCatalogue.name           = "FurnitureCatalogue"
 FurnitureCatalogue.author         = "manavortex"
-FurnitureCatalogue.version        = 4.11111
+FurnitureCatalogue.version        = 4.11112
 FurnitureCatalogue.CharacterName  = nil
 FurnitureCatalogue.settings       = {}
 
@@ -202,7 +202,7 @@ end
 
 local TYPE_STRING = "string"
 local logger = (LibDebugLogger and LibDebugLogger(FurC.name)) or nil
-function FurC.DebugOut(...)
+local function p(...)
 	if not FurC.settings.enableDebug then return end	
 	if logger then
 		return logger:Debug(...)
@@ -213,7 +213,7 @@ function FurC.DebugOut(...)
 		d(...)
 	end	
 end
-local p = FurC.DebugOut
+FurC.DebugOut = p
 
 function whoami()
 	return FurC.CharacterName

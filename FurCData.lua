@@ -12,15 +12,16 @@ local recipeArray         	= nil
 
 local FURC_STRING_TRADINGHOUSE = "Seen in trading house"
 
+local p = FurC.DebugOut
+
 local function getCurrentChar()
-	if nil == currentChar then currentChar = zo_strformat(GetUnitName("player")) end
+	currentChar = currentChar or zo_strformat(GetUnitName("player"))
 	return currentChar
 end
 
-local p = FurC.DebugOut
 local function startupMessage(text)
 	if FurC.GetStartupSilently() then return end
-	p(text)
+	d(text)
 end
 
 -- GetItemLinkItemId doesn't work the way I need it
@@ -138,7 +139,7 @@ local function parseBlueprint(blueprintLink)        -- saves to DB, returns reci
 	
 	
 	if (IsItemLinkRecipeKnown(blueprintLink)) then
-		recipeArray.characters[getCurrentChar()]   = true
+		recipeArray.characters[FurC.CharacterName]   = true
 	end
 	addDatabaseEntry(recipeKey, recipeArray)
 	return recipeArray
