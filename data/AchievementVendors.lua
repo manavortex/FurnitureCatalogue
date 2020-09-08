@@ -177,9 +177,20 @@ FurC.AchievementVendors[FURC_SCALES] = {
     ["Impressario"] = {
       [153554] = { -- Imperial Mirror, Standing
           itemPrice   = 1,  
-        }
+      },
+      [153562] = { itemPrice = 1 },     -- Daedric Brazier, Standing
+      [153561] = { itemPrice = 3 },     -- Daedric Chandelier, Ritual   
+      [153557] = { itemPrice = 1 },     -- Imperial Footlocker, Scrollwork
+      [153558] = { itemPrice = 2 },     -- Imperial Wardrobe, Scrollwork
+      [153553] = { itemPrice = 1 },     -- Imperial Dresser, Scrollwork
+      [153556] = { itemPrice = 1 },     -- Imperial Divider, Folding
+      [153555] = { itemPrice = 1 },     -- Imperial Nightstand, Scrollwork
+      [153560] = { itemPrice = 2 },     -- Imperial Shrine of the Bay
+      [153552] = { itemPrice = 1 },     -- Imperial Tapestry, Akatosh
+      [153559] = { itemPrice = 2 },     -- Imperial Bed, Canopy
     },
   },
+
   ["the Undaunted Enclaves"] = {
     ["Undaunted Quartermaster"] = {
      [153750] = {    --Hemo Helot, Benign
