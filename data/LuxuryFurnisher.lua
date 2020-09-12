@@ -2,6 +2,38 @@ FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
 FurC.LuxuryFurnisher[FURC_STONET] = {
 	
+	[166003] = {		-- Dark Elf Tomb Marker, Velas
+		itemPrice   = 5000,
+		itemDate  = "2020-10-12",
+	},	
+	
+	[151948] = {    -- Dark Elf Urn, Bronze Burial
+ 		itemPrice   = 10000,
+		itemDate  = "2020-10-12",
+	},
+    [139100] = {        -- Dark Elf Ash Garden, Familial
+	itemPrice   = 10000,
+		itemDate  = "2020-10-12",
+    },    
+	[126579] = { -- Velothi Altar, Sacrificial
+ 		itemPrice   = 10834,
+		itemDate  = "2020-10-12",
+	},
+	[126576] = { -- Velothi Kneeler, Prayer
+ 		itemPrice   = 3000,
+		itemDate  = "2020-10-12",
+	},
+	
+	[126577] = { -- Velothi Podium of Recitation
+ 		itemPrice   = 37500,
+		itemDate  = "2020-10-12",
+	},
+	
+	[126578] = { -- Velothi Burial Urn
+ 		itemPrice   = 10834,
+		itemDate  = "2020-10-12",
+	},
+    
 
 	[166002] = {    -- Dark Elf Tomb Marker, Sarano
 		itemPrice   = 5000,
@@ -1439,35 +1471,6 @@ FurC.LuxuryFurnisher[FURC_SKYRIM] = {
 		itemDate  = "2019-08-24",
 	},
 	
-	
-	
-	[151948] = {    -- Dark Elf Urn, Bronze Burial
- 		itemPrice   = 10000,
-		itemDate  = "2019-08-04",
-	},
-    [139100] = {        -- Dark Elf Ash Garden, Familial
-	itemPrice   = 10000,
-		itemDate  = "2019-08-04",
-    },    
-	[126579] = { -- Velothi Altar, Sacrificial
- 		itemPrice   = 10834,
-		itemDate  = "2019-08-04",
-	},
-	[126576] = { -- Velothi Kneeler, Prayer
- 		itemPrice   = 3000,
-		itemDate  = "2019-08-04",
-	},
-	
-	[126577] = { -- Velothi Podium of Recitation
- 		itemPrice   = 37500,
-		itemDate  = "2019-08-04",
-	},
-	
-	[126578] = { -- Velothi Burial Urn
- 		itemPrice   = 10834,
-		itemDate  = "2019-08-04",
-	},
-    
 	
 	}
 	FurC.LuxuryFurnisher[FURC_KITTY] = {

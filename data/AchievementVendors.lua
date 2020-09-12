@@ -14,6 +14,66 @@ FurC.AchievementVendors[FURC_STONET] = {
 
     },
   },
+  ["Dragonhold Armoury"] = {
+	["Martina Ocella"] = {
+		[156752] = {				-- Aeonstone Formation, Large
+			itemPrice   = 50000,
+			achievement = 2604,		-- Bright Moons over Elsweyr
+		},
+		[153887] = {				-- Dragonguard Banner
+			itemPrice   = 10000,
+			achievement = 2567,		-- Companion of Sai Sahan
+		},		
+		[156754] = {				-- Dragonguard Sarcophagus
+			itemPrice   = 12000,
+			achievement = 2612,		-- Dragonguard Operative
+		},		
+		[156756] = {				-- Khenarthic Bell
+			itemPrice   = 50000,
+			achievement = 2597,		--  Khenarthi's Guidance
+		},		
+		[156753] = {				-- Khenarthi's Windbells
+			itemPrice   = 100000,
+			achievement = 2600,		--  Return of the Dragonguard
+		},		
+		[156762] = {				-- Map of Southern Elsweyr, Hanging
+			itemPrice   = 10000,
+			achievement = 2559,		-- Southern Elsweyr Master Explorer
+		},		
+		[156758] = {				-- New Moon Cult Banner 
+			itemPrice   = 10000,
+			achievement = 2598,		-- Infiltrating the New Moon
+		},		
+		[156757] = {				-- New Moon Cult Banner, Large
+			itemPrice   = 12000,
+			achievement = 2598,		-- Infiltrating the New Moon
+		},		
+		[156761] = {				-- Painted Rock, Heart's Ease
+			itemPrice   = 2000,
+			achievement = 2633,		-- Helping the Helpless
+		},		
+		[156760] = {				-- Painted Rock, Life's Glory
+			itemPrice   = 2500,
+			achievement = 2633,		-- Helping the Helpless
+		},		
+		[156759] = {				-- Painted Rock, Swirls
+			itemPrice   = 300,
+			achievement = 2633,		-- Helping the Helpless
+		},		
+		[156763] = {				-- Senchal Banner
+			itemPrice   = 10000,
+			achievement = 2600,		--  Return of the Dragonguard
+		},		
+		[156755] = {				-- Vine, Moonlit Cove
+			itemPrice   = 1000,
+			achievement = 2560,		-- Southern Elsweyr Cave Delver
+		},
+		
+	},
+	  
+  },  
+  
+
 }
 
 
