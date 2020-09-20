@@ -1,7 +1,37 @@
 FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
 FurC.LuxuryFurnisher[FURC_STONET] = {
+	[166004] = {		-- Geode, Amethyst
+		itemPrice   = 20000,
+		itemDate  = "2020-09-19",
+	},
+	[151949] = {    -- Hlaalu Path Marker, Almsivi
+ 		itemPrice   = 15000,
+		itemDate  = "2020-09-19",
+	},
 	
+	[139101] = {        -- Blue Crystal Cluster, Large
+ 		itemPrice   = 20000,
+		itemDate  = "2020-09-19",
+    },
+	[120831] = { -- Blue Crystal Cluster
+ 		itemPrice   = 10834,
+		itemDate  = "2020-09-19",
+	},
+	[120833] = { -- Blue Crystal Fragments
+ 		itemPrice   = 8125,
+		itemDate  = "2020-09-19",
+	},
+	[120830] = { -- Blue Flame Candles
+ 		itemPrice   = 2500,
+		itemDate  = "2020-09-19",
+	},
+	[121273] = { -- Soul Gem, Grand
+ 		itemPrice   = 5417,
+		itemDate  = "2020-09-19",
+	},
+
+
 	[166003] = {		-- Dark Elf Tomb Marker, Velas
 		itemPrice   = 5000,
 		itemDate  = "2020-10-12",
@@ -1445,31 +1475,6 @@ FurC.LuxuryFurnisher[FURC_SKYRIM] = {
     
 	
 	
-	[151949] = {    -- Hlaalu Path Marker, Almsivi
- 		itemPrice   = 15000,
-		itemDate  = "2019-08-24",
-	},
-	
-	[139101] = {        -- Blue Crystal Cluster, Large
- 		itemPrice   = 20000,
-		itemDate  = "2019-08-24",
-    },
-	[120831] = { -- Blue Crystal Cluster
- 		itemPrice   = 10834,
-		itemDate  = "2019-08-24",
-	},
-	[120833] = { -- Blue Crystal Fragments
- 		itemPrice   = 8125,
-		itemDate  = "2019-08-24",
-	},
-	[120830] = { -- Blue Flame Candles
- 		itemPrice   = 2500,
-		itemDate  = "2019-08-24",
-	},
-	[121273] = { -- Soul Gem, Grand
- 		itemPrice   = 5417,
-		itemDate  = "2019-08-24",
-	},
 	
 	
 	}
