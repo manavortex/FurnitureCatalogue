@@ -1,31 +1,59 @@
 FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
 FurC.LuxuryFurnisher[FURC_STONET] = {
+	
+	[166006] = {		-- Ancient Nord Prayer Wheel, Four-Faced
+		itemPrice   = 25000,
+		itemDate  = "2020-10-03",
+	},
+
+	[151951] = {    -- Nedic Orb, Ritual
+ 		itemPrice   = 20000,
+		itemDate  = "2020-10-03",
+	},	
+	[120842] = { -- Craglorn Chair, Serpent
+ 		itemPrice   = 2500,
+		itemDate  = "2020-10-03",
+	},
+	[120841] = { -- Craglorn Urn, Standing
+ 		itemPrice   = 7500,
+		itemDate  = "2020-10-03",
+	},
+	[120840] = { -- Craglorn Coffer, Ornate
+ 		itemPrice   = 5000,
+		itemDate  = "2020-10-03",
+	},
+	[139103] = {        -- Craglorn Display Case, Sealed
+ 		itemPrice   = 10000,
+		itemDate  = "2020-10-03",
+	},
+	
 	[166005] = {		-- Geode, Green Garnet
 		itemPrice   = 20000,
+		itemDate  = "2020-09-26",
 	},
 
 	[151950] = {    -- Khajiit Path Marker, Lion
  		itemPrice   = 75000,
-		itemDate  = "2018-08-31",
+		itemDate  = "2020-09-26",
 	},	
 	[139102] = {        -- Blue Crystal Spire, Large
 	itemPrice   = 18000,
-		itemDate  = "2018-08-31",
+		itemDate  = "2020-09-26",
     },
 	
 	-- Sept. 2nd + 3rd
 	[120832] = { -- Blue Crystal Spire
  		itemPrice   = 12000,
-		itemDate  = "2018-08-31",
+		itemDate  = "2020-09-26",
 	},
 	[120834] = { -- Blue Flame Brazier
  		itemPrice   = 5000,
-		itemDate  = "2018-08-31",
+		itemDate  = "2020-09-26",
 	},
 	[121272] = { -- Great Soul Gem
  		itemPrice   = 20000,
-		itemDate  = "2018-08-31",
+		itemDate  = "2020-09-26",
 	},
 	
 	
@@ -1452,33 +1480,6 @@ FurC.LuxuryFurnisher[FURC_SKYRIM] = {
     [145471] = {        -- Redguard Raincatcher, Golden
 	itemPrice   = 35000,     
     },
-	
-	[151951] = {    -- Nedic Orb, Ritual
- 		itemPrice   = 20000,
-		itemDate  = "2019-09-07",
-	},
-	
-	[120842] = { -- Craglorn Chair, Serpent
- 		itemPrice   = 2500,
-		itemDate  = "2019-09-07",
-	},
-	[120841] = { -- Craglorn Urn, Standing
- 		itemPrice   = 7500,
-		itemDate  = "2019-09-07",
-	},
-	[120840] = { -- Craglorn Coffer, Ornate
- 		itemPrice   = 5000,
-		itemDate  = "2019-09-07",
-	},
-	[139103] = {        -- Craglorn Display Case, Sealed
- 		itemPrice   = 10000,
-		itemDate  = "2019-09-07",
-	},
-	
-	
-    
-	
-	
 	
 	
 	}
