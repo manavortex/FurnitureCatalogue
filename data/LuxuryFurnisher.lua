@@ -2,6 +2,32 @@ FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
 FurC.LuxuryFurnisher[FURC_STONET] = {
 	
+	[166007] = {		-- Ancient Nord Prayer Wheel Frame, Engraved
+		itemPrice   = 20000,
+		itemDate  = "2020-10-10",
+	},	
+	[151952] = {    -- Nedic Stand, Ritual
+ 		itemPrice   = 4000,  
+		itemDate  = "2020-10-10",
+	},
+	[120844] = {        -- Craglorn Brazier, Ornate
+		itemPrice   = 15000,  
+		itemDate  = "2020-10-10",
+    },
+    [139104] = {        -- Craglorn Relief, Serpent
+		itemPrice   = 20000,    
+		itemDate  = "2020-10-10",
+    },
+    [120843] = {        -- Craglorn Skull, Carved
+		itemPrice   = 35000,    
+		itemDate  = "2020-10-10",
+    },
+    [120845] = {        -- Craglorn Sword Sconce
+		itemPrice   = 5000,    
+		itemDate  = "2020-10-10",
+    },    
+    
+	
 	[166006] = {		-- Ancient Nord Prayer Wheel, Four-Faced
 		itemPrice   = 25000,
 		itemDate  = "2020-10-03",
@@ -1454,29 +1480,7 @@ FurC.LuxuryFurnisher[FURC_SKYRIM] = {
 		itemDate  = "2018-09-21",
 	},
 	
-	
-	[151952] = {    -- Nedic Stand, Ritual
- 		itemPrice   = 4000,  
-		itemDate  = "2019-09-14",
-	},
-	[120844] = {        -- Craglorn Brazier, Ornate
-	itemPrice   = 15000,  
-		itemDate  = "2019-09-14",
-    },
-    [139104] = {        -- Craglorn Relief, Serpent
-	itemPrice   = 20000,    
-		itemDate  = "2019-09-14",
-    },
-    [120843] = {        -- Craglorn Skull, Carved
-	itemPrice   = 35000,    
-		itemDate  = "2019-09-14",
-    },
-    [120845] = {        -- Craglorn Sword Sconce
-	itemPrice   = 5000,    
-		itemDate  = "2019-09-14",
-    },    
-    
-    
+   
     [145471] = {        -- Redguard Raincatcher, Golden
 	itemPrice   = 35000,     
     },
