@@ -166,7 +166,7 @@ function FurC.Find(itemOrBlueprintLink)            -- sets recipeArray, returns 
 		recipeArray = parseFurnitureItem(itemOrBlueprintLink)
 	end
 	
-	return recipeArray
+	return recipeArray or {}
 end
 
 function FurC.Delete(itemOrBlueprintLink)            -- sets recipeArray, returns it - calls scanItemLink

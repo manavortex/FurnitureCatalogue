@@ -2,6 +2,38 @@ FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
 FurC.LuxuryFurnisher[FURC_STONET] = {
 	
+	[167343] = {		-- Stone, Nirncrux-Laden
+		itemPrice   = 10000,
+		itemDate  = "2020-10-17",
+	},
+	
+	[139105] = {        -- Reach Grinding Stones, Nirncrux
+	itemPrice   = 4500,  
+		itemDate  = "2020-10-17",
+    },	
+	[151953] = {    -- Reikling Totem, Skull (sic)
+ 		itemPrice   = 1000,
+		itemDate  = "2020-10-17",
+    },	
+    -- Sept. 23rd
+	[131435] = { -- Reach Bowl, Nirncrux
+ 		itemPrice   = 5000,
+		itemDate  = "2020-10-17",
+	},
+	[131438] = { -- Reach Grinder, Nirncrux
+ 		itemPrice   = 50000,
+		itemDate  = "2020-10-17",
+	},
+	[131436] = { -- Reach Vine, Bloodroot Sprout
+ 		itemPrice   = 15000,
+		itemDate  = "2020-10-17",
+	},
+	[131437] = { -- Reach Vine, Bloodroot Tendril
+ 		itemPrice   = 25000,
+		itemDate  = "2020-10-17",
+	},
+	
+
 	[166007] = {		-- Ancient Nord Prayer Wheel Frame, Engraved
 		itemPrice   = 20000,
 		itemDate  = "2020-10-10",
@@ -1450,34 +1482,6 @@ FurC.LuxuryFurnisher[FURC_SKYRIM] = {
 	[132142] = { -- Reach Tent, Camp
  		itemPrice   = 2500,
 		itemDate  = "2019-09-28",
-	},
-	
-	[139105] = {        -- Reach Grinding Stones, Nirncrux
-	itemPrice   = 4500,  
-		itemDate  = "2018-09-08",
-    },
-	
-	[151953] = {    -- Reikling Totem, Skull (sic)
- 		itemPrice   = 1000,
-		itemDate  = "2018-09-21",
-    },
-	
-    -- Sept. 23rd
-	[131435] = { -- Reach Bowl, Nirncrux
- 		itemPrice   = 5000,
-		itemDate  = "2018-09-21",
-	},
-	[131438] = { -- Reach Grinder, Nirncrux
- 		itemPrice   = 50000,
-		itemDate  = "2018-09-21",
-	},
-	[131436] = { -- Reach Vine, Bloodroot Sprout
- 		itemPrice   = 15000,
-		itemDate  = "2018-09-21",
-	},
-	[131437] = { -- Reach Vine, Bloodroot Tendril
- 		itemPrice   = 25000,
-		itemDate  = "2018-09-21",
 	},
 	
    
