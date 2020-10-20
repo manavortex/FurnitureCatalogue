@@ -522,6 +522,18 @@ FurC.LuxuryFurnisher[FURC_SKYRIM] = {
     
 	
 	
+	[156657] = {    -- Azure Plasm Cage, Hanging
+ 		itemPrice   = 100000,
+		itemDate  = "2020-06-06",
+	},
+	--die returning-items sind noch unter 2019-05-12:
+		--Column, Ossuary
+		--Necromancer’s Brazier, Cold-Flame
+		--Necromancer’s Spire, Compact
+		--Necromancer’s Spire, Huge
+	
+	
+	
 	[156656] = {    -- Pedestal, Dark Stone
  		itemPrice   = 4000,
 		itemDate  = "2020-05-30",
