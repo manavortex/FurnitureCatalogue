@@ -80,3 +80,15 @@ FurC.EventItems[FURC_REACH] = {
     }
   }
 }
+
+FurC.EventItems[FURC_HARROW] = {
+
+  ["Anniversary Jubilee"] = { -- 2020-04-02 till 2020-04-14
+    ["Impresario"] = {
+      [159464] = { itemPrice = 3 }, -- Replica Jubilee Cake 2016
+      [159465] = { itemPrice = 3 }, -- Replica Jubilee Cake 2017
+      [159466] = { itemPrice = 3 }, -- Replica Jubilee Cake 2018
+      [159467] = { itemPrice = 3 }, -- Replica Jubilee Cake 2019
+    }
+  }
+}
