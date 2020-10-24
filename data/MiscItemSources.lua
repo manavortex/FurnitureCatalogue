@@ -13,7 +13,8 @@ local automaton_loot_vv     = GetString(SI_FURC_AUTOMATON) .. " on Vvardenfell"
 
 local scambox_string        = GetString(SI_FURC_SCAMBOX)
 local scambox_newmoon       = zo_strformat("<<1>> (<<2>>)", scambox_string, "New Moon")
-local scambox_gloomspore       = zo_strformat("<<1>> (<<2>>)", scambox_string, "Gloomspore")
+local scambox_gloomspore    = zo_strformat("<<1>> (<<2>>)", scambox_string, "Gloomspore")
+local scambox_sovngard      = zo_strformat("<<1>> (<<2>>)", scambox_string, "Sovngarde")
 
 local sinister_hollowjack   = "Sinister Hollowjack Items"
 
@@ -42,7 +43,14 @@ local priceUnknown          = "?"
 
 local crownstoresource      = GetString(SI_FURC_CROWNSTORESOURCE)
 local function getCrownPrice(price)
-  return ( price < 0 and priceUnknown) or string.format("%s (%u)", crownstoresource, price)
+	local priceString = ((not price or price < 0) and priceUnknown) or tostring(price)
+	return string.format("%s (%s)", crownstoresource, priceString)
+end
+
+local scamgemString = GetString(SI_FURC_SCAMBOX_GEMS)
+local function getGemPrice(price)
+	local priceString = ((not price or price < 0) and priceUnknown) or tostring(price)	
+	return string.format("%s (%s)", scamgemString, priceString)
 end
 
 local housesource = GetString(SI_FURC_HOUSE)
@@ -536,7 +544,10 @@ FurC.MiscItemSources[FURC_SKYRIM]  = {
     [163723] = scrying .. "in Wrothgar",          -- Antique Map of Wrothgar
 
   },
-  [FURC_CROWN]  = { },
+  [FURC_CROWN]  = {
+	  [167231] = scambox_sovngard,		   -- Celestial Nimbus
+	  [167230] = getGemPrice(100),		   -- Alkosh's Hourglass, Replica 
+  },
   [FURC_FISHING]   = { },
   
 } 

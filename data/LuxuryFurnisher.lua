@@ -1,6 +1,36 @@
+
 FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
 FurC.LuxuryFurnisher[FURC_STONET] = {
+	
+	[167344] = {		-- Reachfolk Banner, Moonburst
+		itemPrice   = 4000,
+		itemDate  = "2020-10-24",
+	},
+	[151954] = {    -- Reachmen Banner, Bull
+ 		itemPrice   = 4000,
+		itemDate  = "2020-10-24",
+    },	
+	
+	[139106] = {    -- Reach Briarheart, Corpse Blue
+ 		itemPrice   = 15000,
+		itemDate  = "2020-10-24",
+    },
+	-- Sept. 30
+	[132144] = { -- Reach Briarheart, Blood Red
+ 		itemPrice   = 15000,
+		itemDate  = "2020-10-24",
+	},
+	[132141] = { -- Reach Skull, Mammoth
+ 		itemPrice   = 50000,
+		itemDate  = "2020-10-24",
+	},
+	[132142] = { -- Reach Tent, Camp
+ 		itemPrice   = 2500,
+		itemDate  = "2020-10-24",
+	},
+
+
 	
 	[167343] = {		-- Stone, Nirncrux-Laden
 		itemPrice   = 10000,
@@ -8,7 +38,7 @@ FurC.LuxuryFurnisher[FURC_STONET] = {
 	},
 	
 	[139105] = {        -- Reach Grinding Stones, Nirncrux
-	itemPrice   = 4500,  
+	itemPrice   = 4500,
 		itemDate  = "2020-10-17",
     },	
 	[151953] = {    -- Reikling Totem, Skull (sic)
@@ -1458,31 +1488,6 @@ FurC.LuxuryFurnisher[FURC_SKYRIM] = {
 	},
 	
 	
-	
-	[151954] = {    -- Reachmen Banner, Bull
- 		itemPrice   = 4000,
-		itemDate  = "2019-09-28",
-    },
-	
-	
-	
-	[139106] = {    -- Reach Briarheart, Corpse Blue
- 		itemPrice   = 15000,
-		itemDate  = "2019-09-28",
-    },
-	-- Sept. 30
-	[132144] = { -- Reach Briarheart, Blood Red
- 		itemPrice   = 15000,
-		itemDate  = "2019-09-28",
-	},
-	[132141] = { -- Reach Skull, Mammoth
- 		itemPrice   = 50000,
-		itemDate  = "2019-09-28",
-	},
-	[132142] = { -- Reach Tent, Camp
- 		itemPrice   = 2500,
-		itemDate  = "2019-09-28",
-	},
 	
    
     [145471] = {        -- Redguard Raincatcher, Golden
