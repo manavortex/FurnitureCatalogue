@@ -44,8 +44,8 @@ function FurC.SetFilter(useDefaults, skipRefresh)
   qualityFilter           = FurC.GetFilterQuality()
   craftingTypeFilter      = FurC.GetFilterCraftingType()
   hideBooks               = FurC.GetHideBooks()
-  hideRumours             = ddSource ~= FURC_RUMOUR and (FurC.GetHideRumourRecipes() or (not FurC.GetShowRumours()))
-  hideCrownStore          = ddSource ~= FURC_CROWN  and (FurC.GetHideCrownStoreItems() or (not FurC.GetShowCrownstore()))
+  hideRumours             = not FurC.GetShowRumours() and ddSource ~= FURC_RUMOUR and (FurC.GetHideRumourRecipes())
+  hideCrownStore          = not FurC.GetShowCrownstore() and ddSource ~= FURC_CROWN  and (FurC.GetHideCrownStoreItems())
   mergeLuxuryAndSales     = FurC.GetMergeLuxuryAndSales()
   
   -- ignore filtered items when no dropdown filter is set and there's a text search?

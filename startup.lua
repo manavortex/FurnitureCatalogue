@@ -165,7 +165,7 @@ FurC.DropdownData = {
 		[13] = GetString(SI_FURC_FILTER_VERSION_DRAGON2_TT),
 		[14] = GetString(SI_FURC_FILTER_VERSION_HARROW_TT),
 		[15] = GetString(SI_FURC_FILTER_VERSION_SKYRIM_TT),
-		[15] = GetString(SI_FURC_FILTER_VERSION_STONET_TT),
+		[16] = GetString(SI_FURC_FILTER_VERSION_STONET_TT),
 	},
 	
 	ChoicesCharacter  = {
@@ -179,11 +179,6 @@ FurC.DropdownData = {
 	ChoicesSource  = {},
 	TooltipsSource   = {},
 }
-
-if GetAPIVersion() == 100032 then	
-	FurC.DropdownData.TooltipsVersion[16] =  GetString(SI_FURC_FILTER_VERSION_STONET)
-	FurC.DropdownData.TooltipsVersion[15] =  GetString(SI_FURC_FILTER_VERSION_STONET_TT)
-end
 
 function FurC.UpdateDropdowns()
 	FurC.DropdownData.ChoicesSource  = FurC.GetChoicesSource()

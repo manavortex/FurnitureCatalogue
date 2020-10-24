@@ -10,20 +10,22 @@ local pickpocket_guard      = GetString(SI_FURC_CANBEPICKED) .. " from guards"
 local automaton_loot_cc     = GetString(SI_FURC_AUTOMATON) .. " in Clockwork City"
 local automaton_loot_vv     = GetString(SI_FURC_AUTOMATON) .. " on Vvardenfell"
 
-
 local scambox_string        = GetString(SI_FURC_SCAMBOX)
 local scambox_newmoon       = zo_strformat("<<1>> (<<2>>)", scambox_string, "New Moon")
 local scambox_gloomspore    = zo_strformat("<<1>> (<<2>>)", scambox_string, "Gloomspore")
-local scambox_sovngard      = zo_strformat("<<1>> (<<2>>)", scambox_string, "Sovngarde")
 
 local sinister_hollowjack   = "Sinister Hollowjack Items"
 
+local scambox_sovngarde     = zo_strformat("<<1>> (<<2>>)", scambox_string, "Sovngarde")
+
+
 local itemPackMoonBishop    = zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "Moon Bishop’s Sanctuary")
 local itemPackOasis         = zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "Moons-Blessed Oasis")
+local itemPackVampire       = zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "Vampire")
 
-local elsewhere             = " in Elsweyr" 
-local in_skyrim             = " in Western Skyrim" 
-local in_murkmire           = " in Murkire" 
+local elsewhere             = "in Elsweyr" 
+local in_skyrim             = "in Western Skyrim" 
+local in_murkmire           = "in Murkire" 
 
 local fishing_elsewhere     = GetString(SI_FURC_CANBEFISHED)  .. elsewhere
 local drop_elsewhere        = GetString(SI_FURC_DROP)         .. elsewhere
@@ -31,7 +33,7 @@ local stealable_elsewhere   = GetString(SI_FURC_CANBESTOLEN)  .. elsewhere
 local safeboxes_elsewhere   = GetString(SI_FURC_ITEMSOURCE_SAFEBOX)  .. elsewhere
 local stealable_skyrim      = GetString(SI_FURC_CANBESTOLEN)  .. in_skyrim
 local chests_skyrim         = GetString(SI_FURC_CHESTS)       .. in_skyrim
-local scrying               = GetString(SI_FURC_CANBESCRYED)
+local scrying               = GetString(SI_FURC_CANBESCRYED)  .. " "
 local scryingMurkmire       = scrying  .. in_murkmire
 
 local rumourSource          = GetString(SI_FURC_RUMOUR_SOURCE_ITEM)
@@ -197,7 +199,6 @@ FurC.MiscItemSources[FURC_SKYRIM]  = {
     [165772] = rumourSource, -- Solitude Basket, Centerpiece
     [165771] = rumourSource, -- Solitude Basket, Wicker Wide
     [165770] = rumourSource, -- Solitude Basket, Wicker Handles
-    [165569] = rumourSource, -- Soul-Sworn Thrall
     [165769] = rumourSource, -- Solitude Picnic Basket, Wicker
     [165768] = rumourSource, -- Solitude Serving Basket, Wicker
     [165767] = rumourSource, -- Solitude Serving Tray, Wood
@@ -212,7 +213,6 @@ FurC.MiscItemSources[FURC_SKYRIM]  = {
     [165759] = rumourSource, -- Solitude Pot, Narrow Metal
     [165760] = rumourSource, -- Solitude Pot, Stout Metal
     [165761] = rumourSource, -- Solitude Cauldron, Metal Empty
-    [165578] = rumourSource, -- Basin of Loss
     [165579] = rumourSource, -- Vampiric Carpet, Grand Sigil
     [165580] = rumourSource, -- Vampiric Runner, Grand
     [165581] = rumourSource, -- Vampiric Carpet, Large
@@ -242,10 +242,6 @@ FurC.MiscItemSources[FURC_SKYRIM]  = {
     [165605] = rumourSource, -- Vampiric Mirror, Standing
     [165606] = rumourSource, -- Vampiric Wall Mirror
     [165607] = rumourSource, -- Vampiric Divider, Ornate
-    [159464] = rumourSource, -- Replica Jubilee Cake 2016
-    [159465] = rumourSource, -- Replica Jubilee Cake 2017
-    [159466] = rumourSource, -- Replica Jubilee Cake 2018
-    [159467] = rumourSource, -- Replica Jubilee Cake 2019
     [165612] = rumourSource, -- Vampiric Bed, Canopy
     [165613] = rumourSource, -- Vampiric Bed, Full
     [165614] = rumourSource, -- Vampiric Bed, Single
@@ -434,8 +430,6 @@ FurC.MiscItemSources[FURC_SKYRIM]  = {
     [156654] = rumourSource, -- Alinor Shrine, Magnus
     [156655] = rumourSource, -- Alinor Shrine, Phynaster
     [156656] = rumourSource, -- Pedestal, Dark Stone
-    [156657] = rumourSource, -- Azure Plasm Cage, Hanging
-    [159437] = rumourSource, -- Painting of Blackreach, Rough
     [159438] = rumourSource, -- Fungus, Gloomspore Ghost
     [159439] = rumourSource, -- Statue, Pride of Alkosh Hero
     [159451] = rumourSource, -- Hourglass Banner, Akatosh
@@ -545,8 +539,9 @@ FurC.MiscItemSources[FURC_SKYRIM]  = {
 
   },
   [FURC_CROWN]  = {
-	  [167231] = scambox_sovngard,		   -- Celestial Nimbus
-	  [167230] = getGemPrice(100),		   -- Alkosh's Hourglass, Replica 
+    [167230] = scambox_sovngarde .. " (100 gems)", --Alkosh's Hourglass, Replica
+    [167231] = scambox_sovngarde .. " (100 gems)", --Celestial Nimbus
+    [167332] = scambox_sovngarde .. " (40 gems)", --The Mage's Staff Painting, Gold
   },
   [FURC_FISHING]   = { },
   
@@ -636,7 +631,9 @@ FurC.MiscItemSources[FURC_KITTY]  = {
   [FURC_CROWN]  = {   
   
     [153630] = scambox_newmoon .. " (55 gems)", 
-    [159436] = scambox_gloomspore,       -- Dwarven Miniature Sun, Portable
+    [159436] = scambox_gloomspore, -- Dwarven Miniature Sun, Portable
+    [159437] = scambox_gloomspore, -- Painting of Blackreach, Rough
+  
     [151838] = itemPackOasis, -- Elsweyr Fountain, Moons-Blessed,
     [151840] = itemPackOasis, -- Plant, Desert Fan,
     [151841] = itemPackOasis, -- Plant, Tall Desert Fan,
@@ -663,6 +660,9 @@ FurC.MiscItemSources[FURC_KITTY]  = {
     [151830] = itemPackMoonBishop, -- Elsweyr Divider, Elegant Wooden,
     [151832] = itemPackMoonBishop, -- Elsweyr Ceremonial Lantern, Jone,
     [151833] = itemPackMoonBishop, -- Elsweyr Ceremonial Lantern, Jode,
+	
+	[165578] = itemPackVampire,    -- Basin of Loss
+	[165569] = itemPackVampire,    -- Soul-Sworn Thrall
     
     [151808] = getCrownPrice(10), -- Tree, Fan Palm,
     [151813] = getCrownPrice(10), -- Sapling, Desert Acacia,
