@@ -2,6 +2,32 @@
 FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
 FurC.LuxuryFurnisher[FURC_STONET] = {
+	[167349] = {		-- Warning Totem, Skulls
+		itemPrice   = 2500,
+		itemDate  = "2020-10-31",
+	},
+	
+	[153693] = {    -- Tree, Treehenge Green Lady
+ 		itemPrice   = 50000,
+		itemDate  = "2020-10-31",
+	},
+	[141760] = {        -- Witch's Tree, Charred
+ 		itemPrice   = 5000,
+		itemDate  = "2020-10-31",
+	},
+	
+	[132155] = { -- Witch's Torch, Wretched  
+ 		itemPrice   = 5000,
+		itemDate  = "2020-10-31",
+	},
+	[132154] = { -- Witch's Totem, Bog
+ 		itemPrice   = 50000,
+		itemDate  = "2020-10-31",
+	},
+	[132153] = { -- Witch's Tree, Captive
+ 		itemPrice   = 35000,
+		itemDate  = "2020-10-31",
+	},
 	
 	[167344] = {		-- Reachfolk Banner, Moonburst
 		itemPrice   = 4000,
@@ -1440,28 +1466,6 @@ FurC.LuxuryFurnisher[FURC_SKYRIM] = {
 	},
 	
 	
-	[153693] = {    -- Tree, Treehenge Green Lady
- 		itemPrice   = 50000,
-		itemDate  = "2019-10-19",
-	},
-	[141760] = {        -- Witch's Tree, Charred
- 		itemPrice   = 5000,
-		itemDate  = "2019-10-19",
-	},
-	
-	-- Oct. 21
-	[132155] = { -- Witch's Torch, Wretched  
- 		itemPrice   = 5000,
-		itemDate  = "2019-10-19",
-	},
-	[132154] = { -- Witch's Totem, Bog
- 		itemPrice   = 50000,
-		itemDate  = "2019-10-19",
-	},
-	[132153] = { -- Witch's Tree, Captive
- 		itemPrice   = 35000,
-		itemDate  = "2019-10-19",
-	},
 	
 	[153690] = {    -- Flower Cluster, Wyrdbloom
  		itemPrice   = 4000,
