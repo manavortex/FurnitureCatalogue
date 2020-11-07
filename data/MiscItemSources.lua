@@ -38,6 +38,7 @@ local scryingMurkmire       = scrying  .. in_murkmire
 
 local rumourSource          = GetString(SI_FURC_RUMOUR_SOURCE_ITEM)
 local dataminedUnclear      = GetString(SI_FURC_DATAMINED_UNCLEAR)
+local unknown 				= GetString(SI_FURC_ITEMSOURCE_UNCLEAR)
 
 local daily_reward          = GetString(SI_FURC_DAILY_ELSWEYR)
 local elsweyr_event         = GetString(SI_FURC_EVENT_ELSWEYR)
@@ -62,8 +63,20 @@ local function getHouseString(houseId1, houseId2)
   return zo_strformat(housesource, houseName)
 end
 
+
+
+FurC.MiscItemSources[FURC_MARKGA]  = {}
+
+FurC.MiscItemSources[FURC_STONET]  = {
+	[FURC_DROP] = {	
+		[171429] = unknown,		   -- Red Eagle Cave Painting	
+	}
+}
+
+
 FurC.MiscItemSources[FURC_SKYRIM]  = {
   [FURC_RUMOUR]   = {
+
     [153630] = rumourSource, -- Shadow Tendril Patch
     [153631] = rumourSource, -- Emerald Candlefly Gathering
     [153632] = rumourSource, -- Sapphire Candlefly Gathering

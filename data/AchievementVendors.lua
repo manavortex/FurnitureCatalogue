@@ -71,8 +71,7 @@ FurC.AchievementVendors[FURC_STONET] = {
 		
 	},
 	  
-  },  
-  
+  },
 
 }
 

@@ -1,6 +1,43 @@
 
 FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
+
+
+FurC.LuxuryFurnisher[FURC_MARKGA] = {
+	[167350] = {		-- Minecart, Skeletal Remains
+		itemDate  = "2020-10-07",
+		itemPrice   = 8000,
+	},		
+	
+	[141761] = {        -- Reach Sapling, Contorted Briarheart
+		itemDate  = "2020-10-07",
+		itemPrice   = 35000,
+    },
+	[132156] = {        -- Briarheart Tree, Replica
+		itemDate  = "2020-10-07",
+		itemPrice   = 100000,
+	},
+	[132158] = {  -- Witch's Remains, Offering
+ 		itemPrice = 50000,
+		itemDate  = "2020-10-07",
+	},
+	[132157] = {  -- Witch's Remains, Sacrificial
+ 		itemPrice = 50000,
+		itemDate  = "2020-10-07",
+	},
+	-- Oct 28th
+	[132143] = {  -- Reach Sapling, Briarheart
+ 		itemPrice = 50000,
+		itemDate  = "2020-10-07",
+	},
+	[153694] = {    -- Tree, Murkmire Ossuary
+ 		itemPrice   = 50000,
+		itemDate  = "2020-10-07",
+	},
+	
+}
+
+
 FurC.LuxuryFurnisher[FURC_STONET] = {
 	[167349] = {		-- Warning Totem, Skulls
 		itemPrice   = 2500,
@@ -1439,32 +1476,6 @@ FurC.LuxuryFurnisher[FURC_SKYRIM] = {
 	
 	
 	
-	[141761] = {        -- Reach Sapling, Contorted Briarheart
-	itemDate  = "2ß19-10-26",
-	itemPrice   = 35000,
-    },
-	[132156] = {        -- Briarheart Tree, Replica
-	itemDate  = "2ß19-10-26",
-	itemPrice   = 100000,
-	},
-	[132158] = {  -- Witch's Remains, Offering
- 		itemPrice = 50000,
-		itemDate  = "2ß19-10-26",
-	},
-	[132157] = {  -- Witch's Remains, Sacrificial
- 		itemPrice = 50000,
-		itemDate  = "2ß19-10-26",
-	},
-	-- Oct 28th
-	[132143] = {  -- Reach Sapling, Briarheart
- 		itemPrice = 50000,
-		itemDate  = "2ß19-10-26",
-	},
-	[153694] = {    -- Tree, Murkmire Ossuary
- 		itemPrice   = 50000,
-		itemDate  = "2ß19-10-26",
-	},
-	
 	
 	
 	[153690] = {    -- Flower Cluster, Wyrdbloom
@@ -1721,25 +1732,25 @@ FurC.LuxuryFurnisher[FURC_SKYRIM] = {
 	
 	
 	[141761] = {        -- Reach Sapling, Contorted Briarheart
-		itemDate  = "2ß19-10-26",
+		itemDate  = "2020-10-07",
 		itemPrice   = 35000,
     },
 	[132156] = {        -- Briarheart Tree, Replica
-		itemDate  = "2ß19-10-26",
+		itemDate  = "2020-10-07",
 		itemPrice   = 100000,
 	},
 	[132158] = {  -- Witch's Remains, Offering
  		itemPrice = 50000,
-		itemDate  = "2ß19-10-26",
+		itemDate  = "2020-10-07",
 	},
 	[132157] = {  -- Witch's Remains, Sacrificial
  		itemPrice = 50000,
-		itemDate  = "2ß19-10-26",
+		itemDate  = "2020-10-07",
 	},
 	-- Oct 28th
 	[132143] = {  -- Reach Sapling, Briarheart
  		itemPrice = 50000,
-		itemDate  = "2ß19-10-26",
+		itemDate  = "2020-10-07",
 	},
 	[141760] = {        -- Witch's Tree, Charred
  		itemPrice   = 5000,

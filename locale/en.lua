@@ -220,6 +220,7 @@ FURC_AV_RAZ = "Razoufa",
   SI_FURC_FILTER_VERSION_HARROW =   "Harrowstorm",
   SI_FURC_FILTER_VERSION_SKYRIM =   "Greymoor",
   SI_FURC_FILTER_VERSION_STONET =   "Stonethorn",
+  SI_FURC_FILTER_VERSION_MARKGA =   "Markgarth",
   
 
   -- =============================== --
@@ -254,6 +255,7 @@ FURC_AV_RAZ = "Razoufa",
   SI_FURC_FILTER_VERSION_HARROW_TT =    "Climate change is real",
   SI_FURC_FILTER_VERSION_SKYRIM_TT =    "They're selling Skyrim *again*!",
   SI_FURC_FILTER_VERSION_STONET_TT =    "It's not really stone",
+  SI_FURC_FILTER_VERSION_MARKGA_TT =		"With Dwemer Plumbing",
   
   SI_FURC_FILTER_CHAR_OFF =     "Character filter: off", 
   SI_FURC_FILTER_CHAR_OFF_TT =  filterDisabled, 
@@ -301,6 +303,7 @@ FURC_AV_RAZ = "Razoufa",
   SI_FURC_CHEST_VV =              "Extremely rarely from chests on Vvardenfell",
   SI_FURC_DRAGON_DUNGEON_DROP =   "Fang Lair/Scalecaller Peak",
   SI_FURC_DATAMINED_UNCLEAR =     "This item has been found in the sources/recipes for Summerset! \nIts origin isn't known yet.",
+  SI_FURC_ITEMSOURCE_UNCLEAR =    "This item has been seein in-game, but its origin is not in the data yet.",
   SI_FURC_DATAMINED_UNCLEAR =     "This item has been confirmed existing, but its origin isn't known yet.",
   SI_FURC_ITEMSOURCE_ITEMPACK =   "Part of the Crown Store item pack [<<1>>] ",
   

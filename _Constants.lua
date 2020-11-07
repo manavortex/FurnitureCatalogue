@@ -35,4 +35,5 @@ FURC_SCALES				= FURC_KITTY      +1        -- 12
 FURC_DRAGON2			= FURC_SCALES     +1        -- 13
 FURC_HARROW				= FURC_DRAGON2    +1        -- 14
 FURC_SKYRIM				= FURC_HARROW     +1        -- 15
-FURC_STONET				= FURC_SKYRIM     +1        -- 15
+FURC_STONET				= FURC_SKYRIM     +1        -- 16
+FURC_MARKGA				= FURC_STONET     +1        -- 17
