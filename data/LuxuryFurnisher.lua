@@ -3,7 +3,7 @@ FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
 
 
-FurC.LuxuryFurnisher[FURC_MARKGA] = {
+FurC.LuxuryFurnisher[FURC_MARKAT] = {
 	[167350] = {		-- Minecart, Skeletal Remains
 		itemDate  = "2020-10-07",
 		itemPrice   = 8000,

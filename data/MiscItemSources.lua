@@ -65,7 +65,7 @@ end
 
 
 
-FurC.MiscItemSources[FURC_MARKGA]  = {}
+FurC.MiscItemSources[FURC_MARKAT]  = {}
 
 FurC.MiscItemSources[FURC_STONET]  = {
 	[FURC_DROP] = {	

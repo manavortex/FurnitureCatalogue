@@ -220,7 +220,7 @@ FURC_AV_RAZ = "Razoufa",
   SI_FURC_FILTER_VERSION_HARROW =   "Harrowstorm",
   SI_FURC_FILTER_VERSION_SKYRIM =   "Greymoor",
   SI_FURC_FILTER_VERSION_STONET =   "Stonethorn",
-  SI_FURC_FILTER_VERSION_MARKGA =   "Markgarth",
+  SI_FURC_FILTER_VERSION_MARKAT =   "Markath",
   
 
   -- =============================== --
@@ -255,7 +255,7 @@ FURC_AV_RAZ = "Razoufa",
   SI_FURC_FILTER_VERSION_HARROW_TT =    "Climate change is real",
   SI_FURC_FILTER_VERSION_SKYRIM_TT =    "They're selling Skyrim *again*!",
   SI_FURC_FILTER_VERSION_STONET_TT =    "It's not really stone",
-  SI_FURC_FILTER_VERSION_MARKGA_TT =		"With Dwemer Plumbing",
+  SI_FURC_FILTER_VERSION_MARKAT_TT =		"With Dwemer Plumbing",
   
   SI_FURC_FILTER_CHAR_OFF =     "Character filter: off", 
   SI_FURC_FILTER_CHAR_OFF_TT =  filterDisabled, 
