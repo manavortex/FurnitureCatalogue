@@ -4,6 +4,31 @@ FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
 
 FurC.LuxuryFurnisher[FURC_MARKAT] = {
+	
+	[167345] = {		-- Fern, Cyan Cluster
+		itemPrice   = 4000,
+		itemDate  = "2020-11-14",
+	},
+
+	[153689] = {    -- Fern, Cyan
+		itemDate  = "2020-11-14",
+ 		itemPrice   = 2500,
+	},
+	
+	[141752] = {        -- Plant, Cerulean Spadeleaf
+ 		itemPrice   = 1000,
+		itemDate  = "2020-11-14",
+	},
+	[141753] = {        -- Plants, Cerulean Spadeleaf Cluster
+ 		itemPrice   = 2500,
+		itemDate  = "2020-11-14",
+	},
+	[141754] = {        -- Skull Totem, Hircine Worship
+ 		itemPrice   = 7500,
+		itemDate  = "2020-11-14",
+	},
+	
+	
 	[167350] = {		-- Minecart, Skeletal Remains
 		itemDate  = "2020-10-07",
 		itemPrice   = 8000,
@@ -1495,24 +1520,6 @@ FurC.LuxuryFurnisher[FURC_SKYRIM] = {
 	itemPrice   = 5000,
 		itemDate  = "2019-10-12",
     },
-	
-	[153689] = {    -- Fern, Cyan
-		itemDate  = "2019-10-05",
- 		itemPrice   = 2500,
-	},
-	
-	[141752] = {        -- Plant, Cerulean Spadeleaf
- 		itemPrice   = 1000,
-		itemDate  = "2019-10-05",
-	},
-	[141753] = {        -- Plants, Cerulean Spadeleaf Cluster
- 		itemPrice   = 2500,
-		itemDate  = "2019-10-05",
-	},
-	[141754] = {        -- Skull Totem, Hircine Worship
- 		itemPrice   = 7500,
-		itemDate  = "2019-10-05",
-	},
 	
 	
 	
