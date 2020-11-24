@@ -61,6 +61,14 @@ local jesterVendor = {
     itemPrice   = 10000,
     -- achievement = 2049,
   },
+  [130336] = { -- Witches Remains, Hagraven
+    itemPrice     = 10000,
+    -- achievement    = ,
+  },
+  [131434] = { -- Witch's Festival, Cursed Totem
+    itemPrice     = 25000,
+    -- achievement    = ,
+  },
 }
 
 local capitalVendor = {

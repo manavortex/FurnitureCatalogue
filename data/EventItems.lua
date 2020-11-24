@@ -55,7 +55,6 @@ FurC.EventItems[FURC_REACH] = {
     ["Plunder Skull"] = {
        
       [130337] = true,   -- Witches Corpse, Wrapped",
-      [130336] = true,   -- Witches Remains, Hagraven",
       [130325] = true,   -- Witches Totem, Emphatic Warning",
       [130334] = true,   -- Witches Totem, Antler Charms",
       [130327] = true,   -- Witches Totem, Wooden Rack",
@@ -64,7 +63,6 @@ FurC.EventItems[FURC_REACH] = {
       [130340] = true,   -- Witches Totem, Gnarled Vines and Skull",
       [130339] = true,   -- Witches Totem, Twisted Vines and Skull
       [130338] = true,   -- Witches Bones, Offering",
-      [131434] = true,   -- Witch's Festival, Cursed Totem,
       [145318] = true,   -- Small Gravestone
       [130302] = GetString(SI_FURC_WW),   -- Shrub, Burnt Brush"
       [130298] = GetString(SI_FURC_WW),  -- Branch, Curved Laurel
