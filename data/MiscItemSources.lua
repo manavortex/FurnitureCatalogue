@@ -66,10 +66,16 @@ end
 
 
 
-FurC.MiscItemSources[FURC_MARKAT]  = {}
+FurC.MiscItemSources[FURC_MARKAT]  = {
+	[FURC_DROP] = {	
+		[171428] = scrying .. " in Markath",		   -- Vampiric Stained Glass
+
+	}	
+
+}
 
 FurC.MiscItemSources[FURC_STONET]  = {
-	[FURC_DROP] = {	
+  [FURC_DROP] = {	
 		[171429] = unknown,		   -- Red Eagle Cave Painting	
 	}
 }
