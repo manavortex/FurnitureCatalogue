@@ -195,7 +195,6 @@ FurC.MiscItemSources[FURC_SLAVES]  = {
     [145473] = rumourSource,                        -- Antler Coral, Stout Crimson
     [145474] = rumourSource,                        -- Plant, Flytrap
     [145475] = rumourSource,                        -- Plant, Soulsplinter Weed
-    [145488] = rumourSource,                        -- Banner, Jewelry Crafting
     [145491] = rumourSource,                        -- Static Pitcher
     [145492] = rumourSource,                        -- Gas Blossom
     [145493] = rumourSource,                        -- Lantern Mantis
