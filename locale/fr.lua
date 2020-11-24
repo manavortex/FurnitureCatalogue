@@ -82,7 +82,7 @@ local strings = {
   SI_FURC_QUESTREWARD =                 "Récompense pour une quête en ",
   SI_FURC_GEYSIR =                      "Ramasser dans les palourdes et récompense de geyser à Summerset",
   SI_FURC_GIANT_CLAM =                  "Ramasser dans les palourdes géantes et récompense de geyser à Summerset",
-  SI_FURC_ELF_PIC =                     "Tombe extrêmement rarement dans les coffres au trésor à Summerset",
+  SI_FURC_ELF_PIC =                     "Tombe rarement dans les coffres au trésor à Summerset",
   SI_FURC_LEVELUP =                     "Peut être gagné comme récompense de niveau supérieur",
   SI_FURC_SLAVES_DAILY =                "Des boîtes de récompense de la préquête de Murkmire",
   

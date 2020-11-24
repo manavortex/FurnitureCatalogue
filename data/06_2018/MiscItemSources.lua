@@ -17,7 +17,6 @@ local stealable_thief       = stealable ..          " from thieves"
 local stealable_woodworkers = stealable ..          " from woodworkers"
 local stealable_drunkards   = stealable ..          " from drunkards"
 
-
 local automaton_loot_cc     = GetString(SI_FURC_AUTOMATON) .. " in Clockwork City"
 local automaton_loot_vv     = GetString(SI_FURC_AUTOMATON) .. " on Vvardenfell"
 
@@ -44,17 +43,16 @@ local itemPackMolag         = zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK
 local onSummerset           = " on Summerset"
 local backwaterSwamp        = " in Murkmire"
 local gloriousHome          = " on Vvardenfell"
-local inWrothgar            = " in Vvardenfell"
+local inWrothgar            = " in Wrothgar"
 
-local plants_vvardenfell    = GetString(SI_FURC_PLANTS)      .. gloriousHome
-
+local puplicdungeon_fw_vv   = GetString(SI_FURC_DROP) .. " in Forgotten Wastes" .. gloriousHome
+local plants_vvardenfell    = GetString(SI_FURC_PLANTS) .. gloriousHome
 
 local fishing_summerset     = GetString(SI_FURC_CANBEFISHED) .. onSummerset
 local fishing_swamp         = GetString(SI_FURC_CANBEFISHED) .. backwaterSwamp
 
 local drop_altmer           = GetString(SI_FURC_DROP) .. onSummerset
 local drop_swamp            = GetString(SI_FURC_DROP) .. backwaterSwamp
-
 
 local stealable_wrothgar    = stealable .. inWrothgar
 local stealable_swamp       = stealable .. backwaterSwamp
@@ -77,7 +75,7 @@ end
 
 FurC.MiscItemSources[FURC_WOTL]  = {
   [FURC_RUMOUR]   = {
-		[134272] = rumourSource,     -- Cave Deposit, Stalagmite Cluster,    
+    [134272] = rumourSource,     -- Cave Deposit, Stalagmite Cluster,    
     [147585] = rumourSource,     -- Dwarven Gear, Large Spokes,    
     [147586] = rumourSource,     -- Dwarven Hub, Sentry Wheel,    
     [147587] = rumourSource,     -- Dwarven Gear, Large Open,    
@@ -169,7 +167,6 @@ FurC.MiscItemSources[FURC_WOTL]  = {
 }
 FurC.MiscItemSources[FURC_SLAVES]  = {
   [FURC_RUMOUR]   = {
-    
     [145923] = rumourSource,                        -- Lies of the Dread-Father
     [145926] = rumourSource,                        -- That of Void
     [145927] = rumourSource,                        -- Acts of Honoring
@@ -213,14 +210,12 @@ FurC.MiscItemSources[FURC_SLAVES]  = {
   },
   
   [FURC_JUSTICE] = {
-    
     [145399] = stealable_swamp,                     -- Murkmire Rug, Crawling Serpents Worn
     [145400] = stealable_swamp,                     -- Murkmire Rug, Lurking Lizard Worn
     [145398] = stealable_swamp,                     -- Murkmire Rug, Supine Turtle Worn
     [145397] = stealable_swamp,                     -- Murkmire Rug, Hist Gathering Worn
     [145396] = stealable_swamp,                     -- Murkmire Tapestry, Hist Gathering Worn
     [145550] = stealable_swamp,                     -- Murkmire Hunting Lure, Grisly
-    
     
     [145401] = GetString(stealable_swamp),          -- Murkmire Tapestry, Xanmeer Worn
   }, 
@@ -244,7 +239,6 @@ FurC.MiscItemSources[FURC_SLAVES]  = {
     [120876] = sinister_hollowjack,                 -- Gravestone, Imp Engraving
     [120875] = sinister_hollowjack,                 -- Gravestone, Clover Engraving
     [141778] = sinister_hollowjack,                 -- Target Wraith-of-Crows
-
   },
   
   [FURC_CROWN]  = {   
@@ -297,14 +291,14 @@ FurC.MiscItemSources[FURC_SLAVES]  = {
     [145430] = getCrownPrice(55),                   -- Plant, Star Blossom
     
     [145322] = getCrownPrice(800),                  -- Music Box, Blood and Glory
-    
   },
+  
   [FURC_FISHING]   = {
     -- fishing
     [145402] = fishing_swamp,                       -- Fish, Black Marsh
   },
-  
 }
+
 FurC.MiscItemSources[FURC_WEREWOLF] = {
   
   [FURC_RUMOUR] = {
@@ -375,13 +369,10 @@ FurC.MiscItemSources[FURC_WEREWOLF] = {
     
     [126136] = dataminedUnclear,                    -- Dwarven Lantern, Powered
     
-    
-    
     [121046] = dataminedUnclear,                    -- Cheeses of Tamriel
     [121049] = dataminedUnclear,                    -- Parcels, Wrapped
     [134475] = dataminedUnclear,                    -- Statue of Malacath, Orc-Father
     [131424] = dataminedUnclear,                    -- Fogs of the Hag Fen
-    
     
     [134686] = dataminedUnclear,                    -- Sithis, The Dread Father
     [125480] = dataminedUnclear,                    -- Banner, Clavicus Vile
@@ -479,6 +470,7 @@ FurC.MiscItemSources[FURC_WEREWOLF] = {
     [120854] = dataminedUnclear,                    -- Guard Lamppost
     [134890] = dataminedUnclear,                    -- Dibella, Lady of Love
   },
+  
   [FURC_DROP] = {
     [141851] = GetString(SI_FURC_WW_DUNGEON_DROP), -- Bear Skull, Fresh
     [141850] = GetString(SI_FURC_WW_DUNGEON_DROP), -- Bear Skeleton, Picked Clean
@@ -486,20 +478,17 @@ FurC.MiscItemSources[FURC_WEREWOLF] = {
     [141848] = GetString(SI_FURC_WW_DUNGEON_DROP), -- Animal Bones, Jumbled
     [141849] = GetString(SI_FURC_WW_DUNGEON_DROP), -- Animal Bones, Fresh
     
+    [141921] = GetString(SI_FURC_SLAVES_DAILY),    -- Murkmire Bowl, Geometric Pattern
     
-    [141921] = GetString(SI_FURC_SLAVES_DAILY), -- Murkmire Bowl, Geometric Pattern
-    
-    [141923] = GetString(SI_FURC_SLAVES_DAILY), -- Murkmire Amphora, Seed Pattern
-    [141922] = GetString(SI_FURC_SLAVES_DAILY), -- Murkmire Dish, Geometric Pattern
-    [141924] = GetString(SI_FURC_SLAVES_DAILY), -- Murkmire Vase, Scale Pattern
-    [141925] = GetString(SI_FURC_SLAVES_DAILY), -- Murkmire Hearth Shrine, Sithis Relief
-    [141926] = GetString(SI_FURC_SLAVES_DAILY), -- Murkmire Hearth Shrine, Sithis Figure
-    [141920] = GetString(SI_FURC_SLAVES_DAILY), -- Murkmire Brazier, Ceremonial
-    
+    [141923] = GetString(SI_FURC_SLAVES_DAILY),    -- Murkmire Amphora, Seed Pattern
+    [141922] = GetString(SI_FURC_SLAVES_DAILY),    -- Murkmire Dish, Geometric Pattern
+    [141924] = GetString(SI_FURC_SLAVES_DAILY),    -- Murkmire Vase, Scale Pattern
+    [141925] = GetString(SI_FURC_SLAVES_DAILY),    -- Murkmire Hearth Shrine, Sithis Relief
+    [141926] = GetString(SI_FURC_SLAVES_DAILY),    -- Murkmire Hearth Shrine, Sithis Figure
+    [141920] = GetString(SI_FURC_SLAVES_DAILY),    -- Murkmire Brazier, Ceremonial
   },
-  [FURC_CROWN] = {
-    
-    
+  
+  [FURC_CROWN] = 
     [134904] = getCrownPrice(260),                  -- Seal of Dibella
     [134905] = getCrownPrice(260),                  -- Ritual Stone, Dibella
     [134906] = getCrownPrice(240),                  -- Ritual Brazier, Gilded
@@ -647,18 +636,22 @@ FurC.MiscItemSources[FURC_ALTMER] = {
     [139067] = getCrownPrice(20),               -- Flower, Yellow Oleander
     [139068] = getCrownPrice(20),               -- Plants, Springwheeze
     
-    [139069] = getCrownPrice(410),              -- Painting of Griffin Nest, Refined
-    [139070] = getCrownPrice(410),              -- Painting of College of the Sapiarchs, Refined
-    [139071] = getCrownPrice(410),              -- Painting of High Elf Tower, Refined
-    [139073] = getCrownPrice(410),              -- Painting of Summerset Coast, Refined
-    [139074] = getCrownPrice(410),              -- Painting of Aldmeri Ruins, Refined
     [139075] = getCrownPrice(410),              -- Painting of Sinkhole, Refined
-    [139076] = getCrownPrice(410),              -- Painting of Ancient Road, Refined
+    [139076] = getCrownPrice(410),              -- Painting of Ancient Road, Refined	
+    [118142] = getCrownPrice(410),              -- Painting of Swamp, Refined
     
+    [118145] = getCrownPrice(410),              -- Painting of a Desert, Refined
+    [118144] = getCrownPrice(410),              -- Painting of a Forest, Refined
+    [118140] = getCrownPrice(410),              -- Painting of a Waterfall, Refined
+    [118138] = getCrownPrice(410),              -- Painting of Mountains, Refined
+	
+	[126463] = getCrownPrice(610),              -- Telvanni Painting, Oversized Forest
+	[126464] = getCrownPrice(610),              -- Telvanni Painting, Oversized Valley
+	[126462] = getCrownPrice(610),              -- Telvanni Painting, Oversized Volcanic
+	    
     [139078] = getCrownPrice(20),               -- Coral Formation, Tree Antler
     
     [139083] = getCrownPrice(30),               -- Plants, Grasswort Patch
-    
     
     [139088] = getCrownPrice(50),               -- Alinor Table Runner, Verdant
     [139089] = getCrownPrice(50),               -- Alinor Table Runner, Coiled
@@ -814,10 +807,9 @@ FurC.MiscItemSources[FURC_ALTMER] = {
     [130197] = getCrownPrice(170),              -- Ayleid Bookcase, Filled
     [130199] = getCrownPrice(170),              -- Ayleid Bookshelf, Bare
     [118491] = getCrownPrice(55),               -- Scroll, Bound
-    
   },
+
   [FURC_DROP] = {
-    
     [139059] = GetString(SI_FURC_DROP),         -- Ivory, Polished - drops from Echatere, and probably alot else
     [139066] = GetString(SI_FURC_HARVEST),      -- Plant, Redtop Grass
     
@@ -827,17 +819,21 @@ FurC.MiscItemSources[FURC_ALTMER] = {
     
     [139073] = questRewardLilandril,            -- Painting of Summerset Coast, Refined
     [139072] = GetString(SI_FURC_ELF_PIC),      -- Painting of Monastery of Serene Harmony, Refined
+	[139074] = GetString(SI_FURC_ELF_PIC),      -- Painting of Aldmeri Ruins, Refined
+	[139069] = GetString(SI_FURC_ELF_PIC),      -- Painting of Griffin Nest, Refined
+	[139070] = GetString(SI_FURC_ELF_PIC),      -- Painting of College of the Sapiarchs, Refined
+    [139071] = GetString(SI_FURC_ELF_PIC),      -- Painting of High Elf Tower, Refined
     
     [87709] = GetString(SI_FURC_LEVELUP),       -- Imperial Brazier, Spiked
     [94098] = GetString(SI_FURC_LEVELUP),       -- Imperial Bed, Single
     
-    
-    [118144] = GetString(SI_FURC_SUMMERSET_PAINTING),       -- Painting of a Forest, Refined
     [118143] = GetString(SI_FURC_SUMMERSET_PAINTING),       -- Painting of Tree, Refined
-    
+	[118141] = GetString(SI_FURC_SUMMERSET_PAINTING),       -- Painting of Cottage, Refined
+	[118139] = GetString(SI_FURC_SUMMERSET_PAINTING),       -- Painting of Valley, Refined
     
     [130192] = scambox_reaper,                  -- Statuette of Sheogorath, the Mad God
   },
+  
   [FURC_FISHING] = {
     [139080] = fishing_summerset,                 -- Coral Formation, Ancient Pillar Polyps
     [139079] = fishing_summerset,                 -- Coral Formation, Fan Cluster
@@ -851,8 +847,8 @@ FurC.MiscItemSources[FURC_ALTMER] = {
     [139082] = fishing_summerset,                 -- Plants, Ruby Glasswort Patch
     [139068] = fishing_summerset,                 -- Plants, Springwheeze
   },
+  
   [FURC_RUMOUR] = {
-    
     [130193] = dataminedUnclear,                    -- Robust Target Minotaur Handler
     [130194] = dataminedUnclear,                    -- Target Stone Atronach
     [130195] = dataminedUnclear,                    -- Target Iron Atronach
@@ -935,7 +931,9 @@ FurC.MiscItemSources[FURC_DRAGONS] = { -- Reach
     [134913] = GetString(SI_FURC_DRAGON_DUNGEON_DROP),   -- Mushroom, Tall Puspocket
     [134914] = GetString(SI_FURC_DRAGON_DUNGEON_DROP),   -- Mushrooms, Large Puspocket Cluster
   },
+  
   [FURC_JUSTICE]   = {},
+  
   [FURC_CROWN]   = {
     [134970] = getCrownPrice(100),   -- Mushrooms, Glowing Sprawl
     [134947] = getCrownPrice(100),   -- Mushrooms, Glowing Field
@@ -963,6 +961,7 @@ FurC.MiscItemSources[FURC_CLOCKWORK] = { -- Reach
     
     [132348] = questRewardString .. "the Brass Citadel", -- The Precursor
   },
+  
   [FURC_JUSTICE]   = {
     [134410] = stealable_cc,          -- Clockwork Crank, Miniature
     [134411] = stealable_cc,          -- Clockwork Gear Shaft, Miniature
@@ -978,6 +977,7 @@ FurC.MiscItemSources[FURC_CLOCKWORK] = { -- Reach
     [134399] = stealable,             -- Quality Fabric, Folded
     [117939] = stealable_woodworkers, -- Rough Axe, Practical
   },
+  
   [FURC_CROWN]   = {
     [134266] = getCrownPrice(80),   -- Daedric Books, Stacked
     [134265] = getCrownPrice(80),   -- Daedric Books, Piled
@@ -997,19 +997,13 @@ FurC.MiscItemSources[FURC_CLOCKWORK] = { -- Reach
     [134396] = getCrownPrice(410),      -- Clockwork Wall Machinery, Tall
     [134397] = getCrownPrice(410),      -- Clockwork Wall Machinery, Ovoid
     [134398] = getCrownPrice(1300),     -- Clockwork Gazebo, Copper and Basalt
-    
-    
   },
+
   [FURC_RUMOUR] = {
-      
-    
     [134384] = dataminedUnclear,                    -- Fabricant Tree, Decorative Electrum
     [134386] = dataminedUnclear,                    -- Fabricant Tree, Forked Cherry Blossom
     [134389] = dataminedUnclear,                    -- Fabricant Tree, Decorative Brass 
     [125509] = dataminedUnclear,                    -- Replica Dwarven Crown Crate
-    
-    
-    
   }
 }
 
@@ -1037,9 +1031,13 @@ FurC.MiscItemSources[FURC_REACH] = { -- Reach
 }
 
 local questRewardSuran = GetString(SI_FURC_QUESTREWARD) .. " Suran"
+
 FurC.MiscItemSources[FURC_MORROWIND]  = {             -- Morrowind
   [FURC_DROP]   = {
     
+	--Public dungeon Forgotten Wastes / maybe rarest drop at all ingame
+	[127149] = puplicdungeon_fw_vv,             -- Morrowind Banner of the 6th House
+
     -- Dwemer parts
     [126660] = automaton_loot_vv,               -- Dwemer Gear, Tiered
     [126659] = automaton_loot_vv,               -- Dwemer Gear, Flat
@@ -1063,10 +1061,6 @@ FurC.MiscItemSources[FURC_MORROWIND]  = {             -- Morrowind
     [126758] = GetString(SI_FURC_TOMBS),       -- Velothi Mat, Prayer
     [126757] = GetString(SI_FURC_TOMBS),
     
-    [126462] = GetString(SI_FURC_CHEST_VV),         -- Telvanni Painting, Oversized Volcanic
-    [126463] = GetString(SI_FURC_CHEST_VV),         -- Telvanni Painting, Oversized Forest
-    [126464] = GetString(SI_FURC_CHEST_VV),         -- Telvanni Painting, Oversized Valley
-    
     [126465] = GetString(SI_FURC_CHEST_VV),         -- Telvanni Painting, Modest Volcanic
     [126466] = GetString(SI_FURC_CHEST_VV),         -- Telvanni Painting, Modest Forest
     [126467] = GetString(SI_FURC_CHEST_VV),         -- Telvanni Painting, Modest Valley
@@ -1075,25 +1069,18 @@ FurC.MiscItemSources[FURC_MORROWIND]  = {             -- Morrowind
     [126469] = GetString(SI_FURC_CHEST_VV),         -- Telvanni Painting, Classic Forest
     [126470] = GetString(SI_FURC_CHEST_VV),         -- Telvanni Painting, Classic Valley
     
-    [126592] = GetString(SI_FURC_VV_PAINTING),      -- Velothi Panels, Volcano
     [126593] = GetString(SI_FURC_VV_PAINTING),      -- Velothi Tryptich, Volcano
     [126594] = GetString(SI_FURC_VV_PAINTING),      -- Velothi Painting, Classic Volcano
     [126595] = GetString(SI_FURC_VV_PAINTING),      -- Velothi Painting, Modest Volcano
     [126596] = GetString(SI_FURC_VV_PAINTING),      -- Velothi Tapestry, Volcano
-    [126597] = GetString(SI_FURC_VV_PAINTING),      -- Velothi Painting, Oversized Volcano
-    
     [126605] = GetString(SI_FURC_VV_PAINTING),      -- Velothi Tryptich, Waterfall
     [126606] = GetString(SI_FURC_VV_PAINTING),      -- Velothi Tapestry, Waterfall
-    [126607] = GetString(SI_FURC_VV_PAINTING),      -- Velothi Painting, Oversized Waterfall
     [126608] = GetString(SI_FURC_VV_PAINTING),      -- Velothi Painting, Classic Waterfall
     [126609] = GetString(SI_FURC_VV_PAINTING),      -- Velothi Painting, Modest Waterfall
-    [126598] = GetString(SI_FURC_VV_PAINTING),      -- Velothi Panels, Waterfall
     [126599] = GetString(SI_FURC_VV_PAINTING),      -- Velothi Tryptich, Geyser
     [126600] = GetString(SI_FURC_VV_PAINTING),      -- Velothi Tapestry, Geyser
-    [126601] = GetString(SI_FURC_VV_PAINTING),      -- Velothi Painting, Oversized Geyser
     [126602] = GetString(SI_FURC_VV_PAINTING),      -- Velothi Painting, Classic Geyser
     [126603] = GetString(SI_FURC_VV_PAINTING),      -- Velothi Painting, Modest Geyser
-    [126604] = GetString(SI_FURC_VV_PAINTING),      -- Velothi Panels, Geyser
     
     -- Ashlander dailies
     [126119] = GetString(SI_FURC_DAILY_ASH),       -- Crimson Shard of Moonshadow
@@ -1162,8 +1149,7 @@ FurC.MiscItemSources[FURC_MORROWIND]  = {             -- Morrowind
     [125565] = getHouseString(1244),                -- Hlaalu Lantern, Hanging Paper
     [125567] = getHouseString(1244),                -- Hlaalu Shed, Open
     [125580] = getHouseString(1244),                -- Hlaalu Well, Covered Sillar Stone
-    [118663] = getHouseString(1078, 1079),          -- Dark Elf Bed of Coals
-    
+    [118663] = getHouseString(1078, 1079),          -- Dark Elf Bed of Coals    
     [126475] = getCrownPrice(260),                  -- Telvanni Lantern, Organic Amber
     [126476] = getCrownPrice(200),                  -- Telvanni Lamp, Organic Amber
     [126477] = getCrownPrice(560),                  -- Telvanni Streetlight, Organic Amber
@@ -1269,11 +1255,19 @@ FurC.MiscItemSources[FURC_MORROWIND]  = {             -- Morrowind
     [125628] = getCrownPrice(70),                   -- Plant, Rosetted Sundew
     [126686] = getCrownPrice(400),                  -- Dwarven Chest, Relic
     [120481] = getCrownPrice(150),                  -- Tree, Ancient Juniper
+    [126601] = getCrownPrice(410),                  -- Velothi Painting, Oversized Geyser
+    [126597] = getCrownPrice(410),                  -- Velothi Painting, Oversized Volcano
+    [126607] = getCrownPrice(410),                  -- Velothi Painting, Oversized Waterfall
+	[126604] = getCrownPrice(410),                  -- Velothi Panels, Geyser
+    [126592] = getCrownPrice(410),                  -- Velothi Panels, Volcano
+    [126598] = getCrownPrice(410),                  -- Velothi Panels, Waterfall
   },
+
   [FURC_JUSTICE]   = {
     [126481] = stealable_priests .. " on Vvardenfell", -- Indoril Incense, Burning
-    [126772] = stealable_thief             -- Khajiiti Ponder sphere
+    [126772] = stealable_thief                         -- Khajiiti Ponder sphere
   },
+
   [FURC_RUMOUR] = {
     [132531] = dataminedUnclear,                    -- Hlaalu Planter, Tall
     [120411] = dataminedUnclear,                    -- Noble's Chalice of Wine
@@ -1292,9 +1286,9 @@ FurC.MiscItemSources[FURC_MORROWIND]  = {             -- Morrowind
     [125591] = dataminedUnclear,                    -- Mushroom, Lavaburst Patch
     [125597] = dataminedUnclear,                    -- Mushroom, Polyp Stinkhorn
     [125598] = dataminedUnclear,                    -- Mushroom, Emerging Stinkhorn
-    [127149] = dataminedUnclear,                    -- Morrowind Banner of the 6th House
   }
 }
+
 FurC.MiscItemSources[FURC_HOMESTEAD]  = {
   [FURC_JUSTICE]   = {
     -- stealing
@@ -1374,10 +1368,9 @@ FurC.MiscItemSources[FURC_HOMESTEAD]  = {
     [118060] = getCrownPrice(20),                 -- Sack of Grain
     [118059] = getCrownPrice(20),                 -- Sack of Millet,
     [118058] = getCrownPrice(20),                 -- Sack of Rice
-    [118351] = getCrownPrice(25),                 -- Box of Peaches
+    [118351] = getCrownPrice(25),                 -- Box of Peaches    
     
-    
-    [134473] = scambox_fireatro,               -- Tapestry,  Malacath
+    [134473] = scambox_fireatro,                  -- Tapestry,  Malacath
     
     [118064] = getCrownPrice(45),                 -- Common Barrel, Dry
     [118065] = getCrownPrice(45),                 -- Common Cargo Crate, Dry

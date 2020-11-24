@@ -18,13 +18,13 @@ local sinister_hollowjack   = "Sinister Hollowjack Items"
 
 local scambox_sovngarde     = zo_strformat("<<1>> (<<2>>)", scambox_string, "Sovngarde")
 
-
 local itemPackMoonBishop    = zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "Moon Bishop’s Sanctuary")
 local itemPackOasis         = zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "Moons-Blessed Oasis")
 local itemPackVampire       = zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "Vampire")
 
 local elsewhere             = "in Elsweyr" 
 local in_skyrim             = "in Western Skyrim" 
+local blackr_grcaverns      = "in Blackreach Greymoor Caverns"
 local in_murkmire           = "in Murkire" 
 
 local fishing_elsewhere     = GetString(SI_FURC_CANBEFISHED)  .. elsewhere
@@ -33,6 +33,7 @@ local stealable_elsewhere   = GetString(SI_FURC_CANBESTOLEN)  .. elsewhere
 local safeboxes_elsewhere   = GetString(SI_FURC_ITEMSOURCE_SAFEBOX)  .. elsewhere
 local stealable_skyrim      = GetString(SI_FURC_CANBESTOLEN)  .. in_skyrim
 local chests_skyrim         = GetString(SI_FURC_CHESTS)       .. in_skyrim
+local chests_grcaverns      = GetString(SI_FURC_CHESTS)       .. blackr_grcaverns
 local scrying               = GetString(SI_FURC_CANBESCRYED)  .. " "
 local scryingMurkmire       = scrying  .. in_murkmire
 
@@ -149,19 +150,6 @@ FurC.MiscItemSources[FURC_SKYRIM]  = {
     [166044] = rumourSource, -- Watering Trough, Full
     [153814] = rumourSource, -- Dragon's Treasure Trove
     [153887] = rumourSource, -- Dragonguard Banner
-    [166437] = rumourSource, -- Stillness Everlasting Painting, Wood
-    [166438] = rumourSource, -- Red Mist Blooming Painting, Wood
-    [166439] = rumourSource, -- Depths of Darkness Painting, Wood
-    [166440] = rumourSource, -- Light as Art Painting, Wood
-    [166441] = rumourSource, -- Gargoyle Guardians Painting, Wood
-    [166442] = rumourSource, -- The Deception of Light Painting, Wood
-    [166443] = rumourSource, -- Contrasts Painting, Wood
-    [166444] = rumourSource, -- Luminescence Painting, Wood
-    [166445] = rumourSource, -- The Keep Painting, Wood
-    [166446] = rumourSource, -- Still Life in Death Painting, Wood
-    [166447] = rumourSource, -- Boon Companion, Wood
-    [166448] = rumourSource, -- The Scion Strides Forth Painting, Wood
-    [166449] = rumourSource, -- Scion's Throne Painting, Wood
     [166450] = rumourSource, -- Solitude Display Shelf, Noble Filled
     [166452] = rumourSource, -- Vampiric Column, Ancient
     [163428] = rumourSource, -- Music Box, \"[Song Name]\"
@@ -190,11 +178,9 @@ FurC.MiscItemSources[FURC_SKYRIM]  = {
     [165991] = rumourSource, -- Statue, Vampiric Sovereign
     [165847] = rumourSource, -- Solitude Streetlight, Paired
     [165846] = rumourSource, -- Solitude Streetlight, Single
-    [165845] = rumourSource, -- Painting of the Arch, Silver
-    [165844] = rumourSource, -- The Light Within Painting, Silver
-    [165843] = rumourSource, -- River's Journey Painting, Silver
-    [165841] = rumourSource, -- Silent Solitude Painting, Silver
-    [165840] = rumourSource, -- The Bridge of Dragon Painting, Wood
+    
+    
+    
     [159446] = rumourSource, -- Elsweyr Game, Swan Stones
     [165763] = rumourSource, -- Solitude Serving Dish, Metal
     [159496] = rumourSource, -- Tree, Ancient Bristlecone
@@ -425,8 +411,6 @@ FurC.MiscItemSources[FURC_SKYRIM]  = {
     [165807] = rumourSource, -- Solitude Drying Rack, Stockfish
     [165808] = rumourSource, -- Solitude Smoking Rack, Sausage
     [165815] = rumourSource, -- Tree, Winter Pine
-    [165826] = rumourSource, -- Fields of Plenty Painting, Wood
-    [165827] = rumourSource, -- Eternal Moment Painting, Wood
     [165829] = rumourSource, -- Before the Trade Gathering Painting, Wood
     [165830] = rumourSource, -- Elsweyr Vista Painting, Wood
     [165831] = rumourSource, -- Catnap Painting, Gold
@@ -434,7 +418,6 @@ FurC.MiscItemSources[FURC_SKYRIM]  = {
     [165833] = rumourSource, -- Elsweyr Dome Architecture Painting, Gold
     [165834] = rumourSource, -- A Simple Five-Claw Life Painting, Gold
     [165835] = rumourSource, -- Painting of Khajiiti Arch, Gold", 
-    [165842] = rumourSource, -- Dockside Painting, Silver
     [165854] = rumourSource, -- Nisswo's Soul Tender
     [156644] = rumourSource, -- Books, Towering Pile
     [156645] = rumourSource, -- Statue, Kaalgrontiid's Ascent
@@ -454,19 +437,38 @@ FurC.MiscItemSources[FURC_SKYRIM]  = {
     [165995] = rumourSource, -- Antique Map of Cyrodiil
     [163722] = rumourSource, -- Antique Map of Tamriel
     [165992] = rumourSource, -- Antique Map of Western Skyrim",    
-    
   }, 
 
   [FURC_JUSTICE] = {
-    [165836] = stealable_skyrim, -- A Warm Welcome Awaits Painting, Wood
-    [165837] = stealable_skyrim, -- Jarl of Morthal Painting, Wood
-    [165838] = stealable_skyrim, -- Painting of Nord Ship, Wood
-    [165839] = stealable_skyrim, -- Ursine Wandering Painting, Wood
-    
+    [165828] = stealable_skyrim,                  -- Painting: Life in Repose Painting, Wood
   }, 
 
   [FURC_DROP]    = {
-    [165828] = chests_skyrim,                     -- Painting: Life in Repose Painting, Wood
+    [165836] = chests_skyrim,                     -- Painting: A Warm Welcome Awaits Painting, Wood
+    [165837] = chests_skyrim,                     -- Painting: Jarl of Morthal Painting, Wood
+    [165838] = chests_skyrim,                     -- Painting: Painting of Nord Ship, Wood
+    [165839] = chests_skyrim,                     -- Painting: Ursine Wandering Painting, Wood
+    [165826] = chests_skyrim,                     -- Painting: Fields of Plenty Painting, Wood
+    [165827] = chests_skyrim,                     -- Painting: Eternal Moment Painting, Wood
+    [165840] = chests_skyrim,                     -- Painting: The Bridge of Dragon Painting, Wood
+    [165842] = chests_skyrim,                     -- Painting: Dockside Painting, Silver
+    [165845] = chests_skyrim,                     -- Painting: Painting of the Arch, Silver
+    [165843] = chests_skyrim,                     -- Painting: River's Journey Painting, Silver
+    [165841] = chests_skyrim,                     -- Painting: Silent Solitude Painting, Silver
+    [165844] = chests_skyrim,                     -- Painting: The Light Within Painting, Silver
+    [166440] = blackr_grcaverns,                  -- Painting: Light as Art Painting, Wood
+    [166441] = blackr_grcaverns,                  -- Painting: Gargoyle Guardians Painting, Wood
+    [166449] = blackr_grcaverns,                  -- Painting: Scion's Throne Painting, Wood
+    [166442] = blackr_grcaverns,                  -- Painting: The Deception of Light Painting, Wood
+    [166438] = blackr_grcaverns,                  -- Painting: Red Mist Blooming Painting, Wood
+    [166439] = blackr_grcaverns,                  -- Painting: Depths of Darkness Painting, Brass
+    [166443] = blackr_grcaverns,                  -- Painting: Contrasts Painting, Brass
+    [166444] = blackr_grcaverns,                  -- Painting: Luminescence Painting, Brass
+    [166445] = blackr_grcaverns,                  -- Painting: The Keep Painting, Brass
+    [166447] = blackr_grcaverns,                  -- Painting: Boon Companion, Brass
+    [166448] = blackr_grcaverns,                  -- Painting: The Scion Strides Forth Painting, Brass
+    [166446] = blackr_grcaverns,                  -- Painting: Still Life in Death Painting, Wood
+    [166437] = blackr_grcaverns,                  -- Painting: Stillness Everlasting Painting, Wood
     
     [165866] = scrying .. " in Stonefalls",       -- Ashen Infernace Gate
     [165859] = scrying .. " in Bal Foyen",        -- The Dutiful Guar

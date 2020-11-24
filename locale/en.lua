@@ -82,9 +82,9 @@ FURC_AV_RAZ = "Razoufa",
   SI_FURC_QUESTREWARD =                 "Reward for a quest in ",
   SI_FURC_GEYSIR =                      "Drops from geysir reward clams on Summerset",
   SI_FURC_GIANT_CLAM =                  "Drops from giant clams and geysir reward clams on Summerset",
-  SI_FURC_ELF_PIC =                     "Drops extremely rarely from treasure chests on Summerset",
+  SI_FURC_ELF_PIC =                     "Drops rarely from treasure chests on Summerset",
   SI_FURC_LEVELUP =                     "Can be gained as levelup reward",
-  SI_FURC_SLAVES_DAILY =             "from Murkmire daily quest reward boxes",
+  SI_FURC_SLAVES_DAILY =                "from Murkmire daily quest reward boxes",
   
   -- =============================== --
   -- ============ MENU ============= --
