@@ -65,13 +65,17 @@ local jesterVendor = {
 
 local capitalVendor = {
 
-  [119987] = {    -- Coldharbour Urn
-    itemPrice   = 5000,
-    achievement = 993,
-  },
+    [119987] = {    -- Coldharbour Urn
+       itemPrice   = 5000,
+       achievement = 993,
+    },
+    [145488] = {    -- Banner, Jewelry Crafting
+       itemPrice   = 5000,
+       achievement = 2215,
+    },
     [120064] = { -- Covenant Hero Shield
        itemPrice    = 10000, 
-    achievement = 61,
+       achievement = 61,
     },
     [120037] = { -- Decorative Skyshard
        itemPrice    = 25000, 
