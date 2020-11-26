@@ -487,7 +487,7 @@ FurC.MiscItemSources[FURC_WEREWOLF] = {
     [141920] = GetString(SI_FURC_SLAVES_DAILY),    -- Murkmire Brazier, Ceremonial
   },
   
-  [FURC_CROWN] = 
+  [FURC_CROWN] = {
     [134904] = getCrownPrice(260),                  -- Seal of Dibella
     [134905] = getCrownPrice(260),                  -- Ritual Stone, Dibella
     [134906] = getCrownPrice(240),                  -- Ritual Brazier, Gilded
