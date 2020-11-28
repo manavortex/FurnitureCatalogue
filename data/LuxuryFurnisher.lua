@@ -5,6 +5,40 @@ FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
 FurC.LuxuryFurnisher[FURC_MARKAT] = {
 	
+  [167347] = {		-- Orcish Figurine, Mammoth
+		itemPrice   = 12000,
+		itemDate  = "2020-11-28",
+	},
+  
+	[153691] = {    -- Orsinium Sarcophagus, Honor's Rest
+ 		itemPrice   = 25000,
+		itemDate  = "2020-11-28",
+	},
+	
+	[141758] = {        -- Orcish Wagon, Merchant
+ 		itemPrice   = 15000,
+		itemDate  = "2020-11-28",
+	},  
+	-- Oct. 7
+	[132145] = { -- Orsinium Tent, Chief’s
+ 		itemPrice   = 15000,
+		itemDate  = "2020-11-28",
+	},
+	[132146] = { -- Orsinium Relief, Malacath
+ 		itemPrice   = 25000,
+		itemDate  = "2020-11-28",
+	},
+	[132148] = { -- Orsinium Statue, Head
+ 		itemPrice   = 25000,
+		itemDate  = "2020-11-28",
+	},
+	[132147] = { -- Orsinium Statue, Honor’s Rest
+ 		itemPrice   = 25000,
+		itemDate  = "2020-11-28",
+	},
+	
+
+  
   [167346] = {		-- Vines, Flowering Wyrdbloom
 		itemPrice   = 4000,
 		itemDate  = "2020-11-21",
@@ -1495,44 +1529,11 @@ FurC.LuxuryFurnisher[FURC_SKYRIM] = {
 	},
 	
 	
-	
-	[153691] = {    -- Orsinium Sarcophagus, Honor's Rest
- 		itemPrice   = 25000,
-		itemDate  = "2019-11-02",
-	},
-	
-	[141758] = {        -- Orcish Wagon, Merchant
- 		itemPrice   = 15000,
-		itemDate  = "2019-11-02",
-	},  
-	-- Oct. 7
-	[132145] = { -- Orsinium Tent, Chief’s
- 		itemPrice   = 15000,
-		itemDate  = "2019-11-02",
-	},
-	[132146] = { -- Orsinium Relief, Malacath
- 		itemPrice   = 25000,
-		itemDate  = "2019-11-02",
-	},
-	[132148] = { -- Orsinium Statue, Head
- 		itemPrice   = 25000,
-		itemDate  = "2019-11-02",
-	},
-	[132147] = { -- Orsinium Statue, Honor’s Rest
- 		itemPrice   = 25000,
-		itemDate  = "2019-11-02",
-	},
-	
-	
-	
-	
-	
-	
-	
+		
 	
    
     [145471] = {        -- Redguard Raincatcher, Golden
-	itemPrice   = 35000,     
+      itemPrice   = 35000,     
     },
 	
 	
