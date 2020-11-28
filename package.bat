@@ -18,6 +18,8 @@ SET TARGET_DIRECTORY="%USERPROFILE%\Dropbox"
 :: Set github branch to anything but "" to have this script automatically push to github 
 :: SET GITHUB_BRANCH=""
 SET GITHUB_BRANCH="master"
+
+SET DELETE_CUSTOM_FILENAME="Custom.lua"
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 :: check for existence of 7zip
@@ -66,8 +68,17 @@ if exist package.manifest (
 :: copy everything to assembly folder
 robocopy . .package\%name% %files% /S /XD .* /NJH /NJS /NFL /NDL > nul
 
+
 :: zip it
-pushd .package && "%zip%" a -tzip -bd ..\%archive% %name% > nul && popd
+pushd .package 
+if not "%DELETE_CUSTOM_FILENAME%" == "" (
+	del /S "%DELETE_CUSTOM_FILENAME%"
+)
+"%zip%" a -tzip -bd ..\%archive% %name% > nul
+
+pause
+popd
+
 rd /S /Q .package
 
 IF NOT %TARGET_DIRECTORY% == "" (
