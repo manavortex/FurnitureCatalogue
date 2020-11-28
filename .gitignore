@@ -18,3 +18,4 @@ package/*
 btm/
 btm/*
 .gitattributes
+data/Custom.lua
