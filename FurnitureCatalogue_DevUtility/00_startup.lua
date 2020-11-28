@@ -17,6 +17,7 @@ FurCDevUtility.playersWithDevAccess = {
 local UNITTAG_PLAYER = "player"
 local displayName
 function FurCDevUtility.isDev()
+	if FurC.isDev then return FurC.isDev() end
 	displayName = displayName or GetUnitDisplayName(UNITTAG_PLAYER)
 	return FurCDevUtility.playersWithDevAccess[displayName]
 end
