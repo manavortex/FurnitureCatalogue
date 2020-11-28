@@ -23,8 +23,8 @@ SET DELETE_CUSTOM_FILENAME="Custom.lua"
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 :: check for existence of 7zip
-set zip=%ProgramFiles%\7-Zip\7z.exe
-if not exist "%zip%" goto :zipnotfound
+set zip="%ProgramFiles%\7-Zip\7z.exe"
+if not exist %zip% goto :zipnotfound
 
 :: read addon name from manifest.txt
 for %%* in (.) do set name=%%~nx*
@@ -74,9 +74,7 @@ pushd .package
 if not "%DELETE_CUSTOM_FILENAME%" == "" (
 	del /S "%DELETE_CUSTOM_FILENAME%"
 )
-"%zip%" a -tzip -bd ..\%archive% %name% > nul
-
-pause
+%zip% a -tzip -bd ..\%archive% %name% > nul
 popd
 
 rd /S /Q .package
