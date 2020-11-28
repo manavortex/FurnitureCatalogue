@@ -34,16 +34,16 @@ FurC.EventItems[FURC_MORROWIND] = {
     ["New Life"] = {
     ["Gift Box"] = {      
       [118053] = true,   -- Common Campfire, Outdoor
-            [130326] = true,   -- Witches Brazier, Primitive Log",
+      [130326] = true,   -- Witches Brazier, Primitive Log,
     },
   },
 }
 
-
 FurC.EventItems[FURC_KITTY] = {
 
   ["Witches' Festival"] = {
-    ["Plunder Skull"] = {      
+    ["Plunder Skull"] = {    
+      [118149] = true,		   -- Block and Axe, Chopping
       [145317] = true,       -- Gravestone, Broken
     }
   }
@@ -54,15 +54,15 @@ FurC.EventItems[FURC_REACH] = {
   ["Witches' Festival"] = {
     ["Plunder Skull"] = {
        
-      [130337] = true,   -- Witches Corpse, Wrapped",
-      [130325] = true,   -- Witches Totem, Emphatic Warning",
-      [130334] = true,   -- Witches Totem, Antler Charms",
-      [130327] = true,   -- Witches Totem, Wooden Rack",
-      [130328] = true,   -- Witches Skull, Horned Ram",
-      [130332] = true,   -- Witches Totem, Bone Charms",
-      [130340] = true,   -- Witches Totem, Gnarled Vines and Skull",
+      [130337] = true,   -- Witches Corpse, Wrapped,
+      [130325] = true,   -- Witches Totem, Emphatic Warning,
+      [130334] = true,   -- Witches Totem, Antler Charms,
+      [130327] = true,   -- Witches Totem, Wooden Rack,
+      [130328] = true,   -- Witches Skull, Horned Ram,
+      [130332] = true,   -- Witches Totem, Bone Charms,
+      [130340] = true,   -- Witches Totem, Gnarled Vines and Skull,
       [130339] = true,   -- Witches Totem, Twisted Vines and Skull
-      [130338] = true,   -- Witches Bones, Offering",
+      [130338] = true,   -- Witches Bones, Offering,
       [145318] = true,   -- Small Gravestone
       [130302] = GetString(SI_FURC_WW),   -- Shrub, Burnt Brush"
       [130298] = GetString(SI_FURC_WW),  -- Branch, Curved Laurel

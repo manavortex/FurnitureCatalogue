@@ -62,7 +62,6 @@ local strings = {
   SI_FURC_STRING_HC =                   "Hollow City",
   SI_FURC_STRING_WASSOLDBY =            "Was sold by <<1>> in <<2>> (<<3>>) <<4>>",
   SI_FURC_STRING_WEEKEND_AROUND =       "(last seen around ~ <<1>>)",
-  SI_FURC_REQUIRES_QUEST =              ", requires quest ",
   SI_FURC_REQUIRES_ACHIEVEMENT =        ", requires ",
   SI_FURC_PSIJIC_RANK =                 "Psijic Order Rank ",
   SI_FURC_STRING_WRIT_VENDOR =          "Master Writ Vendor",

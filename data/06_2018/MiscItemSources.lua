@@ -53,12 +53,13 @@ local fishing_swamp         = GetString(SI_FURC_CANBEFISHED) .. backwaterSwamp
 
 local drop_altmer           = GetString(SI_FURC_DROP) .. onSummerset
 local drop_swamp            = GetString(SI_FURC_DROP) .. backwaterSwamp
+local painting_summerset	= GetString(SI_FURC_ITEMSOURCE_SAFEBOX) .. " (Summerset)"
 
 local stealable_wrothgar    = stealable .. inWrothgar
 local stealable_swamp       = stealable .. backwaterSwamp
 
 local rumourSource          = GetString(SI_FURC_RUMOUR_SOURCE_ITEM)
-local dataminedUnclear      = GetString(SI_FURC_DATAMINED_UNCLEAR)
+local itemsourceUnclear     = GetString(SI_FURC_DATAMINED_UNCLEAR)
 
 
 local crownstoresource = GetString(SI_FURC_CROWNSTORESOURCE)
@@ -826,9 +827,9 @@ FurC.MiscItemSources[FURC_ALTMER] = {
     [87709] = GetString(SI_FURC_LEVELUP),       -- Imperial Brazier, Spiked
     [94098] = GetString(SI_FURC_LEVELUP),       -- Imperial Bed, Single
     
-    [118143] = GetString(SI_FURC_SUMMERSET_PAINTING),       -- Painting of Tree, Refined
-	[118141] = GetString(SI_FURC_SUMMERSET_PAINTING),       -- Painting of Cottage, Refined
-	[118139] = GetString(SI_FURC_SUMMERSET_PAINTING),       -- Painting of Valley, Refined
+    [118143] = painting_summerset,       		-- Painting of Tree, Refined
+	[118141] = painting_summerset,       		-- Painting of Cottage, Refined
+	[118139] = painting_summerset,       		-- Painting of Valley, Refined
     
     [130192] = scambox_reaper,                  -- Statuette of Sheogorath, the Mad God
   },

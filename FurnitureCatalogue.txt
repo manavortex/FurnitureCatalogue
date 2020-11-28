@@ -1,6 +1,6 @@
 ## Title: FurnitureCatalogue
 ## Author: manavortex
-## Version: 4.13111
+## Version: 4.14
 ## APIVersion: 100033
 ## SavedVariables: FurnitureCatalogue_Settings 
 ## DependsOn: LibCustomMenu LibAddonMenu-2.0 LibAsync
@@ -64,6 +64,7 @@ data\Recipes.lua
 data\RecipeSources.lua
 
 data\$(APIVersion).lua
+data\Custom.lua
 
 FurCUtil.lua
 

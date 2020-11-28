@@ -16,7 +16,7 @@ end
 
 local function makeAchievementLink(achievementId)
     if not achievementId then return end
-    if tonumber(achievementId) ~= achievementId then return GetString(SI_FURC_REQUIRES_QUEST) ..achievementId end
+    if tonumber(achievementId) ~= achievementId then return GetString(SI_FURC_REQUIRES_ACHIEVEMENT) ..achievementId end
     return GetString(SI_FURC_REQUIRES_ACHIEVEMENT) .. GetAchievementLink(achievementId)
 end
 

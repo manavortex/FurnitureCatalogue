@@ -331,7 +331,7 @@ local function scanFromFiles(shouldScanCharacter)
 				local recipeListIndex, recipeIndex = GetItemLinkGrantedRecipeIndices(recipeLink)
 				if nil == recipeArray then
 					p("scanRecipeFile: error for ID %s", recipeId)
-					else
+				else
 					recipeKey                = getItemId(itemLink)
 					recipeArray.version      = versionNumber
 					if (not recipeArray.origin or origin ~= FURC_RUMOUR) then
@@ -562,15 +562,25 @@ function ShouldBeInFurC(link)
 	link = FurC.GetItemLink(link)
 	
 	if IsItemLinkPlaceableFurniture(link) then 				
-	return nil == FurnitureCatalogue.settings.data[getItemId(link)]
+		return nil == FurnitureCatalogue.settings.data[getItemId(link)]
 	end
     
-	if IsItemLinkFurnitureRecipe(link) then	
-		local resultId	= getItemId(GetItemLinkRecipeResultItemLink(link))    
-		return nil ~= FurnitureCatalogue.settings.data[resultId]
-    end
-
+	if not IsItemLinkFurnitureRecipe(link) then	return false end 
+	
+	local resultId = getItemId(GetItemLinkRecipeResultItemLink(link))
+	local recipeId = getItemId(link)
+	for _, versionData in pairs(FurC.Recipes) do
+		for _, id in ipairs(versionData) do
+			if id == recipeId then return false end
+		end
+	end
+	for _, versionData in pairs(FurC.FaustinaRecipes) do
+		if versionData[recipeId] then return false end
+	end		
+	for _, versionData in pairs(FurC.RolisRecipes) do
+		if versionData[recipeId] then return false end
+	end
+	
 	-- yeah okay, it should actually return false, but this is a util function for datamining
-	return true 
-
+	return nil == FurnitureCatalogue.settings.data[resultId]
 end
