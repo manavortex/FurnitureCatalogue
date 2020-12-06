@@ -30,6 +30,9 @@ FurC.LuxuryFurnisher[FURC_MARKAT] = {
  		itemPrice   = 20000,
 		itemDate  = "2020-12-06",
 	},
+	
+	
+		
 		
 
   [167347] = {		-- Orcish Figurine, Mammoth
