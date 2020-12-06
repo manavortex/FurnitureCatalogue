@@ -32,7 +32,7 @@ local defaults             = {
 	filterQuality        = {},
 	
 	resetDropdownChoice  = false,
-	useTinyUi            = false,
+	useTinyUi            = true,
 	useInventoryIcons    = true,
 	fontSize             = 18,
 	

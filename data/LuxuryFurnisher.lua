@@ -5,6 +5,33 @@ FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
 FurC.LuxuryFurnisher[FURC_MARKAT] = {
 	
+	[167348] = {		-- Orcish Figurine, Bear
+		itemPrice   = 12000,
+		itemDate  = "2020-12-06",
+	},
+	
+	[141759] = {        -- Orcish Gazebo, Orsinium
+ 		itemPrice   = 20000,
+		itemDate  = "2020-12-06",
+	},
+	[132152] = {        -- Orsinium Sarcophagus, Warrior's
+ 		itemPrice   = 35000,
+		itemDate  = "2020-12-06",
+	},
+	[132150] = {        -- Orsinium Totem, Honor
+ 		itemPrice   = 20000,
+		itemDate  = "2020-12-06",
+	},
+	[132151] = {        -- Orsinium Totem, Obedience
+ 		itemPrice   = 20000,
+		itemDate  = "2020-12-06",
+	},
+	[132149] = {        -- Orsinium Totem, Strength
+ 		itemPrice   = 20000,
+		itemDate  = "2020-12-06",
+	},
+		
+
   [167347] = {		-- Orcish Figurine, Mammoth
 		itemPrice   = 12000,
 		itemDate  = "2020-11-28",
@@ -1502,34 +1529,11 @@ FurC.LuxuryFurnisher[FURC_SKYRIM] = {
 	
 	
 	[153692] = {    -- Orsinium Well, Covered
-		itemDate  = "2ß19-11-09",
+		itemDate  = "2020-12-06",
  		itemPrice   = 20000,
 	},
 	
 	
-	[141759] = {        -- Orcish Gazebo, Orsinium
- 		itemPrice   = 20000,
-		itemDate  = "2ß19-11-09",
-	},
-	[132152] = {        -- Orsinium Sarcophagus, Warrior's
- 		itemPrice   = 35000,
-		itemDate  = "2ß19-11-09",
-	},
-	[132150] = {        -- Orsinium Totem, Honor
- 		itemPrice   = 20000,
-		itemDate  = "2ß19-11-09",
-	},
-	[132151] = {        -- Orsinium Totem, Obedience
- 		itemPrice   = 20000,
-		itemDate  = "2ß19-11-09",
-	},
-	[132149] = {        -- Orsinium Totem, Strength
- 		itemPrice   = 20000,
-		itemDate  = "2ß19-11-09",
-	},
-	
-	
-		
 	
    
     [145471] = {        -- Redguard Raincatcher, Golden
