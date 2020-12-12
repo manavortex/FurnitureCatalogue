@@ -1,15 +1,38 @@
-
 FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
 
-
 FurC.LuxuryFurnisher[FURC_MARKAT] = {
-	
+
+	[167351] = {		-- Crocodile Skeleton, Complete
+		itemPrice   = 9000,
+		itemDate    = "2020-12-12",
+	},
+	[118294] = {        -- Echatere Horns, Wall Mount
+		itemPrice   = 15000,
+		itemDate    = "2020-12-12",
+	},
+	[118286] = {  -- Carcass, Grey Hare
+		itemPrice = 5000,
+		itemDate  = "2020-12-12",
+	},
+	[118281] = {  -- Carcass, Hanging Geese
+		itemPrice = 7000,
+		itemDate  = "2020-12-12",
+	},
+	[118279] = {  -- Deer Head, Wall Mount
+		itemPrice = 15000,
+		itemDate  = "2020-12-12",
+	},
+	[118298] = {  -- Wolf Head, Wall Mount
+		itemPrice = 20000,
+		itemDate  = "2020-12-12",
+	},
+
+
 	[167348] = {		-- Orcish Figurine, Bear
 		itemPrice   = 12000,
 		itemDate  = "2020-12-06",
 	},
-	
 	[141759] = {        -- Orcish Gazebo, Orsinium
  		itemPrice   = 20000,
 		itemDate  = "2020-12-06",
@@ -30,25 +53,23 @@ FurC.LuxuryFurnisher[FURC_MARKAT] = {
  		itemPrice   = 20000,
 		itemDate  = "2020-12-06",
 	},
-	
-	
-		
-		
 
-  [167347] = {		-- Orcish Figurine, Mammoth
+
+
+	[167347] = {		-- Orcish Figurine, Mammoth
 		itemPrice   = 12000,
 		itemDate  = "2020-11-28",
 	},
-  
+
 	[153691] = {    -- Orsinium Sarcophagus, Honor's Rest
  		itemPrice   = 25000,
 		itemDate  = "2020-11-28",
 	},
-	
+
 	[141758] = {        -- Orcish Wagon, Merchant
  		itemPrice   = 15000,
 		itemDate  = "2020-11-28",
-	},  
+	},
 	-- Oct. 7
 	[132145] = { -- Orsinium Tent, Chief’s
  		itemPrice   = 15000,
@@ -66,33 +87,33 @@ FurC.LuxuryFurnisher[FURC_MARKAT] = {
  		itemPrice   = 25000,
 		itemDate  = "2020-11-28",
 	},
-	
 
-  
-  [167346] = {		-- Vines, Flowering Wyrdbloom
+
+
+	[167346] = {		-- Vines, Flowering Wyrdbloom
 		itemPrice   = 4000,
 		itemDate  = "2020-11-21",
 	},
-  
+
 	[153690] = {    -- Flower Cluster, Wyrdbloom
  		itemPrice   = 4000,
 		itemDate  = "2020-11-21",
 	},
-	
-	[141756] = {        -- Mushrooms, Aether Cup Cluster
-    itemPrice   = 10000,
-		itemDate  = "2020-11-21",
-  },
-  [141755] = {        -- Mushrooms, Aether Cup Ring
-    itemPrice   = 10000,
-    itemDate  = "2020-11-21",
-  },
-  [141757] = {        -- Mushrooms, Climbing Aether Cup
-    itemPrice   = 5000,
-    itemDate  = "2020-11-21",
-  },
 
-  
+	[141756] = {        -- Mushrooms, Aether Cup Cluster
+		itemPrice   = 10000,
+		itemDate  = "2020-11-21",
+	},
+	[141755] = {        -- Mushrooms, Aether Cup Ring
+		itemPrice   = 10000,
+		itemDate  = "2020-11-21",
+	},
+	[141757] = {        -- Mushrooms, Climbing Aether Cup
+		itemPrice   = 5000,
+		itemDate  = "2020-11-21",
+	},
+
+
 	[167345] = {		-- Fern, Cyan Cluster
 		itemPrice   = 4000,
 		itemDate  = "2020-11-14",
@@ -102,7 +123,7 @@ FurC.LuxuryFurnisher[FURC_MARKAT] = {
 		itemDate  = "2020-11-14",
  		itemPrice   = 2500,
 	},
-	
+
 	[141752] = {        -- Plant, Cerulean Spadeleaf
  		itemPrice   = 1000,
 		itemDate  = "2020-11-14",
@@ -115,17 +136,17 @@ FurC.LuxuryFurnisher[FURC_MARKAT] = {
  		itemPrice   = 7500,
 		itemDate  = "2020-11-14",
 	},
-	
-	
+
+
 	[167350] = {		-- Minecart, Skeletal Remains
 		itemDate  = "2020-10-07",
 		itemPrice   = 8000,
-	},		
-	
+	},
+
 	[141761] = {        -- Reach Sapling, Contorted Briarheart
 		itemDate  = "2020-10-07",
 		itemPrice   = 35000,
-    },
+	},
 	[132156] = {        -- Briarheart Tree, Replica
 		itemDate  = "2020-10-07",
 		itemPrice   = 100000,
@@ -147,7 +168,7 @@ FurC.LuxuryFurnisher[FURC_MARKAT] = {
  		itemPrice   = 50000,
 		itemDate  = "2020-10-07",
 	},
-	
+
 }
 
 
@@ -156,7 +177,7 @@ FurC.LuxuryFurnisher[FURC_STONET] = {
 		itemPrice   = 2500,
 		itemDate  = "2020-10-31",
 	},
-	
+
 	[153693] = {    -- Tree, Treehenge Green Lady
  		itemPrice   = 50000,
 		itemDate  = "2020-10-31",
@@ -165,8 +186,8 @@ FurC.LuxuryFurnisher[FURC_STONET] = {
  		itemPrice   = 5000,
 		itemDate  = "2020-10-31",
 	},
-	
-	[132155] = { -- Witch's Torch, Wretched  
+
+	[132155] = { -- Witch's Torch, Wretched
  		itemPrice   = 5000,
 		itemDate  = "2020-10-31",
 	},
@@ -178,7 +199,7 @@ FurC.LuxuryFurnisher[FURC_STONET] = {
  		itemPrice   = 35000,
 		itemDate  = "2020-10-31",
 	},
-	
+
 	[167344] = {		-- Reachfolk Banner, Moonburst
 		itemPrice   = 4000,
 		itemDate  = "2020-10-24",
@@ -186,12 +207,12 @@ FurC.LuxuryFurnisher[FURC_STONET] = {
 	[151954] = {    -- Reachmen Banner, Bull
  		itemPrice   = 4000,
 		itemDate  = "2020-10-24",
-    },	
-	
+	},
+
 	[139106] = {    -- Reach Briarheart, Corpse Blue
  		itemPrice   = 15000,
 		itemDate  = "2020-10-24",
-    },
+	},
 	-- Sept. 30
 	[132144] = { -- Reach Briarheart, Blood Red
  		itemPrice   = 15000,
@@ -207,20 +228,20 @@ FurC.LuxuryFurnisher[FURC_STONET] = {
 	},
 
 
-	
+
 	[167343] = {		-- Stone, Nirncrux-Laden
 		itemPrice   = 10000,
 		itemDate  = "2020-10-17",
 	},
-	
+
 	[139105] = {        -- Reach Grinding Stones, Nirncrux
-	itemPrice   = 4500,
+		itemPrice   = 4500,
 		itemDate  = "2020-10-17",
-    },	
+	},
 	[151953] = {    -- Reikling Totem, Skull (sic)
  		itemPrice   = 1000,
 		itemDate  = "2020-10-17",
-    },	
+	},
     -- Sept. 23rd
 	[131435] = { -- Reach Bowl, Nirncrux
  		itemPrice   = 5000,
@@ -238,34 +259,34 @@ FurC.LuxuryFurnisher[FURC_STONET] = {
  		itemPrice   = 25000,
 		itemDate  = "2020-10-17",
 	},
-	
+
 
 	[166007] = {		-- Ancient Nord Prayer Wheel Frame, Engraved
 		itemPrice   = 20000,
 		itemDate  = "2020-10-10",
-	},	
+	},
 	[151952] = {    -- Nedic Stand, Ritual
- 		itemPrice   = 4000,  
+ 		itemPrice   = 4000,
 		itemDate  = "2020-10-10",
 	},
 	[120844] = {        -- Craglorn Brazier, Ornate
-		itemPrice   = 15000,  
+		itemPrice   = 15000,
 		itemDate  = "2020-10-10",
-    },
+	},
     [139104] = {        -- Craglorn Relief, Serpent
-		itemPrice   = 20000,    
+		itemPrice   = 20000,
 		itemDate  = "2020-10-10",
-    },
+	},
     [120843] = {        -- Craglorn Skull, Carved
-		itemPrice   = 35000,    
+		itemPrice   = 35000,
 		itemDate  = "2020-10-10",
-    },
+	},
     [120845] = {        -- Craglorn Sword Sconce
-		itemPrice   = 5000,    
+		itemPrice   = 5000,
 		itemDate  = "2020-10-10",
-    },    
-    
-	
+	},
+
+
 	[166006] = {		-- Ancient Nord Prayer Wheel, Four-Faced
 		itemPrice   = 25000,
 		itemDate  = "2020-10-03",
@@ -274,7 +295,7 @@ FurC.LuxuryFurnisher[FURC_STONET] = {
 	[151951] = {    -- Nedic Orb, Ritual
  		itemPrice   = 20000,
 		itemDate  = "2020-10-03",
-	},	
+	},
 	[120842] = { -- Craglorn Chair, Serpent
  		itemPrice   = 2500,
 		itemDate  = "2020-10-03",
@@ -291,7 +312,7 @@ FurC.LuxuryFurnisher[FURC_STONET] = {
  		itemPrice   = 10000,
 		itemDate  = "2020-10-03",
 	},
-	
+
 	[166005] = {		-- Geode, Green Garnet
 		itemPrice   = 20000,
 		itemDate  = "2020-09-26",
@@ -300,12 +321,12 @@ FurC.LuxuryFurnisher[FURC_STONET] = {
 	[151950] = {    -- Khajiit Path Marker, Lion
  		itemPrice   = 75000,
 		itemDate  = "2020-09-26",
-	},	
+	},
 	[139102] = {        -- Blue Crystal Spire, Large
-	itemPrice   = 18000,
+		itemPrice   = 18000,
 		itemDate  = "2020-09-26",
-    },
-	
+	},
+
 	-- Sept. 2nd + 3rd
 	[120832] = { -- Blue Crystal Spire
  		itemPrice   = 12000,
@@ -319,8 +340,8 @@ FurC.LuxuryFurnisher[FURC_STONET] = {
  		itemPrice   = 20000,
 		itemDate  = "2020-09-26",
 	},
-	
-	
+
+
 	[166004] = {		-- Geode, Amethyst
 		itemPrice   = 20000,
 		itemDate  = "2020-09-19",
@@ -329,11 +350,11 @@ FurC.LuxuryFurnisher[FURC_STONET] = {
  		itemPrice   = 15000,
 		itemDate  = "2020-09-19",
 	},
-	
+
 	[139101] = {        -- Blue Crystal Cluster, Large
  		itemPrice   = 20000,
 		itemDate  = "2020-09-19",
-    },
+	},
 	[120831] = { -- Blue Crystal Cluster
  		itemPrice   = 10834,
 		itemDate  = "2020-09-19",
@@ -355,16 +376,16 @@ FurC.LuxuryFurnisher[FURC_STONET] = {
 	[166003] = {		-- Dark Elf Tomb Marker, Velas
 		itemPrice   = 5000,
 		itemDate  = "2020-10-12",
-	},	
-	
+	},
+
 	[151948] = {    -- Dark Elf Urn, Bronze Burial
  		itemPrice   = 10000,
 		itemDate  = "2020-10-12",
 	},
     [139100] = {        -- Dark Elf Ash Garden, Familial
-	itemPrice   = 10000,
+		itemPrice   = 10000,
 		itemDate  = "2020-10-12",
-    },    
+	},
 	[126579] = { -- Velothi Altar, Sacrificial
  		itemPrice   = 10834,
 		itemDate  = "2020-10-12",
@@ -373,17 +394,17 @@ FurC.LuxuryFurnisher[FURC_STONET] = {
  		itemPrice   = 3000,
 		itemDate  = "2020-10-12",
 	},
-	
+
 	[126577] = { -- Velothi Podium of Recitation
  		itemPrice   = 37500,
 		itemDate  = "2020-10-12",
 	},
-	
+
 	[126578] = { -- Velothi Burial Urn
  		itemPrice   = 10834,
 		itemDate  = "2020-10-12",
 	},
-    
+
 
 	[166002] = {    -- Dark Elf Tomb Marker, Sarano
 		itemPrice   = 5000,
@@ -423,7 +444,7 @@ FurC.LuxuryFurnisher[FURC_STONET] = {
 
 FurC.LuxuryFurnisher[FURC_SKYRIM] = {
 
-	
+
 	[166011] = {		-- Elsweyr Gate, Garden
 		itemPrice   = 25000,
 		itemDate  = "2020-09-18",
@@ -449,7 +470,7 @@ FurC.LuxuryFurnisher[FURC_SKYRIM] = {
  		itemPrice   = 4000,
 		itemDate  = "2020-09-18",
 	},
-	
+
 
 	[166012] = {		-- Cactus, Tall Lunar Fan
 		itemPrice   = 9000,
@@ -471,16 +492,16 @@ FurC.LuxuryFurnisher[FURC_SKYRIM] = {
  		itemPrice   = 2500,
 		itemDate  = "2020-08-22",
 	},
-	
+
 
 	[166001] = {		-- Plant, Murkmire Snakevine
 		itemPrice   = 7000,
 		itemDate  = "2020-08-15",
-	},	
+	},
 	[151946] = {    -- Flower, Coda
  		itemPrice   = 3000,
 		itemDate  = "2020-08-15",
-    },
+	},
 	-- August 5+6
 	[126611] = { -- Vvardenfell Anemone, Sprout
  		itemPrice   = 5417,
@@ -498,9 +519,9 @@ FurC.LuxuryFurnisher[FURC_SKYRIM] = {
  		itemPrice   = 5417,
 		itemDate  = "2020-08-15",
 	},
-	
 
-	
+
+
 	[166000] = {    -- Flower Patch, Hawkmoth Cabbage
 		itemPrice   = 4000,
 		itemDate  = "2020-08-08",
@@ -511,9 +532,9 @@ FurC.LuxuryFurnisher[FURC_SKYRIM] = {
 		itemDate  = "2020-08-08",
 	},
 	[139097] = { -- Spiral Skein Glowstalks, Sprouts
-	itemPrice = 8000, 
+		itemPrice = 8000,
 		itemDate  = "2020-08-08",
-	},    
+	},
 	--July 29 + 30
 	[126587] = {  -- Vvardenfell Glowstalk, Sprout
  		itemPrice   = 2500,
@@ -531,8 +552,8 @@ FurC.LuxuryFurnisher[FURC_SKYRIM] = {
  		itemPrice   = 5000,
 		itemDate  = "2020-08-08",
 	},
-	
-		
+
+
 	[165999] = {    -- Tapestry of a Failed Incarnate, The Warseeker
 		itemPrice   = 20000,
 		itemDate  = "2020-08-01",
@@ -540,12 +561,12 @@ FurC.LuxuryFurnisher[FURC_SKYRIM] = {
 	[151944] = {    -- Daedric Sconce, Coldharbour
  		itemPrice   = 10000,
 		itemDate  = "2020-08-01",
-	},	
+	},
 	[139096] = {  -- Daedric Urn, Sealed
  		itemPrice   = 1000,
 		itemDate  = "2020-08-01",
 	},
-    [139095] = {  -- Daedric Drinking Bowl, Ritual 
+    [139095] = {  -- Daedric Drinking Bowl, Ritual
  		itemPrice   = 650,
 		itemDate  = "2020-08-01",
 	},
@@ -561,14 +582,14 @@ FurC.LuxuryFurnisher[FURC_SKYRIM] = {
  		itemPrice   = 25000,
 		itemDate  = "2020-08-01",
 	},
-	
-	
-	
-	
+
+
+
+
 	[151915] = {    -- Daedric Key, Coldharbour
 		itemPrice   = 5000,
 		itemDate  = "2020-07-25",
-	},   
+	},
 	[139094] = { -- Daedric Altar, Periyte
 		itemPrice   = 40000,
 		itemDate  = "2020-07-25",
@@ -585,8 +606,8 @@ FurC.LuxuryFurnisher[FURC_SKYRIM] = {
 		itemPrice   = 25000,
 		itemDate  = "2020-07-25",
 	},
-	
-	
+
+
 	[159455] = {    -- Dwarven Spider Legs, Inoperative
 		itemPrice   = 3500,
 		itemDate  = "2020-07-18",
@@ -611,11 +632,11 @@ FurC.LuxuryFurnisher[FURC_SKYRIM] = {
  		itemPrice   = 3000,
 		itemDate  = "2020-07-18",
 	},
-	
+
 	[147648] = {    -- Dwarven Press Bed, Forge-Sized
  		itemPrice   = 22000,
 		itemDate  = "2020-07-11",
-	},  
+	},
 	[126560] = {  -- Dwarven fountain, forged
  		itemPrice   = 50000,
 		itemDate  = "2020-07-11",
@@ -628,15 +649,15 @@ FurC.LuxuryFurnisher[FURC_SKYRIM] = {
  		itemPrice   = 10000,
 		itemDate  = "2020-07-11",
 	},
-	[139092] = {  -- Dwarven Engine, Fused 
+	[139092] = {  -- Dwarven Engine, Fused
  		itemPrice   = 24000,
 		itemDate  = "2020-07-11",
 	},
 	[159454] = {  -- Dwarven Crucible, Heavy
  		itemPrice   = 4000,
 		itemDate  = "2020-07-11",
-	},   
-	
+	},
+
 	[121270] = {  -- Brotherhood Banner, Large
  		itemPrice   = 25000,
 		itemDate  = "2020-07-04",
@@ -657,13 +678,13 @@ FurC.LuxuryFurnisher[FURC_SKYRIM] = {
  		itemPrice   = 15000,
 		itemDate  = "2020-07-04",
 	},
-	
+
 	[159451] = {    -- Hourglass Banner, Akatosh
 		itemDate  = "2020-07-04",
  		itemPrice   = 12000,
 	},
-	
-	
+
+
 	[159450] = {    -- Hourglass Pedestal, Square
  		itemPrice   = 7500,
 		itemDate  = "2020-06-27",
@@ -672,7 +693,7 @@ FurC.LuxuryFurnisher[FURC_SKYRIM] = {
  		itemPrice   = 4000,
 		itemDate  = "2020-06-27",
 	},
-	
+
 	[134845] = {  -- Brotherhood  Tapestry, Small
  		itemPrice   = 5000,
 		itemDate  = "2020-06-27",
@@ -693,18 +714,18 @@ FurC.LuxuryFurnisher[FURC_SKYRIM] = {
 		itemDate  = "2020-06-27",
  		itemPrice   = 35000,
 	},
-    
-	
+
+
 	[159447] = {    -- Imperial Statue, Legion Champion
 		itemDate  = "2020-06-13",
  		itemPrice   = 20000,
 	},
-	
+
 	[145484] = {    -- Dark Elf Statue, Ordinator
  		itemPrice   = 20000,
 		itemDate  = "2020-06-13",
-    },
-	
+	},
+
 	[134842] = {  -- Ra Gada Statue, Blademaster
  		itemPrice   = 25000,
 		itemDate  = "2020-06-13",
@@ -725,26 +746,26 @@ FurC.LuxuryFurnisher[FURC_SKYRIM] = {
  		itemPrice   = 25000,
 		itemDate  = "2020-06-13",
 	},
-    
-	
-	
+
+
+
 	[156657] = {    -- Azure Plasm Cage, Hanging
  		itemPrice   = 100000,
 		itemDate  = "2020-06-06",
 	},
 	--die returning-items sind noch unter 2019-05-12:
-		--Column, Ossuary
-		--Necromancer’s Brazier, Cold-Flame
-		--Necromancer’s Spire, Compact
-		--Necromancer’s Spire, Huge
-	
-	
-	
+	--Column, Ossuary
+	--Necromancer’s Brazier, Cold-Flame
+	--Necromancer’s Spire, Compact
+	--Necromancer’s Spire, Huge
+
+
+
 	[156656] = {    -- Pedestal, Dark Stone
  		itemPrice   = 4000,
 		itemDate  = "2020-05-30",
 	},
-	
+
 	[134836] = {  -- Necromancer's Brazier, Flame
  		itemPrice   = 10000,
 		itemDate  = "2020-05-30",
@@ -761,17 +782,17 @@ FurC.LuxuryFurnisher[FURC_SKYRIM] = {
  		itemPrice   = 1000,
 		itemDate  = "2020-05-30",
 	},
-	
-	}
-	
-	
-	FurC.LuxuryFurnisher[FURC_HARROW] = {
-	
+
+}
+
+
+FurC.LuxuryFurnisher[FURC_HARROW] = {
+
 	[156667] = {    -- Gate, Spiked Iron
  		itemPrice   = 15000,
 		itemDate  = "2020-05-24",
 	},
-	
+
 	[145480] = {    -- Corpse, Burned Seated
  		itemPrice   = 2500,
 		itemDate  = "2020-05-24",
@@ -800,13 +821,13 @@ FurC.LuxuryFurnisher[FURC_SKYRIM] = {
  		itemPrice   = 100000,
 		itemDate  = "2020-05-24",
 	},
-	
-	
+
+
 	[156668] = {    -- Skeletal Remains, Slumped Over
  		itemPrice   = 10000,
 		itemDate  = "2020-05-16",
 	},
-	
+
 	[145479] = {    -- Iron Maiden, Occupied
  		itemPrice   = 100000,
 		itemDate  = "2020-05-16",
@@ -815,7 +836,7 @@ FurC.LuxuryFurnisher[FURC_SKYRIM] = {
  		itemPrice   = 75000,
 		itemDate  = "2020-05-16",
 	},
-	
+
 	[120826] = {  -- Iron Cross
  		itemPrice   = 10000,
 		itemDate  = "2020-05-16",
@@ -828,13 +849,13 @@ FurC.LuxuryFurnisher[FURC_SKYRIM] = {
  		itemPrice   = 20000,
 		itemDate  = "2020-05-16",
 	},
-	
-	
+
+
 	[156655] = {    -- Alinor Shrine, Phynaster
  		itemPrice   = 50000,
 		itemDate  = "2020-05-09",
 	},
-	
+
 	[145478] = {    -- Alinor Shrine, Y'ffre
  		itemPrice   = 50000,
 		itemDate  = "2020-05-09",
@@ -863,10 +884,10 @@ FurC.LuxuryFurnisher[FURC_SKYRIM] = {
  		itemPrice   = 20000,
 		itemDate  = "2020-05-09",
 	},
-	
-	
-	
-    
+
+
+
+
 	[145476] = {    -- Alinor Shrine, Trinimac
  		itemPrice   = 50000,
 		itemDate  = "2020-05-02",
@@ -875,12 +896,12 @@ FurC.LuxuryFurnisher[FURC_SKYRIM] = {
  		itemPrice   = 10000,
 		itemDate  = "2020-05-02",
 	},
-	
+
 	[156654] = {    -- Alinor Shrine, Magnus
  		itemPrice   = 50000,
 		itemDate  = "2020-05-02",
 	},
-	
+
 	[120823] = {  -- Sigil Stand
  		itemPrice   = 15000,
 		itemDate  = "2020-05-02",
@@ -905,14 +926,14 @@ FurC.LuxuryFurnisher[FURC_SKYRIM] = {
  		itemPrice   = 50000,
 		itemDate  = "2020-05-02",
 	},
-	
-	
-	
+
+
+
 	[156653] = {    -- Plant, Luminescent Valeflower
  		itemPrice   = 2500,
 		itemDate  = "2020-04-25",
-    },
-	
+	},
+
 	[145475] = {    -- Plant, Soulsplinter Weed
  		itemPrice   = 12500,
 		itemDate  = "2020-04-25",
@@ -933,14 +954,14 @@ FurC.LuxuryFurnisher[FURC_SKYRIM] = {
  		itemPrice   = 20000,
 		itemDate  = "2020-04-25",
 	},
-	
-	
-	
+
+
+
 	[156652] = {    -- Garlas Alpinia, Branching
  		itemPrice   = 2000,
 		itemDate  = "2020-04-18",
 	},
-	
+
 	[145474] = {    -- Plant, Flytrap
  		itemPrice   = 4000,
 		itemDate  = "2020-04-18",
@@ -965,8 +986,8 @@ FurC.LuxuryFurnisher[FURC_SKYRIM] = {
  		itemPrice   = 3000,
 		itemDate  = "2020-04-18",
 	},
-	
-	
+
+
 	[156651] = {    -- Anchor, Hanging
  		itemPrice   = 20000,
 		itemDate  = "2020-04-11",
@@ -987,7 +1008,7 @@ FurC.LuxuryFurnisher[FURC_SKYRIM] = {
  		itemPrice   = 2500,
 		itemDate  = "2020-04-11",
 	},
-	
+
 	[121269] = {  -- Ocean Antler Coral
  		itemPrice   = 7500,
 		itemDate  = "2019-03-31",
@@ -996,7 +1017,7 @@ FurC.LuxuryFurnisher[FURC_SKYRIM] = {
  		itemPrice   = 75000,
 		itemDate  = "2019-03-31",
 	},
-	
+
 	[145472] = {    -- Antler Coral, Crimson
  		itemPrice   = 50000,
 		itemDate  = "2020-04-04",
@@ -1025,13 +1046,13 @@ FurC.LuxuryFurnisher[FURC_SKYRIM] = {
  		itemPrice   = 3000,
 		itemDate  = "2020-04-04",
 	},
-	
-	
+
+
 	[156649] = {    -- Redguard Tent, Rounded Blue
  		itemPrice   = 100000,
 		itemDate  = "2020-03-28",
-	}, 
-	
+	},
+
 	[120807] = {    -- Hew's Bane Well
  		itemPrice   = 10000,
 		itemDate  = "2020-03-28",
@@ -1051,9 +1072,9 @@ FurC.LuxuryFurnisher[FURC_SKYRIM] = {
 	[134825] = {  -- Redguard Tent, Squared Silk
  		itemPrice   = 100000,
 		itemDate  = "2020-03-28",
-	}, 
-	
-	
+	},
+
+
 	[156648] = {    -- Ra Gada Funerary Statue, Miniature Ibis
  		itemPrice   = 15000,
 		itemDate  = "2020-03-21",
@@ -1073,16 +1094,16 @@ FurC.LuxuryFurnisher[FURC_SKYRIM] = {
 	[121267] = {  -- Hew’s Bane Merchant’s Basket
  		itemPrice   = 2500,
 		itemDate  = "2020-03-21",
-	},  
+	},
 	[134824] = {  -- Redguard Tent, Rounded Silk
  		itemPrice   = 100000,
 		itemDate  = "2020-03-21",
 	},
-	
+
 	[151864] = {    -- Alinor Maple, Diminutive
  		itemPrice   = 4000,
 		itemDate  = "2020-03-14",
-    },
+	},
 	[151865] = {    -- Alinor Maple, Purple
  		itemPrice   = 4000,
 		itemDate  = "2020-03-14",
@@ -1095,9 +1116,9 @@ FurC.LuxuryFurnisher[FURC_SKYRIM] = {
  		itemPrice   = 250000,
 		itemDate  = "2020-03-14",
 	},
-	
-	
-	
+
+
+
 	[151859] = {    -- Alinor Greenhouse, Summer
  		itemPrice   = 100000,
 		itemDate  = "2020-03-07",
@@ -1114,8 +1135,8 @@ FurC.LuxuryFurnisher[FURC_SKYRIM] = {
  		itemPrice   = 9000,
 		itemDate  = "2020-02-07",
 	},
-	
-	
+
+
 	[156665] = {    -- Ayleid Constellation Stele, The Serpent
  		itemPrice   = 20000,
 		itemDate  = "2020-02-29",
@@ -1144,17 +1165,17 @@ FurC.LuxuryFurnisher[FURC_SKYRIM] = {
  		itemPrice  = 20000,
 		itemDate  = "2020-02-29",
 	},
-	
-	}
-	
-	
-	FurC.LuxuryFurnisher[FURC_SCALES] = {
-	
+
+}
+
+
+FurC.LuxuryFurnisher[FURC_SCALES] = {
+
 	[156664] = {    -- Ayleid Pillar, Small Empty
-	itemPrice   = 5000,
+		itemPrice   = 5000,
 		itemDate  = "2020-02-22",
 	},
-	
+
 	[134468] = {    -- Ayleid Switch, Ancient
  		itemPrice   = 4000,
 		itemDate  = "2020-02-22",
@@ -1171,20 +1192,20 @@ FurC.LuxuryFurnisher[FURC_SKYRIM] = {
  		itemPrice  = 5000,
 		itemDate  = "2020-02-22",
 	},
-	
-	
-	
+
+
+
 	[156647] = {    -- Ra Gada Throne, Stone
-		itemDate  = "2020-20-15",   
-	itemPrice   = 50000,
+		itemDate  = "2020-20-15",
+		itemPrice   = 50000,
 	},
-	
-	
+
+
 	[145469] = {    -- Redguard Gazebo, Palatial Domed
  		itemPrice   = 75000,
-		itemDate  = "2020-20-15",    
+		itemDate  = "2020-20-15",
 	},
-	
+
 	[120802] = {  -- Shrine of Mara, Decorative
  		itemPrice   = 50000,
 		itemDate  = "2020-20-15",
@@ -1201,11 +1222,11 @@ FurC.LuxuryFurnisher[FURC_SKYRIM] = {
  		itemPrice   = 35000,
 		itemDate  = "2020-20-15",
 	},
-	
-	
-	
+
+
+
 	[156663] = {    -- Riekling Banner, Boar Pelt
-	itemPrice   = 4000,
+		itemPrice   = 4000,
 		itemDate  = "2020-02-01",
 	},
 	[134464] = {    -- Riekling Bonfire, Ceremonial
@@ -1224,13 +1245,13 @@ FurC.LuxuryFurnisher[FURC_SKYRIM] = {
  		itemPrice  = 450,
 		itemDate  = "2020-02-01",
 	},
-	
-	
+
+
 	[156662] = {    -- Riekling Banner, Wolf Pelt
-	itemPrice   = 4000,
+		itemPrice   = 4000,
 		itemDate  = "2020-01-25",
 	},
-	
+
 	[134460] = {    -- Riekling Lean-To, Boar Pelt
  		itemPrice   = 4000,
 		itemDate  = "2020-01-25",
@@ -1247,17 +1268,17 @@ FurC.LuxuryFurnisher[FURC_SKYRIM] = {
  		itemPrice   = 7500,
 		itemDate  = "2020-01-25",
 	},
-	
-	
+
+
 	[156661] = {    -- Orcish Seal, Battle-Axe
-	itemPrice   = 3000,
+		itemPrice   = 3000,
 		itemDate  = "2020-01-18",
 	},
 	[156660] = {    -- Orcish Seal, Malacath
  		itemPrice   = 3000,
 		itemDate  = "2020-01-18",
 	},
-	
+
 	[134450] = {  -- Seal of Clan Morkul, Stone
  		itemPrice   = 4000,
 		itemDate  = "2020-01-18",
@@ -1282,7 +1303,7 @@ FurC.LuxuryFurnisher[FURC_SKYRIM] = {
  		itemPrice   = 4000,
 		itemDate  = "2020-01-18",
 	},
-	
+
 	[156659] = {    -- Orcish Seal, Hammer
  		itemPrice   = 3000,
 		itemDate    = "2019-01-11",
@@ -1291,7 +1312,7 @@ FurC.LuxuryFurnisher[FURC_SKYRIM] = {
  		itemPrice   = 3000,
 		itemDate    = "2019-01-11",
 	},
-	
+
 	-- Dec. 30thst
 	[134442] = {  -- Seal of Clan Bagrakh, Stone
  		itemPrice   = 4000,
@@ -1317,7 +1338,7 @@ FurC.LuxuryFurnisher[FURC_SKYRIM] = {
  		itemPrice   = 4000,
 		itemDate    = "2019-01-11",
 	},
-	
+
 	-- Dec. 8th
 	[134432] = {  -- Banker's Sign, Small
  		itemPrice   = 3000,
@@ -1343,14 +1364,14 @@ FurC.LuxuryFurnisher[FURC_SKYRIM] = {
  		itemPrice   = 4000,
 		itemDate  = "2019-01-04",
 	},
-	
-	
-	
+
+
+
 	[153699] = {    -- Banner, Furnishings
  		itemPrice   = 25000,
 		itemDate  = "2019-12-28",
 	},
-	
+
 	[141763] = {    -- Banner, Outfit
  		itemPrice   = 12000,
 		itemDate  = "2019-12-28",
@@ -1372,7 +1393,7 @@ FurC.LuxuryFurnisher[FURC_SKYRIM] = {
  		itemPrice   = 12000,
 		itemDate  = "2019-12-28",
 	},
-	
+
 	-- Dec. 21st
 	[134439] = {  -- Clockwork Alchemy Flask
  		itemPrice   = 3000,
@@ -1394,8 +1415,8 @@ FurC.LuxuryFurnisher[FURC_SKYRIM] = {
  		itemPrice   = 10000,
 		itemDate  = "2019-12-21",
 	},
-	
-	
+
+
 	-- Dec. 14th
 	[153701] = {    -- Clockwork Changing Room, Curtained
  		itemPrice   = 20000,
@@ -1416,8 +1437,8 @@ FurC.LuxuryFurnisher[FURC_SKYRIM] = {
 	[134437] = {    -- Clockwork Spinning Wheel, Sturdy
  		itemPrice   = 12000,
 		itemDate  = "2019-12-14",
-    },
-	
+	},
+
 	-- Nov. 25th
 	[134424] = {  -- Clockwork Gear Display, Bell Jar
  		itemPrice   = 2500,
@@ -1443,20 +1464,20 @@ FurC.LuxuryFurnisher[FURC_SKYRIM] = {
  		itemPrice   = 35000,
 		itemDate  = "2019-12-08",
 	},
-	
-	
-	
+
+
+
 	[153697] = {    -- Clockwork Telescope, Stargazers
  		itemPrice   = 75000,
 		itemDate  = "2019-11-30",
 	},
-	
-	
+
+
 	[134419] = {    -- Clockwork Calibration Guide, The Mage
  		itemPrice   = 50000,
 		itemDate  = "2019-11-30",
 	},
-	
+
 	[134418] = {    -- Clockwork Telescope, Surveyor's
  		itemPrice   = 15000,
 		itemDate  = "2019-11-30",
@@ -1473,17 +1494,17 @@ FurC.LuxuryFurnisher[FURC_SKYRIM] = {
  		itemPrice   = 50000,
 		itemDate  = "2019-11-30",
 	},
-	
+
 	[153696] = {    -- Taxidermy, Bird of Prey
  		itemPrice   = 2500,
 		itemDate  = "2019-11-23",
 	},
-	
+
 	[141762] = {        -- Animal Trap, Welded Open
  		itemPrice   = 2500,
 		itemDate  = "2019-11-23",
 	},
-	
+
 	-- Nov. 11th
 	[118285] = {  -- Carcass, Fresh Pheasant
  		itemPrice = 7500,
@@ -1501,13 +1522,13 @@ FurC.LuxuryFurnisher[FURC_SKYRIM] = {
  		itemPrice = 25000,
 		itemDate  = "2019-11-23",
 	},
-	
-	
+
+
 	[153695] = {    -- Titan Skull, Colossal
  		itemPrice   = 4000,
 		itemDate    = "2019-11-16",
-    },
-	
+	},
+
 	[118294] = {        -- Echatere Horns, Wall Mount
  		itemPrice   = 15000,
 		itemDate    = "2019-11-16",
@@ -1528,28 +1549,28 @@ FurC.LuxuryFurnisher[FURC_SKYRIM] = {
  		itemPrice = 20000,
 		itemDate  = "2019-11-16",
 	},
-	
-	
-	
+
+
+
 	[153692] = {    -- Orsinium Well, Covered
 		itemDate  = "2020-12-06",
  		itemPrice   = 20000,
 	},
-	
-	
-	
-   
+
+
+
+
     [145471] = {        -- Redguard Raincatcher, Golden
-      itemPrice   = 35000,     
-    },
-	
-	
-	}
-	FurC.LuxuryFurnisher[FURC_KITTY] = {
-	
-	
-	
-	
+		itemPrice   = 35000,
+	},
+
+
+}
+FurC.LuxuryFurnisher[FURC_KITTY] = {
+
+
+
+
 	[134844] = {  -- Ra Gada Statue, Forward Scout
  		itemPrice   = 25000,
 		itemDate  = "2019-05-26",
@@ -1569,33 +1590,33 @@ FurC.LuxuryFurnisher[FURC_SKYRIM] = {
 	[120813] = {  -- Statue, Truth
  		itemPrice   = 25000,
 		itemDate  = "2019-05-26",
-	},    
+	},
 	[145485] = {    -- Dark Elf Statue, Knight
  		itemPrice   = 20000,
 		itemDate  = "2019-05-26",
 	},
-	
-	
-	
-	
-	
+
+
+
+
+
 	[145487] = {    -- Banner, Order of the Hour
  		itemPrice   = 12000,
 		itemDate  = "2019-06-09",
 	},
-	
-	
-	
-	}
-	FurC.LuxuryFurnisher[FURC_WOTL] = {
-	
-	
-	
+
+
+
+}
+FurC.LuxuryFurnisher[FURC_WOTL] = {
+
+
+
 	[145483] = {    -- Column, Ossuary
  		itemPrice   = 20000,
 		itemDate  = "2019-05-12",
 	},
-	
+
 	[134839] = {  -- Necromancer's Brazier, Cold Flame
  		itemPrice   = 10000,
 		itemDate  = "2019-05-12",
@@ -1608,13 +1629,13 @@ FurC.LuxuryFurnisher[FURC_SKYRIM] = {
  		itemPrice   = 100000,
 		itemDate  = "2019-05-12",
 	},
-	
-	
-	
-	}
-	
-	
-	FurC.LuxuryFurnisher[FURC_SLAVES] = {
+
+
+
+}
+
+
+FurC.LuxuryFurnisher[FURC_SLAVES] = {
 	[145470] = {    -- Redguard Vase, Golden
  		itemPrice   = 5000,
 		itemDate  = "2019-02-23",
@@ -1630,17 +1651,17 @@ FurC.LuxuryFurnisher[FURC_SKYRIM] = {
 	[121267] = {  -- Hew’s Bane Merchant’s Basket
  		itemPrice   = 2500,
 		itemDate  = "2019-02-23",
-	},  
+	},
 	[134824] = {  -- Redguard Tent, Rounded Silk
  		itemPrice   = 100000,
 		itemDate  = "2019-02-23",
 	},
-	
+
 	[145469] = {    -- Redguard Gazebo, Palatial Domed
  		itemPrice   = 75000,
-		itemDate  = "2020-20-15",    
+		itemDate  = "2020-20-15",
 	},
-	
+
 	[120802] = {  -- Shrine of Mara, Decorative
  		itemPrice   = 50000,
 		itemDate  = "2020-20-15",
@@ -1657,8 +1678,8 @@ FurC.LuxuryFurnisher[FURC_SKYRIM] = {
  		itemPrice   = 35000,
 		itemDate  = "2020-20-15",
 	},
-	
-	
+
+
 	[145468] = {    -- Wedding Lantern, Hanging
  		itemPrice   = 5000,
 		itemDate  = "2019-02-09",
@@ -1683,8 +1704,8 @@ FurC.LuxuryFurnisher[FURC_SKYRIM] = {
  		itemPrice   = 10000,
 		itemDate  = "2019-02-09",
 	},
-	
-	
+
+
 	[134468] = {    -- Ayleid Switch, Ancient
  		itemPrice   = 4000,
 		itemDate  = "2020-02-22",
@@ -1701,8 +1722,8 @@ FurC.LuxuryFurnisher[FURC_SKYRIM] = {
  		itemPrice  = 5000,
 		itemDate  = "2020-02-22",
 	},
-	
-	
+
+
 	[134460] = {    -- Riekling Lean-To, Boar Pelt
  		itemPrice   = 4000,
 		itemDate  = "2020-01-25",
@@ -1719,12 +1740,12 @@ FurC.LuxuryFurnisher[FURC_SKYRIM] = {
  		itemPrice   = 7500,
 		itemDate  = "2020-01-25",
 	},
-	
+
 	[134453] = {  -- Ancient Orcish Counterweight
  		itemPrice   = 20000,
 		itemDate  = "2020-01-18",
 	},
-		
+
 	[134446] = {  -- Ancient Orcish Sarcophagus Lid
  		itemPrice   = 10000,
 		itemDate  = "2018-12-29",
@@ -1733,7 +1754,7 @@ FurC.LuxuryFurnisher[FURC_SKYRIM] = {
  		itemPrice   = 14000,
 		itemDate  = "2018-12-29",
 	},
-	
+
 	-- Dec. 23rd
 	[134439] = {  -- Clockwork Alchemy Flask
  		itemPrice   = 3000,
@@ -1751,12 +1772,12 @@ FurC.LuxuryFurnisher[FURC_SKYRIM] = {
  		itemPrice   = 10000,
 		itemDate  = "2018-12-22",
 	},
-	
-	
+
+
 	[141761] = {        -- Reach Sapling, Contorted Briarheart
 		itemDate  = "2020-10-07",
 		itemPrice   = 35000,
-    },
+	},
 	[132156] = {        -- Briarheart Tree, Replica
 		itemDate  = "2020-10-07",
 		itemPrice   = 100000,
@@ -1778,6 +1799,5 @@ FurC.LuxuryFurnisher[FURC_SKYRIM] = {
  		itemPrice   = 5000,
 		itemDate  = "2019-10-19",
 	},
-	
-	}
-		
+
+}
