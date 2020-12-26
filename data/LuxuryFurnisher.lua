@@ -2,6 +2,44 @@ FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
 
 FurC.LuxuryFurnisher[FURC_MARKAT] = {
+	
+	
+	-- ====================================================================
+
+	[171411] = {		-- Clockwork Lens Assembly, Frozen
+		itemPrice   = 7000,
+		itemDate  = "2020-12-26",
+	},
+	
+	[153697] = {    -- Clockwork Telescope, Stargazers
+ 		itemPrice   = 75000,
+		itemDate  = "2020-12-26",
+	},
+
+	[134419] = {    -- Clockwork Calibration Guide, The Mage
+ 		itemPrice   = 50000,
+		itemDate  = "2020-12-26",
+	},
+
+	[134418] = {    -- Clockwork Telescope, Surveyor's
+ 		itemPrice   = 15000,
+		itemDate  = "2020-12-26",
+	},
+	[134422] = {    -- Clockwork Sextant, Surveyor's
+ 		itemPrice   = 75000,
+		itemDate  = "2020-12-26",
+	},
+	[134421] = {    -- Clockwork Calibration Guide, The Warrior
+ 		itemPrice   = 50000,
+		itemDate  = "2020-12-26",
+	},
+	[134420] = {    -- Clockwork Calibration Guide, The Thief
+ 		itemPrice   = 50000,
+		itemDate  = "2020-12-26",
+	},
+	
+	-- ====================================================================
+
 
 	[167352] = {		-- Pelt, Fox
 		itemPrice   = 2500,
@@ -1494,36 +1532,6 @@ FurC.LuxuryFurnisher[FURC_SCALES] = {
 	[153698] = {    -- Clockwork Orrery, Simple
  		itemPrice   = 35000,
 		itemDate  = "2019-12-08",
-	},
-
-
-
-	[153697] = {    -- Clockwork Telescope, Stargazers
- 		itemPrice   = 75000,
-		itemDate  = "2019-11-30",
-	},
-
-
-	[134419] = {    -- Clockwork Calibration Guide, The Mage
- 		itemPrice   = 50000,
-		itemDate  = "2019-11-30",
-	},
-
-	[134418] = {    -- Clockwork Telescope, Surveyor's
- 		itemPrice   = 15000,
-		itemDate  = "2019-11-30",
-	},
-	[134422] = {    -- Clockwork Sextant, Surveyor's
- 		itemPrice   = 75000,
-		itemDate  = "2019-11-30",
-	},
-	[134421] = {    -- Clockwork Calibration Guide, The Warrior
- 		itemPrice   = 50000,
-		itemDate  = "2019-11-30",
-	},
-	[134420] = {    -- Clockwork Calibration Guide, The Thief
- 		itemPrice   = 50000,
-		itemDate  = "2019-11-30",
 	},
 
 
