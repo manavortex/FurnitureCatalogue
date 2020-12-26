@@ -28,7 +28,8 @@ local in_skyrim             = " in Western Skyrim"
 local fishing_elsewhere     = GetString(SI_FURC_CANBEFISHED)  .. elsewhere
 local drop_elsewhere        = GetString(SI_FURC_DROP)         .. elsewhere
 local stealable_elsewhere   = GetString(SI_FURC_CANBESTOLEN)  .. elsewhere
-local chests_skyrim         = GetString(SI_FURC_CHESTS)       .. in_skyrim
+local chests_string			= GetString(SI_FURC_CHESTS)
+local chests_skyrim         = chests_string       .. in_skyrim
 local scrying               = GetString(SI_FURC_CANBESCRYED)
 
 local rumourSource          = GetString(SI_FURC_RUMOUR_SOURCE_ITEM) -- has been datamined, but no clue where to get it
@@ -1035,7 +1036,6 @@ FurC.MiscItemSources[FURC_SKYRIM]  = {
     [165831] = rumourSource, -- Catnap Painting, Gold
     [165832] = rumourSource, -- Elsweyr Landscape Painting, Gold
     [165833] = rumourSource, -- Elsweyr Dome Architecture Painting, Gold
-    [165834] = rumourSource, -- A Simple Five-Claw Life Painting, Gold
     [165835] = rumourSource, -- Painting of Khajiiti Arch, Gold", 
     [165854] = rumourSource, -- Nisswo's Soul Tender
     [156644] = rumourSource, -- Books, Towering Pile
@@ -1259,6 +1259,8 @@ FurC.MiscItemSources[FURC_KITTY]  = {
     [153563]    = elsweyr_event ,    -- Target Bone Goliath, Reanimated
     [145317]    = "Witches' Festival, Plunder Skull",       -- Gravestone, Broken
     [153751]    = "In Cyrodiil for Volundrung Vanquisher or Volendrung Wielder",       -- Volendrung Replica TODO set up properly
+	[165834] 	= chests_string .. elsewhere,		   -- A Simple Five-Claw Life Painting, Gold
+
 
   },
   

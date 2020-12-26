@@ -405,15 +405,15 @@ local function scanFromFiles(shouldScanCharacter)
 						recipeArray.version = versionNumber
 						
 						-- make sure that we don't set rumour source from data file. 
-						if (not recipeArray.origin or origin ~= FURC_RUMOUR) then
+						if (not recipeArray.origin or origin ~= FURC_RUMOUR or recipeArray.origin == FURC_RUMOUR) then
 							recipeArray.origin       = origin
 						end -- 3.5: moved FURC_RUMOUR to beginning of table so it'll get overwritten
 						
 						addDatabaseEntry(itemId, recipeArray)
-						else
+					else
 						if orign == FURC_RUMOUR then 
 							p("invalid rumour item: %s", itemId)
-							else
+						else
 							p("scanMiscItemFile: Error when scanning item ID %s (origin %s)", itemId, origin)
 						end
 					end
