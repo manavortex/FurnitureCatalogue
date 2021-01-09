@@ -143,13 +143,6 @@ function FurC.CreateSettings(savedVars, defaults)
       getFunc = function() return FurC.GetTinyUi() end,
       setFunc = function(value) FurC.SetTinyUi(value) end
     },
-    { -- checkbox: start silently?
-      type   = "checkbox",
-      name   = GetString(SI_FURC_STRING_MENU_STARTSILENT),
-      tooltip = GetString(SI_FURC_STRING_MENU_STARTSILENT_TT),
-      getFunc = function() return FurC.GetStartupSilently() end,
-      setFunc = function(value) FurC.SetStartupSilently(value) end
-    },
     { -- checkbox: show Icon on left of items?
       type   = "checkbox",
       name   = GetString(SI_FURC_STRING_MENU_SHOWICONONLEFT),

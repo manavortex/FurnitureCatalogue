@@ -1,7 +1,7 @@
 FurnitureCatalogue                = {}
 FurnitureCatalogue.name           = "FurnitureCatalogue"
 FurnitureCatalogue.author         = "manavortex"
-FurnitureCatalogue.version        = 4.14111
+FurnitureCatalogue.version        = 4.141112
 FurnitureCatalogue.CharacterName  = nil
 FurnitureCatalogue.settings       = {}
 
@@ -62,7 +62,6 @@ local defaults             = {
 	hideRumourEntry      = false,
 	hideCrownStoreEntry  = false,
 	wipeDatabase         = false,
-	startupSilently      = true,
 	
 	hideUiButtons = {
 		FURC_RUMOUR = false,

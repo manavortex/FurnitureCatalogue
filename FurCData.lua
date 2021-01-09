@@ -19,11 +19,6 @@ local function getCurrentChar()
 	return currentChar
 end
 
-local function startupMessage(text)
-	if FurC.GetStartupSilently() then return end
-	d(text)
-end
-
 -- GetItemLinkItemId doesn't work the way I need it
 local function getItemId(itemLink)
 	if nil == itemLink or STRING_EMPTY == itemLink then return end
@@ -488,7 +483,6 @@ local function scanFromFiles(shouldScanCharacter)
 	:Then(scanCharacterOrMaybeNot)
 	:Then(scanRumourRecipes)
 	:Then(FurC.UpdateGui)
-	startupMessage(GetString(SI_FURC_VERBOSE_DB_UPTODATE))
 	
 end
 FurC.ScanFromFiles = scanFromFiles

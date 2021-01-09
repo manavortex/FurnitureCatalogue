@@ -464,13 +464,6 @@ function FurC.SetHideKnownInventoryIcons(value)
   FurC.settings["hideKnownInventoryIcons"] = value
 end
 
-function FurC.GetStartupSilently()
-  return FurC.settings["startupSilently"]
-end
-function FurC.SetStartupSilently(value)
-  FurC.settings["startupSilently"] = value;
-end
-
 function FurC.GetTinyUi()
   return FurC.settings["useTinyUi"]
 end
@@ -479,7 +472,6 @@ function FurC.SetTinyUi(value)
   FurC.SlotTemplate       = "FurC_SlotTemplate" .. ((value and "Tiny") or "")
   FurC.ApplyLineTemplate()
 end
-
 
 function FurC.GetListOffset()
   return FurC.ListOffset or 0
