@@ -23,7 +23,9 @@ local itemPackOasis         = zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK
 local itemPackVampire       = zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "Vampire")
 
 local elsewhere             = " in Elsweyr" 
-local in_skyrim             = " in Western Skyrim" 
+local in_skyrim             = " in Western Skyrim"
+
+local blackr_grcaverns		= "Blackrock Caverns"
 
 local fishing_elsewhere     = GetString(SI_FURC_CANBEFISHED)  .. elsewhere
 local drop_elsewhere        = GetString(SI_FURC_DROP)         .. elsewhere
@@ -56,8 +58,6 @@ local function getHouseString(houseId1, houseId2)
   if houseId2 then houseName = houseName .. ", " .. GetCollectibleName(houseId2) end
   return zo_strformat(housesource, houseName)
 end
-
-
 
 FurC.MiscItemSources[FURC_MARKAT]  = {
 	[FURC_DROP] = {	

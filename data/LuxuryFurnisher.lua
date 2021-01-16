@@ -2,7 +2,35 @@ FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
 
 FurC.LuxuryFurnisher[FURC_MARKAT] = {
+
+	-- ====================================================================
 	
+	[171416] = {		-- Telvanni Specimen Jar, Glass Dome
+		itemPrice   = 1000,
+		itemDate  = "2021-01-16",
+	},	
+	-- Dec. 21st
+	[134439] = {  -- Clockwork Alchemy Flask
+ 		itemPrice   = 3000,
+		itemDate  = "2021-01-16",
+	},
+	[134438] = {  -- Clockwork Alchemy Rack, Tubes
+ 		itemPrice   = 3000,
+		itemDate  = "2021-01-16",
+	},
+	[134440] = {  -- Clockwork Alchemy Titration Stand
+ 		itemPrice   = 3000,
+		itemDate  = "2021-01-16",
+	},
+	[134441] = {    -- Animo Core, Full
+ 		itemPrice   = 10000,
+		itemDate  = "2021-01-16",
+	},
+	[153702] = {    -- Clockwork Pot, Crystals
+ 		itemPrice   = 10000,
+		itemDate  = "2021-01-16",
+	},
+
 	-- ====================================================================
 	[171415] = {		-- Changing Room, Curtained
 		itemPrice   = 3000,
@@ -1573,30 +1601,7 @@ FurC.LuxuryFurnisher[FURC_SCALES] = {
 		itemDate  = "2019-12-28",
 	},
 
-	-- ====================================================================
 	
-	-- Dec. 21st
-	[134439] = {  -- Clockwork Alchemy Flask
- 		itemPrice   = 3000,
-		itemDate  = "2019-12-21",
-	},
-	[134438] = {  -- Clockwork Alchemy Rack, Tubes
- 		itemPrice   = 3000,
-		itemDate  = "2019-12-21",
-	},
-	[134440] = {  -- Clockwork Alchemy Titration Stand
- 		itemPrice   = 3000,
-		itemDate  = "2019-12-21",
-	},
-	[134441] = {    -- Animo Core, Full
- 		itemPrice   = 10000,
-		itemDate  = "2019-12-21",
-	},
-	[153702] = {    -- Clockwork Pot, Crystals
- 		itemPrice   = 10000,
-		itemDate  = "2019-12-21",
-	},
-
 	-- ====================================================================
 	
 	[153695] = {    -- Titan Skull, Colossal
@@ -1815,25 +1820,6 @@ FurC.LuxuryFurnisher[FURC_SLAVES] = {
 	[134445] = {  -- Ancient Orcish Sarcophagus, Peaked
  		itemPrice   = 14000,
 		itemDate  = "2020-01-18",
-	},
-
-	-- ====================================================================
-	
-	[134439] = {  -- Clockwork Alchemy Flask
- 		itemPrice   = 3000,
-		itemDate  = "2018-12-22",
-	},
-	[134438] = {  -- Clockwork Alchemy Rack, Tubes
- 		itemPrice   = 3000,
-		itemDate  = "2018-12-22",
-	},
-	[134440] = {  -- Clockwork Alchemy Titration Stand
- 		itemPrice   = 3000,
-		itemDate  = "2018-12-22",
-	},
-	[134441] = {    -- Animo Core, Full
- 		itemPrice   = 10000,
-		itemDate  = "2018-12-22",
 	},
 
 
