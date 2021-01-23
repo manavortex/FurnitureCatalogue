@@ -3,6 +3,39 @@ FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
 FurC.LuxuryFurnisher[FURC_MARKAT] = {
 
+-- ====================================================================
+	[171413] = {		-- Mages Guild Sign, Large
+		itemPrice   = 12000,
+		itemDate  = "2021-01-23",
+	},
+	
+	[153699] = {    -- Banner, Furnishings
+ 		itemPrice   = 25000,
+		itemDate  = "2021-01-23",
+	},
+
+	[141763] = {    -- Banner, Outfit
+ 		itemPrice   = 12000,
+		itemDate  = "2021-01-23",
+	},
+	[141764] = {    -- Banner, Outfit Small
+ 		itemPrice   = 5000,
+		itemDate  = "2021-01-23",
+	},
+	-- Dec. 1st
+	[134428] = {  -- Banker's Sign, Large
+ 		itemPrice   = 12000,
+		itemDate  = "2021-01-23",
+	},
+	[134429] = {  -- Merchant's Sign, Large
+ 		itemPrice   = 12000,
+		itemDate  = "2021-01-23",
+	},
+	[134430] = {  -- Stablemaster's Sign, Large
+ 		itemPrice   = 12000,
+		itemDate  = "2021-01-23",
+	},
+	
 	-- ====================================================================
 	
 	[171416] = {		-- Telvanni Specimen Jar, Glass Dome
@@ -1571,36 +1604,6 @@ FurC.LuxuryFurnisher[FURC_SCALES] = {
  		itemPrice   = 4000,
 		itemDate  = "2019-01-04",
 	},
-
-	-- ====================================================================
-	
-	[153699] = {    -- Banner, Furnishings
- 		itemPrice   = 25000,
-		itemDate  = "2019-12-28",
-	},
-
-	[141763] = {    -- Banner, Outfit
- 		itemPrice   = 12000,
-		itemDate  = "2019-12-28",
-	},
-	[141764] = {    -- Banner, Outfit Small
- 		itemPrice   = 5000,
-		itemDate  = "2019-12-28",
-	},
-	-- Dec. 1st
-	[134428] = {  -- Banker's Sign, Large
- 		itemPrice   = 12000,
-		itemDate  = "2019-12-28",
-	},
-	[134429] = {  -- Merchant's Sign, Large
- 		itemPrice   = 12000,
-		itemDate  = "2019-12-28",
-	},
-	[134430] = {  -- Stablemaster's Sign, Large
- 		itemPrice   = 12000,
-		itemDate  = "2019-12-28",
-	},
-
 	
 	-- ====================================================================
 	

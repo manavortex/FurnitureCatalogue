@@ -22,7 +22,7 @@ local itemPackMoonBishop    = zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK
 local itemPackOasis         = zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "Moons-Blessed Oasis")
 local itemPackVampire       = zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "Vampire")
 
-local elsewhere             = " in Elsweyr" 
+local elsewhere             = " in S. Elsweyr" 
 local in_skyrim             = " in Western Skyrim"
 
 local blackr_grcaverns		= "Blackrock Caverns"
@@ -1144,11 +1144,11 @@ FurC.MiscItemSources[FURC_SKYRIM]  = {
     [165858] = scrying .. " in Alikr",            -- Coil of Satakal
     [161215] = scrying .. " in Hew's Bane",       -- Yokudan Skystone Scabbard
     [161214] = scrying .. " in Craglorn",         -- Spellscar Shard
-    [166014] = scrying .. " in S. Elsweyr",       -- Shrine of Boethra
+    [166014] = scrying .. elsewhere,       -- Shrine of Boethra
     [163710] = scrying .. " in Alik'r Desert",    -- Antique Map of Alik'r Desert
     [165996] = scrying .. " in Gold Coast",       -- Antique Map of Gold Coast
     [163727] = scrying .. " in Northern Elsweyr", -- Antique Map of Northern Elsweyr
-    [163728] = scrying .. " in Southern Elsweyr", -- Antique Map of Southern Elsweyr
+    [163728] = scrying .. elsewhere, -- Antique Map of Southern Elsweyr
     [163717] = scrying .. " in Auridon",          -- Antique Map of Auridon
     [163711] = scrying .. " in Bangkorai",        -- Antique Map of Bangkorai
     [163713] = scrying .. " in Deshaan",          -- Antique Map of Deshaan
