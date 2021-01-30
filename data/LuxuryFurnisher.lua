@@ -4,6 +4,38 @@ FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 FurC.LuxuryFurnisher[FURC_MARKAT] = {
 
 -- ====================================================================
+	[171414] = {		-- Fighters Guild Sign, Large
+		itemPrice   = 12000,
+		itemDate  = "2020-01-30",
+	},
+
+	[134432] = {  -- Banker's Sign, Small
+ 		itemPrice   = 3000,
+		itemDate  = "2020-01-30",
+	},
+	[134431] = {  -- Merchant's Sign, Small
+ 		itemPrice   = 3000,
+		itemDate  = "2020-01-30",
+	},
+	[134433] = {  -- Stablemaster's Sign, Small
+ 		itemPrice   = 3000,
+		itemDate  = "2020-01-30",
+	},
+	[141765] = {    -- Banner, Transmute
+ 		itemPrice   = 12000,
+		itemDate  = "2020-01-30",
+	},
+	[141766] = {    -- Banner, Transmute Small
+ 		itemPrice   = 5000,
+		itemDate  = "2020-01-30",
+	},
+	[153700] = {    -- Banner, Packs
+ 		itemPrice   = 4000,
+		itemDate  = "2020-01-30",
+	},
+	
+	
+-- ====================================================================
 	[171413] = {		-- Mages Guild Sign, Large
 		itemPrice   = 12000,
 		itemDate  = "2021-01-23",
@@ -1577,35 +1609,7 @@ FurC.LuxuryFurnisher[FURC_SCALES] = {
 		itemDate    = "2019-01-11",
 	},
 
-	-- ====================================================================
-	
-	-- Dec. 8th
-	[134432] = {  -- Banker's Sign, Small
- 		itemPrice   = 3000,
-		itemDate  = "2019-01-04",
-	},
-	[134431] = {  -- Merchant's Sign, Small
- 		itemPrice   = 3000,
-		itemDate  = "2019-01-04",
-	},
-	[134433] = {  -- Stablemaster's Sign, Small
- 		itemPrice   = 3000,
-		itemDate  = "2019-01-04",
-	},
-	[141765] = {    -- Banner, Transmute
- 		itemPrice   = 12000,
-		itemDate  = "2019-01-04",
-	},
-	[141766] = {    -- Banner, Transmute Small
- 		itemPrice   = 5000,
-		itemDate  = "2019-01-04",
-	},
-	[153700] = {    -- Banner, Packs
- 		itemPrice   = 4000,
-		itemDate  = "2019-01-04",
-	},
-	
-	-- ====================================================================
+		-- ====================================================================
 	
 	[153695] = {    -- Titan Skull, Colossal
  		itemPrice   = 4000,

@@ -91,31 +91,6 @@ FurC.LuxuryFurnisher[FURC_SLAVES] = {
 		itemDate  = "2018-12-15",
 	},
 
-
-	-- Dec. 8th
-	[134432] = {  -- Banker's Sign, Small
-		itemPrice   = 3000,
-		itemDate  = "2018-12-08",
-	},
-	[134431] = {  -- Merchant's Sign, Small
-		itemPrice   = 3000,
-		itemDate  = "2018-12-08",
-	},
-	[134433] = {  -- Stablemaster's Sign, Small
-		itemPrice   = 3000,
-		itemDate  = "2018-12-08",
-	},
-	[141765] = {    -- Banner, Transmute
-		itemPrice   = 12000,
-		itemDate  = "2018-12-08",
-	},
-	[141766] = {    -- Banner, Transmute Small
-		itemPrice   = 5000,
-		itemDate  = "2018-12-08",
-	},
-
-
-
 	-- Nov. 25th
 	[134424] = {  -- Clockwork Gear Display, Bell Jar
 		itemPrice   = 2500,

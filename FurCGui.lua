@@ -183,14 +183,22 @@ function FurC.SetLineHeight(applyTemplate)
   local nameFont = string.format("$(%s)|$(KB_%s)|soft-shadow-thin", (FurC.GetTinyUi() and "MEDIUM_FONT") or "BOLD_FONT", size)
   local matsFont = string.format("$(MEDIUM_FONT)|$(KB_%s)|soft-shadow-thin", size)
 
+  local useTinyUi = FurC.GetTinyUi()
+  local lineHeight = size + (useTinyUi and 8 or 20)
+  
+  
   for i = 1, #FurCGui_ListHolder.lines do
     curLine = FurCGui_ListHolder.lines[i]
     if applyTemplate then
       WINDOW_MANAGER:ApplyTemplateToControl(curLine, FurC.SlotTemplate)
     end
+	
     curLine:GetNamedChild("Name"):SetFont(nameFont)
-    curLine:GetNamedChild("Mats"):SetFont(matsFont)
-    curLine:SetHeight( size + (FurC.GetTinyUi() and 8 or 20))
+    curLine:GetNamedChild("Mats"):SetFont(matsFont)	
+    curLine:SetHeight(lineHeight)
+	local btnHeight = (useTinyUi and 0 or lineHeight +3) 	
+	curLine:GetNamedChild("Button"):SetDimensions(btnHeight, btnHeight) 
+	
   end
   FurC.CalculateMaxLines()
 end
