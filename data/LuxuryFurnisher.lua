@@ -4,6 +4,44 @@ FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 FurC.LuxuryFurnisher[FURC_MARKAT] = {
 
 -- ====================================================================
+
+	[156646] = {		-- Ra Gada Statue, Seated Lion Ibis
+		itemPrice   = 25000,
+		itemDate  = "2020-02-06",
+	},
+	[171425] = {		-- Redguard Carpets, Rolled
+		itemPrice   = 4000,
+		itemDate  = "2020-02-06",
+	},
+
+	[145468] = {    -- Wedding Lantern, Hanging
+		itemPrice   = 5000,
+		itemDate  = "2020-02-06",
+		},
+	[117876] = {  -- Wedding Curtain, Wide
+		itemPrice   = 7500,
+		itemDate  = "2020-02-06",
+	},
+	[120798] = {  -- Wedding Blossoms, Blue
+		itemPrice   = 2500,
+		itemDate  = "2020-02-06",
+		},
+	[120800] = {  -- Wedding Curtain
+		itemPrice   = 7500,
+		itemDate  = "2020-02-06",
+	},
+	[120801] = {  -- Wedding Lantern
+		itemPrice   = 5000,
+		itemDate  = "2020-02-06",
+	},
+	[120797] = {  -- Wedding Flower Trellis
+		itemPrice   = 10000,
+		itemDate  = "2020-02-06",
+	},
+
+
+
+-- ====================================================================
 	[171414] = {		-- Fighters Guild Sign, Large
 		itemPrice   = 12000,
 		itemDate  = "2020-01-30",
@@ -1752,27 +1790,27 @@ FurC.LuxuryFurnisher[FURC_SLAVES] = {
 	
 	[145468] = {    -- Wedding Lantern, Hanging
  		itemPrice   = 5000,
-		itemDate  = "2019-02-09",
+		itemDate  = "2020-02-06",
 	},
 	[117876] = {  -- Wedding Curtain, Wide
  		itemPrice   = 7500,
-		itemDate  = "2019-02-09",
+		itemDate  = "2020-02-06",
 	},
 	[120798] = {  -- Wedding Blossoms, Blue
  		itemPrice   = 2500,
-		itemDate  = "2019-02-09",
+		itemDate  = "2020-02-06",
 	},
 	[120800] = {  -- Wedding Curtain
  		itemPrice   = 7500,
-		itemDate  = "2019-02-09",
+		itemDate  = "2020-02-06",
 	},
 	[120801] = {  -- Wedding Lantern
  		itemPrice   = 5000,
-		itemDate  = "2019-02-09",
+		itemDate  = "2020-02-06",
 	},
 	[120797] = {  -- Wedding Flower Trellis
  		itemPrice   = 10000,
-		itemDate  = "2019-02-09",
+		itemDate  = "2020-02-06",
 	},
 
 	-- ====================================================================
