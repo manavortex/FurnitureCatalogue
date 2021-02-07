@@ -18,10 +18,11 @@ local function sort(myTable)
   return sortTable(myTable, sortName, sortUp)
 end
 
-local headerHeight = FurCGui_Header:GetHeight()
+
 
 function FurC.CalculateMaxLines()
-  FurCGui_ListHolder:SetHeight(FurCGui:GetHeight() - headerHeight)
+	if (not FurCGui_Header) return
+  FurCGui_ListHolder:SetHeight(FurCGui:GetHeight() - FurCGui_Header:GetHeight())
   FurCGui_ListHolder.maxLines = math.floor((FurCGui_ListHolder:GetHeight()) / FurCGui_ListHolder.lines[1]:GetHeight() )
   return FurCGui_ListHolder.maxLines
 end
