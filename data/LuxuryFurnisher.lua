@@ -3,6 +3,39 @@ FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
 FurC.LuxuryFurnisher[FURC_MARKAT] = {
 
+
+	-- ====================================================================
+	
+	[156647] = {    -- Ra Gada Throne, Stone
+		itemDate  = "2021-02-13",
+		itemPrice   = 50000,
+	},
+
+	[145469] = {    -- Redguard Gazebo, Palatial Domed
+ 		itemPrice   = 75000,
+		itemDate  = "2021-02-13",
+	},
+
+	[120802] = {  -- Shrine of Mara, Decorative
+ 		itemPrice   = 50000,
+		itemDate  = "2021-02-13",
+	},
+	[120799] = {  -- Wedding Blossoms, Peach
+ 		itemPrice   = 2500,
+		itemDate  = "2021-02-13",
+	},
+	[120893] = {  -- Wedding Gazebo
+ 		itemPrice   = 50000,
+		itemDate  = "2021-02-13",
+	},
+	[117875] = {    -- Wedding Pergola, Bare
+ 		itemPrice   = 35000,
+		itemDate  = "2021-02-13",
+	},
+	[171426] = {		-- Redguard Brazier, Ritual
+		itemPrice   = 12000,
+		itemDate  = "2021-02-13",
+	},
 -- ====================================================================
 
 	[156646] = {		-- Ra Gada Statue, Seated Lion Ibis
@@ -1498,34 +1531,6 @@ FurC.LuxuryFurnisher[FURC_SCALES] = {
 		itemDate  = "2020-02-22",
 	},
 
-	-- ====================================================================
-	
-	[156647] = {    -- Ra Gada Throne, Stone
-		itemDate  = "2020-20-15",
-		itemPrice   = 50000,
-	},
-
-	[145469] = {    -- Redguard Gazebo, Palatial Domed
- 		itemPrice   = 75000,
-		itemDate  = "2020-20-15",
-	},
-
-	[120802] = {  -- Shrine of Mara, Decorative
- 		itemPrice   = 50000,
-		itemDate  = "2020-20-15",
-	},
-	[120799] = {  -- Wedding Blossoms, Peach
- 		itemPrice   = 2500,
-		itemDate  = "2020-20-15",
-	},
-	[120893] = {  -- Wedding Gazebo
- 		itemPrice   = 50000,
-		itemDate  = "2020-20-15",
-	},
-	[117875] = {    -- Wedding Pergola, Bare
- 		itemPrice   = 35000,
-		itemDate  = "2020-20-15",
-	},
 
 	-- ====================================================================
 	
@@ -1764,26 +1769,26 @@ FurC.LuxuryFurnisher[FURC_SLAVES] = {
 
 	[145469] = {    -- Redguard Gazebo, Palatial Domed
  		itemPrice   = 75000,
-		itemDate  = "2020-20-15",
+		itemDate  = "2021-02-13",
 	},
 
 	-- ====================================================================
 	
 	[120802] = {  -- Shrine of Mara, Decorative
  		itemPrice   = 50000,
-		itemDate  = "2020-20-15",
+		itemDate  = "2021-02-13",
 	},
 	[120799] = {  -- Wedding Blossoms, Peach
  		itemPrice   = 2500,
-		itemDate  = "2020-20-15",
+		itemDate  = "2021-02-13",
 	},
 	[120893] = {  -- Wedding Gazebo
  		itemPrice   = 50000,
-		itemDate  = "2020-20-15",
+		itemDate  = "2021-02-13",
 	},
 	[117875] = {    -- Wedding Pergola, Bare
  		itemPrice   = 35000,
-		itemDate  = "2020-20-15",
+		itemDate  = "2021-02-13",
 	},
 
 	-- ====================================================================
