@@ -2,7 +2,29 @@ FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
 
 FurC.LuxuryFurnisher[FURC_MARKAT] = {
+-- ====================================================================
 
+	[171419] = {		-- Riekling Shelter, Painted Megaliths
+		itemPrice   = 4000,
+		itemDate  = "2020-02-20",
+	},
+	
+	[134460] = {    -- Riekling Lean-To, Boar Pelt
+ 		itemPrice   = 4000,
+		itemDate  = "2020-02-20",
+	},
+	[134457] = {  -- Riekling Bedding, Icy Straw
+ 		itemPrice   = 2500,
+		itemDate  = "2020-02-20",
+	},
+	[134458] = {  -- Riekling Pelt, Boar
+ 		itemPrice   = 4000,
+		itemDate  = "2020-02-20",
+	},
+	[134459] = {  -- Riekling Pit, Ash and Bone
+ 		itemPrice   = 7500,
+		itemDate  = "2020-02-20",
+	},
 
 	-- ====================================================================
 	
@@ -1837,25 +1859,7 @@ FurC.LuxuryFurnisher[FURC_SLAVES] = {
 		itemDate  = "2020-02-22",
 	},
 
-	-- ====================================================================
 	
-	[134460] = {    -- Riekling Lean-To, Boar Pelt
- 		itemPrice   = 4000,
-		itemDate  = "2020-01-25",
-	},
-	[134457] = {  -- Riekling Bedding, Icy Straw
- 		itemPrice   = 2500,
-		itemDate  = "2020-01-25",
-	},
-	[134458] = {  -- Riekling Pelt, Boar
- 		itemPrice   = 4000,
-		itemDate  = "2020-01-25",
-	},
-	[134459] = {  -- Riekling Pit, Ash and Bone
- 		itemPrice   = 7500,
-		itemDate  = "2020-01-25",
-	},
-
 	-- ====================================================================
 	
 	[134453] = {  -- Ancient Orcish Counterweight
