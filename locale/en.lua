@@ -220,6 +220,7 @@ FURC_AV_RAZ = "Razoufa",
   SI_FURC_FILTER_VERSION_SKYRIM =   "Greymoor",
   SI_FURC_FILTER_VERSION_STONET =   "Stonethorn",
   SI_FURC_FILTER_VERSION_MARKAT =   "Markath",
+  SI_FURC_FILTER_VERSION_FLAMES =   "Flames of Ambition",
   
 
   -- =============================== --
@@ -238,7 +239,7 @@ FURC_AV_RAZ = "Razoufa",
   SI_FURC_LUXURY_TT =           "Items that at some point were sold by Zanil Theran, Cicero's General Goods, Coldharbour",
   SI_FURC_OTHER_TT =            "Shows items that can be farmed/stolen/found",
         
-  SI_FURC_FILTER_VERSION_OFF_TT =       filterDisabled,   
+  SI_FURC_FILTER_VERSION_OFF_TT =       filterDisabled,
   SI_FURC_FILTER_VERSION_HS_TT =        "Items released in Homestead update", 
   SI_FURC_FILTER_VERSION_M_TT =         "YOU N\'WAH!", 
   SI_FURC_FILTER_VERSION_R_TT =         "Because all we needed were more Reachmen", 
@@ -254,7 +255,8 @@ FURC_AV_RAZ = "Razoufa",
   SI_FURC_FILTER_VERSION_HARROW_TT =    "Climate change is real",
   SI_FURC_FILTER_VERSION_SKYRIM_TT =    "They're selling Skyrim *again*!",
   SI_FURC_FILTER_VERSION_STONET_TT =    "It's not really stone",
-  SI_FURC_FILTER_VERSION_MARKAT_TT =		"With Dwemer Plumbing",
+  SI_FURC_FILTER_VERSION_MARKAT_TT =	"With Dwemer Plumbing",
+  SI_FURC_FILTER_VERSION_FLAMES_TT =	"Mildly flammable",
   
   SI_FURC_FILTER_CHAR_OFF =     "Character filter: off", 
   SI_FURC_FILTER_CHAR_OFF_TT =  filterDisabled, 

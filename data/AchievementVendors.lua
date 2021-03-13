@@ -3,6 +3,21 @@ FurC.AchievementVendors[FURC_STONET] = {
  
   ["the Undaunted Enclaves"] = {
     ["Undaunted Quartermaster"] = {
+		[171775] = {		--Fountain of the Fiery Drake
+			itemPrice   = 50000,
+			achievement = 2831,		-- Black Drake Villa Vanquisher 
+		},
+		[171776] = {		--Basalt Pillar, Glowing
+			itemPrice   = 12000,
+			achievement = 2841,		-- the Cauldron Vanquisher 
+		},
+    },
+  }
+}
+FurC.AchievementVendors[FURC_STONET] = {  
+ 
+  ["the Undaunted Enclaves"] = {
+    ["Undaunted Quartermaster"] = {
 		[167310] = {		--Castle Thorn Gargoyle
 			itemPrice   = 25000,
 			achievement = 2704,		-- Castle Thorn Vanquisher
