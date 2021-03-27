@@ -2,8 +2,73 @@ FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
 
 FurC.LuxuryFurnisher[FURC_MARKAT] = {
+
 	-- ====================================================================
 	
+	[171422] = {		-- Ayleid Constellation Stele, The Apprentice
+		itemPrice   = 20000,
+		itemDate  = "2021-03-27",
+	},
+	
+	[156665] = {    -- Ayleid Constellation Stele, The Serpent
+ 		itemPrice   = 20000,
+		itemDate  = "2021-03-27",
+	},
+	[141769] = {    -- Ayleid Constellation Stele, The Atronach
+ 		itemPrice   = 20000,
+		itemDate  = "2021-03-27",
+	},
+	[141767] = {    -- Ayleid Constellation Stele, The Lady
+ 		itemPrice   = 20000,
+		itemDate  = "2021-03-27",
+	},
+	[141768] = {    -- Ayleid Constellation Stele, The Lover
+ 		itemPrice   = 20000,
+		itemDate  = "2021-03-27",
+	},
+	[134469] = { -- Ayleid Constellation Stele, the Mage
+ 		itemPrice  = 20000,
+		itemDate  = "2021-03-27",
+	},
+	[134470] = { -- Ayleid Constellation Stele, Thief
+ 		itemPrice  = 20000,
+		itemDate  = "2021-03-27",
+	},
+	[134471] = { -- Ayleid Constellation Stele, Warrior
+ 		itemPrice  = 20000,
+		itemDate  = "2021-03-27",
+	},
+	
+	-- ====================================================================
+	
+	[171421] = {	-- Ayleid Pillar, Large Empty
+		itemPrice   = 14000,
+		itemDate  = "2021-03-20",
+	},
+
+	[156664] = {    -- Ayleid Pillar, Small Empty
+		itemPrice   = 5000,
+		itemDate  = "2021-03-20",
+	},
+
+	[134468] = {    -- Ayleid Switch, Ancient
+ 		itemPrice   = 4000,
+		itemDate  = "2021-03-20",
+	},
+	[134466] = { -- Ayleid Sconce, Empty
+ 		itemPrice  = 4000,
+		itemDate  = "2021-03-20",
+	},
+	[134467] = { -- Culanda Stone ,Glowing
+ 		itemPrice  = 5000,
+		itemDate  = "2021-03-20",
+	},
+	[134465] = { -- Varla Stone ,Glowing
+ 		itemPrice  = 5000,
+		itemDate  = "2021-03-20",
+	},
+
+	-- ====================================================================	
 	
 	[171417] = {		-- Orcish Seal, Owl
 		itemPrice   = 3000,
@@ -1564,65 +1629,11 @@ FurC.LuxuryFurnisher[FURC_HARROW] = {
 		itemDate  = "2020-02-07",
 	},
 
-	-- ====================================================================
-	
-	[156665] = {    -- Ayleid Constellation Stele, The Serpent
- 		itemPrice   = 20000,
-		itemDate  = "2020-02-29",
-	},
-	[141769] = {    -- Ayleid Constellation Stele, The Atronach
- 		itemPrice   = 20000,
-		itemDate  = "2020-02-29",
-	},
-	[141767] = {    -- Ayleid Constellation Stele, The Lady
- 		itemPrice   = 20000,
-		itemDate  = "2020-02-29",
-	},
-	[141768] = {    -- Ayleid Constellation Stele, The Lover
- 		itemPrice   = 20000,
-		itemDate  = "2020-02-29",
-	},
-	[134469] = { -- Ayleid Constellation Stele, the Mage
- 		itemPrice  = 20000,
-		itemDate  = "2020-02-29",
-	},
-	[134470] = { -- Ayleid Constellation Stele, Thief
- 		itemPrice  = 20000,
-		itemDate  = "2020-02-29",
-	},
-	[134471] = { -- Ayleid Constellation Stele, Warrior
- 		itemPrice  = 20000,
-		itemDate  = "2020-02-29",
-	},
 
 }
 
 
 FurC.LuxuryFurnisher[FURC_SCALES] = {
-
-	-- ====================================================================
-	
-	[156664] = {    -- Ayleid Pillar, Small Empty
-		itemPrice   = 5000,
-		itemDate  = "2020-02-22",
-	},
-
-	[134468] = {    -- Ayleid Switch, Ancient
- 		itemPrice   = 4000,
-		itemDate  = "2020-02-22",
-	},
-	[134466] = { -- Ayleid Sconce, Empty
- 		itemPrice  = 4000,
-		itemDate  = "2020-02-22",
-	},
-	[134467] = { -- Culanda Stone ,Glowing
- 		itemPrice  = 5000,
-		itemDate  = "2020-02-22",
-	},
-	[134465] = { -- Varla Stone ,Glowing
- 		itemPrice  = 5000,
-		itemDate  = "2020-02-22",
-	},
 
 
 
@@ -1857,19 +1868,19 @@ FurC.LuxuryFurnisher[FURC_SLAVES] = {
 	
 	[134468] = {    -- Ayleid Switch, Ancient
  		itemPrice   = 4000,
-		itemDate  = "2020-02-22",
+		itemDate  = "2021-03-20",
 	},
 	[134466] = { -- Ayleid Sconce, Empty
  		itemPrice  = 4000,
-		itemDate  = "2020-02-22",
+		itemDate  = "2021-03-20",
 	},
 	[134467] = { -- Culanda Stone ,Glowing
  		itemPrice  = 5000,
-		itemDate  = "2020-02-22",
+		itemDate  = "2021-03-20",
 	},
 	[134465] = { -- Varla Stone ,Glowing
  		itemPrice  = 5000,
-		itemDate  = "2020-02-22",
+		itemDate  = "2021-03-20",
 	},
 
 	

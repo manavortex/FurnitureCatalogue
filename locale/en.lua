@@ -219,7 +219,7 @@ FURC_AV_RAZ = "Razoufa",
   SI_FURC_FILTER_VERSION_HARROW =   "Harrowstorm",
   SI_FURC_FILTER_VERSION_SKYRIM =   "Greymoor",
   SI_FURC_FILTER_VERSION_STONET =   "Stonethorn",
-  SI_FURC_FILTER_VERSION_MARKAT =   "Markath",
+  SI_FURC_FILTER_VERSION_MARKAT =   "Markarth",
   SI_FURC_FILTER_VERSION_FLAMES =   "Flames of Ambition",
   
 

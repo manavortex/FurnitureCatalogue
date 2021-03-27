@@ -3,8 +3,19 @@ FurC.RolisRecipes     = FurC.RolisRecipes or {}
 FurC.FaustinaRecipes  = FurC.FaustinaRecipes or {}
 FurC.Faustina         = FurC.Faustina or {}
 
-FurC.RolisRecipes[FURC_HARROW] = {
-  
+
+
+FurC.RolisRecipes[FURC_FLAMES] = {  
+	[171803] = 125, -- Blueprint: Solitude Well, Noble
+	[171806] = 125, -- Design: Provisioning Station, Solitude Grill
+	[171801] = 125, -- Diagram: Dwarven Minecart, Ornate
+	[171805] = 125, -- Formula: Vampiric Cauldron, Distilled Coagulant
+	[171802] = 125, -- Pattern: Solitude Yarn Rack, Colorful
+	[171804] = 125, -- Praxis: Solitude Hearth, Rounded Tall
+	[171807] = 125, -- Sketch: Dwarven Crystal Sconce, Mirror
+}
+
+FurC.Faustina[FURC_HARROW] = {
   
   [159501] = 125, -- Praxis: Khajiit Sigil, Moon Cycle
   [159499] = 125, -- Pattern: Elsweyr Bed, Senche-Raht
@@ -13,22 +24,6 @@ FurC.RolisRecipes[FURC_HARROW] = {
   [159503] = 125, -- Design: Elsweyr Bread Basket, Feast-Day
   [159500] = 125, -- Blueprint: Elsweyr Well, Covered 
 }
-
-FurC.Faustina[FURC_HARROW] = {
-  
-  [153734] = 100, -- Design: Provisioning Station, Elsweyr Grill
-  [153729] = 100, -- Diagram: Elsweyr Gate, Masterwork
-  [153733] = 100, -- Formula: Elsweyr Incense, Fragrant
-  [153730] = 100, -- Pattern: Elsweyr Chaise Lounge, Upholstered
-  [153732] = 100, -- Praxis: Elsweyr Statue, Shrine Lion
-  [153735] = 100, -- Sketch: Elsweyr Cage, Filigree
-}
-
-FurC.Faustina[FURC_ALTMER] = {
-  [139391] = 10,  -- Master Craftsman's Banner, Hanging
-  [137870] = 125, -- Basic Jewelry Crafting Station
-}
-
  
 FurC.RolisRecipes[FURC_WOTL] = {
  
