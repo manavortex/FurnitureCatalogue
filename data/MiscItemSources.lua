@@ -1606,7 +1606,6 @@ FurC.MiscItemSources[FURC_KITTY]  = {
     [151855] = rumourSource, -- Elsweyr Sarcophagus, Lunar Champion,
     [151856] = rumourSource, -- Elsweyr Sarcophagus Lid, Lunar Champion,
     [151858] = rumourSource, -- Elsweyr Altar, Dark Moons,
-    [151859] = rumourSource, -- Alinor Greenhouse, Summer,
     [151860] = rumourSource, -- Sapling, Blue Wisteria,
     [151861] = rumourSource, -- Tree, Purple Wisteria,
     [151862] = rumourSource, -- Tree, Blue Wisteria,
