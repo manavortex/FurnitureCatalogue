@@ -11,13 +11,13 @@ FurC.Books[FURC_MORROWIND] = {
 }
 
 FurC.EventItems[FURC_DRAGONS] = {
-    ["Jester Festival"] = {
+  ["Jester Festival"] = {
     ["Jester Boxes"] = {
       [134680] = true,   -- Jester Box
     }
   }
-
 }
+
 FurC.EventItems[FURC_MORROWIND] = {
   ["Midyear Mayhem"] = {
     ["Boon Box"] = {
@@ -31,7 +31,7 @@ FurC.EventItems[FURC_MORROWIND] = {
       [126164] = true,  -- Song of Pelinal, #8
     },
   },
-    ["New Life"] = {
+  ["New Life"] = {
     ["Gift Box"] = {      
       [118053] = true,   -- Common Campfire, Outdoor
       [130326] = true,   -- Witches Brazier, Primitive Log,
@@ -40,7 +40,6 @@ FurC.EventItems[FURC_MORROWIND] = {
 }
 
 FurC.EventItems[FURC_KITTY] = {
-
   ["Witches' Festival"] = {
     ["Plunder Skull"] = {    
       [118149] = true,		   -- Block and Axe, Chopping
@@ -50,10 +49,8 @@ FurC.EventItems[FURC_KITTY] = {
 }
 
 FurC.EventItems[FURC_REACH] = {
-
   ["Witches' Festival"] = {
     ["Plunder Skull"] = {
-       
       [130337] = true,   -- Witches Corpse, Wrapped,
       [130325] = true,   -- Witches Totem, Emphatic Warning,
       [130334] = true,   -- Witches Totem, Antler Charms,
@@ -80,13 +77,14 @@ FurC.EventItems[FURC_REACH] = {
 }
 
 FurC.EventItems[FURC_HARROW] = {
-
-  ["Anniversary Jubilee"] = { -- 2020-04-02 till 2020-04-14
+  ["Anniversary Jubilee"] = { -- 2020-04-02 till 2020-04-14; 2021-04-01 till 2021-04-15
     ["Impresario"] = {
       [159464] = { itemPrice = 3 }, -- Replica Jubilee Cake 2016
       [159465] = { itemPrice = 3 }, -- Replica Jubilee Cake 2017
       [159466] = { itemPrice = 3 }, -- Replica Jubilee Cake 2018
       [159467] = { itemPrice = 3 }, -- Replica Jubilee Cake 2019
+      [159470] = { itemPrice = 3 }, -- Replica Jubilee Cake 2020
+      [171601] = { itemPrice = 3 }, -- Replica Jubilee Cake 2021
     }
   }
 }
