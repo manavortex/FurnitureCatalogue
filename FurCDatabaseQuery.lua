@@ -92,6 +92,7 @@ local function getPvpSource(recipeKey, recipeArray, stripColor)
 
 end
 FurC.getPvpSource = getPvpSource
+
 local typeTable = "table"
 local function getAchievementVendorSource(recipeKey, recipeArray, stripColor)
 
@@ -122,28 +123,37 @@ local function getAchievementVendorSource(recipeKey, recipeArray, stripColor)
 end
 FurC.getAchievementVendorSource = getAchievementVendorSource
 
+local TYPE_TABLE = "table"
 local function getEventDropSource(recipeKey, recipeArray, stripColor)
 
   recipeArray = recipeArray or FurC.Find(recipeKey)
   if not recipeArray then return end
   local versionData = FurC.EventItems[recipeArray.version]
   local itemPriceString = "getEventDropSource: couldn't find " .. tostring(recipeKey)
-  if not versionData then
-    return itemPriceString
-  end
+  if not versionData then return itemPriceString end
   for versionNumber, versionData in pairs(FurC.EventItems) do
       for eventName, eventData in pairs(versionData) do
-        for eventItemSource, eventSourceData in pairs(eventData) do
-          if eventSourceData[recipeKey] then
+        for eventItemSource, eventSourceData in pairs(eventData) do          
+		  if eventSourceData[recipeKey] then
+			local vendorString = colorise(eventItemSource, vendorColor, stripColor)
             itemPriceString = zo_strformat(
               GetString(SI_FURC_FESTIVAL_DROP),
               colorise(eventName,       vendorColor, stripColor),
-              colorise(eventItemSource,     vendorColor, stripColor)
+              vendorString
             )
-            local additionalsource = tostring(eventSourceData[recipeKey]) or ""
-            if #additionalsource > 4 then
-              itemPriceString = itemPriceString .. "\n" .. additionalsource
-            end
+			
+			if not eventSourceData[recipeKey] then return itemPriceString end
+			
+			local additionalSource = eventSourceData[recipeKey] 
+			
+			if additionalSource and TYPE_TABLE == type(additionalSource) and additionalSource.itemPrice then
+				itemPrice = colorise(additionalSource.itemPrice, voucherColor, stripColor)
+				 itemPriceString = itemPriceString:sub(1, -2) .. zo_strformat(GetString(SI_FURC_STRING_FOR_VOUCHERS), itemPrice) .. ")"
+			elseif #(tostring(additionalsource)) > 4 then
+				itemPriceString = itemPriceString .. "\n" .. tostring(additionalsource) 				
+			end
+			
+			
             return itemPriceString
           end
         end
