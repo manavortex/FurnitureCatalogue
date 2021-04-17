@@ -1,7 +1,7 @@
 FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
 
-FurC.LuxuryFurnisher[FURC_MARKAT] = {
+FurC.LuxuryFurnisher[FURC_FLAMES] = {
 	
 	
 	-- ====================================================================
@@ -35,35 +35,6 @@ FurC.LuxuryFurnisher[FURC_MARKAT] = {
 		itemDate  = "2021-04-18",
 	},
 
-
-
-	-- ====================================================================
-	
-	[145470] = {    -- Redguard Vase, Golden
- 		itemPrice   = 5000,
-		itemDate  = "2019-02-23",
-	},	
-	
-	[120803] = {  -- Hew’s Bane Bed, Royal
- 		itemPrice   = 20000,
-		itemDate  = "2019-02-23",
-	},
-	[121266] = {  -- Hew’s Bane Lantern
- 		itemPrice   = 5000,
-		itemDate  = "2019-02-23",
-	},
-	[121267] = {  -- Hew’s Bane Merchant’s Basket
- 		itemPrice   = 2500,
-		itemDate  = "2019-02-23",
-	},
-	[134824] = {  -- Redguard Tent, Rounded Silk
- 		itemPrice   = 100000,
-		itemDate  = "2019-02-23",
-	},
-	[145469] = {    -- Redguard Gazebo, Palatial Domed
- 		itemPrice   = 75000,
-		itemDate  = "2021-02-13",
-	},
 
 
 	-- ====================================================================
@@ -110,6 +81,39 @@ FurC.LuxuryFurnisher[FURC_MARKAT] = {
 	[171423] = {		-- Alinor Trellis, Blue Wisteria
 		itemPrice   = 15000,
 		itemDate  = "2021-04-03",
+	},
+
+}
+
+FurC.LuxuryFurnisher[FURC_MARKAT] = {
+	
+
+-- ====================================================================
+	
+	[145470] = {    -- Redguard Vase, Golden
+ 		itemPrice   = 5000,
+		itemDate  = "2019-02-23",
+	},	
+	
+	[120803] = {  -- Hew’s Bane Bed, Royal
+ 		itemPrice   = 20000,
+		itemDate  = "2019-02-23",
+	},
+	[121266] = {  -- Hew’s Bane Lantern
+ 		itemPrice   = 5000,
+		itemDate  = "2019-02-23",
+	},
+	[121267] = {  -- Hew’s Bane Merchant’s Basket
+ 		itemPrice   = 2500,
+		itemDate  = "2019-02-23",
+	},
+	[134824] = {  -- Redguard Tent, Rounded Silk
+ 		itemPrice   = 100000,
+		itemDate  = "2019-02-23",
+	},
+	[145469] = {    -- Redguard Gazebo, Palatial Domed
+ 		itemPrice   = 75000,
+		itemDate  = "2021-02-13",
 	},
 
 
