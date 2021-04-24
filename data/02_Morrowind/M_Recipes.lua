@@ -51,7 +51,7 @@ FurC.Recipes[FURC_MORROWIND] = {
   127104, -- Hlaalu Boxes, Compact
   126910, -- Hlaalu Stool, Mossy Cushion
   126837, -- Daedric Urn, Ashen
-  126862, -- Dwarven Pipeline Cap, Sealed
+  126863, -- Dwarven Pipeline Cap, Sealed ZOS CHANGED THE NUMBER AGAIN!!!
   126942, -- Hlaalu Bookcase, Orderly
   126902, -- Redoran Amphora, Sealed Marble
   126958, -- Hlaalu Nightstand, Formal
@@ -86,7 +86,6 @@ FurC.Recipes[FURC_MORROWIND] = {
   127090, -- Indoril Lantern, Hanging
   127103, -- Hlaalu Hanger, Mounted
   127099, -- Telvanni Arched Light, Organic Azure
-  126863, -- Dwarven Pipeline Cap, Sealed
   127073, -- Indoril Banner, Vivec
   126840, -- Daedric Brazier, Table
   127082, -- Indoril Sconce, Shrine
