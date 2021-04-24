@@ -221,6 +221,7 @@ FURC_AV_RAZ = "Razoufa",
   SI_FURC_FILTER_VERSION_STONET =   "Stonethorn",
   SI_FURC_FILTER_VERSION_MARKAT =   "Markarth",
   SI_FURC_FILTER_VERSION_FLAMES =   "Flames of Ambition",
+  SI_FURC_FILTER_VERSION_BLACKW =   "Blackwood",
   
 
   -- =============================== --
@@ -257,6 +258,7 @@ FURC_AV_RAZ = "Razoufa",
   SI_FURC_FILTER_VERSION_STONET_TT =    "It's not really stone",
   SI_FURC_FILTER_VERSION_MARKAT_TT =	"With Dwemer Plumbing",
   SI_FURC_FILTER_VERSION_FLAMES_TT =	"Mildly flammable",
+  SI_FURC_FILTER_VERSION_BLACKW_TT =	"Mehrunes will never learn",
   
   SI_FURC_FILTER_CHAR_OFF =     "Character filter: off", 
   SI_FURC_FILTER_CHAR_OFF_TT =  filterDisabled, 

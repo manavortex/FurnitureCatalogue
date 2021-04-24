@@ -1,9 +1,49 @@
 FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
 
-FurC.LuxuryFurnisher[FURC_FLAMES] = {
+FurC.LuxuryFurnisher[FURC_BLACKW] = {
+		
+	-- ====================================================================
+
+	[171821] = {		-- Redguard Amphora, Golden
+		itemPrice   = 15000,
+		itemDate  = "2021-04-24",
+	},
+	
+    [145471] = {        -- Redguard Raincatcher, Golden
+		itemPrice   = 35000,
+		itemDate  = "2021-04-24",
+	},
 	
 	
+	[156649] = {    -- Redguard Tent, Rounded Blue
+ 		itemPrice   = 100000,
+		itemDate  = "2021-04-24",
+	},
+
+	[120807] = {    -- Hew's Bane Well
+ 		itemPrice   = 10000,
+		itemDate  = "2021-04-24",
+	},
+	[120806] = {  -- Hew'S Bane Candlestick
+ 		itemPrice   = 2500,
+		itemDate  = "2021-04-24",
+	},
+	[120805] = {  -- Hew's Bane Rug
+ 		itemPrice   = 5000,
+		itemDate  = "2021-04-24",
+	},
+	[120807] = {  -- Hew's Bane Well
+ 		itemPrice   = 10000,
+		itemDate  = "2021-04-24",
+	},
+	[134825] = {  -- Redguard Tent, Squared Silk
+ 		itemPrice   = 100000,
+		itemDate  = "2021-04-24",
+	},
+
+
+
 	-- ====================================================================
 	
 	[156648] = {    -- Ra Gada Funerary Statue, Miniature Ibis
@@ -34,8 +74,9 @@ FurC.LuxuryFurnisher[FURC_FLAMES] = {
 		itemPrice   = 12000,
 		itemDate  = "2021-04-18",
 	},
+}
 
-
+FurC.LuxuryFurnisher[FURC_FLAMES] = {	
 
 	-- ====================================================================
 	
@@ -1650,34 +1691,6 @@ FurC.LuxuryFurnisher[FURC_HARROW] = {
 		itemDate  = "2020-04-04",
 	},
 
-	-- ====================================================================
-	
-	[156649] = {    -- Redguard Tent, Rounded Blue
- 		itemPrice   = 100000,
-		itemDate  = "2020-03-28",
-	},
-
-	[120807] = {    -- Hew's Bane Well
- 		itemPrice   = 10000,
-		itemDate  = "2020-03-28",
-	},
-	[120806] = {  -- Hew'S Bane Candlestick
- 		itemPrice   = 2500,
-		itemDate  = "2020-03-28",
-	},
-	[120805] = {  -- Hew's Bane Rug
- 		itemPrice   = 5000,
-		itemDate  = "2020-03-28",
-	},
-	[120807] = {  -- Hew's Bane Well
- 		itemPrice   = 10000,
-		itemDate  = "2020-03-28",
-	},
-	[134825] = {  -- Redguard Tent, Squared Silk
- 		itemPrice   = 100000,
-		itemDate  = "2020-03-28",
-	},
-
 
 
 
@@ -1786,11 +1799,6 @@ FurC.LuxuryFurnisher[FURC_SCALES] = {
  		itemPrice   = 20000,
 	},
 
-
-
-    [145471] = {        -- Redguard Raincatcher, Golden
-		itemPrice   = 35000,
-	},
 
 
 }
