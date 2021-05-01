@@ -4,6 +4,43 @@ FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 FurC.LuxuryFurnisher[FURC_BLACKW] = {
 		
 	-- ====================================================================
+	
+	[145472] = {    -- Antler Coral, Crimson
+ 		itemPrice   = 50000,
+		itemDate  = "2021-05-01",
+	},
+	[121268] = {  -- Fisher's Catch of the Day Rack
+ 		itemPrice   = 5000,
+		itemDate  = "2021-05-01",
+	},
+	[120850] = { -- Harbor Floats
+ 		itemPrice   = 5000,
+		itemDate  = "2021-05-01",
+	},
+	[120846] = { -- Dock Rope Wheel
+ 		itemPrice   = 3000,
+		itemDate  = "2021-05-01",
+	},
+	[134827] = { -- Mooring Line, Coiled
+ 		itemPrice   = 7500,
+		itemDate  = "2021-05-01",
+	},
+	[134826] = { -- Mooring Line, Tidy
+ 		itemPrice   = 5000,
+		itemDate  = "2021-05-01",
+	},
+	[156650] = {    -- Platform, Floating Dock
+ 		itemPrice   = 3000,
+		itemDate  = "2021-05-01",
+	},
+
+	[171822] = {		-- Harbor Winch, Treadwheel
+		itemPrice   = 7000,
+		itemDate  = "2021-05-01",
+	},
+	
+		
+	-- ====================================================================
 
 	[171821] = {		-- Redguard Amphora, Golden
 		itemPrice   = 15000,
@@ -1659,38 +1696,6 @@ FurC.LuxuryFurnisher[FURC_HARROW] = {
  		itemPrice   = 75000,
 		itemDate  = "2020-04-11",
 	},
-
-	-- ====================================================================
-	
-	[145472] = {    -- Antler Coral, Crimson
- 		itemPrice   = 50000,
-		itemDate  = "2020-04-04",
-	},
-	[121268] = {  -- Fisher's Catch of the Day Rack
- 		itemPrice   = 5000,
-		itemDate  = "2020-04-04",
-	},
-	[120850] = { -- Harbor Floats
- 		itemPrice   = 5000,
-		itemDate  = "2020-04-04",
-	},
-	[120846] = { -- Dock Rope Wheel
- 		itemPrice   = 3000,
-		itemDate  = "2020-04-04",
-	},
-	[134827] = { -- Mooring Line, Coiled
- 		itemPrice   = 7500,
-		itemDate  = "2020-04-04",
-	},
-	[134826] = { -- Mooring Line, Tidy
- 		itemPrice   = 5000,
-		itemDate  = "2020-04-04",
-	},
-	[156650] = {    -- Platform, Floating Dock
- 		itemPrice   = 3000,
-		itemDate  = "2020-04-04",
-	},
-
 
 
 
