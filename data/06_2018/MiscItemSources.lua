@@ -115,10 +115,7 @@ FurC.MiscItemSources[FURC_WOTL]  = {
     [120882] = rumourSource,     -- Tombstone, Small,    
     [147507] = rumourSource,     -- Music Box, \"Hinterlands\",    
     [147636] = rumourSource,     -- Banner of Hermaeus Mora,    
-    [147638] = rumourSource,     -- Replica Cursed Orb of Meridia,    
-    [147639] = rumourSource,     -- Magna-Geode,    
-    [147640] = rumourSource,     -- Magna-Geode, Large,    
-    [147641] = rumourSource,     -- Garlas Alpinia, Tall,    
+    [147638] = rumourSource,     -- Replica Cursed Orb of Meridia,
     [147642] = rumourSource,     -- Boar Totem, Balance,    
     [147643] = rumourSource,     -- Boar Totem, Solitary,    
     [147644] = rumourSource,     -- Palisade, Crude,    
@@ -486,6 +483,10 @@ FurC.MiscItemSources[FURC_WEREWOLF] = {
     [141925] = GetString(SI_FURC_SLAVES_DAILY),    -- Murkmire Hearth Shrine, Sithis Relief
     [141926] = GetString(SI_FURC_SLAVES_DAILY),    -- Murkmire Hearth Shrine, Sithis Figure
     [141920] = GetString(SI_FURC_SLAVES_DAILY),    -- Murkmire Brazier, Ceremonial
+	
+	[147639] = GetString(SI_FURC_DoM_DUNGEON_DROP), -- Magna-Geode
+	[147640] = GetString(SI_FURC_DoM_DUNGEON_DROP), -- Magna-Geode, Large
+	[147641] = GetString(SI_FURC_DoM_DUNGEON_DROP), -- Garlas Alpinia, Tall
   },
   
   [FURC_CROWN] = {
