@@ -38,5 +38,6 @@ FURC_SKYRIM				= FURC_HARROW     +1        -- 15
 FURC_STONET				= FURC_SKYRIM     +1        -- 16
 FURC_MARKAT				= FURC_STONET     +1        -- 17
 FURC_FLAMES				= FURC_MARKAT     +1        -- 18
+FURC_BLACKW				= FURC_FLAMES     +1        -- 18
 
-FURC_LATEST				= FURC_FLAMES
+FURC_LATEST				= FURC_BLACKW

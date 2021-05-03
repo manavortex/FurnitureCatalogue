@@ -1,8 +1,119 @@
 FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
 
-FurC.LuxuryFurnisher[FURC_MARKAT] = {
+FurC.LuxuryFurnisher[FURC_BLACKW] = {
+		
+	-- ====================================================================
+	
+	[145472] = {    -- Antler Coral, Crimson
+ 		itemPrice   = 50000,
+		itemDate  = "2021-05-01",
+	},
+	[121268] = {  -- Fisher's Catch of the Day Rack
+ 		itemPrice   = 5000,
+		itemDate  = "2021-05-01",
+	},
+	[120850] = { -- Harbor Floats
+ 		itemPrice   = 5000,
+		itemDate  = "2021-05-01",
+	},
+	[120846] = { -- Dock Rope Wheel
+ 		itemPrice   = 3000,
+		itemDate  = "2021-05-01",
+	},
+	[134827] = { -- Mooring Line, Coiled
+ 		itemPrice   = 7500,
+		itemDate  = "2021-05-01",
+	},
+	[134826] = { -- Mooring Line, Tidy
+ 		itemPrice   = 5000,
+		itemDate  = "2021-05-01",
+	},
+	[156650] = {    -- Platform, Floating Dock
+ 		itemPrice   = 3000,
+		itemDate  = "2021-05-01",
+	},
 
+	[171822] = {		-- Harbor Winch, Treadwheel
+		itemPrice   = 7000,
+		itemDate  = "2021-05-01",
+	},
+	
+		
+	-- ====================================================================
+
+	[171821] = {		-- Redguard Amphora, Golden
+		itemPrice   = 15000,
+		itemDate  = "2021-04-24",
+	},
+	
+    [145471] = {        -- Redguard Raincatcher, Golden
+		itemPrice   = 35000,
+		itemDate  = "2021-04-24",
+	},
+	
+	
+	[156649] = {    -- Redguard Tent, Rounded Blue
+ 		itemPrice   = 100000,
+		itemDate  = "2021-04-24",
+	},
+
+	[120807] = {    -- Hew's Bane Well
+ 		itemPrice   = 10000,
+		itemDate  = "2021-04-24",
+	},
+	[120806] = {  -- Hew'S Bane Candlestick
+ 		itemPrice   = 2500,
+		itemDate  = "2021-04-24",
+	},
+	[120805] = {  -- Hew's Bane Rug
+ 		itemPrice   = 5000,
+		itemDate  = "2021-04-24",
+	},
+	[120807] = {  -- Hew's Bane Well
+ 		itemPrice   = 10000,
+		itemDate  = "2021-04-24",
+	},
+	[134825] = {  -- Redguard Tent, Squared Silk
+ 		itemPrice   = 100000,
+		itemDate  = "2021-04-24",
+	},
+
+
+
+	-- ====================================================================
+	
+	[156648] = {    -- Ra Gada Funerary Statue, Miniature Ibis
+ 		itemPrice   = 15000,
+		itemDate  = "2021-04-18",
+	},
+	[145470] = {    -- Redguard Vase, Golden
+ 		itemPrice   = 5000,
+		itemDate  = "2021-04-18",
+	},
+	[120803] = {  -- Hew’s Bane Bed, Royal
+ 		itemPrice   = 20000,
+		itemDate  = "2021-04-18",
+	},
+	[121266] = {  -- Hew’s Bane Lantern
+ 		itemPrice   = 5000,
+		itemDate  = "2021-04-18",
+	},
+	[121267] = {  -- Hew’s Bane Merchant’s Basket
+ 		itemPrice   = 2500,
+		itemDate  = "2021-04-18",
+	},
+	[134824] = {  -- Redguard Tent, Rounded Silk
+ 		itemPrice   = 100000,
+		itemDate  = "2021-04-18",
+	},	
+	[171820] = {		-- Redguard Urn, Wrapped Golden
+		itemPrice   = 12000,
+		itemDate  = "2021-04-18",
+	},
+}
+
+FurC.LuxuryFurnisher[FURC_FLAMES] = {	
 
 	-- ====================================================================
 	
@@ -48,6 +159,39 @@ FurC.LuxuryFurnisher[FURC_MARKAT] = {
 	[171423] = {		-- Alinor Trellis, Blue Wisteria
 		itemPrice   = 15000,
 		itemDate  = "2021-04-03",
+	},
+
+}
+
+FurC.LuxuryFurnisher[FURC_MARKAT] = {
+	
+
+-- ====================================================================
+	
+	[145470] = {    -- Redguard Vase, Golden
+ 		itemPrice   = 5000,
+		itemDate  = "2019-02-23",
+	},	
+	
+	[120803] = {  -- Hew’s Bane Bed, Royal
+ 		itemPrice   = 20000,
+		itemDate  = "2019-02-23",
+	},
+	[121266] = {  -- Hew’s Bane Lantern
+ 		itemPrice   = 5000,
+		itemDate  = "2019-02-23",
+	},
+	[121267] = {  -- Hew’s Bane Merchant’s Basket
+ 		itemPrice   = 2500,
+		itemDate  = "2019-02-23",
+	},
+	[134824] = {  -- Redguard Tent, Rounded Silk
+ 		itemPrice   = 100000,
+		itemDate  = "2019-02-23",
+	},
+	[145469] = {    -- Redguard Gazebo, Palatial Domed
+ 		itemPrice   = 75000,
+		itemDate  = "2021-02-13",
 	},
 
 
@@ -1553,91 +1697,6 @@ FurC.LuxuryFurnisher[FURC_HARROW] = {
 		itemDate  = "2020-04-11",
 	},
 
-	-- ====================================================================
-	
-	[145472] = {    -- Antler Coral, Crimson
- 		itemPrice   = 50000,
-		itemDate  = "2020-04-04",
-	},
-	[121268] = {  -- Fisher's Catch of the Day Rack
- 		itemPrice   = 5000,
-		itemDate  = "2020-04-04",
-	},
-	[120850] = { -- Harbor Floats
- 		itemPrice   = 5000,
-		itemDate  = "2020-04-04",
-	},
-	[120846] = { -- Dock Rope Wheel
- 		itemPrice   = 3000,
-		itemDate  = "2020-04-04",
-	},
-	[134827] = { -- Mooring Line, Coiled
- 		itemPrice   = 7500,
-		itemDate  = "2020-04-04",
-	},
-	[134826] = { -- Mooring Line, Tidy
- 		itemPrice   = 5000,
-		itemDate  = "2020-04-04",
-	},
-	[156650] = {    -- Platform, Floating Dock
- 		itemPrice   = 3000,
-		itemDate  = "2020-04-04",
-	},
-
-	-- ====================================================================
-	
-	[156649] = {    -- Redguard Tent, Rounded Blue
- 		itemPrice   = 100000,
-		itemDate  = "2020-03-28",
-	},
-
-	[120807] = {    -- Hew's Bane Well
- 		itemPrice   = 10000,
-		itemDate  = "2020-03-28",
-	},
-	[120806] = {  -- Hew'S Bane Candlestick
- 		itemPrice   = 2500,
-		itemDate  = "2020-03-28",
-	},
-	[120805] = {  -- Hew's Bane Rug
- 		itemPrice   = 5000,
-		itemDate  = "2020-03-28",
-	},
-	[120807] = {  -- Hew's Bane Well
- 		itemPrice   = 10000,
-		itemDate  = "2020-03-28",
-	},
-	[134825] = {  -- Redguard Tent, Squared Silk
- 		itemPrice   = 100000,
-		itemDate  = "2020-03-28",
-	},
-
-	-- ====================================================================
-	
-	[156648] = {    -- Ra Gada Funerary Statue, Miniature Ibis
- 		itemPrice   = 15000,
-		itemDate  = "2020-03-21",
-	},
-	[145470] = {    -- Redguard Vase, Golden
- 		itemPrice   = 5000,
-		itemDate  = "2020-03-21",
-	},
-	[120803] = {  -- Hew’s Bane Bed, Royal
- 		itemPrice   = 20000,
-		itemDate  = "2020-03-21",
-	},
-	[121266] = {  -- Hew’s Bane Lantern
- 		itemPrice   = 5000,
-		itemDate  = "2020-03-21",
-	},
-	[121267] = {  -- Hew’s Bane Merchant’s Basket
- 		itemPrice   = 2500,
-		itemDate  = "2020-03-21",
-	},
-	[134824] = {  -- Redguard Tent, Rounded Silk
- 		itemPrice   = 100000,
-		itemDate  = "2020-03-21",
-	},
 
 
 }
@@ -1747,11 +1806,6 @@ FurC.LuxuryFurnisher[FURC_SCALES] = {
 
 
 
-    [145471] = {        -- Redguard Raincatcher, Golden
-		itemPrice   = 35000,
-	},
-
-
 }
 FurC.LuxuryFurnisher[FURC_KITTY] = {
 
@@ -1800,34 +1854,6 @@ FurC.LuxuryFurnisher[FURC_WOTL] = {
 
 FurC.LuxuryFurnisher[FURC_SLAVES] = {
 	
-	-- ====================================================================
-	
-	[145470] = {    -- Redguard Vase, Golden
- 		itemPrice   = 5000,
-		itemDate  = "2019-02-23",
-	},
-	[120803] = {  -- Hew’s Bane Bed, Royal
- 		itemPrice   = 20000,
-		itemDate  = "2019-02-23",
-	},
-	[121266] = {  -- Hew’s Bane Lantern
- 		itemPrice   = 5000,
-		itemDate  = "2019-02-23",
-	},
-	[121267] = {  -- Hew’s Bane Merchant’s Basket
- 		itemPrice   = 2500,
-		itemDate  = "2019-02-23",
-	},
-	[134824] = {  -- Redguard Tent, Rounded Silk
- 		itemPrice   = 100000,
-		itemDate  = "2019-02-23",
-	},
-
-	[145469] = {    -- Redguard Gazebo, Palatial Domed
- 		itemPrice   = 75000,
-		itemDate  = "2021-02-13",
-	},
-
 	-- ====================================================================
 	
 	[120802] = {  -- Shrine of Mara, Decorative
