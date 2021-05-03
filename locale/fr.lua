@@ -75,6 +75,7 @@ local strings = {
   SI_FURC_STRING_FOR_VOUCHERS =         "Pour <<1>> Assignats",
   SI_FURC_FESTIVAL_DROP =               "Peut être acquis pendant <<1>> (<<2>>)",
   SI_FURC_WW_DUNGEON_DROP =             "Trouvez sur les Monstres à Le Fort du Chasseur Lunaire/La Procession des Sacrifiés",
+  SI_FURC_DoM_DUNGEON_DROP =            "Drops in Depth of Malatar",
   SI_FURC_STRING_RECIPELEARNED =        "Recette apprise: <<1>> <<2>> <<3>>",
   SI_FURC_STRING_RECIPESFORCHAR =       "Recettes pour <<1>>",
   SI_FURC_STRING_VOUCHER_VENDOR =       "Vendu par l'un ou l'autre Rolis Hlaalu ou Faustina Curio",

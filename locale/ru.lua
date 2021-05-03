@@ -71,6 +71,7 @@ local strings = {
   SI_FURC_STRING_FOR_VOUCHERS =         "for <<1>> vouchers",
   SI_FURC_FESTIVAL_DROP =               "can be acquired during <<1>> (<<2>>)",
   SI_FURC_WW_DUNGEON_DROP =             "Drops in Monster Hunter Keep/March of the Sacrifices",
+  SI_FURC_DoM_DUNGEON_DROP =            "Drops in Depth of Malatar",
   SI_FURC_STRING_RECIPELEARNED =        "Recipe learned: <<1>> <<2>> <<3>>",
   SI_FURC_STRING_RECIPESFORCHAR =       "recipes for <<1>>",
   SI_FURC_STRING_VOUCHER_VENDOR =       "Sold by either Rolis Hlaalu or Faustina Curio",
