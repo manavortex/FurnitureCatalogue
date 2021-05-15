@@ -2,7 +2,43 @@ FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
 
 FurC.LuxuryFurnisher[FURC_BLACKW] = {
-		
+	
+	-- ====================================================================
+	[171824] = {    -- Mushroom, Tufted Cap
+ 		itemPrice   = 5000,
+		itemDate  = "2021-05-15",
+	},		   
+	
+	[156652] = {    -- Garlas Alpinia, Branching
+ 		itemPrice   = 2000,
+		itemDate  = "2021-05-15",
+	},
+
+	[145474] = {    -- Plant, Flytrap
+ 		itemPrice   = 4000,
+		itemDate  = "2021-05-15",
+	},
+	[120885] = {  -- Alik'r Cactus
+ 		itemPrice   = 2000,
+		itemDate  = "2021-05-15",
+	},
+	[120884] = {  -- Buckthorn
+ 		itemPrice   = 4000,
+		itemDate  = "2021-05-15",
+	},
+	[120883] = {  -- Voidflower
+ 		itemPrice   = 5000,
+		itemDate  = "2021-05-15",
+	},
+	[134829] = {  -- Fern, Woody Slough
+ 		itemPrice   = 3000,
+		itemDate  = "2021-05-15",
+	},
+	[120886] = {  -- White Hosta
+ 		itemPrice   = 3000,
+		itemDate  = "2021-05-15",
+	},
+	
 	-- ====================================================================
 	
 	[145472] = {    -- Antler Coral, Crimson
@@ -1634,37 +1670,6 @@ FurC.LuxuryFurnisher[FURC_HARROW] = {
 		itemDate  = "2020-04-25",
 	},
 
-	-- ====================================================================
-	
-	[156652] = {    -- Garlas Alpinia, Branching
- 		itemPrice   = 2000,
-		itemDate  = "2020-04-18",
-	},
-
-	[145474] = {    -- Plant, Flytrap
- 		itemPrice   = 4000,
-		itemDate  = "2020-04-18",
-	},
-	[120885] = {  -- Alik'r Cactus
- 		itemPrice   = 2000,
-		itemDate  = "2020-04-18",
-	},
-	[120884] = {  -- Buckthorn
- 		itemPrice   = 4000,
-		itemDate  = "2020-04-18",
-	},
-	[120883] = {  -- Voidflower
- 		itemPrice   = 5000,
-		itemDate  = "2020-04-18",
-	},
-	[134829] = {  -- Fern, Woody Slough
- 		itemPrice   = 3000,
-		itemDate  = "2020-04-18",
-	},
-	[120886] = {  -- White Hosta
- 		itemPrice   = 3000,
-		itemDate  = "2020-04-18",
-	},
 
 	-- ====================================================================
 	
