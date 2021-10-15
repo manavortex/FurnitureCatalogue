@@ -1,3 +1,5 @@
+-- This file goes into the sidTools directory as Custom.lua
+
 local recipeResultIds = {}
 
 local function addItemLink(data)
