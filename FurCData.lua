@@ -559,10 +559,15 @@ function ShouldBeInFurC(link)
 		return nil == FurnitureCatalogue.settings.data[getItemId(link)]
 	end
     
-	if not IsItemLinkFurnitureRecipe(link) then	return false end 
+-- if not IsItemLinkFurnitureRecipe(link) then	return false end 
 	
-	local resultId = getItemId(GetItemLinkRecipeResultItemLink(link))
+	local resultLink = GetItemLinkRecipeResultItemLink(link)
+	if not resultLink then return false end
+	
+	local resultId = getItemId(resultLink)
 	local recipeId = getItemId(link)
+	if not resultId or not recipeId or not IsItemLinkPlaceableFurniture(resultLink) then return false end
+	
 	for _, versionData in pairs(FurC.Recipes) do
 		for _, id in ipairs(versionData) do
 			if id == recipeId then return false end

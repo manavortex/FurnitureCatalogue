@@ -1,5 +1,3 @@
--- This file goes into the sidTools directory as Custom.lua
-
 local recipeResultIds = {}
 
 local function addItemLink(data)
@@ -15,20 +13,15 @@ local function addItemLink(data)
 		sidTools_SaveData.furniture[data.id] = string.format("rumourSource, -- %s", data.name)
 		sidTools.furniture[data.id] = data.name
 	else
-		-- should be in furC, but isn't furniture: gonna be a recipe
-		if IsItemLinkFurnitureRecipe(itemLink) then -- this check might be obsolete, but what can I say, I'm too lazy to check
-			local recipeResultItemLink     	= GetItemLinkRecipeResultItemLink(itemLink, LINK_STYLE_BRACKETS)
-			local recipeKey   				= FurC.GetItemId(recipeResultItemLink)
-			if recipeKey then
-			sidTools_SaveData.furnitureRecipes[data.id] = string.format("%s, -- %s", data.id, data.name)
-			
-			sidTools_SaveData.furniture[recipeKey] = string.format("rumourSource, -- %s", GetItemLinkName(recipeResultItemLink))
-			
+	-- should be in furC, but isn't furniture: gonna be a recipe
+		local recipeResultItemLink     	= GetItemLinkRecipeResultItemLink(itemLink, LINK_STYLE_BRACKETS)
+		local recipeKey   				= FurC.GetItemId(recipeResultItemLink)
+		if recipeKey then
+			sidTools_SaveData.furnitureRecipes[data.id] = string.format("%s, -- %s", data.id, data.name)			
+			sidTools_SaveData.furniture[recipeKey] = string.format("rumourSource, -- %s", GetItemLinkName(recipeResultItemLink))			
 			table.insert(recipeResultIds, recipeKey)	
-			end
-		end	
-	end	
-	
+		end
+	end
 end
 
 SLASH_COMMANDS["/dumpfurniture"] = function()
