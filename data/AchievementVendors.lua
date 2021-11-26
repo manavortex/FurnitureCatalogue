@@ -1,5 +1,5 @@
 
-FurC.AchievementVendors[FURC_STONET] = {  
+FurC.AchievementVendors[FURC_FLAMES] = {  
  
   ["the Undaunted Enclaves"] = {
     ["Undaunted Quartermaster"] = {

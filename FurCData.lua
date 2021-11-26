@@ -561,7 +561,7 @@ function ShouldBeInFurC(link)
     
 -- if not IsItemLinkFurnitureRecipe(link) then	return false end 
 	
-	local resultLink = GetItemLinkRecipeResultItemLink(link)
+	local resultLink = GetItemLinkRecipeResultItemLink(link LINK_STYLE_BRACKETS)
 	if not resultLink then return false end
 	
 	local resultId = getItemId(resultLink)
