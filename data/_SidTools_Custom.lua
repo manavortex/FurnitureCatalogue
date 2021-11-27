@@ -31,6 +31,14 @@ end
 
 SLASH_COMMANDS["/dumpfurniture"] = function()
 
+	if LAM and LAM.util then
+      LAM.util.ShowConfirmationDialog(
+        "Reset FurC Database?",
+		"If you don't, the utility tool will miss any recipes and items that you've seen before (e.g. in guildstore).",
+        FurC.WipeDatabase()
+      )
+    end
+	
 	local masterList = sidTools.itemViewer.masterList
 	sidTools_SaveData.furniture = {}
 	sidTools_SaveData.furnitureRecipes = {}
@@ -43,4 +51,13 @@ SLASH_COMMANDS["/dumpfurniture"] = function()
 	for idx, itemId in pairs(recipeResultIds) do 
 		sidTools_SaveData.furniture[itemId] = nil
 	end
+	
+	if LAM and LAM.util then
+      LAM.util.ShowConfirmationDialog(
+        "Reload UI?",
+		"You need to write sidTools' saved variables to disk.",
+        ReloadUI()
+      )
+    end
+	
 end
