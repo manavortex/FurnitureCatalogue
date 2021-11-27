@@ -7,7 +7,7 @@ This is a guide that assumes you have little to no idea about coding, but want t
 	- Install with default options, except for "chosing the default editor used by git" - you'll want to select notepad or notepad++  
 - a client. I'll walk you through how to use https://www.syntevo.com/smartgit/download/ here.  
   
-## To set up local dependencies/requirements, you can also run _dev_setup.cmd!    
+#### To set up local dependencies/requirements, you can also run _dev_setup.cmd!    
 # Grab the code  
 ##  1. Fork it on github    
 - go to https://github.com/manavortex/FurnitureCatalogue  
@@ -88,15 +88,19 @@ In `FurnitureCatalogue\_Constants.lua`, add a line like this:
 The thing on the left of the = is your new entry. The thing on the right of the = is the value in the line below.  
 The comment on the right is to see the number at first glance if you ctrl+F for the constant.    
 ### Add translation constants  
-Menu entry:   
+#### Menu entry:   
 In `FurnitureCatalogue\locale\en.lua`, find the list that starts with `SI_FURC_FILTER_VERSION_OFF`. It should be around line 207.   
 Add SI_FURC_FILTER_VERSION_FOOBAR at the end of the block (you can duplicate the previous line), and change the text.     
-Add mouseover tooltip:   
+#### Mouseover tooltip:   
 Now, find the list that starts with `SI_FURC_FILTER_VERSION_OFF_TT`. It should be around line ~250 somewhere.   
 Add SI_FURC_FILTER_VERSION_FOOBAR_TT at the end of the block (you can duplicate the previous line), and change the text.     
 ### Add the context menu entries.  
 In `FurnitureCatalogue\startup.lua`, find `FurC.DropdownData` around line 131.  
-At the bottom of each list, add a line with the constant from the previous step.      
+At the bottom of each list, add a line with the constant from the previous step.  
+### You're done!
+If you didn't make any mistakes, the new version entry should show up in the dropdown menus now.  
+If it doesn't, check for spelling mistakes.  
+If all menu entries are gone, you forgot a comma.      
 # Troubleshooting    
 If you are running into any problems with FurC data, the answer is going to be "you're missing a comma" in 95% of all cases.    
 ## The UI is showing, but all data is gone!  
