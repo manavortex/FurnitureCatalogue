@@ -1,0 +1,49 @@
+# Introduction
+This is a guide that assumes you have little to no idea about coding, but want to help. If you know how to achieve the end results, feel free to skip any intermediary steps.
+
+# Prequisites
+	- an account at github.com (so if you burn out or go MIA, the next volunteer can take over from you)
+	- Notepad++ for file editing (trust me, it's so much better than regular notepad)
+	- git: https://git-scm.com/download/win. Install with default options, except for "chosing the default editor used by git" - you'll want to select notepad or notepad++
+	- a client (I recommend tortoisegit: https://www.gitkraken.com/)
+
+# Fork it on github
+	- go to https://github.com/manavortex/FurnitureCatalogue
+	- the "fork" button is on github, TOPRIGHT corner, directly below your avatar
+
+# Check out your new fork to your local harddrive
+	- For this, first delete the AddOn that you have installed via Minion. (The first step to developing the AddOn is to delete the AddOn!)
+	- the green "code" button on github gives you a URL to copy. Use Github for windows to do this.
+	- That URL is your SOURCE. The TARGET will be the directory from the first point!
+
+## Optional: Add the original repository as a second upstream.
+This allows you to fetch changes from my repo.
+	- click Remote -> Add -> and enter
+		- original
+		- https://github.com/manavortex/FurnitureCatalogue.git
+	- click Tools -> Add -> 
+		- pull_original (or whatever you wanna call it)
+		- `git pull original master`
+
+# Register yourself as a developer
+	- Add your account name to the table at line 10 of FurnitureCatalogue_DevUtility\00_startup.lua
+	- Make sure that you don't forget the trailing comma!
+
+# custom.lua
+	- Copy or move `data\_SidTools_Custom.lua` to `..\sidTools\Custom.lua`. That will add a little bit of code to sirinsidiator's AddOn that'll let you export furniture recipes as saved var.
+	- Rename `data\Custom_Example.lua` to `data\Custom.lua`.
+
+# log in and datamine!
+	- Run the command /sidtools
+	- Open the "ItemViewer" via menu
+	- populate it - make it scan. If you need to put an item ID, use 80000 or something.
+	- type '/dumpfurniture'.
+	- When it's done, reload the UI via `reloadUI`.
+
+# grab the stuff from sidTool's saved variables
+	- go to `..\SavedVariables\sidTools.lua`
+	- the relevant entries are `furnitureRecipes` and `furniture`.
+	- Copy them to the corresponding tables in your `data\Custom.lua`. You'll see differences in formatting – you need to make sure that the generated entries have the same format as the regular ones.
+		- For the _items_, you do that by running "search and replace" twice, replacing the following **regular expressions** with nothing: 
+		1. `",$`
+		2. `(?<=\] )"`

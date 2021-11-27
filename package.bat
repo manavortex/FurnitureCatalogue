@@ -19,8 +19,10 @@ SET TARGET_DIRECTORY="%USERPROFILE%\Dropbox"
 :: SET GITHUB_BRANCH=""
 SET GITHUB_BRANCH="master"
 
-SET DELETE_CUSTOM_FILENAME="Custom.lua"
-::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+set EXCLUDE_FROM_PACK=^
+	Custom.lua^
+	_dev_setup.cmd
+
 
 :: check for existence of 7zip
 set zip="%ProgramFiles%\7-Zip\7z.exe"
@@ -71,9 +73,11 @@ robocopy . .package\%name% %files% /S /XD .* /NJH /NJS /NFL /NDL > nul
 
 :: zip it
 pushd .package 
-if not "%DELETE_CUSTOM_FILENAME%" == "" (
-	del /S "%DELETE_CUSTOM_FILENAME%"
+for  %%A in (!EXCLUDE_FROM_PACK!) do (
+	if exist "%%A"
+	del /S "%%A"
 )
+
 %zip% a -tzip -bd ..\%archive% %name% > nul
 popd
 
