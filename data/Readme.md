@@ -33,16 +33,16 @@ This allows you to fetch changes from my repository, in case we're working on th
   
 # Terminology  
 I'll be using these words through the guide, so you need to be familiar with them:    
-## Table or list and Key/Value  
+## Table and Key/Value  
 In LUA, everything is a table. Tables look like this:  
+```
 	local tbl = {  
 		["Key"] = "Value",  
 	}  
+```
 The key is how you access stuff in the table. The value is the stored value.   
 Keys are always left of the =.   
-	tbl["Key"]  
-is identical to  
-	tbl.Key      
+`tbl["Key"]` is identical to `tbl.Key`.    
 # Set up development stuff  
 ## 1. Register yourself as a developer    
 - Add your account name to the table at line 10 of FurnitureCatalogue_DevUtility\00_startup.lua  
@@ -96,7 +96,7 @@ Now, find the list that starts with `SI_FURC_FILTER_VERSION_OFF_TT`. It should b
 Add SI_FURC_FILTER_VERSION_FOOBAR_TT at the end of the block (you can duplicate the previous line), and change the text.     
 ### Add the context menu entries.  
 In `FurnitureCatalogue\startup.lua`, find `FurC.DropdownData` around line 131.  
-At the bottom of both lists, add a line        
+At the bottom of each list, add a line with the constant from the previous step.      
 # Troubleshooting    
 If you are running into any problems with FurC data, the answer is going to be "you're missing a comma" in 95% of all cases.    
 ## The UI is showing, but all data is gone!  
