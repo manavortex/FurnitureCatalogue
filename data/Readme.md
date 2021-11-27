@@ -43,8 +43,8 @@ This allows you to fetch changes from my repository, in case we're working on th
 	- original  
 	- https://github.com/manavortex/FurnitureCatalogue.git  
 
-# Terminology  
-I'll be using these words through the guide, so you need to be familiar with them:  
+# Basics  
+You don't need to know anything about programming but how to operate it, but this bit here is crucial. Fortunately, it's straightforward as well. 
 ## Table and Key/Value  
 In LUA, everything is a table. Tables look like this:  
 ```
@@ -54,7 +54,32 @@ local tbl = {
 ```
 The key is how you access stuff in the table. The value is the stored value.   
 Keys are always left of the `=`.   
-`tbl["Key"]` does the same thing as `tbl.Key`.
+`tbl["Key"]` does the same thing as `tbl.Key`.
+
+## Commas
+Your \#1 cause of error will be commas. If Lua sees a line ending in a table, it assumes that more table will follow.  
+Within a table, any lines but the last **must** end with a comma.  
+On the top level, tables **must not** be followed by a comma. 
+
+```
+local tbl1 = {
+	key1 = "value"		<<<<<< error here
+	key2 = "value"      <<<<<< ESO will complain about this line
+}
+
+local tbl2 = { }
+	
+```
+The last line of a table **need** not end in a comma. Unlike JSON, LUA won't mind, though.
+```
+local tbl1 = {
+	key1 = "value",		
+	key2 = "value",     
+},						<<<<<< error here
+
+local tbl2 = { }        <<<<<< ESO will complain about this line
+	
+```
 # Set up development stuff  
 ## 1. Register yourself as a developer  
 - Add your account name to the table at line 10 of FurnitureCatalogue_DevUtility\00_startup.lua  
@@ -116,6 +141,14 @@ At the bottom of each list, add a line with the constant from the previous step.
 If you didn't make any mistakes, the new version entry should show up in the dropdown menus now.  
 If it doesn't, check for spelling mistakes.  
 If all menu entries are gone, you forgot a comma.    
+## 2. Put everything from Custom.lua in the right files.
+
+### Items
+1. Create a new lua file in the `data\` folder and give it a name that makes sense (after the AddOn). Please don't use spaces!
+2. Open FurnitureCatalogue.txt and add an entry somewhere above `data\$(APIVersion).lua` so that it is loaded.
+
+This file will hold the item database. 
+
 # Troubleshooting  
 If you are running into any problems with FurC data, the answer is going to be "you're missing a comma" in 95% of all cases.  
 ## The UI is showing, but all data is gone!  
@@ -124,7 +157,11 @@ To fix this, open DebugViewer and look for the first FurC related error you see.
 ## I added items to an existing table, but they're not showing up  
 1: Search for one of the preexisitng items in the table. Does it show up?   
 Yes: Make sure that you got the nesting right. Everything needs to be on the right level. If you put entries into other entries, they'll be ignored.  
-No: You're missing a comma.  
+No: You're missing a comma.  
+
+## Unexpected symbol near <somewhere>  
+If it's not a missing comma, it is probably improper nesting or an unterminated string. Use Notepad++ **code folding** to find the culprit, and look *above* the line where the error occurred.  
+In the left margin of the text editor, you will see little `-` icons that collapse a region. Any 
 ## Everything is broken!!! (Unspecified)  
 Check if `/script d(FurC)` shows an output. If it doesn't, then you (or I via remote debugging) managed to break something in the toplevel folder.  
 Use your git client to discard (or stash) any changes in the toplevel folder.  
