@@ -83,7 +83,9 @@ local tbl2 = { }        <<<<<< ESO will complain about this line
 # Set up development stuff  
 ## 1. Register yourself as a developer  
 - Add your account name to the table at line 10 of FurnitureCatalogue_DevUtility\00_startup.lua  
-- Make sure that you don't forget the trailing comma!  
+- Make sure that you don't forget the trailing comma!  
+
+This will add new entries to the context menu (add to textbox), which makes your life a lot easier.  
 ## 2. Copy the required files (or run _dev_setup.cmd)  
 ### Custom.lua  
 - Copy or move `data\_SidTools_Custom.lua` to `..\sidTools\Custom.lua`. That will add a little bit of code to sirinsidiator's AddOn that'll let you export furniture recipes as saved var.  
@@ -149,6 +151,15 @@ If all menu entries are gone, you forgot a comma.
 
 This file will hold the item database. 
 
+### Recipes
+1. Open `data\Recipes.lua` and create a new list with your constant as a key. Put the recipes in there.  
+2. You're done.  
+
+### Rolis and Faustina
+1. Find `data\Rolis.lua` and create a new list with your constant as a key. Create new table entries for each item in their inventory.
+2. The key is the item ID, and the value is the number of vouchers they want.  
+  e.g.: `[159501] = 125, -- Praxis: Khajiit Sigil, Moon Cycle` means that this blueprint will sell for 125 vouchers.  
+
 # Troubleshooting  
 If you are running into any problems with FurC data, the answer is going to be "you're missing a comma" in 95% of all cases.  
 ## The UI is showing, but all data is gone!  
@@ -161,7 +172,12 @@ No: You're missing a comma.
 
 ## Unexpected symbol near <somewhere>  
 If it's not a missing comma, it is probably improper nesting or an unterminated string. Use Notepad++ **code folding** to find the culprit, and look *above* the line where the error occurred.  
-In the left margin of the text editor, you will see little `-` icons that collapse a region. Any 
+1. Make sure that your top level tables do _not_ end with a comma.  
+  Any table that's assigned (` = {`) needs to close in `}` without a trailing comma. As soon as Lua sees a comma, it will expect more list items. If it gets an assignment instead, it will complain.  
+2. Make sure that every line *inside* your tables ends with a comma.  
+  When a line does not end with a comma, Lua expects the table to close now. If you've forgotten one, it will complain. 
+
+In the left margin of the text editor, you will see little `-` icons that collapse a region. Do this, starting at the innermost level of tables, working your way up to the top. You will spot the one where you made a mistake.
 ## Everything is broken!!! (Unspecified)  
 Check if `/script d(FurC)` shows an output. If it doesn't, then you (or I via remote debugging) managed to break something in the toplevel folder.  
 Use your git client to discard (or stash) any changes in the toplevel folder.  
