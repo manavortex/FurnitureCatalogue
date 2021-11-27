@@ -74,6 +74,11 @@ For now, we will stay in Custom.lua so you can fuck around and find out. As for 
 	- Select the third entry under "Search Mode": Regular expression
 	1. Find what: `\[|(\] = "rumourSource)|",$`
 	2. Replace with: ``	
+	
+# OK, I wanna release! What now?
+	
+	## 1. Version number
+	- Create a new constant. In `FurnitureCatalogue`
 
 # Troubleshooting
 
