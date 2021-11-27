@@ -46,6 +46,13 @@ if not exist "..\..\DebugLogViewer" (
 	echo AddOn DebugLogViewer found. Make sure that you keep it loaded in case you run into errors!
 )
 
+if not exist "..\..\ZAM_Notebook" (
+	echo.
+	echo AddOn ZAM Notebook not found.
+	echo I recommend installing it: https://www.esoui.com/downloads/info244-ZAMNotebook.html
+	echo It lets you run LUA code straight from ESO, which will help you for assisted debugging.
+) 
+
 echo.
 echo This file is your playground so you can fuck around and find out. 
 if exist ".\Custom.lua" (
