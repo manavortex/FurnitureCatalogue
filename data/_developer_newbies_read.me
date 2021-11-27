@@ -5,25 +5,33 @@ This is a guide that assumes you have little to no idea about coding, but want t
 	- an account at github.com (so if you burn out or go MIA, the next volunteer can take over from you)
 	- Notepad++ for file editing (trust me, it's so much better than regular notepad)
 	- git: https://git-scm.com/download/win. Install with default options, except for "chosing the default editor used by git" - you'll want to select notepad or notepad++
-	- a client (I recommend tortoisegit: https://www.gitkraken.com/)
+	- a client. I'll walk you through https://www.syntevo.com/smartgit/download/ here.
 
 # Fork it on github
 	- go to https://github.com/manavortex/FurnitureCatalogue
 	- the "fork" button is on github, TOPRIGHT corner, directly below your avatar
+	- this will give you an own copy of my repository: https://github.com/yourusername/FurnitureCatalogue
+	- You need this because you can't write to mine, and I'm not turning it on for the general public. You push your changes to your copy, then create a pull request. I'll review and put it back into the main code base. :)
 
 # Check out your new fork to your local harddrive
-	- For this, first delete the AddOn that you have installed via Minion. (The first step to developing the AddOn is to delete the AddOn!)
-	- the green "code" button on github gives you a URL to copy. Use Github for windows to do this.
-	- That URL is your SOURCE. The TARGET will be the directory from the first point!
+	- For this, first delete all the files from the AddOn that you have installed via Minion. (The first step to developing the AddOn is to delete the AddOn!)  
+		You can get there by pressing windows+R and executing the command `explorer %USERPROFILE%\Documents\Elder Scrolls Online\live\AddOns\FurnitureCatalogue`
+	- the green "code" button on github gives you a URL to copy.
+	- Open smartgit. Use the default settings unless indicated otherwise.
+		- You're a non-commercial user.
+		- Style: You want "Working Tree", I think.
+		- Clone Repository
+		- URL: YOUR FORK OF MY REPOSITORY from the step above
+		- select "Start with a repo tab"
+		- Click "Clone a repo".
+		- Path: Click "browse", then open the explorer bar and enter `%USERPROFILE%\Documents\Elder Scrolls Online\live\AddOns\FurnitureCatalogue`. 
+		- URL: the one you copied from the browser in the step above.
 
 ## Optional: Add the original repository as a second upstream.
 This allows you to fetch changes from my repo.
 	- click Remote -> Add -> and enter
 		- original
 		- https://github.com/manavortex/FurnitureCatalogue.git
-	- click Tools -> Add -> 
-		- pull_original (or whatever you wanna call it)
-		- `git pull original master`
 
 # Register yourself as a developer
 	- Add your account name to the table at line 10 of FurnitureCatalogue_DevUtility\00_startup.lua
