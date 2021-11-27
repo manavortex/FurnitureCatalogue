@@ -148,7 +148,7 @@ If all menu entries are gone, you forgot a comma.
 
 ### Items
 1. Create a new lua file in the `data\` folder and give it a name that makes sense (after the AddOn). Please don't use spaces!
-2. Open FurnitureCatalogue.txt and add an entry somewhere above `data\$(APIVersion).lua` so that it is loaded.
+2. Open FurnitureCatalogue.txt and add an entry above `data\$(APIVersion).lua`, but after the other data files. This will tell the game to load it. 
 
 This file will hold the item database. 
 
