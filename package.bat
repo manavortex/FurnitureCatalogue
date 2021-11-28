@@ -53,9 +53,9 @@ md .package\!name!
 
 :: read files from manifest
 set files=!name!.txt
-for /F %%i in ('findstr /B /R "[^#;]" !name!.txt') do (
+for /F %%i in ('findstr /B /R "[^#;]" %name%.txt') do (
   set file=%%~nxi
-  set files=!files! !file:$^(language^)=*!
+  set files=%files% %file:$^(language^)=*%
 )
 
 :: read additional files (assets etc.) from package.manifest
