@@ -182,7 +182,7 @@ function FurC.Donate(control, mouseButton)
   
   SCENE_MANAGER:Show('mailSend')
   zo_callLater(function()
-    ZO_MailSendToField:SetText("@manavortex")
+    ZO_MailSendToField:SetText("@BerylBones")
     ZO_MailSendSubjectField:SetText("Thank you for Furniture Catalogue!")
     QueueMoneyAttachment(amount)
   ZO_MailSendBodyField:TakeFocus() end, 200)

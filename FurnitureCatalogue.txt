@@ -1,7 +1,7 @@
 ## Title: FurnitureCatalogue
 ## Author: manavortex
-## Version: 4.21115
-## APIVersion: 100034
+## Version: 4.3
+## APIVersion: 101032
 ## SavedVariables: FurnitureCatalogue_Settings 
 ## DependsOn: LibCustomMenu LibAddonMenu-2.0 LibAsync
 ## OptionalDependsOn: pChat rchat LibDebugLogger LibDebugViewer LibStub
@@ -15,7 +15,6 @@ locale\$(language).lua
 
 xml\Bindings.xml
 xml\FurnitureCatalogue.xml
-
 
 startup.lua
 

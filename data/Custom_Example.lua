@@ -129,4 +129,4 @@ FurC.UpdateDropdowns()
 -- To define localization, just add an entry to locale/en.lua and to your own language's locale file, if necessary.
 -- Not adding it to en.lua will most likely break the menu entry for any language but your own.
 
--- Please remember that these changes will only be used locally! If you want them included, send a letter to @manavortex (preferrably on EU, although US will be read eventually as well), or find https://github.com/manavortex/FurnitureCatalogue and file a pull request.
+-- Please remember that these changes will only be used locally! If you want them included, send a letter to @BerylBones (preferrably on EU, although US will be read eventually as well), or find https://github.com/manavortex/FurnitureCatalogue and file a pull request.
