@@ -228,7 +228,7 @@ FurC.LuxuryFurnisher[FURC_BLACKW] = {
 	},
 
 	-- ====================================================================
-	[181535] - {	-- Mummy, Bound
+	[181535] = {	-- Mummy, Bound
 		itemPrice	= 8000,
 		itemDate	= "2021-10-09",
 	},
@@ -380,7 +380,7 @@ FurC.LuxuryFurnisher[FURC_BLACKW] = {
  		itemPrice   = 25000,
 		itemDate  = "2021-09-11",
 	},
-	[126610] = { -- Vvardenfell Coral Plant, Strong,
+	[126610] = { -- Vvardenfell Coral Plant, Strong
  		itemPrice   = 10000,
 		itemDate  = "2021-09-11",
 	},
