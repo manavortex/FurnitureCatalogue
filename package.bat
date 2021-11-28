@@ -58,17 +58,18 @@ for /F %%i in ('findstr /B /R "[^#;]" %name%.txt') do (
   set files=%files% %file:$^(language^)=*%
 )
 
+echo "1"
 :: read additional files (assets etc.) from package.manifest
 if exist package.manifest (
   for /F "tokens=*" %%i in (package.manifest) do (
-    set files=!files! %%~nxi
+    set files=%files% %%~nxi
   )
 )
 
 :: copy everything to assembly folder
 robocopy . .package\!name! !files! /S /XD .* /NJH /NJS /NFL /NDL > nul
 
-
+echo "2"
 :: zip it
 pushd .package 
 for  %%A in (!EXCLUDE_FROM_PACK!) do (
@@ -76,6 +77,7 @@ for  %%A in (!EXCLUDE_FROM_PACK!) do (
 	del /S "%%A"
 )
 
+echo "3"
 !zip! a -tzip -bd ..\!archive! !name! > nul
 popd
 
