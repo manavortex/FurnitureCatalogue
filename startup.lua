@@ -85,6 +85,7 @@ local function getSourceIndicesKeys()
 	sourceIndicesKeys[FURC_LUXURY]              = "luxury"
 	sourceIndicesKeys[FURC_OTHER]               = "other"
 	sourceIndicesKeys[FURC_WRIT_VENDOR]         = "writ_vendor"
+	
 	return sourceIndicesKeys
 end
 FurC.GetSourceIndicesKeys = getSourceIndicesKeys
@@ -149,6 +150,7 @@ FurC.DropdownData = {
 		[FURC_MARKAT] 		= GetString(SI_FURC_FILTER_VERSION_MARKAT),
 		[FURC_FLAMES] 		= GetString(SI_FURC_FILTER_VERSION_FLAMES),
 		[FURC_BLACKW] 		= GetString(SI_FURC_FILTER_VERSION_BLACKW),
+		[FURC_DEADL]		= GetString(SI_FURC_FILTER_VERSION_DEADL),
 	},
 	
 	TooltipsVersion  = {
@@ -171,6 +173,7 @@ FurC.DropdownData = {
 		[FURC_MARKAT] 		= GetString(SI_FURC_FILTER_VERSION_MARKAT_TT),
 		[FURC_FLAMES] 		= GetString(SI_FURC_FILTER_VERSION_FLAMES_TT),
 		[FURC_BLACKW] 		= GetString(SI_FURC_FILTER_VERSION_BLACKW_TT),
+		[FURC_DEADL]		= GetString(SI_FURC_FILTER_VERSION_DEADL_TT),
 	},
 	
 	ChoicesCharacter  = {

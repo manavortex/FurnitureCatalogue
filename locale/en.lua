@@ -55,7 +55,7 @@ FURC_AV_RAZ = "Razoufa",
   SI_FURC_VERBOSE_DB_UPTODATE =         "Furniture Catalogue: The database is up-to-date.",
   SI_FURC_VERBOSE_SCANNING_DATA_FILE =  "Furniture Catalogue: Scanning data files...",
   SI_FURC_VERBOSE_SCANNING_CHARS =      "Not scanning files, scanning character knowledge now...",
-  SI_FURC_ITEMSOURCE_EMPTY =            "Item source unknown.\nTry to re-scan files (refresh button right click).\nIf the item is still unknown - and not part of the weekend furnisher's current inventory - please send a mail with the item link and -source to @manavortex.",
+  SI_FURC_ITEMSOURCE_EMPTY =            "Item source unknown.\nTry to re-scan files (refresh button right click).\nIf the item is still unknown - and not part of the weekend furnisher's current inventory - please send a mail with the item link and -source to @berylbones.",
   SI_FURC_RUMOUR_SOURCE_RECIPE =        "This recipe has been datamined, but not seen in-game",
   SI_FURC_RUMOUR_SOURCE_ITEM =          "This item has been datamined, but not seen in-game",
   SI_FURC_STRING_CRAFTABLE_BY =         "Can be crafted by ",
@@ -223,7 +223,8 @@ FURC_AV_RAZ = "Razoufa",
   SI_FURC_FILTER_VERSION_MARKAT =   "Markarth",
   SI_FURC_FILTER_VERSION_FLAMES =   "Flames of Ambition",
   SI_FURC_FILTER_VERSION_BLACKW =   "Blackwood",
-  
+  SI_FURC_FILTER_VERSION_DEADL =   "Deadlands",
+
 
   -- =============================== --
   -- = GUI: Dropdown entry tooltip = --
@@ -260,7 +261,8 @@ FURC_AV_RAZ = "Razoufa",
   SI_FURC_FILTER_VERSION_MARKAT_TT =	"With Dwemer Plumbing",
   SI_FURC_FILTER_VERSION_FLAMES_TT =	"Mildly flammable",
   SI_FURC_FILTER_VERSION_BLACKW_TT =	"Mehrunes will never learn",
-  
+  SI_FURC_FILTER_VERSION_DEADL_TT =		"What is this place with the sparkly meat?",
+
   SI_FURC_FILTER_CHAR_OFF =     "Character filter: off", 
   SI_FURC_FILTER_CHAR_OFF_TT =  filterDisabled, 
   
@@ -306,6 +308,7 @@ FURC_AV_RAZ = "Razoufa",
   SI_FURC_DRAGON_DUNGEON_DROP =   "Fang Lair/Scalecaller Peak",
   SI_FURC_DATAMINED_UNCLEAR =     "This item has been seen in-game, but it's not yet known where you can get it.",
   SI_FURC_ITEMSOURCE_ITEMPACK =   "Part of the Crown Store item pack [<<1>>] ",
+  SI_FURC_EVENT_BLACKWOOD = 	  "From participating in the Bounties of Blackwood event",
   
   SI_FURC_SEEN_IN_GUILDSTORE =    "Seen in Guild Store",
 }

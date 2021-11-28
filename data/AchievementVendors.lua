@@ -1,4 +1,208 @@
 
+FurC.AchievementVendors[FURC_DEADL] = {  
+ 
+  ["Fargrave, Felicitous Furnishings"] = {
+    ["Nif"] = {
+		[181598] = {		-- Bush, Low Redleaf Cluster
+			itemPrice   = 300,
+		},
+		[181597] = {		-- Bush, Sharp Underbrush
+			itemPrice   = 300,
+		},
+		[134942] = {		-- Bushes, Withered Cluster
+			itemPrice   = 100,
+		},
+		[182213] = {		-- Fargrave Canopy
+			itemPrice   = 250,
+		},
+		[182217] = {		-- Fargrave Clutter, Papers
+			itemPrice   = 100,
+		},
+		[182220] = {		-- Fargrave Flag, Long
+			itemPrice   = 100,
+		},
+		[182218] = {		-- Fargrave Flag, Regular
+			itemPrice   = 85,
+		},
+		[182219] = {		-- Fargrave Flag, Short
+			itemPrice   = 75,
+		},
+		[182214] = {		-- Fargrave Flags, String
+			itemPrice   = 300,
+		},
+		[182215] = {		-- Fargrave Pennants, Long String
+			itemPrice   = 250,
+		},
+		[182216] = {		-- Fargrave Pennants, String
+			itemPrice   = 100,
+		},
+		[181593] = {		-- Log, Charred Oak
+			itemPrice   = 250,
+		},
+		[125616] = {		-- Pebble, Volcanic Chunk
+			itemPrice   = 100,
+		},
+		[181596] = {		-- Plant Cluster, Maroon Aloe
+			itemPrice   = 300,
+		},
+		[181595] = {		-- Plant, Harrada Root
+			itemPrice   = 500,
+		},
+		[181594] = {		-- Rock, Volcanic Boulder
+			itemPrice   = 100,
+		},
+		[181587] = {		-- Tree, Charred Oak
+			itemPrice   = 250,
+		},
+		[181592] = {		-- Tree, Deadlands Pine
+			itemPrice   = 500,
+		},
+		[181588] = {		-- Tree, Old Charred Oak
+			itemPrice   = 400,
+		},
+		[181591] = {		-- Tree, Short Charred Pine
+			itemPrice   = 100,
+		},
+		[181590] = {		-- Tree, Tall Charred Pine
+			itemPrice   = 250,
+		},
+		[181589] = {		-- Tree, Young Charred Oak
+			itemPrice   = 100,
+		},
+    },
+	["Ulz"] = {
+		[182306] = {		--Daedric Altar, Mehrunes Dagon
+			itemPrice   = 4500,
+			achievement = 3145,		-- Hero of Fargrave
+		},
+		[182310] = {		-- Deadlands Buttress
+			itemPrice   = 2500,
+		},
+		[182309] = {		-- Deadlands Buttress, Large
+			itemPrice   = 4000,
+		},
+		[182312] = {		--Deadlands Displacer, Inactive
+			itemPrice   = 4000,
+			achievement = 3192,		-- Deadlands Portal Punisher
+		},
+		[182307] = {		--Deadlands Lightning Rod, Etched
+			itemPrice   = 60000,
+			achievement = 3217,		-- Eternal Optimist
+		},
+		[182311] = {		--Deadlands Platform, Octagonal
+			itemPrice   = 4000,
+			achievement = 3204,		-- The Grasp of the Stricture
+		},
+		[182308] = {		--Deadlands Wind Gate Pinion
+			itemPrice   = 14000,
+			achievement = 3208,		-- Deadlands Grand Adventurer
+		},
+		[182305] = {		--Deadlands Window, Stormglass
+			itemPrice   = 40000,
+			achievement = 3214,		-- Hopeful Rescuer
+		},
+		[182313] = {		--Portal Key Replica
+			itemPrice   = 20000,
+			achievement = 3209,		-- Stranger in Town
+		},
+		[182315] = {		--Sulfur Pool
+			itemPrice   = 20000,
+			achievement = 3144,		-- the Deadlands Master Angler
+		},
+		[182304] = {		--Tree, Charred Dagonic
+			itemPrice   = 15000,
+			achievement = 3211,		-- Deadlands Jailbreaker
+		},
+	},
+  },
+}
+
+FurC.AchievementVendors[FURC_BLACKW] = {
+
+  ["Leyawiin, Domestic Bliss Furnishings"] = {
+	["Miraso Marvayn"] = {
+		[175707] = {		--Banner of Leyawiin
+			itemPrice   = 12000,
+			achievement = 3056,		-- Blackwood Grand Adventurer
+		},
+		[175703] = {		-- Banner, Tattered Mehrunes Dagon
+			itemPrice   = 12000,
+		},
+		[175700] = {		-- Deadlands Chandelier, Caged
+			itemPrice   = 10000,
+		},
+		[175705] = {		--Deadlands Pillar, Tall Inscribed
+			itemPrice   = 20000,
+			achievement = 3050,		-- Ambition Acquirer
+		},
+		[175709] = {		--Deadlands Podium of Ruination
+			itemPrice   = 15000,
+			achievement = 3053,		-- Disaster Averter
+		},
+		[175708] = {		--Deadlands Tormentor, Chained
+			itemPrice   = 20000,
+			achievement = 3051,		-- Party Crasher
+		},
+		[175702] = {		-- Entwined Snakes, Crystal Holder
+			itemPrice   = 12000,
+		},
+		[175704] = {		--Inert Oblivion Gate
+			itemPrice   = 50000,
+			achievement = 3007,		-- Rockgrove Vanquisher
+		},
+		[175706] = {		--Seal of the Ambitions
+			itemPrice   = 25000,
+			achievement = 3055,		-- Champion of Blackwood
+		},
+		[175701] = {		-- Xi-Tsei Stone Idol
+			itemPrice   = 4000,
+		},
+	},
+	
+	["Barnabe Cariveau"] = {
+		[165809] = {		-- Firelogs, White Pine
+			itemPrice   = 250,
+		},
+		[175725] = {		-- Leyawiin Carpet, Small Worn
+			itemPrice   = 250,
+		},
+		[175723] = {		-- Leyawiin Carpet, Threadbare
+			itemPrice   = 350,
+		},
+		[175727] = {		-- Leyawiin Palisade, Reinforced
+			itemPrice   = 2000,
+		},
+		[175724] = {		-- Leyawiin Rug, Worn
+			itemPrice   = 350,
+		},
+		[175722] = {		-- Leyawiin Socks, Pair
+			itemPrice   = 75,
+		},
+		[175721] = {		-- Leyawiin Trousers, Strewn
+			itemPrice   = 100,
+		},
+		[175720] = {		-- Leyawiin Wheel, Splintered Axle
+			itemPrice   = 250,
+		},
+		[175774] = {		-- Leyawiin Windowbox, Irises
+			itemPrice   = 4000,
+		},
+		[175773] = {		-- Leyawiin Windowbox, Yellow Daisies
+			itemPrice   = 4500,
+		},
+		[175771] = {		-- Tree, Bent Blackwood Elm
+			itemPrice   = 300,
+		},
+		[175770] = {		-- Tree, Branching Blackwood Pine
+			itemPrice   = 1000,
+		},
+		[175772] = {		-- Tree, Forked Blackwood Elm
+			itemPrice   = 350,
+		},
+	},
+   },
+}
+
 FurC.AchievementVendors[FURC_FLAMES] = {  
  
   ["the Undaunted Enclaves"] = {
@@ -11,9 +215,18 @@ FurC.AchievementVendors[FURC_FLAMES] = {
 			itemPrice   = 12000,
 			achievement = 2841,		-- the Cauldron Vanquisher 
 		},
+		[181509] = {		--Agonymium Stone, Inert
+			itemPrice   = 15000,
+			achievement = 3026,		-- The Dread Cellar Vanquisher
+		},
+		[181510] = {		--Silver Rose Banner
+			itemPrice   = 12000,
+			achievement = 3016,		-- Red Petal Bastion Vanquisher
+		},
     },
-  }
+  },
 }
+
 FurC.AchievementVendors[FURC_STONET] = {  
  
   ["the Undaunted Enclaves"] = {
@@ -28,7 +241,9 @@ FurC.AchievementVendors[FURC_STONET] = {
 		},
 
     },
-  },
+}, 	
+ 
+
   ["Dragonhold Armoury"] = {
 	["Martina Ocella"] = {
 		[156752] = {				-- Aeonstone Formation, Large
@@ -90,6 +305,71 @@ FurC.AchievementVendors[FURC_STONET] = {
 
 }
 
+FurC.AchievementVendors[FURC_MARKAT] = {
+	
+  ["Markarth, Markarth Mercantile"] = {
+	["Averio Brassac"] = {
+		[171383] = {		-- Dwarven Broom, Restored
+			itemPrice   = 400,
+		},
+		[171384] = {		-- Dwarven Loaf Pan, Rectangular
+			itemPrice   = 250,
+		},
+		[171385] = {		-- Dwarven Plate, Salvaged Decorative
+			itemPrice   = 100,
+		},
+		[171386] = {		-- Reachfolk Banner, Markarth
+			itemPrice   = 2000,
+		},
+	},
+	["Tirudilmo"] = {
+		[171395] = {		-- Dwarven Beacon, Aetheric
+			itemPrice   = 50000,
+			achievement = 2860, -- Dynastor Deposted
+		},
+		[171389] = {		-- Dwarven Crystal Receptacle
+			itemPrice   = 15000,
+			achievement = 2855, -- Reach Cave Delver
+		},
+		[170171] = {		-- Dwarven Liminal Diffusion
+			itemPrice   = 50000,
+			achievement = 2906, -- Taking Up the Mantle
+		},
+		[171394] = {		-- Dwarven Stand, Void Crystal
+			itemPrice   = 50000,
+			achievement = 2859, -- Weaned From Darkness
+		},
+		[171388] = {		-- Dwarven Tonal Cascade
+			itemPrice   = 15000,
+			achievement = 2854, -- The Reach Master Explorer
+		},
+		[171396] = {		-- Dwarven Tonal Manacle
+			itemPrice   = 15000,
+			achievement = 2858, -- Defender of the Reach
+		},
+		[171392] = {		-- Falmer Totem of Dominance
+			itemPrice   = 7000,
+			achievement = 2852, -- Gloomreach Explorer
+		},
+		[171387] = {		-- Nighthollow Banner
+			itemPrice   = 10000,
+			achievement = 2941, -- Savior of the Reach
+		},
+		[171391] = {		--Reach Effigy of Turnabout
+			itemPrice   = 10000,
+			achievement = 2908,		-- Vateshran Hollows Conqueror
+		},
+		[171390] = {		--Reachwitch Protective Totem
+			itemPrice   = 4000,
+			achievement = 2861,		-- the Reach Master Angler
+		},
+		[171393] = {		-- Tree, Reach Totem
+			itemPrice   = 5000,
+			achievement = 2853, -- Briar Rock Ruins Explorer
+		},
+	},
+  },
+}
 
 FurC.AchievementVendors[FURC_SKYRIM] = {
  
