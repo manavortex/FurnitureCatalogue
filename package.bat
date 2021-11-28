@@ -37,7 +37,6 @@ if not exist %name%.txt (
 :: read addon version from txt
 for /F "tokens=3" %%i in ('findstr /C:"## Version:" %name%.txt') do set version=%%i
 
-
 :: throw it on git
 IF NOT %GITHUB_BRANCH% == "" (
 	echo * Pushing to github branch %GITHUB_BRANCH% with commit message %version%...
@@ -68,7 +67,6 @@ if exist package.manifest (
 :: copy everything to assembly folder
 robocopy . .package\%name% %files% /S /XD .* /NJH /NJS /NFL /NDL > nul
 
-
 :: zip it
 pushd .package 
 if not "%DELETE_CUSTOM_FILENAME%" == "" (
@@ -76,7 +74,6 @@ if not "%DELETE_CUSTOM_FILENAME%" == "" (
 )
 REM delete dev setup
 del /S "*.cmd"
-
 
 %zip% a -tzip -bd ..\%archive% %name% > nul
 popd
