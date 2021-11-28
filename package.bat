@@ -19,8 +19,7 @@ SET TARGET_DIRECTORY="!USERPROFILE!\Dropbox"
 :: SET GITHUB_BRANCH=""
 SET GITHUB_BRANCH="master"
 
-set EXCLUDE_FROM_PACK=^
-	Custom.lua^
+set EXCLUDE_FROM_PACK=Custom.lua^
 	_dev_setup.cmd
 
 
