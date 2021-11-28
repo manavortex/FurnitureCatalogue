@@ -12,6 +12,7 @@ FurCDevUtility.playersWithDevAccess = {
 	["@Manorin"] = true,		-- alt account
 	["@tïm'99"] = true,	 		-- let's hope the ï doesn't destroy everything
 	["@tïm&#39;99"] = true,	-- Called it
+	["@berylbones"] = true, 	-- let's try this again
 }
 
 local UNITTAG_PLAYER = "player"

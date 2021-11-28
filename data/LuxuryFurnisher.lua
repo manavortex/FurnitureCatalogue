@@ -1,19 +1,929 @@
 FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
 
+FurC.LuxuryFurnisher[FURC_DEADL] = {
+	
+	-- ====================================================================
+	[181540] = {	-- Nedic Skull Relief, Half
+		itemPrice 	= 20000,
+		itemDate	= "2021-11-26",
+	},
+	[131435] = {	-- Reach Bowl, Nirncrux
+		itemPrice	= 5000,
+		itemDate	= "2021-11-26",
+	},
+	[167343] = {	-- Stone, Nirncrux-Laden
+		itemPrice   = 10000,
+		itemDate  	= "2021-11-26",
+	},
+	[139105] = {    -- Reach Grinding Stones, Nirncrux
+		itemPrice   = 4500,
+		itemDate  	= "2021-11-26",
+	},
+	[151953] = {    -- Reikling Totem, Skull (sic)
+ 		itemPrice   = 1000,
+		itemDate  	= "2021-11-26",
+	},
+	[131438] = { 	-- Reach Grinder, Nirncrux
+ 		itemPrice   = 50000,
+		itemDate  	= "2021-11-26",
+	},
+	[131436] = { 	-- Reach Vine, Bloodroot Sprout
+ 		itemPrice   = 15000,
+		itemDate  	= "2021-11-26",
+	},
+	[131437] = { 	-- Reach Vine, Bloodroot Tendril
+ 		itemPrice   = 25000,
+		itemDate 	 = "2021-11-26",
+	},
+	
+	-- ====================================================================
+	[181539] = {	-- Nedic Archway, Worn
+		itemPrice	= 15000,
+		itemDate	= "2021-11-19",
+	},
+	[166007] = {	-- Ancient Nord Prayer Wheel Frame, Engraved
+		itemPrice   = 20000,
+		itemDate  	= "2021-11-19",
+	},
+	[151952] = {    -- Nedic Stand, Ritual
+ 		itemPrice   = 4000,
+		itemDate 	= "2021-11-19",
+	},
+	[120844] = {    -- Craglorn Brazier, Ornate
+		itemPrice   = 15000,
+		itemDate  	= "2021-11-19",
+	},
+    [139104] = {    -- Craglorn Relief, Serpent
+		itemPrice   = 20000,
+		itemDate  	= "2021-11-19",
+	},
+    [120843] = {    -- Craglorn Skull, Carved
+		itemPrice   = 35000,
+		itemDate  	= "2021-11-19",
+	},
+    [120845] = {    -- Craglorn Sword Sconce
+		itemPrice   = 5000,
+		itemDate  	= "2021-11-19",
+	},	
+	
+	-- ====================================================================
+	[120842] = {	-- Nedic Altar, Worn
+		itemPrice	= 3000,
+		itemDate	= "2021-11-12",
+	},
+	[166006] = {	-- Ancient Nord Prayer Wheel, Four-Faced
+		itemPrice   = 25000,
+		itemDate  	= "2021-11-12",
+	},
+	[151951] = {    -- Nedic Orb, Ritual
+ 		itemPrice   = 20000,
+		itemDate  	= "2021-11-12",
+	},
+	[120842] = { 	-- Craglorn Chair, Serpent
+ 		itemPrice   = 2500,
+		itemDate  	= "2021-11-12",
+	},
+	[120841] = { 	-- Craglorn Urn, Standing
+ 		itemPrice   = 7500,
+		itemDate  	= "2021-11-12",
+	},
+	[120840] = { 	-- Craglorn Coffer, Ornate
+ 		itemPrice   = 5000,
+		itemDate  	= "2021-11-12",
+	},
+	[139103] = {    -- Craglorn Display Case, Sealed
+ 		itemPrice   = 10000,
+		itemDate  	= "2021-11-12",
+	},
+	
+	-- ====================================================================
+	[166005] = {	-- Geode, Citrine
+		itemPrice	= 20000,
+		itemDate	= "2021-11-06",
+	},
+	[166005] = {	-- Geode, Green Garnet
+		itemPrice   = 20000,
+		itemDate  	= "2021-11-06",
+	},
+	[151950] = {    -- Khajiit Path Marker, Lion
+ 		itemPrice   = 75000,
+		itemDate  	= "2021-11-06",
+	},
+	[139102] = {    -- Blue Crystal Spire, Large
+		itemPrice   = 18000,
+		itemDate  	= "2021-11-06",
+	},
+	[120832] = { 	-- Blue Crystal Spire
+ 		itemPrice   = 12000,
+		itemDate  	= "2021-11-06",
+	},
+	[120834] = { 	-- Blue Flame Brazier
+ 		itemPrice   = 5000,
+		itemDate  	= "2021-11-06",
+	},
+	[121272] = { 	-- Soul Gem, Great
+ 		itemPrice   = 20000,
+		itemDate  	= "2021-11-06",
+	},
+}
+
 FurC.LuxuryFurnisher[FURC_BLACKW] = {
+	-- ====================================================================
+	[181543] = {	-- Harpy Totem, Feathered
+		itemPrice	= 7000,
+		itemDate	= "2021-10-30",
+	},
+	[167350] = {	-- Minecart, Skeletal Remains
+		itemPrice   = 8000,
+		itemDate  	= "2021-10-30",
+	},
+	[141761] = {    -- Reach Sapling, Contorted Briarheart
+		itemPrice   = 35000,
+		itemDate  	= "2021-10-30",
+	},
+	[132156] = {    -- Briarheart Tree, Replica
+		itemPrice   = 100000,
+		itemDate  	= "2021-10-30",
+	},
+	[132158] = {  	-- Witch's Remains, Offering
+ 		itemPrice 	= 50000,
+		itemDate  	= "2021-10-30",
+	},
+	[132157] = {  	-- Witch's Remains, Sacrificial
+ 		itemPrice 	= 50000,
+		itemDate  	= "2021-10-30",
+	},
+	[132143] = {  	-- Reach Sapling, Briarheart
+ 		itemPrice 	= 50000,
+		itemDate  	= "2021-10-30",
+	},
+	[153694] = {    -- Tree, Murkmire Ossuary
+ 		itemPrice   = 50000,
+		itemDate  	= "2021-10-30",
+	},
+
+	-- ====================================================================
+	[181542] = {	-- Crow Totem, Gruesome
+		itemPrice	= 4000,
+		itemDate	= "2021-10-23",
+	},
+	[167349] = {	-- Warning Totem, Skulls
+		itemPrice   = 2500,
+		itemDate  	= "2021-10-23",
+	},
+	[153693] = {    -- Tree, Treehenge Green Lady
+ 		itemPrice   = 50000,
+		itemDate  	= "2021-10-23",
+	},
+	[141760] = {    -- Witch's Tree, Charred
+ 		itemPrice   = 5000,
+		itemDate  	= "2021-10-23",
+	},
+	[132155] = { 	-- Witch's Torch, Wretched
+ 		itemPrice   = 5000,
+		itemDate  	= "2021-10-23",
+	},
+	[132154] = { 	-- Witch's Totem, Bog
+ 		itemPrice   = 50000,
+		itemDate  	= "2021-10-23",
+	},
+	[132153] = { 	-- Witch's Tree, Captive
+ 		itemPrice   = 35000,
+		itemDate  	= "2021-10-23",
+	},
+
+	-- ====================================================================
+	[181536] = {	-- Blue Crystal Cluster, Medium
+		itemPrice	= 10000,
+		itemDate	= "2021-10-16",
+	},
+	[166004] = {	-- Geode, Amethyst
+		itemPrice   = 20000,
+		itemDate  	= "2021-10-16",
+	},
+	[151949] = {    -- Hlaalu Path Marker, Almsivi
+ 		itemPrice   = 15000,
+		itemDate  	= "2021-10-16",
+	},
+	[139101] = {    -- Blue Crystal Cluster, Large
+ 		itemPrice   = 20000,
+		itemDate  	= "2021-10-16",
+	},
+	[120831] = { 	-- Blue Crystal Cluster
+ 		itemPrice   = 10000,
+		itemDate  	= "2021-10-16",
+	},
+	[120833] = { 	-- Blue Crystal Fragments
+ 		itemPrice   = 8000,
+		itemDate  	= "2021-10-16",
+	},
+	[120830] = { 	-- Blue Flame Candles
+ 		itemPrice   = 2500,
+		itemDate  	= "2021-10-16",
+	},
+	[121273] = { 	-- Soul Gem, Grand
+ 		itemPrice   = 5000,
+		itemDate  	= "2021-10-16",
+	},
+
+	-- ====================================================================
+	[181535] - {	-- Mummy, Bound
+		itemPrice	= 8000,
+		itemDate	= "2021-10-09",
+	},
+	[166003] = {	-- Dark Elf Tomb Marker, Velas
+		itemPrice   = 5000,
+		itemDate  	= "2021-10-09",
+	},
+	[151948] = {    -- Dark Elf Urn, Bronze Burial
+ 		itemPrice   = 10000,
+		itemDate  	= "2021-10-09",
+	},
+    [139100] = {    -- Dark Elf Ash Garden, Familial
+		itemPrice   = 10000,
+		itemDate  	= "2021-10-09",
+	},
+	[126579] = { 	-- Velothi Altar, Sacrificial
+ 		itemPrice   = 10834,
+		itemDate  	= "2021-10-09",
+	},
+	[126576] = { 	-- Velothi Kneeler, Prayer
+ 		itemPrice   = 3000,
+		itemDate  	= "2021-10-09",
+	},
+	[126577] = { 	-- Velothi Podium of Recitation
+ 		itemPrice   = 37500,
+		itemDate  	= "2021-10-09",
+	},
+	[126578] = { 	-- Velothi Burial Urn
+ 		itemPrice   = 10834,
+		itemDate  	= "2021-10-09",
+	},
+	
+	-- ====================================================================
+	[181534] = {	-- Funerary Urn, Broken
+		itemPrice	= 4000,
+		itemDate	= "2021-10-02",
+	},
+	[181533] = {	-- Mummy, Scroll Guardian
+		itemPrice	= 8000,
+		itemDate	= "2021-10-02",
+	},
+	[166002] = {    -- Dark Elf Tomb Marker, Sarano
+		itemPrice   = 5000,
+		itemDate  	= "2021-10-02",
+	},
+	[151947] = {    -- Dark Elf Ash Garden, Communal
+		itemPrice   = 15000,
+		itemDate  	= "2021-10-02",
+	},
+	[126573] = { 	-- Velothi Candle, Mourning
+		itemPrice   = 5000,
+		itemDate  	= "2021-10-02",
+	},
+	[126574] = { 	-- Velothi Cerecloth, Prayer
+		itemPrice   = 5000,
+		itemDate  	= "2021-10-02",
+	},
+	[126575] = { 	-- Velothi Seat, Meditation
+		itemPrice   = 10000,
+		itemDate  	= "2021-10-02",
+	},
+	[126572] = { 	-- Velothi Shroud, Mourning
+		itemPrice   = 5000,
+		itemDate  	= "2021-10-02",
+	},
+    [139099] = { 	-- Dark Elf Brazier, Ancestral Tomb
+		itemPrice   = 15000,
+		itemDate  	= "2021-10-02",
+	},
+
+	-- ====================================================================
+	[175769] = {	-- Lunar Reflector, Dormant
+		itemPrice	= 40000,
+		itemDate	= "2021-09-25",
+	},
+	[166011] = {	-- Elsweyr Gate, Garden
+		itemPrice   = 25000,
+		itemDate  	= "2021-09-25",
+	},
+	[166010] = {	-- Elsweyr Gateway, Stone Arch
+		itemPrice   = 4500,
+		itemDate  	= "2021-09-25",
+	},
+	[151858] = {    -- Elsweyr Altar, Dark Moons
+ 		itemPrice   = 20000,
+		itemDate  	= "2021-09-25",
+	},
+	[151857] = {    -- Elsweyr Gazebo, Ancient Stone
+ 		itemPrice   = 100000,
+		itemDate  	= "2021-09-25",
+	},
+	[151856] = {    -- Elsweyr Sarcophagus Lid, Lunar Champion
+ 		itemPrice   = 7500,
+		itemDate  	= "2021-09-25",
+	},
+	[151855] = {    -- Elsweyr Sarcophagus, Lunar Champion
+ 		itemPrice   = 4000,
+		itemDate  	= "2021-09-25",
+	},
+	
+	-- ====================================================================
+	[175768] = {	-- Dragonguard Brazier, Empty
+		itemPrice	= 30000,
+		itemDate	= "2021-09-18",
+	},
+	[166012] = {	-- Cactus, Tall Lunar Fan
+		itemPrice   = 9000,
+		itemDate  	= "2021-09-18",
+	},
+	[151853] = {    -- Cactus, Lunar Fan
+ 		itemPrice   = 12000,
+		itemDate  	= "2021-09-18",
+	},
+	[151854] = {    -- Cactus, Banded Lunar Multihued Trio
+ 		itemPrice   = 7500,
+		itemDate  	= "2021-09-18",
+	},
+	[151852] = {    -- Boulder, Lunar Spire
+ 		itemPrice   = 450,
+		itemDate  	= "2021-09-18",
+	},
+	[151851] = {    -- Boulder, Lunar Spine
+ 		itemPrice   = 2500,
+		itemDate  	= "2021-09-18",
+	},
+	
+	-- ====================================================================
+	[139098] = {	-- Darkshade Glowstalks, Inquisitive
+		itemPrice	= 45000,
+		itemDate	= "2021-09-11",
+	},
+	[175767] = {	-- Flowers, Reed Mace
+		itemPrice	= 3000,
+		itemDate	= "2021-09-11",
+	},
+	[166001] = {	-- Plant, Murkmire Snakevine
+		itemPrice   = 7000,
+		itemDate  	= "2021-09-11",
+	},
+	[151946] = {    -- Flower, Coda
+ 		itemPrice   = 3000,
+		itemDate  	= "2021-09-11",
+	},
+	[126611] = { 	-- Vvardenfell Anemone, Sprout
+ 		itemPrice   = 5000,
+		itemDate  	= "2021-09-11",
+	},
+	[126612] = { -- Vvardenfell Anemone, Strong
+ 		itemPrice   = 25000,
+		itemDate  = "2021-09-11",
+	},
+	[126610] = { -- Vvardenfell Coral Plant, Strong,
+ 		itemPrice   = 10000,
+		itemDate  = "2021-09-11",
+	},
+	[126591] = { -- Vvardenfell Coral Plant, Young
+ 		itemPrice   = 5000,
+		itemDate  = "2021-09-11",
+	},
+
+	
+	-- ====================================================================
+	[175766] = {	-- Mushroom, Glowing Trumpet
+		itemPrice	= 1000,
+		itemDate	= "2021-09-04",
+	},
+	[166000] = {    -- Flower Patch, Hawkmoth Cabbage
+		itemPrice   = 4000,
+		itemDate  	= "2021-09-04",
+	},
+	[151945] = {    -- Plant, Spore Pod
+ 		itemPrice   = 450,
+		itemDate  	= "2021-09-04",
+	},
+	[139097] = { 	-- Spiral Skein Glowstalks, Sprouts
+		itemPrice 	= 8000,
+		itemDate  	= "2021-09-04",
+	},
+	[126587] = {  	-- Vvardenfell Glowstalk, Sprout
+ 		itemPrice   = 2500,
+		itemDate  	= "2021-09-04",
+	},
+	[126585] = {  	-- Vvardenfell Glowstalk, Strong
+ 		itemPrice   = 10000,
+		itemDate  	= "2021-09-04",
+	},
+	[126580] = {  	-- Vvardenfell Glowstalk, Towering
+ 		itemPrice   = 15000,
+		itemDate  	= "2021-09-04",
+	},
+	[126586] = {  	-- Vvardenfell Glowstalk, Young
+ 		itemPrice   = 5000,
+		itemDate  	= "2021-09-04",
+	},
+
+	-- ====================================================================
+	[175765] = {	-- Tapestry of a Failed Incarnate, The Brute
+		itemPrice	= 20000,
+		itemDate	= "2021-08-28",
+	},
+	[165999] = {    -- Tapestry of a Failed Incarnate, The Warseeker
+		itemPrice   = 20000,
+		itemDate  	= "2021-08-28",
+	},
+	[151944] = {    -- Daedric Sconce, Coldharbour
+ 		itemPrice   = 10000,
+		itemDate  	= "2021-08-28",
+	},
+	[139096] = {  -- Daedric Urn, Sealed
+ 		itemPrice   = 1000,
+		itemDate  	= "2021-08-28",
+	},
+    [139095] = {  -- Daedric Drinking Bowl, Ritual
+ 		itemPrice   = 650,
+		itemDate  	= "2021-08-28",
+	},
+    [126571] = {  -- Daedric Chandelier, Spiked
+ 		itemPrice   = 8000,
+		itemDate  	= "2021-08-28",
+	},
+	[126569] = {  -- Daedric Chest, Sealed
+ 		itemPrice   = 8000,
+		itemDate  	= "2021-08-28",
+	},
+	[126570] = {  -- Daedric Throne, Skulls
+ 		itemPrice   = 25000,
+		itemDate  	= "2021-08-28",
+	},
+
+	-- ====================================================================
+	[175764] = {	-- Egg, Gruesome
+		itemPrice	= 3000,
+		itemDate	= "2021-08-21",
+	},
+	[165998] = {    -- Tapestry of a Failed Incarnate, The Fool
+		itemPrice   = 20000,
+		itemDate  	= "2021-08-21",
+	},
+	[151915] = {    -- Daedric Key, Coldharbour
+		itemPrice   = 5000,
+		itemDate  	= "2021-08-21",
+	},
+	[139094] = { 	-- Daedric Altar, Periyte
+		itemPrice   = 40000,
+		itemDate  	= "2021-08-21",
+	},
+	[126567] = {  	-- Daedric Sarcophagus, Sealed
+		itemPrice   = 10000,
+		itemDate  	= "2021-08-21",
+	},
+	[126565] = {  	-- Daedric Platform, Sarcophagus
+		itemPrice   = 8000,
+		itemDate  	= "2021-08-21",
+	},
+	[126566] = {  	-- Daedric Brazier, Ritual
+		itemPrice   = 25000,
+		itemDate  	= "2021-08-21",
+	},
+	
+	-- ====================================================================
+	[175763] = {	-- Dwarven Urn, Masks
+		itemPrice	= 8000,
+		itemDate	= "2021-08-14",
+	},
+	[159455] = {    -- Dwarven Spider Legs, Inoperative
+		itemPrice   = 3500,
+		itemDate  	= "2021-08-14",
+	},
+	[147647] = {    -- Dwarven Centurion Blade, Detached
+		itemPrice   = 3500,
+		itemDate  	= "2021-08-14",
+	},
+	[126562] = {  	-- Dwarven Crystal Mechanism
+		itemPrice   = 50000,
+		itemDate  	= "2021-08-14",
+	},
+	[126563] = {  	-- Dwarven Orrery, Reference
+ 		itemPrice   = 25000,
+		itemDate  	= "2021-08-14",
+	},
+	[126559] = {  	-- Dwarven Schematics, technical
+ 		itemPrice   = 8000,
+		itemDate  	= "2021-08-14",
+	},
+	[139093] = {  	-- Dwarven Centurion Hammer, Detached
+ 		itemPrice   = 3000,
+		itemDate  	= "2021-08-14",
+	},
+	
+	-- ===================================================================
+	[175762] = {	-- Dwarven Hatch, Sealed
+		itemPrice	= 12000,
+		itemDate	= "2021-08-07",
+	},
+	[147648] = {    -- Dwarven Press Bed, Forge-Sized
+ 		itemPrice   = 22000,
+		itemDate  = "2021-08-07",
+	},
+	[126560] = {  -- Dwarven fountain, forged
+ 		itemPrice   = 50000,
+		itemDate  = "2021-08-07",
+	},
+	[126564] = {  -- Dwarven Clock, Deactivated
+ 		itemPrice   = 15000,
+		itemDate  = "2021-08-07",
+	},
+	[126561] = {  -- Dwarven Pillar, Forged
+ 		itemPrice   = 10000,
+		itemDate  = "2021-08-07",
+	},
+	[139092] = {  -- Dwarven Engine, Fused
+ 		itemPrice   = 24000,
+		itemDate  = "2021-08-07",
+	},
+	[159454] = {  -- Dwarven Crucible, Heavy
+ 		itemPrice   = 4000,
+		itemDate  = "2021-08-07",
+	},	
+	
+	-- ====================================================================
+	[175761] = {	-- Imperial Curtains, Heavy
+		itemPrice	=	12000,
+		itemDate	= "2021-07-31",
+	},
+	[121270] = {  	-- Brotherhood Banner, Large
+ 		itemPrice   = 25000,
+		itemDate  	= "2021-07-31",
+	},
+	[120836] = {  	-- Brotherhood Candelabra, Floor
+ 		itemPrice   = 8000,
+		itemDate  	= "2021-07-31",
+	},
+	[120839] = {  	-- Brotherhood Ledger, Stand
+ 		itemPrice   = 4000,
+		itemDate  	= "2021-07-31",
+	},
+	[120838] = {  	-- Brotherhood Plaque, Wolf
+ 		itemPrice   = 25000,
+		itemDate  	= "2021-07-31",
+	},
+	[134846] = {  	-- Brotherhood Carpet, Large
+ 		itemPrice   = 15000,
+		itemDate  	= "2021-07-31",
+	},
+	[159451] = {    -- Hourglass Banner, Akatosh
+ 		itemPrice   = 12000,
+		itemDate  	= "2021-07-31",
+	},
+	[145487] = {    -- Banner, Order of the Hour
+ 		itemPrice   = 12000,
+		itemDate  	= "2021-07-31",
+	},
+
+	-- ==================================================================
+	[175760] = {	-- Banner, Anvil
+		itemPrice	= 4000,
+		itemDate	= "2021-07-24",
+	},
+	[159450] = {    -- Hourglass Pedestal, Square
+ 		itemPrice   = 7500,
+		itemDate  	= "2021-07-24",
+	},
+	[159449] = {    -- Hourglass Stand, Round
+ 		itemPrice   = 4000,
+		itemDate  	= "2021-07-24",
+	},
+	[134845] = {  -- Brotherhood  Tapestry, Small
+ 		itemPrice   = 5000,
+		itemDate  	= "2021-07-24",
+	},
+	[120837] = {  -- Brotherhood Window, Stained Glass
+ 		itemPrice   = 100000,
+		itemDate  	= "2021-07-24",
+	},
+	[121271] = {  -- Brotherhood Tapestry
+ 		itemPrice   = 10000,
+		itemDate  	= "2021-07-24",
+	},
+	[120835] = {  -- Brotherhood Candelabra, Table
+ 		itemPrice   = 2500,
+		itemDate  	= "2021-07-24",
+	},
+	[145486] = {    -- Door, Sweet Mother
+ 		itemPrice   = 35000,
+		itemDate  	= "2021-07-24",
+	},	
+	
+	-- ====================================================================
+	[171833] = {	-- Dark Elf Statue, St. Delyn
+		itemPrice	= 35000,
+		itemDate	= "2021-07-17",
+	},
+	[159448] = {	-- Breton Statue, Arkay
+		itemPrice	= 20000,
+		itemDate	= "2021-07-17",
+	},
+	[134844] = {  	-- Ra Gada Statue, Forward Scout
+ 		itemPrice   = 25000,
+		itemDate  	= "2021-07-17",
+	},
+	[120808] = {  	-- Statue Base, Circular
+ 		itemPrice   = 2500,
+		itemDate  	= "2021-07-17",
+	},
+	[120811] = {  	-- Statue, Justice
+ 		itemPrice   = 25000,
+		itemDate  	= "2021-07-17",
+	},
+	[120814] = {  	-- Statue, Order
+ 		itemPrice   = 25000,
+		itemDate  	= "2021-07-17",
+	},
+	[120813] = {  	-- Statue, Truth
+ 		itemPrice   = 25000,
+		itemDate  	= "2021-07-17",
+	},
+	[145485] = {    -- Dark Elf Statue, Knight
+ 		itemPrice   = 20000,
+		itemDate  	= "2021-07-17",
+	},
+	
+	-- ====================================================================
+	[171832] = {	-- Dark Elf Statue, St. Olms
+		itemPrice	= 35000,
+		itemDate	= "2021-07-10",
+	},
+	[159447] = {    -- Imperial Statue, Legion Champion
+		itemDate  	= "2021-07-10",
+ 		itemPrice   = 20000,
+	},
+	[145484] = {    -- Dark Elf Statue, Ordinator
+ 		itemPrice   = 20000,
+		itemDate  	= "2021-07-10",
+	},
+	[134842] = {  	-- Ra Gada Statue, Blademaster
+ 		itemPrice   = 25000,
+		itemDate  	= "2021-07-10",
+	},
+	[134843] = {  	-- Ra Gada Statue, Battlemage
+ 		itemPrice   = 25000,
+		itemDate  	= "2021-07-10",
+	},
+	[120809] = {  	-- Statue Base, Square
+ 		itemPrice   = 2500,
+		itemDate  	= "2021-07-10",
+	},
+	[120810] = {  	-- Statue, Faith
+ 		itemPrice   = 25000,
+		itemDate  	= "2021-07-10",
+	},
+	[120812] = {  	-- Statue, Light
+ 		itemPrice   = 25000,
+		itemDate  	= "2021-07-10",
+	},
+	
+	-- ====================================================================
+	[171831] = {	--Mad Architect's Medallion
+		itemPrice	= 2500,
+		itemDate	= "2021-07-03",
+	},
+	[156657] = {    -- Azure Plasm Cage, Hanging
+ 		itemPrice   = 100000,
+		itemDate  = "2021-07-03",
+	},	
+	[145483] = {    -- Column, Ossuary
+ 		itemPrice   = 20000,
+		itemDate  = "2021-07-03",
+	},
+	[134839] = {  -- Necromancer's Brazier, Cold Flame
+ 		itemPrice   = 10000,
+		itemDate  = "2021-07-03",
+	},
+	[134840] = {  -- Necromancer's Spire, Compact
+ 		itemPrice   = 25000,
+		itemDate  = "2021-07-03",
+	},
+	[134841] = {  -- Necromancer's Spire, Huge
+ 		itemPrice   = 100000,
+		itemDate  = "2021-07-03",
+	},
+	
+	-- ====================================================================
+	[171830] = {	-- Mausoleum Bookcase, Filled
+		itemPrice	= 15000,
+		itemDate	= "2021-06-26",
+	},
+	[156656] = {    -- Pedestal, Dark Stone
+ 		itemPrice   = 4000,
+		itemDate  = "2021-06-26",
+	},
+	[134836] = {  -- Necromancer's Brazier, Flame
+ 		itemPrice   = 10000,
+		itemDate  = "2021-06-26",
+	},
+	[134838] = {  -- Necromancer's Spire, Alcove
+ 		itemPrice   = 75000,
+		itemDate  = "2021-06-26",
+	},
+	[134837] = {  -- Necromancer's Spire, Narrow
+ 		itemPrice   = 50000,
+		itemDate  = "2021-06-26",
+	},
+	[145482] = {    -- Wheelbarrow, Bones
+ 		itemPrice   = 1000,
+		itemDate  = "2021-06-26",
+	},	
+	
+	-- ====================================================================
+	[171829] = {	-- Laboratory Instruments
+		itemPrice	= 5000,
+		itemDate	= "2021-06-19",
+	},
+	[156667] = {    -- Gate, Spiked Iron
+ 		itemPrice   = 15000,
+		itemDate  	= "2021-06-19",
+	},
+	[145480] = {    -- Corpse, Burned Seated
+ 		itemPrice   = 2500,
+		itemDate  	= "2021-06-19",
+	},
+	[145481] = {    -- Corpse, Burned Sprawled
+ 		itemPrice   = 2500,
+		itemDate  	= "2021-06-19",
+	},
+	[134834] = {  -- Bandages, Blood-Soaked
+ 		itemPrice   = 2000,
+		itemDate  	= "2021-06-19",
+	},
+	[134835] = {  -- Orcish Burial Urn, Exhumed
+ 		itemPrice   = 20000,
+		itemDate  	= "2021-06-19",
+	},
+	[120824] = {  -- Body Cage
+ 		itemPrice   = 5000,
+		itemDate  	= "2021-06-19",
+	},
+	[120829] = {  -- Torture Rack
+ 		itemPrice   = 5000,
+		itemDate  	= "2021-06-19",
+	},
+	[120828] = {  -- Torture Wheel
+ 		itemPrice   = 100000,
+		itemDate  	= "2021-06-19",
+	},
+	
+	-- ====================================================================
+	[171828] = {	-- Vampiric Table, Exsanguination
+		itemPrice	= 35000,
+		itemDate	= "2021-06-11",
+	},
+	[156668] = {    -- Skeletal Remains, Slumped Over
+ 		itemPrice   = 10000,
+		itemDate  = "2021-06-11",
+	},
+	[145479] = {    -- Iron Maiden, Occupied
+ 		itemPrice   = 100000,
+		itemDate  = "2021-06-11",
+	},
+	[134833] = {  -- Gibbet, Hanging Hooked
+ 		itemPrice   = 75000,
+		itemDate  = "2021-06-11",
+	},
+	[120826] = {  -- Iron Cross
+ 		itemPrice   = 10000,
+		itemDate  = "2021-06-11",
+	},
+	[120825] = {  -- Iron Cross, Large
+ 		itemPrice   = 25000,
+		itemDate  = "2021-06-11",
+	},
+	[120827] = {  -- Iron Maiden, Chained
+ 		itemPrice   = 20000,
+		itemDate  = "2021-06-11",
+	},
+	
+	-- ====================================================================
+	[171827] = {	-- Brazier, Dragon-Headed Cold-Flame
+		itemPrice	= 25000,
+		itemDate	= "2021-06-04",
+	},
+	[156655] = {    -- Alinor Shrine, Phynaster
+ 		itemPrice   = 50000,
+		itemDate  = "2021-06-04",
+	},
+
+	[145478] = {    -- Alinor Shrine, Y'ffre
+ 		itemPrice   = 50000,
+		itemDate  = "2021-06-04",
+	},
+	[134832] = {  -- Basin of the Divines
+ 		itemPrice   = 35000,
+		itemDate  = "2021-06-04",
+	},
+    [120823] = {  -- Sigil Stand
+ 		itemPrice   = 15000,
+		itemDate  = "2021-06-04",
+	},
+    [120819] = {  -- Sigil, Kynareth
+ 		itemPrice   = 20000,
+		itemDate  = "2021-06-04",
+	},
+    [120820] = {  -- Sigil, Mara
+ 		itemPrice   = 20000,
+		itemDate  = "2021-06-04",
+	},
+    [120821] = {  -- Sigil, Stendarr
+ 		itemPrice   = 20000,
+		itemDate  = "2021-06-04",
+	},
+    [120822] = {  -- Sigil, Zenithar
+ 		itemPrice   = 20000,
+		itemDate  = "2021-06-04",
+	},
+	
+	-- ====================================================================
+	[171826] = {	-- Brazier, Stone Cold-Flame
+		itemPrice	= 30000,
+		itemDate	= "2021-05-29",
+	},
+	[145476] = {    -- Alinor Shrine, Trinimac
+ 		itemPrice   = 50000,
+		itemDate  = "2021-05-29",
+	},
+	[145477] = {    -- Alinor Pedestal, Shrine
+ 		itemPrice   = 10000,
+		itemDate  = "2021-05-29",
+	},
+	[156654] = {    -- Alinor Shrine, Magnus
+ 		itemPrice   = 50000,
+		itemDate  = "2021-05-29",
+	},
+	[120823] = {  -- Sigil Stand
+ 		itemPrice   = 15000,
+		itemDate  = "2021-05-29",
+	},
+	[120815] = {  -- Sigil, Akatosh
+ 		itemPrice   = 20000,
+		itemDate  = "2021-05-29",
+	},
+	[120816] = {  -- Sigil, Arkay
+ 		itemPrice   = 20000,
+		itemDate  = "2021-05-29",
+	},
+	[120817] = {  -- Sigil, Dibella
+ 		itemPrice   = 20000,
+		itemDate  = "2021-05-29",
+	},
+	[120818] = {  -- Sigil, Julianos
+ 		itemPrice   = 20000,
+		itemDate  = "2021-05-29",
+	},
+	[134831] = {  -- Altar of the Divines
+ 		itemPrice   = 50000,
+		itemDate  = "2021-05-29",
+	},
+	
+	-- ====================================================================
+	[171825] = {	-- Mushroom, Large Glowtendril
+		itemPrice	= 20000,
+		itemDate	= "2021-05-22",
+	},
+	[156653] = {    -- Plant, Luminescent Valeflower
+ 		itemPrice   = 2500,
+		itemDate  = "2021-05-22",
+	},
+	[145475] = {    -- Plant, Soulsplinter Weed
+ 		itemPrice   = 12500,
+		itemDate  = "2021-05-22",
+	},
+	[134830] = {  -- Flowers, Blue Starbloom
+ 		itemPrice   = 15000,
+		itemDate  = "2021-05-22",
+	},
+	[120888] = {  -- Bat Bloom
+ 		itemPrice   = 15000,
+		itemDate  = "2021-05-22",
+	},
+	[120887] = {  -- Fan Bush
+ 		itemPrice   = 1000,
+		itemDate  = "2021-05-22",
+	},
+	[120889] = {  -- Glow Bush, Purple
+ 		itemPrice   = 20000,
+		itemDate  = "2021-05-22",
+	},
 	
 	-- ====================================================================
 	[171824] = {    -- Mushroom, Tufted Cap
  		itemPrice   = 5000,
 		itemDate  = "2021-05-15",
 	},		   
-	
 	[156652] = {    -- Garlas Alpinia, Branching
  		itemPrice   = 2000,
 		itemDate  = "2021-05-15",
 	},
-
 	[145474] = {    -- Plant, Flytrap
  		itemPrice   = 4000,
 		itemDate  = "2021-05-15",
@@ -87,7 +997,6 @@ FurC.LuxuryFurnisher[FURC_BLACKW] = {
 		itemPrice   = 35000,
 		itemDate  = "2021-04-24",
 	},
-	
 	
 	[156649] = {    -- Redguard Tent, Rounded Blue
  		itemPrice   = 100000,
@@ -199,8 +1108,7 @@ FurC.LuxuryFurnisher[FURC_FLAMES] = {
 
 }
 
-FurC.LuxuryFurnisher[FURC_MARKAT] = {
-	
+FurC.LuxuryFurnisher[FURC_MARKAT] = {	
 
 -- ====================================================================
 	
@@ -818,69 +1726,11 @@ FurC.LuxuryFurnisher[FURC_MARKAT] = {
 		itemDate  = "2020-11-14",
 	},
 
-	-- ====================================================================
-	
-	[167350] = {		-- Minecart, Skeletal Remains
-		itemDate  = "2020-10-07",
-		itemPrice   = 8000,
-	},
-
-	[141761] = {        -- Reach Sapling, Contorted Briarheart
-		itemDate  = "2020-10-07",
-		itemPrice   = 35000,
-	},
-	[132156] = {        -- Briarheart Tree, Replica
-		itemDate  = "2020-10-07",
-		itemPrice   = 100000,
-	},
-	[132158] = {  -- Witch's Remains, Offering
- 		itemPrice = 50000,
-		itemDate  = "2020-10-07",
-	},
-	[132157] = {  -- Witch's Remains, Sacrificial
- 		itemPrice = 50000,
-		itemDate  = "2020-10-07",
-	},
-	-- Oct 28th
-	[132143] = {  -- Reach Sapling, Briarheart
- 		itemPrice = 50000,
-		itemDate  = "2020-10-07",
-	},
-	[153694] = {    -- Tree, Murkmire Ossuary
- 		itemPrice   = 50000,
-		itemDate  = "2020-10-07",
-	},
 
 }
 
 
 FurC.LuxuryFurnisher[FURC_STONET] = {
-	[167349] = {		-- Warning Totem, Skulls
-		itemPrice   = 2500,
-		itemDate  = "2020-10-31",
-	},
-
-	[153693] = {    -- Tree, Treehenge Green Lady
- 		itemPrice   = 50000,
-		itemDate  = "2020-10-31",
-	},
-	[141760] = {        -- Witch's Tree, Charred
- 		itemPrice   = 5000,
-		itemDate  = "2020-10-31",
-	},
-
-	[132155] = { -- Witch's Torch, Wretched
- 		itemPrice   = 5000,
-		itemDate  = "2020-10-31",
-	},
-	[132154] = { -- Witch's Totem, Bog
- 		itemPrice   = 50000,
-		itemDate  = "2020-10-31",
-	},
-	[132153] = { -- Witch's Tree, Captive
- 		itemPrice   = 35000,
-		itemDate  = "2020-10-31",
-	},
 
 	-- ====================================================================
 	
@@ -911,766 +1761,18 @@ FurC.LuxuryFurnisher[FURC_STONET] = {
 		itemDate  = "2020-10-24",
 	},
 
-	-- ====================================================================
-	
-	[167343] = {		-- Stone, Nirncrux-Laden
-		itemPrice   = 10000,
-		itemDate  = "2020-10-17",
-	},
 
-	[139105] = {        -- Reach Grinding Stones, Nirncrux
-		itemPrice   = 4500,
-		itemDate  = "2020-10-17",
-	},
-	[151953] = {    -- Reikling Totem, Skull (sic)
- 		itemPrice   = 1000,
-		itemDate  = "2020-10-17",
-	},
-    -- Sept. 23rd
-	[131435] = { -- Reach Bowl, Nirncrux
- 		itemPrice   = 5000,
-		itemDate  = "2020-10-17",
-	},
-	[131438] = { -- Reach Grinder, Nirncrux
- 		itemPrice   = 50000,
-		itemDate  = "2020-10-17",
-	},
-	[131436] = { -- Reach Vine, Bloodroot Sprout
- 		itemPrice   = 15000,
-		itemDate  = "2020-10-17",
-	},
-	[131437] = { -- Reach Vine, Bloodroot Tendril
- 		itemPrice   = 25000,
-		itemDate  = "2020-10-17",
-	},
-
-	-- ====================================================================
-	
-	[166007] = {		-- Ancient Nord Prayer Wheel Frame, Engraved
-		itemPrice   = 20000,
-		itemDate  = "2020-10-10",
-	},
-	[151952] = {    -- Nedic Stand, Ritual
- 		itemPrice   = 4000,
-		itemDate  = "2020-10-10",
-	},
-	[120844] = {        -- Craglorn Brazier, Ornate
-		itemPrice   = 15000,
-		itemDate  = "2020-10-10",
-	},
-    [139104] = {        -- Craglorn Relief, Serpent
-		itemPrice   = 20000,
-		itemDate  = "2020-10-10",
-	},
-    [120843] = {        -- Craglorn Skull, Carved
-		itemPrice   = 35000,
-		itemDate  = "2020-10-10",
-	},
-    [120845] = {        -- Craglorn Sword Sconce
-		itemPrice   = 5000,
-		itemDate  = "2020-10-10",
-	},
-
-	-- ====================================================================
-	
-	[166006] = {		-- Ancient Nord Prayer Wheel, Four-Faced
-		itemPrice   = 25000,
-		itemDate  = "2020-10-03",
-	},
-
-	[151951] = {    -- Nedic Orb, Ritual
- 		itemPrice   = 20000,
-		itemDate  = "2020-10-03",
-	},
-	[120842] = { -- Craglorn Chair, Serpent
- 		itemPrice   = 2500,
-		itemDate  = "2020-10-03",
-	},
-	[120841] = { -- Craglorn Urn, Standing
- 		itemPrice   = 7500,
-		itemDate  = "2020-10-03",
-	},
-	[120840] = { -- Craglorn Coffer, Ornate
- 		itemPrice   = 5000,
-		itemDate  = "2020-10-03",
-	},
-	[139103] = {        -- Craglorn Display Case, Sealed
- 		itemPrice   = 10000,
-		itemDate  = "2020-10-03",
-	},
-
-	-- ====================================================================
-	
-	[166005] = {		-- Geode, Green Garnet
-		itemPrice   = 20000,
-		itemDate  = "2020-09-26",
-	},
-
-	[151950] = {    -- Khajiit Path Marker, Lion
- 		itemPrice   = 75000,
-		itemDate  = "2020-09-26",
-	},
-	[139102] = {        -- Blue Crystal Spire, Large
-		itemPrice   = 18000,
-		itemDate  = "2020-09-26",
-	},
-
-	-- Sept. 2nd + 3rd
-	[120832] = { -- Blue Crystal Spire
- 		itemPrice   = 12000,
-		itemDate  = "2020-09-26",
-	},
-	[120834] = { -- Blue Flame Brazier
- 		itemPrice   = 5000,
-		itemDate  = "2020-09-26",
-	},
-	[121272] = { -- Great Soul Gem
- 		itemPrice   = 20000,
-		itemDate  = "2020-09-26",
-	},
-
-	-- ====================================================================
-	
-	[166004] = {		-- Geode, Amethyst
-		itemPrice   = 20000,
-		itemDate  = "2020-09-19",
-	},
-	[151949] = {    -- Hlaalu Path Marker, Almsivi
- 		itemPrice   = 15000,
-		itemDate  = "2020-09-19",
-	},
-
-	[139101] = {        -- Blue Crystal Cluster, Large
- 		itemPrice   = 20000,
-		itemDate  = "2020-09-19",
-	},
-	[120831] = { -- Blue Crystal Cluster
- 		itemPrice   = 10834,
-		itemDate  = "2020-09-19",
-	},
-	[120833] = { -- Blue Crystal Fragments
- 		itemPrice   = 8125,
-		itemDate  = "2020-09-19",
-	},
-	[120830] = { -- Blue Flame Candles
- 		itemPrice   = 2500,
-		itemDate  = "2020-09-19",
-	},
-	[121273] = { -- Soul Gem, Grand
- 		itemPrice   = 5417,
-		itemDate  = "2020-09-19",
-	},
-
-	-- ====================================================================
-	
-	[166003] = {		-- Dark Elf Tomb Marker, Velas
-		itemPrice   = 5000,
-		itemDate  = "2020-10-12",
-	},
-
-	[151948] = {    -- Dark Elf Urn, Bronze Burial
- 		itemPrice   = 10000,
-		itemDate  = "2020-10-12",
-	},
-    [139100] = {        -- Dark Elf Ash Garden, Familial
-		itemPrice   = 10000,
-		itemDate  = "2020-10-12",
-	},
-	[126579] = { -- Velothi Altar, Sacrificial
- 		itemPrice   = 10834,
-		itemDate  = "2020-10-12",
-	},
-	[126576] = { -- Velothi Kneeler, Prayer
- 		itemPrice   = 3000,
-		itemDate  = "2020-10-12",
-	},
-
-	[126577] = { -- Velothi Podium of Recitation
- 		itemPrice   = 37500,
-		itemDate  = "2020-10-12",
-	},
-
-	[126578] = { -- Velothi Burial Urn
- 		itemPrice   = 10834,
-		itemDate  = "2020-10-12",
-	},
-
-	-- ====================================================================
-	
-	[166002] = {    -- Dark Elf Tomb Marker, Sarano
-		itemPrice   = 5000,
-		itemDate  = "2020-09-25",
-	},
-	[165998] = {    -- Tapestry of a Failed Incarnate, The Fool
-		itemPrice   = 20000,
-		itemDate  = "2020-09-25",
-	},
-	[151947] = {    -- Dark Elf Ash Garden, Communal
-		itemPrice   = 15000,
-		itemDate  = "2020-09-25",
-	},
-	-- August 5+6
-	[126573] = { -- Velothi Candle, Mourning
-		itemPrice   = 5000,
-		itemDate  = "2020-09-25",
-	},
-	[126574] = { -- Velothi Cerecloth, Prayer
-		itemPrice   = 5000,
-		itemDate  = "2020-09-25",
-	},
-	[126575] = { -- Velothi Seat, Meditation
-		itemPrice   = 10000,
-		itemDate  = "2020-09-25",
-	},
-	[126572] = { -- Velothi Shroud, Mourning
-		itemPrice   = 5000,
-		itemDate  = "2020-09-25",
-	},
-    [139099] = { -- Dark Elf Brazier, Ancestral Tomb
-		itemPrice   = 15000,
-		itemDate  = "2020-09-25",
-	},
 }
 
 
 FurC.LuxuryFurnisher[FURC_SKYRIM] = {
 
-
-	[166011] = {		-- Elsweyr Gate, Garden
-		itemPrice   = 25000,
-		itemDate  = "2020-09-18",
-	},
-	[166010] = {		-- Elsweyr Gateway, Stone Arch
-		itemPrice   = 4500,
-		itemDate  = "2020-09-18",
-	},
-
-	[151858] = {    -- Elsweyr Altar, Dark Moons
- 		itemPrice   = 20000,
-		itemDate  = "2020-09-18",
-	},
-	[151857] = {    -- Elsweyr Gazebo, Ancient Stone
- 		itemPrice   = 100000,
-		itemDate  = "2020-09-18",
-	},
-	[151856] = {    -- Elsweyr Sarcophagus Lid, Lunar Champion
- 		itemPrice   = 7500,
-		itemDate  = "2020-09-18",
-	},
-	[151855] = {    -- Elsweyr Sarcophagus, Lunar Champion
- 		itemPrice   = 4000,
-		itemDate  = "2020-09-18",
-	},
-
-	-- ====================================================================
-	
-	[166012] = {		-- Cactus, Tall Lunar Fan
-		itemPrice   = 9000,
-		itemDate  = "2020-08-22",
-	},
-	[151853] = {    -- Cactus, Lunar Fan
- 		itemPrice   = 12000,
-		itemDate  = "2020-08-22",
-	},
-	[151854] = {    -- Cactus, Banded Lunar Multihued Trio
- 		itemPrice   = 7500,
-		itemDate  = "2020-08-22",
-	},
-	[151852] = {    -- Boulder, Lunar Spire
- 		itemPrice   = 450,
-		itemDate  = "2020-08-22",
-	},
-	[151851] = {    -- Boulder, Lunar Spine
- 		itemPrice   = 2500,
-		itemDate  = "2020-08-22",
-	},
-
-	-- ====================================================================
-	
-	[166001] = {		-- Plant, Murkmire Snakevine
-		itemPrice   = 7000,
-		itemDate  = "2020-08-15",
-	},
-	[151946] = {    -- Flower, Coda
- 		itemPrice   = 3000,
-		itemDate  = "2020-08-15",
-	},
-	-- August 5+6
-	[126611] = { -- Vvardenfell Anemone, Sprout
- 		itemPrice   = 5417,
-		itemDate  = "2020-08-15",
-	},
-	[126612] = { -- Vvardenfell Anemone, Strong
- 		itemPrice   = 27084,
-		itemDate  = "2020-08-15",
-	},
-	[126610] = { -- Vvardenfell Coral Plant,
- 		itemPrice   = 10834,
-		itemDate  = "2020-08-15",
-	},
-	[126591] = { -- Vvardenfell Coral Plant, Young
- 		itemPrice   = 5417,
-		itemDate  = "2020-08-15",
-	},
-
-	-- ====================================================================
-	
-	[166000] = {    -- Flower Patch, Hawkmoth Cabbage
-		itemPrice   = 4000,
-		itemDate  = "2020-08-08",
-	},
-
-	[151945] = {    -- Plant, Spore Pod
- 		itemPrice   = 450,
-		itemDate  = "2020-08-08",
-	},
-	[139097] = { -- Spiral Skein Glowstalks, Sprouts
-		itemPrice = 8000,
-		itemDate  = "2020-08-08",
-	},
-	--July 29 + 30
-	[126587] = {  -- Vvardenfell Glowstalk, Sprout
- 		itemPrice   = 2500,
-		itemDate  = "2020-08-08",
-	},
-	[126585] = {  -- Vvardenfell Glowstalk, Strong
- 		itemPrice   = 10000,
-		itemDate  = "2020-08-08",
-	},
-	[126580] = {  -- Vvardenfell Glowstalk, Towering
- 		itemPrice   = 15000,
-		itemDate  = "2020-08-08",
-	},
-	[126586] = {  -- Vvardenfell Glowstalk, Young
- 		itemPrice   = 5000,
-		itemDate  = "2020-08-08",
-	},
-
-	-- ====================================================================
-	
-	[165999] = {    -- Tapestry of a Failed Incarnate, The Warseeker
-		itemPrice   = 20000,
-		itemDate  = "2020-08-01",
-	},
-	[151944] = {    -- Daedric Sconce, Coldharbour
- 		itemPrice   = 10000,
-		itemDate  = "2020-08-01",
-	},
-	[139096] = {  -- Daedric Urn, Sealed
- 		itemPrice   = 1000,
-		itemDate  = "2020-08-01",
-	},
-    [139095] = {  -- Daedric Drinking Bowl, Ritual
- 		itemPrice   = 650,
-		itemDate  = "2020-08-01",
-	},
-    [126571] = {  -- Daedric Chandelier, Spiked
- 		itemPrice   = 8000,
-		itemDate  = "2020-08-01",
-	},
-	[126569] = {  -- Daedric Chest, Sealed
- 		itemPrice   = 8000,
-		itemDate  = "2020-08-01",
-	},
-	[126570] = {  -- Daedric Throne, Skulls
- 		itemPrice   = 25000,
-		itemDate  = "2020-08-01",
-	},
-
-	-- ====================================================================
-	
-	[151915] = {    -- Daedric Key, Coldharbour
-		itemPrice   = 5000,
-		itemDate  = "2020-07-25",
-	},
-	[139094] = { -- Daedric Altar, Periyte
-		itemPrice   = 40000,
-		itemDate  = "2020-07-25",
-	},
-	[126567] = {  -- Daedric Sarcophagus, Sealed
-		itemPrice   = 10000,
-		itemDate  = "2020-07-25",
-	},
-	[126565] = {  -- Daedric Platform, Sarcophagus
-		itemPrice   = 8000,
-		itemDate  = "2020-07-25",
-	},
-	[126566] = {  -- Daedric Brazier, Ritual
-		itemPrice   = 25000,
-		itemDate  = "2020-07-25",
-	},
-
-	-- ====================================================================
-	
-	[159455] = {    -- Dwarven Spider Legs, Inoperative
-		itemPrice   = 3500,
-		itemDate  = "2020-07-18",
-	},
-	[147647] = {    -- Dwarven Centurion Blade, Detached
-		itemPrice   = 3500,
-		itemDate  = "2020-07-18",
-	},
-	[126562] = {  -- Dwarven Crystal Mechanism
-		itemPrice   = 50000,
-		itemDate  = "2020-07-18",
-	},
-	[126563] = {  -- Dwarven Orrery, Reference
- 		itemPrice   = 25000,
-		itemDate  = "2020-07-18",
-	},
-	[126559] = {  -- Dwarven Schematics, technical
- 		itemPrice   = 8000,
-		itemDate  = "2020-07-18",
-	},
-	[139093] = {  -- Dwarven Centurion Hammer, Detached
- 		itemPrice   = 3000,
-		itemDate  = "2020-07-18",
-	},
-
-	-- ====================================================================
-	
-	[147648] = {    -- Dwarven Press Bed, Forge-Sized
- 		itemPrice   = 22000,
-		itemDate  = "2020-07-11",
-	},
-	[126560] = {  -- Dwarven fountain, forged
- 		itemPrice   = 50000,
-		itemDate  = "2020-07-11",
-	},
-	[126564] = {  -- Dwarven Clock, Deactivated
- 		itemPrice   = 15000,
-		itemDate  = "2020-07-11",
-	},
-	[126561] = {  -- Dwarven Pillar, Forged
- 		itemPrice   = 10000,
-		itemDate  = "2020-07-11",
-	},
-	[139092] = {  -- Dwarven Engine, Fused
- 		itemPrice   = 24000,
-		itemDate  = "2020-07-11",
-	},
-	[159454] = {  -- Dwarven Crucible, Heavy
- 		itemPrice   = 4000,
-		itemDate  = "2020-07-11",
-	},
-
-	-- ====================================================================
-	
-	[121270] = {  -- Brotherhood Banner, Large
- 		itemPrice   = 25000,
-		itemDate  = "2020-07-04",
-	},
-	[120836] = {  -- Brotherhood Candelabra, Floor
- 		itemPrice   = 8000,
-		itemDate  = "2020-07-04",
-	},
-	[120839] = {  -- Brotherhood Ledger, Stand
- 		itemPrice   = 4000,
-		itemDate  = "2020-07-04",
-	},
-	[120838] = {  -- Brotherhood Plaque, Wolf
- 		itemPrice   = 25000,
-		itemDate  = "2020-07-04",
-	},
-	[134846] = {  -- Brotherhood Carpet, Large
- 		itemPrice   = 15000,
-		itemDate  = "2020-07-04",
-	},
-
-	[159451] = {    -- Hourglass Banner, Akatosh
-		itemDate  = "2020-07-04",
- 		itemPrice   = 12000,
-	},
-
-	-- ====================================================================
-	
-	[159450] = {    -- Hourglass Pedestal, Square
- 		itemPrice   = 7500,
-		itemDate  = "2020-06-27",
-	},
-	[159449] = {    -- Hourglass Stand, Round
- 		itemPrice   = 4000,
-		itemDate  = "2020-06-27",
-	},
-
-	[134845] = {  -- Brotherhood  Tapestry, Small
- 		itemPrice   = 5000,
-		itemDate  = "2020-06-27",
-	},
-	[120837] = {  -- Brotherhood Window, Stained Glass
- 		itemPrice   = 100000,
-		itemDate  = "2020-06-27",
-	},
-	[121271] = {  -- Brotherhood Tapestry
- 		itemPrice   = 10000,
-		itemDate  = "2020-06-27",
-	},
-	[120835] = {  -- Brotherhood Candelabra, Table
- 		itemPrice   = 2500,
-		itemDate  = "2020-06-27",
-	},
-	[145486] = {    -- Door, Sweet Mother
-		itemDate  = "2020-06-27",
- 		itemPrice   = 35000,
-	},
-
-	-- ====================================================================
-	
-	[159447] = {    -- Imperial Statue, Legion Champion
-		itemDate  = "2020-06-13",
- 		itemPrice   = 20000,
-	},
-
-	[145484] = {    -- Dark Elf Statue, Ordinator
- 		itemPrice   = 20000,
-		itemDate  = "2020-06-13",
-	},
-
-	[134842] = {  -- Ra Gada Statue, Blademaster
- 		itemPrice   = 25000,
-		itemDate  = "2020-06-13",
-	},
-	[134843] = {  -- Ra Gada Statue, Battlemage
- 		itemPrice   = 25000,
-		itemDate  = "2020-06-13",
-	},
-	[120809] = {  -- Statue Base, Square
- 		itemPrice   = 5000,
-		itemDate  = "2020-06-13",
-	},
-	[120810] = {  -- Statue, Faith
- 		itemPrice   = 25000,
-		itemDate  = "2020-06-13",
-	},
-	[120812] = {  -- Statue, Light
- 		itemPrice   = 25000,
-		itemDate  = "2020-06-13",
-	},
-
-	-- ====================================================================
-	
-	[156657] = {    -- Azure Plasm Cage, Hanging
- 		itemPrice   = 100000,
-		itemDate  = "2020-06-06",
-	},	
-	[145483] = {    -- Column, Ossuary
- 		itemPrice   = 20000,
-		itemDate  = "2020-06-06",
-	},
-
-	[134839] = {  -- Necromancer's Brazier, Cold Flame
- 		itemPrice   = 10000,
-		itemDate  = "2020-06-06",
-	},
-	[134840] = {  -- Necromancer's Spire, Compact
- 		itemPrice   = 25000,
-		itemDate  = "2020-06-06",
-	},
-	[134841] = {  -- Necromancer's Spire, Huge
- 		itemPrice   = 100000,
-		itemDate  = "2020-06-06",
-	},
-	
-	-- ====================================================================
-	
-	[156656] = {    -- Pedestal, Dark Stone
- 		itemPrice   = 4000,
-		itemDate  = "2020-05-30",
-	},
-
-	[134836] = {  -- Necromancer's Brazier, Flame
- 		itemPrice   = 10000,
-		itemDate  = "2020-05-30",
-	},
-	[134838] = {  -- Necromancer's Spire, Alcove
- 		itemPrice   = 75000,
-		itemDate  = "2020-05-30",
-	},
-	[134837] = {  -- Necromancer's Spire, Narrow
- 		itemPrice   = 50000,
-		itemDate  = "2020-05-30",
-	},
-	[145482] = {    -- Wheelbarrow, Bones
- 		itemPrice   = 1000,
-		itemDate  = "2020-05-30",
-	},
+-- All items have been recycled
 
 }
 
 
 FurC.LuxuryFurnisher[FURC_HARROW] = {
-
-	-- ====================================================================
-	
-	[156667] = {    -- Gate, Spiked Iron
- 		itemPrice   = 15000,
-		itemDate  = "2020-05-24",
-	},
-
-	[145480] = {    -- Corpse, Burned Seated
- 		itemPrice   = 2500,
-		itemDate  = "2020-05-24",
-	},
-	[145481] = {    -- Corpse, Burned Sprawled
- 		itemPrice   = 2500,
-		itemDate  = "2020-05-24",
-	},
-	[134834] = {  -- Bandages, Blood-Soaked
- 		itemPrice   = 2000,
-		itemDate  = "2020-05-24",
-	},
-	[134835] = {  -- Orcish Burial Urn, Exhumed
- 		itemPrice   = 20000,
-		itemDate  = "2020-05-24",
-	},
-	[120824] = {  -- Body Cage
- 		itemPrice   = 5000,
-		itemDate  = "2020-05-24",
-	},
-	[120829] = {  -- Torture Rack
- 		itemPrice   = 5000,
-		itemDate  = "2020-05-24",
-	},
-	[120828] = {  -- Torture Wheel
- 		itemPrice   = 100000,
-		itemDate  = "2020-05-24",
-	},
-
-	-- ====================================================================
-	
-	[156668] = {    -- Skeletal Remains, Slumped Over
- 		itemPrice   = 10000,
-		itemDate  = "2020-05-16",
-	},
-
-	[145479] = {    -- Iron Maiden, Occupied
- 		itemPrice   = 100000,
-		itemDate  = "2020-05-16",
-	},
-	[134833] = {  -- Gibbet, Hanging Hooked
- 		itemPrice   = 75000,
-		itemDate  = "2020-05-16",
-	},
-
-	[120826] = {  -- Iron Cross
- 		itemPrice   = 10000,
-		itemDate  = "2020-05-16",
-	},
-	[120825] = {  -- Iron Cross, Large
- 		itemPrice   = 25000,
-		itemDate  = "2020-05-16",
-	},
-	[120827] = {  -- Iron Maiden, Chained
- 		itemPrice   = 20000,
-		itemDate  = "2020-05-16",
-	},
-
-	-- ====================================================================
-	
-	[156655] = {    -- Alinor Shrine, Phynaster
- 		itemPrice   = 50000,
-		itemDate  = "2020-05-09",
-	},
-
-	[145478] = {    -- Alinor Shrine, Y'ffre
- 		itemPrice   = 50000,
-		itemDate  = "2020-05-09",
-	},
-	[134832] = {  -- Basin of the Divines
- 		itemPrice   = 35000,
-		itemDate  = "2020-05-09",
-	},
-    [120823] = {  -- Sigil Stand
- 		itemPrice   = 15000,
-		itemDate  = "2020-05-09",
-	},
-    [120819] = {  -- Sigil, Kynareth
- 		itemPrice   = 20000,
-		itemDate  = "2020-05-09",
-	},
-    [120820] = {  -- Sigil, Mara
- 		itemPrice   = 20000,
-		itemDate  = "2020-05-09",
-	},
-    [120821] = {  -- Sigil, Stendarr
- 		itemPrice   = 20000,
-		itemDate  = "2020-05-09",
-	},
-    [120822] = {  -- Sigil, Zenithar
- 		itemPrice   = 20000,
-		itemDate  = "2020-05-09",
-	},
-
-	-- ====================================================================
-	
-	[145476] = {    -- Alinor Shrine, Trinimac
- 		itemPrice   = 50000,
-		itemDate  = "2020-05-02",
-	},
-	[145477] = {    -- Alinor Pedestal, Shrine
- 		itemPrice   = 10000,
-		itemDate  = "2020-05-02",
-	},
-
-	[156654] = {    -- Alinor Shrine, Magnus
- 		itemPrice   = 50000,
-		itemDate  = "2020-05-02",
-	},
-
-	[120823] = {  -- Sigil Stand
- 		itemPrice   = 15000,
-		itemDate  = "2020-05-02",
-	},
-	[120815] = {  -- Sigil, Akatosh
- 		itemPrice   = 20000,
-		itemDate  = "2020-05-02",
-	},
-	[120816] = {  -- Sigil, Arkay
- 		itemPrice   = 20000,
-		itemDate  = "2020-05-02",
-	},
-	[120817] = {  -- Sigil, Dibella
- 		itemPrice   = 20000,
-		itemDate  = "2020-05-02",
-	},
-	[120818] = {  -- Sigil, Julianos
- 		itemPrice   = 20000,
-		itemDate  = "2020-05-02",
-	},
-	[134831] = {  -- Altar of the Divines
- 		itemPrice   = 50000,
-		itemDate  = "2020-05-02",
-	},
-
-	-- ====================================================================
-	
-	[156653] = {    -- Plant, Luminescent Valeflower
- 		itemPrice   = 2500,
-		itemDate  = "2020-04-25",
-	},
-
-	[145475] = {    -- Plant, Soulsplinter Weed
- 		itemPrice   = 12500,
-		itemDate  = "2020-04-25",
-	},
-	[134830] = {  -- Flowers, Blue Starbloom
- 		itemPrice   = 15000,
-		itemDate  = "2020-04-25",
-	},
-	[120888] = {  -- Bat Bloom
- 		itemPrice   = 15000,
-		itemDate  = "2020-04-25",
-	},
-	[120887] = {  -- Fan Bush
- 		itemPrice   = 1000,
-		itemDate  = "2020-04-25",
-	},
-	[120889] = {  -- Glow Bush, Purple
- 		itemPrice   = 20000,
-		itemDate  = "2020-04-25",
-	},
-
-
 	-- ====================================================================
 	
 	[156651] = {    -- Anchor, Hanging
@@ -1813,43 +1915,7 @@ FurC.LuxuryFurnisher[FURC_SCALES] = {
 
 }
 FurC.LuxuryFurnisher[FURC_KITTY] = {
-
-	-- ====================================================================
-	
-	[134844] = {  -- Ra Gada Statue, Forward Scout
- 		itemPrice   = 25000,
-		itemDate  = "2019-05-26",
-	},
-	[120808] = {  -- Statue Base, Circular
- 		itemPrice   = 2500,
-		itemDate  = "2019-05-26",
-	},
-	[120811] = {  -- Statue, Justice
- 		itemPrice   = 25000,
-		itemDate  = "2019-05-26",
-	},
-	[120814] = {  -- Statue, Order
- 		itemPrice   = 25000,
-		itemDate  = "2019-05-26",
-	},
-	[120813] = {  -- Statue, Truth
- 		itemPrice   = 25000,
-		itemDate  = "2019-05-26",
-	},
-	[145485] = {    -- Dark Elf Statue, Knight
- 		itemPrice   = 20000,
-		itemDate  = "2019-05-26",
-	},
-
-	-- ====================================================================
-	
-	[145487] = {    -- Banner, Order of the Hour
- 		itemPrice   = 12000,
-		itemDate  = "2019-06-09",
-	},
-
-
-
+	-- all items have been recycled
 }
 
 FurC.LuxuryFurnisher[FURC_WOTL] = {
@@ -1927,47 +1993,18 @@ FurC.LuxuryFurnisher[FURC_SLAVES] = {
 	
 	-- ====================================================================
 	
-	[134453] = {  -- Ancient Orcish Counterweight
+	[134453] = {  	-- Ancient Orcish Counterweight
  		itemPrice   = 20000,
-		itemDate  = "2020-01-18",
+		itemDate  	= "2021-03-12",
 	},
 
-	[134446] = {  -- Ancient Orcish Sarcophagus Lid
+	[134446] = {  	-- Ancient Orcish Sarcophagus Lid
  		itemPrice   = 10000,
-		itemDate  = "2020-01-18",
+		itemDate  	= "2021-03-05",
 	},
-	[134445] = {  -- Ancient Orcish Sarcophagus, Peaked
+	[134445] = {  	-- Ancient Orcish Sarcophagus, Peaked
  		itemPrice   = 14000,
-		itemDate  = "2020-01-18",
-	},
-
-
-	-- ====================================================================
-	
-	[141761] = {        -- Reach Sapling, Contorted Briarheart
-		itemDate  = "2020-10-07",
-		itemPrice   = 35000,
-	},
-	[132156] = {        -- Briarheart Tree, Replica
-		itemDate  = "2020-10-07",
-		itemPrice   = 100000,
-	},
-	[132158] = {  -- Witch's Remains, Offering
- 		itemPrice = 50000,
-		itemDate  = "2020-10-07",
-	},
-	[132157] = {  -- Witch's Remains, Sacrificial
- 		itemPrice = 50000,
-		itemDate  = "2020-10-07",
-	},
-	-- Oct 28th
-	[132143] = {  -- Reach Sapling, Briarheart
- 		itemPrice = 50000,
-		itemDate  = "2020-10-07",
-	},
-	[141760] = {        -- Witch's Tree, Charred
- 		itemPrice   = 5000,
-		itemDate  = "2019-10-19",
+		itemDate  	= "2021-03-05",
 	},
 
 }
