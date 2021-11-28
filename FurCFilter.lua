@@ -112,7 +112,7 @@ local function matchSourceDropdown()
     return matchingDropdownSource == ddSource
   end
   if FURC_VENDOR               == ddSource then
-    return (recipeArray.origin     == FURC_VENDOR or (mergeLuxuryAndSales and recipeArray.origin == FURC_LUXURY))
+    return recipeArray.origin     == FURC_VENDOR or (mergeLuxuryAndSales and recipeArray.origin == FURC_LUXURY)
   end
   if FURC_WRIT_VENDOR           == ddSource then
     return recipeArray.origin     == FURC_ROLIS
