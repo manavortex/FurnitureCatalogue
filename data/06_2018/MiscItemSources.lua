@@ -199,11 +199,9 @@ FurC.MiscItemSources[FURC_SLAVES]  = {
     [145554] = rumourSource,                        -- Tree, Towering Snowy Fir
     [145555] = rumourSource,                        -- Tree, Snowy Fir
     [145597] = rumourSource,                        -- Scales of Shadow
-    [145595] = rumourSource,                        -- Scuttlebloom
     [145576] = rumourSource,                        -- Timid Vine-Tongue
     [142235] = rumourSource,                        -- Music Box, Flickering Shadows
     [145556] = rumourSource,                        -- Tree, Tall Snowy Fir
-    [145403] = rumourSource,                        -- Jel Parchment
   },
   
   [FURC_JUSTICE] = {
@@ -212,9 +210,9 @@ FurC.MiscItemSources[FURC_SLAVES]  = {
     [145398] = stealable_swamp,                     -- Murkmire Rug, Supine Turtle Worn
     [145397] = stealable_swamp,                     -- Murkmire Rug, Hist Gathering Worn
     [145396] = stealable_swamp,                     -- Murkmire Tapestry, Hist Gathering Worn
-    [145550] = stealable_swamp,                     -- Murkmire Hunting Lure, Grisly
-    
-    [145401] = GetString(stealable_swamp),          -- Murkmire Tapestry, Xanmeer Worn
+    [145550] = stealable_swamp .. " or random mobs in Murkmire",                     -- Murkmire Hunting Lure, Grisly
+    [145401] = stealable_swamp,          			-- Murkmire Tapestry, Xanmeer Worn
+    [145403] = stealable_swamp,                     -- Jel Parchment	
   }, 
   
   [FURC_DROP]    = {
@@ -490,9 +488,6 @@ FurC.MiscItemSources[FURC_WEREWOLF] = {
   },
   
   [FURC_CROWN] = {
-    [134904] = getCrownPrice(260),                  -- Seal of Dibella
-    [134905] = getCrownPrice(260),                  -- Ritual Stone, Dibella
-    [134906] = getCrownPrice(240),                  -- Ritual Brazier, Gilded
     [134921] = getCrownPrice(520),                  -- Redguard Lamppost, Stone
     [134922] = getCrownPrice(250),                  -- Redguard Pillar, Tiered
     [134923] = getCrownPrice(2000),                 -- Redguard Trellis, Peaked
@@ -593,13 +588,6 @@ FurC.MiscItemSources[FURC_WEREWOLF] = {
     [125546] = getCrownPrice(85),                   -- Flower Patch, Lava Blooms
     [120765] = getCrownPrice(15),                   -- Breton Cup, Empty
     [120766] = getCrownPrice(15),                   -- Breton Cup, Full
-    [134891] = getCrownPrice(2500),                 -- Pergola, Festive Flowers
-    [134892] = getCrownPrice(85),                   -- Tree, Pale Gold
-    [134893] = getCrownPrice(85),                   -- Tree, Argent Blue
-    [134894] = getCrownPrice(20),                   -- Wildflowers, Yellow and Orange
-    [134895] = getCrownPrice(1800),                 -- Redguard Fountain, Mosaic
-    [134896] = getCrownPrice(45),                   -- Flower, Lover's Lily
-    [134897] = getCrownPrice(45),                   -- Vine Curtain, Festive Flowers
     [134942] = getCrownPrice(10),                   -- Bushes, Withered Cluster
     [134950] = getCrownPrice(31),                   -- Mushrooms, Flapjack Stack
     [139238] = getCrownPrice(190),                  -- Alinor Wall Mirror, Ornate
@@ -650,7 +638,7 @@ FurC.MiscItemSources[FURC_ALTMER] = {
 	[126464] = getCrownPrice(610),              -- Telvanni Painting, Oversized Valley
 	[126462] = getCrownPrice(610),              -- Telvanni Painting, Oversized Volcanic
 	    
-    [139078] = getCrownPrice(20),               -- Coral Formation, Tree Antler
+    [139331] = getCrownPrice(45),               -- Coral Formation, Tree Antler
     
     [139083] = getCrownPrice(30),               -- Plants, Grasswort Patch
     
@@ -817,6 +805,7 @@ FurC.MiscItemSources[FURC_ALTMER] = {
     [139060] = GetString(SI_FURC_GIANT_CLAM),   -- Giant Clam, Ancient
     [139062] = GetString(SI_FURC_GIANT_CLAM),   -- Pearl, Large
     [139063] = GetString(SI_FURC_GIANT_CLAM),   -- Pearl, Enormous
+	[139061] = GetString(SI_FURC_GIANT_CLAM),    -- Giant Clam, Sealed
     
     [139073] = questRewardLilandril,            -- Painting of Summerset Coast, Refined
     [139072] = GetString(SI_FURC_ELF_PIC),      -- Painting of Monastery of Serene Harmony, Refined
@@ -943,8 +932,6 @@ FurC.MiscItemSources[FURC_DRAGONS] = { -- Reach
     [134872] = getCrownPrice(400),   -- Ancient Nord Brazier, Dragon Crest
     [134863] = getCrownPrice(400),   -- Ancient Nord Sconce, Dragon Crest
     [134972] = getCrownPrice(400),   -- Brotherhood Brazier, Wrought Iron
-    [134849] = getCrownPrice(400),   -- Monarch Butterfly Flock
-    [134848] = getCrownPrice(400),   -- Blue Butterfly Flock
     [94100]  = getCrownPrice(50),    -- Imperial BookCase, Swirled
     [130211] = getCrownPrice(50),    -- Books, Ordered Row
     [130210] = getCrownPrice(50),    -- Books, Scattered Row

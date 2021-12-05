@@ -34,7 +34,6 @@ FurC.EventItems[FURC_MORROWIND] = {
   ["New Life"] = {
     ["Gift Box"] = {      
       [118053] = true,   -- Common Campfire, Outdoor
-      [130326] = true,   -- Witches Brazier, Primitive Log,
     },
   },
 }
@@ -90,6 +89,12 @@ FurC.EventItems[FURC_HARROW] = {
 }
 
 FurC.EventItems[FURC_DEADL] = {
+ ["Bounties of Blackwood"] = { -- 2021-9-30 - 2021-10-12
+	["Impressario"] = {
+	  [181488] = { itemPrice = 5 },-- Statue, Saint Kaladas
+	},
+  },
+ 
  ["Witches' Festival"] = {
 	["Plunder Skull"] = {
 	  [178799] = true,   -- Ruby Candlefly Gathering,
@@ -99,6 +104,24 @@ FurC.EventItems[FURC_DEADL] = {
 	  [181494] = true,   -- Vampiric Container, Yellow Liquid,
       [181492] = true,   -- Vampiric Flask Stand, Double,
 	  [181493] = true,   -- Vampiric Container, Congealed Liquid,
+	  
+	  -- update 12-1-21
+	  [130316] = true,   -- Pumpkin, Frail
+	  [130317] = true,   -- Pumpkin, Sickly
+      [130318] = true,   -- Crop, Wheat Pile
+      [130319] = true,   -- Crop, Wheat Stack
+      [130322] = true,   -- Tool, Harvest Scythe
+	  [130326] = true,   -- Witches Brazier, Primitive Log,
+      [125670] = true,   -- Toadstool, Bloodtooth
+      [125671] = true,   -- Toadstool, Bloodtooth Cap
+      [125672] = true,   -- Toadstool, Bloodtooth Cluster	  
+      [125595] = true,   -- Mushroom, Poison Pax Shelf
+      [125596] = true,   -- Mushroom, Poison Pax Stool
+      [125590] = true,   -- Mushrooms, Lavaburst Cluster
+	  [125589] = true,	 -- Mushroom, Lavaburst Bud
+	  [125598] = true,	 -- Mushroom, Emerging Stinkhorn
+	  [125583] = true,	 -- Mushroom, Cave Bracket
+	  [120878] = true,	 -- Gravestone, Ornamented
 	  },
   },
 }
