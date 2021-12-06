@@ -2,6 +2,36 @@ FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
 
 FurC.LuxuryFurnisher[FURC_DEADL] = {
+	-- ====================================================================
+	[167344] = {	-- Reachfolk Banner, Moonburst
+		itemPrice   = 4000,
+		itemDate  	= "2021-12-04",
+	},
+	[151954] = {    -- Reachmen Banner, Bull
+ 		itemPrice   = 4000,
+		itemDate  	= "2021-12-04",
+	},
+	[139106] = {    -- Reach Briarheart, Corpse Blue
+ 		itemPrice   = 15000,
+		itemDate  	= "2021-12-04",
+	},
+	[132144] = { 	-- Reach Briarheart, Blood Red
+ 		itemPrice   = 15000,
+		itemDate  	= "2021-12-04",
+	},
+	[132141] = { 	-- Reach Skull, Mammoth
+ 		itemPrice   = 50000,
+		itemDate  	= "2021-12-04",
+	},
+	[132142] = { 	-- Reach Tent, Camp
+ 		itemPrice   = 2500,
+		itemDate  	= "2021-12-04",
+	},	
+	[181541] = {	-- Reach Standard, Weathered
+		itemPrice	= 4000,
+		itemDate	= "2021-12-04",
+	},
+	
 	
 	-- ====================================================================
 	[181540] = {	-- Nedic Skull Relief, Half
@@ -68,7 +98,7 @@ FurC.LuxuryFurnisher[FURC_DEADL] = {
 	},	
 	
 	-- ====================================================================
-	[120842] = {	-- Nedic Altar, Worn
+	[181538] = {	-- Nedic Altar, Worn
 		itemPrice	= 3000,
 		itemDate	= "2021-11-12",
 	},
@@ -98,7 +128,7 @@ FurC.LuxuryFurnisher[FURC_DEADL] = {
 	},
 	
 	-- ====================================================================
-	[166005] = {	-- Geode, Citrine
+	[181537] = {	-- Geode, Citrine
 		itemPrice	= 20000,
 		itemDate	= "2021-11-06",
 	},
@@ -950,6 +980,40 @@ FurC.LuxuryFurnisher[FURC_BLACKW] = {
 	},
 	
 	-- ====================================================================
+	[171823] = {	-- Coral Formation, Branching Red
+		itemPrice =	2000,
+		itemDate = 	"2021-05-08",
+	},
+	[156651] = {    -- Anchor, Hanging
+ 		itemPrice   = 20000,
+		itemDate  = "2021-05-08",
+	},
+	[134828] = {  -- Antler Coral, Branched Spiree
+ 		itemPrice   = 100000,
+		itemDate  = "2021-05-08",
+	},
+	[120847] = {  -- Dock Winch
+ 		itemPrice   = 4000,
+		itemDate  = "2021-05-08",
+	},
+	[120849] = {  -- Anchor
+ 		itemPrice   = 10000,
+		itemDate  = "2021-05-08",
+	},
+	[120848] = {  -- Fishing Pole Rack
+ 		itemPrice   = 2500,
+		itemDate  = "2021-05-08",
+	},	
+	[121269] = {  -- Ocean Antler Coral
+ 		itemPrice   = 7500,
+		itemDate  = "2021-05-08",
+	},
+	[145473] = {    -- Antler Coral, Stout Crimson
+ 		itemPrice   = 75000,
+		itemDate  = "2021-05-08",
+	},	
+	
+	-- ====================================================================
 	
 	[145472] = {    -- Antler Coral, Crimson
  		itemPrice   = 50000,
@@ -1106,6 +1170,7 @@ FurC.LuxuryFurnisher[FURC_FLAMES] = {
 		itemDate  = "2021-04-03",
 	},
 
+
 }
 
 FurC.LuxuryFurnisher[FURC_MARKAT] = {	
@@ -1204,6 +1269,51 @@ FurC.LuxuryFurnisher[FURC_MARKAT] = {
 		itemDate  = "2021-03-20",
 	},
 
+
+	
+	-- ====================================================================
+	
+	[156661] = {    -- Orcish Seal, Battle-Axe
+		itemPrice   = 3000,
+		itemDate  = "2020-01-18",
+	},
+	[156660] = {    -- Orcish Seal, Malacath
+ 		itemPrice   = 3000,
+		itemDate  = "2020-01-18",
+	},
+	[134450] = {  -- Seal of Clan Morkul, Stone
+ 		itemPrice   = 4000,
+		itemDate  = "2020-01-18",
+	},
+	[134451] = {  -- Seal of Clan Shatul, Stone
+ 		itemPrice   = 4000,
+		itemDate  = "2020-01-18",
+	},
+	[134452] = {  -- Seal of Clan Tumnosh, Stone
+ 		itemPrice   = 4000,
+		itemDate  = "2020-01-18",
+	},
+	[134454] = {    -- Seal of Clan Morkul, Metal
+ 		itemPrice   = 4000,
+		itemDate  = "2020-01-18",
+	},
+	[134455] = {    -- Seal of Clan Shatul, Metal
+ 		itemPrice   = 4000,
+		itemDate  = "2020-01-18",
+	},
+	[134456] = {    -- Seal of Clan Tumnosh, Metal
+ 		itemPrice   = 4000,
+		itemDate  = "2020-01-18",
+	},
+	[134453] = {  	-- Ancient Orcish Counterweight
+ 		itemPrice   = 20000,
+		itemDate  	= "2021-03-12",
+	},
+	[171418] = {	-- Orcish Seal, Anvil
+		itemPrice	= 3000,
+		itemDate	= "2021-03-12",
+	},
+	
 	-- ====================================================================	
 	
 	[171417] = {		-- Orcish Seal, Owl
@@ -1732,35 +1842,7 @@ FurC.LuxuryFurnisher[FURC_MARKAT] = {
 
 FurC.LuxuryFurnisher[FURC_STONET] = {
 
-	-- ====================================================================
-	
-	[167344] = {		-- Reachfolk Banner, Moonburst
-		itemPrice   = 4000,
-		itemDate  = "2020-10-24",
-	},
-	[151954] = {    -- Reachmen Banner, Bull
- 		itemPrice   = 4000,
-		itemDate  = "2020-10-24",
-	},
-
-	[139106] = {    -- Reach Briarheart, Corpse Blue
- 		itemPrice   = 15000,
-		itemDate  = "2020-10-24",
-	},
-	-- Sept. 30
-	[132144] = { -- Reach Briarheart, Blood Red
- 		itemPrice   = 15000,
-		itemDate  = "2020-10-24",
-	},
-	[132141] = { -- Reach Skull, Mammoth
- 		itemPrice   = 50000,
-		itemDate  = "2020-10-24",
-	},
-	[132142] = { -- Reach Tent, Camp
- 		itemPrice   = 2500,
-		itemDate  = "2020-10-24",
-	},
-
+-- all items recycled
 
 }
 
@@ -1773,38 +1855,8 @@ FurC.LuxuryFurnisher[FURC_SKYRIM] = {
 
 
 FurC.LuxuryFurnisher[FURC_HARROW] = {
-	-- ====================================================================
-	
-	[156651] = {    -- Anchor, Hanging
- 		itemPrice   = 20000,
-		itemDate  = "2020-04-11",
-	},
-	[134828] = {  -- Antler Coral, Branched Spiree
- 		itemPrice   = 100000,
-		itemDate  = "2020-04-11",
-	},
-	[120847] = {  -- Dock Winch
- 		itemPrice   = 4000,
-		itemDate  = "2020-04-11",
-	},
-	[120849] = {  -- Anchor
- 		itemPrice   = 10000,
-		itemDate  = "2020-04-11",
-	},
-	[120848] = {  -- Fishing Pole Rack
- 		itemPrice   = 2500,
-		itemDate  = "2020-04-11",
-	},	
-	[121269] = {  -- Ocean Antler Coral
- 		itemPrice   = 7500,
-		itemDate  = "2020-04-11",
-	},
-	[145473] = {    -- Antler Coral, Stout Crimson
- 		itemPrice   = 75000,
-		itemDate  = "2020-04-11",
-	},
 
-
+ -- all items recycled
 
 }
 
@@ -1835,42 +1887,6 @@ FurC.LuxuryFurnisher[FURC_SCALES] = {
 	[134459] = {  -- Riekling Pit, Ash and Bone
  		itemPrice   = 7500,
 		itemDate  = "2020-01-25",
-	},
-
-	-- ====================================================================
-	
-	[156661] = {    -- Orcish Seal, Battle-Axe
-		itemPrice   = 3000,
-		itemDate  = "2020-01-18",
-	},
-	[156660] = {    -- Orcish Seal, Malacath
- 		itemPrice   = 3000,
-		itemDate  = "2020-01-18",
-	},
-
-	[134450] = {  -- Seal of Clan Morkul, Stone
- 		itemPrice   = 4000,
-		itemDate  = "2020-01-18",
-	},
-	[134451] = {  -- Seal of Clan Shatul, Stone
- 		itemPrice   = 4000,
-		itemDate  = "2020-01-18",
-	},
-	[134452] = {  -- Seal of Clan Tumnosh, Stone
- 		itemPrice   = 4000,
-		itemDate  = "2020-01-18",
-	},
-	[134454] = {    -- Seal of Clan Morkul, Metal
- 		itemPrice   = 4000,
-		itemDate  = "2020-01-18",
-	},
-	[134455] = {    -- Seal of Clan Shatul, Metal
- 		itemPrice   = 4000,
-		itemDate  = "2020-01-18",
-	},
-	[134456] = {    -- Seal of Clan Tumnosh, Metal
- 		itemPrice   = 4000,
-		itemDate  = "2020-01-18",
 	},
 
 	
