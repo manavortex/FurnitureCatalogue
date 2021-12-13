@@ -2,6 +2,34 @@ FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
 
 FurC.LuxuryFurnisher[FURC_DEADL] = {
+		-- ====================================================================
+	[182613] = {		-- Bush, Flowering Ivy
+		itemPrice	= 2000,
+		itemDate	= "2021-12-11",
+	},
+	[167345] = {		-- Fern, Cyan Cluster
+		itemPrice   = 4000,
+		itemDate  = "2021-12-11",
+	},
+
+	[153689] = {    -- Fern, Cyan
+		itemDate  = "2021-12-11",
+ 		itemPrice   = 2500,
+	},
+
+	[141752] = {        -- Plant, Cerulean Spadeleaf
+ 		itemPrice   = 1000,
+		itemDate  = "2021-12-11",
+	},
+	[141753] = {        -- Plants, Cerulean Spadeleaf Cluster
+ 		itemPrice   = 2500,
+		itemDate  = "2021-12-11",
+	},
+	[141754] = {        -- Skull Totem, Hircine Worship
+ 		itemPrice   = 7500,
+		itemDate  = "2021-12-11",
+	},
+	
 	-- ====================================================================
 	[167344] = {	-- Reachfolk Banner, Moonburst
 		itemPrice   = 4000,
@@ -1809,31 +1837,6 @@ FurC.LuxuryFurnisher[FURC_MARKAT] = {
 	[141757] = {        -- Mushrooms, Climbing Aether Cup
 		itemPrice   = 5000,
 		itemDate  = "2020-11-21",
-	},
-
-	-- ====================================================================
-	
-	[167345] = {		-- Fern, Cyan Cluster
-		itemPrice   = 4000,
-		itemDate  = "2020-11-14",
-	},
-
-	[153689] = {    -- Fern, Cyan
-		itemDate  = "2020-11-14",
- 		itemPrice   = 2500,
-	},
-
-	[141752] = {        -- Plant, Cerulean Spadeleaf
- 		itemPrice   = 1000,
-		itemDate  = "2020-11-14",
-	},
-	[141753] = {        -- Plants, Cerulean Spadeleaf Cluster
- 		itemPrice   = 2500,
-		itemDate  = "2020-11-14",
-	},
-	[141754] = {        -- Skull Totem, Hircine Worship
- 		itemPrice   = 7500,
-		itemDate  = "2020-11-14",
 	},
 
 

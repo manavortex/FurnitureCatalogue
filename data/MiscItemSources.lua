@@ -17,6 +17,7 @@ local scambox_gloomspore    = zo_strformat("<<1>> (<<2>>)", scambox_string, "Glo
 local sinister_hollowjack   = "Sinister Hollowjack Items"
 
 local scambox_sovngarde     = zo_strformat("<<1>> (<<2>>)", scambox_string, "Sovngarde")
+local scambox_frosty		= zo_strformat("<<1>> (<<2>>)", scambox_string, "Frost Atronach")
 
 local itemPackMoonBishop    = zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "Moon Bishop’s Sanctuary")
 local itemPackOasis         = zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "Moons-Blessed Oasis")
@@ -75,8 +76,58 @@ local function getHouseString(houseId1, houseId2)
 end
 
 FurC.MiscItemSources[FURC_DEADL] = {
+	
+	--[[ ============== To do: =======================
+	
+	Furnishing packs!
+		Limited edition - 
+			Witches of hag fen
+			Forge-Lord's Great Works
+			Tyrants of the Merethic Era
+			Khajiit Life
+			Malacath's Chosen
+			New Life
+			
+		Always in crown store - 
+			Summerset Noble's Bathing
+			Summerset Noble's Parlor
+			Formal Garden Shrubbery
+			Tamrielic Household Necessities
+			Trees of Tamriel Garden
+			Craglorn Multicultural Bedroom
+			Home in Nibenay Bedroom
+			Summerset Noble's Bedroom
+			Crag Multicultural Kitchen
+			Niben Valley Kitchen
+			Summerset Noble's Kitchen
+			Craglorn Multicultural Parlor
+			Cyrodilic Parlor
+				
+	 Music Boxes!
+	 
+	 Crown crate/gem furnishings!
+		Frost Atronach
+		Grimm Harlequin
+		Celestial
+		Ayleid
+	
+	 Clockwork crafting stations - all crown purchases
+	
+	 Attunable stations for specific sets showing as datamined - can I group them all together and list as 'attunable station' which is already sold by rolis? Or can I just delete them?
+	
+	 Remove rumorsource items that have been given a source. No need for them to be listed multiple times.
+	 
+	 Can I add a separate crown source for housing editor vs normal crown store? Seems like it should be fairly easy. Model after SI_FURC_CROWNSTORESOURCE and getCrownPrice
+	 
+	 Add seals of endeavor prices with the gem prices for crate items (can I add a constant for pricing? ie: getGemPrice(40) would output "40 Gems or 2000 Endeavors"
+	 
+	 Learn how to add housing sources (I see it there, just need to play with it)
+	]]
+	
 	[FURC_DROP] = {
 		[178694] = blackwood_event, -- Target Ogrim,
+		
+		[156644] = scambox_frosty .. " (40 gems)", -- Books, Towering Pile
 		
 		[182302] = scrying .. " in the Deadlands (3 pieces)", -- Daedric Enchanting Station,
 		[175728] = scrying .. " in Blackwood", -- Z'en Idol,
@@ -86,6 +137,8 @@ FurC.MiscItemSources[FURC_DEADL] = {
         [171431] = scrying .. " in the Reach", -- Antique Map of the Reach,	
 		[165992] = scrying .. " in Western Skyrim", -- Antique Map of Western Skyrim  	
 		[163431] = scrying .. " (3 pieces)",	-- Music Box, Aldmeri Symphonia "in dreams and memories"
+		[182303] = scrying .. " in the Deadlands", -- Dagon's Scalding Gibbet,
+		[165863] = scrying .. " in Grahtwood", -- St. Alessia, Paravant
 		
         [178442] = chests_blackwood,	-- Idylls of Gideon Painting, Wood,
         [178443] = chests_blackwood,	-- Path of Eternity Painting, Wood,
@@ -115,6 +168,10 @@ FurC.MiscItemSources[FURC_DEADL] = {
 	},
 	
 	[FURC_CROWN] = {
+	
+		[171857] = getCrownPrice(3000),	-- Aetherial Well,
+	
+	-- ==================== Crown Housing Editor ==============================
 		[182915] = getCrownPrice(260),	-- Fargrave Container Plants, Long,
         [182916] = getCrownPrice(260),	-- Fargrave Container Plant, Large Square,
         [182917] = getCrownPrice(260),	-- Fargrave Container Plants, Large Round,
@@ -122,12 +179,21 @@ FurC.MiscItemSources[FURC_DEADL] = {
         [141833] = getCrownPrice(150),	-- Tree, Ancient Fig,
         [141834] = getCrownPrice(170),	-- Tree, Towering Fig,
         [141835] = getCrownPrice(70),	-- Tree, Whorled Fig,
-	    [171857] = getCrownPrice(3000),	-- Aetherial Well,
+        [181532] = getCrownPrice(3600), -- Leyawiin Fountain, Round Grand,
+        [182281] = getCrownPrice(2300), -- Fargrave Fountain,
+		[118148] = getCrownPrice(80), 	--Firelogs, Ashen,
+	    [118146] = getCrownPrice(80), 	--Firelogs, Flaming,
+        [118147] = getCrownPrice(80), 	--Firelogs, Charred,	
+		
+		--======================= Limited Time Crown Store Items ==========================
+		[156645] = getCrownPrice(4000), -- Statue, Kaalgrontiid's Ascent
+		[159439] = getCrownPrice(3500), -- Statue, Pride of Alkosh Hero		
+	    [147646] = getCrownPrice(3000), -- Meridia, Lady of Infinite Energies,
+		[165991] = getCrownPrice(3500), -- Statue, Vampiric Sovereign
 		[147747] = getCrownPrice(2500), -- Cadwell's Astounding Portal
 		[147746] = getCrownPrice(1400), -- Bust: Abnur Tharn
-        [181532] = getCrownPrice(3600), -- Leyawiin Fountain, Round Grand,
-        [182281] = getCrownPrice(2300), -- Fargrave Fountain,		
 		
+		-- ====================== Crown Furnishing Packs =============================
 		[156775] = itemPackHeart, -- Bed, Petal-Strewn Double
 		[156764] = getCrownPrice(85) .. " or " .. itemPackHeart, -- Bouquet, Small Dibella's
 		[156776] = getCrownPrice(85) .. " or " .. itemPackHeart, -- Bouquet, Large Dibella's
@@ -163,7 +229,7 @@ FurC.MiscItemSources[FURC_DEADL] = {
 		
 		[117906] = elsweyr_event .. (" or " .. itemPackCragKnicks ),    -- Redguard Urn, Gilded
 		[121053] = getCrownPrice(170) .. " or " .. itemPackCragKnicks .. " or " .. itemPackHubTreasure,   -- Jar, Gilded Canopic
-		[121046] = itemPackCragKnicks, -- Cheeses of Tamriel,
+		[121046] = itemPackCragKnicks, -- Cheeses of Tamriel,		
 		
 		[134890] = itemPackDibella, -- Dibella, Lady of Love,
 		[134848] = getCrownPrice(1500) .. " or " .. itemPackDibella,   -- Blue Butterfly Flock	
@@ -209,7 +275,8 @@ FurC.MiscItemSources[FURC_DEADL] = {
 	},
 	
 	[FURC_RUMOUR] = {   
-        [141836] = rumourSource, -- Monolith, Lord Hircine Ritual,
+       [120885] = rumourSource,  -- Alik'r Cactus
+	   [141836] = rumourSource, -- Monolith, Lord Hircine Ritual,
         [182285] = rumourSource, -- Book Wall, Levitating,
         [182286] = rumourSource, -- Fargrave Terrarium, Snakevine,
         [182288] = rumourSource, -- Fargrave Terrarium, Massive Gas Blossom,
@@ -287,7 +354,6 @@ FurC.MiscItemSources[FURC_DEADL] = {
         [121016] = rumourSource, -- Bush, Red Berry,
         [121022] = rumourSource, -- Bush, Green Forest,
         [121023] = rumourSource, -- Tree, Strong Olive,
-        [120000] = rumourSource, -- Broken Chain,
         [134853] = rumourSource, -- Peryite, The Taskmaster,
         [134854] = rumourSource, -- Tapestry of Peryite,
         [134855] = rumourSource, -- Banner of Peryite,
@@ -317,15 +383,12 @@ FurC.MiscItemSources[FURC_DEADL] = {
         [125681] = rumourSource, -- Vines, Volcanic Roses,
         [134386] = rumourSource, -- Fabricant Tree, Forked Cherry Blossom,
         [134389] = rumourSource, -- Fabricant Tree, Decorative Brass,
-        [181541] = rumourSource, -- Reach Standard, Weathered,
-        [181542] = rumourSource, -- Crow Totem, Gruesome,
         [178471] = rumourSource, -- Guild Banner, Aetherius Art,
         [178472] = rumourSource, -- Guild Banner, Dauntless Bananas,
         [171817] = rumourSource, -- Ayleid Chandelier, Caged,
         [171818] = rumourSource, -- Tree, Giant Cork Oak,
         [178475] = rumourSource, -- Guild Banner, Museum,
         [178476] = rumourSource, -- Guild Banner, Nomads of Nirn,
-        [171823] = rumourSource, -- Coral Formation, Branching Red,
         [171834] = rumourSource, -- Tree, Charred Vvardenfell Pine,
         [171835] = rumourSource, -- Tree, Charred Leaning Vvardenfell Pine,
         [171836] = rumourSource, -- Tree, Charred Slim Vvardenfell Pine,
@@ -336,8 +399,6 @@ FurC.MiscItemSources[FURC_DEADL] = {
         [178501] = rumourSource, -- The Nomads of Nirn,
         [178502] = rumourSource, -- An Ode to the Disenfranchised,
         [134475] = rumourSource, -- Statue of Malacath, Orc-Father,
-
-        [182613] = rumourSource, -- Bush, Flowering Ivy,
         [182614] = rumourSource, -- Vine, Flowering Wyrdbloom Strand,
         [182615] = rumourSource, -- Pedestal, Etched Stone,
         [182616] = rumourSource, -- Orcish Banner, Iron,
@@ -365,7 +426,6 @@ FurC.MiscItemSources[FURC_DEADL] = {
         [181636] = rumourSource, -- Music Box, \"Fargrave Daydreams\",
         [181637] = rumourSource, -- Music Box, \"Time's Architect\",
         [181643] = rumourSource, -- Warrior's Flame,
-        [183198] = rumourSource, -- Bushes, Withered Cluster,
         [182935] = rumourSource, -- Stump, Charred Deadlands,
         [182934] = rumourSource, -- Log, Charred Deadlands,
         [171932] = rumourSource, -- Daedric Sconce, Torch,
@@ -398,7 +458,6 @@ FurC.MiscItemSources[FURC_DEADL] = {
         [182623] = rumourSource, -- Rugs, Rolled,
         [182618] = rumourSource, -- Nord Stone, Marked,
         [182617] = rumourSource, -- Unidentified Fargrave Bones,
-        [182303] = rumourSource, -- Dagon's Scalding Gibbet,
         [182295] = rumourSource, -- Deadlands Firepit, Large,
         [182294] = rumourSource, -- Deadlands Platform, Tower,
         [182293] = rumourSource, -- Deadlands Stairway, Tower,
@@ -660,7 +719,6 @@ FurC.MiscItemSources[FURC_FLAMES]  = {
         [118131] = rumourSource, --Pelt, Bear,
         [119673] = rumourSource, --Surplus Covenant Meatbag Catapult,
         [115578] = rumourSource, --Wood Elf Spoon, Decorative,
-        [118148] = rumourSource, --Firelogs, Ashen,
         [118150] = rumourSource, --Carpet Roll, Colorful,
         [118151] = rumourSource, --Carpet Roll, Sunset,
         [94120] = rumourSource, --Imperial Rug, Stendarr,
@@ -740,8 +798,6 @@ FurC.MiscItemSources[FURC_FLAMES]  = {
         [119679] = rumourSource, --Covenant Pennant, Small,
         [118165] = rumourSource, --Mat of the Sunrise, Faded,
         [118163] = rumourSource, --Mat of the Oasis, Faded,
-        [118146] = rumourSource, --Firelogs, Flaming,
-        [118147] = rumourSource, --Firelogs, Charred,
         [119684] = rumourSource, --Statue of Hircine,
         [119685] = rumourSource, --Tapestry of Hircine,
         [119686] = rumourSource, --Totem of the Wild Hunt,
@@ -1579,7 +1635,6 @@ FurC.MiscItemSources[FURC_SKYRIM]  = {
     [165610] = rumourSource, -- Vampiric Wardrobe, Ornate
     [165609] = rumourSource, -- Vampiric Trunk, Polished Wood
     [165608] = rumourSource, -- Vampiric Trunk, Ornate Metal
-    [165991] = rumourSource, -- Statue, Vampiric Sovereign
     [165847] = rumourSource, -- Solitude Streetlight, Paired
     [165846] = rumourSource, -- Solitude Streetlight, Single
     
@@ -1820,15 +1875,11 @@ FurC.MiscItemSources[FURC_SKYRIM]  = {
     [165833] = rumourSource, -- Elsweyr Dome Architecture Painting, Gold
     [165835] = rumourSource, -- Painting of Khajiiti Arch, Gold", 
     [165854] = rumourSource, -- Nisswo's Soul Tender
-    [156644] = rumourSource, -- Books, Towering Pile
-    [156645] = rumourSource, -- Statue, Kaalgrontiid's Ascent
     [156646] = rumourSource, -- Ra Gada Statue, Seated Lion Ibis
-    [165863] = rumourSource, -- St. Alessia, Paravant
     [156654] = rumourSource, -- Alinor Shrine, Magnus
     [156655] = rumourSource, -- Alinor Shrine, Phynaster
     [156656] = rumourSource, -- Pedestal, Dark Stone
     [159438] = rumourSource, -- Fungus, Gloomspore Ghost
-    [159439] = rumourSource, -- Statue, Pride of Alkosh Hero
     [159451] = rumourSource, -- Hourglass Banner, Akatosh
     [156667] = rumourSource, -- Gate, Spiked Iron
     [156668] = rumourSource, -- Skeletal Remains, Slumped Over
