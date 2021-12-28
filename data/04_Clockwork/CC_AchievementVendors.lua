@@ -22,13 +22,13 @@ local bookList = {
   [134554] = { -- The Truth in Sequence, Volume 7
     itemPrice = 2000,
   },
-  [134565] = { -- The Truth in Sequence, Volume 8
+  [134555] = { -- The Truth in Sequence, Volume 8
     itemPrice = 2000,
   },
-  [134566] = { -- The Truth in Sequence, Volume 9
+  [134556] = { -- The Truth in Sequence, Volume 9
     itemPrice = 2000,
   },
-  [134567] = { -- The Truth in Sequence, Volume 10
+  [134557] = { -- The Truth in Sequence, Volume 10
     itemPrice = 2000,
   },
 }
