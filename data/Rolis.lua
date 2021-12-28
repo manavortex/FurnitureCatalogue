@@ -27,7 +27,7 @@ FurC.Faustina[FURC_HARROW] = {
  
 FurC.RolisRecipes[FURC_WOTL] = {
  
-	[147656] = 125, -- Dark Elf Tent, Canopy,    
+  [147656] = 125, -- Dark Elf Tent, Canopy,    
   [147657] = 125, -- Hlaalu Stove, Chiminea,    
   [147651] = 125, -- Silver Kettle, Masterworked,   
   [147652] = 125, -- Frog-Caller, Untuned,    
@@ -78,7 +78,10 @@ FurC.FaustinaRecipes[FURC_DRAGONS] = {
 
 
 FurC.Faustina[FURC_DRAGONS] = {
-  [134675] = 500,
+  [134675] = 500, -- Outfit station
+  [137870] = 125, -- Jewelry Station
+  [137947] = 250, -- Attunable Jewelry Station
+  [139391] = 10, -- Master Crafter's Banner, Hanging,
 }
 
 FurC.Rolis[FURC_DRAGONS] = {
@@ -101,6 +104,7 @@ FurC.Rolis[FURC_HOMESTEAD] = {
 [118327] = 35,
 -- Woodworking station
 [119744] = 35,
+
 
 -- Attunable Blacksmithing station
 [119594] = 250,
