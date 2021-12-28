@@ -1,7 +1,7 @@
 FurnitureCatalogue                = {}
 FurnitureCatalogue.name           = "FurnitureCatalogue"
 FurnitureCatalogue.author         = "manavortex"
-FurnitureCatalogue.version        = 4.31
+FurnitureCatalogue.version        = 4.312
 FurnitureCatalogue.CharacterName  = nil
 FurnitureCatalogue.settings       = {}
 
