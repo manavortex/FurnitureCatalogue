@@ -2,32 +2,92 @@ FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
 
 FurC.LuxuryFurnisher[FURC_DEADL] = {
-		-- ====================================================================
-	[182613] = {		-- Bush, Flowering Ivy
+	
+	-- ====================================================================
+	
+	[167347] = {	-- Orcish Figurine, Mammoth
+		itemPrice   = 12000,
+		itemDate  	= "2021-12-25",
+	},
+	[153691] = {    -- Orsinium Sarcophagus, Honor's Rest
+ 		itemPrice   = 25000,
+		itemDate  	= "2021-12-25",
+	},
+	[141758] = {    -- Orcish Wagon, Merchant
+ 		itemPrice   = 15000,
+		itemDate  	= "2021-12-25",
+	},
+	[132145] = { 	-- Orsinium Tent, Chief’s
+ 		itemPrice   = 15000,
+		itemDate  	= "2021-12-25",
+	},
+	[132146] = { 	-- Orsinium Relief, Malacath
+ 		itemPrice   = 25000,
+		itemDate  	= "2021-12-25",
+	},
+	[132148] = { 	-- Orsinium Statue, Head
+ 		itemPrice   = 25000,
+		itemDate  	= "2021-12-25",
+	},
+	[132147] = { 	-- Orsinium Statue, Honor’s Rest
+ 		itemPrice   = 25000,
+		itemDate  	= "2021-12-25",
+	},
+	[182615] = {	-- Pedestal, Etched Stone
+		itemPrice	= 3000,
+		itemDate	= "2021-12-25",
+	},
+	
+	-- ====================================================================
+	[182614] = { -- Vine, Flowering Wyrdbloom Strand
+		itemPrice	= 700,
+		itemDate	= "2021-12-18",
+	},
+	[167346] = {		-- Vines, Flowering Wyrdbloom
+		itemPrice   = 4000,
+		itemDate  = "2021-12-18",
+	},
+	[153690] = {    -- Flower Cluster, Wyrdbloom
+ 		itemPrice   = 4000,
+		itemDate  = "2021-12-18",
+	},
+	[141756] = {        -- Mushrooms, Aether Cup Cluster
+		itemPrice   = 10000,
+		itemDate  = "2021-12-18",
+	},
+	[141755] = {        -- Mushrooms, Aether Cup Ring
+		itemPrice   = 10000,
+		itemDate  = "2021-12-18",
+	},
+	[141757] = {        -- Mushrooms, Climbing Aether Cup
+		itemPrice   = 5000,
+		itemDate  = "2021-12-18",
+	},	
+
+	-- ====================================================================
+	[182613] = {	-- Bush, Flowering Ivy
 		itemPrice	= 2000,
 		itemDate	= "2021-12-11",
 	},
-	[167345] = {		-- Fern, Cyan Cluster
+	[167345] = {	-- Fern, Cyan Cluster
 		itemPrice   = 4000,
-		itemDate  = "2021-12-11",
+		itemDate  	= "2021-12-11",
 	},
-
 	[153689] = {    -- Fern, Cyan
 		itemDate  = "2021-12-11",
  		itemPrice   = 2500,
 	},
-
-	[141752] = {        -- Plant, Cerulean Spadeleaf
+	[141752] = {    -- Plant, Cerulean Spadeleaf
  		itemPrice   = 1000,
-		itemDate  = "2021-12-11",
+		itemDate  	= "2021-12-11",
 	},
-	[141753] = {        -- Plants, Cerulean Spadeleaf Cluster
+	[141753] = {    -- Plants, Cerulean Spadeleaf Cluster
  		itemPrice   = 2500,
-		itemDate  = "2021-12-11",
+		itemDate  	= "2021-12-11",
 	},
-	[141754] = {        -- Skull Totem, Hircine Worship
+	[141754] = {    -- Skull Totem, Hircine Worship
  		itemPrice   = 7500,
-		itemDate  = "2021-12-11",
+		itemDate  	= "2021-12-11",
 	},
 	
 	-- ====================================================================
@@ -1778,65 +1838,6 @@ FurC.LuxuryFurnisher[FURC_MARKAT] = {
 	[132149] = {        -- Orsinium Totem, Strength
  		itemPrice   = 20000,
 		itemDate  = "2020-12-06",
-	},
-
-	-- ====================================================================
-	
-	[167347] = {		-- Orcish Figurine, Mammoth
-		itemPrice   = 12000,
-		itemDate  = "2020-11-28",
-	},
-
-	[153691] = {    -- Orsinium Sarcophagus, Honor's Rest
- 		itemPrice   = 25000,
-		itemDate  = "2020-11-28",
-	},
-
-	[141758] = {        -- Orcish Wagon, Merchant
- 		itemPrice   = 15000,
-		itemDate  = "2020-11-28",
-	},
-	-- Oct. 7
-	[132145] = { -- Orsinium Tent, Chief’s
- 		itemPrice   = 15000,
-		itemDate  = "2020-11-28",
-	},
-	[132146] = { -- Orsinium Relief, Malacath
- 		itemPrice   = 25000,
-		itemDate  = "2020-11-28",
-	},
-	[132148] = { -- Orsinium Statue, Head
- 		itemPrice   = 25000,
-		itemDate  = "2020-11-28",
-	},
-	[132147] = { -- Orsinium Statue, Honor’s Rest
- 		itemPrice   = 25000,
-		itemDate  = "2020-11-28",
-	},
-
-	-- ====================================================================
-	
-	[167346] = {		-- Vines, Flowering Wyrdbloom
-		itemPrice   = 4000,
-		itemDate  = "2020-11-21",
-	},
-
-	[153690] = {    -- Flower Cluster, Wyrdbloom
- 		itemPrice   = 4000,
-		itemDate  = "2020-11-21",
-	},
-
-	[141756] = {        -- Mushrooms, Aether Cup Cluster
-		itemPrice   = 10000,
-		itemDate  = "2020-11-21",
-	},
-	[141755] = {        -- Mushrooms, Aether Cup Ring
-		itemPrice   = 10000,
-		itemDate  = "2020-11-21",
-	},
-	[141757] = {        -- Mushrooms, Climbing Aether Cup
-		itemPrice   = 5000,
-		itemDate  = "2020-11-21",
 	},
 
 

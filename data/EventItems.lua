@@ -1,18 +1,6 @@
-FurC.Books = FurC.Books or {}
-FurC.Books[FURC_MORROWIND] = {
-    [126157] = {},
-    [126158] = {},
-    [126159] = {},
-    [126160] = {},
-    [126161] = {},
-    [126162] = {},
-    [126163] = {},
-    [126164] = {},
-}
-
 FurC.EventItems[FURC_DRAGONS] = {
-  ["Jester Festival"] = {
-    ["Jester Boxes"] = {
+  ["Jester's Festival"] = {
+    ["Jester's Boxes"] = {
       [134680] = true,   -- Jester Box
     },
   },
@@ -52,7 +40,6 @@ FurC.EventItems[FURC_REACH] = {
     ["Plunder Skull"] = {
       [130337] = true,   -- Witches Corpse, Wrapped,
       [130325] = true,   -- Witches Totem, Emphatic Warning,
-      [130334] = true,   -- Witches Totem, Antler Charms,
       [130327] = true,   -- Witches Totem, Wooden Rack,
       [130328] = true,   -- Witches Skull, Horned Ram,
       [130332] = true,   -- Witches Totem, Bone Charms,
