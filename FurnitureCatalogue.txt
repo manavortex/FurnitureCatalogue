@@ -1,6 +1,6 @@
 ## Title: FurnitureCatalogue
 ## Author: manavortex
-## Version: 4.311
+## Version: 4.312
 ## APIVersion: 101032
 ## SavedVariables: FurnitureCatalogue_Settings 
 ## DependsOn: LibCustomMenu LibAddonMenu-2.0 LibAsync

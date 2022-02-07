@@ -53,7 +53,11 @@ FurC.PrintItemLink = printItemLink
 
 local function addDatabaseEntry(recipeKey, recipeArray)
 	if recipeKey and recipeArray and {} ~= recipeArray then
-		FurC.settings.data[recipeKey] = recipeArray
+		if FurC.settings.data[recipeKey] ~= nil then
+			for k,v in pairs(recipeArray) do FurC.settings.data[recipeKey][k] = v end
+		else
+			FurC.settings.data[recipeKey] = recipeArray
+		end
 	end
 end
 
