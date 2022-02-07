@@ -21,7 +21,7 @@ local scambox_frosty		= zo_strformat("<<1>> (<<2>>)", scambox_string, "Frost Atr
 
 local itemPackMoonBishop    = zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "Moon Bishop’s Sanctuary")
 local itemPackOasis         = zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "Moons-Blessed Oasis")
-local itemPackVampire       = zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "Vampire")
+local itemPackVampire       = zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "Vampiric Libations")
 local itemPackHeart			= zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "Heart's Day Retreat")
 local itemPackCragKnicks	= zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "Craglorn Multicultural Knick-Knacks")
 local itemPackHubTreasure	= zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "Hubalajad's Final Treasure")
@@ -35,6 +35,9 @@ local itemPackCoven			= zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "Wi
 local itemPackTyrants		= zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "Tyrants of the Merethic Era")
 local itemPackKhajiit		= zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "Khajiiti Life")
 local itemPackMalacath		= zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "Malacath's Chosen")
+local itemPackAlchemist		= zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "Mad Alchemist")
+local itemPackAzura			= zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "Daedric Set of Azura")
+local itemPackColdharbour	= zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "Coldharbour Arcanaeum")
 
 local elsewhere             = " in S. Elsweyr" 
 local in_skyrim             = " in Western Skyrim"
@@ -87,13 +90,6 @@ FurC.MiscItemSources[FURC_DEADL] = {
 	
 	Furnishing packs!
 		Limited Time - 
-			Vampiric Libations
-			Ayleid
-			Mad Alchemist
-			Azura
-			Coldharbour
-			Deepmire
-			Molag Bal
 			Lord vivec
 			intrepid gourmet
 			moons bless oasis
@@ -132,6 +128,8 @@ FurC.MiscItemSources[FURC_DEADL] = {
 	 Add seals of endeavor prices with the gem prices for crate items (can I add a constant for pricing? ie: getGemPrice(40) would output "40 Gems or 2000 Endeavors"
 	 
 	 Learn how to add housing sources (I see it there, just need to play with it)
+	 
+	 Sort things into their proper versions! I've been adding most things to the top of the most recent version, but sorting needs to happen!
 	]]
 	
 	[FURC_DROP] = {
@@ -188,6 +186,8 @@ FurC.MiscItemSources[FURC_DEADL] = {
 		[182915] = getCrownPrice(260),	-- Fargrave Container Plants, Long,
         [182916] = getCrownPrice(260),	-- Fargrave Container Plant, Large Square,
         [182917] = getCrownPrice(260),	-- Fargrave Container Plants, Large Round,
+        [182914] = getCrownPrice(140), -- Fargrave Container Plants,
+        [182913] = getCrownPrice(140), -- Fargrave Container Plants, Small,
         [141832] = getCrownPrice(70),	-- Tree, Robust Fig,
         [141833] = getCrownPrice(150),	-- Tree, Ancient Fig,
         [141834] = getCrownPrice(170),	-- Tree, Towering Fig,
@@ -292,7 +292,7 @@ FurC.MiscItemSources[FURC_DEADL] = {
 		[121046] = itemPackCragKnicks, -- Cheeses of Tamriel,		
 		
 		[134890] = itemPackDibella, -- Dibella, Lady of Love,
-		[134848] = getCrownPrice(1500) .. " or " .. itemPackDibella,   -- Blue Butterfly Flock	
+		[134848] = getCrownPrice(1500) .. " or " .. itemPackDibella .. " or " .. itemPackOasis,   -- Blue Butterfly Flock	
         [134961] = itemPackDibella, -- Dibella's Mysteries and Revelations,		
         [134899] = getCrownPrice(45) .. " or " .. itemPackDibella, -- Flower Spray, Crimson Daisies,	
         [134901] = getCrownPrice(45) .. " or " .. itemPackDibella, -- Flower Spray, Starlight Daisies,	
@@ -302,7 +302,7 @@ FurC.MiscItemSources[FURC_DEADL] = {
         [134902] = getCrownPrice(20) .. " or " .. itemPackDibella, -- Flowers, Violet Bellflower,
         [134903] = getCrownPrice(45) .. " or " .. itemPackDibella, -- Flowers, Midnight Glory,		
         [94163] = getCrownPrice(290) .. " or " .. itemPackDibella, --Imperial Bench, Scrollwork
-		[134849] = getCrownPrice(1500) .. " or " .. itemPackDibella,   -- Monarch Butterfly Flock
+		[134849] = getCrownPrice(1500) .. " or " .. itemPackDibella .. " or " .. itemPackOasis,   -- Monarch Butterfly Flock
 		[134891] = getCrownPrice(2500) .. " or " .. itemPackDibella,	-- Pergola, Festive Flowers
 		[134895] = getCrownPrice(1800) .. " or " .. itemPackDibella,	-- Redguard Fountain, Mosaic
 		[134904] = getCrownPrice(260) .. " or " .. itemPackDibella,	-- Seal of Dibella
@@ -434,6 +434,25 @@ FurC.MiscItemSources[FURC_DEADL] = {
 		[134267] = getCrownPrice(380) .. " or " .. itemPackMalacath,	-- Orcish Table, Grand Furs
 		[134263] = getCrownPrice(410) .. " or " .. itemPackMalacath,	-- Orcish Throne, Ancient
 	
+        [126114] = itemPackAzura, -- Statue of Azura, Queen of Dawn and Dusk,
+        [126115] = itemPackAzura, -- Statue of Azura's Moon,
+        [126116] = itemPackAzura, -- Statue of Azura's Sun,
+        [126117] = itemPackAzura, -- Tapestry of Azura,
+        [126118] = itemPackAzura, -- Banner of Azura,
+        [125489] = itemPackAzura, -- Daedric Brazier, Flaming,
+        [126128] = itemPackAzura, -- The Five Points of the Star,	
+
+        [134251] = itemPackColdharbour, -- Coldharbour Bookshelf, Filled,
+        [134252] = itemPackColdharbour, -- Coldharbour Bookshelf, Black Laboratory,	
+		[134253] = itemPackColdharbour,     -- Coldharbour Bookshelf, Filled Wide,    
+		[134256] = itemPackColdharbour,     -- Coldharbour Bookshelf, Filled Pillar,    
+		[134254] = itemPackColdharbour,     -- Seal of Molag Bal,    
+		[134255] = itemPackColdharbour,     -- Transliminal Rupture,    
+		[134257] = itemPackColdharbour,     -- Daedra Dossier: Cold-Flame Atronach
+		[134264] = getCrownPrice(190) .. " or " .. itemPackColdharbour,              -- Daedric Brazier, Cold-Flame
+		[134273] = getCrownPrice(200) .. " or " .. itemPackColdharbour,              -- Daedric Plinth, Sacrificial
+		[134274] = getCrownPrice(200) .. " or " .. itemPackColdharbour,              -- Coldharbour Crate, Black Soul Gem
+		[134275] = getCrownPrice(200) .. " or " .. itemPackColdharbour,              -- Coldharbour Bin, Black Soul Gem		
 	},
 	
 	[FURC_RUMOUR] = {   
@@ -463,7 +482,6 @@ FurC.MiscItemSources[FURC_DEADL] = {
         [130090] = rumourSource, -- Daedric Sconce, Molag Bal,
         [130092] = rumourSource, -- Seal of Molag Bal, Grand,
         [120878] = rumourSource, -- Gravestone, Ornamented,
-        [125489] = rumourSource, -- Daedric Brazier, Flaming,
         [125509] = rumourSource, -- Replica Dwarven Crown Crate,
         [120411] = rumourSource, -- Noble's Chalice of Wine,
         [125532] = rumourSource, -- Dwarven Pipeline, Fan,
@@ -472,8 +490,6 @@ FurC.MiscItemSources[FURC_DEADL] = {
         [139367] = rumourSource, -- Regal Sauna Pool, Two Person,
         [126568] = rumourSource, -- Daedric Urn, Ritual,
         [134249] = rumourSource, -- Sotha Sil, The Clockwork God,
-        [134251] = rumourSource, -- Coldharbour Bookshelf, Filled,
-        [134252] = rumourSource, -- Coldharbour Bookshelf, Black Laboratory,
         [125550] = rumourSource, -- Flowers, Lava Blooms,
         [126588] = rumourSource, -- Vvardenfell Pitcher Plants, Hanging Bunch,
         [126589] = rumourSource, -- Vvardenfell Mushrooms, Bloodtooth,
@@ -498,15 +514,9 @@ FurC.MiscItemSources[FURC_DEADL] = {
         [126108] = rumourSource, -- Display Atronach Crown Crate,
         [125597] = rumourSource, -- Mushroom, Polyp Stinkhorn,
         [125598] = rumourSource, -- Mushroom, Emerging Stinkhorn,
-        [126114] = rumourSource, -- Statue of Azura, Queen of Dawn and Dusk,
-        [126115] = rumourSource, -- Statue of Azura's Moon,
-        [126116] = rumourSource, -- Statue of Azura's Sun,
-        [126117] = rumourSource, -- Tapestry of Azura,
-        [126118] = rumourSource, -- Banner of Azura,
         [121000] = rumourSource, -- Shrub, Trimmed Green,
         [121004] = rumourSource, -- Hedge, Solid Arc,
         [121007] = rumourSource, -- Tree, Strong Maple,
-        [126128] = rumourSource, -- The Five Points of the Star,
         [121010] = rumourSource, -- Tree, Young Green Birch,
         [126132] = rumourSource, -- Resplendent Sweetroll,
         [121013] = rumourSource, -- Saplings, Fragile Autumn Birch,
@@ -538,8 +548,6 @@ FurC.MiscItemSources[FURC_DEADL] = {
         [178501] = rumourSource, -- The Nomads of Nirn,
         [178502] = rumourSource, -- An Ode to the Disenfranchised,
         [134475] = rumourSource, -- Statue of Malacath, Orc-Father,
-        [182616] = rumourSource, -- Orcish Banner, Iron,
-        [182619] = rumourSource, -- Clockwork Altar, Devotional,
         [182620] = rumourSource, -- Clockwork Door, Arched,
         [182621] = rumourSource, -- Mystic's Banner,
         [182622] = rumourSource, -- Grahtwood Fighters Guild Banner,
@@ -570,11 +578,9 @@ FurC.MiscItemSources[FURC_DEADL] = {
         [182929] = rumourSource, -- Plant, Hynvik,
         [171940] = rumourSource, -- Statue of Sheogorath, Shivering Isles Sovereign,
         [182925] = rumourSource, -- Rocks, Deadlands Cluster,
-        [182914] = rumourSource, -- Fargrave Container Plants,
         [171945] = rumourSource, -- Deadlands Sconce, Horned,
         [171946] = rumourSource, -- Deadlands Cage, Bladed,
         [171947] = rumourSource, -- Deadlands Chandelier, Bladed,
-        [182913] = rumourSource, -- Fargrave Container Plants, Small,
         [182632] = rumourSource, -- Redguard Brazier, Stone Marker,
         [182631] = rumourSource, -- Redguard Seal,
         [182630] = rumourSource, -- Ayleid Constellation Stele, The Lord,
@@ -586,7 +592,6 @@ FurC.MiscItemSources[FURC_DEADL] = {
         [182625] = rumourSource, -- Orcish Seal, Torch,
         [182624] = rumourSource, -- Clockwork Coffer, Vertical,
         [182623] = rumourSource, -- Rugs, Rolled,
-        [182618] = rumourSource, -- Nord Stone, Marked,
         [182617] = rumourSource, -- Unidentified Fargrave Bones,
         [182207] = rumourSource, -- Celestial Vortex,
         [182284] = rumourSource, -- Fargrave Bread Loaves, Round,
@@ -1028,52 +1033,24 @@ FurC.MiscItemSources[FURC_MARKAT]  = {
 	[FURC_DROP] = {	
 		[171428] = scrying .. " in the Reach (Harrowstorms)",		   -- Vampiric Stained Glass
 	}, 
+	
+	[FURC_CROWN] = {
+	    [171397] = itemPackAlchemist, -- Stone Garden Tank, Vacant,
+        [171398] = itemPackAlchemist, -- Stone Garden Vat, Alchemized Bristleback,
+        [171399] = itemPackAlchemist, -- Stone Garden Vat, Alchemized Chaurus,
+        [171400] = itemPackAlchemist, -- Stone Garden Vat, Alchemized Durzog,
+        [171401] = itemPackAlchemist, -- Stone Garden Vat, Vacant,
+        [171402] = itemPackAlchemist, -- Stone Garden Circulator, Rootbound,
+        [171403] = itemPackAlchemist, -- Stone Garden Casket, Alchemized Bloodknight,
+		[169117] = itemPackAlchemist, -- Target Bloodknight,
+	},
+	
 	[FURC_RUMOUR] = {
-        [171397] = rumourSource, -- Stone Garden Tank, Vacant,
-        [171398] = rumourSource, -- Stone Garden Vat, Alchemized Bristleback,
-        [171399] = rumourSource, -- Stone Garden Vat, Alchemized Chaurus,
-        [171400] = rumourSource, -- Stone Garden Vat, Alchemized Durzog,
-        [171401] = rumourSource, -- Stone Garden Vat, Vacant,
-        [171402] = rumourSource, -- Stone Garden Circulator, Rootbound,
-        [171403] = rumourSource, -- Stone Garden Casket, Alchemized Bloodknight,
-        [171411] = rumourSource, -- Clockwork Lens Assembly, Frozen,
-        [171412] = rumourSource, -- Clockwork Switch, Rotary,
-        [171416] = rumourSource, -- Telvanni Specimen Jar, Glass Dome,
-        [171417] = rumourSource, -- Orcish Seal, Owl,
-        [171418] = rumourSource, -- Orcish Seal, Anvil,
-        [171419] = rumourSource, -- Riekling Shelter, Painted Megaliths,
-        [171420] = rumourSource, -- Riekling Rack, Giant Bone,
-        [171421] = rumourSource, -- Ayleid Pillar, Large Empty,
-        [171422] = rumourSource, -- Ayleid Constellation Stele, The Apprentice,
-        [171423] = rumourSource, -- Alinor Trellis, Blue Wisteria,
-        [171424] = rumourSource, -- Bush, Rhododendron,
-        [171425] = rumourSource, -- Redguard Carpets, Rolled,
-        [171426] = rumourSource, -- Redguard Brazier, Ritual,
-        [171333] = rumourSource, -- Dwarven Potted Plant, Polished Vase,
-        [171334] = rumourSource, -- Dwarven Lamp, Cylinder Cage,
-        [171335] = rumourSource, -- Dwarven Lamp, Conal Frustum Cage,
-        [171336] = rumourSource, -- Dwarven Brazier, Square Polished,
-        [171337] = rumourSource, -- Dwarven Candlestick, Polished,
-        [171338] = rumourSource, -- Dwarven Table Lamp, Polished Dome,
-        [171339] = rumourSource, -- Reachmen Chandelier, Gnarled,
-        [171340] = rumourSource, -- Reachmen Chandelier, Shaded,
-        [171341] = rumourSource, -- Dwarven Wall Lamp, Reachfolk Adorned,
-        [171342] = rumourSource, -- Dwarven Bench, Ornate Granite,
-        [171343] = rumourSource, -- Dwarven Pew, Ornate Polished,
-        [171344] = rumourSource, -- Dwarven Corner Bench, Ornate Polished,
-        [171345] = rumourSource, -- Dwarven Chair, Ornate Polished,
-        [171346] = rumourSource, -- Dwarven Bed, Reach Furs,
-        [171347] = rumourSource, -- Dwarven Bed, Reach Furs Double,
-        [171348] = rumourSource, -- Dwarven Bed, Reach Furs Canopy,
-        [171349] = rumourSource, -- Dwarven Divider, Ornate Granite,
-        [171350] = rumourSource, -- Dwarven Divider, Ornate Polished,
         [171351] = rumourSource, -- Dwarven Mirror, Polished,
         [171352] = rumourSource, -- Dwarven Cage, Polished Specimen,
         [171353] = rumourSource, -- Dwarven Relief, Connected Circles,
         [171354] = rumourSource, -- Dwarven Relief, Tracks,
-        [171355] = rumourSource, -- Dwarven Amphora, Ornate Polished,
         [171356] = rumourSource, -- Dwarven Pot, Polished,
-        [171357] = rumourSource, -- Dwarven Kettle, Ornate Polished,
         [171358] = rumourSource, -- Dwarven Mug, Polished,
         [171359] = rumourSource, -- Dwarven Plate, Polished,
         [171360] = rumourSource, -- Dwarven Cooking Implements, Hanging,
@@ -1082,19 +1059,15 @@ FurC.MiscItemSources[FURC_MARKAT]  = {
         [171363] = rumourSource, -- Dwarven Serving Dish, Vegetable Soup,
         [171364] = rumourSource, -- Dwarven Plate, Full Breakfast,
         [171365] = rumourSource, -- Dwarven Counter, Granite,
-        [171366] = rumourSource, -- Dwarven Desk, Ornate Polished,
         [171367] = rumourSource, -- Dwarven Table, Grand Polished,
         [171368] = rumourSource, -- Dwarven Table, Granite,
         [171369] = rumourSource, -- Dwarven Sideboard, Granite Polished,
-        [171370] = rumourSource, -- Dwarven Table, Granite Kitchen,
-        [171371] = rumourSource, -- Dwarven Low Table, Ornate Polished,
+        [171370] = rumourSource, -- Dwarven Table, Granite Kitchen,,
         [171372] = rumourSource, -- Dwarven End Table, Columnar Granite,
         [171373] = rumourSource, -- Dwarven Nightstand, Granite,
         [171374] = rumourSource, -- Dwarven Dresser, Granite,
-        [171375] = rumourSource, -- Dwarven Trunk, Ornate Polished,
         [171376] = rumourSource, -- Dwarven Wall Cabinet, Granite,
         [171377] = rumourSource, -- Dwarven Corner Shelf, Granite,
-        [171378] = rumourSource, -- Dwarven Wardrobe, Ornate Polished,
         [171379] = rumourSource, -- Dwarven Bookcase, Granite,
         [171380] = rumourSource, -- Dwarven Bookcase, Granite Filled,
         [171381] = rumourSource, -- Reachmen Pergola, Ivy,
@@ -1157,7 +1130,6 @@ FurC.MiscItemSources[FURC_MARKAT]  = {
         [167348] = rumourSource, -- Orcish Figurine, Bear,
         [167351] = rumourSource, -- Crocodile Skeleton, Complete,
         [167352] = rumourSource, -- Pelt, Fox,
-        [169117] = rumourSource, -- Target Bloodknight,
         [167933] = rumourSource, -- Dwarven Beam Emitter, Medium,
         [167328] = rumourSource, -- Solitude Platform, Square Wooden,
         [160541] = rumourSource, -- Outfit Station, Clockwork,
@@ -2104,20 +2076,21 @@ FurC.MiscItemSources[FURC_KITTY]  = {
     [159437] = scambox_gloomspore, -- Painting of Blackreach, Rough
   
     [151838] = itemPackOasis, -- Elsweyr Fountain, Moons-Blessed,
-    [151840] = itemPackOasis, -- Plant, Desert Fan,
-    [151841] = itemPackOasis, -- Plant, Tall Desert Fan,
-    [151842] = itemPackOasis, -- Plant, Cask Palm,
-    [151843] = itemPackOasis, -- Cactus, Flowering Cluster,
-    [151844] = itemPackOasis, -- Cactus, Bilberry,
-    [151845] = itemPackOasis, -- Elsweyr Potted Cactus, Flowering,
-    [151846] = itemPackOasis .. " or " .. itemPackMermaid, -- Elsweyr Potted Plant, Cask Palm,
+    [151840] = getCrownPrice(70) .. " or " .. itemPackOasis, -- Plant, Desert Fan,
+    [151841] = getCrownPrice(70) .. " or " .. itemPackOasis, -- Plant, Tall Desert Fan,
+    [151842] = getCrownPrice(20) .. " or " .. itemPackOasis, -- Plant, Cask Palm,
+    [151843] = getCrownPrice(45) .. " or " .. itemPackOasis, -- Cactus, Flowering Cluster,
+    [151844] = getCrownPrice(30) .. " or " .. itemPackOasis, -- Cactus, Bilberry,
+    [151845] = getCrownPrice(95) .. " or " .. itemPackOasis, -- Elsweyr Potted Cactus, Flowering,
+    [151846] = getCrownPrice(35) .. " or " .. itemPackOasis .. " or " .. itemPackMermaid, -- Elsweyr Potted Plant, Cask Palm,
     [151835] = itemPackOasis, -- Cathay-Raht Statue, Warrior,
     [151836] = itemPackOasis, -- Tojay Statue, Dancer,
     [151837] = itemPackOasis, -- Ohmes-Raht Statue, Trickster,
-    [151847] = itemPackOasis, -- Plant, Flowering Desert Aloe,
-    [151848] = itemPackOasis, -- Trees, Sunset Palm Cluster,
-    [151849] = itemPackOasis, -- Cactus, Lily Flower,
-    [151850] = itemPackOasis, -- Tree, Anequina Bonsai,
+    [151847] = getCrownPrice(20) .. " or " .. itemPackOasis, -- Plant, Flowering Desert Aloe,
+    [151848] = getCrownPrice(15) .. " or " .. itemPackOasis, -- Trees, Sunset Palm Cluster,
+    [151849] = getCrownPrice(45) .. " or " .. itemPackOasis, -- Cactus, Lily Flower,
+    [151850] = getCrownPrice(20) .. " or " .. itemPackOasis, -- Tree, Anequina Bonsai,
+	[151834] = getCrownPrice(90) .. " or " .. itemPackOasis, -- Tree, Desert Acacia Shade,
   
     [151906] = itemPackMoonBishop, -- Robust Target Dro-m'Athra,
     [151829] = itemPackMoonBishop, -- Suthay Statue, Nimble Bishop,
@@ -2139,7 +2112,6 @@ FurC.MiscItemSources[FURC_KITTY]  = {
     [151820] = getCrownPrice(10), -- Desert Grass, Tall,
     [151821] = getCrownPrice(15), -- Desert Grass, Patch,
     [151831] = getCrownPrice(290), -- Elsweyr Sugar Pipe, Ceremonial,
-    [151834] = getCrownPrice(90), -- Tree, Desert Acacia Shade,
     [151857] = getCrownPrice(150), -- Elsweyr Gazebo, Ancient Stone,
     [151867] = getCrownPrice(340), -- Hakoshae Lanterns, Festival,
     [151868] = getCrownPrice(180), -- Hakoshae Banners, Festival,

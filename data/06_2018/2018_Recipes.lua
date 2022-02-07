@@ -94,6 +94,7 @@ FurC.Recipes[FURC_WEREWOLF] = {
 
 FurC.Recipes[FURC_ALTMER] = {
 
+  139526, -- Diagram: Alinor Brazier, Standing Coals
   139573, -- Sketch: Figurine, The Fish and the Unicorn
   139571, -- Sketch: Figurine, The Sea-Monster's Surprise
   139572, -- Sketch: Figurine, The Taming of the Gryphon
