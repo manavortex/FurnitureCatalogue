@@ -224,6 +224,7 @@ FURC_AV_RAZ = "Razoufa",
   SI_FURC_FILTER_VERSION_FLAMES =   "Flames of Ambition",
   SI_FURC_FILTER_VERSION_BLACKW =   "Blackwood",
   SI_FURC_FILTER_VERSION_DEADL =   "Deadlands",
+  SI_FURC_FILTER_VERSION_TIDES = 	"Ascending Tide",
 
 
   -- =============================== --
@@ -262,6 +263,7 @@ FURC_AV_RAZ = "Razoufa",
   SI_FURC_FILTER_VERSION_FLAMES_TT =	"Mildly flammable",
   SI_FURC_FILTER_VERSION_BLACKW_TT =	"Mehrunes will never learn",
   SI_FURC_FILTER_VERSION_DEADL_TT =		"What is this place with the sparkly meat?",
+  SI_FURC_FILTER_VERSION_TIDES_TT =		"Redguard. Structural. Furnishings. (Kinda?)",
 
   SI_FURC_FILTER_CHAR_OFF =     "Character filter: off", 
   SI_FURC_FILTER_CHAR_OFF_TT =  filterDisabled, 
@@ -292,6 +294,7 @@ FURC_AV_RAZ = "Razoufa",
   SI_FURC_DB =                    "The Dark Brotherhood supplies vendor hands these out ",
   SI_FURC_DB_POISON =             "with poison",
   SI_FURC_DB_STEALTH =            "as a way to be less obtrusive",
+  SI_FURC_DB_EQUIP =			  "with equipment",
   SI_FURC_DAILY_ASH =             "Ashlander daily quest rewards",
   SI_FURC_DAILY_ELSWEYR =         "Elsweyr daily quest rewards",
   SI_FURC_EVENT_ELSWEYR =         "Elsweyr dragon event",

@@ -40,5 +40,6 @@ FURC_MARKAT				= FURC_STONET     +1        -- 17
 FURC_FLAMES				= FURC_MARKAT     +1        -- 18
 FURC_BLACKW				= FURC_FLAMES     +1        -- 19
 FURC_DEADL				= FURC_BLACKW     +1        -- 20
+FURC_TIDES				= FURC_DEADL	  +1		-- 21
 
-FURC_LATEST				= FURC_DEADL
+FURC_LATEST				= FURC_TIDES

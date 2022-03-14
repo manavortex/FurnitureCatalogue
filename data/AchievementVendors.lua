@@ -1,3 +1,19 @@
+FurC.AchievementVendors[FURC_TIDES] = {  
+ 
+  ["the Undaunted Enclaves"] = {
+    ["Undaunted Quartermaster"] = {
+		[184204] = {				--Eerie Lantern, Hanging
+			itemPrice   = 10000,
+			achievement = 3114,		-- Shipwright's Regret Vanquisher
+		},
+		[184203] = {				--Gryphon Nest
+			itemPrice   = 2000,
+			achievement = 3104,		-- Coral Aerie Vanquisher
+		},
+
+    },
+  },
+}
 
 FurC.AchievementVendors[FURC_DEADL] = {  
  

@@ -3,13 +3,36 @@ FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
 FurC.LuxuryFurnisher[FURC_DEADL] = {
 	
+	[182624] = {		-- Clockwork Coffer, Vertical
+		itemPrice	= 4000,
+		itemDate	= "2022-03-12",
+	},
+	
+	[182623] = {		-- Rugs, Rolled
+		itemPrice	= 2500,
+		itemDate	= "2022-03-05",
+	},
+	
+	[182622] = {		-- Grahtwood Fighters Guild Sign
+		itemPrice	= 12000,
+		itemDate	= "2022-02-26",
+	},
+	
+	[182621] = {		-- Mystic's Banner
+		itemPrice	= 4000,
+		itemDate	= "2022-02-19",
+	},
+	
+	[182632] = {		-- Redguard Brazier, Stone Marker
+		itemPrice   = 15000,
+		itemDate	= "2022-02-12",
+	},
+
 	-- ====================================================================
 	[182631] = {		-- Redguard Seal
 		itemPrice   = 3000,
 		itemDate	= "2022-02-05",
 	},
-
-	
 	-- ====================================================================
 	[182620] = {		-- Clockwork Door, Arched
 		itemPrice   = 25000,
@@ -1619,34 +1642,34 @@ FurC.LuxuryFurnisher[FURC_MARKAT] = {
 	-- ====================================================================
 	
 	[156647] = {    -- Ra Gada Throne, Stone
-		itemDate  = "2021-02-13",
+		itemDate  = "2022-02-12",
 		itemPrice   = 50000,
 	},
 
 	[145469] = {    -- Redguard Gazebo, Palatial Domed
  		itemPrice   = 75000,
-		itemDate  = "2021-02-13",
+		itemDate  = "2022-02-12",
 	},
 
 	[120802] = {  -- Shrine of Mara, Decorative
  		itemPrice   = 50000,
-		itemDate  = "2021-02-13",
+		itemDate  = "2022-02-12",
 	},
 	[120799] = {  -- Wedding Blossoms, Peach
  		itemPrice   = 2500,
-		itemDate  = "2021-02-13",
+		itemDate  = "2022-02-12",
 	},
 	[120893] = {  -- Wedding Gazebo
  		itemPrice   = 50000,
-		itemDate  = "2021-02-13",
+		itemDate  = "2022-02-12",
 	},
 	[117875] = {    -- Wedding Pergola, Bare
  		itemPrice   = 35000,
-		itemDate  = "2021-02-13",
+		itemDate  = "2022-02-12",
 	},
 	[171426] = {		-- Redguard Brazier, Ritual
 		itemPrice   = 12000,
-		itemDate  = "2021-02-13",
+		itemDate  = "2022-02-12",
 	},
 -- ====================================================================
 
@@ -1689,122 +1712,122 @@ FurC.LuxuryFurnisher[FURC_MARKAT] = {
 -- ====================================================================
 	[171414] = {		-- Fighters Guild Sign, Large
 		itemPrice   = 12000,
-		itemDate  = "2020-01-30",
+		itemDate  = "2022-02-26",
 	},
 
 	[134432] = {  -- Banker's Sign, Small
  		itemPrice   = 3000,
-		itemDate  = "2020-01-30",
+		itemDate  = "2022-02-26",
 	},
 	[134431] = {  -- Merchant's Sign, Small
  		itemPrice   = 3000,
-		itemDate  = "2020-01-30",
+		itemDate  = "2022-02-26",
 	},
 	[134433] = {  -- Stablemaster's Sign, Small
  		itemPrice   = 3000,
-		itemDate  = "2020-01-30",
+		itemDate  = "2022-02-26",
 	},
 	[141765] = {    -- Banner, Transmute
  		itemPrice   = 12000,
-		itemDate  = "2020-01-30",
+		itemDate  = "2022-02-26",
 	},
 	[141766] = {    -- Banner, Transmute Small
  		itemPrice   = 5000,
-		itemDate  = "2020-01-30",
+		itemDate  = "2022-02-26",
 	},
 	[153700] = {    -- Banner, Packs
  		itemPrice   = 4000,
-		itemDate  = "2020-01-30",
+		itemDate  = "2022-02-26",
 	},
 	
 	
 -- ====================================================================
 	[171413] = {		-- Mages Guild Sign, Large
 		itemPrice   = 12000,
-		itemDate  = "2021-01-23",
+		itemDate  = "2022-02-19",
 	},
 	
 	[153699] = {    -- Banner, Furnishings
  		itemPrice   = 25000,
-		itemDate  = "2021-01-23",
+		itemDate  = "2022-02-19",
 	},
 
 	[141763] = {    -- Banner, Outfit
  		itemPrice   = 12000,
-		itemDate  = "2021-01-23",
+		itemDate  = "2022-02-19",
 	},
 	[141764] = {    -- Banner, Outfit Small
  		itemPrice   = 5000,
-		itemDate  = "2021-01-23",
+		itemDate  = "2022-02-19",
 	},
 	-- Dec. 1st
 	[134428] = {  -- Banker's Sign, Large
  		itemPrice   = 12000,
-		itemDate  = "2021-01-23",
+		itemDate  = "2022-02-19",
 	},
 	[134429] = {  -- Merchant's Sign, Large
  		itemPrice   = 12000,
-		itemDate  = "2021-01-23",
+		itemDate  = "2022-02-19",
 	},
 	[134430] = {  -- Stablemaster's Sign, Large
  		itemPrice   = 12000,
-		itemDate  = "2021-01-23",
+		itemDate  = "2022-02-19",
 	},
 	
 	-- ====================================================================
 	
 	[171416] = {		-- Telvanni Specimen Jar, Glass Dome
 		itemPrice   = 1000,
-		itemDate  = "2021-01-16",
+		itemDate  = "2022-03-012",
 	},	
 	-- Dec. 21st
 	[134439] = {  -- Clockwork Alchemy Flask
  		itemPrice   = 3000,
-		itemDate  = "2021-01-16",
+		itemDate  = "2022-03-012",
 	},
 	[134438] = {  -- Clockwork Alchemy Rack, Tubes
  		itemPrice   = 3000,
-		itemDate  = "2021-01-16",
+		itemDate  = "2022-03-012",
 	},
 	[134440] = {  -- Clockwork Alchemy Titration Stand
  		itemPrice   = 3000,
-		itemDate  = "2021-01-16",
+		itemDate  = "2022-03-012",
 	},
 	[134441] = {    -- Animo Core, Full
  		itemPrice   = 10000,
-		itemDate  = "2021-01-16",
+		itemDate  = "2022-03-012",
 	},
 	[153702] = {    -- Clockwork Pot, Crystals
  		itemPrice   = 10000,
-		itemDate  = "2021-01-16",
+		itemDate  = "2022-03-012",
 	},
 
 	-- ====================================================================
 	[171415] = {		-- Changing Room, Curtained
 		itemPrice   = 3000,
-		itemDate  = "2021-01-09",
+		itemDate  = "2022-03-05",
 	},
 
 	-- Dec. 14th
 	[153701] = {    -- Clockwork Changing Room, Curtained
  		itemPrice   = 20000,
-		itemDate  = "2021-01-09",
+		itemDate  = "2022-03-05",
 	},
 	[134435] = {  -- Clockwork Loom, Sturdy
  		itemPrice   = 20000,
-		itemDate  = "2021-01-09",
+		itemDate  = "2022-03-05",
 	},
 	[134434] = {  -- Quality Fabric, Stacked
  		itemPrice   = 450,
-		itemDate  = "2021-01-09",
+		itemDate  = "2022-03-05",
 	},
 	[134436] = {  -- Spool, Blue Thread
  		itemPrice   = 450,
-		itemDate  = "2021-01-09",
+		itemDate  = "2022-03-05",
 	},
 	[134437] = {    -- Clockwork Spinning Wheel, Sturdy
  		itemPrice   = 12000,
-		itemDate  = "2021-01-09",
+		itemDate  = "2022-03-05",
 	},
 
 	

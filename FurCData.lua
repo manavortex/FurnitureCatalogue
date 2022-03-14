@@ -148,21 +148,28 @@ end
 
 function FurC.Find(itemOrBlueprintLink)            -- sets recipeArray, returns it - calls scanItemLink
 	
-	if tonumber(itemOrBlueprintLink) == itemOrBlueprintLink then itemOrBlueprintLink = FurC.GetItemLink(itemOrBlueprintLink) end
+	if tonumber(itemOrBlueprintLink) == itemOrBlueprintLink then 
+		itemOrBlueprintLink = FurC.GetItemLink(itemOrBlueprintLink) 
+	end
 	if nil == itemOrBlueprintLink or #itemOrBlueprintLink == 0 then return end
 	-- p("scanItemLink(<<1>>)...", itemOrBlueprintLink)    -- do not return empty arrays. If this returns nil, abort!
 	
 	if itemOrBlueprintLink == lastLink and nil ~= recipeArray then
 		return recipeArray
-		else
+	else
 		recipeArray = nil
 		lastLink = itemOrBlueprintLink
 	end
 	
 	if IsItemLinkFurnitureRecipe(itemOrBlueprintLink) then
 		recipeArray = parseBlueprint(itemOrBlueprintLink)
-		elseif IsItemLinkPlaceableFurniture(itemOrBlueprintLink) then
+	elseif IsItemLinkPlaceableFurniture(itemOrBlueprintLink) then
 		recipeArray = parseFurnitureItem(itemOrBlueprintLink)
+	else
+		itemId = getItemId(itemOrBlueprintLink)
+		if itemId ~= nil and tonumber(itemId) > 0 then
+			recipeArray = FurC.settings.data[itemId]
+		end
 	end
 	
 	return recipeArray or {}

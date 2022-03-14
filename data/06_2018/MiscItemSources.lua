@@ -30,6 +30,8 @@ local scambox_reaper        = zo_strformat("<<1>> (<<2>>)", scambox_string, GetS
 
 local db_poison             = zo_strformat("<<1>> <<2>>", GetString(SI_FURC_DB), GetString(SI_FURC_DB_POISON))
 local db_sneaky             = zo_strformat("<<1>> <<2>>", GetString(SI_FURC_DB), GetString(SI_FURC_DB_STEALTH))
+local db_equip				= zo_strformat("<<1>> <<2>>", GetString(SI_Furc_DB), GetString(SI_FURC_DB_Equip))
+
 
 local sinister_hollowjack   = "Sinister Hollowjack Items"
 
@@ -263,8 +265,6 @@ FurC.MiscItemSources[FURC_WEREWOLF] = {
   
   [FURC_RUMOUR] = {
     [141836] = dataminedUnclear,                    -- Monolith, Lord Hircine Ritual
-    [141841] = dataminedUnclear,                    -- Tree Ferns, Cluster
-    [141842] = dataminedUnclear,                    -- Tree Ferns, Juvenile Cluster
     [141843] = dataminedUnclear,                    -- Plants, Yellow Frond Cluster
     
     [141853] = dataminedUnclear,                    -- Statue of Hircine's Bitter Mercy
@@ -1101,7 +1101,6 @@ FurC.MiscItemSources[FURC_MORROWIND]  = {             -- Morrowind
     [125569] = dataminedUnclear,                    -- Hlaalu Sidewalk, Sillar Stone Corner
     [125570] = dataminedUnclear,                    -- Hlaalu Stairs, Sillar Stone
     [125576] = dataminedUnclear,                    -- Hlaalu Wall Pillar, Sillar Stone
-    [125581] = dataminedUnclear,                    -- Mushroom, Buttercake
     [125583] = dataminedUnclear,                    -- Mushroom, Cave Bracket
     [125589] = dataminedUnclear,                    -- Mushroom, Lavaburst Bud
     [125591] = dataminedUnclear,                    -- Mushroom, Lavaburst Patch
@@ -1155,11 +1154,10 @@ FurC.MiscItemSources[FURC_HOMESTEAD]  = {
     
   },
   [FURC_DROP]    = {
-    [121058] = db_sneaky,             -- Candles of Silence
-    
+    [121058] = db_sneaky,             -- Candles of Silence  
     [119936] = db_poison,             -- Poisoned Blood
     [119938] = db_poison,             -- Light and Shadow
-    [119952] = db_poison,             -- Sacrificial Heart
+    [119952] = db_equip,              -- Sacrificial Heart
     
     -- Paintings
     [118216] = GetString(SI_FURC_CHESTS),         -- Painting of Spring, Sturdy
