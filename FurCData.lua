@@ -167,7 +167,7 @@ function FurC.Find(itemOrBlueprintLink)            -- sets recipeArray, returns 
 		recipeArray = parseFurnitureItem(itemOrBlueprintLink)
 	else
 		itemId = getItemId(itemOrBlueprintLink)
-		if itemId ~= nil and tonumber(itemId) > 0 then
+		if itemId ~= nil and tonumber(itemId) > 0 and FurC.settings.data ~= nil then
 			recipeArray = FurC.settings.data[itemId]
 		end
 	end
