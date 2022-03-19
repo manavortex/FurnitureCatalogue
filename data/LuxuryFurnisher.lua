@@ -1,5 +1,13 @@
 FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
+FurC.LuxuryFurnisher[FURC_TIDES] = {
+
+    [182625] = {	 -- Orcish Seal, Torch
+		itemPrice	= 3000,
+		itemDate	= "2022-03-19",
+	}
+			
+}
 
 FurC.LuxuryFurnisher[FURC_DEADL] = {
 	

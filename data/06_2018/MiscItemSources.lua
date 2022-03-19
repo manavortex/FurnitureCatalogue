@@ -809,15 +809,18 @@ FurC.MiscItemSources[FURC_CLOCKWORK] = { -- Reach
   },
   
   [FURC_CROWN]   = {
-    [134266] = getCrownPrice(80),   -- Daedric Books, Stacked
-    [134265] = getCrownPrice(80),   -- Daedric Books, Piled
+    [134266] = getCrownPrice(80),   	-- Daedric Books, Stacked
+    [134265] = getCrownPrice(80),   	-- Daedric Books, Piled
     [134373] = getCrownPrice(410),      -- Clockwork Wall Machinery, Rectangular
     [134374] = getCrownPrice(410),      -- Clockwork Wall Machinery, Circular
-    [134382] = getCrownPrice(870),        -- Fabricant Tree, Beryl Cypress
+    [134382] = getCrownPrice(870),      -- Fabricant Tree, Beryl Cypress
     [134383] = getCrownPrice(870),      -- Fabricant Tree, Towering Maple
     [134385] = getCrownPrice(870),      -- Fabricant Tree, Brass Swamp
     [134387] = getCrownPrice(870),      -- Fabricant Tree, Tall Cobalt Spruce
     [134388] = getCrownPrice(870),      -- Fabricant Tree, Cobalt Oak
+    [134384] = getCrownPrice(870),      -- Fabricant Tree, Decorative Electrum
+    [134386] = getCrownPrice(260),      -- Fabricant Tree, Forked Cherry Blossom
+    [134389] = getCrownPrice(140),      -- Fabricant Tree, Decorative Brass 
     [134390] = getCrownPrice(140),      -- Clockwork Junk Heap, Large
     [134391] = getCrownPrice(510),      -- Clockwork Sequence Spool, Column
     [134392] = getCrownPrice(260),      -- Clockwork Recharging Column, Octet
@@ -830,9 +833,6 @@ FurC.MiscItemSources[FURC_CLOCKWORK] = { -- Reach
   },
 
   [FURC_RUMOUR] = {
-    [134384] = dataminedUnclear,                    -- Fabricant Tree, Decorative Electrum
-    [134386] = dataminedUnclear,                    -- Fabricant Tree, Forked Cherry Blossom
-    [134389] = dataminedUnclear,                    -- Fabricant Tree, Decorative Brass 
     [125509] = dataminedUnclear,                    -- Replica Dwarven Crown Crate
   }
 }
@@ -1092,7 +1092,6 @@ FurC.MiscItemSources[FURC_MORROWIND]  = {             -- Morrowind
   [FURC_RUMOUR] = {
     [132531] = dataminedUnclear,                    -- Hlaalu Planter, Tall
     [120411] = dataminedUnclear,                    -- Noble's Chalice of Wine
-    [120417] = dataminedUnclear,                    -- Redguard Barrel, Corded
     [126568] = dataminedUnclear,                    -- Daedric Urn, Ritual
     [125550] = dataminedUnclear,                    -- Flowers, Lava Blooms
     [126588] = dataminedUnclear,                    -- Vvardenfell Pitcher Plants, Hanging Bunch
@@ -1216,6 +1215,7 @@ FurC.MiscItemSources[FURC_HOMESTEAD]  = {
     [115698] = getCrownPrice(1100),               -- Khajiit Statue, Guardian
     
     [120413] = getCrownPrice(30),                 -- Breton Pitcher, Clay
+	[118000] = getCrownPrice(10),	              -- Garlic String, Display
   },
   [FURC_RUMOUR]   = {
     
@@ -1236,7 +1236,6 @@ FurC.MiscItemSources[FURC_HOMESTEAD]  = {
     [118065] = rumourSource,           -- Common Cargo Crate, Dry
     [118054] = rumourSource,           -- Common Firepit, Outdoor
     [118055] = rumourSource,           -- Common Firepit, Piled
-    [118000] = rumourSource,           -- Garlic String, Display
     [118119] = rumourSource,           -- Minecart, Empty
     [118120] = rumourSource,           -- Minecart, Push
     [117991] = rumourSource,           -- Stool, Carved
