@@ -2,34 +2,40 @@
 
 local bookList = {
   [134548] = { -- The Truth in Sequence, Volume 1
-    itemPrice = 2000,
+    itemPrice = 20000,
   },
   [134549] = { -- The Truth in Sequence, Volume 2
-    itemPrice = 2000,
+    itemPrice = 20000,
   },
   [134550] = { -- The Truth in Sequence, Volume 3
-    itemPrice = 2000,
+    itemPrice = 20000,
   },
   [134551] = { -- The Truth in Sequence, Volume 4
-    itemPrice = 2000,
+    itemPrice = 20000,
   },
   [134552] = { -- The Truth in Sequence, Volume 5
-    itemPrice = 2000,
+    itemPrice = 20000,
   },
   [134553] = { -- The Truth in Sequence, Volume 6
-    itemPrice = 2000,
+    itemPrice = 20000,
   },
   [134554] = { -- The Truth in Sequence, Volume 7
-    itemPrice = 2000,
+    itemPrice = 20000,
   },
   [134555] = { -- The Truth in Sequence, Volume 8
-    itemPrice = 2000,
+    itemPrice = 20000,
   },
   [134556] = { -- The Truth in Sequence, Volume 9
-    itemPrice = 2000,
+    itemPrice = 20000,
   },
   [134557] = { -- The Truth in Sequence, Volume 10
-    itemPrice = 2000,
+    itemPrice = 20000,
+  },
+  [134558] = { --The Truth in Sequence: Volume 11,
+	itemPrice = 20000,
+  },
+  [134559] = { --The Truth in Sequence: Volume 12,
+	itemPrice = 20000,
   },
 }
 

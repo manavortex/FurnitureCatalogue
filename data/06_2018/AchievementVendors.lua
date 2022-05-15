@@ -3,7 +3,7 @@ FurC.AchievementVendors[FURC_SLAVES] = {
     [GetString(FURC_AV_HAR)] = {
       [145408] = {          --Argon Pedestal, Replica
         itemPrice   = 15000,
-        achievement = 0,  -- The river of rebirth
+        achievement = 2339,  -- The river of rebirth
       },
       [145406] = {          --Banner, Bright-Throat
         itemPrice   = 10000,
@@ -15,7 +15,7 @@ FurC.AchievementVendors[FURC_SLAVES] = {
       },
       [145405] = {          --Banner, Rootwater
         itemPrice   = 10000,
-        achievement = 0,  -- Resplendent Rootmender
+        achievement = 2352,  -- Resplendent Rootmender
       },
       [145553] = {          --Grave Stake, Small Glyphed
         itemPrice   = 5000,
@@ -23,7 +23,7 @@ FurC.AchievementVendors[FURC_SLAVES] = {
       },
       [145549] = {           --Murkmire Totem, Stone Head
         itemPrice   = 12000,
-        achievement = 0,  -- Art of the Nisswo
+        achievement = "Art of the Nisswo quest completion",  -- Art of the Nisswo
       },
       [145407] = {          -- Remnant of Argon, Replica
         itemPrice   = 75000,
@@ -37,6 +37,11 @@ FurC.AchievementVendors[FURC_SLAVES] = {
         itemPrice   = 40000,
         achievement = 2357,  --  Vine-Tongue Traveler  
       },
+	  [145596] = {		--Look upon Their Nothing Eyes
+		itemPrice   = 15000,
+		achievement = 2341,		-- Poems of Nothing
+	},
+
 
     },
     [GetString(FURC_AV_ADO)] = {

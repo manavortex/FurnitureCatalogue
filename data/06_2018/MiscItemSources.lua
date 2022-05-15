@@ -30,6 +30,8 @@ local scambox_reaper        = zo_strformat("<<1>> (<<2>>)", scambox_string, GetS
 
 local db_poison             = zo_strformat("<<1>> <<2>>", GetString(SI_FURC_DB), GetString(SI_FURC_DB_POISON))
 local db_sneaky             = zo_strformat("<<1>> <<2>>", GetString(SI_FURC_DB), GetString(SI_FURC_DB_STEALTH))
+local db_equip				= zo_strformat("<<1>> <<2>>", GetString(SI_Furc_DB), GetString(SI_FURC_DB_Equip))
+
 
 local sinister_hollowjack   = "Sinister Hollowjack Items"
 
@@ -263,8 +265,6 @@ FurC.MiscItemSources[FURC_WEREWOLF] = {
   
   [FURC_RUMOUR] = {
     [141836] = dataminedUnclear,                    -- Monolith, Lord Hircine Ritual
-    [141841] = dataminedUnclear,                    -- Tree Ferns, Cluster
-    [141842] = dataminedUnclear,                    -- Tree Ferns, Juvenile Cluster
     [141843] = dataminedUnclear,                    -- Plants, Yellow Frond Cluster
     
     [141853] = dataminedUnclear,                    -- Statue of Hircine's Bitter Mercy
@@ -809,15 +809,18 @@ FurC.MiscItemSources[FURC_CLOCKWORK] = { -- Reach
   },
   
   [FURC_CROWN]   = {
-    [134266] = getCrownPrice(80),   -- Daedric Books, Stacked
-    [134265] = getCrownPrice(80),   -- Daedric Books, Piled
+    [134266] = getCrownPrice(80),   	-- Daedric Books, Stacked
+    [134265] = getCrownPrice(80),   	-- Daedric Books, Piled
     [134373] = getCrownPrice(410),      -- Clockwork Wall Machinery, Rectangular
     [134374] = getCrownPrice(410),      -- Clockwork Wall Machinery, Circular
-    [134382] = getCrownPrice(870),        -- Fabricant Tree, Beryl Cypress
+    [134382] = getCrownPrice(870),      -- Fabricant Tree, Beryl Cypress
     [134383] = getCrownPrice(870),      -- Fabricant Tree, Towering Maple
     [134385] = getCrownPrice(870),      -- Fabricant Tree, Brass Swamp
     [134387] = getCrownPrice(870),      -- Fabricant Tree, Tall Cobalt Spruce
     [134388] = getCrownPrice(870),      -- Fabricant Tree, Cobalt Oak
+    [134384] = getCrownPrice(870),      -- Fabricant Tree, Decorative Electrum
+    [134386] = getCrownPrice(260),      -- Fabricant Tree, Forked Cherry Blossom
+    [134389] = getCrownPrice(140),      -- Fabricant Tree, Decorative Brass 
     [134390] = getCrownPrice(140),      -- Clockwork Junk Heap, Large
     [134391] = getCrownPrice(510),      -- Clockwork Sequence Spool, Column
     [134392] = getCrownPrice(260),      -- Clockwork Recharging Column, Octet
@@ -830,9 +833,6 @@ FurC.MiscItemSources[FURC_CLOCKWORK] = { -- Reach
   },
 
   [FURC_RUMOUR] = {
-    [134384] = dataminedUnclear,                    -- Fabricant Tree, Decorative Electrum
-    [134386] = dataminedUnclear,                    -- Fabricant Tree, Forked Cherry Blossom
-    [134389] = dataminedUnclear,                    -- Fabricant Tree, Decorative Brass 
     [125509] = dataminedUnclear,                    -- Replica Dwarven Crown Crate
   }
 }
@@ -1092,7 +1092,6 @@ FurC.MiscItemSources[FURC_MORROWIND]  = {             -- Morrowind
   [FURC_RUMOUR] = {
     [132531] = dataminedUnclear,                    -- Hlaalu Planter, Tall
     [120411] = dataminedUnclear,                    -- Noble's Chalice of Wine
-    [120417] = dataminedUnclear,                    -- Redguard Barrel, Corded
     [126568] = dataminedUnclear,                    -- Daedric Urn, Ritual
     [125550] = dataminedUnclear,                    -- Flowers, Lava Blooms
     [126588] = dataminedUnclear,                    -- Vvardenfell Pitcher Plants, Hanging Bunch
@@ -1101,7 +1100,6 @@ FurC.MiscItemSources[FURC_MORROWIND]  = {             -- Morrowind
     [125569] = dataminedUnclear,                    -- Hlaalu Sidewalk, Sillar Stone Corner
     [125570] = dataminedUnclear,                    -- Hlaalu Stairs, Sillar Stone
     [125576] = dataminedUnclear,                    -- Hlaalu Wall Pillar, Sillar Stone
-    [125581] = dataminedUnclear,                    -- Mushroom, Buttercake
     [125583] = dataminedUnclear,                    -- Mushroom, Cave Bracket
     [125589] = dataminedUnclear,                    -- Mushroom, Lavaburst Bud
     [125591] = dataminedUnclear,                    -- Mushroom, Lavaburst Patch
@@ -1155,11 +1153,10 @@ FurC.MiscItemSources[FURC_HOMESTEAD]  = {
     
   },
   [FURC_DROP]    = {
-    [121058] = db_sneaky,             -- Candles of Silence
-    
+    [121058] = db_sneaky,             -- Candles of Silence  
     [119936] = db_poison,             -- Poisoned Blood
     [119938] = db_poison,             -- Light and Shadow
-    [119952] = db_poison,             -- Sacrificial Heart
+    [119952] = db_equip,              -- Sacrificial Heart
     
     -- Paintings
     [118216] = GetString(SI_FURC_CHESTS),         -- Painting of Spring, Sturdy
@@ -1218,6 +1215,7 @@ FurC.MiscItemSources[FURC_HOMESTEAD]  = {
     [115698] = getCrownPrice(1100),               -- Khajiit Statue, Guardian
     
     [120413] = getCrownPrice(30),                 -- Breton Pitcher, Clay
+	[118000] = getCrownPrice(10),	              -- Garlic String, Display
   },
   [FURC_RUMOUR]   = {
     
@@ -1238,7 +1236,6 @@ FurC.MiscItemSources[FURC_HOMESTEAD]  = {
     [118065] = rumourSource,           -- Common Cargo Crate, Dry
     [118054] = rumourSource,           -- Common Firepit, Outdoor
     [118055] = rumourSource,           -- Common Firepit, Piled
-    [118000] = rumourSource,           -- Garlic String, Display
     [118119] = rumourSource,           -- Minecart, Empty
     [118120] = rumourSource,           -- Minecart, Push
     [117991] = rumourSource,           -- Stool, Carved
