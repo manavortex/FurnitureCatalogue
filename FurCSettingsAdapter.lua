@@ -264,17 +264,16 @@ local alreadyReset      = false
 local function resetSearch()
     alreadySearching = false
     alreadyReset     = false
-end 
+end
 local lastText = ""
 local function doSearchOnUpdate()
-    
     if alreadyReset then return end
-    if alreadySearching then 
+    if alreadySearching then
         zo_callLater(resetSearch, 200)
-        return   
+        return
     end
     local text = FurC_SearchBox:GetText()
-    if #lastText ~= #text then
+    if lastText ~= text then
       lastText = text
       FurC.SearchFilter = text
 
@@ -286,9 +285,7 @@ end
 function FurC.GuiSetSearchboxTextFrom(control)
     control = control or FurC_SearchBox
   -- call asynchronely to prevent lagging. Praise votan.
-  
   task:Call(doSearchOnUpdate)
-  
 end
 
 function FurC.GetHideBooks()
@@ -524,4 +521,3 @@ function FurC.GetCurrentCharacterName()
   if nil == FurC.CharacterName then FurC.CharacterName = zo_strformat(GetUnitName('player')) end
   return FurC.CharacterName
 end
-
