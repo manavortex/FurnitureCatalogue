@@ -443,11 +443,10 @@ FurC.UpdateLineVisibility =  updateLineVisibility
 				end
 			end
 			
-			for i = 1, #validChoices do
-				entry = comboBox:CreateItemEntry(validChoices[i], OnItemSelect)
-				comboBox:AddItem(entry)
-				if validChoices[i] == FurC.GetDropdownChoiceTextual(dropdownName) then
-					comboBox:SetSelectedItem(validChoices[i])
+			for _, val in pairs(validChoices) do
+				comboBox:AddItem(comboBox:CreateItemEntry(val, OnItemSelect))
+				if val == FurC.GetDropdownChoiceTextual(dropdownName) then
+					comboBox:SetSelectedItem(val)
 				end
 			end
 			

@@ -197,12 +197,7 @@ end
 
 local function setupSourceDropdown()
 	FurC.UpdateDropdowns()
-	sourceIndices = {}
-	
-	for idx, key in ipairs(getSourceIndicesKeys()) do
-		sourceIndices[key] = idx
-	end
-	FurC.SourceIndices = sourceIndices
+	FurC.SourceIndices = getSourceIndicesKeys()
 end
 
 local TYPE_STRING = "string"
