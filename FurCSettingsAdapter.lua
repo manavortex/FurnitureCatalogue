@@ -274,7 +274,7 @@ local function doSearchOnUpdate()
         return
     end
     local text = FurC_SearchBox:GetText()
-    if #text < 3 then return end
+    if #text > 0 and #text < 3 then return end
     if LocaleAwareToLower(lastText) ~= LocaleAwareToLower(text) then
       FurC.Logger:Verbose("Search changed: '%s' --> '%s'", lastText, text)
       lastText = text
@@ -286,7 +286,7 @@ local function doSearchOnUpdate()
 end
 
 function FurC.GuiSetSearchboxTextFrom(control)
-    control = control or FurC_SearchBox
+  control = control or FurC_SearchBox
   -- call asynchronely to prevent lagging. Praise votan.
   task:Call(doSearchOnUpdate)
 end
