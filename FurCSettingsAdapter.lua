@@ -5,7 +5,8 @@ function FurC.GetEnableDebug()
 end
 function FurC.SetEnableDebug(value)
   FurC.settings["enableDebug"] = value
-  FurC.Logger = FurC.getOrCreateLogger()
+  FurC.Logger = FurC.getOrCreateLogger(true) -- force recreation of logger
+  if value then FurC.Logger:Info("Debug on") end
 end
 function FurC.GetHideRumourRecipes()
   return FurC.settings["hideDoubtfuls"]
