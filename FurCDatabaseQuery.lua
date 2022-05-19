@@ -5,7 +5,6 @@ local goldColor     = "e5da40"
 local apColor       = "25C31E"
 local tvColor       = "5EA4FF"
 local voucherColor  = "82BCFF"
-local p       		= FurC.DebugOut 
 
 local function colorise(str, col, ret)
   str = tostring(str)
@@ -194,7 +193,6 @@ local function getRecipeSource(recipeKey, recipeArray)
 
   recipeKey = recipeArray.blueprint or recipeKey
 
-    -- d(recipeKey)
   return (recipeArray.origin == FURC_RUMOUR and FurC.getRumourSource(recipeKey, recipeArray))
         or FurC.RecipeSources[recipeKey]
 end

@@ -1,11 +1,11 @@
-local task     = LibAsync:Create("FurnitureCatalogue_Settings")
-local p     = FurC.DebugOut -- debug function calling zo_strformat with up to 10 args
+local task = LibAsync:Create("FurnitureCatalogue_Settings")
 
 function FurC.GetEnableDebug()
   return FurC.settings["enableDebug"]
 end
 function FurC.SetEnableDebug(value)
   FurC.settings["enableDebug"] = value
+  FurC.Logger = FurC.getOrCreateLogger()
 end
 function FurC.GetHideRumourRecipes()
   return FurC.settings["hideDoubtfuls"]
@@ -357,7 +357,7 @@ function FurC.SetDropdownChoice(dropdownName, textValue, dropdownIndex)
   textValue = textValue or FurC.GetDefaultDropdownChoice(dropdownName)
   local dropdownIndex = dropdownIndex or getDropdownIndex(dropdownName, textValue) or 0
 
-  -- p("FurC.SetDropdownChoice(<<1>>, <<2>> (Index: <<3>>))", dropdownName, textValue, dropdownIndex)
+  FurC.Logger:Debug("SetDropdownChoice(%s, %s (Index: %s))", dropdownName, textValue, dropdownIndex)
 
   -- if we're setting the dropdown menu "source" to "purchaseable", set "character" to "All"
   FurC.DropdownChoices[dropdownName] = dropdownIndex
@@ -490,8 +490,7 @@ function FurC.WipeDatabase()
 end
 
 function FurC.DeleteCharacter(characterName)
-
-  d("Now deleting recipe knowledge for " .. characterName)
+  FurC.Logger:Info("Now deleting recipe knowledge for %s", characterName)
 
   for key, value in pairs(FurC.settings.accountCharacters) do
     if value == characterName then
@@ -509,12 +508,11 @@ function FurC.DeleteCharacter(characterName)
   if nil == guiDropdownEntries then return end
   for index, data in pairs(guiDropdownEntries) do
     if data.name == characterName then
-      FurC_Dropdown.comboBox.m_sortedItems[index] = nil
+      guiDropdownEntries[index] = nil
       return
     end
   end
-  d(zo_strformat("<<1>> deleted from |c2266ffFurniture Catalogue|r database. Entry will disappear from settings dropdown after the next reloadui.", characterName))
-
+  FurC.Logger:Info("%s deleted from |c2266ffFurniture Catalogue|r database. Entry will disappear from settings dropdown after the next reloadui.", characterName)
 end
 
 function FurC.GetCurrentCharacterName()

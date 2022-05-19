@@ -1,6 +1,7 @@
 FurnitureCatalogue                = {}
 FurnitureCatalogue.name           = "FurnitureCatalogue"
 FurnitureCatalogue.author         = "manavortex"
+FurnitureCatalogue.tag            = "FurC"
 FurnitureCatalogue.version        = 4.324
 FurnitureCatalogue.CharacterName  = nil
 FurnitureCatalogue.settings       = {}
@@ -200,32 +201,58 @@ local function setupSourceDropdown()
 	FurC.SourceIndices = getSourceIndicesKeys()
 end
 
-local TYPE_STRING = "string"
-local logger = (LibDebugLogger and LibDebugLogger(FurC.name)) or nil
-local function p(...)
-	if not FurC.settings.enableDebug then return end	
-	if logger then
-		return logger:Debug(...)
-	end
-	if (tostring(...):find("%%s")) then
-		d(string.format(...))
-	else
-		d(...)
-	end	
-end
-FurC.DebugOut = p
+function FurC.getOrCreateLogger()
+    -- Generator for logger fallbck
+    local function ignore() end -- drop message
+	
+	local logger = {}
+    -- Use dummy logger, if not in debug mode
+    if not FurC.settings.enableDebug then
+        logger.Verbose = ignore
+        logger.Debug = ignore
+        logger.Info = ignore
+        logger.Warn = ignore
+        logger.Error = ignore
+        logger.Log = ignore
+        return logger
+    end
 
-function whoami()
-	return FurC.CharacterName
-end
+    -- use optional lib, if available
+    if LibDebugLogger then
+        logger = LibDebugLogger(FurC.tag)
+        return logger
+    end
 
+    -- No logger present, but debug enabled. Fallback to custom logger:
+	local function genLogger(lvl)
+        return function(self, ...)
+            local prefix = string.format("[%s] %s: ", FurC.tag, lvl)
+			if tostring(...):find("%%") then
+				d(prefix .. string.format(...))
+			else
+				d(prefix .. tostring(...))
+			end
+        end
+    end
+    logger.Verbose 	= ignore
+    logger.Debug 	= genLogger('DEBUG')
+    logger.Info 	= genLogger('INFO')
+    logger.Warn 	= genLogger('WARNING')
+    logger.Error 	= genLogger('ERROR')
+    logger.Log 		= ignore
+	logger:Info("Debug mode enabled! To get rid of this message Disable Debug Mode in the settings or install LibDebugLogger")
+    return logger
+end
 
 -- initialization stuff
 function FurnitureCatalogue_Initialize(eventCode, addOnName)
 	if (addOnName ~= FurC.name) then return end
 	
 	FurC.settings   = ZO_SavedVars:NewAccountWide("FurnitureCatalogue_Settings", 2, nil, defaults)
-	
+
+	FurC.Logger = FurC.getOrCreateLogger()
+	FurC.Logger:Debug("Initialising...")
+
 	-- setup the "source" dropdown for the menu
 	setupSourceDropdown()
 

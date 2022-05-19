@@ -1,8 +1,7 @@
 local em  = EVENT_MANAGER
-local p   = FurC.DebugOut -- debug function calling zo_strformat with up to 10 args
 
 local function onRecipeLearned(eventCode, recipeListIndex, recipeIndex)
-  p(FURC_STRING_RECIPELEARNED, GetRecipeResultItemLink(recipeListIndex, recipeIndex, LINK_STYLE_BRACKETS), recipeListIndex, recipeIndex)
+  FurC.Logger:Info(FURC_STRING_RECIPELEARNED, GetRecipeResultItemLink(recipeListIndex, recipeIndex, LINK_STYLE_BRACKETS), recipeListIndex, recipeIndex)
   FurC.TryCreateRecipeEntry(recipeListIndex, recipeIndex)
   FurC.UpdateGui()
 end

@@ -1,5 +1,3 @@
-local p             = FurC.DebugOut -- debug function calling zo_strformat with up to 10 args
-
 local searchString                = ""
 local dropdownChoiceVersion       = 1
 local dropdownTextVersion         = "All"
@@ -64,6 +62,7 @@ function FurC.SetFilter(useDefaults, skipRefresh)
 end
 
 function FurC.InitFilters()
+  FurC.Logger:Debug("Init Filters")
   FurC.SetFilterCraftingType(0)
   FurC.SetFilterQuality(0)
   FurC.SetDropdownChoice("Source", FurC.GetDefaultDropdownChoiceText("Source"), FurC.GetDefaultDropdownChoice("Source"))
@@ -160,9 +159,9 @@ function FurC.MatchFilter(currentItemId, currentRecipeArray)
   itemType, sItemType = GetItemLinkItemType(itemLink)
   if 0 == itemType and 0 == sItemType then
 	if currentRecipeArray.recipeId then 
-		p("invalid item type for %s (recipe ID %s)", currentItemId, currentRecipeArray.recipeId)
+		FurC.Logger:Debug("invalid item type for %s (recipe ID %s)", currentItemId, currentRecipeArray.recipeId)
 	else
-		p("invalid item type for %s", currentItemId)
+		FurC.Logger:Debug("invalid item type for %s", currentItemId)
 	end
     return false 
   end

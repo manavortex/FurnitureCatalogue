@@ -1,5 +1,3 @@
-local p     = FurC.DebugOut -- debug function calling zo_strformat with up to 10 args
-
 -- ruthlessly stolen from TextureIt
 function FurC.SortTable(tTable, sortKey, SortOrderUp)
   local keys = {}
@@ -9,10 +7,8 @@ function FurC.SortTable(tTable, sortKey, SortOrderUp)
 
     elseif nil == tTable[a][sortKey] then
             return false
-      -- d(tTable[a])
     elseif nil == tTable[b][sortKey] then
             return true
-      -- d(tTable[b])
     else
       if SortOrderUp then
         return tTable[a][sortKey] > tTable[b][sortKey]
@@ -28,7 +24,6 @@ function FurC.SortTable(tTable, sortKey, SortOrderUp)
   local itemLink, entry
   for _, k in ipairs(keys) do
     entry = tTable[k]
-    -- d(entry)
     itemLink = entry["itemLink"]
     ingredients = entry["ingredients"]
     local index = scannedLinks[itemLink] or k

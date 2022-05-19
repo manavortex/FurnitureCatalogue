@@ -12,8 +12,6 @@ local recipeArray         	= nil
 
 local FURC_STRING_TRADINGHOUSE = "Seen in trading house"
 
-local p = FurC.DebugOut
-
 local function getCurrentChar()
 	currentChar = currentChar or zo_strformat(GetUnitName("player"))
 	return currentChar
@@ -45,7 +43,7 @@ local function printItemLink(itemId)
         itemLink = itemId 
 	end
     itemLink = itemLink or zo_strformat("|H1:item:<<1>>:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h", itemId)
-	d(zo_strformat("[<<1>>] = '',\t\t-- <<2>>", itemId, GetItemLinkName(itemLink)))
+	FurC.Logger:Info("[%s] = '',\t\t-- %s", itemId, GetItemLinkName(itemLink))
 end
 FurC.PrintItemLink = printItemLink
 
@@ -151,8 +149,9 @@ function FurC.Find(itemOrBlueprintLink)            -- sets recipeArray, returns 
 	if tonumber(itemOrBlueprintLink) == itemOrBlueprintLink then 
 		itemOrBlueprintLink = FurC.GetItemLink(itemOrBlueprintLink) 
 	end
+	-- do not return empty arrays. If this returns nil, abort!
 	if nil == itemOrBlueprintLink or #itemOrBlueprintLink == 0 then return end
-	-- p("scanItemLink(<<1>>)...", itemOrBlueprintLink)    -- do not return empty arrays. If this returns nil, abort!
+	FurC.Logger:Verbose("scanItemLink(%s)", itemOrBlueprintLink)
 	
 	if itemOrBlueprintLink == lastLink and nil ~= recipeArray then
 		return recipeArray
@@ -186,7 +185,7 @@ end
 function FurC.GetEntry(itemOrBlueprintLink)
 	local itemLink =  (IsItemLinkFurnitureRecipe(itemOrBlueprintLink) and GetRecipeResultItemLink(itemOrBlueprintLink)) or itemOrBlueprintLink
 	local recipeArray = FurC.Find(itemLink)
-	-- d(string.format("Trying to get entry for %s: %s", itemLink, recipeArray))
+	FurC.Logger:Debug("Trying to get entry for %s: %s", itemLink, recipeArray)
 	if not recipeArray then return end
 	local itemId = getItemId(itemOrBlueprintLink)
 	if recipeArray.blueprint then
@@ -277,7 +276,7 @@ local function scanCharacter()
 			scanRecipeIndices(recipeListIndex, recipeIndex) --  returns true on success
 		end
 	end
-	p((GetString(SI_FURC_DEBUG_CHARSCANCOMPLETE)))
+	FurC.Logger:Debug(GetString(SI_FURC_DEBUG_CHARSCANCOMPLETE))
 end
 FurC.ScanCharacter = scanCharacter
 
@@ -306,8 +305,8 @@ local function scanFromFiles(shouldScanCharacter)
 				
 				recipeArray = parseFurnitureItem(FurC.GetItemLink(itemId), true)
 				if not recipeArray then
-					p("Error when scanning %s", itemId)
-					else
+					FurC.Logger:Debug("Error when scanning %s", itemId)
+				else
 					recipeArray.origin      = origin
 					recipeArray.version      = versionNumber
 					addDatabaseEntry(itemId, recipeArray)
@@ -336,7 +335,7 @@ local function scanFromFiles(shouldScanCharacter)
 				recipeArray = FurC.Find(itemLink) or parseBlueprint(recipeLink) or parseFurnitureItem(itemLink)
 				local recipeListIndex, recipeIndex = GetItemLinkGrantedRecipeIndices(recipeLink)
 				if nil == recipeArray then
-					p("scanRecipeFile: error for ID %s", recipeId)
+					FurC.Logger:Debug("scanRecipeFile: error for ID %s - %s", recipeId, itemLink)
 				else
 					recipeKey                = getItemId(itemLink)
 					recipeArray.version      = versionNumber
@@ -417,10 +416,10 @@ local function scanFromFiles(shouldScanCharacter)
 						
 						addDatabaseEntry(itemId, recipeArray)
 					else
-						if orign == FURC_RUMOUR then 
-							p("invalid rumour item: %s", itemId)
+						if origin == FURC_RUMOUR then
+							FurC.Logger:Debug("invalid rumour item: %s (%s)", itemId, FurC.GetItemLink(itemId))
 						else
-							p("scanMiscItemFile: Error when scanning item ID %s (origin %s)", itemId, origin)
+							FurC.Logger:Debug("scanMiscItemFile: Error when scanning item ID %s (origin %s)", itemId, origin)
 						end
 					end
 				end
@@ -520,10 +519,10 @@ function FurC.ScanRecipes(shouldScanFiles, shouldScanCharacter)                -
 	shouldScanFiles = shouldScanFiles or getScanFromFiles()
 	shouldScanCharacter = (shouldScanCharacter or getScanCharacter())
 	if (shouldScanFiles) then
-		p(GetString(SI_FURC_VERBOSE_SCANNING_DATA_FILE))
+		FurC.Logger:Debug(GetString(SI_FURC_VERBOSE_SCANNING_DATA_FILE))
 		scanFromFiles(shouldScanCharacter)
 		elseif (shouldScanCharacter) then
-		p(GetString(SI_FURC_VERBOSE_SCANNING_CHARS))
+		FurC.Logger:Debug(GetString(SI_FURC_VERBOSE_SCANNING_CHARS))
 		scanCharacter()
 	end
 end

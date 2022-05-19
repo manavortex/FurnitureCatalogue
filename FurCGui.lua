@@ -7,8 +7,6 @@ local task				= LibAsync:Create("FurnitureCatalogue_updateLineVisibility")
 local otherTask     	= LibAsync:Create("FurnitureCatalogue_ToggleGui")
 local async				= LibAsync:Create("FurnitureCatalogue_forLoop")
 
-
-local p			= FurC.DebugOut -- debug function calling zo_strformat with up to 10 args
 local sortTable = FurC.SortTable
 
 local function sort(myTable)
@@ -241,7 +239,7 @@ FurC.UpdateLineVisibility =  updateLineVisibility
 	local function createGui()
 		
 		local function createInventoryScroll()
-			-- FurC.DebugOut("CreateInventoryScroll")
+			FurC.Logger:Debug("CreateInventoryScroll")
 			
 			local function createLine(i, predecessor)
 				
