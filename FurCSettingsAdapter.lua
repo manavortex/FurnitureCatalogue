@@ -274,7 +274,9 @@ local function doSearchOnUpdate()
         return
     end
     local text = FurC_SearchBox:GetText()
-    if lastText ~= text then
+    if #text < 3 then return end
+    if LocaleAwareToLower(lastText) ~= LocaleAwareToLower(text) then
+      FurC.Logger:Verbose("Search changed: '%s' --> '%s'", lastText, text)
       lastText = text
       FurC.SearchFilter = text
 

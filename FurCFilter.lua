@@ -130,10 +130,8 @@ end
 
 local function matchSearchString()
   if #searchString == 0 then return true end
-  local caseSensitive = nil ~= string.match(searchString, "%u")
   local itemName = GetItemLinkName(itemLink)
-  local matchme = (caseSensitive and itemName) or string.lower(itemName)
-  return string.match(matchme, searchString)
+  return string.match(LocaleAwareToLower(itemName), LocaleAwareToLower(searchString))
 end
 
 local function matchCraftingTypeFilter()
