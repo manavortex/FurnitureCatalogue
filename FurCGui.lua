@@ -393,27 +393,23 @@ FurC.UpdateLineVisibility =  updateLineVisibility
 				comboBox.ShowDropdownInternal = function(comboBox)
 					originalShow(comboBox)
 					local entries = ZO_Menu.items
-					for i = 1, #entries do
-						
-						local entry = entries[i]
-						local control = entries[i].item
-						control.tooltip = choicesTooltips[i]
+					for key,entry in pairs(entries) do
+						local control = entry.item
+						control.tooltip = choicesTooltips[key]
 						if control.tooltip then
 							entry.onMouseEnter = control:GetHandler("OnMouseEnter")
 							entry.onMouseExit = control:GetHandler("OnMouseExit")
 							ZO_PreHookHandler(control, "OnMouseEnter", ShowTooltip)
 							ZO_PreHookHandler(control, "OnMouseExit", HideTooltip)
 						end
-						
 					end
 				end
 				
 				local originalHide = comboBox.HideDropdownInternal
 				comboBox.HideDropdownInternal = function(self)
 					local entries = ZO_Menu.items
-					for i = 1, #entries do
-						local entry = entries[i]
-						local control = entries[i].item
+					for key,entry in pairs(entries) do
+						local control = entry.item
 						control:SetHandler("OnMouseEnter", entry.onMouseEnter)
 						control:SetHandler("OnMouseExit", entry.onMouseExit)
 						control.tooltip = nil
