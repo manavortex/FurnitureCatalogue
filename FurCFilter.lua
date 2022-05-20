@@ -138,8 +138,10 @@ end
 
 local function matchSearchString()
   if #searchString == 0 then return true end
-  local itemName = GetItemLinkName(itemLink)
-  return string.match(LocaleAwareToLower(itemName), LocaleAwareToLower(searchString))
+  local itemName = LocaleAwareToLower(GetItemLinkName(itemLink))
+  local escapedStr = LocaleAwareToLower(searchString)
+  escapedStr = gsub(escapedStr, "-", "%%-")
+  return match(itemName, escapedStr)
 end
 
 local function matchCraftingTypeFilter()
