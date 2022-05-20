@@ -18,7 +18,13 @@ local showAllRumourOnTextSearch   = false
 
 local sourceIndices
 
-local recipeArray, itemId, itemLink, itemType, sItemType, itemName, recipeIndex, recipeListIndex
+local recipeArray, itemId, itemLink, itemType, sItemType, recipeIndex, recipeListIndex
+
+-- Local imports for performance
+local GetItemLinkName = GetItemLinkName
+local LocaleAwareToLower = LocaleAwareToLower
+local gsub = string.gsub
+local match = string.match
 
 function FurC.SetFilter(useDefaults, skipRefresh)
   
@@ -54,6 +60,8 @@ function FurC.SetFilter(useDefaults, skipRefresh)
                            
   showAllRumourOnTextSearch = showAllOnTextSearch and not FurC.GetFilterAllOnTextNoCrown()
   showAllCrownOnTextSearch  = showAllOnTextSearch and not FurC.GetFilterAllOnTextNoCrown()
+  
+  FurC.Logger:Verbose("SetFilter\t Txt:'%s', Source: %s, Char: %s, Version: %s, QualityFilters: %s", searchString, ddSource, dropdownChoiceCharacter, dropdownChoiceVersion)
   
   if skipRefresh then return end
   
