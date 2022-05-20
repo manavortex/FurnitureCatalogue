@@ -61,8 +61,6 @@ function FurC.SetFilter(useDefaults, skipRefresh)
   showAllRumourOnTextSearch = showAllOnTextSearch and not FurC.GetFilterAllOnTextNoCrown()
   showAllCrownOnTextSearch  = showAllOnTextSearch and not FurC.GetFilterAllOnTextNoCrown()
   
-  FurC.Logger:Verbose("SetFilter\t Txt:'%s', Source: %s, Char: %s, Version: %s, QualityFilters: %s", searchString, ddSource, dropdownChoiceCharacter, dropdownChoiceVersion)
-  
   if skipRefresh then return end
   
   zo_callLater(FurC.UpdateLineVisibility, 200)
