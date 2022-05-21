@@ -1,7 +1,5 @@
 local db    = FurnitureCatalogue.settings["data"]
 
-local p     = FurC.DebugOut
-
 
 function FurC.PrintCraftingStation(itemId, recipeArray)
   local craftingType = FurC.GetCraftingSkillType(itemId, recipeArray)
@@ -65,10 +63,11 @@ end
 function FurC.FindByName(namePart)
   local ret = {}
   local itemName = ""
-  -- d(zo_strformat("Looking for <<1>>... \n", namePart))
+  FurC.Logger:Debug("Looking for %s... ", namePart)
   for itemId, recipeArray in pairs(FurC.settings["data"]) do
-    -- d(zo_strformat("<<1>>: <<2>> (<<3>>)", recipeArray.itemId, getNameFromEntry(recipeArray), string.match(string.lower(getNameFromEntry(recipeArray)), string.lower(namePart))))
-    if nil ~= string.match(string.lower(getNameFromEntry(recipeArray)), string.lower(namePart)) then
+    local m = string.match(string.lower(getNameFromEntry(recipeArray)), string.lower(namePart))
+    FurC.Logger:Verbose("%s: %s (%s)", recipeArray.itemId, getNameFromEntry(recipeArray), m, string.lower(namePart))
+    if nil ~= m then
       table.insert(ret, recipeArray)
     end
   end

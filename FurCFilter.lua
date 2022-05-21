@@ -1,5 +1,3 @@
-local p             = FurC.DebugOut -- debug function calling zo_strformat with up to 10 args
-
 local searchString                = ""
 local dropdownChoiceVersion       = 1
 local dropdownTextVersion         = "All"
@@ -20,7 +18,13 @@ local showAllRumourOnTextSearch   = false
 
 local sourceIndices
 
-local recipeArray, itemId, itemLink, itemType, sItemType, itemName, recipeIndex, recipeListIndex
+local recipeArray, itemId, itemLink, itemType, sItemType, recipeIndex, recipeListIndex
+
+-- Local imports for performance
+local GetItemLinkName = GetItemLinkName
+local LocaleAwareToLower = LocaleAwareToLower
+local gsub = string.gsub
+local match = string.match
 
 function FurC.SetFilter(useDefaults, skipRefresh)
   
@@ -64,6 +68,7 @@ function FurC.SetFilter(useDefaults, skipRefresh)
 end
 
 function FurC.InitFilters()
+  FurC.Logger:Debug("Init Filters")
   FurC.SetFilterCraftingType(0)
   FurC.SetFilterQuality(0)
   FurC.SetDropdownChoice("Source", FurC.GetDefaultDropdownChoiceText("Source"), FurC.GetDefaultDropdownChoice("Source"))
@@ -131,10 +136,10 @@ end
 
 local function matchSearchString()
   if #searchString == 0 then return true end
-  local caseSensitive = nil ~= string.match(searchString, "%u")
-  local itemName = GetItemLinkName(itemLink)
-  local matchme = (caseSensitive and itemName) or string.lower(itemName)
-  return string.match(matchme, searchString)
+  local itemName = LocaleAwareToLower(GetItemLinkName(itemLink))
+  local escapedStr = LocaleAwareToLower(searchString)
+  escapedStr = gsub(escapedStr, "-", "%%-")
+  return match(itemName, escapedStr)
 end
 
 local function matchCraftingTypeFilter()
@@ -160,9 +165,9 @@ function FurC.MatchFilter(currentItemId, currentRecipeArray)
   itemType, sItemType = GetItemLinkItemType(itemLink)
   if 0 == itemType and 0 == sItemType then
 	if currentRecipeArray.recipeId then 
-		p("invalid item type for %s (recipe ID %s)", currentItemId, currentRecipeArray.recipeId)
+		FurC.Logger:Debug("invalid item type for %s (recipe ID %s)", currentItemId, currentRecipeArray.recipeId)
 	else
-		p("invalid item type for %s", currentItemId)
+		FurC.Logger:Debug("invalid item type for %s", currentItemId)
 	end
     return false 
   end

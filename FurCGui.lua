@@ -7,8 +7,6 @@ local task				= LibAsync:Create("FurnitureCatalogue_updateLineVisibility")
 local otherTask     	= LibAsync:Create("FurnitureCatalogue_ToggleGui")
 local async				= LibAsync:Create("FurnitureCatalogue_forLoop")
 
-
-local p			= FurC.DebugOut -- debug function calling zo_strformat with up to 10 args
 local sortTable = FurC.SortTable
 
 local function sort(myTable)
@@ -241,7 +239,7 @@ FurC.UpdateLineVisibility =  updateLineVisibility
 	local function createGui()
 		
 		local function createInventoryScroll()
-			-- FurC.DebugOut("CreateInventoryScroll")
+			FurC.Logger:Debug("CreateInventoryScroll")
 			
 			local function createLine(i, predecessor)
 				
@@ -395,27 +393,23 @@ FurC.UpdateLineVisibility =  updateLineVisibility
 				comboBox.ShowDropdownInternal = function(comboBox)
 					originalShow(comboBox)
 					local entries = ZO_Menu.items
-					for i = 1, #entries do
-						
-						local entry = entries[i]
-						local control = entries[i].item
-						control.tooltip = choicesTooltips[i]
+					for key,entry in pairs(entries) do
+						local control = entry.item
+						control.tooltip = choicesTooltips[key]
 						if control.tooltip then
 							entry.onMouseEnter = control:GetHandler("OnMouseEnter")
 							entry.onMouseExit = control:GetHandler("OnMouseExit")
 							ZO_PreHookHandler(control, "OnMouseEnter", ShowTooltip)
 							ZO_PreHookHandler(control, "OnMouseExit", HideTooltip)
 						end
-						
 					end
 				end
 				
 				local originalHide = comboBox.HideDropdownInternal
 				comboBox.HideDropdownInternal = function(self)
 					local entries = ZO_Menu.items
-					for i = 1, #entries do
-						local entry = entries[i]
-						local control = entries[i].item
+					for key,entry in pairs(entries) do
+						local control = entry.item
 						control:SetHandler("OnMouseEnter", entry.onMouseEnter)
 						control:SetHandler("OnMouseExit", entry.onMouseExit)
 						control.tooltip = nil
@@ -443,11 +437,10 @@ FurC.UpdateLineVisibility =  updateLineVisibility
 				end
 			end
 			
-			for i = 1, #validChoices do
-				entry = comboBox:CreateItemEntry(validChoices[i], OnItemSelect)
-				comboBox:AddItem(entry)
-				if validChoices[i] == FurC.GetDropdownChoiceTextual(dropdownName) then
-					comboBox:SetSelectedItem(validChoices[i])
+			for _, val in pairs(validChoices) do
+				comboBox:AddItem(comboBox:CreateItemEntry(val, OnItemSelect))
+				if val == FurC.GetDropdownChoiceTextual(dropdownName) then
+					comboBox:SetSelectedItem(val)
 				end
 			end
 			

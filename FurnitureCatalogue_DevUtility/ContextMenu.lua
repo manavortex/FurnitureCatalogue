@@ -19,14 +19,6 @@ local LAM = LibAddonMenu2
 
 local cachedItemIds = {}
 
-
-local logger = (LibDebugLogger and LibDebugLogger("FurC Dev")) or nil
-function p(...)
-	if logger then return logger:Debug(...) end
-	d(((tostring(...):find("%%s")) and string.format(...)) or ... )
-end
-
-
 local function showTextbox()
     if not isDev   then return end
     this.control:SetHidden(false)
