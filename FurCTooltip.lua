@@ -1,8 +1,6 @@
 local async = LibAsync
 local task = async:Create("FurnitureCatalogue_Tooltip")
 
-local p     = FurC.DebugOut -- debug function calling zo_strformat with up to 10 args
-
 local function tryColorize(text)
   if not (text and FurC.GetColouredTooltips()) then return text end
   return text:gsub("cannot craft", "|cFF0000cannot craft"):gsub("Can be crafted", "|c00FF00Can be crafted")

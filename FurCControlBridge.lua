@@ -107,14 +107,7 @@ function FurC.GuiOnSearchBoxClick(control, mouseButton, doubleClick)
 end
 
 local FURC_S_FILTERDEFAULT = GetString(SI_FURC_TEXTBOX_FILTER_DEFAULT)
-
-function FurC.GuiOnSearchBoxFocusOut(control)
-   
-  if #(control:GetText() or "") > 0 then
-    FurC.GuiOnSliderUpdate(FurCGui_ListHolder_Slider, 0)
-    FurC.UpdateGui()
-  end
-  
+function FurC.GuiOnSearchBoxFocusOut(ctrl)
   local text = FurC_SearchBox:GetText()
   FurC_SearchBoxText:SetText((#text == 0 and FURC_S_FILTERDEFAULT) or "")
 end

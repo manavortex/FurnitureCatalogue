@@ -1,5 +1,9 @@
 FurC.MiscItemSources        = FurC.MiscItemSources or {}
 
+-- Local imports for performance
+local zo_strformat = zo_strformat
+local GetString = GetString
+
 -- constants save performance on string handling
 local questRewardString     = GetString(SI_FURC_QUESTREWARD)
 
