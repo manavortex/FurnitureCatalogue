@@ -19,3 +19,6 @@ btm/
 btm/*
 .gitattributes
 data/Custom.lua
+
+.vscode
+*.bak

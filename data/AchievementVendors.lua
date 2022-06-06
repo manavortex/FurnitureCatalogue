@@ -1,3 +1,79 @@
+
+FurC.AchievementVendors[FURC_BRETON] = {
+
+  ["Gonfalon Bay, Furnishings of Fine Finesse"] = {
+    ["Miruza"] = {
+		[187780] = {		-- Boulder, Large Mossy Limestone
+			itemPrice   = 200,
+		},
+		[187779] = {		-- Boulder, Small Limestone
+			itemPrice   = 100,
+		},
+		[187814] = {		-- Flowers, Butterweed
+			itemPrice   = 1000,
+		},
+		[187783] = {		-- Flowers, Daylily Cluster
+			itemPrice   = 3000,
+		},
+		[187784] = {		-- Shrub Cluster, Gorse
+			itemPrice   = 2000,
+		},
+		[187856] = {		-- Tree, Conical Cypress
+			itemPrice   = 2500,
+		},
+		[187782] = {		-- Tree, Forked Cypress
+			itemPrice   = 700,
+		},
+		[187781] = {		-- Tree, Tall Conical Cypress
+			itemPrice   = 3000,
+		},
+	},
+	
+	["Jeran Antieve"] = {
+		[187867] = {		--Dreadsail Door, Grand
+			itemPrice   = 35000,
+			achievement = 3242,		-- Dreadsail Reef Vanquisher
+		},
+		[187866] = {		--Gonfalon Bay Banner
+			itemPrice   = 12000,
+			achievement = 3304,		-- The Plot Thickens
+		},
+		[187809] = {		--High Isle Door, Ornate Crypt
+			itemPrice   = 10000,
+			achievement = 3271,		-- Savior of High Isle
+		},
+		[187810] = {		--High Isle Mausoleum, Ancient Marble
+			itemPrice   = 20000,
+			achievement = 3306,		-- Ascendant Unmasked
+		},
+		[187815] = {		--High Isle Oar, Gondola
+			itemPrice   = 2000,
+			achievement = 3269,		-- High Isle Master Angler
+		},
+		[187798] = {		--High Isle Sundial
+			itemPrice   = 3000,
+			achievement = 3272,		-- High Isle Master Explorer
+		},
+		[187812] = {		--Replica Bloodmage's Crystal Heart
+			itemPrice   = 70000,
+			achievement = 3284,		-- Crimson Coin Conqueror
+		},
+		[187813] = {		--Replica Invitation Medallion
+			itemPrice   = 15000,
+			achievement = 3300,		-- Champion of High Isle
+		},
+		[187811] = {		--Replica Maormer Lightning-Rod
+			itemPrice   = 15000,
+			achievement = 3244,		-- Dreadsail Reef Conqueror
+		},
+		[187803] = {		--Tales of Tribute Banner
+			itemPrice   = 4000,
+			achievement = 3319,		-- The Roister's Roost
+		},
+	},
+  },
+}
+
 FurC.AchievementVendors[FURC_TIDES] = {  
  
   ["the Undaunted Enclaves"] = {

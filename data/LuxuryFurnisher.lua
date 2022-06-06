@@ -2,9 +2,24 @@ FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
 FurC.LuxuryFurnisher[FURC_TIDES] = {
 
+    [184197] = { -- Canopy, Netted,
+		itemPrice = 4000,
+		itemDate = "2022-05-28",
+	},
+	
+    [184198] = { -- Coral Formation, Branching Red Cluster,
+		itemPrice = 1000,
+		itemDate = "2022-06-04",
+	},
+
+	[184196] = {		-- Redguard Canopy, Striped
+		itemPrice   = 5000,
+		itemDate	= "2022-05-21",
+	},
+
 	[184195] = {		-- Yokudan Sarcophagus Lid, Gilded
 		itemPrice   = 35000,
-		itemDate	= "2022-05-14",
+		itemDate	= "2022-05-21",
 	},
 	
 	[184194] = {		-- Alinor Maple, Red
@@ -1333,38 +1348,38 @@ FurC.LuxuryFurnisher[FURC_BLACKW] = {
 
 	[171821] = {		-- Redguard Amphora, Golden
 		itemPrice   = 15000,
-		itemDate  = "2022-05-14",
+		itemDate  = "2022-05-21",
 	},
 	
     [145471] = {        -- Redguard Raincatcher, Golden
 		itemPrice   = 35000,
-		itemDate  = "2022-05-14",
+		itemDate  = "2022-05-21",
 	},
 	
 	[156649] = {    -- Redguard Tent, Rounded Blue
  		itemPrice   = 100000,
-		itemDate  = "2022-05-14",
+		itemDate  = "2022-05-21",
 	},
 
 	[120807] = {    -- Hew's Bane Well
  		itemPrice   = 10000,
-		itemDate  = "2022-05-14",
+		itemDate  = "2022-05-21",
 	},
 	[120806] = {  -- Hew'S Bane Candlestick
  		itemPrice   = 2500,
-		itemDate  = "2022-05-14",
+		itemDate  = "2022-05-21",
 	},
 	[120805] = {  -- Hew's Bane Rug
  		itemPrice   = 5000,
-		itemDate  = "2022-05-14",
+		itemDate  = "2022-05-21",
 	},
 	[120807] = {  -- Hew's Bane Well
  		itemPrice   = 10000,
-		itemDate  = "2022-05-14",
+		itemDate  = "2022-05-21",
 	},
 	[134825] = {  -- Redguard Tent, Squared Silk
  		itemPrice   = 100000,
-		itemDate  = "2022-05-14",
+		itemDate  = "2022-05-21",
 	},
 
 
@@ -1373,31 +1388,31 @@ FurC.LuxuryFurnisher[FURC_BLACKW] = {
 	
 	[156648] = {    -- Ra Gada Funerary Statue, Miniature Ibis
  		itemPrice   = 15000,
-		itemDate  = "2021-04-18",
+		itemDate  = "2022-05-14",
 	},
 	[145470] = {    -- Redguard Vase, Golden
  		itemPrice   = 5000,
-		itemDate  = "2021-04-18",
+		itemDate  = "2022-05-14",
 	},
 	[120803] = {  -- Hew’s Bane Bed, Royal
  		itemPrice   = 20000,
-		itemDate  = "2021-04-18",
+		itemDate  = "2022-05-14",
 	},
 	[121266] = {  -- Hew’s Bane Lantern
  		itemPrice   = 5000,
-		itemDate  = "2021-04-18",
+		itemDate  = "2022-05-14",
 	},
 	[121267] = {  -- Hew’s Bane Merchant’s Basket
  		itemPrice   = 2500,
-		itemDate  = "2021-04-18",
+		itemDate  = "2022-05-14",
 	},
 	[134824] = {  -- Redguard Tent, Rounded Silk
  		itemPrice   = 100000,
-		itemDate  = "2021-04-18",
+		itemDate  = "2022-05-14",
 	},	
 	[171820] = {		-- Redguard Urn, Wrapped Golden
 		itemPrice   = 12000,
-		itemDate  = "2021-04-18",
+		itemDate  = "2022-05-14",
 	},
 }
 

@@ -223,8 +223,9 @@ FURC_AV_RAZ = "Razoufa",
   SI_FURC_FILTER_VERSION_MARKAT =   "Markarth",
   SI_FURC_FILTER_VERSION_FLAMES =   "Flames of Ambition",
   SI_FURC_FILTER_VERSION_BLACKW =   "Blackwood",
-  SI_FURC_FILTER_VERSION_DEADL =   "Deadlands",
+  SI_FURC_FILTER_VERSION_DEADL =    "Deadlands",
   SI_FURC_FILTER_VERSION_TIDES = 	"Ascending Tide",
+  SI_FURC_FILTER_VERSION_BRETON = 	"High Isle",
 
 
   -- =============================== --
@@ -264,6 +265,7 @@ FURC_AV_RAZ = "Razoufa",
   SI_FURC_FILTER_VERSION_BLACKW_TT =	"Mehrunes will never learn",
   SI_FURC_FILTER_VERSION_DEADL_TT =		"What is this place with the sparkly meat?",
   SI_FURC_FILTER_VERSION_TIDES_TT =		"Redguard. Structural. Furnishings. (Kinda?)",
+  SI_FURC_FILTER_VERSION_BRETON_TT = 	"Here be pirates",
 
   SI_FURC_FILTER_CHAR_OFF =     "Character filter: off", 
   SI_FURC_FILTER_CHAR_OFF_TT =  filterDisabled, 
@@ -312,6 +314,7 @@ FURC_AV_RAZ = "Razoufa",
   SI_FURC_DATAMINED_UNCLEAR =     "This item has been seen in-game, but it's not yet known where you can get it.",
   SI_FURC_ITEMSOURCE_ITEMPACK =   "Part of the Crown Store item pack [<<1>>] ",
   SI_FURC_EVENT_BLACKWOOD = 	  "From participating in the Bounties of Blackwood event",
+  SI_FURC_TRIBUTE = 			  "From Tales of Tribute reward coffers",
   
   SI_FURC_SEEN_IN_GUILDSTORE =    "Seen in Guild Store",
 }

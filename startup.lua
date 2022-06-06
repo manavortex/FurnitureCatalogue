@@ -1,7 +1,8 @@
 FurnitureCatalogue                = {}
 FurnitureCatalogue.name           = "FurnitureCatalogue"
 FurnitureCatalogue.author         = "manavortex"
-FurnitureCatalogue.version        = 4.323
+FurnitureCatalogue.tag            = "FurC"
+FurnitureCatalogue.version        = 4.4
 FurnitureCatalogue.CharacterName  = nil
 FurnitureCatalogue.settings       = {}
 
@@ -152,6 +153,7 @@ FurC.DropdownData = {
 		[FURC_BLACKW] 		= GetString(SI_FURC_FILTER_VERSION_BLACKW),
 		[FURC_DEADL]		= GetString(SI_FURC_FILTER_VERSION_DEADL),
 		[FURC_TIDES]		= GetString(SI_FURC_FILTER_VERSION_TIDES),
+		[FURC_BRETON]		= GetString(SI_FURC_FILTER_VERSION_BRETON),
 	},
 	
 	TooltipsVersion  = {
@@ -176,6 +178,7 @@ FurC.DropdownData = {
 		[FURC_BLACKW] 		= GetString(SI_FURC_FILTER_VERSION_BLACKW_TT),
 		[FURC_DEADL]		= GetString(SI_FURC_FILTER_VERSION_DEADL_TT),
 		[FURC_TIDES]		= GetString(SI_FURC_FILTER_VERSION_TIDES_TT),
+		[FURC_BRETON]		= GetString(SI_FURC_FILTER_VERSION_BRETON_TT),
 	},
 	
 	ChoicesCharacter  = {
@@ -197,44 +200,56 @@ end
 
 local function setupSourceDropdown()
 	FurC.UpdateDropdowns()
-	sourceIndices = {}
-	
-	for idx, key in ipairs(getSourceIndicesKeys()) do
-		sourceIndices[key] = idx
+	FurC.SourceIndices = getSourceIndicesKeys()
+end
+
+local logger
+-- Gets the current logger or creates it if it doesn't exist yet
+--
+-- @param[opt=false] forceCreate Force (re)creation of logger
+-- @return logger
+function FurC.getOrCreateLogger(forceCreate)
+	if not forceCreate and logger then return logger end -- return existing reference
+
+    -- Do not log at all, if not in debug mode or no log lib available
+    if not FurC.settings.enableDebug or not LibDebugLogger then
+		logger = {}
+		local function info(self, ...)
+			local prefix = string.format("[%s]: ", FurC.tag)
+			if tostring(...):find("%%") then
+				d(prefix .. string.format(...))
+			else
+				d(prefix .. tostring(...))
+			end
+		end
+		local function ignore(...) end -- black hole for most property calls, like logger:Debug
+		logger.Verbose = ignore
+        logger.Debug = ignore
+        logger.Info = info
+        logger.Warn = ignore
+        logger.Error = ignore
+        logger.Log = ignore
+        return logger
+    end
+
+	-- use logger from library
+	if LibDebugLogger then
+        logger = LibDebugLogger(FurC.tag)
+        return logger
 	end
-	FurC.SourceIndices = sourceIndices
 end
-
-local TYPE_STRING = "string"
-local logger = (LibDebugLogger and LibDebugLogger(FurC.name)) or nil
-local function p(...)
-	if not FurC.settings.enableDebug then return end	
-	if logger then
-		return logger:Debug(...)
-	end
-	if (tostring(...):find("%%s")) then
-		d(string.format(...))
-	else
-		d(...)
-	end	
-end
-FurC.DebugOut = p
-
-function whoami()
-	return FurC.CharacterName
-end
-
 
 -- initialization stuff
 function FurnitureCatalogue_Initialize(eventCode, addOnName)
 	if (addOnName ~= FurC.name) then return end
 	
 	FurC.settings   = ZO_SavedVars:NewAccountWide("FurnitureCatalogue_Settings", 2, nil, defaults)
-	
 	-- setup the "source" dropdown for the menu
 	setupSourceDropdown()
 
 	FurC.CreateSettings(FurC.settings, defaults, FurnitureCatalogue)
+	FurC.Logger = FurC.getOrCreateLogger(true)
+	FurC.Logger:Debug("Initialising...")
 
 	FurC.CharacterName = zo_strformat(GetUnitName('player'))
 
@@ -260,10 +275,9 @@ function FurnitureCatalogue_Initialize(eventCode, addOnName)
 	FurC.SetFilter(true)
 
 	EVENT_MANAGER:UnregisterForEvent("FurnitureCatalogue", EVENT_ADD_ON_LOADED)
-
+	FurC.Logger:Debug("Initialisation complete")
 end
 
 ZO_CreateStringId("SI_BINDING_NAME_TOGGLE_FURNITURE_CATALOGUE",         "Toggle Furniture Catalogue window")
 ZO_CreateStringId("SI_BINDING_NAME_TOGGLE_FURNITURE_CATALOGUE_RECIPE",  "Toggle Furniture Catalogue blueprint on tooltip")
 EVENT_MANAGER:RegisterForEvent("FurnitureCatalogue", EVENT_ADD_ON_LOADED, FurnitureCatalogue_Initialize)
-

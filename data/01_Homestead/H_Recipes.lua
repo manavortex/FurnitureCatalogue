@@ -1012,7 +1012,6 @@ FurC.Recipes[FURC_HOMESTEAD] = {
   119541, -- Fish, Small
   119542, -- Fish, Medium
   119543, -- Fish, Large
-  119592, -- Target Skeleton, Humanoid
 
   121311, -- Breton Throne
   121120, -- Chair, Carved
@@ -1049,7 +1048,6 @@ FurC.Recipes[FURC_HOMESTEAD] = {
   121197, -- Bottle, Poison Elixir
   121164, -- Case of Vials
   121209, -- Orcish Tapestry, Spear
-  121207, -- Orcish Table with Fur
   121207, -- Orcish Table with Fur
   121315, -- Target Skeleton, Robust Humanoid
   119592, -- Target Skeleton, Humanoid

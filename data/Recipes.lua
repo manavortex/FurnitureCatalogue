@@ -1,5 +1,56 @@
 FurC.Recipes = FurC.Recipes or {}
 
+FurC.Recipes[FURC_BRETON] = {
+
+	188160, -- Blueprint: High Isle Stool, Cushioned
+    188161, -- Blueprint: High Isle Stool, Rustic
+    188162, -- Blueprint: High Isle Table, Rustic
+    188163, -- Blueprint: High Isle Dresser, Rustic
+    188164, -- Blueprint: High Isle Basket, Woven
+    188165, -- Blueprint: High Isle Trunk, Ornate
+    188166, -- Blueprint: High Isle Trunk, Sturdy
+    188167, -- Blueprint: High Isle Nightstand, Ornate
+    188168, -- Blueprint: High Isle Bookcase, Carved Filled
+    188169, -- Blueprint: High Isle Bookcase, Wide Carved Filled
+    188170, -- Diagram: High Isle Brazier, Bowl
+    188171, -- Diagram: High Isle Brazier, Standing
+    188172, -- Blueprint: High Isle Streetlight, Paired
+    188173, -- Diagram: High Isle Sconce, Ornate
+    188174, -- Diagram: High Isle Sconce, Glass
+    188175, -- Diagram: High Isle Serving Platter, Silver
+    188176, -- Blueprint: High Isle Plate, Compass Rose Setting
+    188177, -- Design: High Isle Crab, Steamed
+    188178, -- Design: High Isle Crab, Steamed Pile
+    188179, -- Design: High Isle Mussel, Steamed Pile
+    188180, -- Blueprint: High Isle Dresser, Carved
+    188181, -- Blueprint: High Isle End Table, Carved
+    188182, -- Pattern: High Isle Carpet, Ballroom
+    188183, -- Pattern: High Isle Rug, Octagonal
+    188184, -- Formula: High Isle Herb Rack, Ladder
+    188185, -- Blueprint: High Isle Divider, Ornate
+    188186, -- Diagram: High Isle Mirror, Standing
+    188187, -- Sketch: High Isle Wall Mirror, Gilded
+    188188, -- Pattern: Book Stack, Well-Read
+    188189, -- Diagram: High Isle Goblet, Empty
+    188190, -- Diagram: High Isle Cup, Full
+    188192, -- Diagram: High Isle Lantern, Table
+    188145, -- Pattern: High Isle Bed, Canopy Full
+    188146, -- Pattern: High Isle Bed, Single
+    188147, -- Blueprint: High Isle Wardrobe, Compass Rose
+    188148, -- Blueprint: High Isle Wardrobe, Rustic
+    188149, -- Blueprint: High Isle Counter, Rustic
+    188150, -- Blueprint: High Isle Bench, Padded
+    188151, -- Blueprint: High Isle Chair, Ornate
+    188152, -- Blueprint: High Isle Table, Ornate
+    188153, -- Blueprint: High Isle Table, Compass Rose
+    188154, -- Blueprint: High Isle Tea Table, Round Wheel
+    188155, -- Blueprint: High Isle Table, Sturdy
+    188156, -- Blueprint: High Isle Counter, Sturdy
+    188157, -- Blueprint: High Isle Stool, Sturdy
+    188158, -- Blueprint: High Isle Chair, Sturdy
+    188159, -- Blueprint: High Isle Bench, Sturdy
+}
+
 FurC.Recipes[FURC_TIDES] = {
 
     184150, -- Diagram: Deadlands Throne,
