@@ -526,7 +526,6 @@ local questRewardLilandril = questRewardString .. "Lilandril"
 local mephalaItemSet = zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "Trappings of Mephala Worship")
 FurC.MiscItemSources[FURC_ALTMER] = {
   [FURC_CROWN] = {
-    [130206] = getCrownPrice(370),              -- Ayleid Apparatus, Welkynd
     [139065] = getCrownPrice(20),               -- Flowers, Lizard Tail
     [139066] = getCrownPrice(30),               -- Plant, Redtop Grass
     [139067] = getCrownPrice(20) .. " or from harvesting plants in Summerset",               -- Flower, Yellow Oleander
@@ -980,6 +979,7 @@ FurC.MiscItemSources[FURC_MORROWIND]  = {             -- Morrowind
     [130199] = getCrownPrice(170) .. " or " .. itemPackAyleid,              -- Ayleid Bookshelf, Bare
     [130201] = getCrownPrice(170) .. " or " .. itemPackAyleid,              -- Ayleid Grate, Small
     [130213] = getCrownPrice(430) .. " or " .. itemPackAyleid,              -- Ayleid Cage, Hanging	
+    [130206] = getCrownPrice(370) .. " or " .. itemPackAyleid,              -- Ayleid Apparatus, Welkynd
     [130212] = itemPackAyleid,                    							-- Daedra Worship: The Ayleids
 	
 	[125566] = getHouseString(1243),                -- Hlaalu Shed, Enclosed

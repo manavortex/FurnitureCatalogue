@@ -2,6 +2,7 @@ FurC.MiscItemSources        = FurC.MiscItemSources or {}
 
 -- constants save performance on string handling
 local questRewardString     = GetString(SI_FURC_QUESTREWARD)
+local tribute				= GetString(SI_FURC_TRIBUTE)
 
 local pickpocket_ww         = GetString(SI_FURC_CANBEPICKED) .. " from woodworkers"
 local pickpocket_ass        = GetString(SI_FURC_CANBEPICKED) .. " from outlaws and assassins"
@@ -57,6 +58,7 @@ local scrying               = GetString(SI_FURC_CANBESCRYED)
 local chests_summerset		= chests_string		  .. in_summerset
 local chests_elsweyr		= chests_string		  .. in_elsweyr
 local mischouse				= "From select house purchases"
+local chests_high			= chests_string		  .. " in High Isle"
 
 local rumourSource          = GetString(SI_FURC_RUMOUR_SOURCE_ITEM) -- has been datamined, but no clue where to get it
 local itemsourceUnknown 	= GetString(SI_FURC_DATAMINED_UNCLEAR) -- is in-game (guildstore or TTC), but no clue where to get it
@@ -85,6 +87,74 @@ local function getHouseString(houseId1, houseId2)		-- use collectible number fro
   return zo_strformat(housesource, houseName)
 end
 
+FurC.MiscItemSources[FURC_BRETON] = {
+
+	[FURC_DROP] = {
+        [187802] = scrying .. " in High Isle ", -- Druidic Provisioning Station
+
+        [187868] = chests_high, -- Ascendant Silence Painting, Metal
+        [187869] = chests_high, -- Noble Still Life Painting, Metal
+        [187870] = chests_high, -- Gifts of the Sun Painting, Metal
+        [187871] = chests_high, -- High Isle Seahome Painting, Metal
+        [187873] = chests_high, -- Abecean Bounty Painting, Wood
+        [187874] = chests_high, -- Masted Behemoth Painting, Wood
+        [187875] = chests_high, -- Tor Draioch Towers Painting, Wood
+        [187876] = chests_high, -- Gonfalon Colossus Painting, Wood
+        [187877] = chests_high, -- Gates of Gonfalon Bay Painting, Wood
+        [187872] = chests_high, -- Light's Warning Painting, Wood
+		
+		[188272] = tribute, -- Blackfeather Knight Tribute Tapestry
+        [188273] = tribute, -- Blackfeather Knight Tribute Tapestry, Large
+        [188274] = tribute, -- Hagraven Matron Tribute Tapestry
+        [188275] = tribute, -- Hagraven Matron Tribute Tapestry, Large
+        [188276] = tribute, -- Hlaalu Councilor Tribute Tapestry
+        [188277] = tribute, -- Hlaalu Councilor Tribute Tapestry, Large
+        [188278] = tribute, -- Knight Commander Tribute Tapestry
+        [188279] = tribute, -- Knight Commander Tribute Tapestry, Large
+        [188280] = tribute, -- Prowling Shadow Tribute Tapestry
+        [188281] = tribute, -- Prowling Shadow Tribute Tapestry, Large
+        [188282] = tribute, -- Pyandonean War Fleet Tribute Tapestry
+        [188283] = tribute, -- Pyandonean War Fleet Tribute Tapestry, Large
+        [188284] = tribute, -- Serpentguard Rider Tribute Tapestry
+        [188285] = tribute, -- Serpentguard Rider Tribute Tapestry, Large
+		
+	},
+	
+	[FURC_RUMOUR] = {
+		[187785] = rumourSource, -- Vampiric Table, Flat Exsanguination
+        [187786] = rumourSource, -- Rubble Pile, Skeletal Remains
+        [187787] = rumourSource, -- Mausoleum Pillar, Tall
+        [187788] = rumourSource, -- Skull Candles, Triple
+        [187661] = rumourSource, -- Mage's Flame
+        [187662] = rumourSource, -- House Dufort Chandelier
+        [187663] = rumourSource, -- Blue Fang Shark, Mounted
+        [187792] = rumourSource, -- Imperial Archway, Cemetery
+        [187665] = rumourSource, -- Statue, Kynareth's Blessings
+        [187666] = rumourSource, -- Music Box, Steadfast Armistice
+        [187667] = rumourSource, -- Music Box, High Isle Duel
+        [187796] = rumourSource, -- Deadlands Brazier, Four-Flame
+        [187861] = rumourSource, -- High Isle Hourglass, Compass Rose
+        [147926] = rumourSource, -- Target Iron Atronach, Trial
+        [187799] = rumourSource, -- Antique Map of High Isle
+        [187800] = rumourSource, -- Draoife Storystone
+        [187801] = rumourSource, -- Sea Elf Galleon Helm
+        [187794] = rumourSource, -- Dwarven Crystal Brazier, Amber
+        [187808] = rumourSource, -- Tribute Trophy, Rubedite
+        [187793] = rumourSource, -- Blackreach Gate, Large
+        [187860] = rumourSource, -- High Isle Vase, Gilded
+        [187795] = rumourSource, -- Deadlands Cage, Short
+        [188201] = rumourSource, -- Letter From Ember
+        [188202] = rumourSource, -- Letter From Isobel
+        [187865] = rumourSource, -- Flowers, Butterweed Cluster
+        [187791] = rumourSource, -- Anvil Banner, Large
+        [187790] = rumourSource, -- Statue, Stendarr
+        [187789] = rumourSource, -- Daedric Statue, Mephala
+        [187660] = rumourSource, -- Mages Guild Stained Glass
+        [187664] = rumourSource, -- Target Deadlands Harvester, Trial
+	},
+	
+}
+
 FurC.MiscItemSources[FURC_TIDES] = {
 
 	[FURC_RUMOUR] = {
@@ -102,9 +172,6 @@ FurC.MiscItemSources[FURC_TIDES] = {
         [184109] = rumourSource, -- Kelp Grouping, Robust,
         [184112] = rumourSource, -- Lilac Coral, Strong,
         [184126] = rumourSource, -- Waterfall Fountain, Round,
-        [184196] = rumourSource, -- Redguard Canopy, Striped,
-        [184197] = rumourSource, -- Canopy, Netted,
-        [184198] = rumourSource, -- Coral Formation, Branching Red Cluster,
         [184199] = rumourSource, -- Mushroom, Twisted Tufted Cap,
         [184200] = rumourSource, -- Mushroom, Giant Glowtendril,
         [184201] = rumourSource, -- Elsweyr Brazier, Cold-Flame Column,

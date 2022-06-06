@@ -15,7 +15,8 @@ FurC.RolisRecipes[FURC_FLAMES] = {
 	[171807] = 125, -- Sketch: Dwarven Crystal Sconce, Mirror
 }
 
-FurC.Faustina[FURC_HARROW] = {
+
+FurC.FaustinaRecipes[FURC_HARROW] = {
   
   [159501] = 125, -- Praxis: Khajiit Sigil, Moon Cycle
   [159499] = 125, -- Pattern: Elsweyr Bed, Senche-Raht
