@@ -160,6 +160,14 @@ function FurC.CreateSettings(savedVars, defaults)
       getFunc = function() return FurC.GetFontSize() end,
       setFunc = function(value) FurC.SetFontSize(value) end
     },
+    { -- checkbox: show inventory context menu?
+      type   = "checkbox",
+      name   = GetString(SI_FURC_STRING_CONTEXTMENU_INVENTORY),
+      tooltip = GetString(SI_FURC_STRING_CONTEXTMENU_INVENTORY_TT),
+      getFunc = function() return FurC.GetHideInventoryMenu() end,
+      setFunc = function(value) FurC.SetHideInventoryMenu(value) end,
+      requiresReload = true
+    },
     { -- checkbox: use right click menu divider?
       type   = "checkbox",
       name   = GetString(SI_FURC_STRING_CONTEXTMENU_DIVIDER),

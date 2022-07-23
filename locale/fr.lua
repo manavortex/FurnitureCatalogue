@@ -139,8 +139,10 @@ local strings = {
   SI_FURC_STRING_MENU_LUXURY_WARN =         "Le masquage de l'entrée du menu déroulant nécessite le rechargement de l'interface utilisateur (ne se fera pas automatiquement pour votre commodité)",
   SI_FURC_STRING_MENU_RUMOUR =              "Recettes signalé (Rumeur)",
   SI_FURC_STRING_MENU_RUMOUR_DESC =         "La base de données de meubles contient une liste de recettes que j'ai dataminées.\nCependant, tous n'ont pas été vus dans le jeu.\nActivez cette option pour les exclure des filtres par défaut.\nVous pouvez toujours les afficher avec leur propre filtre, que vous pouvez désactiver ci-dessous.",
-  SI_FURC_STRING_CONTEXTMENU_DIVIDER =      "N'utilisez pas le diviseur dans le menu contextuel?", 
-  SI_FURC_STRING_CONTEXTMENU_DIVIDER_TT =   "Ajoute un séparateur au menu contextuel au-dessus de l'entrée - Meubles. Cochez pour désactiver", 
+  SI_FURC_STRING_CONTEXTMENU_INVENTORY =    "Disable context menu in inventory?",
+  SI_FURC_STRING_CONTEXTMENU_INVENTORY_TT = "Disables the context for inventory items like posting material and adding to favourites.",
+  SI_FURC_STRING_CONTEXTMENU_DIVIDER =      "N'utilisez pas le diviseur dans le menu contextuel?",
+  SI_FURC_STRING_CONTEXTMENU_DIVIDER_TT =   "Ajoute un séparateur au menu contextuel au-dessus de l'entrée - Meubles. Cochez pour désactiver",
         
   SI_FURC_SHOW_RUMOUR_TT =                  "Articles confirmés uniquement. Cliquez pour afficher les éléments signalé (Rumeur).",
   SI_FURC_HIDE_RUMOUR_TT =                  "Affichage des éléments signalé (Rumeur, non confirmés). Cliquez pour cacher.",
