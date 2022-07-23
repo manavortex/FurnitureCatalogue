@@ -315,8 +315,9 @@ FURC_AV_RAZ = "Razoufa",
   SI_FURC_DRAGON_DUNGEON_DROP =   "Fang Lair/Scalecaller Peak",
   SI_FURC_DATAMINED_UNCLEAR =     "This item has been seen in-game, but it's not yet known where you can get it.",
   SI_FURC_ITEMSOURCE_ITEMPACK =   "Part of the Crown Store item pack [<<1>>] ",
-  SI_FURC_EVENT_BLACKWOOD = 	  "From participating in the Bounties of Blackwood event",
-  SI_FURC_TRIBUTE = 			  "From Tales of Tribute reward coffers",
+  SI_FURC_EVENT_BLACKWOOD = 	    "From participating in the Bounties of Blackwood event",
+  SI_FURC_TRIBUTE = 			        "From Tales of Tribute reward coffers",
+  SI_FURC_TRIBUTE_RANKED = 			  "From Tales of Tribute ranked matches (system mail reward)",
   
   SI_FURC_SEEN_IN_GUILDSTORE =    "Seen in Guild Store",
 }
