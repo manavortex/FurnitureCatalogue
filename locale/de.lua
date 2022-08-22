@@ -134,11 +134,11 @@ local strings = {
   SI_FURC_STRING_MENU_RUMOUR =              "Rumour recipes",    
   SI_FURC_STRING_MENU_RUMOUR_N =            "Hide rumour recipes?",
   SI_FURC_STRING_MENU_RUMOUR_DESC =         "The furniture database contains a list of recipes that I have datamined.\nHowever, not all of those have been seen in-game.\nEnable this option to exclude them from the default filters.\nYou can still view them by selecting the corresponding source from the dropdown.",
-  
-  
-  SI_FURC_STRING_CONTEXTMENU_DIVIDER =      "Don't use divider in context menu?", 
-  SI_FURC_STRING_CONTEXTMENU_DIVIDER_TT =   "Adds a divider to the context manu above the - Furniture entry. Check to disable", 
-    
+
+  SI_FURC_STRING_CONTEXTMENU_INVENTORY =    "Disable context menu in inventory?",
+  SI_FURC_STRING_CONTEXTMENU_INVENTORY_TT = "Disables the context for inventory items like posting material and adding to favourites.",
+  SI_FURC_STRING_CONTEXTMENU_DIVIDER =      "Don't use divider in context menu?",
+  SI_FURC_STRING_CONTEXTMENU_DIVIDER_TT =   "Adds a divider to the context menu above the - Furniture entry. Check to disable",
   
   SI_FURC_STRING_MENU_CROWN =               "Crown store items",
   SI_FURC_STRING_MENU_CROWN_N =             "Hide crown store items?",

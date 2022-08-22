@@ -61,6 +61,13 @@ function FurC.SetFilterAllOnTextNoRumour(value)
   FurC.UpdateGui()
 end
 
+function FurC.GetHideInventoryMenu()
+  return FurC.settings["hideInventoryMenu"]
+end
+function FurC.SetHideInventoryMenu(value)
+  FurC.settings["hideInventoryMenu"] = value
+end
+
 function FurC.GetSkipDivider()
   return FurC.settings["skipDivider"]
 end

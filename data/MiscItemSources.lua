@@ -3,6 +3,7 @@ FurC.MiscItemSources        = FurC.MiscItemSources or {}
 -- constants save performance on string handling
 local questRewardString     = GetString(SI_FURC_QUESTREWARD)
 local tribute				= GetString(SI_FURC_TRIBUTE)
+local tribute_ranked		= GetString(SI_FURC_TRIBUTE_RANKED)
 
 local pickpocket_ww         = GetString(SI_FURC_CANBEPICKED) .. " from woodworkers"
 local pickpocket_ass        = GetString(SI_FURC_CANBEPICKED) .. " from outlaws and assassins"
@@ -117,6 +118,7 @@ FurC.MiscItemSources[FURC_BRETON] = {
         [188283] = tribute, -- Pyandonean War Fleet Tribute Tapestry, Large
         [188284] = tribute, -- Serpentguard Rider Tribute Tapestry
         [188285] = tribute, -- Serpentguard Rider Tribute Tapestry, Large
+        [187808] = tribute_ranked, -- Tribute Trophy, Rubedite
 		
 	},
 	
@@ -139,7 +141,6 @@ FurC.MiscItemSources[FURC_BRETON] = {
         [187800] = rumourSource, -- Draoife Storystone
         [187801] = rumourSource, -- Sea Elf Galleon Helm
         [187794] = rumourSource, -- Dwarven Crystal Brazier, Amber
-        [187808] = rumourSource, -- Tribute Trophy, Rubedite
         [187793] = rumourSource, -- Blackreach Gate, Large
         [187860] = rumourSource, -- High Isle Vase, Gilded
         [187795] = rumourSource, -- Deadlands Cage, Short
