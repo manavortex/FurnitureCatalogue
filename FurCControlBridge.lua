@@ -100,16 +100,16 @@ function FurC.GetCrownTooltip()
 end
 
 function FurC.GuiOnSearchBoxClick(control, mouseButton, doubleClick)
-  FurC_SearchBoxText:SetText("")
+  --FurC_SearchBoxText:SetText("")
   if mouseButton == 2 or doubleClick then
-    control:SetText("")
+    control:SetDefaultText("")
   end
 end
 
 local FURC_S_FILTERDEFAULT = GetString(SI_FURC_TEXTBOX_FILTER_DEFAULT)
 function FurC.GuiOnSearchBoxFocusOut(ctrl)
   local text = FurC_SearchBox:GetText()
-  FurC_SearchBoxText:SetText((#text == 0 and FURC_S_FILTERDEFAULT) or "")
+  --FurC_SearchBoxText:SetText((#text == 0 and FURC_S_FILTERDEFAULT) or "")
 end
 
 function FurC.GuiOnScroll(control, delta)

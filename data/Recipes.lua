@@ -1,5 +1,37 @@
 FurC.Recipes = FurC.Recipes or {}
 
+FurC.Recipes[FURC_DEPTHS] = {
+	
+	190080, -- Blueprint: High Isle Caravel, Miniature,
+    190081, -- Praxis: High Isle Stairway, Large Castle,
+    190082, -- Praxis: High Isle Walkway, Straight Castle,
+    190083, -- Praxis: High Isle Walkway, Curved Castle,
+    190084, -- Praxis: High Isle Wall, Thin Castle,
+    190085, -- Praxis: High Isle Turret, Conical Castle,
+    190086, -- Praxis: High Isle Stairway, Tilework,
+    190087, -- Blueprint: High Isle Pillar, Ornate,
+    190088, -- Praxis: High Isle Wall, Half-Timber,
+    190089, -- Praxis: High Isle Doorway, Half-Timber,
+    190090, -- Praxis: High Isle Doorway, Plaster,
+    190091, -- Blueprint: High Isle Archway, Carved,
+    190092, -- Blueprint: High Isle Railing, Carved,
+    190093, -- Blueprint: High Isle Railing Post, Carved,
+    190094, -- Blueprint: High Isle Door, Turquoise,
+    190095, -- Blueprint: High Isle Door, Sturdy,
+    190097, -- Formula: High Isle Window, Turquoise,
+    190098, -- Blueprint: High Isle Walkway, Balcony,
+    190099, -- Blueprint: High Isle Platform, Wooden Rectangle,
+    190100, -- Praxis: High Isle Platform, Tilework,
+    190101, -- Blueprint: High Isle Platform, Wooden Square,
+    190075, -- Diagram: High Isle Beacon, Unlit,
+    190074, -- Formula: Potted Trees, Stonelore Dogwood,
+    184155, -- Formula: Alinor Painting, Unfinished,
+    190076, -- Pattern: High Isle Tapestry, Seaside Tourney,
+    190077, -- Praxis: High Isle Hearth, Tilework,
+    190078, -- Sketch: High Isle Hourglass, Gold,
+    190079, -- Design: Shark Jaw, Massive,
+	}
+
 FurC.Recipes[FURC_BRETON] = {
 
 	188160, -- Blueprint: High Isle Stool, Cushioned

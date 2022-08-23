@@ -1,4 +1,20 @@
 
+FurC.AchievementVendors[FURC_DEPTHS] = {
+
+  ["the Undaunted Enclaves"] = {
+    ["Undaunted Quartermaster"] = {
+		[189504] = {		--Deeproot's Undying Bloom
+		itemPrice   = 25000,
+		achievement = 3375,		-- Earthen Root Enclave Vanquisher
+		},
+		[189505] = {		--Reinforced Dwarfglass Window, Massive
+		itemPrice   = 40000,
+		achievement = 3394,		-- Graven Deep Vanquisher
+		},
+	},
+ },
+}
+
 FurC.AchievementVendors[FURC_BRETON] = {
 
   ["Gonfalon Bay, Furnishings of Fine Finesse"] = {

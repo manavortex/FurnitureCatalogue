@@ -3,6 +3,7 @@ FurC.MiscItemSources        = FurC.MiscItemSources or {}
 -- constants save performance on string handling
 local questRewardString     = GetString(SI_FURC_QUESTREWARD)
 local tribute				= GetString(SI_FURC_TRIBUTE)
+local tribute_ranked		= GetString(SI_FURC_TRIBUTE_RANKED)
 
 local pickpocket_ww         = GetString(SI_FURC_CANBEPICKED) .. " from woodworkers"
 local pickpocket_ass        = GetString(SI_FURC_CANBEPICKED) .. " from outlaws and assassins"
@@ -87,10 +88,42 @@ local function getHouseString(houseId1, houseId2)		-- use collectible number fro
   return zo_strformat(housesource, houseName)
 end
 
+FurC.MiscItemSources[FURC_DEPTHS] = {
+
+	[FURC_DROP] = {
+	    [187804] = tribute_ranked, -- Tribute Trophy, Orichalcum,
+        [187805] = tribute_ranked, -- Tribute Trophy, Ebony,
+        [187806] = tribute_ranked, -- Tribute Trophy, Quicksilver,
+        [187807] = tribute_ranked, -- Tribute Trophy, Voidsteel,
+	},
+
+	[FURC_RUMOUR] = {
+        [189463] = rumourSource, -- Statue, Bendu Olo,
+        [189464] = rumourSource, -- Music Box, Deeproot Dirge,
+        [189465] = rumourSource, -- Music Box, Gonfalon Galliard,
+        [189473] = rumourSource, -- Elkhorn Coral, Verdant Sapling,
+        [189474] = rumourSource, -- Vvardenfell Anemone, Basket,
+        [189475] = rumourSource, -- Mummy, Skyward Gazing,
+        [189476] = rumourSource, -- Velothi Altar, Small,
+        [189477] = rumourSource, -- Elsweyr Window, Ritual,
+        [189478] = rumourSource, -- Elsweyr Moon Reflection Tower, Base,
+        [189479] = rumourSource, -- Bloodmage Crystal, Oval,
+        [189480] = rumourSource, -- Bloodmage Crystal, Oblong,
+        [189481] = rumourSource, -- Bone Sculpture, Circular,
+        [189482] = rumourSource, -- Bone Sconce, Arm,
+        [188341] = rumourSource, -- Red Diamond Stained Glass,
+        [188342] = rumourSource, -- Bat Swarm, Domesticated,
+        [188343] = rumourSource, -- Moonlight Path Bridge,
+        [188344] = rumourSource, -- Y'ffre's Falling Leaves, Autumn,
+	},
+}
+
 FurC.MiscItemSources[FURC_BRETON] = {
 
 	[FURC_DROP] = {
         [187802] = scrying .. " in High Isle ", -- Druidic Provisioning Station
+		[187800] = scrying .. " in High Isle ", -- Draoife Storystone
+		[187801] = scrying .. " in High Isle ", -- Sea Elf Galleon Helm
 
         [187868] = chests_high, -- Ascendant Silence Painting, Metal
         [187869] = chests_high, -- Noble Still Life Painting, Metal
@@ -117,14 +150,12 @@ FurC.MiscItemSources[FURC_BRETON] = {
         [188283] = tribute, -- Pyandonean War Fleet Tribute Tapestry, Large
         [188284] = tribute, -- Serpentguard Rider Tribute Tapestry
         [188285] = tribute, -- Serpentguard Rider Tribute Tapestry, Large
+        [187808] = tribute_ranked, -- Tribute Trophy, Rubedite
 		
 	},
 	
 	[FURC_RUMOUR] = {
-		[187785] = rumourSource, -- Vampiric Table, Flat Exsanguination
-        [187786] = rumourSource, -- Rubble Pile, Skeletal Remains
-        [187787] = rumourSource, -- Mausoleum Pillar, Tall
-        [187788] = rumourSource, -- Skull Candles, Triple
+
         [187661] = rumourSource, -- Mage's Flame
         [187662] = rumourSource, -- House Dufort Chandelier
         [187663] = rumourSource, -- Blue Fang Shark, Mounted
@@ -136,19 +167,13 @@ FurC.MiscItemSources[FURC_BRETON] = {
         [187861] = rumourSource, -- High Isle Hourglass, Compass Rose
         [147926] = rumourSource, -- Target Iron Atronach, Trial
         [187799] = rumourSource, -- Antique Map of High Isle
-        [187800] = rumourSource, -- Draoife Storystone
-        [187801] = rumourSource, -- Sea Elf Galleon Helm
         [187794] = rumourSource, -- Dwarven Crystal Brazier, Amber
-        [187808] = rumourSource, -- Tribute Trophy, Rubedite
         [187793] = rumourSource, -- Blackreach Gate, Large
         [187860] = rumourSource, -- High Isle Vase, Gilded
         [187795] = rumourSource, -- Deadlands Cage, Short
         [188201] = rumourSource, -- Letter From Ember
         [188202] = rumourSource, -- Letter From Isobel
         [187865] = rumourSource, -- Flowers, Butterweed Cluster
-        [187791] = rumourSource, -- Anvil Banner, Large
-        [187790] = rumourSource, -- Statue, Stendarr
-        [187789] = rumourSource, -- Daedric Statue, Mephala
         [187660] = rumourSource, -- Mages Guild Stained Glass
         [187664] = rumourSource, -- Target Deadlands Harvester, Trial
 	},

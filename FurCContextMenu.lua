@@ -135,6 +135,8 @@ end
 -- thanks Randactyl for helping me with the handler :)
 function FurC_HandleInventoryContextMenu(control)
 
+	if FurC.GetHideInventoryMenu() then return end
+
 	local st = ZO_InventorySlot_GetType(control)
 	local itemLink = nil
 	if st == SLOT_TYPE_ITEM or
