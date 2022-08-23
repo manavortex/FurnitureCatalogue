@@ -139,7 +139,7 @@
                   <Dimensions x="135" />
                   <Controls>
                     <!-- FurC_Search controls -->
-                    <EditBox name="FurC_SearchBox" inherits="ZO_DefaultEditForBackdrop ZO_EditDefaultText">
+                    <EditBox name="FurC_SearchBox" inherits="ZO_DefaultEditForBackdrop">
                       <Anchor point="TOPLEFT" relativeTo="$(parent)" relativePoint="TOPLEFT" offsetX="-40" offsetY="-10" />
                       <Anchor point="TOPRIGHT" relativeTo="$(parent)" relativePoint="TOPRIGHT" offsetX="0" offsetY="2" />
                       <OnTextChanged>FurC.GuiSetSearchboxTextFrom(self)</OnTextChanged>

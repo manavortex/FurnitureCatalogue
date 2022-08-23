@@ -138,7 +138,7 @@ FurC.UpdateLineVisibility =  updateLineVisibility
 	local function startLoading()
 		FurC.IsLoading(true)
 		local text = FurC_SearchBox:GetText()
-		FurC_SearchBoxText:SetText((#text == 0 and FURC_S_FILTERDEFAULT) or "")
+		--FurC_SearchBoxText:SetText((#text == 0 and FURC_S_FILTERDEFAULT) or "")
 		FurC.LastFilter = useDefaults
 		FurC.SetFilter(useDefaults, true)
 	end
