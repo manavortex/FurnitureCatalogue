@@ -1,6 +1,66 @@
 FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
+FurC.LuxuryFurnisher[FURC_DEPTHS] = {
+
+
+}
+
 FurC.LuxuryFurnisher[FURC_TIDES] = {
+
+	[187791] = { -- Anvil Banner, Large
+		itemPrice = 12000,
+		itemDate = "2022-08-20",
+	},
+
+	[187790] = { -- Statue, Stendarr
+		itemPrice = 35000,
+		itemDate = "2022-08-13",
+	},
+
+	[187789] = { -- Daedric Statue, Mephala
+		itemPrice = 25000,
+		itemDate = "2022-08-06",
+	},
+
+	[187788] = { -- Skull Candles, Triple
+		itemPrice = 10000,
+		itemDate = "2022-07-30",
+	},
+	
+	[187787] = { -- Mausoleum Pillar, Tall
+		itemPrice = 10000,
+		itemDate = "2022-07-23",
+	},
+	
+	[187786] = { -- Rubble Pile, Skeletal Remains
+		itemPrice = 4000,
+		itemDate = "2022-07-16",
+	},
+
+	[187785] = { -- Vampiric Table, Flat Exsanguination
+		itemPrice = 35000,
+		itemDate = "2022-07-09",
+	},
+
+	[184202] = { -- Altmer Brazier, Cold-Flame Column
+		itemPrice = 20000,
+		itemDate = "2022-07-02",
+	},
+	
+	[184201] = { -- Elsweyr Brazier, Cold-Flame Column
+		itemPrice = 20000,
+		itemDate = "2022-06-25",
+	},
+
+	[184200] = { -- Mushroom, Giant Glowtendril
+		itemPrice = 20000,
+		itemDate = "2022-06-18",
+	},
+
+	[184199] = { -- Mushroom, Twisted Tufted Cap
+		itemPrice = 4500,
+		itemDate = "2022-06-11",
+	},
 
     [184197] = { -- Canopy, Netted,
 		itemPrice = 4000,
@@ -19,7 +79,7 @@ FurC.LuxuryFurnisher[FURC_TIDES] = {
 
 	[184195] = {		-- Yokudan Sarcophagus Lid, Gilded
 		itemPrice   = 35000,
-		itemDate	= "2022-05-21",
+		itemDate	= "2022-05-14",
 	},
 	
 	[184194] = {		-- Alinor Maple, Red
@@ -909,438 +969,438 @@ FurC.LuxuryFurnisher[FURC_BLACKW] = {
 	-- ==================================================================
 	[175760] = {	-- Banner, Anvil
 		itemPrice	= 4000,
-		itemDate	= "2021-07-24",
+		itemDate	= "2022-08-20",
 	},
 	[159450] = {    -- Hourglass Pedestal, Square
  		itemPrice   = 7500,
-		itemDate  	= "2021-07-24",
+		itemDate  	= "2022-08-20",
 	},
 	[159449] = {    -- Hourglass Stand, Round
  		itemPrice   = 4000,
-		itemDate  	= "2021-07-24",
+		itemDate  	= "2022-08-20",
 	},
 	[134845] = {  -- Brotherhood  Tapestry, Small
  		itemPrice   = 5000,
-		itemDate  	= "2021-07-24",
+		itemDate  	= "2022-08-20",
 	},
 	[120837] = {  -- Brotherhood Window, Stained Glass
  		itemPrice   = 100000,
-		itemDate  	= "2021-07-24",
+		itemDate  	= "2022-08-20",
 	},
 	[121271] = {  -- Brotherhood Tapestry
  		itemPrice   = 10000,
-		itemDate  	= "2021-07-24",
+		itemDate  	= "2022-08-20",
 	},
 	[120835] = {  -- Brotherhood Candelabra, Table
  		itemPrice   = 2500,
-		itemDate  	= "2021-07-24",
+		itemDate  	= "2022-08-20",
 	},
 	[145486] = {    -- Door, Sweet Mother
  		itemPrice   = 35000,
-		itemDate  	= "2021-07-24",
+		itemDate  	= "2022-08-20",
 	},	
 	
 	-- ====================================================================
 	[171833] = {	-- Dark Elf Statue, St. Delyn
 		itemPrice	= 35000,
-		itemDate	= "2021-07-17",
+		itemDate	= "2022-08-13",
 	},
 	[159448] = {	-- Breton Statue, Arkay
 		itemPrice	= 20000,
-		itemDate	= "2021-07-17",
+		itemDate	= "2022-08-13",
 	},
 	[134844] = {  	-- Ra Gada Statue, Forward Scout
  		itemPrice   = 25000,
-		itemDate  	= "2021-07-17",
+		itemDate  	= "2022-08-13",
 	},
 	[120808] = {  	-- Statue Base, Circular
  		itemPrice   = 2500,
-		itemDate  	= "2021-07-17",
+		itemDate  	= "2022-08-13",
 	},
 	[120811] = {  	-- Statue, Justice
  		itemPrice   = 25000,
-		itemDate  	= "2021-07-17",
+		itemDate  	= "2022-08-13",
 	},
 	[120814] = {  	-- Statue, Order
  		itemPrice   = 25000,
-		itemDate  	= "2021-07-17",
+		itemDate  	= "2022-08-13",
 	},
 	[120813] = {  	-- Statue, Truth
  		itemPrice   = 25000,
-		itemDate  	= "2021-07-17",
+		itemDate  	= "2022-08-13",
 	},
 	[145485] = {    -- Dark Elf Statue, Knight
  		itemPrice   = 20000,
-		itemDate  	= "2021-07-17",
+		itemDate  	= "2022-08-13",
 	},
 	
 	-- ====================================================================
 	[171832] = {	-- Dark Elf Statue, St. Olms
 		itemPrice	= 35000,
-		itemDate	= "2021-07-10",
+		itemDate	= "2022-08-06",
 	},
 	[159447] = {    -- Imperial Statue, Legion Champion
-		itemDate  	= "2021-07-10",
+		itemDate  	= "2022-08-06",
  		itemPrice   = 20000,
 	},
 	[145484] = {    -- Dark Elf Statue, Ordinator
  		itemPrice   = 20000,
-		itemDate  	= "2021-07-10",
+		itemDate  	= "2022-08-06",
 	},
 	[134842] = {  	-- Ra Gada Statue, Blademaster
  		itemPrice   = 25000,
-		itemDate  	= "2021-07-10",
+		itemDate  	= "2022-08-06",
 	},
 	[134843] = {  	-- Ra Gada Statue, Battlemage
  		itemPrice   = 25000,
-		itemDate  	= "2021-07-10",
+		itemDate  	= "2022-08-06",
 	},
 	[120809] = {  	-- Statue Base, Square
  		itemPrice   = 2500,
-		itemDate  	= "2021-07-10",
+		itemDate  	= "2022-08-06",
 	},
 	[120810] = {  	-- Statue, Faith
  		itemPrice   = 25000,
-		itemDate  	= "2021-07-10",
+		itemDate  	= "2022-08-06",
 	},
 	[120812] = {  	-- Statue, Light
  		itemPrice   = 25000,
-		itemDate  	= "2021-07-10",
+		itemDate  	= "2022-08-06",
 	},
 	
 	-- ====================================================================
 	[171831] = {	--Mad Architect's Medallion
 		itemPrice	= 2500,
-		itemDate	= "2021-07-03",
+		itemDate	= "2022-07-30",
 	},
 	[156657] = {    -- Azure Plasm Cage, Hanging
  		itemPrice   = 100000,
-		itemDate  = "2021-07-03",
+		itemDate  = "2022-07-30",
 	},	
 	[145483] = {    -- Column, Ossuary
  		itemPrice   = 20000,
-		itemDate  = "2021-07-03",
+		itemDate  = "2022-07-30",
 	},
 	[134839] = {  -- Necromancer's Brazier, Cold Flame
  		itemPrice   = 10000,
-		itemDate  = "2021-07-03",
+		itemDate  = "2022-07-30",
 	},
 	[134840] = {  -- Necromancer's Spire, Compact
  		itemPrice   = 25000,
-		itemDate  = "2021-07-03",
+		itemDate  = "2022-07-30",
 	},
 	[134841] = {  -- Necromancer's Spire, Huge
  		itemPrice   = 100000,
-		itemDate  = "2021-07-03",
+		itemDate  = "2022-07-30",
 	},
 	
 	-- ====================================================================
 	[171830] = {	-- Mausoleum Bookcase, Filled
 		itemPrice	= 15000,
-		itemDate	= "2021-06-26",
+		itemDate	= "2022-07-23",
 	},
 	[156656] = {    -- Pedestal, Dark Stone
  		itemPrice   = 4000,
-		itemDate  = "2021-06-26",
+		itemDate  = "2022-07-23",
 	},
 	[134836] = {  -- Necromancer's Brazier, Flame
  		itemPrice   = 10000,
-		itemDate  = "2021-06-26",
+		itemDate  = "2022-07-23",
 	},
 	[134838] = {  -- Necromancer's Spire, Alcove
  		itemPrice   = 75000,
-		itemDate  = "2021-06-26",
+		itemDate  = "2022-07-23",
 	},
 	[134837] = {  -- Necromancer's Spire, Narrow
  		itemPrice   = 50000,
-		itemDate  = "2021-06-26",
+		itemDate  = "2022-07-23",
 	},
 	[145482] = {    -- Wheelbarrow, Bones
  		itemPrice   = 1000,
-		itemDate  = "2021-06-26",
+		itemDate  = "2022-07-23",
 	},	
 	
 	-- ====================================================================
 	[171829] = {	-- Laboratory Instruments
 		itemPrice	= 5000,
-		itemDate	= "2021-06-19",
+		itemDate	= "2022-07-16",
 	},
 	[156667] = {    -- Gate, Spiked Iron
  		itemPrice   = 15000,
-		itemDate  	= "2021-06-19",
+		itemDate  	= "2022-07-16",
 	},
 	[145480] = {    -- Corpse, Burned Seated
  		itemPrice   = 2500,
-		itemDate  	= "2021-06-19",
+		itemDate  	= "2022-07-16",
 	},
 	[145481] = {    -- Corpse, Burned Sprawled
  		itemPrice   = 2500,
-		itemDate  	= "2021-06-19",
+		itemDate  	= "2022-07-16",
 	},
 	[134834] = {  -- Bandages, Blood-Soaked
  		itemPrice   = 2000,
-		itemDate  	= "2021-06-19",
+		itemDate  	= "2022-07-16",
 	},
 	[134835] = {  -- Orcish Burial Urn, Exhumed
  		itemPrice   = 20000,
-		itemDate  	= "2021-06-19",
+		itemDate  	= "2022-07-16",
 	},
 	[120824] = {  -- Body Cage
  		itemPrice   = 5000,
-		itemDate  	= "2021-06-19",
+		itemDate  	= "2022-07-16",
 	},
 	[120829] = {  -- Torture Rack
  		itemPrice   = 5000,
-		itemDate  	= "2021-06-19",
+		itemDate  	= "2022-07-16",
 	},
 	[120828] = {  -- Torture Wheel
  		itemPrice   = 100000,
-		itemDate  	= "2021-06-19",
+		itemDate  	= "2022-07-16",
 	},
 	
 	-- ====================================================================
 	[171828] = {	-- Vampiric Table, Exsanguination
 		itemPrice	= 35000,
-		itemDate	= "2021-06-11",
+		itemDate	= "2022-07-09",
 	},
 	[156668] = {    -- Skeletal Remains, Slumped Over
  		itemPrice   = 10000,
-		itemDate  = "2021-06-11",
+		itemDate  = "2022-07-09",
 	},
 	[145479] = {    -- Iron Maiden, Occupied
  		itemPrice   = 100000,
-		itemDate  = "2021-06-11",
+		itemDate  = "2022-07-09",
 	},
 	[134833] = {  -- Gibbet, Hanging Hooked
  		itemPrice   = 75000,
-		itemDate  = "2021-06-11",
+		itemDate  = "2022-07-09",
 	},
 	[120826] = {  -- Iron Cross
  		itemPrice   = 10000,
-		itemDate  = "2021-06-11",
+		itemDate  = "2022-07-09",
 	},
 	[120825] = {  -- Iron Cross, Large
  		itemPrice   = 25000,
-		itemDate  = "2021-06-11",
+		itemDate  = "2022-07-09",
 	},
 	[120827] = {  -- Iron Maiden, Chained
  		itemPrice   = 20000,
-		itemDate  = "2021-06-11",
+		itemDate  = "2022-07-09",
 	},
 	
 	-- ====================================================================
 	[171827] = {	-- Brazier, Dragon-Headed Cold-Flame
 		itemPrice	= 25000,
-		itemDate	= "2021-06-04",
+		itemDate	= "2022-07-02",
 	},
 	[156655] = {    -- Alinor Shrine, Phynaster
  		itemPrice   = 50000,
-		itemDate  = "2021-06-04",
+		itemDate  = "2022-07-02",
 	},
 
 	[145478] = {    -- Alinor Shrine, Y'ffre
  		itemPrice   = 50000,
-		itemDate  = "2021-06-04",
+		itemDate  = "2022-07-02",
 	},
 	[134832] = {  -- Basin of the Divines
  		itemPrice   = 35000,
-		itemDate  = "2021-06-04",
+		itemDate  = "2022-07-02",
 	},
     [120823] = {  -- Sigil Stand
  		itemPrice   = 15000,
-		itemDate  = "2021-06-04",
+		itemDate  = "2022-07-02",
 	},
     [120819] = {  -- Sigil, Kynareth
  		itemPrice   = 20000,
-		itemDate  = "2021-06-04",
+		itemDate  = "2022-07-02",
 	},
     [120820] = {  -- Sigil, Mara
  		itemPrice   = 20000,
-		itemDate  = "2021-06-04",
+		itemDate  = "2022-07-02",
 	},
     [120821] = {  -- Sigil, Stendarr
  		itemPrice   = 20000,
-		itemDate  = "2021-06-04",
+		itemDate  = "2022-07-02",
 	},
     [120822] = {  -- Sigil, Zenithar
  		itemPrice   = 20000,
-		itemDate  = "2021-06-04",
+		itemDate  = "2022-07-02",
 	},
 	
 	-- ====================================================================
 	[171826] = {	-- Brazier, Stone Cold-Flame
 		itemPrice	= 30000,
-		itemDate	= "2021-05-29",
+		itemDate	= "2022-06-25",
 	},
 	[145476] = {    -- Alinor Shrine, Trinimac
  		itemPrice   = 50000,
-		itemDate  = "2021-05-29",
+		itemDate  = "2022-06-25",
 	},
 	[145477] = {    -- Alinor Pedestal, Shrine
  		itemPrice   = 10000,
-		itemDate  = "2021-05-29",
+		itemDate  = "2022-06-25",
 	},
 	[156654] = {    -- Alinor Shrine, Magnus
  		itemPrice   = 50000,
-		itemDate  = "2021-05-29",
+		itemDate  = "2022-06-25",
 	},
 	[120823] = {  -- Sigil Stand
  		itemPrice   = 15000,
-		itemDate  = "2021-05-29",
+		itemDate  = "2022-06-25",
 	},
 	[120815] = {  -- Sigil, Akatosh
  		itemPrice   = 20000,
-		itemDate  = "2021-05-29",
+		itemDate  = "2022-06-25",
 	},
 	[120816] = {  -- Sigil, Arkay
  		itemPrice   = 20000,
-		itemDate  = "2021-05-29",
+		itemDate  = "2022-06-25",
 	},
 	[120817] = {  -- Sigil, Dibella
  		itemPrice   = 20000,
-		itemDate  = "2021-05-29",
+		itemDate  = "2022-06-25",
 	},
 	[120818] = {  -- Sigil, Julianos
  		itemPrice   = 20000,
-		itemDate  = "2021-05-29",
+		itemDate  = "2022-06-25",
 	},
 	[134831] = {  -- Altar of the Divines
  		itemPrice   = 50000,
-		itemDate  = "2021-05-29",
+		itemDate  = "2022-06-25",
 	},
 	
 	-- ====================================================================
 	[171825] = {	-- Mushroom, Large Glowtendril
 		itemPrice	= 20000,
-		itemDate	= "2021-05-22",
+		itemDate	= "2022-06-18",
 	},
 	[156653] = {    -- Plant, Luminescent Valeflower
  		itemPrice   = 2500,
-		itemDate  = "2021-05-22",
+		itemDate  = "2022-06-18",
 	},
 	[145475] = {    -- Plant, Soulsplinter Weed
  		itemPrice   = 12500,
-		itemDate  = "2021-05-22",
+		itemDate  = "2022-06-18",
 	},
 	[134830] = {  -- Flowers, Blue Starbloom
  		itemPrice   = 15000,
-		itemDate  = "2021-05-22",
+		itemDate  = "2022-06-18",
 	},
 	[120888] = {  -- Bat Bloom
  		itemPrice   = 15000,
-		itemDate  = "2021-05-22",
+		itemDate  = "2022-06-18",
 	},
 	[120887] = {  -- Fan Bush
  		itemPrice   = 1000,
-		itemDate  = "2021-05-22",
+		itemDate  = "2022-06-18",
 	},
 	[120889] = {  -- Glow Bush, Purple
  		itemPrice   = 20000,
-		itemDate  = "2021-05-22",
+		itemDate  = "2022-06-18",
 	},
 	
 	-- ====================================================================
 	[171824] = {    -- Mushroom, Tufted Cap
  		itemPrice   = 5000,
-		itemDate  = "2021-05-15",
+		itemDate  = "2022-06-11",
 	},		   
 	[156652] = {    -- Garlas Alpinia, Branching
  		itemPrice   = 2000,
-		itemDate  = "2021-05-15",
+		itemDate  = "2022-06-11",
 	},
 	[145474] = {    -- Plant, Flytrap
  		itemPrice   = 4000,
-		itemDate  = "2021-05-15",
+		itemDate  = "2022-06-11",
 	},
 	[120885] = {  -- Alik'r Cactus
  		itemPrice   = 2000,
-		itemDate  = "2021-05-15",
+		itemDate  = "2022-06-11",
 	},
 	[120884] = {  -- Buckthorn
  		itemPrice   = 4000,
-		itemDate  = "2021-05-15",
+		itemDate  = "2022-06-11",
 	},
 	[120883] = {  -- Voidflower
  		itemPrice   = 5000,
-		itemDate  = "2021-05-15",
+		itemDate  = "2022-06-11",
 	},
 	[134829] = {  -- Fern, Woody Slough
  		itemPrice   = 3000,
-		itemDate  = "2021-05-15",
+		itemDate  = "2022-06-11",
 	},
 	[120886] = {  -- White Hosta
  		itemPrice   = 3000,
-		itemDate  = "2021-05-15",
+		itemDate  = "2022-06-11",
 	},
 	
 	-- ====================================================================
 	[171823] = {	-- Coral Formation, Branching Red
 		itemPrice =	2000,
-		itemDate = 	"2021-05-08",
+		itemDate = 	"2022-06-04",
 	},
 	[156651] = {    -- Anchor, Hanging
  		itemPrice   = 20000,
-		itemDate  = "2021-05-08",
+		itemDate  = "2022-06-04",
 	},
 	[134828] = {  -- Antler Coral, Branched Spiree
  		itemPrice   = 100000,
-		itemDate  = "2021-05-08",
+		itemDate  = "2022-06-04",
 	},
 	[120847] = {  -- Dock Winch
  		itemPrice   = 4000,
-		itemDate  = "2021-05-08",
+		itemDate  = "2022-06-04",
 	},
 	[120849] = {  -- Anchor
  		itemPrice   = 10000,
-		itemDate  = "2021-05-08",
+		itemDate  = "2022-06-04",
 	},
 	[120848] = {  -- Fishing Pole Rack
  		itemPrice   = 2500,
-		itemDate  = "2021-05-08",
+		itemDate  = "2022-06-04",
 	},	
 	[121269] = {  -- Ocean Antler Coral
  		itemPrice   = 7500,
-		itemDate  = "2021-05-08",
+		itemDate  = "2022-06-04",
 	},
 	[145473] = {    -- Antler Coral, Stout Crimson
  		itemPrice   = 75000,
-		itemDate  = "2021-05-08",
+		itemDate  = "2022-06-04",
 	},	
 	
 	-- ====================================================================
 	
 	[145472] = {    -- Antler Coral, Crimson
  		itemPrice   = 50000,
-		itemDate  = "2021-05-01",
+		itemDate  = "2022-05-28",
 	},
 	[121268] = {  -- Fisher's Catch of the Day Rack
  		itemPrice   = 5000,
-		itemDate  = "2021-05-01",
+		itemDate  = "2022-05-28",
 	},
 	[120850] = { -- Harbor Floats
  		itemPrice   = 5000,
-		itemDate  = "2021-05-01",
+		itemDate  = "2022-05-28",
 	},
 	[120846] = { -- Dock Rope Wheel
  		itemPrice   = 3000,
-		itemDate  = "2021-05-01",
+		itemDate  = "2022-05-28",
 	},
 	[134827] = { -- Mooring Line, Coiled
  		itemPrice   = 7500,
-		itemDate  = "2021-05-01",
+		itemDate  = "2022-05-28",
 	},
 	[134826] = { -- Mooring Line, Tidy
  		itemPrice   = 5000,
-		itemDate  = "2021-05-01",
+		itemDate  = "2022-05-28",
 	},
 	[156650] = {    -- Platform, Floating Dock
  		itemPrice   = 3000,
-		itemDate  = "2021-05-01",
+		itemDate  = "2022-05-28",
 	},
 
 	[171822] = {		-- Harbor Winch, Treadwheel
 		itemPrice   = 7000,
-		itemDate  = "2021-05-01",
+		itemDate  = "2022-05-28",
 	},
 	
 		

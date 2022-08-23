@@ -228,6 +228,7 @@ FURC_AV_RAZ = "Razoufa",
   SI_FURC_FILTER_VERSION_DEADL =    "Deadlands",
   SI_FURC_FILTER_VERSION_TIDES = 	"Ascending Tide",
   SI_FURC_FILTER_VERSION_BRETON = 	"High Isle",
+  SI_FURC_FILTER_VERSION_DEPTHS = 	"Lost Depths",
 
 
   -- =============================== --
@@ -268,6 +269,7 @@ FURC_AV_RAZ = "Razoufa",
   SI_FURC_FILTER_VERSION_DEADL_TT =		"What is this place with the sparkly meat?",
   SI_FURC_FILTER_VERSION_TIDES_TT =		"Redguard. Structural. Furnishings. (Kinda?)",
   SI_FURC_FILTER_VERSION_BRETON_TT = 	"Here be pirates",
+  SI_FURC_FILTER_VERSION_DEPTHS_TT =	"What the heck is a Pangrit?",
 
   SI_FURC_FILTER_CHAR_OFF =     "Character filter: off", 
   SI_FURC_FILTER_CHAR_OFF_TT =  filterDisabled, 
