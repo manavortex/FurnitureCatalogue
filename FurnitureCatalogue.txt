@@ -28,6 +28,7 @@ data\03_Reach\HotR_Recipes.lua
 data\04_Clockwork\CC_Recipes.lua
 data\05_Dragonbones\DragonB_Recipes.lua
 data\06_2018\2018_Recipes.lua
+data\07_Firesong\Firesong_Recipes.lua
 
 data\01_Homestead\H_Cyrodiil.lua
 
