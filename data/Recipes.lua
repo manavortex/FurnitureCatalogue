@@ -80,7 +80,7 @@ FurC.Recipes[FURC_DEPTHS] = {
     190101, -- Blueprint: High Isle Platform, Wooden Square,
     190075, -- Diagram: High Isle Beacon, Unlit,
     190074, -- Formula: Potted Trees, Stonelore Dogwood,
-    184155, -- Formula: Alinor Painting, Unfinished,
+    -- 184155, -- Formula: Alinor Painting, Unfinished,
     190076, -- Pattern: High Isle Tapestry, Seaside Tourney,
     190077, -- Praxis: High Isle Hearth, Tilework,
     190078, -- Sketch: High Isle Hourglass, Gold,
