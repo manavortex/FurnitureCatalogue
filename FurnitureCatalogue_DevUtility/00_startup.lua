@@ -14,6 +14,7 @@ FurCDevUtility.playersWithDevAccess = {
 	["@tïm&#39;99"] = true,	    -- Called it
 	["@berylbones"] = true, 	-- let's try this again
 	["@wookiefriseur"] = true, 	-- I HAVE THE POWER!
+	["@mouton"] = true, 	-- Hoi !
 }
 
 local UNITTAG_PLAYER = "player"

@@ -1,6 +1,7 @@
 ## Title: FurnitureCatalogue
 ## Author: manavortex
-## Version: 4.6
+
+## Version: 4.5
 ## APIVersion: 101036
 ## SavedVariables: FurnitureCatalogue_Settings 
 ## DependsOn: LibCustomMenu LibAddonMenu-2.0 LibAsync
@@ -28,6 +29,7 @@ data\03_Reach\HotR_Recipes.lua
 data\04_Clockwork\CC_Recipes.lua
 data\05_Dragonbones\DragonB_Recipes.lua
 data\06_2018\2018_Recipes.lua
+data\07_Firesong\Firesong_Recipes.lua
 
 data\01_Homestead\H_Cyrodiil.lua
 
