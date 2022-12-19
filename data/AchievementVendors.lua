@@ -1,3 +1,83 @@
+FurC.AchievementVendors[FURC_DRUID] = {
+
+ [ "Vastyr, Touch of Home Furnshings"] = {
+	["Ormax Lemaitre"] = {
+	[192400] = {		-- Druidic Planter, Sunflowers
+		itemPrice   = 4500,
+	},
+	[192399] = {		-- Flowers, Galen Sea Daffodil
+		itemPrice   = 300,
+	},
+	[192396] = {		-- Flowers, Sunflower Cluster
+		itemPrice   = 400,
+	},
+	[192395] = {		-- Flowers, Sunflower Patch
+		itemPrice   = 4000,
+	},
+	[192398] = {		-- Plant, Galen Agave
+		itemPrice   = 125,
+	},
+	[192394] = {		-- Sapling, Galen Beech
+		itemPrice   = 200,
+	},
+	[192393] = {		-- Tree, Large Galen Beech
+		itemPrice   = 3500,
+	},
+	[192397] = {		-- Tree,  Large Galen Pine
+		itemPrice   = 425,
+	},
+},
+	
+	["Idrenie Beren"] = {
+ 
+	[192426] = {		--Ascendant Knight Banner
+		itemPrice   = 12000,
+		achievement = 3508,		-- Bane of the Dreadsails
+		},
+	[192416] = {		--Druid Ritual Stone
+		itemPrice   = 20000,
+		achievement = 3491,		-- Galen Master Explorer
+		},
+	[192415] = {		--Druidic Statue, Left Hand
+		itemPrice   = 2000,
+		achievement = 3556,		-- Buried Bequest
+		},
+	[192411] = {		--Druidic Statue, Right Hand
+		itemPrice   = 2000,
+		achievement = 3556,		-- Buried Bequest
+		},
+	[192419] = {		--Druidic Throne, Floral Stone
+		itemPrice   = 25000,
+		achievement = 3553,		-- Broken Braigh
+		},
+	[192428] = {		--Eerie Sconce, Emerald
+		itemPrice   = 14000,
+		achievement = 3511,		-- Dreamwalker
+		},
+	[192564] = {		--Firesong Spring, Basalt
+		itemPrice   = 40000,
+		achievement = 3514,		-- Druid Kingslayer
+		},
+	[192417] = {		--Flower Trap, Tamed
+		itemPrice   = 15000,
+		achievement = 3494,		-- Defender of Galen
+		},
+	[192565] = {		--Lava Spout
+		itemPrice   = 75000,
+		achievement = 3497,		-- Volcanic Vanquisher
+		},
+	[192424] = {		--Systres Trinket Box, Painted
+		itemPrice   = 2500,
+		achievement = 3551,		-- Anointed Archdruid
+		},
+	[192421] = {		--The Druid King's Ivy Throne
+		itemPrice   = 50000,
+		achievement = 3501,		-- Savior of Galen
+		},
+	 },
+	},
+}
+
 
 FurC.AchievementVendors[FURC_DEPTHS] = {
 

@@ -88,6 +88,67 @@ local function getHouseString(houseId1, houseId2)		-- use collectible number fro
   return zo_strformat(housesource, houseName)
 end
 
+FurC.MiscItemSources[FURC_DRUID] = {
+
+[FURC_DROP] = {
+        [187922] = scrying .. " in Fargrave ", -- Antique Map of Fargrave",
+		[192430] = scrying .. " in Galen ", -- Vulk'esh Egg",
+        [192431] = scrying .. " in Galen ", -- Antique Map of Galen",
+        [192432] = scrying .. " in Galen (3 Pieces)", -- Shipbuilder's Woodworking Station",
+		
+		[192401] = tribute, -- The Chimera Tribute Tapestry",
+        [192402] = tribute, -- The Chimera Tribute Tapestry, Large",
+		[192403] = tribute, -- Forest Wraith Tribute Tapestry",
+        [192404] = tribute, -- Forest Wraith Tribute Tapestry, Large",
+},
+
+[FURC_RUMOUR] = {
+        [192583] = rumourSource, -- Clockwork Planter, Brassbloom",
+        [192405] = rumourSource, -- Maormer Tent, Raid Leader's",
+        [192406] = rumourSource, -- Maormer Ship's Prow, Serpentine",
+        [192407] = rumourSource, -- Maormer Tent, Raider's",
+        [192408] = rumourSource, -- Maormer Trunk, Carved",
+        [192409] = rumourSource, -- Maormer Cookfire",
+        [192410] = rumourSource, -- Maormer Chair, Carved",
+        [192412] = rumourSource, -- Maormer Curtain, Serpentine Cloth",
+        [192413] = rumourSource, -- Maormer Table, Carved",
+        [192414] = rumourSource, -- Maormer Armchair, Carved",
+        [192416] = rumourSource, -- Druid Ritual Stone",
+        [192418] = rumourSource, -- Maormer Mug, Serpentine",
+        [192420] = rumourSource, -- Maormer Rug, Serpentine",
+        [192421] = rumourSource, -- The Druid King's Ivy Throne",
+        [192422] = rumourSource, -- Maormer Half-Rug",
+        [192423] = rumourSource, -- Maormer Runner, Amethyst Waves",
+        [192424] = rumourSource, -- Systres Trinket Box, Painted",
+        [192425] = rumourSource, -- Maormer Teapot, Serpentine",
+        [192427] = rumourSource, -- Maormer Lamp, Serpentine",
+        [192429] = rumourSource, -- Maormer Sconce, Serpentine",
+        [192582] = rumourSource, -- Vines, Nirncrux",
+        [192581] = rumourSource, -- Reachfolk Banner, Ice Witch",
+        [192580] = rumourSource, -- Redguard Archway, Four-Column",
+        [192566] = rumourSource, -- Tree, Small Palm",
+        [192579] = rumourSource, -- Common Crate, Fabric Bolts",
+        [192578] = rumourSource, -- Orsinium Well, Snowy Grated",
+        [192577] = rumourSource, -- Orsinium Statue Base",
+        [192576] = rumourSource, -- Druidic Totem, Animal",
+        [192573] = rumourSource, -- Clockwork Illuminator, Spot",
+        [192572] = rumourSource, -- Inn Sign, Hanging",
+        [192571] = rumourSource, -- Grahtwood Banner, Hanging Inn",
+        [192570] = rumourSource, -- Decorative Wall Drape, Mauve",
+        [192569] = rumourSource, -- Alchemy Shelves, Filled",
+        [192568] = rumourSource, -- Fargrave Stall, Bone Merchant",
+        [192567] = rumourSource, -- Fuchsia Hosta",
+        [190938] = rumourSource, -- Music Box, Blessings of Stone",
+        [190939] = rumourSource, -- Music Box, Dawnbreaker's Forging",
+        [190940] = rumourSource, -- Music Box, Songbird's Paradise",
+        [190945] = rumourSource, -- Tree, Seasons of Y'ffre",
+        [190946] = rumourSource, -- Earthen Root Essence",
+        [190947] = rumourSource, -- Druidic Arch, Floral",
+        [190950] = rumourSource, -- Rose Petal Cascade",
+        [190951] = rumourSource, -- Target Spriggan, Robust",
+	},
+}
+
 FurC.MiscItemSources[FURC_DEPTHS] = {
 
 	[FURC_DROP] = {
@@ -101,16 +162,6 @@ FurC.MiscItemSources[FURC_DEPTHS] = {
         [189463] = rumourSource, -- Statue, Bendu Olo,
         [189464] = rumourSource, -- Music Box, Deeproot Dirge,
         [189465] = rumourSource, -- Music Box, Gonfalon Galliard,
-        [189473] = rumourSource, -- Elkhorn Coral, Verdant Sapling,
-        [189474] = rumourSource, -- Vvardenfell Anemone, Basket,
-        [189475] = rumourSource, -- Mummy, Skyward Gazing,
-        [189476] = rumourSource, -- Velothi Altar, Small,
-        [189477] = rumourSource, -- Elsweyr Window, Ritual,
-        [189478] = rumourSource, -- Elsweyr Moon Reflection Tower, Base,
-        [189479] = rumourSource, -- Bloodmage Crystal, Oval,
-        [189480] = rumourSource, -- Bloodmage Crystal, Oblong,
-        [189481] = rumourSource, -- Bone Sculpture, Circular,
-        [189482] = rumourSource, -- Bone Sconce, Arm,
         [188341] = rumourSource, -- Red Diamond Stained Glass,
         [188342] = rumourSource, -- Bat Swarm, Domesticated,
         [188343] = rumourSource, -- Moonlight Path Bridge,
@@ -197,8 +248,6 @@ FurC.MiscItemSources[FURC_TIDES] = {
         [184109] = rumourSource, -- Kelp Grouping, Robust,
         [184112] = rumourSource, -- Lilac Coral, Strong,
         [184126] = rumourSource, -- Waterfall Fountain, Round,
-        [184199] = rumourSource, -- Mushroom, Twisted Tufted Cap,
-        [184200] = rumourSource, -- Mushroom, Giant Glowtendril,
         [184201] = rumourSource, -- Elsweyr Brazier, Cold-Flame Column,
         [184202] = rumourSource, -- Altmer Brazier, Cold-Flame Column,
         [184205] = rumourSource, -- Sand Drift, Oceanic,
@@ -264,7 +313,7 @@ FurC.MiscItemSources[FURC_DEADL] = {
 		Ayleid
 		Sovngarde
 	
-	 Remove rumorsource items that have been given a source. No need for them to be listed multiple times.
+	 Remove rumoursource items that have been given a source. No need for them to be listed multiple times.
 	 
 	 Can I add a separate crown source for housing editor vs normal crown store? Seems like it should be fairly easy. Model after SI_FURC_CROWNSTORESOURCE and getCrownPrice
 	 

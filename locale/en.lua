@@ -229,6 +229,7 @@ FURC_AV_RAZ = "Razoufa",
   SI_FURC_FILTER_VERSION_TIDES = 	"Ascending Tide",
   SI_FURC_FILTER_VERSION_BRETON = 	"High Isle",
   SI_FURC_FILTER_VERSION_DEPTHS = 	"Lost Depths",
+  SI_FURC_FILTER_VERSION_DRUID = 	"Firesong",
 
 
   -- =============================== --
@@ -270,6 +271,7 @@ FURC_AV_RAZ = "Razoufa",
   SI_FURC_FILTER_VERSION_TIDES_TT =		"Redguard. Structural. Furnishings. (Kinda?)",
   SI_FURC_FILTER_VERSION_BRETON_TT = 	"Here be pirates",
   SI_FURC_FILTER_VERSION_DEPTHS_TT =	"What the heck is a Pangrit?",
+  SI_FURC_FILTER_VERSION_DRUID_TT = 	"Remember when we could block?",
 
   SI_FURC_FILTER_CHAR_OFF =     "Character filter: off", 
   SI_FURC_FILTER_CHAR_OFF_TT =  filterDisabled, 
