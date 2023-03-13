@@ -3,7 +3,7 @@ FurnitureCatalogue.name           = "FurnitureCatalogue"
 FurnitureCatalogue.author         = "manavortex"
 FurnitureCatalogue.tag            = "FurC"
 
-FurnitureCatalogue.version        = 4.6
+FurnitureCatalogue.version        = 4.7
 FurnitureCatalogue.CharacterName  = nil
 FurnitureCatalogue.settings       = {}
 
@@ -157,6 +157,7 @@ FurC.DropdownData = {
 		[FURC_BRETON]		= GetString(SI_FURC_FILTER_VERSION_BRETON),
 		[FURC_DEPTHS]		= GetString(SI_FURC_FILTER_VERSION_DEPTHS),
 		[FURC_DRUID]		= GetString(SI_FURC_FILTER_VERSION_DRUID),
+		[FURC_SCRIBE]		= GetString(SI_FURC_FILTER_VERSION_SCRIBE),
 	},
 	
 	TooltipsVersion  = {
@@ -184,6 +185,7 @@ FurC.DropdownData = {
 		[FURC_BRETON]		= GetString(SI_FURC_FILTER_VERSION_BRETON_TT),
 		[FURC_DEPTHS]		= GetString(SI_FURC_FILTER_VERSION_DEPTHS_TT),
 		[FURC_DRUID]		= GetString(SI_FURC_FILTER_VERSION_DRUID_TT),
+		[FURC_SCRIBE]		= GetString(SI_FURC_FILTER_VERSION_SCRIBE_TT),
 	},
 	
 	ChoicesCharacter  = {
