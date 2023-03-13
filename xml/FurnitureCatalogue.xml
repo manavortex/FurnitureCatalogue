@@ -38,7 +38,7 @@
                     <Label name="$(parent)_1" font="$(STONE_TABLET_FONT)|28|soft-shadow-thick" text="-Furniture Catalogue: ">
                       <Anchor point="LEFT" relativeTo="$(parent)" relativePoint="LEFT" offsetX="-40" />
                     </Label>
-                    <Label name="FurC_RecipeCount" font="$(STONE_TABLET_FONT)|24|soft-shadow-thick" mouseEnabled="true" resizeToFitDescendents="true">
+                    <Label name="FurC_RecipeCount" font="$(STONE_TABLET_FONT)|24|soft-shadow-thick" mouseEnabled="true" resizeToFitPadding="true">
                       <Anchor point="LEFT" relativeTo="$(parent)_1" relativePoint="RIGHT" offsetX="10" offsetY="1" />
                       <OnMouseEnter>  FurC.GuiShowTooltip(self, "number of recipes below")</OnMouseEnter>
                       <OnMouseExit>  FurC.GuiHideTooltip(self)</OnMouseExit>
