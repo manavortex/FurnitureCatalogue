@@ -5,9 +5,7 @@
 ## APIVersion: 101037
 ## SavedVariables: FurnitureCatalogue_Settings 
 ## DependsOn: LibCustomMenu LibAddonMenu-2.0 LibAsync
-## OptionalDependsOn: pChat rchat LibDebugLogger LibDebugViewer LibStub
-
-libs\LibCustomTitles.lua
+## OptionalDependsOn: pChat rchat LibDebugLogger LibDebugViewer
 
 _Constants.lua 
 
