@@ -926,10 +926,7 @@ FurC.MiscItemSources[FURC_MORROWIND]  = {             -- Morrowind
     [125543] = plants_vvardenfell,         -- Fern, Ashen
     [125633] = plants_vvardenfell,         -- Plants, Hanging Pitcher Pair
     [125680] = plants_vvardenfell,         -- Vines, Ashen Moss
-    
-    [125551] = plants_vvardenfell,         -- Flowers, Netch Cabbage
-    [125552] = plants_vvardenfell,         -- Flowers, Netch Cabbage Patch
-    [125553] = plants_vvardenfell,         -- Flowers, Netch Cabbage Stalks
+
     [125562] = plants_vvardenfell,         -- Grass, Foxtail Cluster
     [125595] = plants_vvardenfell,         -- Mushroom, Poison Pax Shelf
     [125596] = plants_vvardenfell,         -- Mushroom, Poison Pax Stool
@@ -946,9 +943,7 @@ FurC.MiscItemSources[FURC_MORROWIND]  = {             -- Morrowind
     [125621] = plants_vvardenfell,         -- Plant, Lava Brier
     [125622] = plants_vvardenfell,         -- Plant, Lava Leaf
     [125630] = plants_vvardenfell,         -- Plant, Young Elkhorn
-    [125631] = plants_vvardenfell,         -- Plants, Ash Frond
     [125632] = plants_vvardenfell,         -- Plants, Hanging Pitcher Cluster
-    [125633] = plants_vvardenfell,         -- Plants, Hanging Pitcher Pair
     [125634] = plants_vvardenfell,         -- Plants, Lava Pitcher Cluster
     [125635] = plants_vvardenfell,         -- Plants, Lava Pitcher Shoots
     [125636] = plants_vvardenfell,         -- Plants, Swamp Pitcher Cluster
