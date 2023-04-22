@@ -159,10 +159,9 @@ local strings = {
 
     -- Hide menu entries
   SI_FURC_STRING_MENU_HIDE_MENU =               "Hide menu entries?",
-  SI_FURC_STRING_MENU_HIDE_MENU_TT =            "Hides \"Crown store\" and \"Rumour recipes\" from the dropdown \nactivated for crown store by default, as there aren't any items yet",
+  SI_FURC_STRING_MENU_HIDE_MENU_TT =            "Hides \"Crown store\" and \"Rumour recipes\" from the dropdown \nactivated for crown store by default, as there aren't any items yet.\nRequires UI reload (won't happen automatically for your convenience)",
   SI_FURC_STRING_MENU_HIDE_MENU_RUMOUR =        "Hide \"Rumour recipes\" drop down entry?",
   SI_FURC_STRING_MENU_HIDE_MENU_CROWN =         "Hide \"Crown Store\" drop down entry?",
-  SI_FURC_STRING_MENU_HIDE_MENU_TT =            "Requires UI reload (won't happen automatically for your convenience)",
   SI_FURC_STRING_MENU_TOOLTIP =                 "Enable tooltips?",
   SI_FURC_STRING_MENU_TOOLTIP_COLOR =           "Colorize tooltips for clarity?",
   SI_FURC_STRING_MENU_TOOLTIP_COLOR_TT =        "Will colour 'can' and 'cannot'",
@@ -188,7 +187,6 @@ local strings = {
   SI_FURC_CROWN =               "Crown Store",
   SI_FURC_RUMOUR =              "Rumour items",
   SI_FURC_LUXURY =              "Luxury items",
-  SI_FURC_RUMOUR =              "Rumour items",
   SI_FURC_OTHER =               "Other",
 
   SI_FURC_FILTER_VERSION_OFF =      "Version filter: off",
@@ -266,7 +264,6 @@ local strings = {
   SI_FURC_ITEMSOURCE_SAFEBOX =  "extremely rarely from safeboxes",
   SI_FURC_CHEST_VV =              "Extremely rarely from chests on Vvardenfell",
   SI_FURC_DRAGON_DUNGEON_DROP =   "Fang Lair/Scalecaller Peak",
-  SI_FURC_DATAMINED_UNCLEAR =     "This item has been found in the sources/recipes for Summerset! \nIts origin isn't known yet.",
   SI_FURC_DATAMINED_UNCLEAR =     "This item has been confirmed existing, but its origin isn't known yet.",
   SI_FURC_ITEMSOURCE_ITEMPACK =   "Part of the Crown Store item pack [<<1>>] ",
   
