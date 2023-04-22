@@ -256,7 +256,7 @@ function FurnitureCatalogue_Initialize(eventCode, addOnName)
 	-- setup the "source" dropdown for the menu
 	setupSourceDropdown()
 
-	FurC.CreateSettings(FurC.settings, defaults, FurnitureCatalogue)
+	FurC.CreateSettings(FurC.settings, defaults)
 	FurC.Logger = FurC.getOrCreateLogger(true)
 	FurC.Logger:Debug("Initialising...")
 
