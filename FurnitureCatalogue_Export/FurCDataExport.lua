@@ -16,15 +16,13 @@ local function getSortTable(tbl)
 end
 
 function FurCExport.Export()
-    
   local itemNames = {}
-  local itemName
   for itemId, recipeArray in pairs(FurC.settings.data) do
-    if recipeArray.origin == FURC_CRAFTING then 
+    if recipeArray.origin == FURC_CRAFTING then
       itemNames[GetItemLinkName(FurC.GetItemLink(itemId))] = FurC.GetItemLink(itemId)
     end
   end
-  
+
   local tkeys = getSortTable(itemNames)
   local exportKnown = {}
   local exportUnknown = {}
@@ -32,7 +30,7 @@ function FurCExport.Export()
     local itemLink = itemNames[itemName]
     local recipeArray = FurC.Find(itemLink)
     local known = FurC.IsAccountKnown(itemLink, recipeArray)
-    
+
     local exportArray = (known and exportKnown) or exportUnknown
     local mats = FurC.GetMats(itemLink, recipeArray, false, true)
     local knowledge = (known and (FurC.GetCrafterList(itemLink, recipeArray) .. ": "):gsub("Can be crafted by ", "")) or ""
@@ -40,10 +38,9 @@ function FurCExport.Export()
     exportArray[itemName] = exportString
   end
 
-  FurCExport.settings.known     = exportKnown
-  FurCExport.settings.unknown   = exportUnknown
-  ReloadUI()
-  
+  FurCExport.settings.known   = exportKnown
+  FurCExport.settings.unknown = exportUnknown
+  ReloadUI('ingame')
 end
 
 SLASH_COMMANDS["/furcexport"] = function() FurCExport.Export() end

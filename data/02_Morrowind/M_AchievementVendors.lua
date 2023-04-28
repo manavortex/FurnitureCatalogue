@@ -122,9 +122,6 @@ local b2 = {
   [117959] = { -- Rough Container, Shipping
     itemPrice = 100,
   },
-  [117959] = { -- Rough Box, Slatted
-    itemPrice = 100,
-  },
   [117931] = { -- Rough Crate Lid
     itemPrice = 100,
   },
@@ -183,7 +180,7 @@ FurC.AchievementVendors[FURC_MORROWIND] = {
         achievement = 1867, -- Morrowind Grand Adventurer
       },
       [126624] = {          -- Banner of House Indoril
-        itemPrice   = 126624,
+        itemPrice   = 10000,
         achievement = 1867, -- Morrowind Grand Adventurer
       },
       [126628] = {          -- Banner, Morag Tong

@@ -215,10 +215,10 @@ local structures           = {
   [117961] = { -- Rough Block, Woodcutter's
     itemPrice = 100,
   },
-  [117987] = { -- Rough Plank, Long
+  [117986] = { -- Rough Plank, Long
     itemPrice = 100,
   },
-  [117961] = { -- Rough Planks, Narrow
+  [117987] = { -- Rough Planks, Narrow
     itemPrice = 100,
   },
   [117988] = { -- Rough Planks, Platform
@@ -237,9 +237,6 @@ local boxes                = {
     itemPrice = 100,
   },
   [117959] = { -- Rough Container, Shipping
-    itemPrice = 100,
-  },
-  [117959] = { -- Rough Box, Slatted
     itemPrice = 100,
   },
   [117931] = { -- Rough Crate Lid

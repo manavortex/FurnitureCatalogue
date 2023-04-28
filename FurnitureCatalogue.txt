@@ -16,6 +16,7 @@ xml\Bindings.xml
 xml\FurnitureCatalogue.xml
 
 startup.lua
+FurCUtil.lua
 
 FurCSettingsAdapter.lua
 FurCMenu.lua
@@ -65,8 +66,6 @@ data\RecipeSources.lua
 
 data\$(APIVersion).lua
 data\Custom.lua
-
-FurCUtil.lua
 
 FurCDatabaseQuery.lua
 FurCData.lua

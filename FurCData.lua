@@ -26,6 +26,9 @@ local function getItemId(itemLink)
 end
 FurC.GetItemId = getItemId
 
+--- Get item link from id
+--- @param itemId any
+--- @return string|nil
 local function getItemLink(itemId)
     if nil == itemId then return end
 	itemId = tostring(itemId)
@@ -292,8 +295,12 @@ function FurC.RescanRumourRecipes()
 			end
 		end
 	end
-	
-	task:Call(rescan):Then(FurC.UpdateGui)
+
+	if nil ~= task then
+		task:Call(rescan):Then(FurC.UpdateGui)
+	else
+		rescan()
+	end
 end
 
 local recipeArray
@@ -483,16 +490,26 @@ local function scanFromFiles(shouldScanCharacter)
 	end
     
 	FurC.IsLoading(true)
-	
-	task:Call(scanRecipeFile)
-	:Then(scanMiscItemFile)
-	:Then(scanVendorFiles)
-	:Then(scanRolis)
-	:Then(scanFestivalFiles)
-	:Then(scanCharacterOrMaybeNot)
-	:Then(scanRumourRecipes)
-	:Then(FurC.UpdateGui)
-	
+
+	if nil ~= task then
+		task:Call(scanRecipeFile)
+			:Then(scanMiscItemFile)
+			:Then(scanVendorFiles)
+			:Then(scanRolis)
+			:Then(scanFestivalFiles)
+			:Then(scanCharacterOrMaybeNot)
+			:Then(scanRumourRecipes)
+			:Then(FurC.UpdateGui)
+	else
+		scanRecipeFile()
+		scanMiscItemFile()
+		scanVendorFiles()
+		scanRolis()
+		scanFestivalFiles()
+		scanCharacterOrMaybeNot()
+		scanRumourRecipes()
+		FurC.UpdateGui()
+	end
 end
 FurC.ScanFromFiles = scanFromFiles
 
