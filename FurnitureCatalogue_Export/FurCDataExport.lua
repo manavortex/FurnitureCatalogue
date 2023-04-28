@@ -14,13 +14,9 @@ end
 
 function FurCExport.Export()
   local itemNames = {}
-  local itemName
   for itemId, recipeArray in pairs(FurC.settings.data) do
     if recipeArray.origin == FURC_CRAFTING then
-      local itemLink = FurC.GetItemLink(itemId)
-      if nil ~= itemLink then
-        itemNames[GetItemLinkName(itemLink)] = itemLink
-      end
+      itemNames[GetItemLinkName(FurC.GetItemLink(itemId))] = FurC.GetItemLink(itemId)
     end
   end
 
@@ -42,7 +38,7 @@ function FurCExport.Export()
 
   FurCExport.settings.known   = exportKnown
   FurCExport.settings.unknown = exportUnknown
-  ReloadUI("ingame")
+  ReloadUI('ingame')
 end
 
 SLASH_COMMANDS["/furcexport"] = function() FurCExport.Export() end

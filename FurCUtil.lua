@@ -1,8 +1,8 @@
----Merges Table1 into Table2, mutates Table1 inplace, replaces Table1 values if the same key
----@param t1 any
----@param t2 any
----@see ZO_CombineNonContiguousTables (for no entry replacement)
----@return table
+--- Merges Table2 into Table1, mutates Table1 inplace and replaces its values if they have the same key. Example: merge({a="1",b="3"},{b="2"}) => {a="1",b="2"}
+--- @param t1 any
+--- @param t2 any
+--- @see ZO_CombineNonContiguousTables (for no entry replacement)
+--- @return table
 function FurC.MergeTable(t1, t2)
   if nil == t2 and nil == t1 then
     return {}
