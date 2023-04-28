@@ -6,15 +6,7 @@ FURC_ITEMSOURCE_VENDOR = "Furnishing vendor"
 FurC.PVP[FURC_HOMESTEAD] = {
   [FURC_ITEMSOURCE_VENDOR] = {
     [FURC_CYRO] = {
-      [119656] = {        -- Pennant, Small
-        itemPrice   = 200,
-        achievement = 92, -- Volunteer
-      },
       [119634] = {        -- Pact Wall Banner, Small
-        itemPrice   = 400,
-        achievement = 93, -- Recruit
-      },
-      [119656] = {        -- Wall Banner, Small
         itemPrice   = 400,
         achievement = 93, -- Recruit
       },
@@ -26,6 +18,26 @@ FurC.PVP[FURC_HOMESTEAD] = {
         itemPrice   = 1000,
         achievement = 95, -- Legionary
       },
+      [119637] = {        -- Wall Banner, Large
+        itemPrice   = 3000,
+        achievement = 96, -- Veteran
+      },
+      [119638] = {        -- Point Capture Flag
+        itemPrice   = 4000,
+        achievement = 97, -- Corporal
+      },
+      [119639] = {        -- Spare figurehead
+        itemPrice   = 5000,
+        achievement = 98, -- Sergeant
+      },
+      [119656] = {        -- Pennant, Small
+        itemPrice   = 200,
+        achievement = 92, -- Volunteer
+      },
+      [119657] = {        -- Covenant Wall Banner, Small
+        itemPrice   = 400,
+        achievement = 93, -- Recruit
+      },
       [119675] = {        -- Defaced Covenant Flag
         itemPrice   = 2000,
         achievement = 110,
@@ -33,18 +45,6 @@ FurC.PVP[FURC_HOMESTEAD] = {
       [119629] = { -- Defaced Dominion Flag
         itemPrice   = 2000,
         achievement = 110,
-      },
-      [119637] = {         -- Wall Banner, Large
-        itemPrice   = 3000,
-        achievement = 96,  -- Veteran
-      },
-      [119638] = {         -- Point Capture Flag
-        itemPrice   = 4000,
-        achievement = 97,  -- Corporal
-      },
-      [119639] = {         -- Spare figurehead
-        itemPrice   = 5000,
-        achievement = 98,  -- Sergeant
       },
       [119655] = {         -- Keep Pennant
         itemPrice   = 8000,

@@ -1,4 +1,4 @@
-local db = FurnitureCatalogue.settings["data"]
+local db = FurC.settings["data"]
 
 function FurC.PrintCraftingStation(itemId, recipeArray)
   local craftingType = FurC.GetCraftingSkillType(itemId, recipeArray)

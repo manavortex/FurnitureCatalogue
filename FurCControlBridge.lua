@@ -1,4 +1,3 @@
-local FurC    = FurnitureCatalogue
 local control = FurnitureCatalogueControl
 FurC.Visible  = false
 

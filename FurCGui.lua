@@ -359,7 +359,7 @@ local function createGui()
   local function createInventoryDropdown(dropdownName)
     local controlName     = string.format("%s%s", "FurC_Dropdown", dropdownName)
     local control         = _G[controlName]
-    local dropdownData    = FurnitureCatalogue.DropdownData
+    local dropdownData    = FurC.DropdownData
     local validChoices    = dropdownData[string.format("%s%s", "Choices", dropdownName)]
     local choicesTooltips = dropdownData[string.format("%s%s", "Tooltips", dropdownName)]
     local comboBox

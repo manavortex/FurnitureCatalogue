@@ -2357,10 +2357,6 @@ FurC.AchievementVendors[FURC_HOMESTEAD] = {
         itemPrice   = 1000,
         achievement = 1360,
       },
-      [119974] = { -- Iron Wheel Banner
-        itemPrice   = 15000,
-        achievement = 1375,
-      },
       [119960] = { -- Jar of Green Dye
         itemPrice   = 500,
         achievement = 1361,
@@ -2381,7 +2377,7 @@ FurC.AchievementVendors[FURC_HOMESTEAD] = {
         itemPrice   = 25000,
         achievement = 1371,
       },
-      [119954] = { -- Statue of Shadows
+      [119971] = { -- Statue of Shadows
         itemPrice   = 25000,
         achievement = 1401,
       },
@@ -2443,7 +2439,7 @@ FurC.AchievementVendors[FURC_HOMESTEAD] = {
       [117981] = { -- Rough Firewood, Smoldering
         itemPrice = 100,
       },
-      [117976] = { -- Rough Hay Bed, Sloppy
+      [117975] = { -- Rough Hay Bed, Sloppy
         itemPrice = 100,
       },
       [117976] = { -- Rough Hay Bed, Covered

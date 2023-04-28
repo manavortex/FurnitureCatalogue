@@ -1,29 +1,28 @@
-FurnitureCatalogue               = {}
-FurnitureCatalogue.name          = "FurnitureCatalogue"
-FurnitureCatalogue.author        = "manavortex"
-FurnitureCatalogue.tag           = "FurC"
+FurC                    = {
+  name               = "FurnitureCatalogue",
+  author             = "manavortex",
+  tag                = "FurC",
+  version            = 5.0,
+  CharacterName      = nil,
 
-FurnitureCatalogue.version       = 5.0
-FurnitureCatalogue.CharacterName = nil
-FurnitureCatalogue.settings      = {}
+  AchievementVendors = {},
+  LuxuryFurnisher    = {},
+  Recipes            = {},
+  Rolis              = {},
+  Faustina           = {},
+  RolisRecipes       = {},
+  FaustinaRecipes    = {},
+  Books              = {},
+  EventItems         = {},
+  PVP                = {},
+  MiscItemSources    = {},
+  RumourRecipes      = {},
 
-FurC                             = FurnitureCatalogue
-
-FurC.AchievementVendors          = {}
-FurC.LuxuryFurnisher             = {}
-FurC.Recipes                     = {}
-FurC.Rolis                       = {}
-FurC.Faustina                    = {}
-FurC.RolisRecipes                = {}
-FurC.FaustinaRecipes             = {}
-FurC.Books                       = {}
-FurC.EventItems                  = {}
-FurC.PVP                         = {}
-FurC.MiscItemSources             = {}
-FurC.RumourRecipes               = {}
+  settings           = {},
+}
 
 -- TODO: set up the filtering for FURC_RUMOUR and FURC_CROWN in submenus by origin
-local defaults                   = {
+local defaults          = {
   hideMats             = true,
   dontScanTradingHouse = false,
   enableDebug          = false,
@@ -71,7 +70,7 @@ local defaults                   = {
 
 }
 
-local sourceIndicesKeys          = {}
+local sourceIndicesKeys = {}
 local function getSourceIndicesKeys()
   sourceIndicesKeys[FURC_NONE]             = "off"
   sourceIndicesKeys[FURC_FAVE]             = "favorites"

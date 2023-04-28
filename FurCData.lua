@@ -1,4 +1,4 @@
-local currentChar              = FurnitureCatalogue.CharacterName
+local currentChar              = FurC.CharacterName
 local task                     = LibAsync:Create("FurnitureCatalogue_ScanDataFiles")
 local task2                    = LibAsync:Create("FurnitureCatalogue_ScanCharacterKnowledge")
 local characterAlliance        = GetUnitAlliance('player')
@@ -571,7 +571,7 @@ function ShouldBeInFurC(link)
   link = FurC.GetItemLink(link)
 
   if IsItemLinkPlaceableFurniture(link) then
-    return nil == FurnitureCatalogue.settings.data[getItemId(link)]
+    return nil == FurC.settings.data[getItemId(link)]
   end
 
   -- if not IsItemLinkFurnitureRecipe(link) then	return false end
@@ -596,5 +596,5 @@ function ShouldBeInFurC(link)
   end
 
   -- yeah okay, it should actually return false, but this is a util function for datamining
-  return nil == FurnitureCatalogue.settings.data[resultId]
+  return nil == FurC.settings.data[resultId]
 end

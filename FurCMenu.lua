@@ -225,7 +225,7 @@ function FurC.CreateSettings(savedVars, defaults)
           -- dropdown: default character
           type    = "dropdown",
           name    = GetString(SI_FURC_STRING_MENU_DEFAULT_DD_CHAR),
-          choices = FurnitureCatalogue.DropdownData.ChoicesCharacter,
+          choices = FurC.DropdownData.ChoicesCharacter,
           getFunc = function() return FurC.GetDefaultDropdownChoiceText("Character") end,
           setFunc = function(value) FurC.SetDefaultDropdownChoice("Character", value) end
         },
@@ -233,7 +233,7 @@ function FurC.CreateSettings(savedVars, defaults)
           -- dropdown: default version
           type    = "dropdown",
           name    = GetString(SI_FURC_STRING_MENU_DEFAULT_DD_VERSION),
-          choices = FurnitureCatalogue.DropdownData.ChoicesVersion,
+          choices = FurC.DropdownData.ChoicesVersion,
           getFunc = function() return FurC.GetDefaultDropdownChoiceText("Version") end,
           setFunc = function(value) FurC.SetDefaultDropdownChoice("Version", value) end
         },

@@ -394,7 +394,7 @@ function FurC.SetDropdownChoice(dropdownName, textValue, dropdownIndex)
   if dropdownName == "Source" then
     if dropdownIndex > FURC_CRAFTING_UNKNOWN or dropdownIndex < FURC_CRAFTING then
       FurC.DropdownChoices["Character"] = 1
-      FurC_DropdownCharacter:GetNamedChild("SelectedItemText"):SetText(FurnitureCatalogue.DropdownData.ChoicesCharacter
+      FurC_DropdownCharacter:GetNamedChild("SelectedItemText"):SetText(FurC.DropdownData.ChoicesCharacter
         [1])
     end
   end
@@ -403,7 +403,7 @@ function FurC.SetDropdownChoice(dropdownName, textValue, dropdownIndex)
     if FurC.DropdownChoices["Source"] > FURC_CRAFTING_UNKNOWN or FurC.DropdownChoices["Source"] < FURC_CRAFTING then
       local knownIndex = FURC_CRAFTING_KNOWN
       FurC.DropdownChoices["Source"] = knownIndex
-      FurC_DropdownSource:GetNamedChild("SelectedItemText"):SetText(FurnitureCatalogue.DropdownData.ChoicesSource
+      FurC_DropdownSource:GetNamedChild("SelectedItemText"):SetText(FurC.DropdownData.ChoicesSource
         [knownIndex])
     end
   end
