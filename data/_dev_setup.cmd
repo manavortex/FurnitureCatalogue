@@ -1,5 +1,5 @@
 @echo off
-setlocal enabledelayedexpansion 
+setlocal enabledelayedexpansion
 
 WHERE git
 IF %ERRORLEVEL% NEQ 0 (
@@ -8,7 +8,7 @@ IF %ERRORLEVEL% NEQ 0 (
 )
 
 IF not exist "C:\Program Files\SmartGit" (
-	ECHO No installation of SmartGit was found. 
+	ECHO No installation of SmartGit was found.
 	ECHO If you installed it elsewhere or know what you're doing, you're fine.
 	echo Otherwise, please install it from https://www.syntevo.com/smartgit/download/
 )
@@ -30,7 +30,7 @@ if not exist "..\..\sidTools" (
 )
 
 if not exist "..\..\LibDebugLogger" (
-	echo AddOn LibDebugLogger not found. 
+	echo AddOn LibDebugLogger not found.
 	echo I strongly recommend installing it: https://www.esoui.com/downloads/info2275-LibDebugLogger.html
 	echo You probably already have it, a lot of AddOns pack it as a dependency. Make sure it is enabled.
 ) else (
@@ -51,10 +51,10 @@ if not exist "..\..\ZAM_Notebook" (
 	echo AddOn ZAM Notebook not found.
 	echo I recommend installing it: https://www.esoui.com/downloads/info244-ZAMNotebook.html
 	echo It lets you run LUA code straight from ESO, which will help you for assisted debugging.
-) 
+)
 
 echo.
-echo This file is your playground so you can fuck around and find out. 
+echo This file is your playground so you can fuck around and find out.
 if exist ".\Custom.lua" (
 	echo If you overwrite it, you will lose any changes you have made.
 )

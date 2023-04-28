@@ -1,7 +1,6 @@
 FurC.Recipes = FurC.Recipes or {}
 
 FurC.Recipes[FURC_HOMESTEAD] = {
-
   115721, -- Argonian Chimney Stack
   115722, -- Argonian Rack, Sturdy
   115723, -- Argonian Shelves, Half
@@ -1025,7 +1024,7 @@ FurC.Recipes[FURC_HOMESTEAD] = {
   -- 116214, -- Nord Banner, Bear
   -- 115786, -- Argonian Skiff, Common Reed
 
-  121207, -- Orcish Table with Fur  
+  121207, -- Orcish Table with Fur
 
   121372, -- Noble Standing Cauldron
   121059, -- Rough Cup, Empty
@@ -1051,6 +1050,4 @@ FurC.Recipes[FURC_HOMESTEAD] = {
   121207, -- Orcish Table with Fur
   121315, -- Target Skeleton, Robust Humanoid
   119592, -- Target Skeleton, Humanoid
-
 }
-

@@ -1,8 +1,3 @@
---[[
-  [""] = {    --
-  itemPrice     = 100,
-  },
-]]
 local bookList = {
   [126793] = { -- The 36 Lessons: Sermon 1
     itemPrice = 3611,
@@ -277,6 +272,7 @@ FurC.AchievementVendors[FURC_MORROWIND] = {
         achievement = 1868, -- Saviour of Morrowind
       },
     },
+
     ["Uzipa"] = {
       [120998] = { -- Block, Wood Cutting
         itemPrice = 100,
@@ -353,9 +349,9 @@ FurC.AchievementVendors[FURC_MORROWIND] = {
       [125676] = { -- Tree, Rooted Cedar
         itemPrice = 50000,
       },
-
     },
   },
+
   ["Vivec City, Gladiator's Quarters"] = {
     ["Brelda Ofemalen"] = {
       [126649] = {          -- Banner of the Fire Drakes
@@ -397,6 +393,7 @@ FurC.AchievementVendors[FURC_MORROWIND] = {
         achievement = 1910, -- Conquering Hero
       },
     },
+
     ["Llivas Driler"] = {
       [126716] = {          -- Brazier of the FD
         itemPrice   = 50000,
@@ -424,6 +421,7 @@ FurC.AchievementVendors[FURC_MORROWIND] = {
       },
     },
   },
+
   [GetString(FURC_AV_CAPITAL)] = {
     [GetString(FURC_AV_HER)] = {
       [126720] = {          -- Banner of Mayhem
@@ -452,11 +450,11 @@ FurC.AchievementVendors[FURC_MORROWIND] = {
       },
     },
   },
+
   ["the Mages' guild"] = {
     ["the Mystic as part of a collection"] = bookList,
   },
 }
-
 
 -- global function, needs to live here, YES MANA
 function FurC.SetupMorrowindItems()

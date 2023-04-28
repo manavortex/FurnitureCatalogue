@@ -1,5 +1,4 @@
 function FurCExport.makeSettings()
-  
   local settings = FurCExport.settings
 
   local LAM = LibAddonMenu2
@@ -7,7 +6,7 @@ function FurCExport.makeSettings()
     type = "panel",
     name = "FurnitureCatalogue_Export",
     displayName = "FurnitureCatalogue Export",
-     author = "manavortex",
+    author = "manavortex",
     version = "1.0.0",
     registerForRefresh = true,
     registerForDefaults = true,
@@ -15,9 +14,9 @@ function FurCExport.makeSettings()
 
   LAM:RegisterAddonPanel("FurnitureCatalogueExport_OptionsPanel", panelData)
   local optionsData = { -- optionsData
-  
-  
-    { -- description
+
+    {
+      -- description
       type = "description",
       name = "FurnitureCatalogue Export",
       text = (
@@ -25,17 +24,16 @@ function FurCExport.makeSettings()
         "SavedVariables folder inside  FurnitureCatalogue_Export.lua \n"
       ),
     },
-    { -- button: Reset database
+    {
+      -- button: Reset database
       type = "button",
       name = "Export data",
-      warning = "This will reload the UI",      
-      func = function() 
+      warning = "This will reload the UI",
+      func = function()
         FurCExport.Export()
       end,
-    },    
+    },
   }
-  
-  
-  LAM:RegisterOptionControls("FurnitureCatalogueExport_OptionsPanel", optionsData)
 
+  LAM:RegisterOptionControls("FurnitureCatalogueExport_OptionsPanel", optionsData)
 end

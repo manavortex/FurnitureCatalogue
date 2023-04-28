@@ -1,11 +1,3 @@
 FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
-FurC.LuxuryFurnisher[FURC_MORROWIND] = {
-
-
-
-
-
-
-}
-
+FurC.LuxuryFurnisher[FURC_MORROWIND] = {}

@@ -1,7 +1,7 @@
 FurC.Recipes = FurC.Recipes or {}
 
 FurC.Recipes[FURC_SLAVES] = {
-    
+
   145944, -- Praxis: Murkmire Chair, Engraved
   145945, -- Praxis: Murkmire Bench, Wide
   145946, -- Praxis: Murkmire Bench, Armless
@@ -271,4 +271,3 @@ FurC.Recipes[FURC_ALTMER] = {
   139648, -- Design: Alinor Amphora, Portrait
   139484, -- Blueprint: Alinor Writing Desk, Noble
 }
-

@@ -1,10 +1,9 @@
-<Bindings>
+<Bindings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="http://sir.insidi.at/or/schema/esobindings.xsd">
     <Layer name="SI_KEYBINDINGS_CATEGORY_GENERAL">
         <Category name="Furniture Catalogue Dev">
             <Action name="FURC_CONCAT_TO_TEXTBOX">
-                <Down>
-          FurnitureCatalogueDevUtility_AddToTextbox()
-        </Down>
+                <Down>FurnitureCatalogueDevUtility_AddToTextbox()</Down>
             </Action>
         </Category>
     </Layer>

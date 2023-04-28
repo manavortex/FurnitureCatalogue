@@ -1,15 +1,13 @@
-FurnitureCatalogue_Export     = {}
-FurCExport             = FurnitureCatalogue_Export
+FurnitureCatalogue_Export = {}
+FurCExport                = FurnitureCatalogue_Export
 
-
-local defaults           = {
+local defaults            = {
 }
-
 
 local function getSortTable(tbl)
   list = {}
-  for name,  value in pairs(tbl) do
-    list[#list+1] = name
+  for name, value in pairs(tbl) do
+    list[#list + 1] = name
   end
   table.sort(list)
   return list
@@ -33,7 +31,8 @@ function FurCExport.Export()
 
     local exportArray = (known and exportKnown) or exportUnknown
     local mats = FurC.GetMats(itemLink, recipeArray, false, true)
-    local knowledge = (known and (FurC.GetCrafterList(itemLink, recipeArray) .. ": "):gsub("Can be crafted by ", "")) or ""
+    local knowledge = (known and (FurC.GetCrafterList(itemLink, recipeArray) .. ": "):gsub("Can be crafted by ", "")) or
+        ""
     local exportString = zo_strformat("<<1>><<2>>", knowledge, mats)
     exportArray[itemName] = exportString
   end
@@ -45,15 +44,13 @@ end
 
 SLASH_COMMANDS["/furcexport"] = function() FurCExport.Export() end
 
-
 -- initialization stuff
 function FurCExport_Initialize(eventCode, addOnName)
   if (addOnName ~= "FurnitureCatalogue_Export") then return end
-  
-  FurCExport.settings   = ZO_SavedVars:NewAccountWide("FurnitureCatalogue_Export", nil, 0, defaults)
+
+  FurCExport.settings = ZO_SavedVars:NewAccountWide("FurnitureCatalogue_Export", nil, 0, defaults)
   FurCExport.makeSettings()
   EVENT_MANAGER:UnregisterForEvent("FurnitureCatalogue_Export", EVENT_ADD_ON_LOADED)
 end
-
 
 EVENT_MANAGER:RegisterForEvent("FurnitureCatalogue_Export", EVENT_ADD_ON_LOADED, FurCExport_Initialize)

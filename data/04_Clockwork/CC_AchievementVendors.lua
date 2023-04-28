@@ -1,5 +1,3 @@
-
-
 local bookList = {
   [134548] = { -- The Truth in Sequence, Volume 1
     itemPrice = 20000,
@@ -32,45 +30,43 @@ local bookList = {
     itemPrice = 20000,
   },
   [134558] = { --The Truth in Sequence: Volume 11,
-	itemPrice = 20000,
+    itemPrice = 20000,
   },
   [134559] = { --The Truth in Sequence: Volume 12,
-	itemPrice = 20000,
+    itemPrice = 20000,
   },
 }
 
-
 FurC.Books[FURC_CLOCKWORK] = bookList
 FurC.AchievementVendors[FURC_CLOCKWORK] = {
-    
   ["The Brass Citadel, Market"] = {
     ["Razoufa as part of a collection"] = bookList,
     ["Razoufa"] = {
-      [134285] = { -- Active Fabrication Tank
+      [134285] = {          -- Active Fabrication Tank
         itemPrice   = 75000,
         achievement = 2049, -- Hero of Clockwork City
       },
-      [134286] = { -- Clockwork Stylus
+      [134286] = {          -- Clockwork Stylus
         itemPrice   = 3000,
         achievement = 2068, -- CC Adventurer
       },
-      [134289] = { -- Energetic Anima Core
+      [134289] = {          -- Energetic Anima Core
         itemPrice   = 15000,
         achievement = 2072, -- Brass Fortress Quarter Master
-        },
-      [134284] = { -- Mysterious Clockwork Sphere
+      },
+      [134284] = {          -- Mysterious Clockwork Sphere
         itemPrice = 35000,
         achievement = 2018, -- CC Master explorer
       },
-      [134288] = { -- Skeleton Key Replica
+      [134288] = {          -- Skeleton Key Replica
         itemPrice = 7500,
         achievement = 2064, -- The Burden Of Knowledge
       },
-      [134283] = { -- The motionless Guardian
+      [134283] = {          -- The motionless Guardian
         itemPrice = 12000,
         achievement = 2067, -- Honorary Blackfeather
       },
-      [134547] = { -- The Truth in Sequence
+      [134547] = {          -- The Truth in Sequence
         itemPrice = 20000,
         achievement = 2069, -- Grand Adventurer
       },
@@ -134,4 +130,3 @@ FurC.AchievementVendors[FURC_CLOCKWORK] = {
     },
   },
 }
-

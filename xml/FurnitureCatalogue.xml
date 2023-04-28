@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <GuiXml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sir.insidi.at/or/schema/esoui.xsd">
   <Controls>
-    <!--- Main Window -->
+    <!---
+    Main Window -->
     <TopLevelControl name="FurCGui" clampedToScreen="true" movable="true" mouseEnabled="true" hidden="true" resizeHandleSize="10">
       <DimensionConstraints minX="850" minY="200" maxY="2000" />
       <Anchor point="TOPRIGHT" relativeTo="GUI_ROOT" relativePoint="TOPRIGHT" offsetX="-25" offsetY="40" />
@@ -94,9 +95,9 @@
                 <Control name="FurC_DropdownSource" inherits="ZO_ComboBox" mouseEnabled="true">
                   <Anchor point="TOPLEFT" relativeTo="$(parent)" relativePoint="TOPLEFT" offsetX="9" offsetY="10" />
                   <Dimensions x="230" y="28" />
-                  <OnShow>    FurC.GuiSetupDropdown(self)</OnShow>
-                  <OnMouseEnter>  FurC.GuiShowTooltip(self, "Filter: Knowledge and source", true)</OnMouseEnter>
-                  <OnMouseExit>  FurC.GuiHideTooltip(self)</OnMouseExit>
+                  <OnShow>FurC.GuiSetupDropdown(self)</OnShow>
+                  <OnMouseEnter>FurC.GuiShowTooltip(self, "Filter: Knowledge and source", true)</OnMouseEnter>
+                  <OnMouseExit>FurC.GuiHideTooltip(self)</OnMouseExit>
                 </Control>
                 <Control name="FurC_QualityFilter" mouseEnabled="true">
                   <Anchor point="TOPLEFT" relativeTo="FurC_DropdownSource" relativePoint="TOPRIGHT" offsetX="58" offsetY="3" />
@@ -105,9 +106,9 @@
                 <Control name="FurC_DropdownVersion" inherits="ZO_ComboBox" mouseEnabled="true">
                   <Anchor point="TOPLEFT" relativeTo="FurC_QualityFilter" relativePoint="TOPRIGHT" offsetX="30" />
                   <Dimensions x="235" y="28" />
-                  <OnShow>    FurC.GuiSetupDropdown(self)</OnShow>
-                  <OnMouseEnter>  FurC.GuiShowTooltip(self, "Filter: game version", true)</OnMouseEnter>
-                  <OnMouseExit>  FurC.GuiHideTooltip(self)</OnMouseExit>
+                  <OnShow>FurC.GuiSetupDropdown(self)</OnShow>
+                  <OnMouseEnter>FurC.GuiShowTooltip(self, "Filter: game version", true)</OnMouseEnter>
+                  <OnMouseExit>FurC.GuiHideTooltip(self)</OnMouseExit>
                 </Control>
               </Controls>
             </Control>
@@ -124,9 +125,9 @@
                 <Control name="FurC_DropdownCharacter" inherits="ZO_ComboBox" mouseEnabled="true">
                   <Anchor point="TOPLEFT" relativeTo="$(parent)" relativePoint="TOPLEFT" offsetX="9" offsetY="10" />
                   <Dimensions x="230" y="28" />
-                  <OnShow>    FurC.GuiSetupDropdown(self)</OnShow>
-                  <OnMouseEnter>  FurC.GuiShowTooltip(self, "Filter: Character", true)</OnMouseEnter>
-                  <OnMouseExit>  FurC.GuiHideTooltip(self)</OnMouseExit>
+                  <OnShow>FurC.GuiSetupDropdown(self)</OnShow>
+                  <OnMouseEnter>FurC.GuiShowTooltip(self, "Filter: Character", true)</OnMouseEnter>
+                  <OnMouseExit>FurC.GuiHideTooltip(self)</OnMouseExit>
                 </Control>
                 <!-- Crafting type filter -->
                 <Control name="FurC_TypeFilter" mouseEnabled="true" resizeToFitDescendents="true">
@@ -161,17 +162,17 @@
                   <Dimensions x="30" y="35" />
                   <Anchor point="RIGHT" relativeTo="FurC_Search" relativePoint="RIGHT" offsetY="3" />
                   <Textures normal="esoui/art/chatwindow/chat_notification_disabled.dds" pressed="esoui/art/chatwindow/chat_notification_echo.dds" mouseOver="esoui/art/chatwindow/chat_notification_over.dds" />
-                  <OnMouseEnter>  FurC.GuiShowTooltip(self, FurC.GetRumourTooltip())  </OnMouseEnter>
-                  <OnMouseExit>  FurC.GuiHideTooltip(self)  </OnMouseExit>
-                  <OnMouseUp>    FurC.SetShowRumours(not FurC.GetShowRumours())  </OnMouseUp>
+                  <OnMouseEnter>FurC.GuiShowTooltip(self, FurC.GetRumourTooltip())  </OnMouseEnter>
+                  <OnMouseExit>FurC.GuiHideTooltip(self)  </OnMouseExit>
+                  <OnMouseUp>FurC.SetShowRumours(not FurC.GetShowRumours())  </OnMouseUp>
                 </Button>
                 <Button name="FurC_ShowCrowns">
                   <Dimensions x="30" y="25" />
                   <Anchor point="RIGHT" relativeTo="FurC_ShowRumours" relativePoint="LEFT" offsetX="8" />
                   <Textures normal="esoui/art/bank/bank_tabicon_gold_up.dds" pressed="esoui/art/bank/bank_tabicon_gold_down.dds" mouseOver="esoui/art/bank/bank_tabicon_gold_over.dds" />
-                  <OnMouseEnter>  FurC.GuiShowTooltip(self, FurC.GetCrownTooltip())  </OnMouseEnter>
-                  <OnMouseExit>  FurC.GuiHideTooltip(self)  </OnMouseExit>
-                  <OnMouseUp>    FurC.SetShowCrownstore(not FurC.GetShowCrownstore())  </OnMouseUp>
+                  <OnMouseEnter>FurC.GuiShowTooltip(self, FurC.GetCrownTooltip())  </OnMouseEnter>
+                  <OnMouseExit>FurC.GuiHideTooltip(self)  </OnMouseExit>
+                  <OnMouseUp>FurC.SetShowCrownstore(not FurC.GetShowCrownstore())  </OnMouseUp>
                 </Button>
                 <Texture name="FurC_ShowRumoursGlow" textureFile="esoui/art/chatwindow/chat_notification_glow.dds">
                   <Anchor point="CENTER" relativeTo="FurC_ShowRumours" relativePoint="CENTER" />
@@ -241,22 +242,22 @@
     </TopLevelControl>
     <Button name="FurC_QualityFilterButton" virtual="true">
       <Dimensions x="35" y="35" />
-      <OnMouseEnter>  FurC.GuiVirtualMouseOver(self)  </OnMouseEnter>
-      <OnMouseExit>  FurC.GuiVirtualMouseOut(self)  </OnMouseExit>
-      <OnMouseUp>    FurC.GuiQualityMouseUp(self, button)  </OnMouseUp>
+      <OnMouseEnter>FurC.GuiVirtualMouseOver(self)  </OnMouseEnter>
+      <OnMouseExit>FurC.GuiVirtualMouseOut(self)  </OnMouseExit>
+      <OnMouseUp>FurC.GuiQualityMouseUp(self, button)  </OnMouseUp>
     </Button>
     <Button name="FurC_CraftingTypeFilterButton" virtual="true">
       <Dimensions x="40" y="40" />
-      <OnMouseEnter>  FurC.GuiVirtualMouseOver(self)  </OnMouseEnter>
-      <OnMouseExit>  FurC.GuiVirtualMouseOut(self)  </OnMouseExit>
-      <OnMouseUp>    FurC.GuiCraftingTypeMouseUp(self)  </OnMouseUp>
+      <OnMouseEnter>FurC.GuiVirtualMouseOver(self)  </OnMouseEnter>
+      <OnMouseExit>FurC.GuiVirtualMouseOut(self)  </OnMouseExit>
+      <OnMouseUp>FurC.GuiCraftingTypeMouseUp(self)  </OnMouseUp>
     </Button>
     <Control name="FurC_SlotTemplate" inherits="ZO_ListInventorySlotBehavior" virtual="true" mouseEnabled="true">
       <Dimensions x="300" />
-      <OnMouseEnter>      FurC.GuiLineOnMouseEnter(self)        </OnMouseEnter>
-      <OnMouseExit>      FurC.GuiLineOnMouseExit(self)        </OnMouseExit>
-      <OnMouseUp>        FurC.OnControlMouseUp(self, button)      </OnMouseUp>
-      <OnMouseDoubleClick>  FurC.OnControlDoubleClick(self)       </OnMouseDoubleClick>
+      <OnMouseEnter>FurC.GuiLineOnMouseEnter(self)        </OnMouseEnter>
+      <OnMouseExit>FurC.GuiLineOnMouseExit(self)        </OnMouseExit>
+      <OnMouseUp>FurC.OnControlMouseUp(self, button)      </OnMouseUp>
+      <OnMouseDoubleClick>FurC.OnControlDoubleClick(self)       </OnMouseDoubleClick>
       <Controls>
         <Texture name="$(parent)Bg" textureFile="EsoUI/Art/Miscellaneous/listItem_backdrop.dds" alpha="0.4">
           <AnchorFill />
@@ -279,10 +280,10 @@
     </Control>
     <Control name="FurC_SlotTemplateTiny" inherits="ZO_ListInventorySlotBehavior" virtual="true" mouseEnabled="true">
       <Dimensions x="300" />
-      <OnMouseEnter>      FurC.GuiLineOnMouseEnter(self)        </OnMouseEnter>
-      <OnMouseExit>      FurC.GuiLineOnMouseExit(self)        </OnMouseExit>
-      <OnMouseUp>        FurC.OnControlMouseUp(self, button)      </OnMouseUp>
-      <OnMouseDoubleClick>  FurC.OnControlDoubleClick(self)       </OnMouseDoubleClick>
+      <OnMouseEnter>FurC.GuiLineOnMouseEnter(self)</OnMouseEnter>
+      <OnMouseExit>FurC.GuiLineOnMouseExit(self)</OnMouseExit>
+      <OnMouseUp>FurC.OnControlMouseUp(self, button)</OnMouseUp>
+      <OnMouseDoubleClick>FurC.OnControlDoubleClick(self)</OnMouseDoubleClick>
       <Controls>
         <Texture name="$(parent)Bg" textureFile="EsoUI/Art/Miscellaneous/listItem_backdrop.dds" alpha="0.4">
           <AnchorFill />
@@ -309,13 +310,5 @@
     <Texture name="FurC_SlotIconKnownYes" color="00FF00" mouseEnabled="true" textureFile="esoui/art/cadwell/check.dds" virtual="true">
       <Dimensions x="24" y="24" />
     </Texture>
-    <!--
-      <Texture name="FurC_SlotIconKnownNo" color="FF0000" textureFile="esoui/art/miscellaneous/search_icon.dds" virtual="true">
-      <Dimensions x="30" y="30" />
-      </Texture>
-      <Texture name="FurC_SlotIconKnownNo" color="00FF00" textureFile="esoui/art/cadwell/check.dds" virtual="true">
-      <Dimensions x="30" y="30" />
-      </Texture>
-    -->
   </Controls>
 </GuiXml>

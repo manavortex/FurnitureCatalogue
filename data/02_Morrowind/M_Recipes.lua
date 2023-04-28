@@ -1,7 +1,6 @@
 FurC.Recipes = FurC.Recipes or {}
 
 FurC.Recipes[FURC_MORROWIND] = {
-
   126966, -- Redoran Trestle, Corridor
   126881, -- Dwarven Jar, Sealed
   126865, -- Dwarven Engine, Turbine
@@ -282,4 +281,3 @@ FurC.Recipes[FURC_MORROWIND] = {
   126957, -- Hlaalu Nightstand, Scholar's
   127037, -- Dres Rug, Chains
 }
-

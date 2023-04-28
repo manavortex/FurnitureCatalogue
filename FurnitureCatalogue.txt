@@ -1,13 +1,13 @@
 ## Title: FurnitureCatalogue
 ## Author: manavortex
 
-## Version: 4.7
+## Version: 5.0
 ## APIVersion: 101037
-## SavedVariables: FurnitureCatalogue_Settings 
+## SavedVariables: FurnitureCatalogue_Settings
 ## DependsOn: LibCustomMenu LibAddonMenu-2.0 LibAsync
-## OptionalDependsOn: pChat rchat LibDebugLogger LibDebugViewer
+## OptionalDependsOn: LibDebugLogger LibDebugViewer LibFurniture>=1 LibCharacterKnowledge>=11
 
-_Constants.lua 
+_Constants.lua
 
 locale\en.lua
 locale\$(language).lua

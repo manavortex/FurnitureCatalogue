@@ -1,16 +1,13 @@
-<Bindings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sir.insidi.at/or/schema/esobindings.xsd">
-    <Layer name="SI_KEYBINDINGS_CATEGORY_GENERAL">
-        <Category name="Furniture Catalogue">
-            <Action name="TOGGLE_FURNITURE_CATALOGUE">
-                <Down>
-                  FurnitureCatalogue_Toggle()
-                </Down>
-            </Action>
-            <Action name="TOGGLE_FURNITURE_CATALOGUE_RECIPE">
-                <Down>
-                  FurnitureCatalogue_ToggleRecipeDisplay()
-                </Down>
-            </Action>
-        </Category>
-    </Layer>
+<Bindings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="http://sir.insidi.at/or/schema/esobindings.xsd">
+  <Layer name="SI_KEYBINDINGS_CATEGORY_GENERAL">
+    <Category name="Furniture Catalogue">
+      <Action name="TOGGLE_FURNITURE_CATALOGUE">
+        <Down>FurnitureCatalogue_Toggle()</Down>
+      </Action>
+      <Action name="TOGGLE_FURNITURE_CATALOGUE_RECIPE">
+        <Down>FurnitureCatalogue_ToggleRecipeDisplay()</Down>
+      </Action>
+    </Category>
+  </Layer>
 </Bindings>

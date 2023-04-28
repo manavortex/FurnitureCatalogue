@@ -31,10 +31,12 @@ local strings = {
   FURC_AV_BSM = "Forgerons",
   FURC_AV_ARTAEUM = "Artaeum",
   FURC_AV_CAPITAL = "N'importe quelle capitale",
+
   -- Furniture Shopping List
   SI_FURC_ONE_TO_SHOPPINGLIST = " Ajouter 1 à la liste de courses",
   SI_FURC_FIVE_TO_SHOPPINGLIST = " Ajouter 5 à la liste de courses",
   SI_FURC_TOGGLE_SHOPPINGLIST = " Basculer la liste de courses",
+
   -- GUI and debug
   SI_FURC_MENU_HEADER = "- |cD3B830Meubles|r:",
   SI_FURC_REMOVE_FAVE = " Supprimer le favori",
@@ -83,6 +85,7 @@ local strings = {
   SI_FURC_ELF_PIC = "Tombe rarement dans les coffres au trésor à Summerset",
   SI_FURC_LEVELUP = "Peut être gagné comme récompense de niveau supérieur",
   SI_FURC_SLAVES_DAILY = "Des boîtes de récompense de la préquête de Murkmire",
+
   -- =============================== --
   -- ============ MENU ============= --
   -- =============================== --
@@ -163,6 +166,7 @@ local strings = {
   SI_FURC_STRING_MENU_CROWN_DESC =
   "La base de données de meubles sera mise à jour chaque fois que l'info-bulle affiche un meuble. \nCertains articles ne peuvent être achetés que via la boutique à couronnes. \nCochez cette case pour les exclure des filtres par défaut (vous pouvez toujours les voir en sélectionnant 'Boutique à Couronnes' dans la liste déroulante des sources).",
   SI_FURC_STRING_MENU_FALL_HIDE_UI_BUTTON = "Masquer le bouton de l'UI dans la zone de recherche?",
+
   -- Filter text search
   SI_FURC_STRING_MENU_HEADER_F_ALL_ON_TEXT = "Paramètres de filtre pour la recherche de texte",
   SI_FURC_STRING_MENU_F_ALL_ON_TEXT = "Configurer ce filtre",
@@ -180,6 +184,7 @@ local strings = {
   SI_FURC_STRING_MENU_FALL_HIDE_RUMOUR = "Cacher quand même les éléments signalé (Rumeur)",
   SI_FURC_STRING_MENU_FALL_HIDE_RUMOUR_TT =
   "Même lorsque vous filtrez tous les éléments, masquez toujours les éléments signalé (Rumeur)?",
+
   -- Hide menu entries
   SI_FURC_STRING_MENU_HIDE_MENU = "Masquer les entrées de menu?",
   SI_FURC_STRING_MENU_HIDE_MENU_TT =
@@ -196,6 +201,7 @@ local strings = {
   SI_FURC_STRING_MENU_TOOLTIP_HIDE_SOURCE = "Masquer la source de l'article?",
   SI_FURC_STRING_MENU_TOOLTIP_HIDE_STATION = "Masquer la station d'artisanat?",
   SI_FURC_STRING_MENU_TOOLTIP_HIDE_MATERIAL = "Masquer les matériaux?",
+
   -- =============================== --
   -- ==== GUI: Dropdown entries ==== --
   -- =============================== --
@@ -227,6 +233,7 @@ local strings = {
   SI_FURC_FILTER_VERSION_HARROW = "Harrowstorm",
   SI_FURC_FILTER_VERSION_SKYRIM = "Greymoor",
   SI_FURC_FILTER_VERSION_STONET = "Stonethorn",
+
   -- =============================== --
   -- = GUI: Dropdown entry tooltip = --
   -- =============================== --
@@ -260,14 +267,17 @@ local strings = {
   SI_FURC_FILTER_VERSION_STONET_TT = "Ce n'est pas vraiment de la pierre",
   SI_FURC_FILTER_CHAR_OFF = "Filtre de Personnages: désactivé",
   SI_FURC_FILTER_CHAR_OFF_TT = "Filtre Désactivé",
+
   -- =============================== --
   -- ========= GUI: Heading ======== --
   -- =============================== --
 
   SI_FURC_LABEL_ENTRIES = " entrées -",
+
   -- =============================== --
   -- ========= Item Sources ======== --
   -- =============================== --
+
   SI_FURC_CANBEPICKED = "Peut être volé à la tire ",
   SI_FURC_CANBESTOLEN = "Peut être volé ",
   SI_FURC_CANBESCRYED = "A partir des Pistes ",
@@ -302,7 +312,6 @@ local strings = {
   SI_FURC_ITEMSOURCE_ITEMPACK = "Fait partie du pack d'objets de la Boutique à Couronnes [<<1>>] ",
   SI_FURC_SEEN_IN_GUILDSTORE = "Vu dans le magasin de guilde",
 }
-
 
 for stringId, stringValue in pairs(strings) do
   ZO_CreateStringId(stringId, stringValue)

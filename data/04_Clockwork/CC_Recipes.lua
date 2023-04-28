@@ -1,4 +1,5 @@
 FurC.Recipes = FurC.Recipes or {}
+
 FurC.Recipes[FURC_CLOCKWORK] = {
   134527, -- Design: Clockwork Meal, Dish
   134512, -- Diagram: Clockwork Table, Octagonal

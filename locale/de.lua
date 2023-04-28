@@ -27,10 +27,12 @@ local strings = {
   FURC_AV_BSM                                 = "blacksmiths",
   FURC_AV_ARTAEUM                             = "Artaeum",
   FURC_AV_CAPITAL                             = "any capital city",
+
   -- Furniture Shopping List
   SI_FURC_ONE_TO_SHOPPINGLIST                 = "Add 1 to shopping list",
   SI_FURC_FIVE_TO_SHOPPINGLIST                = "Add 5 to shopping list",
   SI_FURC_TOGGLE_SHOPPINGLIST                 = " Toggle shopping list",
+
   -- GUI and debug
   SI_FURC_MENU_HEADER                         = "- |cD3B830Furniture|r:",
   SI_FURC_REMOVE_FAVE                         = " Remove Favorite",
@@ -153,6 +155,7 @@ local strings = {
   SI_FURC_STRING_MENU_CROWN_DESC              =
   "Some items can only be acquired via crown store. \nCheck this box to exclude them from the default filters (You can still view them by selecting the corresponding source from the dropdown).",
   SI_FURC_STRING_MENU_FALL_SHOW_UI_BUTTON     = "Show UI button in search box?",
+
   -- Filter text search
   SI_FURC_STRING_MENU_HEADER_F_ALL_ON_TEXT    = "Filter settings for text search",
   SI_FURC_STRING_MENU_F_ALL_ON_TEXT           = "Configure this filter",
@@ -166,6 +169,7 @@ local strings = {
   SI_FURC_STRING_MENU_FALL_HIDE_CROWN_TT      = "Even when filtering all items, still hide crown store items?",
   SI_FURC_STRING_MENU_FALL_HIDE_RUMOUR        = "Hide rumour items anyway",
   SI_FURC_STRING_MENU_FALL_HIDE_RUMOUR_TT     = "Even when filtering all items, still hide rumour items?",
+
   -- Hide menu entries
   SI_FURC_STRING_MENU_HIDE_MENU               = "Hide menu entries?",
   SI_FURC_STRING_MENU_HIDE_MENU_TT            =
@@ -207,6 +211,7 @@ local strings = {
   SI_FURC_FILTER_VERSION_ALTMER               = "Summerset",
   SI_FURC_FILTER_VERSION_WEREWOLF             = "Wolfhunter",
   SI_FURC_FILTER_VERSION_SLAVES               = "Murkmire",
+
   -- =============================== --
   -- = GUI: Dropdown entry tooltip = --
   -- =============================== --

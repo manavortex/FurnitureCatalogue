@@ -1,5 +1,4 @@
-local db    = FurnitureCatalogue.settings["data"]
-
+local db = FurnitureCatalogue.settings["data"]
 
 function FurC.PrintCraftingStation(itemId, recipeArray)
   local craftingType = FurC.GetCraftingSkillType(itemId, recipeArray)
@@ -8,7 +7,6 @@ function FurC.PrintCraftingStation(itemId, recipeArray)
 end
 
 local function prefillChatBox(output, refresh)
-
   output = zo_strformat(output)
   if nil == output or FURC_EMPTY_STRING == output then return end
   local editControl = CHAT_SYSTEM.textEntry.editControl
@@ -75,7 +73,6 @@ function FurC.FindByName(namePart)
 end
 
 local function capitalise(str)
-  str = str:gsub("^(%l)(%w*)", function(a,b) return string.upper(a)..b end)
+  str = str:gsub("^(%l)(%w*)", function(a, b) return string.upper(a) .. b end)
   return str
 end
-

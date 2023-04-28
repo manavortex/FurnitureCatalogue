@@ -3,9 +3,9 @@
 @echo off
 setlocal enableextensions enabledelayedexpansion
 
-:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: 
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 :: variables: You can adjust the script here
-:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: 
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 :: Set URL of website to anything but "" to open the page after packaging is complete
 REM SET ESOUI_URL=""
 SET ESOUI_URL="https://www.esoui.com/downloads/editfile.php?id=1617"
@@ -15,7 +15,7 @@ SET ESOUI_URL="https://www.esoui.com/downloads/editfile.php?id=1617"
 REM SET TARGET_DIRECTORY=""
 SET TARGET_DIRECTORY="%USERPROFILE%\ZIPS"
 
-:: Set github branch to anything but "" to have this script automatically push to github 
+:: Set github branch to anything but "" to have this script automatically push to github
 :: SET GITHUB_BRANCH=""
 SET GITHUB_BRANCH="master"
 
@@ -41,7 +41,7 @@ for /F "tokens=3" %%i in ('findstr /C:"## Version:" %name%.txt') do set version=
 IF NOT %GITHUB_BRANCH% == "" (
 	echo * Pushing to github branch %GITHUB_BRANCH% with commit message %version%...
 	git commit -am "%version%"
-	:: Strip ""s 
+	:: Strip ""s
 	git push origin %GITHUB_BRANCH:"=%
 )
 
@@ -68,7 +68,7 @@ if exist package.manifest (
 robocopy . .package\%name% %files% /S /XD .* /NJH /NJS /NFL /NDL > nul
 
 :: zip it
-pushd .package 
+pushd .package
 if not "%DELETE_CUSTOM_FILENAME%" == "" (
 	del /S "%DELETE_CUSTOM_FILENAME%"
 )

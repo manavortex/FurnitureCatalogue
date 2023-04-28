@@ -1,7 +1,9 @@
-FurC.AchievementVendors    = FurC.AchievementVendors or {}
-FurC.Books                 = FurC.Books or {}
+FurC.AchievementVendors                 = FurC.AchievementVendors or {}
+FurC.Books                              = FurC.Books or {}
 
-local jesterVendor         = {
+local merge                             = FurC.MergeTable
+
+local jesterVendor                      = {
   -- tree, Jester's Large
   [120994] = {
     itemPrice   = 15000,
@@ -56,7 +58,7 @@ local jesterVendor         = {
   },
 }
 
-local capitalVendor        = {
+local capitalVendor                     = {
   [119987] = { -- Coldharbour Urn
     itemPrice   = 5000,
     achievement = 993,
@@ -151,7 +153,7 @@ local capitalVendor        = {
   },
 }
 
-local furnishingVendor     = {
+local furnishingVendor                  = {
   [120998] = { -- Block,Wood Cutting
     itemPrice = 100,
   },
@@ -175,7 +177,7 @@ local furnishingVendor     = {
   },
 }
 
-local morrowindStones      = {
+local morrowindStones                   = {
   [120563] = { -- Stone,Jagged Grey
     itemPrice = 100,
   },
@@ -193,7 +195,7 @@ local morrowindStones      = {
   },
 }
 
-local structures           = {
+local structures                        = {
   [117984] = { -- Rough Block, Dark Stone
     itemPrice = 100,
   },
@@ -232,7 +234,7 @@ local structures           = {
   },
 }
 
-local boxes                = {
+local boxes                             = {
   [120998] = { -- Block,Wood Cutting
     itemPrice = 100,
   },
@@ -259,7 +261,7 @@ local boxes                = {
   },
 }
 
-local laundry              = {
+local laundry                           = {
   [117968] = { -- Rough Clothesline, Full
     itemPrice = 100,
   },
@@ -283,7 +285,7 @@ local laundry              = {
   },
 }
 
-local fishing_trip         = {
+local fishing_trip                      = {
   [117965] = { -- Rough Campfire, Doused
     itemPrice = 100,
   },
@@ -298,7 +300,7 @@ local fishing_trip         = {
   },
 }
 
-local bookList             = {
+local bookList                          = {
   [120197] = { -- 16 accords of madness, vol vi
     itemPrice = 500,
   },
@@ -1191,15 +1193,9 @@ local bookList             = {
     itemPrice = 500,
   },
 }
+FurC.Books[FURC_HOMESTEAD]              = bookList
 
-FurC.Books[FURC_HOMESTEAD] = bookList
---[[
-      [""] = {    --
-        itemPrice   = 100,
-      },
-]]
-local miscVendor = FurC.MergeTable(FurC.MergeTable(FurC.MergeTable(structures, boxes), laundry), fishing_trip)
-
+local miscVendor                        = merge(merge(merge(structures, boxes), laundry), fishing_trip)
 
 FurC.AchievementVendors[FURC_HOMESTEAD] = {
   [GetString(FURC_AV_CAPITAL)]                        = {
@@ -1247,8 +1243,8 @@ FurC.AchievementVendors[FURC_HOMESTEAD] = {
     },
 
   },
-  ["Dhalmora, Bal Foyen"]                             = {
 
+  ["Dhalmora, Bal Foyen"]                             = {
     [GetString(FURC_AV_FRO)] = {
       [120502] = { -- Flower, Grandmother Hibiscus
         itemPrice = 1000,
@@ -1268,8 +1264,8 @@ FurC.AchievementVendors[FURC_HOMESTEAD] = {
       [120622] = { -- Vines, Clustered Ivy
         itemPrice = 600,
       },
-
     },
+
     [GetString(FURC_AV_LTS)] = {
       [120956] = { -- Atmoran Eagle Totem Medallion
         itemPrice   = 3000,
@@ -1284,10 +1280,9 @@ FurC.AchievementVendors[FURC_HOMESTEAD] = {
         achievement = 194,
       },
     },
-
   },
-  ["Stonefalls, Ebonheart"]                           = {
 
+  ["Stonefalls, Ebonheart"]                           = {
     [GetString(FURC_AV_FRO)] = {
       [120502] = { -- Flower, Grandmother Hibiscus
         itemPrice = 1000,
@@ -1300,9 +1295,9 @@ FurC.AchievementVendors[FURC_HOMESTEAD] = {
         itemPrice = 250,
       },
 
-      [120621] = {   -- Plant, Red Aloe
+      [120621] = {    -- Plant, Red Aloe
         itemPrice = 250,
-      },[120620] = { -- Plant, Red Aloe Succulent
+      }, [120620] = { -- Plant, Red Aloe Succulent
       itemPrice = 250,
     },
       [120618] = { -- Tree, Gnarled Ashflower
@@ -1347,12 +1342,10 @@ FurC.AchievementVendors[FURC_HOMESTEAD] = {
         achievement = 204,
       },
     },
-
   },
+
   ["Eastmarch, Fort Amol"]                            = {
-
     [GetString(FURC_AV_FRO)] = miscVendor,
-
 
     [GetString(FURC_AV_LTS)] = {
       [119905] = { -- Dragon Shrine Altar
@@ -1512,6 +1505,7 @@ FurC.AchievementVendors[FURC_HOMESTEAD] = {
     },
     [GetString(FURC_AV_ROH)] = miscVendor,
   },
+
   ["Bangkorai, Evermore"]                             = {
     [GetString(FURC_AV_LOT)] = {
       [119885] = { -- ceremonial Redguard vessel
@@ -1536,6 +1530,7 @@ FurC.AchievementVendors[FURC_HOMESTEAD] = {
       },
 
     },
+
     [GetString(FURC_AV_ROH)] = {
       [120449] = { -- Bush, Desert Scrub
         itemPrice = 100,
@@ -1568,9 +1563,6 @@ FurC.AchievementVendors[FURC_HOMESTEAD] = {
         itemPrice = 100,
       },
       [120441] = { -- Sapling, Short Highland
-        itemPrice = 100,
-      },
-      [120443] = { -- Sapling, Strong Highland
         itemPrice = 100,
       },
       [120443] = { -- Sapling, Tall Highland
@@ -1606,9 +1598,9 @@ FurC.AchievementVendors[FURC_HOMESTEAD] = {
       [120448] = { -- Tree, old Juniper
         itemPrice = 100,
       },
-
     },
   },
+
   ["Bethnikh, near tavern"]                           = {
     [GetString(FURC_AV_LOT)] = {
       [119984] = { -- Pirate Banner
@@ -1616,8 +1608,10 @@ FurC.AchievementVendors[FURC_HOMESTEAD] = {
         achievement = 415,
       },
     },
+
     [GetString(FURC_AV_ROH)] = miscVendor,
   },
+
   ["Glenumbra, Daggerfall, The Rosy Lion"]            = {
     [GetString(FURC_AV_LOT)] = {
       [119855] = { -- Wyrdstone
@@ -1641,6 +1635,7 @@ FurC.AchievementVendors[FURC_HOMESTEAD] = {
         achievement = 953,
       },
     },
+
     [GetString(FURC_AV_ROH)] = {
       [121011] = { -- Trees, young autumn birch
         itemPrice = 100,
@@ -1678,9 +1673,9 @@ FurC.AchievementVendors[FURC_HOMESTEAD] = {
       [120706] = { -- Boulder, Giant Mossy
         itemPrice = 100,
       },
-
     },
   },
+
   ["Rivenspire, Shornhelm, Dead Wolf Inn"]            = {
     [GetString(FURC_AV_LOT)] = {
       [119871] = { -- Wagon of DEATH
@@ -1712,6 +1707,7 @@ FurC.AchievementVendors[FURC_HOMESTEAD] = {
         achievement = 955,
       },
     },
+
     [GetString(FURC_AV_ROH)] = {
       [120578] = { -- Sapling, Young Aspen
         itemPrice = 100,
@@ -1727,6 +1723,7 @@ FurC.AchievementVendors[FURC_HOMESTEAD] = {
       },
     },
   },
+
   ["Stormhaven, Wayrest, Merchant district"]          = {
     [GetString(FURC_AV_LOT)] = {
       [119865] = { -- Wayrest Guillotine
@@ -1750,8 +1747,8 @@ FurC.AchievementVendors[FURC_HOMESTEAD] = {
         achievement = 154,
       },
     },
-    [GetString(FURC_AV_ROH)] = {
 
+    [GetString(FURC_AV_ROH)] = {
       [120582] = { -- Tree, Yellowing Oak
         itemPrice = 20000,
       },
@@ -1766,6 +1763,7 @@ FurC.AchievementVendors[FURC_HOMESTEAD] = {
       },
     }
   },
+
   ["Skywatch, Auridon"]                               = {
     [GetString(FURC_AV_ATH)] = {
       [119823] = { -- Tanzelwil Culanda Stone
@@ -1789,6 +1787,7 @@ FurC.AchievementVendors[FURC_HOMESTEAD] = {
         achievement = 604,
       },
     },
+
     [GetString(FURC_AV_MAL)] = {
       [120663] = { -- Saplings, Healthy Forest
         itemPrice = 100,
@@ -1802,6 +1801,7 @@ FurC.AchievementVendors[FURC_HOMESTEAD] = {
 
     },
   },
+
   ["Greenshade, Marbruk"]                             = {
     [GetString(FURC_AV_MAL)] = {
       [120597] = { -- Fern Plant, Vibrant
@@ -1843,9 +1843,7 @@ FurC.AchievementVendors[FURC_HOMESTEAD] = {
       [120586] = { -- Boulder, Moss Covered
         itemPrice = 250,
       },
-
     },
-
 
     [GetString(FURC_AV_ATH)] = {
       [119839] = { -- Fires of the WIlderking
@@ -1869,8 +1867,8 @@ FurC.AchievementVendors[FURC_HOMESTEAD] = {
         achievement = 610,
       },
     },
-
   },
+
   ["Khenarthi's Roost, Mistral"]                      = {
     [GetString(FURC_AV_MAL)] = miscVendor,
     [GetString(FURC_AV_ATH)] = {
@@ -1879,6 +1877,7 @@ FurC.AchievementVendors[FURC_HOMESTEAD] = {
       },
     },
   },
+
   ["Malabal Tor, Vulkwaesten, tavern"]                = {
     [GetString(FURC_AV_MAL)] = {
       [120529] = { -- Fern Cluster, Healthy
@@ -1939,6 +1938,7 @@ FurC.AchievementVendors[FURC_HOMESTEAD] = {
         itemPrice = 600,
       },
     },
+
     [GetString(FURC_AV_ATH)] = {
       [119847] = { -- Handfast
         itemPrice   = 25000,
@@ -1962,6 +1962,7 @@ FurC.AchievementVendors[FURC_HOMESTEAD] = {
       },
     },
   },
+
   ["Grahtwood, Redfur Trading Post"]                  = {
     [GetString(FURC_AV_MAL)] = {
       [120725] = { -- Boulder, Mossy Crag
@@ -1992,6 +1993,7 @@ FurC.AchievementVendors[FURC_HOMESTEAD] = {
         itemPrice = 100,
       },
     },
+
     [GetString(FURC_AV_ATH)] = {
       [119834] = { -- Aulus's Captive Audience
         itemPrice   = 10000,
@@ -2015,6 +2017,7 @@ FurC.AchievementVendors[FURC_HOMESTEAD] = {
       },
     },
   },
+
   ["Reaper's March, Rawl'Kha, Market"]                = {
     [GetString(FURC_AV_MAL)] = {
       [120998] = { -- Block, Wood Cutting
@@ -2083,8 +2086,8 @@ FurC.AchievementVendors[FURC_HOMESTEAD] = {
       [120558] = { -- Sapling, Eucalyptus Shrub
         itemPrice = 100,
       },
-
     },
+
     [GetString(FURC_AV_ATH)] = {
       [119848] = { -- Colovian Projection Crystal
         itemPrice   = 5000,
@@ -2116,6 +2119,7 @@ FurC.AchievementVendors[FURC_HOMESTEAD] = {
       },
     },
   },
+
   ["Craglorn, Belkarth Woodworking store"]            = {
     [GetString(FURC_AV_LOT)] = {
       [119933] = { -- Craglorn Brazier
@@ -2150,8 +2154,8 @@ FurC.AchievementVendors[FURC_HOMESTEAD] = {
         itemPrice   = 10000,
         achievement = 1143,
       },
-
     },
+
     [GetString(FURC_AV_KRR)] = {
       [120964] = { -- Boulder, Craggy Heap
         itemPrice = 100,
@@ -2234,11 +2238,10 @@ FurC.AchievementVendors[FURC_HOMESTEAD] = {
       [120550] = { -- Tree, Twisted
         itemPrice = 100,
       },
-
     },
   },
-  ["Coldharbour, Hollow City, Cicero's General Good"] = {
 
+  ["Coldharbour, Hollow City, Cicero's General Good"] = {
     [GetString(FURC_AV_LOT)] = {
       [119828] = { -- Ayleid Throne
         itemPrice   = 50000,
@@ -2265,8 +2268,10 @@ FurC.AchievementVendors[FURC_HOMESTEAD] = {
         achievement = 613,
       },
     },
+
     [GetString(FURC_AV_KRR)] = boxes,
   },
+
   ["Gold Coast, Kvatch"]                              = {
     [GetString(FURC_AV_ATH)] = {
       [119947] = { -- Banner of the Kvatch Guard
@@ -2322,8 +2327,10 @@ FurC.AchievementVendors[FURC_HOMESTEAD] = {
         achievement = 1444,
       },
     },
+
     [GetString(FURC_AV_FRO)] = structures,
   },
+
   ["Hew's Bane"]                                      = {
     [GetString(FURC_AV_LTS)] = {
       [119965] = { -- Abah's Landing Banner
@@ -2387,10 +2394,11 @@ FurC.AchievementVendors[FURC_HOMESTEAD] = {
         achievement = 1361,
       },
     },
+
     ["Rohiza"] = structures,
   },
-  ["Orsinium"]                                        = {
 
+  ["Orsinium"]                                        = {
     [GetString(FURC_AV_LOT)] = {
       [119979] = { -- Fur Throne
         itemPrice   = 25000,
@@ -2447,10 +2455,9 @@ FurC.AchievementVendors[FURC_HOMESTEAD] = {
       [117986] = { -- Rough Plank, Long
         itemPrice = 100,
       },
-
     },
-
   },
+
   ["any city"]                                        = {
     [GetString(FURC_AV_ENC)] = {
       [120050] = { -- Enchanter's Sign
@@ -2462,6 +2469,7 @@ FurC.AchievementVendors[FURC_HOMESTEAD] = {
         achievement = 1317,
       },
     },
+
     [GetString(FURC_AV_ALC)] = {
       [120044] = { -- Alchemy sign
         itemPrice   = 10000,
@@ -2476,6 +2484,7 @@ FurC.AchievementVendors[FURC_HOMESTEAD] = {
         achievement = 1464,
       },
     },
+
     [GetString(FURC_AV_COO)] = {
       [120053] = { -- Chef's Cleaver
         itemPrice   = 2500,
@@ -2486,6 +2495,7 @@ FurC.AchievementVendors[FURC_HOMESTEAD] = {
         achievement = 1035,
       },
     },
+
     [GetString(FURC_AV_CLO)] = {
       [120048] = { -- clothier's sign
         itemPrice   = 5000,
@@ -2500,6 +2510,7 @@ FurC.AchievementVendors[FURC_HOMESTEAD] = {
         achievement = 68,
       },
     },
+
     [GetString(FURC_AV_CAR)] = {
       [120057] = { -- Harvester's Woodpile
         itemPrice   = 1000,
@@ -2510,8 +2521,8 @@ FurC.AchievementVendors[FURC_HOMESTEAD] = {
         achievement = 1036,
       },
     },
-    [GetString(FURC_AV_BSM)] = {
 
+    [GetString(FURC_AV_BSM)] = {
       [120046] = { -- Blacksmith's Sign
         itemPrice   = 5000,
         achievement = 1032,
@@ -2525,6 +2536,7 @@ FurC.AchievementVendors[FURC_HOMESTEAD] = {
         achievement = 1022,
       },
     },
+
     [GetString(FURC_AV_OUT)] = {
       [120028] = { -- Death Marker
         itemPrice   = 5000,
@@ -2575,8 +2587,8 @@ FurC.AchievementVendors[FURC_HOMESTEAD] = {
         achievement = 1196, -- Felonious Recompense
       },
     },
-
   },
+
   ["the Mages' guild"]                                = {
     ["the Mystic as part of a collection"] = {},
     ["the Mystic"] = {
@@ -2589,8 +2601,8 @@ FurC.AchievementVendors[FURC_HOMESTEAD] = {
         achievement = 702,
       },
     }
-
   },
+
   ["the Fighters' guild"]                             = {
     ["Hall Steward"] = {
       [120000] = { --Broken Chain
@@ -2611,6 +2623,7 @@ FurC.AchievementVendors[FURC_HOMESTEAD] = {
       },
     },
   },
+
   ["the Undaunted Enclaves"]                          = {
     ["Undaunted Quartermaster"] = {
       [120036] = { -- Undaunted Banner
@@ -2634,66 +2647,65 @@ function FurC.SetupHomesteadItems()
 
   FurC.AchievementVendors[FURC_HOMESTEAD]["the Mages' guild"]["the Mystic as part of a collection"] = bookList
 
-
   listTable = FurC.AchievementVendors[FURC_HOMESTEAD]["Dhalmora, Bal Foyen"][GetString(FURC_AV_FRO)]
-  addTable = FurC.MergeTable(furnishingVendor, morrowindStones)
-  listTable = FurC.MergeTable(listTable, addTable)
+  addTable = merge(furnishingVendor, morrowindStones)
+  listTable = merge(listTable, addTable)
 
   listTable = FurC.AchievementVendors[FURC_HOMESTEAD]["Mournhold Bank"][GetString(FURC_AV_FRO)]
-  listTable = FurC.MergeTable(listTable, addTable)
+  listTable = merge(listTable, addTable)
 
   listTable = FurC.AchievementVendors[FURC_HOMESTEAD]["Stonefalls, Ebonheart"][GetString(FURC_AV_FRO)]
-  listTable = FurC.MergeTable(listTable, addTable)
+  listTable = merge(listTable, addTable)
 
   listTable = FurC.AchievementVendors[FURC_HOMESTEAD]["Shadowfen, Alten Corimont"][GetString(FURC_AV_FRO)]
   addTable = furnishingVendor
-  listTable = FurC.MergeTable(listTable, addTable)
+  listTable = merge(listTable, addTable)
 
   listTable = FurC.AchievementVendors[FURC_HOMESTEAD]["Riften, Market, Armorer"][GetString(FURC_AV_FRO)]
   addTable = furnishingVendor
-  listTable = FurC.MergeTable(listTable, addTable)
+  listTable = merge(listTable, addTable)
 
   listTable = FurC.AchievementVendors[FURC_HOMESTEAD]["Bangkorai, Evermore"][GetString(FURC_AV_ROH)]
-  listTable = FurC.MergeTable(listTable, addTable)
+  listTable = merge(listTable, addTable)
 
   listTable = FurC.AchievementVendors[FURC_HOMESTEAD]["Stormhaven, Wayrest, Merchant district"][GetString(FURC_AV_ROH)]
-  listTable = FurC.MergeTable(listTable, addTable)
+  listTable = merge(listTable, addTable)
 
   listTable = FurC.AchievementVendors[FURC_HOMESTEAD]["Greenshade, Marbruk"][GetString(FURC_AV_MAL)]
-  listTable = FurC.MergeTable(listTable, addTable)
+  listTable = merge(listTable, addTable)
 
   listTable = FurC.AchievementVendors[FURC_HOMESTEAD]["Malabal Tor, Vulkwaesten, tavern"][GetString(FURC_AV_MAL)]
-  listTable = FurC.MergeTable(listTable, addTable)
+  listTable = merge(listTable, addTable)
 
   listTable = FurC.AchievementVendors[FURC_HOMESTEAD]["Reaper's March, Rawl'Kha, Market"][GetString(FURC_AV_MAL)]
-  listTable = FurC.MergeTable(listTable, structures)
+  listTable = merge(listTable, structures)
 
   listTable = FurC.AchievementVendors[FURC_HOMESTEAD]["Grahtwood, Redfur Trading Post"][GetString(FURC_AV_MAL)]
-  listTable = FurC.MergeTable(listTable, furnishingVendor)
-  listTable = FurC.MergeTable(listTable, miscVendor)
+  listTable = merge(listTable, furnishingVendor)
+  listTable = merge(listTable, miscVendor)
 
   listTable = FurC.AchievementVendors[FURC_HOMESTEAD]["Craglorn, Belkarth Woodworking store"][GetString(FURC_AV_KRR)]
-  listTable = FurC.MergeTable(listTable, furnishingVendor)
+  listTable = merge(listTable, furnishingVendor)
 
   listTable = FurC.AchievementVendors[FURC_HOMESTEAD]["Coldharbour, Hollow City, Cicero's General Good"]
       [GetString(FURC_AV_KRR)]
-  listTable = FurC.MergeTable(listTable, structures)
+  listTable = merge(listTable, structures)
 
   listTable = FurC.AchievementVendors[FURC_HOMESTEAD]["Gold Coast, Kvatch"][GetString(FURC_AV_FRO)]
-  listTable = FurC.MergeTable(listTable, furnishingVendor)
+  listTable = merge(listTable, furnishingVendor)
 
   listTable = FurC.AchievementVendors[FURC_HOMESTEAD]["Hew's Bane"]["Rohiza"]
-  listTable = FurC.MergeTable(listTable, furnishingVendor)
+  listTable = merge(listTable, furnishingVendor)
 
   listTable = FurC.AchievementVendors[FURC_HOMESTEAD]["Orsinium"][GetString(FURC_AV_MAL)]
-  listTable = FurC.MergeTable(listTable, furnishingVendor)
+  listTable = merge(listTable, furnishingVendor)
 
   listTable = FurC.AchievementVendors[FURC_HOMESTEAD]["Glenumbra, Daggerfall, The Rosy Lion"]["Rohiza"]
-  listTable = FurC.MergeTable(listTable, furnishingVendor)
+  listTable = merge(listTable, furnishingVendor)
 
   listTable = FurC.AchievementVendors[FURC_HOMESTEAD]["Rivenspire, Shornhelm, Dead Wolf Inn"]["Rohiza"]
-  listTable = FurC.MergeTable(listTable, furnishingVendor)
+  listTable = merge(listTable, furnishingVendor)
 
   listTable = FurC.AchievementVendors[FURC_HOMESTEAD]["Orsinium"][GetString(FURC_AV_MAL)]
-  listTable = FurC.MergeTable(listTable, structures)
+  listTable = merge(listTable, structures)
 end
