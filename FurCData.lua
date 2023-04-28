@@ -26,6 +26,9 @@ local function getItemId(itemLink)
 end
 FurC.GetItemId = getItemId
 
+--- Get item link from id
+--- @param itemId any
+--- @return string|nil
 local function getItemLink(itemId)
 	if nil == itemId then return end
 	itemId = tostring(itemId)

@@ -213,16 +213,20 @@ local function setupSourceDropdown()
 end
 
 local logger
--- Gets the current logger or creates it if it doesn't exist yet
---
--- @param[opt=false] forceCreate Force (re)creation of logger
--- @return logger
+--- Gets the current logger or creates it if it doesn't exist yet
+--- @param forceCreate boolean Force (re)creation of logger
+--- @return table logger instance
 function FurC.getOrCreateLogger(forceCreate)
 	if not forceCreate and logger then return logger end -- return existing reference
 
-    -- Do not log at all, if not in debug mode or no log lib available
-    if not FurC.settings.enableDebug or not LibDebugLogger then
-		logger = {}
+	-- use logger from library
+	-- don't log at all if not in debug mode or no log lib available
+	if LibDebugLogger and FurC.settings.enableDebug then
+		logger = LibDebugLogger(FurC.tag)
+		return logger
+	else
+		local function ignore(...)
+		end -- black hole for most property calls, like logger:Debug
 		local function info(self, ...)
 			local prefix = string.format("[%s]: ", FurC.tag)
 			if tostring(...):find("%%") then
@@ -231,20 +235,14 @@ function FurC.getOrCreateLogger(forceCreate)
 				d(prefix .. tostring(...))
 			end
 		end
-		local function ignore(...) end -- black hole for most property calls, like logger:Debug
+		logger = {}
 		logger.Verbose = ignore
-        logger.Debug = ignore
-        logger.Info = info
-        logger.Warn = ignore
-        logger.Error = ignore
-        logger.Log = ignore
-        return logger
-    end
-
-	-- use logger from library
-	if LibDebugLogger then
-        logger = LibDebugLogger(FurC.tag)
-        return logger
+		logger.Debug = ignore
+		logger.Info = info
+		logger.Warn = ignore
+		logger.Error = ignore
+		logger.Log = ignore
+		return logger
 	end
 end
 
