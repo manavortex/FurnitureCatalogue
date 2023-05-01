@@ -61,8 +61,8 @@ FURC_DEMO               = FURC_DEMO or FURC_LATEST + 1
 -- Also, make sure to switch the client language to English first. We're being international here.
 -- Recipe entries live in `data/Recipes.lua`.
 FurC.Recipes[FURC_DEMO] = {
-	152064, -- Elsweyr Table, Low Square,
-	152065, -- Elsweyr Desk, Elegant Wooden,
+  152064, -- Elsweyr Table, Low Square,
+  152065, -- Elsweyr Desk, Elegant Wooden,
 }
 
 -- the text for "this is a rumour item"
@@ -71,39 +71,39 @@ local rumourSource      = GetString(SI_FURC_RUMOUR_SOURCE_ITEM)
 -- this is a helper function that'll generate crown store price strings
 local crownstoresource  = GetString(SI_FURC_CROWNSTORESOURCE)
 local function getCrownPrice(price)
-	return string.format("%s (%u)", crownstoresource, price)
+  return string.format("%s (%u)", crownstoresource, price)
 end
 
 -- add one subtable per item source for filtering. Empty tables will be ignored when filtering.
 FurC.MiscItemSources[FURC_DEMO] = {
-	-- existing arrays will be (somewhat) updated.
+  -- existing arrays will be (somewhat) updated.
 
-	-- unconfirmed: Items that have been datamined, but not yet seen in-game.
-	-- Will filter out stuff that can't be obtained. Removing this will drive the OCD people nuts!
-	[FURC_RUMOUR] = {
-		[4711] = "this is a demo item. It doesn't really exist and won't show up unless you filter for rumour items.",
-	},
+  -- unconfirmed: Items that have been datamined, but not yet seen in-game.
+  -- Will filter out stuff that can't be obtained. Removing this will drive the OCD people nuts!
+  [FURC_RUMOUR] = {
+    [4711] = "this is a demo item. It doesn't really exist and won't show up unless you filter for rumour items.",
+  },
 
-	-- Can be bought in the crown store. There's a utility function in data/MiscItemSources.lua to generate the price strings.
-	-- It's local, but you can just copy it to your new file.
-	[FURC_CROWN] = {
-		[4811] = (getCrownPrice and getCrownPrice(9999)) or 'oops', -- an item with the ID 4811 can be bought from crown store for 9999 crowns.
-	},
+  -- Can be bought in the crown store. There's a utility function in data/MiscItemSources.lua to generate the price strings.
+  -- It's local, but you can just copy it to your new file.
+  [FURC_CROWN] = {
+    [4811] = (getCrownPrice and getCrownPrice(9999)) or 'oops', -- an item with the ID 4811 can be bought from crown store for 9999 crowns.
+  },
 
-	-- Anything that can be looted (legally - everything else goes into "FURC_JUSTICE"!).
-	[FURC_DROP] = {
-		[4911] = "this is a demo item that will show up under 'drop'",
-	},
+  -- Anything that can be looted (legally - everything else goes into "FURC_JUSTICE"!).
+  [FURC_DROP] = {
+    [4911] = "this is a demo item that will show up under 'drop'",
+  },
 
-	-- anything that can be looted _illegally_ - Pickpocketing, cracking safeboxes, you name it. Will require laundering.
-	[FURC_JUSTICE] = {
-		[4712] = "You can steal this item somewhere. Where? No one but you will know, though!",
-	},
+  -- anything that can be looted _illegally_ - Pickpocketing, cracking safeboxes, you name it. Will require laundering.
+  [FURC_JUSTICE] = {
+    [4712] = "You can steal this item somewhere. Where? No one but you will know, though!",
+  },
 
-	-- anything that can be fished. I treat these separately because some people are fine with grinding, not so fine with fishing.
-	[FURC_FISHING] = {
-		[4713] = "Something something",
-	},
+  -- anything that can be fished. I treat these separately because some people are fine with grinding, not so fine with fishing.
+  [FURC_FISHING] = {
+    [4713] = "Something something",
+  },
 }
 
 --[[ Achievement vendors

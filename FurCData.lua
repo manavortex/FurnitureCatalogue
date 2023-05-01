@@ -567,8 +567,9 @@ function FurC.GetItemDescription(recipeKey, recipeArray, stripColor, attachItemL
   return FurC.getMiscItemSource(recipeKey, recipeArray, stripColor, attachItemLink)
 end
 
-function ShouldBeInFurC(link)
+function FurC.ShouldBeInFurC(link)
   link = FurC.GetItemLink(link)
+  if not link then return false end
 
   if IsItemLinkPlaceableFurniture(link) then
     return nil == FurC.settings.data[getItemId(link)]

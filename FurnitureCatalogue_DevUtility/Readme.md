@@ -16,13 +16,13 @@ This is a guide that assumes you have little to no idea about coding, but want t
 
 - sidTools: Required for datamining (getting the furniture items and recipes from code)  
   https://www.esoui.com/downloads/info1210-sidTools.html
-- LibDebugLogger: You probably already have this, but it will make troubleshooting easier.  
+- LibDebugLogger: You probably already have this. It will make troubleshooting easier.  
   https://www.esoui.com/downloads/info2275-LibDebugLogger.html
 - DebugLogViewer: Lets you access LibDebugLogger's output. Alternatively, use https://sir.insidi.at/or/logviewer/ after reloadUI. (No, I'm kidding, don't do that.)  
   https://www.esoui.com/downloads/info2389-DebugLogViewer.html
-- ZAM'S notebook (optional): Lets you run code from inside ESO.  
+- Circonians Click4Info (optional): Lets you run code from inside ESO.  
   Alternatively, you can run LUA from chat by prefixing it with `/script`, but that is cumbersome.
-  https://www.esoui.com/downloads/info244-ZAMNotebook.html
+  https://www.esoui.com/downloads/info786-CirconiansClick4Info.html
 
 #### To set up local dependencies/requirements, you can also run `_dev_setup.cmd`!
 
@@ -47,6 +47,7 @@ This is a guide that assumes you have little to no idea about coding, but want t
   - Click "Clone a repo".
   - Path: Click "browse", then open the explorer bar and enter `%USERPROFILE%\Documents\Elder Scrolls Online\live\AddOns\FurnitureCatalogue`.
   - URL: the one you copied from the browser in the step above.
+- Minion: if you have automatic updates enabled you should tell it to ignore updates to FurnitureCatalogue while you're working on it
 
 ## 3. - Optional: Add the original repository as a second upstream.
 
@@ -70,91 +71,128 @@ local tbl = {
 }
 ```
 
-The key is how you access stuff in the table. The value is the stored value.  
-Keys are always left of the `=`.  
-`tbl["Key"]` does the same thing as `tbl.Key`.
+- the key is how you access stuff in the table
+- the value is the stored value
+- keys are always left of the `=`
+- `tbl["Key"]` does the same thing as `tbl.Key`
 
 ## Commas
 
-Your `#1` cause of error will be commas. If Lua sees a line ending in a table, it assumes that more table will follow.  
-Within a table, any lines but the last **must** end with a comma.  
-On the top level, tables **must not** be followed by a comma.
+Your `#1` cause of error will be commas. If Lua sees a line ending in a table, it assumes that more table will follow.
 
-```
-local tbl1 = {
-	key1 = "value"		<<<<<< error here
-	key2 = "value"      <<<<<< ESO will complain about this line
+Within a table, any lines but the last **must** end with a comma:
+
+```lua
+local tblCorrect = {
+  key1 = "value1",
+  key2 = "value2
 }
 
-local tbl2 = { }
+local tblWrong = {
+	key1 = "value1"    -- missing comma here
+	key2 = "value2"    -- ESO will complain about this line
+}
 
+local tbl3 = { }
 ```
 
-The last line of a table **need** not end in a comma. Unlike JSON, LUA won't mind, though.
+The last line of a table **need** not end in a comma. Unlike JSON, LUA won't mind, though. On the top level however, tables **must not** be followed by a comma:
 
-```
-local tbl1 = {
-	key1 = "value",
-	key2 = "value",
-},						<<<<<< error here
+```lua
+local tblOK = {
+  key1 = "value1",
+  key2 = "value2",  -- trailing comma inside the table is ok
+}
 
-local tbl2 = { }        <<<<<< ESO will complain about this line
+local tblWrong = {
+  key1 = "value1",
+  key2 = "value2"
+},                -- trailing comma outside of tables is not ok
 
+local tbl3 = { }  -- ESO will complain about this line
 ```
 
 # Set up development stuff
 
 ## 1. Register yourself as a developer
 
-- Add your account name to the table at line 10 of FurnitureCatalogue_DevUtility\00_startup.lua
+- Add your account name to the table at line `10` of [FurnitureCatalogue_DevUtility\00_startup.lua](./00_startup.lua)
 - Make sure that you don't forget the trailing comma!
 
 This will add new entries to the context menu (add to textbox), which makes your life a lot easier.
 
 ## 2. Copy the required files (or run `_dev_setup.cmd`)
 
-### Custom.lua
+### Custom.lua for Furniture Catalogue
 
-- Copy or move `data\_SidTools_Custom.lua` to `..\sidTools\Custom.lua`. That will add a little bit of code to sirinsidiator's AddOn that'll let you export furniture recipes as saved var.
-- Rename `data\Custom_Example.lua` to `data\Custom.lua`.
+- copy `Custom.example` to `Custom.lua`
 
 # Extract items
 
 ## 1. log in and datamine!
 
 - Run the command `/sidtools items show` or run `/sidtools` and open the "ItemViewer" via menu
-- populate it - make it scan. If you need to put an item ID, use 80000 or something.
-- type '/dumpfurniture'.
-- Increment the nummeric value in both fields by 200k, rinse and repeat until the window shows up empty or you're bored.
-- When it's done, reload the UI via `reloadUI`.
+- let it scan from Id Range `0` to `200000`
+- type `/dumpfurniture`
+- Increment the nummeric value in both fields by 200k, rinse and repeat until the window shows up empty or you're bored
+- when it's done, reload the UI via `reloadUI`
 
 ## 2. grab the stuff from sidTool's saved variables
 
 For now, we will stay in Custom.lua so you can fuck around and find out. As for how to properly set up the files, see below.
 
-- go to `..\SavedVariables\sidTools.lua`
-- the relevant entries are `furnitureRecipes` and `furniture`.
-- Copy them to the corresponding tables in your `data\Custom.lua`. You'll see differences in formatting – you need to make sure that the generated entries have the same format as the regular ones.
+- go to `../../SavedVariables/sidTools.lua`
+- the relevant entries are `furnitureRecipes` and `furniture`
+- fix up the items and recipes (see [Fix up the items](#fix-up-the-items) and [Fix up the recipes](#fix-up-the-recipes) below)
+- copy them to the corresponding tables in your `data\Custom.lua`. You'll see differences in formatting – you need to make sure that the generated entries have the same format as the regular ones
 
 ### Fix up the items
 
-- mark all the items. Fastest way to go about it is to click the "-" on the left side of Notepad++ and to select the collapsed region.
+- mark all the items
+  - for Notepad++ fastest way is to click the "-" on the left side and to select the collapsed region
 - Press Ctrl+H (Search&Replace)
 - Check "In selection"-box
 - Select the third entry under "Search Mode": Regular expression
 
 1. Find what: `((?<=\] = )")|(",$)`
-2. Replace with: ``
+2. Replace with: ` ` (nothing)
+3. alternative in 1 go, without affecting recipes
+   - Find what: `(?<=\[(\d+)\]\s*=\s*)"(\w+),\s*(--\s*.+)",$`
+   - Replace with: `$2, $3`
+
+Result:
+
+```lua
+-- before:
+[123456] = "rumourSource, -- Some, item",
+
+-- after
+[123456] = rumourSource, -- Some, item"
+```
 
 ### Fix up the recipes
 
-- Mark all the recipes. Fastest way to go about it is to click the "-" on the left side of Notepad++ and to select the collapsed region.
+- mark all the recipes
+  - for Notepad++ fastest way is to click the "-" on the left side and to select the collapsed region
 - Press Ctrl+H (Search&Replace)
 - Check "In selection"-box
 - Select the third entry under "Search Mode": Regular expression
 
 1. Find what: `\[|(\] = "rumourSource)|",$`
-2. Replace with: ``
+2. Replace with: ` ` (nothing)
+3. alternative to do it in 1 go without affecting furniture
+   - Find what: `(?<=\[(\d+)\]\s*=\s*)"(\d+),\s*(--\s*.+)",$`
+   - Replace with: `$1, $3`
+
+Result:
+
+```lua
+-- before:
+[123456] = "123456, -- Plan: some, plan",
+
+-- after
+123456, -- Plan: some, plan
+```
 
 # OK, I wanna release! What now?
 
@@ -164,29 +202,29 @@ For now, we will stay in Custom.lua so you can fuck around and find out. As for 
 
 In `FurnitureCatalogue\_Constants.lua`, add a line like this:
 
-```
-	FURC_FOOBAR				= FURC_LASTLINE     +1        -- <number in previous line +1>
+```lua
+FURC_FOOBAR = FURC_LASTLINE+1 -- <number in previous line +1>
 ```
 
-The thing on the left of the = is your new entry. The thing on the right of the = is the value in the line below.  
-The comment on the right is to see the number at first glance if you ctrl+F for the constant.
+The thing on the left of the `=` is your new entry. The thing on the right of the = is the value in the line below.  
+The comment on the right is to see the number at first glance if you `Ctrl+F` for the constant.
 
 ### Add translation constants
 
 #### Menu entry:
 
 In `FurnitureCatalogue\locale\en.lua`, find the list that starts with `SI_FURC_FILTER_VERSION_OFF`.  
-It should be around line 207.  
-Add SI_FURC_FILTER_VERSION_FOOBAR at the end of the block (you can duplicate the previous line), and change the text.
+It should be [around line 223](../locale/en.lua?#L223).
+Add `SI_FURC_FILTER_VERSION_FOOBAR` at the end of the block (you can duplicate the previous line), and change the text.
 
 #### Mouseover tooltip:
 
-Now, find the list that starts with `SI_FURC_FILTER_VERSION_OFF_TT`. It should be around line ~250 somewhere.  
-Add SI_FURC_FILTER_VERSION_FOOBAR_TT at the end of the block (you can duplicate the previous line), and change the text.
+Now, find the list that starts with `SI_FURC_FILTER_VERSION_OFF_TT`. It should be [around line 265](../locale/en.lua?#L265) somewhere.  
+Add `SI_FURC_FILTER_VERSION_FOOBAR_TT` at the end of the block (you can duplicate the previous line), and change the text.
 
 ### Add the context menu entries.
 
-In `FurnitureCatalogue\startup.lua`, find `FurC.DropdownData` around line 131.  
+In `FurnitureCatalogue\startup.lua`, find `FurC.DropdownData` [around line 131](../startup.lua#L131).  
 At the bottom of each list, add a line with the constant from the previous step.
 
 ### You're done!
@@ -199,30 +237,35 @@ If all menu entries are gone, you forgot a comma.
 
 ### Items
 
-1. Create a new lua file in the `data\` folder and give it a name that makes sense (after the AddOn). Please don't use spaces!
-2. Open FurnitureCatalogue.txt and add an entry above `data\$(APIVersion).lua`, but after the other data files. This will tell the game to load it.
+1. Create a new lua file in the `data/` folder and give it a name that makes sense (after the AddOn). Please don't use spaces!
+2. Open [FurnitureCatalogue.txt](../FurnitureCatalogue.txt) and add an entry above `data\$(APIVersion).lua`, but after the other data files. This will tell the game to load it.
 
 This file will hold the item database.
 
 ### Recipes
 
-1. Open `data\Recipes.lua` and create a new list with your constant as a key. Put the recipes in there.
+1. Open [data/Recipes.lua](../data/Recipes.lua) and create a new list with your constant as a key. Put the recipes in there.
 2. You're done.
 
 ### Rolis and Faustina
 
-1. Find `data\Rolis.lua` and create a new list with your constant as a key. Create new table entries for each item in their inventory.
-2. The key is the item ID, and the value is the number of vouchers they want.  
-   e.g.: `[159501] = 125, -- Praxis: Khajiit Sigil, Moon Cycle` means that this blueprint will sell for 125 vouchers.
+1. Find [data/Rolis.lua](../data/Rolis.lua) and create a new list with your constant as a key. Create new table entries for each item in their inventory.
+2. The key is the item ID, and the value is the number of vouchers they want.
+
+```lua
+-- For example:
+[159501] = 125, -- Praxis: Khajiit Sigil, Moon Cycle
+-- This means that this blueprint costs 125 vouchers
+```
 
 ## Sharing the changes
 
 ### Upload them on github
 
-1. Open GitKraken. There should be a panel to the right.
+1. Open the git client of your choice. There should be a panel to the right.
 2. Next to "Unstaged changes", click "Stage all changes" or highlight single files and press the button there.
 3. Enter a commit message.
-4. Click the button below "Commit changes to <num> files".
+4. Click the button below "Commit changes to `<num>` files".
 5. Click "Push" in the UI.
 
 ### Tell me about them
@@ -251,7 +294,7 @@ To fix this, open DebugViewer and look for the first FurC related error you see.
 Yes: Make sure that you got the nesting right. Everything needs to be on the right level. If you put entries into other entries, they'll be ignored.  
 No: You're missing a comma.
 
-## Unexpected symbol near <somewhere>
+## Unexpected symbol near `<somewhere>`
 
 If it's not a missing comma, it is probably improper nesting or an unterminated string. Use Notepad++ **code folding** to find the culprit, and look _above_ the line where the error occurred.
 

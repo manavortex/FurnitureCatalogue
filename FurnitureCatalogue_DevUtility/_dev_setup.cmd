@@ -15,18 +15,9 @@ IF not exist "C:\Program Files\SmartGit" (
 
 if not exist "..\..\sidTools" (
 	echo Please install the AddOn "sidTools" from esoui: https://www.esoui.com/downloads/info1210-sidTools.html
-	echo It needs to be in the same directory as FurnitureCatalogue ^(%USERPROFILE%\Documents\Elder Scrolls Online\live\AddOns^)
+	echo It needs to be in the AddOn directory ^(%USERPROFILE%\Documents\Elder Scrolls Online\live\AddOns^)
 	echo for this script to work.
 	goto :EOF
-) else (
-	echo.
-	echo AddOn sidTools found.
-	echo.
-	echo We need to add a bit of code to one of sirinsidiator's AddOns now.
-	echo If the file already exists and you don't want to overwrite, please append the code from "_SidTools_Custom.lua" to it.
-	echo Without doing this, the slash command will not work.
-	Move /-Y .\_SidTools_Custom.lua "..\..\sidTools\Custom.lua"
-	echo.
 )
 
 if not exist "..\..\LibDebugLogger" (
@@ -46,10 +37,10 @@ if not exist "..\..\DebugLogViewer" (
 	echo AddOn DebugLogViewer found. Make sure that you keep it loaded in case you run into errors!
 )
 
-if not exist "..\..\ZAM_Notebook" (
+if not exist "..\..\Click4Info" (
 	echo.
-	echo AddOn ZAM Notebook not found.
-	echo I recommend installing it: https://www.esoui.com/downloads/info244-ZAMNotebook.html
+	echo AddOn Click4Info not found.
+	echo I recommend installing it: https://www.esoui.com/downloads/info786-CirconiansClick4Info.html
 	echo It lets you run LUA code straight from ESO, which will help you for assisted debugging.
 )
 
@@ -58,7 +49,7 @@ echo This file is your playground so you can fuck around and find out.
 if exist ".\Custom.lua" (
 	echo If you overwrite it, you will lose any changes you have made.
 )
-Move /-Y ".\Custom_Example.lua" ".\Custom.lua"
+Move /-Y ".\Custom.example" ".\Custom.lua"
 echo.
 echo Congratulations, you're all set up.
 
