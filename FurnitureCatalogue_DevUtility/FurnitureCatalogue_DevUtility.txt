@@ -4,9 +4,13 @@
 ## Version: 1.0.0
 ## APIVersion: 101036
 ## DependsOn: FurnitureCatalogue
-## OptionalDependsOn: AchievementFinder LibDebugLogger DebugLogViewer
+## OptionalDependsOn: sidTools AchievementFinder LibDebugLogger DebugLogViewer
 
 Bindings.xml
 xml.xml
 00_startup.lua
 ContextMenu.lua
+
+DumpFurniture_sidTools.lua
+
+Custom.lua
