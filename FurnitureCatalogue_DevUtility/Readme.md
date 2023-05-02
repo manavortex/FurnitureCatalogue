@@ -20,9 +20,9 @@ This is a guide that assumes you have little to no idea about coding, but want t
   https://www.esoui.com/downloads/info2275-LibDebugLogger.html
 - DebugLogViewer: Lets you access LibDebugLogger's output. Alternatively, use https://sir.insidi.at/or/logviewer/ after reloadUI. (No, I'm kidding, don't do that.)  
   https://www.esoui.com/downloads/info2389-DebugLogViewer.html
-- Circonians Click4Info (optional): Lets you run code from inside ESO.  
+- Mer Torchbug (optional): Lets you run scripts inside ESO and display variables.  
   Alternatively, you can run LUA from chat by prefixing it with `/script`, but that is cumbersome.
-  https://www.esoui.com/downloads/info786-CirconiansClick4Info.html
+  https://www.esoui.com/downloads/info2601-MerTorchbug-FixedandImprovedIngamevariableinspectormuchmore.html
 
 #### To set up local dependencies/requirements, you can also run `_dev_setup.cmd`!
 

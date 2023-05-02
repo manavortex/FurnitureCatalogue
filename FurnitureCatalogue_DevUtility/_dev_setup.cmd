@@ -37,11 +37,11 @@ if not exist "..\..\DebugLogViewer" (
 	echo AddOn DebugLogViewer found. Make sure that you keep it loaded in case you run into errors!
 )
 
-if not exist "..\..\Click4Info" (
+if not exist "..\..\merTorchbug" (
 	echo.
-	echo AddOn Click4Info not found.
-	echo I recommend installing it: https://www.esoui.com/downloads/info786-CirconiansClick4Info.html
-	echo It lets you run LUA code straight from ESO, which will help you for assisted debugging.
+	echo AddOn Mer Torchbug not found.
+	echo I recommend installing it: https://www.esoui.com/downloads/info2601-MerTorchbug-FixedandImprovedIngamevariableinspectormuchmore.html
+	echo It helps you run scripts and display variables ingame.
 )
 
 echo.
