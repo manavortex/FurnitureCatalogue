@@ -82,10 +82,6 @@ function FurC.SetSkipDivider(value)
   FurC.settings["skipDivider"] = value
 end
 
-function FurC.GetFilterAllOnTextNoBooks()
-  return FurC.settings["filterAllOnTextNoBooks"]
-end
-
 function FurC.GetFilterAllOnTextNoBooks(value)
   FurC.settings["filterAllOnTextNoBooks"] = value
   FurC.UpdateGui()
@@ -386,7 +382,7 @@ function FurC.SetDropdownChoice(dropdownName, textValue, dropdownIndex)
   textValue = textValue or FurC.GetDefaultDropdownChoice(dropdownName)
   local dropdownIndex = dropdownIndex or getDropdownIndex(dropdownName, textValue) or 0
 
-  FurC.Logger:Debug("SetDropdownChoice(%s, %s (Index: %s))", dropdownName, textValue, dropdownIndex)
+  FurC.Logger:Verbose("SetDropdownChoice(%s, %s (Index: %s))", dropdownName, textValue, dropdownIndex)
 
   -- if we're setting the dropdown menu "source" to "purchaseable", set "character" to "All"
   FurC.DropdownChoices[dropdownName] = dropdownIndex

@@ -67,7 +67,7 @@ local stealable_wrothgar    = stealable .. inWrothgar
 local stealable_swamp       = stealable .. backwaterSwamp
 
 local rumourSource          = GetString(SI_FURC_RUMOUR_SOURCE_ITEM)
-local itemsourceUnclear     = GetString(SI_FURC_DATAMINED_UNCLEAR)
+local dataminedUnclear      = GetString(SI_FURC_DATAMINED_UNCLEAR)
 
 local crownstoresource      = GetString(SI_FURC_CROWNSTORESOURCE)
 local function getCrownPrice(price)
@@ -868,7 +868,6 @@ FurC.MiscItemSources[FURC_MORROWIND] = {
 
     -- drops from plants
     [125631] = plants_vvardenfell,        -- Plants, Ash Frond
-    [125647] = plants_vvardenfell,        -- Plants, Ash Frond
     [131420] = plants_vvardenfell,        -- Plants, Ash Frond
     [125553] = plants_vvardenfell,        -- Flowers, Netch Cabbage Stalks
     [125551] = plants_vvardenfell,        -- Flowers, Netch Cabbage

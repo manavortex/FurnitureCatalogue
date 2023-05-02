@@ -32,11 +32,6 @@ function FurC.ToChat(output, refresh)
   prefillChatBox(output, refresh)
 end
 
-local function stripColor(aString)
-  if nil == aString then return "" end
-  return aString:gsub("|%l%l%d%d%d%d%d", ""):gsub("|%l%l%d%l%l%d%d", ""):gsub("|c25C31E", ""):gsub("", "")
-end
-
 local function getNameFromEntry(recipeArray)
   if nil == recipeArray then return "" end
   if nil == recipeArray.itemName and nil ~= recipeArray.itemId then
@@ -70,9 +65,4 @@ function FurC.FindByName(namePart)
     end
   end
   return ret
-end
-
-local function capitalise(str)
-  str = str:gsub("^(%l)(%w*)", function(a, b) return string.upper(a) .. b end)
-  return str
 end

@@ -79,7 +79,7 @@ end
 local function isRecipeArrayKnown()
   if nil == recipeArray or nil == recipeArray.characters then return end
   if dropdownChoiceCharacter == 1 then
-    for name, value in pairs(recipeArray.characters) do
+    for _, value in pairs(recipeArray.characters) do
       if (value) then return true end
     end
   else
@@ -111,7 +111,7 @@ local function matchSourceDropdown()
   end
   if recipeArray.origin == FURC_CRAFTING then
     if ddSource == FURC_CRAFTING then return true end
-    local matchingDropdownSource = (isRecipeArrayKnown(recipeArray) and FURC_CRAFTING_KNOWN) or FURC_CRAFTING_UNKNOWN
+    local matchingDropdownSource = (isRecipeArrayKnown() and FURC_CRAFTING_KNOWN) or FURC_CRAFTING_UNKNOWN
     return matchingDropdownSource == ddSource
   end
   if FURC_VENDOR == ddSource then

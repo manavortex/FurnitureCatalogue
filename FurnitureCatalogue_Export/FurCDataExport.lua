@@ -5,8 +5,8 @@ local defaults            = {
 }
 
 local function getSortTable(tbl)
-  list = {}
-  for name, value in pairs(tbl) do
+  local list = {}
+  for name, _ in pairs(tbl) do
     list[#list + 1] = name
   end
   table.sort(list)

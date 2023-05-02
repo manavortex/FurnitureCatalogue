@@ -83,18 +83,19 @@ function FurC.GetIngredients(itemLink, recipeArray)
   local ingredients = {}
   if recipeArray.blueprint then
     local blueprintLink = FurC.GetItemLink(recipeArray.blueprint)
-    numIngredients = GetItemLinkRecipeNumIngredients(blueprintLink)
+    local numIngredients = GetItemLinkRecipeNumIngredients(blueprintLink)
     for ingredientIndex = 1, numIngredients do
-      name, _, qty                = GetItemLinkRecipeIngredientInfo(blueprintLink, ingredientIndex)
-      ingredientLink              = GetItemLinkRecipeIngredientItemLink(blueprintLink, ingredientIndex)
+      local _, _, qty             = GetItemLinkRecipeIngredientInfo(blueprintLink, ingredientIndex)
+      local ingredientLink        = GetItemLinkRecipeIngredientItemLink(blueprintLink, ingredientIndex,
+        LINK_STYLE_DEFAULT)
       ingredients[ingredientLink] = qty
     end
   else
-    _, name, numIngredients = GetRecipeInfo(recipeArray.recipeListIndex, recipeArray.recipeIndex)
+    local _, _, numIngredients = GetRecipeInfo(recipeArray.recipeListIndex, recipeArray.recipeIndex)
     for ingredientIndex = 1, numIngredients do
-      name, _, qty                = GetRecipeIngredientItemInfo(recipeArray.recipeListIndex, recipeArray.recipeIndex,
+      local _, _, qty             = GetRecipeIngredientItemInfo(recipeArray.recipeListIndex, recipeArray.recipeIndex,
         ingredientIndex)
-      ingredientLink              = GetRecipeIngredientItemLink(recipeArray.recipeListIndex, recipeArray.recipeIndex,
+      local ingredientLink        = GetRecipeIngredientItemLink(recipeArray.recipeListIndex, recipeArray.recipeIndex,
         ingredientIndex)
       ingredients[ingredientLink] = qty
     end
@@ -105,7 +106,7 @@ end
 local function parseFurnitureItem(itemLink, override) -- saves to DB, returns recipeArray
   if not (
         override or IsItemLinkPlaceableFurniture(itemLink)
-        or GetItemLinkItemType(itemLink) == ITEMTYPE_FURNITURE
+        or GetItemLinkItemType(itemLink) == ITEMTYPE_FURNISHING
       ) then
     return
   end
@@ -122,9 +123,8 @@ local function parseFurnitureItem(itemLink, override) -- saves to DB, returns re
 end
 
 local function parseBlueprint(blueprintLink) -- saves to DB, returns recipeArray
-  local itemLink    = GetItemLinkRecipeResultItemLink(blueprintLink, LINK_STYLE_BRACKETS)
-  local blueprintId = getItemId(blueprintLink)
-  local recipeKey   = getItemId(itemLink)
+  local itemLink  = GetItemLinkRecipeResultItemLink(blueprintLink, LINK_STYLE_BRACKETS)
+  local recipeKey = getItemId(itemLink)
   if nil == recipeKey or               -- we don't have a key to access the database
       nil == itemLink or               -- we don't have an item link to parse
       nil == GetItemLinkName(itemLink) -- we didn't find an item result for our recipe
@@ -164,7 +164,7 @@ function FurC.Find(itemOrBlueprintLink) -- sets recipeArray, returns it - calls 
   elseif IsItemLinkPlaceableFurniture(itemOrBlueprintLink) then
     recipeArray = parseFurnitureItem(itemOrBlueprintLink)
   else
-    itemId = getItemId(itemOrBlueprintLink)
+    local itemId = getItemId(itemOrBlueprintLink)
     if itemId ~= nil and tonumber(itemId) > 0 and FurC.settings.data ~= nil then
       recipeArray = FurC.settings.data[itemId]
     end
@@ -173,7 +173,8 @@ function FurC.Find(itemOrBlueprintLink) -- sets recipeArray, returns it - calls 
   return recipeArray or {}
 end
 
-function FurC.Delete(itemOrBlueprintLink) -- sets recipeArray, returns it - calls scanItemLink
+-- sets recipeArray, returns it - calls scanItemLink
+function FurC.Delete(itemOrBlueprintLink)
   local recipeArray = scanItemLink(itemOrBlueprintLink)
   if nil == recipeArray then return end
   local itemLink = recipeArray.itemId
@@ -536,7 +537,7 @@ end
 function FurC.GetItemDescription(recipeKey, recipeArray, stripColor, attachItemLink)
   recipeKey = getItemId(recipeKey)
   FurC.settings.emptyItemSources = FurC.settings.emptyItemSources or {}
-  recipeArray = recipeArray or FurC.Find(recipeKey, recipeArray)
+  recipeArray = recipeArray or FurC.Find(recipeKey)
   if not recipeArray then return "" end
 
   local origin = recipeArray.origin

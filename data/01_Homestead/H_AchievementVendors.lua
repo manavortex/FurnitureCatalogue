@@ -2639,7 +2639,7 @@ FurC.AchievementVendors[FURC_HOMESTEAD] = {
 }
 
 function FurC.SetupHomesteadItems()
-  local generatedTable, listTable
+  local addTable, listTable
 
   FurC.AchievementVendors[FURC_HOMESTEAD]["the Mages' guild"]["the Mystic as part of a collection"] = bookList
 

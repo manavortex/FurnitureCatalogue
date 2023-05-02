@@ -1,8 +1,4 @@
-local UNITTAG_PLAYER = "player"
-local this           = FurCDevUtility or {}
-
-local isDev          = this.isDev()
-if not isDev then return end
+local this                                     = FurCDevUtility or {}
 
 FurCDevControl_LinkHandlerBackup_OnLinkMouseUp = nil
 this.textbox                                   = this.textbox or FurCDevControlBox
@@ -20,25 +16,25 @@ local LAM                                      = LibAddonMenu2
 local cachedItemIds                            = {}
 
 local function showTextbox()
-  if not isDev then return end
   this.control:SetHidden(false)
 end
+
 function this.clearControl()
-  if not isDev then return end
   this.textbox:Clear()
   cachedItemIds = {}
   this.control:SetHidden(true)
 end
 
 function this.selectEntireTextbox()
-  if (not isDev) or this.control:IsHidden() then return end
+  if this.control:IsHidden() then return end
+
   local text = textbox:GetText() or ""
   textbox:SetSelection(0, #text)
 end
 
 function this.onTextboxTextChanged()
-  if not isDev then return end
   if this.control:IsHidden() then return end
+
   local text = textbox:GetText() or ""
   if #text > 0 then return end
   this.clearControl()
@@ -68,7 +64,7 @@ local s_withAchievement = (s2 .. "[%d] = {" .. s4 .. "--%s\n" .. s4 ..
 local s_forRecipe       = (s2 .. "%d, -- %s")
 
 local function makeOutput()
-  if not cachedItemLink or not isDev then return end
+  if not cachedItemLink then return end
 
   local isRecipe    = IsItemLinkFurnitureRecipe(cachedItemLink)
   local debugString = (isRecipe and s_forRecipe) or s_default
@@ -94,12 +90,14 @@ local function isItemIdCached()
   local itemId = GetItemLinkItemId(cachedItemLink)
   if not itemId then return end
   if cachedItemIds[itemId] then return true end
+
   cachedItemIds[itemId] = true
   return false
 end
 
 local function concatToTextbox()
-  if (not isDev) or isItemIdCached() then return end
+  if isItemIdCached() then return end
+
   local textSoFar = this.textbox:GetText() or ""
   this.textbox:SetText(textSoFar .. makeOutput(itemId))
   showTextbox()
@@ -123,16 +121,14 @@ local function addMenuItems()
 end
 
 function FurCDevControl_HandleClickEvent(itemLink, button, control) -- button being mouseButton here
-  if not isDev then return end
-
   if (type(itemLink) == 'string' and #itemLink > 0) then
-    currentSceneName = SCENE_MANAGER:GetCurrentScene().name
-    cachedCanBuy     = currentSceneName == "store"
-    cachedIsLetter   = currentSceneName == "mailInbox"
-    cachedItemLink   = itemLink
-    cachedName       = GetItemLinkName(cachedItemLink)
+    local currentSceneName = SCENE_MANAGER:GetCurrentScene().name
+    cachedCanBuy           = currentSceneName == "store"
+    cachedIsLetter         = currentSceneName == "mailInbox"
+    cachedItemLink         = itemLink
+    cachedName             = GetItemLinkName(cachedItemLink)
 
-    local handled    = LINK_HANDLER:FireCallbacks(LINK_HANDLER.LINK_MOUSE_UP_EVENT, itemLink, button,
+    local handled          = LINK_HANDLER:FireCallbacks(LINK_HANDLER.LINK_MOUSE_UP_EVENT, itemLink, button,
       ZO_LinkHandler_ParseLink(itemLink))
     if (not handled) then
       FurCDevControl_LinkHandlerBackup_OnLinkMouseUp(itemLink, button, control)
@@ -147,7 +143,6 @@ end
 
 -- thanks Randactyl for helping me with the handler :)
 function FurCDevControl_HandleInventoryContextMenu(control)
-  if not isDev then return end
   control = control or moc()
 
   local icon, name, stack, price, sellPrice, meetsRequirementsToBuy, meetsRequirementsToEquip, quality, questNameColor, currencyType1, currencyQuantity1, currencyType2, currencyQuantity2, entryType, buyStoreFailure, buyErrorStringId
@@ -162,7 +157,7 @@ function FurCDevControl_HandleInventoryContextMenu(control)
     cachedItemLink      = GetItemLink(bagId, slotId, linkStyle)
     name                = GetItemLinkName(cachedItemLink)
     price               = 0
-    canBuy              = true
+    local canBuy        = true
   elseif st == SLOT_TYPE_STORE_BUY then
     local storeEntryIndex = control.index or 0
     -- _, name, _, price, _, canBuy, _, _, _,
@@ -189,14 +184,12 @@ function FurCDevControl_HandleInventoryContextMenu(control)
 end
 
 function this.OnControlMouseUp(control, button)
-  if not isDev then return end
-
   if (not control) or button ~= 2 then return end
 
   if not control.itemLink or #control.itemLink == 0 then return end
 
-  cachedItemLink       = control.itemLink
-  cachedHasAchievement = ItemTooltip and ItemTooltip:GetNamedChild("Condition")
+  cachedItemLink             = control.itemLink
+  local cachedHasAchievement = ItemTooltip and ItemTooltip:GetNamedChild("Condition")
 
   zo_callLater(function()
     ItemTooltip:SetHidden(true)
@@ -207,7 +200,6 @@ function this.OnControlMouseUp(control, button)
 end
 
 function this.InitRightclickMenu()
-  if not isDev then return end
   FurCDevControl_LinkHandlerBackup_OnLinkMouseUp = ZO_LinkHandler_OnLinkMouseUp
   ZO_LinkHandler_OnLinkMouseUp = function(itemLink, button, control)
     FurCDevControl_HandleClickEvent(itemLink, button, control)

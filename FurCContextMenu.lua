@@ -4,11 +4,12 @@ local FURC_S_SHOPPINGLIST_1          = GetString(SI_FURC_ONE_TO_SHOPPINGLIST)
 local FURC_S_SHOPPINGLIST_5          = GetString(SI_FURC_FIVE_TO_SHOPPINGLIST)
 local FURC_S_TOGGLE_SL               = GetString(SI_FURC_TOGGLE_SHOPPINGLIST)
 
+local linkStyle                      = LINK_STYLE_DEFAULT
+
 function AddFurnitureShoppingListMenuEntry(itemId, calledFromFurC)
   if calledFromFurC then
     if (not FurC.GetEnableShoppingList()) then return end
     if (nil == moc()) or (nil == FurnitureShoppingListAdd) then return end
-    local controlName = moc():GetName() or ""
     if nil == moc():GetName():match("_ListItem_") then return end
   end
 
@@ -64,7 +65,7 @@ local function addMenuItems(itemLink, recipeArray, hideSepBar)
   AddCustomMenuItem(GetString(SI_FURC_MENU_HEADER), toChat, MENU_ADD_OPTION_LABEL)
 
   local faveText = FurC.IsFavorite(itemLink, recipeArray) and GetString(SI_FURC_REMOVE_FAVE) or
-  GetString(SI_FURC_ADD_FAVE)
+      GetString(SI_FURC_ADD_FAVE)
   AddCustomMenuItem(faveText, fave, MENU_ADD_OPTION_LABEL)
 
   local isRecipe = IsItemLinkFurnitureRecipe(itemLink)
@@ -89,22 +90,8 @@ local function addMenuItems(itemLink, recipeArray, hideSepBar)
   end
 end
 
---[[ Original version
-function FurC_HandleClickEvent(itemLink, button, control)		-- button being mouseButton here
-	if (type(itemLink) == 'string' and #itemLink > 0) then
-		local handled = LINK_HANDLER:FireCallbacks(LINK_HANDLER.LINK_MOUSE_UP_EVENT, itemLink, button, ZO_LinkHandler_ParseLink(itemLink))
-		if (not handled) then
-			FurC_LinkHandlerBackup_OnLinkMouseUp(itemLink, button, control)
-			if (button == 2 and itemLink ~= '') then
-				addMenuItems(itemLink, FurC.Find(itemLink))
-			end
-			ShowMenu(control)
-		end
-	end
-end
---]]
-function FurC_HandleClickEvent(itemLink, button, _, _, linkType, ...) -- button being mouseButton here
-  if button == MOUSE_BUTTON_INDEX_RIGHT and
+function FurC_HandleClickEvent(itemLink, mButton, _, _, linkType, ...)
+  if mButton == MOUSE_BUTTON_INDEX_RIGHT and
       linkType == ITEM_LINK_TYPE and
       type(itemLink) == 'string' and
       #itemLink > 0 and
@@ -116,7 +103,7 @@ function FurC_HandleClickEvent(itemLink, button, _, _, linkType, ...) -- button 
   end
 end
 
-function FurC_HandleMouseEnter(inventorySlot)
+function FurC_HandleMouseEnter(...)
   local inventorySlot = moc()
 
   if nil == inventorySlot or nil == inventorySlot.dataEntry then return end
@@ -124,7 +111,7 @@ function FurC_HandleMouseEnter(inventorySlot)
   if nil == data then return end
 
   local bagId, slotIndex = data.bagId, data.slotIndex
-  FurC.CurrentLink = GetItemLink(bagId, slotIndex)
+  FurC.CurrentLink = GetItemLink(bagId, slotIndex, linkStyle)
   if nil == FurC.CurrentLink then return end
 end
 
@@ -149,7 +136,6 @@ function FurC_HandleInventoryContextMenu(control)
   end
 
   local recipeArray = FurC.Find(itemLink)
-  -- d(recipeArray)
   if nil == recipeArray then return end
 
   zo_callLater(function()

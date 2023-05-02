@@ -19,6 +19,14 @@ FurC                    = {
   RumourRecipes      = {},
 
   settings           = {},
+
+  ItemLinkColours    = {
+    Vendor  = "D68957",
+    Gold    = "E5dA40",
+    Voucher = "25C31E",
+    AP      = "5EA4FF",
+    TelVar  = "82BCFF",
+  }
 }
 
 -- TODO: set up the filtering for FURC_RUMOUR and FURC_CROWN in submenus by origin

@@ -147,7 +147,7 @@
                       <OnTextChanged>FurC.GuiSetSearchboxTextFrom(self)</OnTextChanged>
                       <OnMouseUp>FurC.GuiOnSearchBoxClick(self, button)</OnMouseUp>
                       <OnMouseDoubleClick>FurC.GuiOnSearchBoxClick(self, nil, true)</OnMouseDoubleClick>
-                      <OnFocusLost>FurC.GuiOnSearchBoxFocusOut(self)</OnFocusLost>
+                      <OnFocusLost></OnFocusLost>
                       <Controls>
                         <Backdrop name="$(parent)Backdrop" inherits="ZO_SingleLineEditBackdrop_Keyboard">
                           <Anchor point="TOPLEFT" relativeTo="$(parent)" relativePoint="TOPLEFT" />

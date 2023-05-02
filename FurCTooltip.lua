@@ -14,15 +14,14 @@ end
 
 local function addTooltipData(control, itemLink)
   if FurC.GetDisableTooltips() then return end
-  local itemId, recipeArray = nil
   if nil == itemLink or FURC_EMPTY_STRING == itemLink then return end
   local isRecipe = IsItemLinkFurnitureRecipe(itemLink)
 
   itemLink = (isRecipe and GetItemLinkRecipeResultItemLink(itemLink)) or itemLink
 
   if not (isRecipe or IsItemLinkPlaceableFurniture(itemLink)) then return end
-  itemId      = GetItemLinkItemId(itemLink)
-  recipeArray = FurC.Find(itemLink)
+  local itemId      = GetItemLinkItemId(itemLink)
+  local recipeArray = FurC.Find(itemLink)
 
   -- |H0:item:118206:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h
 
@@ -30,7 +29,6 @@ local function addTooltipData(control, itemLink)
 
   local unknown     = not FurC.CanCraft(itemId, recipeArray)
   local stringTable = {}
-
 
   -- if craftable:
   if isRecipe or recipeArray.origin == FURC_CRAFTING then

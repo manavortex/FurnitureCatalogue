@@ -20,6 +20,7 @@ end
 
 -- ruthlessly stolen from TextureIt
 -- ToDo: ZO_TableOrderingFunction
+--- @return table sortedTable
 function FurC.SortTable(tTable, sortKey, SortOrderUp)
   local keys = {}
   for k in pairs(tTable) do table.insert(keys, k) end
@@ -37,19 +38,24 @@ function FurC.SortTable(tTable, sortKey, SortOrderUp)
         return tTable[a][sortKey] < tTable[b][sortKey]
       end
     end
+    return tTable
   end)
 
   local ret = {}
-  local scannedLinks = {}
-  local itemLink, entry
   for _, k in ipairs(keys) do
-    entry = tTable[k]
-    itemLink = entry["itemLink"]
-    ingredients = entry["ingredients"]
-    local index = scannedLinks[itemLink] or k
-
+    local entry = tTable[k]
     table.insert(ret, entry)
   end
 
   return ret
+end
+
+function FurC.capitalise(str)
+  str = str:gsub("^(%l)(%w*)", function(a, b) return string.upper(a) .. b end)
+  return str
+end
+
+function FurC.stripColor(aString)
+  if nil == aString then return "" end
+  return aString:gsub("|%l%l%d%d%d%d%d", ""):gsub("|%l%l%d%l%l%d%d", ""):gsub("|c25C31E", ""):gsub("", "")
 end

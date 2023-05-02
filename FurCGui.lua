@@ -51,7 +51,7 @@ local function updateLineVisibility()
       curLine.blueprint = curData.blueprint
       curLine.icon:SetTexture(GetItemLinkIcon(curData.itemLink))
       curLine.icon:SetAlpha(1)
-      local text = curData.itemLink:gsub("H1", "H0")
+      local text = string.gsub(curData.itemLink, "H1", "H0")
       curLine.text:SetText(((curData.favorite and "* ") or "") .. text)
       local mats = FurC.GetItemDescription(curData.itemId, curData)
       curLine.mats:SetText(mats)
@@ -100,17 +100,11 @@ end
 local function updateScrollDataLinesData()
   local dataLines = {}
   task:Call(function()
-    local index = 0
-
-    data = FurC.settings.data
-
-    local itemLink
-    -- async:For(pairs(data)):Do( function(itemId, recipeArray)
-    for itemId, recipeArray in pairs(data) do
+    for itemId, recipeArray in pairs(FurC.settings.data) do
       if FurC.MatchFilter(itemId, recipeArray) then
-        itemLink = FurC.GetItemLink(itemId)
+        local itemLink = FurC.GetItemLink(itemId)
         if itemLink then
-          tempDataLine           = ZO_DeepTableCopy({}, recipeArray)
+          local tempDataLine     = ZO_DeepTableCopy({}, recipeArray)
           tempDataLine.itemId    = itemId
           tempDataLine.itemLink  = itemLink
           tempDataLine.blueprint = recipeArray.blueprint
@@ -119,7 +113,6 @@ local function updateScrollDataLinesData()
         end
       end
     end
-    -- end)
   end)
       :Then(function()
         dataLines = sort(dataLines)

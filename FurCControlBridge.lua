@@ -1,7 +1,6 @@
-local control = FurnitureCatalogueControl
-FurC.Visible  = false
+FurC.Visible = false
 
-local LAM     = LibAddonMenu2
+local LAM    = LibAddonMenu2
 
 function FurC.LoadFrameInfo(calledFrom)
   local settings = FurC.settings.gui
@@ -96,16 +95,9 @@ function FurC.GetCrownTooltip()
 end
 
 function FurC.GuiOnSearchBoxClick(control, mouseButton, doubleClick)
-  --FurC_SearchBoxText:SetText("")
   if mouseButton == 2 or doubleClick then
     control:SetDefaultText("")
   end
-end
-
-local FURC_S_FILTERDEFAULT = GetString(SI_FURC_TEXTBOX_FILTER_DEFAULT)
-function FurC.GuiOnSearchBoxFocusOut(ctrl)
-  local text = FurC_SearchBox:GetText()
-  --FurC_SearchBoxText:SetText((#text == 0 and FURC_S_FILTERDEFAULT) or "")
 end
 
 function FurC.GuiOnScroll(control, delta)
@@ -141,14 +133,10 @@ function FurC.GuiShowFilterTooltip(control, label)
   FurC.GuiShowTooltip(control, label)
 end
 
-local currentLink, currentId
-
 function FurC.GuiLineOnMouseEnter(lineControl)
-  currentLink, currentId = nil
-
   if not lineControl or not lineControl.itemLink or lineControl.itemLink == "" then return end
-  currentLink = lineControl.itemLink
-  currentId = lineControl.itemId
+
+  local currentLink = lineControl.itemLink
 
   if nil == currentLink then return end
 
