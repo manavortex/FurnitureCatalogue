@@ -11,8 +11,6 @@ local cachedPrice
 local cachedCanBuy
 local cachedIsLetter
 
-local LAM                                      = LibAddonMenu2
-
 local cachedItemIds                            = {}
 
 local function showTextbox()
@@ -22,7 +20,6 @@ end
 function this.clearControl()
   this.textbox:Clear()
   cachedItemIds = {}
-  this.control:SetHidden(true)
 end
 
 function this.selectEntireTextbox()
@@ -102,6 +99,7 @@ local function concatToTextbox()
   this.textbox:SetText(textSoFar .. makeOutput(itemId))
   showTextbox()
 end
+
 function this.concatToTextbox(itemId)
   if itemId then
     cachedItemLink = FurC.GetItemLink(itemId)
@@ -111,7 +109,8 @@ function this.concatToTextbox(itemId)
   end
 end
 
-local function doNothing() return end
+local function doNothing()
+end
 
 local S_ADD_TO_BOX = "Add data to textbox"
 local S_DIVIDER    = "-"
@@ -120,7 +119,7 @@ local function addMenuItems()
   AddCustomMenuItem(S_ADD_TO_BOX, concatToTextbox, MENU_ADD_OPTION_LABEL)
 end
 
-function FurCDevControl_HandleClickEvent(itemLink, button, control) -- button being mouseButton here
+function FurCDevControl_HandleClickEvent(itemLink, mouseButton, control)
   if (type(itemLink) == 'string' and #itemLink > 0) then
     local currentSceneName = SCENE_MANAGER:GetCurrentScene().name
     cachedCanBuy           = currentSceneName == "store"
@@ -128,12 +127,12 @@ function FurCDevControl_HandleClickEvent(itemLink, button, control) -- button be
     cachedItemLink         = itemLink
     cachedName             = GetItemLinkName(cachedItemLink)
 
-    local handled          = LINK_HANDLER:FireCallbacks(LINK_HANDLER.LINK_MOUSE_UP_EVENT, itemLink, button,
+    local handled          = LINK_HANDLER:FireCallbacks(LINK_HANDLER.LINK_MOUSE_UP_EVENT, itemLink, mouseButton,
       ZO_LinkHandler_ParseLink(itemLink))
     if (not handled) then
-      FurCDevControl_LinkHandlerBackup_OnLinkMouseUp(itemLink, button, control)
+      FurCDevControl_LinkHandlerBackup_OnLinkMouseUp(itemLink, mouseButton, control)
       -- end
-      if (button == 2 and itemLink and #itemLink > 0) then
+      if (mouseButton == 2 and itemLink and #itemLink > 0) then
         addMenuItems()
       end
       ShowMenu(control)
@@ -154,7 +153,7 @@ function FurCDevControl_HandleInventoryContextMenu(control)
       or st == SLOT_TYPE_GUILD_BANK_ITEM
       or st == SLOT_TYPE_TRADING_HOUSE_POST_ITEM then
     local bagId, slotId = ZO_Inventory_GetBagAndIndex(control)
-    cachedItemLink      = GetItemLink(bagId, slotId, linkStyle)
+    cachedItemLink      = GetItemLink(bagId, slotId, LINK_STYLE_DEFAULT)
     name                = GetItemLinkName(cachedItemLink)
     price               = 0
     local canBuy        = true
@@ -183,8 +182,8 @@ function FurCDevControl_HandleInventoryContextMenu(control)
   end, 80)
 end
 
-function this.OnControlMouseUp(control, button)
-  if (not control) or button ~= 2 then return end
+function this.OnControlMouseUp(control, mouseButton)
+  if (not control) or mouseButton ~= 2 then return end
 
   if not control.itemLink or #control.itemLink == 0 then return end
 
@@ -207,17 +206,4 @@ function this.InitRightclickMenu()
   ZO_PreHook('ZO_InventorySlot_ShowContextMenu', function(rowControl)
     FurCDevControl_HandleInventoryContextMenu(rowControl)
   end)
-
-  -- TODO Code from Siri, check out
-  -- local function UpdateSlotActions(inventorySlot, slotActions)
-  -- if IsThisSlotASearchTabItemSlot(inventorySlot) then
-  -- slotActions:AddCustomSlotAction(SI_TRADING_HOUSE_REMOVE_PENDING_POST, function()
-  -- -- do something
-  -- end, "")
-  -- end
-  -- return false
-  -- end
-
-  -- local LCM = LibCustomMenu
-  -- LCM:RegisterContextMenu(UpdateSlotActions, LCM.CATEGORY_EARLY)
 end

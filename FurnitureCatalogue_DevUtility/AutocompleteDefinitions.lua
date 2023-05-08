@@ -19,14 +19,6 @@ It should not include:
 --]]
 --
 
--- GUI stuff
-
-FurC_ShowCrowns = ButtonControl
-FurC_ShowRumours = ButtonControl
-
-FurC_Search = Control
-FurC_SearchBox = EditControl
-
 -- Localisation Strings
 
 local filterDisabled = "disables this filter"
@@ -375,3 +367,77 @@ SI_FURC_TRIBUTE = "From Tales of Tribute reward coffers"
 SI_FURC_TRIBUTE_RANKED = "From Tales of Tribute ranked matches (system mail reward)"
 
 SI_FURC_SEEN_IN_GUILDSTORE = "Seen in Guild Store"
+
+
+-- START OF GENERATED CODE BLOCK FOR FILE: FurnitureCatalogue/xml/FurnitureCatalogue.xml
+
+---------- LVL: 00 ----------
+---------- LVL: 01 ----------
+---------- LVL: 02 ----------
+FurCGui = Control
+FurC_QualityFilterButton = ButtonControl
+FurC_CraftingTypeFilterButton = ButtonControl
+FurC_SlotTemplate = Control
+FurC_SlotTemplateTiny = Control
+FurC_SlotIconKnownNo = TextureControl
+FurC_SlotIconKnownYes = TextureControl
+---------- LVL: 03 ----------
+---------- LVL: 04 ----------
+FurCGui_BG = BackdropControl
+FurCGui_Header = Control
+FurCGui_Wait = LabelControl
+FurCGui_Empty = LabelControl
+FurCGui_ListHolder = Control
+FurC_SlotTemplateBg = TextureControl
+FurC_SlotTemplateButton = ButtonControl
+FurC_SlotTemplateName = LabelControl
+FurC_SlotTemplateMats = LabelControl
+FurC_SlotTemplateTinyBg = TextureControl
+FurC_SlotTemplateTinyButton = ButtonControl
+FurC_SlotTemplateTinyName = LabelControl
+FurC_SlotTemplateTinyMats = LabelControl
+---------- LVL: 05 ----------
+---------- LVL: 06 ----------
+FurCGui_Header_Bar1 = Control
+FurCGui_Header_Bar2 = Control
+FurCGui_Header_Bar3 = Control
+FurCGui_Header_SortBar = Control
+FurCGui_ListHolder_Slider = SliderControl
+---------- LVL: 07 ----------
+---------- LVL: 08 ----------
+FurCGui_Header_Bar1_Feedback = ButtonControl
+FurC_Label = Control
+FurCGui_Header_Bar1_Hide = ButtonControl
+FurCGui_Header_Bar1_Reload = ButtonControl
+FurCGui_Header_Bar1_TemplateTiny = ButtonControl
+FurCGui_Header_Bar1_TemplateLarge = ButtonControl
+FurC_DropdownSource = Control
+FurC_QualityFilter = Control
+FurC_DropdownVersion = Control
+FurC_DropdownCharacter = Control
+FurC_TypeFilter = Control
+FurC_Search = Control
+FurC_ShowRumours = ButtonControl
+FurC_ShowCrowns = ButtonControl
+FurC_ShowRumoursGlow = TextureControl
+FurCGui_Header_SortBar_Name = LabelControl
+FurCGui_Header_SortBar_Quality = LabelControl
+---------- LVL: 09 ----------
+---------- LVL: 10 ----------
+FurC_Label_1 = LabelControl
+FurC_RecipeCount = LabelControl
+FurC_Label_2 = LabelControl
+FurC_SearchBox = EditControl
+FurCGui_Header_SortBar_Name_Button = ButtonControl
+FurCGui_Header_SortBar_Quality_Button = ButtonControl
+---------- LVL: 11 ----------
+---------- LVL: 12 ----------
+FurC_SearchBoxBackdrop = BackdropControl
+---------- LVL: 13 ----------
+
+-- END OF GENERATED CODE BLOCK FOR FILE: FurnitureCatalogue/xml/FurnitureCatalogue.xml
+
+-- Leftovers
+
+FurCDevControl = Control
+FurCDevControlBox = EditControl

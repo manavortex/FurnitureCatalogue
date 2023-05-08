@@ -1,9 +1,9 @@
 ## Title: FurnitureCatalogue_Export
 ## Author: manavortex
-## Version: 1.0.1
-## APIVersion: 101037
+## Version: 2.0.0
+## APIVersion: 101038 101037
 ## SavedVariables: FurnitureCatalogue_Export
-## DependsOn: FurnitureCatalogue
+## DependsOn: FurnitureCatalogue LibAddonMenu-2.0
 
 FurCDataExport.lua
 FurCDataExport_Menu.lua

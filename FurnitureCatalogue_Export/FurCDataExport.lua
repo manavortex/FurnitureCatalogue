@@ -1,8 +1,6 @@
 FurnitureCatalogue_Export = {}
 FurCExport                = FurnitureCatalogue_Export
-
-local defaults            = {
-}
+local defaults            = {}
 
 local function getSortTable(tbl)
   local list = {}
@@ -17,14 +15,17 @@ function FurCExport.Export()
   local itemNames = {}
   for itemId, recipeArray in pairs(FurC.settings.data) do
     if recipeArray.origin == FURC_CRAFTING then
-      itemNames[GetItemLinkName(FurC.GetItemLink(itemId))] = FurC.GetItemLink(itemId)
+      local itemLink = FurC.GetItemLink(itemId)
+      if nil ~= itemLink then
+        itemNames[GetItemLinkName(itemLink)] = itemLink
+      end
     end
   end
 
   local tkeys = getSortTable(itemNames)
   local exportKnown = {}
   local exportUnknown = {}
-  for key, itemName in pairs(tkeys) do
+  for _, itemName in pairs(tkeys) do
     local itemLink = itemNames[itemName]
     local recipeArray = FurC.Find(itemLink)
     local known = FurC.IsAccountKnown(itemLink, recipeArray)
@@ -39,16 +40,16 @@ function FurCExport.Export()
 
   FurCExport.settings.known   = exportKnown
   FurCExport.settings.unknown = exportUnknown
-  ReloadUI('ingame')
+  ReloadUI("ingame")
 end
 
 SLASH_COMMANDS["/furcexport"] = function() FurCExport.Export() end
 
 -- initialization stuff
-function FurCExport_Initialize(eventCode, addOnName)
+function FurCExport_Initialize(_, addOnName)
   if (addOnName ~= "FurnitureCatalogue_Export") then return end
 
-  FurCExport.settings = ZO_SavedVars:NewAccountWide("FurnitureCatalogue_Export", nil, 0, defaults)
+  FurCExport.settings = ZO_SavedVars:NewAccountWide("FurnitureCatalogue_Export", nil, nil, defaults)
   FurCExport.makeSettings()
   EVENT_MANAGER:UnregisterForEvent("FurnitureCatalogue_Export", EVENT_ADD_ON_LOADED)
 end

@@ -1,49 +1,61 @@
+local idCounter = {}
+
+---Generate consecutive ids for constants
+---@param id_type string
+---@return integer nextId
+local function getNextIdFor(id_type)
+  idCounter[id_type] = (idCounter[id_type] or 0) + 1
+  return idCounter[id_type]
+end
+
 -- constants for filtering
 -- item sources
-FURC_NONE             = 1
-FURC_RUMOUR           = FURC_NONE + 1             -- 2
-FURC_FAVE             = FURC_RUMOUR + 1           -- 3
-FURC_CRAFTING         = FURC_FAVE + 1             -- 4
-FURC_CRAFTING_KNOWN   = FURC_CRAFTING + 1         -- 5
-FURC_CRAFTING_UNKNOWN = FURC_CRAFTING_KNOWN + 1   -- 6
-FURC_VENDOR           = FURC_CRAFTING_UNKNOWN + 1 -- 7
-FURC_PVP              = FURC_VENDOR + 1           -- 8
-FURC_CROWN            = FURC_PVP + 1              -- 9
-FURC_LUXURY           = FURC_CROWN + 1            -- 10
-FURC_OTHER            = FURC_LUXURY + 1           -- 12
-FURC_ROLIS            = FURC_OTHER + 1            -- 13
-FURC_DROP             = FURC_ROLIS + 1            -- 14
-FURC_WRIT_VENDOR      = FURC_DROP + 1             -- 15
-FURC_JUSTICE          = FURC_WRIT_VENDOR + 1      -- 16
-FURC_FISHING          = FURC_JUSTICE + 1          -- 17
-FURC_GUILDSTORE       = FURC_FISHING + 1          -- 18
-FURC_FESTIVAL_DROP    = FURC_GUILDSTORE + 1       -- 19
+FURC_NONE             = getNextIdFor('ITEM_SOURCES') -- 1
+FURC_FAVE             = getNextIdFor('ITEM_SOURCES') -- 2
+FURC_CRAFTING         = getNextIdFor('ITEM_SOURCES') -- 3
+FURC_CRAFTING_KNOWN   = getNextIdFor('ITEM_SOURCES') -- 4
+FURC_CRAFTING_UNKNOWN = getNextIdFor('ITEM_SOURCES') -- 5
+FURC_VENDOR           = getNextIdFor('ITEM_SOURCES') -- 6
+FURC_PVP              = getNextIdFor('ITEM_SOURCES') -- 7
+FURC_WRIT_VENDOR      = getNextIdFor('ITEM_SOURCES') -- 8
+FURC_CROWN            = getNextIdFor('ITEM_SOURCES') -- 9
+FURC_RUMOUR           = getNextIdFor('ITEM_SOURCES') -- 10
+FURC_LUXURY           = getNextIdFor('ITEM_SOURCES') -- 11
+FURC_OTHER            = getNextIdFor('ITEM_SOURCES') -- 12
+FURC_ROLIS            = getNextIdFor('ITEM_SOURCES') -- 13
+FURC_DROP             = getNextIdFor('ITEM_SOURCES') -- 14
+FURC_JUSTICE          = getNextIdFor('ITEM_SOURCES') -- 15
+FURC_FISHING          = getNextIdFor('ITEM_SOURCES') -- 16
+FURC_GUILDSTORE       = getNextIdFor('ITEM_SOURCES') -- 17
+FURC_FESTIVAL_DROP    = getNextIdFor('ITEM_SOURCES') -- 18
+
 FURC_EMPTY_STRING     = ""
 
 -- versioning
-FURC_HOMESTEAD        = 2                  -- 2
-FURC_MORROWIND        = FURC_HOMESTEAD + 1 -- 3
-FURC_REACH            = FURC_MORROWIND + 1 -- 4
-FURC_CLOCKWORK        = FURC_REACH + 1     -- 5
-FURC_DRAGONS          = FURC_CLOCKWORK + 1 -- 6
-FURC_ALTMER           = FURC_DRAGONS + 1   -- 7
-FURC_WEREWOLF         = FURC_ALTMER + 1    -- 8
-FURC_SLAVES           = FURC_WEREWOLF + 1  -- 9
-FURC_WOTL             = FURC_SLAVES + 1    -- 10
-FURC_KITTY            = FURC_WOTL + 1      -- 11
-FURC_SCALES           = FURC_KITTY + 1     -- 12
-FURC_DRAGON2          = FURC_SCALES + 1    -- 13
-FURC_HARROW           = FURC_DRAGON2 + 1   -- 14
-FURC_SKYRIM           = FURC_HARROW + 1    -- 15
-FURC_STONET           = FURC_SKYRIM + 1    -- 16
-FURC_MARKAT           = FURC_STONET + 1    -- 17
-FURC_FLAMES           = FURC_MARKAT + 1    -- 18
-FURC_BLACKW           = FURC_FLAMES + 1    -- 19
-FURC_DEADL            = FURC_BLACKW + 1    -- 20
-FURC_TIDES            = FURC_DEADL + 1     -- 21
-FURC_BRETON           = FURC_TIDES + 1     -- 22
-FURC_DEPTHS           = FURC_BRETON + 1    -- 23
-FURC_DRUID            = FURC_DEPTHS + 1    -- 24
-FURC_SCRIBE           = FURC_DRUID + 1     -- 25
+FURC_NONE             = getNextIdFor('VERSIONING') -- 1
+FURC_HOMESTEAD        = getNextIdFor('VERSIONING') -- 2
+FURC_MORROWIND        = getNextIdFor('VERSIONING') -- 3
+FURC_REACH            = getNextIdFor('VERSIONING') -- 4
+FURC_CLOCKWORK        = getNextIdFor('VERSIONING') -- 5
+FURC_DRAGONS          = getNextIdFor('VERSIONING') -- 6
+FURC_ALTMER           = getNextIdFor('VERSIONING') -- 7
+FURC_WEREWOLF         = getNextIdFor('VERSIONING') -- 8
+FURC_SLAVES           = getNextIdFor('VERSIONING') -- 9
+FURC_WOTL             = getNextIdFor('VERSIONING') -- 10
+FURC_KITTY            = getNextIdFor('VERSIONING') -- 11
+FURC_SCALES           = getNextIdFor('VERSIONING') -- 12
+FURC_DRAGON2          = getNextIdFor('VERSIONING') -- 13
+FURC_HARROW           = getNextIdFor('VERSIONING') -- 14
+FURC_SKYRIM           = getNextIdFor('VERSIONING') -- 15
+FURC_STONET           = getNextIdFor('VERSIONING') -- 16
+FURC_MARKAT           = getNextIdFor('VERSIONING') -- 17
+FURC_FLAMES           = getNextIdFor('VERSIONING') -- 18
+FURC_BLACKW           = getNextIdFor('VERSIONING') -- 19
+FURC_DEADL            = getNextIdFor('VERSIONING') -- 20
+FURC_TIDES            = getNextIdFor('VERSIONING') -- 21
+FURC_BRETON           = getNextIdFor('VERSIONING') -- 22
+FURC_DEPTHS           = getNextIdFor('VERSIONING') -- 23
+FURC_DRUID            = getNextIdFor('VERSIONING') -- 24
+FURC_SCRIBE           = getNextIdFor('VERSIONING') -- 25
 
 FURC_LATEST           = FURC_SCRIBE

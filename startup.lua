@@ -87,11 +87,17 @@ local function getSourceIndicesKeys()
   sourceIndicesKeys[FURC_CRAFTING_UNKNOWN] = "craft_unknown"
   sourceIndicesKeys[FURC_VENDOR]           = "purch_gold"
   sourceIndicesKeys[FURC_PVP]              = "purch_ap"
+  sourceIndicesKeys[FURC_WRIT_VENDOR]      = "writ_vendor"
   sourceIndicesKeys[FURC_CROWN]            = "crownstore"
   sourceIndicesKeys[FURC_RUMOUR]           = "rumour"
   sourceIndicesKeys[FURC_LUXURY]           = "luxury"
   sourceIndicesKeys[FURC_OTHER]            = "other"
-  sourceIndicesKeys[FURC_WRIT_VENDOR]      = "writ_vendor"
+  sourceIndicesKeys[FURC_ROLIS]            = "FURC_ROLIS"
+  sourceIndicesKeys[FURC_DROP]             = "FURC_DROP"
+  sourceIndicesKeys[FURC_JUSTICE]          = "FURC_JUSTICE"
+  sourceIndicesKeys[FURC_FISHING]          = "FURC_FISHING"
+  sourceIndicesKeys[FURC_GUILDSTORE]       = "FURC_GUILDSTORE"
+  sourceIndicesKeys[FURC_FESTIVAL_DROP]    = "FURC_FESTIVAL_DROP"
 
   return sourceIndicesKeys
 end
@@ -111,6 +117,12 @@ local function getChoicesSource()
   choicesSource[FURC_RUMOUR]           = GetString(SI_FURC_RUMOUR)
   choicesSource[FURC_LUXURY]           = GetString(SI_FURC_LUXURY)
   choicesSource[FURC_OTHER]            = GetString(SI_FURC_OTHER)
+  choicesSource[FURC_ROLIS]            = "FURC_ROLIS"
+  choicesSource[FURC_DROP]             = "FURC_DROP"
+  choicesSource[FURC_JUSTICE]          = "FURC_JUSTICE"
+  choicesSource[FURC_FISHING]          = "FURC_FISHING"
+  choicesSource[FURC_GUILDSTORE]       = "FURC_GUILDSTORE"
+  choicesSource[FURC_FESTIVAL_DROP]    = "FURC_FESTIVAL_DROP"
 
   return choicesSource
 end
@@ -130,6 +142,12 @@ local function getTooltipsSource()
   tooltipsSource[FURC_RUMOUR]           = GetString(SI_FURC_RUMOUR_TT)
   tooltipsSource[FURC_LUXURY]           = GetString(SI_FURC_LUXURY_TT)
   tooltipsSource[FURC_OTHER]            = GetString(SI_FURC_OTHER_TT)
+  tooltipsSource[FURC_ROLIS]            = "FURC_ROLIS"
+  tooltipsSource[FURC_DROP]             = "FURC_DROP"
+  tooltipsSource[FURC_JUSTICE]          = "FURC_JUSTICE"
+  tooltipsSource[FURC_FISHING]          = "FURC_FISHING"
+  tooltipsSource[FURC_GUILDSTORE]       = "FURC_GUILDSTORE"
+  tooltipsSource[FURC_FESTIVAL_DROP]    = "FURC_FESTIVAL_DROP"
 
   return tooltipsSource
 end
@@ -288,6 +306,6 @@ function FurnitureCatalogue_Initialize(eventCode, addOnName)
   FurC.Logger:Debug("Initialisation complete")
 end
 
-ZO_CreateStringId("SI_BINDING_NAME_TOGGLE_FURNITURE_CATALOGUE", "Toggle Furniture Catalogue window")
-ZO_CreateStringId("SI_BINDING_NAME_TOGGLE_FURNITURE_CATALOGUE_RECIPE", "Toggle Furniture Catalogue blueprint on tooltip")
+ZO_CreateStringId("SI_BINDING_NAME_TOGGLE_FURNITURE_CATALOGUE", "Toggle main window")
+ZO_CreateStringId("SI_BINDING_NAME_TOGGLE_FURNITURE_CATALOGUE_RECIPE", "Toggle Blueprint on tooltip")
 EVENT_MANAGER:RegisterForEvent("FurnitureCatalogue", EVENT_ADD_ON_LOADED, FurnitureCatalogue_Initialize)

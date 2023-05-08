@@ -7,7 +7,7 @@
       <Controls>
         <Backdrop name="$(parent)_BG" inherits="ZO_DefaultBackdrop"><AnchorFill/></Backdrop>
                 <Button name="$(parent)_hide" inherits="ZO_ButtonBehaviorClickSound" >
-                    <OnClicked>FurCDevUtility.setHidden(true)</OnClicked>
+                    <OnClicked>FurCDevUtility.ToggleEditBox()</OnClicked>
                     <Dimensions x="30" y="30" />
                     <Anchor point="TOPLEFT" relativeTo="$(parent)" relativePoint="TOPLEFT" offsetX="10" offsetY="10"  />
                     <Textures
