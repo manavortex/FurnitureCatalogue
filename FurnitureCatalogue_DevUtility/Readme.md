@@ -114,16 +114,7 @@ local tbl3 = { }  -- ESO will complain about this line
 
 # Set up development stuff
 
-## 1. Register yourself as a developer
-
-- Add your account name to the table at line `10` of [FurnitureCatalogue_DevUtility\00_startup.lua](./00_startup.lua)
-- Make sure that you don't forget the trailing comma!
-
-This will add new entries to the context menu (add to textbox), which makes your life a lot easier.
-
-## 2. Copy the required files (or run `_dev_setup.cmd`)
-
-### Custom.lua for Furniture Catalogue
+## Copy the required files (or run `_dev_setup.cmd`)
 
 - copy `Custom.example` to `Custom.lua`
 
