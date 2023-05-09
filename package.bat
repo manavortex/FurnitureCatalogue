@@ -1,5 +1,5 @@
 :: Package your ESO add-on ready for distribution.
-:: Version 1.3 Sat, 14 Nov 2015 22:36:23 +0000
+:: Version 2.0 2023-05-09
 @echo off
 setlocal enableextensions enabledelayedexpansion
 
@@ -13,18 +13,23 @@ SET ESOUI_URL="https://www.esoui.com/downloads/editfile.php?id=1617"
 :: Set target directory to anything but "" to have the script move the generated zip file there
 :: %USERPROFILE% will be resolved to "C:\Users\<yourusername>
 REM SET TARGET_DIRECTORY=""
-SET TARGET_DIRECTORY="%USERPROFILE%\ZIPS"
+SET TARGET_DIRECTORY=""
 
 :: Set github branch to anything but "" to have this script automatically push to github
-:: SET GITHUB_BRANCH=""
+REM SET GITHUB_BRANCH="main"
 SET GITHUB_BRANCH="master"
 
+:: Custom filename to be deleted, set to anything but "" to have it automatically removed from the package
+REM SET DELETE_CUSTOM_FILENAME=""
 SET DELETE_CUSTOM_FILENAME="Custom.lua"
+
+:: Path to your 7zip binary
+REM SET ZIP_PROGRAM_PATH="%SCOOP%\apps\7zip\current\7z.exe"
+SET ZIP_PROGRAM_PATH="%ProgramFiles%\7-Zip\7z.exe"
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 :: check for existence of 7zip
-set zip="%ProgramFiles%\7-Zip\7z.exe"
-if not exist %zip% goto :zipnotfound
+if not exist %ZIP_PROGRAM_PATH% goto :zipnotfound
 
 :: read addon name from manifest.txt
 for %%* in (.) do set name=%%~nx*
@@ -48,24 +53,64 @@ IF NOT %GITHUB_BRANCH% == "" (
 set archive=%name%-%version%.zip
 
 echo * Packaging %archive%...
-md .package\%name%
+set "basefolder=.package\%name%"
+md %basefolder%
 
-:: read files from manifest
-set files=%name%.txt
-for /F %%i in ('findstr /B /R "[^#;]" %name%.txt') do (
-  set file=%%~nxi
-  set files=!files! !file:$^(language^)=*!
-)
+:: parse and copy all files mentioned in detected AddOn manifests
+for /R %%G in (*.txt) do (
+  for /F "tokens=3" %%i in ('findstr /C:"## Title:" "%%G"') do (
+    echo Manifest detected: "%%G"
 
-:: read additional files (assets etc.) from package.manifest
-if exist package.manifest (
-  for /F "tokens=*" %%i in (package.manifest) do (
-    set files=!files! %%~nxi
+		:: get filepath relative to manifest
+		set "filepath=%%~dpG"
+		set "filepath=!filepath:%CD%=!"
+
+    :: parse file names in current AddOn manifest
+    for /F %%i in ('findstr /B /R "[^#;]" "%%G"') do (
+      set file=!filepath!%%i
+
+			:: use *.lua wildcard to copy all luas from language file directory
+			set file=!file:$^(language^)=*!
+
+			:: fix slashes
+			set file=!file:/=\!
+			if "!file:~0,1!"=="\" set "file=!file:~1!"
+
+			:: get directory from the file path and create it
+			set "dir=!file!\.."
+			set "relativedir=!basefolder!\!dir!"
+      if not exist "!relativedir!" mkdir "!relativedir!"
+
+			:: copy parsed file to the package
+      copy /Y "!file!" "!basefolder!\!file!" > nul
+    )
   )
 )
 
-:: copy everything to assembly folder
-robocopy . .package\%name% %files% /S /XD .* /NJH /NJS /NFL /NDL > nul
+:: copy additional files (assets etc.) from package.manifest
+if exist package.manifest (
+	echo package.manifest detected
+  for /F "tokens=*" %%i in (package.manifest) do (
+		set file=%%i
+
+		:: get filepath relative to package.manifest
+		set "filepath=%%~dpi"
+		set "filepath=!filepath:%CD%=!"
+
+		set "dir=!basefolder!\!filepath!"
+
+		:: fix slashes
+		set "file=!file:/=\!"
+		if "!file:~0,1!"=="\" set "file=!file:~1!"
+		set "relativedir=!dir:\\=\!"
+
+		:: create target directory if needed
+		if not exist "!relativedir!" mkdir "!relativedir!"
+
+		:: copy parsed file to the package
+    copy /Y "!file!" "!basefolder!\!file!" > nul
+  )
+)
 
 :: zip it
 pushd .package

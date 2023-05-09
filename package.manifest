@@ -1,13 +1,3 @@
-FurnitureCatalogue_Export/FurnitureCatalogue_Export.txt
-FurnitureCatalogue_Export/FurCDataExport_Menu.lua
-FurnitureCatalogue_Export/FurCDataExport.lua
-FurnitureCatalogue_Export/FurCDataExport.lua
-
-FurnitureCatalogue_DevUtility/FurnitureCatalogue_DevUtility.txt
-FurnitureCatalogue_DevUtility/ContextMenu.lua
-FurnitureCatalogue_DevUtility/Bindings.lua
-FurnitureCatalogue_DevUtility/00_startup.lua
-
 textures/all_down.dds
 textures/all_over.dds
 textures/all_up.dds
