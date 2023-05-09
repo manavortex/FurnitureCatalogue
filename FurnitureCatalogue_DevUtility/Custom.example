@@ -80,28 +80,28 @@ FurC.MiscItemSources[FURC_DEMO] = {
 
   -- unconfirmed: Items that have been datamined, but not yet seen in-game.
   -- Will filter out stuff that can't be obtained. Removing this will drive the OCD people nuts!
-  [FURC_RUMOUR] = {
+  [src.RUMOUR] = {
     [4711] = "this is a demo item. It doesn't really exist and won't show up unless you filter for rumour items.",
   },
 
   -- Can be bought in the crown store. There's a utility function in data/MiscItemSources.lua to generate the price strings.
   -- It's local, but you can just copy it to your new file.
-  [FURC_CROWN] = {
+  [src.CROWN] = {
     [4811] = (getCrownPrice and getCrownPrice(9999)) or 'oops', -- an item with the ID 4811 can be bought from crown store for 9999 crowns.
   },
 
-  -- Anything that can be looted (legally - everything else goes into "FURC_JUSTICE"!).
-  [FURC_DROP] = {
+  -- Anything that can be looted (legally - everything else goes into "src.JUSTICE"!).
+  [src.DROP] = {
     [4911] = "this is a demo item that will show up under 'drop'",
   },
 
   -- anything that can be looted _illegally_ - Pickpocketing, cracking safeboxes, you name it. Will require laundering.
-  [FURC_JUSTICE] = {
+  [src.JUSTICE] = {
     [4712] = "You can steal this item somewhere. Where? No one but you will know, though!",
   },
 
   -- anything that can be fished. I treat these separately because some people are fine with grinding, not so fine with fishing.
-  [FURC_FISHING] = {
+  [src.FISHING] = {
     [4713] = "Something something",
   },
 }

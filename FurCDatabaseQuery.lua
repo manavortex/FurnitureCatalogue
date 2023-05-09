@@ -1,11 +1,12 @@
-local FurC = FurC or {}
+local FurC   = FurC or {}
 local colour = FurC.ItemLinkColours
+local src    = FurC.Constants.ItemSources
 
-local function colorise(str, col, ret)
-  str = tostring(str)
-  if str:find("%d000$") then str = str:gsub("000$", "k") end
-  if ret then return str end
-  return string.format("|c%s%s|r", col, str)
+local function colorise(txt, colourCode, ret)
+  txt = tostring(txt)
+  if txt:find("%d000$") then txt = txt:gsub("000$", "k") end
+  if ret then return txt end
+  return string.format("|c%s%s|r", colourCode, txt)
 end
 
 local function makeAchievementLink(achievementId)
@@ -16,7 +17,7 @@ end
 
 local function getRolisSource(recipeKey, recipeArray)
   recipeArray = recipeArray or FurC.Find(recipeKey)
-  if not recipeArray then return end
+  if {} == recipeArray then return end
 
   local versionData = FurC.Rolis[recipeArray.version]
 
@@ -42,9 +43,10 @@ local WEEKEND_DATE = GetString(SI_FURC_STRING_WEEKEND_AROUND)
 local SOLD_BY = GetString(SI_FURC_STRING_WASSOLDBY)
 local function getLuxurySource(recipeKey, recipeArray, stripColor)
   recipeArray = recipeArray or FurC.Find(recipeKey)
-  if not recipeArray then return end
+  if {} == recipeArray then return end
+
   local versionData = FurC.LuxuryFurnisher[recipeArray.version]
-  if not versionData then return GetString(SI_FURC_STRING_FETCHER) end
+  if not versionData then return "SI_FURC_STRING_FETCHER" end
 
   local itemData = versionData[recipeKey]
   if nil ~= itemData then
@@ -57,13 +59,14 @@ local function getLuxurySource(recipeKey, recipeArray, stripColor)
       weekendString
     )
   end
-  return GetString(SI_FURC_STRING_FETCHER)
+  return "SI_FURC_STRING_FETCHER"
 end
 FurC.getLuxurySource = getLuxurySource
 
 local function getPvpSource(recipeKey, recipeArray, stripColor)
   recipeArray = recipeArray or FurC.Find(recipeKey)
-  if not recipeArray then return end
+  if {} == recipeArray then return end
+
   local versionData = FurC.PVP[recipeArray.version]
   if not versionData then return "getPvpSource: nil" end
 
@@ -87,7 +90,8 @@ FurC.getPvpSource = getPvpSource
 
 local function getAchievementVendorSource(recipeKey, recipeArray, stripColor)
   recipeArray = recipeArray or FurC.Find(recipeKey)
-  if not recipeArray then return end
+  if {} == recipeArray then return end
+
   local versionData = FurC.AchievementVendors[recipeArray.version]
   if not versionData then
     return zo_strformat("getAchievementVendorSource: failed version lookup for ID <<1>> [<<2>>]", recipeKey,
@@ -116,7 +120,7 @@ FurC.getAchievementVendorSource = getAchievementVendorSource
 
 local function getEventDropSource(recipeKey, recipeArray, stripColor)
   recipeArray = recipeArray or FurC.Find(recipeKey)
-  if not recipeArray then return end
+  if {} == recipeArray then return end
 
   local itemPriceString = "getEventDropSource: couldn't find " .. tostring(recipeKey)
   local versionDataExists = nil ~= FurC.EventItems[recipeArray.version]
@@ -159,7 +163,7 @@ local function registerEmptyItem(recipeKey)
 end
 local function getMiscItemSource(recipeKey, recipeArray, attachItemLink)
   recipeArray = recipeArray or FurC.Find(recipeKey)
-  if not recipeArray or not recipeArray.version or not recipeArray.origin then return registerEmptyItem(recipeKey) end
+  if {} == recipeArray or not recipeArray.version or not recipeArray.origin then return registerEmptyItem(recipeKey) end
 
   local versionFiles = FurC.MiscItemSources[recipeArray.version]
   if not versionFiles or not versionFiles[recipeArray.origin] then return registerEmptyItem(recipeKey) end
@@ -179,7 +183,7 @@ local function getRecipeSource(recipeKey, recipeArray)
 
   recipeKey = recipeArray.blueprint or recipeKey
 
-  return (recipeArray.origin == FURC_RUMOUR and FurC.getRumourSource(recipeKey, recipeArray))
+  return (recipeArray.origin == src.RUMOUR and FurC.getRumourSource(recipeKey, recipeArray))
       or FurC.RecipeSources[recipeKey]
 end
 FurC.getRecipeSource = getRecipeSource
@@ -191,7 +195,7 @@ end
 function FurC.GetCrafterList(itemLink, recipeArray)
   if nil == recipeArray and nil == itemLink then return end
   recipeArray = recipeArray or FurC.Find(itemLink)
-  if nil == recipeArray then
+  if {} == recipeArray then
     return zo_strformat("FurC.GetCrafterList called for a non-craftable")
   end
 

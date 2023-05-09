@@ -1,3 +1,5 @@
+local src = FurC.Constants.ItemSources
+
 function FurC.CreateSettings(savedVars, defaults)
   local LAM = LibAddonMenu2
   local panelData = {
@@ -354,8 +356,8 @@ function FurC.CreateSettings(savedVars, defaults)
           -- checkbox: Show UI button in search box?
           type    = "checkbox",
           name    = GetString(SI_FURC_STRING_MENU_FALL_HIDE_UI_BUTTON),
-          getFunc = function() return FurC.GetHideUIButton(FURC_RUMOUR) end,
-          setFunc = function(value) FurC.SetHideUIButton(FURC_RUMOUR, value) end
+          getFunc = function() return FurC.GetHideUIButton(src.RUMOUR) end,
+          setFunc = function(value) FurC.SetHideUIButton(src.RUMOUR, value) end
         },
 
         {
@@ -380,8 +382,8 @@ function FurC.CreateSettings(savedVars, defaults)
           -- checkbox: Show UI button in search box?
           type    = "checkbox",
           name    = GetString(SI_FURC_STRING_MENU_FALL_HIDE_UI_BUTTON),
-          getFunc = function() return FurC.GetHideUIButton(FURC_CROWN) end,
-          setFunc = function(value) FurC.SetHideUIButton(FURC_CROWN, value) end
+          getFunc = function() return FurC.GetHideUIButton(src.CROWN) end,
+          setFunc = function(value) FurC.SetHideUIButton(src.CROWN, value) end
         },
       },
     },

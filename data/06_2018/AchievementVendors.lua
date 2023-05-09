@@ -1,4 +1,6 @@
-FurC.AchievementVendors[FURC_SLAVES] = {
+local ver = FurC.Constants.Versioning
+
+FurC.AchievementVendors[ver.SLAVES] = {
   ["Murkmire"] = {
     [GetString(FURC_AV_HAR)] = {
       [145408] = {                                          --Argon Pedestal, Replica
@@ -96,7 +98,7 @@ FurC.AchievementVendors[FURC_SLAVES] = {
   }
 }
 
-FurC.AchievementVendors[FURC_WEREWOLF] = {
+FurC.AchievementVendors[ver.WEREWOLF] = {
   ["the Undaunted Enclaves"] = {
     ["Undaunted Quartermaster"] = {
       [141857] = { --Ritual Chalice, Hircine
@@ -167,7 +169,7 @@ FurC.AchievementVendors[FURC_WEREWOLF] = {
   },
 }
 
-FurC.AchievementVendors[FURC_ALTMER] = {
+FurC.AchievementVendors[ver.ALTMER] = {
   [GetString(FURC_AV_ALI)] = {
     [GetString(FURC_AV_UNW)] = {
       [139122] = { -- Bush, Summerset Spruce

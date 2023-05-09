@@ -1,6 +1,7 @@
 FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
+local ver = FurC.Constants.Versioning
 
-FurC.LuxuryFurnisher[FURC_REACH] = {
+FurC.LuxuryFurnisher[ver.REACH] = {
   -- Oct. 14
   [119977] = { -- Orcish War Totem
     itemPrice = 5000,

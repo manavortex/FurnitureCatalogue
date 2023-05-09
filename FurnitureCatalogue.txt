@@ -6,7 +6,7 @@
 ## DependsOn: LibCustomMenu LibAddonMenu-2.0 LibAsync
 ## OptionalDependsOn: LibDebugLogger LibDebugViewer LibFurniture>=1 LibCharacterKnowledge>=11
 
-_Constants.lua
+FurCConstants.lua
 
 locale\en.lua
 locale\$(language).lua
@@ -73,8 +73,6 @@ FurCGui.lua
 FurCContextMenu.lua
 FurCControlBridge.lua
 FurCTooltip.lua
-
-
 
 ; This Add-on is not created by, affiliated with or sponsored by ZeniMax
 ; Media Inc. or its affiliates. The Elder Scrolls? and related logos are

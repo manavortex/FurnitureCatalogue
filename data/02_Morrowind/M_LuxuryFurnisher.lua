@@ -1,3 +1,4 @@
 FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
+local ver = FurC.Constants.Versioning
 
-FurC.LuxuryFurnisher[FURC_MORROWIND] = {}
+FurC.LuxuryFurnisher[ver.MORROWIND] = {}

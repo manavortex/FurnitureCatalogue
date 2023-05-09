@@ -1,6 +1,7 @@
 FurC.Recipes = FurC.Recipes or {}
+local ver = FurC.Constants.Versioning
 
-FurC.Recipes[FURC_REACH] = {
+FurC.Recipes[ver.REACH] = {
   132179, -- Blueprint: Witches Totem, Antler Charms
   132188, -- Praxis: Ayleid Bookshelf, Cluttered
   132195, -- Blueprint: Telvanni Candelabra, Masterwork

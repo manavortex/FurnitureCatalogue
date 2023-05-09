@@ -5,6 +5,7 @@ local FURC_S_SHOPPINGLIST_5          = GetString(SI_FURC_FIVE_TO_SHOPPINGLIST)
 local FURC_S_TOGGLE_SL               = GetString(SI_FURC_TOGGLE_SHOPPINGLIST)
 
 local linkStyle                      = LINK_STYLE_DEFAULT
+local src                            = FurC.Constants.ItemSources
 
 function AddFurnitureShoppingListMenuEntry(itemId, calledFromFurC)
   if calledFromFurC then
@@ -14,7 +15,7 @@ function AddFurnitureShoppingListMenuEntry(itemId, calledFromFurC)
   end
 
   local itemLink = FurC.GetItemLink(itemId)
-  if nil == FurC.Find(itemLink) then return end
+  if {} == FurC.Find(itemLink) then return end
   AddCustomMenuItem(FURC_S_SHOPPINGLIST_1,
     function()
       FurnitureShoppingListAdd(itemLink)
@@ -79,7 +80,7 @@ local function addMenuItems(itemLink, recipeArray, hideSepBar)
     AddCustomMenuItem(GetString(SI_FURC_POST_ITEM), postRecipeResult, MENU_ADD_OPTION_LABEL)
   end
 
-  if recipeArray.origin ~= FURC_CRAFTING then
+  if recipeArray.origin ~= src.CRAFTING then
     AddCustomMenuItem(GetString(SI_FURC_POST_ITEMSOURCE), postItemSource, MENU_ADD_OPTION_LABEL)
   else
     -- post material list
@@ -136,7 +137,7 @@ function FurC_HandleInventoryContextMenu(control)
   end
 
   local recipeArray = FurC.Find(itemLink)
-  if nil == recipeArray then return end
+  if {} == recipeArray then return end
 
   zo_callLater(function()
     addMenuItems(itemLink, recipeArray)
@@ -152,7 +153,7 @@ function FurC.OnControlMouseUp(control, button)
 
   if nil == itemLink then return end
   local recipeArray = FurC.Find(itemLink)
-  if nil == recipeArray then return end
+  if {} == recipeArray then return end
   zo_callLater(function()
     ItemTooltip:SetHidden(true)
     ClearMenu()

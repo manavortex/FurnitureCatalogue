@@ -1,16 +1,17 @@
-local currentChar              = FurC.CharacterName
-local task                     = LibAsync:Create("FurnitureCatalogue_ScanDataFiles")
-local task2                    = LibAsync:Create("FurnitureCatalogue_ScanCharacterKnowledge")
-local characterAlliance        = GetUnitAlliance('player')
+local currentChar       = FurC.CharacterName
+local task              = LibAsync:Create("FurnitureCatalogue_ScanDataFiles")
+local task2             = LibAsync:Create("FurnitureCatalogue_ScanCharacterKnowledge")
+local characterAlliance = GetUnitAlliance('player')
 
-local NUMBER_TYPE              = "number"
-local STRING_TYPE              = "string"
-local STRING_EMPTY             = ""
+local NUMBER_TYPE       = "number"
+local STRING_TYPE       = "string"
+local STRING_EMPTY      = ""
 
-local lastLink                 = nil
-local recipeArray              = nil
+local lastLink          = nil
+local recipeArray       = nil
 
-local FURC_STRING_TRADINGHOUSE = "Seen in trading house"
+local ver               = FurC.Constants.Versioning
+local src               = FurC.Constants.ItemSources
 
 local function getCurrentChar()
   currentChar = currentChar or zo_strformat(GetUnitName("player"))
@@ -82,7 +83,7 @@ FurC.GetMats = makeMaterial
 function FurC.GetIngredients(itemLink, recipeArray)
   recipeArray = recipeArray or FurC.Find(itemLink)
   local ingredients = {}
-  if recipeArray.blueprint then
+  if {} ~= recipeArray and recipeArray.blueprint then
     local blueprintLink = FurC.GetItemLink(recipeArray.blueprint)
     local numIngredients = GetItemLinkRecipeNumIngredients(blueprintLink)
     for ingredientIndex = 1, numIngredients do
@@ -134,7 +135,7 @@ local function parseBlueprint(blueprintLink) -- saves to DB, returns recipeArray
   end
 
   local recipeArray         = FurC.settings.data[recipeKey] or {}
-  recipeArray.origin        = recipeArray.origin or FURC_CRAFTING
+  recipeArray.origin        = recipeArray.origin or src.CRAFTING
   recipeArray.characters    = recipeArray.characters or {}
   recipeArray.craftingSkill = recipeArray.craftingSkill or GetItemLinkCraftingSkillType(blueprintLink)
   recipeArray.blueprint     = recipeArray.blueprint or getItemId(blueprintLink)
@@ -146,12 +147,15 @@ local function parseBlueprint(blueprintLink) -- saves to DB, returns recipeArray
   return recipeArray
 end
 
-function FurC.Find(itemOrBlueprintLink) -- sets recipeArray, returns it - calls scanItemLink
+---sets recipeArray, returns it
+---@param itemOrBlueprintLink any
+---@return table
+function FurC.Find(itemOrBlueprintLink)
   if tonumber(itemOrBlueprintLink) == itemOrBlueprintLink then
     itemOrBlueprintLink = FurC.GetItemLink(itemOrBlueprintLink)
   end
   -- do not return empty arrays. If this returns nil, abort!
-  if nil == itemOrBlueprintLink or #itemOrBlueprintLink == 0 then return end
+  if nil == itemOrBlueprintLink or #itemOrBlueprintLink == 0 then return {} end
 
   if itemOrBlueprintLink == lastLink and nil ~= recipeArray then
     return recipeArray
@@ -172,29 +176,6 @@ function FurC.Find(itemOrBlueprintLink) -- sets recipeArray, returns it - calls 
   end
 
   return recipeArray or {}
-end
-
--- sets recipeArray, returns it - calls scanItemLink
-function FurC.Delete(itemOrBlueprintLink)
-  -- ToDo: what is scanItemLink?
-  local recipeArray = scanItemLink(itemOrBlueprintLink)
-  if nil == recipeArray then return end
-  local itemLink = recipeArray.itemId
-  local itemKey = getItemId(itemLink)
-  FurC.settings.data[itemKey] = nil
-end
-
-function FurC.GetEntry(itemOrBlueprintLink)
-  local itemLink = (IsItemLinkFurnitureRecipe(itemOrBlueprintLink) and GetRecipeResultItemLink(itemOrBlueprintLink)) or
-      itemOrBlueprintLink
-  local recipeArray = FurC.Find(itemLink)
-  FurC.Logger:Debug("Trying to get entry for %s: %s", itemLink, recipeArray)
-  if not recipeArray then return end
-  local itemId = getItemId(itemOrBlueprintLink)
-  if recipeArray.blueprint then
-    itemId = getItemId(GetItemLinkRecipeResultItemLink(blueprintLink))
-  end
-  return itemId, recipeArray
 end
 
 function FurC.IsFavorite(itemLink, recipeArray)
@@ -219,7 +200,7 @@ local function scanRecipeIndices(recipeListIndex, recipeIndex) -- returns recipe
   local recipeKey             = getItemId(itemLink)
 
   local recipeArray           = FurC.settings.data[recipeKey] or {}
-  recipeArray.origin          = FURC_CRAFTING
+  recipeArray.origin          = src.CRAFTING
   recipeArray.version         = recipeArray.version or 2
   recipeArray.recipeListIndex = recipeArray.recipeListIndex or recipeListIndex
   recipeArray.recipeIndex     = recipeArray.recipeIndex or recipeIndex
@@ -282,11 +263,11 @@ FurC.ScanCharacter = scanCharacter
 
 function FurC.RescanRumourRecipes()
   local function rescan()
-    for _, recipeArray in pairs(FurC.settings.data) do
-      if recipeArray.source == FURC_RUMOUR then
-        local itemLink = recipeArray[itemLink]
+    for itemId, recipeArray in pairs(FurC.settings.data) do
+      if recipeArray.source == src.RUMOUR then
+        local itemLink = recipeArray[itemId]
         if not FurC.RumourRecipes[itemLink] then
-          recipeArray.source = FURC_CRAFTING
+          recipeArray.source = src.CRAFTING
           recipeArray.origin = nil
         end
       end
@@ -336,13 +317,12 @@ local function scanFromFiles(shouldScanCharacter)
         local recipeLink = FurC.GetItemLink(recipeId)
         local itemLink = GetItemLinkRecipeResultItemLink(recipeLink) or FurC.GetItemLink(recipeId)
         recipeArray = FurC.Find(itemLink) or parseBlueprint(recipeLink) or parseFurnitureItem(itemLink)
-        local recipeListIndex, recipeIndex = GetItemLinkGrantedRecipeIndices(recipeLink)
         if nil == recipeArray then
           FurC.Logger:Debug("scanRecipeFile: error for ID %s - %s", recipeId, itemLink)
         else
           recipeKey           = getItemId(itemLink)
           recipeArray.version = versionNumber
-          if (not recipeArray.origin or origin ~= FURC_RUMOUR) then
+          if (not recipeArray.origin or origin ~= src.RUMOUR) then
             recipeArray.origin = origin
           end
           recipeArray.blueprint = recipeId
@@ -352,15 +332,15 @@ local function scanFromFiles(shouldScanCharacter)
     end
 
     for versionNumber, versionData in pairs(FurC.Recipes) do
-      scanArray(versionData, versionNumber, FURC_CRAFTING)
+      scanArray(versionData, versionNumber, src.CRAFTING)
     end
 
     for versionNumber, versionData in pairs(FurC.RolisRecipes) do
-      scanArray(makeKeySet(versionData), versionNumber, FURC_CRAFTING)
+      scanArray(makeKeySet(versionData), versionNumber, src.CRAFTING)
     end
 
     for versionNumber, versionData in pairs(FurC.FaustinaRecipes) do
-      scanArray(makeKeySet(versionData), versionNumber, FURC_CRAFTING)
+      scanArray(makeKeySet(versionData), versionNumber, src.CRAFTING)
     end
   end
 
@@ -370,7 +350,7 @@ local function scanFromFiles(shouldScanCharacter)
         recipeArray = parseFurnitureItem(FurC.GetItemLink(itemId), true)
         if nil ~= recipeArray then
           recipeArray.version = versionNumber
-          recipeArray.origin = FURC_ROLIS
+          recipeArray.origin = src.ROLIS
           addDatabaseEntry(itemId, recipeArray)
         end
       end
@@ -380,7 +360,7 @@ local function scanFromFiles(shouldScanCharacter)
         recipeArray = parseFurnitureItem(FurC.GetItemLink(itemId), true)
         if nil ~= recipeArray then
           recipeArray.version = versionNumber
-          recipeArray.origin = FURC_ROLIS
+          recipeArray.origin = src.ROLIS
           addDatabaseEntry(itemId, recipeArray)
         end
       end
@@ -395,7 +375,7 @@ local function scanFromFiles(shouldScanCharacter)
             recipeArray           = {}
             recipeArray.craftable = false
             recipeArray.version   = versionNumber
-            recipeArray.origin    = FURC_FESTIVAL_DROP
+            recipeArray.origin    = src.FESTIVAL_DROP
             addDatabaseEntry(itemId, recipeArray)
           end
         end
@@ -413,13 +393,13 @@ local function scanFromFiles(shouldScanCharacter)
             recipeArray.version = versionNumber
 
             -- make sure that we don't set rumour source from data file.
-            if (not recipeArray.origin or origin ~= FURC_RUMOUR or recipeArray.origin == FURC_RUMOUR) then
+            if (not recipeArray.origin or origin ~= src.RUMOUR or recipeArray.origin == src.RUMOUR) then
               recipeArray.origin = origin
-            end -- 3.5: moved FURC_RUMOUR to beginning of table so it'll get overwritten
+            end -- 3.5: moved src.RUMOUR to beginning of table so it'll get overwritten
 
             addDatabaseEntry(itemId, recipeArray)
           else
-            if origin == FURC_RUMOUR then
+            if origin == src.RUMOUR then
               FurC.Logger:Debug("invalid rumour item: %s (%s)", itemId, FurC.GetItemLink(itemId))
             else
               FurC.Logger:Debug("scanMiscItemFile: Error when scanning item ID %s (origin %s)", itemId, origin)
@@ -436,7 +416,7 @@ local function scanFromFiles(shouldScanCharacter)
 
     for versionNumber, versionData in pairs(FurC.AchievementVendors) do
       for zoneName, zoneData in pairs(versionData) do
-        parseZoneData(zoneName, zoneData, versionNumber, FURC_VENDOR)
+        parseZoneData(zoneName, zoneData, versionNumber, src.VENDOR)
       end
     end
 
@@ -444,7 +424,7 @@ local function scanFromFiles(shouldScanCharacter)
       for itemId, itemData in pairs(vendorData) do
         local recipeArray   = {}
 
-        recipeArray.origin  = FURC_LUXURY
+        recipeArray.origin  = src.LUXURY
         recipeArray.version = versionNumber
         addDatabaseEntry(itemId, recipeArray)
       end
@@ -452,7 +432,7 @@ local function scanFromFiles(shouldScanCharacter)
 
     for versionNumber, versionData in pairs(FurC.PVP) do
       for zoneName, zoneData in pairs(versionData) do
-        parseZoneData(zoneName, zoneData, versionNumber, FURC_PVP)
+        parseZoneData(zoneName, zoneData, versionNumber, src.PVP)
       end
     end
   end
@@ -468,8 +448,8 @@ local function scanFromFiles(shouldScanCharacter)
         recipeArray.blueprint = blueprintId
       end
       recipeArray.recipeListIndex, recipeArray.recipeIndex = GetItemLinkGrantedRecipeIndices(blueprintLink)
-      recipeArray.origin = FURC_RUMOUR
-      recipeArray.verion = recipeArray.version or FURC_HOMESTEAD
+      recipeArray.origin = src.RUMOUR
+      recipeArray.verion = recipeArray.version or ver.HOMESTEAD
       addDatabaseEntry(itemId, recipeArray)
     end
   end
@@ -480,7 +460,7 @@ local function scanFromFiles(shouldScanCharacter)
     -- make sure that all rumour items
     for recipeKey, recipeArray in pairs(FurC.settings.data) do
       if FurC.RumourRecipes[recipeKey] or recipeArray.blueprint and FurC.RumourRecipes[recipeArray.blueprint] then
-        recipeArray.origin = FURC_RUMOUR
+        recipeArray.origin = src.RUMOUR
       end
     end
   end
@@ -541,31 +521,31 @@ function FurC.GetItemDescription(recipeKey, recipeArray, stripColor, attachItemL
   recipeKey = getItemId(recipeKey)
   FurC.settings.emptyItemSources = FurC.settings.emptyItemSources or {}
   recipeArray = recipeArray or FurC.Find(recipeKey)
-  if not recipeArray then return "" end
+  if {} == recipeArray then return "" end
 
   local origin = recipeArray.origin
-  if origin == FURC_CRAFTING or origin == FURC_WRIT_VENDOR then
+  if origin == src.CRAFTING or origin == src.WRIT_VENDOR then
     return FurC.GetMats(recipeKey, recipeArray, stripColor, attachItemLink)
   end
-  if origin == FURC_ROLIS then
+  if origin == src.ROLIS then
     return FurC.getRolisSource(recipeKey, recipeArray, stripColor, attachItemLink)
   end
-  if origin == FURC_LUXURY then
+  if origin == src.LUXURY then
     return FurC.getLuxurySource(recipeKey, recipeArray, stripColor, attachItemLink)
   end
-  if origin == FURC_GUILDSTORE then
+  if origin == src.GUILDSTORE then
     return GetString(SI_FURC_SEEN_IN_GUILDSTORE)
   end
-  if origin == FURC_VENDOR then
+  if origin == src.VENDOR then
     return FurC.getAchievementVendorSource(recipeKey, recipeArray, stripColor, attachItemLink)
   end
-  if origin == FURC_FESTIVAL_DROP then
+  if origin == src.FESTIVAL_DROP then
     return FurC.getEventDropSource(recipeKey, recipeArray, stripColor, attachItemLink)
   end
-  if origin == FURC_PVP then
+  if origin == src.PVP then
     return FurC.getPvpSource(recipeKey, recipeArray, stripColor, attachItemLink)
   end
-  if origin == FURC_RUMOUR then
+  if origin == src.RUMOUR then
     return FurC.getRumourSource(recipeKey, recipeArray, stripColor, attachItemLink)
   end
   return FurC.getMiscItemSource(recipeKey, recipeArray, stripColor, attachItemLink)

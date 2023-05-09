@@ -1,4 +1,6 @@
 FurC.MiscItemSources        = FurC.MiscItemSources or {}
+local ver                   = FurC.Constants.Versioning
+local src                   = FurC.Constants.ItemSources
 
 -- Local imports for performance
 local zo_strformat          = zo_strformat
@@ -80,9 +82,8 @@ local function getHouseString(houseId1, houseId2)
   if houseId2 then houseName = houseName .. ", " .. GetCollectibleName(houseId2) end
   return zo_strformat(housesource, houseName)
 end
-
-FurC.MiscItemSources[FURC_WOTL]      = {
-  [FURC_RUMOUR] = {
+FurC.MiscItemSources[ver.WOTL]      = {
+  [src.RUMOUR] = {
     [147591] = rumourSource, -- Namira, Mistress of Decay,
     [140297] = rumourSource, -- Replica Throne of Alinor,
     [130189] = rumourSource, -- Tapestry of Sheogorath,
@@ -135,8 +136,8 @@ FurC.MiscItemSources[FURC_WOTL]      = {
   },
 }
 
-FurC.MiscItemSources[FURC_SLAVES]    = {
-  [FURC_RUMOUR]  = {
+FurC.MiscItemSources[ver.SLAVES]    = {
+  [src.RUMOUR]  = {
     [145446] = rumourSource, -- Sithis, the Hungering Dark
     [145449] = rumourSource, -- Stele, Hist Guardians
     [145450] = rumourSource, -- Stele, Hist Cultivation
@@ -158,7 +159,7 @@ FurC.MiscItemSources[FURC_SLAVES]    = {
     [145556] = rumourSource, -- Tree, Tall Snowy Fir
   },
 
-  [FURC_JUSTICE] = {
+  [src.JUSTICE] = {
     [145399] = stealable_swamp,                                  -- Murkmire Rug, Crawling Serpents Worn
     [145400] = stealable_swamp,                                  -- Murkmire Rug, Lurking Lizard Worn
     [145398] = stealable_swamp,                                  -- Murkmire Rug, Supine Turtle Worn
@@ -169,7 +170,7 @@ FurC.MiscItemSources[FURC_SLAVES]    = {
     [145403] = stealable_swamp,                                  -- Jel Parchment
   },
 
-  [FURC_DROP]    = {
+  [src.DROP]    = {
     [141856] = sinister_hollowjack,                                                                          -- Decorative Hollowjack Daedra-Skull
     [141855] = sinister_hollowjack,                                                                          -- Decorative Hollowjack Wraith-Lantern
     [141854] = sinister_hollowjack,                                                                          -- Decorative Hollowjack Flame-Skull
@@ -196,7 +197,7 @@ FurC.MiscItemSources[FURC_SLAVES]    = {
     [145597] = "Part of the achievement item 'Look upon Their Nothing Eyes' in Lilmoth, Murkmire, 15k gold", -- Scales of Shadow
   },
 
-  [FURC_CROWN]   = {
+  [src.CROWN]   = {
     [146048] = itemPackNewLife2018,                              -- New Life Festive Fir
     [146049] = itemPackNewLife2018,                              -- Winter Festival Hearth
     [146050] = itemPackNewLife2018,                              -- Winter Festival Hearthfire
@@ -261,14 +262,14 @@ FurC.MiscItemSources[FURC_SLAVES]    = {
     [134326] = getCrownPrice(260),                               -- Clockwork Pump, Horizontal
   },
 
-  [FURC_FISHING] = {
+  [src.FISHING] = {
     -- fishing
     [145402] = fishing_swamp, -- Fish, Black Marsh
   },
 }
 
-FurC.MiscItemSources[FURC_WEREWOLF]  = {
-  [FURC_RUMOUR] = {
+FurC.MiscItemSources[ver.WEREWOLF]  = {
+  [src.RUMOUR] = {
     [141853] = dataminedUnclear, -- Statue of Hircine's Bitter Mercy
 
     [120873] = dataminedUnclear, -- Daedric Coffin
@@ -324,7 +325,7 @@ FurC.MiscItemSources[FURC_WEREWOLF]  = {
     [120854] = dataminedUnclear, -- Guard Lamppost
   },
 
-  [FURC_DROP] = {
+  [src.DROP] = {
     [141851] = GetString(SI_FURC_WW_DUNGEON_DROP),  -- Bear Skull, Fresh
     [141850] = GetString(SI_FURC_WW_DUNGEON_DROP),  -- Bear Skeleton, Picked Clean
     [141847] = GetString(SI_FURC_WW_DUNGEON_DROP),  -- Animal Bones, Gnawed
@@ -345,7 +346,7 @@ FurC.MiscItemSources[FURC_WEREWOLF]  = {
     [147641] = GetString(SI_FURC_DoM_DUNGEON_DROP), -- Garlas Alpinia, Tall
   },
 
-  [FURC_CROWN] = {
+  [src.CROWN] = {
     [141836] = getCrownPrice(170),                             -- Monolith, Lord Hircine Ritual
     [141843] = getCrownPrice(30),                              -- Plants, Yellow Frond Cluster
     [125681] = getCrownPrice(50),                              -- Vines, Volcanic Roses
@@ -486,11 +487,11 @@ FurC.MiscItemSources[FURC_WEREWOLF]  = {
   }
 }
 
-local questRewardLilandril           = questRewardString .. "Lilandril"
-local mephalaItemSet                 = zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK),
+local questRewardLilandril          = questRewardString .. "Lilandril"
+local mephalaItemSet                = zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK),
   "Trappings of Mephala Worship")
-FurC.MiscItemSources[FURC_ALTMER]    = {
-  [FURC_CROWN] = {
+FurC.MiscItemSources[ver.ALTMER]    = {
+  [src.CROWN] = {
     [139065] = getCrownPrice(20),                                              -- Flowers, Lizard Tail
     [139066] = getCrownPrice(30),                                              -- Plant, Redtop Grass
     [139067] = getCrownPrice(20) .. " or from harvesting plants in Summerset", -- Flower, Yellow Oleander
@@ -632,7 +633,7 @@ FurC.MiscItemSources[FURC_ALTMER]    = {
     [118491] = getCrownPrice(55),                                              -- Scroll, Bound
   },
 
-  [FURC_DROP] = {
+  [src.DROP] = {
     [139059] = GetString(SI_FURC_DROP),       -- Ivory, Polished - drops from Echatere, and probably alot else
     [139066] = GetString(SI_FURC_HARVEST),    -- Plant, Redtop Grass
 
@@ -658,7 +659,7 @@ FurC.MiscItemSources[FURC_ALTMER]    = {
     [130192] = scambox_reaper,                -- Statuette of Sheogorath, the Mad God
   },
 
-  [FURC_FISHING] = {
+  [src.FISHING] = {
     [139080] = fishing_summerset, -- Coral Formation, Ancient Pillar Polyps
     [139079] = fishing_summerset, -- Coral Formation, Fan Cluster
     [139081] = fishing_summerset, -- Plant, Sea Grapes
@@ -670,7 +671,7 @@ FurC.MiscItemSources[FURC_ALTMER]    = {
     [139082] = fishing_summerset, -- Plants, Ruby Glasswort Patch
   },
 
-  [FURC_RUMOUR] = {
+  [src.RUMOUR] = {
     [130193] = dataminedUnclear, -- Robust Target Minotaur Handler
     [130194] = dataminedUnclear, -- Target Stone Atronach
     [130195] = dataminedUnclear, -- Target Iron Atronach
@@ -706,9 +707,9 @@ FurC.MiscItemSources[FURC_ALTMER]    = {
 }
 
 -- Reach
-FurC.MiscItemSources[FURC_DRAGONS]   = {
+FurC.MiscItemSources[ver.DRAGONS]   = {
   -- Reach
-  [FURC_DROP]    = {
+  [src.DROP]    = {
     [134909] = GetString(SI_FURC_DRAGON_DUNGEON_DROP), -- Mushrooms, Puspocket Group
     [134910] = GetString(SI_FURC_DRAGON_DUNGEON_DROP), -- Mushrooms, Puspocket Cluster
     [134911] = GetString(SI_FURC_DRAGON_DUNGEON_DROP), -- Mushroom, Puspocket Sporecap
@@ -717,9 +718,9 @@ FurC.MiscItemSources[FURC_DRAGONS]   = {
     [134914] = GetString(SI_FURC_DRAGON_DUNGEON_DROP), -- Mushrooms, Large Puspocket Cluster
   },
 
-  [FURC_JUSTICE] = {},
+  [src.JUSTICE] = {},
 
-  [FURC_CROWN]   = {
+  [src.CROWN]   = {
     [134970] = getCrownPrice(100), -- Mushrooms, Glowing Sprawl
     [134947] = getCrownPrice(100), -- Mushrooms, Glowing Field
     [134948] = getCrownPrice(400), -- Mushrooms, Glowing Cluster
@@ -731,9 +732,9 @@ FurC.MiscItemSources[FURC_DRAGONS]   = {
   }
 }
 
-FurC.MiscItemSources[FURC_CLOCKWORK] = {
+FurC.MiscItemSources[ver.CLOCKWORK] = {
   -- Reach
-  [FURC_DROP]    = {
+  [src.DROP]    = {
     [134407] = automaton_loot_cc,                        -- Factotum Torso, Obsolete
     [134404] = automaton_loot_cc,                        -- Factotum Knee, Obsolete
     [134408] = automaton_loot_cc,                        -- Factotum Elbow, Obsolete
@@ -744,7 +745,7 @@ FurC.MiscItemSources[FURC_CLOCKWORK] = {
     [132348] = questRewardString .. "the Brass Citadel", -- The Precursor
   },
 
-  [FURC_JUSTICE] = {
+  [src.JUSTICE] = {
     [134410] = stealable_cc,          -- Clockwork Crank, Miniature
     [134411] = stealable_cc,          -- Clockwork Gear Shaft, Miniature
     [134412] = stealable_cc,          -- Clockwork Piston, Miniature
@@ -760,7 +761,7 @@ FurC.MiscItemSources[FURC_CLOCKWORK] = {
     [117939] = stealable_woodworkers, -- Rough Axe, Practical
   },
 
-  [FURC_CROWN]   = {
+  [src.CROWN]   = {
     [134266] = getCrownPrice(80),   -- Daedric Books, Stacked
     [134265] = getCrownPrice(80),   -- Daedric Books, Piled
     [134373] = getCrownPrice(410),  -- Clockwork Wall Machinery, Rectangular
@@ -784,18 +785,18 @@ FurC.MiscItemSources[FURC_CLOCKWORK] = {
     [134398] = getCrownPrice(1300), -- Clockwork Gazebo, Copper and Basalt
   },
 
-  [FURC_RUMOUR]  = {
+  [src.RUMOUR]  = {
     [125509] = dataminedUnclear, -- Replica Dwarven Crown Crate
   }
 }
 
-FurC.MiscItemSources[FURC_REACH]     = {
+FurC.MiscItemSources[ver.REACH]     = {
   -- Reach
-  [FURC_JUSTICE] = {
+  [src.JUSTICE] = {
     [130191] = stealable,       -- Shivering Cheese
     [118206] = stealable_thief, -- Gaming dice
   },
-  [FURC_DROP]    = {
+  [src.DROP]    = {
     -- Coldharbour items
     [130284] = GetString(SI_FURC_HARVEST),       -- Glowstalk, Seedlings
     [131422] = GetString(SI_FURC_HARVEST),       -- Flower Patch, Glowstalks
@@ -809,11 +810,11 @@ FurC.MiscItemSources[FURC_REACH]     = {
   },
 }
 
-local questRewardSuran               = GetString(SI_FURC_QUESTREWARD) .. " Suran"
+local questRewardSuran              = GetString(SI_FURC_QUESTREWARD) .. " Suran"
 
-FurC.MiscItemSources[FURC_MORROWIND] = {
+FurC.MiscItemSources[ver.MORROWIND] = {
   -- Morrowind
-  [FURC_DROP]    = {
+  [src.DROP]    = {
 
     --Public dungeon Forgotten Wastes / maybe rarest drop at all ingame
     [127149] = puplicdungeon_fw_vv, -- Morrowind Banner of the 6th House
@@ -912,7 +913,7 @@ FurC.MiscItemSources[FURC_MORROWIND] = {
     [126039] = scambox_dwemer,            -- Statue of masked Clavicus Vile with Barbas
   },
 
-  [FURC_CROWN]   = {
+  [src.CROWN]   = {
     [130202] = getCrownPrice(170) .. " or " .. itemPackAyleid, -- Ayleid Grate, Tall
     [130204] = getCrownPrice(410) .. " or " .. itemPackAyleid, -- Welkynd Stones, Glowing
     [130205] = getCrownPrice(680) .. " or " .. itemPackAyleid, -- Ayleid Statue, Pious Priest
@@ -1031,12 +1032,12 @@ FurC.MiscItemSources[FURC_MORROWIND] = {
     [125550] = getCrownPrice(85),                              -- Flowers, Lava Blooms
   },
 
-  [FURC_JUSTICE] = {
+  [src.JUSTICE] = {
     [126481] = stealable_priests .. " in Vvardenfell", -- Indoril Incense, Burning
     [126772] = stealable_thief                         -- Khajiiti Ponder sphere
   },
 
-  [FURC_RUMOUR]  = {
+  [src.RUMOUR]  = {
     [132531] = dataminedUnclear, -- Hlaalu Planter, Tall
     [120411] = dataminedUnclear, -- Noble's Chalice of Wine
     [126568] = dataminedUnclear, -- Daedric Urn, Ritual
@@ -1048,8 +1049,8 @@ FurC.MiscItemSources[FURC_MORROWIND] = {
   }
 }
 
-FurC.MiscItemSources[FURC_HOMESTEAD] = {
-  [FURC_JUSTICE] = {
+FurC.MiscItemSources[ver.HOMESTEAD] = {
+  [src.JUSTICE] = {
     -- stealing
     [118489] = stealable_scholars, -- Papers, Stack
     [118528] = stealable,          -- Signed Contract
@@ -1074,7 +1075,7 @@ FurC.MiscItemSources[FURC_HOMESTEAD] = {
     [116512] = stealable_wrothgar,  -- Orcish Carpet Blood
   },
 
-  [FURC_FISHING] = {
+  [src.FISHING] = {
     -- fishing
     [118902] = GetString(SI_FURC_CANBEFISHED), -- Coral, Sun
     [118903] = GetString(SI_FURC_CANBEFISHED), -- Coral, Crown
@@ -1092,7 +1093,7 @@ FurC.MiscItemSources[FURC_HOMESTEAD] = {
     [118900] = GetString(SI_FURC_CANBEFISHED), -- Seashell, Noble Starfish
   },
 
-  [FURC_DROP]    = {
+  [src.DROP]    = {
     [121058] = db_sneaky, -- Candles of Silence
     [119936] = db_poison, -- Poisoned Blood
     [119938] = db_poison, -- Light and Shadow
@@ -1113,7 +1114,7 @@ FurC.MiscItemSources[FURC_HOMESTEAD] = {
     [118268] = GetString(SI_FURC_CHESTS), -- Painting of Great Ruins, Bolted
   },
 
-  [FURC_CROWN]   = {
+  [src.CROWN]   = {
     [118096] = getCrownPrice(10),   -- Bread, Plain
     [118098] = getCrownPrice(10),   -- Common Bowl, Serving
     [118061] = getCrownPrice(15),   -- Chicken Dinner, Display
@@ -1160,7 +1161,7 @@ FurC.MiscItemSources[FURC_HOMESTEAD] = {
     [118118] = getCrownPrice(100),  -- Candles, Lasting
   },
 
-  [FURC_RUMOUR]  = {
+  [src.RUMOUR]  = {
     [118290] = rumourSource, -- Antlers, Wall Mount
     [118299] = rumourSource, -- Bottle, Beaker
     [118300] = rumourSource, -- Bottle, Poison

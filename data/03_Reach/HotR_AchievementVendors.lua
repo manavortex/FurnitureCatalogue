@@ -1,4 +1,6 @@
-FurC.AchievementVendors[FURC_REACH] = {
+local ver = FurC.Constants.Versioning
+
+FurC.AchievementVendors[ver.REACH] = {
   ["Coldharbour, Cicero's General Goods"] = {
     [GetString(FURC_AV_KRR)] = {
       [130273] = { -- Boulder, Coldharbour Fan

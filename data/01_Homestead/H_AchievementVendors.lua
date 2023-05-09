@@ -1,9 +1,10 @@
-FurC.AchievementVendors                 = FurC.AchievementVendors or {}
-FurC.Books                              = FurC.Books or {}
+FurC.AchievementVendors                = FurC.AchievementVendors or {}
+FurC.Books                             = FurC.Books or {}
 
-local merge                             = FurC.MergeTable
+local merge                            = FurC.MergeTable
+local ver                              = FurC.Constants.Versioning
 
-local jesterVendor                      = {
+local jesterVendor                     = {
   -- tree, Jester's Large
   [120994] = {
     itemPrice   = 15000,
@@ -58,7 +59,7 @@ local jesterVendor                      = {
   },
 }
 
-local capitalVendor                     = {
+local capitalVendor                    = {
   [119987] = { -- Coldharbour Urn
     itemPrice   = 5000,
     achievement = 993,
@@ -153,7 +154,7 @@ local capitalVendor                     = {
   },
 }
 
-local furnishingVendor                  = {
+local furnishingVendor                 = {
   [120998] = { -- Block,Wood Cutting
     itemPrice = 100,
   },
@@ -177,7 +178,7 @@ local furnishingVendor                  = {
   },
 }
 
-local morrowindStones                   = {
+local morrowindStones                  = {
   [120563] = { -- Stone,Jagged Grey
     itemPrice = 100,
   },
@@ -195,7 +196,7 @@ local morrowindStones                   = {
   },
 }
 
-local structures                        = {
+local structures                       = {
   [117984] = { -- Rough Block, Dark Stone
     itemPrice = 100,
   },
@@ -234,7 +235,7 @@ local structures                        = {
   },
 }
 
-local boxes                             = {
+local boxes                            = {
   [120998] = { -- Block,Wood Cutting
     itemPrice = 100,
   },
@@ -261,7 +262,7 @@ local boxes                             = {
   },
 }
 
-local laundry                           = {
+local laundry                          = {
   [117968] = { -- Rough Clothesline, Full
     itemPrice = 100,
   },
@@ -285,7 +286,7 @@ local laundry                           = {
   },
 }
 
-local fishing_trip                      = {
+local fishing_trip                     = {
   [117965] = { -- Rough Campfire, Doused
     itemPrice = 100,
   },
@@ -300,7 +301,7 @@ local fishing_trip                      = {
   },
 }
 
-local bookList                          = {
+local bookList                         = {
   [120197] = { -- 16 accords of madness, vol vi
     itemPrice = 500,
   },
@@ -1193,11 +1194,11 @@ local bookList                          = {
     itemPrice = 500,
   },
 }
-FurC.Books[FURC_HOMESTEAD]              = bookList
+FurC.Books[ver.HOMESTEAD]              = bookList
 
-local miscVendor                        = merge(merge(merge(structures, boxes), laundry), fishing_trip)
+local miscVendor                       = merge(merge(merge(structures, boxes), laundry), fishing_trip)
 
-FurC.AchievementVendors[FURC_HOMESTEAD] = {
+FurC.AchievementVendors[ver.HOMESTEAD] = {
   [GetString(FURC_AV_CAPITAL)]                        = {
     [GetString(FURC_AV_NAR)] = capitalVendor,
     [GetString(FURC_AV_HER)] = jesterVendor,
@@ -2641,67 +2642,67 @@ FurC.AchievementVendors[FURC_HOMESTEAD] = {
 function FurC.SetupHomesteadItems()
   local addTable, listTable
 
-  FurC.AchievementVendors[FURC_HOMESTEAD]["the Mages' guild"]["the Mystic as part of a collection"] = bookList
+  FurC.AchievementVendors[ver.HOMESTEAD]["the Mages' guild"]["the Mystic as part of a collection"] = bookList
 
-  listTable = FurC.AchievementVendors[FURC_HOMESTEAD]["Dhalmora, Bal Foyen"][GetString(FURC_AV_FRO)]
+  listTable = FurC.AchievementVendors[ver.HOMESTEAD]["Dhalmora, Bal Foyen"][GetString(FURC_AV_FRO)]
   addTable = merge(furnishingVendor, morrowindStones)
   listTable = merge(listTable, addTable)
 
-  listTable = FurC.AchievementVendors[FURC_HOMESTEAD]["Mournhold Bank"][GetString(FURC_AV_FRO)]
+  listTable = FurC.AchievementVendors[ver.HOMESTEAD]["Mournhold Bank"][GetString(FURC_AV_FRO)]
   listTable = merge(listTable, addTable)
 
-  listTable = FurC.AchievementVendors[FURC_HOMESTEAD]["Stonefalls, Ebonheart"][GetString(FURC_AV_FRO)]
+  listTable = FurC.AchievementVendors[ver.HOMESTEAD]["Stonefalls, Ebonheart"][GetString(FURC_AV_FRO)]
   listTable = merge(listTable, addTable)
 
-  listTable = FurC.AchievementVendors[FURC_HOMESTEAD]["Shadowfen, Alten Corimont"][GetString(FURC_AV_FRO)]
+  listTable = FurC.AchievementVendors[ver.HOMESTEAD]["Shadowfen, Alten Corimont"][GetString(FURC_AV_FRO)]
   addTable = furnishingVendor
   listTable = merge(listTable, addTable)
 
-  listTable = FurC.AchievementVendors[FURC_HOMESTEAD]["Riften, Market, Armorer"][GetString(FURC_AV_FRO)]
+  listTable = FurC.AchievementVendors[ver.HOMESTEAD]["Riften, Market, Armorer"][GetString(FURC_AV_FRO)]
   addTable = furnishingVendor
   listTable = merge(listTable, addTable)
 
-  listTable = FurC.AchievementVendors[FURC_HOMESTEAD]["Bangkorai, Evermore"][GetString(FURC_AV_ROH)]
+  listTable = FurC.AchievementVendors[ver.HOMESTEAD]["Bangkorai, Evermore"][GetString(FURC_AV_ROH)]
   listTable = merge(listTable, addTable)
 
-  listTable = FurC.AchievementVendors[FURC_HOMESTEAD]["Stormhaven, Wayrest, Merchant district"][GetString(FURC_AV_ROH)]
+  listTable = FurC.AchievementVendors[ver.HOMESTEAD]["Stormhaven, Wayrest, Merchant district"][GetString(FURC_AV_ROH)]
   listTable = merge(listTable, addTable)
 
-  listTable = FurC.AchievementVendors[FURC_HOMESTEAD]["Greenshade, Marbruk"][GetString(FURC_AV_MAL)]
+  listTable = FurC.AchievementVendors[ver.HOMESTEAD]["Greenshade, Marbruk"][GetString(FURC_AV_MAL)]
   listTable = merge(listTable, addTable)
 
-  listTable = FurC.AchievementVendors[FURC_HOMESTEAD]["Malabal Tor, Vulkwaesten, tavern"][GetString(FURC_AV_MAL)]
+  listTable = FurC.AchievementVendors[ver.HOMESTEAD]["Malabal Tor, Vulkwaesten, tavern"][GetString(FURC_AV_MAL)]
   listTable = merge(listTable, addTable)
 
-  listTable = FurC.AchievementVendors[FURC_HOMESTEAD]["Reaper's March, Rawl'Kha, Market"][GetString(FURC_AV_MAL)]
+  listTable = FurC.AchievementVendors[ver.HOMESTEAD]["Reaper's March, Rawl'Kha, Market"][GetString(FURC_AV_MAL)]
   listTable = merge(listTable, structures)
 
-  listTable = FurC.AchievementVendors[FURC_HOMESTEAD]["Grahtwood, Redfur Trading Post"][GetString(FURC_AV_MAL)]
+  listTable = FurC.AchievementVendors[ver.HOMESTEAD]["Grahtwood, Redfur Trading Post"][GetString(FURC_AV_MAL)]
   listTable = merge(listTable, furnishingVendor)
   listTable = merge(listTable, miscVendor)
 
-  listTable = FurC.AchievementVendors[FURC_HOMESTEAD]["Craglorn, Belkarth Woodworking store"][GetString(FURC_AV_KRR)]
+  listTable = FurC.AchievementVendors[ver.HOMESTEAD]["Craglorn, Belkarth Woodworking store"][GetString(FURC_AV_KRR)]
   listTable = merge(listTable, furnishingVendor)
 
-  listTable = FurC.AchievementVendors[FURC_HOMESTEAD]["Coldharbour, Hollow City, Cicero's General Good"]
+  listTable = FurC.AchievementVendors[ver.HOMESTEAD]["Coldharbour, Hollow City, Cicero's General Good"]
       [GetString(FURC_AV_KRR)]
   listTable = merge(listTable, structures)
 
-  listTable = FurC.AchievementVendors[FURC_HOMESTEAD]["Gold Coast, Kvatch"][GetString(FURC_AV_FRO)]
+  listTable = FurC.AchievementVendors[ver.HOMESTEAD]["Gold Coast, Kvatch"][GetString(FURC_AV_FRO)]
   listTable = merge(listTable, furnishingVendor)
 
-  listTable = FurC.AchievementVendors[FURC_HOMESTEAD]["Hew's Bane"]["Rohiza"]
+  listTable = FurC.AchievementVendors[ver.HOMESTEAD]["Hew's Bane"]["Rohiza"]
   listTable = merge(listTable, furnishingVendor)
 
-  listTable = FurC.AchievementVendors[FURC_HOMESTEAD]["Orsinium"][GetString(FURC_AV_MAL)]
+  listTable = FurC.AchievementVendors[ver.HOMESTEAD]["Orsinium"][GetString(FURC_AV_MAL)]
   listTable = merge(listTable, furnishingVendor)
 
-  listTable = FurC.AchievementVendors[FURC_HOMESTEAD]["Glenumbra, Daggerfall, The Rosy Lion"]["Rohiza"]
+  listTable = FurC.AchievementVendors[ver.HOMESTEAD]["Glenumbra, Daggerfall, The Rosy Lion"]["Rohiza"]
   listTable = merge(listTable, furnishingVendor)
 
-  listTable = FurC.AchievementVendors[FURC_HOMESTEAD]["Rivenspire, Shornhelm, Dead Wolf Inn"]["Rohiza"]
+  listTable = FurC.AchievementVendors[ver.HOMESTEAD]["Rivenspire, Shornhelm, Dead Wolf Inn"]["Rohiza"]
   listTable = merge(listTable, furnishingVendor)
 
-  listTable = FurC.AchievementVendors[FURC_HOMESTEAD]["Orsinium"][GetString(FURC_AV_MAL)]
+  listTable = FurC.AchievementVendors[ver.HOMESTEAD]["Orsinium"][GetString(FURC_AV_MAL)]
   listTable = merge(listTable, structures)
 end

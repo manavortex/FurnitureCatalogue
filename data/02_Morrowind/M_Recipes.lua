@@ -1,6 +1,8 @@
 FurC.Recipes = FurC.Recipes or {}
 
-FurC.Recipes[FURC_MORROWIND] = {
+local ver = FurC.Constants.Versioning
+
+FurC.Recipes[ver.MORROWIND] = {
   126966, -- Redoran Trestle, Corridor
   126881, -- Dwarven Jar, Sealed
   126865, -- Dwarven Engine, Turbine

@@ -1,6 +1,7 @@
 FurC.Rolis_Recipes = FurC.Rolis_Recipes or {}
+local ver = FurC.Constants.Versioning
 
-FurC.Rolis_Recipes[FURC_REACH] = {
+FurC.Rolis_Recipes[ver.REACH] = {
   [132195] = true, -- Telvanni Candelabra, Masterwork
   [132194] = true, -- Mammoth Cheese, Mastercrafted
   [132191] = true, -- Dwarven Gyroscope

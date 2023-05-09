@@ -8,6 +8,7 @@ local otherTask       = LibAsync:Create("FurnitureCatalogue_ToggleGui")
 local async           = LibAsync:Create("FurnitureCatalogue_forLoop")
 
 local sortTable       = FurC.SortTable
+local src             = FurC.Constants.ItemSources
 
 local function sort(myTable)
   local sortName, sortDirection = FurC.GetSortParams()
@@ -124,7 +125,7 @@ local function updateScrollDataLinesData()
   local function sortAndCountData()
     dataLines = sort(dataLines)
     FurCGui_ListHolder.dataLines = dataLines
-    FurC_RecipeCount:SetText(#dataLines)
+    FurC_RecipeCount:SetText(tostring(#dataLines))
   end
 
   if nil ~= task then
@@ -141,9 +142,8 @@ local cachedDefaults
 local function startLoading()
   FurC.IsLoading(true)
   local text = FurC_SearchBox:GetText()
-  --FurC_SearchBoxText:SetText((#text == 0 and FURC_S_FILTERDEFAULT) or "")
-  FurC.LastFilter = useDefaults
-  FurC.SetFilter(useDefaults, true)
+  FurC.LastFilter = cachedDefaults
+  FurC.SetFilter(cachedDefaults, true)
 end
 local function stopLoading()
   FurC.IsLoading(false)
@@ -169,7 +169,6 @@ function FurC.UpdateGui(useDefaults)
 end
 
 function FurC.UpdateInventoryScroll()
-  local index = 0
   FurCGui_ListHolder.dataOffset = FurCGui_ListHolder.dataOffset or 0
   FurCGui_ListHolder.dataOffset = math.max(FurCGui_ListHolder.dataOffset, 0)
 
@@ -246,8 +245,6 @@ function FurC.ApplyLineTemplate()
   end
 end
 
-local addedDropdownCharacterNames = {}
-
 local function createGui()
   local function createInventoryScroll()
     FurC.Logger:Debug("CreateInventoryScroll")
@@ -284,9 +281,7 @@ local function createGui()
     FurCGui_ListHolder.QualitySort = FurCGui_Header_SortBar:GetNamedChild("_Quality")
     FurCGui_ListHolder.QualitySort.icon = FurCGui_ListHolder.QualitySort:GetNamedChild("_Button")
 
-    --local width = 250 -- FurCGui_ListHolder:GetWidth()
-    local text = "       No Collected Data"
-
+    local predecessor
     for i = 1, FurCGui_ListHolder.maxLines do
       FurCGui_ListHolder.lines[i] = createLine(i, predecessor)
       predecessor = FurCGui_ListHolder.lines[i]
@@ -389,7 +384,7 @@ local function createGui()
     control.comboBox      = control.comboBox or ZO_ComboBox_ObjectFromContainer(control)
     comboBox              = control.comboBox
 
-    local function HideTooltip(control)
+    local function HideTooltip()
       ClearTooltip(InformationTooltip)
     end
 
@@ -427,7 +422,7 @@ local function createGui()
           control:SetHandler("OnMouseExit", entry.onMouseExit)
           control.tooltip = nil
         end
-        HideTooltip(self)
+        HideTooltip()
         originalHide(self)
       end
     end
@@ -435,16 +430,14 @@ local function createGui()
     function OnItemSelect(control, choiceText, somethingElse)
       local dropdownName = tostring(control.m_name):gsub("FurC_Dropdown", "")
       FurC.SetDropdownChoice(dropdownName, choiceText)
-      HideTooltip(control)
+      HideTooltip()
       PlaySound(SOUNDS.POSITIVE_CLICK)
     end
 
     comboBox:SetSortsItems(false)
-    local originalShow = comboBox.ShowDropdownInternal
 
     if dropdownName == "Character" then
       for _, characterName in ipairs(FurC.GetAccountCrafters()) do
-        addedDropdownCharacterNames[characterName] = true
         table.insert(validChoices, characterName)
         table.insert(dropdownData["Tooltips" .. dropdownName],
           zo_strformat(GetString(SI_FURC_STRING_RECIPESFORCHAR), characterName))
@@ -476,27 +469,27 @@ local function createGui()
   FurC.UpdateDropdowns()
 
   -- reanchor it once
-  FurC.SetHideUIButton(FURC_RUMOUR, FurC.GetHideUIButton(FURC_RUMOUR))
+  FurC.SetHideUIButton(src.RUMOUR, FurC.GetHideUIButton(src.RUMOUR))
   FurC.UpdateHeader()
 end
 
 function FurC.UpdateHeader()
-  local hideRumourButton = FurC.GetHideUIButton(FURC_RUMOUR)
+  local hideRumourButton = FurC.GetHideUIButton(src.RUMOUR)
   local showRumours = FurC.GetShowRumours()
 
   FurC_ShowRumours:SetHidden(hideRumourButton)
   FurC_ShowRumoursGlow:SetHidden(not showRumours or hideRumourButton)
 
   if not hideRumourButton then
-    FurC_ShowRumours:SetState((showRumours and BSTATE_PRESSED) or BSTATE_NORMAL)
+    FurC_ShowRumours:SetState((showRumours and BSTATE_PRESSED) or BSTATE_NORMAL, false)
   end
 
-  local hideCrownButton = FurC.GetHideUIButton(FURC_CROWN)
+  local hideCrownButton = FurC.GetHideUIButton(src.CROWN)
 
   FurC_ShowCrowns:SetHidden(hideCrownButton)
   if hideCrownButton then return end
 
-  FurC_ShowCrowns:SetState((FurC.GetShowCrownstore() and BSTATE_PRESSED) or BSTATE_NORMAL)
+  FurC_ShowCrowns:SetState((FurC.GetShowCrownstore() and BSTATE_PRESSED) or BSTATE_NORMAL, false)
 end
 
 function FurnitureCatalogue_Toggle()

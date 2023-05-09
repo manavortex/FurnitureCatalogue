@@ -16,9 +16,10 @@ local showAllOnTextSearch       = false
 local showAllCrownOnTextSearch  = false
 local showAllRumourOnTextSearch = false
 
-local sourceIndices
-
 local recipeArray, itemId, itemLink, itemType, sItemType, recipeIndex, recipeListIndex
+
+local src                       = FurC.Constants.ItemSources
+local ver                       = FurC.Constants.Versioning
 
 -- Local imports for performance
 local GetItemLinkName           = GetItemLinkName
@@ -28,15 +29,14 @@ local match                     = string.match
 
 function FurC.SetFilter(useDefaults, skipRefresh)
   ClearTooltip(InformationTooltip)
-  sourceIndices = FurC.SourceIndices
-  searchString  = FurC.GetSearchFilter()
+  searchString = FurC.GetSearchFilter()
 
   if useDefaults then
-    dropdownChoiceVersion   = tonumber(FurC.GetDefaultDropdownChoice("Version"))
+    dropdownChoiceVersion   = FurC.GetDefaultDropdownChoice("Version")
     ddSource                = FurC.GetDefaultDropdownChoice("Source")
     dropdownChoiceCharacter = FurC.GetDefaultDropdownChoice("Character")
   else
-    dropdownChoiceVersion   = tonumber(FurC.GetDropdownChoice("Version"))
+    dropdownChoiceVersion   = FurC.GetDropdownChoice("Version")
     ddSource                = FurC.GetDropdownChoice("Source")
     dropdownChoiceCharacter = FurC.GetDropdownChoice("Character")
   end
@@ -47,15 +47,15 @@ function FurC.SetFilter(useDefaults, skipRefresh)
   qualityFilter             = FurC.GetFilterQuality()
   craftingTypeFilter        = FurC.GetFilterCraftingType()
   hideBooks                 = FurC.GetHideBooks()
-  hideRumours               = not FurC.GetShowRumours() and ddSource ~= FURC_RUMOUR and (FurC.GetHideRumourRecipes())
-  hideCrownStore            = not FurC.GetShowCrownstore() and ddSource ~= FURC_CROWN and (FurC.GetHideCrownStoreItems())
+  hideRumours               = not FurC.GetShowRumours() and ddSource ~= src.RUMOUR and (FurC.GetHideRumourRecipes())
+  hideCrownStore            = not FurC.GetShowCrownstore() and ddSource ~= src.CROWN and (FurC.GetHideCrownStoreItems())
   mergeLuxuryAndSales       = FurC.GetMergeLuxuryAndSales()
 
   -- ignore filtered items when no dropdown filter is set and there's a text search?
   showAllOnTextSearch       = FurC.GetFilterAllOnText() and #searchString > 0 and
-      FURC_NONE == ddSource and
-      FURC_NONE == dropdownChoiceVersion and
-      FURC_NONE == dropdownChoiceCharacter
+      src.NONE == ddSource and
+      ver.NONE == dropdownChoiceVersion and
+      1 == dropdownChoiceCharacter
 
   showAllRumourOnTextSearch = showAllOnTextSearch and not FurC.GetFilterAllOnTextNoCrown()
   showAllCrownOnTextSearch  = showAllOnTextSearch and not FurC.GetFilterAllOnTextNoCrown()
@@ -93,34 +93,34 @@ local function matchVersionDropdown()
 end
 
 local validSourcesForOther = {
-  [FURC_FESTIVAL_DROP] = true,
-  [FURC_DROP]          = true,
-  [FURC_FISHING]       = true,
-  [FURC_JUSTICE]       = true,
-  [FURC_GUILDSTORE]    = true,
+  [src.FESTIVAL_DROP] = true,
+  [src.DROP]          = true,
+  [src.FISHING]       = true,
+  [src.JUSTICE]       = true,
+  [src.GUILDSTORE]    = true,
 }
 
 -- Source: All, All (craftable), Craftable (known), craftable (unknown), purchaseable
 local function matchSourceDropdown()
   -- "All", don't care
-  if FURC_NONE == ddSource then
+  if src.NONE == ddSource then
     return true
   end
-  if FURC_FAVE == ddSource then
+  if src.FAVE == ddSource then
     return recipeArray.favorite
   end
-  if recipeArray.origin == FURC_CRAFTING then
-    if ddSource == FURC_CRAFTING then return true end
-    local matchingDropdownSource = (isRecipeArrayKnown() and FURC_CRAFTING_KNOWN) or FURC_CRAFTING_UNKNOWN
+  if recipeArray.origin == src.CRAFTING then
+    if ddSource == src.CRAFTING then return true end
+    local matchingDropdownSource = (isRecipeArrayKnown() and src.CRAFTING_KNOWN) or src.CRAFTING_UNKNOWN
     return matchingDropdownSource == ddSource
   end
-  if FURC_VENDOR == ddSource then
-    return recipeArray.origin == FURC_VENDOR or (mergeLuxuryAndSales and recipeArray.origin == FURC_LUXURY)
+  if src.VENDOR == ddSource then
+    return recipeArray.origin == src.VENDOR or (mergeLuxuryAndSales and recipeArray.origin == src.LUXURY)
   end
-  if FURC_WRIT_VENDOR == ddSource then
-    return recipeArray.origin == FURC_ROLIS
+  if src.WRIT_VENDOR == ddSource then
+    return recipeArray.origin == src.ROLIS
   end
-  if FURC_OTHER == ddSource then
+  if src.OTHER == ddSource then
     return validSourcesForOther[recipeArray.origin]
   end
   -- we're checking character knowledge
@@ -140,7 +140,7 @@ local function matchSearchString()
 end
 
 local function matchCraftingTypeFilter()
-  if not recipeArray.origin == FURC_CRAFTING then return false end
+  if not recipeArray.origin == src.CRAFTING then return false end
   local filterType = FurC.GetCraftingSkillType(itemId, recipeArray)
   return filterType and filterType > 0 and craftingTypeFilter[filterType]
 end
@@ -172,12 +172,12 @@ function FurC.MatchFilter(currentItemId, currentRecipeArray)
 
   if not matchSearchString() then return false end
 
-  if recipeArray.origin == FURC_RUMOUR and hideRumours then
+  if recipeArray.origin == src.RUMOUR and hideRumours then
     if not showAllRumourOnTextSearch and matchSearchString() then return false end
     return true
   end
 
-  if recipeArray.origin == FURC_CROWN and hideCrownStore then
+  if recipeArray.origin == src.CROWN and hideCrownStore then
     if not showAllCrownOnTextSearch then return false end
     return true
   end

@@ -8,7 +8,7 @@ end
 
 local function prefillChatBox(output, refresh)
   output = zo_strformat(output)
-  if nil == output or FURC_EMPTY_STRING == output then return end
+  if nil == output or "" == output then return end
   local editControl = CHAT_SYSTEM.textEntry.editControl
 
   if not refresh then

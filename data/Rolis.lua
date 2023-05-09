@@ -1,9 +1,11 @@
-FurC.Rolis                         = FurC.Rolis or {}
-FurC.RolisRecipes                  = FurC.RolisRecipes or {}
-FurC.FaustinaRecipes               = FurC.FaustinaRecipes or {}
-FurC.Faustina                      = FurC.Faustina or {}
+FurC.Rolis                        = FurC.Rolis or {}
+FurC.RolisRecipes                 = FurC.RolisRecipes or {}
+FurC.FaustinaRecipes              = FurC.FaustinaRecipes or {}
+FurC.Faustina                     = FurC.Faustina or {}
 
-FurC.RolisRecipes[FURC_FLAMES]     = {
+local ver                         = FurC.Constants.Versioning
+
+FurC.RolisRecipes[ver.FLAMES]     = {
   [171803] = 125, -- Blueprint: Solitude Well, Noble
   [171806] = 125, -- Design: Provisioning Station, Solitude Grill
   [171801] = 125, -- Diagram: Dwarven Minecart, Ornate
@@ -13,7 +15,7 @@ FurC.RolisRecipes[FURC_FLAMES]     = {
   [171807] = 125, -- Sketch: Dwarven Crystal Sconce, Mirror
 }
 
-FurC.FaustinaRecipes[FURC_HARROW]  = {
+FurC.FaustinaRecipes[ver.HARROW]  = {
   [159501] = 125, -- Praxis: Khajiit Sigil, Moon Cycle
   [159499] = 125, -- Pattern: Elsweyr Bed, Senche-Raht
   [159502] = 125, -- Formula: Elsweyr Mortar and Pestle, Engraved
@@ -22,7 +24,7 @@ FurC.FaustinaRecipes[FURC_HARROW]  = {
   [159500] = 125, -- Blueprint: Elsweyr Well, Covered
 }
 
-FurC.RolisRecipes[FURC_WOTL]       = {
+FurC.RolisRecipes[ver.WOTL]       = {
   [147656] = 125, -- Dark Elf Tent, Canopy,
   [147657] = 125, -- Hlaalu Stove, Chiminea,
   [147651] = 125, -- Silver Kettle, Masterworked,
@@ -32,7 +34,7 @@ FurC.RolisRecipes[FURC_WOTL]       = {
   [147655] = 125, -- Hlaalu Salt Lamp, Enchanted,
 }
 
-FurC.FaustinaRecipes[FURC_DRAGONS] = {
+FurC.FaustinaRecipes[ver.DRAGONS] = {
   [141904] = 100, -- Blueprint: Alinor Bookshelf, Grand Full,
   [141905] = 100, -- Praxis: Alinor Gaming Table, Punctilious Conflict,
   [141906] = 100, -- Formula: Artist's Palette, Pigment,
@@ -42,7 +44,7 @@ FurC.FaustinaRecipes[FURC_DRAGONS] = {
   [141902] = 100, -- Schematic: Relic Vault, Impenetrable,
 }
 
-FurC.FaustinaRecipes[FURC_DRAGONS] = {
+FurC.FaustinaRecipes[ver.DRAGONS] = {
   [121200] = 100, -- Blueprint: Cabinet, Poisonmaker's
   [121166] = 100, -- Blueprint: Podium, Skinning
   [132195] = 100, -- Blueprint: Telvanni Candelabra, Masterwork
@@ -69,18 +71,18 @@ FurC.FaustinaRecipes[FURC_DRAGONS] = {
   [139486] = 100, -- Sketch: High Elf Ancestor Clock, Celestial
 }
 
-FurC.Faustina[FURC_DRAGONS]        = {
+FurC.Faustina[ver.DRAGONS]        = {
   [134675] = 500, -- Outfit station
   [137870] = 125, -- Jewelry Station
   [137947] = 250, -- Attunable Jewelry Station
   [139391] = 10,  -- Master Crafter's Banner, Hanging,
 }
 
-FurC.Rolis[FURC_DRAGONS]           = {
+FurC.Rolis[ver.DRAGONS]           = {
   [133576] = 1250,
 }
 
-FurC.Rolis[FURC_HOMESTEAD]         = {
+FurC.Rolis[ver.HOMESTEAD]         = {
   -- Alchemy station
   [118328] = 35,
   -- Blacksmithing station
@@ -104,7 +106,7 @@ FurC.Rolis[FURC_HOMESTEAD]         = {
   [119822] = 250,
 }
 
-FurC.RolisRecipes[FURC_HOMESTEAD]  = {
+FurC.RolisRecipes[ver.HOMESTEAD]  = {
   [126582] = 275, -- Praxis: Target Centurion, Dwarf-Brass
   [126583] = 450, -- Praxis: Target Centurion, Robust Refabricated
   [119592] = 125, -- Praxis: Target Skeleton, Humanoid

@@ -1,6 +1,8 @@
 FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
-FurC.LuxuryFurnisher[FURC_DRUID] = {
+local ver = FurC.Constants.Versioning
+
+FurC.LuxuryFurnisher[ver.DRUID] = {
   [192573] = { -- Clockwork Illuminator, Spot
     itemPrice = 14000,
     itemDate = "2023-03-11",
@@ -97,7 +99,7 @@ FurC.LuxuryFurnisher[FURC_DRUID] = {
   },
 }
 
-FurC.LuxuryFurnisher[FURC_DEPTHS] = {
+FurC.LuxuryFurnisher[ver.DEPTHS] = {
   [189481] = { -- Bone Sculpture, Circular
     itemPrice = 3000,
     itemDate = "2022-10-29",
@@ -150,7 +152,7 @@ FurC.LuxuryFurnisher[FURC_DEPTHS] = {
 
 }
 
-FurC.LuxuryFurnisher[FURC_TIDES] = {
+FurC.LuxuryFurnisher[ver.TIDES] = {
   [187791] = { -- Anvil Banner, Large
     itemPrice = 12000,
     itemDate = "2022-08-20",
@@ -267,7 +269,7 @@ FurC.LuxuryFurnisher[FURC_TIDES] = {
   },
 }
 
-FurC.LuxuryFurnisher[FURC_DEADL] = {
+FurC.LuxuryFurnisher[ver.DEADL] = {
   [182624] = { -- Clockwork Coffer, Vertical
     itemPrice = 4000,
     itemDate = "2022-03-12",
@@ -667,7 +669,7 @@ FurC.LuxuryFurnisher[FURC_DEADL] = {
 
 -- ====================================================================
 
-FurC.LuxuryFurnisher[FURC_BLACKW] = {
+FurC.LuxuryFurnisher[ver.BLACKW] = {
   [181543] = { -- Harpy Totem, Feathered
     itemPrice = 7000,
     itemDate = "2022-11-05",
@@ -1644,7 +1646,7 @@ FurC.LuxuryFurnisher[FURC_BLACKW] = {
   },
 }
 
-FurC.LuxuryFurnisher[FURC_FLAMES] = {
+FurC.LuxuryFurnisher[ver.FLAMES] = {
   -- ====================================================================
 
   [151864] = { -- Alinor Maple, Diminutive
@@ -1693,7 +1695,7 @@ FurC.LuxuryFurnisher[FURC_FLAMES] = {
 
 }
 
-FurC.LuxuryFurnisher[FURC_MARKAT] = {
+FurC.LuxuryFurnisher[ver.MARKAT] = {
   -- ====================================================================
 
   [145470] = { -- Redguard Vase, Golden
@@ -2175,19 +2177,19 @@ FurC.LuxuryFurnisher[FURC_MARKAT] = {
   },
 }
 
-FurC.LuxuryFurnisher[FURC_STONET] = {
+FurC.LuxuryFurnisher[ver.STONET] = {
   -- all items recycled
 }
 
-FurC.LuxuryFurnisher[FURC_SKYRIM] = {
+FurC.LuxuryFurnisher[ver.SKYRIM] = {
   -- All items have been recycled
 }
 
-FurC.LuxuryFurnisher[FURC_HARROW] = {
+FurC.LuxuryFurnisher[ver.HARROW] = {
   -- all items recycled
 }
 
-FurC.LuxuryFurnisher[FURC_SCALES] = {
+FurC.LuxuryFurnisher[ver.SCALES] = {
   -- ====================================================================
 
   [156662] = { -- Riekling Banner, Wolf Pelt
@@ -2243,15 +2245,15 @@ FurC.LuxuryFurnisher[FURC_SCALES] = {
   -- ====================================================================
 
 }
-FurC.LuxuryFurnisher[FURC_KITTY] = {
+FurC.LuxuryFurnisher[ver.KITTY] = {
   -- all items have been recycled
 }
 
-FurC.LuxuryFurnisher[FURC_WOTL] = {
+FurC.LuxuryFurnisher[ver.WOTL] = {
   -- all of these items have been recycled
 }
 
-FurC.LuxuryFurnisher[FURC_SLAVES] = {
+FurC.LuxuryFurnisher[ver.SLAVES] = {
   -- ====================================================================
 
   [120802] = { -- Shrine of Mara, Decorative

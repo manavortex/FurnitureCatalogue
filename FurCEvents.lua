@@ -26,6 +26,7 @@ end
 
 local function getItemKnowledge(itemLink)
   local recipeArray = FurC.Find(itemLink)
+  local itemId = GetItemLinkItemId(itemLink)
   if FurC.GetUseInventoryIconsOnChar() then
     return FurC.CanCraft(itemId, recipeArray)
   end
@@ -39,7 +40,7 @@ local function updateItemInInventory(control)
 
   local bagId = data.bagId
   local slotId = data.slotIndex
-  local itemLink = GetItemLink(bagId, slotId)
+  local itemLink = GetItemLink(bagId, slotId, LINK_STYLE_DEFAULT)
 
   if not IsItemLinkFurnitureRecipe(itemLink) then
     icon:SetHidden(true)

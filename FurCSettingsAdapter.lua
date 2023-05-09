@@ -1,4 +1,5 @@
 local task = LibAsync:Create("FurnitureCatalogue_Settings")
+local src  = FurC.Constants.ItemSources
 
 function FurC.GetEnableDebug()
   return FurC.settings["enableDebug"]
@@ -37,7 +38,7 @@ end
 function FurC.SetHideUIButton(buttonIdentifier, value)
   FurC.settings.hideUiButtons[buttonIdentifier] = value
   FurC.UpdateHeader()
-  if not buttonIdentifier == FURC_RUMOUR then return end
+  if not buttonIdentifier == src.RUMOUR then return end
 
   -- reanchor crownstore button
   FurC_ShowCrowns:ClearAnchors()
@@ -395,7 +396,7 @@ function FurC.SetDropdownChoice(dropdownName, textValue, dropdownIndex)
   FurC.DropdownChoices[dropdownName] = dropdownIndex
 
   if dropdownName == "Source" then
-    if dropdownIndex > FURC_CRAFTING_UNKNOWN or dropdownIndex < FURC_CRAFTING then
+    if dropdownIndex > src.CRAFTING_UNKNOWN or dropdownIndex < src.CRAFTING then
       FurC.DropdownChoices["Character"] = 1
       FurC_DropdownCharacter:GetNamedChild("SelectedItemText"):SetText(FurC.DropdownData.ChoicesCharacter
         [1])
@@ -403,8 +404,8 @@ function FurC.SetDropdownChoice(dropdownName, textValue, dropdownIndex)
   end
   -- if we're setting the characters array to something other than 1, we can't use source 1 or 5
   if dropdownName == "Character" and (dropdownIndex > 1) then
-    if FurC.DropdownChoices["Source"] > FURC_CRAFTING_UNKNOWN or FurC.DropdownChoices["Source"] < FURC_CRAFTING then
-      local knownIndex = FURC_CRAFTING_KNOWN
+    if FurC.DropdownChoices["Source"] > src.CRAFTING_UNKNOWN or FurC.DropdownChoices["Source"] < src.CRAFTING then
+      local knownIndex = src.CRAFTING_KNOWN
       FurC.DropdownChoices["Source"] = knownIndex
       FurC_DropdownSource:GetNamedChild("SelectedItemText"):SetText(FurC.DropdownData.ChoicesSource
         [knownIndex])
@@ -420,6 +421,8 @@ function FurC.GetDefaultDropdownChoiceText(dropdownName)
   return FurC.DropdownData["Choices" .. dropdownName][FurC.GetDefaultDropdownChoice(dropdownName)]
 end
 
+---@param dropdownName string
+---@return integer
 function FurC.GetDefaultDropdownChoice(dropdownName)
   return FurC.settings.dropdownDefaults[dropdownName]
 end
