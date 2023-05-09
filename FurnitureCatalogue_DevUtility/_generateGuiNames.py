@@ -5,6 +5,7 @@ from pathlib import Path
 import xml.etree.ElementTree as ET
 
 '''
+Get names of GUI elements for IDE support.
 Example call:
 python .\_generateGuiNames.py 'C:/Users/UserName/Documents/Elder Scrolls Online/live/AddOns/FurnitureCatalogue/xml/FurnitureCatalogue.xml'
 '''
@@ -46,11 +47,6 @@ def resolve_names_bfs(root):
     # move down 1 level
     level_nodes = next_level_nodes
     level += 1
-
-# ToDo: Autogenerator for XML and EN-locale.lua
-MARKER_START = '-- START OF GENERATED CODE BLOCK FOR FILE: '
-MARKER_END = '-- END OF GENERATED CODE BLOCK FOR FILE: '
-
 
 if __name__ == '__main__':
   file_path = f"{Path(__file__).parent}/../xml/FurnitureCatalogue.xml"

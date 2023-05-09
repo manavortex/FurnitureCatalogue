@@ -31,7 +31,6 @@ FurC.ItemLinkColours    = {
   TelVar  = "82BCFF",
 }
 
--- TODO: set up the filtering for src.RUMOUR and src.CROWN in submenus by origin
 local defaults          = {
   hideMats             = true,
   dontScanTradingHouse = false,

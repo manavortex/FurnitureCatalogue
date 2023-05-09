@@ -272,10 +272,8 @@ function FurC.SetFilterCraftingType(craftingType)
   FurC.UpdateGui()
 end
 
-local FURC_S_FILTERDEFAULT = GetString(SI_FURC_TEXTBOX_FILTER_DEFAULT)
-
 function FurC.GetSearchFilter()
-  if (not FurC.SearchFilter) or FurC.SearchFilter == FURC_S_FILTERDEFAULT then
+  if (not FurC.SearchFilter) or FurC.SearchFilter == GetString(SI_FURC_TEXTBOX_FILTER_DEFAULT) then
     FurC.SearchFilter = FurC_SearchBox:GetText() or ""
   end
   return FurC.SearchFilter or ""

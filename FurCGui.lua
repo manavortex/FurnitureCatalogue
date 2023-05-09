@@ -1,14 +1,12 @@
-FurC.SlotTemplate     = "FurC_SlotTemplate"
-FurC.KnowledgeFilter  = "All (Accountwide)"
-FurC.SearchString     = ""
-FurC.ScrollSortUp     = true
-local checkWasUpdated = false
-local task            = LibAsync:Create("FurnitureCatalogue_updateLineVisibility")
-local otherTask       = LibAsync:Create("FurnitureCatalogue_ToggleGui")
-local async           = LibAsync:Create("FurnitureCatalogue_forLoop")
+FurC.SlotTemplate    = "FurC_SlotTemplate"
+FurC.KnowledgeFilter = "All (Accountwide)"
+FurC.SearchString    = ""
+FurC.ScrollSortUp    = true
+local task           = LibAsync:Create("FurnitureCatalogue_updateLineVisibility")
+local otherTask      = LibAsync:Create("FurnitureCatalogue_ToggleGui")
 
-local sortTable       = FurC.SortTable
-local src             = FurC.Constants.ItemSources
+local sortTable      = FurC.SortTable
+local src            = FurC.Constants.ItemSources
 
 local function sort(myTable)
   local sortName, sortDirection = FurC.GetSortParams()
@@ -137,7 +135,6 @@ local function updateScrollDataLinesData()
   end
 end
 
-local FURC_S_FILTERDEFAULT = GetString(SI_FURC_TEXTBOX_FILTER_DEFAULT)
 local cachedDefaults
 local function startLoading()
   FurC.IsLoading(true)
