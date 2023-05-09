@@ -4,7 +4,7 @@
 ## Version: 2.0.0
 ## APIVersion: 101038 101037
 ## DependsOn: FurnitureCatalogue
-## OptionalDependsOn: sidTools AchievementFinder LibDebugLogger DebugLogViewer
+## OptionalDependsOn: sidTools LibDebugLogger DebugLogViewer
 
 Bindings.xml
 xml.xml

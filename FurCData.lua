@@ -18,6 +18,7 @@ local function getCurrentChar()
 end
 
 -- GetItemLinkItemId doesn't work the way I need it
+-- ToDo: fix this, should only take one type of link (not nil, number, string, links)
 local function getItemId(itemLink)
   if nil == itemLink or STRING_EMPTY == itemLink then return end
   if type(itemLink) == NUMBER_TYPE and itemLink > 9999 then return itemLink end
@@ -28,12 +29,12 @@ FurC.GetItemId = getItemId
 
 --- Get item link from id
 --- @param itemId any
---- @return string|nil
+--- @return string link or empty string
+-- ToDo: fix this, should only take one type of input
 local function getItemLink(itemId)
-  if nil == itemId then return end
+  if nil == itemId or #tostring(itemId) < 4 then return "" end
   itemId = tostring(itemId)
   if #itemId > 55 then return itemId end
-  if #itemId < 4 then return end
   return zo_strformat("|H1:item:<<1>>:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h", itemId)
 end
 FurC.GetItemLink = getItemLink
@@ -96,7 +97,7 @@ function FurC.GetIngredients(itemLink, recipeArray)
       local _, _, qty             = GetRecipeIngredientItemInfo(recipeArray.recipeListIndex, recipeArray.recipeIndex,
         ingredientIndex)
       local ingredientLink        = GetRecipeIngredientItemLink(recipeArray.recipeListIndex, recipeArray.recipeIndex,
-        ingredientIndex)
+        ingredientIndex, LINK_STYLE_DEFAULT)
       ingredients[ingredientLink] = qty
     end
   end
@@ -175,6 +176,7 @@ end
 
 -- sets recipeArray, returns it - calls scanItemLink
 function FurC.Delete(itemOrBlueprintLink)
+  -- ToDo: what is scanItemLink?
   local recipeArray = scanItemLink(itemOrBlueprintLink)
   if nil == recipeArray then return end
   local itemLink = recipeArray.itemId
@@ -280,7 +282,7 @@ FurC.ScanCharacter = scanCharacter
 
 function FurC.RescanRumourRecipes()
   local function rescan()
-    for itemId, recipeArray in pairs(FurC.settings.data) do
+    for _, recipeArray in pairs(FurC.settings.data) do
       if recipeArray.source == FURC_RUMOUR then
         local itemLink = recipeArray[itemLink]
         if not FurC.RumourRecipes[itemLink] then
@@ -295,6 +297,7 @@ function FurC.RescanRumourRecipes()
     task:Call(rescan):Then(FurC.UpdateGui)
   else
     rescan()
+    FurC.UpdateGui()
   end
 end
 

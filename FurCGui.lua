@@ -67,7 +67,7 @@ local function updateLineVisibility()
 
   FurC.CalculateMaxLines()
 
-  task:Call(function()
+  local function redrawList()
     local maxLines = FurCGui_ListHolder.maxLines
     local dataLines = FurCGui_ListHolder.dataLines
 
@@ -83,7 +83,13 @@ local function updateLineVisibility()
       fillLine(curLine, curData, i)
     end
     FurCGui_ListHolder_Slider:SetMinMax(0, #dataLines)
-  end)
+  end
+
+  if nil ~= task then
+    task:Call(redrawList)
+  else
+    redrawList()
+  end
 end
 FurC.UpdateLineVisibility = updateLineVisibility
 
@@ -99,7 +105,7 @@ end
 -- fill the shown item list with items that match current filter(s)
 local function updateScrollDataLinesData()
   local dataLines = {}
-  task:Call(function()
+  local function filterData()
     for itemId, recipeArray in pairs(FurC.settings.data) do
       if FurC.MatchFilter(itemId, recipeArray) then
         local itemLink = FurC.GetItemLink(itemId)
@@ -113,13 +119,23 @@ local function updateScrollDataLinesData()
         end
       end
     end
-  end)
-      :Then(function()
-        dataLines = sort(dataLines)
-        FurCGui_ListHolder.dataLines = dataLines
-        FurC_RecipeCount:SetText(#dataLines)
-      end)
+  end
+
+  local function sortAndCountData()
+    dataLines = sort(dataLines)
+    FurCGui_ListHolder.dataLines = dataLines
+    FurC_RecipeCount:SetText(#dataLines)
+  end
+
+  if nil ~= task then
+    task:Call(filterData)
+        :Then(sortAndCountData)
+  else
+    filterData()
+    sortAndCountData()
+  end
 end
+
 local FURC_S_FILTERDEFAULT = GetString(SI_FURC_TEXTBOX_FILTER_DEFAULT)
 local cachedDefaults
 local function startLoading()
@@ -140,9 +156,16 @@ end
 function FurC.UpdateGui(useDefaults)
   if FurCGui:IsHidden() then return end
   cachedDefaults = useDefaults
-  otherTask:Call(startLoading)
-      :Then(updateScrollDataLinesData)
-      :Then(stopLoadingWithDelay)
+
+  if nil ~= otherTask then
+    otherTask:Call(startLoading)
+        :Then(updateScrollDataLinesData)
+        :Then(stopLoadingWithDelay)
+  else
+    startLoading()
+    updateScrollDataLinesData()
+    stopLoadingWithDelay()
+  end
 end
 
 function FurC.UpdateInventoryScroll()
@@ -216,7 +239,11 @@ function FurC.ApplyLineTemplate()
   local minHeight = 2 * FurCGui_Header:GetHeight()
   FurCGui:SetDimensionConstraints(minWidth, minHeight)
 
-  task:Call(function() updateLineVisibility() end)
+  if nil ~= task then
+    task:Call(updateLineVisibility)
+  else
+    updateLineVisibility()
+  end
 end
 
 local addedDropdownCharacterNames = {}
@@ -228,7 +255,9 @@ local function createGui()
     local function createLine(i, predecessor)
       predecessor = predecessor or FurCGui_ListHolder
 
+      ---@type Control
       local line  = WINDOW_MANAGER:CreateControlFromVirtual("FurC_ListItem_" .. i, FurCGui_ListHolder, FurC.SlotTemplate)
+
       line.icon   = line:GetNamedChild("Button"):GetNamedChild("Icon")
       line.text   = line:GetNamedChild("Name")
       line.mats   = line:GetNamedChild("Mats")

@@ -302,10 +302,10 @@ function FurnitureCatalogue_Initialize(eventCode, addOnName)
 
   FurC.SetFilter(true)
 
-  EVENT_MANAGER:UnregisterForEvent("FurnitureCatalogue", EVENT_ADD_ON_LOADED)
+  EVENT_MANAGER:UnregisterForEvent(FurC.name, EVENT_ADD_ON_LOADED)
   FurC.Logger:Debug("Initialisation complete")
 end
 
 ZO_CreateStringId("SI_BINDING_NAME_TOGGLE_FURNITURE_CATALOGUE", "Toggle main window")
 ZO_CreateStringId("SI_BINDING_NAME_TOGGLE_FURNITURE_CATALOGUE_RECIPE", "Toggle Blueprint on tooltip")
-EVENT_MANAGER:RegisterForEvent("FurnitureCatalogue", EVENT_ADD_ON_LOADED, FurnitureCatalogue_Initialize)
+EVENT_MANAGER:RegisterForEvent(FurC.name, EVENT_ADD_ON_LOADED, FurnitureCatalogue_Initialize)

@@ -3,7 +3,7 @@ function FurC.CreateSettings(savedVars, defaults)
   local panelData = {
     type = "panel",
     name = FurC.name,
-    displayName = name,
+    displayName = FurC.name,
     author = FurC.author,
     version = FurC.version,
     registerForRefresh = true,

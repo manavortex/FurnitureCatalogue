@@ -77,7 +77,7 @@ function FurC.GuiShowTooltip(control, tooltiptext, reAnchor)
 
   if reAnchor then
     InformationTooltip:ClearAnchors()
-    InformationTooltip:SetAnchor(TOPRIGHT, control, TOPLEFT, -10)
+    InformationTooltip:SetAnchor(TOPRIGHT, control, TOPLEFT, -10, 0)
   end
 end
 
@@ -232,5 +232,5 @@ function FurC.UpdateDropdownChoice(dropdownName, value)
 end
 
 function FurC.RefreshCounter()
-  FurC_RecipeCount:SetText(#FurCGui_ListHolder.dataLines)
+  FurC_RecipeCount:SetText(tostring(#FurCGui_ListHolder.dataLines))
 end

@@ -441,3 +441,4 @@ FurC_SearchBoxBackdrop = BackdropControl
 
 FurCDevControl = Control
 FurCDevControlBox = EditControl
+FurC_Dropdown = Control

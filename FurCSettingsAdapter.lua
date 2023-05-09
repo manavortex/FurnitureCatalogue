@@ -6,7 +6,7 @@ end
 
 function FurC.SetEnableDebug(value)
   FurC.settings["enableDebug"] = value
-  FurC.Logger = FurC.getOrCreateLogger(true) -- force recreation of logger
+  FurC.Logger = FurC.getOrCreateLogger(true)
   if value then FurC.Logger:Info("Debug on") end
 end
 
@@ -112,7 +112,11 @@ function FurC.SetFontSize(value)
 
   FurC.SetLineHeight()
 
-  task:Call(function() FurC.UpdateGui() end)
+  if nil ~= task then
+    task:Call(FurC.UpdateGui)
+  else
+    FurC.UpdateGui()
+  end
 end
 
 ---------------------------
@@ -303,8 +307,11 @@ end
 
 function FurC.GuiSetSearchboxTextFrom(control)
   control = control or FurC_SearchBox
-  -- call asynchronely to prevent lagging. Praise votan.
-  task:Call(doSearchOnUpdate)
+  if nil ~= task then
+    task:Call(doSearchOnUpdate)
+  else
+    doSearchOnUpdate()
+  end
 end
 
 function FurC.GetHideBooks()
@@ -331,7 +338,7 @@ end
 
 function FurC.SetShowRumours(value)
   FurC.settings["showRumours"] = value
-  FurC_ShowRumours:SetState((value and BSTATE_PRESSED) or BSTATE_DISABLED)
+  FurC_ShowRumours:SetState((value and BSTATE_PRESSED) or BSTATE_DISABLED, false)
   FurC_ShowRumoursGlow:SetHidden(not value)
   FurC.UpdateGui()
 end
@@ -342,7 +349,7 @@ end
 
 function FurC.SetShowCrownstore(value)
   FurC.settings["showCrowns"] = value
-  FurC_ShowCrowns:SetState((value and BSTATE_PRESSED) or BSTATE_DISABLED)
+  FurC_ShowCrowns:SetState((value and BSTATE_PRESSED) or BSTATE_DISABLED, false)
   FurC.UpdateGui()
 end
 
@@ -421,8 +428,6 @@ function FurC.SetDefaultDropdownChoice(dropdownName, value)
   local dropdownIndex = getDropdownIndex(dropdownName, value)
   local dropdown = FurC.DropdownData["Choices" .. dropdownName]
   FurC.settings.dropdownDefaults[dropdownName] = dropdownIndex
-  -- FurC.UpdateDropdownChoice(dropdownName, value, dropdownIndex)
-  -- FurC.UpdateGui()
 end
 
 function FurC.GetResetDropdownChoice()
@@ -437,10 +442,6 @@ function FurC.GetDropdownChoiceTextual(dropdownName)
   local value = FurC.GetDropdownChoice(dropdownName)
   local dropdown = FurC.DropdownData["Choices" .. dropdownName]
   return FurC.DropdownData["Choices" .. dropdownName][value]
-end
-
-function FurC.GetDefaultDropdownChoiceTextual()
-  return FurC.DropdownData["Choices" .. dropdownName][FurC.GetDefaultDropdownChoice(dropdownName)]
 end
 
 function FurC.GetAccountCrafters()
