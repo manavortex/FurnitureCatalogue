@@ -49,7 +49,7 @@ echo This file is your playground so you can fuck around and find out.
 if exist ".\Custom.lua" (
 	echo If you overwrite it, you will lose any changes you have made.
 )
-Move /-Y ".\Custom.example" ".\Custom.lua"
+copy /-Y ".\Custom.example" ".\Custom.lua"
 echo.
 echo Congratulations, you're all set up.
 
