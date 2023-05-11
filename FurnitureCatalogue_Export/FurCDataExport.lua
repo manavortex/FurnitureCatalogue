@@ -3,7 +3,6 @@ FurCExport                = FurnitureCatalogue_Export
 
 local defaults            = {}
 local src                 = FurC.Constants.ItemSources
-local getCrafterList      = FurC.GetCrafterList
 
 local function getSortTable(tbl)
   local list = {}
@@ -31,11 +30,11 @@ function FurCExport.Export()
   for _, itemName in pairs(tkeys) do
     local itemLink = itemNames[itemName]
     local recipeArray = FurC.Find(itemLink)
-    local known = FurC.IsAccountKnown(itemLink, recipeArray)
+    local known = FurC.IsAccountKnown(itemLink)
 
     local exportArray = (known and exportKnown) or exportUnknown
     local mats = FurC.GetMats(itemLink, recipeArray, false, true)
-    local knowledge = (known and (getCrafterList(itemLink, recipeArray) .. ": "):gsub("Can be crafted by ", "")) or
+    local knowledge = (known and (FurC.GetCrafterList(itemLink) .. ": "):gsub("Can be crafted by ", "")) or
         ""
     local exportString = zo_strformat("<<1>><<2>>", knowledge, mats)
     exportArray[itemName] = exportString

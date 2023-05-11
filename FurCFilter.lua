@@ -76,15 +76,9 @@ function FurC.InitFilters()
     FurC.GetDefaultDropdownChoice("Version"))
 end
 
-local function isRecipeArrayKnown()
-  if nil == recipeArray or nil == recipeArray.characters then return end
-  if dropdownChoiceCharacter == 1 then
-    for _, value in pairs(recipeArray.characters) do
-      if (value) then return true end
-    end
-  else
-    return recipeArray.characters[ddTextCharacter]
-  end
+local function isRecipeArrayKnown(recipeArray)
+  if nil == recipeArray or nil == recipeArray.itemLink then return false end
+  return FurC.IsAccountKnown(recipeArray.itemLink)
 end
 
 -- Version: All, Homestead, Morrowind

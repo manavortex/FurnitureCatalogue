@@ -1,3 +1,77 @@
+local LCK = LibCharacterKnowledge
+
+
+local function getRecipeLinkFromItemLink(itemLink)
+  local item = FurC.Find(itemLink)
+  -- return unchanged if we have no info
+  if not item.blueprint then return itemLink end
+
+  local blueprint = FurC.GetItemLink(item.blueprint)
+  return blueprint
+end
+
+local function getItemLinkFromRecipeLink(recipeLink)
+  return GetItemLinkRecipeResultItemLink(recipeLink)
+end
+
+-- CHARACTER KNOWLEDGE --
+
+---@param itemId number recipe or furnishing id
+---@return boolean isKnown
+function FurC.IsRecipeIdKnownByAccount(itemId)
+  local itemLink = LCK.GetItemLinkFromItemId(itemId)
+  return FurC.IsRecipeKnownByAccount(itemLink)
+end
+
+---@param itemLink string recipe link
+---@return boolean isKnown
+function FurC.IsRecipeKnownByAccount(itemLink)
+  local recipeLink = getRecipeLinkFromItemLink(itemLink)
+  local knowledgeList = LCK.GetItemKnowledgeList(recipeLink)
+
+  for _, characterKnowledge in ipairs(knowledgeList) do
+    if characterKnowledge.knowledge == LCK.KNOWLEDGE_KNOWN then
+      return true
+    end
+  end
+
+  return false
+end
+
+-- FurC.CanCurrentCharacterCraft(166878)
+-- FurC.CanCurrentCharacterCraft(119394)
+---Check if current character can craft item
+---@param itemId number recipe or furnishing id
+---@return boolean
+function FurC.CanCurrentCharacterCraft_id(itemId)
+  local itemLink = LCK.GetItemLinkFromItemId(itemId)
+  local recipeLink = getRecipeLinkFromItemLink(itemLink)
+  return FurC.CanCurrentCharacterCraft(recipeLink)
+end
+
+---@param itemLink string recipe or furnishing link
+---@return boolean
+function FurC.CanCurrentCharacterCraft(itemLink)
+  local recipeLink = getRecipeLinkFromItemLink(itemLink)
+  local knowledge = LCK.GetItemKnowledgeForCharacter(recipeLink)
+  return knowledge == LCK.KNOWLEDGE_KNOWN
+end
+
+---@param itemLink string recipe link
+---@return table listOfCrafters
+function FurC.GetCraftersForItem(itemLink)
+  local recipeLink = getRecipeLinkFromItemLink(itemLink)
+  local knowledgeList = LCK.GetItemKnowledgeList(recipeLink)
+  local crafters = {}
+
+  for _, characterKnowledge in ipairs(knowledgeList) do
+    if characterKnowledge.knowledge == LCK.KNOWLEDGE_KNOWN then
+      table.insert(crafters, characterKnowledge.name)
+    end
+  end
+
+  return crafters
+end
 
 -- TABLE UTILS --
 

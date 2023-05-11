@@ -1,13 +1,4 @@
 local em = EVENT_MANAGER
-
-local function onRecipeLearned(eventCode, recipeListIndex, recipeIndex)
-  local itemlink = GetRecipeResultItemLink(recipeListIndex, recipeIndex, LINK_STYLE_BRACKETS)
-  local info = zo_strformat(GetString(SI_FURC_STRING_RECIPELEARNED), itemlink, recipeListIndex, recipeIndex)
-  FurC.Logger:Debug(info)
-  FurC.TryCreateRecipeEntry(recipeListIndex, recipeIndex)
-  FurC.UpdateGui()
-end
-
 local wm = WINDOW_MANAGER
 
 local function createIcon(control)
@@ -25,12 +16,10 @@ local function createIcon(control)
 end
 
 local function getItemKnowledge(itemLink)
-  local recipeArray = FurC.Find(itemLink)
-  local itemId = GetItemLinkItemId(itemLink)
   if FurC.GetUseInventoryIconsOnChar() then
-    return FurC.CanCraft(itemId, recipeArray)
+    return FurC.CanCraft(itemLink)
   end
-  return FurC.IsAccountKnown(itemId, recipeArray)
+  return FurC.IsAccountKnown(itemLink)
 end
 
 local function updateItemInInventory(control)
@@ -83,8 +72,4 @@ function FurC.SetupInventoryRecipeIcons(calledRecursively)
       )
     end
   end
-end
-
-function FurC.RegisterEvents()
-  em:RegisterForEvent("FurnitureCatalogue", EVENT_RECIPE_LEARNED, onRecipeLearned)
 end

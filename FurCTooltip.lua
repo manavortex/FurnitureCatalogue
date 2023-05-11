@@ -1,7 +1,6 @@
-local async          = LibAsync
-local task           = async:Create("FurnitureCatalogue_Tooltip")
-local src            = FurC.Constants.ItemSources
-local getCrafterList = FurC.GetCrafterList
+local async = LibAsync
+local task  = async:Create("FurnitureCatalogue_Tooltip")
+local src   = FurC.Constants.ItemSources
 
 local function tryColorize(text)
   if not (text and FurC.GetColouredTooltips()) then return text end
@@ -29,13 +28,13 @@ local function addTooltipData(control, itemLink)
 
   if not recipeArray then return end
 
-  local unknown     = not FurC.CanCraft(itemId, recipeArray)
+  local unknown     = not FurC.CanCraft(itemLink)
   local stringTable = {}
 
   -- if craftable:
   if isRecipe or recipeArray.origin == src.CRAFTING then
     if unknown and not FurC.GetHideUnknown() or not FurC.GetHideKnowledge() then
-      local crafterList = getCrafterList(itemLink, recipeArray)
+      local crafterList = FurC.GetCrafterList(itemLink)
       if crafterList then
         stringTable = add(stringTable, tryColorize(crafterList))
       end

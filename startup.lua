@@ -1,6 +1,7 @@
 FurC                    = FurC or {}
 local src               = FurC.Constants.ItemSources
 local ver               = FurC.Constants.Versioning
+local LF                = LibFurniture
 
 FurC.name               = "FurnitureCatalogue"
 FurC.author             = "manavortex"

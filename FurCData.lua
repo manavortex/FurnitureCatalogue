@@ -127,13 +127,9 @@ local function parseBlueprint(blueprintLink) -- saves to DB, returns recipeArray
 
   local recipeArray         = FurC.settings.data[recipeKey] or {}
   recipeArray.origin        = recipeArray.origin or src.CRAFTING
-  recipeArray.characters    = recipeArray.characters or {}
   recipeArray.craftingSkill = recipeArray.craftingSkill or GetItemLinkCraftingSkillType(blueprintLink)
   recipeArray.blueprint     = recipeArray.blueprint or getItemId(blueprintLink)
 
-  if (IsItemLinkRecipeKnown(blueprintLink)) then
-    recipeArray.characters[FurC.CharacterName] = true
-  end
   addDatabaseEntry(recipeKey, recipeArray)
   return recipeArray
 end
@@ -196,10 +192,7 @@ local function scanRecipeIndices(recipeListIndex, recipeIndex) -- returns recipe
   recipeArray.recipeListIndex = recipeArray.recipeListIndex or recipeListIndex
   recipeArray.recipeIndex     = recipeArray.recipeIndex or recipeIndex
 
-  recipeArray.characters      = recipeArray.characters or {}
-
   if GetRecipeInfo(recipeListIndex, recipeIndex) then
-    recipeArray.characters[getCurrentChar()]          = true
     FurC.settings.accountCharacters                   = FurC.settings.accountCharacters or {}
     FurC.settings.accountCharacters[getCurrentChar()] = FurC.settings.accountCharacters[getCurrentChar()] or true
   end
@@ -212,19 +205,14 @@ function FurC.TryCreateRecipeEntry(recipeListIndex, recipeIndex) -- returns scan
   return scanRecipeIndices(recipeListIndex, recipeIndex)
 end
 
-function FurC.IsAccountKnown(recipeKey, recipeArray)
-  if recipeKey == nil and recipeArray == nil then return false end
-  recipeArray = recipeArray or FurC.settings.data[recipeKey]
-  return not (nil == recipeArray or nil == recipeArray.characters or NonContiguousCount(recipeArray.characters) == 0)
+function FurC.IsAccountKnown(itemLink)
+  -- ToDo: replace
+  return FurC.IsRecipeKnownByAccount(itemLink)
 end
 
-function FurC.CanCraft(recipeKey, recipeArray)
-  if recipeKey == nil and recipeArray == nil then return false end
-  recipeArray = recipeArray or FurC.settings.data[recipeKey]
-  if FurC.IsAccountKnown(recipeKey, recipeArray) then
-    return recipeArray.characters[getCurrentChar()]
-  end
-  return false
+function FurC.CanCraft(itemLink)
+  -- ToDo: replace
+  return FurC.CanCurrentCharacterCraft(itemLink)
 end
 
 function FurC.GetCraftingSkillType(recipeKey, recipeArray)
