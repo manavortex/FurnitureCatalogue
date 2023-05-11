@@ -46,10 +46,10 @@ if not exist "..\..\merTorchbug" (
 
 echo.
 echo This file is your playground so you can fuck around and find out. 
-if exist ".\Custom.lua" (
+if exist "..\FurnitureCatalogue_DevUtility\Custom.lua" (
 	echo If you overwrite it, you will lose any changes you have made.
 )
-copy /-Y ".\Custom.example" ".\Custom.lua"
+copy /-Y "..\FurnitureCatalogue_DevUtility\Custom.example" "..\FurnitureCatalogue_DevUtility\Custom.lua"
 echo.
 echo Congratulations, you're all set up.
 

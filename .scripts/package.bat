@@ -7,29 +7,32 @@ setlocal enableextensions enabledelayedexpansion
 :: variables: You can adjust the script here
 :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: 
 :: Set URL of website to anything but "" to open the page after packaging is complete
-REM SET ESOUI_URL=""
+@REM SET ESOUI_URL=""
 SET ESOUI_URL="https://www.esoui.com/downloads/editfile.php?id=1617"
 
 :: Set target directory to anything but "" to have the script move the generated zip file there
 :: %USERPROFILE% will be resolved to "C:\Users\<yourusername>
-REM SET TARGET_DIRECTORY=""
+@REM SET TARGET_DIRECTORY=""
 SET TARGET_DIRECTORY=""
 
 :: Set github branch to anything but "" to have this script automatically push to github
-REM SET GITHUB_BRANCH="main"
-SET GITHUB_BRANCH="master"
+@REM SET GITHUB_BRANCH="master"
+SET GITHUB_BRANCH=""
 
 :: Custom filename to be deleted, set to anything but "" to have it automatically removed from the package
-REM SET DELETE_CUSTOM_FILENAME=""
+@REM SET DELETE_CUSTOM_FILENAME=""
 SET DELETE_CUSTOM_FILENAME="Custom.lua"
 
 :: Path to your 7zip binary
-REM SET ZIP_PROGRAM_PATH="%SCOOP%\apps\7zip\current\7z.exe"
-SET ZIP_PROGRAM_PATH="%ProgramFiles%\7-Zip\7z.exe"
+@REM SET ZIP_PROGRAM_PATH="%ProgramFiles%\7-Zip\7z.exe"
+SET ZIP_PROGRAM_PATH="%SCOOP%\apps\7zip\current\7z.exe"
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 :: check for existence of 7zip
 if not exist %ZIP_PROGRAM_PATH% goto :zipnotfound
+
+:: use root folder as base
+pushd ..
 
 :: read addon name from manifest.txt
 for %%* in (.) do set name=%%~nx*
@@ -87,42 +90,46 @@ for /R %%G in (*.txt) do (
   )
 )
 
+:: move back into script directory
+popd
+
 :: copy additional files (assets etc.) from package.manifest
 if exist package.manifest (
 	echo package.manifest detected
   for /F "tokens=*" %%i in (package.manifest) do (
-		set file=%%i
+	set file=%%i
 
-		:: get filepath relative to package.manifest
-		set "filepath=%%~dpi"
-		set "filepath=!filepath:%CD%=!"
+	:: get filepath relative to package.manifest
+	set "filepath=%%~dpi"
+	set "filepath=!filepath:%CD%=!"
 
-		set "dir=!basefolder!\!filepath!"
+	set "dir=!basefolder!\!filepath!"
 
-		:: fix slashes
-		set "file=!file:/=\!"
-		if "!file:~0,1!"=="\" set "file=!file:~1!"
-		set "relativedir=!dir:\\=\!"
+	:: fix slashes
+	set "file=!file:/=\!"
+	if "!file:~0,1!"=="\" set "file=!file:~1!"
+	set "relativedir=!dir:\\=\!"
 
-		:: create target directory if needed
-		if not exist "!relativedir!" mkdir "!relativedir!"
+	:: create target directory if needed
+	if not exist "..\!relativedir!" mkdir "..\!relativedir!"
 
-		:: copy parsed file to the package
-    copy /Y "!file!" "!basefolder!\!file!" > nul
+	:: copy parsed file to the package
+	copy /Y "..\!file!" "..\!basefolder!\!file!" > nul
   )
 )
 
-:: zip it
+:: go into base dir and save it
+cd ..
 pushd .package 
+:: package dir and zip it
 if not "%DELETE_CUSTOM_FILENAME%" == "" (
 	del /S "%DELETE_CUSTOM_FILENAME%"
 )
-REM delete dev setup
-del /S "*.cmd"
 
-%zip% a -tzip -bd ..\%archive% %name% > nul
+%ZIP_PROGRAM_PATH% a -tzip -bd ..\%archive% %name% > nul
+
+:: go back into base dir and delete .package
 popd
-
 rd /S /Q .package
 
 IF NOT %TARGET_DIRECTORY% == "" (

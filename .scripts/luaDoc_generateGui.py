@@ -3,16 +3,18 @@
 """Helps getting names of GUI elements for IDE support.
 Use paths relative to the script. Use inside the script folder.
 Example calls:
-  python ./_generateGuiNames.py
-  python ./_generateGuiNames.py ../dir/input.xml
-  python ./_generateGuiNames.py ../dir/input.xml ./output.lua
-  python ./_generateGuiNames.py ../xml/FurnitureCatalogue.xml ./AutocompleteDefinitions.lua
-  python ./_generateGuiNames.py ../xml/FurnitureCatalogue.xml
-  python ./_generateGuiNames.py ../xml.xml
+  python ./generateGuiNames.py
+  python ./generateGuiNames.py ../dir/input.xml
+  python ./generateGuiNames.py ../dir/input.xml ./output.lua
+  python ./generateGuiNames.py ../xml/FurnitureCatalogue.xml
+  python ./generateGuiNames.py ../FurnitureCatalogue_DevUtility/xml.xml
 """
 
 import sys
 import xml.etree.ElementTree as ET
+
+EXIT_FAILURE = -1
+EXIT_SUCCESS = 0
 
 PREFIX_PARENT = '$(parent)'
 
@@ -32,8 +34,13 @@ CTRL_UNKNOWN = "'???'"
 
 def load_xml_file(path: str) -> ET.Element:
   """Get node and its hierarchy from an xml file"""
-  tree = ET.parse(path)
-  root = tree.getroot()
+  try:
+    tree = ET.parse(path)
+    root = tree.getroot()
+  except Exception:
+    print(f"File not found or invalid XML: {path}")
+    print(f"Please run from inside the script folder and use relative paths like ../dir/some.xml")
+    exit(EXIT_FAILURE)
   return root
 
 def get_file_content(path: str) -> list[str]:
@@ -103,8 +110,17 @@ def write_lua_doc(identifier: str, lua_path: str, content: str):
 
 
 if __name__ == '__main__':
-  xml_path = "../xml/FurnitureCatalogue.xml"
-  lua_path = "AutocompleteDefinitions.lua"
+  lua_path = "luaDoc_Definitions.lua"
+
+  if len(sys.argv) == 1:
+    # use default files if none supplied
+    xml_paths = ["../xml/FurnitureCatalogue.xml", "../FurnitureCatalogue_DevUtility/xml.xml"]
+    for xml_path in xml_paths:
+      resolved_names = get_resolved_hierarchy(load_xml_file(xml_path))
+      write_lua_doc(identifier=xml_path, lua_path=lua_path, content=resolved_names)
+      print(f"Wrote {xml_path} to {lua_path}")
+    exit(EXIT_SUCCESS)
+
   if len(sys.argv) > 1:
     xml_path = sys.argv[1].replace('\\','/')
   if len(sys.argv) > 2:
@@ -112,3 +128,5 @@ if __name__ == '__main__':
 
   resolved_names = get_resolved_hierarchy(load_xml_file(xml_path))
   write_lua_doc(identifier=xml_path, lua_path=lua_path, content=resolved_names)
+  print(f"Wrote {xml_path} to {lua_path}")
+  exit(EXIT_SUCCESS)
