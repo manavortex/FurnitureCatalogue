@@ -369,8 +369,79 @@ SI_FURC_TRIBUTE_RANKED = "From Tales of Tribute ranked matches (system mail rewa
 SI_FURC_SEEN_IN_GUILDSTORE = "Seen in Guild Store"
 
 
--- START OF GENERATED CODE BLOCK FOR FILE: FurnitureCatalogue/xml/FurnitureCatalogue.xml
+-- Manual documentation for other libraries
 
+---@class LibDebugLogger
+---@field Create fun(tag: string): Logger
+---@field ClearLog fun(self: LibDebugLogger): self
+---@field SetMinLogLevel fun(self, level: string): self
+---@field SetMinLevelOverride fun(self, level: string): self
+LibDebugLogger = nil
+LibDebugLogger.LOG_LEVEL_VERBOSE = "V"
+LibDebugLogger.LOG_LEVEL_DEBUG = "D"
+LibDebugLogger.LOG_LEVEL_INFO = "I"
+LibDebugLogger.LOG_LEVEL_WARNING = "W"
+LibDebugLogger.LOG_LEVEL_ERROR = "E"
+
+---@class Logger:LibDebugLogger
+---@field Verbose fun(...)
+---@field Debug fun(...)
+---@field Info fun(...)
+---@field Warn fun(...)
+---@field Error fun(...)
+Logger = nil
+
+
+---@class LibCharacterKnowledge
+---@field GetServerList fun(): table
+---@field GetCharacterList fun(server: any): table
+---@field GetItemLinkFromItemId fun(itemId: any): any
+---@field GetItemName fun(item: any): string
+---@field GetItemCategory fun(item: any): number
+---@field GetItemKnowledgeForCharacter fun(item: any, server: any, charId: any): any
+---@field GetItemKnowledgeList fun(item: any, server: any, includedCharIds: any): table
+---@field IsKnowledgeUsable fun(knowledge: any): boolean
+---@field GetItemIdsForCategory fun(category: any): table
+---@field GetMotifStyles fun(): any
+---@field GetStyleAndChapterFromMotif fun(item: any): any
+---@field GetMotifItemsFromStyle fun(styleId: any): any
+---@field GetMotifChapterNames fun(): table
+---@field GetMotifStyleQuality fun(styleId: any): number
+---@field GetMotifKnowledgeForCharacter fun(styleId: any, chapterId: any, ...): any
+---@field GetLastScanTime fun(server: any, charId: any): number
+---@field RegisterForCallback fun(name: string, eventCode: number, callback: function): boolean
+---@field UnregisterForCallback fun(name: string, eventCode: number): boolean
+LibCharacterKnowledge = {}
+
+LibCharacterKnowledge.ITEM_CATEGORY_NONE = 0
+LibCharacterKnowledge.ITEM_CATEGORY_RECIPE = 1
+LibCharacterKnowledge.ITEM_CATEGORY_PLAN = 2
+LibCharacterKnowledge.ITEM_CATEGORY_MOTIF = 3
+LibCharacterKnowledge.ITEM_CATEGORIES = {}
+LibCharacterKnowledge.KNOWLEDGE_INVALID = -1
+LibCharacterKnowledge.KNOWLEDGE_NODATA = 0
+LibCharacterKnowledge.KNOWLEDGE_KNOWN = 1
+LibCharacterKnowledge.KNOWLEDGE_UNKNOWN = 2
+LibCharacterKnowledge.PRIORITY_CLASSES = 13
+LibCharacterKnowledge.EVENT_INITIALIZED = 1
+LibCharacterKnowledge.EVENT_UPDATE_REFRESH = 2
+
+
+-- ////// START : GENERATED FROM ./xml.xml
+---------- LVL: 00 ----------
+---------- LVL: 01 ----------
+---------- LVL: 02 ----------
+FurCDevControl = Control
+---------- LVL: 03 ----------
+---------- LVL: 04 ----------
+FurCDevControl_BG = BackdropControl
+FurCDevControl_hide = ButtonControl
+FurCDevControl_clear = ButtonControl
+FurCDevControlBox = EditControl
+---------- LVL: 05 ----------
+-- ////// END   : GENERATED FROM ./xml.xml
+
+-- ////// START : GENERATED FROM ../xml/FurnitureCatalogue.xml
 ---------- LVL: 00 ----------
 ---------- LVL: 01 ----------
 ---------- LVL: 02 ----------
@@ -434,10 +505,4 @@ FurCGui_Header_SortBar_Quality_Button = ButtonControl
 ---------- LVL: 12 ----------
 FurC_SearchBoxBackdrop = BackdropControl
 ---------- LVL: 13 ----------
-
--- END OF GENERATED CODE BLOCK FOR FILE: FurnitureCatalogue/xml/FurnitureCatalogue.xml
-
--- Leftovers
-
-FurCDevControl = Control
-FurCDevControlBox = EditControl
+-- ////// END   : GENERATED FROM ../xml/FurnitureCatalogue.xml
