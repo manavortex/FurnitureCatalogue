@@ -110,7 +110,7 @@ def write_lua_doc(identifier: str, lua_path: str, content: str):
 
 
 if __name__ == '__main__':
-  lua_path = "AutocompleteDefinitions.lua"
+  lua_path = "luaDoc_Definitions.lua"
 
   if len(sys.argv) == 1:
     # use default files if none supplied

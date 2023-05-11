@@ -90,7 +90,9 @@ for /R %%G in (*.txt) do (
   )
 )
 
+:: move back into script directory
 popd
+
 :: copy additional files (assets etc.) from package.manifest
 if exist package.manifest (
 	echo package.manifest detected
@@ -116,15 +118,18 @@ if exist package.manifest (
   )
 )
 
-:: zip it
-pushd ..\.package 
+:: go into base dir and save it
+cd ..
+pushd .package 
+:: package dir and zip it
 if not "%DELETE_CUSTOM_FILENAME%" == "" (
 	del /S "%DELETE_CUSTOM_FILENAME%"
 )
 
 %ZIP_PROGRAM_PATH% a -tzip -bd ..\%archive% %name% > nul
-popd
 
+:: go back into base dir and delete .package
+popd
 rd /S /Q .package
 
 IF NOT %TARGET_DIRECTORY% == "" (
