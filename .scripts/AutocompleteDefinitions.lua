@@ -426,21 +426,6 @@ LibCharacterKnowledge.PRIORITY_CLASSES = 13
 LibCharacterKnowledge.EVENT_INITIALIZED = 1
 LibCharacterKnowledge.EVENT_UPDATE_REFRESH = 2
 
-
--- ////// START : GENERATED FROM ./xml.xml
----------- LVL: 00 ----------
----------- LVL: 01 ----------
----------- LVL: 02 ----------
-FurCDevControl = Control
----------- LVL: 03 ----------
----------- LVL: 04 ----------
-FurCDevControl_BG = BackdropControl
-FurCDevControl_hide = ButtonControl
-FurCDevControl_clear = ButtonControl
-FurCDevControlBox = EditControl
----------- LVL: 05 ----------
--- ////// END   : GENERATED FROM ./xml.xml
-
 -- ////// START : GENERATED FROM ../xml/FurnitureCatalogue.xml
 ---------- LVL: 00 ----------
 ---------- LVL: 01 ----------
@@ -506,3 +491,16 @@ FurCGui_Header_SortBar_Quality_Button = ButtonControl
 FurC_SearchBoxBackdrop = BackdropControl
 ---------- LVL: 13 ----------
 -- ////// END   : GENERATED FROM ../xml/FurnitureCatalogue.xml
+-- ////// START : GENERATED FROM ../FurnitureCatalogue_DevUtility/xml.xml
+---------- LVL: 00 ----------
+---------- LVL: 01 ----------
+---------- LVL: 02 ----------
+FurCDevControl = Control
+---------- LVL: 03 ----------
+---------- LVL: 04 ----------
+FurCDevControl_BG = BackdropControl
+FurCDevControl_hide = ButtonControl
+FurCDevControl_clear = ButtonControl
+FurCDevControlBox = EditControl
+---------- LVL: 05 ----------
+-- ////// END   : GENERATED FROM ../FurnitureCatalogue_DevUtility/xml.xml
