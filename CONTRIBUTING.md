@@ -1,3 +1,13 @@
+# IMPORTANT
+
+- this readme may be out of date in some parts
+- the mentioned tools should be up to date and in working order but there are no guarantees
+- scripts and deployment tools are now in the [.scripts](./.scripts/) folder
+- use it more as a pointer than a walkthrough
+- when in doubt, you can just talk to us
+
+---
+
 # Introduction
 
 This is a guide that assumes you have little to no idea about coding, but want to help. If you know how to achieve the end results, feel free to skip any intermediary steps.
@@ -8,6 +18,7 @@ This is a guide that assumes you have little to no idea about coding, but want t
 
 - an account at github.com (so if you burn out or go MIA, the next volunteer can take over from you)
 - Notepad++ for file editing (trust me, it's so much better than regular notepad)
+  - VSCode is also a good alternative as it offers IDE and LuaDoc support
 - git: https://git-scm.com/download/win.
   - Install with default options, except for "chosing the default editor used by git" - you'll want to select notepad or notepad++
 - a client. I'll walk you through how to use https://www.syntevo.com/smartgit/download/ here.
@@ -20,11 +31,11 @@ This is a guide that assumes you have little to no idea about coding, but want t
   https://www.esoui.com/downloads/info2275-LibDebugLogger.html
 - DebugLogViewer: Lets you access LibDebugLogger's output. Alternatively, use https://sir.insidi.at/or/logviewer/ after reloadUI. (No, I'm kidding, don't do that.)  
   https://www.esoui.com/downloads/info2389-DebugLogViewer.html
-- Mer Torchbug (optional): Lets you run scripts inside ESO and display variables.  
+- Mer Torchbug (optional): Lets you run scripts inside ESO and display variables and even tables.  
   Alternatively, you can run LUA from chat by prefixing it with `/script`, but that is cumbersome.
   https://www.esoui.com/downloads/info2601-MerTorchbug-FixedandImprovedIngamevariableinspectormuchmore.html
 
-#### To set up local dependencies/requirements, you can also run `_dev_setup.cmd`!
+#### To set up local dependencies/requirements, you can also run `devUtils_setup.cmd`!
 
 # Grab the code
 
@@ -40,7 +51,7 @@ This is a guide that assumes you have little to no idea about coding, but want t
 - For this, first delete all the files from the AddOn that you have installed via Minion. (The first step to developing the AddOn is to delete the AddOn!)  
   You can get there by pressing windows+R and executing the command `explorer %USERPROFILE%\Documents\Elder Scrolls Online\live\AddOns\FurnitureCatalogue`
 - In your browser on github, the green "code" button gives you an URL to copy.  
-  It will look like `https://github.com/yourusername/FurnitureCatalogue.git`
+  It will look like `https://github.com/YOUR_USERNAME/FurnitureCatalogue.git`
 - Open smartgit. Use the default settings unless indicated otherwise.
   - You're a non-commercial user.
   - Style: You want "Working Tree", I think.
@@ -114,7 +125,7 @@ local tbl3 = { }  -- ESO will complain about this line
 
 # Set up development stuff
 
-## Copy the required files (or run `_dev_setup.cmd`)
+## Copy the required files (or run `devUtils_setup.cmd`)
 
 - copy `Custom.example` to `Custom.lua`
 
@@ -205,17 +216,17 @@ The comment on the right is to see the number at first glance if you `Ctrl+F` fo
 #### Menu entry:
 
 In `FurnitureCatalogue\locale\en.lua`, find the list that starts with `SI_FURC_FILTER_VERSION_OFF`.  
-It should be [around line 223](../locale/en.lua?#L223).
+It should be [around line 223](./locale/en.lua?#L223).
 Add `SI_FURC_FILTER_VERSION_FOOBAR` at the end of the block (you can duplicate the previous line), and change the text.
 
 #### Mouseover tooltip:
 
-Now, find the list that starts with `SI_FURC_FILTER_VERSION_OFF_TT`. It should be [around line 265](../locale/en.lua?#L265) somewhere.  
+Now, find the list that starts with `SI_FURC_FILTER_VERSION_OFF_TT`. It should be [around line 265](./locale/en.lua?#L265) somewhere.  
 Add `SI_FURC_FILTER_VERSION_FOOBAR_TT` at the end of the block (you can duplicate the previous line), and change the text.
 
 ### Add the context menu entries.
 
-In `FurnitureCatalogue\startup.lua`, find `FurC.DropdownData` [around line 131](../startup.lua#L131).  
+In `FurnitureCatalogue\startup.lua`, find `FurC.DropdownData` [around line 131](./startup.lua#L131).  
 At the bottom of each list, add a line with the constant from the previous step.
 
 ### You're done!
@@ -229,18 +240,18 @@ If all menu entries are gone, you forgot a comma.
 ### Items
 
 1. Create a new lua file in the `data/` folder and give it a name that makes sense (after the AddOn). Please don't use spaces!
-2. Open [FurnitureCatalogue.txt](../FurnitureCatalogue.txt) and add an entry above `data\$(APIVersion).lua`, but after the other data files. This will tell the game to load it.
+2. Open [FurnitureCatalogue.txt](./FurnitureCatalogue.txt) and add an entry above `data\$(APIVersion).lua`, but after the other data files. This will tell the game to load it.
 
 This file will hold the item database.
 
 ### Recipes
 
-1. Open [data/Recipes.lua](../data/Recipes.lua) and create a new list with your constant as a key. Put the recipes in there.
+1. Open [data/Recipes.lua](./data/Recipes.lua) and create a new list with your constant as a key. Put the recipes in there.
 2. You're done.
 
 ### Rolis and Faustina
 
-1. Find [data/Rolis.lua](../data/Rolis.lua) and create a new list with your constant as a key. Create new table entries for each item in their inventory.
+1. Find [data/Rolis.lua](./data/Rolis.lua) and create a new list with your constant as a key. Create new table entries for each item in their inventory.
 2. The key is the item ID, and the value is the number of vouchers they want.
 
 ```lua
@@ -259,7 +270,7 @@ This file will hold the item database.
 4. Click the button below "Commit changes to `<num>` files".
 5. Click "Push" in the UI.
 
-### Tell me about them
+### Tell us about them
 
 1. Open your github repository in your browser.
 2. Find the second tab "Pull requests" (ctrl+f if the UI confuses you)
@@ -268,7 +279,7 @@ This file will hold the item database.
 5. On the left, select "manavortex/FurnitureCatalogue"
 6. On the right, select "yourusername/FurnitureCatalogue"
 7. Click "Create Pull Request"
-8. If you haven't heard from me (or there's a new FurC release) within a week, do get in touch to remind me.
+8. If you haven't heard from us (or there's a new FurC release) within a week, do get in touch to remind us
 
 # Troubleshooting
 
