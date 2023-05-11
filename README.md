@@ -11,7 +11,7 @@ If you are here because ESO told you that the AddOn can't load due to missing de
 ### Missing/Incorrect entries
 
 If you are here because you want to report an error in the data, please check [here](https://www.esoui.com/portal.php?&id=177&pageid=63).
-Feel free to send me a message (here or in game) with the item info for timely updates!
+Feel free to send us a message (here or in game) with the item info for timely updates!
 
 ## Features:
 
@@ -20,7 +20,7 @@ Feel free to send me a message (here or in game) with the item info for timely u
 - **User-Interface**: _toggleable either via **keybind** or via **slash command** /fur_
 - [FurnitureShoppingList](https://www.esoui.com/downloads/info1865-FurnitureShoppingListFurC2.0patch.html): Fully integrated
 - **Compact/Full view**: Check the +/- button
-- **Item database**: Holds a list of all available furniture blueprints (source: I datamined them myself! `^_^`)
+- **Item database**: Holds a list of all available furniture blueprints (source: manavortex datamined most of them! `^_^`)
 - **Filters**: All filters can be combined - check first screenshot
   - crafting station
   - crafting knowledge
@@ -48,7 +48,7 @@ Feel free to send me a message (here or in game) with the item info for timely u
 >
 > By careful estimate I've spent 30+ hours on FurC since Morrowind hit PTS - the initial release ate a week of vacation turned to pretty much nonstop coding.
 
-**I've taken over updating since manavortex no longer plays ESO, so if you want to give back, feel free to donate to @berylbones, both on NA and EU!**
+**_BerylBones_ has taken over updating since manavortex no longer plays ESO, so if you want to give back, feel free to donate to @berylbones, both on NA and EU!**
 
 ## Possible issues
 
@@ -62,23 +62,24 @@ This is a **feature**. Adding complexity adds bugs and loading times - and that'
 
 ### Something else is broken!
 
-1. Disable **Shissu's Guild Tools** - Shissu altered some ESO functions, it's nothing I can fix
+1. Disable **Shissu's Guild Tools** - Shissu altered some ESO functions, it's nothing we can fix
 2. Reset the furniture catalogue database by middle-clicking the refresh button or wiping it from the menu
 3. Wipe the saved variables - you can do that from the AddOn menu via "Reset to default".
 4. Do a clean install of the AddOn to make sure no outdated files are left
-5. Get in touch with manavortex with a description of the bug:
+5. Get in touch with us [in the forums](https://www.esoui.com/downloads/info1617-FurnitureCatalogue.html#comments) or on [GitHub](https://github.com/manavortex/FurnitureCatalogue/issues) with a description of the bug:
    - Where exactly does it occur? (FurnitureCatalogue window, when right-clicking an item link...)
    - What is affected? (item links, posting to chat, exporting...)
-   - What do I have to do when I want to reproduce this bug?
+   - What do we have to do when we want to reproduce this bug?
 
-<sup>Big thanks to my fellow developers for being so awesome and helping me out so much!</sup>
+<sup> Big thanks to our fellow developers for being so awesome and helping us out so much!</sup>
 
 ## The long version about the preview
 
-I have talked to Chip Hilseberg (may his code never bug) about this, and he was quite clear - ZOS doesn't want us to preview items from the item links because of datamining etc. A function to preview items that we can craft may come eventually, but that will only help you while logged in on your crafter.
-
-Why can't you make it work like FurniturePreview?
-There is an API function that lets you preview something that is in a bag (a vendor is a bag too) or a guild store. In theory I could add preview functions from Furniture Catalogue for items that are in your inventory, but that would require yet another loop and have a negative impact on performance. (Again.) Just use FurniturePreview for those, please.
+> **_manavortex:_**
+> I have talked to Chip Hilseberg (may his code never bug) about this, and he was quite clear - ZOS doesn't want us to preview items from the item links because of datamining etc. A function to preview items that we can craft may come eventually, but that will only help you while logged in on your crafter.
+>
+> Why can't you make it work like FurniturePreview?
+> There is an API function that lets you preview something that is in a bag (a vendor is a bag too) or a guild store. In theory I could add preview functions from Furniture Catalogue for items that are in your inventory, but that would require yet another loop and have a negative impact on performance. (Again.) Just use FurniturePreview for those, please.
 
 ## Wishlist/ToDo:
 
