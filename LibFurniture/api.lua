@@ -13,44 +13,44 @@ end
 
 -- ToDo: Stuff for LibPrice
 
-function lib.GetItemId(item_link)
+function lib:GetItemId(item_link)
   -- Code to get item ID
 end
 
-function lib.GetItemDescription(item_id, recipe_array)
+function lib:GetItemDescription(item_id, recipe_array)
   -- Code to get item description
 end
 
-function lib.GetItemOrigin(item_link)
+function lib:GetItemOrigin(item_link)
   -- Code to get item origin
 end
 
-function lib.GetItemLinkFromRecipeArray(recipe_array)
+function lib:GetItemLinkFromRecipeArray(recipe_array)
   -- Code to get item link
 end
 
-function lib.GetRecipeIngredients(item_link)
+function lib:GetRecipeIngredients(item_link)
   -- Code to get ingredients of a recipe
 end
 
 -- More complex functions
-function lib.GetItemCraftingCost(item_link)
+function lib:GetItemCraftingCost(item_link)
   -- Code to calculate crafting cost
 end
 
-function lib.GetItemVendorCost(item_link)
+function lib:GetItemVendorCost(item_link)
   -- Code to get cost from vendors
 end
 
-function lib.GetItemPVPCost(item_link)
+function lib:GetItemPVPCost(item_link)
   -- Code to get cost from PvP rewards
 end
 
-function lib.GetItemCrownCost(item_link)
+function lib:GetItemCrownCost(item_link)
   -- Code to get cost in crowns
 end
 
-function lib.GetItemMiscCost(item_link)
+function lib:GetItemMiscCost(item_link)
   -- Code to get cost from miscellaneous sources
 end
 
