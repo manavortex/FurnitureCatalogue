@@ -1,0 +1,47 @@
+# WIP, just scaffolding for now, don't use yet
+name: PublishToESOUI
+
+on:
+  # Manual trigger
+  workflow_dispatch:
+  release:
+    types:
+      - published
+  
+jobs:
+  package_and_release:
+    # When manually triggered
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4.6.0
+
+      # Copy release files into .package folder
+      - name: Prepare package folder
+        run: echo "python ./prepare.py" # todo
+        
+      - name: Create changelog from commit messages
+        #todo: create and commit changelog.txt with releases? 
+        #      create dynamically each time?
+        #      append to existing changelog?
+        run: echo "todo"
+
+      # todo: use exiting workflow or run custom one
+      - name: create release
+        run: echo "python ./release.py" # todo
+
+  upload:
+    # triggered by release
+    if: github.event_name == 'release'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4.6.0
+
+      # todo: upload release
+      - name: Publish
+        run: echo "./publish.py" # todo
+        env:
+          ESOUI_API_TOKEN: ${{secrets.ESOUI_API_TOKEN}}
+      
