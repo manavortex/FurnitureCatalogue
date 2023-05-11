@@ -7,8 +7,13 @@ end
 
 function FurC.SetEnableDebug(value)
   FurC.settings["enableDebug"] = value
-  FurC.Logger = FurC.getOrCreateLogger(true)
-  if value then FurC.Logger:Info("Debug on") end
+  FurC.Logger = FurC.getOrCreateLogger()
+  if value then
+    FurC.Logger:SetMinLevelOverride(FurC.Logger.LOG_LEVEL_DEBUG)
+    FurC.Logger:Info("Debug on")
+  else
+    FurC.Logger:SetMinLevelOverride(FurC.Logger.LOG_LEVEL_INFO)
+  end
 end
 
 function FurC.GetHideRumourRecipes()
@@ -523,34 +528,6 @@ function FurC.WipeDatabase()
   FurC.settings.excelExport = {}
   FurC.ScanRecipes(true, true)
   -- d("FurnitureCatalogue: Scan complete")
-end
-
-function FurC.DeleteCharacter(characterName)
-  FurC.Logger:Info("Now deleting recipe knowledge for %s", characterName)
-
-  for key, value in pairs(FurC.settings.accountCharacters) do
-    if value == characterName then
-      FurC.settings.accountCharacters[key] = false
-    end
-  end
-
-  for recipeKey, recipeArray in pairs(FurC.settings.data) do
-    if recipeArray.craftable then
-      recipeArray.characters[characterName] = nil
-    end
-  end
-
-  local guiDropdownEntries = FurC_Dropdown.comboBox.m_sortedItems
-  if nil == guiDropdownEntries then return end
-  for index, data in pairs(guiDropdownEntries) do
-    if data.name == characterName then
-      guiDropdownEntries[index] = nil
-      return
-    end
-  end
-  FurC.Logger:Info(
-    "%s deleted from |c2266ffFurniture Catalogue|r database. Entry will disappear from settings dropdown after the next reloadui.",
-    characterName)
 end
 
 function FurC.GetCurrentCharacterName()

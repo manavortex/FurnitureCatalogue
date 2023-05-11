@@ -1,17 +1,11 @@
-local currentChar       = FurC.CharacterName
-local task              = LibAsync:Create("FurnitureCatalogue_ScanDataFiles")
-local task2             = LibAsync:Create("FurnitureCatalogue_ScanCharacterKnowledge")
-local characterAlliance = GetUnitAlliance('player')
+local currentChar = FurC.CharacterName
+local task        = LibAsync:Create("FurnitureCatalogue_ScanDataFiles")
 
-local NUMBER_TYPE       = "number"
-local STRING_TYPE       = "string"
-local STRING_EMPTY      = ""
+local lastLink    = nil
+local recipeArray = nil
 
-local lastLink          = nil
-local recipeArray       = nil
-
-local ver               = FurC.Constants.Versioning
-local src               = FurC.Constants.ItemSources
+local ver         = FurC.Constants.Versioning
+local src         = FurC.Constants.ItemSources
 
 local function getCurrentChar()
   currentChar = currentChar or zo_strformat(GetUnitName("player"))
@@ -21,8 +15,8 @@ end
 -- GetItemLinkItemId doesn't work the way I need it
 -- ToDo: fix this, should only take one type of link (not nil, number, string, links)
 local function getItemId(itemLink)
-  if nil == itemLink or STRING_EMPTY == itemLink then return end
-  if type(itemLink) == NUMBER_TYPE and itemLink > 9999 then return itemLink end
+  if nil == itemLink or "" == itemLink then return end
+  if type(itemLink) == "number" and itemLink > 9999 then return itemLink end
   local _, _, _, itemId = ZO_LinkHandler_ParseLink(itemLink)
   return tonumber(itemId)
 end
@@ -106,10 +100,7 @@ function FurC.GetIngredients(itemLink, recipeArray)
 end
 
 local function parseFurnitureItem(itemLink, override) -- saves to DB, returns recipeArray
-  if not (
-        override or IsItemLinkPlaceableFurniture(itemLink)
-        or GetItemLinkItemType(itemLink) == ITEMTYPE_FURNISHING
-      ) then
+  if not (override or IsItemLinkPlaceableFurniture(itemLink) or GetItemLinkItemType(itemLink) == ITEMTYPE_FURNISHING) then
     return
   end
 

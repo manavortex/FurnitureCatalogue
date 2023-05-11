@@ -442,3 +442,67 @@ FurC_SearchBoxBackdrop = BackdropControl
 FurCDevControl = Control
 FurCDevControlBox = EditControl
 FurC_Dropdown = Control
+
+-- Manual documentation for other libraries
+
+---@class LibDebugLogger
+---@field Create fun(tag: string): Logger
+---@field ClearLog fun(self: LibDebugLogger): self
+---@field SetMinLogLevel fun(self, level: string): self
+---@field SetMinLevelOverride fun(self, level: string): self
+---@field Verbose fun(...)
+---@field Debug fun(...)
+---@field Info fun(...)
+---@field Warn fun(...)
+---@field Error fun(...)
+LibDebugLogger = nil
+LibDebugLogger.LOG_LEVEL_VERBOSE = "V"
+LibDebugLogger.LOG_LEVEL_DEBUG = "D"
+LibDebugLogger.LOG_LEVEL_INFO = "I"
+LibDebugLogger.LOG_LEVEL_WARNING = "W"
+LibDebugLogger.LOG_LEVEL_ERROR = "E"
+
+---@class Logger:LibDebugLogger
+
+
+-- Lib CharacterKnowledge --
+
+---@class LibCharacterKnowledge
+---@field GetServerList fun(): table
+---@field GetCharacterList fun(server: any): table
+---@field GetItemLinkFromItemId fun(itemId: any): any
+---@field GetItemName fun(item: any): string
+---@field GetItemCategory fun(item: any): number
+---@field GetItemKnowledgeForCharacter fun(item: any, server: any, charId: any): any
+---@field GetItemKnowledgeList fun(item: any, server: any, includedCharIds: any): table
+---@field IsKnowledgeUsable fun(knowledge: any): boolean
+---@field GetItemIdsForCategory fun(category: any): table
+---@field GetMotifStyles fun(): any
+---@field GetStyleAndChapterFromMotif fun(item: any): any
+---@field GetMotifItemsFromStyle fun(styleId: any): any
+---@field GetMotifChapterNames fun(): table
+---@field GetMotifStyleQuality fun(styleId: any): number
+---@field GetMotifKnowledgeForCharacter fun(styleId: any, chapterId: any, ...): any
+---@field GetLastScanTime fun(server: any, charId: any): number
+---@field RegisterForCallback fun(name: string, eventCode: number, callback: function): boolean
+---@field UnregisterForCallback fun(name: string, eventCode: number): boolean
+LibCharacterKnowledge = {}
+
+-- Item categories
+
+LibCharacterKnowledge.ITEM_CATEGORY_NONE = 0
+LibCharacterKnowledge.ITEM_CATEGORY_RECIPE = 1
+LibCharacterKnowledge.ITEM_CATEGORY_PLAN = 2
+LibCharacterKnowledge.ITEM_CATEGORY_MOTIF = 3
+LibCharacterKnowledge.ITEM_CATEGORIES = {}
+
+-- Knowledge state
+LibCharacterKnowledge.KNOWLEDGE_INVALID = -1
+LibCharacterKnowledge.KNOWLEDGE_NODATA = 0
+LibCharacterKnowledge.KNOWLEDGE_KNOWN = 1
+LibCharacterKnowledge.KNOWLEDGE_UNKNOWN = 2
+LibCharacterKnowledge.PRIORITY_CLASSES = 13
+
+-- Callback events
+LibCharacterKnowledge.EVENT_INITIALIZED = 1
+LibCharacterKnowledge.EVENT_UPDATE_REFRESH = 2

@@ -92,12 +92,12 @@ local function getSourceIndicesKeys()
   sourceIndicesKeys[src.RUMOUR]           = "rumour"
   sourceIndicesKeys[src.LUXURY]           = "luxury"
   sourceIndicesKeys[src.OTHER]            = "other"
-  sourceIndicesKeys[src.ROLIS]            = "ROLIS"
-  sourceIndicesKeys[src.DROP]             = "DROP"
-  sourceIndicesKeys[src.JUSTICE]          = "JUSTICE"
-  sourceIndicesKeys[src.FISHING]          = "FISHING"
-  sourceIndicesKeys[src.GUILDSTORE]       = "GUILDSTORE"
-  sourceIndicesKeys[src.FESTIVAL_DROP]    = "FESTIVAL_DROP"
+  --sourceIndicesKeys[src.ROLIS]            = "ROLIS"
+  --sourceIndicesKeys[src.DROP]             = "DROP"
+  --sourceIndicesKeys[src.JUSTICE]          = "JUSTICE"
+  --sourceIndicesKeys[src.FISHING]          = "FISHING"
+  --sourceIndicesKeys[src.GUILDSTORE]       = "GUILDSTORE"
+  --sourceIndicesKeys[src.FESTIVAL_DROP]    = "FESTIVAL_DROP"
 
   return sourceIndicesKeys
 end
@@ -117,12 +117,12 @@ local function getChoicesSource()
   choicesSource[src.RUMOUR]           = GetString(SI_FURC_RUMOUR)
   choicesSource[src.LUXURY]           = GetString(SI_FURC_LUXURY)
   choicesSource[src.OTHER]            = GetString(SI_FURC_OTHER)
-  choicesSource[src.ROLIS]            = "ROLIS"
-  choicesSource[src.DROP]             = "DROP"
-  choicesSource[src.JUSTICE]          = "JUSTICE"
-  choicesSource[src.FISHING]          = "FISHING"
-  choicesSource[src.GUILDSTORE]       = "GUILDSTORE"
-  choicesSource[src.FESTIVAL_DROP]    = "FESTIVAL_DROP"
+  --choicesSource[src.ROLIS]            = "ROLIS"
+  --choicesSource[src.DROP]             = "DROP"
+  --choicesSource[src.JUSTICE]          = "JUSTICE"
+  --choicesSource[src.FISHING]          = "FISHING"
+  --choicesSource[src.GUILDSTORE]       = "GUILDSTORE"
+  --choicesSource[src.FESTIVAL_DROP]    = "FESTIVAL_DROP"
 
   return choicesSource
 end
@@ -142,19 +142,18 @@ local function getTooltipsSource()
   tooltipsSource[src.RUMOUR]           = GetString(SI_FURC_RUMOUR_TT)
   tooltipsSource[src.LUXURY]           = GetString(SI_FURC_LUXURY_TT)
   tooltipsSource[src.OTHER]            = GetString(SI_FURC_OTHER_TT)
-  tooltipsSource[src.ROLIS]            = "ROLIS"
-  tooltipsSource[src.DROP]             = "DROP"
-  tooltipsSource[src.JUSTICE]          = "JUSTICE"
-  tooltipsSource[src.FISHING]          = "FISHING"
-  tooltipsSource[src.GUILDSTORE]       = "GUILDSTORE"
-  tooltipsSource[src.FESTIVAL_DROP]    = "FESTIVAL_DROP"
+  --tooltipsSource[src.ROLIS]            = "ROLIS"
+  --tooltipsSource[src.DROP]             = "DROP"
+  --tooltipsSource[src.JUSTICE]          = "JUSTICE"
+  --tooltipsSource[src.FISHING]          = "FISHING"
+  --tooltipsSource[src.GUILDSTORE]       = "GUILDSTORE"
+  --tooltipsSource[src.FESTIVAL_DROP]    = "FESTIVAL_DROP"
 
   return tooltipsSource
 end
 FurC.GetTooltipsSource = getTooltipsSource
 
 -- [UPGRADING GAME VERSIONS, PTS compatibility]
-local ver              = FurC.Constants.Versioning
 FurC.DropdownData      = {
   ChoicesVersion    = {
     [ver.NONE]      = GetString(SI_FURC_FILTER_VERSION_OFF),
@@ -236,17 +235,11 @@ end
 
 local logger
 --- Gets the current logger or creates it if it doesn't exist yet
---- @param forceCreate boolean Force (re)creation of logger
---- @return table logger instance
-function FurC.getOrCreateLogger(forceCreate)
-  if not forceCreate and logger then return logger end -- return existing reference
+--- @return Logger logger instance
+function FurC.getOrCreateLogger()
+  if logger then return logger end -- return existing reference
 
-  -- use logger from library
-  -- don't log at all if not in debug mode or no log lib available
-  if LibDebugLogger and FurC.settings.enableDebug then
-    logger = LibDebugLogger(FurC.tag)
-    return logger
-  else
+  if not LibDebugLogger then
     local function ignore(...)
     end -- black hole for most property calls, like logger:Debug
     local function info(self, ...)
@@ -264,12 +257,37 @@ function FurC.getOrCreateLogger(forceCreate)
     logger.Warn = ignore
     logger.Error = ignore
     logger.Log = ignore
+    logger.LOG_LEVEL_VERBOSE = "V"
+    logger.LOG_LEVEL_DEBUG = "D"
+    logger.LOG_LEVEL_INFO = "I"
+    logger.LOG_LEVEL_WARNING = "W"
+    logger.LOG_LEVEL_ERROR = "E"
+    logger.SetMinLevelOverride = ignore
+
     return logger
   end
+
+  -- use logger from library
+  logger = LibDebugLogger(FurC.tag)
+  logger.LOG_LEVEL_VERBOSE = LibDebugLogger.LOG_LEVEL_VERBOSE
+  logger.LOG_LEVEL_DEBUG = LibDebugLogger.LOG_LEVEL_DEBUG
+  logger.LOG_LEVEL_INFO = LibDebugLogger.LOG_LEVEL_INFO
+  logger.LOG_LEVEL_WARNING = LibDebugLogger.LOG_LEVEL_WARNING
+  logger.LOG_LEVEL_ERROR = LibDebugLogger.LOG_LEVEL_ERROR
+
+
+  -- set initial log level
+  if FurC.settings.enableDebug then
+    logger:SetMinLevelOverride(logger.LOG_LEVEL_DEBUG)
+  else
+    logger:SetMinLevelOverride(logger.LOG_LEVEL_INFO)
+  end
+
+  return logger
 end
 
 -- initialization stuff
-function FurnitureCatalogue_Initialize(eventCode, addOnName)
+local function initialise(eventCode, addOnName)
   if (addOnName ~= FurC.name) then return end
 
   FurC.settings = ZO_SavedVars:NewAccountWide("FurnitureCatalogue_Settings", 2, nil, defaults)
@@ -277,12 +295,10 @@ function FurnitureCatalogue_Initialize(eventCode, addOnName)
   setupSourceDropdown()
 
   FurC.CreateSettings(FurC.settings, defaults)
-  FurC.Logger = FurC.getOrCreateLogger(true)
-  FurC.Logger:Debug("Initialising...")
+  FurC.Logger = FurC.getOrCreateLogger()
+  FurC.Logger:Debug("Initialising..." .. eventCode)
 
   FurC.CharacterName = zo_strformat(GetUnitName('player'))
-
-  FurC.RegisterEvents()
 
   FurC.InitGui()
 
@@ -309,4 +325,4 @@ end
 
 ZO_CreateStringId("SI_BINDING_NAME_TOGGLE_FURNITURE_CATALOGUE", "Toggle main window")
 ZO_CreateStringId("SI_BINDING_NAME_TOGGLE_FURNITURE_CATALOGUE_RECIPE", "Toggle Blueprint on tooltip")
-EVENT_MANAGER:RegisterForEvent(FurC.name, EVENT_ADD_ON_LOADED, FurnitureCatalogue_Initialize)
+EVENT_MANAGER:RegisterForEvent(FurC.name, EVENT_ADD_ON_LOADED, initialise)

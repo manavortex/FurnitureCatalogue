@@ -1,3 +1,6 @@
+
+-- TABLE UTILS --
+
 --- Merges Table2 into Table1, mutates Table1 inplace and replaces its values if they have the same key. Example: merge({a="1",b="3"},{b="2"}) => {a="1",b="2"}
 --- @param t1 any
 --- @param t2 any
@@ -49,6 +52,8 @@ function FurC.SortTable(tTable, sortKey, SortOrderUp)
 
   return ret
 end
+
+-- STRING UTILS --
 
 function FurC.capitalise(str)
   str = str:gsub("^(%l)(%w*)", function(a, b) return string.upper(a) .. b end)

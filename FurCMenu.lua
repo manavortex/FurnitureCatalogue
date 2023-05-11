@@ -64,18 +64,6 @@ function FurC.CreateSettings(savedVars, defaults)
         FurC.UpdateGui()
       end,
     },
-    {
-      -- dropdown: delete character
-      type = "dropdown",
-      name = GetString(SI_FURC_STRING_MENU_DELETE_CHAR_NAME),
-      tooltip = GetString(SI_FURC_STRING_MENU_DELETE_CHAR_TT),
-      warning = GetString(SI_FURC_STRING_MENU_DELETE_CHAR_WARNING),
-      choices = FurC.GetAccountCharacters(),
-      getFunc = function() return end,
-      setFunc = function(value)
-        FurC.DeleteCharacter(value)
-      end,
-    },
 
     -- =======================================================================================
     -- header: Furniture Shopping List integration
