@@ -1,9 +1,7 @@
-local db = FurC.settings["data"]
-
 function FurC.PrintCraftingStation(itemId, recipeArray)
   local craftingType = FurC.GetCraftingSkillType(itemId, recipeArray)
   if not craftingType or not GetCraftingSkillName(craftingType) then return "" end
-  return string.format(" (%s)", GetCraftingSkillName(craftingType))
+  return zo_strformat(" (<<1>>)", GetCraftingSkillName(craftingType))
 end
 
 local function prefillChatBox(output, refresh)
