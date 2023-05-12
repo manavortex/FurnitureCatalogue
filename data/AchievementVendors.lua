@@ -1,3 +1,21 @@
+
+FurC.AchievementVendors[FURC_SCRIBE] = {
+
+ ["the Undaunted Enclaves"] = {
+    ["Undaunted Quartermaster"] = {
+	[193815] = {				--Craglorn Podium, Filled
+		itemPrice   = 4500,
+		achievement = 3529,		-- Scrivener's Hall Vanquisher
+	},
+	[193814] = {				--Dark Elf Archway, Stone
+		itemPrice   = 15000,
+		achievement = 3468,		-- Bal Sunnar Vanquisher
+	},	
+	},
+   },
+
+}
+
 FurC.AchievementVendors[FURC_DRUID] = {
 
  [ "Vastyr, Touch of Home Furnshings"] = {

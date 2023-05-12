@@ -1,3 +1,11 @@
+FurC.EventItems[FURC_TIDES] = {
+  ["Anniversary Jubilee"] = { 
+    ["Impresario"] = {
+	[183902] = { itemPrice = 3 }, -- Replica Jubilee Cake 2022,
+		},
+	},
+}
+
 FurC.EventItems[FURC_DRAGONS] = {
   ["Jester's Festival"] = {
     ["Jester's Boxes"] = {
