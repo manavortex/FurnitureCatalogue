@@ -1,85 +1,155 @@
 #!/usr/bin/env python3
 
+import argparse
+import glob
 import os
+import re
 import shutil
 import zipfile
-import argparse
-import fnmatch
 
-'''WIP, more or less copy pasted and converted from batch file, untested, don't use yet'''
+"""
+Generates package for release. Use standalone or in automated workflow.
+Run from project root, not from inside this folder.
+Does not sanitise user input, so use only with trusted input.
+"""
 
-def find_manifests(directory):
-    manifests = []
-    for root, dirs, files in os.walk(directory):
-        for file in files:
-            if file.endswith(".txt"):
-                manifests.append(os.path.join(root, file))
-    return manifests
+EXIT_FAILURE = -1
 
-def parse_manifest(manifest):
-    files = []
-    with open(manifest, 'r') as file:
-        lines = file.readlines()
-        for line in lines:
-            if not line.startswith("#") and not line.startswith(";"):
-                files.append(line.strip())
-    return files
+PACKAGE_DIR = '.package' # package folder, will be deleted if it already exists
+NO_VERSION = 'NO_VERSION'
+TYPE_MANIFEST_ESO = 'TYPE_MANIFEST_ESO'
+EXT_MANIFEST_ESO = '.txt'
+TYPE_MANIFEST_ADDITIONAL = 'TYPE_MANIFEST_ADDITIONAL'
+EXT_MANIFEST_ADDITIONAL = '.manifest'
 
-def package_addon(name, version, target_directory=None, delete_custom_filename=None):
-    archive = f"{name}-{version}.zip"
-    print(f"* Packaging {archive}...")
-    basefolder = f".package/{name}"
-    os.makedirs(basefolder, exist_ok=True)
+MANIFEST_HEADER = {
+  'Title': '',
+  'Version': NO_VERSION,
+  'type': TYPE_MANIFEST_ADDITIONAL,
+  'files': None
+}
 
-    # parse and copy all files mentioned in detected AddOn manifests
-    for manifest in find_manifests('.'):
-        print(f"Manifest detected: {manifest}")
+RE_MANIFEST_FIELD = re.compile(f"^##\s*(?P<KEY>\w+):\s*(?P<VALUE>.+)$")
 
-        # get directory relative to manifest
-        filepath = os.path.dirname(manifest)
+def find_manifests(directory: str, file_ext: ...) -> list[str]:
+  """Returns list with potential manifest files"""
+  manifests = []
+  directory = os.path.normpath(directory)
+  try:
+    for root, _, files in os.walk(directory):
+      for source in files:
+        if source.endswith(file_ext):
+          manifests.append(os.path.join(root, source))
+  except Exception:
+    return []
 
-        # parse file names in current AddOn manifest
-        for file in parse_manifest(manifest):
-            file = file.replace('$(language)', '*')
+  return manifests
 
-            # copy parsed file to the package
-            src = os.path.join(filepath, file)
-            for match in fnmatch.filter(os.listdir(filepath), file):
-                shutil.copy(os.path.join(filepath, match), os.path.join(basefolder, match))
+def get_manifest_data(manifest_file: str) -> dict:
+    """Extracts data from manifest file.
+    All listed files are considered to be located relative to the manifest file path.
 
-    # copy additional files (assets etc.) from package.manifest
-    if os.path.exists('package.manifest'):
-        print('package.manifest detected')
-        with open('package.manifest', 'r') as file:
-            files = file.readlines()
-            for file in files:
-                file = file.strip()
-                shutil.copy(file, os.path.join(basefolder, file))
+    Args:
+        manifest_file (str): Path to manifest file
 
-    # zip it
-    with zipfile.ZipFile(archive, 'w', zipfile.ZIP_DEFLATED) as zipf:
-        for root, dirs, files in os.walk(basefolder):
-            for file in files:
-                if file != delete_custom_filename:
-                    zipf.write(os.path.join(root, file))
+    Returns:
+        str: Manifest as a dict.
+    """
 
-    # clean up
-    shutil.rmtree(basefolder)
+    manifest = dict.copy(MANIFEST_HEADER)
+    manifest['files'] = []
+    manifest_file = os.path.normpath(manifest_file)
+    manifest_dir = os.path.dirname(manifest_file)
+    try:
+      with open(manifest_file, 'r') as file:
+        for line in file:
+          line = line.strip()
+          if line.startswith((';', '# ')): continue # skip comments
 
-    # move zip to target directory
-    if target_directory is not None:
-        print(f"* Moving {archive} to {target_directory}...")
-        shutil.move(archive, os.path.join(target_directory, archive))
+          match = re.fullmatch(RE_MANIFEST_FIELD, line)
+          if match:
+            key,value = match.group('KEY', 'VALUE')
+            manifest[key] = value # duplicates shall be overwritten
+          else:
+            if line and not line.startswith(("#", ";")):
+              line = line.replace('$(language)', '*') # mask for all files in lang dir
+              line = line.replace('\\', '/')
+              line = os.path.normpath(line)
+              if '*' in line: # need to resolve filemasks here for shutil.copy
+                manifest['files'].extend(glob.glob(os.path.join(manifest_dir, line)))
+              else:
+                manifest['files'].append(os.path.join(manifest_dir, line))
 
-    print("* Done^^!\n")
+      if manifest_file.endswith('.txt'):
+        manifest['type'] = TYPE_MANIFEST_ESO
+
+    except Exception as ex:
+      print(f"Failed to get data from {manifest_file}: {ex}")
+    return manifest
+
+def package_addon(name: str, exclude_filename: str):
+  """Copies select files to package directory. Creates zip archive for release.
+
+  Args:
+      name (_type_): AddOn title for version and name of archive
+      exclude_filename (_type_): File name to be excluded from the package.
+  """
+
+  addon_name = name or 'FurnitureCatalogue'
+  addon_version = NO_VERSION
+
+  # Clear preexisting package, to catch cases in which it was created in a different way
+  if os.path.exists(PACKAGE_DIR):
+    shutil.rmtree(PACKAGE_DIR)
+
+  files_to_copy = []
+  # parse all files mentioned in detected AddOn manifests
+  for manifest in find_manifests('.', (EXT_MANIFEST_ESO, EXT_MANIFEST_ADDITIONAL)):
+    manifest_data = get_manifest_data(manifest)
+    if addon_version == NO_VERSION and manifest_data['Title'] == addon_name:
+      addon_version = manifest_data['Version']
+    files_to_copy.extend(manifest_data['files'])
+
+    # Add only the manifest files required by ESO
+    if manifest_data['type'] == TYPE_MANIFEST_ESO:
+      files_to_copy.append(manifest)
+
+  addon_dir = os.path.normpath(os.path.join(PACKAGE_DIR, addon_name))
+  # copy files
+  for source in files_to_copy:
+    try:
+      # skip excluded filenames
+      if os.path.basename(source) == exclude_filename: continue
+      source = os.path.normpath(source)
+      target = os.path.normpath(os.path.join(addon_dir, source))
+      os.makedirs(os.path.dirname(target), exist_ok=True) # Create target directory
+      shutil.copy(source, target)
+    except Exception as ex: # continue on error
+      print(f"Skipping file: {ex}")
+      continue
+
+  # zip it
+  archive = f"{addon_name}-{addon_version}.zip"
+  if addon_version == NO_VERSION:
+    print('Version was not set, aborting packaging')
+    exit(EXIT_FAILURE)
+
+  # GH action specific outputs
+  print(f"::set-env name=PACKAGE_ARCHIVE::{archive}")
+  print(f"::set-env name=PACKAGE_ADDON_NAME::{addon_name}")
+  print(f"::set-env name=PACKAGE_ADDON_VERSION::{addon_version}")
+
+  with zipfile.ZipFile(archive, 'w', zipfile.ZIP_DEFLATED) as zipf:
+    for root, _, files in os.walk(addon_dir):
+      for file in files:
+        src_file = os.path.join(root, file)
+        target_file = src_file.replace(PACKAGE_DIR, '')
+        zipf.write(src_file, arcname=target_file)
 
 if __name__ == '__main__':
-    # kwargs for ease of use
-    parser = argparse.ArgumentParser(description="Package your ESO add-on ready for distribution.")
-    parser.add_argument('--name', required=True, help='Name of your add-on')
-    parser.add_argument('--version', required=True, help='Version of your add-on')
-    parser.add_argument('--target_directory', default=None, help='Target directory to move the zip file')
-    parser.add_argument('--delete_custom_filename', default=None, help='Custom filename to be deleted')
-    args = parser.parse_args()
+  parser = argparse.ArgumentParser(description="Package AddOn for release")
+  parser.add_argument('--name', help='AddOn title for version and zip name', default="FurnitureCatalogue")
+  parser.add_argument('--exclude_filename', help='Will be excluded from package', default="Custom.lua")
+  args = parser.parse_args()
 
-    package_addon(args.name, args.version, args.target_directory, args.delete_custom_filename)
+  package_addon(args.name, args.exclude_filename)
