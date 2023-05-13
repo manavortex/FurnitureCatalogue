@@ -1,47 +1,29 @@
-# WIP, just scaffolding for now, don't use yet
+# Publishes the latest release to ESOUI
+
 name: PublishToESOUI
 
 on:
-  # Manual trigger
-  workflow_dispatch:
   release:
     types:
       - published
-  
+
 jobs:
-  package_and_release:
-    # When manually triggered
-    if: github.event_name == 'workflow_dispatch'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-python@v4.6.0
-
-      # Copy release files into .package folder
-      - name: Prepare package folder
-        run: echo "python ./prepare.py" # todo
-        
-      - name: Create changelog from commit messages
-        #todo: create and commit changelog.txt with releases? 
-        #      create dynamically each time?
-        #      append to existing changelog?
-        run: echo "todo"
-
-      # todo: use exiting workflow or run custom one
-      - name: create release
-        run: echo "python ./release.py" # todo
-
   upload:
-    # triggered by release
-    if: github.event_name == 'release'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v4.6.0
+        with:
+          python-version: "^3.6"
+
+      # todo: check for version, only publish if release is newer!
+      # do not publish if already was published!
+      # that is also to catch cases in which, for whatever reason, older releases are created. we do not want them to be uploaded to ESOUI, where they could replace or break existing releases
+      - name: Check Version
+        run: echo "check version" #todo
 
       # todo: upload release
       - name: Publish
-        run: echo "./publish.py" # todo
-        env:
+        run: echo "python ./publish.py" # todo
+        env: # todo: make it available in os.env, do not log!
           ESOUI_API_TOKEN: ${{secrets.ESOUI_API_TOKEN}}
-      

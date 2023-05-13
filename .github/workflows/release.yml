@@ -1,0 +1,62 @@
+# Prepares the files for publishing and creates a release draft which then can be manually edited and published. Publishing will trigger the release action "publish"
+
+name: CreateReleaseDraft
+
+on:
+  # Manual trigger
+  workflow_dispatch:
+
+jobs:
+  package_and_release:
+    runs-on: ubuntu-latest
+    steps:
+      # copy repo to container
+      - uses: actions/checkout@v3
+
+      # make sure we have python available
+      - uses: actions/setup-python@v4.6.0
+        with:
+          python-version: "^3.6"
+
+        # Create archive and set env vars for the next steps
+      - name: package_files
+        run: python ./.scripts/package.py
+
+      - name: extract name and version from zip
+        if: env.PACKAGE_ADDON_NAME == ''
+        run: |
+          ARCHIVE=$(ls *.zip)
+          NAME=${ARCHIVE%%-*}
+          VERSION=${FILENAME#*-}
+          VERSION=${VERSION%.*}
+          echo "::set-env name=PACKAGE_ARCHIVE::$ARCHIVE"
+          echo "::set-env name=PACKAGE_ADDON_NAME::$NAME"
+          echo "::set-env name=PACKAGE_ADDON_VERSION::$VERSION"
+
+      - name: Generate descriptions for release
+        #todo: from commit msg, should be able to edit manually in draft
+        env:
+          PACKAGE_ADDON_NAME: ${{ env.PACKAGE_ADDON_NAME }}
+          PACKAGE_ADDON_VERSION: ${{ env.PACKAGE_ADDON_VERSION }}
+          PACKAGE_ADDON_ARCHIVE: ${{ env.PACKAGE_ADDON_ARCHIVE }}
+        run: |
+          echo ${{ env.PACKAGE_ADDON_NAME }}
+          echo ${{ env.PACKAGE_ADDON_VERSION }}
+          echo ${{ env.PACKAGE_ADDON_ARCHIVE }}
+
+      # todo
+      - name: Mock Release
+        run: echo mock release
+
+      # - name: Create Release
+      #   uses: softprops/action-gh-release@v1
+      #   env:
+      #     PACKAGE_ADDON_NAME: ${{ env.PACKAGE_ADDON_NAME }}
+      #     PACKAGE_ADDON_VERSION: ${{ env.PACKAGE_ADDON_VERSION }}
+      #     PACKAGE_ADDON_ARCHIVE: ${{ env.PACKAGE_ADDON_ARCHIVE }}
+      #     #GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #   with:
+      #     tag_name: ${{ env.PACKAGE_ADDON_VERSION }}
+      #     body:
+      #     draft: true
+      #     prerelease: false
