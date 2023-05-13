@@ -135,9 +135,9 @@ def package_addon(name: str, exclude_filename: str):
     exit(EXIT_FAILURE)
 
   # GH action specific outputs
-  print(f"::set-env name=PACKAGE_ARCHIVE::{archive}")
-  print(f"::set-env name=PACKAGE_ADDON_NAME::{addon_name}")
-  print(f"::set-env name=PACKAGE_ADDON_VERSION::{addon_version}")
+  print(f"echo 'PACKAGE_ARCHIVE={archive}' >> $GITHUB_ENV")
+  print(f"echo 'PACKAGE_ADDON_NAME={addon_name}' >> $GITHUB_ENV")
+  print(f"echo 'PACKAGE_ADDON_VERSION={addon_version}' >> $GITHUB_ENV")
 
   with zipfile.ZipFile(archive, 'w', zipfile.ZIP_DEFLATED) as zipf:
     for root, _, files in os.walk(addon_dir):

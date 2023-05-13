@@ -26,4 +26,4 @@ jobs:
       - name: Publish
         run: echo "python ./.scripts/publish.py" # todo
         env: # todo: make it available in os.env, do not log!
-          ESOUI_API_TOKEN: ${{secrets.ESOUI_API_TOKEN}}
+          ESOUI_API_TOKEN: ${{ secrets.ESOUI_API_TOKEN }}

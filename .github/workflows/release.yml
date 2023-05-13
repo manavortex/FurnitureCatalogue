@@ -5,7 +5,6 @@ name: CreateReleaseDraft
 on:
   # Manual trigger
   workflow_dispatch:
-  push:
 
 jobs:
   package_and_release:
@@ -24,15 +23,19 @@ jobs:
         run: python ./.scripts/package.py
 
       - name: extract name and version from zip
+        env:
+          PACKAGE_ADDON_NAME: ${{ env.PACKAGE_ADDON_NAME }}
+          PACKAGE_ADDON_VERSION: ${{ env.PACKAGE_ADDON_VERSION }}
+          PACKAGE_ADDON_ARCHIVE: ${{ env.PACKAGE_ADDON_ARCHIVE }}
         if: env.PACKAGE_ADDON_NAME == ''
         run: |
           ARCHIVE=$(ls *.zip)
           NAME=${ARCHIVE%%-*}
           VERSION=${FILENAME#*-}
           VERSION=${VERSION%.*}
-          echo "::set-env name=PACKAGE_ARCHIVE::$ARCHIVE"
-          echo "::set-env name=PACKAGE_ADDON_NAME::$NAME"
-          echo "::set-env name=PACKAGE_ADDON_VERSION::$VERSION"
+          echo "PACKAGE_ARCHIVE=$ARCHIVE" >> $GITHUB_ENV
+          echo "PACKAGE_ADDON_NAME=$NAME" >> $GITHUB_ENV
+          echo "PACKAGE_ADDON_VERSION=$VERSION" >> $GITHUB_ENV
 
       - name: Generate descriptions for release
         #todo: from commit msg, should be able to edit manually in draft
