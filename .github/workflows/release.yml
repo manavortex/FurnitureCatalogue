@@ -5,6 +5,7 @@ name: CreateReleaseDraft
 on:
   # Manual trigger
   workflow_dispatch:
+  push:
 
 jobs:
   package_and_release:

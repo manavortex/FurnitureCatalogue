@@ -24,6 +24,6 @@ jobs:
 
       # todo: upload release
       - name: Publish
-        run: echo "python ./publish.py" # todo
+        run: echo "python ./.scripts/publish.py" # todo
         env: # todo: make it available in os.env, do not log!
           ESOUI_API_TOKEN: ${{secrets.ESOUI_API_TOKEN}}
