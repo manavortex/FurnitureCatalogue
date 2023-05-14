@@ -1,6 +1,6 @@
-# Publishes the latest release to ESOUI
-
 name: PublishToESOUI
+
+# Publishes the latest release to ESOUI
 
 on:
   release:
@@ -11,8 +11,11 @@ jobs:
   upload:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-python@v4.6.0
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v4.6.0
         with:
           python-version: "^3.6"
 

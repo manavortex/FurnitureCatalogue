@@ -1,7 +1,9 @@
-# Prepares the files for publishing and creates a release draft which then can be manually edited and published. Publishing will trigger the release action "publish"
-
 name: CreateReleaseDraft
 
+# Prepares the files for publishing and creates a release draft which then can be manually edited and published. Publishing will trigger the release action "publish"
+
+permissions:
+  contents: write
 on:
   # Manual trigger
   workflow_dispatch:
@@ -10,57 +12,47 @@ jobs:
   package_and_release:
     runs-on: ubuntu-latest
     steps:
-      # copy repo to container
-      - uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v3
 
-      # make sure we have python available
-      - uses: actions/setup-python@v4.6.0
+      - name: Setup Python
+        uses: actions/setup-python@v4.6.0
         with:
           python-version: "^3.6"
 
-        # Create archive and set env vars for the next steps
-      - name: package_files
+      # Create archive and set env vars and output for the next steps
+      # should fail completely if something is wrong
+      - name: Package files
+        id: package_files
         run: python ./.scripts/package.py
 
-      - name: extract name and version from zip
-        env:
-          PACKAGE_ADDON_NAME: ${{ env.PACKAGE_ADDON_NAME }}
-          PACKAGE_ADDON_VERSION: ${{ env.PACKAGE_ADDON_VERSION }}
-          PACKAGE_ADDON_ARCHIVE: ${{ env.PACKAGE_ADDON_ARCHIVE }}
-        if: env.PACKAGE_ADDON_NAME == ''
+      - name: Generate AddOn Info
+        id: addon_info
         run: |
           ARCHIVE=$(ls *.zip)
           NAME=${ARCHIVE%%-*}
-          VERSION=${FILENAME#*-}
+          VERSION=${ARCHIVE#*-}
           VERSION=${VERSION%.*}
-          echo "PACKAGE_ARCHIVE=$ARCHIVE" >> $GITHUB_ENV
-          echo "PACKAGE_ADDON_NAME=$NAME" >> $GITHUB_ENV
-          echo "PACKAGE_ADDON_VERSION=$VERSION" >> $GITHUB_ENV
+          echo "PACKAGE_ARCHIVE=$ARCHIVE" >> $GITHUB_OUTPUT
+          echo "PACKAGE_ADDON_NAME=$NAME" >> $GITHUB_OUTPUT
+          echo "PACKAGE_ADDON_VERSION=$VERSION" >> $GITHUB_OUTPUT
 
-      - name: Generate descriptions for release
-        #todo: from commit msg, should be able to edit manually in draft
+      # todo: generate description from commits
+      - name: Generate Description
+        run: echo generate description
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
         env:
-          PACKAGE_ADDON_NAME: ${{ env.PACKAGE_ADDON_NAME }}
-          PACKAGE_ADDON_VERSION: ${{ env.PACKAGE_ADDON_VERSION }}
-          PACKAGE_ADDON_ARCHIVE: ${{ env.PACKAGE_ADDON_ARCHIVE }}
-        run: |
-          echo ${{ env.PACKAGE_ADDON_NAME }}
-          echo ${{ env.PACKAGE_ADDON_VERSION }}
-          echo ${{ env.PACKAGE_ADDON_ARCHIVE }}
-
-      # todo
-      - name: Mock Release
-        run: echo mock release
-
-      # - name: Create Release
-      #   uses: softprops/action-gh-release@v1
-      #   env:
-      #     PACKAGE_ADDON_NAME: ${{ env.PACKAGE_ADDON_NAME }}
-      #     PACKAGE_ADDON_VERSION: ${{ env.PACKAGE_ADDON_VERSION }}
-      #     PACKAGE_ADDON_ARCHIVE: ${{ env.PACKAGE_ADDON_ARCHIVE }}
-      #     #GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #   with:
-      #     tag_name: ${{ env.PACKAGE_ADDON_VERSION }}
-      #     body:
-      #     draft: true
-      #     prerelease: false
+          PACKAGE_ADDON_ARCHIVE: ${{ steps.addon_info.outputs.PACKAGE_ADDON_ARCHIVE }}
+          PACKAGE_ADDON_NAME: ${{ steps.addon_info.outputs.PACKAGE_ADDON_NAME }}
+          PACKAGE_ADDON_VERSION: ${{ steps.addon_info.outputs.PACKAGE_ADDON_VERSION }}
+        with:
+          tag_name: ${{ steps.addon_info.outputs.PACKAGE_ADDON_VERSION }}
+          body: bla
+          files: ${{ steps.addon_info.outputs.PACKAGE_ADDON_ARCHIVE }}
+          target_commitish: feature/actions
+          token: ${{ secrets.GITHUB_TOKEN }}
+          draft: true
+          prerelease: false
+          generate_release_notes: true
