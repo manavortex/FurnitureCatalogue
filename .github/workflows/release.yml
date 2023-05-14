@@ -49,8 +49,8 @@ jobs:
           PACKAGE_ADDON_VERSION: ${{ steps.addon_info.outputs.PACKAGE_ADDON_VERSION }}
         with:
           tag_name: ${{ steps.addon_info.outputs.PACKAGE_ADDON_VERSION }}
-          body: bla
-          files: ${{ steps.addon_info.outputs.PACKAGE_ADDON_ARCHIVE }}
+          body: ${{ steps.addon_info.outputs.PACKAGE_ADDON_NAME }} Version ${{ steps.addon_info.outputs.PACKAGE_ADDON_VERSION }}
+          files: "*.zip"
           target_commitish: feature/actions
           token: ${{ secrets.GITHUB_TOKEN }}
           draft: true
