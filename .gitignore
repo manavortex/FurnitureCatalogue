@@ -19,3 +19,4 @@ btm/*
 .vscode
 *.bak
 *.zip
+*.tmp

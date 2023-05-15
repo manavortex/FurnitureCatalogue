@@ -3,11 +3,11 @@
 ## AddonVersion: 4072000
 ## Version: 4.72.0
 ## APIVersion: 101038 101037
-## SavedVariables: FurnitureCatalogue_Settings 
+## SavedVariables: FurnitureCatalogue_Settings
 ## DependsOn: LibCustomMenu LibAddonMenu-2.0 LibAsync
 ## OptionalDependsOn: pChat rchat LibDebugLogger LibDebugViewer
 
-_Constants.lua 
+_Constants.lua
 
 locale\en.lua
 locale\$(language).lua
@@ -74,7 +74,6 @@ FurCGui.lua
 FurCContextMenu.lua
 FurCControlBridge.lua
 FurCTooltip.lua
-
 
 
 ; This Add-on is not created by, affiliated with or sponsored by ZeniMax
