@@ -77,12 +77,12 @@ def get_manifest_data(manifest_file: str) -> dict:
   return manifest
 
 
-def get_str_before_delim(note: str, delim: str="<!--") -> str:
+def get_str_before_delim(note: str, delim: str="[//]:") -> str:
   """Extracts text that comes before a specified delimiter's first occurence, usually a header.
 
   Args:
       note (str): Text we might want to separate from the rest
-      delim (str, optional): Delimiter the text will be split at. Defaults to "<!--".
+      delim (str, optional): Delimiter the text will be split at. Defaults to "[//]:".
 
   Returns:
       str: Extracted header or empty string if no delimiter or whitepace text

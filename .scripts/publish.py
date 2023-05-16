@@ -29,10 +29,11 @@ Speaking of boring: if you're really bored you can find the full changelog [URL=
 '''
 
 RELEASE_NOTE_DEFAULT = '''
-<!-- ⬆️⬆️⬆️ ABOVE WILL BE SENT TO ESOUI CHANGELOG ⬆️⬆️⬆️ !-->
-<!-- DO NOT DELETE THESE COMMENTS MARKED WITH ARROWS  !-->
-<!-- ⬇️⬇️⬇️ STUFF BELOW WONT BE SENT TO ESOUI ⬇️⬇️⬇️ !-->
+[//]: # (⬆️⬆️⬆️ ABOVE WILL BE SENT TO ESOUI CHANGELOG ⬆️⬆️⬆️)
+[//]: # (DO NOT DELETE THESE COMMENTS MARKED WITH ARROWS)
+[//]: # (⬇️⬇️⬇️ STUFF BELOW WONT BE SENT TO ESOUI ⬇️⬇️⬇️)
 '''
+RELEASE_NOTE_DELIM = "[//]:"
 
 API_BASE = "https://api.esoui.com/addons"
 API_COMPATIBLE_LIST = f"{API_BASE}/compatible.json"
@@ -172,7 +173,7 @@ def publish_to_esoui(optional_params: dict = {}):
 
   # Prepare changelog
   meta['changelog_file'] = optional_params.get('changelog_file', CHANGELOG_FILE)
-  change = FU.get_str_before_delim(optional_params.get('note', '')) # Get change from release note
+  change = FU.get_str_before_delim(optional_params.get('note', ''), RELEASE_NOTE_DELIM) # Get change from release note
   FU.prepend_str_to_file(change, meta['changelog_file']) # REPO: add release notes to changelog
   # ESOUI: Save changelog comment
   esoui_cl_comment = FU.get_str_before_delim(body['changelog'], CHANGELOG_HEADER_DELIM)
@@ -192,7 +193,7 @@ if __name__ == '__main__':
   parser = argparse.ArgumentParser(description='Publish a new release.')
   parser.add_argument('--tag', help='Release tag like 1.234, used to compare with manifest')
   parser.add_argument('--note', type=str, default=f"{RELEASE_NOTE_DEFAULT}", help='Release notes')
-  parser.add_argument('--note-delimiter', default="<!--", help='Text before the delim is added to the ESOUI changelog.')
+  parser.add_argument('--note-delimiter', default="[//]:", help='Text before the delim is added to the ESOUI changelog.')
   parser.add_argument('--changelog-file', default='CHANGELOG', help='Path to the changelog file')
   parser.add_argument('--changelog-max-notes', default=10, help='Truncate the ESOUI changelog to the x latest notes')
   parser.add_argument('--archive-file', type=str, required=False, help='Path to the release archive file')

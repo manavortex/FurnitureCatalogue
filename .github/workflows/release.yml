@@ -1,6 +1,8 @@
 name: CreateRelease
 
-# Prepares the files for publishing and creates a release draft which then can be manually edited and published. Publishing will trigger the release action "publish"
+# Prepares the files for publishing and creates a pre-release from the current version of the branch. The release then can be manually edited and published. Publishing will trigger the release action in "publish.yml".
+
+# todo-maybe: add possibility to release older versions for the archives.
 
 permissions:
   contents: write
@@ -41,10 +43,10 @@ jobs:
         id: generate_notes
         run: |
           VERSION=${{ steps.addon_info.outputs.PACKAGE_ADDON_VERSION }}
-          COMMENT1="<!-- ⬆️⬆️⬆️ ABOVE WILL BE SENT TO ESOUI CHANGELOG ⬆️⬆️⬆️ !-->\n"
-          COMMENT2="<!-- DO NOT DELETE THESE COMMENTS MARKED WITH ARROWS  !-->\n"
-          COMMENT3="<!-- ⬇️⬇️⬇️ STUFF BELOW WONT BE SENT TO ESOUI ⬇️⬇️⬇️ !-->\n"
-          NOTES="$VERSION\n - changes\n\n$COMMENT1$COMMENT2$COMMENT3"
+          COMMENT1="[//]: # (⬆️⬆️⬆️ ABOVE WILL BE SENT TO ESOUI CHANGELOG ⬆️⬆️⬆️)"
+          COMMENT2="[//]: # (DO NOT DELETE THESE COMMENTS MARKED WITH ARROWS)"
+          COMMENT3="[//]: # (⬇️⬇️⬇️ STUFF BELOW WONT BE SENT TO ESOUI ⬇️⬇️⬇️)"
+          NOTES="$VERSION\n - changes\n\n$COMMENT1$COMMENT2$COMMENT3\n"
           echo "::set-output name=release_notes::$NOTES"
 
       - name: Create Release
@@ -52,7 +54,7 @@ jobs:
           gh release create ${{ steps.addon_info.outputs.PACKAGE_ADDON_VERSION }} \
           "${{ steps.addon_info.outputs.PACKAGE_ARCHIVE }}" \
           --title "Version ${{ steps.addon_info.outputs.PACKAGE_ADDON_VERSION }}" \
-          --notes ${{ steps.generate_notes.outputs.NOTES }} \
+          --notes "$(echo -e "${{ steps.generate_notes.outputs.NOTES }}")" \
           --target master \
           --generate-notes \
           --prerelease

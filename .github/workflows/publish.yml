@@ -1,6 +1,6 @@
 name: PublishToESOUI
 
-# Publishes the latest release to ESOUI
+# Publishes the latest release to ESOUI. Release tag has to have a higher version than latest on ESOUI and it must be the same as in the AddOn manifest txt.
 
 permissions:
   contents: write
@@ -13,7 +13,7 @@ on:
 
 jobs:
   upload:
-    # Skip if we're not ready yet
+    # Skip if it's just a prerelease or draft
     if: github.event.release.prerelease == false && github.event.release.draft == false
 
     runs-on: ubuntu-latest
@@ -27,6 +27,7 @@ jobs:
           python-version: "^3.6"
 
         # Get release infos
+        # todo: get tag from the release that triggered the action, to skip if not latest one
       - name: Get Data from Latest Release
         id: latest_release
         run: |
@@ -45,7 +46,6 @@ jobs:
         run: python ./.scripts/publish.py \
           --tag ${{ steps.latest_release.outputs.TAG }} \
           --note ${{ steps.latest_release.outputs.NOTE }} \
-          --note-delimiter '<!--' \
           --changelog-file 'CHANGELOG' \
           --archive-file ${{ steps.latest_release.outputs.ARCHIVE }}"
         env:
