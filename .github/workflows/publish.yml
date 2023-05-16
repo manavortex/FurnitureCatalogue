@@ -5,6 +5,7 @@ name: PublishToESOUI
 permissions:
   contents: write
 on:
+  # Run manually if automatic trigger didn't work
   workflow_dispatch:
   # Trigger on release
   release:
@@ -33,10 +34,9 @@ jobs:
         run: |
           LATEST_TAG="$(echo "$(gh release list | python .scripts/furc_utils.py getlatest)")"
           if [[ $RELEASE_TAG ]]; then
-            TAG_COMPARE="$(python .scripts/furc_utils.py compare "$RELEASE_TAG" "$LATEST_TAG")"
-            X_BIGGER_Y="1"
-            if [[ "$TAG_COMPARE" != "$X_BIGGER_Y" ]]; then
-              echo "Release tag '$RELEASE_TAG' is not higher than the latest release '$LATEST_TAG'"
+            if [[ "$RELEASE_TAG" != "$LATEST_TAG" ]]; then
+              echo "🔥 Release tag '$RELEASE_TAG' is different from latest release '$LATEST_TAG' 🔥"
+              echo "🔥 Please publish nonstandard releases manually to avoid unforeseen problems 🔥"
               exit 1
             fi
           else
@@ -50,7 +50,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           RELEASE_TAG: ${{ github.event.release.tag_name }}
-          RELEASE_NOTE: ${{ github.event.release.body }}
 
       # Will fail if TAG <= live version
       # File modifications: Changelog
