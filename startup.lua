@@ -1,26 +1,26 @@
-FurnitureCatalogue                = {}
-FurnitureCatalogue.name           = "FurnitureCatalogue"
-FurnitureCatalogue.author         = "manavortex"
-FurnitureCatalogue.tag            = "FurC"
+FurnitureCatalogue               = {}
+FurnitureCatalogue.name          = "FurnitureCatalogue"
+FurnitureCatalogue.author        = "manavortex"
+FurnitureCatalogue.tag           = "FurC"
 
-FurnitureCatalogue.version        = 4.71
-FurnitureCatalogue.CharacterName  = nil
-FurnitureCatalogue.settings       = {}
+FurnitureCatalogue.version       = 4.72
+FurnitureCatalogue.CharacterName = nil
+FurnitureCatalogue.settings      = {}
 
-FurC                               = FurnitureCatalogue
+FurC                             = FurnitureCatalogue
 
-FurC.AchievementVendors           = {}
-FurC.LuxuryFurnisher              = {}
-FurC.Recipes                      = {}
-FurC.Rolis                        = {}
-FurC.Faustina                     = {}
-FurC.RolisRecipes                 = {}
-FurC.FaustinaRecipes              = {}
-FurC.Books                        = {}
-FurC.EventItems                   = {}
-FurC.PVP                          = {}
-FurC.MiscItemSources              = {}
-FurC.RumourRecipes                = {}
+FurC.AchievementVendors          = {}
+FurC.LuxuryFurnisher             = {}
+FurC.Recipes                     = {}
+FurC.Rolis                       = {}
+FurC.Faustina                    = {}
+FurC.RolisRecipes                = {}
+FurC.FaustinaRecipes             = {}
+FurC.Books                       = {}
+FurC.EventItems                  = {}
+FurC.PVP                         = {}
+FurC.MiscItemSources             = {}
+FurC.RumourRecipes               = {}
 
 -- TODO: set up the filtering for FURC_RUMOUR and FURC_CROWN in submenus by origin
 local defaults                   = {
@@ -131,72 +131,72 @@ FurC.GetTooltipsSource = getTooltipsSource
 
 -- [UPGRADING GAME VERSIONS, PTS compatibility]
 FurC.DropdownData = {
-	ChoicesVersion  = {
-		[FURC_NONE]  		= GetString(SI_FURC_FILTER_VERSION_OFF),
-		[FURC_HOMESTEAD]  	= GetString(SI_FURC_FILTER_VERSION_HS  ),
-		[FURC_MORROWIND]  	= GetString(SI_FURC_FILTER_VERSION_M  ),
-		[FURC_REACH]  		= GetString(SI_FURC_FILTER_VERSION_R  ),
-		[FURC_CLOCKWORK]  	= GetString(SI_FURC_FILTER_VERSION_CC  ),
-		[FURC_DRAGONS]  	= GetString(SI_FURC_FILTER_VERSION_DRAGON),
-		[FURC_ALTMER]  		= GetString(SI_FURC_FILTER_VERSION_ALTMER),
-		[FURC_WEREWOLF]  	= GetString(SI_FURC_FILTER_VERSION_SLAVES),
-		[FURC_SLAVES]  		= GetString(SI_FURC_FILTER_VERSION_WEREWOLF),
-		[FURC_WOTL] 		= GetString(SI_FURC_FILTER_VERSION_WOTL),
-		[FURC_KITTY] 		= GetString(SI_FURC_FILTER_VERSION_KITTY),
-		[FURC_SCALES] 		= GetString(SI_FURC_FILTER_VERSION_SCALES),
-		[FURC_DRAGON2] 		= GetString(SI_FURC_FILTER_VERSION_DRAGON2),
-		[FURC_HARROW] 		= GetString(SI_FURC_FILTER_VERSION_HARROW),
-		[FURC_SKYRIM] 		= GetString(SI_FURC_FILTER_VERSION_SKYRIM),
-		[FURC_STONET] 		= GetString(SI_FURC_FILTER_VERSION_STONET),
-		[FURC_MARKAT] 		= GetString(SI_FURC_FILTER_VERSION_MARKAT),
-		[FURC_FLAMES] 		= GetString(SI_FURC_FILTER_VERSION_FLAMES),
-		[FURC_BLACKW] 		= GetString(SI_FURC_FILTER_VERSION_BLACKW),
-		[FURC_DEADL]		= GetString(SI_FURC_FILTER_VERSION_DEADL),
-		[FURC_TIDES]		= GetString(SI_FURC_FILTER_VERSION_TIDES),
-		[FURC_BRETON]		= GetString(SI_FURC_FILTER_VERSION_BRETON),
-		[FURC_DEPTHS]		= GetString(SI_FURC_FILTER_VERSION_DEPTHS),
-		[FURC_DRUID]		= GetString(SI_FURC_FILTER_VERSION_DRUID),
-		[FURC_SCRIBE]		= GetString(SI_FURC_FILTER_VERSION_SCRIBE),
-	},
-	
-	TooltipsVersion  = {
-		[FURC_NONE]  		= GetString(SI_FURC_FILTER_VERSION_OFF_TT),
-		[FURC_HOMESTEAD]  	= GetString(SI_FURC_FILTER_VERSION_HS_TT),
-		[FURC_MORROWIND]  	= GetString(SI_FURC_FILTER_VERSION_M_TT),
-		[FURC_REACH]  		= GetString(SI_FURC_FILTER_VERSION_R_TT),
-		[FURC_CLOCKWORK]  	= GetString(SI_FURC_FILTER_VERSION_CC_TT),
-		[FURC_DRAGONS]  	= GetString(SI_FURC_FILTER_VERSION_DRAGON_TT),
-		[FURC_ALTMER]  		= GetString(SI_FURC_FILTER_VERSION_ALTMER_TT),
-		[FURC_WEREWOLF]  	= GetString(SI_FURC_FILTER_VERSION_SLAVES_TT),
-		[FURC_SLAVES]  		= GetString(SI_FURC_FILTER_VERSION_WEREWOLF_TT),
-		[FURC_WOTL] 		= GetString(SI_FURC_FILTER_VERSION_WOTL_TT),
-		[FURC_KITTY] 		= GetString(SI_FURC_FILTER_VERSION_KITTY_TT),
-		[FURC_SCALES] 		= GetString(SI_FURC_FILTER_VERSION_SCALES_TT),
-		[FURC_DRAGON2] 		= GetString(SI_FURC_FILTER_VERSION_DRAGON2_TT),
-		[FURC_HARROW] 		= GetString(SI_FURC_FILTER_VERSION_HARROW_TT),
-		[FURC_SKYRIM] 		= GetString(SI_FURC_FILTER_VERSION_SKYRIM_TT),
-		[FURC_STONET] 		= GetString(SI_FURC_FILTER_VERSION_STONET_TT),
-		[FURC_MARKAT] 		= GetString(SI_FURC_FILTER_VERSION_MARKAT_TT),
-		[FURC_FLAMES] 		= GetString(SI_FURC_FILTER_VERSION_FLAMES_TT),
-		[FURC_BLACKW] 		= GetString(SI_FURC_FILTER_VERSION_BLACKW_TT),
-		[FURC_DEADL]		= GetString(SI_FURC_FILTER_VERSION_DEADL_TT),
-		[FURC_TIDES]		= GetString(SI_FURC_FILTER_VERSION_TIDES_TT),
-		[FURC_BRETON]		= GetString(SI_FURC_FILTER_VERSION_BRETON_TT),
-		[FURC_DEPTHS]		= GetString(SI_FURC_FILTER_VERSION_DEPTHS_TT),
-		[FURC_DRUID]		= GetString(SI_FURC_FILTER_VERSION_DRUID_TT),
-		[FURC_SCRIBE]		= GetString(SI_FURC_FILTER_VERSION_SCRIBE_TT),
-	},
-	
-	ChoicesCharacter  = {
-		[1]  = GetString(SI_FURC_FILTER_CHAR_OFF),
-	},
-	TooltipsCharacter = {
-		[1]  = GetString(SI_FURC_FILTER_CHAR_OFF_TT),
-	},
-	
-	-- will be set in setupSourceDropdown
-	ChoicesSource  = {},
-	TooltipsSource   = {},
+  ChoicesVersion    = {
+    [FURC_NONE]      = GetString(SI_FURC_FILTER_VERSION_OFF),
+    [FURC_HOMESTEAD] = GetString(SI_FURC_FILTER_VERSION_HS),
+    [FURC_MORROWIND] = GetString(SI_FURC_FILTER_VERSION_M),
+    [FURC_REACH]     = GetString(SI_FURC_FILTER_VERSION_R),
+    [FURC_CLOCKWORK] = GetString(SI_FURC_FILTER_VERSION_CC),
+    [FURC_DRAGONS]   = GetString(SI_FURC_FILTER_VERSION_DRAGON),
+    [FURC_ALTMER]    = GetString(SI_FURC_FILTER_VERSION_ALTMER),
+    [FURC_WEREWOLF]  = GetString(SI_FURC_FILTER_VERSION_SLAVES),
+    [FURC_SLAVES]    = GetString(SI_FURC_FILTER_VERSION_WEREWOLF),
+    [FURC_WOTL]      = GetString(SI_FURC_FILTER_VERSION_WOTL),
+    [FURC_KITTY]     = GetString(SI_FURC_FILTER_VERSION_KITTY),
+    [FURC_SCALES]    = GetString(SI_FURC_FILTER_VERSION_SCALES),
+    [FURC_DRAGON2]   = GetString(SI_FURC_FILTER_VERSION_DRAGON2),
+    [FURC_HARROW]    = GetString(SI_FURC_FILTER_VERSION_HARROW),
+    [FURC_SKYRIM]    = GetString(SI_FURC_FILTER_VERSION_SKYRIM),
+    [FURC_STONET]    = GetString(SI_FURC_FILTER_VERSION_STONET),
+    [FURC_MARKAT]    = GetString(SI_FURC_FILTER_VERSION_MARKAT),
+    [FURC_FLAMES]    = GetString(SI_FURC_FILTER_VERSION_FLAMES),
+    [FURC_BLACKW]    = GetString(SI_FURC_FILTER_VERSION_BLACKW),
+    [FURC_DEADL]     = GetString(SI_FURC_FILTER_VERSION_DEADL),
+    [FURC_TIDES]     = GetString(SI_FURC_FILTER_VERSION_TIDES),
+    [FURC_BRETON]    = GetString(SI_FURC_FILTER_VERSION_BRETON),
+    [FURC_DEPTHS]    = GetString(SI_FURC_FILTER_VERSION_DEPTHS),
+    [FURC_DRUID]     = GetString(SI_FURC_FILTER_VERSION_DRUID),
+    [FURC_SCRIBE]    = GetString(SI_FURC_FILTER_VERSION_SCRIBE),
+  },
+
+  TooltipsVersion   = {
+    [FURC_NONE]      = GetString(SI_FURC_FILTER_VERSION_OFF_TT),
+    [FURC_HOMESTEAD] = GetString(SI_FURC_FILTER_VERSION_HS_TT),
+    [FURC_MORROWIND] = GetString(SI_FURC_FILTER_VERSION_M_TT),
+    [FURC_REACH]     = GetString(SI_FURC_FILTER_VERSION_R_TT),
+    [FURC_CLOCKWORK] = GetString(SI_FURC_FILTER_VERSION_CC_TT),
+    [FURC_DRAGONS]   = GetString(SI_FURC_FILTER_VERSION_DRAGON_TT),
+    [FURC_ALTMER]    = GetString(SI_FURC_FILTER_VERSION_ALTMER_TT),
+    [FURC_WEREWOLF]  = GetString(SI_FURC_FILTER_VERSION_SLAVES_TT),
+    [FURC_SLAVES]    = GetString(SI_FURC_FILTER_VERSION_WEREWOLF_TT),
+    [FURC_WOTL]      = GetString(SI_FURC_FILTER_VERSION_WOTL_TT),
+    [FURC_KITTY]     = GetString(SI_FURC_FILTER_VERSION_KITTY_TT),
+    [FURC_SCALES]    = GetString(SI_FURC_FILTER_VERSION_SCALES_TT),
+    [FURC_DRAGON2]   = GetString(SI_FURC_FILTER_VERSION_DRAGON2_TT),
+    [FURC_HARROW]    = GetString(SI_FURC_FILTER_VERSION_HARROW_TT),
+    [FURC_SKYRIM]    = GetString(SI_FURC_FILTER_VERSION_SKYRIM_TT),
+    [FURC_STONET]    = GetString(SI_FURC_FILTER_VERSION_STONET_TT),
+    [FURC_MARKAT]    = GetString(SI_FURC_FILTER_VERSION_MARKAT_TT),
+    [FURC_FLAMES]    = GetString(SI_FURC_FILTER_VERSION_FLAMES_TT),
+    [FURC_BLACKW]    = GetString(SI_FURC_FILTER_VERSION_BLACKW_TT),
+    [FURC_DEADL]     = GetString(SI_FURC_FILTER_VERSION_DEADL_TT),
+    [FURC_TIDES]     = GetString(SI_FURC_FILTER_VERSION_TIDES_TT),
+    [FURC_BRETON]    = GetString(SI_FURC_FILTER_VERSION_BRETON_TT),
+    [FURC_DEPTHS]    = GetString(SI_FURC_FILTER_VERSION_DEPTHS_TT),
+    [FURC_DRUID]     = GetString(SI_FURC_FILTER_VERSION_DRUID_TT),
+    [FURC_SCRIBE]    = GetString(SI_FURC_FILTER_VERSION_SCRIBE_TT),
+  },
+
+  ChoicesCharacter  = {
+    [1] = GetString(SI_FURC_FILTER_CHAR_OFF),
+  },
+  TooltipsCharacter = {
+    [1] = GetString(SI_FURC_FILTER_CHAR_OFF_TT),
+  },
+
+  -- will be set in setupSourceDropdown
+  ChoicesSource     = {},
+  TooltipsSource    = {},
 }
 
 function FurC.UpdateDropdowns()
@@ -228,7 +228,7 @@ function FurC.getOrCreateLogger(forceCreate)
       end
     end
     local function ignore(...)
-    end                          -- black hole for most property calls, like logger:Debug
+    end -- black hole for most property calls, like logger:Debug
     logger.Verbose = ignore
     logger.Debug = ignore
     logger.Info = info
