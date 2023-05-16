@@ -52,8 +52,8 @@ jobs:
           RELEASE_TAG: ${{ github.event.release.tag_name }}
           RELEASE_NOTE: ${{ github.event.release.body }}
 
-        # Will fail if TAG <= live version
-        # File modifications: Changelog
+      # Will fail if TAG <= live version
+      # File modifications: Changelog
       - name: Publish
         run: python ./.scripts/publish.py \
           --tag "${{ steps.latest_release.outputs.TAG }}" \
@@ -62,16 +62,21 @@ jobs:
         env:
           ESOUI_API_TOKEN: ${{ secrets.ESOUI_API_TOKEN }}
 
-        # Commit CHANGELOG so it doesn't lag behind
+      # Commit CHANGELOG, if any exists, so it doesn't lag behind
       - name: Commit Changelog
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add CHANGELOG
-          git commit -m "CHANGELOG for release ${{ steps.latest_release.outputs.TAG }}"
-          git push --force
+          git diff --cached --quiet --exit-code
+          if [[ $? -eq 0 ]]; then
+            echo "Changelog unchanged"
+          else
+            git add CHANGELOG
+            git commit -m "CHANGELOG for release ${{ steps.latest_release.outputs.TAG }}"
+            git push --force
+          fi
 
-        # Point the tag to the commit containing the new CHANGELOG
+      # Point the tag to the commit containing the new CHANGELOG
       - name: Tag to latest commit
         run: |
           gh release edit ${{ steps.latest_release.outputs.TAG }} --target HEAD

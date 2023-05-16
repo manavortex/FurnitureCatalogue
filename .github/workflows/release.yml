@@ -50,6 +50,14 @@ jobs:
           NOTES="$VERSION ($TOADY)\n - changes\n\n$COMMENT1\n$COMMENT2\n$COMMENT3\n"
           echo "NOTES=$NOTES" >> $GITHUB_OUTPUT
 
+      # Delete existing tag, because it could point to an older commit, causing release and publish to refer to old files
+      - name: Delete Existing Tag
+        run: |
+          git push origin ":refs/tags/${{ steps.addon_info.outputs.PACKAGE_ADDON_VERSION }}" || true
+          git tag --delete "${{ steps.addon_info.outputs.PACKAGE_ADDON_VERSION }}" || true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Create Release
         run: |
           gh release create ${{ steps.addon_info.outputs.PACKAGE_ADDON_VERSION }} \
