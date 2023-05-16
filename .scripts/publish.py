@@ -163,9 +163,12 @@ def publish_to_esoui(optional_params: dict = {}):
   # Get content of zip file, abort if too smol
   try:
     archive_path = optional_params['archive_file']
+    archive_content = FU.file_to_binary_string( archive_path )
   except KeyError:
     FU.crash_and_burn('no zip, no live')
-  archive_content = FU.get_binary_as_str( archive_path )
+  except ValueError as ve:
+    FU.crash_and_burn(ve)
+
   if len(archive_content) < 1024:
     FU.crash_and_burn(f"Zip archive is too small ({len(archive_content)}B), something must be wrong or compression algorithms have gotten way better")
   body['updatefile'] = archive_content
@@ -173,10 +176,10 @@ def publish_to_esoui(optional_params: dict = {}):
 
   # Prepare changelog
   meta['changelog_file'] = optional_params.get('changelog_file', CHANGELOG_FILE)
-  change = FU.get_str_before_delim(optional_params.get('note', ''), RELEASE_NOTE_DELIM) # Get change from release note
+  change = FU.extract_header(optional_params.get('note', ''), RELEASE_NOTE_DELIM) # Get change from release note
   FU.prepend_str_to_file(change, meta['changelog_file']) # REPO: add release notes to changelog
   # ESOUI: Save changelog comment
-  esoui_cl_comment = FU.get_str_before_delim(body['changelog'], CHANGELOG_HEADER_DELIM)
+  esoui_cl_comment = FU.extract_header(body['changelog'], CHANGELOG_HEADER_DELIM)
   if esoui_cl_comment:
     esoui_cl_comment = f"{esoui_cl_comment}\n{CHANGELOG_HEADER_DELIM}\n"
   else:
@@ -196,7 +199,7 @@ if __name__ == '__main__':
   parser.add_argument('--note-delimiter', default="[//]:", help='Text before the delim is added to the ESOUI changelog.')
   parser.add_argument('--changelog-file', default='CHANGELOG', help='Path to the changelog file')
   parser.add_argument('--changelog-max-notes', default=10, help='Truncate the ESOUI changelog to the x latest notes')
-  parser.add_argument('--archive-file', type=str, required=False, help='Path to the release archive file')
+  parser.add_argument('--archive-file', type=str, help='Path to the release archive file')
 
   params = {}
   args = parser.parse_args()

@@ -6,6 +6,7 @@ permissions:
   contents: write
 on:
   workflow_dispatch:
+  # Trigger on release
   release:
     types:
       - published
@@ -26,32 +27,42 @@ jobs:
         with:
           python-version: "^3.6"
 
-        # Get release infos
-        # todo: get tag from the release that triggered the action, to skip if not latest one
+      # Get release infos, fall back to latest release if we ran manually
       - name: Get Data from Latest Release
         id: latest_release
         run: |
-          RELEASE_TAG=$(gh release list | head -n 1 | awk '{print $(NF-1)}')
+          LATEST_TAG="$(gh release list | python .scripts/furc_utils.py getlatest)"
+          if [[ $RELEASE_TAG ]]; then
+            TAG_COMPARE="$(python .scripts/furc_utils.py compare "$RELEASE_TAG" "$LATEST_TAG")"
+            X_BIGGER_Y="1"
+            if [[ "$TAG_COMPARE" != "$X_BIGGER_Y" ]]; then
+              echo "Release tag '$RELEASE_TAG' is not higher than the latest release '$LATEST_TAG'"
+              exit 1
+            fi
+          else
+            RELEASE_TAG=$LATEST_TAG
+          fi
           RELEASE_NOTES=$(gh release view $RELEASE_TAG --json body --jq ".body")
           RELEASE_ARCHIVE=$(gh release view $RELEASE_TAG --json assets --jq ".assets[0].url")
-          echo "::set-output name=TAG::$RELEASE_TAG"
-          echo "::set-output name=NOTE::$RELEASE_NOTES"
-          echo "::set-output name=ARCHIVE::$RELEASE_ARCHIVE"
+          echo "TAG=$RELEASE_TAG" >> $GITHUB_OUTPUT
+          echo "NOTE=$RELEASE_NOTES" >> $GITHUB_OUTPUT
+          echo "ARCHIVE=$RELEASE_ARCHIVE" >> $GITHUB_OUTPUT
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RELEASE_TAG: ${{ github.event.release.tag_name }}
+          RELEASE_NOTE: ${{ github.event.release.body }}
 
         # Will fail if TAG <= live version
         # File modifications: Changelog
       - name: Publish
         run: python ./.scripts/publish.py \
-          --tag ${{ steps.latest_release.outputs.TAG }} \
-          --note ${{ steps.latest_release.outputs.NOTE }} \
-          --changelog-file 'CHANGELOG' \
+          --tag "${{ steps.latest_release.outputs.TAG }}" \
+          --note "${{ steps.latest_release.outputs.NOTE }}" \
           --archive-file ${{ steps.latest_release.outputs.ARCHIVE }}"
         env:
           ESOUI_API_TOKEN: ${{ secrets.ESOUI_API_TOKEN }}
 
-        # Only commit CHANGELOG here, nothing else
+        # Commit CHANGELOG so it doesn't lag behind
       - name: Commit Changelog
         run: |
           git config --local user.email "action@github.com"

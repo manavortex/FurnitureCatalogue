@@ -23,7 +23,7 @@ jobs:
           python-version: "^3.6"
 
       # Create archive and set env vars and output for the next steps
-      # should fail completely if something is wrong
+      # should fail completely if something goes wrong
       - name: Package Files
         id: package_files
         run: python ./.scripts/package.py
@@ -47,7 +47,7 @@ jobs:
           COMMENT2="[//]: # (DO NOT DELETE THESE COMMENTS MARKED WITH ARROWS)"
           COMMENT3="[//]: # (⬇️⬇️⬇️ STUFF BELOW WONT BE SENT TO ESOUI ⬇️⬇️⬇️)"
           NOTES="$VERSION\n - changes\n\n$COMMENT1$COMMENT2$COMMENT3\n"
-          echo "::set-output name=release_notes::$NOTES"
+          echo "NOTES=$NOTES" >> $GITHUB_OUTPUT
 
       - name: Create Release
         run: |
