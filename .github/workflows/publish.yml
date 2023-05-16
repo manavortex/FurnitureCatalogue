@@ -28,7 +28,7 @@ jobs:
         with:
           python-version: "^3.6"
 
-      # Get release infos, fall back to latest release if we ran manually
+      # Get release data, fall back to latest release if we ran manually
       - name: Get Data from Latest Release
         id: latest_release
         run: |
@@ -42,21 +42,21 @@ jobs:
           else
             RELEASE_TAG=$LATEST_TAG
           fi
-          RELEASE_NOTES="$(gh release view "$RELEASE_TAG" --json body --jq '.body')"
+          RELEASE_NOTE="notes_$RELEASE_TAG.txt"
+          echo -e "$(gh release view "$RELEASE_TAG" --json body --jq '.body')" > "$RELEASE_NOTE"
           RELEASE_ARCHIVE="$(gh release view "$RELEASE_TAG" --json assets --jq '.assets[0].url')"
           echo "TAG=$RELEASE_TAG" >> $GITHUB_OUTPUT
-          echo "NOTE=$RELEASE_NOTES" >> $GITHUB_OUTPUT
+          echo "NOTE=$RELEASE_NOTE" >> $GITHUB_OUTPUT
           echo "ARCHIVE=$RELEASE_ARCHIVE" >> $GITHUB_OUTPUT
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           RELEASE_TAG: ${{ github.event.release.tag_name }}
 
-      # Will fail if TAG <= live version
-      # File modifications: Changelog
+      # Will fail if TAG <= live version, modifies CHANGELOG
       - name: Publish
         run: python ./.scripts/publish.py \
           --tag "${{ steps.latest_release.outputs.TAG }}" \
-          --note "${{ steps.latest_release.outputs.NOTE }}" \
+          --notes-file "${{ steps.latest_release.outputs.NOTE }}" \
           --archive-file "${{ steps.latest_release.outputs.ARCHIVE }}"
         env:
           ESOUI_API_TOKEN: ${{ secrets.ESOUI_API_TOKEN }}

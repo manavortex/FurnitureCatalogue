@@ -176,7 +176,7 @@ def publish_to_esoui(optional_params: dict = {}):
 
   # Prepare changelog
   meta['changelog_file'] = optional_params.get('changelog_file', CHANGELOG_FILE)
-  change = FU.extract_header(optional_params.get('note', ''), RELEASE_NOTE_DELIM) # Get comments from release note
+  change = FU.extract_header_from_file(optional_params.get('notes_file', ''), RELEASE_NOTE_DELIM) # Get comments from release note
   FU.prepend_str_to_file(change, meta['changelog_file']) # REPO: add release notes to changelog
   # ESOUI: Save changelog comment
   esoui_cl_comment = FU.extract_header(body['changelog'], CHANGELOG_HEADER_DELIM)
@@ -195,7 +195,7 @@ def publish_to_esoui(optional_params: dict = {}):
 if __name__ == '__main__':
   parser = argparse.ArgumentParser(description='Publish a new release.')
   parser.add_argument('--tag', help='Release tag like 1.234, used to compare with manifest')
-  parser.add_argument('--note', type=str, default=f"{RELEASE_NOTE_DEFAULT}", help='Release notes')
+  parser.add_argument('--notes-file', type=str, default=f"{RELEASE_NOTE_DEFAULT}", help='Release notes')
   parser.add_argument('--note-delimiter', default="[//]:", help='Text before the delim is added to the ESOUI changelog.')
   parser.add_argument('--changelog-file', default='CHANGELOG', help='Path to the changelog file')
   parser.add_argument('--changelog-max-notes', default=10, help='Truncate the ESOUI changelog to the x latest notes')
@@ -204,7 +204,7 @@ if __name__ == '__main__':
   params = {}
   args = parser.parse_args()
   params['tag'] = args.tag
-  params['note'] = args.note
+  params['notes_file'] = args.notes_file
   params['note_delimiter'] = args.note_delimiter
   params['changelog_file'] = args.changelog_file
   params['changelog_max_notes'] = args.changelog_max_notes

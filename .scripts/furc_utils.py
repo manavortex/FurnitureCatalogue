@@ -75,6 +75,10 @@ def get_manifest_data(manifest_file: str) -> dict:
     print(f"Failed to get data from {manifest_file}: {ex}")
   return manifest
 
+def extract_header_from_file(path: str, delim: str="[//]:"):
+  with open(path, 'r') as file:
+    data = file.read()
+  return extract_header(data, delim)
 
 def extract_header(note: str, delim: str="[//]:") -> str:
   """Extracts text that comes before a specified delimiter's first occurence, usually a header.
@@ -255,7 +259,7 @@ if __name__ == "__main__":
   elif args.command == 'file2binary':
     print(file_to_binary_string(args.filepath))
   elif args.command == 'extract_header':
-    print(file_to_binary_string(args.text, args.delimiter))
+    print(extract_header(args.text, args.delimiter))
   elif args.command == 'getlatest':
     if args.list is sys.stdin:
       release_list = args.list.read()
