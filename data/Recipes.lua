@@ -1,5 +1,45 @@
 FurC.Recipes = FurC.Recipes or {}
 
+FurC.Recipes[FURC_SCRIBE] = { 
+
+        194368, -- Praxis: Druidic Pillar, Stone,
+        194369, -- Praxis: Druidic Doorway, Stone,
+        194370, -- Praxis: Druidic Wall, Long Stone,
+        194371, -- Blueprint: Druidic Door, Wood,
+        194372, -- Praxis: Druidic Nook Wall, Stone,
+        194373, -- Praxis: Druidic Wall, Stone,
+        194374, -- Praxis: Druidic Fence, Stone,
+        194375, -- Praxis: Druidic Fence, Stone End,
+        194376, -- Praxis: Druidic Fence, Curved Stone,
+        194377, -- Praxis: Druidic Dolmen, Stone,
+        194378, -- Praxis: Eldtertide Torus, Stone,
+        194379, -- Praxis: Stonelore Tale Pillar, Cliff Stone,
+        194380, -- Praxis: Druidic Platform, Stone Edge,
+        194381, -- Praxis: Druidic Platform, Stone,
+        194382, -- Praxis: Druidic Platform, Curved Stone Edge,
+        194383, -- Blueprint: Druidic Platform, Logs,
+        194384, -- Blueprint: Druidic Post,
+        194385, -- Blueprint: Druidic Post, Arch,
+        194386, -- Diagram: Firesong Sculpture, Arch,
+        194387, -- Diagram: Firesong Sculpture, Y'ffelon's Claw,
+        194388, -- Diagram: Firesong Sculpture, Chimera's Tail,
+        194389, -- Diagram: Firesong Sculpture, Brood Hen,
+        194390, -- Diagram: Firesong Sculpture, Archdruid's Staff,
+        194391, -- Diagram: Firesong Sculpture, Menhir,
+        194392, -- Sketch: Resonance Crystal, Cerulean,
+        194393, -- Forumula: Druidic Throne, Y'ffre's Bloom,
+        194394, -- Design: Druidic Oven, Stone,
+        194395, -- Pattern: Mage Tapestry, Aurbic Phoenix,
+        194396, -- Praxis: Stone, Lava-Etched,
+        194397, -- Diagram: Statue, Bronze Tentacle,
+        194398, -- Blueprint: Druidic Bridge, Living,
+        184155, -- Formula: Alinor Painting, Unfinished,
+        194365, -- Praxis: Druidic Nook Wall, Long Stone,
+        194366, -- Praxis: Druidic Stairway, Stone,
+        194367, -- Praxis: Druidic Chimney, Stone,
+
+}
+
 FurC.Recipes[FURC_DRUID] = {
 
 	192514, -- Praxis: Druidic Statue, Planter,

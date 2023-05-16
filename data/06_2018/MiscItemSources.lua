@@ -46,6 +46,8 @@ local itemPackVivec         = zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK
 local itemPackSwamp         = zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "Shadow and Stone")
 local itemPackMolag         = zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "Molag Bal")
 local itemPackAyleid		= zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "Ayleid")
+local itemPackAquatic		= zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "Aquatic Splendor")
+local itemPackSotha			= zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "The Clockwork God's Domain")
 
 local onSummerset           = " on Summerset"
 local backwaterSwamp        = " in Murkmire"
@@ -137,13 +139,7 @@ FurC.MiscItemSources[FURC_WOTL]  = {
 }
 FurC.MiscItemSources[FURC_SLAVES]  = {
   [FURC_RUMOUR]   = {
-    [145923] = rumourSource,                        -- Lies of the Dread-Father
-    [145926] = rumourSource,                        -- That of Void
-    [145927] = rumourSource,                        -- Acts of Honoring
-    [145928] = rumourSource,                        -- Speakers of Nothing
-    [145444] = rumourSource,                        -- Murkmire Totem, Hist Guardian
     [145446] = rumourSource,                        -- Sithis, the Hungering Dark
-    [145448] = rumourSource,                        -- Murkmire Throne, Engraved
     [145449] = rumourSource,                        -- Stele, Hist Guardians
     [145450] = rumourSource,                        -- Stele, Hist Cultivation
     [145451] = rumourSource,                        -- Shrine, Sithis Figure Anointed
@@ -153,18 +149,13 @@ FurC.MiscItemSources[FURC_SLAVES]  = {
     [145455] = rumourSource,                        -- Plant, Dendritic Hist Bulb
     [145456] = rumourSource,                        -- Plant, Hist Bulb
     [145457] = rumourSource,                        -- Tree, Banyan
-    [145458] = rumourSource,                        -- Tree, Ancient Banyan
+    [145458] = rumourSource,                        -- Tree, Huge Ancient Banyan
     [145467] = rumourSource,                        -- The Way of Shadow
-    [145472] = rumourSource,                        -- Antler Coral, Crimson
-    [145473] = rumourSource,                        -- Antler Coral, Stout Crimson
-    [145474] = rumourSource,                        -- Plant, Flytrap
-    [145475] = rumourSource,                        -- Plant, Soulsplinter Weed
     [145491] = rumourSource,                        -- Static Pitcher
     [145492] = rumourSource,                        -- Gas Blossom
     [145493] = rumourSource,                        -- Lantern Mantis
     [145554] = rumourSource,                        -- Tree, Towering Snowy Fir
     [145555] = rumourSource,                        -- Tree, Snowy Fir
-    [145597] = rumourSource,                        -- Scales of Shadow
     [145576] = rumourSource,                        -- Timid Vine-Tongue
     [145556] = rumourSource,                        -- Tree, Tall Snowy Fir
   },
@@ -199,6 +190,13 @@ FurC.MiscItemSources[FURC_SLAVES]  = {
     [120876] = sinister_hollowjack,                 -- Gravestone, Imp Engraving
     [120875] = sinister_hollowjack,                 -- Gravestone, Clover Engraving
     [141778] = sinister_hollowjack,                 -- Target Wraith-of-Crows
+	
+	
+	[145923] = "Part of the achievement item 'Look upon Their Nothing Eyes' in Lilmoth, Murkmire, 15k gold",                        -- Lies of the Dread-Father
+    [145926] = "Part of the achievement item 'Look upon Their Nothing Eyes' in Lilmoth, Murkmire, 15k gold",                        -- That of Void
+    [145927] = "Part of the achievement item 'Look upon Their Nothing Eyes' in Lilmoth, Murkmire, 15k gold",                        -- Acts of Honoring
+    [145928] = "Part of the achievement item 'Look upon Their Nothing Eyes' in Lilmoth, Murkmire, 15k gold",                        -- Speakers of Nothing
+    [145597] = "Part of the achievement item 'Look upon Their Nothing Eyes' in Lilmoth, Murkmire, 15k gold",                        -- Scales of Shadow
   },
   
   [FURC_CROWN]  = {   
@@ -243,10 +241,10 @@ FurC.MiscItemSources[FURC_SLAVES]  = {
     [145430] = getCrownPrice(55) .. " or " .. itemPackDeepmire,                   -- Plant, Star Blossom
 
 
-    [145429] = getCrownPrice(65),                         -- Plant Cluster, Bounteous Flower Large
-    [145459] = getCrownPrice(90),                    -- Murkmire Kiln, Ancient Stone
-    [145460] = getCrownPrice(30),                    -- Plant, Canna Leaves
-    [145411] = getCrownPrice(410),                    -- Plant, Luminous Lantern Flower
+    [145429] = getCrownPrice(65),                   -- Plant Cluster, Bounteous Flower Large
+    [145459] = getCrownPrice(90),                   -- Murkmire Kiln, Ancient Stone
+    [145460] = getCrownPrice(30),                   -- Plant, Canna Leaves
+    [145411] = getCrownPrice(410),                  -- Plant, Luminous Lantern Flower
     [145462] = getCrownPrice(40),                   -- Plant, Cardinal Flower
     [145463] = getCrownPrice(35),                   -- Plant Cluster, Red Sister Ti
     [145464] = getCrownPrice(30),                   -- Plant, Red Sister Ti
@@ -255,8 +253,16 @@ FurC.MiscItemSources[FURC_SLAVES]  = {
     [141869] = getCrownPrice(150),                  -- Alinor Potted Plant, Cypress
     [141976] = getCrownPrice(60),                   -- Pumpkin Patch, Display
     [141853] = getCrownPrice(2500),                 -- Statue of Hircine's Bitter Mercy
+    [145448] = getCrownPrice(1000),                 -- Murkmire Throne, Engraved
+    [145444] = getCrownPrice(130),                        -- Murkmire Totem, Hist Guardian	
     
     [145322] = getCrownPrice(800),                  -- Music Box, Blood and Glory
+	
+    [134248] = itemPackSotha,                    	-- Grand Mnemograph
+    [134249] = itemPackSotha,                   	-- Sotha Sil, The Clockwork God
+    [134246] = itemPackSotha,                    	-- The Law of Gears	
+    [134250] = getCrownPrice(750),                  -- Fabrication Sphere, Inactive
+    [134326] = getCrownPrice(260),                  -- Clockwork Pump, Horizontal
   },
   
   [FURC_FISHING]   = {
@@ -268,32 +274,9 @@ FurC.MiscItemSources[FURC_SLAVES]  = {
 FurC.MiscItemSources[FURC_WEREWOLF] = {
   
   [FURC_RUMOUR] = {
-    [141836] = dataminedUnclear,                    -- Monolith, Lord Hircine Ritual
-    [141843] = dataminedUnclear,                    -- Plants, Yellow Frond Cluster
     
     [141853] = dataminedUnclear,                    -- Statue of Hircine's Bitter Mercy
-    [141854] = dataminedUnclear,                    -- Decorative Hollowjack Flame-Skull
-    [141855] = dataminedUnclear,                    -- Decorative Hollowjack Wraith-Lantern
-    [141856] = dataminedUnclear,                    -- Decorative Hollowjack Daedra-Skull
-    [141870] = dataminedUnclear,                    -- Raven-Perch Cemetery Wreath
-    [141875] = dataminedUnclear,                    -- Witches Festival Scarecrow
-    [142004] = dataminedUnclear,                    -- Specimen Jar, Spare Brain
-    [142005] = dataminedUnclear,                    -- Specimen Jar, Monstrous Remains
-    [141752] = dataminedUnclear,                    -- Plant, Cerulean Spadeleaf
-    [141753] = dataminedUnclear,                    -- Plants, Cerulean Spadeleaf Cluster
-    [141754] = dataminedUnclear,                    -- Skull Totem, Hircine Worship
-    [141755] = dataminedUnclear,                    -- Mushrooms, Aether Cup Ring
-    [141756] = dataminedUnclear,                    -- Mushrooms, Aether Cup Cluster
-    [141757] = dataminedUnclear,                    -- Mushrooms, Climbing Aether Cup
-    [141760] = dataminedUnclear,                    -- Witch's Tree, Charred
-    [141761] = dataminedUnclear,                    -- Reach Sapling, Contorted Briarheart
-    [141924] = dataminedUnclear,                    -- Murkmire Vase, Scale Pattern
-    [142003] = dataminedUnclear,                    -- Specimen Jar, Eyes
-    [141939] = dataminedUnclear,                    -- Grave, Grasping
-    [141816] = dataminedUnclear,                    -- Tree, Ginkgo
-    [141817] = dataminedUnclear,                    -- Tree, Ancient Ginkgo
-    [141818] = dataminedUnclear,                    -- Shrubs, Dormant Sunbird Cluster
-    [141819] = dataminedUnclear,                    -- Shrub, Blooming Sunbird
+
     
     [120873] = dataminedUnclear,                    -- Daedric Coffin
     [120871] = dataminedUnclear,                    -- Deadric Vase, Spiked
@@ -302,17 +285,12 @@ FurC.MiscItemSources[FURC_WEREWOLF] = {
     [120865] = dataminedUnclear,                    -- Daedric Table
     [120863] = dataminedUnclear,                    -- Daedric Light Pillar
     
-    [120984] = dataminedUnclear,                    -- Plant, Goldenrod Cluster
     [120985] = dataminedUnclear,                    -- Dark Elf Lightpost, Single
     [120987] = dataminedUnclear,                    -- Dark Elf Lightpost, Capped
     
     [126132] = dataminedUnclear,                    -- Resplendent Sweetroll
     [121015] = dataminedUnclear,                    -- Shrub, Sparse Green
-    [120000] = dataminedUnclear,                    -- Broken Chain
     
-    [126136] = dataminedUnclear,                    -- Dwarven Lantern, Powered
-    
-    [121049] = dataminedUnclear,                    -- Parcels, Wrapped
     [134475] = dataminedUnclear,                    -- Statue of Malacath, Orc-Father
     
     [134686] = dataminedUnclear,                    -- Sithis, The Dread Father
@@ -324,16 +302,11 @@ FurC.MiscItemSources[FURC_WEREWOLF] = {
     [134855] = dataminedUnclear,                    -- Banner of Peryite
     [125654] = dataminedUnclear,                    -- Tapestry, Clavicus Vile
     
-    [125680] = dataminedUnclear,                    -- Vines, Ashen Moss
-    [125681] = dataminedUnclear,                    -- Vines, Volcanic Roses
-    
     [126771] = dataminedUnclear,                    -- Velothi Podium of Illumination
     [126776] = dataminedUnclear,                    -- Indoril Tapestry, House
     [126107] = dataminedUnclear,                    -- Display Wild Hunt Crown Crate
     
     [125592] = dataminedUnclear,                    -- Mushroom, Lavaburster
-    [134248] = dataminedUnclear,                    -- Grand Mnemograph
-    [134249] = dataminedUnclear,                    -- Sotha Sil, The Clockwork God
      
     [121023] = dataminedUnclear,                    -- Tree, Strong Olive
     [121022] = dataminedUnclear,                    -- Bush, Green Forest
@@ -345,7 +318,6 @@ FurC.MiscItemSources[FURC_WEREWOLF] = {
     
     [121004] = dataminedUnclear,                    -- Hedge, Solid Arc
     [121000] = dataminedUnclear,                    -- Shrub, Trimmed Green
-    [120485] = dataminedUnclear,                    -- Cactus, Columnar
     [126109] = dataminedUnclear,                    -- Display Death Crown Crate
     [126108] = dataminedUnclear,                    -- Display Atronach Crown Crate
     [120986] = dataminedUnclear,                    -- Dark Elf Lightpost, Full
@@ -353,7 +325,6 @@ FurC.MiscItemSources[FURC_WEREWOLF] = {
     [134823] = dataminedUnclear,                    -- Target Mournful Aegis
     [125537] = dataminedUnclear,                    -- Dwarven Piston Cylinder
     [125532] = dataminedUnclear,                    -- Dwarven Pipeline, Fan
-    [120878] = dataminedUnclear,                    -- Gravestone, Ornamented
     [120862] = dataminedUnclear,                    -- Ancient Patriarch Banner
     [120859] = dataminedUnclear,                    -- Yokudan Wall Embellishment
     [120855] = dataminedUnclear,                    -- Collected Wanted Poster
@@ -382,7 +353,10 @@ FurC.MiscItemSources[FURC_WEREWOLF] = {
   },
   
   [FURC_CROWN] = {
-    [134921] = getCrownPrice(520),                  -- Redguard Lamppost, Stone
+    [141836] = getCrownPrice(170),                  -- Monolith, Lord Hircine Ritual    
+	[141843] = getCrownPrice(30),                   -- Plants, Yellow Frond Cluster   
+    [125681] = getCrownPrice(50),                   -- Vines, Volcanic Roses  
+	[134921] = getCrownPrice(520),                  -- Redguard Lamppost, Stone
     [134922] = getCrownPrice(250),                  -- Redguard Pillar, Tiered
     [134923] = getCrownPrice(2000),                 -- Redguard Trellis, Peaked
     [134924] = getCrownPrice(380),                  -- Redguard Fence, Brass Capped
@@ -422,10 +396,8 @@ FurC.MiscItemSources[FURC_WEREWOLF] = {
     [134974] = getCrownPrice(340),                  -- Brotherhood Carpet, Worn
     [126830] = getCrownPrice(10),                   -- Mushrooms, Volcanic Cluster
     [120631] = getCrownPrice(5),                    -- Pebble, Stacked Mossy
-    [134326] = getCrownPrice(260),                  -- Clockwork Pump, Horizontal
     [134330] = getCrownPrice(490),                  -- Clockwork Control Panel, Double
     [134337] = getCrownPrice(1800),                 -- Clockwork Somnolostation, Octet
-    [134250] = getCrownPrice(750),                  -- Fabrication Sphere, Inactive
     [121036] = getCrownPrice(30),                   -- Shrub, Sparse Violet
     [121035] = getCrownPrice(30),                   -- Plant, Paired Verdant Hosta
     [121034] = getCrownPrice(10),                   -- Shrub, Delicate Forest
@@ -481,7 +453,8 @@ FurC.MiscItemSources[FURC_WEREWOLF] = {
     [139239] = getCrownPrice(190),                  -- Alinor Wall Mirror, Verdant
     [139389] = getCrownPrice(200),                  -- Crystal, Crimson Cluster
     [139184] = getCrownPrice(200),                  -- Alinor Plinth, Sarcophagus
-    
+
+
     [130093] = itemPackMolag,                       -- Coldharbour Compact
     [130071] = getCrownPrice(300) .. " or " .. itemPackMolag,              -- Daedric Torch, Coldharbour
     [130075] = getCrownPrice(380) .. " or " .. itemPackMolag,              -- Daedric Altar, Molag Bal
@@ -589,7 +562,7 @@ FurC.MiscItemSources[FURC_ALTMER] = {
     [139329] = getCrownPrice(45),               -- Coral Formation, Heart
     [139330] = getCrownPrice(45),               -- Coral Formation, Waving Hands
     [139331] = getCrownPrice(45),               -- Coral Formation, Tree Antler
-    [139332] = getCrownPrice(45),               -- Coral Formation, Tree Shelf
+    [139332] = getCrownPrice(45)  .. " or " .. itemPackAquatic,               -- Coral Formation, Tree Shelf
     [139333] = getCrownPrice(45),               -- Coral Formation, Trees Capped
     [139334] = getCrownPrice(20),               -- Coral Formation, Tree Capped (green)
     
@@ -722,41 +695,26 @@ FurC.MiscItemSources[FURC_ALTMER] = {
     [132201] = dataminedUnclear,                    -- Tree, Kvatch Nut
     [132202] = dataminedUnclear,                    -- Rock, Anvil Limestone
     [132203] = dataminedUnclear,                    -- Stone, Anvil Limestone
-    [132204] = dataminedUnclear,                    -- Imperial Statue, Truth
     [132197] = dataminedUnclear,                    -- Death Skeleton, Shrouded
-    [134246] = dataminedUnclear,                    -- The Law of Gears
     [140297] = dataminedUnclear,                    -- Replica Throne of Alinor,
-    [120851] = dataminedUnclear,                    -- Gallows,
-    [120852] = dataminedUnclear,                    -- Holding Cell,
     [130070] = dataminedUnclear,                    -- Daedric Spout, Arched,
     [120856] = dataminedUnclear,                    -- Yokudan Sarcophagus
     [120857] = dataminedUnclear,                    -- Yokudan Sarcophagus Lid
     [120858] = dataminedUnclear,                    -- Yokudan Tapestry
-    [120860] = dataminedUnclear,                    -- Yokudan Throne
-    [120861] = dataminedUnclear,                    -- Yokudan Sitting Griffin Statue
     [120872] = dataminedUnclear,                    -- Daedric Pike, Daedroth Head
     [120874] = dataminedUnclear,                    -- Daedric Coffin, Lid
     [120880] = dataminedUnclear,                    -- Tombstone, Engraved, Decorative
     [120881] = dataminedUnclear,                    -- Tombstone, Engraved, Order of the Hour
     [120882] = dataminedUnclear,                    -- Tombstone, Small
-    [132156] = dataminedUnclear,                    -- Briarheart Tree, Replica
     [132166] = dataminedUnclear,                    -- Death Skeleton, Robed
-    [134447] = dataminedUnclear,                    -- Seal of Clan Bagrakh, Metal
-    [134448] = dataminedUnclear,                    -- Seal of Clan Fharun, Metal
-    [134454] = dataminedUnclear,                    -- Seal of Clan Morkul, Metal
-    [134455] = dataminedUnclear,                    -- Seal of Clan Shatul, Metal
-    [134456] = dataminedUnclear,                    -- Seal of Clan Tumnosh, Metal
-    [134449] = dataminedUnclear,                    -- Seal of Clan Igrun, Metal
     [134474] = dataminedUnclear,                    -- Banner, Malacath
     
     [139137] = dataminedUnclear, -- Tapestry, Nocturnal
     [139138] = dataminedUnclear, -- Banner, Nocturnal
     [139139] = dataminedUnclear, -- Nocturnal, Mistress of Shadows              
     [139367] = dataminedUnclear, -- Regal Sauna Pool, Two Person    
-    [139369] = dataminedUnclear, -- Abyssal Pearl, Sealed
   }
 }
-
 
 -- Reach
 FurC.MiscItemSources[FURC_DRAGONS] = { -- Reach
@@ -806,10 +764,11 @@ FurC.MiscItemSources[FURC_CLOCKWORK] = { -- Reach
     [134402] = stealable,             -- Spool, Empty
     [134400] = stealable,             -- Soft Leather, Stacked
     [134401] = stealable,             -- Soft Leather, Folded
-    [134417] = stealable,             -- Calipers, Handheld
+    [134417] = stealable_cc,          -- Clockwork Firm-Joint Calipers, Handheld
     [134399] = stealable,             -- Quality Fabric, Folded
     [117939] = stealable_woodworkers, -- Rough Axe, Practical
   },
+  
   
   [FURC_CROWN]   = {
     [134266] = getCrownPrice(80),   	-- Daedric Books, Stacked
@@ -914,8 +873,8 @@ FurC.MiscItemSources[FURC_MORROWIND]  = {             -- Morrowind
     
     -- Ashlander dailies
     [126119] = GetString(SI_FURC_DAILY_ASH),       -- Crimson Shard of Moonshadow
-    [126393] = GetString(SI_FURC_DAILY_ASH),     -- Crimson Shard of Moonshadow
-    
+    [126393] = GetString(SI_FURC_DAILY_ASH),     -- Ashlander Knife, Cheese
+
     -- drops from plants
     [125631] = plants_vvardenfell,         -- Plants, Ash Frond
     [125647] = plants_vvardenfell,         -- Plants, Ash Frond
@@ -1081,10 +1040,11 @@ FurC.MiscItemSources[FURC_MORROWIND]  = {             -- Morrowind
 	[126604] = getCrownPrice(410),                  -- Velothi Panels, Geyser
     [126592] = getCrownPrice(410),                  -- Velothi Panels, Volcano
     [126598] = getCrownPrice(410),                  -- Velothi Panels, Waterfall
+    [125550] = getCrownPrice(85),                   -- Flowers, Lava Blooms
   },
 
   [FURC_JUSTICE]   = {
-    [126481] = stealable_priests .. " on Vvardenfell", -- Indoril Incense, Burning
+    [126481] = stealable_priests .. " in Vvardenfell", -- Indoril Incense, Burning
     [126772] = stealable_thief                         -- Khajiiti Ponder sphere
   },
 
@@ -1092,18 +1052,11 @@ FurC.MiscItemSources[FURC_MORROWIND]  = {             -- Morrowind
     [132531] = dataminedUnclear,                    -- Hlaalu Planter, Tall
     [120411] = dataminedUnclear,                    -- Noble's Chalice of Wine
     [126568] = dataminedUnclear,                    -- Daedric Urn, Ritual
-    [125550] = dataminedUnclear,                    -- Flowers, Lava Blooms
-    [126588] = dataminedUnclear,                    -- Vvardenfell Pitcher Plants, Hanging Bunch
-    [126589] = dataminedUnclear,                    -- Vvardenfell Mushrooms, Bloodtooth
-    [126590] = dataminedUnclear,                    -- Vvardenfell Mushrooms, Lavaburst
     [125569] = dataminedUnclear,                    -- Hlaalu Sidewalk, Sillar Stone Corner
     [125570] = dataminedUnclear,                    -- Hlaalu Stairs, Sillar Stone
     [125576] = dataminedUnclear,                    -- Hlaalu Wall Pillar, Sillar Stone
-    [125583] = dataminedUnclear,                    -- Mushroom, Cave Bracket
-    [125589] = dataminedUnclear,                    -- Mushroom, Lavaburst Bud
     [125591] = dataminedUnclear,                    -- Mushroom, Lavaburst Patch
     [125597] = dataminedUnclear,                    -- Mushroom, Polyp Stinkhorn
-    [125598] = dataminedUnclear,                    -- Mushroom, Emerging Stinkhorn
   }
 }
 
@@ -1215,6 +1168,14 @@ FurC.MiscItemSources[FURC_HOMESTEAD]  = {
     
     [120413] = getCrownPrice(30),                 -- Breton Pitcher, Clay
 	[118000] = getCrownPrice(10),	              -- Garlic String, Display
+	
+    [118119] = getCrownPrice(120),           	  -- Minecart, Empty
+    [118120] = getCrownPrice(120),           	  -- Minecart, Push
+    [118278] = getCrownPrice(140),           	  -- Plaque, Bordered Deer Antlers	
+    [115395] = getCrownPrice(40),	              -- Nord Drinking Horn, Display
+    [118065] = getCrownPrice(45),	              -- Common Cargo Crate, Dry	
+    [118118] = getCrownPrice(100),	              -- Candles, Lasting
+	
   },
   [FURC_RUMOUR]   = {
     
@@ -1229,20 +1190,8 @@ FurC.MiscItemSources[FURC_HOMESTEAD]  = {
     [118283] = rumourSource,           -- Horn, Display, Huge
     [118296] = rumourSource,           -- Mantikora Head, Wall Mount
     [118297] = rumourSource,           -- Mantikora Horns, Wall Mount
-    [116473] = rumourSource,           -- Orcish Effigy, Mammoth
-    [116474] = rumourSource,           -- Orcish Effigy, Bear
     [116433] = rumourSource,           -- Orcish Desk with Furs
-    [118065] = rumourSource,           -- Common Cargo Crate, Dry
-    [118054] = rumourSource,           -- Common Firepit, Outdoor
-    [118055] = rumourSource,           -- Common Firepit, Piled
-    [118119] = rumourSource,           -- Minecart, Empty
-    [118120] = rumourSource,           -- Minecart, Push
-    [117991] = rumourSource,           -- Stool, Carved
-    [118278] = rumourSource,           -- Plaque, Bordered Deer Antlers
     [118304] = rumourSource,           -- Shelf, Poison
-    [118118] = rumourSource,           -- Candles, Lasting
-    [115395] = rumourSource,           -- Nord Drinking Horn, Display
     [118127] = rumourSource,           -- Plaque, Small
-    [118288] = rumourSource,           -- Deer Carcass, Hanging
   }
 }

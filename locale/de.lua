@@ -76,8 +76,8 @@ local strings = {
   SI_FURC_STRING_RECIPESFORCHAR =       "recipes for <<1>>",
   SI_FURC_STRING_VOUCHER_VENDOR =       "Sold by either Rolis Hlaalu or Faustina Curio",
   SI_FURC_QUESTREWARD =                 "Questbelohnung in ",
-  SI_FURC_GEYSIR =                      "Drops from geysir reward clams on Summerset",
-  SI_FURC_GIANT_CLAM =                  "Drops from giant clams and geysir reward clams on Summerset",
+  SI_FURC_GEYSER =                      "Drops from geyser reward clams on Summerset",
+  SI_FURC_GIANT_CLAM =                  "Drops from giant clams and geyser reward clams on Summerset",
   SI_FURC_ELF_PIC =                     "Drops rarely from treasure chests on Summerset",
   -- =============================== --
   -- ============ MENU ============= --
