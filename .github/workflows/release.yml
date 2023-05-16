@@ -15,9 +15,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Setup gh-cli
-        run: gh auth login --with-token < ${{ secrets.GITHUB_TOKEN }}
-
       - name: Setup Python
         uses: actions/setup-python@v4.6.0
         with:
@@ -59,3 +56,5 @@ jobs:
           --target master
           --generate-notes
           --prerelease
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

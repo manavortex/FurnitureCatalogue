@@ -2,8 +2,6 @@ name: PublishToESOUI
 
 # Publishes the latest release to ESOUI
 
-# TODO: make sure this workflow runs only when it was switched from draft or pre-release to release or when it was directly released
-# TODO: make sure this workflow is not already running (for instance when an author does a quick edit after publishing, then immediately cancel the already running one)
 permissions:
   contents: write
 on:
@@ -23,9 +21,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Setup gh-cli
-        run: gh auth login --with-token < ${{ secrets.GITHUB_TOKEN }}
-
       - name: Setup Python
         uses: actions/setup-python@v4.6.0
         with:
@@ -41,6 +36,8 @@ jobs:
           echo "::set-output name=TAG::$RELEASE_TAG"
           echo "::set-output name=NOTE::$RELEASE_NOTES"
           echo "::set-output name=ARCHIVE::$RELEASE_ARCHIVE"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
         # Will fail if TAG <= live version
         # File modifications: Changelog
@@ -67,3 +64,5 @@ jobs:
       - name: Tag to latest commit
         run: |
           gh release edit ${{ steps.latest_release.outputs.TAG }} --target HEAD
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
