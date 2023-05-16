@@ -46,7 +46,7 @@ jobs:
           COMMENT1="[//]: # (⬆️⬆️⬆️ ABOVE WILL BE SENT TO ESOUI CHANGELOG ⬆️⬆️⬆️)"
           COMMENT2="[//]: # (DO NOT DELETE THESE COMMENTS MARKED WITH ARROWS)"
           COMMENT3="[//]: # (⬇️⬇️⬇️ STUFF BELOW WONT BE SENT TO ESOUI ⬇️⬇️⬇️)"
-          NOTES="$VERSION\n - changes\n\n$COMMENT1$COMMENT2$COMMENT3\n"
+          NOTES="$VERSION\n - changes\n\n$COMMENT1\n$COMMENT2\n$COMMENT3\n"
           echo "NOTES=$NOTES" >> $GITHUB_OUTPUT
 
       - name: Create Release
