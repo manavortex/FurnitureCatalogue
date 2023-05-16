@@ -30,7 +30,7 @@ Speaking of boring: if you're really bored you can find the full changelog [URL=
 
 RELEASE_NOTE_DEFAULT = '''
 [//]: # (⬆️⬆️⬆️ ABOVE WILL BE SENT TO ESOUI CHANGELOG ⬆️⬆️⬆️)
-[//]: # (DO NOT DELETE THESE COMMENTS MARKED WITH ARROWS)
+[//]: # (CLEAR THE TOP PART OF THIS NOTE IF YOU DON'T WANT TO ADD INFO TO THE CHANGE LOG)
 [//]: # (⬇️⬇️⬇️ STUFF BELOW WONT BE SENT TO ESOUI ⬇️⬇️⬇️)
 '''
 RELEASE_NOTE_DELIM = "[//]:"
@@ -176,7 +176,7 @@ def publish_to_esoui(optional_params: dict = {}):
 
   # Prepare changelog
   meta['changelog_file'] = optional_params.get('changelog_file', CHANGELOG_FILE)
-  change = FU.extract_header(optional_params.get('note', ''), RELEASE_NOTE_DELIM) # Get change from release note
+  change = FU.extract_header(optional_params.get('note', ''), RELEASE_NOTE_DELIM) # Get comments from release note
   FU.prepend_str_to_file(change, meta['changelog_file']) # REPO: add release notes to changelog
   # ESOUI: Save changelog comment
   esoui_cl_comment = FU.extract_header(body['changelog'], CHANGELOG_HEADER_DELIM)

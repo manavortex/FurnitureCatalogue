@@ -31,7 +31,7 @@ jobs:
       - name: Get Data from Latest Release
         id: latest_release
         run: |
-          LATEST_TAG="$(gh release list | python .scripts/furc_utils.py getlatest)"
+          LATEST_TAG="$(echo "$(gh release list | python .scripts/furc_utils.py getlatest)")"
           if [[ $RELEASE_TAG ]]; then
             TAG_COMPARE="$(python .scripts/furc_utils.py compare "$RELEASE_TAG" "$LATEST_TAG")"
             X_BIGGER_Y="1"
