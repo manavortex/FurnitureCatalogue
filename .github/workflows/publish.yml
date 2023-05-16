@@ -2,31 +2,67 @@ name: PublishToESOUI
 
 # Publishes the latest release to ESOUI
 
+# TODO: make sure this workflow runs only when it was switched from draft or pre-release to release or when it was directly released
+# TODO: make sure this workflow is not already running (for instance when an author does a quick edit after publishing, then immediately cancel the already running one)
+permissions:
+  contents: write
 on:
   release:
     types:
       - published
+      - edited
 
 jobs:
   upload:
+    # Skip if we're not ready yet
+    if: github.event.release.prerelease == false && github.event.release.draft == false
+
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+
+      - name: Setup gh-cli
+        run: gh auth login --with-token < ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup Python
         uses: actions/setup-python@v4.6.0
         with:
           python-version: "^3.6"
 
-      # todo: check for version, only publish if release is newer!
-      # do not publish if already was published!
-      # that is also to catch cases in which, for whatever reason, older releases are created. we do not want them to be uploaded to ESOUI, where they could replace or break existing releases
-      - name: Check Version
-        run: echo "check version" #todo
+        # Get release infos
+      - name: Get Data from Latest Release
+        id: latest_release
+        run: |
+          RELEASE_TAG=$(gh release list | head -n 1 | awk '{print $(NF-1)}')
+          RELEASE_NOTES=$(gh release view $RELEASE_TAG --json body --jq ".body")
+          RELEASE_ARCHIVE=$(gh release view $RELEASE_TAG --json assets --jq ".assets[0].url")
+          echo "::set-output name=TAG::$RELEASE_TAG"
+          echo "::set-output name=NOTE::$RELEASE_NOTES"
+          echo "::set-output name=ARCHIVE::$RELEASE_ARCHIVE"
 
-      # todo: upload release
+        # Will fail if TAG <= live version
+        # File modifications: Changelog
       - name: Publish
-        run: echo "python ./.scripts/publish.py" # todo
-        env: # todo: make it available in os.env, do not log!
+        run: python ./.scripts/publish.py \
+          --tag ${{ steps.latest_release.outputs.TAG }} \
+          --note ${{ steps.latest_release.outputs.NOTE }} \
+          --note-delimiter '<!--' \
+          --changelog-file 'CHANGELOG'
+          --archive-file ${{ steps.latest_release.outputs.ARCHIVE }}"
+        env:
           ESOUI_API_TOKEN: ${{ secrets.ESOUI_API_TOKEN }}
+
+        # Only commit CHANGELOG here, nothing else
+      - name: Commit Changelog
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add CHANGELOG
+          git commit -m "CHANGELOG for release ${{ steps.latest_release.outputs.TAG }}"
+          git push --force
+
+        # Point the tag to the commit containing the new CHANGELOG
+      - name: Tag to latest commit
+        run: |
+          gh release edit ${{ steps.latest_release.outputs.TAG }} --target HEAD

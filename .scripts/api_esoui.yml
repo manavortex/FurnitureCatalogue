@@ -2,11 +2,25 @@ openapi: "3.0.0"
 info:
   title: "ESOUI AddOns API"
   version: "1.0.0"
-
+  description: Info from [ESOUI Forums](https://www.esoui.com/forums/showpost.php?p=28513&postcount=1)
 servers:
   - url: https://api.esoui.com/addons
 
+security:
+  - ApiToken: []
+  - ForumCookie: []
+
 components:
+  securitySchemes:
+    ApiToken:
+      type: apiKey
+      in: header
+      name: x-api-token
+    ForumCookie:
+      type: apiKey
+      in: cookie
+      name: bbsessionhash
+
   responses:
     "202":
       description: "Update Accepted."
@@ -118,7 +132,7 @@ paths:
       requestBody:
         required: true
         content:
-          application/json:
+          multipart/form-data:
             schema:
               $ref: "#/components/schemas/UpdateBody"
       responses:
@@ -128,6 +142,8 @@ paths:
           $ref: "#/components/responses/401"
         "403":
           $ref: "#/components/responses/403"
+        "404":
+          $ref: "#/components/responses/404"
         "405":
           $ref: "#/components/responses/405"
         "415":
