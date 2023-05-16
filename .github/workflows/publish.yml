@@ -42,8 +42,8 @@ jobs:
           else
             RELEASE_TAG=$LATEST_TAG
           fi
-          RELEASE_NOTES=$(gh release view $RELEASE_TAG --json body --jq ".body")
-          RELEASE_ARCHIVE=$(gh release view $RELEASE_TAG --json assets --jq ".assets[0].url")
+          RELEASE_NOTES="$(gh release view "$RELEASE_TAG" --json body --jq '.body')"
+          RELEASE_ARCHIVE="$(gh release view "$RELEASE_TAG" --json assets --jq '.assets[0].url')"
           echo "TAG=$RELEASE_TAG" >> $GITHUB_OUTPUT
           echo "NOTE=$RELEASE_NOTES" >> $GITHUB_OUTPUT
           echo "ARCHIVE=$RELEASE_ARCHIVE" >> $GITHUB_OUTPUT
@@ -57,7 +57,7 @@ jobs:
         run: python ./.scripts/publish.py \
           --tag "${{ steps.latest_release.outputs.TAG }}" \
           --note "${{ steps.latest_release.outputs.NOTE }}" \
-          --archive-file ${{ steps.latest_release.outputs.ARCHIVE }}"
+          --archive-file "${{ steps.latest_release.outputs.ARCHIVE }}"
         env:
           ESOUI_API_TOKEN: ${{ secrets.ESOUI_API_TOKEN }}
 
@@ -78,6 +78,6 @@ jobs:
       # Point the tag to the commit containing the new CHANGELOG
       - name: Tag to latest commit
         run: |
-          gh release edit ${{ steps.latest_release.outputs.TAG }} --target HEAD
+          gh release edit "${{ steps.latest_release.outputs.TAG }}" --target HEAD
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
