@@ -3,13 +3,11 @@
 
 ## Version: 4.71
 ## APIVersion: 101037
-## SavedVariables: FurnitureCatalogue_Settings 
+## SavedVariables: FurnitureCatalogue_Settings
 ## DependsOn: LibCustomMenu LibAddonMenu-2.0 LibAsync
-## OptionalDependsOn: pChat rchat LibDebugLogger LibDebugViewer LibStub
+## OptionalDependsOn: pChat rchat LibDebugLogger LibDebugViewer
 
-libs\LibCustomTitles.lua
-
-_Constants.lua 
+_Constants.lua
 
 locale\en.lua
 locale\$(language).lua
@@ -18,6 +16,7 @@ xml\Bindings.xml
 xml\FurnitureCatalogue.xml
 
 startup.lua
+FurCUtil.lua
 
 FurCSettingsAdapter.lua
 FurCMenu.lua
@@ -66,9 +65,6 @@ data\Recipes.lua
 data\RecipeSources.lua
 
 data\$(APIVersion).lua
-data\Custom.lua
-
-FurCUtil.lua
 
 FurCDatabaseQuery.lua
 FurCData.lua

@@ -1,14 +1,11 @@
 function FurCExport.makeSettings()
-  
-  local settings = FurCExport.settings
-
   local LAM = LibAddonMenu2
   local panelData = {
     type = "panel",
     name = "FurnitureCatalogue_Export",
     displayName = "FurnitureCatalogue Export",
-     author = "manavortex",
-    version = "1.0.0",
+    author = "manavortex",
+    version = "2.0.0",
     registerForRefresh = true,
     registerForDefaults = true,
   }

@@ -23,110 +23,109 @@ FurC.MiscItemSources              = {}
 FurC.RumourRecipes                = {}
 
 -- TODO: set up the filtering for FURC_RUMOUR and FURC_CROWN in submenus by origin
-local defaults             = {
-	
-	hideMats              = true,
-	dontScanTradingHouse  = false,
-	enableDebug           = false,
-	
-	data                 = {},
-	filterCraftingType   = {},
-	filterQuality        = {},
-	
-	resetDropdownChoice  = false,
-	useTinyUi            = true,
-	useInventoryIcons    = true,
-	fontSize             = 18,
-	
-	gui                 = {
-		lastX             = 100,
-		lastY             = 100,
-		width             = 650,
-		height            = 550,
-	},
+local defaults                   = {
+  hideMats             = true,
+  dontScanTradingHouse = false,
+  enableDebug          = false,
 
-	dropdownDefaults    = {
-		Source            = 1,
-		Character         = 1,
-		Version           = 1,
-	},
-	
-	accountCharacters    = {},
-	
-	-- tooltips
-	disableTooltips      = false,
-	coloredTooltips      = true,
-	hideKnowledge        = false,
-	
-	hideBooks            = true,
-	hideDoubtfuls        = true,
-	hideCrownstore       = true,
-	hideRumourEntry      = false,
-	hideCrownStoreEntry  = false,
-	wipeDatabase         = false,
-	
-	hideUiButtons = {
-		FURC_RUMOUR = false,
-		FURC_CROWN  = false,
-	}
-	
+  data                 = {},
+  filterCraftingType   = {},
+  filterQuality        = {},
+
+  resetDropdownChoice  = false,
+  useTinyUi            = true,
+  useInventoryIcons    = true,
+  fontSize             = 18,
+
+  gui                  = {
+    lastX  = 100,
+    lastY  = 100,
+    width  = 650,
+    height = 550,
+  },
+
+  dropdownDefaults     = {
+    Source    = 1,
+    Character = 1,
+    Version   = 1,
+  },
+
+  accountCharacters    = {},
+
+  -- tooltips
+  disableTooltips      = false,
+  coloredTooltips      = true,
+  hideKnowledge        = false,
+
+  hideBooks            = true,
+  hideDoubtfuls        = true,
+  hideCrownstore       = true,
+  hideRumourEntry      = false,
+  hideCrownStoreEntry  = false,
+  wipeDatabase         = false,
+
+  hideUiButtons        = {
+    FURC_RUMOUR = false,
+    FURC_CROWN  = false,
+  }
+
 }
 
 
 local sourceIndicesKeys = {}
 local function getSourceIndicesKeys()
-	sourceIndicesKeys[FURC_NONE]                = "off"
-	sourceIndicesKeys[FURC_FAVE]                = "favorites"
-	sourceIndicesKeys[FURC_CRAFTING]            = "craft_all"
-	sourceIndicesKeys[FURC_CRAFTING_KNOWN]      = "craft_known"
-	sourceIndicesKeys[FURC_CRAFTING_UNKNOWN]    = "craft_unknown"
-	sourceIndicesKeys[FURC_VENDOR]              = "purch_gold"
-	sourceIndicesKeys[FURC_PVP]                 = "purch_ap"
-	sourceIndicesKeys[FURC_CROWN]               = "crownstore"
-	sourceIndicesKeys[FURC_RUMOUR]              = "rumour"
-	sourceIndicesKeys[FURC_LUXURY]              = "luxury"
-	sourceIndicesKeys[FURC_OTHER]               = "other"
-	sourceIndicesKeys[FURC_WRIT_VENDOR]         = "writ_vendor"
-	
-	return sourceIndicesKeys
+  sourceIndicesKeys[FURC_NONE]             = "off"
+  sourceIndicesKeys[FURC_FAVE]             = "favorites"
+  sourceIndicesKeys[FURC_CRAFTING]         = "craft_all"
+  sourceIndicesKeys[FURC_CRAFTING_KNOWN]   = "craft_known"
+  sourceIndicesKeys[FURC_CRAFTING_UNKNOWN] = "craft_unknown"
+  sourceIndicesKeys[FURC_VENDOR]           = "purch_gold"
+  sourceIndicesKeys[FURC_PVP]              = "purch_ap"
+  sourceIndicesKeys[FURC_CROWN]            = "crownstore"
+  sourceIndicesKeys[FURC_RUMOUR]           = "rumour"
+  sourceIndicesKeys[FURC_LUXURY]           = "luxury"
+  sourceIndicesKeys[FURC_OTHER]            = "other"
+  sourceIndicesKeys[FURC_WRIT_VENDOR]      = "writ_vendor"
+
+  return sourceIndicesKeys
 end
 FurC.GetSourceIndicesKeys = getSourceIndicesKeys
 
 local choicesSource = {}
 local function getChoicesSource()
-	choicesSource[FURC_NONE]              = GetString(SI_FURC_NONE)
-	choicesSource[FURC_FAVE]              = GetString(SI_FURC_FAVE)
-	choicesSource[FURC_CRAFTING]          = GetString(SI_FURC_CRAFTING)
-	choicesSource[FURC_CRAFTING_KNOWN]    = GetString(SI_FURC_CRAFTING_KNOWN)
-	choicesSource[FURC_CRAFTING_UNKNOWN]  = GetString(SI_FURC_CRAFTING_UNKNOWN)
-	choicesSource[FURC_VENDOR]            = GetString(SI_FURC_VENDOR)
-	choicesSource[FURC_PVP]               = GetString(SI_FURC_PVP)
-	choicesSource[FURC_WRIT_VENDOR]       = GetString(SI_FURC_STRING_WRIT_VENDOR)
-	choicesSource[FURC_CROWN]             = GetString(SI_FURC_CROWN)
-	choicesSource[FURC_RUMOUR]            = GetString(SI_FURC_RUMOUR)
-	choicesSource[FURC_LUXURY]            = GetString(SI_FURC_LUXURY)
-	choicesSource[FURC_OTHER]             = GetString(SI_FURC_OTHER)
-	
-	return choicesSource
+  choicesSource[FURC_NONE]             = GetString(SI_FURC_NONE)
+  choicesSource[FURC_FAVE]             = GetString(SI_FURC_FAVE)
+  choicesSource[FURC_CRAFTING]         = GetString(SI_FURC_CRAFTING)
+  choicesSource[FURC_CRAFTING_KNOWN]   = GetString(SI_FURC_CRAFTING_KNOWN)
+  choicesSource[FURC_CRAFTING_UNKNOWN] = GetString(SI_FURC_CRAFTING_UNKNOWN)
+  choicesSource[FURC_VENDOR]           = GetString(SI_FURC_VENDOR)
+  choicesSource[FURC_PVP]              = GetString(SI_FURC_PVP)
+  choicesSource[FURC_WRIT_VENDOR]      = GetString(SI_FURC_STRING_WRIT_VENDOR)
+  choicesSource[FURC_CROWN]            = GetString(SI_FURC_CROWN)
+  choicesSource[FURC_RUMOUR]           = GetString(SI_FURC_RUMOUR)
+  choicesSource[FURC_LUXURY]           = GetString(SI_FURC_LUXURY)
+  choicesSource[FURC_OTHER]            = GetString(SI_FURC_OTHER)
+
+  return choicesSource
 end
 FurC.GetChoicesSource = getChoicesSource
 
 local tooltipsSource = {}
 local function getTooltipsSource()
-	tooltipsSource[FURC_NONE]             = GetString(SI_FURC_NONE_TT)
-	tooltipsSource[FURC_FAVE]             = GetString(SI_FURC_FAVE_TT)
-	tooltipsSource[FURC_CRAFTING]         = GetString(SI_FURC_CRAFTING_TT)
-	tooltipsSource[FURC_CRAFTING_KNOWN]   = GetString(SI_FURC_CRAFTING_KNOWN_TT)
-	tooltipsSource[FURC_CRAFTING_UNKNOWN] = GetString(SI_FURC_CRAFTING_UNKNOWN_TT)
-	tooltipsSource[FURC_VENDOR]           = GetString(SI_FURC_VENDOR_TT)
-	tooltipsSource[FURC_PVP]              = GetString(SI_FURC_PVP_TT)
-	tooltipsSource[FURC_CROWN]            = GetString(SI_FURC_CROWN_TT)
-	tooltipsSource[FURC_WRIT_VENDOR]      = GetString(SI_FURC_STRING_WRIT_VENDOR_TT)
-	tooltipsSource[FURC_RUMOUR]           = GetString(SI_FURC_RUMOUR_TT)
-	tooltipsSource[FURC_LUXURY]           = GetString(SI_FURC_LUXURY_TT)
-	tooltipsSource[FURC_OTHER]            = GetString(SI_FURC_OTHER_TT)
-	
-	return tooltipsSource
+  tooltipsSource[FURC_NONE]             = GetString(SI_FURC_NONE_TT)
+  tooltipsSource[FURC_FAVE]             = GetString(SI_FURC_FAVE_TT)
+  tooltipsSource[FURC_CRAFTING]         = GetString(SI_FURC_CRAFTING_TT)
+  tooltipsSource[FURC_CRAFTING_KNOWN]   = GetString(SI_FURC_CRAFTING_KNOWN_TT)
+  tooltipsSource[FURC_CRAFTING_UNKNOWN] = GetString(SI_FURC_CRAFTING_UNKNOWN_TT)
+  tooltipsSource[FURC_VENDOR]           = GetString(SI_FURC_VENDOR_TT)
+  tooltipsSource[FURC_PVP]              = GetString(SI_FURC_PVP_TT)
+  tooltipsSource[FURC_CROWN]            = GetString(SI_FURC_CROWN_TT)
+  tooltipsSource[FURC_WRIT_VENDOR]      = GetString(SI_FURC_STRING_WRIT_VENDOR_TT)
+  tooltipsSource[FURC_RUMOUR]           = GetString(SI_FURC_RUMOUR_TT)
+  tooltipsSource[FURC_LUXURY]           = GetString(SI_FURC_LUXURY_TT)
+  tooltipsSource[FURC_OTHER]            = GetString(SI_FURC_OTHER_TT)
+
+  return tooltipsSource
 end
 FurC.GetTooltipsSource = getTooltipsSource
 
@@ -201,90 +200,90 @@ FurC.DropdownData = {
 }
 
 function FurC.UpdateDropdowns()
-	FurC.DropdownData.ChoicesSource  = FurC.GetChoicesSource()
-	FurC.DropdownData.TooltipsSource = FurC.GetTooltipsSource()
+  FurC.DropdownData.ChoicesSource  = FurC.GetChoicesSource()
+  FurC.DropdownData.TooltipsSource = FurC.GetTooltipsSource()
 end
 
 local function setupSourceDropdown()
-	FurC.UpdateDropdowns()
-	FurC.SourceIndices = getSourceIndicesKeys()
+  FurC.UpdateDropdowns()
+  FurC.SourceIndices = getSourceIndicesKeys()
 end
 
 local logger
--- Gets the current logger or creates it if it doesn't exist yet
---
--- @param[opt=false] forceCreate Force (re)creation of logger
--- @return logger
+--- Gets the current logger or creates it if it doesn't exist yet
+--- @param forceCreate boolean Force (re)creation of logger
+--- @return table logger instance
 function FurC.getOrCreateLogger(forceCreate)
-	if not forceCreate and logger then return logger end -- return existing reference
+  if not forceCreate and logger then return logger end -- return existing reference
 
-    -- Do not log at all, if not in debug mode or no log lib available
-    if not FurC.settings.enableDebug or not LibDebugLogger then
-		logger = {}
-		local function info(self, ...)
-			local prefix = string.format("[%s]: ", FurC.tag)
-			if tostring(...):find("%%") then
-				d(prefix .. string.format(...))
-			else
-				d(prefix .. tostring(...))
-			end
-		end
-		local function ignore(...) end -- black hole for most property calls, like logger:Debug
-		logger.Verbose = ignore
-        logger.Debug = ignore
-        logger.Info = info
-        logger.Warn = ignore
-        logger.Error = ignore
-        logger.Log = ignore
-        return logger
+  -- Do not log at all, if not in debug mode or no log lib available
+  if not FurC.settings.enableDebug or not LibDebugLogger then
+    logger = {}
+    local function info(self, ...)
+      local prefix = string.format("[%s]: ", FurC.tag)
+      if tostring(...):find("%%") then
+        d(prefix .. string.format(...))
+      else
+        d(prefix .. tostring(...))
+      end
     end
+    local function ignore(...)
+    end                          -- black hole for most property calls, like logger:Debug
+    logger.Verbose = ignore
+    logger.Debug = ignore
+    logger.Info = info
+    logger.Warn = ignore
+    logger.Error = ignore
+    logger.Log = ignore
+    return logger
+  end
 
-	-- use logger from library
-	if LibDebugLogger then
-        logger = LibDebugLogger(FurC.tag)
-        return logger
-	end
+  -- use logger from library
+  if LibDebugLogger then
+    logger = LibDebugLogger(FurC.tag)
+    return logger
+  end
 end
 
 -- initialization stuff
 function FurnitureCatalogue_Initialize(eventCode, addOnName)
-	if (addOnName ~= FurC.name) then return end
-	
-	FurC.settings   = ZO_SavedVars:NewAccountWide("FurnitureCatalogue_Settings", 2, nil, defaults)
-	-- setup the "source" dropdown for the menu
-	setupSourceDropdown()
+  if (addOnName ~= FurC.name) then return end
 
-	FurC.CreateSettings(FurC.settings, defaults, FurnitureCatalogue)
-	FurC.Logger = FurC.getOrCreateLogger(true)
-	FurC.Logger:Debug("Initialising...")
+  FurC.settings = ZO_SavedVars:NewAccountWide("FurnitureCatalogue_Settings", 2, nil, defaults)
+  -- setup the "source" dropdown for the menu
+  setupSourceDropdown()
 
-	FurC.CharacterName = zo_strformat(GetUnitName('player'))
+  FurC.CreateSettings(FurC.settings, defaults, FurnitureCatalogue)
+  FurC.Logger = FurC.getOrCreateLogger(true)
+  FurC.Logger:Debug("Initialising...")
 
-	FurC.RegisterEvents()
+  FurC.CharacterName = zo_strformat(GetUnitName('player'))
 
-	FurC.InitGui()
+  FurC.RegisterEvents()
 
-	FurC.CreateTooltips()
-	FurC.InitRightclickMenu()
+  FurC.InitGui()
 
-	FurC.SetupInventoryRecipeIcons()
+  FurC.CreateTooltips()
+  FurC.InitRightclickMenu()
 
-	local scanFiles = false
-	if FurC.settings.version     < FurC.version then
-		FurC.settings.version     = FurC.version
-		scanFiles = true
-	end
+  FurC.SetupInventoryRecipeIcons()
 
-	FurC.ScanRecipes(scanFiles, not FurC.GetSkipInitialScan())
-	FurC.settings.databaseVersion   = FurC.version
-	SLASH_COMMANDS["/fur"]          = FurnitureCatalogue_Toggle
+  local scanFiles = false
+  if FurC.settings.version < FurC.version then
+    FurC.settings.version = FurC.version
+    scanFiles             = true
+  end
 
-	FurC.SetFilter(true)
+  FurC.ScanRecipes(scanFiles, not FurC.GetSkipInitialScan())
+  FurC.settings.databaseVersion = FurC.version
+  SLASH_COMMANDS["/fur"]        = FurnitureCatalogue_Toggle
 
-	EVENT_MANAGER:UnregisterForEvent("FurnitureCatalogue", EVENT_ADD_ON_LOADED)
-	FurC.Logger:Debug("Initialisation complete")
+  FurC.SetFilter(true)
+
+  EVENT_MANAGER:UnregisterForEvent("FurnitureCatalogue", EVENT_ADD_ON_LOADED)
+  FurC.Logger:Debug("Initialisation complete")
 end
 
-ZO_CreateStringId("SI_BINDING_NAME_TOGGLE_FURNITURE_CATALOGUE",         "Toggle Furniture Catalogue window")
-ZO_CreateStringId("SI_BINDING_NAME_TOGGLE_FURNITURE_CATALOGUE_RECIPE",  "Toggle Furniture Catalogue blueprint on tooltip")
+ZO_CreateStringId("SI_BINDING_NAME_TOGGLE_FURNITURE_CATALOGUE", "Toggle Furniture Catalogue window")
+ZO_CreateStringId("SI_BINDING_NAME_TOGGLE_FURNITURE_CATALOGUE_RECIPE", "Toggle Furniture Catalogue blueprint on tooltip")
 EVENT_MANAGER:RegisterForEvent("FurnitureCatalogue", EVENT_ADD_ON_LOADED, FurnitureCatalogue_Initialize)

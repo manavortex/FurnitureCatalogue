@@ -6,9 +6,7 @@
 		
 	2. A
 }}
---[[ 
 
-  
 local tblIndex = FURC_KITTY
 
 FurC.Recipes[tblIndex] = {
@@ -38,4 +36,4 @@ FurC.MiscItemSources[tblIndex]  = {
   },
   
 }
- ]]
+-- ]]

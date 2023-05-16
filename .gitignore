@@ -1,24 +1,21 @@
-
 ##############################
 ########## Windows ###########
 Thumbs.db
 Desktop.ini
 *.lnk
 
-
 ##############################
 ##########   OsX   ###########
 *.sublime*
 
-
 ##############################
 ##########  Stuff  ###########
-package/*
+.package/*
 
 btm/
 btm/*
 .gitattributes
-data/Custom.lua
 
 .vscode
 *.bak
+*.zip
