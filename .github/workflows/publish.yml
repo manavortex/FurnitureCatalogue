@@ -7,6 +7,7 @@ name: PublishToESOUI
 permissions:
   contents: write
 on:
+  workflow_dispatch:
   release:
     types:
       - published
