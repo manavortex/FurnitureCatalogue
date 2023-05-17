@@ -21,12 +21,13 @@ jobs:
         uses: actions/setup-python@v4.6.0
         with:
           python-version: "^3.6"
+          cache: pip
 
       # Create archive and set env vars and output for the next steps
       # should fail completely if something goes wrong
       - name: Package Files
         id: package_files
-        run: python ./.scripts/package.py
+        run: python .scripts/package.py
 
       - name: Generate AddOn Info
         id: addon_info

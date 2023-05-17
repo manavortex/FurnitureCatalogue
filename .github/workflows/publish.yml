@@ -56,7 +56,8 @@ jobs:
 
       # Will fail if TAG <= live version, modifies CHANGELOG
       - name: Publish
-        run: python ./.scripts/publish.py \
+        run: |
+          python .scripts/publish.py \
           --tag "${{ steps.latest_release.outputs.TAG }}" \
           --notes-file "${{ steps.latest_release.outputs.NOTE }}" \
           --archive-file "${{ steps.latest_release.outputs.ARCHIVE }}"
