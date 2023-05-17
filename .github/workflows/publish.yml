@@ -27,6 +27,8 @@ jobs:
         uses: actions/setup-python@v4.6.0
         with:
           python-version: "^3.6"
+          cache: pip
+      - run: pip install -r .scripts/python.requirements
 
       # Get release data, fall back to latest release if we ran manually
       - name: Get Data from Latest Release
