@@ -22,7 +22,10 @@ def find_manifests(directory: str, file_ext: ...) -> list[str]:
   manifests = []
   directory = os.path.normpath(directory)
   try:
-    for root, _, files in os.walk(directory):
+    for root, dirs, files in os.walk(directory):
+      # skip hidden files and folders
+      files = [f for f in files if not f[0] == '.']
+      dirs[:] = [d for d in dirs if not d[0] == '.']
       for source in files:
         if source.endswith(file_ext):
           manifests.append(os.path.join(root, source))

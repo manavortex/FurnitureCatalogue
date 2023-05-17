@@ -28,7 +28,7 @@ jobs:
         with:
           python-version: "^3.6"
           cache: pip
-      - run: pip install -r .scripts/python.requirements
+      - run: pip install -r .scripts/requirements.txt
 
       # Get release data, fall back to latest release if we ran manually
       - name: Get Data from Latest Release
