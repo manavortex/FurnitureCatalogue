@@ -1,12 +1,66 @@
+# For Maintainers
+
+## Recommended Release Flow
+
+1. create a PR from **dev** to **master**
+2. 🏷️ add label `actions:RELEASE`
+   - 🏷️ also add `version:MAJOR` or `version:PATCH` if it applies
+3. ☑️ go through **checklist** in [Release Template](.github/pull_request_template/release.md)
+4. 🤝 **merge** PR into master (will trigger [CreateReleasePR](.github/workflows/prepare_release.yml))
+5. 🤖 the next few steps are automated:
+   - 🤖 version of main AddOn is increased in all relevant files
+   - 🤖 CHANGELOG is updated (if there are notes)
+   - 🤖 updated files are commited
+   - 🤖 a release PR is created, containing all necessary infos
+6. 🔎 **check** the release PR
+   - 🔎 one last quick check to see if anything broke
+   - 🔎 the PR should not have the `actions:RELEASE` label
+   - ⚠️ avoid editing notes at this point, as they will not be updated in the changelogs
+   - ⏪ if you missed anything just close it, then go back to step 1 with a new PR
+7. 🤝 **merge** the release PR into **master** (will trigger [CreateRelease](.github/workflows/release.yml))
+8. 🤖 only automated steps should follow now
+   - 🤖 the AddOn will be packaged into a release zip
+   - 🤖 a GH release with a version tag will be created and the zip added to it
+   - 🤖 [PublishToESOUI](.github/workflows/publish.yml) is triggered
+   - 🤖 the release notes will be automatically generated
+   - 🤖 the AddOn and new changelog will be uploaded to ESOUI
+   - 🤖 the dev branch will be synced with the master
+9. 🔎 quick check on ESOUI to see if it worked
+
+## Additional Info
+
+- **Versioning**:
+  - **major**: breaking changes to SavedVars, API functions, the AddOn directory structure or just a lot of code changes altogether
+    - increases major version (eg. $1.23.4 \to 2.0.0$)
+    - [🏷️](https://github.com/manavortex/FurnitureCatalogue/labels/version%3AMAJOR) `version:MAJOR`
+  - **minor**: regular code changes
+    - increases minor version (eg. $1.23.4 \to 1.24.0$)
+    - [🏷️](https://github.com/manavortex/FurnitureCatalogue/labels/version%3AMINOR) `version:MINOR` (no need to set it, it is the default version increase)
+  - **patch**: small incremental changes like DB updates
+    - increases patch version (eg. $1.23.4 \to 1.23.5$)
+    - [🏷️](https://github.com/manavortex/FurnitureCatalogue/labels/version%3APATCH) `version:PATCH`
+  - **AddonVersion**:
+    - used by the game client to decide which dependency to load if two have the same name
+    - positive number like $12345$
+- **merge dev into master**: means the current code of the dev branch will be merged with the current code in master
+- **dev**: the default branch, used for sorting out PRs and other changes
+  - regular PRs should point to dev
+- **master**: for releases only
+  - release PRs should point to master
+
+If some other terms are unclear just feel free to ask and we'll add them here.
+
+---
+
 # IMPORTANT
 
-- this readme may be out of date in some parts
-- the mentioned tools should be up to date and in working order but there are no guarantees
+- the part below may be out of date in some sections
+- the mentioned tools should be up to date though and in working order (but there are no guarantees)
 - scripts and deployment tools are now in the [.scripts](./.scripts/) folder
 - use it more as a pointer than a walkthrough
 - when in doubt, you can just talk to us
 
----
+## ⬇️⬇️⬇️⬇️⬇️⬇️
 
 # Introduction
 

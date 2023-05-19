@@ -1,5 +1,11 @@
 name: PublishToESOUI
 
+# Connected workflows are:
+# 1. CreateReleasePR - prepare_release.yml
+# 2. CreateRelease  - release.yml
+# 3. 📍PublishToESOUI - publish.yml
+# Refer to CONTRIBUTING.md for more info
+
 # Publishes the latest release to ESOUI. Release tag has to have a higher version than latest on ESOUI and it must be the same as in the AddOn manifest txt.
 
 permissions:
@@ -44,7 +50,7 @@ jobs:
           else
             RELEASE_TAG=$LATEST_TAG
           fi
-          RELEASE_NOTE="notes_$RELEASE_TAG.txt"
+          RELEASE_NOTE="notes_$RELEASE_TAG.tmp"
           echo -e "$(gh release view "$RELEASE_TAG" --json body --jq '.body')" > "$RELEASE_NOTE"
           RELEASE_ARCHIVE="$(gh release view "$RELEASE_TAG" --json assets --jq '.assets[0].url')"
           echo "TAG=$RELEASE_TAG" >> $GITHUB_OUTPUT
@@ -64,23 +70,20 @@ jobs:
         env:
           ESOUI_API_TOKEN: ${{ secrets.ESOUI_API_TOKEN }}
 
-      # Commit CHANGELOG, if any exists, so it doesn't lag behind
+      # Commit change in CHANGELOG, if any exists (so the release doesn't lag behind)
+      # Point the tag to the commit containing the new CHANGELOG
       - name: Commit Changelog
         run: |
-          git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
+          git config --local user.email "action@github.com"
+          git add CHANGELOG || true
           git diff --cached --quiet --exit-code
           if [[ $? -eq 0 ]]; then
             echo "Changelog unchanged"
           else
-            git add CHANGELOG
             git commit -m "CHANGELOG for release ${{ steps.latest_release.outputs.TAG }}"
+            git tag ${{ steps.latest_release.outputs.TAG }}
             git push --force
           fi
-
-      # Point the tag to the commit containing the new CHANGELOG
-      - name: Tag to latest commit
-        run: |
-          gh release edit "${{ steps.latest_release.outputs.TAG }}" --target HEAD
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

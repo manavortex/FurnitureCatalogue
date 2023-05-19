@@ -1,124 +1,31 @@
 #!/usr/bin/env python3
 
 import argparse
-import json
-import os
-import requests
 
 import furc_utils as FU
+import esoui_utils as EU
 
-"""Connects to ESOUI API and updates our AddOn. All API calls should be handled in here.
-
-Refer to api_esoui.yml for definitions. You can preview it like (might have to change path to .yml in the URL):
-https://petstore.swagger.io/?url=https://raw.githubusercontent.com/manavortex/FurnitureCatalogue/master/.scripts/api_esoui.yml
+"""Perform all steps required for Publishing.
+    - get AddOn data from manifest
+    - get AddOn data from API
+    - prepare request body
+    - save GitHub release note to CHANGELOG
+    - get truncated version of CHANGELOG
 """
 
 ADDON_ID = 1617
 ADDON_MANIFEST_FILE = 'FurnitureCatalogue.txt'
 
-_DATA: dict = {}
+ARCHIVE_MIN_SIZE_IN_BYTES = 1024
 
-API_TOKEN = os.getenv('ESOUI_API_TOKEN')
-HEADERS = {'x-api-token': API_TOKEN}
+CL_LIVE_MAX_LINES = 10
+CL_LIVE_HEADER_DELIM = '---'
+CL_LIVE_HEADER_DEFAULT =f'''If you don't find change notes, it's because it's Luxury Furnisher. Booooring.
 
-CHANGELOG_FILE = 'CHANGELOG'
-CHANGELOG_HEADER_DELIM = '---'
-CHANGELOG_HEADER_DEFAULT =f'''If you don't find change notes, it's because it's Luxury Furnisher. Booooring.
-
-Speaking of boring: if you're really bored you can find the full changelog [URL="https://github.com/manavortex/FurnitureCatalogue/blob/master/{CHANGELOG_FILE}"]here[/URL] and all undocumented changes [URL="https://github.com/manavortex/FurnitureCatalogue/commits/master"]here[/URL].
+Speaking of boring: if you're really bored you can find the full changelog [URL="https://github.com/manavortex/FurnitureCatalogue/blob/master/{FU.CL_FILE}"]here[/URL] and all undocumented changes [URL="https://github.com/manavortex/FurnitureCatalogue/commits/master"]here[/URL].
 '''
 
 RELEASE_NOTE_DELIM = "[//]:"
-
-API_BASE = "https://api.esoui.com/addons"
-API_COMPATIBLE_LIST = f"{API_BASE}/compatible.json"
-API_ADDON_DETAILS = f"{API_BASE}/details/{ADDON_ID}.json"
-#API_UPDATE = f"{API_BASE}/update" # TODO: Switch when actions are functioning
-API_UPDATE = f"{API_BASE}/updatetest"
-
-
-def get_addon_details_from_api() -> dict[any]:
-  """Get details of our AddOn from ESOUI as JSON"""
-
-  print(f"Getting AddOn Details from: {API_ADDON_DETAILS}")
-  response = requests.get(API_ADDON_DETAILS, headers=HEADERS)
-  response.raise_for_status()
-  response_json = response.json()[0]
-
-  return response_json
-
-
-def send_update_request(data: dict) -> dict[any]:
-  print(f"Sending update request to: {API_UPDATE}")
-  if not data: FU.crash_and_burn("no body to send")
-
-  # make sure the request is in the desired format
-  form_data = {key: (None, value) for key, value in data.items()}
-  # autodetected application/zip does not work, fallback to application/octet-stream
-  form_data['updatefile'] = (data['updatefile_name'], data['updatefile'], 'application/octet-stream')
-  del form_data['updatefile_name']
-
-  response = requests.post(API_UPDATE, headers=HEADERS, files=form_data)
-  response.raise_for_status()
-
-  # The test API returns invalid JSON like [{COMPATIBILITY LISTS}]{REAL TESTRESPONSE}
-  # catch this, in case this is also a problem for the production API
-  try:
-    response_json = response.json()
-  except requests.exceptions.JSONDecodeError:
-    response_json  = f"{response.content.decode()}".split('}]{', 1)[-1]
-    try:
-      # second try
-      response_json = json.loads('{' + response_json)
-    except json.JSONDecodeError:
-      # let's just give up on the response, no error status, so it probably worked
-      response_json = {'status': response.status_code}
-
-  return response_json
-
-
-def get_addon_data() -> dict:
-  """Gets AddOnData from ESOUI and the Manifest file"""
-  global _DATA
-  if _DATA: return _DATA # fetch only once
-
-  manifest = FU.get_manifest_data(ADDON_MANIFEST_FILE)
-  _DATA['manifest_version'] = manifest['Version']
-  _DATA['archive_name'] = f"{manifest['Title']}-{manifest['Version']}"
-  compatible_versions = get_compatible_eso_versions(manifest['APIVersion'])
-
-  current_addon_details = get_addon_details_from_api()
-  _DATA['live_id'] = ADDON_ID
-  _DATA['live_version'] = current_addon_details['version']
-  _DATA['live_changelog'] = current_addon_details['changelog']
-  _DATA['live_compatible'] = ",".join(compatible_versions)
-
-  return _DATA
-
-
-def get_compatible_eso_versions(apiversion: str) -> list[str]:
-  """Determine the compatibility level of our AddOn."""
-
-  print('Getting versions our AddOn is compatible with')
-  try:
-    response = requests.get(API_COMPATIBLE_LIST, headers=HEADERS)
-    response.raise_for_status()
-    response_json = response.json()
-
-    # Take largest APIVersion if multiple like '101037 101038'
-    max_compatibility = max(apiversion.split(' '))
-    compatible_with = []
-
-    for entry in response_json:
-      if max_compatibility >= entry['interface']:
-        compatible_with.append(entry['id'])
-    return compatible_with
-
-  except requests.exceptions.JSONDecodeError as ex:
-    print(f"Could not process JSON response: {ex}")
-  except requests.exceptions.RequestException as ex:
-    print(f"Received error from server: {ex}")
-
 
 def validate_versions(live:str, local:str, tag:str):
   """Aborts the script if something is wrong."""
@@ -129,68 +36,57 @@ def validate_versions(live:str, local:str, tag:str):
 
 
 def publish_to_esoui(optional_params: dict = {}):
-  """Perform all steps required for Publishing.
-    - prepare request body
-    - get AddOn data from API
-    - get AddOn data from manifest
-    - save GitHub release note to CHANGELOG
-    - get truncated version of CHANGELOG
-  """
-  body = {}
-  meta = {}
+  manifest = FU.get_manifest_data(ADDON_MANIFEST_FILE)
+  archivename = f"{manifest[FU.PROP_MF_TITLE]}-{manifest[FU.PROP_MF_VERSION]}.zip"
 
-  # it puts the data in its body
-  addon_data = get_addon_data()
-
-  # we only use: id, version, compatible, changelog, updatefile
-  body['id'] = addon_data['live_id']
-  body['version'] =  addon_data['live_version']
-  body['compatible'] = addon_data['live_compatible']
-  body['changelog'] = addon_data['live_changelog']
+  # Get AddOn details from API
+  body = EU.get_addon_details(ADDON_ID)
+  # generate compatibility list, because APIVersion might have been updated
+  body[EU.PROP_LIVE_COMPATIBLE] = EU.get_compatible(manifest[FU.PROP_MF_APIVERSION])
 
   # Check versions before proceeding
-  meta['version'] =  addon_data['manifest_version']
-  version_tag = optional_params['tag']
-  validate_versions(body['version'], meta['version'], version_tag)
+  version = optional_params['tag'] or manifest[FU.PROP_MF_VERSION]
+  validate_versions(body[EU.PROP_LIVE_VERSION], manifest[FU.PROP_MF_VERSION], version)
   # The new version seems fine, we can replace it in the request body
-  body['version'] = version_tag
+  body[EU.PROP_LIVE_VERSION] = version
 
   # Get content of zip file, abort if too smol
   try:
-    archive_path = optional_params['archive_file']
-    archive_content = FU.file_to_binary_string( archive_path )
-  except KeyError:
+    archive_content = FU.file_to_binary_string( optional_params['archive_file'] or archivename )
+  except Exception:
     FU.crash_and_burn('no zip, no live')
-  except ValueError as ve:
-    FU.crash_and_burn(ve)
 
-  if len(archive_content) < 1024:
+  if len(archive_content) < ARCHIVE_MIN_SIZE_IN_BYTES:
     FU.crash_and_burn(f"Zip archive is too small ({len(archive_content)}B), something must be wrong or compression algorithms have gotten way better")
-  body['updatefile'] = archive_content
-  body['updatefile_name'] = f"{addon_data['archive_name']}.zip"
+  body[EU.PROP_LIVE_UPDATEFILE] = archive_content
 
-  # Prepare changelog
-  meta['changelog_file'] = optional_params.get('changelog_file', CHANGELOG_FILE)
-  change = FU.extract_header_from_file(optional_params.get('notes_file', ''), RELEASE_NOTE_DELIM) # Get comments from release note
-  FU.prepend_str_to_file(change, meta['changelog_file']) # REPO: add release notes to changelog
-  # ESOUI: Save changelog comment
-  esoui_cl_comment = FU.extract_header(body['changelog'], CHANGELOG_HEADER_DELIM)
+  # ESOUI: Extract and save changelog comment
+  esoui_cl_comment = FU.extract_header(body[EU.PROP_LIVE_CHANGELOG], CL_LIVE_HEADER_DELIM)
   if esoui_cl_comment:
-    esoui_cl_comment = f"{esoui_cl_comment}\n{CHANGELOG_HEADER_DELIM}\n"
+    esoui_cl_comment = f"{esoui_cl_comment}\n{CL_LIVE_HEADER_DELIM}\n"
   else:
-    esoui_cl_comment = CHANGELOG_HEADER_DEFAULT
+    esoui_cl_comment = CL_LIVE_HEADER_DEFAULT
   new_kids_on_the_log = [esoui_cl_comment]
-  max_entries = params.get('changelog_max_notes', 10)
-  new_kids_on_the_log.extend(FU.get_latest_log_entries(meta['changelog_file'], entries=max_entries))
-  body['changelog'] = '\n'.join(new_kids_on_the_log)
 
-  response = send_update_request(body)
+  # Pick latest x changes to show in the ESOUI CL
+  changelog_file = optional_params['changelog_file'] or FU.CL_FILE
+  max_entries = params['changelog_max_notes'] or CL_LIVE_MAX_LINES
+  new_kids_on_the_log.extend(FU.get_latest_log_entries(changelog_file, max_entries))
+  body[EU.PROP_LIVE_CHANGELOG] = '\n'.join(new_kids_on_the_log)
+
+  response = EU.send_update_request(body, archivename)
+  print(f"Done, received status code: {response.get('status', '0')}")
+
+  # todo-maybe: call a verify function (only if we have automated PR->Release cycles)
+  #       we might want to crash here to alert maintainers that something went wrong
+  #       for instance query add on infos after the update and verify they are the ones we sent
+  #       compare zip file hashes or at least sizes
 
 
 if __name__ == '__main__':
   parser = argparse.ArgumentParser(description='Publish a new release.')
-  parser.add_argument('--tag', help='Release tag like 1.234, used to compare with manifest')
-  parser.add_argument('--notes-file', type=str, help='Release notes file')
+  parser.add_argument('--version', help='Version like 1.234, used to compare with manifest')
+  parser.add_argument('--notes-file', type=str, help='Release or PR notes file')
   parser.add_argument('--note-delimiter', default=f"{RELEASE_NOTE_DELIM}", help='Text before the delim is added to the ESOUI changelog.')
   parser.add_argument('--changelog-file', default='CHANGELOG', help='Path to the changelog file')
   parser.add_argument('--changelog-max-notes', default=10, help='Truncate the ESOUI changelog to the x latest notes')
@@ -198,7 +94,7 @@ if __name__ == '__main__':
 
   params = {}
   args = parser.parse_args()
-  params['tag'] = args.tag
+  params['version'] = args.version
   params['notes_file'] = args.notes_file
   params['note_delimiter'] = args.note_delimiter
   params['changelog_file'] = args.changelog_file
