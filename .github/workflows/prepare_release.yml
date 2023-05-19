@@ -2,8 +2,8 @@ name: CreateReleasePR
 
 # Connected workflows are:
 # 1. 📍CreateReleasePR - prepare_release.yml
-# 2. CreateRelease  - release.yml
-# 3. PublishToESOUI - publish.yml
+# 2. CreateRelease  - package_release.yml
+# 3. PublishToESOUI - publish_release.yml
 # Refer to CONTRIBUTING.md for more info
 
 # Creates a release PR from the current master branch.
@@ -69,6 +69,8 @@ jobs:
 
           echo "BODY=$BODY" >> $GITHUB_OUTPUT
           echo "LABELS=$LABELS" >> $GITHUB_OUTPUT
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       # Check if we have a major, minor or patch version change
       - name: Determine version impact

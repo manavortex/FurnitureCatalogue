@@ -2,8 +2,8 @@ name: PublishToESOUI
 
 # Connected workflows are:
 # 1. CreateReleasePR - prepare_release.yml
-# 2. CreateRelease  - release.yml
-# 3. 📍PublishToESOUI - publish.yml
+# 2. CreateRelease  - package_release.yml
+# 3. 📍PublishToESOUI - publish_release.yml
 # Refer to CONTRIBUTING.md for more info
 
 # Publishes the latest release to ESOUI. Release tag has to have a higher version than latest on ESOUI and it must be the same as in the AddOn manifest txt.
@@ -17,12 +17,11 @@ on:
   release:
     types:
       - published
-      - edited
 
 jobs:
   upload:
     # Skip if it's just a prerelease or draft
-    if: github.event.release.prerelease == false && github.event.release.draft == false
+    if: github.event_name == 'workflow_dispatch' || (github.event.release.prerelease == false && github.event.release.draft == false)
 
     runs-on: ubuntu-latest
     steps:
@@ -40,7 +39,7 @@ jobs:
       - name: Get Data from Latest Release
         id: latest_release
         run: |
-          LATEST_TAG="$(echo "$(gh release list | python .scripts/furc_utils.py getlatest)")"
+          LATEST_TAG="$(echo "$(gh release list --limit 10 | python .scripts/furc_utils.py getlatest)")"
           if [[ $RELEASE_TAG ]]; then
             if [[ "$RELEASE_TAG" != "$LATEST_TAG" ]]; then
               echo "🔥 Release tag '$RELEASE_TAG' is different from latest release '$LATEST_TAG' 🔥"
@@ -50,11 +49,7 @@ jobs:
           else
             RELEASE_TAG=$LATEST_TAG
           fi
-          RELEASE_NOTE="notes_$RELEASE_TAG.tmp"
-          echo -e "$(gh release view "$RELEASE_TAG" --json body --jq '.body')" > "$RELEASE_NOTE"
           RELEASE_ARCHIVE="$(gh release view "$RELEASE_TAG" --json assets --jq '.assets[0].url')"
-          echo "TAG=$RELEASE_TAG" >> $GITHUB_OUTPUT
-          echo "NOTE=$RELEASE_NOTE" >> $GITHUB_OUTPUT
           echo "ARCHIVE=$RELEASE_ARCHIVE" >> $GITHUB_OUTPUT
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -64,26 +59,7 @@ jobs:
       - name: Publish
         run: |
           python .scripts/publish.py \
-          --tag "${{ steps.latest_release.outputs.TAG }}" \
-          --notes-file "${{ steps.latest_release.outputs.NOTE }}" \
           --archive-file "${{ steps.latest_release.outputs.ARCHIVE }}"
+          --changelog-max-notes "15"
         env:
           ESOUI_API_TOKEN: ${{ secrets.ESOUI_API_TOKEN }}
-
-      # Commit change in CHANGELOG, if any exists (so the release doesn't lag behind)
-      # Point the tag to the commit containing the new CHANGELOG
-      - name: Commit Changelog
-        run: |
-          git config --local user.name "GitHub Action"
-          git config --local user.email "action@github.com"
-          git add CHANGELOG || true
-          git diff --cached --quiet --exit-code
-          if [[ $? -eq 0 ]]; then
-            echo "Changelog unchanged"
-          else
-            git commit -m "CHANGELOG for release ${{ steps.latest_release.outputs.TAG }}"
-            git tag ${{ steps.latest_release.outputs.TAG }}
-            git push --force
-          fi
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

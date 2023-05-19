@@ -100,7 +100,7 @@ def get_manifest_data(manifest_file: str) -> dict:
   return manifest
 
 
-def get_latest_log_entries(cl_file: str, entries: int=20) -> list[str]:
+def get_log_entries(cl_file: str, entries: int=20) -> list[str]:
   """Gets latest x entries from full changelog file
 
   Args:
@@ -250,6 +250,8 @@ def replace_once_in_file(pattern_repl_fallback: list[tuple], path: str) -> bool:
 .---------------------------------------.
 '''
 
+def to_semver(ver: str) -> str:
+  return int_to_semver(semver_to_int(ver))
 
 def compare_versions(a: str, b: str) -> int:
   """Compares 2 version numbers
