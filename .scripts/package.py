@@ -14,8 +14,7 @@ Does not sanitise user input, so use only with trusted input.
 """
 
 PACKAGE_DIR = '.package' # package folder, will be deleted if it already exists
-
-IS_GITHUB = os.getenv('GITHUB_ACTIONS') is not None
+ADDON_NAME = 'FurnitureCatalogue'
 
 def find_manifests(directory: str, file_ext: ...) -> list[str]:
   """Returns list with potential manifest files"""
@@ -42,30 +41,30 @@ def package_addon(name: str, exclude_filename: str):
       exclude_filename (_type_): File name to be excluded from the package.
   """
 
-  addon_name = name or 'FurnitureCatalogue'
-  addon_version = FU.NO_VERSION
+  addon_name = name or ADDON_NAME
+  addon_version = ''
 
   # Clear preexisting package, to catch cases in which it was created in a different way
   if os.path.exists(PACKAGE_DIR):
     shutil.rmtree(PACKAGE_DIR)
 
   files_to_copy = []
-  found_manifests = find_manifests('.', (FU.EXT_MANIFEST_ESO, FU.EXT_MANIFEST_ADDITIONAL))
+  found_manifests = find_manifests('.', (FU.EXT_MF_ESO, FU.EXT_MF_ADDITIONAL))
   print(f"{len(found_manifests)} manifest files checked")
   # parse all files mentioned in detected AddOn manifests
   for manifest in found_manifests:
     manifest_data = FU.get_manifest_data(manifest)
-    if addon_version == FU.NO_VERSION and manifest_data['Title'] == addon_name:
-      addon_version = manifest_data['Version']
-    files_to_copy.extend(manifest_data['files'])
+    if not addon_version and manifest_data[FU.PROP_MF_TITLE] == addon_name:
+      addon_version = manifest_data[FU.PROP_MF_VERSION]
+    files_to_copy.extend(manifest_data[FU.PROP_MF_FILES])
 
-    # Add only the manifest files required by ESO
-    if manifest_data['type'] == FU.TYPE_MANIFEST_ESO:
-      print(f"detected: {manifest_data['Title']}@v{manifest_data['Version']}")
+    # Add the ESO manifest files themselves as well
+    if manifest_data[FU.PROP_MF_TYPE] == FU.TYPE_MF_ESO:
+      print(f"detected: {manifest_data[FU.PROP_MF_TITLE]}@v{manifest_data[FU.PROP_MF_VERSION]}")
       files_to_copy.append(manifest)
 
-  addon_dir = os.path.normpath(os.path.join(PACKAGE_DIR, addon_name))
   # copy files
+  addon_dir = os.path.normpath(os.path.join(PACKAGE_DIR, addon_name))
   counter = 0
   for source in files_to_copy:
     try:
@@ -84,19 +83,19 @@ def package_addon(name: str, exclude_filename: str):
 
   # zip it
   archive = f"{addon_name}-{addon_version}.zip"
-  if addon_version == FU.NO_VERSION:
+  if not addon_version:
     FU.crash_and_burn('version was not set, aborting packaging')
 
-  with zipfile.ZipFile(archive, 'w', zipfile.ZIP_DEFLATED) as zipf:
+  with zipfile.ZipFile(archive, 'w', zipfile.ZIP_DEFLATED) as zf:
     for root, _, files in os.walk(addon_dir):
       for file in files:
         src_file = os.path.join(root, file)
         target_file = src_file.replace(PACKAGE_DIR, '')
-        zipf.write(src_file, arcname=target_file)
+        zf.write(src_file, arcname=target_file)
 
 if __name__ == '__main__':
   parser = argparse.ArgumentParser(description="Package AddOn for release")
-  parser.add_argument('--name', help='AddOn title for version and zip name', default="FurnitureCatalogue")
+  parser.add_argument('--name', help='AddOn title for version and zip name', default=ADDON_NAME)
   parser.add_argument('--exclude_filename', help='Will be excluded from package', default="Custom.lua")
   args = parser.parse_args()
 
