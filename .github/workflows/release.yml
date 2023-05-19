@@ -1,17 +1,27 @@
 name: CreateRelease
 
-# Prepares the files for publishing and creates a pre-release from the current version of the branch. The release then can be manually edited and published. Publishing will trigger the release action in "publish.yml".
+# Connected workflows are:
+# 1. CreateReleasePR - prepare_release.yml
+# 2. 📍CreateRelease  - release.yml
+# 3. PublishToESOUI - publish.yml
+# Refer to CONTRIBUTING.md for more info
 
-# todo-maybe: add possibility to release older versions for the archives.
+# Packages and releases the files of the merged release PR. Will trigger the release action in "publish.yml".
 
 permissions:
   contents: write
 on:
-  # Manual trigger
-  workflow_dispatch:
+  # Triggered when merging a release PR into master
+  pull_request:
+    types: [closed]
+    branches:
+      - master
 
 jobs:
   package_and_release:
+    # todo: filter by author or label
+    if: contains('asd', 'sd')
+    # asd
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -21,7 +31,6 @@ jobs:
         uses: actions/setup-python@v4.6.0
         with:
           python-version: "^3.6"
-          cache: pip
 
       # Create archive and set env vars and output for the next steps
       # should fail completely if something goes wrong
@@ -67,6 +76,6 @@ jobs:
           --notes "$(echo -e "${{ steps.generate_notes.outputs.NOTES }}")" \
           --target master \
           --generate-notes \
-          --prerelease
+          --draft
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
