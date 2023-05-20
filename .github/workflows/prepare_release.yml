@@ -108,9 +108,9 @@ jobs:
         id: release_branch
         run: |
           BRANCH="release/${{ steps.next_version.outputs.NEXT_VERSION }}"
-          if git show-ref --verify --quiet refs/remotes/origin/$BRANCH ; then
+          if git ls-remote --exit-code refs/remotes/origin/$BRANCH ; then
             echo "🔥 Branch '$BRANCH' already exists. Release halfway done? 🔥" >&2
-            echo "🔥 Please delete or finish it manually before running this workflow again. 🔥" >&2
+            echo "🔥 Please delete the branch or finish it manually before running this workflow again. 🔥" >&2
             exit 1
           fi
           git branch "$BRANCH"
