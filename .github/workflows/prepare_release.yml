@@ -54,13 +54,14 @@ jobs:
         id: get_details
         run: |
           JSON_FILE="pr_json.tmp"
+          JSON_RAW="pr_json.raw"
           if [[ "workflow_dispatch" == "pull_request" ]]; then
-            echo "$PR_OBJECT" | jq -R -s -a >$JSON_FILE
+            echo "$PR_JSON" > $JSON_RAW
           else
-            PR_DATA=$(gh pr list --base master --label actions:RELEASE --state merged --json number,labels,body,mergedAt,author --limit 10 --jq '. | sort_by(.mergedAt) | reverse | .[0]')
-            echo "$PR_DATA" | jq -c . >$JSON_FILE
+            gh pr list --base master --label actions:RELEASE --state merged --json labels,body,mergedAt --limit 10 --jq '. | sort_by(.mergedAt) | reverse | .[0]') > $JSON_RAW
           fi
 
+          cat $JSON_FILE | jq -c . > $JSON_FILE
 
           BODY=$(jq -r '.body' $JSON_FILE)
           LABELS=$(jq -r '.labels[].name' "$JSON_FILE")
@@ -71,7 +72,7 @@ jobs:
           echo "LABELS=$LABELS" >> $GITHUB_OUTPUT
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PR_OBJECT: ${{ toJson(github.event.pull_request) }}
+          PR_JSON: ${{ toJson(github.event.pull_request) }}
 
       # Check if we have a major, minor or patch version change
       - name: Determine version impact
