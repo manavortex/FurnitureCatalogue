@@ -58,7 +58,7 @@ jobs:
           if [[ "workflow_dispatch" == "pull_request" ]]; then
             echo "$PR_JSON" > $JSON_RAW
           else
-            gh pr list --base master --label actions:RELEASE --state merged --json labels,body,mergedAt --limit 10 --jq '. | sort_by(.mergedAt) | reverse | .[0]') > $JSON_RAW
+            gh pr list --base master --label actions:RELEASE --state merged --json labels,body,mergedAt --limit 10 --jq '. | sort_by(.mergedAt) | reverse | .[0]' > $JSON_RAW
           fi
 
           cat $JSON_FILE | jq -c . > $JSON_FILE
