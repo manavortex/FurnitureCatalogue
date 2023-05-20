@@ -16,7 +16,9 @@ on:
   # Trigger on release
   release:
     types:
+      - created
       - published
+      - released
 
 jobs:
   upload:
