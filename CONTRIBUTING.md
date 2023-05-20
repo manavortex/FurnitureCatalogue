@@ -1,11 +1,62 @@
+# How to Contribute
+
+## Recommended Update Flow
+
+1. 🍴 **fork** the latest dev branch (default)
+   - or create a new branch from dev if you're working directly on the main repository
+2. 🛠️ **update** your branch with your changes
+3. 📬 send a **PR** pointing to the dev branch
+   - if you're not ready yet but want to show or discuss your changes, you can make it a draft PR
+4. 🔎 **check** the changes
+   - or ask a maintainer for review
+   - you can still push changes into your branch, they will also be updated in your PR
+5. 🤝 **merge** the PR into dev
+   - or lean back and wait for a maintainer to do it
+6. 🏁 You did it! Congratulations 🎉
+7. ⬇️ if you are a maintainer or you just like reading, you can continue with [Recommended Release Flow](#recommended-release-flow)
+
 # For Maintainers
+
+## 🌳 Branching Strategy
+
+- 🤝 **dev** `PR me` `fork this`
+  - the default branch used for staging
+  - regular PRs should always point to **dev**
+  - used for sorting out PRs and other incoming changes
+  - PRs and other branches should always be merged into **dev** first
+- 🔐 **master**
+  - protected branch, for releases only
+  - release PRs should point to **master**
+  - maintenance commits like README updates can still be done directly on **master**, no problem (just update **dev** when you're done)
+- 🛠️ **other branches**
+  - for new features and playing around
+  - for longer development
+  - if it's just a hotfix, you can use **dev**
+
+### Why?
+
+- ensures the master code is the same as on ESOUI
+- makes releases easier to automate
+- prevents mistakes
+- makes versioning easier, only master bumps versions
+- keeps the master branch clean
+- avoids people accidentally forking some work in progress
+  - they can still do, but on purpose
+- extra branches for general development so that:
+  - **dev** is not blocked longer than necessary (has to be up to date with **master**)
+  - other people can try it out themselves
+  - other people don't accidentally pull work in progress
 
 ## Recommended Release Flow
 
-1. create a PR from **dev** to **master**
+The automated release flow has 3 phases: `Prepare` ➡️ `Package` ➡️ `Publish`.
+
+To use it you can follow the recommended steps:
+
+1. 📬 create a PR from **dev** to **master**
 2. 🏷️ add label `actions:RELEASE`
    - 🏷️ also add `version:MAJOR` or `version:PATCH` if it applies
-3. ☑️ go through **checklist** in [Release Template](.github/pull_request_template/release.md)
+3. ☑️ go through **checklist** in [Release Template](.github/pull_request_template.md)
 4. 🤝 **merge** PR into master (will trigger [CreateReleasePR](.github/workflows/prepare_release.yml))
 5. 🤖 the next few steps are automated:
    - 🤖 version of main AddOn is increased in all relevant files
@@ -17,11 +68,11 @@
    - 🔎 the PR should not have the `actions:RELEASE` label
    - ⚠️ avoid editing notes at this point, as they will not be updated in the changelogs
    - ⏪ if you missed anything just close it, then go back to step 1 with a new PR
-7. 🤝 **merge** the release PR into **master** (will trigger [CreateRelease](.github/workflows/release.yml))
+7. 🤝 **merge** the release PR into **master** (will trigger [CreateRelease](.github/workflows/package_release.yml))
 8. 🤖 only automated steps should follow now
    - 🤖 the AddOn will be packaged into a release zip
    - 🤖 a GH release with a version tag will be created and the zip added to it
-   - 🤖 [PublishToESOUI](.github/workflows/publish.yml) is triggered
+   - 🤖 [PublishToESOUI](.github/workflows/publish_release.yml) is triggered
    - 🤖 the release notes will be automatically generated
    - 🤖 the AddOn and new changelog will be uploaded to ESOUI
    - 🤖 the dev branch will be synced with the master
@@ -42,11 +93,10 @@
   - **AddonVersion**:
     - used by the game client to decide which dependency to load if two have the same name
     - positive number like $12345$
-- **merge dev into master**: means the current code of the dev branch will be merged with the current code in master
-- **dev**: the default branch, used for sorting out PRs and other changes
-  - regular PRs should point to dev
-- **master**: for releases only
-  - release PRs should point to master
+- **merge dev into master**:
+  - means the current code of the dev branch will be merged with the current code in master and the changes will be written to the master
+  - it looks like this in a GitHub PullRequest:
+    - `base: master` ⬅️ `compare: dev`
 
 If some other terms are unclear just feel free to ask and we'll add them here.
 
@@ -55,9 +105,9 @@ If some other terms are unclear just feel free to ask and we'll add them here.
 # IMPORTANT
 
 - the part below may be out of date in some sections
-- the mentioned tools should be up to date though and in working order (but there are no guarantees)
+- but it also describes the local development process in more detail so it's worth a look
+- the mentioned tools should be up to date and in working order (but there are no guarantees)
 - scripts and deployment tools are now in the [.scripts](./.scripts/) folder
-- use it more as a pointer than a walkthrough
 - when in doubt, you can just talk to us
 
 ## ⬇️⬇️⬇️⬇️⬇️⬇️
@@ -89,7 +139,7 @@ This is a guide that assumes you have little to no idea about coding, but want t
   Alternatively, you can run LUA from chat by prefixing it with `/script`, but that is cumbersome.
   https://www.esoui.com/downloads/info2601-MerTorchbug-FixedandImprovedIngamevariableinspectormuchmore.html
 
-#### To set up local dependencies/requirements, you can also run `devUtils_setup.cmd`!
+**To set up local dependencies/requirements, you can also run `devUtils_setup.cmd`!**
 
 # Grab the code
 
