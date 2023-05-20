@@ -33,7 +33,6 @@ def get_addon_details(addon_id: int=ADDON_ID) -> dict[any]:
     - LIVE_CHANGELOG
   """
   endpoint_details = f"{API_BASE}/details/{addon_id}.json"
-  print(f"Getting AddOn Details from: {endpoint_details}")
   response = requests.get(endpoint_details, headers=HEADERS)
   response.raise_for_status()
   response_json = response.json()[0]
@@ -64,7 +63,6 @@ def send_update_request(data: dict, archivename: str) -> dict[any]:
   #endpoint_update = f"{API_BASE}/update" # TODO: Switch when workflow process is finalised
   endpoint_update = f"{API_BASE}/updatetest"
 
-  print(f"Sending update request to: {endpoint_update}")
   if not data or not archivename: raise ValueError("got no body to send")
 
   # make sure the request is in the desired format
@@ -107,8 +105,6 @@ def get_compatible(apiversion: str) -> str:
   """
   endpoint = f"{API_BASE}/compatible.json"
   if not apiversion: raise ValueError('No APIVersion given, AddOn manifest might be broken!')
-
-  print(f"Getting patch versions for {apiversion} from {endpoint}")
 
   try:
     response = requests.get(endpoint, headers=HEADERS)

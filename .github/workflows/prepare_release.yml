@@ -49,7 +49,6 @@ jobs:
       # Loads details from the latest valid PR
       # When triggered by merge: Gets data from the PR that triggered the event
       # When triggered manually: Gets data from most recently merged PR
-      # jq -R(aw) -s(lurp) -a(scii)
       - name: Get PR details
         id: get_details
         run: |
@@ -61,11 +60,11 @@ jobs:
             gh pr list --base master --label actions:RELEASE --state merged --json labels,body,mergedAt --limit 10 --jq '. | sort_by(.mergedAt) | reverse | .[0]' > $JSON_RAW
           fi
 
-          cat $JSON_FILE | jq -c . > $JSON_FILE
+          cat $JSON_RAW | jq -c . > $JSON_FILE
+          rm $JSON_RAW
 
           BODY=$(jq -r '.body' $JSON_FILE)
           LABELS=$(jq -r '.labels[].name' "$JSON_FILE")
-
           rm $JSON_FILE
 
           echo "BODY=$BODY" >> $GITHUB_OUTPUT
