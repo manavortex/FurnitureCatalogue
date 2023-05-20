@@ -54,11 +54,13 @@ jobs:
         id: get_details
         run: |
           JSON_FILE="pr_json.tmp"
-          if [[ "${{ github.event_name }}" == "pull_request" ]]; then
-            echo "$PR_OBJECT" | jq -R -s -a > $JSON_FILE
+          if [[ "workflow_dispatch" == "pull_request" ]]; then
+            echo "$PR_OBJECT" | jq -R -s -a >$JSON_FILE
           else
-            echo "$(gh pr list --base master --label "actions:RELEASE" --state merged --json number,labels,body,mergedAt,author --limit 10 --jq '. | sort_by(.mergedAt) | reverse | .[0]')" | jq -c . > $JSON_FILE
+            PR_DATA=$(gh pr list --base master --label actions:RELEASE --state merged --json number,labels,body,mergedAt,author --limit 10 --jq '. | sort_by(.mergedAt) | reverse | .[0]')
+            echo "$PR_DATA" | jq -c . >$JSON_FILE
           fi
+
 
           BODY=$(jq -r '.body' $JSON_FILE)
           LABELS=$(jq -r '.labels[].name' "$JSON_FILE")
