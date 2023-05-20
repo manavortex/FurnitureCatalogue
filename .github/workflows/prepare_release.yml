@@ -52,25 +52,19 @@ jobs:
       - name: Get PR details
         id: get_details
         run: |
-          JSON_RAW="pr_json.raw"
+          JSON_FILE="full_json.tmp"
           if [[ "workflow_dispatch" == "pull_request" ]]; then
-            echo "$PR_JSON" > $JSON_RAW
+            echo "$PR_JSON" > $JSON_FILE
           else
-            echo "Temporarily Storing full gh result in full.json"
-            gh pr list --base master --label actions:RELEASE --state merged --json labels,body,mergedAt --limit 10 > full.json
-
-            echo "Filtering full.json for latest merge and putting it into $JSON_RAW"
-            jq '. | sort_by(.mergedAt) | reverse | .[0]' full.json > $JSON_RAW
+            gh pr list --base master --label actions:RELEASE --state merged --json labels,body,mergedAt --limit 10 --jq '. | sort_by(.mergedAt) | reverse | .[0]' > $JSON_FILE
           fi
 
-          echo "Reading body from $JSON_RAW"
-          BODY=$(jq -r '.body' $JSON_RAW)
+          # right now '-e' does nothing when used together with 'jq -R', but it has sentimental value to me
+          BODY=$(jq -r '.body' $JSON_FILE | jq -aRse .)
+          LABELS=$(jq -r '.labels[].name' $JSON_FILE | jq -aRse .)
+          rm $JSON_FILE
 
-          echo "Reading labels from $JSON_RAW"
-          LABELS=$(jq -r '.labels[].name' "$JSON_RAW")
-
-          rm $JSON_RAW
-
+          # Sending escaped JSON output, has to be unescaped in steps that access it
           echo "BODY=$BODY" >> $GITHUB_OUTPUT
           echo "LABELS=$LABELS" >> $GITHUB_OUTPUT
         env:
@@ -78,9 +72,11 @@ jobs:
           PR_JSON: ${{ toJson(github.event.pull_request) }}
 
       # Check if we have a major, minor or patch version change
+      # LABELS looks like:"actions:RELEASE\nversion:MAJOR\n" (not JSON)
       - name: Determine version impact
         id: get_versionchange
         run: |
+          # we don't have to unescape before grep'ing (no special chars allowed for labels)
           if echo "$LABELS" | grep -q "version:MAJOR"; then
             IMPACT=major
           elif echo "$LABELS" | grep -q "version:PATCH"; then
@@ -127,11 +123,13 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       # Increase versions, update changelog, prepare notes_$NEXT_VERSION.tmp for the PR body (empty notes are fine)
+      # BODY looks like: "- describe your changes here\r\n- testchanges\r\n\r\n[//]: # \"\u2753 ..." (not JSON)
       - name: Update files
         id: update_files
         run: |
           NOTES_FILE="notes_$VERSION.tmp"
-          echo $NOTE > $NOTES_FILE
+          # using jq to unescape the string (it can handle that too)
+          echo $NOTE | jq -r . > $NOTES_FILE
           CHANGED_FILES="changed_$VERSION.tmp"
           python .scripts/furc_utils.py changeversion --new-version "$VERSION" --output-file "$CHANGED_FILES"
           TOADY="$(date --iso-8601)"
