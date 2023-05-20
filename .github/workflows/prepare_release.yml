@@ -131,7 +131,6 @@ jobs:
           TOADY="$(date --iso-8601)"
           python .scripts/furc_utils.py update_changelog --notes-file $NOTES_FILE --changelog-file "CHANGELOG" --header "$VERSION ($TOADY)"
           echo "CHANGED_FILES=$CHANGED_FILES" >> $GITHUB_OUTPUT
-          echo "NOTES_FILE=$NOTES_FILE" >> $GITHUB_OUTPUT
         env:
           VERSION: ${{ steps.next_version.outputs.NEXT_VERSION }}
           NOTE: ${{ steps.get_details.outputs.BODY }}
@@ -159,8 +158,8 @@ jobs:
         run: |
           gh pr create  \
           --title "Release ${{ steps.next_version.outputs.NEXT_VERSION }}" \
-          --body-file "${{ steps.update_files.outputs.NOTES_FILE }}" \
           --head "${{ steps.release_branch.outputs.HEAD }}" \
+          --fill \
           --base master \
           --label 'actions:BOT_RELEASE' \
           --no-maintainer-edit

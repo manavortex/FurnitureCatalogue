@@ -367,6 +367,7 @@ RE_MAINLUA_VERSION_LINE = re.compile(r"(?P<PREFIX>^FurnitureCatalogue\.version\s
 
 def replace_versions(new_semver: str, output_file: str=None):
   new_intver = semver_to_int(new_semver) # throws error if invalid
+  new_semver = int_to_semver(new_intver)
   changes = []
 
   # Replace version in main manifest
@@ -385,7 +386,7 @@ def replace_versions(new_semver: str, output_file: str=None):
 
   if output_file:
     with open(output_file, 'w') as f:
-      f.writelines('\n'.join(changes))
+      f.writelines('\n'.join(changes) + '\n')
   else:
     print(f"Changed {len(changes)} files:")
     print('\n'.join(changes))
