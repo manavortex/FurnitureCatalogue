@@ -43,7 +43,6 @@ jobs:
         uses: actions/setup-python@v4.6.0
         with:
           python-version: "^3.6"
-          cache: pip
       - run: pip install -r .scripts/requirements.txt
 
       # Loads details from the latest valid PR
@@ -109,8 +108,7 @@ jobs:
         id: release_branch
         run: |
           BRANCH="release/${{ steps.next_version.outputs.NEXT_VERSION }}"
-          git show-ref --verify --quiet refs/remotes/origin/$BRANCH
-          if [[ $? -eq 0 ]]; then
+          if git show-ref --verify --quiet refs/remotes/origin/$BRANCH ; then
             echo "🔥 Branch '$BRANCH' already exists. Release halfway done? 🔥" >&2
             echo "🔥 Please delete or finish it manually before running this workflow again. 🔥" >&2
             exit 1
