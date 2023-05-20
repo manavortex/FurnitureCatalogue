@@ -104,15 +104,13 @@ jobs:
           VERSION_IMPACT: ${{ steps.get_versionchange.outputs.IMPACT }}
 
       # Create new branch from master which will be our release branch for the PR
+      # Deletes any pre-existing branch with the same name
       - name: Create Release Branch
         id: release_branch
         run: |
           BRANCH="release/${{ steps.next_version.outputs.NEXT_VERSION }}"
-          if git ls-remote --exit-code --heads origin "$BRANCH" ; then
-            echo "🔥 Branch '$BRANCH' already exists. Release halfway done? 🔥" >&2
-            echo "🔥 Please delete the branch or finish it manually before running this workflow again. 🔥" >&2
-            exit 1
-          fi
+          git branch -d "$BRANCH" || true
+          git push origin --delete "$BRANCH" || true
           git branch "$BRANCH"
           git checkout "$BRANCH"
           git push --set-upstream origin "$BRANCH"

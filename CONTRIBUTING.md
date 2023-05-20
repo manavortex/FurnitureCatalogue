@@ -20,15 +20,15 @@
 ## 🤝 Merge Strategy
 
 - ⭐ **merge** (preferred)
-  - creates an extra commit just for the merge
+  - creates a commit including the changes from the PR
   - makes it easier to retrace steps
 - **squash**
-  - combines all commits of the PR into one
+  - combines all commits of the PR into one commit to the target branch
   - useful if you want to hide many little commits that don't do much
   - but it's fine, don't worry about spamming, it doesn't have to look pretty
   - the changelog is for looking pretty
 - **rebase**
-  - makes it look like linear commit history
+  - makes it look like the changes were done on the target branch
   - GitHub rebase only works if there are no conflicts
   - if you really have to you can use local rebase
     - let's you change history and cherry pick commits
@@ -71,6 +71,7 @@ The automated release flow has 3 phases: `Prepare` ➡️ `Package` ➡️ `Publ
 To use it you can follow the recommended steps:
 
 1. 📬 create a PR from **dev** to **master**
+   - if you are a contributor make the PR to **dev** instead ([see udpate flow](#recommended-update-flow))
 2. 🏷️ add label `actions:RELEASE`
    - 🏷️ also add `version:MAJOR` or `version:PATCH` if it applies
 3. ☑️ go through **checklist** in [Release Template](.github/pull_request_template.md)
