@@ -131,7 +131,7 @@ jobs:
           CHANGED_FILES="changed_$VERSION.tmp"
           python .scripts/furc_utils.py changeversion --new-version "$VERSION" --output-file "$CHANGED_FILES"
           TOADY="$(date --iso-8601)"
-          python .scripts/furc_utils.py update_changelog --notes-file $NOTES_FILE --changelog-file "CHANGELOG" --header "$TOADY"
+          python .scripts/furc_utils.py update_changelog --notes-file $NOTES_FILE --changelog-file "CHANGELOG" --header "$VERSION ($TOADY)"
           echo "CHANGED_FILES=$CHANGED_FILES" >> $GITHUB_OUTPUT
           echo "NOTES_FILE=$NOTES_FILE" >> $GITHUB_OUTPUT
         env:
