@@ -71,7 +71,7 @@ jobs:
           echo "LABELS=$LABELS" >> $GITHUB_OUTPUT
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PR_OBJECT: ${{ github.event.pull_request }}
+          PR_OBJECT: ${{ toJson(github.event.pull_request) }}
 
       # Check if we have a major, minor or patch version change
       - name: Determine version impact
