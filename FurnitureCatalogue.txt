@@ -7,8 +7,6 @@
 ## DependsOn: LibCustomMenu LibAddonMenu-2.0 LibAsync
 ## OptionalDependsOn: pChat rchat LibDebugLogger LibDebugViewer
 
-; a test
-
 _Constants.lua
 
 locale\en.lua
@@ -76,6 +74,7 @@ FurCGui.lua
 FurCContextMenu.lua
 FurCControlBridge.lua
 FurCTooltip.lua
+
 
 ; This Add-on is not created by, affiliated with or sponsored by ZeniMax
 ; Media Inc. or its affiliates. The Elder Scrolls? and related logos are
