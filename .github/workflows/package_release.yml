@@ -92,7 +92,7 @@ jobs:
       - name: Sync Dev
         run: |
           git fetch origin
-          git merge --ff-only master
+          git merge --ff-only origin/master
           git push origin dev
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
