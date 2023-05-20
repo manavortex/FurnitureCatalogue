@@ -55,7 +55,7 @@ jobs:
           JSON_FILE="pr_json.tmp"
 
           if [[ "${{ github.event_name }}" == "pull_request" ]]; then
-            echo '${{ toJson(github.event.pull_request) }}' > $JSON_FILE
+            echo -e '${{ github.event.pull_request }}' > $JSON_FILE
           else
             echo -e $(gh pr list --base master --label "actions:RELEASE" --state merged --json number,labels,body,mergedAt,author --limit 10 --jq '. | sort_by(.mergedAt) | reverse | .[0]') > $JSON_FILE
           fi
