@@ -146,13 +146,13 @@ This is a guide that assumes you have little to no idea about coding, but want t
 
 ## AddOns:
 
-- sidTools: Required for datamining (getting the furniture items and recipes from code)  
+- sidTools: Required for datamining (getting the furniture items and recipes from code)
   https://www.esoui.com/downloads/info1210-sidTools.html
-- LibDebugLogger: You probably already have this. It will make troubleshooting easier.  
+- LibDebugLogger: You probably already have this. It will make troubleshooting easier.
   https://www.esoui.com/downloads/info2275-LibDebugLogger.html
-- DebugLogViewer: Lets you access LibDebugLogger's output. Alternatively, use https://sir.insidi.at/or/logviewer/ after reloadUI. (No, I'm kidding, don't do that.)  
+- DebugLogViewer: Lets you access LibDebugLogger's output. Alternatively, use https://sir.insidi.at/or/logviewer/ after reloadUI. (No, I'm kidding, don't do that.)
   https://www.esoui.com/downloads/info2389-DebugLogViewer.html
-- Mer Torchbug (optional): Lets you run scripts inside ESO and display variables and even tables.  
+- Mer Torchbug (optional): Lets you run scripts inside ESO and display variables and even tables.
   Alternatively, you can run LUA from chat by prefixing it with `/script`, but that is cumbersome.
   https://www.esoui.com/downloads/info2601-MerTorchbug-FixedandImprovedIngamevariableinspectormuchmore.html
 
@@ -169,9 +169,9 @@ This is a guide that assumes you have little to no idea about coding, but want t
 
 ## 2. Check out your new fork to your local harddrive
 
-- For this, first delete all the files from the AddOn that you have installed via Minion. (The first step to developing the AddOn is to delete the AddOn!)  
+- For this, first delete all the files from the AddOn that you have installed via Minion. (The first step to developing the AddOn is to delete the AddOn!)
   You can get there by pressing windows+R and executing the command `explorer %USERPROFILE%\Documents\Elder Scrolls Online\live\AddOns\FurnitureCatalogue`
-- In your browser on github, the green "code" button gives you an URL to copy.  
+- In your browser on github, the green "code" button gives you an URL to copy.
   It will look like `https://github.com/YOUR_USERNAME/FurnitureCatalogue.git`
 - Open smartgit. Use the default settings unless indicated otherwise.
   - You're a non-commercial user.
@@ -329,31 +329,31 @@ In `FurnitureCatalogue\_Constants.lua`, add a line like this:
 FURC_FOOBAR = FURC_LASTLINE+1 -- <number in previous line +1>
 ```
 
-The thing on the left of the `=` is your new entry. The thing on the right of the = is the value in the line below.  
+The thing on the left of the `=` is your new entry. The thing on the right of the = is the value in the line below.
 The comment on the right is to see the number at first glance if you `Ctrl+F` for the constant.
 
 ### Add translation constants
 
 #### Menu entry:
 
-In `FurnitureCatalogue\locale\en.lua`, find the list that starts with `SI_FURC_FILTER_VERSION_OFF`.  
+In `FurnitureCatalogue\locale\en.lua`, find the list that starts with `SI_FURC_FILTER_VERSION_OFF`.
 It should be [around line 223](./locale/en.lua?#L223).
 Add `SI_FURC_FILTER_VERSION_FOOBAR` at the end of the block (you can duplicate the previous line), and change the text.
 
 #### Mouseover tooltip:
 
-Now, find the list that starts with `SI_FURC_FILTER_VERSION_OFF_TT`. It should be [around line 265](./locale/en.lua?#L265) somewhere.  
+Now, find the list that starts with `SI_FURC_FILTER_VERSION_OFF_TT`. It should be [around line 265](./locale/en.lua?#L265) somewhere.
 Add `SI_FURC_FILTER_VERSION_FOOBAR_TT` at the end of the block (you can duplicate the previous line), and change the text.
 
 ### Add the context menu entries.
 
-In `FurnitureCatalogue\startup.lua`, find `FurC.DropdownData` [around line 131](./startup.lua#L131).  
+In `FurnitureCatalogue\startup.lua`, find `FurC.DropdownData` [around line 131](./startup.lua#L131).
 At the bottom of each list, add a line with the constant from the previous step.
 
 ### You're done!
 
-If you didn't make any mistakes, the new version entry should show up in the dropdown menus now.  
-If it doesn't, check for spelling mistakes.  
+If you didn't make any mistakes, the new version entry should show up in the dropdown menus now.
+If it doesn't, check for spelling mistakes.
 If all menu entries are gone, you forgot a comma.
 
 ## 2. Put everything from Custom.lua in the right files.
@@ -408,27 +408,27 @@ If you are running into any problems with FurC data, the answer is going to be "
 
 ## The UI is showing, but all data is gone!
 
-You're probably missing a comma in one of the data files. That will lead to the scan function failing and an empty database.  
+You're probably missing a comma in one of the data files. That will lead to the scan function failing and an empty database.
 To fix this, open DebugViewer and look for the first FurC related error you see.
 
 ## I added items to an existing table, but they're not showing up
 
-1: Search for one of the preexisitng items in the table. Does it show up?  
-Yes: Make sure that you got the nesting right. Everything needs to be on the right level. If you put entries into other entries, they'll be ignored.  
+1: Search for one of the preexisitng items in the table. Does it show up?
+Yes: Make sure that you got the nesting right. Everything needs to be on the right level. If you put entries into other entries, they'll be ignored.
 No: You're missing a comma.
 
 ## Unexpected symbol near `<somewhere>`
 
 If it's not a missing comma, it is probably improper nesting or an unterminated string. Use Notepad++ **code folding** to find the culprit, and look _above_ the line where the error occurred.
 
-1. Make sure that your top level tables do _not_ end with a comma.  
+1. Make sure that your top level tables do _not_ end with a comma.
    Any table that's assigned (` = {`) needs to close in `}` without a trailing comma. As soon as Lua sees a comma, it will expect more list items. If it gets an assignment instead, it will complain.
-2. Make sure that every line _inside_ your tables ends with a comma.  
+2. Make sure that every line _inside_ your tables ends with a comma.
    When a line does not end with a comma, Lua expects the table to close now. If you've forgotten one, it will complain.
 
 In the left margin of the text editor, you will see little `-` icons that collapse a region. Do this, starting at the innermost level of tables, working your way up to the top. You will spot the one where you made a mistake.
 
 ## Everything is broken!!! (Unspecified)
 
-Check if `/script d(FurC)` shows an output. If it doesn't, then you (or I via remote debugging) managed to break something in the toplevel folder.  
+Check if `/script d(FurC)` shows an output. If it doesn't, then you (or I via remote debugging) managed to break something in the toplevel folder.
 Use your git client to discard (or stash) any changes in the toplevel folder.
