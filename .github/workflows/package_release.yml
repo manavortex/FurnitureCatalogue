@@ -71,3 +71,22 @@ jobs:
           --generate-notes \
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  # Try to sync the dev branch so it is up to date with the master
+  # if it fails, it fails - no problem (we can still sync manually)
+  sync_dev:
+    if: github.event.pull_request.head.ref == 'dev'
+    runs-on: ubuntu-latest
+    needs: [package_and_release]
+    continue-on-error: true
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          ref: dev
+      - run: |
+          git config --local user.name "Handles-Your-Releases"
+          git config --local user.email "handles@furcat"
+          git fetch origin
+          git merge --ff-only master
+          git push origin dev

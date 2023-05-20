@@ -93,7 +93,10 @@ To use it you can follow the recommended steps:
   - **AddonVersion**:
     - used by the game client to decide which dependency to load if two have the same name
     - positive number like $12345$
-- **merge dev into master**: means the current code of the dev branch will be merged with the current code in master
+- **merge dev into master**:
+  - means the current code of the dev branch will be merged with the current code in master and the changes will be written to the master
+  - it looks like this in a GitHub PullRequest:
+    - `base: master` ⬅️ `compare: dev`
 
 If some other terms are unclear just feel free to ask and we'll add them here.
 
