@@ -55,7 +55,7 @@ jobs:
           JSON_FILE="pr_json.tmp"
 
           if [[ "${{ github.event_name }}" == "pull_request" ]]; then
-            echo '${{ toJson(github.event.pull_request) }}' | jq -c . > $JSON_FILE
+            echo "$PR_OBJECT" | jq -c . > $JSON_FILE
           else
             gh pr list --base master --label "actions:RELEASE" --state merged \
               --json number,labels,body,mergedAt,author --limit 10 \
@@ -71,6 +71,7 @@ jobs:
           echo "LABELS=$LABELS" >> $GITHUB_OUTPUT
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_OBJECT: ${{ github.event.pull_request }}
 
       # Check if we have a major, minor or patch version change
       - name: Determine version impact
