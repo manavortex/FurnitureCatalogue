@@ -17,9 +17,26 @@
 
 # For Maintainers
 
+## 🤝 Merge Strategy
+
+- ⭐ **merge** (preferred)
+  - creates an extra commit just for the merge
+  - makes it easier to retrace steps
+- **squash**
+  - combines all commits of the PR into one
+  - useful if you want to hide many little commits that don't do much
+  - but it's fine, don't worry about spamming, it doesn't have to look pretty
+  - the changelog is for looking pretty
+- **rebase**
+  - makes it look like linear commit history
+  - GitHub rebase only works if there are no conflicts
+  - if you really have to you can use local rebase
+    - let's you change history and cherry pick commits
+    - only useful, if the PR is incompatible with the target branch
+
 ## 🌳 Branching Strategy
 
-- 🤝 **dev** `PR me` `fork this`
+- 📦 **dev** `PR me` `fork this`
   - the default branch used for staging
   - regular PRs should always point to **dev**
   - used for sorting out PRs and other incoming changes
