@@ -52,20 +52,24 @@ jobs:
       - name: Get PR details
         id: get_details
         run: |
-          JSON_FILE="pr_json.tmp"
           JSON_RAW="pr_json.raw"
           if [[ "workflow_dispatch" == "pull_request" ]]; then
             echo "$PR_JSON" > $JSON_RAW
           else
-            gh pr list --base master --label actions:RELEASE --state merged --json labels,body,mergedAt --limit 10 --jq '. | sort_by(.mergedAt) | reverse | .[0]' > $JSON_RAW
+            echo "Temporarily Storing full gh result in full.json"
+            gh pr list --base master --label actions:RELEASE --state merged --json labels,body,mergedAt --limit 10 > full.json
+
+            echo "Filtering full.json for latest merge and putting it into $JSON_RAW"
+            jq '. | sort_by(.mergedAt) | reverse | .[0]' full.json > $JSON_RAW
           fi
 
-          cat $JSON_RAW | jq -c . > $JSON_FILE
-          rm $JSON_RAW
+          echo "Reading body from $JSON_RAW"
+          BODY=$(jq -r '.body' $JSON_RAW)
 
-          BODY=$(jq -r '.body' $JSON_FILE)
-          LABELS=$(jq -r '.labels[].name' "$JSON_FILE")
-          rm $JSON_FILE
+          echo "Reading labels from $JSON_RAW"
+          LABELS=$(jq -r '.labels[].name' "$JSON_RAW")
+
+          rm $JSON_RAW
 
           echo "BODY=$BODY" >> $GITHUB_OUTPUT
           echo "LABELS=$LABELS" >> $GITHUB_OUTPUT
