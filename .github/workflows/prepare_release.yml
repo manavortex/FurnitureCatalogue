@@ -49,17 +49,15 @@ jobs:
       # Loads details from the latest valid PR
       # When triggered by merge: Gets data from the PR that triggered the event
       # When triggered manually: Gets data from most recently merged PR
+      # jq -R(aw) -s(lurp) -a(scii)
       - name: Get PR details
         id: get_details
         run: |
           JSON_FILE="pr_json.tmp"
-
           if [[ "${{ github.event_name }}" == "pull_request" ]]; then
-            echo "$PR_OBJECT" | jq -c . > $JSON_FILE
+            echo "$PR_OBJECT" | jq -R -s -a > $JSON_FILE
           else
-            gh pr list --base master --label "actions:RELEASE" --state merged \
-              --json number,labels,body,mergedAt,author --limit 10 \
-              --jq '. | sort_by(.mergedAt) | reverse | .[0]' | jq -c > $JSON_FILE
+            echo "$(gh pr list --base master --label "actions:RELEASE" --state merged --json number,labels,body,mergedAt,author --limit 10 --jq '. | sort_by(.mergedAt) | reverse | .[0]')" | jq -c . > $JSON_FILE
           fi
 
           BODY=$(jq -r '.body' $JSON_FILE)
