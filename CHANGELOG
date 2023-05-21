@@ -92,7 +92,8 @@
 
 3.7
 - Added Greymoor data, so far available on PTS only
-- 3.6a
+
+3.6a
 - reupload due to missing textures folder
 
 3.6
@@ -191,7 +192,7 @@
 
 2.71
 - Luxury Furnisher!
-- Added a metric \*\*\*\*ton of previously uncategorized recipes - they'Re now either crown store or rumour items. I categorized them all. By. Hand. Over several hours. In case you want to pour gold my way, I won't say no, I probably need it to buy OCD therapy.
+- Added a metric ****ton of previously uncategorized recipes - they'Re now either crown store or rumour items. I categorized them all. By. Hand. Over several hours. In case you want to pour gold my way, I won't say no, I probably need it to buy OCD therapy.
 
 2.7
 - Added MurkMire data (will only work on PTS until the DLC hits live)
@@ -305,7 +306,7 @@
 - Invalid item links should no longer show up in the UI
 
 2.4.6
-- Telvanni Tower, Miniature has been removed from the game. Aw ;\_;
+- Telvanni Tower, Miniature has been removed from the game. Aw ;_;
 
 2.4.5
 - Luxury Furnisher!
@@ -595,8 +596,8 @@
 - Fixed an issue where the AddOn would display as outdated due to the API version being from the future
 - Now includes Cyrodiil furniture
 - Dropdown: Purchaseable is now split into gold and AP
-- Dropdown: added another filter for luxury items. It can be merged with the Purchaseable (gold) filter in the settings.
-  (The dropdown entry will be gone after another UI reload)
+- Dropdown: added another filter for luxury items. It can be merged with the Purchaseable (gold) filter in the settings. 
+-- The dropdown entry will be gone after another UI reload
 
 1.7
 - Hunted down the woodworking filter button and whipped it back to work
@@ -688,9 +689,9 @@
 
 0.95
 - more help from votan and AssemblerManiac, who are awesome - tooltips look good for me now. Please tell me if you still have problems. You can help me by providing the following information:
-  - Where did the problem occur? FurC-Interface, inventory, bank, auction house...
-  - What did you do when you noticed it, how can I reproduce it?
-  - What is the problem exactly? :D
+-- Where did the problem occur? FurC-Interface, inventory, bank, auction house...
+-- What did you do when you noticed it, how can I reproduce it?
+-- What is the problem exactly? :D
 - Added an option to the menu to hide Mages' guild books from the overview
 - You can now re-scan or wipe the database from the GUI. If you're going to wipe, there's even a nifty popup asking you, courtesy by sirinsidiator, who is awesome. All my fellow devs are awesome.
 
