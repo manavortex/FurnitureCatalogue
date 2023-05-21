@@ -163,7 +163,7 @@ jobs:
           --head "${{ steps.release_branch.outputs.HEAD }}" \
           --fill \
           --base master \
-          --label 'actions:BOT_RELEASE' \
+          --label 'bot:RELEASE_AND_PUBLISH' \
           --no-maintainer-edit
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
