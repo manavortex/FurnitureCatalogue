@@ -30,7 +30,7 @@ jobs:
     # always run if it was started manually
     # skip if it was triggered by a failed run
     # skip if it's just a prerelease or draft
-    if: github.event_name == 'workflow_dispatch' || (github.event.workflow_run.conclusion == 'success') || (github.event.release.prerelease == false && github.event.release.draft == false)
+    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' || (github.event_name == 'release' && github.event.release.prerelease == false && github.event.release.draft == false)
 
     runs-on: ubuntu-latest
     steps:

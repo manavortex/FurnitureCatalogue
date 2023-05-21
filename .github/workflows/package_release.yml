@@ -14,13 +14,14 @@ permissions:
 on:
   # Triggered when merging a release PR into master
   pull_request:
-    types: [closed]
+    types:
+      - closed
     branches:
       - master
 
 jobs:
   package_and_release:
-    if: (contains(github.event.pull_request.labels.*.name, 'actions:BOT_RELEASE') && github.event.pull_request.merged )
+    if: github.event.pull_request.merged && contains(github.event.pull_request.labels.*.name, 'actions:BOT_RELEASE')
 
     runs-on: ubuntu-latest
     steps:
