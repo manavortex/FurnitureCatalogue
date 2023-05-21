@@ -2,7 +2,7 @@ FurnitureCatalogue               = {}
 FurnitureCatalogue.name          = "FurnitureCatalogue"
 FurnitureCatalogue.author        = "manavortex"
 FurnitureCatalogue.tag           = "FurC"
-FurnitureCatalogue.version       = 4071000 -- will be AUTOREPLACED with AddonVersion
+FurnitureCatalogue.version       = 4071001 -- will be AUTOREPLACED with AddonVersion
 
 FurnitureCatalogue.CharacterName = nil
 FurnitureCatalogue.settings      = {}
