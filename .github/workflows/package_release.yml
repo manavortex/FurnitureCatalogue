@@ -12,15 +12,16 @@ name: PackageRelease
 permissions:
   contents: write
 on:
-  # Triggered when merging a release PR into master
+  # Triggered when merging a release PR into master labeled `bot:RELEASE_AND_PUBLISH`
   pull_request:
-    types: [closed]
+    types:
+      - closed
     branches:
       - master
 
 jobs:
   package_and_release:
-    if: (contains(github.event.pull_request.labels.*.name, 'actions:BOT_RELEASE') && github.event.pull_request.merged )
+    if: github.event.pull_request.merged && contains(github.event.pull_request.labels.*.name, 'bot:RELEASE_AND_PUBLISH')
 
     runs-on: ubuntu-latest
     steps:
