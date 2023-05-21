@@ -85,3 +85,4 @@ This is a **feature**. Adding complexity adds bugs and loading times - and that'
 
 - please see [GitHub issues](https://github.com/manavortex/FurnitureCatalogue/issues) for features and todos
 - you can use the issue search function and labels before suggesting new features
+- have a look at our [contribution guide](./CONTRIBUTING.md) if you want to help
