@@ -1,8 +1,8 @@
 name: CreateReleasePR
 
 # Connected workflows are:
-# 1. 📍CreateReleasePR - prepare_release.yml
-# 2. CreateRelease  - package_release.yml
+# 1. 📍CreateReleasePR - create_release_pr.yml
+# 2. PackageRelease  - package_release.yml
 # 3. PublishToESOUI - publish_release.yml
 # Refer to CONTRIBUTING.md for more info
 

@@ -1,9 +1,17 @@
 # How to Contribute
 
+It's best to check first before putting too much work into code changes. Because otherwise you won't know beforehand if the feature will make it into the AddOn.
+
+You can:
+
+- open an issue (bug report, or feature request)
+- start a discussion here or on ESOUI
+- create a small draft PR
+
 ## Recommended Update Flow
 
 1. 🍴 **fork** the latest dev branch (default)
-   - or create a new branch from dev if you're working directly on the main repository
+   - or create a new branch from dev if you're a maintainer
 2. 🛠️ **update** your branch with your changes
 3. 📬 send a **PR** pointing to the dev branch
    - if you're not ready yet but want to show or discuss your changes, you can make it a draft PR
@@ -66,34 +74,37 @@
 
 ## Recommended Release Flow
 
-The automated release flow has 3 phases: `Prepare` ➡️ `Package` ➡️ `Publish`.
+![img](./release_flow.png)
 
-To use it you can follow the recommended steps:
+The automated release flow has the phases: `Prepare`, `Package` and `Publish`. We only have to take care of merging PRs from contributors **1️⃣**, creating PRs to master **2️⃣** and merging release PRs from the bot **3️⃣** (see diagram above).
 
-1. 📬 create a PR from **dev** to **master**
-   - if you are a contributor make the PR to **dev** instead ([see udpate flow](#recommended-update-flow))
+To get the bot experience you can follow the recommended steps:
+
+1. 📬 create a PR from **dev** to **master** - **2️⃣**
+   - if you are a contributor make the PR to **dev** instead ([see udpate flow](#recommended-update-flow)) - **1️⃣**
 2. 🏷️ add label `actions:RELEASE`
    - 🏷️ also add `version:MAJOR` or `version:PATCH` if it applies
 3. ☑️ go through **checklist** in [Release Template](.github/pull_request_template.md)
-4. 🤝 **merge** PR into master (will trigger [CreateReleasePR](.github/workflows/prepare_release.yml))
+4. 🤝 **merge** PR into master (will trigger [CreateReleasePR](.github/workflows/create_release_pr.yml)) - **2️⃣**
 5. 🤖 the next few steps are automated:
    - 🤖 version of main AddOn is increased in all relevant files
    - 🤖 CHANGELOG is updated (if there are notes)
    - 🤖 updated files are commited
+   - 🤖 a temporary release branch is created like `release/1.0.0`
    - 🤖 a release PR is created, containing all necessary infos
-6. 🔎 **check** the release PR
+6. 🔎 **check** the release PR - **3️⃣**
    - 🔎 one last quick check to see if anything broke
    - 🔎 the PR should not have the `actions:RELEASE` label
    - ⚠️ avoid editing notes at this point, as they will not be updated in the changelogs
    - ⏪ if you missed anything just close it, then go back to step 1 with a new PR
-7. 🤝 **merge** the release PR into **master** (will trigger [CreateRelease](.github/workflows/package_release.yml))
+7. 🤝 **merge** the release PR into **master** (will trigger [PackageRelease](.github/workflows/package_release.yml)) - **3️⃣**
 8. 🤖 only automated steps should follow now
    - 🤖 the AddOn will be packaged into a release zip
-   - 🤖 a GH release with a version tag will be created and the zip added to it
+   - 🤖 a GitHub release with a version tag will be created and the zip added to it
    - 🤖 [PublishToESOUI](.github/workflows/publish_release.yml) is triggered
-   - 🤖 the release notes will be automatically generated
    - 🤖 the AddOn and new changelog will be uploaded to ESOUI
-   - 🤖 the dev branch will be synced with the master
+   - 🤖 the temporary release branch is deleted
+   - 🤖 the dev branch is synced with the master
 9. 🔎 quick check on ESOUI to see if it worked
 
 ## Additional Info

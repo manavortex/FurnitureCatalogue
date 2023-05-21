@@ -1,8 +1,8 @@
 name: PublishToESOUI
 
 # Connected workflows are:
-# 1. CreateReleasePR - prepare_release.yml
-# 2. CreateRelease  - package_release.yml
+# 1. CreateReleasePR - create_release_pr.yml
+# 2. PackageRelease  - package_release.yml
 # 3. 📍PublishToESOUI - publish_release.yml
 # Refer to CONTRIBUTING.md for more info
 
@@ -11,19 +11,28 @@ name: PublishToESOUI
 permissions:
   contents: write
 on:
-  # Run manually if automatic trigger didn't work
+  # Run when started manually in Actions
   workflow_dispatch:
-  # Trigger on release
+  # Run on humanual release (does not react on regular bot actions)
   release:
     types:
       - created
       - published
       - released
+  # Run when PackageRelease finishes
+  workflow_run:
+    workflows: ["PackageRelease"]
+    types: [completed]
 
 jobs:
   upload:
-    # Skip if it's just a prerelease or draft
-    if: github.event_name == 'workflow_dispatch' || (github.event.release.prerelease == false && github.event.release.draft == false)
+    if: |
+      # always run if it was started manually
+      (${{github.event_name}} == 'workflow_dispatch') ||
+      # skip if it was triggered by a failed run
+      (${{github.event_name}} == 'workflow_run' && ${{github.event.workflow_run.conclusion}} == 'success') ||
+      # skip if it's just a prerelease or draft
+      (${{github.event_name}} == 'release' && ${{github.event.release.prerelease}} == false && ${{github.event.release.draft}} == false)
 
     runs-on: ubuntu-latest
     steps:
