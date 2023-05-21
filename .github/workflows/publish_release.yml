@@ -22,20 +22,21 @@ on:
   # Run when PackageRelease finishes
   workflow_run:
     workflows: ["PackageRelease"]
-    types: [completed]
+    types:
+      - completed
 
 jobs:
   upload:
-    if: |
-      # always run if it was started manually
-      (${{github.event_name}} == 'workflow_dispatch') ||
-      # skip if it was triggered by a failed run
-      (${{github.event_name}} == 'workflow_run' && ${{github.event.workflow_run.conclusion}} == 'success') ||
-      # skip if it's just a prerelease or draft
-      (${{github.event_name}} == 'release' && ${{github.event.release.prerelease}} == false && ${{github.event.release.draft}} == false)
+    # always run if it was started manually
+    # skip if it was triggered by a failed run
+    # skip if it's just a prerelease or draft
+    if: github.event_name == 'workflow_dispatch' || (github.event.workflow_run.conclusion == 'success') || (github.event.release.prerelease == false && github.event.release.draft == false)
 
     runs-on: ubuntu-latest
     steps:
+      - name: debug
+        run: echo "conclusion ${{ github.event.workflow_run.conclusion }}"
+
       - name: Checkout
         uses: actions/checkout@v3
 
