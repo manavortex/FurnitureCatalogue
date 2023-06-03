@@ -34,9 +34,6 @@ jobs:
 
     runs-on: ubuntu-latest
     steps:
-      - name: debug
-        run: echo "conclusion ${{ github.event.workflow_run.conclusion }}"
-
       - name: Checkout
         uses: actions/checkout@v3
 
@@ -73,6 +70,5 @@ jobs:
           python .scripts/publish.py --changelog-max-entries "15" \
             --archive-file "${{ steps.latest_release.outputs.ARCHIVE }}" \
             --print-response
-
         env:
           ESOUI_API_TOKEN: ${{ secrets.ESOUI_API_TOKEN }}
