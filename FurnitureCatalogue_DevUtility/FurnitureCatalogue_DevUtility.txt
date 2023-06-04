@@ -1,8 +1,8 @@
 ## Title: FurnitureCatalogue_DevUtility
 ## Author: manavortex
 ## Description: This is a utility addon that helps me generate text entries for the data files. It won't do anything if you're not me, so feel free to unload it.\nYou're welcome to get in touch if you want to use this, then I can add you to the list.
-## Version: 2.0.0
-## AddonVersion: 2000000
+## Version: 1.0.0
+## AddonVersion: 1000000
 ## APIVersion: 101038 101037
 ## DependsOn: FurnitureCatalogue
 ## OptionalDependsOn: sidTools AchievementFinder LibDebugLogger DebugLogViewer
