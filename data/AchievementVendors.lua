@@ -967,13 +967,9 @@ FurC.AchievementVendors[FURC_KITTY] = {
       [151785] = {    --Wrathstone, Replica
         itemPrice   = 50000,
         achievement = 2446, -- Tharn Collaborator
-      },      
-      [147638] = {    --Replica Cursed Orb of Meridia
-        itemPrice   = 100000,
-        achievement = 2270,
       },
-      
     },
+
     [GetString(FURC_KITTY_YATAVA)] = {
       [151821] = {    -- Desert Grass, Patch
         itemPrice   = 150,

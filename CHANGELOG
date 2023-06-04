@@ -1,0 +1,841 @@
+4.72.0
+- Adding Necrom Items
+
+4.71
+- Fixing UI error
+
+4.7
+- Updated for Scribes of Fate - new items, lux items, plus updated a lot of the older crown items that needed pricing info.
+
+4.6
+- Finally got the new Galen items updated and caught up on lux vendor items. Sorry for the delay! Crown + crate items will be added soon. Thanks to everyone who has reached out with info and support.
+
+4.5
+- Added option to disable context menus in inventory. Fixed debug message posting to chat. General update for U35/Lost Depths and catching up on missed lux vendor items. I'm working on crown store items, so if you have info for anything missing please feel free to reach out!
+
+4.4
+- Welcome to High Isle! Most of the new items are accounted for, and I'll fill in the blanks when I can!
+- Added drop down filter for writ voucher items - currently only shows crafting stations, but working on getting all writ voucher craftables under that filter as well. Plus some tweaks to the search feature that will hopefully make it easier to use.
+
+4.323
+- Mostly lux vendor items.
+- Apologies for the delayed updates recently - life got very busy very fast, and I greatly appreciate everyone who continues to send me item info as they find missing or incorrect entries!
+
+4.321
+- Hopefully fixing the error that's being thrown
+
+4.32
+- Updated for Ascending Tide DLC
+- Thanks for your patience while I work on this. I've fallen a bit behind due to IRL things, but am still slowly working on updates.
+
+4.313
+- Fixed an issue where lux vendor and event items would not save as favorites. (Thanks Skineh!) Cleaned up some old data, added new lux vendor items and some more item pack data. Thanks again for all your support while I'm working through this.
+- To-do: finish adding data for crown furnishing packs and sort items so they actually pull up under the correct version filter.
+
+4.312
+- Added info for a handful of crown furnishing packs, plus fixed some items that weren't displaying properly.
+
+4.311
+- Added missing achievement info to older achievement vendor items, plus some misc. sourcing.
+- I have a whole to-do list for upcoming weeks, including all the missing crown furnishing packs and crate items.
+- Please keep sending me item sources! You're all wonderful and I appreciate the help!
+- Known bug: lux vendor and event items don't seem to save as 'favorites' though everything else does. Talked with manavortex and we couldn't figure out why.
+
+4.31
+- Added a bunch of crown furnishing packs and adjusted the sourcing on a few items.
+- Thanks to everyone who has sent me item info! It's incredibly helpful, and I am slowly working through it all!
+
+4.3
+- New contributor! Added a bunch of missing items.
+
+4.21113
+- Flames of Ambition version entry
+
+4.2
+- Flames of Ambition items
+
+4.16
+- bugfix
+
+4.151
+- a nullpointer was reported - added a check
+
+4.15
+- Added some styling based on Gabriel_H's suggestions. Thanks!
+
+4.14
+- Finally datamined Markarth recipes. I hope it works. :)
+
+4.13
+- Added version number switch for Markarth
+
+4.12
+- Added dragonhold furnishing to achievement vendor
+- added French translations - thanks to @JAKEZ31
+- @tïm'99 cleared up a number of item sources
+
+4.1111
+- stonethorn data
+
+4.11
+- minor bugfix for item source
+
+4.1
+- @tïm'99 has joined the team - he'll help keeping the data sources more up-to-date. Thank you! :)
+
+4.0
+- No exciting new changes, but the Greymoor recipes will finally work now! \o/ Also, a little restructuring under the hood.
+
+3.9
+- Added filter for jewellery crafting type. If your GUI is broken now, please let me know.
+
+3.8
+- There's now a "toggle recipe"-button in the settings that you can bind, thanks to remosito. If you bind that, and there's a recipe in the data, both line and tooltip will display the recipe instead of the item.
+- It's not added to the keystrip becaues I'm lazy af!
+
+3.7
+- Added Greymoor data, so far available on PTS only
+
+3.6a
+- reupload due to missing textures folder
+
+3.6
+- Removed Libstub dependency
+- API version bump
+- Harrowstorm version filter
+
+3.56
+- Added two Undaunted items, thanks Des-Demona
+
+3.551
+- didn't change anything, just bumped version because of health concerns for Minion
+
+3.53
+- Added Scalebreaker stuff, API version bump. Have to look into Rolis recipe items not being processed correctly eventually.
+
+3.51, 3.52
+- Fixed something about rumour items being processed. Still trying to get rid of duplicates / incorrect displays...
+
+3.5
+- Took the time to patch up some item sources (crown store / furniture packs / justice). You can help me with this!
+- Hopefully got rid of the issue that item sources would show as "rumour" although they weren't. (I lowered the index of the "rumour" key in the data - rumour items should get processed first now, then overwritten with other origins)
+
+3.4
+- Added another button to the search box: You can now toggle crown store and rumour items from there. If you do not like the buttons: No problem! You can hide them from the settings.
+- Moved a stealable Khajiit pillow from crown store data. You might want to check if the setting for "filter all on text" is active in case you want to display those when using text search.
+
+3.33
+- Removed some debug output. Did you know? With LibDebugLogger, you can be rid of those entirely!
+- Datamined some on live. Stuffed everything into Crown Store for now.
+- Fixed the rumour filtering (at least it works on my machine, hehe)
+
+3.32
+- Kitty data now live! Added stolen items.
+
+3.3
+- Added kitty data. I mean, Elsweyr. Will only work on PTS for now.
+
+3.2
+- AssemblerManiac was so good to change the way the right click menu worked from overwriting the original handler to the proper callback, which is the way it's supposed to work. If this causes trouble with any other AddOns, it's their fault. :P
+- Luxury Furnisher!
+
+3.1
+- UI now has a button that lets you toggle display of rumour recipes on the fly.
+
+3.00
+- reupload
+- Set up everything for Wrath of the Dungeons. New items are currently all classified as rumour items, and won't show up if you're not on PTS.
+- Luxury Furnisher!
+
+2.94
+- Luxury Furnisher!
+
+2.93
+- Luxury Furnisher!
+
+2.92
+- Luxury Furnisher!
+
+2.91
+- Luxury Furnisher!
+
+2.90
+- Luxury Furnisher!
+- Additional item sources from Ziggr, thanks!
+
+2.89
+- Luxury Furnisher!
+
+2.88
+- Luxury Furnisher!
+
+2.87
+- Luxury Furnisher!
+
+2.86
+- Luxury Furnisher!
+
+2.85
+- Luxury Furnisher!
+- Changed lib inclusion to standalone install, ship them standalone instead of bundled for now. Will not update included libs and will remove them in the future.
+
+2.84
+- Luxury Furnisher!
+
+2.83
+- Fixed a string (thanks AM)
+- Luxury Furnisher!
+
+2.81, 2.82
+- Luxury Furnisher!
+- Swapped some Murkmire drops outside of rumour recipes (they're in the file that'll be loaded when the next API version hits - if you want them right now, copy the contents of 100025.lua into any of the other files inside the data folder
+
+2.8
+- Fixed a bunch of errors that snuck into the code with 2.7x
+
+2.71
+- Luxury Furnisher!
+- Added a metric ****ton of previously uncategorized recipes - they'Re now either crown store or rumour items. I categorized them all. By. Hand. Over several hours. In case you want to pour gold my way, I won't say no, I probably need it to buy OCD therapy.
+
+2.7
+- Added MurkMire data (will only work on PTS until the DLC hits live)
+- Fixed the "favourite" filtering not working properly
+- Hopefully increased performance a bit when filtering
+
+2.65
+- Luxury Furnisher!
+
+2.64
+- Luxury Furnisher!
+- Recastegorized some clam parts - thanks
+2.63
+- Luxury Furnisher!
+- Added a few missing item sources after logging on NA. Thanks to my NA users - I appreciate your mails, even if I let them time out, they do get read.
+
+2.62
+- Version number is now a legitimate double
+- Added Clavicus Vile statue to data
+- Luxury Furnisher!
+
+2.6.1a
+- Reupload with a forgotten brace
+
+2.6.1
+- Fixed up a bunch of rumour recipes
+
+2.6.0 +a
+- Luxury Furnisher!
+- All libraries updated
+- Hopefully gotten rid of the rumour recipe bug
+
+2.5.17
+- Luxury Furnisher!
+
+2.5.16
+- Luxury Furnisher!
+
+2.5.15
+- Luxury Furnisher!
+- Included Wolfhunter stuff - only visible on PTS right now.
+
+2.5.14
+- Fixed a bunch of Homestead rumour recipes incorrectly showing up as unknown
+
+2.5.131
+- Added a divider to the context menu. You can disable it in settings.
+- Put in some effort to un-lag the search
+- Patched up the achievements for the capital vendor - some of those had the wrong IDs.
+
+2.5.13
+- Fixed broken "unknown recipes"-filter
+- Luxury Furnisher! (Still accepting donations, am broke af now)
+
+2.5.12
+- Reupload because minion
+
+2.5.11
+- Fixed an exception
+
+2.5.10
+- Fixed up order of file loading order - crown store items will no longer overwrite recipe stuff
+
+2.5.9
+- Contains undocumented features
+
+2.5.8
+- Luxury Furnisher!
+- Updated LibCustomTitles. Yes, this AddOn bundles LibCustomTitles. If you have a problem with that, you are very welcome to go and write your own.
+
+2.5.71
+- Reupload without typos
+
+2.5.7
+- Luxury Furnisher!
+
+2.5.6
+- Contains undocumented features (I might have skipped this verison)
+
+2.5.5
+- Luxury Furnisher!
+- Fixed the "post materials"-code
+
+2.5.4
+- Finally fixed the search box default text
+- Mapped a gazillion of items to their crown store prices. After seeing those crown store prices, I've come to the conclusion that whoever is in charge of those things is either Croesus, a Ferengi, or actively trying to drive Housing enthusiasts away from the game.
+
+2.5.3
+- Luxury Furnisher!
+- AssemblerManiac was so kind to fix the known/unknown items - they no longer get unloaded if ResearchAssistant is active. (I have no idea why that was in the code, but since it was in the initial commit, I must've thought something about it)
+
+2.5.2
+- Luxury Furnisher! (I was away over the weekend)
+
+2.5.1
+- Exception fix. Forgot a file in the commit.
+
+2.5.0
+- More love for the dev utility. That will save me a crapton of work.
+
+2.4.81
+- Fixed an exception, oops
+- Added a FurnitureCatalogue_DevUtility-sub-AddOn. It won't even try to load if you're not me, so feel free to ignore it.
+
+2.4.8
+- Luxury Furnisher!
+- Fixed a missing GetString for achievement items being sold by enchanters
+- Added a variety of Summerset items that were mailed by my amazing user base
+
+2.4.7
+- Invalid item links should no longer show up in the UI
+
+2.4.6
+- Telvanni Tower, Miniature has been removed from the game. Aw ;_;
+
+2.4.5
+- Luxury Furnisher!
+- Summerset items and recipes that have been seen in-game have been updated with item sources
+
+2.4.4
+- Removed some debug output
+
+2.4.3
+- Added a bunch of additional data, thanks JHartEllis
+
+2.4.2
+- Included missing files and folders, thanks windows
+
+2.4.1
+- Updated LibAsnyc
+
+2.4.0
+- AssemblerManiac was so kind to change the known/unknown thingy, included that
+- Luxury Furnisher!
+- Updated data file structure to include Summerset recipes, starting tomorrow
+
+2.3.2
+- Finally fixed them tooltips (moved a line down by 3 lines, oops)
+- Luxury Furnisher!
+
+2.3.1
+- Fixed a misplaced item in Reaper's March (thanks AssemblerManiac)
+- Added Rolis' and Faustina's recipes to the source list
+
+2.3.0
+- PTS data, Luxury Furnisher
+- Can now display achievement, if the data is present (I was holding the data since Morrowind, just never hooked it up)
+
+2.2.15
+- Luxury Furnisher!
+
+2.2.14
+- Updated LibCustomMenu to version 6.5
+- Added 100023.lua with PTS data. Haven't gotten around to include the furniture on Artaeum yet.
+
+2.2.13
+- ?
+
+2.2.12
+- Luxury Furnisher!
+- Added Netch Cabbage Patch item source
+
+2.2.11
+- Luxury Furnisher!
+- Cleaned up some item sources
+
+2.2.10
+- Something, I forgot
+
+2.2.9
+- Brought back the "other" entry in the dropdown
+- Added a bunch of items. Finally got around to including all the paintings.
+
+2.2.8
+- Luxury Furnisher!
+
+2.2.7
+- Re-fixed filters
+- Added the Jester stuff
+
+2.2.6
+- Fixed filters
+
+2.2.5
+- Luxury Furnisher!
+- Removed the option to hide values from the source dropdown, and thus the annoying error message from LAM about using those
+- Added the option to use a different set of default filters when you are searching via text box without any dropdowns used
+
+2.2.4, 2.2.4a
+- Luxury Furnisher!
+- Fixed the tooltip text for character names
+- The tooltip will now be hidden more thoroughly
+
+2.2.3
+- Luxury Furnisher!
+- Retired "Blueprint, Khajiiti Brazier, Enchanted" to the rumour recipes
+- Fixed recipe knowledge being displayed incorrectly for recipes that you can get from Rollis or Faustina
+
+2.2.2
+- Luxury Furnisher!
+
+2.2.1a
+- Fixed overeager recipe tooltip
+
+2.2.1
+- Luxury Furnisher!
+- Added data structure to support recipe sources
+- Fixed rumour dropdown entry, it's working now, at least if you don't hide any dropdown entries via settings. If you do, there might still be errors.
+- Cleaned up a few rumour entries
+
+2.1.5
+- Luxury Furnisher!
+- Added two new items to Undaunted quartermasters
+
+2.1.4
+- Luxury Furnisher!
+
+2.1.3b
+- Reupload due to me being asleep when I uploaded the last time
+
+2.1.3
+- Added three more recipes to the rumour pool
+- Swapped a few things around due to the if GetApiVersion ~= 1000022 thing now being obsolete
+
+2.1.2
+- Luxury Furnisher!
+- API version bump for monday
+
+2.1.1
+- Luxury Furnisher!
+- Added a "Master Writ Vendor" entry to the source dropdown for AssemblerManiac :)
+
+2.0.19
+- Added "post item" to context menu for recipes
+- Corrected a few database entries. ZOS are sneaky fetchers with their furniture!
+
+2.0.18
+- Luxury Furnisher!
+
+2.0.17a
+- fixed Minion issues
+
+2.0.17
+- Set up git for FurC! Excite!
+- Added a few more strings to the localisation
+- Went over the luxury furnisher files again, added everything that was missing and added a date string. You can now see in the tooltip/source _when_ the fetcher had an item. The date is currently not formatted.
+
+2.0.16
+- Fixed a typo that wouldn't show "can be crafted by" on tooltips
+
+2.0.15
+- Added localisation support! (Yes, just for you, @Bosmerland!) You can contribute by either taking the corresponding file, translating it and sending it to me, or filing a pull request on my github: https://github.com/manavortex/FurnitureCatalogue
+
+2.0.14
+- Luxury Furnisher! (It's great that the items are so cheap - it's easier on my budget...)
+- Added an item source for human skulls. Opposed to common sense, those can be stolen from any species, not only humans.
+
+2.0.13
+- fixed the missing item source for festival drops
+- Did something else I can't remember right now
+- Finally can craft every single style available in-game - in need of donations :|
+
+2.0.12
+- Luxury Furnisher!
+- Started hooking up Dragon Bones
+- hopefully fixed the thing with the "unknown item source" for recipes
+
+2.0.11
+- Minion incompatibility fix
+
+2.0.9, 2.0.10
+- Luxury Furnisher!
+
+2.0.81, 2.0.82
+- uploaded the right archive. Oops
+
+2.0.8
+- Fixed the tooltip
+- Now additional AddOn with dependency in the same folder: FurnitureCatalogue_Export. Feel free to test it and tell me if it works/if you need anything else added to it.
+
+2.0.7
+- Luxury Furnisher!
+- Export-button removed - it was broken anyway. In one of the next updates there'll be FurnitureCatalogue_Export, with own saved variables, just for you.
+- The tooltip from the dropdown menus will now correctly disappear after selecting something.
+
+2.0.6
+- A few more flowers from the talented Almariel
+- Posting item sources should now work again
+
+2.0.5
+- Luxury Furnisher!
+
+2.0.4
+- Fixed a thing where luxury items were incorrectly displayed among purchaseables, even if that was disabled in the settings
+- Added the two new life items
+
+2.0.3
+- unknown items will now correctly display material
+- Re-sorted a few items from craftables to rumour items - seems ZOS doesn't want us to have the recipes :|
+
+2.0.2
+- Fixed a few incoherencies where item sources and material lists were concerned, thanks @bosmerland
+
+2.0.1
+- Fixed LUA error when trying to post material
+
+2.0
+- Three weeks of Luxury Furnisher. Sorry - this took longer than expected, and then we moved.
+- Completely overhauled the saved variables and the way the AddOn handles data. It's far, far faster now!
+
+1.14, 1.15
+- Luxury Furnisher!
+
+1.13
+- Luxury Furnisher!
+- Added a few thief items from CC
+
+1.12
+- Re-added the Morrowind file for the luxury furnisher
+- Fixed a few misclassified items
+- Added more Clockwork furniture
+
+1.106
+- Fixed a few items that were wrongly classified as Morrowind
+- Added a developer mode that won't do a thing if you're not me
+- Added a Velothi Shroud
+
+1.105
+- new stuff in skywatch! Thanks Ratzkifal
+
+1.104
+- Daedric Chain, Segment added
+- Luxury furnisher
+
+1.103
+- Fixed the filters for the different crafting stations. Did you know they were broken the whole time? I sure did not.
+- Added two Tel Var furniture items
+- Clarified a few tooltips about pickpocketable items to better indicate where to get them
+- Saw a Hlaalu Well in guild stores and briefly pondered including it, but the only way to get it is to purchase Amaya Lake Lodge via crowns, so I consider that an edge case.
+
+1.102
+- Luxury Furnisher
+- Daedric Chain Segment item source
+- Update of LibCustomMenu to version 5
+
+1.101
+- Luxury Furnisher
+
+1.99
+- Luxury Furnisher
+
+1.98
+- Added several new items to the furniture vendor
+- Made the AddOn Clockwork-ready!
+- Added the merchants in the Outlaws' Refuge to the database
+- Altered the search - it will now consider item sources on store-bought items, so that if you search for "Hew's Bane" you will find items that are sold in HB or have it as part of their names.
+
+1.98
+- Fixed the previously broken search
+- The line height will now dynamically react to the font size. That way, you can list more entries, if you want.
+
+1.97
+- Fixed the filters. Oops!
+
+1.96
+- Added several Coldharbour plant drops - praise Azurah!
+- Repaired a bug that if you disabled certain dropdown entries the settings menu wouldn't work
+- Repaired a bug where filtering for separate furniture crafters wouldn't work
+- Fixed the donation button
+
+1.95
+- Luxury furnisher items (20k for a single soul gem? Seriously? DONATIONS WELCOME, PEOPLE!)
+- Now there's a menu button "Re-scan rumour recipes" to update the item sources in a different way than wiping the whole database.
+
+1.94
+- Luxury furnisher items
+
+1.93
+- Furnishing vendors in Coldharbour and Daggerfall have new items, those are in
+
+1.92
+- Another week, another luxury furnisher!
+- Added a legendary furniture drop to the database! Now: Shivering cheese! :o
+
+1.91
+- Fixed the "Default source"-filter (thanks kyoma for pointing me towards the error)
+- AddOn is ReachReady!
+
+1.9
+- Implemented "Favorites". Given that the dropdown box is broken for some reason, set "Source"-default to "Favorites" via /script FurC.SetDefaultDropdownChoice("Source", FurC.SourceIndices.favorites).
+
+1.82
+- Added a "start silently"-option
+- More Luxury Furnisher
+
+1.81
+- Removed a forgotten debug output
+
+1.8
+- Two more weeks of luxury furnisher
+- Fixed an issue where the AddOn would display as outdated due to the API version being from the future
+- Now includes Cyrodiil furniture
+- Dropdown: Purchaseable is now split into gold and AP
+- Dropdown: added another filter for luxury items. It can be merged with the Purchaseable (gold) filter in the settings. 
+-- The dropdown entry will be gone after another UI reload
+
+1.7
+- Hunted down the woodworking filter button and whipped it back to work
+- Added furniture from the luxury vendor
+
+1.6a
+- Fixed a forgotten dependency that caused a UI error on right-click (thanks again, votan)
+
+1.6
+- Gave the settings menu some love. You will now be able to control the AddOn's behavior and interface far better.
+- You can now set multiple quality and crafting type filters. Clicking on the leftmost button will reset all filters of those type.
+- Made the behavior concerning rumour recipes more clear.
+
+1.5b
+- now wit an initial scan upon login, thanks to votan, completely lag-free!
+
+1.5a
+- Fixed the scanning order
+
+1.5
+- Now with more LibAsync for less lag! \o/
+- Fixed the cursor thingy, again.
+
+1.4a
+- Noticed that some of my incredibly impressing optimisation was caused by a chunk of code that was commented out... _coughs_
+
+1.4
+- Fixed the cursor issue! \o/
+- Re-organised a bunch of items that were incorrectly sorted under Morrowind to where they actually belong
+- Added a new filtering option for "other", which includes items that can be acquired by (you might have guessed) other means than crafting and buying. THESE ITEMS HAVE TO BE MAINTAINED BY HAND, so feel free to send me item links and tell me where you got the stuff!
+
+1.3b
+- Fixed an exception caused by the exception fixing
+
+1.3a
+- Fixed an exception when opening the buyback menu
+
+1.3
+- AddOn now adds icons to known and unknown furnishing blueprints in the inventory, bank and guild bank. Thanks to Dryzler!
+- No, not in the Guild Store, get AwesomeGuildStore, you lazy s'wit!
+- Added the furnishing vendor in Skywatch to the Database, whom I had for some reason forgotten
+- Added that light to Listens-To-Sea's Eastmarch data.
+
+1.2
+- Added some performance tweaks. I hope the lag when switching to all the items is less noticeable now? Not gone though. Still not gone. Too much data.
+- Search Box background text should clear correctly now
+- Using a filter should cause the ScrollList to reset. Should.
+- FurC now has a donation button! Yay!
+
+1.1
+- Fixed some items that were incorrectly classified as Morrowind when they weren't
+- The UI will now remember its size and position. The feature was in all the time, I just forgot to hook it up.
+- Started to add items to data/MiscItemSources.lua - to be more precise, drops from stealing, fishing, Dwemer constructs, urns and Forgotten Wastes. If you have any additional items that need to go in there, please leave a comment, drop me a PM, or send a mail with the item attached to @manavortex on EU (Yes, this is me fishing for donations!)
+
+1.0
+- Morrowind!!!
+
+0.982
+- fixed the dropdowns again!
+
+0.981
+- verified that all three dropdowns work (they do! Turn on debug output if you need to be reassured. :)) Applied some cable binders to the back-end.
+
+0.98
+- The GUI now has dropdowns instead of buttons, and the dropdowns work together. Yay!
+- The total number of recipes is now shown in the header
+- I have verified that learning a new recipe will cause the database to upgrade. Donations to @manavortex are welcome for that reason because I'm broke and recipes are expensive. :P
+
+0.973
+- Hopefully fixed the cursor bug
+
+0.972
+- Fixed an error upon learning a new recipe where the AddOn tried to access a boolean
+
+0.971
+- I had broken the Furniture Shopping List integration! Fixed Furniture Shopping List integration.
+
+0.97
+- your characters will not only be scanned, the scanned data will even be remembered! Yay!
+- Characters without furnishing blueprints will not show up in the GUI dropdown
+- Deleting characters from the database now works - they will be gone from the dropdown in the menu when you reload UI the next time
+- Adjusted the dropdown knowledge: Known and unknown are now buttons on the interface, the dropdown instead filters "All", "Homestead" and "Morrowind". The Morrowind filter doesn't do anything yet, but will probably become crucial in about five weeks.
+- Not entirely sure if I have broken the Furniture Shopping List integration? I think I have. Will investigate later.
+
+0.96
+- Your characters will now be scanned upon initialisation
+- The furniture catalogue UI will now trigger the cursor mode when being opened and remove it when being closed in hudui mode.
+- The delay upon switching the filters is now slightly less annoying
+
+0.95
+- more help from votan and AssemblerManiac, who are awesome - tooltips look good for me now. Please tell me if you still have problems. You can help me by providing the following information:
+-- Where did the problem occur? FurC-Interface, inventory, bank, auction house...
+-- What did you do when you noticed it, how can I reproduce it?
+-- What is the problem exactly? :D
+- Added an option to the menu to hide Mages' guild books from the overview
+- You can now re-scan or wipe the database from the GUI. If you're going to wipe, there's even a nifty popup asking you, courtesy by sirinsidiator, who is awesome. All my fellow devs are awesome.
+
+0.94
+- Fixed a null pointer exception when hovering over Rollis's item list
+
+0.93
+- Added a lot of books to the database
+- Added Jesters Festival items to the database
+- Added "seen in guild store" as source to items that you... you can probably figure.
+- votan gave me a hand fixing the tooltips. I think they might even be fixed now!
+- Made sure that the furniture part of the menu shows up at the end of it because of CDO
+- Clarified the messages you see in chat when the database is updated
+- Added an option in the menu to disable FurnitureShoppingList support. Will obviously only affect the FurnitureCatalogue control (and InventoryInsight!)
+- AddOn authors: I added a global function AddFurnitureShoppingListMenuEntry(itemLink, calledFromFurC) for you - just add an item link to add another "Add to shopping list"-entry to your control's right click menu. Does not contain any checks, so use at own risk.
+
+0.92
+- Fixed the tooltips. You sick of it yet?
+
+0.91
+- Fixed the error when right-clicking something that wouldn't have any entry
+
+0.9
+- Fixed the double tooltip issue. Again.
+- Items without a recipe will now have "print item source"
+- "Print recipe" will now print the recipe link instead of the recipe list if there is one
+- Clicking on "Furniture" in the right-click menu will now insert the item link into the chatbox
+
+0.83
+- Fixed the double tooltip issue
+
+0.82
+- Fixed the things I broke in 0.8
+- Removed "purchasable" from dropdown menu - there are the toggles. Considering toggle for known/unknown too.
+- Added tooltips to dropdown menu! \o/
+- Added comments to some of the recipes (like the infamous Dunmer trestle) stating that while the recipe exists, it has not been dropping. Also added an option to exclude these items and set it to true by default.
+- Displaying the achievement required to purchase furnishing items from a vendor, if I have logged it yet. I need to gather all of those by hand unfortunately, so completing that list will take a while.
+- Fixed the right click menu entry for purchaseable items so that it doesn't say "post recipe" anymore
+
+0.8
+- Added a counter for the currently displayed recipes on the UI
+- Re-named "only unknown" to "only unknown (accountwide)" for clarity
+- Added the stuff from the luxury vendor from April 7 - 9
+
+0.7
+- Reduced the lag when opening the list or switching filters by about 1000%, please leave feedback if it's still noticeable.
+
+0.6h
+- When the database has been re-initialised or the savedVariables are empty, the AddOn will correctly scan the files now
+
+0.6g
+- Fixed everything, un-reverted
+
+0.6f
+- Broke everything, reverted to 0.5g for now
+
+0.6e
+- Fixed lag even moar
+
+0.6d
+- Skipped 0.6c because I'm lazy
+- Fixed noticeable input lag
+
+0.6b
+- Got rid of a forgotten debug output
+
+0.6a
+- Fixed purchaseable items always being hidden. Whoops
+
+0.6
+- Added the Luxury Vendor inventory
+- Quality button textures ruthlessly stolen from, erm, strongly inspired by, Awesome GuildStore, which is awesome.
+- Filter buttons will now be toggle-able and display their status more clearly (see attached screenshot)
+- Re-scanning the database (or clicking on the refresh-button with the left mouse key) will print the number of known recipes to chat
+- Furniture Catalogue now supports Furniture Shopping List! To take effect, wait for Noobanidus to push an update, or find "local function FurnitureShoppingListAdd" in line 164 in FurnitureShoppingList.lua and remove the "local".
+
+0.5g
+- Put the initial scan back in. No more reason to do it manually, unless you toggle the initial scan off.
+
+0.5f
+- Fixed the lua error on startup. Sorry for that.
+
+0.5e
+- Font size can now be changed in the settings
+
+0.5d
+- Setting the filter to "All items" now correctly resets the filter.
+- Line control still not broken.
+
+0.5c
+- Fixed the quality sort header's offset being set inversely to the line template.
+- Line controls still hiding properly!
+
+0.5b
+- Fixed the line controls not hiding. No, really!
+
+0.5a
+- Made sure that lines outside the control are now correctly hidden even if you do not toggle the template two times _coughs_
+- Reduced the distance between the filter icons to bring them up to standard with the ZOS UI for AssemberManiac and everyone else who has OCD
+- Reduced the size of the quality filter icons to make everything look neat
+
+0.5
+- Put some more effort into the printing of item sources from purchaseable items. I already have the achievements for some, those will be listed as well.
+- Add-On has now a second line template!
+
+0.4a
+- Fixed material item links not being escaped when there are more than three ingredients upon o
+
+0.4
+- Added a database for purchaseable furniture items! Hooray - the AddOn can now tell you where to buy something!
+- Changed a lot about the internal data structure, so please let me know if tooltips or print is acting weird
+- Added a filter-toggle for purchaseable/craftable items. These will be set automatically when chosing anything from the drop down menu.
+
+0.32
+- Fixed items being shown as craftable when being Bound On Pickup instead of already bound
+
+0.31
+- Fixed recipes being displayed as unknown when they weren't
+
+0.3
+- Took another stab at the double tooltips. Is shown with a tiny delay, but works for me now.
+- Fixed the menu options - all but "delete character" works now.
+- Fixed the default filtering behavior
+
+0.2b
+- Hopefully no more double tooltips!
+- Export button in menu
+
+0.2a
+- Tooltip shows now the crafting station. After all, that's the most important thing, no?
+
+0.2
+- Add-on can now automatically reset the database if it's outdated.
+- Outdated database - this should also get rid of duplicate entries.
+- Fixed the incorrect display of characters who know a recipe on the tooltip
+
+0.1b
+- Fixed the non-resizeable lower edge
+- Fixed the filter menu being empty when opening the panel
+
+0.1a
+- Initialised database with all of dopiate's datamined recipes! \o/
+- Added slash command /fur
+- Fixed mouseover error on guild store sale list
