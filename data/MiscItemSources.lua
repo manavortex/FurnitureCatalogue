@@ -53,7 +53,6 @@ local in_skyrim             = " in Western Skyrim"
 local in_blackwood			= " in Blackwood"
 local in_summerset			= " in Summerset"
 local in_elsweyr			= " in Elsweyr"
-local blackr_grcaverns		= "Blackrock Caverns"
 
 local stealable             = GetString(SI_FURC_CANBESTOLEN)
 local fishing_elsewhere     = GetString(SI_FURC_CANBEFISHED)  .. elsewhere
@@ -67,6 +66,9 @@ local chests_summerset		= chests_string		  .. in_summerset
 local chests_elsweyr		= chests_string		  .. in_elsweyr
 local mischouse				= "From select house purchases"
 local chests_high			= chests_string		  .. " in High Isle"
+local chests_blackr_grcaverns		= chests_string .. " in Blackreach: Greymoor Caverns"
+
+local book_hall				= "From chests in the Scrivener's Hall vault"
 
 local rumourSource          = GetString(SI_FURC_RUMOUR_SOURCE_ITEM) -- has been datamined, but no clue where to get it
 local itemsourceUnknown 	= GetString(SI_FURC_DATAMINED_UNCLEAR) -- is in-game (guildstore or TTC), but no clue where to get it
@@ -96,6 +98,100 @@ local function getHouseString(houseId1, houseId2)		-- use collectible number fro
 end
 
 
+FurC.MiscItemSources[FURC_NECROM] = {
+
+[FURC_CROWN] = {
+
+},
+
+[FURC_DROP] = {
+
+},
+
+[FURC_RUMOUR] = {
+
+        [197644] = rumourSource, -- Telvanni Spoon, Wooden",
+        [197645] = rumourSource, -- Telvanni Fork, Wooden",
+        [197646] = rumourSource, -- Telvanni Knife, Wooden",
+        [197647] = rumourSource, -- Telvanni Knife, Bread",
+        [118288] = rumourSource, -- Deer Carcass, Hanging",
+        [197779] = rumourSource, -- Letter from Azandar",
+        [197780] = rumourSource, -- Letter from Sharp",
+        [197781] = rumourSource, -- The City of Necrom Painting, Wood",
+        [197782] = rumourSource, -- Alleyway Still Life Painting",
+        [197783] = rumourSource, -- Pilgrimage Triptych Painting, Wood",
+        [197917] = rumourSource, -- Ode to Vaermina",
+        [197918] = rumourSource, -- Deal with a Daedric Prince",
+        [197919] = rumourSource, -- The Legend of Fathoms Drift",
+        [197920] = rumourSource, -- The Doom of the Hushed",
+        [197921] = rumourSource, -- Peryite's Salvation",
+        [120485] = rumourSource, -- Cactus, Columnar",
+        [116474] = rumourSource, -- Orcish Effigy, Bear",
+        [197622] = rumourSource, -- Constellation Projection Apparatus",
+        [193785] = rumourSource, -- Mercymother Elite Tribute Tapestry, Large",
+        [152143] = rumourSource, -- Orcish Sconce, Scrolled",
+        [115707] = rumourSource, -- Khajiit Tile, Waxing Moons",
+        [193786] = rumourSource, -- Mercymother Elite Tribute Tapestry",
+        [115705] = rumourSource, -- Khajiit Tile, New Moons",
+        [193784] = rumourSource, -- Hand of Almalexia Tribute Tapestry",
+        [193783] = rumourSource, -- Hand of Almalexia Tribute Tapestry, Large",
+        [197750] = rumourSource, -- Telvanni Mushroom Spire Painting, Wood",
+        [197621] = rumourSource, -- Household Shrine, Meridian",
+        [197620] = rumourSource, -- Throne of the Lich",
+        [197619] = rumourSource, -- Meridian Mote",
+        [152144] = rumourSource, -- Orcish Mirror, Peaked",
+        [197700] = rumourSource, -- Apocrypha Fossil, Bones Large",
+        [197829] = rumourSource, -- Music Box, Glyphic Secrets",
+        [197702] = rumourSource, -- Apocrypha Fossil, Worm",
+        [197703] = rumourSource, -- Apocrypha Fossil, Arch",
+        [197704] = rumourSource, -- Book of Whispers",
+        [197705] = rumourSource, -- Telvanni Alchemy Station",
+        [197706] = rumourSource, -- Trifold Mirror of Alternatives",
+        [197707] = rumourSource, -- Apocryphal Well",
+        [197708] = rumourSource, -- Cliffracer Skeleton Stand",
+        [152141] = rumourSource, -- Orcish Brazier, Bordered",
+        [152142] = rumourSource, -- Orcish Sconce, Bordered",
+        [197711] = rumourSource, -- Antique Map of the Telvanni Peninsula",
+        [197712] = rumourSource, -- Antique Map of Apocrypha",
+        [152145] = rumourSource, -- Orcish Tapestry, War",
+        [152146] = rumourSource, -- Orcish Chandelier, Spiked",
+        [152148] = rumourSource, -- Orcish Tapestry, Hunt",
+        [152149] = rumourSource, -- Orcish Brazier, Pillar",
+        [116473] = rumourSource, -- Orcish Effigy, Mammoth",
+        [197710] = rumourSource, -- Mushroom Classification Book",
+        [190942] = rumourSource, -- Music Box, Sheogorath Butterfly Garden",
+        [197623] = rumourSource, -- Statue, Hermaeus Mora",
+        [197624] = rumourSource, -- Apocryphal Shifting Sculpture",
+        [197625] = rumourSource, -- Music Box, Oath of the Keepers",
+        [194534] = rumourSource, -- Dock Bell, Mounted",
+        [197709] = rumourSource, -- Tribunal Window, Stained Glass",
+        [194536] = rumourSource, -- Dock Buoys, Mounted",
+        [194538] = rumourSource, -- Cargo Netting, Large",
+        [194539] = rumourSource, -- Rough Hammock, Pole-Strung",
+        [196204] = rumourSource, -- Blackwood Brazier, Cold-Flame",
+        [196205] = rumourSource, -- Systres Brazier, Cold-Flame",
+        [196206] = rumourSource, -- Daedric Post, Spike",
+        [196207] = rumourSource, -- Daedric Turret, Flame Tower",
+        [196208] = rumourSource, -- Sarcophagus, Stone Base",
+        [196209] = rumourSource, -- Sarcophagus, Stone Lid",
+        [196210] = rumourSource, -- Necrom Coffin",
+        [196211] = rumourSource, -- Apocrypha Statue, Lurker",
+        [196212] = rumourSource, -- Apocrypha Statue, Mouth of Mora",
+        [196213] = rumourSource, -- Door, Dark Brotherhood Sanctuary",
+        [196214] = rumourSource, -- Order of the Hour Rug, Winged",
+        [197751] = rumourSource, -- Sunset Fleet Painting, Wood",
+        [197752] = rumourSource, -- Mycoturge's Retreat Painting, Wood",
+        [197753] = rumourSource, -- Telvanni Peninsula Painting, Wood",
+        [115706] = rumourSource, -- Khajiit Tile, Full Moons",
+        [197755] = rumourSource, -- Shadow over Necrom Painting",
+        [115708] = rumourSource, -- Khajiit Tile, Waning Moons",
+        [197701] = rumourSource, -- Apocrypha Fossil, Nautilus",
+        [197749] = rumourSource, -- Necrom Still Life Painting, Wood",
+        [197754] = rumourSource, -- Offerings to the Dead Painting, Wood",
+},
+
+}
+
 FurC.MiscItemSources[FURC_SCRIBE] = {
 
 [FURC_CROWN] = {
@@ -103,6 +199,33 @@ FurC.MiscItemSources[FURC_SCRIBE] = {
 },
 
 [FURC_DROP] = {
+
+        [194456] = book_hall, -- Invocation of Hircine,
+        [194460] = book_hall, -- Apocrypha, Apocrypha,
+        [194459] = book_hall, -- Dream of a Thousand Dreamers,
+        [194458] = book_hall, -- Lord Hollowjack's Dream Realm,
+        [194455] = book_hall, -- Havocrel: Strangers from Oblivion,
+        [194454] = book_hall, -- The Waters of Oblivion,
+        [194453] = book_hall, -- A Memory Book, Part 1,
+        [194452] = book_hall, -- A Memory Book, Part 2,
+        [194451] = book_hall, -- A Memory Book, Part 3,
+        [194449] = book_hall, -- In Dreams We Awaken,
+        [194448] = book_hall, -- Glorious Upheaval,
+        [194447] = book_hall, -- Stonefire Ritual Tome,
+        [194446] = book_hall, -- Bisnensel: Our Ancient Roots,
+        [194445] = book_hall, -- Boethiah and Her Avatars,
+        [194444] = book_hall, -- Persistence of Daedric Veneration,
+        [194443] = book_hall, -- Daedra Dossier: The Titans,
+        [194419] = book_hall, -- Scrivener's Hall Vault Door,
+        [194420] = book_hall, -- Nesting Stones, Green,
+        [194421] = book_hall, -- Nesting Boulder, Green,
+        [194422] = book_hall, -- Hermaeus Mora Banner, Extra Long,
+        [194423] = book_hall, -- Hermaeus Mora Banner, Long,
+        [194442] = book_hall, -- Journal of Culanwe,
+        [194441] = book_hall, -- Graccus' Journal, Volume I,
+        [194440] = book_hall, -- Tome of Daedric Portals,
+        [194439] = book_hall, -- The Journal of Emperor Leovic,
+		[194450] = book_hall, -- Thwarting the Daedra: Dagon's Cult,
 
 },
 
@@ -123,20 +246,10 @@ FurC.MiscItemSources[FURC_SCRIBE] = {
         [193804] = rumourSource, -- High Elf Wine Pot,
         [193805] = rumourSource, -- Yokudan Sarcophagus Base, Gilded,
         [193806] = rumourSource, -- Redguard Window, Iron Lattice,
-        [194456] = rumourSource, -- Invocation of Hircine,
         [193817] = rumourSource, -- Shad Astula Scholar, Left,
         [193818] = rumourSource, -- Shad Astula Scholar, Right,
         [194359] = rumourSource, -- Replica Jubilee Cake 2023,
-        [194460] = rumourSource, -- Apocrypha, Apocrypha,
-        [194459] = rumourSource, -- Dream of a Thousand Dreamers,
-        [194458] = rumourSource, -- Lord Hollowjack's Dream Realm,
-        [194455] = rumourSource, -- Havocrel: Strangers from Oblivion,
-        [194454] = rumourSource, -- The Waters of Oblivion,
-        [194453] = rumourSource, -- A Memory Book, Part 1,
-        [194452] = rumourSource, -- A Memory Book, Part 2,
-        [194451] = rumourSource, -- A Memory Book, Part 3,
         [190941] = rumourSource, -- Music Box, Direnni's Swan,
-        [194450] = rumourSource, -- Thwarting the Daedra: Dagon's Cult,
         [194399] = rumourSource, -- Music Box, Unfathomable Knowledge,
         [194400] = rumourSource, -- Galen Dogwood, Large,
         [194401] = rumourSource, -- Galen Dogwood, Medium Cluster,
@@ -149,26 +262,10 @@ FurC.MiscItemSources[FURC_SCRIBE] = {
         [194408] = rumourSource, -- Systres Brewing Still, Copper,
         [194409] = rumourSource, -- Potted Tree, Systres Pine,
         [194410] = rumourSource, -- Stonelore Tale Pillar, Slanted Stone,
-        [194411] = rumourSource, -- Stonelore Tale Pillar, Rounded Stone,
-        [194449] = rumourSource, -- In Dreams We Awaken,
-        [194448] = rumourSource, -- Glorious Upheaval,
-        [194447] = rumourSource, -- Stonefire Ritual Tome,
-        [194446] = rumourSource, -- Bisnensel: Our Ancient Roots,
-        [194445] = rumourSource, -- Boethiah and Her Avatars,
-        [194444] = rumourSource, -- Persistence of Daedric Veneration,
-        [194443] = rumourSource, -- Daedra Dossier: The Titans,
-        [194419] = rumourSource, -- Scrivener's Hall Vault Door,
-        [194420] = rumourSource, -- Nesting Stones, Green,
-        [194421] = rumourSource, -- Nesting Boulder, Green,
-        [194422] = rumourSource, -- Hermaeus Mora Banner, Extra Long,
-        [194423] = rumourSource, -- Hermaeus Mora Banner, Long,
-        [194442] = rumourSource, -- Journal of Culanwe,
-        [194441] = rumourSource, -- Graccus' Journal, Volume I,
-        [194440] = rumourSource, -- Tome of Daedric Portals,
-        [194439] = rumourSource, -- The Journal of Emperor Leovic,
         [193789] = rumourSource, -- Gonfalon Bay Dockside Bell,
         [193790] = rumourSource, -- Festering Coral, Crimson-Orange,
         [193791] = rumourSource, -- Palm, Blooming Tropical,
+        [194411] = rumourSource, -- Stonelore Tale Pillar, Rounded Stone,
 	},
 
 }
@@ -219,8 +316,6 @@ FurC.MiscItemSources[FURC_DRUID] = {
 
 [FURC_RUMOUR] = {
         [192579] = rumourSource, -- Common Crate, Fabric Bolts",
-        [192572] = rumourSource, -- Inn Sign, Hanging",
-        [192571] = rumourSource, -- Grahtwood Banner, Hanging Inn",
         [192569] = rumourSource, -- Alchemy Shelves, Filled",
         [190939] = rumourSource, -- Music Box, Dawnbreaker's Forging",
         [190940] = rumourSource, -- Music Box, Songbird's Paradise",
@@ -926,12 +1021,6 @@ FurC.MiscItemSources[FURC_MARKAT]  = {
 	
 	[FURC_RUMOUR] = {
         [171382] = rumourSource, -- Reachmen Pergola, Ivy Overhang,
-        [171386] = rumourSource, -- Reachfolk Banner, Markarth,
-        [171387] = rumourSource, -- Nighthollow Banner,
-        [171388] = rumourSource, -- Dwarven Tonal Cascade,
-        [171389] = rumourSource, -- Dwarven Crystal Receptacle,
-        [171390] = rumourSource, -- Reachwitch Protective Totem,
-        [171391] = rumourSource, -- Reach Effigy of Turnabout,
         [153841] = rumourSource, -- Rewoven Khajiiti Tapestry,
         [167289] = rumourSource, -- Tree, Lowland White Pine,
         [167290] = rumourSource, -- Tree, Great Lowland White Pine,
@@ -942,10 +1031,8 @@ FurC.MiscItemSources[FURC_MARKAT]  = {
         [167296] = rumourSource, -- Tree, Giant Snowy White Pine,
         [167297] = rumourSource, -- Trees, Young Snowy White Pine Cluster,
         [167302] = rumourSource, -- Solitude Brazier, Metal,
-        [167304] = rumourSource, -- Solitude Pillar Base, Wood,
         [167306] = rumourSource, -- Tree, Towering Snowy White Pine,
         [167933] = rumourSource, -- Dwarven Beam Emitter, Medium,
-        [167328] = rumourSource, -- Solitude Platform, Square Wooden,
         [160541] = rumourSource, -- Outfit Station, Clockwork,
         [167934] = rumourSource, -- Dwarven Orrery, Scholastic,
         [167935] = rumourSource, -- Dwarven Work Lamp, Powered Floor,
@@ -1203,7 +1290,6 @@ FurC.MiscItemSources[FURC_STONET]  = {
         [118239] = rumourSource, -- Vial of Blood
         [116469] = rumourSource, -- Orcish Figure, Stone
         [117765] = rumourSource, -- Redguard Canopy, Dusk
-        [118175] = rumourSource, -- Shutters, Hinged Lattice
         [116472] = rumourSource, -- Orcish Throne, Skull
         [118174] = rumourSource, -- Shutters, Blue Lattice
         [116475] = rumourSource, -- Orcish Skull Goblet, Empty
@@ -1230,7 +1316,6 @@ FurC.MiscItemSources[FURC_STONET]  = {
         [119568] = rumourSource, -- Craglorn Ash Tree
         [119611] = rumourSource, -- Dominion Wall Banner, Small
         [119570] = rumourSource, -- Tree, Topal Weeping Willow
-        [117901] = rumourSource, -- Redguard Amphora, Gilded
         [118794] = rumourSource, -- Skeletal Remains, Orc Prone
         [119573] = rumourSource, -- Young Oak Tree
         [119574] = rumourSource, -- Twisted Oak Tree
@@ -1385,19 +1470,19 @@ FurC.MiscItemSources[FURC_SKYRIM]  = {
     [165843] = chests_skyrim,                     -- Painting: River's Journey Painting, Silver
     [165841] = chests_skyrim,                     -- Painting: Silent Solitude Painting, Silver
     [165844] = chests_skyrim,                     -- Painting: The Light Within Painting, Silver
-    [166440] = blackr_grcaverns,                  -- Painting: Light as Art Painting, Wood
-    [166441] = blackr_grcaverns,                  -- Painting: Gargoyle Guardians Painting, Wood
-    [166449] = blackr_grcaverns,                  -- Painting: Scion's Throne Painting, Wood
-    [166442] = blackr_grcaverns,                  -- Painting: The Deception of Light Painting, Wood
-    [166438] = blackr_grcaverns,                  -- Painting: Red Mist Blooming Painting, Wood
-    [166439] = blackr_grcaverns,                  -- Painting: Depths of Darkness Painting, Brass
-    [166443] = blackr_grcaverns,                  -- Painting: Contrasts Painting, Brass
-    [166444] = blackr_grcaverns,                  -- Painting: Luminescence Painting, Brass
-    [166445] = blackr_grcaverns,                  -- Painting: The Keep Painting, Brass
-    [166447] = blackr_grcaverns,                  -- Painting: Boon Companion, Brass
-    [166448] = blackr_grcaverns,                  -- Painting: The Scion Strides Forth Painting, Brass
-    [166446] = blackr_grcaverns,                  -- Painting: Still Life in Death Painting, Wood
-    [166437] = blackr_grcaverns,                  -- Painting: Stillness Everlasting Painting, Wood
+    [166440] = chests_blackr_grcaverns,                  -- Painting: Light as Art Painting, Wood
+    [166441] = chests_blackr_grcaverns,                  -- Painting: Gargoyle Guardians Painting, Wood
+    [166449] = chests_blackr_grcaverns,                  -- Painting: Scion's Throne Painting, Wood
+    [166442] = chests_blackr_grcaverns,                  -- Painting: The Deception of Light Painting, Wood
+    [166438] = chests_blackr_grcaverns,                  -- Painting: Red Mist Blooming Painting, Wood
+    [166439] = chests_blackr_grcaverns,                  -- Painting: Depths of Darkness Painting, Brass
+    [166443] = chests_blackr_grcaverns,                  -- Painting: Contrasts Painting, Brass
+    [166444] = chests_blackr_grcaverns,                  -- Painting: Luminescence Painting, Brass
+    [166445] = chests_blackr_grcaverns,                  -- Painting: The Keep Painting, Brass
+    [166447] = chests_blackr_grcaverns,                  -- Painting: Boon Companion, Brass
+    [166448] = chests_blackr_grcaverns,                  -- Painting: The Scion Strides Forth Painting, Brass
+    [166446] = chests_blackr_grcaverns,                  -- Painting: Still Life in Death Painting, Wood
+    [166437] = chests_blackr_grcaverns,                  -- Painting: Stillness Everlasting Painting, Wood
     
     [165866] = scrying .. " in Stonefalls",       -- Ashen Infernace Gate
     [165859] = scrying .. " in Bal Foyen",        -- The Dutiful Guar
