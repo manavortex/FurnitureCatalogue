@@ -231,6 +231,7 @@ FURC_AV_RAZ = "Razoufa",
   SI_FURC_FILTER_VERSION_DEPTHS = 	"Lost Depths",
   SI_FURC_FILTER_VERSION_DRUID = 	"Firesong",
   SI_FURC_FILTER_VERSION_SCRIBE = 	"Scribes of Fate",
+  SI_FURC_FILTER_VERSION_NECROM = 	"Necrom",
 
 
   -- =============================== --
@@ -274,6 +275,7 @@ FURC_AV_RAZ = "Razoufa",
   SI_FURC_FILTER_VERSION_DEPTHS_TT =	"What the heck is a Pangrit?",
   SI_FURC_FILTER_VERSION_DRUID_TT = 	"Remember when we could block?",
   SI_FURC_FILTER_VERSION_SCRIBE_TT = 	"Books and things",
+  SI_FURC_FILTER_VERSION_NECROM_TT = 	"So many tentacles",
 
   SI_FURC_FILTER_CHAR_OFF =     "Character filter: off", 
   SI_FURC_FILTER_CHAR_OFF_TT =  filterDisabled, 

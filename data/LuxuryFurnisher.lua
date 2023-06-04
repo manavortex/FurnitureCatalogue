@@ -1,5 +1,19 @@
 FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
+FurC.LuxuryFurnisher[FURC_SCRIBE] = {
+
+    [192572] = { -- Inn Sign, Hanging
+		itemPrice = 4000,
+		itemDate = "2023-03-18",
+	},
+    [192571] = { -- Grahtwood Banner, Hanging Inn
+		itemPrice = 4000,
+		itemDate = "2023-03-25",
+	},
+
+}
+
+
 FurC.LuxuryFurnisher[FURC_DRUID] = {
 
     [192573] = { -- Clockwork Illuminator, Spot
@@ -285,12 +299,12 @@ FurC.LuxuryFurnisher[FURC_DEADL] = {
 	
 	[182622] = {		-- Grahtwood Fighters Guild Sign
 		itemPrice	= 12000,
-		itemDate	= "2022-02-26",
+		itemDate	= "2023-03-25",
 	},
 	
 	[182621] = {		-- Mystic's Banner
 		itemPrice	= 4000,
-		itemDate	= "2022-02-19",
+		itemDate	= "2023-03-18",
 	},
 	
 	[182632] = {		-- Redguard Brazier, Stone Marker
@@ -1975,68 +1989,68 @@ FurC.LuxuryFurnisher[FURC_MARKAT] = {
 
 
 -- ====================================================================
-	[171414] = {		-- Fighters Guild Sign, Large
+	[171414] = {	-- Fighters Guild Sign, Large
 		itemPrice   = 12000,
-		itemDate  = "2022-02-26",
+		itemDate  = "2023-03-25",
 	},
 
 	[134432] = {  -- Banker's Sign, Small
  		itemPrice   = 3000,
-		itemDate  = "2022-02-26",
+		itemDate  = "2023-03-25",
 	},
 	[134431] = {  -- Merchant's Sign, Small
  		itemPrice   = 3000,
-		itemDate  = "2022-02-26",
+		itemDate  = "2023-03-25",
 	},
 	[134433] = {  -- Stablemaster's Sign, Small
  		itemPrice   = 3000,
-		itemDate  = "2022-02-26",
+		itemDate  = "2023-03-25",
 	},
 	[141765] = {    -- Banner, Transmute
  		itemPrice   = 12000,
-		itemDate  = "2022-02-26",
+		itemDate  = "2023-03-25",
 	},
 	[141766] = {    -- Banner, Transmute Small
  		itemPrice   = 5000,
-		itemDate  = "2022-02-26",
+		itemDate  = "2023-03-25",
 	},
 	[153700] = {    -- Banner, Packs
  		itemPrice   = 4000,
-		itemDate  = "2022-02-26",
+		itemDate  = "2023-03-25",
 	},
 	
 	
 -- ====================================================================
 	[171413] = {		-- Mages Guild Sign, Large
 		itemPrice   = 12000,
-		itemDate  = "2022-02-19",
+		itemDate  = "2023-03-18",
 	},
 	
 	[153699] = {    -- Banner, Furnishings
  		itemPrice   = 25000,
-		itemDate  = "2022-02-19",
+		itemDate  = "2023-03-18",
 	},
 
 	[141763] = {    -- Banner, Outfit
  		itemPrice   = 12000,
-		itemDate  = "2022-02-19",
+		itemDate  = "2023-03-18",
 	},
 	[141764] = {    -- Banner, Outfit Small
  		itemPrice   = 5000,
-		itemDate  = "2022-02-19",
+		itemDate  = "2023-03-18",
 	},
 	-- Dec. 1st
 	[134428] = {  -- Banker's Sign, Large
  		itemPrice   = 12000,
-		itemDate  = "2022-02-19",
+		itemDate  = "2023-03-18",
 	},
 	[134429] = {  -- Merchant's Sign, Large
  		itemPrice   = 12000,
-		itemDate  = "2022-02-19",
+		itemDate  = "2023-03-18",
 	},
 	[134430] = {  -- Stablemaster's Sign, Large
  		itemPrice   = 12000,
-		itemDate  = "2022-02-19",
+		itemDate  = "2023-03-18",
 	},
 	
 	-- ====================================================================
