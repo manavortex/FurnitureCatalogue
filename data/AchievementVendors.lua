@@ -1,3 +1,95 @@
+FurC.AchievementVendors[FURC_NECROM] = {
+["Necrom, Final Rest Furnishings"] = {
+	["Murkholg"] = {
+	[197642] = {		-- Apocrypha Plant, Anemone Cluster
+		itemPrice   = 1200,
+	},
+	[197641] = {		-- Apocrypha Plant, Suckerleaf
+		itemPrice   = 2000,
+	},
+	[197640] = {		-- Apocrypha Tree, Fossilized
+		itemPrice   = 500,
+	},
+	[197639] = {		-- Apocrypha Tree, Spore
+		itemPrice   = 20000,
+	},
+	[197643] = {		-- Boulder, Apocrypha Fossil
+		itemPrice   = 5000,
+	},
+	[197634] = {		-- Mushroom, Dual Mauve Dusk
+		itemPrice   = 500,
+	},
+	[197635] = {		-- Mushroom, Gilled Mauve Dusk
+		itemPrice   = 4000,
+	},
+	[197638] = {		-- Mushroom, Tall Russet Chanterelle
+		itemPrice   = 500,
+	},
+	[197636] = {		-- Plants, Guar Cabbage Cluster
+		itemPrice   = 2000,
+	},
+	[197637] = {		-- Plants, Lava Pitcher Patch
+		itemPrice   = 1500,
+	},
+	[197633] = {		-- Tree, Large Gnarled Laurel
+		itemPrice   = 2500,
+	},
+},
+	
+	["Vasei"] = {
+	[197717] = {		--Apocrypha Altar, Lighted
+		itemPrice   = 25000,
+		achievement = 3642,		-- Apocryphal Investigator
+	},
+	[197719] = {		--Apocrypha Courtyard Pool
+		itemPrice   = 18000,
+		achievement = 3646,		-- Secret Keeper
+	},
+	[197722] = {		--Apocrypha Portal Seal, Replica
+		itemPrice   = 17000,
+		achievement = 3635,		-- Defender of Necrom
+	},
+	[197723] = {		--Apocrypha Stalk, Scryeball
+		itemPrice   = 10000,
+		achievement = 3636,		-- Necrom Master Angler
+	},
+	[197716] = {		--Crystalline Mind Barrier, Replica
+		itemPrice   = 25000,
+		achievement = 3558,		-- Sanity's Edge Vanquisher
+	},
+	[197726] = {		--Dormant Tyranite Calx
+		itemPrice   = 20000,
+		achievement = 3689,		-- Sharp's Companion
+	},
+	[197720] = {		--Hermaeus Mora Banner
+		itemPrice   = 12000,
+		achievement = 3676,		-- Pulled from the Depths
+	},
+	[197718] = {		--Necrom Archway
+		itemPrice   = 15000,
+		achievement = 3679,		-- Necrom Master Explorer
+	},
+	[197715] = {		--Necrom Stele, Ceremonial
+		itemPrice   = 80000,
+		achievement = 3674,		-- Hero of Necrom
+	},
+	[197725] = {		--Replica Fateweaver Key
+		itemPrice   = 20000,
+		achievement = 3692,		-- Azandar's Companion
+	},
+	[197724] = {		--Tales of Tribute Kit, Travel
+		itemPrice   = 11000,
+		achievement = 3702,		-- Play the Paramount
+	},
+	[197721] = {		--The Lord of Fate and Knowledge Frieze
+		itemPrice   = 15000,
+		achievement = 3640,		-- Ghost Catcher
+	},
+  },
+},
+
+}
+
 
 FurC.AchievementVendors[FURC_SCRIBE] = {
 
