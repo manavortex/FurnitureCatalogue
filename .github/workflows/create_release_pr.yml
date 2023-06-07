@@ -54,7 +54,7 @@ jobs:
         id: get_details
         run: |
           JSON_FILE="full_json.tmp"
-          if [[ "workflow_dispatch" == "pull_request" ]]; then
+          if [[ $IS_PR_EVENT ]]; then
             echo "$PR_JSON" > $JSON_FILE
           else
             gh pr list --base master --label actions:RELEASE --state merged --json labels,body,mergedAt --limit 10 --jq '. | sort_by(.mergedAt) | reverse | .[0]' > $JSON_FILE
@@ -71,6 +71,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PR_JSON: ${{ toJson(github.event.pull_request) }}
+          IS_PR_EVENT: ${{github.event_name != 'workflow_dispatch'}}
+
 
       # Check if we have a major, minor or patch version change
       # LABELS looks like:"actions:RELEASE\nversion:MAJOR\n" (not JSON)

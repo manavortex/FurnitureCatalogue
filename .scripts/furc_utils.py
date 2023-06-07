@@ -234,6 +234,9 @@ def replace_once_in_file(pattern_repl_fallback: list[tuple], path: str) -> bool:
       else:
         f_new = pattern.sub(repl=replacement, string=f_new, count=1)
 
+    # Unify leading and trailing whitespace to make the relevant part comparable
+    f_current = f"{f_current}".strip() + "\n"
+    f_new = f"{f_new}".strip() + "\n"
     if f_current != f_new:
       f.seek(0)
       f.write(f_new)
