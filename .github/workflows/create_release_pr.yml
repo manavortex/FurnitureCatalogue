@@ -18,11 +18,9 @@ on:
   workflow_dispatch:
   # Triggered by merging a PR labeled as 'actions:RELEASE' into master
   pull_request:
-    types:
-      - closed
+    types: [closed]
     # Only run if PR targets master
-    branches:
-      - master
+    branches: [master]
 
 jobs:
   release_pr:
@@ -37,8 +35,8 @@ jobs:
         with:
           ref: master
       - run: |
-          git config --local user.name "Handles-Your-Releases"
-          git config --local user.email "handles@furcat"
+          git config --local user.name "Handles-Your-Releases[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
       # Install dependencies for required scripts
       - name: Setup Python
@@ -72,7 +70,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PR_JSON: ${{ toJson(github.event.pull_request) }}
           IS_PR_EVENT: ${{github.event_name != 'workflow_dispatch'}}
-
 
       # Check if we have a major, minor or patch version change
       # LABELS looks like:"actions:RELEASE\nversion:MAJOR\n" (not JSON)

@@ -30,8 +30,8 @@ jobs:
         with:
           ref: master
       - run: |
-          git config --local user.name "Handles-Your-Releases"
-          git config --local user.email "handles@furcat"
+          git config --local user.name "Handles-Your-Releases[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
       - name: Setup Python
         uses: actions/setup-python@v4.6.0
@@ -83,8 +83,8 @@ jobs:
         with:
           ref: dev
       - run: |
-          git config --local user.name "Handles-Your-Releases"
-          git config --local user.email "handles@furcat"
+          git config --local user.name "Handles-Your-Releases[bot][bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
