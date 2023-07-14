@@ -215,6 +215,9 @@ local logger
 --- Gets the current logger or creates it if it doesn't exist yet
 --- @param forceCreate boolean Force (re)creation of logger
 --- @return table logger instance
+--- Gets the current logger or creates it if it doesn't exist yet
+--- @param forceCreate boolean Force (re)creation of logger
+--- @return table logger instance
 function FurC.getOrCreateLogger(forceCreate)
   if not forceCreate and logger then return logger end -- return existing reference
 
