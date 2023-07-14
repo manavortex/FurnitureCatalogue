@@ -1,0 +1,211 @@
+openapi: "3.0.0"
+info:
+  title: "ESOUI AddOns API"
+  version: "1.0.0"
+
+servers:
+  - url: https://api.esoui.com/addons
+
+components:
+  responses:
+    "202":
+      description: "Update Accepted."
+    "401":
+      description: "Permission Denied. You are not the author or team member of this AddOn"
+    "403":
+      description: "AddOn Disabled (An admin has disabled your AddOn)"
+    "404":
+      description: "No AddOns found. (You don't have any AddOns) or ID(s) are missing for AddOn details"
+    "405":
+      description: "Missing required data fields for AddOn Update (See actual error message for a list of fields)"
+    "415":
+      description: " File type not supported (You have tried to upload a file other than a zip/rar)"
+    "500":
+      description: "File update failed (Contact an admin, something bad happened)"
+  schemas:
+    UpdateBody:
+      type: object
+      properties:
+        id:
+          description: "ID number of your AddOn you wish to update."
+          type: "integer"
+        title:
+          description: "Title or name of your AddOn."
+          type: "string"
+        version:
+          description: "Version number of your AddOn. *Must change this number if new file is included."
+          type: "string"
+        description:
+          description: "Full description of your AddOn."
+          type: "string"
+        changelog:
+          description: "Full changelog of your AddOn."
+          type: "string"
+        archive:
+          description: "Default/Blank = Archive previous, Yes = Archive previous, No = Do not archive previous"
+          type: "string"
+        compatible:
+          description: "Comma delimited list of all patch numbers your AddOn is compatiable with."
+          type: "string"
+        updatefile:
+          description: "AddOn Zip or Rar file."
+          type: "string"
+          format: "binary"
+      required:
+        - id
+    AddOnInfo:
+      type: "object"
+      properties:
+        id:
+          type: "string"
+          example: "1617"
+        title:
+          type: "string"
+          example: "Furniture Catalogue"
+        filename:
+          description: "filename of zip archive"
+          type: "string"
+          example: "FurnitureCatalogue-4.71.zip"
+        version:
+          type: "string"
+          example: "4.71"
+        updated:
+          type: "string"
+          example: "1678719846"
+        created:
+          type: "string"
+          example: "1487548838"
+        description:
+          type: "string"
+          example: "some text"
+        changelog:
+          type: "string"
+          example: "some more text"
+        compatibility:
+          example:
+            - "8.3.5"
+            - "8.2.5"
+            - "8.1.5"
+            - "8.0.0"
+          type: "array"
+          items:
+            type: "string"
+        update:
+          type: "string"
+          example: "https://api.esoui.com/addons/update"
+
+paths:
+  /update:
+    get:
+      summary: "Get required fields for Upload"
+      responses:
+        "200":
+          description: "Returns a description of UpdateBody expected by POST"
+          content:
+            application/json:
+              schema:
+                type: "array"
+                items:
+                  allOf:
+                    - type: "object"
+                      properties:
+                        ERROR:
+                          type: "string"
+                          example: "Please POST the following data for AddOn Updates.."
+                    - $ref: "#/components/schemas/UpdateBody"
+    post:
+      summary: "Update AddOn"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateBody"
+      responses:
+        "202":
+          $ref: "#/components/responses/202"
+        "401":
+          $ref: "#/components/responses/401"
+        "403":
+          $ref: "#/components/responses/403"
+        "405":
+          $ref: "#/components/responses/405"
+        "415":
+          $ref: "#/components/responses/415"
+
+  /compatible.json:
+    get:
+      summary: "Get compatible versions"
+      responses:
+        "200":
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                type: "array"
+                items:
+                  type: "object"
+                  properties:
+                    id:
+                      type: "string"
+                    name:
+                      type: "string"
+                    interface:
+                      type: "string"
+                    default:
+                      type: "boolean"
+              example:
+                - id: "9.0.0"
+                  name: "Necrom"
+                  interface: "101038"
+                  default: true
+                - id: "1.2.3"
+                  name: "SomeOtherName"
+                  interface: "100123"
+                  default: false
+
+  /details/{ADDON_ID}.json:
+    get:
+      summary: "Get AddOn details"
+      parameters:
+        - in: path
+          name: ADDON_ID
+          schema:
+            type: string
+          required: true
+          description: The id of the AddOn
+      responses:
+        "200":
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/AddOnInfo"
+        "404":
+          $ref: "#/components/responses/404"
+
+  /list.json:
+    get:
+      summary: "Get AddOns you have access to"
+      responses:
+        "200":
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                type: "array"
+                items:
+                  type: "object"
+                  properties:
+                    id:
+                      type: "string"
+                    title:
+                      type: "string"
+                    details:
+                      type: "string"
+                  example:
+                    id: "1617"
+                    title: "Furniture Catalogue"
+                    details: "https://api.esoui.com/addons/details/1617.json"
