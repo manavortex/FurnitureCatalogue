@@ -1,13 +1,20 @@
 #!/usr/bin/env python3
 
-"""Helps getting names of GUI elements for IDE support.
-Use paths relative to the script. Use inside the script folder.
+"""Helps getting names of GUI elements for IDE support. Make a backup, if you have manual entries.
+
+Use inside the script folder and paths relative to the script, because those are being used as identifiers for the code section markers like:
+
+-- ////// START : GENERATED FROM ../FurnitureCatalogue_DevUtility/xml.xml
+...
+-- ////// END   : GENERATED FROM ../FurnitureCatalogue_DevUtility/xml.xml
+
 Example calls:
-  python ./generateGuiNames.py
-  python ./generateGuiNames.py ../dir/input.xml
-  python ./generateGuiNames.py ../dir/input.xml ./output.lua
-  python ./generateGuiNames.py ../xml/FurnitureCatalogue.xml
-  python ./generateGuiNames.py ../FurnitureCatalogue_DevUtility/xml.xml
+  cd .scripts
+  python ./luaDoc_generateGui.py
+  python ./luaDoc_generateGui.py ../dir/input.xml
+  python ./luaDoc_generateGui.py ../dir/input.xml ./output.lua
+  python ./luaDoc_generateGui.py ../xml/FurnitureCatalogue.xml
+  python ./luaDoc_generateGui.py ../FurnitureCatalogue_DevUtility/xml.xml
 """
 
 import sys
@@ -89,7 +96,7 @@ def get_resolved_hierarchy(root: ET.Element) -> list[str]:
 
   return result
 
-def write_lua_doc(identifier: str, lua_path: str, content: str):
+def write_lua_doc(identifier: str, lua_path: str, parsed: list):
   lua_content = get_file_content(lua_path)
 
   start_marker  = f"-- ////// START : GENERATED FROM {identifier}\n"
@@ -99,10 +106,10 @@ def write_lua_doc(identifier: str, lua_path: str, content: str):
     # replace region, if already exists
     start_index = lua_content.index(start_marker)
     end_index = lua_content.index(end_marker)
-    lua_content[start_index + 1:end_index] = content
+    lua_content[start_index + 1:end_index] = parsed
   except ValueError:
     # append region, if doesn't exist
-    lua_content.extend([start_marker] + content + [end_marker])
+    lua_content.extend([start_marker] + parsed + [end_marker])
 
   # save changes to file
   with open(lua_path, 'w') as file:
@@ -117,7 +124,7 @@ if __name__ == '__main__':
     xml_paths = ["../xml/FurnitureCatalogue.xml", "../FurnitureCatalogue_DevUtility/xml.xml"]
     for xml_path in xml_paths:
       resolved_names = get_resolved_hierarchy(load_xml_file(xml_path))
-      write_lua_doc(identifier=xml_path, lua_path=lua_path, content=resolved_names)
+      write_lua_doc(identifier=xml_path, lua_path=lua_path, parsed=resolved_names)
       print(f"Wrote {xml_path} to {lua_path}")
     exit(EXIT_SUCCESS)
 
@@ -127,6 +134,6 @@ if __name__ == '__main__':
     lua_path = sys.argv[2].replace('\\','/')
 
   resolved_names = get_resolved_hierarchy(load_xml_file(xml_path))
-  write_lua_doc(identifier=xml_path, lua_path=lua_path, content=resolved_names)
+  write_lua_doc(identifier=xml_path, lua_path=lua_path, parsed=resolved_names)
   print(f"Wrote {xml_path} to {lua_path}")
   exit(EXIT_SUCCESS)
