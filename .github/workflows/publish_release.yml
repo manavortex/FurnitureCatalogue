@@ -1,0 +1,70 @@
+name: PublishToESOUI
+
+# Connected workflows are:
+# 1. CreateReleasePR - create_release_pr.yml
+# 2. PackageRelease  - package_release.yml
+# 3. 📍PublishToESOUI - publish_release.yml
+# Refer to CONTRIBUTING.md for more info
+
+# Publishes the latest release to ESOUI. Release tag has to have a higher version than latest on ESOUI and it must be the same as in the AddOn manifest txt.
+
+permissions:
+  contents: write
+on:
+  # Run when started manually in Actions
+  workflow_dispatch:
+  # Run on humanual release (does not react to regular bot actions)
+  release:
+    types: [created, published, released]
+  # Run when PackageRelease finishes
+  workflow_run:
+    workflows: ["PackageRelease"]
+    types: [completed]
+
+jobs:
+  upload:
+    # always run if it was started manually
+    # skip if it was triggered by a failed run
+    # skip if it's just a prerelease or draft
+    if: github.event_name == 'workflow_dispatch' || (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success') || (github.event_name == 'release' && github.event.release.prerelease == false && github.event.release.draft == false)
+
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v4.6.0
+        with:
+          python-version: "^3.6"
+          cache: pip
+      - run: pip install -r .scripts/requirements.txt
+
+      # Get release data, fall back to latest release if we ran manually
+      - name: Get Data from Latest Release
+        id: latest_release
+        run: |
+          LATEST_TAG="$(echo "$(gh release list --limit 10 | python .scripts/furc_utils.py getlatest)")"
+          if [[ $RELEASE_TAG ]]; then
+            if [[ "$RELEASE_TAG" != "$LATEST_TAG" ]]; then
+              echo "🔥 Release tag '$RELEASE_TAG' is different from latest release '$LATEST_TAG' 🔥"
+              echo "🔥 Please publish nonstandard releases manually to avoid unforeseen problems 🔥"
+              exit 1
+            fi
+          else
+            RELEASE_TAG=$LATEST_TAG
+          fi
+          RELEASE_ARCHIVE="$(gh release view "$RELEASE_TAG" --json assets --jq '.assets[0].url')"
+          echo "ARCHIVE=$RELEASE_ARCHIVE" >> $GITHUB_OUTPUT
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RELEASE_TAG: ${{ github.event.release.tag_name }}
+
+      # Will fail if TAG <= live version
+      - name: Publish
+        run: |
+          python .scripts/publish.py --changelog-max-entries "15" \
+            --archive-file "${{ steps.latest_release.outputs.ARCHIVE }}" \
+            --print-response
+        env:
+          ESOUI_API_TOKEN: ${{ secrets.ESOUI_API_TOKEN }}
