@@ -137,68 +137,66 @@ local strings = {
   SI_FURC_STRING_CONTEXTMENU_DIVIDER = "Don't use divider in context menu?",
   SI_FURC_STRING_CONTEXTMENU_DIVIDER_TT = "Adds a divider to the context menu above the - Furniture entry. Check to disable",
 
-
-  SI_FURC_STRING_MENU_RUMOUR_N                = "Hide rumour recipes?",
-  SI_FURC_STRING_MENU_CROWN                   = "Crown store items",
-  SI_FURC_STRING_MENU_CROWN_N                 = "Hide crown store items?",
+  SI_FURC_STRING_MENU_RUMOUR_N = "Hide rumour recipes?",
+  SI_FURC_STRING_MENU_CROWN = "Crown store items",
+  SI_FURC_STRING_MENU_CROWN_N = "Hide crown store items?",
   SI_FURC_STRING_MENU_CROWN_DESC = "The furniture database will update whenever the tooltip shows a furniture item. \nSome items can only be acquired via crown store. \nCheck this box to exclude them from the default filters (disable crown store filter below).",
 
   -- Filter text search
-  SI_FURC_STRING_MENU_HEADER_F_ALL_ON_TEXT    = "Filter settings for text search",
-  SI_FURC_STRING_MENU_F_ALL_ON_TEXT           = "Configure this filter",
+  SI_FURC_STRING_MENU_HEADER_F_ALL_ON_TEXT = "Filter settings for text search",
+  SI_FURC_STRING_MENU_F_ALL_ON_TEXT = "Configure this filter",
   SI_FURC_STRING_MENU_HEADER_F_ALL_DESC = "Configure filter settings for text search with disabled dropdowns. \nThese settings will only take effect when you have not set a source, character or version filter.",
 
-  SI_FURC_STRING_MENU_FILTER_ALL_ON_TEXT      = "Search filtered items when doing a text search with no dropdown filters set?",
-  SI_FURC_STRING_MENU_FILTER_ALL_ON_TEXT_TT   = "When doing a text search without any dropdown ",
-  SI_FURC_STRING_MENU_FALL_HIDE_BOOKS         = "Hide books anyway",
-  SI_FURC_STRING_MENU_FALL_HIDE_BOOKS_TT      = "Even when filtering all items, still hide books?",
-  SI_FURC_STRING_MENU_FALL_HIDE_CROWN         = "Hide crown store items anyway",
-  SI_FURC_STRING_MENU_FALL_HIDE_CROWN_TT      = "Even when filtering all items, still hide crown store items?",
-  SI_FURC_STRING_MENU_FALL_HIDE_RUMOUR        = "Hide rumour items anyway",
-  SI_FURC_STRING_MENU_FALL_HIDE_RUMOUR_TT     = "Even when filtering all items, still hide rumour items?",
+  SI_FURC_STRING_MENU_FILTER_ALL_ON_TEXT = "Search filtered items when doing a text search with no dropdown filters set?",
+  SI_FURC_STRING_MENU_FILTER_ALL_ON_TEXT_TT = "When doing a text search without any dropdown ",
+  SI_FURC_STRING_MENU_FALL_HIDE_BOOKS = "Hide books anyway",
+  SI_FURC_STRING_MENU_FALL_HIDE_BOOKS_TT = "Even when filtering all items, still hide books?",
+  SI_FURC_STRING_MENU_FALL_HIDE_CROWN = "Hide crown store items anyway",
+  SI_FURC_STRING_MENU_FALL_HIDE_CROWN_TT = "Even when filtering all items, still hide crown store items?",
+  SI_FURC_STRING_MENU_FALL_HIDE_RUMOUR = "Hide rumour items anyway",
+  SI_FURC_STRING_MENU_FALL_HIDE_RUMOUR_TT = "Even when filtering all items, still hide rumour items?",
 
   -- Hide menu entries
-  SI_FURC_STRING_MENU_HIDE_MENU               = "Hide menu entries?",
-  SI_FURC_STRING_MENU_HIDE_MENU_TT = "Hides \"Crown store\" and \"Rumour recipes\" from the dropdown \nactivated for crown store by default, as there aren't any items yet\nRequires UI reload (won't happen automatically for your convenience)",
-  SI_FURC_STRING_MENU_HIDE_MENU_RUMOUR        = "Hide \"Rumour recipes\" drop down entry?",
-  SI_FURC_STRING_MENU_HIDE_MENU_CROWN         = "Hide \"Crown Store\" drop down entry?",
-  SI_FURC_STRING_MENU_TOOLTIP                 = "Enable tooltips?",
-  SI_FURC_STRING_MENU_TOOLTIP_COLOR           = "Colorize tooltips for clarity?",
-  SI_FURC_STRING_MENU_TOOLTIP_COLOR_TT        = "Will colour 'can' and 'cannot'",
-  SI_FURC_STRING_MENU_TOOLTIP_HIDE_KNOWN      = "Hide item knowledge from tooltip",
-  SI_FURC_STRING_MENU_TOOLTIP_HIDE_KNOWN_TT   = "Hides 'can be crafted by...' from tooltip",
-  SI_FURC_STRING_MENU_TOOLTIP_HIDE_UNKNOWN    = "Hide if item is unknown",
+  SI_FURC_STRING_MENU_HIDE_MENU = "Hide menu entries?",
+  SI_FURC_STRING_MENU_HIDE_MENU_TT = 'Hides "Crown store" and "Rumour recipes" from the dropdown \nactivated for crown store by default, as there aren\'t any items yet\nRequires UI reload (won\'t happen automatically for your convenience)',
+  SI_FURC_STRING_MENU_HIDE_MENU_RUMOUR = 'Hide "Rumour recipes" drop down entry?',
+  SI_FURC_STRING_MENU_HIDE_MENU_CROWN = 'Hide "Crown Store" drop down entry?',
+  SI_FURC_STRING_MENU_TOOLTIP = "Enable tooltips?",
+  SI_FURC_STRING_MENU_TOOLTIP_COLOR = "Colorize tooltips for clarity?",
+  SI_FURC_STRING_MENU_TOOLTIP_COLOR_TT = "Will colour 'can' and 'cannot'",
+  SI_FURC_STRING_MENU_TOOLTIP_HIDE_KNOWN = "Hide item knowledge from tooltip",
+  SI_FURC_STRING_MENU_TOOLTIP_HIDE_KNOWN_TT = "Hides 'can be crafted by...' from tooltip",
+  SI_FURC_STRING_MENU_TOOLTIP_HIDE_UNKNOWN = "Hide if item is unknown",
   SI_FURC_STRING_MENU_TOOLTIP_HIDE_UNKNOWN_TT = "Hides 'you cannot craft this yet'",
-  SI_FURC_STRING_MENU_TOOLTIP_HIDE_SOURCE     = "Hide item source?",
-  SI_FURC_STRING_MENU_TOOLTIP_HIDE_STATION    = "Hide crafting station?",
-  SI_FURC_STRING_MENU_TOOLTIP_HIDE_MATERIAL   = "Hide material?",
+  SI_FURC_STRING_MENU_TOOLTIP_HIDE_SOURCE = "Hide item source?",
+  SI_FURC_STRING_MENU_TOOLTIP_HIDE_STATION = "Hide crafting station?",
+  SI_FURC_STRING_MENU_TOOLTIP_HIDE_MATERIAL = "Hide material?",
 
   -- =============================== --
   -- ==== GUI: Dropdown entries ==== --
   -- =============================== --
 
-  SI_FURC_NONE                                = "Source filter: off",
-  SI_FURC_FAVE                                = "Favorites",
-  SI_FURC_CRAFTING                            = "Craftable: All",
-  SI_FURC_CRAFTING_KNOWN                      = "Craftable: Known",
-  SI_FURC_CRAFTING_UNKNOWN                    = "Craftable: Unknown",
-  SI_FURC_VENDOR                              = "Purchaseable (gold)",
-  SI_FURC_PVP                                 = "Purchaseable (AP)",
-  SI_FURC_CROWN                               = "Crown Store",
-  SI_FURC_LUXURY                              = "Luxury items",
-  SI_FURC_RUMOUR                              = "Rumour items",
-  SI_FURC_OTHER                               = "Other",
+  SI_FURC_NONE = "Source filter: off",
+  SI_FURC_FAVE = "Favorites",
+  SI_FURC_CRAFTING = "Craftable: All",
+  SI_FURC_CRAFTING_KNOWN = "Craftable: Known",
+  SI_FURC_CRAFTING_UNKNOWN = "Craftable: Unknown",
+  SI_FURC_VENDOR = "Purchaseable (gold)",
+  SI_FURC_PVP = "Purchaseable (AP)",
+  SI_FURC_CROWN = "Crown Store",
+  SI_FURC_LUXURY = "Luxury items",
+  SI_FURC_RUMOUR = "Rumour items",
+  SI_FURC_OTHER = "Other",
 
-  SI_FURC_FILTER_VERSION_OFF                  = "Version filter: off",
-  SI_FURC_FILTER_VERSION_HS                   = "Homestead",
-  SI_FURC_FILTER_VERSION_M                    = "Morrowind",
-  SI_FURC_FILTER_VERSION_R                    = "Horns of the Reach",
-  SI_FURC_FILTER_VERSION_CC                   = "Clockwork City",
-  SI_FURC_FILTER_VERSION_DRAGON               = "Dragon Bones",
-  SI_FURC_FILTER_VERSION_ALTMER               = "Summerset",
-  SI_FURC_FILTER_VERSION_WEREWOLF             = "Wolfhunter",
-  SI_FURC_FILTER_VERSION_SLAVES               = "Murkmire",
-
+  SI_FURC_FILTER_VERSION_OFF = "Version filter: off",
+  SI_FURC_FILTER_VERSION_HS = "Homestead",
+  SI_FURC_FILTER_VERSION_M = "Morrowind",
+  SI_FURC_FILTER_VERSION_R = "Horns of the Reach",
+  SI_FURC_FILTER_VERSION_CC = "Clockwork City",
+  SI_FURC_FILTER_VERSION_DRAGON = "Dragon Bones",
+  SI_FURC_FILTER_VERSION_ALTMER = "Summerset",
+  SI_FURC_FILTER_VERSION_WEREWOLF = "Wolfhunter",
+  SI_FURC_FILTER_VERSION_SLAVES = "Murkmire",
 
   -- =============================== --
   -- = GUI: Dropdown entry tooltip = --
@@ -218,7 +216,7 @@ local strings = {
 
   SI_FURC_FILTER_VERSION_OFF_TT = filterDisabled,
   SI_FURC_FILTER_VERSION_HS_TT = "Items released in Homestead update",
-  SI_FURC_FILTER_VERSION_M_TT = "YOU N\'WAH!",
+  SI_FURC_FILTER_VERSION_M_TT = "YOU N'WAH!",
   SI_FURC_FILTER_VERSION_R_TT = "Because all we needed were more Reachmen",
   SI_FURC_FILTER_VERSION_CC_TT = "Where the flywheels churn and the brass is pretty",
   SI_FURC_FILTER_VERSION_DRAGON_TT = "If you got this from Narsis Dren, well...",
@@ -269,7 +267,6 @@ local strings = {
 
   SI_FURC_SEEN_IN_GUILDSTORE = "Seen in Guild Store",
 }
-
 
 for stringId, stringValue in pairs(strings) do
   ZO_CreateStringId(stringId, stringValue)

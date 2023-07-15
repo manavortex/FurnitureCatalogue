@@ -171,12 +171,11 @@ local strings = {
   SI_FURC_STRING_MENU_FALL_HIDE_RUMOUR = "Hide rumour items anyway",
   SI_FURC_STRING_MENU_FALL_HIDE_RUMOUR_TT = "Even when filtering all items, still hide rumour items?",
 
-
   -- Hide menu entries
   SI_FURC_STRING_MENU_HIDE_MENU = "Hide menu entries?",
-  SI_FURC_STRING_MENU_HIDE_MENU_TT = "Hides \"Crown store\" and \"Rumour recipes\" from the dropdown \nactivated for crown store by default, as there aren't any items yet\nRequires UI reload (won't happen automatically for your convenience)",
-  SI_FURC_STRING_MENU_HIDE_MENU_RUMOUR = "Hide \"Rumour recipes\" drop down entry?",
-  SI_FURC_STRING_MENU_HIDE_MENU_CROWN = "Hide \"Crown Store\" drop down entry?",
+  SI_FURC_STRING_MENU_HIDE_MENU_TT = 'Hides "Crown store" and "Rumour recipes" from the dropdown \nactivated for crown store by default, as there aren\'t any items yet\nRequires UI reload (won\'t happen automatically for your convenience)',
+  SI_FURC_STRING_MENU_HIDE_MENU_RUMOUR = 'Hide "Rumour recipes" drop down entry?',
+  SI_FURC_STRING_MENU_HIDE_MENU_CROWN = 'Hide "Crown Store" drop down entry?',
   SI_FURC_STRING_MENU_TOOLTIP = "Enable tooltips?",
   SI_FURC_STRING_MENU_TOOLTIP_COLOR = "Colorize tooltips for clarity?",
   SI_FURC_STRING_MENU_TOOLTIP_COLOR_TT = "Will colour 'can' and 'cannot'",
@@ -231,7 +230,6 @@ local strings = {
   SI_FURC_FILTER_VERSION_SCRIBE = "Scribes of Fate",
   SI_FURC_FILTER_VERSION_NECROM = "Necrom",
 
-
   -- =============================== --
   -- = GUI: Dropdown entry tooltip = --
   -- =============================== --
@@ -250,7 +248,7 @@ local strings = {
 
   SI_FURC_FILTER_VERSION_OFF_TT = filterDisabled,
   SI_FURC_FILTER_VERSION_HS_TT = "Items released in Homestead update",
-  SI_FURC_FILTER_VERSION_M_TT = "YOU N\'WAH!",
+  SI_FURC_FILTER_VERSION_M_TT = "YOU N'WAH!",
   SI_FURC_FILTER_VERSION_R_TT = "Because all we needed were more Reachmen",
   SI_FURC_FILTER_VERSION_CC_TT = "Where the flywheels churn and the brass is pretty",
   SI_FURC_FILTER_VERSION_DRAGON_TT = "If you got this from Narsis Dren, well...",
@@ -327,7 +325,6 @@ local strings = {
 
   SI_FURC_SEEN_IN_GUILDSTORE = "Seen in Guild Store",
 }
-
 
 for stringId, stringValue in pairs(strings) do
   ZO_CreateStringId(stringId, stringValue)

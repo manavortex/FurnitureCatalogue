@@ -13,10 +13,12 @@ insert_final_newline = true
 [*.bat]
 indent_style = tab
 
-# Lua files (do not enforce newline or it will also split long expressions)
+# Lua files
 [*.lua]
 indent_size = 2
-insert_final_newline = false
+indent_style = space
+# if Stylua is enabled it will overwrite those settings
+# for Stylua refer to stylua.toml instead
 
 # Markdown files
 [*.md]

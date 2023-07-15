@@ -171,7 +171,6 @@ local strings = {
   SI_FURC_STRING_MENU_FALL_HIDE_RUMOUR = "Cacher quand même les éléments signalé (Rumeur)",
   SI_FURC_STRING_MENU_FALL_HIDE_RUMOUR_TT = "Même lorsque vous filtrez tous les éléments, masquez toujours les éléments signalé (Rumeur)?",
 
-
   -- Hide menu entries
   SI_FURC_STRING_MENU_HIDE_MENU = "Masquer les entrées de menu?",
   SI_FURC_STRING_MENU_HIDE_MENU_TT = "Masque 'Boutique à couronne' et 'Recettes Signalé (Rumeur)' dans la liste déroulante \nactivée par défaut pour la boutique de la couronne, car il n'y a pas encore d'objets\nNécessite le rechargement de l'interface utilisateur (ne se produira pas automatiquement pour votre commodité)",
@@ -221,7 +220,6 @@ local strings = {
   SI_FURC_FILTER_VERSION_SKYRIM = "Greymoor",
   SI_FURC_FILTER_VERSION_STONET = "Stonethorn",
 
-
   -- =============================== --
   -- = GUI: Dropdown entry tooltip = --
   -- =============================== --
@@ -240,7 +238,7 @@ local strings = {
 
   SI_FURC_FILTER_VERSION_OFF_TT = "Filtre Désactivé",
   SI_FURC_FILTER_VERSION_HS_TT = "Articles publiés dans la mise à jour Homestead",
-  SI_FURC_FILTER_VERSION_M_TT = "VOUS N\'WAH!",
+  SI_FURC_FILTER_VERSION_M_TT = "VOUS N'WAH!",
   SI_FURC_FILTER_VERSION_R_TT = "Parce que tout ce dont nous avions besoin était plus de Reachmen",
   SI_FURC_FILTER_VERSION_CC_TT = "Où les volants tournent et le laiton est joli",
   SI_FURC_FILTER_VERSION_DRAGON_TT = "Si vous avez ça de Narsis Dren, eh bien...",
@@ -302,7 +300,6 @@ local strings = {
 
   SI_FURC_SEEN_IN_GUILDSTORE = "Vu dans le magasin de guilde",
 }
-
 
 for stringId, stringValue in pairs(strings) do
   ZO_CreateStringId(stringId, stringValue)
