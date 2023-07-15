@@ -13,9 +13,10 @@ insert_final_newline = true
 [*.bat]
 indent_style = tab
 
-# Lua files
+# Lua files (do not enforce newline or it will also split long expressions)
 [*.lua]
 indent_size = 2
+insert_final_newline = false
 
 # Markdown files
 [*.md]

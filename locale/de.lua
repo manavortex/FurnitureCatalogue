@@ -47,13 +47,11 @@ local strings = {
   SI_FURC_DIALOGUE_RESET_DB_BODY              = "This will re-create the FurnitureCatalogue database from scratch",
   SI_FURC_TEXTBOX_FILTER_DEFAULT              = "Filter by text search",
   SI_FURC_DEBUG_CHARSCANCOMPLETE              = "Furniture Catalogue: Character scan complete...",
-  SI_FURC_VERBOSE_STARTUP                     =
-  "Furniture Catalogue: If you miss any recipes, please trigger a scan on your furniture crafter by clicking the refresh button in the UI.",
+  SI_FURC_VERBOSE_STARTUP = "Furniture Catalogue: If you miss any recipes, please trigger a scan on your furniture crafter by clicking the refresh button in the UI.",
   SI_FURC_VERBOSE_DB_UPTODATE                 = "Furniture Catalogue: The database is up-to-date.",
   SI_FURC_VERBOSE_SCANNING_DATA_FILE          = "Furniture Catalogue: Scanning data files...",
   SI_FURC_VERBOSE_SCANNING_CHARS              = "Not scanning files, scanning character knowledge now...",
-  SI_FURC_ITEMSOURCE_EMPTY                    =
-  "Item source unknown.\nTry to re-scan files (refresh button right click).\nIf still unknown after, please send a mail with the item link and -source to @BerylBones",
+  SI_FURC_ITEMSOURCE_EMPTY = "Item source unknown.\nTry to re-scan files (refresh button right click).\nIf still unknown after, please send a mail with the item link and -source to @BerylBones",
   SI_FURC_RUMOUR_SOURCE_RECIPE                = "This recipe has been datamined, but not seen in-game",
   SI_FURC_RUMOUR_SOURCE_ITEM                  = "This item has been datamined, but not seen in-game",
   SI_FURC_STRING_CRAFTABLE_BY                 = "Can be crafted by ",
@@ -88,23 +86,19 @@ local strings = {
   SI_FURC_STRING_MENU_DEBUG                   = "Enable debug output",
   SI_FURC_STRING_MENU_RESET_DB_NAME           = "|cFF0000Reset database",
   SI_FURC_STRING_MENU_RESET_DB_TT             = "This will reset the furniture database.",
-  SI_FURC_STRING_MENU_RESET_DB_WARNING        =
-  "All your data will be reset. Only recipe knowledge for this character will be considered.",
+  SI_FURC_STRING_MENU_RESET_DB_WARNING = "All your data will be reset. Only recipe knowledge for this character will be considered.",
   SI_FURC_STRING_MENU_RESCAN_RUMOUR_NAME      = "Re-scan Rumour recipes",
   SI_FURC_STRING_MENU_RESCAN_RUMOUR_TT        = "Will update the rumour recipes against the updated list",
   SI_FURC_STRING_MENU_SCAN_FILES_NAME         = "Scan files",
   SI_FURC_STRING_MENU_SCAN_FILES_TT           = "Will run a full scan of the data in Furniture Catalogue's files",
   SI_FURC_STRING_MENU_SCAN_CHAR_NAME          = "Scan character",
-  SI_FURC_STRING_MENU_SCAN_CHAR_TT            =
-  "Will run a full scan of your known furniture recipes and update the database accordingly",
+  SI_FURC_STRING_MENU_SCAN_CHAR_TT = "Will run a full scan of your known furniture recipes and update the database accordingly",
   SI_FURC_STRING_MENU_DELETE_CHAR_NAME        = "delete character",
-  SI_FURC_STRING_MENU_DELETE_CHAR_TT          =
-  "Deletes all knowledge for this character from the database. \nCharacter will be scanned again the next time they log in with the add-on enabled. \n Character name won't show up in the dropdown if they don't know any recipes!",
+  SI_FURC_STRING_MENU_DELETE_CHAR_TT = "Deletes all knowledge for this character from the database. \nCharacter will be scanned again the next time they log in with the add-on enabled. \n Character name won't show up in the dropdown if they don't know any recipes!",
   SI_FURC_STRING_MENU_DELETE_CHAR_WARNING     = "Character knowledge will be wiped immediately",
   SI_FURC_STRING_MENU_ENABLE_SHOPPINGLIST     = "Enable integration?",
   SI_FURC_STRING_MENU_SKIP_INITIALSCAN        = "Skip Initial Scan?",
-  SI_FURC_STRING_MENU_SKIP_INITIALSCAN_TT     =
-  "Check this to not scan your character's recipes on login. \nThanks to votan's awesome LibAsync the lag is gone now in any case..",
+  SI_FURC_STRING_MENU_SKIP_INITIALSCAN_TT = "Check this to not scan your character's recipes on login. \nThanks to votan's awesome LibAsync the lag is gone now in any case..",
   SI_FURC_STRING_MENU_HEADER_ICONS            = "Inventory and bank icons",
   SI_FURC_STRING_MENU_ADD_ITEMS_NAME          = "Add items to known/unknown recipes?",
   SI_FURC_STRING_MENU_ADD_ITEMS_TT            = "You shouldn't notice any lag",
@@ -112,61 +106,50 @@ local strings = {
   SI_FURC_STRING_MENU_IT_THIS_ONLY            = "Only for this character?",
   SI_FURC_STRING_MENU_IT_THIS_ONLY_TT         = "Will be accountwide otherwise.",
   SI_FURC_STRING_MENU_USETINY                 = "Use tiny interface?",
-  SI_FURC_STRING_MENU_USETINY_TT              =
-  "Use a smaller interface (Craft Store like). \nYou can toggle this from the UI by clicking the +/- button.",
+  SI_FURC_STRING_MENU_USETINY_TT = "Use a smaller interface (Craft Store like). \nYou can toggle this from the UI by clicking the +/- button.",
 
   SI_FURC_STRING_MENU_STARTSILENT             = "Start silently?",
   SI_FURC_STRING_MENU_STARTSILENT_TT          = "Suppress startup message",
   SI_FURC_STRING_MENU_SHOWICONONLEFT          = "Show Known/Unknown icon on left?",
-  SI_FURC_STRING_MENU_SHOWICONONLEFT_TT       =
-  "Show Green Check/Red X icon on left or right of the inventory item (requires reloadui)",
+  SI_FURC_STRING_MENU_SHOWICONONLEFT_TT = "Show Green Check/Red X icon on left or right of the inventory item (requires reloadui)",
   SI_FURC_STRING_MENU_FONTSIZE                = "Font size",
   SI_FURC_STRING_MENU_FONTSIZE_TT             = "adjust font size for FurnitureCatalogue here",
   SI_FURC_STRING_MENU_DEFAULT_DD              = "Default dropdown values",
   SI_FURC_STRING_MENU_DEFAULT_DD_USE          = "Will be set on initial launch",
   SI_FURC_STRING_MENU_DEFAULT_DD_USE_TT       = "These will not reset if you open and close the UI",
   SI_FURC_STRING_MENU_DEFAULT_DD_RESET        = "Reset filters when closing UI?",
-  SI_FURC_STRING_MENU_DEFAULT_DD_RESET_TT     =
-  "If you check this, opening and closing will cause the filters to reset to whatever you set below.",
+  SI_FURC_STRING_MENU_DEFAULT_DD_RESET_TT = "If you check this, opening and closing will cause the filters to reset to whatever you set below.",
   SI_FURC_STRING_MENU_DEFAULT_DD_SOURCE       = "default source filter",
   SI_FURC_STRING_MENU_DEFAULT_DD_CHAR         = "default character filter",
   SI_FURC_STRING_MENU_DEFAULT_DD_VERSION      = "default version filter",
   SI_FURC_STRING_MENU_FILTERING               = "Catalogue filtering",
   SI_FURC_STRING_MENU_FILTER_BOOKS            = "Mages guild books",
   SI_FURC_STRING_MENU_FILTER_BOOKS_N          = "Hide books?",
-  SI_FURC_STRING_MENU_FILTER_BOOKS_TT         =
-  "A real book lover knows where everything is by heart. Hide books from Furniture Catalogue?",
+  SI_FURC_STRING_MENU_FILTER_BOOKS_TT = "A real book lover knows where everything is by heart. Hide books from Furniture Catalogue?",
   SI_FURC_STRING_MENU_LUXURY                  = "Luxury Furnishings",
   SI_FURC_STRING_MENU_LUXURY_N                = "Treat luxury items as purchaseables?",
-  SI_FURC_STRING_MENU_LUXURY_TT               =
-  "This will show everything that was sold by Zanil Theran under 'purchaseable' and deactvates the custom filter",
-  SI_FURC_STRING_MENU_LUXURY_WARN             =
-  "Hiding the dropdown entry requires UI reload (won't happen automatically for your convenience)",
+  SI_FURC_STRING_MENU_LUXURY_TT = "This will show everything that was sold by Zanil Theran under 'purchaseable' and deactvates the custom filter",
+  SI_FURC_STRING_MENU_LUXURY_WARN = "Hiding the dropdown entry requires UI reload (won't happen automatically for your convenience)",
 
   SI_FURC_STRING_MENU_RUMOUR                  = "Rumour recipes",
   SI_FURC_STRING_MENU_RUMOUR_N                = "Hide rumour recipes?",
-  SI_FURC_STRING_MENU_RUMOUR_DESC             =
-  "The furniture database contains a list of recipes that I have datamined.\nHowever, not all of those have been seen in-game.\nEnable this option to exclude them from the default filters.\nYou can still view them by selecting the corresponding source from the dropdown.",
+  SI_FURC_STRING_MENU_RUMOUR_DESC = "The furniture database contains a list of recipes that I have datamined.\nHowever, not all of those have been seen in-game.\nEnable this option to exclude them from the default filters.\nYou can still view them by selecting the corresponding source from the dropdown.",
 
   SI_FURC_STRING_CONTEXTMENU_INVENTORY        = "Disable context menu in inventory?",
-  SI_FURC_STRING_CONTEXTMENU_INVENTORY_TT     =
-  "Disables the context for inventory items like posting material and adding to favourites.",
+  SI_FURC_STRING_CONTEXTMENU_INVENTORY_TT = "Disables the context for inventory items like posting material and adding to favourites.",
   SI_FURC_STRING_CONTEXTMENU_DIVIDER          = "Don't use divider in context menu?",
-  SI_FURC_STRING_CONTEXTMENU_DIVIDER_TT       =
-  "Adds a divider to the context menu above the - Furniture entry. Check to disable",
+  SI_FURC_STRING_CONTEXTMENU_DIVIDER_TT = "Adds a divider to the context menu above the - Furniture entry. Check to disable",
 
   SI_FURC_STRING_MENU_CROWN                   = "Crown store items",
   SI_FURC_STRING_MENU_CROWN_N                 = "Hide crown store items?",
-  SI_FURC_STRING_MENU_CROWN_DESC              =
-  "Some items can only be acquired via crown store. \nCheck this box to exclude them from the default filters (You can still view them by selecting the corresponding source from the dropdown).",
+  SI_FURC_STRING_MENU_CROWN_DESC = "Some items can only be acquired via crown store. \nCheck this box to exclude them from the default filters (You can still view them by selecting the corresponding source from the dropdown).",
 
   SI_FURC_STRING_MENU_FALL_SHOW_UI_BUTTON     = "Show UI button in search box?",
 
   -- Filter text search
   SI_FURC_STRING_MENU_HEADER_F_ALL_ON_TEXT    = "Filter settings for text search",
   SI_FURC_STRING_MENU_F_ALL_ON_TEXT           = "Configure this filter",
-  SI_FURC_STRING_MENU_HEADER_F_ALL_DESC       =
-  "Configure filter settings for text search with disabled dropdowns. \nThese settings will only take effect when you have not set a source, character or version filter.",
+  SI_FURC_STRING_MENU_HEADER_F_ALL_DESC = "Configure filter settings for text search with disabled dropdowns. \nThese settings will only take effect when you have not set a source, character or version filter.",
 
   SI_FURC_STRING_MENU_FILTER_ALL_ON_TEXT      = "Search filtered items when doing a text search with no dropdown filters set?",
   SI_FURC_STRING_MENU_FILTER_ALL_ON_TEXT_TT   = "When doing a text search without any dropdown ",
@@ -179,8 +162,7 @@ local strings = {
 
   -- Hide menu entries
   SI_FURC_STRING_MENU_HIDE_MENU               = "Hide menu entries?",
-  SI_FURC_STRING_MENU_HIDE_MENU_TT            =
-  "Hides \"Crown store\" and \"Rumour recipes\" from the dropdown \nactivated for crown store by default, as there aren't any items yet\nRequires UI reload (won't happen automatically for your convenience)",
+  SI_FURC_STRING_MENU_HIDE_MENU_TT = "Hides \"Crown store\" and \"Rumour recipes\" from the dropdown \nactivated for crown store by default, as there aren't any items yet\nRequires UI reload (won't happen automatically for your convenience)",
   SI_FURC_STRING_MENU_HIDE_MENU_RUMOUR        = "Hide \"Rumour recipes\" drop down entry?",
   SI_FURC_STRING_MENU_HIDE_MENU_CROWN         = "Hide \"Crown Store\" drop down entry?",
   SI_FURC_STRING_MENU_TOOLTIP                 = "Enable tooltips?",
