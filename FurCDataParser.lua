@@ -1,16 +1,18 @@
-local db    = FurnitureCatalogue.settings["data"]
-
+local db = FurnitureCatalogue.settings["data"]
 
 function FurC.PrintCraftingStation(itemId, recipeArray)
   local craftingType = FurC.GetCraftingSkillType(itemId, recipeArray)
-  if not craftingType or not GetCraftingSkillName(craftingType) then return "" end
+  if not craftingType or not GetCraftingSkillName(craftingType) then
+    return ""
+  end
   return string.format(" (%s)", GetCraftingSkillName(craftingType))
 end
 
 local function prefillChatBox(output, refresh)
-
   output = zo_strformat(output)
-  if nil == output or FURC_EMPTY_STRING == output then return end
+  if nil == output or FURC_EMPTY_STRING == output then
+    return
+  end
   local editControl = CHAT_SYSTEM.textEntry.editControl
 
   if not refresh then
@@ -35,12 +37,16 @@ function FurC.ToChat(output, refresh)
 end
 
 local function stripColor(aString)
-  if nil == aString then return "" end
+  if nil == aString then
+    return ""
+  end
   return aString:gsub("|%l%l%d%d%d%d%d", ""):gsub("|%l%l%d%l%l%d%d", ""):gsub("|c25C31E", ""):gsub("", "")
 end
 
 local function getNameFromEntry(recipeArray)
-  if nil == recipeArray then return "" end
+  if nil == recipeArray then
+    return ""
+  end
   if nil == recipeArray.itemName and nil ~= recipeArray.itemId then
     recipeArray.itemName = GetItemLinkName(recipeArray.itemId)
   end
@@ -48,8 +54,12 @@ local function getNameFromEntry(recipeArray)
 end
 
 function FurC.PrintSource(itemLink, recipeArray)
-  if nil == recipeArray then recipeArray = FurC.Find(itemLink) end
-  if nil == recipeArray then return end
+  if nil == recipeArray then
+    recipeArray = FurC.Find(itemLink)
+  end
+  if nil == recipeArray then
+    return
+  end
 
   local source = FurC.GetItemDescription(FurC.GetItemId(itemLink), recipeArray, true)
   local output = string.format("%s: %s", itemLink, source)
@@ -75,7 +85,8 @@ function FurC.FindByName(namePart)
 end
 
 local function capitalise(str)
-  str = str:gsub("^(%l)(%w*)", function(a,b) return string.upper(a)..b end)
+  str = str:gsub("^(%l)(%w*)", function(a, b)
+    return string.upper(a) .. b
+  end)
   return str
 end
-

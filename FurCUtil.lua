@@ -22,10 +22,11 @@ end
 -- ToDo: ZO_TableOrderingFunction
 function FurC.SortTable(tTable, sortKey, SortOrderUp)
   local keys = {}
-  for k in pairs(tTable) do table.insert(keys, k) end
+  for k in pairs(tTable) do
+    table.insert(keys, k)
+  end
   table.sort(keys, function(a, b)
     if nil == tTable[a] or nil == tTable[b] then
-
     elseif nil == tTable[a][sortKey] then
       return false
     elseif nil == tTable[b][sortKey] then

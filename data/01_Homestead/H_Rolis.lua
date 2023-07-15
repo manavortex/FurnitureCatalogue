@@ -1,6 +1,5 @@
-FurC.Rolis          = FurC.Rolis or {}
-FurC.Rolis_Recipes  = FurC.Rolis_Recipes or {}
-
+FurC.Rolis = FurC.Rolis or {}
+FurC.Rolis_Recipes = FurC.Rolis_Recipes or {}
 
 FurC.Rolis[FURC_HOMESTEAD] = {
   -- Alchemy station
@@ -27,8 +26,8 @@ FurC.Rolis[FURC_HOMESTEAD] = {
 }
 
 FurC.Rolis_Recipes[FURC_HOMESTEAD] = {
-   121207,  -- Target Skeleton
-   121315,  -- Robust Target Skeleton
-   126582,  -- Target Centurion
-   126583,  -- Robust Target Centurion
+  121207, -- Target Skeleton
+  121315, -- Robust Target Skeleton
+  126582, -- Target Centurion
+  126583, -- Robust Target Centurion
 }

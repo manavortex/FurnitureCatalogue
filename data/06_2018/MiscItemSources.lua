@@ -1120,43 +1120,40 @@ FurC.MiscItemSources[FURC_HOMESTEAD] = {
 
   },
   [FURC_CROWN]   = {
-    [118096] = getCrownPrice(10),  -- Bread, Plain
-    [118098] = getCrownPrice(10),  -- Common Bowl, Serving
-    [118061] = getCrownPrice(15),  -- Chicken Dinner, Display
-    [118062] = getCrownPrice(15),  -- Chicken Meal, Display
-    [118056] = getCrownPrice(15),  -- Common Stewpot, Hanging
-    [118121] = getCrownPrice(15),  -- Knife, Carving
-    [118066] = getCrownPrice(15),  -- Steak Dinner
+    [118096] = getCrownPrice(10),   -- Bread, Plain
+    [118098] = getCrownPrice(10),   -- Common Bowl, Serving
+    [118061] = getCrownPrice(15),   -- Chicken Dinner, Display
+    [118062] = getCrownPrice(15),   -- Chicken Meal, Display
+    [118056] = getCrownPrice(15),   -- Common Stewpot, Hanging
+    [118121] = getCrownPrice(15),   -- Knife, Carving
+    [118066] = getCrownPrice(15),   -- Steak Dinner
 
-    [118057] = getCrownPrice(20),  -- Sack of Beans
-    [118060] = getCrownPrice(20),  -- Sack of Grain
-    [118059] = getCrownPrice(20),  -- Sack of Millet,
-    [118058] = getCrownPrice(20),  -- Sack of Rice
-    [118351] = getCrownPrice(25),  -- Box of Peaches
+    [118057] = getCrownPrice(20),   -- Sack of Beans
+    [118060] = getCrownPrice(20),   -- Sack of Grain
+    [118059] = getCrownPrice(20),   -- Sack of Millet,
+    [118058] = getCrownPrice(20),   -- Sack of Rice
+    [118351] = getCrownPrice(25),   -- Box of Peaches
 
-    [134473] = scambox_fireatro,   -- Tapestry,  Malacath
+    [134473] = scambox_fireatro,    -- Tapestry,  Malacath
 
-    [118064] = getCrownPrice(45),  -- Common Barrel, Dry
-    [118065] = getCrownPrice(45),  -- Common Cargo Crate, Dry
-    [118064] = getCrownPrice(45),  -- Common Barrel, Dry
+    [118064] = getCrownPrice(45),   -- Common Barrel, Dry
+    [118065] = getCrownPrice(45),   -- Common Cargo Crate, Dry
+    [118064] = getCrownPrice(45),   -- Common Barrel, Dry
 
-    [118054] = getCrownPrice(80),  -- Common Firepit, Outdoor
-    [118055] = getCrownPrice(80),  -- Common Firepit, Piled
-    [118126] = getCrownPrice(95),  -- Plaque, Standard
+    [118054] = getCrownPrice(80),   -- Common Firepit, Outdoor
+    [118055] = getCrownPrice(80),   -- Common Firepit, Piled
+    [118126] = getCrownPrice(95),   -- Plaque, Standard
 
-    [118068] = getCrownPrice(120), -- Simple Brown Banner
-    [118069] = getCrownPrice(120), -- Simple Gray Banner
-    [118071] = getCrownPrice(120), -- Simple Red Banner
-    [118070] = getCrownPrice(120), -- Simple Purple Banner
+    [118068] = getCrownPrice(120),  -- Simple Brown Banner
+    [118069] = getCrownPrice(120),  -- Simple Gray Banner
+    [118071] = getCrownPrice(120),  -- Simple Red Banner
+    [118070] = getCrownPrice(120),  -- Simple Purple Banner
 
-    [117952] = getCrownPrice(35),  -- Rough Torch, Wall
+    [117952] = getCrownPrice(35),   -- Rough Torch, Wall
 
+    [94098] = getCrownPrice(95),    -- Imperial Bed, Single
 
-
-    [94098] = getCrownPrice(95),  -- Imperial Bed, Single
-
-    [120607] = getCrownPrice(50), -- Sapling, Lanky Ash
-
+    [120607] = getCrownPrice(50),   -- Sapling, Lanky Ash
 
     [115698] = getCrownPrice(1100), -- Khajiit Statue, Guardian
 

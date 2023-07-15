@@ -1,11 +1,11 @@
 FurCDevUtility = {}
 
-local control  = FurCDevControl
+local control = FurCDevControl
 
-local this     = FurCDevUtility
-this.name      = "FurnitureCatalogue_DevUtility"
-this.control   = control
-this.textbox   = FurCDevControlBox
+local this = FurCDevUtility
+this.name = "FurnitureCatalogue_DevUtility"
+this.control = control
+this.textbox = FurCDevControlBox
 
 local function toggleEditBox()
   control:SetHidden(not control:IsHidden())
@@ -14,7 +14,9 @@ FurCDevUtility.ToggleEditBox = toggleEditBox
 SLASH_COMMANDS["/furcdev"] = FurCDevUtility.ToggleEditBox
 
 function FurCDevUtility_Initialize(_, addonName)
-  if addonName ~= this.name then return end
+  if addonName ~= this.name then
+    return
+  end
   this.textbox = FurCDevControlBox
   this.textbox:SetMaxInputChars(3000)
   this.InitRightclickMenu()
