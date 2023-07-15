@@ -23,7 +23,7 @@ indent_size = 2
 
 # Python files
 [*.py]
-indent_size = 4
+indent_size = 2
 
 # Bash shell scripts
 [*.sh]
