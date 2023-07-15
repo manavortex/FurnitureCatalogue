@@ -1,49 +1,49 @@
-FurC.AchievementVendors    = FurC.AchievementVendors or {}
-FurC.Books                 = FurC.Books or {}
+FurC.AchievementVendors = FurC.AchievementVendors or {}
+FurC.Books = FurC.Books or {}
 
-local jesterVendor         = {
+local jesterVendor = {
   -- tree, Jester's Large
   [120994] = {
-    itemPrice   = 15000,
+    itemPrice = 15000,
     achievement = 1723,
   },
   -- tree, Jester's Small
   [118529] = {
-    itemPrice   = 5000,
+    itemPrice = 5000,
     achievement = 1723,
   },
   -- Banner of Mayhem
   [126720] = {
-    itemPrice   = 5000,
+    itemPrice = 5000,
     achievement = 1883,
   },
   -- Corpse of Mayhem, Argonian
   [126721] = {
-    itemPrice   = 15000,
+    itemPrice = 15000,
     achievement = 1888,
   },
   -- Corpse of Mayhem, Khajiit
   [126722] = {
-    itemPrice   = 15000,
+    itemPrice = 15000,
     achievement = 1888,
   },
   -- Corpse of Mayhem, Orc
   [126723] = {
-    itemPrice   = 15000,
+    itemPrice = 15000,
     achievement = 1888,
   },
   -- Probably-Not-Punch-Bowl of Mayhem
   [126724] = {
-    itemPrice   = 30000,
+    itemPrice = 30000,
     achievement = 1892,
   },
   -- Stamdard of Mayhem
   [126719] = {
-    itemPrice   = 2500,
+    itemPrice = 2500,
     achievement = 1883,
   },
   [131433] = { -- Witches Festival, Plunder Skulls
-    itemPrice   = 10000,
+    itemPrice = 10000,
     achievement = 1542,
   },
   [130336] = { -- Witches Remains, Hagraven
@@ -56,102 +56,102 @@ local jesterVendor         = {
   },
 }
 
-local capitalVendor        = {
+local capitalVendor = {
   [119987] = { -- Coldharbour Urn
-    itemPrice   = 5000,
+    itemPrice = 5000,
     achievement = 993,
   },
   [145488] = { -- Banner, Jewelry Crafting
-    itemPrice   = 5000,
+    itemPrice = 5000,
     achievement = 2215,
   },
   [120064] = { -- Covenant Hero Shield
-    itemPrice   = 10000,
+    itemPrice = 10000,
     achievement = 61,
   },
   [120037] = { -- Decorative Skyshard
-    itemPrice   = 25000,
+    itemPrice = 25000,
     achievement = 989,
   },
   [120001] = { -- Decorative Treasure Chest
-    itemPrice   = 10000,
+    itemPrice = 10000,
     achievement = 22,
   },
   [119994] = { -- Depleted Sigil Stone
-    itemPrice   = 5000,
+    itemPrice = 5000,
     achievement = 1000,
   },
   [120066] = { -- Display Craft Bag
-    itemPrice   = 5000,
+    itemPrice = 5000,
     achievement = "ESO+",
   },
   [120063] = { -- Dominion Hero Shield
-    itemPrice   = 10000,
+    itemPrice = 10000,
     achievement = 618,
   },
   [120043] = { -- Fishing Vessel
-    itemPrice   = 25000,
+    itemPrice = 25000,
     achievement = 494,
   },
   [120056] = { -- Hanging Map of Tamriel
-    itemPrice   = 10000,
+    itemPrice = 10000,
     achievement = 867,
   },
   [119993] = { -- Lantern of Anguish
-    itemPrice   = 5000,
+    itemPrice = 5000,
     achievement = 999,
   },
   [120065] = { -- Pact Hero Shield
-    itemPrice   = 10000,
+    itemPrice = 10000,
     achievement = 617,
   },
   [120039] = { -- Primal Altar to Hircine
-    itemPrice   = 50000,
+    itemPrice = 50000,
     achievement = 1009,
   },
   [119989] = { -- Replica Black Soul Gem
-    itemPrice   = 2500,
+    itemPrice = 2500,
     achievement = 995,
   },
   [119988] = { -- Replica Soul Gem
-    itemPrice   = 500,
+    itemPrice = 500,
     achievement = 994,
   },
   [119995] = { -- Silent Sentinel
-    itemPrice   = 20000,
+    itemPrice = 20000,
     achievement = 1001,
   },
   [119990] = { -- Soul Gem Case
-    itemPrice   = 4000,
+    itemPrice = 4000,
     achievement = 996,
   },
   [119992] = { -- Soul Gem Crate
-    itemPrice   = 5000,
+    itemPrice = 5000,
     achievement = 998,
   },
   [119996] = { -- Soul Gem Stand
-    itemPrice   = 4000,
+    itemPrice = 4000,
     achievement = 1002,
   },
   [119991] = { -- Spare Flesh Atronach Parts
-    itemPrice   = 10000,
+    itemPrice = 10000,
     achievement = 997,
   },
   [119873] = { -- Tamrith Coffin
-    itemPrice   = 20000,
+    itemPrice = 20000,
     achievement = 1010,
   },
   [119872] = { -- Tamrith Coffin Lid
-    itemPrice   = 5000,
+    itemPrice = 5000,
     achievement = 1010,
   },
   [119997] = { -- The Final Threat
-    itemPrice   = 100000,
+    itemPrice = 100000,
     achievement = 1003,
   },
 }
 
-local furnishingVendor     = {
+local furnishingVendor = {
   [120998] = { -- Block,Wood Cutting
     itemPrice = 100,
   },
@@ -175,7 +175,7 @@ local furnishingVendor     = {
   },
 }
 
-local morrowindStones      = {
+local morrowindStones = {
   [120563] = { -- Stone,Jagged Grey
     itemPrice = 100,
   },
@@ -193,7 +193,7 @@ local morrowindStones      = {
   },
 }
 
-local structures           = {
+local structures = {
   [117984] = { -- Rough Block, Dark Stone
     itemPrice = 100,
   },
@@ -232,7 +232,7 @@ local structures           = {
   },
 }
 
-local boxes                = {
+local boxes = {
   [120998] = { -- Block,Wood Cutting
     itemPrice = 100,
   },
@@ -262,7 +262,7 @@ local boxes                = {
   },
 }
 
-local laundry              = {
+local laundry = {
   [117968] = { -- Rough Clothesline, Full
     itemPrice = 100,
   },
@@ -286,7 +286,7 @@ local laundry              = {
   },
 }
 
-local fishing_trip         = {
+local fishing_trip = {
   [117965] = { -- Rough Campfire, Doused
     itemPrice = 100,
   },
@@ -301,7 +301,7 @@ local fishing_trip         = {
   },
 }
 
-local bookList             = {
+local bookList = {
   [120197] = { -- 16 accords of madness, vol vi
     itemPrice = 500,
   },
@@ -1203,34 +1203,33 @@ FurC.Books[FURC_HOMESTEAD] = bookList
 ]]
 local miscVendor = FurC.MergeTable(FurC.MergeTable(FurC.MergeTable(structures, boxes), laundry), fishing_trip)
 
-
 FurC.AchievementVendors[FURC_HOMESTEAD] = {
-  [GetString(FURC_AV_CAPITAL)]                        = {
+  [GetString(FURC_AV_CAPITAL)] = {
     [GetString(FURC_AV_NAR)] = capitalVendor,
     [GetString(FURC_AV_HER)] = jesterVendor,
   },
   -- location name
-  ["Mournhold Bank"]                                  = {
+  ["Mournhold Bank"] = {
     -- vendor name
     [GetString(FURC_AV_LTS)] = {
       [119908] = { -- Swamp Anemone
-        itemPrice   = 15000,
+        itemPrice = 15000,
         achievement = 595,
       },
       [119914] = { -- Touch of Plague
-        itemPrice   = 500,
+        itemPrice = 500,
         achievement = 363,
       },
       [119913] = { -- Tribunal Altar
-        itemPrice   = 25000,
+        itemPrice = 25000,
         achievement = 364,
       },
       [119911] = { -- Tribunal Rug
-        itemPrice   = 5000,
+        itemPrice = 5000,
         achievement = 949,
       },
       [119910] = { -- Veloth's Reliquary
-        itemPrice   = 50000,
+        itemPrice = 50000,
         achievement = 365,
       },
     },
@@ -1248,9 +1247,8 @@ FurC.AchievementVendors[FURC_HOMESTEAD] = {
         itemPrice = 250,
       },
     },
-
   },
-  ["Dhalmora, Bal Foyen"]                             = {
+  ["Dhalmora, Bal Foyen"] = {
 
     [GetString(FURC_AV_FRO)] = {
       [120502] = { -- Flower, Grandmother Hibiscus
@@ -1271,25 +1269,23 @@ FurC.AchievementVendors[FURC_HOMESTEAD] = {
       [120622] = { -- Vines, Clustered Ivy
         itemPrice = 600,
       },
-
     },
     [GetString(FURC_AV_LTS)] = {
       [120956] = { -- Atmoran Eagle Totem Medallion
-        itemPrice   = 3000,
+        itemPrice = 3000,
         achievement = 194,
       },
       [120954] = { -- Atmoran Snake Totem Medallion
-        itemPrice   = 3000,
+        itemPrice = 3000,
         achievement = 194,
       },
       [120955] = { -- Atmoran Whale Totem Medallion
-        itemPrice   = 3000,
+        itemPrice = 3000,
         achievement = 194,
       },
     },
-
   },
-  ["Stonefalls, Ebonheart"]                           = {
+  ["Stonefalls, Ebonheart"] = {
 
     [GetString(FURC_AV_FRO)] = {
       [120502] = { -- Flower, Grandmother Hibiscus
@@ -1303,11 +1299,12 @@ FurC.AchievementVendors[FURC_HOMESTEAD] = {
         itemPrice = 250,
       },
 
-      [120621] = {   -- Plant, Red Aloe
+      [120621] = { -- Plant, Red Aloe
         itemPrice = 250,
-      },[120620] = { -- Plant, Red Aloe Succulent
-      itemPrice = 250,
-    },
+      },
+      [120620] = { -- Plant, Red Aloe Succulent
+        itemPrice = 250,
+      },
       [120618] = { -- Tree, Gnarled Ashflower
         itemPrice = 5000,
       },
@@ -1330,58 +1327,55 @@ FurC.AchievementVendors[FURC_HOMESTEAD] = {
 
     [GetString(FURC_AV_LTS)] = {
       [119890] = { -- Blood Fountain
-        itemPrice   = 100000,
+        itemPrice = 100000,
         achievement = 948,
       },
       [119889] = { -- Daedric Sconce
-        itemPrice   = 5000,
+        itemPrice = 5000,
         achievement = 209,
       },
       [119888] = { -- Lacquered Kwama Egg
-        itemPrice   = 1000,
+        itemPrice = 1000,
         achievement = 593,
       },
       [119892] = { -- Remnant of Balreth
-        itemPrice   = 15000,
+        itemPrice = 15000,
         achievement = 201,
       },
       [119887] = { -- Serien's Stand
-        itemPrice   = 10000,
+        itemPrice = 10000,
         achievement = 204,
       },
     },
-
   },
-  ["Eastmarch, Fort Amol"]                            = {
+  ["Eastmarch, Fort Amol"] = {
 
     [GetString(FURC_AV_FRO)] = miscVendor,
 
-
     [GetString(FURC_AV_LTS)] = {
       [119905] = { -- Dragon Shrine Altar
-        itemPrice   = 20000,
+        itemPrice = 20000,
         achievement = 598,
       },
       [119901] = { -- Lob's Challenge Horn
-        itemPrice   = 1000,
+        itemPrice = 1000,
         achievement = 597,
       },
       [119904] = { -- Standing Slab
-        itemPrice   = 1000,
+        itemPrice = 1000,
         achievement = 600,
       },
       [119906] = { -- Throne of the Skald King
-        itemPrice   = 50000,
+        itemPrice = 50000,
         achievement = 951,
       },
       [119907] = { -- Visage of the Skald
-        itemPrice   = 25000,
+        itemPrice = 25000,
         achievement = 599,
       },
     },
-
   },
-  ["Shadowfen, Alten Corimont"]                       = {
+  ["Shadowfen, Alten Corimont"] = {
 
     [GetString(FURC_AV_FRO)] = {
       [120502] = { -- Flower, Grandmother Hibiscus
@@ -1411,34 +1405,32 @@ FurC.AchievementVendors[FURC_HOMESTEAD] = {
       [120636] = { -- Tree, Mud Palm
         itemPrice = 250,
       },
-
     },
 
     [GetString(FURC_AV_LTS)] = {
       [119897] = { -- Argonian Egg
-        itemPrice   = 2500,
+        itemPrice = 2500,
         achievement = 185,
       },
       [119893] = { -- Mimic Hist Tree
-        itemPrice   = 20000,
+        itemPrice = 20000,
         achievement = 950,
       },
       [119900] = { -- Oblivion Stone
-        itemPrice   = 5000,
+        itemPrice = 5000,
         achievement = 184,
       },
       [119898] = { -- Replica Mnemic Egg
-        itemPrice   = 100000,
+        itemPrice = 100000,
         achievement = 596,
       },
       [119899] = { -- Replica Stone Nest
-        itemPrice   = 10000,
+        itemPrice = 10000,
         achievement = 186,
       },
     },
-
   },
-  ["Riften, Market, Armorer"]                         = {
+  ["Riften, Market, Armorer"] = {
 
     [GetString(FURC_AV_FRO)] = {
       [120502] = { -- Flower, Grandmother Hibiscus
@@ -1469,75 +1461,74 @@ FurC.AchievementVendors[FURC_HOMESTEAD] = {
 
     [GetString(FURC_AV_LTS)] = {
       [119915] = { -- Ancient Cultist Totem
-        itemPrice   = 5000,
+        itemPrice = 5000,
         achievement = 337,
       },
       [119918] = { -- Statue of the Wolf
-        itemPrice   = 7500,
+        itemPrice = 7500,
         achievement = 336,
       },
       [119922] = { -- Torn Worm Cult Banner
-        itemPrice   = 10000,
+        itemPrice = 10000,
         achievement = 952,
       },
       [119920] = { -- Totem of the Reach
-        itemPrice   = 40000,
+        itemPrice = 40000,
         achievement = 335,
       },
       [119916] = { -- Ysgramor Statue
-        itemPrice   = 20000,
+        itemPrice = 20000,
         achievement = 603,
       },
     },
   },
-  ["Alik'r, Kozanzet, Sweetwater Inn"]                = {
+  ["Alik'r, Kozanzet, Sweetwater Inn"] = {
     [GetString(FURC_AV_LOT)] = {
       [119879] = { -- Kneeling Ansei Statue
-        itemPrice   = 15000,
+        itemPrice = 15000,
         achievement = 518,
       },
       [119877] = { -- Reconstructed Necromantic Focus
-        itemPrice   = 5000,
+        itemPrice = 5000,
         achievement = 517,
       },
       [119880] = { -- Replica Of Shattered Ansei Sword
-        itemPrice   = 35000,
+        itemPrice = 35000,
         achievement = 956,
       },
       [119878] = { -- Standing Ansei Statue
-        itemPrice   = 15000,
+        itemPrice = 15000,
         achievement = 59,
       },
       [119876] = { -- Tu'whacca's Braizer
-        itemPrice   = 5000,
+        itemPrice = 5000,
         achievement = 516,
       },
     },
     [GetString(FURC_AV_ROH)] = miscVendor,
   },
-  ["Bangkorai, Evermore"]                             = {
+  ["Bangkorai, Evermore"] = {
     [GetString(FURC_AV_LOT)] = {
       [119885] = { -- ceremonial Redguard vessel
-        itemPrice   = 3000,
+        itemPrice = 3000,
         achievement = 147,
       },
       [119882] = { -- Damaged Knight of St. Pelin statue
-        itemPrice   = 5000,
+        itemPrice = 5000,
         achievement = 146,
       },
       [119883] = { -- Evermore Mourning Banner
-        itemPrice   = 4000,
+        itemPrice = 4000,
         achievement = 145,
       },
       [119881] = { -- Glenmoril Wyrd Stone
-        itemPrice   = 5000,
+        itemPrice = 5000,
         achievement = 60,
       },
       [119884] = { -- Ragged Imperial Banner
-        itemPrice   = 4000,
+        itemPrice = 4000,
         achievement = 958,
       },
-
     },
     [GetString(FURC_AV_ROH)] = {
       [120449] = { -- Bush, Desert Scrub
@@ -1609,38 +1600,37 @@ FurC.AchievementVendors[FURC_HOMESTEAD] = {
       [120448] = { -- Tree, old Juniper
         itemPrice = 100,
       },
-
     },
   },
-  ["Bethnikh, near tavern"]                           = {
+  ["Bethnikh, near tavern"] = {
     [GetString(FURC_AV_LOT)] = {
       [119984] = { -- Pirate Banner
-        itemPrice   = 10000,
+        itemPrice = 10000,
         achievement = 415,
       },
     },
     [GetString(FURC_AV_ROH)] = miscVendor,
   },
-  ["Glenumbra, Daggerfall, The Rosy Lion"]            = {
+  ["Glenumbra, Daggerfall, The Rosy Lion"] = {
     [GetString(FURC_AV_LOT)] = {
       [119855] = { -- Wyrdstone
-        itemPrice   = 2500,
+        itemPrice = 2500,
         achievement = 30,
       },
       [119856] = { -- Torn Lion Guard Banner
-        itemPrice   = 5000,
+        itemPrice = 5000,
         achievement = 28,
       },
       [119862] = { -- Hagraven Totem
-        itemPrice   = 5000,
+        itemPrice = 5000,
         achievement = 34,
       },
       [119857] = { -- Breton Gravewatcher Statue
-        itemPrice   = 25000,
+        itemPrice = 25000,
         achievement = 31,
       },
       [119858] = { -- Bloodthorn Vines, small
-        itemPrice   = 5000,
+        itemPrice = 5000,
         achievement = 953,
       },
     },
@@ -1681,37 +1671,36 @@ FurC.AchievementVendors[FURC_HOMESTEAD] = {
       [120706] = { -- Boulder, Giant Mossy
         itemPrice = 100,
       },
-
     },
   },
-  ["Rivenspire, Shornhelm, Dead Wolf Inn"]            = {
+  ["Rivenspire, Shornhelm, Dead Wolf Inn"] = {
     [GetString(FURC_AV_LOT)] = {
       [119871] = { -- Wagon of DEATH
-        itemPrice   = 25000,
+        itemPrice = 25000,
         achievement = 58,
       },
       [120951] = { -- Hope of Rivenspire
-        itemPrice   = 5000,
+        itemPrice = 5000,
         achievement = 590,
       },
       [119875] = { -- Gargoyle Statue
-        itemPrice   = 50000,
+        itemPrice = 50000,
         achievement = 589,
       },
       [120040] = { -- Crimson-Stained Bowl
-        itemPrice   = 2500,
+        itemPrice = 2500,
         achievement = 591,
       },
       [119870] = { -- Constellation: The Tower
-        itemPrice   = 10000,
+        itemPrice = 10000,
         achievement = 955,
       },
       [119869] = { -- Constellation: The Shadow
-        itemPrice   = 10000,
+        itemPrice = 10000,
         achievement = 955,
       },
       [119868] = { -- Constellation: The Ritual
-        itemPrice   = 10000,
+        itemPrice = 10000,
         achievement = 955,
       },
     },
@@ -1730,26 +1719,26 @@ FurC.AchievementVendors[FURC_HOMESTEAD] = {
       },
     },
   },
-  ["Stormhaven, Wayrest, Merchant district"]          = {
+  ["Stormhaven, Wayrest, Merchant district"] = {
     [GetString(FURC_AV_LOT)] = {
       [119865] = { -- Wayrest Guillotine
-        itemPrice   = 75000,
+        itemPrice = 75000,
         achievement = 156,
       },
       [119867] = { -- Vaermina Statue
-        itemPrice   = 75000,
+        itemPrice = 75000,
         achievement = 57,
       },
       [119864] = { -- Spirit Warden Azura Statue
-        itemPrice   = 75000,
+        itemPrice = 75000,
         achievement = 155,
       },
       [119866] = { -- Replica Dreamshard
-        itemPrice   = 2000,
+        itemPrice = 2000,
         achievement = 954,
       },
       [119863] = { -- Knights of the Flame Banner
-        itemPrice   = 10000,
+        itemPrice = 10000,
         achievement = 154,
       },
     },
@@ -1767,28 +1756,28 @@ FurC.AchievementVendors[FURC_HOMESTEAD] = {
       [120443] = { -- Sapling, strong Highland
         itemPrice = 100,
       },
-    }
+    },
   },
-  ["Skywatch, Auridon"]                               = {
+  ["Skywatch, Auridon"] = {
     [GetString(FURC_AV_ATH)] = {
       [119823] = { -- Tanzelwil Culanda Stone
-        itemPrice   = 5000,
+        itemPrice = 5000,
         achievement = 360,
       },
       [119824] = { -- Veiled Crystal
-        itemPrice   = 5000,
+        itemPrice = 5000,
         achievement = 361,
       },
       [119825] = { -- Mehrunes Dagon Brazier
-        itemPrice   = 10000,
+        itemPrice = 10000,
         achievement = 362,
       },
       [119826] = { -- High Elf Throne
-        itemPrice   = 25000,
+        itemPrice = 25000,
         achievement = 943,
       },
       [119827] = { -- Ancient High Elf Statue
-        itemPrice   = 35000,
+        itemPrice = 35000,
         achievement = 604,
       },
     },
@@ -1802,10 +1791,9 @@ FurC.AchievementVendors[FURC_HOMESTEAD] = {
       [120661] = { -- Saplings, Young Forest
         itemPrice = 100,
       },
-
     },
   },
-  ["Greenshade, Marbruk"]                             = {
+  ["Greenshade, Marbruk"] = {
     [GetString(FURC_AV_MAL)] = {
       [120597] = { -- Fern Plant, Vibrant
         itemPrice = 100,
@@ -1846,35 +1834,32 @@ FurC.AchievementVendors[FURC_HOMESTEAD] = {
       [120586] = { -- Boulder, Moss Covered
         itemPrice = 250,
       },
-
     },
-
 
     [GetString(FURC_AV_ATH)] = {
       [119839] = { -- Fires of the WIlderking
-        itemPrice   = 4000,
+        itemPrice = 4000,
         achievement = 510,
       },
       [119841] = { -- Hectahame Arboretum Relic
-        itemPrice   = 10000,
+        itemPrice = 10000,
         achievement = 512,
       },
       [120991] = { -- Rise of the Silvenaar
-        itemPrice   = 5000,
+        itemPrice = 5000,
         achievement = 945,
       },
       [119840] = { -- Sea Elf Banner
-        itemPrice   = 10000,
+        itemPrice = 10000,
         achievement = 511,
       },
       [119842] = { -- Wood Elf Path Marker
-        itemPrice   = 7500,
+        itemPrice = 7500,
         achievement = 610,
       },
     },
-
   },
-  ["Khenarthi's Roost, Mistral"]                      = {
+  ["Khenarthi's Roost, Mistral"] = {
     [GetString(FURC_AV_MAL)] = miscVendor,
     [GetString(FURC_AV_ATH)] = {
       [119986] = { -- Maomer Totem
@@ -1882,7 +1867,7 @@ FurC.AchievementVendors[FURC_HOMESTEAD] = {
       },
     },
   },
-  ["Malabal Tor, Vulkwaesten, tavern"]                = {
+  ["Malabal Tor, Vulkwaesten, tavern"] = {
     [GetString(FURC_AV_MAL)] = {
       [120529] = { -- Fern Cluster, Healthy
         itemPrice = 100,
@@ -1944,28 +1929,28 @@ FurC.AchievementVendors[FURC_HOMESTEAD] = {
     },
     [GetString(FURC_AV_ATH)] = {
       [119847] = { -- Handfast
-        itemPrice   = 25000,
+        itemPrice = 25000,
         achievement = 611,
       },
       [119846] = { -- Handfast Pedestal
-        itemPrice   = 5000,
+        itemPrice = 5000,
         achievement = 946,
       },
       [119845] = { -- Wood Elf Union Trellis
-        itemPrice   = 15000,
+        itemPrice = 15000,
         achievement = 285,
       },
       [119843] = { -- Wood Orc Dream Catcher
-        itemPrice   = 4000,
+        itemPrice = 4000,
         achievement = 283,
       },
       [119844] = { -- Wood Orc Malacath Banner
-        itemPrice   = 10000,
+        itemPrice = 10000,
         achievement = 284,
       },
     },
   },
-  ["Grahtwood, Redfur Trading Post"]                  = {
+  ["Grahtwood, Redfur Trading Post"] = {
     [GetString(FURC_AV_MAL)] = {
       [120725] = { -- Boulder, Mossy Crag
         itemPrice = 100,
@@ -1997,28 +1982,28 @@ FurC.AchievementVendors[FURC_HOMESTEAD] = {
     },
     [GetString(FURC_AV_ATH)] = {
       [119834] = { -- Aulus's Captive Audience
-        itemPrice   = 10000,
+        itemPrice = 10000,
         achievement = 605,
       },
       [119836] = { -- Guardian Mane
-        itemPrice   = 10000,
+        itemPrice = 10000,
         achievement = 607,
       },
       [119837] = { -- Orrery Control Pillar Replica
-        itemPrice   = 10000,
+        itemPrice = 10000,
         achievement = 944,
       },
       [119835] = { -- Ukaezai's Ward
-        itemPrice   = 10000,
+        itemPrice = 10000,
         achievement = 606,
       },
       [119838] = { -- Valenwood Brazier
-        itemPrice   = 4000,
+        itemPrice = 4000,
         achievement = 608,
       },
     },
   },
-  ["Reaper's March, Rawl'Kha, Market"]                = {
+  ["Reaper's March, Rawl'Kha, Market"] = {
     [GetString(FURC_AV_MAL)] = {
       [120998] = { -- Block, Wood Cutting
         itemPrice = 100,
@@ -2086,74 +2071,72 @@ FurC.AchievementVendors[FURC_HOMESTEAD] = {
       [120558] = { -- Sapling, Eucalyptus Shrub
         itemPrice = 100,
       },
-
     },
     [GetString(FURC_AV_ATH)] = {
       [119848] = { -- Colovian Projection Crystal
-        itemPrice   = 5000,
+        itemPrice = 5000,
         achievement = 536,
       },
       [119853] = { -- Full Moons Tile
-        itemPrice   = 5000,
+        itemPrice = 5000,
         achievement = 602,
       },
       [119850] = { -- Khajiiti Shrine Guardian Statue
-        itemPrice   = 20000,
+        itemPrice = 20000,
         achievement = 538,
       },
       [119849] = { -- Moonmont Lunar Altar
-        itemPrice   = 15000,
+        itemPrice = 15000,
         achievement = 537,
       },
       [119854] = { -- New Moons Tile
-        itemPrice   = 5000,
+        itemPrice = 5000,
         achievement = 602,
       },
       [119852] = { -- Waning Moons Tile
-        itemPrice   = 5000,
+        itemPrice = 5000,
         achievement = 602,
       },
       [119851] = { -- Waxing Moons Wall Tile
-        itemPrice   = 5000,
+        itemPrice = 5000,
         achievement = 602,
       },
     },
   },
-  ["Craglorn, Belkarth Woodworking store"]            = {
+  ["Craglorn, Belkarth Woodworking store"] = {
     [GetString(FURC_AV_LOT)] = {
       [119933] = { -- Craglorn Brazier
-        itemPrice   = 5000,
+        itemPrice = 5000,
         achievement = 1663,
       },
       [119934] = { -- Craglorn Sconce
-        itemPrice   = 5000,
+        itemPrice = 5000,
         achievement = 1664,
       },
       [119931] = { -- Craglorn Tapestry
-        itemPrice   = 35000,
+        itemPrice = 35000,
         achievement = 936,
       },
       [119925] = { -- Nirncrux Bowl
-        itemPrice   = 4000,
+        itemPrice = 4000,
         achievement = 1665,
       },
       [119935] = { -- Observatory Banner
-        itemPrice   = 25000,
+        itemPrice = 25000,
         achievement = 909,
       },
       [119923] = { -- Serpent Stone
-        itemPrice   = 5000,
+        itemPrice = 5000,
         achievement = 992,
       },
       [119929] = { -- Snake Prayer Tile
-        itemPrice   = 5000,
+        itemPrice = 5000,
         achievement = 909,
       },
       [119930] = { -- Totem of the Serpent
-        itemPrice   = 10000,
+        itemPrice = 10000,
         achievement = 1143,
       },
-
     },
     [GetString(FURC_AV_KRR)] = {
       [120964] = { -- Boulder, Craggy Heap
@@ -2237,190 +2220,189 @@ FurC.AchievementVendors[FURC_HOMESTEAD] = {
       [120550] = { -- Tree, Twisted
         itemPrice = 100,
       },
-
     },
   },
   ["Coldharbour, Hollow City, Cicero's General Good"] = {
 
     [GetString(FURC_AV_LOT)] = {
       [119828] = { -- Ayleid Throne
-        itemPrice   = 50000,
+        itemPrice = 50000,
         achievement = 612,
       },
       [119830] = { -- Coldharbour Chandelier
-        itemPrice   = 25000,
+        itemPrice = 25000,
         achievement = 614,
       },
       [119831] = { -- Cowering Statue
-        itemPrice   = 10000,
+        itemPrice = 10000,
         achievement = 957,
       },
       [119832] = { -- Light of Meridia
-        itemPrice   = 10000,
+        itemPrice = 10000,
         achievement = 524,
       },
       [119833] = { -- Molag Bal Banner
-        itemPrice   = 20000,
+        itemPrice = 20000,
         achievement = 616,
       },
       [119829] = { -- Shackle Control Stone
-        itemPrice   = 25000,
+        itemPrice = 25000,
         achievement = 613,
       },
     },
     [GetString(FURC_AV_KRR)] = boxes,
   },
-  ["Gold Coast, Kvatch"]                              = {
+  ["Gold Coast, Kvatch"] = {
     [GetString(FURC_AV_ATH)] = {
       [119947] = { -- Banner of the Kvatch Guard
-        itemPrice   = 15000,
+        itemPrice = 15000,
         achievement = 1433,
       },
       [119697] = { -- Blade of Woe, Replica
-        itemPrice   = 25000,
+        itemPrice = 25000,
         achievement = 1435,
       },
       [119941] = { -- Brotherhood Poison Vial
-        itemPrice   = 2500,
+        itemPrice = 2500,
         achievement = 1440,
       },
       [119945] = { -- Dark Brotherhood Banner
-        itemPrice   = 10000,
+        itemPrice = 10000,
         achievement = 1442,
       },
       [119953] = { -- Dark Ledger
-        itemPrice   = 50000,
+        itemPrice = 50000,
         achievement = 1453,
       },
       [119937] = { -- Gold Coast Estate Keg
-        itemPrice   = 500000,
+        itemPrice = 500000,
         achievement = 1436,
       },
       [120950] = { -- Hanging Hourglass
-        itemPrice   = 15000,
+        itemPrice = 15000,
         achievement = 1443,
       },
       [119939] = { -- Hourglass Rug
-        itemPrice   = 10000,
+        itemPrice = 10000,
         achievement = 1438,
       },
       [119951] = { -- Litany of Blood
-        itemPrice   = 25000,
+        itemPrice = 25000,
         achievement = 1437,
       },
       [119944] = { -- Order of the Hour banner
-        itemPrice   = 5000,
+        itemPrice = 5000,
         achievement = 1441,
       },
       [119950] = { -- Preserved Sweetrolls
-        itemPrice   = 500,
+        itemPrice = 500,
         achievement = 1458,
       },
       [119940] = { -- Sanctuary Sconce
-        itemPrice   = 10000,
+        itemPrice = 10000,
         achievement = 1439,
       },
       [119948] = { -- Statue of the Mother
-        itemPrice   = 100000,
+        itemPrice = 100000,
         achievement = 1444,
       },
     },
     [GetString(FURC_AV_FRO)] = structures,
   },
-  ["Hew's Bane"]                                      = {
+  ["Hew's Bane"] = {
     [GetString(FURC_AV_LTS)] = {
       [119965] = { -- Abah's Landing Banner
-        itemPrice   = 10000,
+        itemPrice = 10000,
         achievement = 1366,
       },
       [119961] = { -- An Adoring Fan
-        itemPrice   = 2500,
+        itemPrice = 2500,
         achievement = 1363,
       },
       [119969] = { -- Banner of TAneth
-        itemPrice   = 10000,
+        itemPrice = 10000,
         achievement = 1378,
       },
       [119968] = { -- Distracting Harpy Egg
-        itemPrice   = 1500,
+        itemPrice = 1500,
         achievement = 1377,
       },
       [120989] = { -- Hanging Wedding Lantern
-        itemPrice   = 3000,
+        itemPrice = 3000,
         achievement = 1362,
       },
       [119974] = { -- Hiding Place
-        itemPrice   = 1000,
+        itemPrice = 1000,
         achievement = 1360,
       },
       [119974] = { -- Iron Wheel Banner
-        itemPrice   = 15000,
+        itemPrice = 15000,
         achievement = 1375,
       },
       [119960] = { -- Jar of Green Dye
-        itemPrice   = 500,
+        itemPrice = 500,
         achievement = 1361,
       },
       [120990] = { -- Large Covered Well
-        itemPrice   = 15000,
+        itemPrice = 15000,
         achievement = 1375,
       },
       [120952] = { -- Opulent Dowry Chest
-        itemPrice   = 50000,
+        itemPrice = 50000,
         achievement = 1363,
       },
       [119955] = { -- Pale Garden Flowers
-        itemPrice   = 500,
+        itemPrice = 500,
         achievement = 1370,
       },
       [119954] = { -- Reliquary Skull
-        itemPrice   = 25000,
+        itemPrice = 25000,
         achievement = 1371,
       },
       [119954] = { -- Statue of Shadows
-        itemPrice   = 25000,
+        itemPrice = 25000,
         achievement = 1401,
       },
       [119967] = { -- Vibrant Garden Flowers
-        itemPrice   = 500,
-        achievement = "That which was lost quest completion"
+        itemPrice = 500,
+        achievement = "That which was lost quest completion",
       },
       [119963] = { -- Yokudan Puzzle Column
-        itemPrice   = 5000,
+        itemPrice = 5000,
         achievement = 1361,
       },
     },
     ["Rohiza"] = structures,
   },
-  ["Orsinium"]                                        = {
+  ["Orsinium"] = {
 
     [GetString(FURC_AV_LOT)] = {
       [119979] = { -- Fur Throne
-        itemPrice   = 25000,
+        itemPrice = 25000,
         achievement = 1245,
       },
       [119976] = { -- Orc Adventuring Backpack
-        itemPrice   = 500,
+        itemPrice = 500,
         achievement = 1242,
       },
       [119978] = { -- Orcish Battle Totem
-        itemPrice   = 7500,
+        itemPrice = 7500,
         achievement = 1244,
       },
       [119980] = { -- Orcish Totem
-        itemPrice   = 10000,
+        itemPrice = 10000,
         achievement = 1328,
       },
       [119977] = { -- Orcish War Totem
-        itemPrice   = 5000,
+        itemPrice = 5000,
         achievement = 1243,
       },
       [119975] = { -- Orsinium Cart
-        itemPrice   = 10000,
+        itemPrice = 10000,
         achievement = 1241,
       },
       [119981] = { -- Throne of the Orc King
-        itemPrice   = 50000,
+        itemPrice = 50000,
         achievement = 1260,
       },
     },
@@ -2450,182 +2432,178 @@ FurC.AchievementVendors[FURC_HOMESTEAD] = {
       [117986] = { -- Rough Plank, Long
         itemPrice = 100,
       },
-
     },
-
   },
-  ["any city"]                                        = {
+  ["any city"] = {
     [GetString(FURC_AV_ENC)] = {
       [120050] = { -- Enchanter's Sign
-        itemPrice   = 5000,
+        itemPrice = 5000,
         achievement = 1034,
       },
       [120051] = { -- Enchanting Gem
-        itemPrice   = 5000,
+        itemPrice = 5000,
         achievement = 1317,
       },
     },
     [GetString(FURC_AV_ALC)] = {
       [120044] = { -- Alchemy sign
-        itemPrice   = 10000,
+        itemPrice = 10000,
         achievement = 1031,
       },
       [120058] = { -- Harvester's Herbs
-        itemPrice   = 1000,
+        itemPrice = 1000,
         achievement = 68,
       },
       [120045] = { -- Poison Satchel
-        itemPrice   = 5000,
+        itemPrice = 5000,
         achievement = 1464,
       },
     },
     [GetString(FURC_AV_COO)] = {
       [120053] = { -- Chef's Cleaver
-        itemPrice   = 2500,
+        itemPrice = 2500,
         achievement = 1028,
       },
       [120052] = { -- Provisioner's Sign
-        itemPrice   = 5000,
+        itemPrice = 5000,
         achievement = 1035,
       },
     },
     [GetString(FURC_AV_CLO)] = {
       [120048] = { -- clothier's sign
-        itemPrice   = 5000,
+        itemPrice = 5000,
         achievement = 1033,
       },
       [120060] = { -- Harvester's Critter Trap
-        itemPrice   = 5000,
+        itemPrice = 5000,
         achievement = 68,
       },
       [120061] = { -- Harvester's Garden Shrub
-        itemPrice   = 10000,
+        itemPrice = 10000,
         achievement = 68,
       },
     },
     [GetString(FURC_AV_CAR)] = {
       [120057] = { -- Harvester's Woodpile
-        itemPrice   = 1000,
+        itemPrice = 1000,
         achievement = 68,
       },
       [120054] = { -- Woodworker's Sign
-        itemPrice   = 5000,
+        itemPrice = 5000,
         achievement = 1036,
       },
     },
     [GetString(FURC_AV_BSM)] = {
 
       [120046] = { -- Blacksmith's Sign
-        itemPrice   = 5000,
+        itemPrice = 5000,
         achievement = 1032,
       },
       [120059] = { -- Harvester's Ore
-        itemPrice   = 1000,
+        itemPrice = 1000,
         achievement = 68,
       },
       [120062] = { -- Smith's Bellow
-        itemPrice   = 10000,
+        itemPrice = 10000,
         achievement = 1022,
       },
     },
     [GetString(FURC_AV_OUT)] = {
       [120028] = { -- Death Marker
-        itemPrice   = 5000,
+        itemPrice = 5000,
         achievement = 1226,
       },
-      [120033] = {          -- Decorative Safebox
-        itemPrice   = 5000,
+      [120033] = { -- Decorative Safebox
+        itemPrice = 5000,
         achievement = 1200, -- Safebox Cracker
       },
-      [120032] = {          -- Decorative Thieves Trove
-        itemPrice   = 5000,
-        achievement = "",   -- No Stash Left Behind
+      [120032] = { -- Decorative Thieves Trove
+        itemPrice = 5000,
+        achievement = "", -- No Stash Left Behind
       },
-      [120957] = {          -- Faded fence banner
-        itemPrice   = 10000,
+      [120957] = { -- Faded fence banner
+        itemPrice = 10000,
         achievement = "Ledgerdmain Rank 20",
       },
       [120027] = { -- Mass Tombstone
-        itemPrice   = 10000,
+        itemPrice = 10000,
         achievement = 1226,
       },
-      [120026] = {          -- Mountain of Loot
-        itemPrice   = 10000,
-        achievement = "",   -- Black Market Mogul
+      [120026] = { -- Mountain of Loot
+        itemPrice = 10000,
+        achievement = "", -- Black Market Mogul
       },
-      [120029] = {          -- Noble Pocket Lint
-        itemPrice   = 1000,
+      [120029] = { -- Noble Pocket Lint
+        itemPrice = 1000,
         achievement = 1192, -- Sneak Thief Extraordinaire
       },
-      [120023] = {          -- Outlaw Banner
-        itemPrice   = 5000,
+      [120023] = { -- Outlaw Banner
+        itemPrice = 5000,
         achievement = "Ledgerdmain Rank 20",
       },
-      [120025] = {          -- Pile of Coins
-        itemPrice   = 2500,
+      [120025] = { -- Pile of Coins
+        itemPrice = 2500,
         achievement = 1196, -- Felonious Recompense
       },
-      [120030] = {          -- Pocket Change
-        itemPrice   = 500,
+      [120030] = { -- Pocket Change
+        itemPrice = 500,
         achievement = 1191,
       },
-      [120031] = {          -- Replica Key, Blank
-        itemPrice   = 1000,
+      [120031] = { -- Replica Key, Blank
+        itemPrice = 1000,
         achievement = 1208, -- Master Burglar
       },
-      [120993] = {          -- Scales of Felonious Recompense
-        itemPrice   = 5000,
+      [120993] = { -- Scales of Felonious Recompense
+        itemPrice = 5000,
         achievement = 1196, -- Felonious Recompense
       },
     },
-
   },
-  ["the Mages' guild"]                                = {
+  ["the Mages' guild"] = {
     ["the Mystic as part of a collection"] = {},
     ["the Mystic"] = {
       [120003] = { -- cheese cutter
-        itemPrice   = 5000,
+        itemPrice = 5000,
         achievement = 1686,
       },
       [120011] = { -- Mages' Guild Banner
-        itemPrice   = 10000,
+        itemPrice = 10000,
         achievement = 702,
       },
-    }
-
+    },
   },
-  ["the Fighters' guild"]                             = {
+  ["the Fighters' guild"] = {
     ["Hall Steward"] = {
       [120000] = { --Broken Chain
-        itemPrice   = 50000,
+        itemPrice = 50000,
         achievement = 587,
       },
       [119999] = { -- Daedric Chest
-        itemPrice   = 10000,
+        itemPrice = 10000,
         achievement = 1683,
       },
       [120948] = { -- Dark Anchor Pinion
-        itemPrice   = 100000,
+        itemPrice = 100000,
         achievement = 318,
       },
       [120019] = { -- Fighters' Guild Banner
-        itemPrice   = 10000,
+        itemPrice = 10000,
         achievement = 703,
       },
     },
   },
-  ["the Undaunted Enclaves"]                          = {
+  ["the Undaunted Enclaves"] = {
     ["Undaunted Quartermaster"] = {
       [120036] = { -- Undaunted Banner
-        itemPrice   = 15000,
+        itemPrice = 15000,
         achievement = 1013,
       },
       [120035] = { -- Undaunted Chest
-        itemPrice   = 5000,
+        itemPrice = 5000,
         achievement = 1680,
       },
       [120034] = { -- Undaunted Mug
-        itemPrice   = 1000,
+        itemPrice = 1000,
         achievement = 704,
       },
     },
@@ -2636,7 +2614,6 @@ function FurC.SetupHomesteadItems()
   local generatedTable, listTable
 
   FurC.AchievementVendors[FURC_HOMESTEAD]["the Mages' guild"]["the Mystic as part of a collection"] = bookList
-
 
   listTable = FurC.AchievementVendors[FURC_HOMESTEAD]["Dhalmora, Bal Foyen"][GetString(FURC_AV_FRO)]
   addTable = FurC.MergeTable(furnishingVendor, morrowindStones)
@@ -2678,8 +2655,8 @@ function FurC.SetupHomesteadItems()
   listTable = FurC.AchievementVendors[FURC_HOMESTEAD]["Craglorn, Belkarth Woodworking store"][GetString(FURC_AV_KRR)]
   listTable = FurC.MergeTable(listTable, furnishingVendor)
 
-  listTable = FurC.AchievementVendors[FURC_HOMESTEAD]["Coldharbour, Hollow City, Cicero's General Good"]
-      [GetString(FURC_AV_KRR)]
+  listTable =
+    FurC.AchievementVendors[FURC_HOMESTEAD]["Coldharbour, Hollow City, Cicero's General Good"][GetString(FURC_AV_KRR)]
   listTable = FurC.MergeTable(listTable, structures)
 
   listTable = FurC.AchievementVendors[FURC_HOMESTEAD]["Gold Coast, Kvatch"][GetString(FURC_AV_FRO)]

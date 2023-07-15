@@ -16,6 +16,9 @@ indent_style = tab
 # Lua files
 [*.lua]
 indent_size = 2
+indent_style = space
+# if Stylua is enabled it will overwrite those settings
+# for Stylua refer to stylua.toml instead
 
 # Markdown files
 [*.md]

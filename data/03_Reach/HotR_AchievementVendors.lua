@@ -1,4 +1,5 @@
 FurC.AchievementVendors[FURC_REACH] = {
+
   ["Coldharbour, Cicero's General Goods"] = {
     [GetString(FURC_AV_KRR)] = {
       [130273] = { -- Boulder, Coldharbour Fan
@@ -25,8 +26,9 @@ FurC.AchievementVendors[FURC_REACH] = {
       [130277] = { -- Tree, Towering Withered
         itemPrice = 5000,
       },
-    }
+    },
   },
+
   ["Glenumbra, Daggerfall, The Rosy Lion"] = {
     [GetString(FURC_AV_ROH)] = {
 
@@ -81,9 +83,9 @@ FurC.AchievementVendors[FURC_REACH] = {
       [130314] = { -- Tree, Withering Marsh
         itemPrice = 2500,
       },
-
     },
   },
+
   ["the Undaunted Enclaves"] = {
     ["Undaunted Quartermaster"] = {
       [131428] = { -- Horn of the Reachclans
@@ -101,9 +103,9 @@ FurC.AchievementVendors[FURC_REACH] = {
       [131431] = { -- Vine, Bloodroot Grasper
         itemPrice = 5000,
       },
-
     },
   },
+
   ["Eastmarch"] = {
     [GetString(FURC_AV_FRO)] = {
       [132215] = { -- Boulder, Granite Cap
@@ -148,12 +150,12 @@ FurC.AchievementVendors[FURC_REACH] = {
       [132206] = { -- Tree, Towering Mountain Pine
         itemPrice = 1000,
       },
-      [132211] = {       -- Ferns, Mountain Cluster
+      [132211] = { -- Ferns, Mountain Cluster
         itemPrice = 250,
-      }
-
+      },
     },
   },
+
   ["Auridon, Skywatch"] = {
     [GetString(FURC_AV_MAL)] = {
       [120652] = { -- Boulder, Flat Lichen
@@ -228,13 +230,9 @@ FurC.AchievementVendors[FURC_REACH] = {
       [120669] = { -- Tree, Squat White Cherry
         itemPrice = 10000,
       },
-
     },
-
-  }
+  },
 }
 
 -- global function, needs to live here, YES MANA
-function FurC.SetupReachItems()
-
-end
+function FurC.SetupReachItems() end

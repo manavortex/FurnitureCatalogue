@@ -2,38 +2,46 @@ local async = LibAsync
 local task = async:Create("FurnitureCatalogue_Tooltip")
 
 local function tryColorize(text)
-  if not (text and FurC.GetColouredTooltips()) then return text end
+  if not (text and FurC.GetColouredTooltips()) then
+    return text
+  end
   return text:gsub("cannot craft", "|cFF0000cannot craft"):gsub("Can be crafted", "|c00FF00Can be crafted")
 end
 
 local TYPE_STRING = "string"
 local function add(t, arg)
-	if nil ~= arg and (TYPE_STRING ~= type(t) or #t > 0) then t[#t + 1] = arg end
-	return t
+  if nil ~= arg and (TYPE_STRING ~= type(t) or #t > 0) then
+    t[#t + 1] = arg
+  end
+  return t
 end
 
 local function addTooltipData(control, itemLink)
-
-  if FurC.GetDisableTooltips() then return end
+  if FurC.GetDisableTooltips() then
+    return
+  end
   local itemId, recipeArray = nil
-  if nil == itemLink or FURC_EMPTY_STRING == itemLink then return end
+  if nil == itemLink or FURC_EMPTY_STRING == itemLink then
+    return
+  end
   local isRecipe = IsItemLinkFurnitureRecipe(itemLink)
 
   itemLink = (isRecipe and GetItemLinkRecipeResultItemLink(itemLink)) or itemLink
 
-  if not (isRecipe or IsItemLinkPlaceableFurniture(itemLink)) then return end
-  itemId     = GetItemLinkItemId(itemLink)
+  if not (isRecipe or IsItemLinkPlaceableFurniture(itemLink)) then
+    return
+  end
+  itemId = GetItemLinkItemId(itemLink)
   recipeArray = FurC.Find(itemLink)
 
   -- |H0:item:118206:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h
 
-  if not recipeArray then return end
+  if not recipeArray then
+    return
+  end
 
-
-  local unknown   = not FurC.CanCraft(itemId, recipeArray)
+  local unknown = not FurC.CanCraft(itemId, recipeArray)
   local stringTable = {}
-
-
 
   -- if craftable:
   if isRecipe or recipeArray.origin == FURC_CRAFTING then
@@ -60,7 +68,9 @@ local function addTooltipData(control, itemLink)
     stringTable = add(stringTable, recipeArray.achievement)
   end
 
-  if #stringTable == 0 then return end
+  if #stringTable == 0 then
+    return
+  end
 
   control:AddVerticalPadding(8)
   ZO_Tooltip_AddDivider(control)
@@ -68,7 +78,6 @@ local function addTooltipData(control, itemLink)
   for i = 1, #stringTable do
     control:AddLine(zo_strformat("<<C:1>>", stringTable[i]))
   end
-
 end
 
 local function TooltipHook(tooltipControl, method, linkFunc)
@@ -83,7 +92,9 @@ end
 local function ReturnItemLink(itemLink)
   if FurC.showBlueprints then
     local recipeArray = FurC.Find(itemLink)
-    if recipeArray and recipeArray.blueprint then return FurC.GetItemLink(recipeArray.blueprint) end
+    if recipeArray and recipeArray.blueprint then
+      return FurC.GetItemLink(recipeArray.blueprint)
+    end
   end
   return FurC.GetItemLink(itemLink)
 end
@@ -93,16 +104,16 @@ do
   -- hook real late
   local function HookToolTips()
     EVENT_MANAGER:UnregisterForUpdate(identifier)
-    TooltipHook(ItemTooltip,   "SetBagItem",              GetItemLink)
-    TooltipHook(ItemTooltip,   "SetTradeItem",            GetTradeItemLink)
-    TooltipHook(ItemTooltip,   "SetBuybackItem",          GetBuybackItemLink)
-    TooltipHook(ItemTooltip,   "SetStoreItem",            GetStoreItemLink)
-    TooltipHook(ItemTooltip,   "SetAttachedMailItem",     GetAttachedItemLink)
-    TooltipHook(ItemTooltip,   "SetLootItem",             GetLootItemLink)
-    TooltipHook(ItemTooltip,   "SetTradingHouseItem",     GetTradingHouseSearchResultItemLink)
-    TooltipHook(ItemTooltip,   "SetTradingHouseListing",  GetTradingHouseListingItemLink)
-    TooltipHook(ItemTooltip,   "SetLink",                 ReturnItemLink)
-    TooltipHook(PopupTooltip,  "SetLink",                 ReturnItemLink)
+    TooltipHook(ItemTooltip, "SetBagItem", GetItemLink)
+    TooltipHook(ItemTooltip, "SetTradeItem", GetTradeItemLink)
+    TooltipHook(ItemTooltip, "SetBuybackItem", GetBuybackItemLink)
+    TooltipHook(ItemTooltip, "SetStoreItem", GetStoreItemLink)
+    TooltipHook(ItemTooltip, "SetAttachedMailItem", GetAttachedItemLink)
+    TooltipHook(ItemTooltip, "SetLootItem", GetLootItemLink)
+    TooltipHook(ItemTooltip, "SetTradingHouseItem", GetTradingHouseSearchResultItemLink)
+    TooltipHook(ItemTooltip, "SetTradingHouseListing", GetTradingHouseListingItemLink)
+    TooltipHook(ItemTooltip, "SetLink", ReturnItemLink)
+    TooltipHook(PopupTooltip, "SetLink", ReturnItemLink)
   end
   -- hook late
   local function DeferHookToolTips()
