@@ -1,0 +1,168 @@
+name: CreateReleasePR
+
+# Connected workflows are:
+# 1. 📍CreateReleasePR - create_release_pr.yml
+# 2. PackageRelease  - package_release.yml
+# 3. PublishToESOUI - publish_release.yml
+# Refer to CONTRIBUTING.md for more info
+
+# Creates a release PR from the current master branch.
+# Updates the main AddOn version in all relevant files.
+# Adds changelog notes from PR description into CHANGELOG, if there are notes.
+
+permissions:
+  contents: write
+  pull-requests: write
+on:
+  # Manual execution, uses the latest merged PR that
+  workflow_dispatch:
+  # Triggered by merging a PR labeled as 'actions:RELEASE' into master
+  pull_request:
+    types: [closed]
+    # Only run if PR targets master
+    branches: [master]
+
+jobs:
+  release_pr:
+    # Only run if release label present in merged PR. When manually triggered the label is checked later
+    if: github.event_name == 'workflow_dispatch' || (github.event.pull_request.merged && contains(github.event.pull_request.labels.*.name, 'actions:RELEASE'))
+
+    runs-on: ubuntu-latest
+    steps:
+      # Check out master branch and set up our git config
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          ref: master
+      - run: |
+          git config --local user.name "Handles-Your-Releases[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      # Install dependencies for required scripts
+      - name: Setup Python
+        uses: actions/setup-python@v4.6.0
+        with:
+          python-version: "^3.6"
+      - run: pip install -r .scripts/requirements.txt
+
+      # Loads details from the latest valid PR
+      # When triggered by merge: Gets data from the PR that triggered the event
+      # When triggered manually: Gets data from most recently merged PR
+      - name: Get PR details
+        id: get_details
+        run: |
+          JSON_FILE="full_json.tmp"
+          if [[ $IS_PR_EVENT ]]; then
+            echo "$PR_JSON" > $JSON_FILE
+          else
+            gh pr list --base master --label actions:RELEASE --state merged --json labels,body,mergedAt --limit 10 --jq '. | sort_by(.mergedAt) | reverse | .[0]' > $JSON_FILE
+          fi
+
+          # right now '-e' does nothing when used together with 'jq -R', but it has sentimental value to me
+          BODY=$(jq -r '.body' $JSON_FILE | jq -aRse .)
+          LABELS=$(jq -r '.labels[].name' $JSON_FILE | jq -aRse .)
+          rm $JSON_FILE
+
+          # Sending escaped JSON output, has to be unescaped in steps that access it
+          echo "BODY=$BODY" >> $GITHUB_OUTPUT
+          echo "LABELS=$LABELS" >> $GITHUB_OUTPUT
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_JSON: ${{ toJson(github.event.pull_request) }}
+          IS_PR_EVENT: ${{github.event_name != 'workflow_dispatch'}}
+
+      # Check if we have a major, minor or patch version change
+      # LABELS looks like:"actions:RELEASE\nversion:MAJOR\n" (not JSON)
+      - name: Determine version impact
+        id: get_versionchange
+        run: |
+          # we don't have to unescape before grep'ing (no special chars allowed for labels)
+          if echo "$LABELS" | grep -q "version:MAJOR"; then
+            IMPACT=major
+          elif echo "$LABELS" | grep -q "version:PATCH"; then
+            IMPACT=patch
+          else
+            IMPACT=minor
+          fi
+          echo "IMPACT=$IMPACT" >> $GITHUB_OUTPUT
+        env:
+          LABELS: ${{ steps.get_details.outputs.LABELS }}
+
+      # Get the latest version number from ESOUI and increment it
+      - name: Get increased Version number
+        id: next_version
+        run: |
+          VERSION_ONLINE="$(python .scripts/esoui_utils.py version)"
+          if [[ $VERSION_IMPACT == "major" ]]; then
+            FLAG="--major"
+          elif [[ $VERSION_IMPACT == "patch" ]]; then
+            FLAG="--patch"
+          fi
+          NEXT_VERSION="$(python .scripts/furc_utils.py nextversion --current $VERSION_ONLINE $FLAG)"
+          echo "NEXT_VERSION=$NEXT_VERSION" >> $GITHUB_OUTPUT
+        env:
+          ESOUI_API_TOKEN: ${{ secrets.ESOUI_API_TOKEN }}
+          VERSION_IMPACT: ${{ steps.get_versionchange.outputs.IMPACT }}
+
+      # Create new branch from master which will be our release branch for the PR
+      # Deletes any pre-existing branch with the same name
+      - name: Create Release Branch
+        id: release_branch
+        run: |
+          BRANCH="release/${{ steps.next_version.outputs.NEXT_VERSION }}"
+          git branch -d "$BRANCH" || true
+          git push origin --delete "$BRANCH" || true
+          git branch "$BRANCH"
+          git checkout "$BRANCH"
+          git push --set-upstream origin "$BRANCH"
+          echo "HEAD=$BRANCH" >> $GITHUB_OUTPUT
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # Increase versions, update changelog, prepare notes_$NEXT_VERSION.tmp for the PR body (empty notes are fine)
+      # BODY looks like: "- describe your changes here\r\n- testchanges\r\n\r\n[//]: # \"\u2753 ..." (not JSON)
+      - name: Update files
+        id: update_files
+        run: |
+          NOTES_FILE="notes_$VERSION.tmp"
+          # using jq to unescape the string (it can handle that too)
+          echo $NOTE | jq -r . > $NOTES_FILE
+          CHANGED_FILES="changed_$VERSION.tmp"
+          python .scripts/furc_utils.py changeversion --new-version "$VERSION" --output-file "$CHANGED_FILES"
+          TOADY="$(date --iso-8601)"
+          python .scripts/furc_utils.py update_changelog --notes-file $NOTES_FILE --changelog-file "CHANGELOG" --header "$VERSION ($TOADY)"
+          echo "CHANGED_FILES=$CHANGED_FILES" >> $GITHUB_OUTPUT
+        env:
+          VERSION: ${{ steps.next_version.outputs.NEXT_VERSION }}
+          NOTE: ${{ steps.get_details.outputs.BODY }}
+
+      # Commit version increments and CHANGELOG (if applicable)
+      # Fails if empty commit
+      - name: Commit Changelog
+        run: |
+          while read LINE ; do
+            echo "Changed file: $LINE"
+            git add $LINE
+          done < $CHANGED_FILES
+          git add 'CHANGELOG' || true
+          git commit -m "Version bumps and CHANGELOG for $VERSION"
+          git push
+          git reset --hard HEAD
+          git clean -f -d
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VERSION: ${{ steps.next_version.outputs.NEXT_VERSION }}
+          CHANGED_FILES: ${{ steps.update_files.outputs.CHANGED_FILES }}
+
+      # Create a PR from the updated version and changelog files
+      - name: Create PR
+        run: |
+          gh pr create  \
+          --title "Release ${{ steps.next_version.outputs.NEXT_VERSION }}" \
+          --head "${{ steps.release_branch.outputs.HEAD }}" \
+          --fill \
+          --base master \
+          --label 'bot:RELEASE_AND_PUBLISH' \
+          --no-maintainer-edit
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
