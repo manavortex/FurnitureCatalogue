@@ -2,8 +2,8 @@ FurnitureCatalogue               = {}
 FurnitureCatalogue.name          = "FurnitureCatalogue"
 FurnitureCatalogue.author        = "manavortex"
 FurnitureCatalogue.tag           = "FurC"
-FurnitureCatalogue.version       = 4073000 -- will be AUTOREPLACED with AddonVersion
 
+FurnitureCatalogue.version       = 4072000  -- will be AUTOREPLACED with AddonVersion
 FurnitureCatalogue.CharacterName = nil
 FurnitureCatalogue.settings      = {}
 
@@ -24,6 +24,7 @@ FurC.RumourRecipes               = {}
 
 -- TODO: set up the filtering for FURC_RUMOUR and FURC_CROWN in submenus by origin
 local defaults                   = {
+
   hideMats             = true,
   dontScanTradingHouse = false,
   enableDebug          = false,
@@ -157,8 +158,8 @@ FurC.DropdownData = {
     [FURC_DEPTHS]    = GetString(SI_FURC_FILTER_VERSION_DEPTHS),
     [FURC_DRUID]     = GetString(SI_FURC_FILTER_VERSION_DRUID),
     [FURC_SCRIBE]    = GetString(SI_FURC_FILTER_VERSION_SCRIBE),
-    [FURC_NECROM]		= GetString(SI_FURC_FILTER_VERSION_NECROM),
-	},
+    [FURC_NECROM]    = GetString(SI_FURC_FILTER_VERSION_NECROM),
+  },
 
   TooltipsVersion   = {
     [FURC_NONE]      = GetString(SI_FURC_FILTER_VERSION_OFF_TT),
@@ -186,7 +187,7 @@ FurC.DropdownData = {
     [FURC_DEPTHS]    = GetString(SI_FURC_FILTER_VERSION_DEPTHS_TT),
     [FURC_DRUID]     = GetString(SI_FURC_FILTER_VERSION_DRUID_TT),
     [FURC_SCRIBE]    = GetString(SI_FURC_FILTER_VERSION_SCRIBE_TT),
-    [FURC_NECROM]		= GetString(SI_FURC_FILTER_VERSION_NECROM_TT),
+    [FURC_NECROM]    = GetString(SI_FURC_FILTER_VERSION_NECROM_TT),
   },
 
   ChoicesCharacter  = {
@@ -221,9 +222,10 @@ local logger
 function FurC.getOrCreateLogger(forceCreate)
   if not forceCreate and logger then return logger end -- return existing reference
 
-  -- Do not log at all, if not in debug mode or no log lib available
   if not FurC.settings.enableDebug or not LibDebugLogger then
-    logger = {}
+    -- Do not log at all, if not in debug mode or no log lib available
+    local function ignore(...)
+    end -- black hole for most property calls, like logger:Debug
     local function info(self, ...)
       local prefix = string.format("[%s]: ", FurC.tag)
       if tostring(...):find("%%") then
@@ -232,8 +234,7 @@ function FurC.getOrCreateLogger(forceCreate)
         d(prefix .. tostring(...))
       end
     end
-    local function ignore(...)
-    end -- black hole for most property calls, like logger:Debug
+    logger = {}
     logger.Verbose = ignore
     logger.Debug = ignore
     logger.Info = info
@@ -241,10 +242,8 @@ function FurC.getOrCreateLogger(forceCreate)
     logger.Error = ignore
     logger.Log = ignore
     return logger
-  end
-
-  -- use logger from library
-  if LibDebugLogger then
+  else
+    -- use logger from library
     logger = LibDebugLogger(FurC.tag)
     return logger
   end
@@ -258,7 +257,7 @@ function FurnitureCatalogue_Initialize(eventCode, addOnName)
   -- setup the "source" dropdown for the menu
   setupSourceDropdown()
 
-  FurC.CreateSettings(FurC.settings, defaults, FurnitureCatalogue)
+  FurC.CreateSettings(FurC.settings, defaults)
   FurC.Logger = FurC.getOrCreateLogger(true)
   FurC.Logger:Debug("Initialising...")
 
