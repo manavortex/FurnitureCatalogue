@@ -2,7 +2,10 @@ FurC.PVP = FurC.PVP or {}
 FURC_CYRO = "Cyrodiil"
 FURC_IC = "Imperial City"
 FURC_ITEMSOURCE_VENDOR = "Furnishing vendor"
-FurC.PVP[FURC_HOMESTEAD] = {
+
+local ver = FurC.Constants.Versioning
+
+FurC.PVP[ver.HOMESTEAD] = {
   [FURC_ITEMSOURCE_VENDOR] = {
     [FURC_CYRO] = {
       [119656] = { -- Pennant, Small

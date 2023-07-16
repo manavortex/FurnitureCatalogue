@@ -1,4 +1,5 @@
 local FurC = FurC or {}
+local src = FurC.Constants.ItemSources
 
 local vendorColor = "d68957"
 local goldColor = "e5da40"
@@ -29,7 +30,7 @@ end
 
 local function getRolisSource(recipeKey, recipeArray)
   recipeArray = recipeArray or FurC.Find(recipeKey)
-  if not recipeArray then
+  if {} == recipeArray then
     return
   end
 
@@ -56,9 +57,10 @@ local WEEKEND_DATE = GetString(SI_FURC_STRING_WEEKEND_AROUND)
 local SOLD_BY = GetString(SI_FURC_STRING_WASSOLDBY)
 local function getLuxurySource(recipeKey, recipeArray, stripColor)
   recipeArray = recipeArray or FurC.Find(recipeKey)
-  if not recipeArray then
+  if {} == recipeArray then
     return
   end
+
   local versionData = FurC.LuxuryFurnisher[recipeArray.version]
   if not versionData then
     return GetString(SI_FURC_STRING_FETCHER)
@@ -85,6 +87,7 @@ local function getPvpSource(recipeKey, recipeArray, stripColor)
   if not recipeArray then
     return
   end
+
   local versionData = FurC.PVP[recipeArray.version]
   if not versionData then
     return "getPvpSource: nil"
@@ -108,12 +111,12 @@ local function getPvpSource(recipeKey, recipeArray, stripColor)
 end
 FurC.getPvpSource = getPvpSource
 
-local typeTable = "table"
 local function getAchievementVendorSource(recipeKey, recipeArray, stripColor)
   recipeArray = recipeArray or FurC.Find(recipeKey)
-  if not recipeArray then
+  if {} == recipeArray then
     return
   end
+
   local versionData = FurC.AchievementVendors[recipeArray.version]
   if not versionData then
     return zo_strformat(
@@ -228,7 +231,7 @@ local function getRecipeSource(recipeKey, recipeArray)
 
   recipeKey = recipeArray.blueprint or recipeKey
 
-  return (recipeArray.origin == FURC_RUMOUR and FurC.getRumourSource(recipeKey, recipeArray))
+  return (recipeArray.origin == src.RUMOUR and FurC.getRumourSource(recipeKey, recipeArray))
     or FurC.RecipeSources[recipeKey]
 end
 FurC.getRecipeSource = getRecipeSource

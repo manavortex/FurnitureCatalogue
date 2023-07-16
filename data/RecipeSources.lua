@@ -74,7 +74,7 @@ end
 
 for versionNo, faustinaRecipes in pairs(FurC.FaustinaRecipes) do
   for recipeId, itemPrice in pairs(faustinaRecipes) do
-    local unsurpassedCrafter = GetAchievementLink(1801)
+    local unsurpassedCrafter = GetAchievementLink(1801, LINK_STYLE_DEFAULT)
     local priceString = zo_strformat(GetString(SI_FURC_STRING_FOR_VOUCHERS), itemPrice, voucherColor)
     local soldByFaustinaFor = zo_strformat(GetString(SI_FURC_STRING_FAUSTINA), priceString)
     FurC.RecipeSources[recipeId] = soldByFaustinaFor .. requires .. unsurpassedCrafter

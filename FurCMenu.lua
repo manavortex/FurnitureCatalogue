@@ -1,9 +1,11 @@
+local src = FurC.Constants.ItemSources
+
 function FurC.CreateSettings(savedVars, defaults)
   local LAM = LibAddonMenu2
   local panelData = {
     type = "panel",
     name = FurC.name,
-    displayName = name,
+    displayName = FurC.name,
     author = FurC.author,
     version = FurC.version,
     registerForRefresh = true,
@@ -257,7 +259,7 @@ function FurC.CreateSettings(savedVars, defaults)
         { -- dropdown: default character
           type = "dropdown",
           name = GetString(SI_FURC_STRING_MENU_DEFAULT_DD_CHAR),
-          choices = FurnitureCatalogue.DropdownData.ChoicesCharacter,
+          choices = FurC.DropdownData.ChoicesCharacter,
           getFunc = function()
             return FurC.GetDefaultDropdownChoiceText("Character")
           end,
@@ -268,7 +270,7 @@ function FurC.CreateSettings(savedVars, defaults)
         { -- dropdown: default version
           type = "dropdown",
           name = GetString(SI_FURC_STRING_MENU_DEFAULT_DD_VERSION),
-          choices = FurnitureCatalogue.DropdownData.ChoicesVersion,
+          choices = FurC.DropdownData.ChoicesVersion,
           getFunc = function()
             return FurC.GetDefaultDropdownChoiceText("Version")
           end,
@@ -420,10 +422,10 @@ function FurC.CreateSettings(savedVars, defaults)
           type = "checkbox",
           name = GetString(SI_FURC_STRING_MENU_FALL_HIDE_UI_BUTTON),
           getFunc = function()
-            return FurC.GetHideUIButton(FURC_RUMOUR)
+            return FurC.GetHideUIButton(src.RUMOUR)
           end,
           setFunc = function(value)
-            FurC.SetHideUIButton(FURC_RUMOUR, value)
+            FurC.SetHideUIButton(src.RUMOUR, value)
           end,
         },
 
@@ -450,10 +452,10 @@ function FurC.CreateSettings(savedVars, defaults)
           type = "checkbox",
           name = GetString(SI_FURC_STRING_MENU_FALL_HIDE_UI_BUTTON),
           getFunc = function()
-            return FurC.GetHideUIButton(FURC_CROWN)
+            return FurC.GetHideUIButton(src.CROWN)
           end,
           setFunc = function(value)
-            FurC.SetHideUIButton(FURC_CROWN, value)
+            FurC.SetHideUIButton(src.CROWN, value)
           end,
         },
       },

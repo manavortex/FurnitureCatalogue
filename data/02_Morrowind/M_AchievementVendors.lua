@@ -1,8 +1,5 @@
---[[
-  [""] = {    --
-  itemPrice     = 100,
-  },
-]]
+local ver = FurC.Constants.Versioning
+
 local bookList = {
   [126793] = { -- The 36 Lessons: Sermon 1
     itemPrice = 3611,
@@ -144,9 +141,9 @@ local b2 = {
     itemPrice = 100,
   },
 }
-FurC.Books[FURC_MORROWIND] = bookList
+FurC.Books[ver.MORROWIND] = bookList
 
-FurC.AchievementVendors[FURC_MORROWIND] = {
+FurC.AchievementVendors[ver.MORROWIND] = {
   ["Vivec City, Saint Delyn Inn"] = {
     ["Drops-No-Glass, Temple Doctrine Collection"] = bookList,
     ["Drops-No-Glass"] = {
@@ -280,6 +277,7 @@ FurC.AchievementVendors[FURC_MORROWIND] = {
         achievement = 1868, -- Saviour of Morrowind
       },
     },
+
     ["Uzipa"] = {
       [120998] = { -- Block, Wood Cutting
         itemPrice = 100,
@@ -358,6 +356,7 @@ FurC.AchievementVendors[FURC_MORROWIND] = {
       },
     },
   },
+
   ["Vivec City, Gladiator's Quarters"] = {
     ["Brelda Ofemalen"] = {
       [126649] = { -- Banner of the Fire Drakes
@@ -399,6 +398,7 @@ FurC.AchievementVendors[FURC_MORROWIND] = {
         achievement = 1910, -- Conquering Hero
       },
     },
+
     ["Llivas Driler"] = {
       [126716] = { -- Brazier of the FD
         itemPrice = 50000,
@@ -426,6 +426,7 @@ FurC.AchievementVendors[FURC_MORROWIND] = {
       },
     },
   },
+
   [GetString(FURC_AV_CAPITAL)] = {
     [GetString(FURC_AV_HER)] = {
       [126720] = { -- Banner of Mayhem
@@ -454,6 +455,7 @@ FurC.AchievementVendors[FURC_MORROWIND] = {
       },
     },
   },
+
   ["the Mages' guild"] = {
     ["the Mystic as part of a collection"] = bookList,
   },
@@ -461,8 +463,8 @@ FurC.AchievementVendors[FURC_MORROWIND] = {
 
 -- global function, needs to live here, YES MANA
 function FurC.SetupMorrowindItems()
-  -- FurC.AchievementVendors[FURC_MORROWIND]["the Mages' guild"]["the Mystic as part of a collection"] = bookList
+  -- FurC.AchievementVendors[ver.MORROWIND]["the Mages' guild"]["the Mystic as part of a collection"] = bookList
   local listTable
-  listTable = FurC.AchievementVendors[FURC_MORROWIND]["Vivec City, Saint Delyn Inn"]["Uzipa"]
+  listTable = FurC.AchievementVendors[ver.MORROWIND]["Vivec City, Saint Delyn Inn"]["Uzipa"]
   listTable = FurC.MergeTable(listTable, boxes)
 end

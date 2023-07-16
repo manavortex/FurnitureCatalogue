@@ -9,6 +9,9 @@ FurnitureCatalogue.settings = {}
 
 FurC = FurnitureCatalogue
 
+local src = FurC.Constants.ItemSources
+local ver = FurC.Constants.Versioning
+
 FurC.AchievementVendors = {}
 FurC.LuxuryFurnisher = {}
 FurC.Recipes = {}
@@ -73,18 +76,24 @@ local defaults = {
 
 local sourceIndicesKeys = {}
 local function getSourceIndicesKeys()
-  sourceIndicesKeys[FURC_NONE] = "off"
-  sourceIndicesKeys[FURC_FAVE] = "favorites"
-  sourceIndicesKeys[FURC_CRAFTING] = "craft_all"
-  sourceIndicesKeys[FURC_CRAFTING_KNOWN] = "craft_known"
-  sourceIndicesKeys[FURC_CRAFTING_UNKNOWN] = "craft_unknown"
-  sourceIndicesKeys[FURC_VENDOR] = "purch_gold"
-  sourceIndicesKeys[FURC_PVP] = "purch_ap"
-  sourceIndicesKeys[FURC_CROWN] = "crownstore"
-  sourceIndicesKeys[FURC_RUMOUR] = "rumour"
-  sourceIndicesKeys[FURC_LUXURY] = "luxury"
-  sourceIndicesKeys[FURC_OTHER] = "other"
-  sourceIndicesKeys[FURC_WRIT_VENDOR] = "writ_vendor"
+  sourceIndicesKeys[src.NONE] = "off"
+  sourceIndicesKeys[src.FAVE] = "favorites"
+  sourceIndicesKeys[src.CRAFTING] = "craft_all"
+  sourceIndicesKeys[src.CRAFTING_KNOWN] = "craft_known"
+  sourceIndicesKeys[src.CRAFTING_UNKNOWN] = "craft_unknown"
+  sourceIndicesKeys[src.VENDOR] = "purch_gold"
+  sourceIndicesKeys[src.PVP] = "purch_ap"
+  sourceIndicesKeys[src.WRIT_VENDOR] = "writ_vendor"
+  sourceIndicesKeys[src.CROWN] = "crownstore"
+  sourceIndicesKeys[src.RUMOUR] = "rumour"
+  sourceIndicesKeys[src.LUXURY] = "luxury"
+  sourceIndicesKeys[src.OTHER] = "other"
+  --sourceIndicesKeys[src.ROLIS]            = "ROLIS"
+  --sourceIndicesKeys[src.DROP]             = "DROP"
+  --sourceIndicesKeys[src.JUSTICE]          = "JUSTICE"
+  --sourceIndicesKeys[src.FISHING]          = "FISHING"
+  --sourceIndicesKeys[src.GUILDSTORE]       = "GUILDSTORE"
+  --sourceIndicesKeys[src.FESTIVAL_DROP]    = "FESTIVAL_DROP"
 
   return sourceIndicesKeys
 end
@@ -92,18 +101,24 @@ FurC.GetSourceIndicesKeys = getSourceIndicesKeys
 
 local choicesSource = {}
 local function getChoicesSource()
-  choicesSource[FURC_NONE] = GetString(SI_FURC_NONE)
-  choicesSource[FURC_FAVE] = GetString(SI_FURC_FAVE)
-  choicesSource[FURC_CRAFTING] = GetString(SI_FURC_CRAFTING)
-  choicesSource[FURC_CRAFTING_KNOWN] = GetString(SI_FURC_CRAFTING_KNOWN)
-  choicesSource[FURC_CRAFTING_UNKNOWN] = GetString(SI_FURC_CRAFTING_UNKNOWN)
-  choicesSource[FURC_VENDOR] = GetString(SI_FURC_VENDOR)
-  choicesSource[FURC_PVP] = GetString(SI_FURC_PVP)
-  choicesSource[FURC_WRIT_VENDOR] = GetString(SI_FURC_STRING_WRIT_VENDOR)
-  choicesSource[FURC_CROWN] = GetString(SI_FURC_CROWN)
-  choicesSource[FURC_RUMOUR] = GetString(SI_FURC_RUMOUR)
-  choicesSource[FURC_LUXURY] = GetString(SI_FURC_LUXURY)
-  choicesSource[FURC_OTHER] = GetString(SI_FURC_OTHER)
+  choicesSource[src.NONE] = GetString(SI_FURC_NONE)
+  choicesSource[src.FAVE] = GetString(SI_FURC_FAVE)
+  choicesSource[src.CRAFTING] = GetString(SI_FURC_CRAFTING)
+  choicesSource[src.CRAFTING_KNOWN] = GetString(SI_FURC_CRAFTING_KNOWN)
+  choicesSource[src.CRAFTING_UNKNOWN] = GetString(SI_FURC_CRAFTING_UNKNOWN)
+  choicesSource[src.VENDOR] = GetString(SI_FURC_VENDOR)
+  choicesSource[src.PVP] = GetString(SI_FURC_PVP)
+  choicesSource[src.WRIT_VENDOR] = GetString(SI_FURC_STRING_WRIT_VENDOR)
+  choicesSource[src.CROWN] = GetString(SI_FURC_CROWN)
+  choicesSource[src.RUMOUR] = GetString(SI_FURC_RUMOUR)
+  choicesSource[src.LUXURY] = GetString(SI_FURC_LUXURY)
+  choicesSource[src.OTHER] = GetString(SI_FURC_OTHER)
+  --choicesSource[src.ROLIS]            = "ROLIS"
+  --choicesSource[src.DROP]             = "DROP"
+  --choicesSource[src.JUSTICE]          = "JUSTICE"
+  --choicesSource[src.FISHING]          = "FISHING"
+  --choicesSource[src.GUILDSTORE]       = "GUILDSTORE"
+  --choicesSource[src.FESTIVAL_DROP]    = "FESTIVAL_DROP"
 
   return choicesSource
 end
@@ -111,18 +126,24 @@ FurC.GetChoicesSource = getChoicesSource
 
 local tooltipsSource = {}
 local function getTooltipsSource()
-  tooltipsSource[FURC_NONE] = GetString(SI_FURC_NONE_TT)
-  tooltipsSource[FURC_FAVE] = GetString(SI_FURC_FAVE_TT)
-  tooltipsSource[FURC_CRAFTING] = GetString(SI_FURC_CRAFTING_TT)
-  tooltipsSource[FURC_CRAFTING_KNOWN] = GetString(SI_FURC_CRAFTING_KNOWN_TT)
-  tooltipsSource[FURC_CRAFTING_UNKNOWN] = GetString(SI_FURC_CRAFTING_UNKNOWN_TT)
-  tooltipsSource[FURC_VENDOR] = GetString(SI_FURC_VENDOR_TT)
-  tooltipsSource[FURC_PVP] = GetString(SI_FURC_PVP_TT)
-  tooltipsSource[FURC_CROWN] = GetString(SI_FURC_CROWN_TT)
-  tooltipsSource[FURC_WRIT_VENDOR] = GetString(SI_FURC_STRING_WRIT_VENDOR_TT)
-  tooltipsSource[FURC_RUMOUR] = GetString(SI_FURC_RUMOUR_TT)
-  tooltipsSource[FURC_LUXURY] = GetString(SI_FURC_LUXURY_TT)
-  tooltipsSource[FURC_OTHER] = GetString(SI_FURC_OTHER_TT)
+  tooltipsSource[src.NONE] = GetString(SI_FURC_NONE_TT)
+  tooltipsSource[src.FAVE] = GetString(SI_FURC_FAVE_TT)
+  tooltipsSource[src.CRAFTING] = GetString(SI_FURC_CRAFTING_TT)
+  tooltipsSource[src.CRAFTING_KNOWN] = GetString(SI_FURC_CRAFTING_KNOWN_TT)
+  tooltipsSource[src.CRAFTING_UNKNOWN] = GetString(SI_FURC_CRAFTING_UNKNOWN_TT)
+  tooltipsSource[src.VENDOR] = GetString(SI_FURC_VENDOR_TT)
+  tooltipsSource[src.PVP] = GetString(SI_FURC_PVP_TT)
+  tooltipsSource[src.CROWN] = GetString(SI_FURC_CROWN_TT)
+  tooltipsSource[src.WRIT_VENDOR] = GetString(SI_FURC_STRING_WRIT_VENDOR_TT)
+  tooltipsSource[src.RUMOUR] = GetString(SI_FURC_RUMOUR_TT)
+  tooltipsSource[src.LUXURY] = GetString(SI_FURC_LUXURY_TT)
+  tooltipsSource[src.OTHER] = GetString(SI_FURC_OTHER_TT)
+  --tooltipsSource[src.ROLIS]            = "ROLIS"
+  --tooltipsSource[src.DROP]             = "DROP"
+  --tooltipsSource[src.JUSTICE]          = "JUSTICE"
+  --tooltipsSource[src.FISHING]          = "FISHING"
+  --tooltipsSource[src.GUILDSTORE]       = "GUILDSTORE"
+  --tooltipsSource[src.FESTIVAL_DROP]    = "FESTIVAL_DROP"
 
   return tooltipsSource
 end
@@ -131,61 +152,61 @@ FurC.GetTooltipsSource = getTooltipsSource
 -- [UPGRADING GAME VERSIONS, PTS compatibility]
 FurC.DropdownData = {
   ChoicesVersion = {
-    [FURC_NONE] = GetString(SI_FURC_FILTER_VERSION_OFF),
-    [FURC_HOMESTEAD] = GetString(SI_FURC_FILTER_VERSION_HS),
-    [FURC_MORROWIND] = GetString(SI_FURC_FILTER_VERSION_M),
-    [FURC_REACH] = GetString(SI_FURC_FILTER_VERSION_R),
-    [FURC_CLOCKWORK] = GetString(SI_FURC_FILTER_VERSION_CC),
-    [FURC_DRAGONS] = GetString(SI_FURC_FILTER_VERSION_DRAGON),
-    [FURC_ALTMER] = GetString(SI_FURC_FILTER_VERSION_ALTMER),
-    [FURC_WEREWOLF] = GetString(SI_FURC_FILTER_VERSION_SLAVES),
-    [FURC_SLAVES] = GetString(SI_FURC_FILTER_VERSION_WEREWOLF),
-    [FURC_WOTL] = GetString(SI_FURC_FILTER_VERSION_WOTL),
-    [FURC_KITTY] = GetString(SI_FURC_FILTER_VERSION_KITTY),
-    [FURC_SCALES] = GetString(SI_FURC_FILTER_VERSION_SCALES),
-    [FURC_DRAGON2] = GetString(SI_FURC_FILTER_VERSION_DRAGON2),
-    [FURC_HARROW] = GetString(SI_FURC_FILTER_VERSION_HARROW),
-    [FURC_SKYRIM] = GetString(SI_FURC_FILTER_VERSION_SKYRIM),
-    [FURC_STONET] = GetString(SI_FURC_FILTER_VERSION_STONET),
-    [FURC_MARKAT] = GetString(SI_FURC_FILTER_VERSION_MARKAT),
-    [FURC_FLAMES] = GetString(SI_FURC_FILTER_VERSION_FLAMES),
-    [FURC_BLACKW] = GetString(SI_FURC_FILTER_VERSION_BLACKW),
-    [FURC_DEADL] = GetString(SI_FURC_FILTER_VERSION_DEADL),
-    [FURC_TIDES] = GetString(SI_FURC_FILTER_VERSION_TIDES),
-    [FURC_BRETON] = GetString(SI_FURC_FILTER_VERSION_BRETON),
-    [FURC_DEPTHS] = GetString(SI_FURC_FILTER_VERSION_DEPTHS),
-    [FURC_DRUID] = GetString(SI_FURC_FILTER_VERSION_DRUID),
-    [FURC_SCRIBE] = GetString(SI_FURC_FILTER_VERSION_SCRIBE),
-    [FURC_NECROM] = GetString(SI_FURC_FILTER_VERSION_NECROM),
+    [ver.NONE] = GetString(SI_FURC_FILTER_VERSION_OFF),
+    [ver.HOMESTEAD] = GetString(SI_FURC_FILTER_VERSION_HS),
+    [ver.MORROWIND] = GetString(SI_FURC_FILTER_VERSION_M),
+    [ver.REACH] = GetString(SI_FURC_FILTER_VERSION_R),
+    [ver.CLOCKWORK] = GetString(SI_FURC_FILTER_VERSION_CC),
+    [ver.DRAGONS] = GetString(SI_FURC_FILTER_VERSION_DRAGON),
+    [ver.ALTMER] = GetString(SI_FURC_FILTER_VERSION_ALTMER),
+    [ver.WEREWOLF] = GetString(SI_FURC_FILTER_VERSION_SLAVES),
+    [ver.SLAVES] = GetString(SI_FURC_FILTER_VERSION_WEREWOLF),
+    [ver.WOTL] = GetString(SI_FURC_FILTER_VERSION_WOTL),
+    [ver.KITTY] = GetString(SI_FURC_FILTER_VERSION_KITTY),
+    [ver.SCALES] = GetString(SI_FURC_FILTER_VERSION_SCALES),
+    [ver.DRAGON2] = GetString(SI_FURC_FILTER_VERSION_DRAGON2),
+    [ver.HARROW] = GetString(SI_FURC_FILTER_VERSION_HARROW),
+    [ver.SKYRIM] = GetString(SI_FURC_FILTER_VERSION_SKYRIM),
+    [ver.STONET] = GetString(SI_FURC_FILTER_VERSION_STONET),
+    [ver.MARKAT] = GetString(SI_FURC_FILTER_VERSION_MARKAT),
+    [ver.FLAMES] = GetString(SI_FURC_FILTER_VERSION_FLAMES),
+    [ver.BLACKW] = GetString(SI_FURC_FILTER_VERSION_BLACKW),
+    [ver.DEADL] = GetString(SI_FURC_FILTER_VERSION_DEADL),
+    [ver.TIDES] = GetString(SI_FURC_FILTER_VERSION_TIDES),
+    [ver.BRETON] = GetString(SI_FURC_FILTER_VERSION_BRETON),
+    [ver.DEPTHS] = GetString(SI_FURC_FILTER_VERSION_DEPTHS),
+    [ver.DRUID] = GetString(SI_FURC_FILTER_VERSION_DRUID),
+    [ver.SCRIBE] = GetString(SI_FURC_FILTER_VERSION_SCRIBE),
+    [ver.NECROM] = GetString(SI_FURC_FILTER_VERSION_NECROM),
   },
 
   TooltipsVersion = {
-    [FURC_NONE] = GetString(SI_FURC_FILTER_VERSION_OFF_TT),
-    [FURC_HOMESTEAD] = GetString(SI_FURC_FILTER_VERSION_HS_TT),
-    [FURC_MORROWIND] = GetString(SI_FURC_FILTER_VERSION_M_TT),
-    [FURC_REACH] = GetString(SI_FURC_FILTER_VERSION_R_TT),
-    [FURC_CLOCKWORK] = GetString(SI_FURC_FILTER_VERSION_CC_TT),
-    [FURC_DRAGONS] = GetString(SI_FURC_FILTER_VERSION_DRAGON_TT),
-    [FURC_ALTMER] = GetString(SI_FURC_FILTER_VERSION_ALTMER_TT),
-    [FURC_WEREWOLF] = GetString(SI_FURC_FILTER_VERSION_SLAVES_TT),
-    [FURC_SLAVES] = GetString(SI_FURC_FILTER_VERSION_WEREWOLF_TT),
-    [FURC_WOTL] = GetString(SI_FURC_FILTER_VERSION_WOTL_TT),
-    [FURC_KITTY] = GetString(SI_FURC_FILTER_VERSION_KITTY_TT),
-    [FURC_SCALES] = GetString(SI_FURC_FILTER_VERSION_SCALES_TT),
-    [FURC_DRAGON2] = GetString(SI_FURC_FILTER_VERSION_DRAGON2_TT),
-    [FURC_HARROW] = GetString(SI_FURC_FILTER_VERSION_HARROW_TT),
-    [FURC_SKYRIM] = GetString(SI_FURC_FILTER_VERSION_SKYRIM_TT),
-    [FURC_STONET] = GetString(SI_FURC_FILTER_VERSION_STONET_TT),
-    [FURC_MARKAT] = GetString(SI_FURC_FILTER_VERSION_MARKAT_TT),
-    [FURC_FLAMES] = GetString(SI_FURC_FILTER_VERSION_FLAMES_TT),
-    [FURC_BLACKW] = GetString(SI_FURC_FILTER_VERSION_BLACKW_TT),
-    [FURC_DEADL] = GetString(SI_FURC_FILTER_VERSION_DEADL_TT),
-    [FURC_TIDES] = GetString(SI_FURC_FILTER_VERSION_TIDES_TT),
-    [FURC_BRETON] = GetString(SI_FURC_FILTER_VERSION_BRETON_TT),
-    [FURC_DEPTHS] = GetString(SI_FURC_FILTER_VERSION_DEPTHS_TT),
-    [FURC_DRUID] = GetString(SI_FURC_FILTER_VERSION_DRUID_TT),
-    [FURC_SCRIBE] = GetString(SI_FURC_FILTER_VERSION_SCRIBE_TT),
-    [FURC_NECROM] = GetString(SI_FURC_FILTER_VERSION_NECROM_TT),
+    [ver.NONE] = GetString(SI_FURC_FILTER_VERSION_OFF_TT),
+    [ver.HOMESTEAD] = GetString(SI_FURC_FILTER_VERSION_HS_TT),
+    [ver.MORROWIND] = GetString(SI_FURC_FILTER_VERSION_M_TT),
+    [ver.REACH] = GetString(SI_FURC_FILTER_VERSION_R_TT),
+    [ver.CLOCKWORK] = GetString(SI_FURC_FILTER_VERSION_CC_TT),
+    [ver.DRAGONS] = GetString(SI_FURC_FILTER_VERSION_DRAGON_TT),
+    [ver.ALTMER] = GetString(SI_FURC_FILTER_VERSION_ALTMER_TT),
+    [ver.WEREWOLF] = GetString(SI_FURC_FILTER_VERSION_SLAVES_TT),
+    [ver.SLAVES] = GetString(SI_FURC_FILTER_VERSION_WEREWOLF_TT),
+    [ver.WOTL] = GetString(SI_FURC_FILTER_VERSION_WOTL_TT),
+    [ver.KITTY] = GetString(SI_FURC_FILTER_VERSION_KITTY_TT),
+    [ver.SCALES] = GetString(SI_FURC_FILTER_VERSION_SCALES_TT),
+    [ver.DRAGON2] = GetString(SI_FURC_FILTER_VERSION_DRAGON2_TT),
+    [ver.HARROW] = GetString(SI_FURC_FILTER_VERSION_HARROW_TT),
+    [ver.SKYRIM] = GetString(SI_FURC_FILTER_VERSION_SKYRIM_TT),
+    [ver.STONET] = GetString(SI_FURC_FILTER_VERSION_STONET_TT),
+    [ver.MARKAT] = GetString(SI_FURC_FILTER_VERSION_MARKAT_TT),
+    [ver.FLAMES] = GetString(SI_FURC_FILTER_VERSION_FLAMES_TT),
+    [ver.BLACKW] = GetString(SI_FURC_FILTER_VERSION_BLACKW_TT),
+    [ver.DEADL] = GetString(SI_FURC_FILTER_VERSION_DEADL_TT),
+    [ver.TIDES] = GetString(SI_FURC_FILTER_VERSION_TIDES_TT),
+    [ver.BRETON] = GetString(SI_FURC_FILTER_VERSION_BRETON_TT),
+    [ver.DEPTHS] = GetString(SI_FURC_FILTER_VERSION_DEPTHS_TT),
+    [ver.DRUID] = GetString(SI_FURC_FILTER_VERSION_DRUID_TT),
+    [ver.SCRIBE] = GetString(SI_FURC_FILTER_VERSION_SCRIBE_TT),
+    [ver.NECROM] = GetString(SI_FURC_FILTER_VERSION_NECROM_TT),
   },
 
   ChoicesCharacter = {
@@ -282,13 +303,10 @@ function FurnitureCatalogue_Initialize(eventCode, addOnName)
 
   FurC.SetFilter(true)
 
-  EVENT_MANAGER:UnregisterForEvent("FurnitureCatalogue", EVENT_ADD_ON_LOADED)
+  EVENT_MANAGER:UnregisterForEvent(FurC.name, EVENT_ADD_ON_LOADED)
   FurC.Logger:Debug("Initialisation complete")
 end
 
-ZO_CreateStringId("SI_BINDING_NAME_TOGGLE_FURNITURE_CATALOGUE", "Toggle Furniture Catalogue window")
-ZO_CreateStringId(
-  "SI_BINDING_NAME_TOGGLE_FURNITURE_CATALOGUE_RECIPE",
-  "Toggle Furniture Catalogue blueprint on tooltip"
-)
-EVENT_MANAGER:RegisterForEvent("FurnitureCatalogue", EVENT_ADD_ON_LOADED, FurnitureCatalogue_Initialize)
+ZO_CreateStringId("SI_BINDING_NAME_TOGGLE_FURNITURE_CATALOGUE", "Toggle main window")
+ZO_CreateStringId("SI_BINDING_NAME_TOGGLE_FURNITURE_CATALOGUE_RECIPE", "Toggle Blueprint on tooltip")
+EVENT_MANAGER:RegisterForEvent(FurC.name, EVENT_ADD_ON_LOADED, initialise)

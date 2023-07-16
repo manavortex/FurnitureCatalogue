@@ -4,6 +4,9 @@ local FURC_S_SHOPPINGLIST_1 = GetString(SI_FURC_ONE_TO_SHOPPINGLIST)
 local FURC_S_SHOPPINGLIST_5 = GetString(SI_FURC_FIVE_TO_SHOPPINGLIST)
 local FURC_S_TOGGLE_SL = GetString(SI_FURC_TOGGLE_SHOPPINGLIST)
 
+local linkStyle = LINK_STYLE_DEFAULT
+local src = FurC.Constants.ItemSources
+
 function AddFurnitureShoppingListMenuEntry(itemId, calledFromFurC)
   if calledFromFurC then
     if not FurC.GetEnableShoppingList() then
@@ -12,14 +15,13 @@ function AddFurnitureShoppingListMenuEntry(itemId, calledFromFurC)
     if (nil == moc()) or (nil == FurnitureShoppingListAdd) then
       return
     end
-    local controlName = moc():GetName() or ""
     if nil == moc():GetName():match("_ListItem_") then
       return
     end
   end
 
   local itemLink = FurC.GetItemLink(itemId)
-  if nil == FurC.Find(itemLink) then
+  if {} == FurC.Find(itemLink) then
     return
   end
   AddCustomMenuItem(FURC_S_SHOPPINGLIST_1, function()
@@ -94,7 +96,7 @@ local function addMenuItems(itemLink, recipeArray, hideSepBar)
     AddCustomMenuItem(GetString(SI_FURC_POST_ITEM), postRecipeResult, MENU_ADD_OPTION_LABEL)
   end
 
-  if recipeArray.origin ~= FURC_CRAFTING then
+  if recipeArray.origin ~= src.CRAFTING then
     AddCustomMenuItem(GetString(SI_FURC_POST_ITEMSOURCE), postItemSource, MENU_ADD_OPTION_LABEL)
   else
     -- post material list
@@ -146,7 +148,7 @@ function FurC_HandleMouseEnter(inventorySlot)
   end
 
   local bagId, slotIndex = data.bagId, data.slotIndex
-  FurC.CurrentLink = GetItemLink(bagId, slotIndex)
+  FurC.CurrentLink = GetItemLink(bagId, slotIndex, linkStyle)
   if nil == FurC.CurrentLink then
     return
   end
@@ -177,8 +179,7 @@ function FurC_HandleInventoryContextMenu(control)
   end
 
   local recipeArray = FurC.Find(itemLink)
-  -- d(recipeArray)
-  if nil == recipeArray then
+  if {} == recipeArray then
     return
   end
 
@@ -202,7 +203,7 @@ function FurC.OnControlMouseUp(control, button)
     return
   end
   local recipeArray = FurC.Find(itemLink)
-  if nil == recipeArray then
+  if {} == recipeArray then
     return
   end
   zo_callLater(function()

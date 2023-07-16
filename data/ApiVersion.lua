@@ -7,7 +7,7 @@
 	2. A
 }}
 
-local tblIndex = FURC_KITTY
+local tblIndex = ver.KITTY
 
 FurC.Recipes[tblIndex] = {
   152064,  -- Elsweyr Table, Low Square,
@@ -15,23 +15,22 @@ FurC.Recipes[tblIndex] = {
 }
 
 FurC.MiscItemSources[tblIndex]  = {
-  [FURC_RUMOUR]   = {
+  [src.RUMOUR]   = {
 
   },
 
-  [FURC_JUSTICE] = {
+  [src.JUSTICE] = {
 
   },
 
-  [FURC_DROP]    = {
+  [src.DROP]    = {
 
   },
 
-  [FURC_CROWN]  = {
-
+  [src.CROWN]  = {
 
   },
-  [FURC_FISHING]   = {
+  [src.FISHING]   = {
 
   },
 
