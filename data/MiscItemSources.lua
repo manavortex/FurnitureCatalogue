@@ -224,7 +224,6 @@ FurC.MiscItemSources[FURC_SCRIBE] = {
 
   [FURC_RUMOUR] = {
 
-    [193792] = rumourSource, -- Plant, Galen Palm Cluster,
     [193793] = rumourSource, -- Reach Chandelier, Hagraven,
     [193794] = rumourSource, -- Target Hagraven, Robust,
     [193795] = rumourSource, -- Rite of the Harrowforged,
