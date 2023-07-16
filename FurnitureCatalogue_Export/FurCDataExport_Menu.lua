@@ -1,11 +1,11 @@
-function FurCExport.makeSettings()
+function FurCEx.makeSettings()
   local LAM = LibAddonMenu2
   local panelData = {
     type = "panel",
-    name = "FurnitureCatalogue_Export",
+    name = FurCEx.name,
     displayName = "FurnitureCatalogue Export",
-    author = "manavortex",
-    version = "2.0.0",
+    author = FurCEx.author,
+    version = FurCEx.version,
     registerForRefresh = true,
     registerForDefaults = true,
   }
@@ -26,7 +26,7 @@ function FurCExport.makeSettings()
       name = "Export data",
       warning = "This will reload the UI",
       func = function()
-        FurCExport.Export()
+        FurCEx.Export()
       end,
     },
   }

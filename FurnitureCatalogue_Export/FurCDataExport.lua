@@ -1,6 +1,13 @@
-FurnitureCatalogue_Export = {}
-FurCExport = FurnitureCatalogue_Export
+FurCEx = {}
+
+local this = FurCEx
+
+this.name = "FurnitureCatalogue_Export"
+this.version = 2000000
+this.author = "manavortex"
+
 local defaults = {}
+local src = FurC.Constants.ItemSources
 
 local function getSortTable(tbl)
   local list = {}
@@ -11,10 +18,10 @@ local function getSortTable(tbl)
   return list
 end
 
-function FurCExport.Export()
+function this.Export()
   local itemNames = {}
   for itemId, recipeArray in pairs(FurC.settings.data) do
-    if recipeArray.origin == FURC_CRAFTING then
+    if recipeArray.origin == src.CRAFTING then
       itemNames[GetItemLinkName(FurC.GetItemLink(itemId))] = FurC.GetItemLink(itemId)
     end
   end
@@ -35,24 +42,24 @@ function FurCExport.Export()
     exportArray[itemName] = exportString
   end
 
-  FurCExport.settings.known = exportKnown
-  FurCExport.settings.unknown = exportUnknown
+  this.settings.known = exportKnown
+  this.settings.unknown = exportUnknown
   ReloadUI("ingame")
 end
 
 SLASH_COMMANDS["/furcexport"] = function()
-  FurCExport.Export()
+  this.Export()
 end
 
 -- initialization stuff
-function FurCExport_Initialize(_, addOnName)
-  if addOnName ~= "FurnitureCatalogue_Export" then
+local function init(_, addOnName)
+  if addOnName ~= this.name then
     return
   end
 
-  FurCExport.settings = ZO_SavedVars:NewAccountWide("FurnitureCatalogue_Export", nil, nil, defaults)
-  FurCExport.makeSettings()
-  EVENT_MANAGER:UnregisterForEvent("FurnitureCatalogue_Export", EVENT_ADD_ON_LOADED)
+  this.settings = ZO_SavedVars:NewAccountWide(this.name, nil, nil, defaults)
+  this.makeSettings()
+  EVENT_MANAGER:UnregisterForEvent(this.name, EVENT_ADD_ON_LOADED)
 end
 
-EVENT_MANAGER:RegisterForEvent("FurnitureCatalogue_Export", EVENT_ADD_ON_LOADED, FurCExport_Initialize)
+EVENT_MANAGER:RegisterForEvent(this.name, EVENT_ADD_ON_LOADED, init)

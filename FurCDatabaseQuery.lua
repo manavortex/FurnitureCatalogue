@@ -59,7 +59,7 @@ local function getLuxurySource(recipeKey, recipeArray, stripColor)
 
   local versionData = FurC.LuxuryFurnisher[recipeArray.version]
   if not versionData then
-    return GetString(SI_FURC_STRING_FETCHER)
+    return "SI_FURC_STRING_FETCHER" -- ToDo: placeholder until I know who it is
   end
 
   local itemData = versionData[recipeKey]
@@ -73,7 +73,7 @@ local function getLuxurySource(recipeKey, recipeArray, stripColor)
       weekendString
     )
   end
-  return GetString(SI_FURC_STRING_FETCHER)
+  return "SI_FURC_STRING_FETCHER" -- ToDo: placeholder until I know who it is
 end
 FurC.getLuxurySource = getLuxurySource
 

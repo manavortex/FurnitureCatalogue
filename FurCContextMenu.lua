@@ -7,6 +7,8 @@ local FURC_S_TOGGLE_SL = GetString(SI_FURC_TOGGLE_SHOPPINGLIST)
 local linkStyle = LINK_STYLE_DEFAULT
 local src = FurC.Constants.ItemSources
 
+local menuEventQueued = false
+
 function AddFurnitureShoppingListMenuEntry(itemId, calledFromFurC)
   if calledFromFurC then
     if not FurC.GetEnableShoppingList() then
@@ -115,10 +117,14 @@ function FurC_HandleClickEvent(itemLink, mButton, _, _, linkType, ...)
     and #itemLink > 0
     and itemLink ~= ""
   then
-    zo_callLater(function()
-      addMenuItems(itemLink, FurC.Find(itemLink))
-      ShowMenu()
-    end)
+    if not menuEventQueued then
+      menuEventQueued = true
+      zo_callLater(function()
+        addMenuItems(itemLink, FurC.Find(itemLink))
+        ShowMenu()
+        menuEventQueued = false
+      end)
+    end
   end
 end
 
@@ -169,10 +175,14 @@ function FurC_HandleInventoryContextMenu(control)
     return
   end
 
-  zo_callLater(function()
-    addMenuItems(itemLink, recipeArray)
-    ShowMenu()
-  end, 50)
+  if not menuEventQueued then
+    menuEventQueued = true
+    zo_callLater(function()
+      addMenuItems(itemLink, recipeArray)
+      ShowMenu()
+      menuEventQueued = false
+    end, 50)
+  end
 end
 
 function FurC.OnControlMouseUp(control, button)
@@ -192,17 +202,20 @@ function FurC.OnControlMouseUp(control, button)
   if {} == recipeArray then
     return
   end
-  zo_callLater(function()
-    ItemTooltip:SetHidden(true)
-    ClearMenu()
-    addMenuItems(itemLink, recipeArray, true)
-    ShowMenu()
-  end, 50)
+
+  if not menuEventQueued then
+    menuEventQueued = true
+    zo_callLater(function()
+      ItemTooltip:SetHidden(true)
+      ClearMenu()
+      addMenuItems(itemLink, recipeArray, true)
+      ShowMenu()
+      menuEventQueued = false
+    end, 50)
+  end
 end
 
 function FurC.InitRightclickMenu()
-  --	FurC_LinkHandlerBackup_OnLinkMouseUp = ZO_LinkHandler_OnLinkMouseUp
-  --	ZO_LinkHandler_OnLinkMouseUp = function(itemLink, button, control) FurC_HandleClickEvent(itemLink, button, control) end
   LINK_HANDLER:RegisterCallback(LINK_HANDLER.LINK_MOUSE_UP_EVENT, FurC_HandleClickEvent)
   ZO_PreHook("ZO_InventorySlot_OnMouseEnter", FurC_HandleMouseEnter)
   ZO_PreHook("ZO_InventorySlot_ShowContextMenu", function(rowControl)

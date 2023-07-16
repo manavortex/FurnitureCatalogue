@@ -1,29 +1,31 @@
 FurC = FurC or {}
-FurC.name = "FurnitureCatalogue"
-FurC.author = "manavortex"
-FurC.tag = "FurC"
 
-FurC.version = 4072000 -- will be AUTOREPLACED with AddonVersion
-FurC.CharacterName = nil
-FurC.settings = {}
+local this = FurC
+this.name = "FurnitureCatalogue"
+this.author = "manavortex"
+this.tag = "FurC"
 
-local src = FurC.Constants.ItemSources
-local ver = FurC.Constants.Versioning
+this.version = 4072000 -- will be AUTOREPLACED with AddonVersion
+this.CharacterName = nil
+this.settings = {}
 
-FurC.AchievementVendors = {}
-FurC.LuxuryFurnisher = {}
-FurC.Recipes = {}
-FurC.Rolis = {}
-FurC.Faustina = {}
-FurC.RolisRecipes = {}
-FurC.FaustinaRecipes = {}
-FurC.Books = {}
-FurC.EventItems = {}
-FurC.PVP = {}
-FurC.MiscItemSources = {}
-FurC.RumourRecipes = {}
+local src = this.Constants.ItemSources
+local ver = this.Constants.Versioning
 
-FurC.ItemLinkColours = {
+this.AchievementVendors = {}
+this.LuxuryFurnisher = {}
+this.Recipes = {}
+this.Rolis = {}
+this.Faustina = {}
+this.RolisRecipes = {}
+this.FaustinaRecipes = {}
+this.Books = {}
+this.EventItems = {}
+this.PVP = {}
+this.MiscItemSources = {}
+this.RumourRecipes = {}
+
+this.ItemLinkColours = {
   Vendor = "D68957",
   Gold = "E5dA40",
   Voucher = "25C31E",
@@ -101,7 +103,7 @@ local function getSourceIndicesKeys()
 
   return sourceIndicesKeys
 end
-FurC.GetSourceIndicesKeys = getSourceIndicesKeys
+this.GetSourceIndicesKeys = getSourceIndicesKeys
 
 local choicesSource = {}
 local function getChoicesSource()
@@ -126,7 +128,7 @@ local function getChoicesSource()
 
   return choicesSource
 end
-FurC.GetChoicesSource = getChoicesSource
+this.GetChoicesSource = getChoicesSource
 
 local tooltipsSource = {}
 local function getTooltipsSource()
@@ -151,10 +153,10 @@ local function getTooltipsSource()
 
   return tooltipsSource
 end
-FurC.GetTooltipsSource = getTooltipsSource
+this.GetTooltipsSource = getTooltipsSource
 
 -- [UPGRADING GAME VERSIONS, PTS compatibility]
-FurC.DropdownData = {
+this.DropdownData = {
   ChoicesVersion = {
     [ver.NONE] = GetString(SI_FURC_FILTER_VERSION_OFF),
     [ver.HOMESTEAD] = GetString(SI_FURC_FILTER_VERSION_HS),
@@ -225,20 +227,20 @@ FurC.DropdownData = {
   TooltipsSource = {},
 }
 
-function FurC.UpdateDropdowns()
-  FurC.DropdownData.ChoicesSource = FurC.GetChoicesSource()
-  FurC.DropdownData.TooltipsSource = FurC.GetTooltipsSource()
+function this.UpdateDropdowns()
+  this.DropdownData.ChoicesSource = this.GetChoicesSource()
+  this.DropdownData.TooltipsSource = this.GetTooltipsSource()
 end
 
 local function setupSourceDropdown()
-  FurC.UpdateDropdowns()
-  FurC.SourceIndices = getSourceIndicesKeys()
+  this.UpdateDropdowns()
+  this.SourceIndices = getSourceIndicesKeys()
 end
 
 local logger
 --- Gets the current logger or creates it if it doesn't exist yet
 --- @return Logger logger instance
-function FurC.getOrCreateLogger()
+function this.getOrCreateLogger()
   if logger then
     return logger
   end -- return existing reference
@@ -246,7 +248,7 @@ function FurC.getOrCreateLogger()
   if not LibDebugLogger then
     local function ignore(...) end -- black hole for most property calls, like logger:Debug
     local function info(self, ...)
-      local prefix = string.format("[%s]: ", FurC.tag)
+      local prefix = string.format("[%s]: ", this.tag)
       if tostring(...):find("%%") then
         d(prefix .. string.format(...))
       else
@@ -271,7 +273,7 @@ function FurC.getOrCreateLogger()
   end
 
   -- use logger from library
-  logger = LibDebugLogger(FurC.tag)
+  logger = LibDebugLogger(this.tag)
   logger.LOG_LEVEL_VERBOSE = LibDebugLogger.LOG_LEVEL_VERBOSE
   logger.LOG_LEVEL_DEBUG = LibDebugLogger.LOG_LEVEL_DEBUG
   logger.LOG_LEVEL_INFO = LibDebugLogger.LOG_LEVEL_INFO
@@ -279,7 +281,7 @@ function FurC.getOrCreateLogger()
   logger.LOG_LEVEL_ERROR = LibDebugLogger.LOG_LEVEL_ERROR
 
   -- set initial log level
-  if FurC.settings.enableDebug then
+  if this.settings.enableDebug then
     logger:SetMinLevelOverride(logger.LOG_LEVEL_DEBUG)
   else
     logger:SetMinLevelOverride(logger.LOG_LEVEL_INFO)
@@ -290,43 +292,43 @@ end
 
 -- initialization stuff
 local function initialise(eventCode, addOnName)
-  if addOnName ~= FurC.name then
+  if addOnName ~= this.name then
     return
   end
 
-  FurC.settings = ZO_SavedVars:NewAccountWide("FurnitureCatalogue_Settings", 2, nil, defaults)
+  this.settings = ZO_SavedVars:NewAccountWide(this.name .. "_Settings", 2, nil, defaults)
   -- setup the "source" dropdown for the menu
   setupSourceDropdown()
 
-  FurC.CreateSettings(FurC.settings, defaults)
-  FurC.Logger = FurC.getOrCreateLogger()
-  FurC.Logger:Debug("Initialising..." .. eventCode)
+  this.CreateSettings(this.settings, defaults)
+  this.Logger = this.getOrCreateLogger()
+  this.Logger:Debug("Initialising..." .. eventCode)
 
-  FurC.CharacterName = zo_strformat(GetUnitName("player"))
+  this.CharacterName = zo_strformat(GetUnitName("player"))
 
-  FurC.InitGui()
+  this.InitGui()
 
-  FurC.CreateTooltips()
-  FurC.InitRightclickMenu()
+  this.CreateTooltips()
+  this.InitRightclickMenu()
 
-  FurC.SetupInventoryRecipeIcons()
+  this.SetupInventoryRecipeIcons()
 
   local scanFiles = false
-  if FurC.settings.version < FurC.version then
-    FurC.settings.version = FurC.version
+  if this.settings.version < this.version then
+    this.settings.version = this.version
     scanFiles = true
   end
 
-  FurC.ScanRecipes(scanFiles, not FurC.GetSkipInitialScan())
-  FurC.settings.databaseVersion = FurC.version
+  this.ScanRecipes(scanFiles, not this.GetSkipInitialScan())
+  this.settings.databaseVersion = this.version
   SLASH_COMMANDS["/fur"] = FurnitureCatalogue_Toggle
 
-  FurC.SetFilter(true)
+  this.SetFilter(true)
 
-  EVENT_MANAGER:UnregisterForEvent(FurC.name, EVENT_ADD_ON_LOADED)
-  FurC.Logger:Debug("Initialisation complete")
+  EVENT_MANAGER:UnregisterForEvent(this.name, EVENT_ADD_ON_LOADED)
+  this.Logger:Debug("Initialisation complete")
 end
 
 ZO_CreateStringId("SI_BINDING_NAME_TOGGLE_FURNITURE_CATALOGUE", "Toggle main window")
 ZO_CreateStringId("SI_BINDING_NAME_TOGGLE_FURNITURE_CATALOGUE_RECIPE", "Toggle Blueprint on tooltip")
-EVENT_MANAGER:RegisterForEvent(FurC.name, EVENT_ADD_ON_LOADED, initialise)
+EVENT_MANAGER:RegisterForEvent(this.name, EVENT_ADD_ON_LOADED, initialise)

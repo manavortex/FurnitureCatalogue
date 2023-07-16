@@ -366,7 +366,7 @@ def get_highest_version_from_gh_list(gh_list :str) -> str:
 
 RE_MF_VERSION_LINE = re.compile(r"(?P<PREFIX>^##\s*Version:\s*).*$", re.MULTILINE)
 RE_MF_ADDONVERSION_LINE = re.compile(r"(?P<PREFIX>^##\s*AddonVersion:\s*).*$", re.MULTILINE)
-RE_MAINLUA_VERSION_LINE = re.compile(r"(?P<PREFIX>^FurC\.version\s*=\s*).*$", re.MULTILINE)
+RE_MAINLUA_VERSION_LINE = re.compile(r"(?P<PREFIX>^this\.version\s*=\s*).*$", re.MULTILINE)
 
 def replace_versions(new_semver: str, output_file: str=None):
   new_intver = semver_to_int(new_semver) # throws error if invalid
@@ -384,7 +384,7 @@ def replace_versions(new_semver: str, output_file: str=None):
   # Replace version in main file
   luapath = 'startup.lua'
   lua_values = [(RE_MAINLUA_VERSION_LINE, f"\g<PREFIX>{new_intver} -- will be AUTOREPLACED with AddonVersion",
-    f"FurC.version = {new_intver} -- will be AUTOREPLACED with AddonVersion")]
+    f"this.version = {new_intver} -- will be AUTOREPLACED with AddonVersion")]
   if replace_once_in_file(lua_values, luapath): changes.append(luapath)
 
   if output_file:
