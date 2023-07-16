@@ -1,13 +1,11 @@
-FurnitureCatalogue = {}
-FurnitureCatalogue.name = "FurnitureCatalogue"
-FurnitureCatalogue.author = "manavortex"
-FurnitureCatalogue.tag = "FurC"
+FurC = FurC or {}
+FurC.name = "FurnitureCatalogue"
+FurC.author = "manavortex"
+FurC.tag = "FurC"
 
-FurnitureCatalogue.version = 4072000 -- will be AUTOREPLACED with AddonVersion
-FurnitureCatalogue.CharacterName = nil
-FurnitureCatalogue.settings = {}
-
-FurC = FurnitureCatalogue
+FurC.version = 4072000 -- will be AUTOREPLACED with AddonVersion
+FurC.CharacterName = nil
+FurC.settings = {}
 
 local src = FurC.Constants.ItemSources
 local ver = FurC.Constants.Versioning
