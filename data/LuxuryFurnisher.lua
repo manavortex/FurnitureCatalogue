@@ -108,6 +108,11 @@ FurC.LuxuryFurnisher[FURC_DRUID] = {
     itemPrice = 4000,
     itemDate = "2022-11-05",
   },
+
+  [193792] = { -- Plant, Galen Palm Cluster,
+    itemPrice = 2000,
+    itemDate = "2023-07-14",
+  },
 }
 
 FurC.LuxuryFurnisher[FURC_DEPTHS] = {
@@ -2317,11 +2322,5 @@ FurC.LuxuryFurnisher[FURC_SLAVES] = {
   [134445] = { -- Ancient Orcish Sarcophagus, Peaked
     itemPrice = 14000,
     itemDate = "2021-03-05",
-  },
-
-  -- ====================================================================
-  [193792] = { -- Plant, Galen Palm Cluster,
-    itemPrice = 2000,
-    itemDate = "2023-07-14",
   },
 }
