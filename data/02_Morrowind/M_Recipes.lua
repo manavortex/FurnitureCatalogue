@@ -282,4 +282,3 @@ FurC.Recipes[FURC_MORROWIND] = {
   126957, -- Hlaalu Nightstand, Scholar's
   127037, -- Dres Rug, Chains
 }
-

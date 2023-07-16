@@ -599,7 +599,7 @@
 - Fixed an issue where the AddOn would display as outdated due to the API version being from the future
 - Now includes Cyrodiil furniture
 - Dropdown: Purchaseable is now split into gold and AP
-- Dropdown: added another filter for luxury items. It can be merged with the Purchaseable (gold) filter in the settings. 
+- Dropdown: added another filter for luxury items. It can be merged with the Purchaseable (gold) filter in the settings.
 -- The dropdown entry will be gone after another UI reload
 
 1.7

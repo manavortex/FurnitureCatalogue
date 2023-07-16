@@ -1,0 +1,112 @@
+name: PackageRelease
+
+# Connected workflows are:
+# 1. CreateReleasePR - create_release_pr.yml
+# 2. 📍PackageRelease  - package_release.yml
+# 3. PublishToESOUI - publish_release.yml
+# Refer to CONTRIBUTING.md for more info
+
+# Runs after merging a PR from the bot into master. Packages the AddOn and creates a release.
+# Release will trigger the upload to ESOUI in the next workflow: "publish_release.yml"
+
+permissions:
+  contents: write
+on:
+  # Triggered when merging a release PR into master labeled `bot:RELEASE_AND_PUBLISH`
+  pull_request:
+    types:
+      - closed
+    branches:
+      - master
+
+jobs:
+  package_and_release:
+    if: github.event.pull_request.merged && contains(github.event.pull_request.labels.*.name, 'bot:RELEASE_AND_PUBLISH')
+
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          ref: master
+      - run: |
+          git config --local user.name "Handles-Your-Releases[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Setup Python
+        uses: actions/setup-python@v4.6.0
+        with:
+          python-version: "^3.6"
+
+      # Create archive and set env vars and output for the next steps
+      # should fail completely if something goes wrong
+      - name: Package Files
+        id: package_files
+        run: python .scripts/package.py
+
+      - name: Generate AddOn Info
+        id: addon_info
+        run: |
+          ARCHIVE="$(ls *.zip)"
+          NAME="${ARCHIVE%%-*}"
+          VERSION="${ARCHIVE#*-}"
+          VERSION="${VERSION%.*}"
+          echo "ARCHIVE_FILE=$ARCHIVE" >> $GITHUB_OUTPUT
+          echo "ADDON_NAME=$NAME" >> $GITHUB_OUTPUT
+          echo "ADDON_VERSION=$VERSION" >> $GITHUB_OUTPUT
+
+      # Delete existing tag, because it could point to an older commit, causing release and publish mismatches
+      - name: Delete Existing Tag
+        run: |
+          git push origin ":refs/tags/${{ steps.addon_info.outputs.ADDON_VERSION }}" || true
+          git tag --delete "${{ steps.addon_info.outputs.ADDON_VERSION }}" || true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create Release
+        run: |
+          gh release create "${{ steps.addon_info.outputs.ADDON_VERSION }}" \
+          "${{ steps.addon_info.outputs.ARCHIVE_FILE }}" \
+          --title "Version ${{ steps.addon_info.outputs.ADDON_VERSION }}" \
+          --target master \
+          --generate-notes \
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  housekeeping:
+    runs-on: ubuntu-latest
+    needs: [package_and_release]
+    continue-on-error: true
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          ref: dev
+      - run: |
+          git config --local user.name "Handles-Your-Releases[bot][bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # Trying to sync the dev branch so it is up to date with the master
+      # if it fails, it fails - no problem (we can still sync manually)
+      - name: Sync Dev
+        run: |
+          git fetch origin
+          git merge --ff-only origin/master
+          git push origin dev
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # Trying to delete the leftover release branch (eg. release/1.2.3)
+      # We use release tags to navigate the repo at a specific points in time
+      # We can still clean up manually if that doesn't work
+      - name: Delete Leftover Branch
+        run: |
+          if [[ "$BRANCH" == release/* ]]; then
+            git branch -d "$BRANCH" || true
+            git push origin --delete "$BRANCH"
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: ${{ github.event.pull_request.head.ref }}

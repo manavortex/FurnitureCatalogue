@@ -1,4 +1,5 @@
 FurC.Recipes = FurC.Recipes or {}
+
 FurC.Recipes[FURC_REACH] = {
   132179, -- Blueprint: Witches Totem, Antler Charms
   132188, -- Praxis: Ayleid Bookshelf, Cluttered

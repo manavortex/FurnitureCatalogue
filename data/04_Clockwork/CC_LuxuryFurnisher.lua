@@ -1,4 +1,3 @@
 FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
-FurC.LuxuryFurnisher[FURC_CLOCKWORK] = {
 
-}
+FurC.LuxuryFurnisher[FURC_CLOCKWORK] = {}
