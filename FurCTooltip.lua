@@ -44,7 +44,7 @@ local function addTooltipData(control, itemLink)
   local stringTable = {}
 
   -- if craftable:
-  if isRecipe or recipeArray.origin == FURC_CRAFTING then
+  if isRecipe or recipeArray.origin == src.CRAFTING then
     if unknown and not FurC.GetHideUnknown() or not FurC.GetHideKnowledge() then
       local crafterList = FurC.GetCrafterList(itemLink, recipeArray)
       if crafterList then

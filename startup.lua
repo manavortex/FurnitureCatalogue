@@ -25,9 +25,15 @@ FurC.PVP = {}
 FurC.MiscItemSources = {}
 FurC.RumourRecipes = {}
 
--- TODO: set up the filtering for FURC_RUMOUR and FURC_CROWN in submenus by origin
-local defaults = {
+FurC.ItemLinkColours = {
+  Vendor = "D68957",
+  Gold = "E5dA40",
+  Voucher = "25C31E",
+  AP = "5EA4FF",
+  TelVar = "82BCFF",
+}
 
+local defaults = {
   hideMats = true,
   dontScanTradingHouse = false,
   enableDebug = false,
@@ -233,15 +239,13 @@ end
 
 local logger
 --- Gets the current logger or creates it if it doesn't exist yet
---- @param forceCreate boolean Force (re)creation of logger
---- @return table logger instance
-function FurC.getOrCreateLogger(forceCreate)
-  if not forceCreate and logger then
+--- @return Logger logger instance
+function FurC.getOrCreateLogger()
+  if logger then
     return logger
   end -- return existing reference
 
-  if not FurC.settings.enableDebug or not LibDebugLogger then
-    -- Do not log at all, if not in debug mode or no log lib available
+  if not LibDebugLogger then
     local function ignore(...) end -- black hole for most property calls, like logger:Debug
     local function info(self, ...)
       local prefix = string.format("[%s]: ", FurC.tag)
@@ -258,16 +262,36 @@ function FurC.getOrCreateLogger(forceCreate)
     logger.Warn = ignore
     logger.Error = ignore
     logger.Log = ignore
-    return logger
-  else
-    -- use logger from library
-    logger = LibDebugLogger(FurC.tag)
+    logger.LOG_LEVEL_VERBOSE = "V"
+    logger.LOG_LEVEL_DEBUG = "D"
+    logger.LOG_LEVEL_INFO = "I"
+    logger.LOG_LEVEL_WARNING = "W"
+    logger.LOG_LEVEL_ERROR = "E"
+    logger.SetMinLevelOverride = ignore
+
     return logger
   end
+
+  -- use logger from library
+  logger = LibDebugLogger(FurC.tag)
+  logger.LOG_LEVEL_VERBOSE = LibDebugLogger.LOG_LEVEL_VERBOSE
+  logger.LOG_LEVEL_DEBUG = LibDebugLogger.LOG_LEVEL_DEBUG
+  logger.LOG_LEVEL_INFO = LibDebugLogger.LOG_LEVEL_INFO
+  logger.LOG_LEVEL_WARNING = LibDebugLogger.LOG_LEVEL_WARNING
+  logger.LOG_LEVEL_ERROR = LibDebugLogger.LOG_LEVEL_ERROR
+
+  -- set initial log level
+  if FurC.settings.enableDebug then
+    logger:SetMinLevelOverride(logger.LOG_LEVEL_DEBUG)
+  else
+    logger:SetMinLevelOverride(logger.LOG_LEVEL_INFO)
+  end
+
+  return logger
 end
 
 -- initialization stuff
-function FurnitureCatalogue_Initialize(eventCode, addOnName)
+local function initialise(eventCode, addOnName)
   if addOnName ~= FurC.name then
     return
   end
@@ -277,12 +301,10 @@ function FurnitureCatalogue_Initialize(eventCode, addOnName)
   setupSourceDropdown()
 
   FurC.CreateSettings(FurC.settings, defaults)
-  FurC.Logger = FurC.getOrCreateLogger(true)
-  FurC.Logger:Debug("Initialising...")
+  FurC.Logger = FurC.getOrCreateLogger()
+  FurC.Logger:Debug("Initialising..." .. eventCode)
 
   FurC.CharacterName = zo_strformat(GetUnitName("player"))
-
-  FurC.RegisterEvents()
 
   FurC.InitGui()
 

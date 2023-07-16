@@ -54,3 +54,15 @@ function FurC.SortTable(tTable, sortKey, SortOrderUp)
 
   return ret
 end
+
+-- STRING UTILS --
+
+function FurC.capitalise(str)
+  str = str:gsub("^(%l)(%w*)", function(a, b) return string.upper(a) .. b end)
+  return str
+end
+
+function FurC.stripColor(aString)
+  if nil == aString then return "" end
+  return aString:gsub("|%l%l%d%d%d%d%d", ""):gsub("|%l%l%d%l%l%d%d", ""):gsub("|c25C31E", ""):gsub("", "")
+end

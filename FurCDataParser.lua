@@ -10,7 +10,7 @@ end
 
 local function prefillChatBox(output, refresh)
   output = zo_strformat(output)
-  if nil == output or FURC_EMPTY_STRING == output then
+  if nil == output or "" == output then
     return
   end
   local editControl = CHAT_SYSTEM.textEntry.editControl
@@ -34,13 +34,6 @@ function FurC.ToChat(output, refresh)
     output = FurC.GetItemLink(output)
   end
   prefillChatBox(output, refresh)
-end
-
-local function stripColor(aString)
-  if nil == aString then
-    return ""
-  end
-  return aString:gsub("|%l%l%d%d%d%d%d", ""):gsub("|%l%l%d%l%l%d%d", ""):gsub("|c25C31E", ""):gsub("", "")
 end
 
 local function getNameFromEntry(recipeArray)
@@ -82,11 +75,4 @@ function FurC.FindByName(namePart)
     end
   end
   return ret
-end
-
-local function capitalise(str)
-  str = str:gsub("^(%l)(%w*)", function(a, b)
-    return string.upper(a) .. b
-  end)
-  return str
 end

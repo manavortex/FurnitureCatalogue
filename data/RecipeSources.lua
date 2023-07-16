@@ -1,8 +1,5 @@
-local colorVendor = "d68957"
-local colorGold = "e5da40"
-local colorVoucher = "25C31E"
-local colorAP = "5EA4FF"
-local colorTelVar = "82BCFF"
+local stripColor = FurC.stripColor
+local colours = FurC.ItemLinkColours
 
 local function colorise(str, col, ret)
   str = tostring(str)
@@ -28,9 +25,9 @@ local vendorString = GetString(SI_FURC_STRING_VENDOR)
 local function soldBy(vendorName, locationName, price, requirement)
   return zo_strformat(
     vendorString,
-    colorise(vendorName, colorVendor, stripColor),
-    colorise(locationName, colorVendor, stripColor),
-    colorise(price, colorGold, stripColor),
+    colorise(vendorName, colours.Vendor, stripColor),
+    colorise(locationName, colours.Vendor, stripColor),
+    colorise(price, colours.Gold, stripColor),
     requirement
   )
 end
@@ -67,7 +64,7 @@ end
 
 for versionNo, rolisRecipes in pairs(FurC.RolisRecipes) do
   for recipeId, itemPrice in pairs(rolisRecipes) do
-    local priceString = zo_strformat(GetString(SI_FURC_STRING_FOR_VOUCHERS), itemPrice, voucherColor)
+    local priceString = zo_strformat(GetString(SI_FURC_STRING_FOR_VOUCHERS), itemPrice, colours.Voucher)
     FurC.RecipeSources[recipeId] = zo_strformat(GetString(SI_FURC_STRING_ROLIS), priceString)
   end
 end
@@ -75,7 +72,7 @@ end
 for versionNo, faustinaRecipes in pairs(FurC.FaustinaRecipes) do
   for recipeId, itemPrice in pairs(faustinaRecipes) do
     local unsurpassedCrafter = GetAchievementLink(1801, LINK_STYLE_DEFAULT)
-    local priceString = zo_strformat(GetString(SI_FURC_STRING_FOR_VOUCHERS), itemPrice, voucherColor)
+    local priceString = zo_strformat(GetString(SI_FURC_STRING_FOR_VOUCHERS), itemPrice, colours.Voucher)
     local soldByFaustinaFor = zo_strformat(GetString(SI_FURC_STRING_FAUSTINA), priceString)
     FurC.RecipeSources[recipeId] = soldByFaustinaFor .. requires .. unsurpassedCrafter
   end

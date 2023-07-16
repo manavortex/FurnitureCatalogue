@@ -1,5 +1,5 @@
 local task = LibAsync:Create("FurnitureCatalogue_Settings")
-local src  = FurC.Constants.ItemSources
+local src = FurC.Constants.ItemSources
 
 function FurC.GetEnableDebug()
   return FurC.settings["enableDebug"]
@@ -7,9 +7,12 @@ end
 
 function FurC.SetEnableDebug(value)
   FurC.settings["enableDebug"] = value
-  FurC.Logger = FurC.getOrCreateLogger(true) -- force recreation of logger
+  FurC.Logger = FurC.getOrCreateLogger()
   if value then
+    FurC.Logger:SetMinLevelOverride(FurC.Logger.LOG_LEVEL_DEBUG)
     FurC.Logger:Info("Debug on")
+  else
+    FurC.Logger:SetMinLevelOverride(FurC.Logger.LOG_LEVEL_INFO)
   end
 end
 
@@ -283,10 +286,8 @@ function FurC.SetFilterCraftingType(craftingType)
   FurC.UpdateGui()
 end
 
-local FURC_S_FILTERDEFAULT = GetString(SI_FURC_TEXTBOX_FILTER_DEFAULT)
-
 function FurC.GetSearchFilter()
-  if (not FurC.SearchFilter) or FurC.SearchFilter == FURC_S_FILTERDEFAULT then
+  if (not FurC.SearchFilter) or FurC.SearchFilter == GetString(SI_FURC_TEXTBOX_FILTER_DEFAULT) then
     FurC.SearchFilter = FurC_SearchBox:GetText() or ""
   end
   return FurC.SearchFilter or ""
@@ -406,7 +407,7 @@ function FurC.SetDropdownChoice(dropdownName, textValue, dropdownIndex)
   textValue = textValue or FurC.GetDefaultDropdownChoice(dropdownName)
   local dropdownIndex = dropdownIndex or getDropdownIndex(dropdownName, textValue) or 0
 
-  FurC.Logger:Debug("SetDropdownChoice(%s, %s (Index: %s))", dropdownName, textValue, dropdownIndex)
+  FurC.Logger:Verbose("SetDropdownChoice(%s, %s (Index: %s))", dropdownName, textValue, dropdownIndex)
 
   -- if we're setting the dropdown menu "source" to "purchaseable", set "character" to "All"
   FurC.DropdownChoices[dropdownName] = dropdownIndex

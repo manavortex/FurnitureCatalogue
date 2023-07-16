@@ -1,11 +1,5 @@
 local currentChar = FurC.CharacterName
 local task = LibAsync:Create("FurnitureCatalogue_ScanDataFiles")
-local task2 = LibAsync:Create("FurnitureCatalogue_ScanCharacterKnowledge")
-local characterAlliance = GetUnitAlliance("player")
-
-local NUMBER_TYPE = "number"
-local STRING_TYPE = "string"
-local STRING_EMPTY = ""
 
 local lastLink = nil
 local recipeArray = nil
@@ -98,20 +92,25 @@ FurC.GetMats = makeMaterial
 function FurC.GetIngredients(itemLink, recipeArray)
   recipeArray = recipeArray or FurC.Find(itemLink)
   local ingredients = {}
-  if recipeArray.blueprint then
+  if {} ~= recipeArray and recipeArray.blueprint then
     local blueprintLink = FurC.GetItemLink(recipeArray.blueprint)
     numIngredients = GetItemLinkRecipeNumIngredients(blueprintLink)
     for ingredientIndex = 1, numIngredients do
-      name, _, qty = GetItemLinkRecipeIngredientInfo(blueprintLink, ingredientIndex)
-      ingredientLink = GetItemLinkRecipeIngredientItemLink(blueprintLink, ingredientIndex)
+      local name, _, qty = GetItemLinkRecipeIngredientInfo(blueprintLink, ingredientIndex)
+      local ingredientLink = GetItemLinkRecipeIngredientItemLink(blueprintLink, ingredientIndex, LINK_STYLE_DEFAULT)
       ingredients[ingredientLink] = qty
     end
   else
-    _, name, numIngredients = GetRecipeInfo(recipeArray.recipeListIndex, recipeArray.recipeIndex)
+    local _, name, numIngredients = GetRecipeInfo(recipeArray.recipeListIndex, recipeArray.recipeIndex)
     for ingredientIndex = 1, numIngredients do
-      name, _, qty = GetRecipeIngredientItemInfo(recipeArray.recipeListIndex, recipeArray.recipeIndex, ingredientIndex)
-      ingredientLink =
-        GetRecipeIngredientItemLink(recipeArray.recipeListIndex, recipeArray.recipeIndex, ingredientIndex)
+      local name, _, qty =
+        GetRecipeIngredientItemInfo(recipeArray.recipeListIndex, recipeArray.recipeIndex, ingredientIndex)
+      local ingredientLink = GetRecipeIngredientItemLink(
+        recipeArray.recipeListIndex,
+        recipeArray.recipeIndex,
+        ingredientIndex,
+        LINK_STYLE_DEFAULT
+      )
       ingredients[ingredientLink] = qty
     end
   end
@@ -120,7 +119,7 @@ end
 
 local function parseFurnitureItem(itemLink, override) -- saves to DB, returns recipeArray
   if
-    not (override or IsItemLinkPlaceableFurniture(itemLink) or GetItemLinkItemType(itemLink) == ITEMTYPE_FURNITURE)
+    not (override or IsItemLinkPlaceableFurniture(itemLink) or GetItemLinkItemType(itemLink) == ITEMTYPE_FURNISHING)
   then
     return
   end
@@ -576,8 +575,8 @@ end
 function FurC.GetItemDescription(recipeKey, recipeArray, stripColor, attachItemLink)
   recipeKey = getItemId(recipeKey)
   FurC.settings.emptyItemSources = FurC.settings.emptyItemSources or {}
-  recipeArray = recipeArray or FurC.Find(recipeKey, recipeArray)
-  if not recipeArray then
+  recipeArray = recipeArray or FurC.Find(recipeKey)
+  if {} == recipeArray then
     return ""
   end
 
