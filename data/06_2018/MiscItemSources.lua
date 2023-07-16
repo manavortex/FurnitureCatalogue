@@ -116,6 +116,9 @@ FurC.MiscItemSources[ver.WOTL] = {
     [120881] = rumourSource, -- Tombstone, Engraved, Order of the Hour,
     [120882] = rumourSource, -- Tombstone, Small,
     [147636] = rumourSource, -- Banner of Hermaeus Mora,
+    [147644] = rumourSource, -- Palisade, Crude,
+    [147645] = rumourSource, -- Dwarven Tonal Arc,
+    [147647] = rumourSource, -- Dwarven Centurion Blade, Detached,
     [132166] = rumourSource, -- Death Skeleton, Robed,
     [134474] = rumourSource, -- Banner, Malacath,
     [147599] = rumourSource, -- Banner of Namira,
@@ -503,8 +506,6 @@ FurC.MiscItemSources[ver.ALTMER] = {
     [126464] = getCrownPrice(610), -- Telvanni Painting, Oversized Valley
     [126462] = getCrownPrice(610), -- Telvanni Painting, Oversized Volcanic
 
-    [139331] = getCrownPrice(45), -- Coral Formation, Tree Antler
-
     [139083] = getCrownPrice(30), -- Plants, Grasswort Patch
 
     [139088] = getCrownPrice(50), -- Alinor Table Runner, Verdant
@@ -666,7 +667,6 @@ FurC.MiscItemSources[ver.ALTMER] = {
     [139077] = fishing_summerset, -- Coral Formation, Bulwark
     [139078] = fishing_summerset, -- Coral Formation, Pillar Polyps
     [139082] = fishing_summerset, -- Plants, Ruby Glasswort Patch
-    [139068] = fishing_summerset, -- Plants, Springwheeze
   },
 
   [src.RUMOUR] = {
@@ -685,6 +685,7 @@ FurC.MiscItemSources[ver.ALTMER] = {
     [132203] = dataminedUnclear, -- Stone, Anvil Limestone
     [132197] = dataminedUnclear, -- Death Skeleton, Shrouded
     [140297] = dataminedUnclear, -- Replica Throne of Alinor,
+    [130070] = dataminedUnclear, -- Daedric Spout, Arched,
     [120856] = dataminedUnclear, -- Yokudan Sarcophagus
     [120857] = dataminedUnclear, -- Yokudan Sarcophagus Lid
     [120858] = dataminedUnclear, -- Yokudan Tapestry
@@ -862,7 +863,6 @@ FurC.MiscItemSources[ver.MORROWIND] = { -- Morrowind
 
     -- drops from plants
     [125631] = plants_vvardenfell, -- Plants, Ash Frond
-    [125647] = plants_vvardenfell, -- Plants, Ash Frond
     [131420] = plants_vvardenfell, -- Plants, Ash Frond
     [125553] = plants_vvardenfell, -- Flowers, Netch Cabbage Stalks
     [125551] = plants_vvardenfell, -- Flowers, Netch Cabbage
@@ -899,8 +899,6 @@ FurC.MiscItemSources[ver.MORROWIND] = { -- Morrowind
     [125670] = plants_vvardenfell, -- Toadstool, Bloodtooth
     [125671] = plants_vvardenfell, -- Toadstool, Bloodtooth Cap
     [125672] = plants_vvardenfell, -- Toadstool, Bloodtooth Cluster
-
-    [125649] = plants_vvardenfell, -- Shrub, Flowering Dusk
 
     [126759] = questRewardSuran, -- Sir Sock's Ball of Yarn
 
@@ -1129,7 +1127,6 @@ FurC.MiscItemSources[ver.HOMESTEAD] = {
 
     [118064] = getCrownPrice(45), -- Common Barrel, Dry
     [118065] = getCrownPrice(45), -- Common Cargo Crate, Dry
-    [118064] = getCrownPrice(45), -- Common Barrel, Dry
 
     [118054] = getCrownPrice(80), -- Common Firepit, Outdoor
     [118055] = getCrownPrice(80), -- Common Firepit, Piled
@@ -1155,7 +1152,6 @@ FurC.MiscItemSources[ver.HOMESTEAD] = {
     [118120] = getCrownPrice(120), -- Minecart, Push
     [118278] = getCrownPrice(140), -- Plaque, Bordered Deer Antlers
     [115395] = getCrownPrice(40), -- Nord Drinking Horn, Display
-    [118065] = getCrownPrice(45), -- Common Cargo Crate, Dry
     [118118] = getCrownPrice(100), -- Candles, Lasting
   },
 

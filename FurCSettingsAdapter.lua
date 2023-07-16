@@ -465,10 +465,6 @@ function FurC.GetDropdownChoiceTextual(dropdownName)
   return FurC.DropdownData["Choices" .. dropdownName][value]
 end
 
-function FurC.GetDefaultDropdownChoiceTextual()
-  return FurC.DropdownData["Choices" .. dropdownName][FurC.GetDefaultDropdownChoice(dropdownName)]
-end
-
 function FurC.GetAccountCrafters()
   local ret = {}
   for characterName, isCrafter in pairs(FurC.settings.accountCharacters) do

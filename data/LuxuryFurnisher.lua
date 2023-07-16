@@ -1430,10 +1430,6 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
     itemPrice = 50000,
     itemDate = "2022-06-25",
   },
-  [120823] = { -- Sigil Stand
-    itemPrice = 15000,
-    itemDate = "2022-06-25",
-  },
   [120815] = { -- Sigil, Akatosh
     itemPrice = 20000,
     itemDate = "2022-06-25",
@@ -1621,10 +1617,6 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
     itemPrice = 5000,
     itemDate = "2022-05-21",
   },
-  [120807] = { -- Hew's Bane Well
-    itemPrice = 10000,
-    itemDate = "2022-05-21",
-  },
   [134825] = { -- Redguard Tent, Squared Silk
     itemPrice = 100000,
     itemDate = "2022-05-21",
@@ -1733,10 +1725,6 @@ FurC.LuxuryFurnisher[ver.MARKAT] = {
   [134824] = { -- Redguard Tent, Rounded Silk
     itemPrice = 100000,
     itemDate = "2019-02-23",
-  },
-  [145469] = { -- Redguard Gazebo, Palatial Domed
-    itemPrice = 75000,
-    itemDate = "2021-02-13",
   },
 
   -- ====================================================================

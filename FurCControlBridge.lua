@@ -101,7 +101,6 @@ function FurC.GuiOnSearchBoxClick(control, mouseButton, doubleClick)
   end
 end
 
-
 function FurC.GuiOnScroll(control, delta)
   if not delta then
     return
