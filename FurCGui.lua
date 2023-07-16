@@ -2,10 +2,8 @@ FurC.SlotTemplate = "FurC_SlotTemplate"
 FurC.KnowledgeFilter = "All (Accountwide)"
 FurC.SearchString = ""
 FurC.ScrollSortUp = true
-local checkWasUpdated = false
 local task = LibAsync:Create("FurnitureCatalogue_updateLineVisibility")
 local otherTask = LibAsync:Create("FurnitureCatalogue_ToggleGui")
-local async = LibAsync:Create("FurnitureCatalogue_forLoop")
 
 local sortTable = FurC.SortTable
 local src = FurC.Constants.ItemSources
@@ -116,25 +114,25 @@ local function updateScrollDataLinesData()
   local dataLines = {}
   local function filterData()
     for itemId, recipeArray in pairs(FurC.settings.data) do
-        if FurC.MatchFilter(itemId, recipeArray) then
+      if FurC.MatchFilter(itemId, recipeArray) then
         local itemLink = FurC.GetItemLink(itemId)
-          if itemLink then
+        if itemLink then
           local tempDataLine = ZO_DeepTableCopy({}, recipeArray)
-            tempDataLine.itemId = itemId
-            tempDataLine.itemLink = itemLink
-            tempDataLine.blueprint = recipeArray.blueprint
-            tempDataLine.itemName = GetItemLinkName(itemLink)
-            table.insert(dataLines, tempDataLine)
-          end
+          tempDataLine.itemId = itemId
+          tempDataLine.itemLink = itemLink
+          tempDataLine.blueprint = recipeArray.blueprint
+          tempDataLine.itemName = GetItemLinkName(itemLink)
+          table.insert(dataLines, tempDataLine)
         end
       end
+    end
   end
 
   local function sortAndCountData()
-      dataLines = sort(dataLines)
-      FurCGui_ListHolder.dataLines = dataLines
+    dataLines = sort(dataLines)
+    FurCGui_ListHolder.dataLines = dataLines
     FurC_RecipeCount:SetText(tostring(#dataLines))
-end
+  end
 
   if nil ~= task then
     task:Call(filterData):Then(sortAndCountData)
@@ -166,7 +164,7 @@ function FurC.UpdateGui(useDefaults)
   cachedDefaults = useDefaults
 
   if nil ~= otherTask then
-  otherTask:Call(startLoading):Then(updateScrollDataLinesData):Then(stopLoadingWithDelay)
+    otherTask:Call(startLoading):Then(updateScrollDataLinesData):Then(stopLoadingWithDelay)
   else
     startLoading()
     updateScrollDataLinesData()
@@ -248,7 +246,7 @@ function FurC.ApplyLineTemplate()
     task:Call(updateLineVisibility)
   else
     updateLineVisibility()
-end
+  end
 end
 
 local function createGui()
@@ -301,8 +299,7 @@ local function createGui()
 
   local function createQualityFilters()
     local buttons = {}
-    local quality = 0
-    local function createQualityFilter(name, color, tooltip)
+    local function createQualityFilter(name, quality, tooltip)
       local parent = FurC_QualityFilter
 
       local predecessor = buttons[#buttons] or parent
@@ -311,26 +308,24 @@ local function createGui()
       local button = WINDOW_MANAGER:CreateControlFromVirtual(parent:GetName() .. name, parent, controlType)
       local ctrlName = string.lower(name)
       button:SetNormalTexture(string.format("FurnitureCatalogue/textures/%s_up.dds", ctrlName))
-      button:SetNormalTexture(string.format("FurnitureCatalogue/textures/%s_over.dds", ctrlName))
-      button:SetNormalTexture(string.format("FurnitureCatalogue/textures/%s_down.dds", ctrlName))
+      button:SetMouseOverTexture(string.format("FurnitureCatalogue/textures/%s_over.dds", ctrlName))
+      button:SetPressedTexture(string.format("FurnitureCatalogue/textures/%s_down.dds", ctrlName))
       button.quality = quality
       button.tooltip = tooltip
 
       local otherAnchor = ((predecessor == parent) and LEFT) or RIGHT
       local xOffset = ((predecessor == parent) and 0) or 6
       button:SetAnchor(LEFT, predecessor, otherAnchor, xOffset)
-      quality = quality + 1
 
       return button
     end
 
-    buttons[quality + 1] = createQualityFilter("All", nil, "All Items")
-
-    buttons[quality + 1] = createQualityFilter("White", ITEM_QUALITY_NORMAL, "White quality")
-    buttons[quality + 1] = createQualityFilter("Magic", ITEM_QUALITY_MAGIC, "Magic quality")
-    buttons[quality + 1] = createQualityFilter("Arcane", ITEM_QUALITY_ARCANE, "Superior quality")
-    buttons[quality + 1] = createQualityFilter("Artifact", ITEM_QUALITY_ARTIFACT, "Epic quality")
-    buttons[quality + 1] = createQualityFilter("Legendary", ITEM_QUALITY_LEGENDARY, "Legendary quality")
+    buttons[1] = createQualityFilter("All", ITEM_FUNCTIONAL_QUALITY_TRASH, "All Items")
+    buttons[2] = createQualityFilter("White", ITEM_FUNCTIONAL_QUALITY_NORMAL, "White quality")
+    buttons[3] = createQualityFilter("Magic", ITEM_FUNCTIONAL_QUALITY_MAGIC, "Magic quality")
+    buttons[4] = createQualityFilter("Arcane", ITEM_FUNCTIONAL_QUALITY_ARCANE, "Superior quality")
+    buttons[5] = createQualityFilter("Artifact", ITEM_FUNCTIONAL_QUALITY_ARTIFACT, "Epic quality")
+    buttons[6] = createQualityFilter("Legendary", ITEM_FUNCTIONAL_QUALITY_LEGENDARY, "Legendary quality")
 
     FurC.GuiElements.qualityButtons = buttons
   end

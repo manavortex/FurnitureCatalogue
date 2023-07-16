@@ -107,23 +107,9 @@ local function addMenuItems(itemLink, recipeArray, hideSepBar)
   end
 end
 
---[[ Original version
-function FurC_HandleClickEvent(itemLink, button, control)		-- button being mouseButton here
-	if (type(itemLink) == 'string' and #itemLink > 0) then
-		local handled = LINK_HANDLER:FireCallbacks(LINK_HANDLER.LINK_MOUSE_UP_EVENT, itemLink, button, ZO_LinkHandler_ParseLink(itemLink))
-		if (not handled) then
-			FurC_LinkHandlerBackup_OnLinkMouseUp(itemLink, button, control)
-			if (button == 2 and itemLink ~= '') then
-				addMenuItems(itemLink, FurC.Find(itemLink))
-			end
-			ShowMenu(control)
-		end
-	end
-end
---]]
-function FurC_HandleClickEvent(itemLink, button, _, _, linkType, ...) -- button being mouseButton here
+function FurC_HandleClickEvent(itemLink, mButton, _, _, linkType, ...)
   if
-    button == MOUSE_BUTTON_INDEX_RIGHT
+    mButton == MOUSE_BUTTON_INDEX_RIGHT
     and linkType == ITEM_LINK_TYPE
     and type(itemLink) == "string"
     and #itemLink > 0
@@ -136,7 +122,7 @@ function FurC_HandleClickEvent(itemLink, button, _, _, linkType, ...) -- button 
   end
 end
 
-function FurC_HandleMouseEnter(inventorySlot)
+function FurC_HandleMouseEnter(...)
   local inventorySlot = moc()
 
   if nil == inventorySlot or nil == inventorySlot.dataEntry then

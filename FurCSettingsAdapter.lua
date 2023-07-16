@@ -90,10 +90,6 @@ function FurC.SetSkipDivider(value)
   FurC.settings["skipDivider"] = value
 end
 
-function FurC.GetFilterAllOnTextNoBooks()
-  return FurC.settings["filterAllOnTextNoBooks"]
-end
-
 function FurC.GetFilterAllOnTextNoBooks(value)
   FurC.settings["filterAllOnTextNoBooks"] = value
   FurC.UpdateGui()
@@ -128,9 +124,11 @@ function FurC.SetFontSize(value)
 
   FurC.SetLineHeight()
 
-  task:Call(function()
+  if nil ~= task then
+    task:Call(FurC.UpdateGui)
+  else
     FurC.UpdateGui()
-  end)
+  end
 end
 
 ---------------------------
@@ -325,8 +323,11 @@ end
 
 function FurC.GuiSetSearchboxTextFrom(control)
   control = control or FurC_SearchBox
-  -- call asynchronely to prevent lagging. Praise votan.
-  task:Call(doSearchOnUpdate)
+  if nil ~= task then
+    task:Call(doSearchOnUpdate)
+  else
+    doSearchOnUpdate()
+  end
 end
 
 function FurC.GetHideBooks()
@@ -353,7 +354,7 @@ end
 
 function FurC.SetShowRumours(value)
   FurC.settings["showRumours"] = value
-  FurC_ShowRumours:SetState((value and BSTATE_PRESSED) or BSTATE_DISABLED)
+  FurC_ShowRumours:SetState((value and BSTATE_PRESSED) or BSTATE_DISABLED, false)
   FurC_ShowRumoursGlow:SetHidden(not value)
   FurC.UpdateGui()
 end
@@ -364,7 +365,7 @@ end
 
 function FurC.SetShowCrownstore(value)
   FurC.settings["showCrowns"] = value
-  FurC_ShowCrowns:SetState((value and BSTATE_PRESSED) or BSTATE_DISABLED)
+  FurC_ShowCrowns:SetState((value and BSTATE_PRESSED) or BSTATE_DISABLED, false)
   FurC.UpdateGui()
 end
 
@@ -438,6 +439,8 @@ function FurC.GetDefaultDropdownChoiceText(dropdownName)
   return FurC.DropdownData["Choices" .. dropdownName][FurC.GetDefaultDropdownChoice(dropdownName)]
 end
 
+---@param dropdownName string
+---@return integer
 function FurC.GetDefaultDropdownChoice(dropdownName)
   return FurC.settings.dropdownDefaults[dropdownName]
 end
@@ -446,8 +449,6 @@ function FurC.SetDefaultDropdownChoice(dropdownName, value)
   local dropdownIndex = getDropdownIndex(dropdownName, value)
   local dropdown = FurC.DropdownData["Choices" .. dropdownName]
   FurC.settings.dropdownDefaults[dropdownName] = dropdownIndex
-  -- FurC.UpdateDropdownChoice(dropdownName, value, dropdownIndex)
-  -- FurC.UpdateGui()
 end
 
 function FurC.GetResetDropdownChoice()

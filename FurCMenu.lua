@@ -335,17 +335,6 @@ function FurC.CreateSettings(savedVars, defaults)
             },
             { -- checkbox: Exclude crown store items from these
               type = "checkbox",
-              name = GetString(SI_FURC_STRING_MENU_FALL_HIDE_CROWN_BUTTON),
-              getFunc = function()
-                return FurC.GetFilterAllOnTextNoCrown()
-              end,
-              setFunc = function(value)
-                FurC.SetFilterAllOnTextNoCrown(value)
-              end,
-              disabled = not FurC.GetFilterAllOnText(),
-            },
-            { -- checkbox: Exclude crown store items from these
-              type = "checkbox",
               name = GetString(SI_FURC_STRING_MENU_FALL_HIDE_RUMOUR),
               tooltip = GetString(SI_FURC_STRING_MENU_FALL_HIDE_RUMOUR_TT),
               getFunc = function()
