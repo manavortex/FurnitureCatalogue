@@ -1,6 +1,8 @@
 FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
-FurC.LuxuryFurnisher[FURC_SCRIBE] = {
+local ver = FurC.Constants.Versioning
+
+FurC.LuxuryFurnisher[ver.SCRIBE] = {
 
   [192572] = { -- Inn Sign, Hanging
     itemPrice = 4000,
@@ -12,8 +14,7 @@ FurC.LuxuryFurnisher[FURC_SCRIBE] = {
   },
 }
 
-FurC.LuxuryFurnisher[FURC_DRUID] = {
-
+FurC.LuxuryFurnisher[ver.DRUID] = {
   [192573] = { -- Clockwork Illuminator, Spot
     itemPrice = 14000,
     itemDate = "2023-03-11",
@@ -115,8 +116,7 @@ FurC.LuxuryFurnisher[FURC_DRUID] = {
   },
 }
 
-FurC.LuxuryFurnisher[FURC_DEPTHS] = {
-
+FurC.LuxuryFurnisher[ver.DEPTHS] = {
   [189481] = { -- Bone Sculpture, Circular
     itemPrice = 3000,
     itemDate = "2022-10-29",
@@ -168,8 +168,7 @@ FurC.LuxuryFurnisher[FURC_DEPTHS] = {
   },
 }
 
-FurC.LuxuryFurnisher[FURC_TIDES] = {
-
+FurC.LuxuryFurnisher[ver.TIDES] = {
   [187791] = { -- Anvil Banner, Large
     itemPrice = 12000,
     itemDate = "2022-08-20",
@@ -286,8 +285,7 @@ FurC.LuxuryFurnisher[FURC_TIDES] = {
   },
 }
 
-FurC.LuxuryFurnisher[FURC_DEADL] = {
-
+FurC.LuxuryFurnisher[ver.DEADL] = {
   [182624] = { -- Clockwork Coffer, Vertical
     itemPrice = 4000,
     itemDate = "2022-03-12",
@@ -314,16 +312,21 @@ FurC.LuxuryFurnisher[FURC_DEADL] = {
   },
 
   -- ====================================================================
+
   [182631] = { -- Redguard Seal
     itemPrice = 3000,
     itemDate = "2023-02-04",
   },
+
   -- ====================================================================
+
   [182620] = { -- Clockwork Door, Arched
     itemPrice = 25000,
     itemDate = "2023-03-11",
   },
+
   -- ====================================================================
+
   [182619] = { -- Clockwork Altar, Devotional
     itemPrice = 15000,
     itemDate = "2023-03-04",
@@ -395,6 +398,7 @@ FurC.LuxuryFurnisher[FURC_DEADL] = {
     itemPrice = 9000,
     itemDate = "2022-01-08",
   },
+
   -- ====================================================================
 
   [167348] = { -- Orcish Figurine, Bear
@@ -466,6 +470,7 @@ FurC.LuxuryFurnisher[FURC_DEADL] = {
   },
 
   -- ====================================================================
+
   [182614] = { -- Vine, Flowering Wyrdbloom Strand
     itemPrice = 700,
     itemDate = "2023-01-14",
@@ -492,6 +497,7 @@ FurC.LuxuryFurnisher[FURC_DEADL] = {
   },
 
   -- ====================================================================
+
   [182613] = { -- Bush, Flowering Ivy
     itemPrice = 2000,
     itemDate = "2023-01-07",
@@ -518,6 +524,7 @@ FurC.LuxuryFurnisher[FURC_DEADL] = {
   },
 
   -- ====================================================================
+
   [167344] = { -- Reachfolk Banner, Moonburst
     itemPrice = 4000,
     itemDate = "2022-12-31",
@@ -548,6 +555,7 @@ FurC.LuxuryFurnisher[FURC_DEADL] = {
   },
 
   -- ====================================================================
+
   [181540] = { -- Nedic Skull Relief, Half
     itemPrice = 20000,
     itemDate = "2022-12-24",
@@ -582,6 +590,7 @@ FurC.LuxuryFurnisher[FURC_DEADL] = {
   },
 
   -- ====================================================================
+
   [181539] = { -- Nedic Archway, Worn
     itemPrice = 15000,
     itemDate = "2022-12-17",
@@ -612,6 +621,7 @@ FurC.LuxuryFurnisher[FURC_DEADL] = {
   },
 
   -- ====================================================================
+
   [181538] = { -- Nedic Altar, Worn
     itemPrice = 3000,
     itemDate = "2022-12-10",
@@ -642,6 +652,7 @@ FurC.LuxuryFurnisher[FURC_DEADL] = {
   },
 
   -- ====================================================================
+
   [181537] = { -- Geode, Citrine
     itemPrice = 20000,
     itemDate = "2022-12-03",
@@ -672,8 +683,7 @@ FurC.LuxuryFurnisher[FURC_DEADL] = {
   },
 }
 
-FurC.LuxuryFurnisher[FURC_BLACKW] = {
-  -- ====================================================================
+FurC.LuxuryFurnisher[ver.BLACKW] = {
   [181543] = { -- Harpy Totem, Feathered
     itemPrice = 7000,
     itemDate = "2022-11-05",
@@ -708,6 +718,7 @@ FurC.LuxuryFurnisher[FURC_BLACKW] = {
   },
 
   -- ====================================================================
+
   [181542] = { -- Crow Totem, Gruesome
     itemPrice = 4000,
     itemDate = "2022-10-29",
@@ -738,6 +749,7 @@ FurC.LuxuryFurnisher[FURC_BLACKW] = {
   },
 
   -- ====================================================================
+
   [181536] = { -- Blue Crystal Cluster, Medium
     itemPrice = 10000,
     itemDate = "2022-11-26",
@@ -772,6 +784,7 @@ FurC.LuxuryFurnisher[FURC_BLACKW] = {
   },
 
   -- ====================================================================
+
   [181535] = { -- Mummy, Bound
     itemPrice = 8000,
     itemDate = "2022-11-19",
@@ -806,6 +819,7 @@ FurC.LuxuryFurnisher[FURC_BLACKW] = {
   },
 
   -- ====================================================================
+
   [181534] = { -- Funerary Urn, Broken
     itemPrice = 4000,
     itemDate = "2022-11-12",
@@ -844,6 +858,7 @@ FurC.LuxuryFurnisher[FURC_BLACKW] = {
   },
 
   -- ====================================================================
+
   [175769] = { -- Lunar Reflector, Dormant
     itemPrice = 40000,
     itemDate = "2022-10-22",
@@ -874,6 +889,7 @@ FurC.LuxuryFurnisher[FURC_BLACKW] = {
   },
 
   -- ====================================================================
+
   [175768] = { -- Dragonguard Brazier, Empty
     itemPrice = 30000,
     itemDate = "2022-10-15",
@@ -900,6 +916,7 @@ FurC.LuxuryFurnisher[FURC_BLACKW] = {
   },
 
   -- ====================================================================
+
   [139098] = { -- Darkshade Glowstalks, Inquisitive
     itemPrice = 45000,
     itemDate = "2022-10-08",
@@ -934,6 +951,7 @@ FurC.LuxuryFurnisher[FURC_BLACKW] = {
   },
 
   -- ====================================================================
+
   [175766] = { -- Mushroom, Glowing Trumpet
     itemPrice = 1000,
     itemDate = "2022-10-01",
@@ -968,6 +986,7 @@ FurC.LuxuryFurnisher[FURC_BLACKW] = {
   },
 
   -- ====================================================================
+
   [175765] = { -- Tapestry of a Failed Incarnate, The Brute
     itemPrice = 20000,
     itemDate = "2022-09-24",
@@ -1002,6 +1021,7 @@ FurC.LuxuryFurnisher[FURC_BLACKW] = {
   },
 
   -- ====================================================================
+
   [175764] = { -- Egg, Gruesome
     itemPrice = 3000,
     itemDate = "2022-09-17",
@@ -1032,6 +1052,7 @@ FurC.LuxuryFurnisher[FURC_BLACKW] = {
   },
 
   -- ====================================================================
+
   [175763] = { -- Dwarven Urn, Masks
     itemPrice = 8000,
     itemDate = "2022-09-10",
@@ -1062,6 +1083,7 @@ FurC.LuxuryFurnisher[FURC_BLACKW] = {
   },
 
   -- ===================================================================
+
   [175762] = { -- Dwarven Hatch, Sealed
     itemPrice = 12000,
     itemDate = "2022-09-03",
@@ -1092,6 +1114,7 @@ FurC.LuxuryFurnisher[FURC_BLACKW] = {
   },
 
   -- ====================================================================
+
   [175761] = { -- Imperial Curtains, Heavy
     itemPrice = 12000,
     itemDate = "2022-08-27",
@@ -1126,6 +1149,7 @@ FurC.LuxuryFurnisher[FURC_BLACKW] = {
   },
 
   -- ==================================================================
+
   [175760] = { -- Banner, Anvil
     itemPrice = 4000,
     itemDate = "2022-08-20",
@@ -1160,6 +1184,7 @@ FurC.LuxuryFurnisher[FURC_BLACKW] = {
   },
 
   -- ====================================================================
+
   [171833] = { -- Dark Elf Statue, St. Delyn
     itemPrice = 35000,
     itemDate = "2022-08-13",
@@ -1194,6 +1219,7 @@ FurC.LuxuryFurnisher[FURC_BLACKW] = {
   },
 
   -- ====================================================================
+
   [171832] = { -- Dark Elf Statue, St. Olms
     itemPrice = 35000,
     itemDate = "2022-08-06",
@@ -1228,6 +1254,7 @@ FurC.LuxuryFurnisher[FURC_BLACKW] = {
   },
 
   -- ====================================================================
+
   [171831] = { --Mad Architect's Medallion
     itemPrice = 2500,
     itemDate = "2022-07-30",
@@ -1254,6 +1281,7 @@ FurC.LuxuryFurnisher[FURC_BLACKW] = {
   },
 
   -- ====================================================================
+
   [171830] = { -- Mausoleum Bookcase, Filled
     itemPrice = 15000,
     itemDate = "2022-07-23",
@@ -1280,6 +1308,7 @@ FurC.LuxuryFurnisher[FURC_BLACKW] = {
   },
 
   -- ====================================================================
+
   [171829] = { -- Laboratory Instruments
     itemPrice = 5000,
     itemDate = "2022-07-16",
@@ -1318,6 +1347,7 @@ FurC.LuxuryFurnisher[FURC_BLACKW] = {
   },
 
   -- ====================================================================
+
   [171828] = { -- Vampiric Table, Exsanguination
     itemPrice = 35000,
     itemDate = "2022-07-09",
@@ -1348,6 +1378,7 @@ FurC.LuxuryFurnisher[FURC_BLACKW] = {
   },
 
   -- ====================================================================
+
   [171827] = { -- Brazier, Dragon-Headed Cold-Flame
     itemPrice = 25000,
     itemDate = "2022-07-02",
@@ -1387,6 +1418,7 @@ FurC.LuxuryFurnisher[FURC_BLACKW] = {
   },
 
   -- ====================================================================
+
   [171826] = { -- Brazier, Stone Cold-Flame
     itemPrice = 30000,
     itemDate = "2022-06-25",
@@ -1401,10 +1433,6 @@ FurC.LuxuryFurnisher[FURC_BLACKW] = {
   },
   [156654] = { -- Alinor Shrine, Magnus
     itemPrice = 50000,
-    itemDate = "2022-06-25",
-  },
-  [120823] = { -- Sigil Stand
-    itemPrice = 15000,
     itemDate = "2022-06-25",
   },
   [120815] = { -- Sigil, Akatosh
@@ -1429,6 +1457,7 @@ FurC.LuxuryFurnisher[FURC_BLACKW] = {
   },
 
   -- ====================================================================
+
   [171825] = { -- Mushroom, Large Glowtendril
     itemPrice = 20000,
     itemDate = "2023-07-14",
@@ -1459,6 +1488,7 @@ FurC.LuxuryFurnisher[FURC_BLACKW] = {
   },
 
   -- ====================================================================
+
   [171824] = { -- Mushroom, Tufted Cap
     itemPrice = 5000,
     itemDate = "2022-06-11",
@@ -1493,6 +1523,7 @@ FurC.LuxuryFurnisher[FURC_BLACKW] = {
   },
 
   -- ====================================================================
+
   [171823] = { -- Coral Formation, Branching Red
     itemPrice = 2000,
     itemDate = "2022-06-04",
@@ -1591,10 +1622,6 @@ FurC.LuxuryFurnisher[FURC_BLACKW] = {
     itemPrice = 5000,
     itemDate = "2022-05-21",
   },
-  [120807] = { -- Hew's Bane Well
-    itemPrice = 10000,
-    itemDate = "2022-05-21",
-  },
   [134825] = { -- Redguard Tent, Squared Silk
     itemPrice = 100000,
     itemDate = "2022-05-21",
@@ -1632,8 +1659,7 @@ FurC.LuxuryFurnisher[FURC_BLACKW] = {
   },
 }
 
-FurC.LuxuryFurnisher[FURC_FLAMES] = {
-
+FurC.LuxuryFurnisher[ver.FLAMES] = {
   -- ====================================================================
 
   [151864] = { -- Alinor Maple, Diminutive
@@ -1681,8 +1707,7 @@ FurC.LuxuryFurnisher[FURC_FLAMES] = {
   },
 }
 
-FurC.LuxuryFurnisher[FURC_MARKAT] = {
-
+FurC.LuxuryFurnisher[ver.MARKAT] = {
   -- ====================================================================
 
   [145470] = { -- Redguard Vase, Golden
@@ -1705,10 +1730,6 @@ FurC.LuxuryFurnisher[FURC_MARKAT] = {
   [134824] = { -- Redguard Tent, Rounded Silk
     itemPrice = 100000,
     itemDate = "2019-02-23",
-  },
-  [145469] = { -- Redguard Gazebo, Palatial Domed
-    itemPrice = 75000,
-    itemDate = "2021-02-13",
   },
 
   -- ====================================================================
@@ -1940,6 +1961,7 @@ FurC.LuxuryFurnisher[FURC_MARKAT] = {
     itemPrice = 12000,
     itemDate = "2023-02-11",
   },
+
   -- ====================================================================
 
   [156646] = { -- Ra Gada Statue, Seated Lion Ibis
@@ -1977,6 +1999,7 @@ FurC.LuxuryFurnisher[FURC_MARKAT] = {
   },
 
   -- ====================================================================
+
   [171414] = { -- Fighters Guild Sign, Large
     itemPrice = 12000,
     itemDate = "2023-03-25",
@@ -2008,6 +2031,7 @@ FurC.LuxuryFurnisher[FURC_MARKAT] = {
   },
 
   -- ====================================================================
+
   [171413] = { -- Mages Guild Sign, Large
     itemPrice = 12000,
     itemDate = "2023-03-18",
@@ -2069,6 +2093,7 @@ FurC.LuxuryFurnisher[FURC_MARKAT] = {
   },
 
   -- ====================================================================
+
   [171415] = { -- Changing Room, Curtained
     itemPrice = 3000,
     itemDate = "2022-03-05",
@@ -2162,23 +2187,19 @@ FurC.LuxuryFurnisher[FURC_MARKAT] = {
   },
 }
 
-FurC.LuxuryFurnisher[FURC_STONET] = {
-
+FurC.LuxuryFurnisher[ver.STONET] = {
   -- all items recycled
 }
 
-FurC.LuxuryFurnisher[FURC_SKYRIM] = {
-
+FurC.LuxuryFurnisher[ver.SKYRIM] = {
   -- All items have been recycled
 }
 
-FurC.LuxuryFurnisher[FURC_HARROW] = {
-
+FurC.LuxuryFurnisher[ver.HARROW] = {
   -- all items recycled
 }
 
-FurC.LuxuryFurnisher[FURC_SCALES] = {
-
+FurC.LuxuryFurnisher[ver.SCALES] = {
   -- ====================================================================
 
   [156662] = { -- Riekling Banner, Wolf Pelt
@@ -2233,16 +2254,15 @@ FurC.LuxuryFurnisher[FURC_SCALES] = {
 
   -- ====================================================================
 }
-FurC.LuxuryFurnisher[FURC_KITTY] = {
+FurC.LuxuryFurnisher[ver.KITTY] = {
   -- all items have been recycled
 }
 
-FurC.LuxuryFurnisher[FURC_WOTL] = {
+FurC.LuxuryFurnisher[ver.WOTL] = {
   -- all of these items have been recycled
 }
 
-FurC.LuxuryFurnisher[FURC_SLAVES] = {
-
+FurC.LuxuryFurnisher[ver.SLAVES] = {
   -- ====================================================================
 
   [120802] = { -- Shrine of Mara, Decorative

@@ -1,7 +1,8 @@
 FurC.Recipes = FurC.Recipes or {}
 
-FurC.Recipes[FURC_NECROM] = {
+local ver = FurC.Constants.Versioning
 
+FurC.Recipes[ver.NECROM] = {
   197760, -- Design: Necrom Candle, Large Square",
   197761, -- Design: Necrom Candle, Small Square",
   197762, -- Blueprint: Wood Carving, Cat",
@@ -105,8 +106,7 @@ FurC.Recipes[FURC_NECROM] = {
   197759, -- Pattern: Necrom Banner, Medium Sage-Stitched",
 }
 
-FurC.Recipes[FURC_SCRIBE] = {
-
+FurC.Recipes[ver.SCRIBE] = {
   194368, -- Praxis: Druidic Pillar, Stone,
   194369, -- Praxis: Druidic Doorway, Stone,
   194370, -- Praxis: Druidic Wall, Long Stone,
@@ -144,8 +144,7 @@ FurC.Recipes[FURC_SCRIBE] = {
   194367, -- Praxis: Druidic Chimney, Stone,
 }
 
-FurC.Recipes[FURC_DRUID] = {
-
+FurC.Recipes[ver.DRUID] = {
   192514, -- Praxis: Druidic Statue, Planter,
   192515, -- Praxis: Druidic Sculpture, Sphere,
   192516, -- Praxis: Druidic Meditation Stones, Tall,
@@ -199,8 +198,7 @@ FurC.Recipes[FURC_DRUID] = {
   190096, -- Blueprint: High Isle Trapdoor, Common,
 }
 
-FurC.Recipes[FURC_DEPTHS] = {
-
+FurC.Recipes[ver.DEPTHS] = {
   190080, -- Blueprint: High Isle Caravel, Miniature,
   190081, -- Praxis: High Isle Stairway, Large Castle,
   190082, -- Praxis: High Isle Walkway, Straight Castle,
@@ -224,15 +222,13 @@ FurC.Recipes[FURC_DEPTHS] = {
   190101, -- Blueprint: High Isle Platform, Wooden Square,
   190075, -- Diagram: High Isle Beacon, Unlit,
   190074, -- Formula: Potted Trees, Stonelore Dogwood,
-  -- 184155, -- Formula: Alinor Painting, Unfinished,
   190076, -- Pattern: High Isle Tapestry, Seaside Tourney,
   190077, -- Praxis: High Isle Hearth, Tilework,
   190078, -- Sketch: High Isle Hourglass, Gold,
   190079, -- Design: Shark Jaw, Massive,
 }
 
-FurC.Recipes[FURC_BRETON] = {
-
+FurC.Recipes[ver.BRETON] = {
   188160, -- Blueprint: High Isle Stool, Cushioned
   188161, -- Blueprint: High Isle Stool, Rustic
   188162, -- Blueprint: High Isle Table, Rustic
@@ -282,8 +278,7 @@ FurC.Recipes[FURC_BRETON] = {
   188159, -- Blueprint: High Isle Bench, Sturdy
 }
 
-FurC.Recipes[FURC_TIDES] = {
-
+FurC.Recipes[ver.TIDES] = {
   184150, -- Diagram: Deadlands Throne,
   184152, -- Formula: Fargrave Water Globules, Static,
   184153, -- Sketch: Fargrave Window, Grand Medallion,
@@ -313,7 +308,7 @@ FurC.Recipes[FURC_TIDES] = {
   184147, -- Praxis: Fargrave Post, Garden Wall,
 }
 
-FurC.Recipes[FURC_DEADL] = {
+FurC.Recipes[ver.DEADL] = {
   175959, -- Blueprint: Leyawiin Bench, Formal Wide,
   182937, -- Praxis: Fargrave Bench, Stone,
   176022, -- Blueprint: Leyawiin Wagon, Covered,
@@ -521,7 +516,7 @@ FurC.Recipes[FURC_DEADL] = {
   176014, -- Design: Leyawiin Gravy Boat, Silver,
 }
 
-FurC.Recipes[FURC_BLACKW] = {
+FurC.Recipes[ver.BLACKW] = {
   176001, -- Sketch: Leyawiin Hand Mirror, Silver,
   176003, -- Design: Leyawiin Mug, Milk,
   176009, -- Design: Leyawiin Serving Pot, Lobster Stew,
@@ -567,7 +562,7 @@ FurC.Recipes[FURC_BLACKW] = {
   176025, -- Blueprint: Leyawiin Merchant Stall, Portable,
 }
 
-FurC.Recipes[FURC_MARKAT] = {
+FurC.Recipes[ver.MARKAT] = {
   171529, -- Blueprint: Reachmen Pergola, Ivy
   171528, -- Praxis: Dwarven Bookcase, Granite Filled
   171527, -- Praxis: Dwarven Bookcase, Granite
@@ -628,8 +623,7 @@ FurC.Recipes[FURC_MARKAT] = {
   141903, -- Pattern: Alinor Bed, Levitating
 }
 
-FurC.Recipes[FURC_SKYRIM] = {
-
+FurC.Recipes[ver.SKYRIM] = {
   121091, -- Stool, carved
 
   152237, -- Praxis: Elsweyr Sarcophagus, Ancient
@@ -1142,8 +1136,7 @@ FurC.Recipes[FURC_SKYRIM] = {
   167384, -- Sketch: Blackreach Geode, Iridescent
 }
 
-FurC.Recipes[FURC_KITTY] = {
-
+FurC.Recipes[ver.KITTY] = {
   121203, -- Praxis: Khajiit Brazier, Enchanted
 
   139525, -- Alinor Sconce, Lantern

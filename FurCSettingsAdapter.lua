@@ -1,4 +1,5 @@
 local task = LibAsync:Create("FurnitureCatalogue_Settings")
+local src = FurC.Constants.ItemSources
 
 function FurC.GetEnableDebug()
   return FurC.settings["enableDebug"]
@@ -6,9 +7,12 @@ end
 
 function FurC.SetEnableDebug(value)
   FurC.settings["enableDebug"] = value
-  FurC.Logger = FurC.getOrCreateLogger(true) -- force recreation of logger
+  FurC.Logger = FurC.getOrCreateLogger()
   if value then
+    FurC.Logger:SetMinLevelOverride(FurC.Logger.LOG_LEVEL_DEBUG)
     FurC.Logger:Info("Debug on")
+  else
+    FurC.Logger:SetMinLevelOverride(FurC.Logger.LOG_LEVEL_INFO)
   end
 end
 
@@ -39,7 +43,7 @@ end
 function FurC.SetHideUIButton(buttonIdentifier, value)
   FurC.settings.hideUiButtons[buttonIdentifier] = value
   FurC.UpdateHeader()
-  if not buttonIdentifier == FURC_RUMOUR then
+  if not buttonIdentifier == src.RUMOUR then
     return
   end
 
@@ -86,10 +90,6 @@ function FurC.SetSkipDivider(value)
   FurC.settings["skipDivider"] = value
 end
 
-function FurC.GetFilterAllOnTextNoBooks()
-  return FurC.settings["filterAllOnTextNoBooks"]
-end
-
 function FurC.GetFilterAllOnTextNoBooks(value)
   FurC.settings["filterAllOnTextNoBooks"] = value
   FurC.UpdateGui()
@@ -124,9 +124,11 @@ function FurC.SetFontSize(value)
 
   FurC.SetLineHeight()
 
-  task:Call(function()
+  if nil ~= task then
+    task:Call(FurC.UpdateGui)
+  else
     FurC.UpdateGui()
-  end)
+  end
 end
 
 ---------------------------
@@ -282,10 +284,8 @@ function FurC.SetFilterCraftingType(craftingType)
   FurC.UpdateGui()
 end
 
-local FURC_S_FILTERDEFAULT = GetString(SI_FURC_TEXTBOX_FILTER_DEFAULT)
-
 function FurC.GetSearchFilter()
-  if (not FurC.SearchFilter) or FurC.SearchFilter == FURC_S_FILTERDEFAULT then
+  if (not FurC.SearchFilter) or FurC.SearchFilter == GetString(SI_FURC_TEXTBOX_FILTER_DEFAULT) then
     FurC.SearchFilter = FurC_SearchBox:GetText() or ""
   end
   return FurC.SearchFilter or ""
@@ -323,8 +323,11 @@ end
 
 function FurC.GuiSetSearchboxTextFrom(control)
   control = control or FurC_SearchBox
-  -- call asynchronely to prevent lagging. Praise votan.
-  task:Call(doSearchOnUpdate)
+  if nil ~= task then
+    task:Call(doSearchOnUpdate)
+  else
+    doSearchOnUpdate()
+  end
 end
 
 function FurC.GetHideBooks()
@@ -351,7 +354,7 @@ end
 
 function FurC.SetShowRumours(value)
   FurC.settings["showRumours"] = value
-  FurC_ShowRumours:SetState((value and BSTATE_PRESSED) or BSTATE_DISABLED)
+  FurC_ShowRumours:SetState((value and BSTATE_PRESSED) or BSTATE_DISABLED, false)
   FurC_ShowRumoursGlow:SetHidden(not value)
   FurC.UpdateGui()
 end
@@ -362,7 +365,7 @@ end
 
 function FurC.SetShowCrownstore(value)
   FurC.settings["showCrowns"] = value
-  FurC_ShowCrowns:SetState((value and BSTATE_PRESSED) or BSTATE_DISABLED)
+  FurC_ShowCrowns:SetState((value and BSTATE_PRESSED) or BSTATE_DISABLED, false)
   FurC.UpdateGui()
 end
 
@@ -405,25 +408,23 @@ function FurC.SetDropdownChoice(dropdownName, textValue, dropdownIndex)
   textValue = textValue or FurC.GetDefaultDropdownChoice(dropdownName)
   local dropdownIndex = dropdownIndex or getDropdownIndex(dropdownName, textValue) or 0
 
-  FurC.Logger:Debug("SetDropdownChoice(%s, %s (Index: %s))", dropdownName, textValue, dropdownIndex)
+  FurC.Logger:Verbose("SetDropdownChoice(%s, %s (Index: %s))", dropdownName, textValue, dropdownIndex)
 
   -- if we're setting the dropdown menu "source" to "purchaseable", set "character" to "All"
   FurC.DropdownChoices[dropdownName] = dropdownIndex
 
   if dropdownName == "Source" then
-    if dropdownIndex > FURC_CRAFTING_UNKNOWN or dropdownIndex < FURC_CRAFTING then
+    if dropdownIndex > src.CRAFTING_UNKNOWN or dropdownIndex < src.CRAFTING then
       FurC.DropdownChoices["Character"] = 1
-      FurC_DropdownCharacter:GetNamedChild("SelectedItemText")
-        :SetText(FurnitureCatalogue.DropdownData.ChoicesCharacter[1])
+      FurC_DropdownCharacter:GetNamedChild("SelectedItemText"):SetText(FurC.DropdownData.ChoicesCharacter[1])
     end
   end
   -- if we're setting the characters array to something other than 1, we can't use source 1 or 5
   if dropdownName == "Character" and (dropdownIndex > 1) then
-    if FurC.DropdownChoices["Source"] > FURC_CRAFTING_UNKNOWN or FurC.DropdownChoices["Source"] < FURC_CRAFTING then
-      local knownIndex = FURC_CRAFTING_KNOWN
+    if FurC.DropdownChoices["Source"] > src.CRAFTING_UNKNOWN or FurC.DropdownChoices["Source"] < src.CRAFTING then
+      local knownIndex = src.CRAFTING_KNOWN
       FurC.DropdownChoices["Source"] = knownIndex
-      FurC_DropdownSource:GetNamedChild("SelectedItemText")
-        :SetText(FurnitureCatalogue.DropdownData.ChoicesSource[knownIndex])
+      FurC_DropdownSource:GetNamedChild("SelectedItemText"):SetText(FurC.DropdownData.ChoicesSource[knownIndex])
     end
   end
 
@@ -438,6 +439,8 @@ function FurC.GetDefaultDropdownChoiceText(dropdownName)
   return FurC.DropdownData["Choices" .. dropdownName][FurC.GetDefaultDropdownChoice(dropdownName)]
 end
 
+---@param dropdownName string
+---@return integer
 function FurC.GetDefaultDropdownChoice(dropdownName)
   return FurC.settings.dropdownDefaults[dropdownName]
 end
@@ -446,8 +449,6 @@ function FurC.SetDefaultDropdownChoice(dropdownName, value)
   local dropdownIndex = getDropdownIndex(dropdownName, value)
   local dropdown = FurC.DropdownData["Choices" .. dropdownName]
   FurC.settings.dropdownDefaults[dropdownName] = dropdownIndex
-  -- FurC.UpdateDropdownChoice(dropdownName, value, dropdownIndex)
-  -- FurC.UpdateGui()
 end
 
 function FurC.GetResetDropdownChoice()
@@ -462,10 +463,6 @@ function FurC.GetDropdownChoiceTextual(dropdownName)
   local value = FurC.GetDropdownChoice(dropdownName)
   local dropdown = FurC.DropdownData["Choices" .. dropdownName]
   return FurC.DropdownData["Choices" .. dropdownName][value]
-end
-
-function FurC.GetDefaultDropdownChoiceTextual()
-  return FurC.DropdownData["Choices" .. dropdownName][FurC.GetDefaultDropdownChoice(dropdownName)]
 end
 
 function FurC.GetAccountCrafters()

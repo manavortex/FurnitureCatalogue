@@ -1,7 +1,9 @@
 FurC.Rolis = FurC.Rolis or {}
 FurC.Rolis_Recipes = FurC.Rolis_Recipes or {}
 
-FurC.Rolis[FURC_HOMESTEAD] = {
+local ver = FurC.Constants.Versioning
+
+FurC.Rolis[ver.HOMESTEAD] = {
   -- Alchemy station
   [118328] = 35,
   -- Blacksmithing station
@@ -25,7 +27,7 @@ FurC.Rolis[FURC_HOMESTEAD] = {
   [119822] = 250,
 }
 
-FurC.Rolis_Recipes[FURC_HOMESTEAD] = {
+FurC.Rolis_Recipes[ver.HOMESTEAD] = {
   121207, -- Target Skeleton
   121315, -- Robust Target Skeleton
   126582, -- Target Centurion

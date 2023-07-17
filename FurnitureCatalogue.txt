@@ -5,15 +5,15 @@
 ## APIVersion: 101038 101037
 ## SavedVariables: FurnitureCatalogue_Settings
 ## DependsOn: LibCustomMenu LibAddonMenu-2.0 LibAsync
-## OptionalDependsOn: pChat rchat LibDebugLogger LibDebugViewer
-
-_Constants.lua
+## OptionalDependsOn: LibDebugLogger LibDebugViewer
 
 locale\en.lua
 locale\$(language).lua
 
 xml\Bindings.xml
 xml\FurnitureCatalogue.xml
+
+FurCConstants.lua
 
 startup.lua
 FurCUtil.lua
@@ -74,7 +74,6 @@ FurCGui.lua
 FurCContextMenu.lua
 FurCControlBridge.lua
 FurCTooltip.lua
-
 
 ; This Add-on is not created by, affiliated with or sponsored by ZeniMax
 ; Media Inc. or its affiliates. The Elder Scrolls? and related logos are

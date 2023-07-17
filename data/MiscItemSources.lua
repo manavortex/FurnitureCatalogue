@@ -1,5 +1,8 @@
 FurC.MiscItemSources = FurC.MiscItemSources or {}
 
+local ver = FurC.Constants.Versioning
+local src = FurC.Constants.ItemSources
+
 -- constants save performance on string handling
 local questRewardString = GetString(SI_FURC_QUESTREWARD)
 local tribute = GetString(SI_FURC_TRIBUTE)
@@ -99,13 +102,13 @@ local function getHouseString(houseId1, houseId2) -- use collectible number from
   return zo_strformat(housesource, houseName)
 end
 
-FurC.MiscItemSources[FURC_NECROM] = {
+FurC.MiscItemSources[ver.NECROM] = {
 
-  [FURC_CROWN] = {},
+  [src.CROWN] = {},
 
-  [FURC_DROP] = {},
+  [src.DROP] = {},
 
-  [FURC_RUMOUR] = {
+  [src.RUMOUR] = {
 
     [197644] = rumourSource, -- Telvanni Spoon, Wooden",
     [197645] = rumourSource, -- Telvanni Fork, Wooden",
@@ -188,12 +191,11 @@ FurC.MiscItemSources[FURC_NECROM] = {
   },
 }
 
-FurC.MiscItemSources[FURC_SCRIBE] = {
+FurC.MiscItemSources[ver.SCRIBE] = {
 
-  [FURC_CROWN] = {},
+  [src.CROWN] = {},
 
-  [FURC_DROP] = {
-
+  [src.DROP] = {
     [194456] = book_hall, -- Invocation of Hircine,
     [194460] = book_hall, -- Apocrypha, Apocrypha,
     [194459] = book_hall, -- Dream of a Thousand Dreamers,
@@ -222,8 +224,8 @@ FurC.MiscItemSources[FURC_SCRIBE] = {
     [194450] = book_hall, -- Thwarting the Daedra: Dagon's Cult,
   },
 
-  [FURC_RUMOUR] = {
-
+  [src.RUMOUR] = {
+    [193792] = rumourSource, -- Plant, Galen Palm Cluster,
     [193793] = rumourSource, -- Reach Chandelier, Hagraven,
     [193794] = rumourSource, -- Target Hagraven, Robust,
     [193795] = rumourSource, -- Rite of the Harrowforged,
@@ -261,10 +263,8 @@ FurC.MiscItemSources[FURC_SCRIBE] = {
   },
 }
 
-FurC.MiscItemSources[FURC_DRUID] = {
-
-  [FURC_CROWN] = {
-
+FurC.MiscItemSources[ver.DRUID] = {
+  [src.CROWN] = {
     [190945] = getCrownPrice(5000), -- Tree, Seasons of Y'ffre
 
     [190946] = scambox_stonelore .. getGemPrice(40), -- Earthen Root Essence
@@ -290,7 +290,7 @@ FurC.MiscItemSources[FURC_DRUID] = {
     [192423] = getCrownPrice(340) .. " or " .. itemPackMaormer, -- Maormer Runner, Amethyst Waves
   },
 
-  [FURC_DROP] = {
+  [src.DROP] = {
     [187922] = scrying .. " in Fargrave ", -- Antique Map of Fargrave",
     [192430] = scrying .. " in Galen ", -- Vulk'esh Egg",
     [192431] = scrying .. " in Galen ", -- Antique Map of Galen",
@@ -303,7 +303,7 @@ FurC.MiscItemSources[FURC_DRUID] = {
     [192404] = tribute, -- Forest Wraith Tribute Tapestry, Large",
   },
 
-  [FURC_RUMOUR] = {
+  [src.RUMOUR] = {
     [192579] = rumourSource, -- Common Crate, Fabric Bolts",
     [192569] = rumourSource, -- Alchemy Shelves, Filled",
     [190939] = rumourSource, -- Music Box, Dawnbreaker's Forging",
@@ -311,9 +311,8 @@ FurC.MiscItemSources[FURC_DRUID] = {
   },
 }
 
-FurC.MiscItemSources[FURC_DEPTHS] = {
-
-  [FURC_CROWN] = {
+FurC.MiscItemSources[ver.DEPTHS] = {
+  [src.CROWN] = {
     [188341] = scambox_wraith .. " (100 gems)", -- Red Diamond Stained Glass,
     [188342] = scambox_wraith .. " (40 gems)", -- Bat Swarm, Domesticated,
     [188343] = scambox_wraith .. " (100 gems)", -- Moonlight Path Bridge,
@@ -324,7 +323,7 @@ FurC.MiscItemSources[FURC_DEPTHS] = {
     [189465] = getCrownPrice(1200), -- Music Box, Gonfalon Galliard,
   },
 
-  [FURC_DROP] = {
+  [src.DROP] = {
     [187804] = tribute_ranked, -- Tribute Trophy, Orichalcum,
     [187805] = tribute_ranked, -- Tribute Trophy, Ebony,
     [187806] = tribute_ranked, -- Tribute Trophy, Quicksilver,
@@ -332,10 +331,8 @@ FurC.MiscItemSources[FURC_DEPTHS] = {
   },
 }
 
-FurC.MiscItemSources[FURC_BRETON] = {
-
-  [FURC_CROWN] = {
-
+FurC.MiscItemSources[ver.BRETON] = {
+  [src.CROWN] = {
     [187861] = getCrownPrice(110), -- High Isle Hourglass, Compass Rose
     [187665] = getCrownPrice(3500), -- Statue, Kynareth's Blessings
     [187860] = getCrownPrice(65), -- High Isle Vase, Gilded
@@ -352,7 +349,7 @@ FurC.MiscItemSources[FURC_BRETON] = {
     [187660] = scambox_dark .. getGemPrice(100), -- Mages Guild Stained Glass
   },
 
-  [FURC_DROP] = {
+  [src.DROP] = {
     [187802] = scrying .. " in High Isle ", -- Druidic Provisioning Station
     [187800] = scrying .. " in High Isle ", -- Draoife Storystone
     [187801] = scrying .. " in High Isle ", -- Sea Elf Galleon Helm
@@ -390,10 +387,8 @@ FurC.MiscItemSources[FURC_BRETON] = {
   },
 }
 
-FurC.MiscItemSources[FURC_TIDES] = {
-
-  [FURC_CROWN] = {
-
+FurC.MiscItemSources[ver.TIDES] = {
+  [src.CROWN] = {
     [184072] = scambox_sunken .. " (100 gems)", -- Aquarium, Large Abecean Coral,
     [184071] = scambox_sunken .. " (40 gems)", -- Aquarium, Abecean Coral,
     [184127] = scambox_sunken .. " (40 gems)", -- Tranquility Pond, Botanical,
@@ -436,8 +431,7 @@ FurC.MiscItemSources[FURC_TIDES] = {
   },
 }
 
-FurC.MiscItemSources[FURC_DEADL] = {
-
+FurC.MiscItemSources[ver.DEADL] = {
   --[[ ============== To do: =======================
 
 	Furnishing packs!
@@ -466,7 +460,6 @@ FurC.MiscItemSources[FURC_DEADL] = {
 			Craglorn Multicultural Parlor
 			Cyrodilic Parlor
 
-
 	 Crown crate/gem furnishings!
 		Frost Atronach
 		Grimm Harlequin
@@ -485,7 +478,7 @@ FurC.MiscItemSources[FURC_DEADL] = {
 	 Sort things into their proper versions! I've been adding most things to the top of the most recent version, but sorting needs to happen!
 	]]
 
-  [FURC_DROP] = {
+  [src.DROP] = {
     [178694] = blackwood_event, -- Target Ogrim,
     [166960] = "From combining Stone Husk Fragments from the Labyrinthian in Western Skyrim", -- Target Stone Husk,
 
@@ -535,8 +528,7 @@ FurC.MiscItemSources[FURC_DEADL] = {
     [178498] = "Given to members of the Dauntless Bananas Guild as part of a 2020 contest", -- A Tale of the Dauntless Bananas,
   },
 
-  [FURC_CROWN] = {
-
+  [src.CROWN] = {
     [171857] = getCrownPrice(3000), -- Aetherial Well,
 
     -- ==================== Crown Housing Editor ==============================
@@ -843,7 +835,7 @@ FurC.MiscItemSources[FURC_DEADL] = {
     [182230] = getCrownPrice(140) .. " or " .. itemPackFargrave, -- Mushrooms, Glowing Shelf,
   },
 
-  [FURC_RUMOUR] = {
+  [src.RUMOUR] = {
     [141836] = rumourSource, -- Monolith, Lord Hircine Ritual,
     [141843] = rumourSource, -- Plants, Yellow Frond Cluster,
     [171544] = rumourSource, -- Comet, Aetherial,
@@ -967,27 +959,25 @@ FurC.MiscItemSources[FURC_DEADL] = {
   },
 }
 
-FurC.MiscItemSources[FURC_FLAMES] = {
-
-  [FURC_CROWN] = {
-
+FurC.MiscItemSources[ver.FLAMES] = {
+  [src.CROWN] = {
     [171932] = getCrownPrice(160), -- Daedric Sconce, Torch,
     [171933] = getCrownPrice(80), -- Daedric Candles, Tall Stand,
     [171934] = getCrownPrice(360), -- Daedric Brazier, Plinth,
     [118482] = getCrownPrice(25), -- Book Stack, Tall
   },
 
-  [FURC_DROP] = {
+  [src.DROP] = {
     [171428] = scrying .. " (gold lead, Harrowstorm Reliquary)", -- Vampiric Stained Glass
   },
 }
 
-FurC.MiscItemSources[FURC_MARKAT] = {
-  [FURC_DROP] = {
+FurC.MiscItemSources[ver.MARKAT] = {
+  [src.DROP] = {
     [171428] = scrying .. " in the Reach (Harrowstorms)", -- Vampiric Stained Glass
   },
 
-  [FURC_CROWN] = {
+  [src.CROWN] = {
     [171397] = itemPackAlchemist, -- Stone Garden Tank, Vacant,
     [171398] = itemPackAlchemist, -- Stone Garden Vat, Alchemized Bristleback,
     [171399] = itemPackAlchemist, -- Stone Garden Vat, Alchemized Chaurus,
@@ -1003,7 +993,7 @@ FurC.MiscItemSources[FURC_MARKAT] = {
     [167298] = getCrownPrice(310), -- Dwarven Sconce, Polished Barred,
   },
 
-  [FURC_RUMOUR] = {
+  [src.RUMOUR] = {
     [171382] = rumourSource, -- Reachmen Pergola, Ivy Overhang,
     [153841] = rumourSource, -- Rewoven Khajiiti Tapestry,
     [167289] = rumourSource, -- Tree, Lowland White Pine,
@@ -1023,10 +1013,8 @@ FurC.MiscItemSources[FURC_MARKAT] = {
   },
 }
 
-FurC.MiscItemSources[FURC_STONET] = {
-
-  [FURC_CROWN] = {
-
+FurC.MiscItemSources[ver.STONET] = {
+  [src.CROWN] = {
     [119587] = getCrownPrice(10), -- Auridon Coneplants, Cluster
     [118347] = getCrownPrice(20), -- Bread, Various Loaves
     [118344] = getCrownPrice(20), -- Breads, Assortment
@@ -1150,11 +1138,11 @@ FurC.MiscItemSources[FURC_STONET] = {
     [118107] = getCrownPrice(40), -- Pie, Display
   },
 
-  [FURC_DROP] = {
+  [src.DROP] = {
     [171429] = scrying .. "in the Reach", -- Red Eagle Cave Painting
   },
 
-  [FURC_RUMOUR] = {
+  [src.RUMOUR] = {
     [94181] = rumourSource, -- Imperial Throne of the Bay
     [94160] = rumourSource, -- Imperial Lantern, Imperial City
     [94116] = rumourSource, -- Imperial Cauldron, Pitch-filled
@@ -1417,9 +1405,8 @@ FurC.MiscItemSources[FURC_STONET] = {
   },
 }
 
-FurC.MiscItemSources[FURC_SKYRIM] = {
-  [FURC_RUMOUR] = {
-
+FurC.MiscItemSources[ver.SKYRIM] = {
+  [src.RUMOUR] = {
     [153630] = rumourSource, -- Shadow Tendril Patch
     [153631] = rumourSource, -- Emerald Candlefly Gathering
     [153650] = rumourSource, -- Crystal Sconce, Green,
@@ -1436,11 +1423,11 @@ FurC.MiscItemSources[FURC_SKYRIM] = {
     [163722] = rumourSource, -- Antique Map of Tamriel
   },
 
-  [FURC_JUSTICE] = {
+  [src.JUSTICE] = {
     [165828] = GetString(SI_FURC_CANBESTOLEN) .. in_skyrim, -- Painting: Life in Repose Painting, Wood
   },
 
-  [FURC_DROP] = {
+  [src.DROP] = {
     [165836] = chests_skyrim, -- Painting: A Warm Welcome Awaits Painting, Wood
     [165837] = chests_skyrim, -- Painting: Jarl of Morthal Painting, Wood
     [165838] = chests_skyrim, -- Painting: Painting of Nord Ship, Wood
@@ -1549,7 +1536,8 @@ FurC.MiscItemSources[FURC_SKYRIM] = {
     [163726] = scrying .. " in Murkmire", -- Antique Map of Murkmire
     [163723] = scrying .. " in Wrothgar", -- Antique Map of Wrothgar
   },
-  [FURC_CROWN] = {
+
+  [src.CROWN] = {
     [167230] = scambox_sovngarde .. " (100 gems)", -- Alkosh's Hourglass, Replica
     [167231] = scambox_sovngarde .. " (100 gems)", -- Celestial Nimbus
     [167332] = scambox_sovngarde .. " (40 gems)", -- The Mage's Staff Painting, Gold
@@ -1567,12 +1555,12 @@ FurC.MiscItemSources[FURC_SKYRIM] = {
     [159458] = getCrownPrice(310), -- Tree, Broad Wrothgar Pine
     [159459] = getCrownPrice(310), -- Trees, Paired Wrothgar Pine
   },
-  [FURC_FISHING] = {},
+
+  [src.FISHING] = {},
 }
 
-FurC.MiscItemSources[FURC_KITTY] = {
-
-  [FURC_RUMOUR] = {
+FurC.MiscItemSources[ver.KITTY] = {
+  [src.RUMOUR] = {
     --[152145] = rumourSource, -- Orcish Tapestry, War,       CRAFTABLE
     --[152149] = rumourSource, -- Orcish Brazier, Pillar,     CRAFTABLE
     --[152148] = rumourSource, -- Orcish Tapestry, Hunt,      CRAFTABLE
@@ -1588,7 +1576,7 @@ FurC.MiscItemSources[FURC_KITTY] = {
     [151612] = rumourSource, -- Pile of Dubious Riches,
   },
 
-  [FURC_JUSTICE] = {
+  [src.JUSTICE] = {
     [151892] = stealable_elsewhere, -- Elsweyr Fragrance Bottle, Moons-Blessed
     [151889] = stealable_elsewhere, -- Elsweyr Comb, Grooming
     [151893] = stealable_elsewhere, -- Elsweyr Fragrance Bottle, Moonlit Tryst
@@ -1606,7 +1594,7 @@ FurC.MiscItemSources[FURC_KITTY] = {
     [151894] = stealable_elsewhere, -- Elsweyr Mirror, Carved Wall
   },
 
-  [FURC_DROP] = {
+  [src.DROP] = {
     [153563] = elsweyr_event, -- Target Bone Goliath, Reanimated
     [153814] = elsweyr_event, -- Dragon's Treasure Trove
     [145317] = "Witches' Festival, Plunder Skull", -- Gravestone, Broken
@@ -1614,8 +1602,7 @@ FurC.MiscItemSources[FURC_KITTY] = {
     [165834] = chests_elsweyr, -- A Simple Five-Claw Life Painting, Gold
   },
 
-  [FURC_CROWN] = {
-
+  [src.CROWN] = {
     [153630] = scambox_newmoon .. " (55 gems)",
     [159436] = scambox_gloomspore, -- Dwarven Miniature Sun, Portable
     [159437] = scambox_gloomspore, -- Painting of Blackreach, Rough
@@ -1687,5 +1674,5 @@ FurC.MiscItemSources[FURC_KITTY] = {
     [151913] = getCrownPrice(5), -- Rock, Slate,
   },
 
-  [FURC_FISHING] = {},
+  [src.FISHING] = {},
 }

@@ -1,3 +1,5 @@
 FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
-FurC.LuxuryFurnisher[FURC_CLOCKWORK] = {}
+local ver = FurC.Constants.Versioning
+
+FurC.LuxuryFurnisher[ver.CLOCKWORK] = {}

@@ -2,12 +2,11 @@ FurC.SlotTemplate = "FurC_SlotTemplate"
 FurC.KnowledgeFilter = "All (Accountwide)"
 FurC.SearchString = ""
 FurC.ScrollSortUp = true
-local checkWasUpdated = false
 local task = LibAsync:Create("FurnitureCatalogue_updateLineVisibility")
 local otherTask = LibAsync:Create("FurnitureCatalogue_ToggleGui")
-local async = LibAsync:Create("FurnitureCatalogue_forLoop")
 
 local sortTable = FurC.SortTable
+local src = FurC.Constants.ItemSources
 
 local function sort(myTable)
   local sortName, sortDirection = FurC.GetSortParams()
@@ -55,7 +54,7 @@ local function updateLineVisibility()
       curLine.blueprint = curData.blueprint
       curLine.icon:SetTexture(GetItemLinkIcon(curData.itemLink))
       curLine.icon:SetAlpha(1)
-      local text = curData.itemLink:gsub("H1", "H0")
+      local text = string.gsub(curData.itemLink, "H1", "H0")
       curLine.text:SetText(((curData.favorite and "* ") or "") .. text)
       local mats = FurC.GetItemDescription(curData.itemId, curData)
       curLine.mats:SetText(mats)
@@ -73,7 +72,7 @@ local function updateLineVisibility()
 
   FurC.CalculateMaxLines()
 
-  task:Call(function()
+  local function redrawList()
     local maxLines = FurCGui_ListHolder.maxLines
     local dataLines = FurCGui_ListHolder.dataLines
 
@@ -91,7 +90,13 @@ local function updateLineVisibility()
       fillLine(curLine, curData, i)
     end
     FurCGui_ListHolder_Slider:SetMinMax(0, #dataLines)
-  end)
+  end
+
+  if nil ~= task then
+    task:Call(redrawList)
+  else
+    redrawList()
+  end
 end
 FurC.UpdateLineVisibility = updateLineVisibility
 
@@ -107,43 +112,42 @@ end
 -- fill the shown item list with items that match current filter(s)
 local function updateScrollDataLinesData()
   local dataLines = {}
-  task
-    :Call(function()
-      local index = 0
-
-      data = FurC.settings.data
-
-      local itemLink
-      -- async:For(pairs(data)):Do( function(itemId, recipeArray)
-      for itemId, recipeArray in pairs(data) do
-        if FurC.MatchFilter(itemId, recipeArray) then
-          itemLink = FurC.GetItemLink(itemId)
-          if itemLink then
-            tempDataLine = ZO_DeepTableCopy({}, recipeArray)
-            tempDataLine.itemId = itemId
-            tempDataLine.itemLink = itemLink
-            tempDataLine.blueprint = recipeArray.blueprint
-            tempDataLine.itemName = GetItemLinkName(itemLink)
-            table.insert(dataLines, tempDataLine)
-          end
+  local function filterData()
+    for itemId, recipeArray in pairs(FurC.settings.data) do
+      if FurC.MatchFilter(itemId, recipeArray) then
+        local itemLink = FurC.GetItemLink(itemId)
+        if itemLink then
+          local tempDataLine = ZO_DeepTableCopy({}, recipeArray)
+          tempDataLine.itemId = itemId
+          tempDataLine.itemLink = itemLink
+          tempDataLine.blueprint = recipeArray.blueprint
+          tempDataLine.itemName = GetItemLinkName(itemLink)
+          table.insert(dataLines, tempDataLine)
         end
       end
-      -- end)
-    end)
-    :Then(function()
-      dataLines = sort(dataLines)
-      FurCGui_ListHolder.dataLines = dataLines
-      FurC_RecipeCount:SetText(#dataLines)
-    end)
+    end
+  end
+
+  local function sortAndCountData()
+    dataLines = sort(dataLines)
+    FurCGui_ListHolder.dataLines = dataLines
+    FurC_RecipeCount:SetText(tostring(#dataLines))
+  end
+
+  if nil ~= task then
+    task:Call(filterData):Then(sortAndCountData)
+  else
+    filterData()
+    sortAndCountData()
+  end
 end
-local FURC_S_FILTERDEFAULT = GetString(SI_FURC_TEXTBOX_FILTER_DEFAULT)
+
 local cachedDefaults
 local function startLoading()
   FurC.IsLoading(true)
   local text = FurC_SearchBox:GetText()
-  --FurC_SearchBoxText:SetText((#text == 0 and FURC_S_FILTERDEFAULT) or "")
-  FurC.LastFilter = useDefaults
-  FurC.SetFilter(useDefaults, true)
+  FurC.LastFilter = cachedDefaults
+  FurC.SetFilter(cachedDefaults, true)
 end
 local function stopLoading()
   FurC.IsLoading(false)
@@ -158,11 +162,17 @@ function FurC.UpdateGui(useDefaults)
     return
   end
   cachedDefaults = useDefaults
-  otherTask:Call(startLoading):Then(updateScrollDataLinesData):Then(stopLoadingWithDelay)
+
+  if nil ~= otherTask then
+    otherTask:Call(startLoading):Then(updateScrollDataLinesData):Then(stopLoadingWithDelay)
+  else
+    startLoading()
+    updateScrollDataLinesData()
+    stopLoadingWithDelay()
+  end
 end
 
 function FurC.UpdateInventoryScroll()
-  local index = 0
   FurCGui_ListHolder.dataOffset = FurCGui_ListHolder.dataOffset or 0
   FurCGui_ListHolder.dataOffset = math.max(FurCGui_ListHolder.dataOffset, 0)
 
@@ -232,12 +242,12 @@ function FurC.ApplyLineTemplate()
   local minHeight = 2 * FurCGui_Header:GetHeight()
   FurCGui:SetDimensionConstraints(minWidth, minHeight)
 
-  task:Call(function()
+  if nil ~= task then
+    task:Call(updateLineVisibility)
+  else
     updateLineVisibility()
-  end)
+  end
 end
-
-local addedDropdownCharacterNames = {}
 
 local function createGui()
   local function createInventoryScroll()
@@ -246,7 +256,9 @@ local function createGui()
     local function createLine(i, predecessor)
       predecessor = predecessor or FurCGui_ListHolder
 
+      ---@type Control
       local line = WINDOW_MANAGER:CreateControlFromVirtual("FurC_ListItem_" .. i, FurCGui_ListHolder, FurC.SlotTemplate)
+
       line.icon = line:GetNamedChild("Button"):GetNamedChild("Icon")
       line.text = line:GetNamedChild("Name")
       line.mats = line:GetNamedChild("Mats")
@@ -273,9 +285,7 @@ local function createGui()
     FurCGui_ListHolder.QualitySort = FurCGui_Header_SortBar:GetNamedChild("_Quality")
     FurCGui_ListHolder.QualitySort.icon = FurCGui_ListHolder.QualitySort:GetNamedChild("_Button")
 
-    --local width = 250 -- FurCGui_ListHolder:GetWidth()
-    local text = "       No Collected Data"
-
+    local predecessor
     for i = 1, FurCGui_ListHolder.maxLines do
       FurCGui_ListHolder.lines[i] = createLine(i, predecessor)
       predecessor = FurCGui_ListHolder.lines[i]
@@ -289,8 +299,7 @@ local function createGui()
 
   local function createQualityFilters()
     local buttons = {}
-    local quality = 0
-    local function createQualityFilter(name, color, tooltip)
+    local function createQualityFilter(name, quality, tooltip)
       local parent = FurC_QualityFilter
 
       local predecessor = buttons[#buttons] or parent
@@ -299,26 +308,24 @@ local function createGui()
       local button = WINDOW_MANAGER:CreateControlFromVirtual(parent:GetName() .. name, parent, controlType)
       local ctrlName = string.lower(name)
       button:SetNormalTexture(string.format("FurnitureCatalogue/textures/%s_up.dds", ctrlName))
-      button:SetNormalTexture(string.format("FurnitureCatalogue/textures/%s_over.dds", ctrlName))
-      button:SetNormalTexture(string.format("FurnitureCatalogue/textures/%s_down.dds", ctrlName))
+      button:SetMouseOverTexture(string.format("FurnitureCatalogue/textures/%s_over.dds", ctrlName))
+      button:SetPressedTexture(string.format("FurnitureCatalogue/textures/%s_down.dds", ctrlName))
       button.quality = quality
       button.tooltip = tooltip
 
       local otherAnchor = ((predecessor == parent) and LEFT) or RIGHT
       local xOffset = ((predecessor == parent) and 0) or 6
       button:SetAnchor(LEFT, predecessor, otherAnchor, xOffset)
-      quality = quality + 1
 
       return button
     end
 
-    buttons[quality + 1] = createQualityFilter("All", nil, "All Items")
-
-    buttons[quality + 1] = createQualityFilter("White", ITEM_QUALITY_NORMAL, "White quality")
-    buttons[quality + 1] = createQualityFilter("Magic", ITEM_QUALITY_MAGIC, "Magic quality")
-    buttons[quality + 1] = createQualityFilter("Arcane", ITEM_QUALITY_ARCANE, "Superior quality")
-    buttons[quality + 1] = createQualityFilter("Artifact", ITEM_QUALITY_ARTIFACT, "Epic quality")
-    buttons[quality + 1] = createQualityFilter("Legendary", ITEM_QUALITY_LEGENDARY, "Legendary quality")
+    buttons[1] = createQualityFilter("All", ITEM_FUNCTIONAL_QUALITY_TRASH, "All Items")
+    buttons[2] = createQualityFilter("White", ITEM_FUNCTIONAL_QUALITY_NORMAL, "White quality")
+    buttons[3] = createQualityFilter("Magic", ITEM_FUNCTIONAL_QUALITY_MAGIC, "Magic quality")
+    buttons[4] = createQualityFilter("Arcane", ITEM_FUNCTIONAL_QUALITY_ARCANE, "Superior quality")
+    buttons[5] = createQualityFilter("Artifact", ITEM_FUNCTIONAL_QUALITY_ARTIFACT, "Epic quality")
+    buttons[6] = createQualityFilter("Legendary", ITEM_FUNCTIONAL_QUALITY_LEGENDARY, "Legendary quality")
 
     FurC.GuiElements.qualityButtons = buttons
   end
@@ -376,7 +383,7 @@ local function createGui()
   local function createInventoryDropdown(dropdownName)
     local controlName = string.format("%s%s", "FurC_Dropdown", dropdownName)
     local control = _G[controlName]
-    local dropdownData = FurnitureCatalogue.DropdownData
+    local dropdownData = FurC.DropdownData
     local validChoices = dropdownData[string.format("%s%s", "Choices", dropdownName)]
     local choicesTooltips = dropdownData[string.format("%s%s", "Tooltips", dropdownName)]
     local comboBox
@@ -384,7 +391,7 @@ local function createGui()
     control.comboBox = control.comboBox or ZO_ComboBox_ObjectFromContainer(control)
     comboBox = control.comboBox
 
-    local function HideTooltip(control)
+    local function HideTooltip()
       ClearTooltip(InformationTooltip)
     end
 
@@ -422,7 +429,7 @@ local function createGui()
           control:SetHandler("OnMouseExit", entry.onMouseExit)
           control.tooltip = nil
         end
-        HideTooltip(self)
+        HideTooltip()
         originalHide(self)
       end
     end
@@ -430,16 +437,14 @@ local function createGui()
     function OnItemSelect(control, choiceText, somethingElse)
       local dropdownName = tostring(control.m_name):gsub("FurC_Dropdown", "")
       FurC.SetDropdownChoice(dropdownName, choiceText)
-      HideTooltip(control)
+      HideTooltip()
       PlaySound(SOUNDS.POSITIVE_CLICK)
     end
 
     comboBox:SetSortsItems(false)
-    local originalShow = comboBox.ShowDropdownInternal
 
     if dropdownName == "Character" then
       for _, characterName in ipairs(FurC.GetAccountCrafters()) do
-        addedDropdownCharacterNames[characterName] = true
         table.insert(validChoices, characterName)
         table.insert(
           dropdownData["Tooltips" .. dropdownName],
@@ -473,29 +478,29 @@ local function createGui()
   FurC.UpdateDropdowns()
 
   -- reanchor it once
-  FurC.SetHideUIButton(FURC_RUMOUR, FurC.GetHideUIButton(FURC_RUMOUR))
+  FurC.SetHideUIButton(src.RUMOUR, FurC.GetHideUIButton(src.RUMOUR))
   FurC.UpdateHeader()
 end
 
 function FurC.UpdateHeader()
-  local hideRumourButton = FurC.GetHideUIButton(FURC_RUMOUR)
+  local hideRumourButton = FurC.GetHideUIButton(src.RUMOUR)
   local showRumours = FurC.GetShowRumours()
 
   FurC_ShowRumours:SetHidden(hideRumourButton)
   FurC_ShowRumoursGlow:SetHidden(not showRumours or hideRumourButton)
 
   if not hideRumourButton then
-    FurC_ShowRumours:SetState((showRumours and BSTATE_PRESSED) or BSTATE_NORMAL)
+    FurC_ShowRumours:SetState((showRumours and BSTATE_PRESSED) or BSTATE_NORMAL, false)
   end
 
-  local hideCrownButton = FurC.GetHideUIButton(FURC_CROWN)
+  local hideCrownButton = FurC.GetHideUIButton(src.CROWN)
 
   FurC_ShowCrowns:SetHidden(hideCrownButton)
   if hideCrownButton then
     return
   end
 
-  FurC_ShowCrowns:SetState((FurC.GetShowCrownstore() and BSTATE_PRESSED) or BSTATE_NORMAL)
+  FurC_ShowCrowns:SetState((FurC.GetShowCrownstore() and BSTATE_PRESSED) or BSTATE_NORMAL, false)
 end
 
 function FurnitureCatalogue_Toggle()
@@ -509,6 +514,7 @@ function FurnitureCatalogue_Toggle()
     FurC.UpdateGui(FurC.GetResetDropdownChoice())
   end, 500)
 end
+
 function FurnitureCatalogue_ToggleRecipeDisplay()
   FurC.showBlueprints = not FurC.showBlueprints
   local currentLine = moc()

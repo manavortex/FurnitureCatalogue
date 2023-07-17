@@ -1,15 +1,16 @@
 ## Title: FurnitureCatalogue_DevUtility
 ## Author: manavortex
-## Description: This is a utility addon that helps me generate text entries for the data files. It won't do anything if you're not me, so feel free to unload it.\nYou're welcome to get in touch if you want to use this, then I can add you to the list.
+## Description: This is a utility addon that helps generating entries for the furniture database.\nYou will only need it if you want to help with development or the database.
 ## Version: 2.0.0
 ## AddonVersion: 2000000
 ## APIVersion: 101038 101037
 ## DependsOn: FurnitureCatalogue
-## OptionalDependsOn: sidTools AchievementFinder LibDebugLogger DebugLogViewer
+## OptionalDependsOn: sidTools LibDebugLogger DebugLogViewer
 
 Bindings.xml
 xml.xml
-00_startup.lua
+
+startup.lua
 ContextMenu.lua
 
 DumpFurniture_sidTools.lua
