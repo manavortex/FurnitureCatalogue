@@ -28,7 +28,6 @@ data\03_Reach\HotR_Recipes.lua
 data\04_Clockwork\CC_Recipes.lua
 data\05_Dragonbones\DragonB_Recipes.lua
 data\06_2018\2018_Recipes.lua
-data\07_Firesong\Firesong_Recipes.lua
 
 data\01_Homestead\H_Cyrodiil.lua
 
@@ -51,11 +50,9 @@ data\05_Dragonbones\DragonB_LuxuryFurnisher.lua
 data\06_2018\LuxuryFurnisher.lua
 
 data\01_Homestead\H_Rolis.lua
-data\03_Reach\HotR_Rolis.lua
 data\Rolis.lua
 
 data\01_Homestead\H_EventItems.lua
-data\02_Morrowind\M_EventItems.lua
 data\EventItems.lua
 
 data\06_2018\MiscItemSources.lua
@@ -64,7 +61,6 @@ data\MiscItemSources.lua
 data\Recipes.lua
 data\RecipeSources.lua
 
-data\$(APIVersion).lua
 
 FurCDatabaseQuery.lua
 FurCData.lua

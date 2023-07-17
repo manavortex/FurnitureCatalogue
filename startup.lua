@@ -7,6 +7,7 @@ this.tag = "FurC"
 
 this.version = 4073000 -- will be AUTOREPLACED with AddonVersion
 this.CharacterName = nil
+this.website = "https://www.esoui.com/downloads/fileinfo.php?id=1617"
 this.settings = {}
 
 local src = this.Constants.ItemSources
