@@ -7,10 +7,11 @@ function FurC.CreateSettings(savedVars, defaults)
     name = FurC.name,
     displayName = FurC.name,
     author = FurC.author,
-    version = FurC.version,
+    version = tostring(FurC.version),
     registerForRefresh = true,
     registerForDefaults = true,
     slashCommand = "/furc",
+    website = FurC.website,
   }
   LAM:RegisterAddonPanel("FurC_OptionsPanel", panelData)
   local optionsData = { -- optionsData
