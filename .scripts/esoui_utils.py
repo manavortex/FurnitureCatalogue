@@ -60,8 +60,7 @@ def send_update_request(data: dict, archivename: str) -> dict[any]:
   Returns:
       dict[any]: Response from the API like {'status': <STATUSCODE>, 'response': <DATA>}
   """
-  #endpoint_update = f"{API_BASE}/update" # TODO: Switch when workflow process is finalised
-  endpoint_update = f"{API_BASE}/updatetest"
+  endpoint_update = f"{API_BASE}/update"
 
   if not data or not archivename: raise ValueError("got no body to send")
 

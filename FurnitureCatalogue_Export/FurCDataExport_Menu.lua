@@ -5,7 +5,7 @@ function FurCEx.makeSettings()
     name = FurCEx.name,
     displayName = "FurnitureCatalogue Export",
     author = FurCEx.author,
-    version = FurCEx.version,
+    version = tostring(FurCEx.version),
     registerForRefresh = true,
     registerForDefaults = true,
   }
