@@ -109,6 +109,11 @@ FurC.LuxuryFurnisher[ver.DRUID] = {
     itemPrice = 4000,
     itemDate = "2022-11-05",
   },
+
+  [193792] = { -- Plant, Galen Palm Cluster,
+    itemPrice = 2000,
+    itemDate = "2023-07-14",
+  },
 }
 
 FurC.LuxuryFurnisher[ver.DEPTHS] = {
@@ -211,7 +216,7 @@ FurC.LuxuryFurnisher[ver.TIDES] = {
 
   [184200] = { -- Mushroom, Giant Glowtendril
     itemPrice = 20000,
-    itemDate = "2022-06-18",
+    itemDate = "2023-07-14",
   },
 
   [184199] = { -- Mushroom, Twisted Tufted Cap
@@ -1455,31 +1460,31 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
 
   [171825] = { -- Mushroom, Large Glowtendril
     itemPrice = 20000,
-    itemDate = "2022-06-18",
+    itemDate = "2023-07-14",
   },
   [156653] = { -- Plant, Luminescent Valeflower
     itemPrice = 2500,
-    itemDate = "2022-06-18",
+    itemDate = "2023-07-14",
   },
   [145475] = { -- Plant, Soulsplinter Weed
     itemPrice = 12500,
-    itemDate = "2022-06-18",
+    itemDate = "2023-07-14",
   },
   [134830] = { -- Flowers, Blue Starbloom
     itemPrice = 15000,
-    itemDate = "2022-06-18",
+    itemDate = "2023-07-14",
   },
   [120888] = { -- Bat Bloom
     itemPrice = 15000,
-    itemDate = "2022-06-18",
+    itemDate = "2023-07-14",
   },
   [120887] = { -- Fan Bush
     itemPrice = 1000,
-    itemDate = "2022-06-18",
+    itemDate = "2023-07-14",
   },
   [120889] = { -- Glow Bush, Purple
     itemPrice = 20000,
-    itemDate = "2022-06-18",
+    itemDate = "2023-07-14",
   },
 
   -- ====================================================================
