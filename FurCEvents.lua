@@ -40,7 +40,7 @@ local function updateItemInInventory(control)
 
   local bagId = data.bagId
   local slotId = data.slotIndex
-  local itemLink = GetItemLink(bagId, slotId)
+  local itemLink = GetItemLink(bagId, slotId, LINK_STYLE_DEFAULT)
 
   if not IsItemLinkFurnitureRecipe(itemLink) then
     icon:SetHidden(true)

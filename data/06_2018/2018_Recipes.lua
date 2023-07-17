@@ -1,6 +1,8 @@
 FurC.Recipes = FurC.Recipes or {}
 
-FurC.Recipes[FURC_SLAVES] = {
+local ver = FurC.Constants.Versioning
+
+FurC.Recipes[ver.SLAVES] = {
 
   145944, -- Praxis: Murkmire Chair, Engraved
   145945, -- Praxis: Murkmire Bench, Wide
@@ -84,7 +86,7 @@ FurC.Recipes[FURC_SLAVES] = {
   146003, -- Blueprint: Murkmire Walkway, Reed
 }
 
-FurC.Recipes[FURC_WEREWOLF] = {
+FurC.Recipes[ver.WEREWOLF] = {
   141896, -- Sketch: Figurine, The Dragon's Glare
   141897, -- Praxis: Obelisk, Lord Hircine Ritual
   141898, -- Praxis: Ritual Stone, Hircine
@@ -92,7 +94,7 @@ FurC.Recipes[FURC_WEREWOLF] = {
   141900, -- Blueprint: Ritual Fetish, Hircine
 }
 
-FurC.Recipes[FURC_ALTMER] = {
+FurC.Recipes[ver.ALTMER] = {
 
   139526, -- Diagram: Alinor Brazier, Standing Coals
   139573, -- Sketch: Figurine, The Fish and the Unicorn

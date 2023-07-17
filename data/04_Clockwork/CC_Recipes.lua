@@ -1,5 +1,8 @@
 FurC.Recipes = FurC.Recipes or {}
-FurC.Recipes[FURC_CLOCKWORK] = {
+
+local ver = FurC.Constants.Versioning
+
+FurC.Recipes[ver.CLOCKWORK] = {
   134527, -- Design: Clockwork Meal, Dish
   134512, -- Diagram: Clockwork Table, Octagonal
   134478, -- Formula: Fabricant Saplings, Electrum

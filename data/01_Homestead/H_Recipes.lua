@@ -1,7 +1,8 @@
 FurC.Recipes = FurC.Recipes or {}
 
-FurC.Recipes[FURC_HOMESTEAD] = {
+local ver = FurC.Constants.Versioning
 
+FurC.Recipes[ver.HOMESTEAD] = {
   115721, -- Argonian Chimney Stack
   115722, -- Argonian Rack, Sturdy
   115723, -- Argonian Shelves, Half

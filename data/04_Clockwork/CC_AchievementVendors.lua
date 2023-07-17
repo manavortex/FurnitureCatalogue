@@ -1,3 +1,5 @@
+local ver = FurC.Constants.Versioning
+
 local bookList = {
   [134548] = { -- The Truth in Sequence, Volume 1
     itemPrice = 20000,
@@ -37,9 +39,8 @@ local bookList = {
   },
 }
 
-FurC.Books[FURC_CLOCKWORK] = bookList
-FurC.AchievementVendors[FURC_CLOCKWORK] = {
-
+FurC.Books[ver.CLOCKWORK] = bookList
+FurC.AchievementVendors[ver.CLOCKWORK] = {
   ["The Brass Citadel, Market"] = {
     ["Razoufa as part of a collection"] = bookList,
     ["Razoufa"] = {
