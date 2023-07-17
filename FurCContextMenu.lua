@@ -4,6 +4,11 @@ local FURC_S_SHOPPINGLIST_1 = GetString(SI_FURC_ONE_TO_SHOPPINGLIST)
 local FURC_S_SHOPPINGLIST_5 = GetString(SI_FURC_FIVE_TO_SHOPPINGLIST)
 local FURC_S_TOGGLE_SL = GetString(SI_FURC_TOGGLE_SHOPPINGLIST)
 
+local linkStyle = LINK_STYLE_DEFAULT
+local src = FurC.Constants.ItemSources
+
+local menuEventQueued = false
+
 function AddFurnitureShoppingListMenuEntry(itemId, calledFromFurC)
   if calledFromFurC then
     if not FurC.GetEnableShoppingList() then
@@ -12,14 +17,13 @@ function AddFurnitureShoppingListMenuEntry(itemId, calledFromFurC)
     if (nil == moc()) or (nil == FurnitureShoppingListAdd) then
       return
     end
-    local controlName = moc():GetName() or ""
     if nil == moc():GetName():match("_ListItem_") then
       return
     end
   end
 
   local itemLink = FurC.GetItemLink(itemId)
-  if nil == FurC.Find(itemLink) then
+  if {} == FurC.Find(itemLink) then
     return
   end
   AddCustomMenuItem(FURC_S_SHOPPINGLIST_1, function()
@@ -94,7 +98,7 @@ local function addMenuItems(itemLink, recipeArray, hideSepBar)
     AddCustomMenuItem(GetString(SI_FURC_POST_ITEM), postRecipeResult, MENU_ADD_OPTION_LABEL)
   end
 
-  if recipeArray.origin ~= FURC_CRAFTING then
+  if recipeArray.origin ~= src.CRAFTING then
     AddCustomMenuItem(GetString(SI_FURC_POST_ITEMSOURCE), postItemSource, MENU_ADD_OPTION_LABEL)
   else
     -- post material list
@@ -105,36 +109,26 @@ local function addMenuItems(itemLink, recipeArray, hideSepBar)
   end
 end
 
---[[ Original version
-function FurC_HandleClickEvent(itemLink, button, control)		-- button being mouseButton here
-	if (type(itemLink) == 'string' and #itemLink > 0) then
-		local handled = LINK_HANDLER:FireCallbacks(LINK_HANDLER.LINK_MOUSE_UP_EVENT, itemLink, button, ZO_LinkHandler_ParseLink(itemLink))
-		if (not handled) then
-			FurC_LinkHandlerBackup_OnLinkMouseUp(itemLink, button, control)
-			if (button == 2 and itemLink ~= '') then
-				addMenuItems(itemLink, FurC.Find(itemLink))
-			end
-			ShowMenu(control)
-		end
-	end
-end
---]]
-function FurC_HandleClickEvent(itemLink, button, _, _, linkType, ...) -- button being mouseButton here
+function FurC_HandleClickEvent(itemLink, mButton, _, _, linkType, ...)
   if
-    button == MOUSE_BUTTON_INDEX_RIGHT
+    mButton == MOUSE_BUTTON_INDEX_RIGHT
     and linkType == ITEM_LINK_TYPE
     and type(itemLink) == "string"
     and #itemLink > 0
     and itemLink ~= ""
   then
-    zo_callLater(function()
-      addMenuItems(itemLink, FurC.Find(itemLink))
-      ShowMenu()
-    end)
+    if not menuEventQueued then
+      menuEventQueued = true
+      zo_callLater(function()
+        addMenuItems(itemLink, FurC.Find(itemLink))
+        ShowMenu()
+        menuEventQueued = false
+      end)
+    end
   end
 end
 
-function FurC_HandleMouseEnter(inventorySlot)
+function FurC_HandleMouseEnter(...)
   local inventorySlot = moc()
 
   if nil == inventorySlot or nil == inventorySlot.dataEntry then
@@ -146,7 +140,7 @@ function FurC_HandleMouseEnter(inventorySlot)
   end
 
   local bagId, slotIndex = data.bagId, data.slotIndex
-  FurC.CurrentLink = GetItemLink(bagId, slotIndex)
+  FurC.CurrentLink = GetItemLink(bagId, slotIndex, linkStyle)
   if nil == FurC.CurrentLink then
     return
   end
@@ -177,15 +171,18 @@ function FurC_HandleInventoryContextMenu(control)
   end
 
   local recipeArray = FurC.Find(itemLink)
-  -- d(recipeArray)
-  if nil == recipeArray then
+  if {} == recipeArray then
     return
   end
 
-  zo_callLater(function()
-    addMenuItems(itemLink, recipeArray)
-    ShowMenu()
-  end, 50)
+  if not menuEventQueued then
+    menuEventQueued = true
+    zo_callLater(function()
+      addMenuItems(itemLink, recipeArray)
+      ShowMenu()
+      menuEventQueued = false
+    end, 50)
+  end
 end
 
 function FurC.OnControlMouseUp(control, button)
@@ -202,20 +199,23 @@ function FurC.OnControlMouseUp(control, button)
     return
   end
   local recipeArray = FurC.Find(itemLink)
-  if nil == recipeArray then
+  if {} == recipeArray then
     return
   end
-  zo_callLater(function()
-    ItemTooltip:SetHidden(true)
-    ClearMenu()
-    addMenuItems(itemLink, recipeArray, true)
-    ShowMenu()
-  end, 50)
+
+  if not menuEventQueued then
+    menuEventQueued = true
+    zo_callLater(function()
+      ItemTooltip:SetHidden(true)
+      ClearMenu()
+      addMenuItems(itemLink, recipeArray, true)
+      ShowMenu()
+      menuEventQueued = false
+    end, 50)
+  end
 end
 
 function FurC.InitRightclickMenu()
-  --	FurC_LinkHandlerBackup_OnLinkMouseUp = ZO_LinkHandler_OnLinkMouseUp
-  --	ZO_LinkHandler_OnLinkMouseUp = function(itemLink, button, control) FurC_HandleClickEvent(itemLink, button, control) end
   LINK_HANDLER:RegisterCallback(LINK_HANDLER.LINK_MOUSE_UP_EVENT, FurC_HandleClickEvent)
   ZO_PreHook("ZO_InventorySlot_OnMouseEnter", FurC_HandleMouseEnter)
   ZO_PreHook("ZO_InventorySlot_ShowContextMenu", function(rowControl)

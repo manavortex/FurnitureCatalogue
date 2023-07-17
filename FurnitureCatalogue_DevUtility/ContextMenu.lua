@@ -1,11 +1,11 @@
-local this = FurCDevUtility or {}
+local this = FurCDev or {}
 
 FurCDevControl_LinkHandlerBackup_OnLinkMouseUp = nil
 this.textbox = this.textbox or FurCDevControlBox
 local textbox = this.textbox
 
 local cachedItemLink
-local cachedAchievementName
+local cachedAchName
 local cachedName
 local cachedPrice
 local cachedCanBuy
@@ -16,6 +16,7 @@ local cachedItemIds = {}
 local function showTextbox()
   this.control:SetHidden(false)
 end
+
 function this.clearControl()
   this.textbox:Clear()
   cachedItemIds = {}
@@ -42,15 +43,36 @@ function this.onTextboxTextChanged()
   this.clearControl()
 end
 
-local function getAchievementId(achievementName)
-  local results = AchievementFinder
-      and achievementName
-      and "" ~= achievementName
-      and AchievementFinder.FindAchieve(achievementName)
-    or {}
-  for k, v in pairs(results) do
-    return k
+-- Inspired by AchievementFinder from Rhyono
+local achievementTable = {}
+local function buildAchievementTable()
+  for id = 11, MAX_ACHIEVEMENTS + 11 do
+    local achieveName = select(1, GetAchievementInfo(id))
+    if achieveName ~= "" then
+      -- Save gendered and lowercased achievement name
+      achievementTable[id] = LocaleAwareToLower(zo_strformat(achieveName))
+    end
   end
+end
+buildAchievementTable()
+
+local function getAchievementId(achievementName)
+  if not achievementName or achievementName == "" then
+    return 0
+  end
+
+  if {} == achievementTable then
+    buildAchievementTable()
+  end
+
+  -- making sure that the achievement name is the same like in the lookup table
+  achievementName = LocaleAwareToLower(zo_strformat(achievementName))
+  for id, name in pairs(achievementTable) do
+    if name == achievementName then
+      return id
+    end
+  end
+
   return 0
 end
 
@@ -90,11 +112,11 @@ local function makeOutput()
   if 0 < cachedPrice then
     debugString = s_withPrice
   end
-  if cachedAchievementName and "" ~= cachedAchievementName then
+  if cachedAchName and "" ~= cachedAchName then
     debugString = s_withAchievement
   end
 
-  local achievementId = getAchievementId(cachedAchievementName)
+  local achievementId = getAchievementId(cachedAchName)
 
   if cachedIsLetter then
     debugString = s_letter
@@ -109,7 +131,7 @@ local function makeOutput()
     cachedName,
     tonumber(cachedPrice),
     tonumber(achievementId),
-    cachedAchievementName
+    cachedAchName
   )
 end
 
@@ -132,7 +154,7 @@ local function concatToTextbox()
   end
 
   local textSoFar = this.textbox:GetText() or ""
-  this.textbox:SetText(textSoFar .. makeOutput(itemId))
+  this.textbox:SetText(textSoFar .. makeOutput())
   showTextbox()
 end
 
@@ -200,13 +222,18 @@ function FurCDevControl_HandleInventoryContextMenu(control)
     local canBuy = true
   elseif st == SLOT_TYPE_STORE_BUY then
     local storeEntryIndex = control.index or 0
-    -- _, name, _, price, _, canBuy, _, _, _,
-    -- _, currencyQuantity1, _, currencyQuantity2 = GetStoreEntryInfo(storeEntryIndex)
 
     icon, name, stack, price, sellPrice, meetsRequirementsToBuy, meetsRequirementsToEquip, quality, questNameColor, currencyType1, currencyQuantity1, currencyType2, currencyQuantity2, entryType, buyStoreFailure, buyErrorStringId =
       GetStoreEntryInfo(storeEntryIndex)
-    cachedAchievementName =
-      GetErrorString(buyErrorStringId):gsub("Requires ", ""):gsub(" Achievement", ""):gsub(" to purchase.", "")
+
+    local success, errorMsg = pcall(GetErrorString, buyErrorStringId)
+
+    cachedAchName = (success and errorMsg) or ""
+    -- Different tooltip formatting depending on locale
+    -- DE: Benötigt die Errungenschaft „Sieger von Bal Sunnar“.
+    -- EN: Requires Bal Sunnar Vanquisher to purchase.
+    local matchWithoutQuotes = string.match(cachedAchName, "Requires (.+) Achievement to purchase%.")
+    cachedAchName = matchWithoutQuotes or string.match(cachedAchName, ".+ %„(.+)%“.+")
 
     cachedItemLink = GetStoreItemLink(storeEntryIndex)
   end

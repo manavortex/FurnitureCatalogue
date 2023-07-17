@@ -1,5 +1,3 @@
-local FurC = FurnitureCatalogue
-local control = FurnitureCatalogueControl
 FurC.Visible = false
 
 local LAM = LibAddonMenu2
@@ -81,9 +79,10 @@ function FurC.GuiShowTooltip(control, tooltiptext, reAnchor)
 
   if reAnchor then
     InformationTooltip:ClearAnchors()
-    InformationTooltip:SetAnchor(TOPRIGHT, control, TOPLEFT, -10)
+    InformationTooltip:SetAnchor(TOPRIGHT, control, TOPLEFT, -10, 0)
   end
 end
+
 function FurC.GuiHideTooltip(control)
   InformationTooltip:ClearLines()
   InformationTooltip:SetHidden(true)
@@ -97,16 +96,9 @@ function FurC.GetCrownTooltip()
 end
 
 function FurC.GuiOnSearchBoxClick(control, mouseButton, doubleClick)
-  --FurC_SearchBoxText:SetText("")
   if mouseButton == 2 or doubleClick then
     control:SetDefaultText("")
   end
-end
-
-local FURC_S_FILTERDEFAULT = GetString(SI_FURC_TEXTBOX_FILTER_DEFAULT)
-function FurC.GuiOnSearchBoxFocusOut(ctrl)
-  local text = FurC_SearchBox:GetText()
-  --FurC_SearchBoxText:SetText((#text == 0 and FURC_S_FILTERDEFAULT) or "")
 end
 
 function FurC.GuiOnScroll(control, delta)
@@ -169,6 +161,7 @@ function FurC.GuiLineOnMouseEnter(lineControl)
   InitializeTooltip(ItemTooltip, lineControl, LEFT, 0, 0, 0)
   ItemTooltip:SetLink(currentLink)
 end
+
 function FurC.GuiLineOnMouseExit(lineControl)
   ItemTooltip:SetHidden(true)
 end
@@ -197,6 +190,7 @@ end
 function FurC.GuiVirtualMouseOver(control)
   FurC.GuiShowTooltip(control, control.tooltip)
 end
+
 function FurC.GuiVirtualMouseOut(control)
   FurC.GuiHideTooltip(control)
 end
@@ -207,6 +201,7 @@ function FurC.GuiQualityMouseUp(control, button)
   end
   FurC.SetFilterQuality(control.quality)
 end
+
 function FurC.GuiCraftingTypeMouseUp(control)
   FurC.SetFilterCraftingType(control.craftingType)
 end
@@ -259,5 +254,5 @@ function FurC.UpdateDropdownChoice(dropdownName, value)
 end
 
 function FurC.RefreshCounter()
-  FurC_RecipeCount:SetText(#FurCGui_ListHolder.dataLines)
+  FurC_RecipeCount:SetText(tostring(#FurCGui_ListHolder.dataLines))
 end

@@ -1,4 +1,6 @@
-FurC.AchievementVendors[FURC_SLAVES] = {
+local ver = FurC.Constants.Versioning
+
+FurC.AchievementVendors[ver.SLAVES] = {
   ["Murkmire"] = {
     [GetString(FURC_AV_HAR)] = {
       [145408] = { --Argon Pedestal, Replica
@@ -44,59 +46,59 @@ FurC.AchievementVendors[FURC_SLAVES] = {
     },
 
     [GetString(FURC_AV_ADO)] = {
-      [145551] = { --Murkmire Kiln, Derelict
+      [145551] = { -- Murkmire Kiln, Derelict
         itemPrice = 450,
       },
-      [145557] = { --Plant Cluster, Spadeleaf
+      [145557] = { -- Plant Cluster, Spadeleaf
         itemPrice = 350,
       },
-      [145414] = { --Plant Cluster, Marsh Saplings
+      [145414] = { -- Plant Cluster, Marsh Saplings
         itemPrice = 250,
       },
-      [145417] = { --Plant, Bramblebrush
+      [145417] = { -- Plant, Bramblebrush
         itemPrice = 250,
       },
-      [145413] = { --Plant, Marsh Palm
+      [145413] = { -- Plant, Marsh Palm
         itemPrice = 350,
       },
-      [145419] = { --Plant, Marshfrond
+      [145419] = { -- Plant, Marshfrond
         itemPrice = 400,
       },
-      [145547] = { --Plant, Moorstalk Hive
+      [145547] = { -- Plant, Moorstalk Hive
         itemPrice = 1250,
       },
-      [145416] = { --Plant, Purple Spadeleaf
+      [145416] = { -- Plant, Purple Spadeleaf
         itemPrice = 300,
       },
-      [145420] = { --Plant, Thorny Swamp Lily
+      [145420] = { -- Plant, Thorny Swamp Lily
         itemPrice = 400,
       },
-      [145418] = { --Plant, Young Marshfrond
+      [145418] = { -- Plant, Young Marshfrond
         itemPrice = 250,
       },
-      [145425] = { --Rock, Mossy Marsh
+      [145425] = { -- Rock, Mossy Marsh
         itemPrice = 250,
       },
-      [145424] = { --Rocks, Mossy Marsh Cluster
+      [145424] = { -- Rocks, Mossy Marsh Cluster
         itemPrice = 750,
       },
-      [145422] = { --Tree Cluster, Young Sycamore
+      [145422] = { -- Tree Cluster, Young Sycamore
         itemPrice = 450,
       },
-      [145421] = { --Tree, Marsh Cypress
+      [145421] = { -- Tree, Marsh Cypress
         itemPrice = 350,
       },
-      [145423] = { --Tree, Mire Mangrove
+      [145423] = { -- Tree, Mire Mangrove
         itemPrice = 4000,
       },
-      [145415] = { --Tree, Mossy Sycamore
+      [145415] = { -- Tree, Mossy Sycamore
         itemPrice = 2000,
       },
     },
   },
 }
 
-FurC.AchievementVendors[FURC_WEREWOLF] = {
+FurC.AchievementVendors[ver.WEREWOLF] = {
   ["the Undaunted Enclaves"] = {
     ["Undaunted Quartermaster"] = {
       [141857] = { --Ritual Chalice, Hircine
@@ -112,10 +114,10 @@ FurC.AchievementVendors[FURC_WEREWOLF] = {
 
   ["Hew's Bane"] = {
     [GetString(FURC_AV_LTS)] = {
-      [119966] = { --Iron Wheel Banner
+      [119966] = { -- Iron Wheel Banner
         itemPrice = 15000,
       },
-      [119971] = { --Statue of Shadows
+      [119971] = { -- Statue of Shadows
         itemPrice = 25000,
       },
     },
@@ -142,36 +144,33 @@ FurC.AchievementVendors[FURC_WEREWOLF] = {
   },
 
   ["Glenumbra, Daggerfall, The Rosy Lion"] = {
-
     [GetString(FURC_AV_ROH)] = {
-      [130305] = { --Stone, Mossy Swamp
+      [130305] = { -- Stone, Mossy Swamp
         itemPrice = 100,
       },
-      [130306] = { --Stones, Gray Swampy
+      [130306] = { -- Stones, Gray Swampy
         itemPrice = 100,
       },
-      [130292] = { --Stump, Fetid Swamp
+      [130292] = { -- Stump, Fetid Swamp
         itemPrice = 100,
       },
-      [130291] = { --Stump, Rotten Pine
+      [130291] = { -- Stump, Rotten Pine
         itemPrice = 100,
       },
     },
   },
-  ["Reaper's March, Rawl'Kha, Market"] = {
 
+  ["Reaper's March, Rawl'Kha, Market"] = {
     [GetString(FURC_AV_MAL)] = {
-      [120658] = { --Tree, Forked Sturdy
+      [120658] = { -- Tree, Forked Sturdy
         itemPrice = 250,
       },
     },
   },
 }
 
-FurC.AchievementVendors[FURC_ALTMER] = {
-
+FurC.AchievementVendors[ver.ALTMER] = {
   [GetString(FURC_AV_ALI)] = {
-
     [GetString(FURC_AV_UNW)] = {
       [139122] = { -- Bush, Summerset Spruce
         itemPrice = 100,

@@ -1,7 +1,8 @@
 FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
-FurC.LuxuryFurnisher[FURC_SLAVES] = {
+local ver = FurC.Constants.Versioning
 
+FurC.LuxuryFurnisher[ver.SLAVES] = {
   [134453] = { -- Ancient Orcish Counterweight
     itemPrice = 20000,
     itemDate = "2019-01-05",
@@ -102,10 +103,8 @@ FurC.LuxuryFurnisher[FURC_SLAVES] = {
   },
 }
 
-FurC.LuxuryFurnisher[FURC_WEREWOLF] = {}
-
-FurC.LuxuryFurnisher[FURC_ALTMER] = {
-
+FurC.LuxuryFurnisher[ver.WEREWOLF] = {}
+FurC.LuxuryFurnisher[ver.ALTMER] = {
   [139098] = { -- Darkshade Glowstalks, Inquisitive
     itemPrice = 45000,
     itemDate = "2018-07-21",

@@ -1,48 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <GuiXml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:noNamespaceSchemaLocation="http://sir.insidi.at/or/schema/esoui.xsd">
-    <Controls>
-        <TopLevelControl name="FurCDevControl" clampedToScreen="true" movable="true"
-            mouseEnabled="true" hidden="true" resizeHandleSize="10">
-            <Dimensions x="600" y="500" />
-            <Anchor point="CENTER" relativeTo="GUI_ROOT" relativePoint="CENTER" offsetX="-125"
-                offsetY="-140" />
-            <Controls>
-                <Backdrop name="$(parent)_BG" inherits="ZO_DefaultBackdrop">
-                    <AnchorFill />
-                </Backdrop>
-                <Button name="$(parent)_hide" inherits="ZO_ButtonBehaviorClickSound">
-                    <OnClicked>FurCDevUtility.ToggleEditBox()</OnClicked>
-                    <Dimensions x="30" y="30" />
-                    <Anchor point="TOPLEFT" relativeTo="$(parent)" relativePoint="TOPLEFT"
-                        offsetX="10" offsetY="10" />
-                    <Textures
-                        normal="/esoui/art/buttons/decline_up.dds"
-                        pressed="/esoui/art/buttons/decline_down.dds"
-                        mouseOver="/esoui/art/buttons/decline_over.dds"
-                    />
-                </Button>
-                <Button name="$(parent)_clear" inherits="ZO_ButtonBehaviorClickSound">
-                    <OnClicked>FurCDevUtility.clearControl()</OnClicked>
-                    <Dimensions x="40" y="40" />
-                    <Anchor point="TOPRIGHT" relativeTo="$(parent)" relativePoint="TOPRIGHT"
-                        offsetX="-10" offsetY="10" />
-                    <Textures
-                        normal="/esoui/art/help/help_tabicon_feedback_up.dds"
-                        pressed="/esoui/art/help/help_tabicon_feedback_down.dds "
-                        mouseOver="/esoui/art/help/help_tabicon_feedback_over.dds"
-                    />
-                </Button>
-                <EditBox name="$(parent)Box"
-                    inherits="ZO_DefaultEditMultiLine ZO_DefaultEditForDarkBackdrop">
-                    <Anchor point="TOPLEFT" relativeTo="$(parent)" relativePoint="TOPLEFT"
-                        offsetX="50" offsetY="50" />
-                    <Anchor point="BOTTOMRIGHT" relativeTo="$(parent)" relativePoint="BOTTOMRIGHT"
-                        offsetX="50" />
-                    <OnFocusGained>FurCDevUtility.selectEntireTextbox()</OnFocusGained>
-                    <OnTextChanged>FurCDevUtility.onTextboxTextChanged()</OnTextChanged>
-                </EditBox>
-            </Controls>
-        </TopLevelControl>
-    </Controls>
+  xsi:noNamespaceSchemaLocation="http://sir.insidi.at/or/schema/esoui.xsd">
+  <Controls>
+    <TopLevelControl name="FurCDevControl" clampedToScreen="true" movable="true" mouseEnabled="true"
+      hidden="true" resizeHandleSize="10">
+      <Dimensions x="600" y="500" />
+      <Anchor point="CENTER" relativeTo="GUI_ROOT" relativePoint="CENTER" offsetX="-125"
+        offsetY="-140" />
+      <Controls>
+        <Backdrop name="$(parent)_BG" inherits="ZO_DefaultBackdrop">
+          <AnchorFill />
+        </Backdrop>
+        <Button name="$(parent)_hide" inherits="ZO_ButtonBehaviorClickSound">
+          <OnClicked>FurCDev.ToggleEditBox()</OnClicked>
+          <Dimensions x="30" y="30" />
+          <Anchor point="TOPLEFT" relativeTo="$(parent)" relativePoint="TOPLEFT" offsetX="10"
+            offsetY="10" />
+          <Textures
+            normal="/esoui/art/buttons/decline_up.dds"
+            pressed="/esoui/art/buttons/decline_down.dds"
+            mouseOver="/esoui/art/buttons/decline_over.dds"
+          />
+        </Button>
+        <Button name="$(parent)_clear" inherits="ZO_ButtonBehaviorClickSound">
+          <OnClicked>FurCDev.clearControl()</OnClicked>
+          <Dimensions x="40" y="40" />
+          <Anchor point="TOPRIGHT" relativeTo="$(parent)" relativePoint="TOPRIGHT" offsetX="-10"
+            offsetY="10" />
+          <Textures
+            normal="/esoui/art/help/help_tabicon_feedback_up.dds"
+            pressed="/esoui/art/help/help_tabicon_feedback_down.dds "
+            mouseOver="/esoui/art/help/help_tabicon_feedback_over.dds"
+          />
+        </Button>
+        <EditBox name="$(parent)Box"
+          inherits="ZO_DefaultEditMultiLine ZO_DefaultEditForDarkBackdrop">
+          <Anchor point="TOPLEFT" relativeTo="$(parent)" relativePoint="TOPLEFT" offsetX="50"
+            offsetY="50" />
+          <Anchor point="BOTTOMRIGHT" relativeTo="$(parent)" relativePoint="BOTTOMRIGHT"
+            offsetX="50" />
+          <OnFocusGained>FurCDev.selectEntireTextbox()</OnFocusGained>
+          <OnTextChanged>FurCDev.onTextboxTextChanged()</OnTextChanged>
+        </EditBox>
+      </Controls>
+    </TopLevelControl>
+  </Controls>
 </GuiXml>

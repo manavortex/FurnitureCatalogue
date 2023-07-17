@@ -1,4 +1,6 @@
-FurC.AchievementVendors[FURC_NECROM] = {
+local ver = FurC.Constants.Versioning
+
+FurC.AchievementVendors[ver.NECROM] = {
 
   ["Necrom, Final Rest Furnishings"] = {
 
@@ -91,8 +93,7 @@ FurC.AchievementVendors[FURC_NECROM] = {
   },
 }
 
-FurC.AchievementVendors[FURC_SCRIBE] = {
-
+FurC.AchievementVendors[ver.SCRIBE] = {
   ["the Undaunted Enclaves"] = {
     ["Undaunted Quartermaster"] = {
       [193815] = { --Craglorn Podium, Filled
@@ -107,10 +108,8 @@ FurC.AchievementVendors[FURC_SCRIBE] = {
   },
 }
 
-FurC.AchievementVendors[FURC_DRUID] = {
-
+FurC.AchievementVendors[ver.DRUID] = {
   ["Vastyr, Touch of Home Furnshings"] = {
-
     ["Ormax Lemaitre"] = {
       [192400] = { -- Druidic Planter, Sunflowers
         itemPrice = 4500,
@@ -187,8 +186,7 @@ FurC.AchievementVendors[FURC_DRUID] = {
   },
 }
 
-FurC.AchievementVendors[FURC_DEPTHS] = {
-
+FurC.AchievementVendors[ver.DEPTHS] = {
   ["the Undaunted Enclaves"] = {
     ["Undaunted Quartermaster"] = {
       [189504] = { --Deeproot's Undying Bloom
@@ -203,8 +201,7 @@ FurC.AchievementVendors[FURC_DEPTHS] = {
   },
 }
 
-FurC.AchievementVendors[FURC_BRETON] = {
-
+FurC.AchievementVendors[ver.BRETON] = {
   ["Gonfalon Bay, Furnishings of Fine Finesse"] = {
 
     ["Miruza"] = {
@@ -279,8 +276,7 @@ FurC.AchievementVendors[FURC_BRETON] = {
   },
 }
 
-FurC.AchievementVendors[FURC_TIDES] = {
-
+FurC.AchievementVendors[ver.TIDES] = {
   ["the Undaunted Enclaves"] = {
     ["Undaunted Quartermaster"] = {
       [184204] = { --Eerie Lantern, Hanging
@@ -295,8 +291,7 @@ FurC.AchievementVendors[FURC_TIDES] = {
   },
 }
 
-FurC.AchievementVendors[FURC_DEADL] = {
-
+FurC.AchievementVendors[ver.DEADL] = {
   ["Fargrave, Felicitous Furnishings"] = {
     ["Nif"] = {
       [181598] = { -- Bush, Low Redleaf Cluster
@@ -366,6 +361,7 @@ FurC.AchievementVendors[FURC_DEADL] = {
         itemPrice = 100,
       },
     },
+
     ["Ulz"] = {
       [182306] = { --Daedric Altar, Mehrunes Dagon
         itemPrice = 4500,
@@ -413,8 +409,7 @@ FurC.AchievementVendors[FURC_DEADL] = {
   },
 }
 
-FurC.AchievementVendors[FURC_BLACKW] = {
-
+FurC.AchievementVendors[ver.BLACKW] = {
   ["Leyawiin, Domestic Bliss Furnishings"] = {
     ["Miraso Marvayn"] = {
       [175707] = { --Banner of Leyawiin
@@ -499,8 +494,7 @@ FurC.AchievementVendors[FURC_BLACKW] = {
   },
 }
 
-FurC.AchievementVendors[FURC_FLAMES] = {
-
+FurC.AchievementVendors[ver.FLAMES] = {
   ["the Undaunted Enclaves"] = {
     ["Undaunted Quartermaster"] = {
       [171775] = { --Fountain of the Fiery Drake
@@ -523,8 +517,7 @@ FurC.AchievementVendors[FURC_FLAMES] = {
   },
 }
 
-FurC.AchievementVendors[FURC_STONET] = {
-
+FurC.AchievementVendors[ver.STONET] = {
   ["the Undaunted Enclaves"] = {
     ["Undaunted Quartermaster"] = {
       [167310] = { --Castle Thorn Gargoyle
@@ -596,8 +589,7 @@ FurC.AchievementVendors[FURC_STONET] = {
   },
 }
 
-FurC.AchievementVendors[FURC_MARKAT] = {
-
+FurC.AchievementVendors[ver.MARKAT] = {
   ["Markarth, Markarth Mercantile"] = {
     ["Averio Brassac"] = {
       [171383] = { -- Dwarven Broom, Restored
@@ -613,6 +605,7 @@ FurC.AchievementVendors[FURC_MARKAT] = {
         itemPrice = 2000,
       },
     },
+
     ["Tirudilmo"] = {
       [171395] = { -- Dwarven Beacon, Aetheric
         itemPrice = 50000,
@@ -662,8 +655,7 @@ FurC.AchievementVendors[FURC_MARKAT] = {
   },
 }
 
-FurC.AchievementVendors[FURC_SKYRIM] = {
-
+FurC.AchievementVendors[ver.SKYRIM] = {
   ["Solitude, Dragon's Hearth"] = {
     [GetString(FURC_SKYRIM_MASELA)] = {
       [165809] = { -- Firelogs, White Pine
@@ -718,6 +710,7 @@ FurC.AchievementVendors[FURC_SKYRIM] = {
         itemPrice = 100,
       },
     },
+
     [GetString(FURC_SKYRIM_NETINDELL)] = {
       [166018] = { --Doll, Heiruna
         itemPrice = 2000,
@@ -775,8 +768,7 @@ FurC.AchievementVendors[FURC_SKYRIM] = {
   },
 }
 
-FurC.AchievementVendors[FURC_HARROW] = {
-
+FurC.AchievementVendors[ver.HARROW] = {
   ["the Undaunted Enclaves"] = {
     ["Undaunted Quartermaster"] = {
       [159452] = { --Gray Reliquary
@@ -791,8 +783,7 @@ FurC.AchievementVendors[FURC_HARROW] = {
   },
 }
 
-FurC.AchievementVendors[FURC_DRAGON2] = {
-
+FurC.AchievementVendors[ver.DRAGON2] = {
   ["Senchal, Marketplace"] = {
     ["Zadraska"] = {
       [156677] = { -- Vines, Verdant Ivy Climber
@@ -805,8 +796,7 @@ FurC.AchievementVendors[FURC_DRAGON2] = {
   },
 }
 
-FurC.AchievementVendors[FURC_SCALES] = {
-
+FurC.AchievementVendors[ver.SCALES] = {
   ["Imperial City Event"] = {
     ["Impressario"] = {
       [153554] = { -- Imperial Mirror, Standing
@@ -847,7 +837,7 @@ FurC.AchievementVendors[FURC_SCALES] = {
   },
 }
 
-FurC.AchievementVendors[FURC_KITTY] = {
+FurC.AchievementVendors[ver.KITTY] = {
   ["Rimmen"] = {
     [GetString(FURC_KITTY_LATHA)] = {
       [151790] = { --Akaviri Table, Stone
@@ -1048,7 +1038,7 @@ FurC.AchievementVendors[FURC_KITTY] = {
   },
 }
 
-FurC.AchievementVendors[FURC_WOTL] = {
+FurC.AchievementVendors[ver.WOTL] = {
   ["the Undaunted Enclaves"] = {
     ["Undaunted Quartermaster"] = {
       [147645] = { --Dwarven Tonal Arc
@@ -1062,12 +1052,12 @@ FurC.AchievementVendors[FURC_WOTL] = {
     },
   },
 }
+
 -- global function, needs to live in latest AchievementVendors.lua, YES FUTURE MANA, THIS IS YOU FROM THE PAST
 -- But why does it have to live in the _latest_? Can't we solve this about manifest, future mana?
 function FurC.InitAchievementVendorList()
   FurC.SetupHomesteadItems()
   FurC.SetupMorrowindItems()
   FurC.SetupReachItems()
-
   -- local generatedTable, listTable
 end
