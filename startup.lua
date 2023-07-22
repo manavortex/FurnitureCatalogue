@@ -5,7 +5,7 @@ this.name = "FurnitureCatalogue"
 this.author = "manavortex"
 this.tag = "FurC"
 
-this.version = 4073000 -- will be AUTOREPLACED with AddonVersion
+this.version = 4074000 -- will be AUTOREPLACED with AddonVersion
 this.CharacterName = nil
 this.website = "https://www.esoui.com/downloads/fileinfo.php?id=1617"
 this.settings = {}
