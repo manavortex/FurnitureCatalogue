@@ -211,7 +211,7 @@ FurC.LuxuryFurnisher[ver.TIDES] = {
 
   [184201] = { -- Elsweyr Brazier, Cold-Flame Column
     itemPrice = 20000,
-    itemDate = "2022-06-25",
+    itemDate = "2023-07-21",
   },
 
   [184200] = { -- Mushroom, Giant Glowtendril
@@ -1398,7 +1398,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [120823] = { -- Sigil Stand
     itemPrice = 15000,
-    itemDate = "2022-07-02",
+    itemDate = "2023-07-21",
   },
   [120819] = { -- Sigil, Kynareth
     itemPrice = 20000,
@@ -1421,39 +1421,39 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
 
   [171826] = { -- Brazier, Stone Cold-Flame
     itemPrice = 30000,
-    itemDate = "2022-06-25",
+    itemDate = "2023-07-21",
   },
   [145476] = { -- Alinor Shrine, Trinimac
     itemPrice = 50000,
-    itemDate = "2022-06-25",
+    itemDate = "2023-07-21",
   },
   [145477] = { -- Alinor Pedestal, Shrine
     itemPrice = 10000,
-    itemDate = "2022-06-25",
+    itemDate = "2023-07-21",
   },
   [156654] = { -- Alinor Shrine, Magnus
     itemPrice = 50000,
-    itemDate = "2022-06-25",
+    itemDate = "2023-07-21",
   },
   [120815] = { -- Sigil, Akatosh
     itemPrice = 20000,
-    itemDate = "2022-06-25",
+    itemDate = "2023-07-21",
   },
   [120816] = { -- Sigil, Arkay
     itemPrice = 20000,
-    itemDate = "2022-06-25",
+    itemDate = "2023-07-21",
   },
   [120817] = { -- Sigil, Dibella
     itemPrice = 20000,
-    itemDate = "2022-06-25",
+    itemDate = "2023-07-21",
   },
   [120818] = { -- Sigil, Julianos
     itemPrice = 20000,
-    itemDate = "2022-06-25",
+    itemDate = "2023-07-21",
   },
   [134831] = { -- Altar of the Divines
     itemPrice = 50000,
-    itemDate = "2022-06-25",
+    itemDate = "2023-07-21",
   },
 
   -- ====================================================================
@@ -1660,8 +1660,6 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
 }
 
 FurC.LuxuryFurnisher[ver.FLAMES] = {
-  -- ====================================================================
-
   [151864] = { -- Alinor Maple, Diminutive
     itemPrice = 4000,
     itemDate = "2022-05-07",
@@ -1708,8 +1706,6 @@ FurC.LuxuryFurnisher[ver.FLAMES] = {
 }
 
 FurC.LuxuryFurnisher[ver.MARKAT] = {
-  -- ====================================================================
-
   [145470] = { -- Redguard Vase, Golden
     itemPrice = 5000,
     itemDate = "2019-02-23",
@@ -2200,8 +2196,6 @@ FurC.LuxuryFurnisher[ver.HARROW] = {
 }
 
 FurC.LuxuryFurnisher[ver.SCALES] = {
-  -- ====================================================================
-
   [156662] = { -- Riekling Banner, Wolf Pelt
     itemPrice = 4000,
     itemDate = "2020-01-25",
@@ -2263,8 +2257,6 @@ FurC.LuxuryFurnisher[ver.WOTL] = {
 }
 
 FurC.LuxuryFurnisher[ver.SLAVES] = {
-  -- ====================================================================
-
   [120802] = { -- Shrine of Mara, Decorative
     itemPrice = 50000,
     itemDate = "2021-02-13",
@@ -2342,5 +2334,10 @@ FurC.LuxuryFurnisher[ver.SLAVES] = {
   [134445] = { -- Ancient Orcish Sarcophagus, Peaked
     itemPrice = 14000,
     itemDate = "2021-03-05",
+  },
+
+  [196204] = { -- Blackwood Brazier, Cold-Flame",
+    itemPrice = 15000,
+    itemDate = "2023-07-21",
   },
 }
