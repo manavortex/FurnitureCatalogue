@@ -66,3 +66,142 @@ FurC.Constants.Versioning = {
 }
 
 FurC.Constants.Versioning.LATEST = FurC.Constants.Versioning.NECROM
+
+-- Old Constants as a fallback for other AddOns that use them
+-- ToDo: required functionality will be moved to an API in the future
+
+-- fallback item sources
+
+-- @warning deprecated
+FURC_NONE = FurC.Constants.ItemSources.NONE -- 1
+
+-- @warning deprecated
+FURC_FAVE = FurC.Constants.ItemSources.FAVE -- 2
+
+-- @warning deprecated
+FURC_CRAFTING = FurC.Constants.ItemSources.CRAFTING -- 3
+
+-- @warning deprecated
+FURC_CRAFTING_KNOWN = FurC.Constants.ItemSources.CRAFTING_KNOWN -- 4
+
+-- @warning deprecated
+FURC_CRAFTING_UNKNOWN = FurC.Constants.ItemSources.CRAFTING_UNKNOWN -- 5
+
+-- @warning deprecated
+FURC_VENDOR = FurC.Constants.ItemSources.VENDOR -- 6
+
+-- @warning deprecated
+FURC_PVP = FurC.Constants.ItemSources.PVP -- 7
+
+-- @warning deprecated
+FURC_WRIT_VENDOR = FurC.Constants.ItemSources.WRIT_VENDOR -- 8
+
+-- @warning deprecated
+FURC_CROWN = FurC.Constants.ItemSources.CROWN -- 9
+
+-- @warning deprecated
+FURC_RUMOUR = FurC.Constants.ItemSources.RUMOUR -- 10
+
+-- @warning deprecated
+FURC_LUXURY = FurC.Constants.ItemSources.LUXURY -- 11
+
+-- @warning deprecated
+FURC_OTHER = FurC.Constants.ItemSources.OTHER -- 12
+
+-- @warning deprecated
+FURC_ROLIS = FurC.Constants.ItemSources.ROLIS -- 13
+
+-- @warning deprecated
+FURC_DROP = FurC.Constants.ItemSources.DROP -- 14
+
+-- @warning deprecated
+FURC_JUSTICE = FurC.Constants.ItemSources.JUSTICE -- 15
+
+-- @warning deprecated
+FURC_FISHING = FurC.Constants.ItemSources.FISHING -- 16
+
+-- @warning deprecated
+FURC_GUILDSTORE = FurC.Constants.ItemSources.GUILDSTORE -- 17
+
+-- @warning deprecated
+FURC_FESTIVAL_DROP = FurC.Constants.ItemSources.FESTIVAL_DROP -- 18
+
+-- fallback versions
+
+-- @warning deprecated
+FURC_HOMESTEAD = FurC.Constants.Versioning.HOMESTEAD -- 2 Homestead
+
+-- @warning deprecated
+FURC_MORROWIND = FurC.Constants.Versioning.MORROWIND -- 3 Morrowind
+
+-- @warning deprecated
+FURC_REACH = FurC.Constants.Versioning.REACH -- 4 Horns of the Reach
+
+-- @warning deprecated
+FURC_CLOCKWORK = FurC.Constants.Versioning.CLOCKWORK -- 5 Clockwork City
+
+-- @warning deprecated
+FURC_DRAGONS = FurC.Constants.Versioning.DRAGONS -- 6 Dragon Bones
+
+-- @warning deprecated
+FURC_ALTMER = FurC.Constants.Versioning.ALTMER -- 7 Summerset
+
+-- @warning deprecated
+FURC_SLAVES = FurC.Constants.Versioning.SLAVES -- 8 Murkmire
+
+-- @warning deprecated
+FURC_WEREWOLF = FurC.Constants.Versioning.WEREWOLF -- 9 Wolfhunter
+
+-- @warning deprecated
+FURC_WOTL = FurC.Constants.Versioning.WOTL -- 10 Wrathstone
+
+-- @warning deprecated
+FURC_KITTY = FurC.Constants.Versioning.KITTY -- 11 Elsweyr
+
+-- @warning deprecated
+FURC_SCALES = FurC.Constants.Versioning.SCALES -- 12 Scalebreaker
+
+-- @warning deprecated
+FURC_DRAGON2 = FurC.Constants.Versioning.DRAGON2 -- 13 Dragonhold
+
+-- @warning deprecated
+FURC_HARROW = FurC.Constants.Versioning.HARROW -- 14 Harrowstorm
+
+-- @warning deprecated
+FURC_SKYRIM = FurC.Constants.Versioning.SKYRIM -- 15 Greymoor
+
+-- @warning deprecated
+FURC_STONET = FurC.Constants.Versioning.STONET -- 16 Stonethorn
+
+-- @warning deprecated
+FURC_MARKAT = FurC.Constants.Versioning.MARKAT -- 17 Markarth
+
+-- @warning deprecated
+FURC_FLAMES = FurC.Constants.Versioning.FLAMES -- 18 Flames of Ambition
+
+-- @warning deprecated
+FURC_BLACKW = FurC.Constants.Versioning.BLACKW -- 19 Blackwood
+
+-- @warning deprecated
+FURC_DEADL = FurC.Constants.Versioning.DEADL -- 20 Deadlands
+
+-- @warning deprecated
+FURC_TIDES = FurC.Constants.Versioning.TIDES -- 21 Ascending Tide
+
+-- @warning deprecated
+FURC_BRETON = FurC.Constants.Versioning.BRETON -- 22 High Isle
+
+-- @warning deprecated
+FURC_DEPTHS = FurC.Constants.Versioning.DEPTHS -- 23 Lost Depths
+
+-- @warning deprecated
+FURC_DRUID = FurC.Constants.Versioning.DRUID -- 24 Firesong
+
+-- @warning deprecated
+FURC_SCRIBE = FurC.Constants.Versioning.SCRIBE -- 25 Scribes of Fate
+
+-- @warning deprecated
+FURC_NECROM = FurC.Constants.Versioning.NECROM -- 26 Necrom
+
+-- @warning deprecated
+FURC_LATEST = FurC.Constants.Versioning.LATEST
