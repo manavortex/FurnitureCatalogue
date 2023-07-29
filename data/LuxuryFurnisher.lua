@@ -12,6 +12,10 @@ FurC.LuxuryFurnisher[ver.SCRIBE] = {
     itemPrice = 4000,
     itemDate = "2023-03-25",
   },
+  [196205] = { -- Systres Brazier, Cold-Flame",
+    itemPrice = 20000,
+    itemDate = "2023-07-28",
+  },
 }
 
 FurC.LuxuryFurnisher[ver.DRUID] = {
@@ -206,7 +210,7 @@ FurC.LuxuryFurnisher[ver.TIDES] = {
 
   [184202] = { -- Altmer Brazier, Cold-Flame Column
     itemPrice = 20000,
-    itemDate = "2022-07-02",
+    itemDate = "2023-07-28",
   },
 
   [184201] = { -- Elsweyr Brazier, Cold-Flame Column
@@ -1381,40 +1385,40 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
 
   [171827] = { -- Brazier, Dragon-Headed Cold-Flame
     itemPrice = 25000,
-    itemDate = "2022-07-02",
+    itemDate = "2023-07-28",
   },
   [156655] = { -- Alinor Shrine, Phynaster
     itemPrice = 50000,
-    itemDate = "2022-07-02",
+    itemDate = "2023-07-28",
   },
 
   [145478] = { -- Alinor Shrine, Y'ffre
     itemPrice = 50000,
-    itemDate = "2022-07-02",
+    itemDate = "2023-07-28",
   },
   [134832] = { -- Basin of the Divines
     itemPrice = 35000,
-    itemDate = "2022-07-02",
+    itemDate = "2023-07-28",
   },
   [120823] = { -- Sigil Stand
     itemPrice = 15000,
-    itemDate = "2023-07-21",
+    itemDate = "2023-07-28",
   },
   [120819] = { -- Sigil, Kynareth
     itemPrice = 20000,
-    itemDate = "2022-07-02",
+    itemDate = "2023-07-28",
   },
   [120820] = { -- Sigil, Mara
     itemPrice = 20000,
-    itemDate = "2022-07-02",
+    itemDate = "2023-07-28",
   },
   [120821] = { -- Sigil, Stendarr
     itemPrice = 20000,
-    itemDate = "2022-07-02",
+    itemDate = "2023-07-28",
   },
   [120822] = { -- Sigil, Zenithar
     itemPrice = 20000,
-    itemDate = "2022-07-02",
+    itemDate = "2023-07-28",
   },
 
   -- ====================================================================
@@ -1429,7 +1433,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [145477] = { -- Alinor Pedestal, Shrine
     itemPrice = 10000,
-    itemDate = "2023-07-21",
+    itemDate = "2023-07-28",
   },
   [156654] = { -- Alinor Shrine, Magnus
     itemPrice = 50000,

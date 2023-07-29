@@ -168,7 +168,6 @@ FurC.MiscItemSources[ver.NECROM] = {
     [194536] = rumourSource, -- Dock Buoys, Mounted",
     [194538] = rumourSource, -- Cargo Netting, Large",
     [194539] = rumourSource, -- Rough Hammock, Pole-Strung",
-    [196205] = rumourSource, -- Systres Brazier, Cold-Flame",
     [196206] = rumourSource, -- Daedric Post, Spike",
     [196207] = rumourSource, -- Daedric Turret, Flame Tower",
     [196208] = rumourSource, -- Sarcophagus, Stone Base",
