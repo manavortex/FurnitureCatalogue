@@ -5,9 +5,6 @@ local merge = FurC.MergeTable
 local ver = FurC.Constants.Versioning
 
 local b2 = {
-  [120998] = { -- Block,Wood Cutting
-    itemPrice = 100,
-  },
   [117959] = { -- Rough Container, Shipping
     itemPrice = 100,
   },
@@ -31,44 +28,40 @@ local b2 = {
   },
 }
 
-local jesterVendor = {
-  -- tree, Jester's Large
-  [120994] = {
+local holidayVendor = {
+  [134433] = { --Stablemaster's Sign, Small
+    itemPrice = 10000,
+    achievement = 1542, -- Plunder Skull Fanatic
+  },
+  [120994] = { -- tree, Jester's Large
     itemPrice = 15000,
     achievement = 1723,
   },
-  -- tree, Jester's Small
-  [118529] = {
+  [118529] = { -- tree, Jester's Small
     itemPrice = 5000,
     achievement = 1723,
   },
-  -- Banner of Mayhem
-  [126720] = {
+  [126720] = { -- Banner of Mayhem
     itemPrice = 5000,
-    achievement = 1883,
+    achievement = 1883, -- Mayhem Connoisseur
   },
-  -- Corpse of Mayhem, Argonian
-  [126721] = {
+  [126721] = { -- Corpse of Mayhem, Argonian
     itemPrice = 15000,
     achievement = 1888,
   },
-  -- Corpse of Mayhem, Khajiit
-  [126722] = {
+  [126722] = { -- Corpse of Mayhem, Khajiit
     itemPrice = 15000,
     achievement = 1888,
   },
-  -- Corpse of Mayhem, Orc
-  [126723] = {
+  [126723] = { -- Corpse of Mayhem, Orc
     itemPrice = 15000,
     achievement = 1888,
   },
-  -- Probably-Not-Punch-Bowl of Mayhem
-  [126724] = {
+  [126724] = { -- Probably-Not-Punch-Bowl of Mayhem
     itemPrice = 30000,
     achievement = 1892,
   },
-  -- Stamdard of Mayhem
-  [126719] = {
+  [126719] = { -- Stamdard of Mayhem
     itemPrice = 2500,
     achievement = 1883,
   },
@@ -3474,11 +3467,9 @@ FurC.Books[ver.HOMESTEAD] = bookList
 FurC.AchievementVendors[ver.HOMESTEAD] = {
   [GetString(FURC_AV_CAPITAL)] = {
     [GetString(FURC_AV_NAR)] = capitalVendor,
-    [GetString(FURC_AV_HER)] = jesterVendor,
+    [GetString(FURC_AV_HER)] = holidayVendor,
   },
-  -- location name
   ["Mournhold Bank"] = {
-    -- vendor name
     [GetString(FURC_AV_LTS)] = {
       [119908] = { -- Swamp Anemone
         itemPrice = 15000,

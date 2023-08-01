@@ -1899,10 +1899,6 @@ FurC.LuxuryFurnisher[ver.MARKAT] = {
     itemPrice = 3000,
     itemDate = "2023-03-25",
   },
-  [134433] = { -- Stablemaster's Sign, Small
-    itemPrice = 3000,
-    itemDate = "2023-03-25",
-  },
   [141765] = { -- Banner, Transmute
     itemPrice = 12000,
     itemDate = "2023-03-25",
