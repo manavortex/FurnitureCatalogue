@@ -1,16 +1,7 @@
 local stripColor = FurC.stripColor
 local colours = FurC.ItemLinkColours
 
-local function colorise(str, col, ret)
-  str = tostring(str)
-  if str:find("%d000$") then
-    str = str:gsub("000$", "k")
-  end
-  if ret then
-    return str
-  end
-  return string.format("|c%s%s", col, str)
-end
+local colourise = FurC.colourise
 
 local requires = GetString(SI_FURC_REQUIRES_ACHIEVEMENT)
 local requiresPsijicRank = string.format("%s %s", requires, GetString(SI_FURC_PSIJIC_RANK))
@@ -25,9 +16,9 @@ local vendorString = GetString(SI_FURC_STRING_VENDOR)
 local function soldBy(vendorName, locationName, price, requirement)
   return zo_strformat(
     vendorString,
-    colorise(vendorName, colours.Vendor, stripColor),
-    colorise(locationName, colours.Vendor, stripColor),
-    colorise(price, colours.Gold, stripColor),
+    colourise(vendorName, colours.Vendor, stripColor),
+    colourise(locationName, colours.Vendor, stripColor),
+    colourise(price, colours.Gold, stripColor),
     requirement
   )
 end

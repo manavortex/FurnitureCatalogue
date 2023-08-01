@@ -8,15 +8,11 @@ local ver = FurC.Constants.Versioning
 FurC.PVP[ver.HOMESTEAD] = {
   [FURC_ITEMSOURCE_VENDOR] = {
     [FURC_CYRO] = {
-      [119656] = { -- Pennant, Small
+      [119656] = { -- Pact Pennant, Small
         itemPrice = 200,
         achievement = 92, -- Volunteer
       },
       [119634] = { -- Pact Wall Banner, Small
-        itemPrice = 400,
-        achievement = 93, -- Recruit
-      },
-      [119656] = { -- Wall Banner, Small
         itemPrice = 400,
         achievement = 93, -- Recruit
       },
