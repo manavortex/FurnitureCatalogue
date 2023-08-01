@@ -146,7 +146,7 @@ end
 local currentLink, currentId
 
 function FurC.GuiLineOnMouseEnter(lineControl)
-  currentLink, currentId = nil
+  currentLink, currentId = nil, nil
 
   if not lineControl or not lineControl.itemLink or lineControl.itemLink == "" then
     return

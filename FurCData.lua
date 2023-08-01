@@ -195,13 +195,13 @@ function FurC.Find(itemOrBlueprintLink)
 end
 
 function FurC.Delete(itemOrBlueprintLink) -- sets recipeArray, returns it - calls scanItemLink
-  local recipeArray = scanItemLink(itemOrBlueprintLink)
+  local recipeArray = FurC.GetItemId(itemOrBlueprintLink)
   if nil == recipeArray then
     return
   end
-  local itemLink = recipeArray.itemId
-  local itemKey = getItemId(itemLink)
-  FurC.settings.data[itemKey] = nil
+  if nil ~= recipeArray.itemId then
+    FurC.settings.data[recipeArray.itemId] = nil
+  end
 end
 
 function FurC.GetEntry(itemOrBlueprintLink)
@@ -224,6 +224,7 @@ function FurC.IsFavorite(itemLink, recipeArray)
   return recipeArray.favorite
 end
 
+-- ToDo: move to fave reference table?
 function FurC.Fave(itemLink, recipeArray)
   recipeArray = recipeArray or FurC.Find(itemLink)
   recipeArray.favorite = not recipeArray.favorite
@@ -487,7 +488,17 @@ local function scanFromFiles(shouldScanCharacter)
     end
   end
 
-  local function scanRumourRecipes()
+  local function scanRumours()
+    for versionNumber, items in pairs(FurC.Rumours) do
+      for itemId, itemSource in pairs(items) do
+        recipeArray = parseFurnitureItem(FurC.GetItemLink(itemId), true)
+        if nil ~= recipeArray then
+          recipeArray.version = versionNumber
+          recipeArray.origin = src.RUMOUR
+          addDatabaseEntry(itemId, recipeArray)
+        end
+      end
+    end
     for index, blueprintId in pairs(FurC.RumourRecipes) do
       local blueprintLink = FurC.GetItemLink(blueprintId)
       local itemLink = GetItemLinkRecipeResultItemLink(blueprintLink, LINK_STYLE_BRACKETS)
@@ -505,17 +516,10 @@ local function scanFromFiles(shouldScanCharacter)
       addDatabaseEntry(itemId, recipeArray)
     end
   end
+
   local function scanCharacterOrMaybeNot()
     if shouldScanCharacter then
       scanCharacter()
-    end
-  end
-  local function rescanRumourRecipes()
-    -- make sure that all rumour items
-    for recipeKey, recipeArray in pairs(FurC.settings.data) do
-      if FurC.RumourRecipes[recipeKey] or recipeArray.blueprint and FurC.RumourRecipes[recipeArray.blueprint] then
-        recipeArray.origin = src.RUMOUR
-      end
     end
   end
 
@@ -529,7 +533,7 @@ local function scanFromFiles(shouldScanCharacter)
       :Then(scanRolis)
       :Then(scanFestivalFiles)
       :Then(scanCharacterOrMaybeNot)
-      :Then(scanRumourRecipes)
+      :Then(scanRumours)
       :Then(FurC.UpdateGui)
   else
     scanRecipeFile()
@@ -538,7 +542,7 @@ local function scanFromFiles(shouldScanCharacter)
     scanRolis()
     scanFestivalFiles()
     scanCharacterOrMaybeNot()
-    scanRumourRecipes()
+    scanRumours()
     FurC.UpdateGui()
   end
 end
