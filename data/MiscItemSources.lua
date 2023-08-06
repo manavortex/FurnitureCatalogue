@@ -11,6 +11,7 @@ local tribute_ranked = GetString(SI_FURC_TRIBUTE_RANKED)
 local pickpocket_ww = GetString(SI_FURC_CANBEPICKED) .. " from woodworkers"
 local pickpocket_ass = GetString(SI_FURC_CANBEPICKED) .. " from outlaws and assassins"
 local pickpocket_guard = GetString(SI_FURC_CANBEPICKED) .. " from guards"
+local pickpocket_necrom = GetString(SI_FURC_CANBEPICKED) .. " in Telvanni Peninsula or Apocrypha"
 
 local automaton_loot_cc = GetString(SI_FURC_AUTOMATON) .. " in Clockwork City"
 local automaton_loot_vv = GetString(SI_FURC_AUTOMATON) .. " on Vvardenfell"
@@ -27,6 +28,8 @@ local scambox_wraith = zo_strformat("<<1>> (<<2>>)", scambox_string, "Wraithtide
 local scambox_sunken = zo_strformat("<<1>> (<<2>>)", scambox_string, "Sunken Trove")
 local scambox_stonelore = zo_strformat("<<1>> (<<2>>)", scambox_string, "Stonelore")
 local scambox_dark = zo_strformat("<<1>> (<<2>>)", scambox_string, "Dark Chivalry")
+local scambox_feather = zo_strformat("<<1>> (<<2>>)", scambox_string, "Unfeathered")
+local scambox_rage = zo_strformat("<<1>> (<<2>>)", scambox_string, "Ragebound")
 
 local itemPackMoonBishop = zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "Moon Bishop’s Sanctuary")
 local itemPackOasis = zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "Moons-Blessed Oasis")
@@ -50,12 +53,14 @@ local itemPackColdharbour = zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK),
 local itemPackFargrave = zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "Fargrave Bazaar")
 local itemPackAquatic = zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "Aquatic Splendor")
 local itemPackMaormer = zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "Maormer Boarding Party")
+local itemPackAstula = zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "Shad Astula Scolars Bundle")
 
 local elsewhere = " in S. Elsweyr"
 local in_skyrim = " in Western Skyrim"
 local in_blackwood = " in Blackwood"
 local in_summerset = " in Summerset"
 local in_elsweyr = " in Elsweyr"
+local in_necrom = " in Telvanni Peninsula or Apocrypha"
 
 local stealable = GetString(SI_FURC_CANBESTOLEN)
 local fishing_elsewhere = GetString(SI_FURC_CANBEFISHED) .. elsewhere
@@ -70,8 +75,10 @@ local chests_elsweyr = chests_string .. in_elsweyr
 local mischouse = "From select house purchases"
 local chests_high = chests_string .. " in High Isle"
 local chests_blackr_grcaverns = chests_string .. " in Blackreach: Greymoor Caverns"
+local chests_necrom = chests_string .. in_necrom
 
 local book_hall = "From chests in the Scrivener's Hall vault"
+local nymic = "From Bastion Nymic reward chests"
 
 local rumourSource = GetString(SI_FURC_RUMOUR_SOURCE_ITEM) -- has been datamined, but no clue where to get it
 local itemsourceUnknown = GetString(SI_FURC_DATAMINED_UNCLEAR) -- is in-game (guildstore or TTC), but no clue where to get it
@@ -104,71 +111,82 @@ end
 
 FurC.MiscItemSources[ver.NECROM] = {
 
-  [src.CROWN] = {},
+  [src.CROWN] = {
 
-  [src.DROP] = {},
+-----------------------Crown Store--------------------------
+    [197624] = getCrownPrice(1200), -- Apocryphal Shifting Sculpture",
+
+
+-----------------------Crown Crates-------------------------  
+    [197622] = scambox_feather .. getGemPrice(400), -- Constellation Projection Apparatus",
+    [197621] = scambox_feather .. getGemPrice(40), -- Household Shrine, Meridian",
+    [197620] = scambox_feather .. getGemPrice(100), -- Throne of the Lich",
+    [197619] = scambox_feather .. getGemPrice(100), -- Meridian Mote",	
+  },
+
+  [src.DROP] = {
+  
+    [197644] = pickpocket_necrom, -- Telvanni Spoon, Wooden",
+    [197645] = pickpocket_necrom, -- Telvanni Fork, Wooden",
+    [197646] = pickpocket_necrom, -- Telvanni Knife, Wooden",
+    [197647] = pickpocket_necrom, -- Telvanni Knife, Bread",
+  
+    [197781] = chests_necrom, -- The City of Necrom Painting, Wood",
+    [197782] = chests_necrom, -- Alleyway Still Life Painting",
+    [197783] = chests_necrom, -- Pilgrimage Triptych Painting, Wood",  
+    [197750] = chests_necrom, -- Telvanni Mushroom Spire Painting, Wood",
+    [197751] = chests_necrom, -- Sunset Fleet Painting, Wood",
+    [197752] = chests_necrom, -- Mycoturge's Retreat Painting, Wood",
+    [197753] = chests_necrom, -- Telvanni Peninsula Painting, Wood",
+    [197755] = chests_necrom, -- Shadow over Necrom Painting",
+    [197749] = chests_necrom, -- Necrom Still Life Painting, Wood",
+    [197754] = chests_necrom, -- Offerings to the Dead Painting, Wood",
+
+    [193785] = tribute, -- Mercymother Elite Tribute Tapestry, Large",
+    [193786] = tribute, -- Mercymother Elite Tribute Tapestry",	
+    [193784] = tribute, -- Hand of Almalexia Tribute Tapestry",
+    [193783] = tribute, -- Hand of Almalexia Tribute Tapestry, Large",
+	
+    [197779] = "Reward for completeing Azandar's rapport quests", -- Letter from Azandar",
+    [197780] = "Reward for completeing Sharp-as-Night's rapport quests", -- Letter from Sharp",	
+
+    [197917] = nymic, -- Ode to Vaermina",
+    [197918] = nymic, -- Deal with a Daedric Prince",
+    [197919] = nymic, -- The Legend of Fathoms Drift",
+    [197920] = nymic, -- The Doom of the Hushed",
+    [197921] = nymic, -- Peryite's Salvation",
+
+    [197700] = scrying .. in_necrom, -- Apocrypha Fossil, Bones Large",
+    [197829] = scrying .. in_necrom .. " 10 piece antiquity", -- Music Box, Glyphic Secrets",
+    [197702] = scrying .. in_necrom, -- Apocrypha Fossil, Worm",
+    [197703] = scrying .. in_necrom, -- Apocrypha Fossil, Arch",
+    [197705] = scrying .. in_necrom .. " 10 piece antiquity", -- Telvanni Alchemy Station",
+    [197706] = scrying .. in_necrom .. " 3 piece antiquity", -- Trifold Mirror of Alternatives",
+    [197707] = scrying .. in_necrom .. " 3 piece antiquity", -- Apocryphal Well",
+    [197708] = scrying .. in_necrom, -- Cliffracer Skeleton Stand",
+    [197710] = scrying .. in_necrom, -- Mushroom Classification Book",
+    [197701] = scrying .. in_necrom, -- Apocrypha Fossil, Nautilus",
+    [197709] = scrying .. in_necrom, -- Tribunal Window, Stained Glass",	
+    [197711] = scrying .. in_necrom, -- Antique Map of the Telvanni Peninsula",
+    [197712] = scrying .. in_necrom, -- Antique Map of Apocrypha",	
+  },
 
   [src.RUMOUR] = {
 
-    [197644] = rumourSource, -- Telvanni Spoon, Wooden",
-    [197645] = rumourSource, -- Telvanni Fork, Wooden",
-    [197646] = rumourSource, -- Telvanni Knife, Wooden",
-    [197647] = rumourSource, -- Telvanni Knife, Bread",
     [118288] = rumourSource, -- Deer Carcass, Hanging",
-    [197779] = rumourSource, -- Letter from Azandar",
-    [197780] = rumourSource, -- Letter from Sharp",
-    [197781] = rumourSource, -- The City of Necrom Painting, Wood",
-    [197782] = rumourSource, -- Alleyway Still Life Painting",
-    [197783] = rumourSource, -- Pilgrimage Triptych Painting, Wood",
-    [197917] = rumourSource, -- Ode to Vaermina",
-    [197918] = rumourSource, -- Deal with a Daedric Prince",
-    [197919] = rumourSource, -- The Legend of Fathoms Drift",
-    [197920] = rumourSource, -- The Doom of the Hushed",
-    [197921] = rumourSource, -- Peryite's Salvation",
     [120485] = rumourSource, -- Cactus, Columnar",
     [116474] = rumourSource, -- Orcish Effigy, Bear",
-    [197622] = rumourSource, -- Constellation Projection Apparatus",
-    [193785] = rumourSource, -- Mercymother Elite Tribute Tapestry, Large",
-    [152143] = rumourSource, -- Orcish Sconce, Scrolled",
     [115707] = rumourSource, -- Khajiit Tile, Waxing Moons",
-    [193786] = rumourSource, -- Mercymother Elite Tribute Tapestry",
     [115705] = rumourSource, -- Khajiit Tile, New Moons",
-    [193784] = rumourSource, -- Hand of Almalexia Tribute Tapestry",
-    [193783] = rumourSource, -- Hand of Almalexia Tribute Tapestry, Large",
-    [197750] = rumourSource, -- Telvanni Mushroom Spire Painting, Wood",
-    [197621] = rumourSource, -- Household Shrine, Meridian",
-    [197620] = rumourSource, -- Throne of the Lich",
-    [197619] = rumourSource, -- Meridian Mote",
-    [152144] = rumourSource, -- Orcish Mirror, Peaked",
-    [197700] = rumourSource, -- Apocrypha Fossil, Bones Large",
-    [197829] = rumourSource, -- Music Box, Glyphic Secrets",
-    [197702] = rumourSource, -- Apocrypha Fossil, Worm",
-    [197703] = rumourSource, -- Apocrypha Fossil, Arch",
     [197704] = rumourSource, -- Book of Whispers",
-    [197705] = rumourSource, -- Telvanni Alchemy Station",
-    [197706] = rumourSource, -- Trifold Mirror of Alternatives",
-    [197707] = rumourSource, -- Apocryphal Well",
-    [197708] = rumourSource, -- Cliffracer Skeleton Stand",
-    [152141] = rumourSource, -- Orcish Brazier, Bordered",
-    [152142] = rumourSource, -- Orcish Sconce, Bordered",
-    [197711] = rumourSource, -- Antique Map of the Telvanni Peninsula",
-    [197712] = rumourSource, -- Antique Map of Apocrypha",
-    [152145] = rumourSource, -- Orcish Tapestry, War",
-    [152146] = rumourSource, -- Orcish Chandelier, Spiked",
-    [152148] = rumourSource, -- Orcish Tapestry, Hunt",
-    [152149] = rumourSource, -- Orcish Brazier, Pillar",
     [116473] = rumourSource, -- Orcish Effigy, Mammoth",
-    [197710] = rumourSource, -- Mushroom Classification Book",
     [190942] = rumourSource, -- Music Box, Sheogorath Butterfly Garden",
     [197623] = rumourSource, -- Statue, Hermaeus Mora",
-    [197624] = rumourSource, -- Apocryphal Shifting Sculpture",
     [197625] = rumourSource, -- Music Box, Oath of the Keepers",
     [194534] = rumourSource, -- Dock Bell, Mounted",
-    [197709] = rumourSource, -- Tribunal Window, Stained Glass",
     [194536] = rumourSource, -- Dock Buoys, Mounted",
     [194538] = rumourSource, -- Cargo Netting, Large",
     [194539] = rumourSource, -- Rough Hammock, Pole-Strung",
-    [196206] = rumourSource, -- Daedric Post, Spike",
     [196207] = rumourSource, -- Daedric Turret, Flame Tower",
     [196208] = rumourSource, -- Sarcophagus, Stone Base",
     [196209] = rumourSource, -- Sarcophagus, Stone Lid",
@@ -177,21 +195,42 @@ FurC.MiscItemSources[ver.NECROM] = {
     [196212] = rumourSource, -- Apocrypha Statue, Mouth of Mora",
     [196213] = rumourSource, -- Door, Dark Brotherhood Sanctuary",
     [196214] = rumourSource, -- Order of the Hour Rug, Winged",
-    [197751] = rumourSource, -- Sunset Fleet Painting, Wood",
-    [197752] = rumourSource, -- Mycoturge's Retreat Painting, Wood",
-    [197753] = rumourSource, -- Telvanni Peninsula Painting, Wood",
     [115706] = rumourSource, -- Khajiit Tile, Full Moons",
-    [197755] = rumourSource, -- Shadow over Necrom Painting",
     [115708] = rumourSource, -- Khajiit Tile, Waning Moons",
-    [197701] = rumourSource, -- Apocrypha Fossil, Nautilus",
-    [197749] = rumourSource, -- Necrom Still Life Painting, Wood",
-    [197754] = rumourSource, -- Offerings to the Dead Painting, Wood",
   },
 }
 
 FurC.MiscItemSources[ver.SCRIBE] = {
 
-  [src.CROWN] = {},
+  [src.CROWN] = {
+  
+ --------------------Crown Crates------------------------- 
+    [193793] = scambox_rage .. getGemPrice(40), -- Reach Chandelier, Hagraven,
+    [193794] = scambox_rage .. getGemPrice(100), -- Target Hagraven, Robust,
+    [193795] = scambox_rage .. getGemPrice(40), -- Rite of the Harrowforged,
+    [193796] = scambox_rage .. getGemPrice(100), -- Orb of the Spirit Queen,
+	
+---------------------Housing Editor------------------------
+    [194400] = getCrownPrice(170), -- Galen Dogwood, Large,
+    [194401] = getCrownPrice(150), -- Galen Dogwood, Medium Cluster,
+    [194402] = getCrownPrice(110), -- Harbor Netting, Hanging Wall,
+    [194403] = getCrownPrice(110), -- Harbor Netting, Buoy Cluster,
+    [194404] = getCrownPrice(40), -- Harbor Line, Loose,
+    [194405] = getCrownPrice(40), -- Harbor Line, Coiled,
+    [194406] = getCrownPrice(110), -- Harbor Rope, Coiled Buoy,
+    [194407] = getCrownPrice(40), -- Harbor Rope, Hanging,
+    [194408] = getCrownPrice(150), -- Systres Brewing Still, Copper,
+    [194409] = getCrownPrice(140), -- Potted Tree, Systres Pine,
+    [194410] = getCrownPrice(240), -- Stonelore Tale Pillar, Slanted Stone,
+    [194411] = getCrownPrice(240), -- Stonelore Tale Pillar, Rounded Stone,
+
+---------------------Crown Store---------------------------
+    [193817] = itemPackAstula, -- Shad Astula Scholar, Left,
+    [193818] = itemPackAstula, -- Shad Astula Scholar, Right,
+	
+    [194399] = getCrownPrice(1000), -- Music Box, Unfathomable Knowledge,	
+
+ },
 
   [src.DROP] = {
     [194456] = book_hall, -- Invocation of Hircine,
@@ -223,46 +262,14 @@ FurC.MiscItemSources[ver.SCRIBE] = {
   },
 
   [src.RUMOUR] = {
-    [193793] = rumourSource, -- Reach Chandelier, Hagraven,
-    [193794] = rumourSource, -- Target Hagraven, Robust,
-    [193795] = rumourSource, -- Rite of the Harrowforged,
-    [193796] = rumourSource, -- Orb of the Spirit Queen,
-    [193797] = rumourSource, -- Wrothgar Puzzle Cube, Mountains,
-    [193798] = rumourSource, -- Wrothgar Puzzle Cube, Hunter,
-    [193799] = rumourSource, -- Falmer Hut, Long,
-    [193800] = rumourSource, -- Falmer Tent, Conical,
-    [193801] = rumourSource, -- Ayleid Partition, Arched,
-    [193802] = rumourSource, -- Ayleid Constellation Stele, The Steed,
-    [193803] = rumourSource, -- Tree, Large Pink Maple,
-    [193804] = rumourSource, -- High Elf Wine Pot,
-    [193805] = rumourSource, -- Yokudan Sarcophagus Base, Gilded,
-    [193806] = rumourSource, -- Redguard Window, Iron Lattice,
-    [193817] = rumourSource, -- Shad Astula Scholar, Left,
-    [193818] = rumourSource, -- Shad Astula Scholar, Right,
-    [194359] = rumourSource, -- Replica Jubilee Cake 2023,
     [190941] = rumourSource, -- Music Box, Direnni's Swan,
-    [194399] = rumourSource, -- Music Box, Unfathomable Knowledge,
-    [194400] = rumourSource, -- Galen Dogwood, Large,
-    [194401] = rumourSource, -- Galen Dogwood, Medium Cluster,
-    [194402] = rumourSource, -- Harbor Netting, Hanging Wall,
-    [194403] = rumourSource, -- Harbor Netting, Buoy Cluster,
-    [194404] = rumourSource, -- Harbor Line, Loose,
-    [194405] = rumourSource, -- Harbor Line, Coiled,
-    [194406] = rumourSource, -- Harbor Rope, Coiled Buoy,
-    [194407] = rumourSource, -- Harbor Rope, Hanging,
-    [194408] = rumourSource, -- Systres Brewing Still, Copper,
-    [194409] = rumourSource, -- Potted Tree, Systres Pine,
-    [194410] = rumourSource, -- Stonelore Tale Pillar, Slanted Stone,
-    [193789] = rumourSource, -- Gonfalon Bay Dockside Bell,
-    [193790] = rumourSource, -- Festering Coral, Crimson-Orange,
-    [193791] = rumourSource, -- Palm, Blooming Tropical,
-    [194411] = rumourSource, -- Stonelore Tale Pillar, Rounded Stone,
   },
 }
 
 FurC.MiscItemSources[ver.DRUID] = {
   [src.CROWN] = {
     [190945] = getCrownPrice(5000), -- Tree, Seasons of Y'ffre
+    [190940] = getCrownPrice(1000), -- Music Box, Songbird's Paradise",	
 
     [190946] = scambox_stonelore .. getGemPrice(40), -- Earthen Root Essence
     [190947] = scambox_stonelore .. getGemPrice(40), -- Druidic Arch, Floral
@@ -301,10 +308,7 @@ FurC.MiscItemSources[ver.DRUID] = {
   },
 
   [src.RUMOUR] = {
-    [192579] = rumourSource, -- Common Crate, Fabric Bolts",
-    [192569] = rumourSource, -- Alchemy Shelves, Filled",
     [190939] = rumourSource, -- Music Box, Dawnbreaker's Forging",
-    [190940] = rumourSource, -- Music Box, Songbird's Paradise",
   },
 }
 
@@ -1558,14 +1562,6 @@ FurC.MiscItemSources[ver.SKYRIM] = {
 
 FurC.MiscItemSources[ver.KITTY] = {
   [src.RUMOUR] = {
-    --[152145] = rumourSource, -- Orcish Tapestry, War,       CRAFTABLE
-    --[152149] = rumourSource, -- Orcish Brazier, Pillar,     CRAFTABLE
-    --[152148] = rumourSource, -- Orcish Tapestry, Hunt,      CRAFTABLE
-    --[152146] = rumourSource, -- Orcish Chandelier, Spiked,  CRAFTABLE
-    --[152141] = rumourSource, -- Orcish Brazier, Bordered,   CRAFTABLE
-    --[152144] = rumourSource, -- Orcish Mirror, Peaked,      CRAFTABLE
-    --[152143] = rumourSource, -- Orcish Sconce, Scrolled,    CRAFTABLE
-    --[152142] = rumourSource, -- Orcish Sconce, Bordered,    CRAFTABLE
     [150774] = rumourSource, -- Banner of Vaermina,
     [150775] = rumourSource, -- Banner of Jyggalag,
     [151589] = rumourSource, -- Baandari Lunar Compass,
@@ -1669,6 +1665,15 @@ FurC.MiscItemSources[ver.KITTY] = {
     [151882] = getCrownPrice(140), -- Cactus, Banded Lunar Violet Trio,
     [151904] = getCrownPrice(370), -- Glowgrass, Patch,
     [151913] = getCrownPrice(5), -- Rock, Slate,
+	
+    [152145] = mischouse .. " or Craftable", -- Orcish Tapestry, War,       CRAFTABLE
+    [152149] = mischouse .. " or Craftable", -- Orcish Brazier, Pillar,     CRAFTABLE
+    [152148] = mischouse .. " or Craftable", -- Orcish Tapestry, Hunt,      CRAFTABLE
+    [152146] = mischouse .. " or Craftable", -- Orcish Chandelier, Spiked,  CRAFTABLE
+    [152141] = mischouse .. " or Craftable", -- Orcish Brazier, Bordered,   CRAFTABLE
+    [152144] = mischouse .. " or Craftable", -- Orcish Mirror, Peaked,      CRAFTABLE
+    [152143] = mischouse .. " or Craftable", -- Orcish Sconce, Scrolled,    CRAFTABLE
+    [152142] = mischouse .. " or Craftable", -- Orcish Sconce, Bordered,    CRAFTABLE	
   },
 
   [src.FISHING] = {},
