@@ -3,16 +3,7 @@ local FurC = FurC or {}
 local colour = FurC.ItemLinkColours
 local src = FurC.Constants.ItemSources
 
-local function colorise(txt, colourCode, ret)
-  txt = tostring(txt)
-  if txt:find("%d000$") then
-    txt = txt:gsub("000$", "k")
-  end
-  if ret then
-    return txt
-  end
-  return string.format("|c%s%s|r", colourCode, txt)
-end
+local colourise = FurC.colourise
 
 local function makeAchievementLink(achievementId)
   if not achievementId then
@@ -34,14 +25,14 @@ local function getRolisSource(recipeKey, recipeArray)
 
   if nil ~= versionData and nil ~= versionData[recipeKey] then
     local itemPrice =
-      zo_strformat(GetString(SI_FURC_STRING_FOR_VOUCHERS), colorise(versionData[recipeKey], colour.Voucher))
+      zo_strformat(GetString(SI_FURC_STRING_FOR_VOUCHERS), colourise(versionData[recipeKey], colour.Voucher))
     return zo_strformat(GetString(SI_FURC_STRING_ROLIS), itemPrice)
   end
 
   versionData = FurC.Faustina[recipeArray.version]
   if nil ~= versionData and nil ~= versionData[recipeKey] then
     local itemPrice =
-      zo_strformat(GetString(SI_FURC_STRING_FOR_VOUCHERS), colorise(versionData[recipeKey], colour.Voucher))
+      zo_strformat(GetString(SI_FURC_STRING_FOR_VOUCHERS), colourise(versionData[recipeKey], colour.Voucher))
     return zo_strformat(GetString(SI_FURC_STRING_FAUSTINA), itemPrice)
   end
 
@@ -67,9 +58,9 @@ local function getLuxurySource(recipeKey, recipeArray, stripColor)
     local weekendString = (nil == itemData.itemDate and "") or zo_strformat(WEEKEND_DATE, itemData.itemDate)
     return zo_strformat(
       SOLD_BY,
-      colorise(GetString(SI_FURC_STRING_ASSHOLE), colour.Vendor, stripColor),
-      colorise(GetString(SI_FURC_STRING_HC), colour.Vendor, stripColor),
-      colorise(itemData.itemPrice, colour.Gold, stripColor),
+      colourise(GetString(SI_FURC_STRING_ASSHOLE), colour.Vendor, stripColor),
+      colourise(GetString(SI_FURC_STRING_HC), colour.Vendor, stripColor),
+      colourise(itemData.itemPrice, colour.Gold, stripColor),
       weekendString
     )
   end
@@ -93,9 +84,9 @@ local function getPvpSource(recipeKey, recipeArray, stripColor)
       if nil ~= locationData[recipeKey] then
         return zo_strformat(
           GetString(SI_FURC_STRING_VENDOR),
-          colorise(vendorName, colour.Vendor, stripColor),
-          colorise(locationName, colour.Vendor, stripColor),
-          colorise(locationData[recipeKey].itemPrice, colour.AP, stripColor),
+          colourise(vendorName, colour.Vendor, stripColor),
+          colourise(locationName, colour.Vendor, stripColor),
+          colourise(locationData[recipeKey].itemPrice, colour.AP, stripColor),
           GetString(SI_FURC_STRING_AP)
         )
       end
@@ -129,9 +120,9 @@ local function getAchievementVendorSource(recipeKey, recipeArray, stripColor)
       if nil ~= databaseEntry then
         return zo_strformat(
           GetString(SI_FURC_STRING_VENDOR),
-          colorise(vendorName, colour.Vendor, stripColor),
-          colorise(zoneName, colour.Vendor, stripColor),
-          colorise(databaseEntry.itemPrice, colour.Gold, stripColor),
+          colourise(vendorName, colour.Vendor, stripColor),
+          colourise(zoneName, colour.Vendor, stripColor),
+          colourise(databaseEntry.itemPrice, colour.Gold, stripColor),
           makeAchievementLink(databaseEntry.achievement)
         )
       end
@@ -156,9 +147,12 @@ local function getEventDropSource(recipeKey, recipeArray, stripColor)
     for eventName, eventData in pairs(versionData) do
       for eventItemSource, eventSourceData in pairs(eventData) do
         if eventSourceData[recipeKey] then
-          local vendorString = colorise(eventItemSource, colour.Vendor, stripColor)
-          itemPriceString =
-            zo_strformat(GetString(SI_FURC_FESTIVAL_DROP), colorise(eventName, colour.Vendor, stripColor), vendorString)
+          local vendorString = colourise(eventItemSource, colour.Vendor, stripColor)
+          itemPriceString = zo_strformat(
+            GetString(SI_FURC_FESTIVAL_DROP),
+            colourise(eventName, colour.Vendor, stripColor),
+            vendorString
+          )
 
           if not eventSourceData[recipeKey] then
             return itemPriceString
@@ -166,7 +160,7 @@ local function getEventDropSource(recipeKey, recipeArray, stripColor)
 
           local additionalSource = eventSourceData[recipeKey]
           if additionalSource and type(additionalSource) == "table" and additionalSource.itemPrice then
-            local itemPrice = colorise(additionalSource.itemPrice, colour.Voucher, stripColor)
+            local itemPrice = colourise(additionalSource.itemPrice, colour.Voucher, stripColor)
             itemPriceString = itemPriceString:sub(1, -2)
               .. zo_strformat(GetString(SI_FURC_STRING_FOR_VOUCHERS), itemPrice)
               .. ")"

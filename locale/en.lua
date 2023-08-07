@@ -229,6 +229,7 @@ local strings = {
   SI_FURC_FILTER_VERSION_DRUID = "Firesong",
   SI_FURC_FILTER_VERSION_SCRIBE = "Scribes of Fate",
   SI_FURC_FILTER_VERSION_NECROM = "Necrom",
+  SI_FURC_FILTER_VERSION_BASED = "Base Game Patch",
 
   -- =============================== --
   -- = GUI: Dropdown entry tooltip = --
@@ -272,6 +273,7 @@ local strings = {
   SI_FURC_FILTER_VERSION_DRUID_TT = "Remember when we could block?",
   SI_FURC_FILTER_VERSION_SCRIBE_TT = "Books and things",
   SI_FURC_FILTER_VERSION_NECROM_TT = "So many tentacles",
+  SI_FURC_FILTER_VERSION_BASED_TT = "When you run out of names",
 
   SI_FURC_FILTER_CHAR_OFF = "Character filter: off",
   SI_FURC_FILTER_CHAR_OFF_TT = filterDisabled,

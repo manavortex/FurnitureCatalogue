@@ -68,9 +68,22 @@ function FurC.capitalise(str)
   return str
 end
 
+-- ToDo: make flexible
 function FurC.stripColor(aString)
   if nil == aString then
     return ""
   end
   return aString:gsub("|%l%l%d%d%d%d%d", ""):gsub("|%l%l%d%l%l%d%d", ""):gsub("|c25C31E", ""):gsub("", "")
+end
+
+-- ToDo: remove/change ret param
+function FurC.colourise(txt, colourCode, ret)
+  txt = tostring(txt)
+  if txt:find("%d000$") then
+    txt = txt:gsub("000$", "k")
+  end
+  if ret then
+    return txt
+  end
+  return string.format("|c%s%s|r", colourCode, txt)
 end

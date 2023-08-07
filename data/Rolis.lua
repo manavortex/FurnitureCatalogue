@@ -1,10 +1,12 @@
 FurC.Rolis = FurC.Rolis or {}
 FurC.RolisRecipes = FurC.RolisRecipes or {}
-FurC.FaustinaRecipes = FurC.FaustinaRecipes or {}
+
 FurC.Faustina = FurC.Faustina or {}
+FurC.FaustinaRecipes = FurC.FaustinaRecipes or {}
 
 local ver = FurC.Constants.Versioning
 
+-- 18 Flames of Ambition
 FurC.RolisRecipes[ver.FLAMES] = {
   [171803] = 125, -- Blueprint: Solitude Well, Noble
   [171806] = 125, -- Design: Provisioning Station, Solitude Grill
@@ -15,6 +17,7 @@ FurC.RolisRecipes[ver.FLAMES] = {
   [171807] = 125, -- Sketch: Dwarven Crystal Sconce, Mirror
 }
 
+-- 14 Harrowstorm
 FurC.FaustinaRecipes[ver.HARROW] = {
   [159501] = 125, -- Praxis: Khajiit Sigil, Moon Cycle
   [159499] = 125, -- Pattern: Elsweyr Bed, Senche-Raht
@@ -24,6 +27,7 @@ FurC.FaustinaRecipes[ver.HARROW] = {
   [159500] = 125, -- Blueprint: Elsweyr Well, Covered
 }
 
+-- 10 Wrathstone
 FurC.RolisRecipes[ver.WOTL] = {
   [147656] = 125, -- Dark Elf Tent, Canopy,
   [147657] = 125, -- Hlaalu Stove, Chiminea,
@@ -34,6 +38,7 @@ FurC.RolisRecipes[ver.WOTL] = {
   [147655] = 125, -- Hlaalu Salt Lamp, Enchanted,
 }
 
+-- 6 Dragon Bones
 FurC.FaustinaRecipes[ver.DRAGONS] = {
   [141904] = 100, -- Blueprint: Alinor Bookshelf, Grand Full,
   [141905] = 100, -- Praxis: Alinor Gaming Table, Punctilious Conflict,
@@ -44,6 +49,7 @@ FurC.FaustinaRecipes[ver.DRAGONS] = {
   [141902] = 100, -- Schematic: Relic Vault, Impenetrable,
 }
 
+-- 6 Dragon Bones
 FurC.FaustinaRecipes[ver.DRAGONS] = {
   [121200] = 100, -- Blueprint: Cabinet, Poisonmaker's
   [121166] = 100, -- Blueprint: Podium, Skinning
@@ -71,6 +77,7 @@ FurC.FaustinaRecipes[ver.DRAGONS] = {
   [139486] = 100, -- Sketch: High Elf Ancestor Clock, Celestial
 }
 
+-- 6 Dragon Bones
 FurC.Faustina[ver.DRAGONS] = {
   [134675] = 500, -- Outfit station
   [137870] = 125, -- Jewelry Station
@@ -78,10 +85,12 @@ FurC.Faustina[ver.DRAGONS] = {
   [139391] = 10, -- Master Crafter's Banner, Hanging,
 }
 
+-- 6 Dragon Bones
 FurC.Rolis[ver.DRAGONS] = {
   [133576] = 1250,
 }
 
+-- 2 Homestead
 FurC.Rolis[ver.HOMESTEAD] = {
   -- Alchemy station
   [118328] = 35,
@@ -106,6 +115,7 @@ FurC.Rolis[ver.HOMESTEAD] = {
   [119822] = 250,
 }
 
+-- 2 Homestead
 FurC.RolisRecipes[ver.HOMESTEAD] = {
   [126582] = 275, -- Praxis: Target Centurion, Dwarf-Brass
   [126583] = 450, -- Praxis: Target Centurion, Robust Refabricated
