@@ -13,19 +13,27 @@ local in_skyrim = " in Western Skyrim"
 local in_blackwood = " in Blackwood"
 local in_summerset = " in Summerset"
 local in_elsweyr = " in Elsweyr"
+local in_necrom = " in Telvanni Peninsula or Apocrypha"
 
 -- Quests and Guilds
 local questRewardString = GetString(SI_FURC_QUESTREWARD)
-local questRewardSuran = GetString(SI_FURC_QUESTREWARD) .. " Suran"
+local questRewardSuran = questRewardString .. " Suran"
+local questRewardLilandril = questRewardString .. " Lilandril"
 local tribute = GetString(SI_FURC_TRIBUTE)
 local tribute_ranked = GetString(SI_FURC_TRIBUTE_RANKED)
 local db_poison = zo_strformat("<<1>> <<2>>", GetString(SI_FURC_DB), GetString(SI_FURC_DB_POISON))
 local db_sneaky = zo_strformat("<<1>> <<2>>", GetString(SI_FURC_DB), GetString(SI_FURC_DB_STEALTH))
 local db_equip = zo_strformat("<<1>> <<2>>", GetString(SI_FURC_DB), GetString(SI_FURC_DB_EQUIP))
 
+-- Events
+local blackwood_event = GetString(SI_FURC_EVENT_BLACKWOOD)
+local sinister_hollowjack = "Sinister Hollowjack Items"
+local elsweyr_event = GetString(SI_FURC_EVENT_ELSWEYR)
+
 -- Stealing
 local stealable = GetString(SI_FURC_CANBESTOLEN)
-local stealable_guard = GetString(SI_FURC_CANBEPICKED) .. " from guards"
+local pickpocketable = GetString(SI_FURC_CANBEPICKED)
+local stealable_guard = pickpocketable .. " from guards"
 local stealable_cc = stealable .. " in Clockwork City"
 local stealable_scholars = stealable .. " from scholars"
 local stealable_nerds = stealable_scholars .. " and mages"
@@ -35,42 +43,54 @@ local stealable_woodworkers = stealable .. " from woodworkers"
 local stealable_drunkards = stealable .. " from drunkards"
 local stealable_wrothgar = stealable .. inWrothgar
 local stealable_swamp = stealable .. backwaterSwamp
-local stealable_elsewhere = GetString(SI_FURC_CANBESTOLEN) .. in_elsweyr
+local stealable_elsewhere = stealable .. in_elsweyr
+local pickpocket_necrom = pickpocketable .. " in Telvanni Peninsula or Apocrypha"
+local painting_summerset = GetString(SI_FURC_ITEMSOURCE_SAFEBOX) .. " (Summerset)"
 
--- Other
+-- Looting/Harvesting
+local scrying = GetString(SI_FURC_CANBESCRYED)
+local chests_string = GetString(SI_FURC_CHESTS)
+
 local automaton_loot_cc = GetString(SI_FURC_AUTOMATON) .. " in Clockwork City"
 local automaton_loot_vv = GetString(SI_FURC_AUTOMATON) .. " on Vvardenfell"
-local sinister_hollowjack = "Sinister Hollowjack Items"
-local chests_string = GetString(SI_FURC_CHESTS)
 local chests_skyrim = chests_string .. in_skyrim
 local chests_blackwood = chests_string .. in_blackwood
 local chests_summerset = chests_string .. in_summerset
 local chests_elsweyr = chests_string .. in_elsweyr
-local mischouse = "From select house purchases"
 local chests_high = chests_string .. " in High Isle"
 local chests_blackr_grcaverns = chests_string .. " in Blackreach: Greymoor Caverns"
-
-local scrying = GetString(SI_FURC_CANBESCRYED)
-
 local book_hall = "From chests in the Scrivener's Hall vault"
-
-local elsweyr_event = GetString(SI_FURC_EVENT_ELSWEYR)
-local priceUnknown = "?"
-
-local blackwood_event = GetString(SI_FURC_EVENT_BLACKWOOD)
+local nymic = "From Bastion Nymic reward chests"
+local chests_necrom = chests_string .. in_necrom
 local puplicdungeon_fw_vv = GetString(SI_FURC_DROP) .. " in Forgotten Wastes" .. gloriousHome
 local plants_vvardenfell = GetString(SI_FURC_PLANTS) .. gloriousHome
-
 local fishing_summerset = GetString(SI_FURC_CANBEFISHED) .. onSummerset
 local fishing_swamp = GetString(SI_FURC_CANBEFISHED) .. backwaterSwamp
 
-local painting_summerset = GetString(SI_FURC_ITEMSOURCE_SAFEBOX) .. " (Summerset)"
-
-local questRewardLilandril = questRewardString .. "Lilandril"
-local mephalaItemSet = zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "Trappings of Mephala Worship")
-
 -- Crowns
+local priceUnknown = "?"
 local crownstoresource = GetString(SI_FURC_CROWNSTORESOURCE)
+local function getCrownPrice(price)
+  local priceString = ((not price or price < 0) and priceUnknown) or tostring(price)
+  return string.format("%s (%s)", crownstoresource, priceString)
+end
+
+local scamgemString = GetString(SI_FURC_SCAMBOX_GEMS)
+local function getGemPrice(price)
+  local priceString = ((not price or price < 0) and priceUnknown) or tostring(price)
+  return string.format("%s (%s)", scamgemString, priceString)
+end
+
+local housesource = GetString(SI_FURC_HOUSE)
+local function getHouseString(houseId1, houseId2) -- use collectible number from https://wiki.esoui.com/Collectibles instead of houseIDs.
+  local houseName = GetCollectibleName(houseId1)
+  if houseId2 then
+    houseName = houseName .. ", " .. GetCollectibleName(houseId2)
+  end
+  return zo_strformat(housesource, houseName)
+end
+local mischouse = "From select house purchases"
+
 local scambox_string = GetString(SI_FURC_SCAMBOX)
 local scambox_newmoon = zo_strformat("<<1>> (<<2>>)", scambox_string, "New Moon")
 local scambox_gloomspore = zo_strformat("<<1>> (<<2>>)", scambox_string, "Gloomspore")
@@ -83,6 +103,8 @@ local scambox_dark = zo_strformat("<<1>> (<<2>>)", scambox_string, "Dark Chivalr
 local scambox_fireatro = zo_strformat("<<1>> (<<2>>)", scambox_string, GetString(SI_FURC_FLAME_ATRONACH))
 local scambox_dwemer = zo_strformat("<<1>> (<<2>>)", scambox_string, GetString(SI_FURC_DWEMER))
 local scambox_reaper = zo_strformat("<<1>> (<<2>>)", scambox_string, GetString(SI_FURC_REAPER))
+local scambox_feather = zo_strformat("<<1>> (<<2>>)", scambox_string, "Unfeathered")
+local scambox_rage = zo_strformat("<<1>> (<<2>>)", scambox_string, "Ragebound")
 
 local itemPackMoonBishop = zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "Moon Bishop’s Sanctuary")
 local itemPackOasis = zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "Moons-Blessed Oasis")
@@ -114,51 +136,100 @@ local itemPackSwamp = zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "Shad
 local itemPackMolag = zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "Molag Bal")
 local itemPackAyleid = zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "Ayleid")
 local itemPackSotha = zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "The Clockwork God's Domain")
-
-local function getCrownPrice(price)
-  local priceString = ((not price or price < 0) and priceUnknown) or tostring(price)
-  return string.format("%s (%s)", crownstoresource, priceString)
-end
-
-local scamgemString = GetString(SI_FURC_SCAMBOX_GEMS)
-local function getGemPrice(price)
-  local priceString = ((not price or price < 0) and priceUnknown) or tostring(price)
-  return string.format("%s (%s)", scamgemString, priceString)
-end
-
-local housesource = GetString(SI_FURC_HOUSE)
-local function getHouseString(houseId1, houseId2) -- use collectible number from https://wiki.esoui.com/Collectibles instead of houseIDs.
-  local houseName = GetCollectibleName(houseId1)
-  if houseId2 then
-    houseName = houseName .. ", " .. GetCollectibleName(houseId2)
-  end
-  return zo_strformat(housesource, houseName)
-end
+local itemPackAstula = zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "Shad Astula Scolars Bundle")
+local mephalaItemSet = zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "Trappings of Mephala Worship")
 
 -- 27 Base Game Patch
 FurC.MiscItemSources[ver.BASED] = {}
 
 -- 26 Necrom
 FurC.MiscItemSources[ver.NECROM] = {
-  [src.CROWN] = {},
-  [src.DROP] = {},
+  [src.CROWN] = {
+    [197624] = getCrownPrice(1200), -- Apocryphal Shifting Sculpture",
+    [197622] = scambox_feather .. getGemPrice(400), -- Constellation Projection Apparatus",
+    [197621] = scambox_feather .. getGemPrice(40), -- Household Shrine, Meridian",
+    [197620] = scambox_feather .. getGemPrice(100), -- Throne of the Lich",
+    [197619] = scambox_feather .. getGemPrice(100), -- Meridian Mote",
+  },
+
+  [src.DROP] = {
+    [197921] = nymic, -- Peryite's Salvation",
+    [197920] = nymic, -- The Doom of the Hushed",
+    [197919] = nymic, -- The Legend of Fathoms Drift",
+    [197918] = nymic, -- Deal with a Daedric Prince",
+    [197917] = nymic, -- Ode to Vaermina",
+    [197829] = scrying .. in_necrom .. " 10 piece antiquity", -- Music Box, Glyphic Secrets",
+    [197783] = chests_necrom, -- Pilgrimage Triptych Painting, Wood",
+    [197782] = chests_necrom, -- Alleyway Still Life Painting",
+    [197781] = chests_necrom, -- The City of Necrom Painting, Wood",
+    [197780] = "Reward for completeing Sharp-as-Night's rapport quests", -- Letter from Sharp",
+    [197779] = "Reward for completeing Azandar's rapport quests", -- Letter from Azandar",
+    [197755] = chests_necrom, -- Shadow over Necrom Painting",
+    [197754] = chests_necrom, -- Offerings to the Dead Painting, Wood",
+    [197753] = chests_necrom, -- Telvanni Peninsula Painting, Wood",
+    [197752] = chests_necrom, -- Mycoturge's Retreat Painting, Wood",
+    [197751] = chests_necrom, -- Sunset Fleet Painting, Wood",
+    [197750] = chests_necrom, -- Telvanni Mushroom Spire Painting, Wood",
+    [197749] = chests_necrom, -- Necrom Still Life Painting, Wood",
+    [197712] = scrying .. in_necrom, -- Antique Map of Apocrypha",
+    [197711] = scrying .. in_necrom, -- Antique Map of the Telvanni Peninsula",
+    [197710] = scrying .. in_necrom, -- Mushroom Classification Book",
+    [197709] = scrying .. in_necrom, -- Tribunal Window, Stained Glass",
+    [197708] = scrying .. in_necrom, -- Cliffracer Skeleton Stand",
+    [197707] = scrying .. in_necrom .. " 3 piece antiquity", -- Apocryphal Well",
+    [197706] = scrying .. in_necrom .. " 3 piece antiquity", -- Trifold Mirror of Alternatives",
+    [197705] = scrying .. in_necrom .. " 10 piece antiquity", -- Telvanni Alchemy Station",
+    [197703] = scrying .. in_necrom, -- Apocrypha Fossil, Arch",
+    [197702] = scrying .. in_necrom, -- Apocrypha Fossil, Worm",
+    [197701] = scrying .. in_necrom, -- Apocrypha Fossil, Nautilus",
+    [197700] = scrying .. in_necrom, -- Apocrypha Fossil, Bones Large",
+    [197647] = pickpocket_necrom, -- Telvanni Knife, Bread",
+    [197646] = pickpocket_necrom, -- Telvanni Knife, Wooden",
+    [197645] = pickpocket_necrom, -- Telvanni Fork, Wooden",
+    [197644] = pickpocket_necrom, -- Telvanni Spoon, Wooden",
+    [193786] = tribute, -- Mercymother Elite Tribute Tapestry",
+    [193785] = tribute, -- Mercymother Elite Tribute Tapestry, Large",
+    [193784] = tribute, -- Hand of Almalexia Tribute Tapestry",
+    [193783] = tribute, -- Hand of Almalexia Tribute Tapestry, Large",
+  },
 }
 
 -- 25 Scribes of Fate
 FurC.MiscItemSources[ver.SCRIBE] = {
 
-  [src.CROWN] = {},
+  [src.CROWN] = {
+    [194411] = getCrownPrice(240), -- Stonelore Tale Pillar, Rounded Stone,
+    [194410] = getCrownPrice(240), -- Stonelore Tale Pillar, Slanted Stone,
+    [194409] = getCrownPrice(140), -- Potted Tree, Systres Pine,
+    [194408] = getCrownPrice(150), -- Systres Brewing Still, Copper,
+    [194407] = getCrownPrice(40), -- Harbor Rope, Hanging,
+    [194406] = getCrownPrice(110), -- Harbor Rope, Coiled Buoy,
+    [194405] = getCrownPrice(40), -- Harbor Line, Coiled,
+    [194404] = getCrownPrice(40), -- Harbor Line, Loose,
+    [194403] = getCrownPrice(110), -- Harbor Netting, Buoy Cluster,
+    [194402] = getCrownPrice(110), -- Harbor Netting, Hanging Wall,
+    [194401] = getCrownPrice(150), -- Galen Dogwood, Medium Cluster,
+    [194400] = getCrownPrice(170), -- Galen Dogwood, Large,
+    [194399] = getCrownPrice(1000), -- Music Box, Unfathomable Knowledge,
+    [193818] = itemPackAstula, -- Shad Astula Scholar, Right,
+    [193817] = itemPackAstula, -- Shad Astula Scholar, Left,
+    [193796] = scambox_rage .. getGemPrice(100), -- Orb of the Spirit Queen,
+    [193795] = scambox_rage .. getGemPrice(40), -- Rite of the Harrowforged,
+    [193794] = scambox_rage .. getGemPrice(100), -- Target Hagraven, Robust,
+    [193793] = scambox_rage .. getGemPrice(40), -- Reach Chandelier, Hagraven,
+  },
 
   [src.DROP] = {
-    [194456] = book_hall, -- Invocation of Hircine,
     [194460] = book_hall, -- Apocrypha, Apocrypha,
     [194459] = book_hall, -- Dream of a Thousand Dreamers,
     [194458] = book_hall, -- Lord Hollowjack's Dream Realm,
+    [194456] = book_hall, -- Invocation of Hircine,
     [194455] = book_hall, -- Havocrel: Strangers from Oblivion,
     [194454] = book_hall, -- The Waters of Oblivion,
     [194453] = book_hall, -- A Memory Book, Part 1,
     [194452] = book_hall, -- A Memory Book, Part 2,
     [194451] = book_hall, -- A Memory Book, Part 3,
+    [194450] = book_hall, -- Thwarting the Daedra: Dagon's Cult,
     [194449] = book_hall, -- In Dreams We Awaken,
     [194448] = book_hall, -- Glorious Upheaval,
     [194447] = book_hall, -- Stonefire Ritual Tome,
@@ -166,181 +237,168 @@ FurC.MiscItemSources[ver.SCRIBE] = {
     [194445] = book_hall, -- Boethiah and Her Avatars,
     [194444] = book_hall, -- Persistence of Daedric Veneration,
     [194443] = book_hall, -- Daedra Dossier: The Titans,
-    [194419] = book_hall, -- Scrivener's Hall Vault Door,
-    [194420] = book_hall, -- Nesting Stones, Green,
-    [194421] = book_hall, -- Nesting Boulder, Green,
-    [194422] = book_hall, -- Hermaeus Mora Banner, Extra Long,
-    [194423] = book_hall, -- Hermaeus Mora Banner, Long,
     [194442] = book_hall, -- Journal of Culanwe,
     [194441] = book_hall, -- Graccus' Journal, Volume I,
     [194440] = book_hall, -- Tome of Daedric Portals,
     [194439] = book_hall, -- The Journal of Emperor Leovic,
-    [194450] = book_hall, -- Thwarting the Daedra: Dagon's Cult,
+    [194423] = book_hall, -- Hermaeus Mora Banner, Long,
+    [194422] = book_hall, -- Hermaeus Mora Banner, Extra Long,
+    [194421] = book_hall, -- Nesting Boulder, Green,
+    [194420] = book_hall, -- Nesting Stones, Green,
+    [194419] = book_hall, -- Scrivener's Hall Vault Door,
   },
 }
 
 -- 24 Firesong
 FurC.MiscItemSources[ver.DRUID] = {
   [src.CROWN] = {
-    [190945] = getCrownPrice(5000), -- Tree, Seasons of Y'ffre
-
-    [190946] = scambox_stonelore .. getGemPrice(40), -- Earthen Root Essence
-    [190947] = scambox_stonelore .. getGemPrice(40), -- Druidic Arch, Floral
-    [190950] = scambox_stonelore .. getGemPrice(40), -- Rose Petal Cascade
-    [190951] = scambox_stonelore .. getGemPrice(100), -- Target Spriggan, Robust
-
-    [192405] = itemPackMaormer, -- Maormer Tent, Raid Leader's
-    [192406] = itemPackMaormer, -- Maormer Ship's Prow, Serpentine
-    [192407] = getCrownPrice(720) .. " or " .. itemPackMaormer, -- Maormer Tent, Raider's
-    [192408] = getCrownPrice(70) .. " or " .. itemPackMaormer, -- Maormer Trunk, Carved
-    [192409] = getCrownPrice(3000) .. " or " .. itemPackMaormer, -- Maormer Cookfire
-    [192410] = getCrownPrice(85) .. " or " .. itemPackMaormer, -- Maormer Chair, Carved
-    [192412] = getCrownPrice(340) .. " or " .. itemPackMaormer, -- Maormer Curtain, Serpentine Cloth
-    [192413] = getCrownPrice(180) .. " or " .. itemPackMaormer, -- Maormer Table, Carved
-    [192414] = getCrownPrice(160) .. " or " .. itemPackMaormer, -- Maormer Armchair, Carved
-    [192418] = getCrownPrice(10) .. " or " .. itemPackMaormer, -- Maormer Mug, Serpentine
-    [192420] = getCrownPrice(180) .. " or " .. itemPackMaormer, -- Maormer Rug, Serpentine
-    [192425] = getCrownPrice(150) .. " or " .. itemPackMaormer, -- Maormer Teapot, Serpentine
-    [192427] = getCrownPrice(70) .. " or " .. itemPackMaormer, -- Maormer Lamp, Serpentine
     [192429] = getCrownPrice(110) .. " or " .. itemPackMaormer, -- Maormer Sconce, Serpentine
-    [192422] = getCrownPrice(80) .. " or " .. itemPackMaormer, -- Maormer Half-Rug
+    [192427] = getCrownPrice(70) .. " or " .. itemPackMaormer, -- Maormer Lamp, Serpentine
+    [192425] = getCrownPrice(150) .. " or " .. itemPackMaormer, -- Maormer Teapot, Serpentine
     [192423] = getCrownPrice(340) .. " or " .. itemPackMaormer, -- Maormer Runner, Amethyst Waves
+    [192422] = getCrownPrice(80) .. " or " .. itemPackMaormer, -- Maormer Half-Rug
+    [192420] = getCrownPrice(180) .. " or " .. itemPackMaormer, -- Maormer Rug, Serpentine
+    [192418] = getCrownPrice(10) .. " or " .. itemPackMaormer, -- Maormer Mug, Serpentine
+    [192414] = getCrownPrice(160) .. " or " .. itemPackMaormer, -- Maormer Armchair, Carved
+    [192413] = getCrownPrice(180) .. " or " .. itemPackMaormer, -- Maormer Table, Carved
+    [192412] = getCrownPrice(340) .. " or " .. itemPackMaormer, -- Maormer Curtain, Serpentine Cloth
+    [192410] = getCrownPrice(85) .. " or " .. itemPackMaormer, -- Maormer Chair, Carved
+    [192409] = getCrownPrice(3000) .. " or " .. itemPackMaormer, -- Maormer Cookfire
+    [192408] = getCrownPrice(70) .. " or " .. itemPackMaormer, -- Maormer Trunk, Carved
+    [192407] = getCrownPrice(720) .. " or " .. itemPackMaormer, -- Maormer Tent, Raider's
+    [192406] = itemPackMaormer, -- Maormer Ship's Prow, Serpentine
+    [192405] = itemPackMaormer, -- Maormer Tent, Raid Leader's
+    [190951] = scambox_stonelore .. getGemPrice(100), -- Target Spriggan, Robust
+    [190950] = scambox_stonelore .. getGemPrice(40), -- Rose Petal Cascade
+    [190947] = scambox_stonelore .. getGemPrice(40), -- Druidic Arch, Floral
+    [190946] = scambox_stonelore .. getGemPrice(40), -- Earthen Root Essence
+    [190945] = getCrownPrice(5000), -- Tree, Seasons of Y'ffre
+    [190940] = getCrownPrice(1000), -- Music Box, Songbird's Paradise",
   },
 
   [src.DROP] = {
-    [187922] = scrying .. " in Fargrave ", -- Antique Map of Fargrave",
-    [192430] = scrying .. " in Galen ", -- Vulk'esh Egg",
-    [192431] = scrying .. " in Galen ", -- Antique Map of Galen",
     [192432] = scrying .. " in Galen (3 Pieces)", -- Shipbuilder's Woodworking Station",
-    [190938] = scrying .. " in Galen (5 Pieces)", -- Music Box, Blessings of Stone",
-
-    [192401] = tribute, -- The Chimera Tribute Tapestry",
-    [192402] = tribute, -- The Chimera Tribute Tapestry, Large",
-    [192403] = tribute, -- Forest Wraith Tribute Tapestry",
+    [192431] = scrying .. " in Galen ", -- Antique Map of Galen",
+    [192430] = scrying .. " in Galen ", -- Vulk'esh Egg",
     [192404] = tribute, -- Forest Wraith Tribute Tapestry, Large",
+    [192403] = tribute, -- Forest Wraith Tribute Tapestry",
+    [192402] = tribute, -- The Chimera Tribute Tapestry, Large",
+    [192401] = tribute, -- The Chimera Tribute Tapestry",
+    [190938] = scrying .. " in Galen (5 Pieces)", -- Music Box, Blessings of Stone",
+    [187922] = scrying .. " in Fargrave ", -- Antique Map of Fargrave",
   },
 }
 
 -- 23 Lost Depths
 FurC.MiscItemSources[ver.DEPTHS] = {
   [src.CROWN] = {
-    [188341] = scambox_wraith .. " (100 gems)", -- Red Diamond Stained Glass,
-    [188342] = scambox_wraith .. " (40 gems)", -- Bat Swarm, Domesticated,
-    [188343] = scambox_wraith .. " (100 gems)", -- Moonlight Path Bridge,
-    [188344] = scambox_wraith .. " (40 gems)", -- Y'ffre's Falling Leaves, Autumn,
-
-    [189463] = getCrownPrice(3500), -- Statue, Bendu Olo,
-    [189464] = getCrownPrice(1000), -- Music Box, Deeproot Dirge,
     [189465] = getCrownPrice(1200), -- Music Box, Gonfalon Galliard,
+    [189464] = getCrownPrice(1000), -- Music Box, Deeproot Dirge,
+    [189463] = getCrownPrice(3500), -- Statue, Bendu Olo,
+    [188344] = scambox_wraith .. " (40 gems)", -- Y'ffre's Falling Leaves, Autumn,
+    [188343] = scambox_wraith .. " (100 gems)", -- Moonlight Path Bridge,
+    [188342] = scambox_wraith .. " (40 gems)", -- Bat Swarm, Domesticated,
+    [188341] = scambox_wraith .. " (100 gems)", -- Red Diamond Stained Glass,
   },
 
   [src.DROP] = {
-    [187804] = tribute_ranked, -- Tribute Trophy, Orichalcum,
-    [187805] = tribute_ranked, -- Tribute Trophy, Ebony,
-    [187806] = tribute_ranked, -- Tribute Trophy, Quicksilver,
     [187807] = tribute_ranked, -- Tribute Trophy, Voidsteel,
+    [187806] = tribute_ranked, -- Tribute Trophy, Quicksilver,
+    [187805] = tribute_ranked, -- Tribute Trophy, Ebony,
+    [187804] = tribute_ranked, -- Tribute Trophy, Orichalcum,
   },
 }
 
 -- 22 High Isle
 FurC.MiscItemSources[ver.BRETON] = {
   [src.CROWN] = {
-    [187861] = getCrownPrice(110), -- High Isle Hourglass, Compass Rose
-    [187665] = getCrownPrice(3500), -- Statue, Kynareth's Blessings
-    [187860] = getCrownPrice(65), -- High Isle Vase, Gilded
     [187865] = getCrownPrice(55), -- Flowers, Butterweed Cluster
-    [147926] = getCrownPrice(6000), -- Target Iron Atronach, Trial
-    [187664] = getCrownPrice(6000), -- Target Deadlands Harvester, Trial
-
-    [187666] = getCrownPrice(1000), -- Music Box, Steadfast Armistice
+    [187861] = getCrownPrice(110), -- High Isle Hourglass, Compass Rose
+    [187860] = getCrownPrice(65), -- High Isle Vase, Gilded
     [187667] = getCrownPrice(1200), -- Music Box, High Isle Duel
-
-    [187661] = scambox_dark .. getGemPrice(40), -- Mage's Flame
-    [187662] = scambox_dark .. getGemPrice(100), -- House Dufort Chandelier
+    [187666] = getCrownPrice(1000), -- Music Box, Steadfast Armistice
+    [187665] = getCrownPrice(3500), -- Statue, Kynareth's Blessings
+    [187664] = getCrownPrice(6000), -- Target Deadlands Harvester, Trial
     [187663] = scambox_dark .. getGemPrice(40), -- Blue Fang Shark, Mounted
+    [187662] = scambox_dark .. getGemPrice(100), -- House Dufort Chandelier
+    [187661] = scambox_dark .. getGemPrice(40), -- Mage's Flame
     [187660] = scambox_dark .. getGemPrice(100), -- Mages Guild Stained Glass
+    [147926] = getCrownPrice(6000), -- Target Iron Atronach, Trial
   },
 
   [src.DROP] = {
-    [187802] = scrying .. " in High Isle ", -- Druidic Provisioning Station
-    [187800] = scrying .. " in High Isle ", -- Draoife Storystone
-    [187801] = scrying .. " in High Isle ", -- Sea Elf Galleon Helm
-    [187799] = scrying .. " in High Isle ", -- Antique Map of High Isle
-
-    [187868] = chests_high, -- Ascendant Silence Painting, Metal
-    [187869] = chests_high, -- Noble Still Life Painting, Metal
-    [187870] = chests_high, -- Gifts of the Sun Painting, Metal
-    [187871] = chests_high, -- High Isle Seahome Painting, Metal
-    [187873] = chests_high, -- Abecean Bounty Painting, Wood
-    [187874] = chests_high, -- Masted Behemoth Painting, Wood
-    [187875] = chests_high, -- Tor Draioch Towers Painting, Wood
-    [187876] = chests_high, -- Gonfalon Colossus Painting, Wood
-    [187877] = chests_high, -- Gates of Gonfalon Bay Painting, Wood
-    [187872] = chests_high, -- Light's Warning Painting, Wood
-
-    [188272] = tribute, -- Blackfeather Knight Tribute Tapestry
-    [188273] = tribute, -- Blackfeather Knight Tribute Tapestry, Large
-    [188274] = tribute, -- Hagraven Matron Tribute Tapestry
-    [188275] = tribute, -- Hagraven Matron Tribute Tapestry, Large
-    [188276] = tribute, -- Hlaalu Councilor Tribute Tapestry
-    [188277] = tribute, -- Hlaalu Councilor Tribute Tapestry, Large
-    [188278] = tribute, -- Knight Commander Tribute Tapestry
-    [188279] = tribute, -- Knight Commander Tribute Tapestry, Large
-    [188280] = tribute, -- Prowling Shadow Tribute Tapestry
-    [188281] = tribute, -- Prowling Shadow Tribute Tapestry, Large
-    [188282] = tribute, -- Pyandonean War Fleet Tribute Tapestry
-    [188283] = tribute, -- Pyandonean War Fleet Tribute Tapestry, Large
-    [188284] = tribute, -- Serpentguard Rider Tribute Tapestry
     [188285] = tribute, -- Serpentguard Rider Tribute Tapestry, Large
-    [187808] = tribute_ranked, -- Tribute Trophy, Rubedite
-
-    [188201] = "Reward for completeing Ember's rapport quests", -- Letter From Ember
+    [188284] = tribute, -- Serpentguard Rider Tribute Tapestry
+    [188283] = tribute, -- Pyandonean War Fleet Tribute Tapestry, Large
+    [188282] = tribute, -- Pyandonean War Fleet Tribute Tapestry
+    [188281] = tribute, -- Prowling Shadow Tribute Tapestry, Large
+    [188280] = tribute, -- Prowling Shadow Tribute Tapestry
+    [188279] = tribute, -- Knight Commander Tribute Tapestry, Large
+    [188278] = tribute, -- Knight Commander Tribute Tapestry
+    [188277] = tribute, -- Hlaalu Councilor Tribute Tapestry, Large
+    [188276] = tribute, -- Hlaalu Councilor Tribute Tapestry
+    [188275] = tribute, -- Hagraven Matron Tribute Tapestry, Large
+    [188274] = tribute, -- Hagraven Matron Tribute Tapestry
+    [188273] = tribute, -- Blackfeather Knight Tribute Tapestry, Large
+    [188272] = tribute, -- Blackfeather Knight Tribute Tapestry
     [188202] = "Reward for completeing Isobel's rapport quests", -- Letter From Isobel
+    [188201] = "Reward for completeing Ember's rapport quests", -- Letter From Ember
+    [187877] = chests_high, -- Gates of Gonfalon Bay Painting, Wood
+    [187876] = chests_high, -- Gonfalon Colossus Painting, Wood
+    [187875] = chests_high, -- Tor Draioch Towers Painting, Wood
+    [187874] = chests_high, -- Masted Behemoth Painting, Wood
+    [187873] = chests_high, -- Abecean Bounty Painting, Wood
+    [187872] = chests_high, -- Light's Warning Painting, Wood
+    [187871] = chests_high, -- High Isle Seahome Painting, Metal
+    [187870] = chests_high, -- Gifts of the Sun Painting, Metal
+    [187869] = chests_high, -- Noble Still Life Painting, Metal
+    [187868] = chests_high, -- Ascendant Silence Painting, Metal
+    [187808] = tribute_ranked, -- Tribute Trophy, Rubedite
+    [187802] = scrying .. " in High Isle ", -- Druidic Provisioning Station
+    [187801] = scrying .. " in High Isle ", -- Sea Elf Galleon Helm
+    [187800] = scrying .. " in High Isle ", -- Draoife Storystone
+    [187799] = scrying .. " in High Isle ", -- Antique Map of High Isle
   },
 }
 
 -- 21 Ascending Tide
 FurC.MiscItemSources[ver.TIDES] = {
   [src.CROWN] = {
-    [184072] = scambox_sunken .. " (100 gems)", -- Aquarium, Large Abecean Coral,
-    [184071] = scambox_sunken .. " (40 gems)", -- Aquarium, Abecean Coral,
+    [184250] = getCrownPrice(240), -- Nedic Banner, Ancient,
+    [184249] = getCrownPrice(20) .. " or " .. itemPackAquatic, -- Elkhorn Coral, Branching,
+    [184248] = getCrownPrice(20) .. " or " .. itemPackAquatic, -- Stones, Coral Cluster,
+    [184247] = getCrownPrice(45) .. " or " .. itemPackAquatic, -- Brittle-Vein Coral, Cluster,
+    [184246] = getCrownPrice(130), -- Nedic Bench, Carved,
+    [184245] = getCrownPrice(610), -- Nedic Chandelier, Swords,
+    [184244] = getCrownPrice(110), -- Nedic Sconce, Torch,
+    [184243] = getCrownPrice(640), -- Nedic Brazier, Cold-Flame Pillar,
+    [184242] = getCrownPrice(370), -- Nedic Brazier, Cold-Flame,
+    [184205] = getCrownPrice(120) .. " or " .. itemPackAquatic, -- Sand Drift, Oceanic,
+    [184175] = getCrownPrice(3500), -- Statue, Ancestor-King Auri-El,
     [184127] = scambox_sunken .. " (40 gems)", -- Tranquility Pond, Botanical,
     [184126] = scambox_sunken .. " (100 gems)", -- Waterfall Fountain, Round,
-
-    [183200] = getCrownPrice(1100), -- Music Box: Wonders of the Shoals,
-    [183201] = getCrownPrice(1000), -- Music Box: Bleak Beacon Shanty,
-
-    [178477] = getCrownPrice(170), -- Nedic Bookcase, Filled,
-    [183198] = "Fargrave homegoods vendor, or " .. getCrownPrice(10), -- Bushes, Withered Cluster,
-    [184175] = getCrownPrice(3500), -- Statue, Ancestor-King Auri-El,
-    [184242] = getCrownPrice(370), -- Nedic Brazier, Cold-Flame,
-    [184243] = getCrownPrice(640), -- Nedic Brazier, Cold-Flame Pillar,
-    [184244] = getCrownPrice(110), -- Nedic Sconce, Torch,
-    [184245] = getCrownPrice(610), -- Nedic Chandelier, Swords,
-    [184246] = getCrownPrice(130), -- Nedic Bench, Carved,
-    [184250] = getCrownPrice(240), -- Nedic Banner, Ancient,
-    [120853] = "This is craftable, or " .. getCrownPrice(430), -- Stockade,
-
-    --Crown Furnishing Packs--
-    [184107] = getCrownPrice(20) .. " or " .. itemPackAquatic, -- Kelp Stalk, Tall,
-    [184108] = getCrownPrice(90) .. " or " .. itemPackAquatic, -- Kelp Grouping, Thin,
-    [184110] = getCrownPrice(170) .. " or " .. itemPackAquatic, -- Verdant Anemone, Strong,
-    [184111] = getCrownPrice(170) .. " or " .. itemPackAquatic, -- Lilac Anemone, Sprout,
-    [183891] = itemPackAquatic, -- Jellyfish Bloom, Heliotrope,
-    [183892] = getCrownPrice(430) .. " or " .. itemPackAquatic, -- Minnow School,
-    [183893] = getCrownPrice(1500) .. " or " .. itemPackAquatic, -- Bubbles of Aeration,
-    [183894] = itemPackAquatic, -- Nedic Chest, Bubbling,
-    [184109] = getCrownPrice(90) .. " or " .. itemPackAquatic, -- Kelp Grouping, Robust,
     [184112] = getCrownPrice(170) .. " or " .. itemPackAquatic, -- Lilac Coral, Strong,
-    [184205] = getCrownPrice(120) .. " or " .. itemPackAquatic, -- Sand Drift, Oceanic,
+    [184111] = getCrownPrice(170) .. " or " .. itemPackAquatic, -- Lilac Anemone, Sprout,
+    [184110] = getCrownPrice(170) .. " or " .. itemPackAquatic, -- Verdant Anemone, Strong,
+    [184109] = getCrownPrice(90) .. " or " .. itemPackAquatic, -- Kelp Grouping, Robust,
+    [184108] = getCrownPrice(90) .. " or " .. itemPackAquatic, -- Kelp Grouping, Thin,
+    [184107] = getCrownPrice(20) .. " or " .. itemPackAquatic, -- Kelp Stalk, Tall,
     [184106] = getCrownPrice(20) .. " or " .. itemPackAquatic, -- Kelp Stalk, Plain,
     [184105] = getCrownPrice(45) .. " or " .. itemPackAquatic, -- Green Algae Coral Formation, Tree Capped,
     [184104] = getCrownPrice(45) .. " or " .. itemPackAquatic, -- Red Algae Coral Formation, Waving Hands,
     [184103] = getCrownPrice(45) .. " or " .. itemPackAquatic, -- Red Algae Coral Formation, Tree Antler,
+    [184072] = scambox_sunken .. " (100 gems)", -- Aquarium, Large Abecean Coral,
+    [184071] = scambox_sunken .. " (40 gems)", -- Aquarium, Abecean Coral,
+    [183894] = itemPackAquatic, -- Nedic Chest, Bubbling,
+    [183893] = getCrownPrice(1500) .. " or " .. itemPackAquatic, -- Bubbles of Aeration,
+    [183892] = getCrownPrice(430) .. " or " .. itemPackAquatic, -- Minnow School,
+    [183891] = itemPackAquatic, -- Jellyfish Bloom, Heliotrope,
     [183856] = itemPackAquatic, -- Target Mudcrab, Robust Coral,
-    [184247] = getCrownPrice(45) .. " or " .. itemPackAquatic, -- Brittle-Vein Coral, Cluster,
-    [184248] = getCrownPrice(20) .. " or " .. itemPackAquatic, -- Stones, Coral Cluster,
-    [184249] = getCrownPrice(20) .. " or " .. itemPackAquatic, -- Elkhorn Coral, Branching,
+    [183201] = getCrownPrice(1000), -- Music Box: Bleak Beacon Shanty,
+    [183200] = getCrownPrice(1100), -- Music Box: Wonders of the Shoals,
+    [183198] = "Fargrave homegoods vendor, or " .. getCrownPrice(10), -- Bushes, Withered Cluster,
+    [178477] = getCrownPrice(170), -- Nedic Bookcase, Filled,
+    [120853] = "This is craftable, or " .. getCrownPrice(430), -- Stockade,
   },
 }
 
@@ -350,10 +408,7 @@ FurC.MiscItemSources[ver.DEADL] = {
 
 	Furnishing packs!
 		Limited Time -
-			Lord vivec
 			intrepid gourmet
-			moons bless oasis
-			moon bishop's sanctuary
 			clockwork god's domain
 			stone and shadow
 			dwarven pipes?
@@ -375,13 +430,8 @@ FurC.MiscItemSources[ver.DEADL] = {
 			Cyrodilic Parlor
 
 	 Crown crate/gem furnishings!
-		Frost Atronach
 		Grimm Harlequin
 		Celestial
-		Ayleid
-		Sovngarde
-
-	 Remove rumoursource items that have been given a source. No need for them to be listed multiple times.
 
 	 Can I add a separate crown source for housing editor vs normal crown store? Seems like it should be fairly easy. Model after SI_FURC_CROWNSTORESOURCE and getCrownPrice
 
@@ -1166,6 +1216,15 @@ FurC.MiscItemSources[ver.KITTY] = {
     [151882] = getCrownPrice(140), -- Cactus, Banded Lunar Violet Trio,
     [151904] = getCrownPrice(370), -- Glowgrass, Patch,
     [151913] = getCrownPrice(5), -- Rock, Slate,
+
+    [152145] = mischouse .. " or Craftable", -- Orcish Tapestry, War,       CRAFTABLE
+    [152149] = mischouse .. " or Craftable", -- Orcish Brazier, Pillar,     CRAFTABLE
+    [152148] = mischouse .. " or Craftable", -- Orcish Tapestry, Hunt,      CRAFTABLE
+    [152146] = mischouse .. " or Craftable", -- Orcish Chandelier, Spiked,  CRAFTABLE
+    [152141] = mischouse .. " or Craftable", -- Orcish Brazier, Bordered,   CRAFTABLE
+    [152144] = mischouse .. " or Craftable", -- Orcish Mirror, Peaked,      CRAFTABLE
+    [152143] = mischouse .. " or Craftable", -- Orcish Sconce, Scrolled,    CRAFTABLE
+    [152142] = mischouse .. " or Craftable", -- Orcish Sconce, Bordered,    CRAFTABLE
   },
 
   [src.FISHING] = {},

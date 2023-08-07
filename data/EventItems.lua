@@ -1,5 +1,14 @@
 local ver = FurC.Constants.Versioning
 
+-- 25 Scribes of Fate
+FurC.EventItems[ver.SCRIBE] = {
+  ["Anniversary Jubilee"] = {
+    ["Impresario"] = {
+      [194359] = { itemPrice = 3 }, -- Replica Jubilee Cake 2023,
+    },
+  },
+}
+
 -- 21 Ascending Tide
 FurC.EventItems[ver.TIDES] = {
   ["Anniversary Jubilee"] = {
