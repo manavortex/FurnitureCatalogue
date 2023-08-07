@@ -1811,10 +1811,6 @@ FurC.LuxuryFurnisher[ver.MARKAT] = {
     itemPrice = 3000,
     itemDate = "2023-04-08",
   },
-  [134433] = { -- Stablemaster's Sign, Small
-    itemPrice = 3000,
-    itemDate = "2023-03-25",
-  },
   [134432] = { -- Banker's Sign, Small
     itemPrice = 3000,
     itemDate = "2023-03-25",

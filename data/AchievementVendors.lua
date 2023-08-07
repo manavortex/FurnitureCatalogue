@@ -4655,21 +4655,25 @@ FurC.AchievementVendors[ver.HOMESTEAD] = {
 
   ["Orsinium"] = {
     [GetString(FURC_AV_LOT)] = {
+      [119981] = { -- Throne of the Orc King
+        itemPrice = 50000,
+        achievement = 1260,
+      },
+      [119980] = { -- Orcish Totem
+        itemPrice = 10000,
+        achievement = 1328,
+      },
       [119979] = { -- Fur Throne
         itemPrice = 25000,
         achievement = 1245,
-      },
-      [119976] = { -- Orc Adventuring Backpack
-        itemPrice = 500,
-        achievement = 1242,
       },
       [119978] = { -- Orcish Battle Totem
         itemPrice = 7500,
         achievement = 1244,
       },
-      [119980] = { -- Orcish Totem
-        itemPrice = 10000,
-        achievement = 1328,
+      [119976] = { -- Orc Adventuring Backpack
+        itemPrice = 500,
+        achievement = 1242,
       },
       [119977] = { -- Orcish War Totem
         itemPrice = 5000,
@@ -4679,17 +4683,10 @@ FurC.AchievementVendors[ver.HOMESTEAD] = {
         itemPrice = 10000,
         achievement = 1241,
       },
-      [119981] = { -- Throne of the Orc King
-        itemPrice = 50000,
-        achievement = 1260,
-      },
     },
 
     [GetString(FURC_AV_MAL)] = {
-      [117955] = { -- Box, Slatted
-        itemPrice = 100,
-      },
-      [117964] = { -- Rough Fire, doused
+      [117986] = { -- Rough Plank, Long
         itemPrice = 100,
       },
       [117985] = { -- Rough Bread, Morsel
@@ -4698,16 +4695,19 @@ FurC.AchievementVendors[ver.HOMESTEAD] = {
       [117981] = { -- Rough Firewood, Smoldering
         itemPrice = 100,
       },
-      [117975] = { -- Rough Hay Bed, Sloppy
+      [117976] = { -- Rough Hay Bed, Covered
         itemPrice = 100,
       },
-      [117976] = { -- Rough Hay Bed, Covered
+      [117975] = { -- Rough Hay Bed, Sloppy
         itemPrice = 100,
       },
       [117974] = { -- Rough Hay Bed, Tidy
         itemPrice = 100,
       },
-      [117986] = { -- Rough Plank, Long
+      [117964] = { -- Rough Fire, doused
+        itemPrice = 100,
+      },
+      [117955] = { -- Box, Slatted
         itemPrice = 100,
       },
     },
@@ -4715,21 +4715,17 @@ FurC.AchievementVendors[ver.HOMESTEAD] = {
 
   ["any city"] = {
     [GetString(FURC_AV_ENC)] = {
-      [120050] = { -- Enchanter's Sign
-        itemPrice = 5000,
-        achievement = 1034,
-      },
       [120051] = { -- Enchanting Gem
         itemPrice = 5000,
         achievement = 1317,
       },
+      [120050] = { -- Enchanter's Sign
+        itemPrice = 5000,
+        achievement = 1034,
+      },
     },
 
     [GetString(FURC_AV_ALC)] = {
-      [120044] = { -- Alchemy sign
-        itemPrice = 10000,
-        achievement = 1031,
-      },
       [120058] = { -- Harvester's Herbs
         itemPrice = 1000,
         achievement = 68,
@@ -4737,6 +4733,10 @@ FurC.AchievementVendors[ver.HOMESTEAD] = {
       [120045] = { -- Poison Satchel
         itemPrice = 5000,
         achievement = 1464,
+      },
+      [120044] = { -- Alchemy sign
+        itemPrice = 10000,
+        achievement = 1031,
       },
     },
 
@@ -4752,17 +4752,17 @@ FurC.AchievementVendors[ver.HOMESTEAD] = {
     },
 
     [GetString(FURC_AV_CLO)] = {
-      [120048] = { -- clothier's sign
-        itemPrice = 5000,
-        achievement = 1033,
+      [120061] = { -- Harvester's Garden Shrub
+        itemPrice = 10000,
+        achievement = 68,
       },
       [120060] = { -- Harvester's Critter Trap
         itemPrice = 5000,
         achievement = 68,
       },
-      [120061] = { -- Harvester's Garden Shrub
-        itemPrice = 10000,
-        achievement = 68,
+      [120048] = { -- clothier's sign
+        itemPrice = 5000,
+        achievement = 1033,
       },
     },
 
@@ -4778,24 +4778,28 @@ FurC.AchievementVendors[ver.HOMESTEAD] = {
     },
 
     [GetString(FURC_AV_BSM)] = {
-      [120046] = { -- Blacksmith's Sign
-        itemPrice = 5000,
-        achievement = 1032,
+      [120062] = { -- Smith's Bellow
+        itemPrice = 10000,
+        achievement = 1022,
       },
       [120059] = { -- Harvester's Ore
         itemPrice = 1000,
         achievement = 68,
       },
-      [120062] = { -- Smith's Bellow
-        itemPrice = 10000,
-        achievement = 1022,
+      [120046] = { -- Blacksmith's Sign
+        itemPrice = 5000,
+        achievement = 1032,
       },
     },
 
     [GetString(FURC_AV_OUT)] = {
-      [120028] = { -- Death Marker
+      [120993] = { -- Scales of Felonious Recompense
         itemPrice = 5000,
-        achievement = 1226,
+        achievement = 1196, -- Felonious Recompense
+      },
+      [120957] = { -- Faded fence banner
+        itemPrice = 10000,
+        achievement = "Ledgerdmain Rank 20",
       },
       [120033] = { -- Decorative Safebox
         itemPrice = 5000,
@@ -4805,9 +4809,21 @@ FurC.AchievementVendors[ver.HOMESTEAD] = {
         itemPrice = 5000,
         achievement = "", -- No Stash Left Behind
       },
-      [120957] = { -- Faded fence banner
-        itemPrice = 10000,
-        achievement = "Ledgerdmain Rank 20",
+      [120031] = { -- Replica Key, Blank
+        itemPrice = 1000,
+        achievement = 1208, -- Master Burglar
+      },
+      [120030] = { -- Pocket Change
+        itemPrice = 500,
+        achievement = 1191,
+      },
+      [120029] = { -- Noble Pocket Lint
+        itemPrice = 1000,
+        achievement = 1192, -- Sneak Thief Extraordinaire
+      },
+      [120028] = { -- Death Marker
+        itemPrice = 5000,
+        achievement = 1226,
       },
       [120027] = { -- Mass Tombstone
         itemPrice = 10000,
@@ -4817,29 +4833,13 @@ FurC.AchievementVendors[ver.HOMESTEAD] = {
         itemPrice = 10000,
         achievement = "", -- Black Market Mogul
       },
-      [120029] = { -- Noble Pocket Lint
-        itemPrice = 1000,
-        achievement = 1192, -- Sneak Thief Extraordinaire
-      },
-      [120023] = { -- Outlaw Banner
-        itemPrice = 5000,
-        achievement = "Ledgerdmain Rank 20",
-      },
       [120025] = { -- Pile of Coins
         itemPrice = 2500,
         achievement = 1196, -- Felonious Recompense
       },
-      [120030] = { -- Pocket Change
-        itemPrice = 500,
-        achievement = 1191,
-      },
-      [120031] = { -- Replica Key, Blank
-        itemPrice = 1000,
-        achievement = 1208, -- Master Burglar
-      },
-      [120993] = { -- Scales of Felonious Recompense
+      [120023] = { -- Outlaw Banner
         itemPrice = 5000,
-        achievement = 1196, -- Felonious Recompense
+        achievement = "Ledgerdmain Rank 20",
       },
     },
   },
@@ -4847,27 +4847,19 @@ FurC.AchievementVendors[ver.HOMESTEAD] = {
   ["the Mages' guild"] = {
     ["the Mystic as part of a collection"] = {},
     ["the Mystic"] = {
-      [120003] = { -- cheese cutter
-        itemPrice = 5000,
-        achievement = 1686,
-      },
       [120011] = { -- Mages' Guild Banner
         itemPrice = 10000,
         achievement = 702,
+      },
+      [120003] = { -- cheese cutter
+        itemPrice = 5000,
+        achievement = 1686,
       },
     },
   },
 
   ["the Fighters' guild"] = {
     ["Hall Steward"] = {
-      [120000] = { --Broken Chain
-        itemPrice = 50000,
-        achievement = 587,
-      },
-      [119999] = { -- Daedric Chest
-        itemPrice = 10000,
-        achievement = 1683,
-      },
       [120948] = { -- Dark Anchor Pinion
         itemPrice = 100000,
         achievement = 318,
@@ -4875,6 +4867,14 @@ FurC.AchievementVendors[ver.HOMESTEAD] = {
       [120019] = { -- Fighters' Guild Banner
         itemPrice = 10000,
         achievement = 703,
+      },
+      [120000] = { --Broken Chain
+        itemPrice = 50000,
+        achievement = 587,
+      },
+      [119999] = { -- Daedric Chest
+        itemPrice = 10000,
+        achievement = 1683,
       },
     },
   },
