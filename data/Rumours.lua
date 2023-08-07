@@ -10,48 +10,9 @@ FurC.Rumours[ver.BASED] = {}
 
 -- 26 Necrom
 FurC.Rumours[ver.NECROM] = {
-  [197921] = rumourSource, -- Peryite's Salvation",
-  [197920] = rumourSource, -- The Doom of the Hushed",
-  [197919] = rumourSource, -- The Legend of Fathoms Drift",
-  [197918] = rumourSource, -- Deal with a Daedric Prince",
-  [197917] = rumourSource, -- Ode to Vaermina",
-  [197829] = rumourSource, -- Music Box, Glyphic Secrets",
-  [197783] = rumourSource, -- Pilgrimage Triptych Painting, Wood",
-  [197782] = rumourSource, -- Alleyway Still Life Painting",
-  [197781] = rumourSource, -- The City of Necrom Painting, Wood",
-  [197780] = rumourSource, -- Letter from Sharp",
-  [197779] = rumourSource, -- Letter from Azandar",
-  [197755] = rumourSource, -- Shadow over Necrom Painting",
-  [197754] = rumourSource, -- Offerings to the Dead Painting, Wood",
-  [197753] = rumourSource, -- Telvanni Peninsula Painting, Wood",
-  [197752] = rumourSource, -- Mycoturge's Retreat Painting, Wood",
-  [197751] = rumourSource, -- Sunset Fleet Painting, Wood",
-  [197750] = rumourSource, -- Telvanni Mushroom Spire Painting, Wood",
-  [197749] = rumourSource, -- Necrom Still Life Painting, Wood",
-  [197712] = rumourSource, -- Antique Map of Apocrypha",
-  [197711] = rumourSource, -- Antique Map of the Telvanni Peninsula",
-  [197710] = rumourSource, -- Mushroom Classification Book",
-  [197709] = rumourSource, -- Tribunal Window, Stained Glass",
-  [197708] = rumourSource, -- Cliffracer Skeleton Stand",
-  [197707] = rumourSource, -- Apocryphal Well",
-  [197706] = rumourSource, -- Trifold Mirror of Alternatives",
-  [197705] = rumourSource, -- Telvanni Alchemy Station",
   [197704] = rumourSource, -- Book of Whispers",
-  [197703] = rumourSource, -- Apocrypha Fossil, Arch",
-  [197702] = rumourSource, -- Apocrypha Fossil, Worm",
-  [197701] = rumourSource, -- Apocrypha Fossil, Nautilus",
-  [197700] = rumourSource, -- Apocrypha Fossil, Bones Large",
-  [197647] = rumourSource, -- Telvanni Knife, Bread",
-  [197646] = rumourSource, -- Telvanni Knife, Wooden",
-  [197645] = rumourSource, -- Telvanni Fork, Wooden",
-  [197644] = rumourSource, -- Telvanni Spoon, Wooden",
   [197625] = rumourSource, -- Music Box, Oath of the Keepers",
-  [197624] = rumourSource, -- Apocryphal Shifting Sculpture",
   [197623] = rumourSource, -- Statue, Hermaeus Mora",
-  [197622] = rumourSource, -- Constellation Projection Apparatus",
-  [197621] = rumourSource, -- Household Shrine, Meridian",
-  [197620] = rumourSource, -- Throne of the Lich",
-  [197619] = rumourSource, -- Meridian Mote",
   [196214] = rumourSource, -- Order of the Hour Rug, Winged",
   [196213] = rumourSource, -- Door, Dark Brotherhood Sanctuary",
   [196212] = rumourSource, -- Apocrypha Statue, Mouth of Mora",
@@ -64,10 +25,6 @@ FurC.Rumours[ver.NECROM] = {
   [194538] = rumourSource, -- Cargo Netting, Large",
   [194536] = rumourSource, -- Dock Buoys, Mounted",
   [194534] = rumourSource, -- Dock Bell, Mounted",
-  [193786] = rumourSource, -- Mercymother Elite Tribute Tapestry",
-  [193785] = rumourSource, -- Mercymother Elite Tribute Tapestry, Large",
-  [193784] = rumourSource, -- Hand of Almalexia Tribute Tapestry",
-  [193783] = rumourSource, -- Hand of Almalexia Tribute Tapestry, Large",
   [190942] = rumourSource, -- Music Box, Sheogorath Butterfly Garden",
   [120485] = rumourSource, -- Cactus, Columnar",
   [118288] = rumourSource, -- Deer Carcass, Hanging",
@@ -81,47 +38,11 @@ FurC.Rumours[ver.NECROM] = {
 
 -- 25 Scribes of Fate
 FurC.Rumours[ver.SCRIBE] = {
-  [194411] = rumourSource, -- Stonelore Tale Pillar, Rounded Stone,
-  [194410] = rumourSource, -- Stonelore Tale Pillar, Slanted Stone,
-  [194409] = rumourSource, -- Potted Tree, Systres Pine,
-  [194408] = rumourSource, -- Systres Brewing Still, Copper,
-  [194407] = rumourSource, -- Harbor Rope, Hanging,
-  [194406] = rumourSource, -- Harbor Rope, Coiled Buoy,
-  [194405] = rumourSource, -- Harbor Line, Coiled,
-  [194404] = rumourSource, -- Harbor Line, Loose,
-  [194403] = rumourSource, -- Harbor Netting, Buoy Cluster,
-  [194402] = rumourSource, -- Harbor Netting, Hanging Wall,
-  [194401] = rumourSource, -- Galen Dogwood, Medium Cluster,
-  [194400] = rumourSource, -- Galen Dogwood, Large,
-  [194399] = rumourSource, -- Music Box, Unfathomable Knowledge,
-  [194359] = rumourSource, -- Replica Jubilee Cake 2023,
-  [193818] = rumourSource, -- Shad Astula Scholar, Right,
-  [193817] = rumourSource, -- Shad Astula Scholar, Left,
-  [193806] = rumourSource, -- Redguard Window, Iron Lattice,
-  [193805] = rumourSource, -- Yokudan Sarcophagus Base, Gilded,
-  [193804] = rumourSource, -- High Elf Wine Pot,
-  [193803] = rumourSource, -- Tree, Large Pink Maple,
-  [193802] = rumourSource, -- Ayleid Constellation Stele, The Steed,
-  [193801] = rumourSource, -- Ayleid Partition, Arched,
-  [193800] = rumourSource, -- Falmer Tent, Conical,
-  [193799] = rumourSource, -- Falmer Hut, Long,
-  [193798] = rumourSource, -- Wrothgar Puzzle Cube, Hunter,
-  [193797] = rumourSource, -- Wrothgar Puzzle Cube, Mountains,
-  [193796] = rumourSource, -- Orb of the Spirit Queen,
-  [193795] = rumourSource, -- Rite of the Harrowforged,
-  [193794] = rumourSource, -- Target Hagraven, Robust,
-  [193793] = rumourSource, -- Reach Chandelier, Hagraven,
-  [193791] = rumourSource, -- Palm, Blooming Tropical,
-  [193790] = rumourSource, -- Festering Coral, Crimson-Orange,
-  [193789] = rumourSource, -- Gonfalon Bay Dockside Bell,
   [190941] = rumourSource, -- Music Box, Direnni's Swan,
 }
 
 -- 24 Firesong
 FurC.Rumours[ver.DRUID] = {
-  [192579] = rumourSource, -- Common Crate, Fabric Bolts",
-  [192569] = rumourSource, -- Alchemy Shelves, Filled",
-  [190940] = rumourSource, -- Music Box, Songbird's Paradise",
   [190939] = rumourSource, -- Music Box, Dawnbreaker's Forging",
 }
 
@@ -152,7 +73,6 @@ FurC.Rumours[ver.DEADL] = {
   [181603] = rumourSource, -- Plant, White Flowered Lily Pads,
   [181601] = rumourSource, -- Rock, Wide Gabbro Slab,
   [181600] = rumourSource, -- Rock, Gabbro Boulder,
-  [181543] = rumourSource, -- Harpy Totem, Feathered,
   [181487] = rumourSource, -- Grim Harlequin Chandelier,
   [181438] = rumourSource, -- Mad God's Monarch Flock,
   [178800] = rumourSource, -- Amethyst Candlefly Gathering,
@@ -278,9 +198,6 @@ FurC.Rumours[ver.MARKAT] = {
 
 -- 16 Stonethorn
 FurC.Rumours[ver.STONET] = {
-  [94181] = rumourSource, -- Imperial Throne of the Bay
-  [94160] = rumourSource, -- Imperial Lantern, Imperial City
-  [94116] = rumourSource, -- Imperial Cauldron, Pitch-filled
   [119970] = rumourSource, -- Redguard Round Table
   [119690] = rumourSource, -- Banner of Hircine
   [119689] = rumourSource, -- Arch of the Wild Hunt
@@ -537,6 +454,9 @@ FurC.Rumours[ver.STONET] = {
   [115261] = rumourSource, -- Breton Forge and Bellows
   [114418] = rumourSource, -- High Elf Statue, Base
   [114414] = rumourSource, -- High Elf Medallion, Winged
+  [94181] = rumourSource, -- Imperial Throne of the Bay
+  [94160] = rumourSource, -- Imperial Lantern, Imperial City
+  [94116] = rumourSource, -- Imperial Cauldron, Pitch-filled
 }
 
 -- 15 Greymoor
