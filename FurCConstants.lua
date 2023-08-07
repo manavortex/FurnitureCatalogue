@@ -63,6 +63,7 @@ FurC.Constants.Versioning = {
   DRUID = getNextIdFor("VERSIONING"), -- 24 Firesong
   SCRIBE = getNextIdFor("VERSIONING"), -- 25 Scribes of Fate
   NECROM = getNextIdFor("VERSIONING"), -- 26 Necrom
+  BASED = getNextIdFor("VERSIONING"), -- 27 Base Game Patch
 }
 
 FurC.Constants.Versioning.LATEST = FurC.Constants.Versioning.NECROM
@@ -202,6 +203,9 @@ FURC_SCRIBE = FurC.Constants.Versioning.SCRIBE -- 25 Scribes of Fate
 
 -- @warning deprecated
 FURC_NECROM = FurC.Constants.Versioning.NECROM -- 26 Necrom
+
+-- @warning deprecated
+FURC_BASED = FurC.Constants.Versioning.BASED -- 27 Base Game Patch
 
 -- @warning deprecated
 FURC_LATEST = FurC.Constants.Versioning.LATEST
