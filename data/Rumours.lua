@@ -92,7 +92,6 @@ FurC.Rumours[ver.NECROM] = {
   [196210] = rumourSource, -- Necrom Coffin",
   [196209] = rumourSource, -- Sarcophagus, Stone Lid",
   [196208] = rumourSource, -- Sarcophagus, Stone Base",
-  [196207] = rumourSource, -- Daedric Turret, Flame Tower",
   [194539] = rumourSource, -- Rough Hammock, Pole-Strung",
   [194538] = rumourSource, -- Cargo Netting, Large",
   [194536] = rumourSource, -- Dock Buoys, Mounted",
