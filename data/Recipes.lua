@@ -3,7 +3,44 @@ FurC.Recipes = FurC.Recipes or {}
 local ver = FurC.Constants.Versioning
 
 -- 27 Base Game Patch
-FurC.Recipes[ver.BASED] = {}
+FurC.Recipes[ver.BASED] = {
+  198093, -- Praxis: Telvanni Doorframe, Round",
+  198092, -- Blueprint: Telvanni Door, Round",
+  198091, -- Diagram: Necrom Roof, Domed",
+  198090, -- Praxis: Necrom Wall, Corner Stone",
+  198089, -- Praxis: Necrom Wall, Stone",
+  198088, -- Praxis: Necrom Archway, Stone",
+  198087, -- Diagram: Necrom Window, Unframed Exterior",
+  198086, -- Praxis: Necrom Window, Framed Exterior",
+  198085, -- Praxis: Necrom Funerary Recess, Stone",
+  198084, -- Praxis: Necrom Monolith, Stone",
+  198083, -- Diagram: Necrom Roof, Tiled",
+  198082, -- Diagram: Necrom Door, Large Metal",
+  198081, -- Blueprint: Necrom Ramp, Wood",
+  198080, -- Praxis: Necrom Stairs, Inner Corner Stone",
+  198079, -- Praxis: Necrom Stairs, Outer Corner Stone",
+  198078, -- Praxis: Necrom Stairway, Stone",
+  198077, -- Praxis: Necrom Column, Stone",
+  198076, -- Praxis: Necrom Platform, Stone",
+  198075, -- Praxis: Necrom Roof, Gable",
+  198074, -- Praxis: Necrom Railing",
+  198073, -- Praxis: Necrom Wall, Tall Simple",
+  198072, -- Praxis: Necrom Wall, Tall Ornate",
+  198071, -- Blueprint: Necrom Door, Tall",
+  198070, -- Praxis: Necrom Doorway, Tall",
+  198069, -- Praxis: Necrom Ceiling, Domed",
+  198068, -- Diagram: Necrom Window, Leaded Interior",
+  198067, -- Praxis: Necrom Floor, Trimmed",
+  198066, -- Praxis: Necrom Floor, Patterned",
+  198065, -- Praxis: Necrom Column, Tall Elegant",
+  198064, -- Design: Indoril Chandelier, Vine-Covered",
+  198063, -- Formula: Telvanni Lantern, Luminous Mushroom",
+  198062, -- Praxis: Necrom Crematory, Furnace",
+  198061, -- Blueprint: Necrom Cart, Funerary",
+  198060, -- Diagram: Dwarven Door, Bronze",
+  198059, -- Pattern: Dark Elf Tent, Multiroom",
+  198058, -- Sketch: Daedric Mirror, Nightmarish",
+}
 
 -- 26 Necrom
 FurC.Recipes[ver.NECROM] = {
