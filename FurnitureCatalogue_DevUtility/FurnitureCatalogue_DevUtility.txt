@@ -3,7 +3,7 @@
 ## Description: This is a utility addon that helps generating entries for the furniture database.\nYou will only need it if you want to help with development or the database.
 ## Version: 2.0.0
 ## AddonVersion: 2000000
-## APIVersion: 101038 101037
+## APIVersion: 101039 101038
 ## DependsOn: FurnitureCatalogue
 ## OptionalDependsOn: sidTools LibDebugLogger DebugLogViewer
 
