@@ -7,6 +7,14 @@ FurC.LuxuryFurnisher[ver.BASED] = {}
 
 -- 26 Necrom
 FurC.LuxuryFurnisher[ver.NECROM] = {
+  [196209] = { -- Sarcophagus, Stone Lid"
+    itemPrice = 4500,
+    itemDate = "2023-08-18",
+  },
+  [196208] = { -- Sarcophagus, Stone Base",
+    itemPrice = 3500,
+    itemDate = "2023-08-18",
+  },
   [196207] = { -- Daedric Turret, Flame Tower",
     itemPrice = 35000,
     itemDate = "2023-08-11",
@@ -245,7 +253,7 @@ FurC.LuxuryFurnisher[ver.TIDES] = {
   },
   [187787] = { -- Mausoleum Pillar, Tall
     itemPrice = 10000,
-    itemDate = "2022-07-23",
+    itemDate = "2023-08-18",
   },
   [187786] = { -- Rubble Pile, Skeletal Remains
     itemPrice = 4000,
@@ -753,7 +761,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [171830] = { -- Mausoleum Bookcase, Filled
     itemPrice = 15000,
-    itemDate = "2022-07-23",
+    itemDate = "2023-08-18",
   },
   [171829] = { -- Laboratory Instruments
     itemPrice = 5000,
@@ -885,7 +893,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [156656] = { -- Pedestal, Dark Stone
     itemPrice = 4000,
-    itemDate = "2022-07-23",
+    itemDate = "2023-08-18",
   },
   [156655] = { -- Alinor Shrine, Phynaster
     itemPrice = 50000,
@@ -1017,7 +1025,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [145482] = { -- Wheelbarrow, Bones
     itemPrice = 1000,
-    itemDate = "2022-07-23",
+    itemDate = "2023-08-18",
   },
   [145481] = { -- Corpse, Burned Sprawled
     itemPrice = 2500,
@@ -1141,15 +1149,15 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [134838] = { -- Necromancer's Spire, Alcove
     itemPrice = 75000,
-    itemDate = "2022-07-23",
+    itemDate = "2023-08-18",
   },
   [134837] = { -- Necromancer's Spire, Narrow
     itemPrice = 50000,
-    itemDate = "2022-07-23",
+    itemDate = "2023-08-18",
   },
   [134836] = { -- Necromancer's Brazier, Flame
     itemPrice = 10000,
-    itemDate = "2022-07-23",
+    itemDate = "2023-08-18",
   },
   [134835] = { -- Orcish Burial Urn, Exhumed
     itemPrice = 20000,
