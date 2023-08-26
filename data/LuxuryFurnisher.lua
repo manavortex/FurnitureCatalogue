@@ -7,6 +7,10 @@ FurC.LuxuryFurnisher[ver.BASED] = {}
 
 -- 26 Necrom
 FurC.LuxuryFurnisher[ver.NECROM] = {
+  [196210] = { -- Necrom Coffin",
+    itemPrice = 17000,
+    itemDate = "2023-08-25",
+  },
   [196209] = { -- Sarcophagus, Stone Lid"
     itemPrice = 4500,
     itemDate = "2023-08-18",
@@ -249,7 +253,7 @@ FurC.LuxuryFurnisher[ver.TIDES] = {
   },
   [187788] = { -- Skull Candles, Triple
     itemPrice = 10000,
-    itemDate = "2022-07-30",
+    itemDate = "2023-08-25",
   },
   [187787] = { -- Mausoleum Pillar, Tall
     itemPrice = 10000,
@@ -757,7 +761,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [171831] = { --Mad Architect's Medallion
     itemPrice = 2500,
-    itemDate = "2022-07-30",
+    itemDate = "2023-08-25",
   },
   [171830] = { -- Mausoleum Bookcase, Filled
     itemPrice = 15000,
@@ -889,7 +893,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [156657] = { -- Azure Plasm Cage, Hanging
     itemPrice = 100000,
-    itemDate = "2022-07-30",
+    itemDate = "2023-08-25",
   },
   [156656] = { -- Pedestal, Dark Stone
     itemPrice = 4000,
@@ -1021,7 +1025,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [145483] = { -- Column, Ossuary
     itemPrice = 20000,
-    itemDate = "2022-07-30",
+    itemDate = "2023-08-25",
   },
   [145482] = { -- Wheelbarrow, Bones
     itemPrice = 1000,
@@ -1137,15 +1141,15 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [134841] = { -- Necromancer's Spire, Huge
     itemPrice = 100000,
-    itemDate = "2022-07-30",
+    itemDate = "2023-08-25",
   },
   [134840] = { -- Necromancer's Spire, Compact
     itemPrice = 25000,
-    itemDate = "2022-07-30",
+    itemDate = "2023-08-25",
   },
   [134839] = { -- Necromancer's Brazier, Cold Flame
     itemPrice = 10000,
-    itemDate = "2022-07-30",
+    itemDate = "2023-08-25",
   },
   [134838] = { -- Necromancer's Spire, Alcove
     itemPrice = 75000,
