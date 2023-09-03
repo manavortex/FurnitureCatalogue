@@ -88,7 +88,6 @@ FurC.Rumours[ver.NECROM] = {
   [196214] = rumourSource, -- Order of the Hour Rug, Winged",
   [196213] = rumourSource, -- Door, Dark Brotherhood Sanctuary",
   [196212] = rumourSource, -- Apocrypha Statue, Mouth of Mora",
-  [196211] = rumourSource, -- Apocrypha Statue, Lurker",
   [194539] = rumourSource, -- Rough Hammock, Pole-Strung",
   [194538] = rumourSource, -- Cargo Netting, Large",
   [194536] = rumourSource, -- Dock Buoys, Mounted",

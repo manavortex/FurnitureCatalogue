@@ -7,6 +7,10 @@ FurC.LuxuryFurnisher[ver.BASED] = {}
 
 -- 26 Necrom
 FurC.LuxuryFurnisher[ver.NECROM] = {
+  [196211] = { -- Apocrypha Statue, Lurker",
+    itemPrice = 22500,
+    itemDate = "2023-09-01",
+  },
   [196210] = { -- Necrom Coffin",
     itemPrice = 17000,
     itemDate = "2023-08-25",
@@ -249,7 +253,7 @@ FurC.LuxuryFurnisher[ver.TIDES] = {
   },
   [187789] = { -- Daedric Statue, Mephala
     itemPrice = 25000,
-    itemDate = "2022-08-06",
+    itemDate = "2023-09-01",
   },
   [187788] = { -- Skull Candles, Triple
     itemPrice = 10000,
@@ -757,7 +761,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [171832] = { -- Dark Elf Statue, St. Olms
     itemPrice = 35000,
-    itemDate = "2022-08-06",
+    itemDate = "2023-09-01",
   },
   [171831] = { --Mad Architect's Medallion
     itemPrice = 2500,
@@ -881,6 +885,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [159447] = { -- Imperial Statue, Legion Champion
     itemPrice = 20000,
+    itemDate = "2023-09-01",
   },
   itemDate = "2022-08-06",
   [156668] = { -- Skeletal Remains, Slumped Over
@@ -1021,7 +1026,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [145484] = { -- Dark Elf Statue, Ordinator
     itemPrice = 20000,
-    itemDate = "2022-08-06",
+    itemDate = "2023-09-01",
   },
   [145483] = { -- Column, Ossuary
     itemPrice = 20000,
@@ -1133,11 +1138,11 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [134843] = { -- Ra Gada Statue, Battlemage
     itemPrice = 25000,
-    itemDate = "2022-08-06",
+    itemDate = "2023-09-01",
   },
   [134842] = { -- Ra Gada Statue, Blademaster
     itemPrice = 25000,
-    itemDate = "2022-08-06",
+    itemDate = "2023-09-01",
   },
   [134841] = { -- Necromancer's Spire, Huge
     itemPrice = 100000,
@@ -1513,7 +1518,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [120812] = { -- Statue, Light
     itemPrice = 25000,
-    itemDate = "2022-08-06",
+    itemDate = "2023-09-01",
   },
   [120811] = { -- Statue, Justice
     itemPrice = 25000,
@@ -1521,11 +1526,11 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [120810] = { -- Statue, Faith
     itemPrice = 25000,
-    itemDate = "2022-08-06",
+    itemDate = "2023-09-01",
   },
   [120809] = { -- Statue Base, Square
     itemPrice = 2500,
-    itemDate = "2022-08-06",
+    itemDate = "2023-09-01",
   },
   [120808] = { -- Statue Base, Circular
     itemPrice = 2500,
