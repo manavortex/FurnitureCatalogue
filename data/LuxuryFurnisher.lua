@@ -7,6 +7,10 @@ FurC.LuxuryFurnisher[ver.BASED] = {}
 
 -- 26 Necrom
 FurC.LuxuryFurnisher[ver.NECROM] = {
+  [196214] = { -- Order of the Hour Rug, Winged",
+    itemPrice = 15000,
+    itemDate = "2023-09-22",
+  },
   [196213] = { -- Door, Dark Brotherhood Sanctuary",
     itemPrice = 50000,
     itemDate = "2023-09-15",
@@ -245,7 +249,7 @@ FurC.LuxuryFurnisher[ver.DEPTHS] = {
   },
   [187792] = { -- Imperial Archway, Cemetery
     itemPrice = 15000,
-    itemDate = "2022-08-27",
+    itemDate = "2023-09-22",
   },
 }
 
@@ -757,7 +761,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [175761] = { -- Imperial Curtains, Heavy
     itemPrice = 12000,
-    itemDate = "2022-08-27",
+    itemDate = "2023-09-22",
   },
   [175760] = { -- Banner, Anvil
     itemPrice = 4000,
@@ -877,7 +881,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [159451] = { -- Hourglass Banner, Akatosh
     itemPrice = 12000,
-    itemDate = "2022-08-27",
+    itemDate = "2023-09-22",
   },
   [159450] = { -- Hourglass Pedestal, Square
     itemPrice = 7500,
@@ -1022,7 +1026,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [145487] = { -- Banner, Order of the Hour
     itemPrice = 12000,
-    itemDate = "2022-08-27",
+    itemDate = "2023-09-22",
   },
   [145486] = { -- Door, Sweet Mother
     itemPrice = 35000,
@@ -1134,7 +1138,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [134846] = { -- Brotherhood Carpet, Large
     itemPrice = 15000,
-    itemDate = "2022-08-27",
+    itemDate = "2023-09-22",
   },
   [134845] = { -- Brotherhood  Tapestry, Small
     itemPrice = 5000,
@@ -1370,7 +1374,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [121270] = { -- Brotherhood Banner, Large
     itemPrice = 25000,
-    itemDate = "2022-08-27",
+    itemDate = "2023-09-22",
   },
   [121269] = { -- Ocean Antler Coral
     itemPrice = 7500,
@@ -1430,11 +1434,11 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [120839] = { -- Brotherhood Ledger, Stand
     itemPrice = 4000,
-    itemDate = "2022-08-27",
+    itemDate = "2023-09-22",
   },
   [120838] = { -- Brotherhood Plaque, Wolf
     itemPrice = 25000,
-    itemDate = "2022-08-27",
+    itemDate = "2023-09-22",
   },
   [120837] = { -- Brotherhood Window, Stained Glass
     itemPrice = 100000,
@@ -1442,7 +1446,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [120836] = { -- Brotherhood Candelabra, Floor
     itemPrice = 8000,
-    itemDate = "2022-08-27",
+    itemDate = "2023-09-22",
   },
   [120835] = { -- Brotherhood Candelabra, Table
     itemPrice = 2500,
