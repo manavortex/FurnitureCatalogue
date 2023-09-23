@@ -85,7 +85,6 @@ FurC.Rumours[ver.NECROM] = {
   [197704] = rumourSource, -- Book of Whispers",
   [197625] = rumourSource, -- Music Box, Oath of the Keepers",
   [197623] = rumourSource, -- Statue, Hermaeus Mora",
-  [196214] = rumourSource, -- Order of the Hour Rug, Winged",
   [194539] = rumourSource, -- Rough Hammock, Pole-Strung",
   [194538] = rumourSource, -- Cargo Netting, Large",
   [194536] = rumourSource, -- Dock Buoys, Mounted",
