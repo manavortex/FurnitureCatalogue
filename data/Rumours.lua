@@ -52,7 +52,6 @@ FurC.Rumours[ver.BASED] = {
   [198051] = rumourSource, -- Dwarven Puzzle Cube, Mage Ascendant
   [198050] = rumourSource, -- Trapdoor, Dragonguard
   [198049] = rumourSource, -- Elsweyr Door, Lunar Reverence
-  [198048] = rumourSource, -- Markarth Barrier, Low
   [198047] = rumourSource, -- Coldharbour Column, Molag Bal Rotating
   [198046] = rumourSource, -- Nedic Banner, Forest
   [198045] = rumourSource, -- Nedic Banner, Ancestral
