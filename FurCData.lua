@@ -155,7 +155,13 @@ local function parseBlueprint(blueprintLink) -- saves to DB, returns recipeArray
   recipeArray.blueprint = recipeArray.blueprint or getItemId(blueprintLink)
 
   if IsItemLinkRecipeKnown(blueprintLink) then
-    recipeArray.characters[FurC.CharacterName] = true
+    local recipeChars = recipeArray.characters
+    if nil ~= recipeChars then
+      recipeChars[FurC.CharacterName] = true
+    else
+      recipeArray.characters = {}
+      recipeArray.characters[FurC.CharacterName] = true
+    end
   end
   addDatabaseEntry(recipeKey, recipeArray)
   return recipeArray
