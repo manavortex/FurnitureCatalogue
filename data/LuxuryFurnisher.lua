@@ -1028,10 +1028,6 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
     itemPrice = 22000,
     itemDate = "2023-09-29",
   },
-  [147647] = { -- Dwarven Centurion Blade, Detached
-    itemPrice = 3500,
-    itemDate = "2023-10-06",
-  },
   [145487] = { -- Banner, Order of the Hour
     itemPrice = 12000,
     itemDate = "2023-09-22",
@@ -1947,7 +1943,12 @@ FurC.LuxuryFurnisher[ver.SCALES] = {
 FurC.LuxuryFurnisher[ver.KITTY] = {}
 
 -- 10 Wrathstone
-FurC.LuxuryFurnisher[ver.WOTL] = {}
+FurC.LuxuryFurnisher[ver.WOTL] = {
+  [147647] = { -- Dwarven Centurion Blade, Detached
+    itemPrice = 3500,
+    itemDate = "2023-10-06",
+  },
+}
 
 -- 8 Murkmire
 FurC.LuxuryFurnisher[ver.SLAVES] = {
