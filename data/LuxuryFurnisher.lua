@@ -3,7 +3,12 @@ FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 local ver = FurC.Constants.Versioning
 
 -- 27 Base Game Patch
-FurC.LuxuryFurnisher[ver.BASED] = {}
+FurC.LuxuryFurnisher[ver.BASED] = {
+  [198051] = { -- Dwarven Puzzle Cube, Mage Ascendant
+    itemPrice = 20000,
+    itemDate = "2023-10-06",
+  },
+}
 
 -- 26 Necrom
 FurC.LuxuryFurnisher[ver.NECROM] = {
@@ -245,7 +250,7 @@ FurC.LuxuryFurnisher[ver.DEPTHS] = {
   },
   [187794] = { -- Dwarven Crystal Brazier, Amber
     itemPrice = 40000,
-    itemDate = "2022-09-10",
+    itemDate = "2023-10-06",
   },
   [187793] = { -- Blackreach Gate, Large
     itemPrice = 30000,
@@ -493,8 +498,8 @@ FurC.LuxuryFurnisher[ver.DEADL] = {
   },
   [153689] = { -- Fern, Cyan
     itemPrice = 2500,
+    itemDate = "2023-01-07",
   },
-  itemDate = "2023-01-07",
   [151954] = { -- Reachmen Banner, Bull
     itemPrice = 4000,
     itemDate = "2022-12-31",
@@ -757,7 +762,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [175763] = { -- Dwarven Urn, Masks
     itemPrice = 8000,
-    itemDate = "2022-09-10",
+    itemDate = "2023-10-06",
   },
   [175762] = { -- Dwarven Hatch, Sealed
     itemPrice = 12000,
@@ -877,7 +882,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [159455] = { -- Dwarven Spider Legs, Inoperative
     itemPrice = 3500,
-    itemDate = "2022-09-10",
+    itemDate = "2023-10-06",
   },
   [159454] = { -- Dwarven Crucible, Heavy
     itemPrice = 4000,
@@ -903,7 +908,6 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
     itemPrice = 20000,
     itemDate = "2023-09-01",
   },
-  itemDate = "2022-08-06",
   [156668] = { -- Skeletal Remains, Slumped Over
     itemPrice = 10000,
     itemDate = "2023-08-04",
@@ -1026,7 +1030,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [147647] = { -- Dwarven Centurion Blade, Detached
     itemPrice = 3500,
-    itemDate = "2022-09-10",
+    itemDate = "2023-10-06",
   },
   [145487] = { -- Banner, Order of the Hour
     itemPrice = 12000,
@@ -1134,7 +1138,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [139093] = { -- Dwarven Centurion Hammer, Detached
     itemPrice = 3000,
-    itemDate = "2022-09-10",
+    itemDate = "2023-10-06",
   },
   [139092] = { -- Dwarven Engine, Fused
     itemPrice = 24000,
@@ -1350,11 +1354,11 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [126563] = { -- Dwarven Orrery, Reference
     itemPrice = 25000,
-    itemDate = "2022-09-10",
+    itemDate = "2023-10-06",
   },
   [126562] = { -- Dwarven Crystal Mechanism
     itemPrice = 50000,
-    itemDate = "2022-09-10",
+    itemDate = "2023-10-06",
   },
   [126561] = { -- Dwarven Pillar, Forged
     itemPrice = 10000,
@@ -1366,7 +1370,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [126559] = { -- Dwarven Schematics, technical
     itemPrice = 8000,
-    itemDate = "2022-09-10",
+    itemDate = "2023-10-06",
   },
   [121273] = { -- Soul Gem, Grand
     itemPrice = 5000,
