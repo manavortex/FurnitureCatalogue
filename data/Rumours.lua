@@ -49,7 +49,6 @@ FurC.Rumours[ver.BASED] = {
   [198054] = rumourSource, -- Necrom Funerary Pyre, Logs
   [198053] = rumourSource, -- Dais, Bloodmage Crystal
   [198052] = rumourSource, -- Dwarven Lamp, Reachfolk Adorned
-  [198051] = rumourSource, -- Dwarven Puzzle Cube, Mage Ascendant
   [198050] = rumourSource, -- Trapdoor, Dragonguard
   [198049] = rumourSource, -- Elsweyr Door, Lunar Reverence
   [198047] = rumourSource, -- Coldharbour Column, Molag Bal Rotating
