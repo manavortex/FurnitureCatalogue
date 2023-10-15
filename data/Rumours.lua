@@ -51,7 +51,6 @@ FurC.Rumours[ver.BASED] = {
   [198052] = rumourSource, -- Dwarven Lamp, Reachfolk Adorned
   [198050] = rumourSource, -- Trapdoor, Dragonguard
   [198049] = rumourSource, -- Elsweyr Door, Lunar Reverence
-  [198047] = rumourSource, -- Coldharbour Column, Molag Bal Rotating
   [198046] = rumourSource, -- Nedic Banner, Forest
   [198045] = rumourSource, -- Nedic Banner, Ancestral
   [198044] = rumourSource, -- Mushroom, Gray Spike Cluster

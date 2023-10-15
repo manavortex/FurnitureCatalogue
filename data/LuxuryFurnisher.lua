@@ -4,6 +4,10 @@ local ver = FurC.Constants.Versioning
 
 -- 27 Base Game Patch
 FurC.LuxuryFurnisher[ver.BASED] = {
+  [198047] = { -- Coldharbour Column, Molag Bal Rotating
+    itemPrice = 35000,
+    itemDate = "2023-10-13",
+  },
   [198051] = { -- Dwarven Puzzle Cube, Mage Ascendant
     itemPrice = 20000,
     itemDate = "2023-10-06",
@@ -246,7 +250,7 @@ FurC.LuxuryFurnisher[ver.DEPTHS] = {
   },
   [187795] = { -- Deadlands Cage, Short
     itemPrice = 8000,
-    itemDate = "2022-09-17",
+    itemDate = "2023-10-13",
   },
   [187794] = { -- Dwarven Crystal Brazier, Amber
     itemPrice = 40000,
@@ -758,7 +762,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [175764] = { -- Egg, Gruesome
     itemPrice = 3000,
-    itemDate = "2022-09-17",
+    itemDate = "2023-10-13",
   },
   [175763] = { -- Dwarven Urn, Masks
     itemPrice = 8000,
@@ -878,7 +882,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [165998] = { -- Tapestry of a Failed Incarnate, The Fool
     itemPrice = 20000,
-    itemDate = "2022-09-17",
+    itemDate = "2023-10-13",
   },
   [159455] = { -- Dwarven Spider Legs, Inoperative
     itemPrice = 3500,
@@ -990,7 +994,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [151915] = { -- Daedric Key, Coldharbour
     itemPrice = 5000,
-    itemDate = "2022-09-17",
+    itemDate = "2023-10-13",
   },
   [151858] = { -- Elsweyr Altar, Dark Moons
     itemPrice = 20000,
@@ -1130,7 +1134,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [139094] = { -- Daedric Altar, Periyte
     itemPrice = 40000,
-    itemDate = "2022-09-17",
+    itemDate = "2023-10-13",
   },
   [139093] = { -- Dwarven Centurion Hammer, Detached
     itemPrice = 3000,
@@ -1332,17 +1336,17 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
     itemPrice = 8000,
     itemDate = "2022-09-24",
   },
-  [126567] = { -- Daedric Sarcophagus, Sealed
-    itemPrice = 10000,
-    itemDate = "2022-09-17",
-  },
-  [126566] = { -- Daedric Brazier, Ritual
+  [126567] = { -- Daedric Brazier, Ritual
     itemPrice = 25000,
-    itemDate = "2022-09-17",
+    itemDate = "2023-10-13",
+  },
+  [126566] = { -- Daedric Sarcophagus, Sealed
+    itemPrice = 10000,
+    itemDate = "2023-10-13",
   },
   [126565] = { -- Daedric Platform, Sarcophagus
     itemPrice = 8000,
-    itemDate = "2022-09-17",
+    itemDate = "2023-10-13",
   },
   [126564] = { -- Dwarven Clock, Deactivated
     itemPrice = 15000,
