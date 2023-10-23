@@ -4,6 +4,10 @@ local ver = FurC.Constants.Versioning
 
 -- 27 Base Game Patch
 FurC.LuxuryFurnisher[ver.BASED] = {
+  [198096] = { -- Daedric Sarcophagus, Metal
+    itemPrice = 30000,
+    itemDate = "2023-10-20",
+  },
   [198047] = { -- Coldharbour Column, Molag Bal Rotating
     itemPrice = 35000,
     itemDate = "2023-10-13",
@@ -246,7 +250,7 @@ FurC.LuxuryFurnisher[ver.DEPTHS] = {
   },
   [187796] = { -- Deadlands Brazier, Four-Flame
     itemPrice = 35000,
-    itemDate = "2022-09-24",
+    itemDate = "2023-10-20",
   },
   [187795] = { -- Deadlands Cage, Short
     itemPrice = 8000,
@@ -758,7 +762,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [175765] = { -- Tapestry of a Failed Incarnate, The Brute
     itemPrice = 20000,
-    itemDate = "2022-09-24",
+    itemDate = "2023-10-20",
   },
   [175764] = { -- Egg, Gruesome
     itemPrice = 3000,
@@ -878,7 +882,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [165999] = { -- Tapestry of a Failed Incarnate, The Warseeker
     itemPrice = 20000,
-    itemDate = "2022-09-24",
+    itemDate = "2023-10-20",
   },
   [165998] = { -- Tapestry of a Failed Incarnate, The Fool
     itemPrice = 20000,
@@ -990,7 +994,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [151944] = { -- Daedric Sconce, Coldharbour
     itemPrice = 10000,
-    itemDate = "2022-09-24",
+    itemDate = "2023-10-20",
   },
   [151915] = { -- Daedric Key, Coldharbour
     itemPrice = 5000,
@@ -1126,11 +1130,11 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [139096] = { -- Daedric Urn, Sealed
     itemPrice = 1000,
-    itemDate = "2022-09-24",
+    itemDate = "2023-10-20",
   },
   [139095] = { -- Daedric Drinking Bowl, Ritual
     itemPrice = 650,
-    itemDate = "2022-09-24",
+    itemDate = "2023-10-20",
   },
   [139094] = { -- Daedric Altar, Periyte
     itemPrice = 40000,
@@ -1326,15 +1330,15 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [126571] = { -- Daedric Chandelier, Spiked
     itemPrice = 8000,
-    itemDate = "2022-09-24",
+    itemDate = "2023-10-20",
   },
   [126570] = { -- Daedric Throne, Skulls
     itemPrice = 25000,
-    itemDate = "2022-09-24",
+    itemDate = "2023-10-20",
   },
   [126569] = { -- Daedric Chest, Sealed
     itemPrice = 8000,
-    itemDate = "2022-09-24",
+    itemDate = "2023-10-20",
   },
   [126567] = { -- Daedric Brazier, Ritual
     itemPrice = 25000,
