@@ -4,6 +4,10 @@ local ver = FurC.Constants.Versioning
 
 -- 27 Base Game Patch
 FurC.LuxuryFurnisher[ver.BASED] = {
+  [198057] = { -- Reach Totem, Twig Raven
+    itemPrice = 3000,
+    itemDate = "2023-10-27",
+  },
   [198096] = { -- Daedric Sarcophagus, Metal
     itemPrice = 30000,
     itemDate = "2023-10-20",
@@ -230,7 +234,7 @@ FurC.LuxuryFurnisher[ver.DRUID] = {
 FurC.LuxuryFurnisher[ver.DEPTHS] = {
   [189481] = { -- Bone Sculpture, Circular
     itemPrice = 3000,
-    itemDate = "2022-10-29",
+    itemDate = "2023-10-27",
   },
   [189478] = { --Elsweyr Moon Reflection Tower, Base
     itemPrice = 30000,
@@ -726,7 +730,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [181542] = { -- Crow Totem, Gruesome
     itemPrice = 4000,
-    itemDate = "2022-10-29",
+    itemDate = "2023-10-27",
   },
   [181536] = { -- Blue Crystal Cluster, Medium
     itemPrice = 10000,
@@ -846,7 +850,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [167349] = { -- Warning Totem, Skulls
     itemPrice = 2500,
-    itemDate = "2022-10-29",
+    itemDate = "2023-10-27",
   },
   [166012] = { -- Cactus, Tall Lunar Fan
     itemPrice = 9000,
@@ -970,7 +974,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [153693] = { -- Tree, Treehenge Green Lady
     itemPrice = 50000,
-    itemDate = "2022-10-29",
+    itemDate = "2023-10-27",
   },
   [151949] = { -- Hlaalu Path Marker, Almsivi
     itemPrice = 15000,
@@ -1110,7 +1114,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [141760] = { -- Witch's Tree, Charred
     itemPrice = 5000,
-    itemDate = "2022-10-29",
+    itemDate = "2023-10-27",
   },
   [139101] = { -- Blue Crystal Cluster, Large
     itemPrice = 20000,
@@ -1250,15 +1254,15 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [132155] = { -- Witch's Torch, Wretched
     itemPrice = 5000,
-    itemDate = "2022-10-29",
+    itemDate = "2023-10-27",
   },
   [132154] = { -- Witch's Totem, Bog
     itemPrice = 50000,
-    itemDate = "2022-10-29",
+    itemDate = "2023-10-27",
   },
   [132153] = { -- Witch's Tree, Captive
     itemPrice = 35000,
-    itemDate = "2022-10-29",
+    itemDate = "2023-10-27",
   },
   [132143] = { -- Reach Sapling, Briarheart
     itemPrice = 50000,
