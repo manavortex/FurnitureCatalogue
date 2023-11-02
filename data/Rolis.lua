@@ -6,6 +6,55 @@ FurC.FaustinaRecipes = FurC.FaustinaRecipes or {}
 
 local ver = FurC.Constants.Versioning
 
+--[[
+  Erfasser Ool:
+
+  [203465] = getCrownPrice(99),		   -- Der Aufstieg von Erzmagister Mavon^N 1k
+    [203420] = getCrownPrice(99),		   -- Ein Leitfaden für Beschwörer: das Nymon^N 1k
+
+  Erfasserin Tezurs:
+
+      [203157] = {		--apocryphischer Obelisk^m
+      itemPrice   = 7500,
+      achievement = 3769,		-- Erste Prasserei
+    },
+    [203154] = {		--choraler Altar^m
+      itemPrice   = 7500,
+      achievement = 3805,		-- Strebsames Studium
+    },
+    [203159] = {		--daedrischer Bogen, Glasit^m
+      itemPrice   = 6500,
+      achievement = 3760,		-- Toller Treffer
+    },
+    [203152] = {		--Fenster aus Apocrypha, Auge^n
+      itemPrice   = 6800,
+      achievement = 0,		-- Dynamischer Zerstörer
+    },
+    [203158] = {		--Pflanze aus Apocrypha, träge Tentakel^f
+      itemPrice   = 20000,
+      achievement = 3798,		-- Angehimmelt im Archiv
+    },
+    [203153] = getCrownPrice(99),		   -- Podest aus Apocrypha^n 5500
+    [203155] = getCrownPrice(99),		   -- Trockengestell aus Apocrypha, Papier^n 1000
+    [203156] = {		--Verzeichnis des Endlosen Archivs, Replik^n
+      itemPrice   = 25000,
+      achievement = 3772,		-- Spießrutenläufer
+    },
+    [203160] = {		--Zugang zum Endlosen Archiv, Replik^m
+      itemPrice   = 6000,
+      achievement = 3802,		-- Ein fester Schild
+    },
+
+--]]
+
+-- 28 Secrets of the Telvanni
+FurC.FaustinaRecipes[ver.ENDLESS] = {
+  [203556] = 1500, -- Grandmaster Jewelry Station
+  [203555] = 1500, -- Grandmaster Blacksmithing Station
+  [203553] = 1500, -- Grandmaster Clothing Station
+  [203554] = 1500, -- Grandmaster Woodworking Station
+}
+
 -- 18 Flames of Ambition
 FurC.RolisRecipes[ver.FLAMES] = {
   [171803] = 125, -- Blueprint: Solitude Well, Noble
