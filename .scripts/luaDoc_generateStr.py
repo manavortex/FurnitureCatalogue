@@ -48,10 +48,10 @@ def parse_file(lines: list) -> list:
   """
 
   # local filterDisabled = "disables this filter"
-  RE_PLACEHOLDER = re.compile('^\s*local (?P<KEY>\w+)\s*=\s*(?P<VAL>(\'.+\')|(\".+\"))\s*(--.+)?$')
+  RE_PLACEHOLDER = re.compile(r'^\s*local (?P<KEY>\w+)\s*=\s*(?P<VAL>(\'.+\')|(\".+\"))\s*(--.+)?$')
 
   # SI_FURC_STRING_WASSOLDBY = "Was sold by <<1>> in <<2>> (<<3>>) <<4>>",
-  RE_STRING_PAIR = re.compile('^\s*(?P<KEY>[A-Z][A-Z0-9_]+)\s*=\s*(?P<VAL>.+?)\s*,?(\s*--.+)?\s*$')
+  RE_STRING_PAIR = re.compile(r'^\s*(?P<KEY>[A-Z][A-Z0-9_]+)\s*=\s*(?P<VAL>.+?)\s*,?(\s*--.+)?\s*$')
 
   placeholders = []
   strings = []

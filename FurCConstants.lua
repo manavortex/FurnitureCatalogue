@@ -64,9 +64,10 @@ FurC.Constants.Versioning = {
   SCRIBE = getNextIdFor("VERSIONING"), -- 25 Scribes of Fate
   NECROM = getNextIdFor("VERSIONING"), -- 26 Necrom
   BASED = getNextIdFor("VERSIONING"), -- 27 Base Game Patch
+  ENDLESS = getNextIdFor("VERSIONING"), -- 28 Secrets of the Telvanni
 }
 
-FurC.Constants.Versioning.LATEST = FurC.Constants.Versioning.NECROM
+FurC.Constants.Versioning.LATEST = FurC.Constants.Versioning.ENDLESS
 
 -- Old Constants as a fallback for other AddOns that use them
 -- ToDo: required functionality will be moved to an API in the future
@@ -206,6 +207,9 @@ FURC_NECROM = FurC.Constants.Versioning.NECROM -- 26 Necrom
 
 -- @warning deprecated
 FURC_BASED = FurC.Constants.Versioning.BASED -- 27 Base Game Patch
+
+-- @warning deprecated
+FURC_ENDLESS = FurC.Constants.Versioning.ENDLESS -- 28 Secrets of the Telvanni
 
 -- @warning deprecated
 FURC_LATEST = FurC.Constants.Versioning.LATEST
