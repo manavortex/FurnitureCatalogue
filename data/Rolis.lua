@@ -48,7 +48,7 @@ local ver = FurC.Constants.Versioning
 --]]
 
 -- 28 Secrets of the Telvanni
-FurC.FaustinaRecipes[ver.ENDLESS] = {
+FurC.Faustina[ver.ENDLESS] = {
   [203556] = 1500, -- Grandmaster Jewelry Station
   [203555] = 1500, -- Grandmaster Blacksmithing Station
   [203553] = 1500, -- Grandmaster Clothing Station

@@ -4,6 +4,10 @@ local ver = FurC.Constants.Versioning
 
 -- 27 Base Game Patch
 FurC.LuxuryFurnisher[ver.BASED] = {
+  [198058] = { -- Reach Totem, Twig Symbol
+    itemPrice = 2500,
+    itemDate = "2023-11-04",
+  },  
   [198057] = { -- Reach Totem, Twig Raven
     itemPrice = 3000,
     itemDate = "2023-10-27",
