@@ -41,7 +41,6 @@ FurC.Rumours[ver.BASED] = {
   [198105] = rumourSource, -- Tree, Large Ancient Dead Oak
   [198104] = rumourSource, -- Tree, Old Dead Oak
   [198103] = rumourSource, -- Tree, Ancient Dead Oak
-  [198058] = rumourSource, -- Reach Totem, Twig Symbol
   [198056] = rumourSource, -- Necrom Urn, Blue Elegant
   [198055] = rumourSource, -- Necrom Funerary Offering, Mushrooms
   [198054] = rumourSource, -- Necrom Funerary Pyre, Logs

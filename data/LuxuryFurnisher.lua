@@ -4,6 +4,10 @@ local ver = FurC.Constants.Versioning
 
 -- 27 Base Game Patch
 FurC.LuxuryFurnisher[ver.BASED] = {
+  [198058] = { -- Reach Totem, Twig Symbol
+    itemPrice = 2500,
+    itemDate = "2023-11-03",
+  },
   [198057] = { -- Reach Totem, Twig Raven
     itemPrice = 3000,
     itemDate = "2023-10-27",
@@ -210,7 +214,7 @@ FurC.LuxuryFurnisher[ver.DRUID] = {
   },
   [189482] = { -- Bone Sconce, Arm
     itemPrice = 4000,
-    itemDate = "2022-11-05",
+    itemDate = "2023-11-03",
   },
   [189480] = { -- Bloodmage Crystal, Oblong
     itemPrice = 4000,
@@ -726,7 +730,7 @@ FurC.LuxuryFurnisher[ver.DEADL] = {
 FurC.LuxuryFurnisher[ver.BLACKW] = {
   [181543] = { -- Harpy Totem, Feathered
     itemPrice = 7000,
-    itemDate = "2022-11-05",
+    itemDate = "2023-11-03",
   },
   [181542] = { -- Crow Totem, Gruesome
     itemPrice = 4000,
@@ -846,7 +850,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [167350] = { -- Minecart, Skeletal Remains
     itemPrice = 8000,
-    itemDate = "2022-11-05",
+    itemDate = "2023-11-03",
   },
   [167349] = { -- Warning Totem, Skulls
     itemPrice = 2500,
@@ -970,7 +974,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [153694] = { -- Tree, Murkmire Ossuary
     itemPrice = 50000,
-    itemDate = "2022-11-05",
+    itemDate = "2023-11-03",
   },
   [153693] = { -- Tree, Treehenge Green Lady
     itemPrice = 50000,
@@ -1110,7 +1114,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [141761] = { -- Reach Sapling, Contorted Briarheart
     itemPrice = 35000,
-    itemDate = "2022-11-05",
+    itemDate = "2023-11-03",
   },
   [141760] = { -- Witch's Tree, Charred
     itemPrice = 5000,
@@ -1242,15 +1246,15 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [132158] = { -- Witch's Remains, Offering
     itemPrice = 50000,
-    itemDate = "2022-11-05",
+    itemDate = "2023-11-03",
   },
   [132157] = { -- Witch's Remains, Sacrificial
     itemPrice = 50000,
-    itemDate = "2022-11-05",
+    itemDate = "2023-11-03",
   },
   [132156] = { -- Briarheart Tree, Replica
     itemPrice = 100000,
-    itemDate = "2022-11-05",
+    itemDate = "2023-11-03",
   },
   [132155] = { -- Witch's Torch, Wretched
     itemPrice = 5000,
@@ -1266,7 +1270,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [132143] = { -- Reach Sapling, Briarheart
     itemPrice = 50000,
-    itemDate = "2022-11-05",
+    itemDate = "2023-11-03",
   },
   [126612] = { -- Vvardenfell Anemone, Strong
     itemPrice = 25000,
