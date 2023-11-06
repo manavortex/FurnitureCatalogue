@@ -1217,6 +1217,105 @@ local bookList = {
 
 local miscVendor = merge(merge(merge(structures, boxes), laundry), fishing_trip)
 
+
+-- 28 Secrets of the Telvanni
+FurC.AchievementVendors[ver.ENDLESS] = {
+  ["Necrom, Final Rest Furnishings"] = {
+
+    ["Murkholg"] = {
+      [198463] = { -- Apocrypha Boulder
+        itemPrice = 500,
+      },
+      [198470] = { -- Apocrypha Coral, Teal Tube
+        itemPrice = 450,
+      },
+      [198464] = { -- Apocrypha Plant, Chromatic Succulent
+        itemPrice = 2000,
+      },
+      [198465] = { -- Apocrypha Plant, Feather Fern Cluster
+        itemPrice = 150,
+      },
+      [198466] = { -- Apocrypha Plant, Ink-Grass
+        itemPrice = 150,
+      },
+      [198467] = { -- Apocrypha Tree, Blue Spore
+        itemPrice = 24000,
+      },
+      [198469] = { -- Apocrypha Tree, Branched Green Spore
+        itemPrice = 4000,
+      },
+      [198468] = { -- Apocrypha Tree, Teal Spiral
+        itemPrice = 7000,
+      },
+      [198476] = { -- Bridge, Reclaimed Wood
+        itemPrice = 1000,
+      },
+      [198471] = { -- Mushroom, Russet Chanterelle Pair
+        itemPrice = 400,
+      },
+      [198473] = { -- Mushroom, Tall Green Morel Pair
+        itemPrice = 3000,
+      },
+      [198472] = { -- Mushrooms, Gilled Dusk Cluster
+        itemPrice = 500,
+      },
+      [198477] = { -- Platform, Reclaimed Wood Square
+        itemPrice = 300,
+      },
+      [198478] = { -- Platform, Reclaimed Wood Triangle
+        itemPrice = 300,
+      },
+      [198475] = { -- Post, Reclaimed Wood
+        itemPrice = 50,
+      },
+      [198474] = { -- Stairway, Reclaimed Wood
+        itemPrice = 300,
+      },
+    },
+},
+  ["Endless Archive"] = {
+	-- These items are purchased with Archival Fortunes, not gold.
+	["Filer Tezurs"] = {
+	[203155] = {		--Apocrypha Drying Rack, Paper
+		itemPrice   = 1000,
+		achievement = 3765,		-- A Little Help Never Hurt
+	},
+	[203153] = {		--Apocrypha Pedestal
+		itemPrice   = 5500,
+		achievement = 0,		-- Gathering Arms (achievement doesn't seem to exist? bug report submitted to zos)
+	},
+	[203158] = {		--Apocrypha Plant, Languid Tentacles
+		itemPrice   = 20000,
+		achievement = 3798,		-- Archive's Most Adored
+	},
+	[203152] = {		--Apocrypha Window, Eye
+		itemPrice   = 6800,
+		achievement = 0,		-- Dynamic Destroyer (achievement doesn't seem to exist? bug report submitted to zos)
+	},
+	[203157] = {		--Apocryphal Obelisk
+		itemPrice   = 7500,
+		achievement = 3769,		-- First Splurge!
+	},
+	[203154] = {		--Choral Altar
+		itemPrice   = 7500,
+		achievement = 3805,		-- Studying Up
+	},
+	[203159] = {		--Daedric Arch, Glass
+		itemPrice   = 6500,
+		achievement = 3760,		-- Heavy Hitter
+	},
+	[203160] = {		--Endless Archive Access, Replica
+		itemPrice   = 6000,
+		achievement = 3802,		-- A Sturdy Shield
+	},
+	[203156] = {		--Endless Archive Index, Replica
+		itemPrice   = 25000,
+		achievement = 3772,		-- Running the Gauntlet
+	},
+  },	
+ },
+}
+
 -- 26 Necrom
 FurC.AchievementVendors[ver.NECROM] = {
   ["Necrom, Final Rest Furnishings"] = {

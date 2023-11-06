@@ -1,5 +1,32 @@
 local ver = FurC.Constants.Versioning
 
+-- 27 Base Game Patch
+FurC.EventItems[ver.BASED] = {
+  ["Witches' Festival"] = {
+    ["Plunder Skull"] = {
+	  [198390] = true, -- Apocrypha Specimen Jar, Leech
+	  [198389] = true, -- Apocrypha Specimen Jar, Spider
+	  [198388] = true, -- Apocrypha Specimen Jar, Tomeshell Viscera
+	  [198387] = true, -- Apocrypha Specimen Jar, Scorpion
+	  [198386] = true, -- Apocrypha Specimen Jar, Eyes
+	  [198385] = true, -- Apocrypha Specimen Jar, Abyssal Eel
+	  [198384] = true, -- Apocrypha Specimen Jar, Nascent Creatia
+	  [198383] = true, -- Apocrypha Specimen Jar, Centipede
+	  [198382] = true, -- Apocrypha Specimen Jar, Brains
+	  [198381] = true, -- Apocrypha Ink Pestle, Green
+	  [198380] = true, -- Apocrypha Ink Pestle, Black
+	  [198379] = true, -- Apocrypha Inkwell
+	  [198378] = true, -- Apocrypha Ink Jar, Green
+	  [198377] = true, -- Apocrypha Ink Jar, Black
+	  [198376] = true, -- Apocrypha Ink Vat, Small
+	  [198375] = true, -- Apocrypha Ink Vat, Green
+	  [198374] = true, -- Apocrypha Ink Vat, Black
+	  [198373] = true, -- Apocrypha Ink Bottle, Green
+	  [198372] = true, -- Apocrypha Ink Bottle, Black
+    },
+  },
+}
+
 -- 25 Scribes of Fate
 FurC.EventItems[ver.SCRIBE] = {
   ["Anniversary Jubilee"] = {
