@@ -264,6 +264,7 @@ FurC.MiscItemSources[ver.ENDLESS] = {
     [199128] = scrying .. in_necrom, -- Watchful Light",
     [199127] = scrying .. in_necrom, -- Petrified Watcher",
     [199126] = scrying .. in_necrom, -- Forged Black Book",
+    [198576] = scrying .. " in Deadlands", -- Shelf, Black Soul Gems",
     [198572] = scrying .. " in Clockwork City", -- Clockwork Wall Gears",
     [198570] = scrying .. " in Shadowfen", -- Painted Stone Frog",
     [198569] = scrying .. " in Deshaan", -- Dark Elf Altar, Ceremonial",
