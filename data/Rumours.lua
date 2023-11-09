@@ -76,7 +76,6 @@ FurC.Rumours[ver.ENDLESS] = {
   [198648] = rumourSource, -- Druidic Rack, Hide Stretcher",
   [198647] = rumourSource, -- Druidic Drying Rack, Tall",
   [198646] = rumourSource, -- Druidic Drying Rack, Wide",
-  [198576] = rumourSource, -- Shelf, Black Soul Gems",
   [198575] = rumourSource, -- Khajiiti Well",
   [198574] = rumourSource, -- Khajiiti Water Vessel, Large",
   [198573] = rumourSource, -- High Elf Altar, Crystal",
