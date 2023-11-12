@@ -4,6 +4,10 @@ local ver = FurC.Constants.Versioning
 
 -- 27 Base Game Patch
 FurC.LuxuryFurnisher[ver.BASED] = {
+  [198043] = { -- Plants, Gnisis Pitcher Cluster
+    itemPrice = 450,
+    itemDate = "2023-11-10",
+  },
   [198058] = { -- Reach Totem, Twig Symbol
     itemPrice = 2500,
     itemDate = "2023-11-03",
@@ -254,7 +258,7 @@ FurC.LuxuryFurnisher[ver.DEPTHS] = {
   },
   [189473] = { -- Elkhorn Coral, Verdant Sapling
     itemPrice = 800,
-    itemDate = "2022-10-01",
+    itemDate = "2023-11-10",
   },
   [187796] = { -- Deadlands Brazier, Four-Flame
     itemPrice = 35000,
@@ -766,7 +770,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [175766] = { -- Mushroom, Glowing Trumpet
     itemPrice = 1000,
-    itemDate = "2022-10-01",
+    itemDate = "2023-11-10",
   },
   [175765] = { -- Tapestry of a Failed Incarnate, The Brute
     itemPrice = 20000,
@@ -886,7 +890,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [166000] = { -- Flower Patch, Hawkmoth Cabbage
     itemPrice = 4000,
-    itemDate = "2022-10-01",
+    itemDate = "2023-11-10",
   },
   [165999] = { -- Tapestry of a Failed Incarnate, The Warseeker
     itemPrice = 20000,
@@ -998,7 +1002,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [151945] = { -- Plant, Spore Pod
     itemPrice = 450,
-    itemDate = "2022-10-01",
+    itemDate = "2023-11-10",
   },
   [151944] = { -- Daedric Sconce, Coldharbour
     itemPrice = 10000,
@@ -1134,7 +1138,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [139097] = { -- Spiral Skein Glowstalks, Sprouts
     itemPrice = 8000,
-    itemDate = "2022-10-01",
+    itemDate = "2023-11-10",
   },
   [139096] = { -- Daedric Urn, Sealed
     itemPrice = 1000,
@@ -1290,19 +1294,19 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [126587] = { -- Vvardenfell Glowstalk, Sprout
     itemPrice = 2500,
-    itemDate = "2022-10-01",
+    itemDate = "2023-11-10",
   },
   [126586] = { -- Vvardenfell Glowstalk, Young
     itemPrice = 5000,
-    itemDate = "2022-10-01",
+    itemDate = "2023-11-10",
   },
   [126585] = { -- Vvardenfell Glowstalk, Strong
     itemPrice = 10000,
-    itemDate = "2022-10-01",
+    itemDate = "2023-11-10",
   },
   [126580] = { -- Vvardenfell Glowstalk, Towering
     itemPrice = 15000,
-    itemDate = "2022-10-01",
+    itemDate = "2023-11-10",
   },
   [126579] = { -- Velothi Altar, Sacrificial
     itemPrice = 10834,
