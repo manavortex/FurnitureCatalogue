@@ -82,7 +82,6 @@ FurC.Rumours[ver.ENDLESS] = {
   [198571] = rumourSource, -- Shrine to Dibella",
   [198568] = rumourSource, -- Stone Relief, Yokudan",
   [198566] = rumourSource, -- Khajiiti Arch, Rising",
-  [198325] = rumourSource, -- Vision of Mora",
 }
 
 -- 27 Base Game Patch
