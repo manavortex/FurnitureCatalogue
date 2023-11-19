@@ -110,7 +110,6 @@ FurC.Rumours[ver.BASED] = {
   [198049] = rumourSource, -- Elsweyr Door, Lunar Reverence
   [198046] = rumourSource, -- Nedic Banner, Forest
   [198045] = rumourSource, -- Nedic Banner, Ancestral
-  [198044] = rumourSource, -- Mushroom, Gray Spike Cluster
   [198042] = rumourSource, -- Glass Crystal, Opaque Cluster
   [198005] = rumourSource, -- Hedge, Dense Low Angled Wall
   [198004] = rumourSource, -- Hedge, Dense Low Extensive Wall

@@ -4,6 +4,10 @@ local ver = FurC.Constants.Versioning
 
 -- 27 Base Game Patch
 FurC.LuxuryFurnisher[ver.BASED] = {
+  [198044] = { -- Mushroom, Gray Spike Cluster
+    itemPrice = 1500,
+    itemDate = "2023-11-17",
+  },
   [198043] = { -- Plants, Gnisis Pitcher Cluster
     itemPrice = 450,
     itemDate = "2023-11-10",
@@ -254,7 +258,7 @@ FurC.LuxuryFurnisher[ver.DEPTHS] = {
   },
   [189474] = { -- Vvardenfell Anemone, Basket
     itemPrice = 3500,
-    itemDate = "2022-10-08",
+    itemDate = "2023-11-17",
   },
   [189473] = { -- Elkhorn Coral, Verdant Sapling
     itemPrice = 800,
@@ -766,7 +770,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [175767] = { -- Flowers, Reed Mace
     itemPrice = 3000,
-    itemDate = "2022-10-08",
+    itemDate = "2023-11-17",
   },
   [175766] = { -- Mushroom, Glowing Trumpet
     itemPrice = 1000,
@@ -886,7 +890,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [166001] = { -- Plant, Murkmire Snakevine
     itemPrice = 7000,
-    itemDate = "2022-10-08",
+    itemDate = "2023-11-17",
   },
   [166000] = { -- Flower Patch, Hawkmoth Cabbage
     itemPrice = 4000,
@@ -998,7 +1002,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [151946] = { -- Flower, Coda
     itemPrice = 3000,
-    itemDate = "2022-10-08",
+    itemDate = "2023-11-17",
   },
   [151945] = { -- Plant, Spore Pod
     itemPrice = 450,
@@ -1278,19 +1282,19 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [126612] = { -- Vvardenfell Anemone, Strong
     itemPrice = 25000,
-    itemDate = "2022-10-08",
+    itemDate = "2023-11-17",
   },
   [126611] = { -- Vvardenfell Anemone, Sprout
     itemPrice = 5000,
-    itemDate = "2022-10-08",
+    itemDate = "2023-11-17",
   },
   [126610] = { -- Vvardenfell Coral Plant, Strong
     itemPrice = 10000,
-    itemDate = "2022-10-08",
+    itemDate = "2023-11-17",
   },
   [126591] = { -- Vvardenfell Coral Plant, Young
     itemPrice = 5000,
-    itemDate = "2022-10-08",
+    itemDate = "2023-11-17",
   },
   [126587] = { -- Vvardenfell Glowstalk, Sprout
     itemPrice = 2500,
@@ -2126,7 +2130,7 @@ FurC.LuxuryFurnisher[ver.SLAVES] = {
 FurC.LuxuryFurnisher[ver.ALTMER] = {
   [139098] = { -- Darkshade Glowstalks, Inquisitive
     itemPrice = 45000,
-    itemDate = "2022-10-08",
+    itemDate = "2023-11-17",
   },
 }
 
