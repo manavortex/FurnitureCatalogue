@@ -561,7 +561,6 @@ FurC.Rumours[ver.KITTY] = {
 
 -- 10 Wrathstone
 FurC.Rumours[ver.WOTL] = {
-  [147645] = rumourSource, -- Dwarven Tonal Arc,
   [147644] = rumourSource, -- Palisade, Crude,
   [147636] = rumourSource, -- Banner of Hermaeus Mora,
   [147600] = rumourSource, -- Tapestry of Namira,
