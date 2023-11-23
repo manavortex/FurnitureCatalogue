@@ -81,7 +81,6 @@ FurC.Rumours[ver.ENDLESS] = {
   [198573] = rumourSource, -- High Elf Altar, Crystal",
   [198571] = rumourSource, -- Shrine to Dibella",
   [198568] = rumourSource, -- Stone Relief, Yokudan",
-  [198566] = rumourSource, -- Khajiiti Arch, Rising",
 }
 
 -- 27 Base Game Patch
