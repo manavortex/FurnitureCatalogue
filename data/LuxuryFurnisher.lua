@@ -4,6 +4,10 @@ local ver = FurC.Constants.Versioning
 
 -- 27 Base Game Patch
 FurC.LuxuryFurnisher[ver.BASED] = {
+  [198050] = { -- Trapdoor, Dragonguard
+    itemPrice = 20000,
+    itemDate = "2023-11-24",
+  },
   [198044] = { -- Mushroom, Gray Spike Cluster
     itemPrice = 1500,
     itemDate = "2023-11-17",
@@ -254,7 +258,7 @@ FurC.LuxuryFurnisher[ver.DEPTHS] = {
   },
   [189477] = { -- Elsweyr Window, Ritual
     itemPrice = 10000,
-    itemDate = "2022-10-15",
+    itemDate = "2023-11-24",
   },
   [189474] = { -- Vvardenfell Anemone, Basket
     itemPrice = 3500,
@@ -766,7 +770,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [175768] = { -- Dragonguard Brazier, Empty
     itemPrice = 30000,
-    itemDate = "2022-10-15",
+    itemDate = "2023-11-24",
   },
   [175767] = { -- Flowers, Reed Mace
     itemPrice = 3000,
@@ -866,7 +870,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [166012] = { -- Cactus, Tall Lunar Fan
     itemPrice = 9000,
-    itemDate = "2022-10-15",
+    itemDate = "2023-11-24",
   },
   [166011] = { -- Elsweyr Gate, Garden
     itemPrice = 25000,
@@ -1034,19 +1038,19 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [151854] = { -- Cactus, Banded Lunar Multihued Trio
     itemPrice = 7500,
-    itemDate = "2022-10-15",
+    itemDate = "2023-11-24",
   },
   [151853] = { -- Cactus, Lunar Fan
     itemPrice = 12000,
-    itemDate = "2022-10-15",
+    itemDate = "2023-11-24",
   },
   [151852] = { -- Boulder, Lunar Spire
     itemPrice = 450,
-    itemDate = "2022-10-15",
+    itemDate = "2023-11-24",
   },
   [151851] = { -- Boulder, Lunar Spine
     itemPrice = 2500,
-    itemDate = "2022-10-15",
+    itemDate = "2023-11-24",
   },
   [147648] = { -- Dwarven Press Bed, Forge-Sized
     itemPrice = 22000,

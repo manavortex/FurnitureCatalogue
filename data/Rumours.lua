@@ -105,7 +105,6 @@ FurC.Rumours[ver.BASED] = {
   [198054] = rumourSource, -- Necrom Funerary Pyre, Logs
   [198053] = rumourSource, -- Dais, Bloodmage Crystal
   [198052] = rumourSource, -- Dwarven Lamp, Reachfolk Adorned
-  [198050] = rumourSource, -- Trapdoor, Dragonguard
   [198049] = rumourSource, -- Elsweyr Door, Lunar Reverence
   [198046] = rumourSource, -- Nedic Banner, Forest
   [198045] = rumourSource, -- Nedic Banner, Ancestral
