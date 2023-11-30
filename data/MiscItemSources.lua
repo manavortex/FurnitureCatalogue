@@ -264,6 +264,7 @@ FurC.MiscItemSources[ver.ENDLESS] = {
     [199128] = scrying .. in_necrom, -- Watchful Light",
     [199127] = scrying .. in_necrom, -- Petrified Watcher",
     [199126] = scrying .. in_necrom, -- Forged Black Book",
+    [199119] = scrying .. in_necrom .. " (3 pieces)", -- Infinite Tome",
     [199118] = scrying .. in_necrom .. " (5 pieces)", -- Apocrypha Clothing Station",
     [198576] = scrying .. " in Deadlands", -- Shelf, Black Soul Gems",
     [198572] = scrying .. " in Clockwork City", -- Clockwork Wall Gears",
