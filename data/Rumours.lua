@@ -42,7 +42,6 @@ FurC.Rumours[ver.ENDLESS] = {
   [199122] = rumourSource, -- Redguard Bottle, Glowing",
   [199121] = rumourSource, -- Inky Incense Burner",
   [199120] = rumourSource, -- Framed Vision",
-  [199119] = rumourSource, -- Infinite Tome",
   [199113] = rumourSource, -- Snow Globe Music Box",
   [199112] = rumourSource, -- Chandelier, Kyne's Radiance",
   [199111] = rumourSource, -- Fountain, Kyne's Radiance",
