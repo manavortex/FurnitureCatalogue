@@ -1289,7 +1289,7 @@ FurC.AchievementVendors[ver.ENDLESS] = {
       },
       [203152] = { --Apocrypha Window, Eye
         itemPrice = 6800,
-        achievement = 0, -- Dynamic Destroyer (achievement doesn't seem to exist? bug report submitted to zos)
+        achievement = 3763, -- probably "Fabled Foil" after rename of "Dynamic Destroyer"
       },
       [203157] = { --Apocryphal Obelisk
         itemPrice = 7500,
