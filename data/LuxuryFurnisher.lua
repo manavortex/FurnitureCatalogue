@@ -4,6 +4,10 @@ local ver = FurC.Constants.Versioning
 
 -- 27 Base Game Patch
 FurC.LuxuryFurnisher[ver.BASED] = {
+  [198049] = { -- Elsweyr Door, Lunar Reverence
+    itemPrice = 50000,
+    itemDate = "2023-12-01",
+  },
   [198050] = { -- Trapdoor, Dragonguard
     itemPrice = 20000,
     itemDate = "2023-11-24",
@@ -254,7 +258,7 @@ FurC.LuxuryFurnisher[ver.DEPTHS] = {
   },
   [189478] = { --Elsweyr Moon Reflection Tower, Base
     itemPrice = 30000,
-    itemDate = "2022-10-22",
+    itemDate = "2023-12-01",
   },
   [189477] = { -- Elsweyr Window, Ritual
     itemPrice = 10000,
@@ -766,7 +770,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [175769] = { -- Lunar Reflector, Dormant
     itemPrice = 40000,
-    itemDate = "2022-10-22",
+    itemDate = "2023-12-01",
   },
   [175768] = { -- Dragonguard Brazier, Empty
     itemPrice = 30000,
@@ -874,11 +878,11 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [166011] = { -- Elsweyr Gate, Garden
     itemPrice = 25000,
-    itemDate = "2022-10-22",
+    itemDate = "2023-12-01",
   },
   [166010] = { -- Elsweyr Gateway, Stone Arch
     itemPrice = 4500,
-    itemDate = "2022-10-22",
+    itemDate = "2023-12-01",
   },
   [166004] = { -- Geode, Amethyst
     itemPrice = 20000,
@@ -1022,19 +1026,19 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [151858] = { -- Elsweyr Altar, Dark Moons
     itemPrice = 20000,
-    itemDate = "2022-10-22",
+    itemDate = "2023-12-01",
   },
   [151857] = { -- Elsweyr Gazebo, Ancient Stone
     itemPrice = 100000,
-    itemDate = "2022-10-22",
+    itemDate = "2023-12-01",
   },
   [151856] = { -- Elsweyr Sarcophagus Lid, Lunar Champion
     itemPrice = 7500,
-    itemDate = "2022-10-22",
+    itemDate = "2023-12-01",
   },
   [151855] = { -- Elsweyr Sarcophagus, Lunar Champion
     itemPrice = 4000,
-    itemDate = "2022-10-22",
+    itemDate = "2023-12-01",
   },
   [151854] = { -- Cactus, Banded Lunar Multihued Trio
     itemPrice = 7500,
