@@ -4,6 +4,14 @@ local ver = FurC.Constants.Versioning
 
 -- 27 Base Game Patch
 FurC.LuxuryFurnisher[ver.BASED] = {
+  [198055] = { -- Necrom Funerary Offering, Mushrooms
+    itemPrice = 800,
+    itemDate = "2023-12-08",
+  },
+  [198054] = { -- Necrom Funerary Pyre, Logs
+    itemPrice = 6000,
+    itemDate = "2023-12-08",
+  },
   [198049] = { -- Elsweyr Door, Lunar Reverence
     itemPrice = 50000,
     itemDate = "2023-12-01",
@@ -246,7 +254,7 @@ FurC.LuxuryFurnisher[ver.DRUID] = {
   },
   [189475] = { -- Mummy, Skyward Gazing
     itemPrice = 6500,
-    itemDate = "2022-11-12",
+    itemDate = "2023-12-08",
   },
 }
 
@@ -762,11 +770,11 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [181534] = { -- Funerary Urn, Broken
     itemPrice = 4000,
-    itemDate = "2022-11-12",
+    itemDate = "2023-12-08",
   },
   [181533] = { -- Mummy, Scroll Guardian
     itemPrice = 8000,
-    itemDate = "2022-11-12",
+    itemDate = "2023-12-08",
   },
   [175769] = { -- Lunar Reflector, Dormant
     itemPrice = 40000,
@@ -894,7 +902,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [166002] = { -- Dark Elf Tomb Marker, Sarano
     itemPrice = 5000,
-    itemDate = "2022-11-12",
+    itemDate = "2023-12-08",
   },
   [166001] = { -- Plant, Murkmire Snakevine
     itemPrice = 7000,
@@ -1006,7 +1014,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [151947] = { -- Dark Elf Ash Garden, Communal
     itemPrice = 15000,
-    itemDate = "2022-11-12",
+    itemDate = "2023-12-08",
   },
   [151946] = { -- Flower, Coda
     itemPrice = 3000,
@@ -1146,7 +1154,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [139099] = { -- Dark Elf Brazier, Ancestral Tomb
     itemPrice = 15000,
-    itemDate = "2022-11-12",
+    itemDate = "2023-12-08",
   },
   [139097] = { -- Spiral Skein Glowstalks, Sprouts
     itemPrice = 8000,
@@ -1338,19 +1346,19 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [126575] = { -- Velothi Seat, Meditation
     itemPrice = 10000,
-    itemDate = "2022-11-12",
+    itemDate = "2023-12-08",
   },
   [126574] = { -- Velothi Cerecloth, Prayer
     itemPrice = 5000,
-    itemDate = "2022-11-12",
+    itemDate = "2023-12-08",
   },
   [126573] = { -- Velothi Candle, Mourning
     itemPrice = 5000,
-    itemDate = "2022-11-12",
+    itemDate = "2023-12-08",
   },
   [126572] = { -- Velothi Shroud, Mourning
     itemPrice = 5000,
-    itemDate = "2022-11-12",
+    itemDate = "2023-12-08",
   },
   [126571] = { -- Daedric Chandelier, Spiked
     itemPrice = 8000,
