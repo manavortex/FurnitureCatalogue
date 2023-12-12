@@ -81,7 +81,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
         with:
-          ref: master
+          ref: dev
       - run: |
           git config --local user.name "Handles-Your-Releases[bot][bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -93,7 +93,8 @@ jobs:
       - name: Sync Dev
         run: |
           git fetch origin
-          git push --force origin dev
+          git rebase origin/master
+          git push --force-with-lease origin dev
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
