@@ -93,7 +93,6 @@ FurC.Rumours[ver.BASED] = {
   [198105] = rumourSource, -- Tree, Large Ancient Dead Oak
   [198104] = rumourSource, -- Tree, Old Dead Oak
   [198103] = rumourSource, -- Tree, Ancient Dead Oak
-  [198056] = rumourSource, -- Necrom Urn, Blue Elegant
   [198053] = rumourSource, -- Dais, Bloodmage Crystal
   [198052] = rumourSource, -- Dwarven Lamp, Reachfolk Adorned
   [198046] = rumourSource, -- Nedic Banner, Forest

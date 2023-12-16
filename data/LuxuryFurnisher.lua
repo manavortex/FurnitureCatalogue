@@ -4,6 +4,10 @@ local ver = FurC.Constants.Versioning
 
 -- 27 Base Game Patch
 FurC.LuxuryFurnisher[ver.BASED] = {
+  [198056] = { -- Necrom Urn, Blue Elegant
+    itemPrice = 12000,
+    itemDate = "2023-12-15",
+  },
   [198055] = { -- Necrom Funerary Offering, Mushrooms
     itemPrice = 800,
     itemDate = "2023-12-08",
@@ -250,7 +254,7 @@ FurC.LuxuryFurnisher[ver.DRUID] = {
   },
   [189476] = { -- Velothi Altar, Small
     itemPrice = 4000,
-    itemDate = "2022-11-19",
+    itemDate = "2023-12-15",
   },
   [189475] = { -- Mummy, Skyward Gazing
     itemPrice = 6500,
@@ -766,7 +770,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [181535] = { -- Mummy, Bound
     itemPrice = 8000,
-    itemDate = "2022-11-19",
+    itemDate = "2023-12-15",
   },
   [181534] = { -- Funerary Urn, Broken
     itemPrice = 4000,
@@ -898,7 +902,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [166003] = { -- Dark Elf Tomb Marker, Velas
     itemPrice = 5000,
-    itemDate = "2022-11-19",
+    itemDate = "2023-12-15",
   },
   [166002] = { -- Dark Elf Tomb Marker, Sarano
     itemPrice = 5000,
@@ -1010,7 +1014,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [151948] = { -- Dark Elf Urn, Bronze Burial
     itemPrice = 10000,
-    itemDate = "2022-11-19",
+    itemDate = "2023-12-15",
   },
   [151947] = { -- Dark Elf Ash Garden, Communal
     itemPrice = 15000,
@@ -1150,7 +1154,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [139100] = { -- Dark Elf Ash Garden, Familial
     itemPrice = 10000,
-    itemDate = "2022-11-19",
+    itemDate = "2023-12-15",
   },
   [139099] = { -- Dark Elf Brazier, Ancestral Tomb
     itemPrice = 15000,
@@ -1330,19 +1334,19 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [126579] = { -- Velothi Altar, Sacrificial
     itemPrice = 10834,
-    itemDate = "2022-11-19",
+    itemDate = "2023-12-15",
   },
   [126578] = { -- Velothi Burial Urn
     itemPrice = 10834,
-    itemDate = "2022-11-19",
+    itemDate = "2023-12-15",
   },
   [126577] = { -- Velothi Podium of Recitation
     itemPrice = 37500,
-    itemDate = "2022-11-19",
+    itemDate = "2023-12-15",
   },
   [126576] = { -- Velothi Kneeler, Prayer
     itemPrice = 3000,
-    itemDate = "2022-11-19",
+    itemDate = "2023-12-15",
   },
   [126575] = { -- Velothi Seat, Meditation
     itemPrice = 10000,
