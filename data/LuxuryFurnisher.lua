@@ -4,6 +4,10 @@ local ver = FurC.Constants.Versioning
 
 -- 27 Base Game Patch
 FurC.LuxuryFurnisher[ver.BASED] = {
+  [198053] = { -- Dais, Bloodmage Crystal
+    itemPrice = 100000,
+    itemDate = "2023-12-22",
+  },
   [198056] = { -- Necrom Urn, Blue Elegant
     itemPrice = 12000,
     itemDate = "2023-12-15",
@@ -250,7 +254,7 @@ FurC.LuxuryFurnisher[ver.DRUID] = {
   },
   [189479] = { -- Bloodmage Crystal, Oval
     itemPrice = 4000,
-    itemDate = "2022-11-26",
+    itemDate = "2023-12-22",
   },
   [189476] = { -- Velothi Altar, Small
     itemPrice = 4000,
@@ -766,7 +770,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [181536] = { -- Blue Crystal Cluster, Medium
     itemPrice = 10000,
-    itemDate = "2022-11-26",
+    itemDate = "2023-12-22",
   },
   [181535] = { -- Mummy, Bound
     itemPrice = 8000,
@@ -898,7 +902,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [166004] = { -- Geode, Amethyst
     itemPrice = 20000,
-    itemDate = "2022-11-26",
+    itemDate = "2023-12-22",
   },
   [166003] = { -- Dark Elf Tomb Marker, Velas
     itemPrice = 5000,
@@ -1010,7 +1014,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [151949] = { -- Hlaalu Path Marker, Almsivi
     itemPrice = 15000,
-    itemDate = "2022-11-26",
+    itemDate = "2023-12-22",
   },
   [151948] = { -- Dark Elf Urn, Bronze Burial
     itemPrice = 10000,
@@ -1150,7 +1154,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [139101] = { -- Blue Crystal Cluster, Large
     itemPrice = 20000,
-    itemDate = "2022-11-26",
+    itemDate = "2023-12-22",
   },
   [139100] = { -- Dark Elf Ash Garden, Familial
     itemPrice = 10000,
@@ -1414,7 +1418,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [121273] = { -- Soul Gem, Grand
     itemPrice = 5000,
-    itemDate = "2022-11-26",
+    itemDate = "2023-12-22",
   },
   [121271] = { -- Brotherhood Tapestry
     itemPrice = 10000,
@@ -1502,15 +1506,15 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [120833] = { -- Blue Crystal Fragments
     itemPrice = 8000,
-    itemDate = "2022-11-26",
+    itemDate = "2023-12-22",
   },
   [120831] = { -- Blue Crystal Cluster
     itemPrice = 10000,
-    itemDate = "2022-11-26",
+    itemDate = "2023-12-22",
   },
   [120830] = { -- Blue Flame Candles
     itemPrice = 2500,
-    itemDate = "2022-11-26",
+    itemDate = "2023-12-22",
   },
   [120829] = { -- Torture Rack
     itemPrice = 5000,
