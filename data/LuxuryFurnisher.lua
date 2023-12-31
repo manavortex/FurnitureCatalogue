@@ -4,6 +4,10 @@ local ver = FurC.Constants.Versioning
 
 -- 27 Base Game Patch
 FurC.LuxuryFurnisher[ver.BASED] = {
+  [198042] = { -- Glass Crystal, Opaque Cluster
+    itemPrice = 4500,
+    itemDate = "2023-12-29",
+  },
   [198053] = { -- Dais, Bloodmage Crystal
     itemPrice = 100000,
     itemDate = "2023-12-22",
@@ -250,7 +254,7 @@ FurC.LuxuryFurnisher[ver.DRUID] = {
   },
   [189480] = { -- Bloodmage Crystal, Oblong
     itemPrice = 4000,
-    itemDate = "2022-12-03",
+    itemDate = "2023-12-29",
   },
   [189479] = { -- Bloodmage Crystal, Oval
     itemPrice = 4000,
@@ -482,7 +486,7 @@ FurC.LuxuryFurnisher[ver.DEADL] = {
   },
   [181537] = { -- Geode, Citrine
     itemPrice = 20000,
-    itemDate = "2022-12-03",
+    itemDate = "2023-12-29",
   },
   [167352] = { -- Pelt, Fox
     itemPrice = 2500,
@@ -526,7 +530,7 @@ FurC.LuxuryFurnisher[ver.DEADL] = {
   },
   [166005] = { -- Geode, Green Garnet
     itemPrice = 20000,
-    itemDate = "2022-12-03",
+    itemDate = "2023-12-29",
   },
   [153696] = { -- Taxidermy, Bird of Prey
     itemPrice = 2500,
@@ -566,7 +570,7 @@ FurC.LuxuryFurnisher[ver.DEADL] = {
   },
   [151950] = { -- Khajiit Path Marker, Lion
     itemPrice = 75000,
-    itemDate = "2022-12-03",
+    itemDate = "2023-12-29",
   },
   [141762] = { -- Animal Trap, Welded Open
     itemPrice = 2500,
@@ -622,7 +626,7 @@ FurC.LuxuryFurnisher[ver.DEADL] = {
   },
   [139102] = { -- Blue Crystal Spire, Large
     itemPrice = 18000,
-    itemDate = "2022-12-03",
+    itemDate = "2023-12-29",
   },
   [132152] = { -- Orsinium Sarcophagus, Warrior's
     itemPrice = 35000,
@@ -686,7 +690,7 @@ FurC.LuxuryFurnisher[ver.DEADL] = {
   },
   [121272] = { -- Soul Gem, Great
     itemPrice = 20000,
-    itemDate = "2022-12-03",
+    itemDate = "2023-12-29",
   },
   [120845] = { -- Craglorn Sword Sconce
     itemPrice = 5000,
@@ -714,11 +718,11 @@ FurC.LuxuryFurnisher[ver.DEADL] = {
   },
   [120834] = { -- Blue Flame Brazier
     itemPrice = 5000,
-    itemDate = "2022-12-03",
+    itemDate = "2023-12-29",
   },
   [120832] = { -- Blue Crystal Spire
     itemPrice = 12000,
-    itemDate = "2022-12-03",
+    itemDate = "2023-12-29",
   },
   [118298] = { -- Wolf Head, Wall Mount
     itemPrice = 20000,

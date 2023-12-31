@@ -96,7 +96,6 @@ FurC.Rumours[ver.BASED] = {
   [198052] = rumourSource, -- Dwarven Lamp, Reachfolk Adorned
   [198046] = rumourSource, -- Nedic Banner, Forest
   [198045] = rumourSource, -- Nedic Banner, Ancestral
-  [198042] = rumourSource, -- Glass Crystal, Opaque Cluster
   [198005] = rumourSource, -- Hedge, Dense Low Angled Wall
   [198004] = rumourSource, -- Hedge, Dense Low Extensive Wall
   [198003] = rumourSource, -- Hedge, Dense Low Corner Wall
