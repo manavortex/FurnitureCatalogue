@@ -278,6 +278,7 @@ FurC.MiscItemSources[ver.ENDLESS] = {
     [199115] = tribute, -- Seeker Aspirant Tapestry, Large",
     [199114] = tribute, -- Seeker Aspirant Tapestry",
 
+    [198573] = scrying .. in_summerset, -- High Elf Altar, Crystal",
     [199933] = scrying .. in_necrom, -- Scrying Brazier, Tall",
     [199932] = scrying .. in_necrom, -- Scrying Brazier, Short",
     [199890] = scrying .. in_necrom, -- Archival Light Diffuser, Large",
