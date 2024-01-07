@@ -4,6 +4,10 @@ local ver = FurC.Constants.Versioning
 
 -- 27 Base Game Patch
 FurC.LuxuryFurnisher[ver.BASED] = {
+  [198045] = { -- Nedic Banner, Ancestral
+    itemPrice = 12000,
+    itemDate = "2024-01-05",
+  },
   [198042] = { -- Glass Crystal, Opaque Cluster
     itemPrice = 4500,
     itemDate = "2023-12-29",
@@ -226,7 +230,7 @@ FurC.LuxuryFurnisher[ver.DRUID] = {
   },
   [192574] = { -- Banner, Boethiah Standard
     itemPrice = 12000,
-    itemDate = "2022-12-10",
+    itemDate = "2024-01-05",
   },
   [192573] = { -- Clockwork Illuminator, Spot
     itemPrice = 14000,
@@ -482,7 +486,7 @@ FurC.LuxuryFurnisher[ver.DEADL] = {
   },
   [181538] = { -- Nedic Altar, Worn
     itemPrice = 3000,
-    itemDate = "2022-12-10",
+    itemDate = "2024-01-05",
   },
   [181537] = { -- Geode, Citrine
     itemPrice = 20000,
@@ -526,7 +530,7 @@ FurC.LuxuryFurnisher[ver.DEADL] = {
   },
   [166006] = { -- Ancient Nord Prayer Wheel, Four-Faced
     itemPrice = 25000,
-    itemDate = "2022-12-10",
+    itemDate = "2024-01-05",
   },
   [166005] = { -- Geode, Green Garnet
     itemPrice = 20000,
@@ -566,7 +570,7 @@ FurC.LuxuryFurnisher[ver.DEADL] = {
   },
   [151951] = { -- Nedic Orb, Ritual
     itemPrice = 20000,
-    itemDate = "2022-12-10",
+    itemDate = "2024-01-05",
   },
   [151950] = { -- Khajiit Path Marker, Lion
     itemPrice = 75000,
@@ -622,7 +626,7 @@ FurC.LuxuryFurnisher[ver.DEADL] = {
   },
   [139103] = { -- Craglorn Display Case, Sealed
     itemPrice = 10000,
-    itemDate = "2022-12-10",
+    itemDate = "2024-01-05",
   },
   [139102] = { -- Blue Crystal Spire, Large
     itemPrice = 18000,
@@ -706,15 +710,15 @@ FurC.LuxuryFurnisher[ver.DEADL] = {
   },
   [120842] = { -- Craglorn Chair, Serpent
     itemPrice = 2500,
-    itemDate = "2022-12-10",
+    itemDate = "2024-01-05",
   },
   [120841] = { -- Craglorn Urn, Standing
     itemPrice = 7500,
-    itemDate = "2022-12-10",
+    itemDate = "2024-01-05",
   },
   [120840] = { -- Craglorn Coffer, Ornate
     itemPrice = 5000,
-    itemDate = "2022-12-10",
+    itemDate = "2024-01-05",
   },
   [120834] = { -- Blue Flame Brazier
     itemPrice = 5000,
