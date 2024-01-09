@@ -13,6 +13,7 @@ local in_nelsweyr = " in Northern Elsweyr"
 local in_skyrim = " in Western Skyrim"
 local in_blackwood = " in Blackwood"
 local in_summerset = " in Summerset"
+local in_goldcoast = " in the Gold Coast"
 local in_elsweyr = " in Elsweyr"
 local in_necrom = " in Telvanni Peninsula or Apocrypha"
 
@@ -278,7 +279,6 @@ FurC.MiscItemSources[ver.ENDLESS] = {
     [199115] = tribute, -- Seeker Aspirant Tapestry, Large",
     [199114] = tribute, -- Seeker Aspirant Tapestry",
 
-    [198573] = scrying .. in_summerset, -- High Elf Altar, Crystal",
     [199933] = scrying .. in_necrom, -- Scrying Brazier, Tall",
     [199932] = scrying .. in_necrom, -- Scrying Brazier, Short",
     [199890] = scrying .. in_necrom, -- Archival Light Diffuser, Large",
@@ -293,7 +293,9 @@ FurC.MiscItemSources[ver.ENDLESS] = {
     [199118] = scrying .. in_necrom .. " (5 pieces)", -- Apocrypha Clothing Station",
     [198576] = scrying .. " in Deadlands", -- Shelf, Black Soul Gems",
     [198575] = scrying .. in_selsweyr, -- Khajiiti Well",
+    [198573] = scrying .. in_summerset, -- High Elf Altar, Crystal",
     [198572] = scrying .. " in Clockwork City", -- Clockwork Wall Gears",
+    [198571] = scrying .. in_goldcoast, -- Shrine to Dibella",
     [198570] = scrying .. " in Shadowfen", -- Painted Stone Frog",
     [198569] = scrying .. " in Deshaan", -- Dark Elf Altar, Ceremonial",
     [198568] = scrying .. " in Alik'r Desert", -- Stone Relief, Yokudan",
