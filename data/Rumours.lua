@@ -72,7 +72,6 @@ FurC.Rumours[ver.ENDLESS] = {
   [198647] = rumourSource, -- Druidic Drying Rack, Tall",
   [198646] = rumourSource, -- Druidic Drying Rack, Wide",
   [198574] = rumourSource, -- Khajiiti Water Vessel, Large",
-  [198571] = rumourSource, -- Shrine to Dibella",
 }
 
 -- 27 Base Game Patch
