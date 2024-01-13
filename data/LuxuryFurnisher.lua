@@ -4,6 +4,10 @@ local ver = FurC.Constants.Versioning
 
 -- 27 Base Game Patch
 FurC.LuxuryFurnisher[ver.BASED] = {
+  [198046] = { -- Nedic Banner, Forest
+    itemPrice = 12000,
+    itemDate = "2024-01-12",
+  },
   [198045] = { -- Nedic Banner, Ancestral
     itemPrice = 12000,
     itemDate = "2024-01-05",
@@ -226,7 +230,7 @@ FurC.LuxuryFurnisher[ver.DRUID] = {
   },
   [192575] = { -- Nedic Banner, Blood
     itemPrice = 4000,
-    itemDate = "2022-12-17",
+    itemDate = "2024-01-12",
   },
   [192574] = { -- Banner, Boethiah Standard
     itemPrice = 12000,
@@ -482,7 +486,7 @@ FurC.LuxuryFurnisher[ver.DEADL] = {
   },
   [181539] = { -- Nedic Archway, Worn
     itemPrice = 15000,
-    itemDate = "2022-12-17",
+    itemDate = "2024-01-12",
   },
   [181538] = { -- Nedic Altar, Worn
     itemPrice = 3000,
@@ -526,7 +530,7 @@ FurC.LuxuryFurnisher[ver.DEADL] = {
   },
   [166007] = { -- Ancient Nord Prayer Wheel Frame, Engraved
     itemPrice = 20000,
-    itemDate = "2022-12-17",
+    itemDate = "2024-01-12",
   },
   [166006] = { -- Ancient Nord Prayer Wheel, Four-Faced
     itemPrice = 25000,
@@ -566,7 +570,7 @@ FurC.LuxuryFurnisher[ver.DEADL] = {
   },
   [151952] = { -- Nedic Stand, Ritual
     itemPrice = 4000,
-    itemDate = "2022-12-17",
+    itemDate = "2024-01-12",
   },
   [151951] = { -- Nedic Orb, Ritual
     itemPrice = 20000,
@@ -622,7 +626,7 @@ FurC.LuxuryFurnisher[ver.DEADL] = {
   },
   [139104] = { -- Craglorn Relief, Serpent
     itemPrice = 20000,
-    itemDate = "2022-12-17",
+    itemDate = "2024-01-12",
   },
   [139103] = { -- Craglorn Display Case, Sealed
     itemPrice = 10000,
@@ -698,15 +702,15 @@ FurC.LuxuryFurnisher[ver.DEADL] = {
   },
   [120845] = { -- Craglorn Sword Sconce
     itemPrice = 5000,
-    itemDate = "2022-12-17",
+    itemDate = "2024-01-12",
   },
   [120844] = { -- Craglorn Brazier, Ornate
     itemPrice = 15000,
-    itemDate = "2022-12-17",
+    itemDate = "2024-01-12",
   },
   [120843] = { -- Craglorn Skull, Carved
     itemPrice = 35000,
-    itemDate = "2022-12-17",
+    itemDate = "2024-01-12",
   },
   [120842] = { -- Craglorn Chair, Serpent
     itemPrice = 2500,
