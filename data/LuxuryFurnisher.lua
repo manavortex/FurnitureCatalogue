@@ -4,6 +4,10 @@ local ver = FurC.Constants.Versioning
 
 -- 27 Base Game Patch
 FurC.LuxuryFurnisher[ver.BASED] = {
+  [198052] = { -- Dwarven Lamp, Reachfolk Adorned
+    itemPrice = 15000,
+    itemDate = "2024-01-19",
+  },
   [198046] = { -- Nedic Banner, Forest
     itemPrice = 12000,
     itemDate = "2024-01-12",
@@ -206,7 +210,7 @@ FurC.LuxuryFurnisher[ver.DRUID] = {
   },
   [192582] = { -- Vines, Nirncrux
     itemPrice = 12000,
-    itemDate = "2022-12-24",
+    itemDate = "2024-01-19",
   },
   [192581] = { -- Reachfolk Banner, Ice Witch
     itemPrice = 2000,
@@ -482,7 +486,7 @@ FurC.LuxuryFurnisher[ver.DEADL] = {
   },
   [181540] = { -- Nedic Skull Relief, Half
     itemPrice = 20000,
-    itemDate = "2022-12-24",
+    itemDate = "2024-01-19",
   },
   [181539] = { -- Nedic Archway, Worn
     itemPrice = 15000,
@@ -526,7 +530,7 @@ FurC.LuxuryFurnisher[ver.DEADL] = {
   },
   [167343] = { -- Stone, Nirncrux-Laden
     itemPrice = 10000,
-    itemDate = "2022-12-24",
+    itemDate = "2024-01-19",
   },
   [166007] = { -- Ancient Nord Prayer Wheel Frame, Engraved
     itemPrice = 20000,
@@ -566,7 +570,7 @@ FurC.LuxuryFurnisher[ver.DEADL] = {
   },
   [151953] = { -- Reikling Totem, Skull (sic)
     itemPrice = 1000,
-    itemDate = "2022-12-24",
+    itemDate = "2024-01-19",
   },
   [151952] = { -- Nedic Stand, Ritual
     itemPrice = 4000,
@@ -622,7 +626,7 @@ FurC.LuxuryFurnisher[ver.DEADL] = {
   },
   [139105] = { -- Reach Grinding Stones, Nirncrux
     itemPrice = 4500,
-    itemDate = "2022-12-24",
+    itemDate = "2024-01-19",
   },
   [139104] = { -- Craglorn Relief, Serpent
     itemPrice = 20000,
@@ -682,19 +686,19 @@ FurC.LuxuryFurnisher[ver.DEADL] = {
   },
   [131438] = { -- Reach Grinder, Nirncrux
     itemPrice = 50000,
-    itemDate = "2022-12-24",
+    itemDate = "2024-01-19",
   },
   [131437] = { -- Reach Vine, Bloodroot Tendril
     itemPrice = 25000,
-    itemDate = "2022-12-24",
+    itemDate = "2024-01-19",
   },
   [131436] = { -- Reach Vine, Bloodroot Sprout
     itemPrice = 15000,
-    itemDate = "2022-12-24",
+    itemDate = "2024-01-19",
   },
   [131435] = { -- Reach Bowl, Nirncrux
     itemPrice = 5000,
-    itemDate = "2022-12-24",
+    itemDate = "2024-01-19",
   },
   [121272] = { -- Soul Gem, Great
     itemPrice = 20000,
