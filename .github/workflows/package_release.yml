@@ -88,16 +88,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      # Trying to sync the dev branch so it is up to date with the master
-      # if it fails, it fails - no problem (we can still sync manually)
-      - name: Sync Dev
-        run: |
-          git fetch origin
-          git rebase origin/master
-          git push --force-with-lease origin dev
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
       # Trying to delete the leftover release branch (eg. release/1.2.3)
       # We use release tags to navigate the repo at a specific points in time
       # We can still clean up manually if that doesn't work
@@ -110,3 +100,13 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: ${{ github.event.pull_request.head.ref }}
+
+      # Trying to sync the dev branch so it is up to date with the master
+      # if it fails, it fails - no problem (we can still sync manually)
+      - name: Overwrite dev with latest master
+        run: |
+          git fetch origin
+          git checkout origin/master
+          git push --force origin HEAD:dev
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
