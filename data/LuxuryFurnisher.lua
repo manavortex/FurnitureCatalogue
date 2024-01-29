@@ -2,6 +2,14 @@ FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
 local ver = FurC.Constants.Versioning
 
+-- 28 Secrets of the Telvanni
+FurC.LuxuryFurnisher[ver.ENDLESS] = {
+  [203136] = { -- Reach Totem, Mammoth Rib
+    itemPrice = 4500,
+    itemDate = "2024-01-26",
+  },
+}
+
 -- 27 Base Game Patch
 FurC.LuxuryFurnisher[ver.BASED] = {
   [198052] = { -- Dwarven Lamp, Reachfolk Adorned
@@ -214,7 +222,7 @@ FurC.LuxuryFurnisher[ver.DRUID] = {
   },
   [192581] = { -- Reachfolk Banner, Ice Witch
     itemPrice = 2000,
-    itemDate = "2022-12-31",
+    itemDate = "2024-01-26",
   },
   [192580] = { -- Redguard Archway, Four-Column
     itemPrice = 50000,
@@ -482,7 +490,7 @@ FurC.LuxuryFurnisher[ver.DEADL] = {
   },
   [181541] = { -- Reach Standard, Weathered
     itemPrice = 4000,
-    itemDate = "2022-12-31",
+    itemDate = "2024-01-26",
   },
   [181540] = { -- Nedic Skull Relief, Half
     itemPrice = 20000,
@@ -526,7 +534,7 @@ FurC.LuxuryFurnisher[ver.DEADL] = {
   },
   [167344] = { -- Reachfolk Banner, Moonburst
     itemPrice = 4000,
-    itemDate = "2022-12-31",
+    itemDate = "2024-01-26",
   },
   [167343] = { -- Stone, Nirncrux-Laden
     itemPrice = 10000,
@@ -566,7 +574,7 @@ FurC.LuxuryFurnisher[ver.DEADL] = {
   },
   [151954] = { -- Reachmen Banner, Bull
     itemPrice = 4000,
-    itemDate = "2022-12-31",
+    itemDate = "2024-01-26",
   },
   [151953] = { -- Reikling Totem, Skull (sic)
     itemPrice = 1000,
@@ -622,7 +630,7 @@ FurC.LuxuryFurnisher[ver.DEADL] = {
   },
   [139106] = { -- Reach Briarheart, Corpse Blue
     itemPrice = 15000,
-    itemDate = "2022-12-31",
+    itemDate = "2024-01-26",
   },
   [139105] = { -- Reach Grinding Stones, Nirncrux
     itemPrice = 4500,
@@ -674,15 +682,15 @@ FurC.LuxuryFurnisher[ver.DEADL] = {
   },
   [132144] = { -- Reach Briarheart, Blood Red
     itemPrice = 15000,
-    itemDate = "2022-12-31",
+    itemDate = "2024-01-26",
   },
   [132142] = { -- Reach Tent, Camp
     itemPrice = 2500,
-    itemDate = "2022-12-31",
+    itemDate = "2024-01-26",
   },
   [132141] = { -- Reach Skull, Mammoth
     itemPrice = 50000,
-    itemDate = "2022-12-31",
+    itemDate = "2024-01-26",
   },
   [131438] = { -- Reach Grinder, Nirncrux
     itemPrice = 50000,

@@ -68,7 +68,7 @@ local puplicdungeon_fw_vv = GetString(SI_FURC_DROP) .. " in Forgotten Wastes" ..
 local plants_vvardenfell = GetString(SI_FURC_PLANTS) .. gloriousHome
 local fishing_summerset = GetString(SI_FURC_CANBEFISHED) .. onSummerset
 local fishing_swamp = GetString(SI_FURC_CANBEFISHED) .. backwaterSwamp
-local endless_archive = "From chests in the Endless Archive"
+local endless_archive = "From chests in the Infinite Archive"
 local chests = chests_string
 
 -- Crowns
