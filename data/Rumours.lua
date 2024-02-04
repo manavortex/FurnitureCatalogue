@@ -26,7 +26,6 @@ FurC.Rumours[ver.ENDLESS] = {
   [203140] = rumourSource, -- Orcish Banner, Golkarr",
   [203139] = rumourSource, -- Orcish Stable, Orsinium",
   [203138] = rumourSource, -- Apocrypha Plant, Feather Fern",
-  [203137] = rumourSource, -- Apocrypha Plant, Crimson Succulent",
   [203135] = rumourSource, -- Redguard Dome, Mosaic",
   [203134] = rumourSource, -- Wedding Planter, Octagonal",
   [203133] = rumourSource, -- Apocrypha Coral, Spiky",
