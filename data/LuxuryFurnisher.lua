@@ -4,6 +4,10 @@ local ver = FurC.Constants.Versioning
 
 -- 28 Secrets of the Telvanni
 FurC.LuxuryFurnisher[ver.ENDLESS] = {
+  [203137] = { -- Apocrypha Plant, Crimson
+    itemPrice = 3000,
+    itemDate = "2024-02-02",
+  },
   [203136] = { -- Reach Totem, Mammoth Rib
     itemPrice = 4500,
     itemDate = "2024-01-26",
@@ -266,7 +270,7 @@ FurC.LuxuryFurnisher[ver.DRUID] = {
   },
   [192566] = { -- Tree, Small Palm
     itemPrice = 3000,
-    itemDate = "2023-01-07",
+    itemDate = "2024-02-02",
   },
   [189482] = { -- Bone Sconce, Arm
     itemPrice = 4000,
@@ -486,7 +490,7 @@ FurC.LuxuryFurnisher[ver.DEADL] = {
   },
   [182613] = { -- Bush, Flowering Ivy
     itemPrice = 2000,
-    itemDate = "2023-01-07",
+    itemDate = "2024-02-02",
   },
   [181541] = { -- Reach Standard, Weathered
     itemPrice = 4000,
@@ -530,7 +534,7 @@ FurC.LuxuryFurnisher[ver.DEADL] = {
   },
   [167345] = { -- Fern, Cyan Cluster
     itemPrice = 4000,
-    itemDate = "2023-01-07",
+    itemDate = "2024-02-02",
   },
   [167344] = { -- Reachfolk Banner, Moonburst
     itemPrice = 4000,
@@ -570,7 +574,7 @@ FurC.LuxuryFurnisher[ver.DEADL] = {
   },
   [153689] = { -- Fern, Cyan
     itemPrice = 2500,
-    itemDate = "2023-01-07",
+    itemDate = "2024-02-02",
   },
   [151954] = { -- Reachmen Banner, Bull
     itemPrice = 4000,
@@ -618,15 +622,15 @@ FurC.LuxuryFurnisher[ver.DEADL] = {
   },
   [141754] = { -- Skull Totem, Hircine Worship
     itemPrice = 7500,
-    itemDate = "2023-01-07",
+    itemDate = "2024-02-02",
   },
   [141753] = { -- Plants, Cerulean Spadeleaf Cluster
     itemPrice = 2500,
-    itemDate = "2023-01-07",
+    itemDate = "2024-02-02",
   },
   [141752] = { -- Plant, Cerulean Spadeleaf
     itemPrice = 1000,
-    itemDate = "2023-01-07",
+    itemDate = "2024-02-02",
   },
   [139106] = { -- Reach Briarheart, Corpse Blue
     itemPrice = 15000,
