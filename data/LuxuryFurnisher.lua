@@ -4,6 +4,10 @@ local ver = FurC.Constants.Versioning
 
 -- 28 Secrets of the Telvanni
 FurC.LuxuryFurnisher[ver.ENDLESS] = {
+  [203134] = { -- Wedding Planter, Octagonal
+    itemPrice = 20000,
+    itemDate = "2024-02-09",
+  },
   [203137] = { -- Apocrypha Plant, Crimson
     itemPrice = 3000,
     itemDate = "2024-02-02",
@@ -258,7 +262,7 @@ FurC.LuxuryFurnisher[ver.DRUID] = {
   },
   [192570] = { -- Decorative Wall Drape, Mauve
     itemPrice = 3000,
-    itemDate = "2023-02-04",
+    itemDate = "2024-02-09",
   },
   [192568] = { -- Fargrave Stall, Bone Merchant
     itemPrice = 30000,
@@ -442,7 +446,7 @@ FurC.LuxuryFurnisher[ver.DEADL] = {
   },
   [182631] = { -- Redguard Seal
     itemPrice = 3000,
-    itemDate = "2023-02-04",
+    itemDate = "2024-02-09",
   },
   [182624] = { -- Clockwork Coffer, Vertical
     itemPrice = 4000,
@@ -1698,7 +1702,7 @@ FurC.LuxuryFurnisher[ver.MARKAT] = {
   },
   [171425] = { -- Redguard Carpets, Rolled
     itemPrice = 4000,
-    itemDate = "2023-02-04",
+    itemDate = "2024-02-09",
   },
   [171422] = { -- Ayleid Constellation Stele, The Apprentice
     itemPrice = 20000,
@@ -1782,7 +1786,7 @@ FurC.LuxuryFurnisher[ver.MARKAT] = {
   },
   [156646] = { -- Ra Gada Statue, Seated Lion Ibis
     itemPrice = 25000,
-    itemDate = "2023-02-04",
+    itemDate = "2024-02-09",
   },
   [153702] = { -- Clockwork Pot, Crystals
     itemPrice = 10000,
@@ -2030,7 +2034,7 @@ FurC.LuxuryFurnisher[ver.WOTL] = {
 FurC.LuxuryFurnisher[ver.SLAVES] = {
   [145468] = { -- Wedding Lantern, Hanging
     itemPrice = 5000,
-    itemDate = "2023-02-04",
+    itemDate = "2024-02-09",
   },
   [134468] = { -- Ayleid Switch, Ancient
     itemPrice = 4000,
@@ -2150,11 +2154,11 @@ FurC.LuxuryFurnisher[ver.SLAVES] = {
   },
   [120801] = { -- Wedding Lantern
     itemPrice = 5000,
-    itemDate = "2023-02-04",
+    itemDate = "2024-02-09",
   },
   [120800] = { -- Wedding Curtain
     itemPrice = 7500,
-    itemDate = "2023-02-04",
+    itemDate = "2024-02-09",
   },
   [120799] = { -- Wedding Blossoms, Peach
     itemPrice = 2500,
@@ -2162,15 +2166,15 @@ FurC.LuxuryFurnisher[ver.SLAVES] = {
   },
   [120798] = { -- Wedding Blossoms, Blue
     itemPrice = 2500,
-    itemDate = "2023-02-04",
+    itemDate = "2024-02-09",
   },
   [120797] = { -- Wedding Flower Trellis
     itemPrice = 10000,
-    itemDate = "2023-02-04",
+    itemDate = "2024-02-09",
   },
   [117876] = { -- Wedding Curtain, Wide
     itemPrice = 7500,
-    itemDate = "2023-02-04",
+    itemDate = "2024-02-09",
   },
   [117875] = { -- Wedding Pergola, Bare
     itemPrice = 35000,
