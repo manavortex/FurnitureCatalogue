@@ -4,6 +4,11 @@ local ver = FurC.Constants.Versioning
 
 -- 28 Secrets of the Telvanni
 FurC.LuxuryFurnisher[ver.ENDLESS] = {
+  -- [] = rumourSource, -- ",
+  [203139] = { -- Orcish Stable, Orsinium
+    itemPrice = 150000,
+    itemDate = "2024-03-01",
+  },
   [203134] = { -- Wedding Planter, Octagonal
     itemPrice = 20000,
     itemDate = "2024-02-09",
@@ -242,7 +247,7 @@ FurC.LuxuryFurnisher[ver.DRUID] = {
   },
   [192577] = { -- Orsinium Statue Base
     itemPrice = 4000,
-    itemDate = "2023-01-21",
+    itemDate = "2024-03-01",
   },
   [192576] = { -- Druidic Totem, Animal
     itemPrice = 3500,
@@ -486,7 +491,7 @@ FurC.LuxuryFurnisher[ver.DEADL] = {
   },
   [182615] = { -- Pedestal, Etched Stone
     itemPrice = 3000,
-    itemDate = "2023-01-21",
+    itemDate = "2024-03-01",
   },
   [182614] = { -- Vine, Flowering Wyrdbloom Strand
     itemPrice = 700,
@@ -530,7 +535,7 @@ FurC.LuxuryFurnisher[ver.DEADL] = {
   },
   [167347] = { -- Orcish Figurine, Mammoth
     itemPrice = 12000,
-    itemDate = "2023-01-21",
+    itemDate = "2024-03-01",
   },
   [167346] = { -- Vines, Flowering Wyrdbloom
     itemPrice = 4000,
@@ -570,7 +575,7 @@ FurC.LuxuryFurnisher[ver.DEADL] = {
   },
   [153691] = { -- Orsinium Sarcophagus, Honor's Rest
     itemPrice = 25000,
-    itemDate = "2023-01-21",
+    itemDate = "2024-03-01",
   },
   [153690] = { -- Flower Cluster, Wyrdbloom
     itemPrice = 4000,
@@ -610,7 +615,7 @@ FurC.LuxuryFurnisher[ver.DEADL] = {
   },
   [141758] = { -- Orcish Wagon, Merchant
     itemPrice = 15000,
-    itemDate = "2023-01-21",
+    itemDate = "2024-03-01",
   },
   [141757] = { -- Mushrooms, Climbing Aether Cup
     itemPrice = 5000,
@@ -674,19 +679,19 @@ FurC.LuxuryFurnisher[ver.DEADL] = {
   },
   [132148] = { -- Orsinium Statue, Head
     itemPrice = 25000,
-    itemDate = "2023-01-21",
+    itemDate = "2024-03-01",
   },
   [132147] = { -- Orsinium Statue, Honor’s Rest
     itemPrice = 25000,
-    itemDate = "2023-01-21",
+    itemDate = "2024-03-01",
   },
   [132146] = { -- Orsinium Relief, Malacath
     itemPrice = 25000,
-    itemDate = "2023-01-21",
+    itemDate = "2024-03-01",
   },
   [132145] = { -- Orsinium Tent, Chief’s
     itemPrice = 15000,
-    itemDate = "2023-01-21",
+    itemDate = "2024-03-01",
   },
   [132144] = { -- Reach Briarheart, Blood Red
     itemPrice = 15000,
