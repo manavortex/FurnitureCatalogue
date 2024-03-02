@@ -24,7 +24,6 @@ FurC.Rumours[ver.ENDLESS] = {
   [203142] = rumourSource, -- Skeleton, Whale Spine",
   [203141] = rumourSource, -- Skeleton, Daedric Titan",
   [203140] = rumourSource, -- Orcish Banner, Golkarr",
-  [203139] = rumourSource, -- Orcish Stable, Orsinium",
   [203138] = rumourSource, -- Apocrypha Plant, Feather Fern",
   [203135] = rumourSource, -- Redguard Dome, Mosaic",
   [203133] = rumourSource, -- Apocrypha Coral, Spiky",
