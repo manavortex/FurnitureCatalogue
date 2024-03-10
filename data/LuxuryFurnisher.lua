@@ -4,7 +4,10 @@ local ver = FurC.Constants.Versioning
 
 -- 28 Secrets of the Telvanni
 FurC.LuxuryFurnisher[ver.ENDLESS] = {
-  -- [] = rumourSource, -- ",
+  [203140] = { -- Orcish Banner, Golkarr
+    itemPrice = 15000, -- Gold
+    itemDate = "2024-03-08",
+  },
   [203139] = { -- Orcish Stable, Orsinium
     itemPrice = 150000,
     itemDate = "2024-03-01",
@@ -243,7 +246,7 @@ FurC.LuxuryFurnisher[ver.DRUID] = {
   },
   [192578] = { -- Orsinium Well, Snowy Grated
     itemPrice = 10000,
-    itemDate = "2023-01-28",
+    itemDate = "2024-03-08",
   },
   [192577] = { -- Orsinium Statue Base
     itemPrice = 4000,
@@ -487,7 +490,7 @@ FurC.LuxuryFurnisher[ver.DEADL] = {
   },
   [182616] = { -- Orcish Banner, Iron,
     itemPrice = 12000,
-    itemDate = "2023-01-28",
+    itemDate = "2024-03-08",
   },
   [182615] = { -- Pedestal, Etched Stone
     itemPrice = 3000,
@@ -531,7 +534,7 @@ FurC.LuxuryFurnisher[ver.DEADL] = {
   },
   [167348] = { -- Orcish Figurine, Bear
     itemPrice = 12000,
-    itemDate = "2023-01-28",
+    itemDate = "2024-03-08",
   },
   [167347] = { -- Orcish Figurine, Mammoth
     itemPrice = 12000,
@@ -571,7 +574,7 @@ FurC.LuxuryFurnisher[ver.DEADL] = {
   },
   [153692] = { -- Orsinium Well, Covered
     itemPrice = 20000,
-    itemDate = "2023-01-28",
+    itemDate = "2024-03-08",
   },
   [153691] = { -- Orsinium Sarcophagus, Honor's Rest
     itemPrice = 25000,
@@ -611,7 +614,7 @@ FurC.LuxuryFurnisher[ver.DEADL] = {
   },
   [141759] = { -- Orcish Gazebo, Orsinium
     itemPrice = 20000,
-    itemDate = "2023-01-28",
+    itemDate = "2024-03-08",
   },
   [141758] = { -- Orcish Wagon, Merchant
     itemPrice = 15000,
@@ -663,19 +666,19 @@ FurC.LuxuryFurnisher[ver.DEADL] = {
   },
   [132152] = { -- Orsinium Sarcophagus, Warrior's
     itemPrice = 35000,
-    itemDate = "2023-01-28",
+    itemDate = "2024-03-08",
   },
   [132151] = { -- Orsinium Totem, Obedience
     itemPrice = 20000,
-    itemDate = "2023-01-28",
+    itemDate = "2024-03-08",
   },
   [132150] = { -- Orsinium Totem, Honor
     itemPrice = 20000,
-    itemDate = "2023-01-28",
+    itemDate = "2024-03-08",
   },
   [132149] = { -- Orsinium Totem, Strength
     itemPrice = 20000,
-    itemDate = "2023-01-28",
+    itemDate = "2024-03-08",
   },
   [132148] = { -- Orsinium Statue, Head
     itemPrice = 25000,
