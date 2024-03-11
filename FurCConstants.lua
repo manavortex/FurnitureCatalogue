@@ -65,6 +65,7 @@ FurC.Constants.Versioning = {
   NECROM = getNextIdFor("VERSIONING"), -- 26 Necrom
   BASED = getNextIdFor("VERSIONING"), -- 27 Base Game Patch
   ENDLESS = getNextIdFor("VERSIONING"), -- 28 Secrets of the Telvanni
+  SCIONS = getNextIdFor("VERSIONING"), -- 29 Scions of Ithelia
 }
 
 FurC.Constants.Versioning.LATEST = FurC.Constants.Versioning.ENDLESS
@@ -210,6 +211,9 @@ FURC_BASED = FurC.Constants.Versioning.BASED -- 27 Base Game Patch
 
 -- @warning deprecated
 FURC_ENDLESS = FurC.Constants.Versioning.ENDLESS -- 28 Secrets of the Telvanni
+
+-- @warning deprecated
+FURC_SCIONS = FurC.Constants.Versioning.SCIONS -- 29 Scions of Ithelia
 
 -- @warning deprecated
 FURC_LATEST = FurC.Constants.Versioning.LATEST
