@@ -2,7 +2,7 @@
 ## Author: manavortex
 ## Version: 2.0.0
 ## AddonVersion: 2000000
-## APIVersion: 101040
+## APIVersion: 101041
 ## SavedVariables: FurnitureCatalogue_Export
 ## DependsOn: FurnitureCatalogue LibAddonMenu-2.0
 
