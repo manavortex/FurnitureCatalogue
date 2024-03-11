@@ -231,6 +231,7 @@ local strings = {
   SI_FURC_FILTER_VERSION_NECROM = "Necrom",
   SI_FURC_FILTER_VERSION_BASED = "Base Game Patch",
   SI_FURC_FILTER_VERSION_ENDLESS = "Secrets of the Telvanni",
+  SI_FURC_FILTER_VERSION_SCIONS = "Scions of Ithelia",
 
   -- =============================== --
   -- = GUI: Dropdown entry tooltip = --
@@ -276,6 +277,7 @@ local strings = {
   SI_FURC_FILTER_VERSION_NECROM_TT = "So many tentacles",
   SI_FURC_FILTER_VERSION_BASED_TT = "When you run out of names",
   SI_FURC_FILTER_VERSION_ENDLESS_TT = "Now with infinite tentacles",
+  SI_FURC_FILTER_VERSION_SCIONS_TT = "Yeah Mr White, Scions!",
 
   SI_FURC_FILTER_CHAR_OFF = "Character filter: off",
   SI_FURC_FILTER_CHAR_OFF_TT = filterDisabled,

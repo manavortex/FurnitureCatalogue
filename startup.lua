@@ -187,6 +187,7 @@ this.DropdownData = {
     [ver.NECROM] = GetString(SI_FURC_FILTER_VERSION_NECROM),
     [ver.BASED] = GetString(SI_FURC_FILTER_VERSION_BASED),
     [ver.ENDLESS] = GetString(SI_FURC_FILTER_VERSION_ENDLESS),
+    [ver.SCIONS] = GetString(SI_FURC_FILTER_VERSION_SCIONS),
   },
 
   TooltipsVersion = {
@@ -218,6 +219,7 @@ this.DropdownData = {
     [ver.NECROM] = GetString(SI_FURC_FILTER_VERSION_NECROM_TT),
     [ver.BASED] = GetString(SI_FURC_FILTER_VERSION_BASED_TT),
     [ver.ENDLESS] = GetString(SI_FURC_FILTER_VERSION_ENDLESS_TT),
+    [ver.SCIONS] = GetString(SI_FURC_FILTER_VERSION_SCIONS_TT),
   },
 
   ChoicesCharacter = {
