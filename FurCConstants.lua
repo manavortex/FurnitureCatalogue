@@ -68,7 +68,7 @@ FurC.Constants.Versioning = {
   SCIONS = getNextIdFor("VERSIONING"), -- 29 Scions of Ithelia
 }
 
-FurC.Constants.Versioning.LATEST = FurC.Constants.Versioning.ENDLESS
+FurC.Constants.Versioning.LATEST = FurC.Constants.Versioning.SCIONS
 
 -- Old Constants as a fallback for other AddOns that use them
 -- ToDo: required functionality will be moved to an API in the future
