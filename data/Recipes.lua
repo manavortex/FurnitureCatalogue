@@ -2,6 +2,44 @@ FurC.Recipes = FurC.Recipes or {}
 
 local ver = FurC.Constants.Versioning
 
+FurC.Recipes[ver.SCIONS] = {
+  203353, -- Praxis: Apocrypha Fence, Stone
+  203352, -- Praxis: Apocrypha Post, Small Stone
+  203351, -- Praxis: Apocrypha Fence, Curved Stone
+  203350, -- Praxis: Apocrypha Fence, Large Stone
+  203349, -- Praxis: Apocrypha Post, Stone
+  203348, -- Praxis: Apocrypha Fence, Large Curved Stone
+  203347, -- Pattern: Apocrypha Arch, Book Stacks
+  203346, -- Praxis: Apocrypha Wall, Stone
+  203345, -- Praxis: Apocrypha Doorway, Stone
+  203344, -- Praxis: Apocrypha Alcove, Stone
+  203343, -- Pattern: Apocrypha Wall, Ramped Book Stacks
+  203342, -- Pattern: Apocrypha Wall, Book Stacks
+  203341, -- Pattern: Apocrypha Doorway, Book Stacks
+  203340, -- Pattern: Apocrypha Alcove, Book Stacks
+  203339, -- Praxis: Apocrypha Platform, Inset Center Tile
+  203338, -- Praxis: Apocrypha Platform, Green Lattice Tile
+  203337, -- Praxis: Apocrypha Stairway, Stone
+  203336, -- Praxis: Apocrypha Obelisk
+  203335, -- Pattern: Apocrypha Pillar, Book Stacks
+  203334, -- Pattern: Apocrypha Archway, Book Stacks
+  203333, -- Praxis: Apocrypha Platform, Lattice Corner Tile
+  203332, -- Praxis: Apocrypha Platform, Lattice Tile
+  203331, -- Diagram: Apocrypha Door, Stone
+  203330, -- Diagram: Apocrypha Bridge, Small Curling
+  203329, -- Diagram: Apocrypha Bridge, Small
+  203328, -- Diagram: Apocrypha Platform, Small
+  203327, -- Diagram: Apocrypha Bridge, Large Curling
+  203326, -- Diagram: Apocrypha Platform, Large
+  203325, -- Praxis: Apocrypha Wall, Eye
+  203324, -- Sketch: Apocrypha Mirror, Intricate
+  203323, -- Diagram: Apocrypha Bookcase Platform
+  203322, -- Pattern: Apocrypha Book Press
+  203321, -- Formula: Apocrypha Light Diffuser, Stalk
+  203320, -- Design: Apocrypha Tree, Spore
+  203319, -- Blueprint: Pergola, Reclaimed Wood
+}
+
 -- 28 Secrets of the Telvanni Peninsula
 FurC.Recipes[ver.ENDLESS] = {
   198528, -- Blueprint: Necrom Cart, Merchant",
@@ -75,7 +113,7 @@ FurC.Recipes[ver.ENDLESS] = {
   198525, -- Praxis: Apocrypha Sconce, Diffuser",
   198526, -- Diagram: Apocrypha Sconce, Intricate",
   198527, -- Pattern: Apocrypha Book Piles, Floating",
- 
+
 }
 
 -- 27 Base Game Patch
