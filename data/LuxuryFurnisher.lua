@@ -4,8 +4,12 @@ local ver = FurC.Constants.Versioning
 
 -- 28 Secrets of the Telvanni
 FurC.LuxuryFurnisher[ver.ENDLESS] = {
+  [203141] = { -- Skeleton, Daedric Titan
+    itemPrice = 200000,
+    itemDate = "2024-03-15",
+  },
   [203140] = { -- Orcish Banner, Golkarr
-    itemPrice = 15000, -- Gold
+    itemPrice = 15000,
     itemDate = "2024-03-08",
   },
   [203139] = { -- Orcish Stable, Orsinium
@@ -274,7 +278,7 @@ FurC.LuxuryFurnisher[ver.DRUID] = {
   },
   [192568] = { -- Fargrave Stall, Bone Merchant
     itemPrice = 30000,
-    itemDate = "2023-02-18",
+    itemDate = "2024-03-15",
   },
   [192567] = { -- Fuchsia Hosta
     itemPrice = 2000,
@@ -486,7 +490,7 @@ FurC.LuxuryFurnisher[ver.DEADL] = {
   },
   [182617] = { -- Unidentified Fargrave Bones
     itemPrice = 9000,
-    itemDate = "2022-01-08",
+    itemDate = "2024-03-15",
   },
   [182616] = { -- Orcish Banner, Iron,
     itemPrice = 12000,
@@ -530,7 +534,7 @@ FurC.LuxuryFurnisher[ver.DEADL] = {
   },
   [167351] = { -- Crocodile Skeleton, Complete
     itemPrice = 9000,
-    itemDate = "2022-01-08",
+    itemDate = "2024-03-15",
   },
   [167348] = { -- Orcish Figurine, Bear
     itemPrice = 12000,
@@ -760,33 +764,13 @@ FurC.LuxuryFurnisher[ver.DEADL] = {
     itemPrice = 12000,
     itemDate = "2023-12-29",
   },
-  [118298] = { -- Wolf Head, Wall Mount
-    itemPrice = 20000,
-    itemDate = "2022-01-08",
-  },
-  [118294] = { -- Echatere Horns, Wall Mount
-    itemPrice = 15000,
-    itemDate = "2022-01-08",
-  },
   [118292] = { -- Elk Head, Wall Mount
     itemPrice = 20000,
     itemDate = "2023-02-25",
   },
-  [118286] = { -- Carcass, Grey Hare
-    itemPrice = 5000,
-    itemDate = "2022-01-08",
-  },
   [118285] = { -- Carcass, Fresh Pheasant
     itemPrice = 7500,
     itemDate = "2023-02-25",
-  },
-  [118281] = { -- Carcass, Hanging Geese
-    itemPrice = 7000,
-    itemDate = "2022-01-08",
-  },
-  [118279] = { -- Deer Head, Wall Mount
-    itemPrice = 15000,
-    itemDate = "2022-01-08",
   },
   [118243] = { -- Tapestry, Echatere Pelt
     itemPrice = 25000,
@@ -1987,7 +1971,7 @@ FurC.LuxuryFurnisher[ver.SCALES] = {
   },
   [153695] = { -- Titan Skull, Colossal
     itemPrice = 4000,
-    itemDate = "2023-02-18",
+    itemDate = "2024-03-15",
   },
   [134460] = { -- Riekling Lean-To, Boar Pelt
     itemPrice = 4000,
@@ -2007,23 +1991,23 @@ FurC.LuxuryFurnisher[ver.SCALES] = {
   },
   [118298] = { -- Wolf Head, Wall Mount
     itemPrice = 20000,
-    itemDate = "2023-02-18",
+    itemDate = "2024-03-15",
   },
   [118294] = { -- Echatere Horns, Wall Mount
     itemPrice = 15000,
-    itemDate = "2023-02-18",
+    itemDate = "2024-03-15",
   },
   [118286] = { -- Carcass, Grey Hare
     itemPrice = 5000,
-    itemDate = "2023-02-18",
+    itemDate = "2024-03-15",
   },
   [118281] = { -- Carcass, Hanging Geese
-    itemPrice = 7000,
-    itemDate = "2023-02-18",
+    itemPrice = 7500,
+    itemDate = "2024-03-15",
   },
   [118279] = { -- Deer Head, Wall Mount
     itemPrice = 15000,
-    itemDate = "2023-02-18",
+    itemDate = "2024-03-15",
   },
 }
 
