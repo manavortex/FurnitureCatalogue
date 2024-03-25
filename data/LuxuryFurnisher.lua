@@ -4,6 +4,10 @@ local ver = FurC.Constants.Versioning
 
 -- 28 Secrets of the Telvanni
 FurC.LuxuryFurnisher[ver.ENDLESS] = {
+  [203142] = { -- Skeleton, Whale Spine
+    itemPrice = 15000,
+    itemDate = "2024-03-22",
+  },
   [203141] = { -- Skeleton, Daedric Titan
     itemPrice = 200000,
     itemDate = "2024-03-15",
@@ -258,7 +262,7 @@ FurC.LuxuryFurnisher[ver.DRUID] = {
   },
   [192576] = { -- Druidic Totem, Animal
     itemPrice = 3500,
-    itemDate = "2023-02-25",
+    itemDate = "2024-03-22",
   },
   [192575] = { -- Nedic Banner, Blood
     itemPrice = 4000,
@@ -486,7 +490,7 @@ FurC.LuxuryFurnisher[ver.DEADL] = {
   },
   [182618] = { -- Nord Stone, Marked,
     itemPrice = 4000,
-    itemDate = "2022-01-15",
+    itemDate = "2024-03-22",
   },
   [182617] = { -- Unidentified Fargrave Bones
     itemPrice = 9000,
@@ -530,7 +534,7 @@ FurC.LuxuryFurnisher[ver.DEADL] = {
   },
   [167352] = { -- Pelt, Fox
     itemPrice = 2500,
-    itemDate = "2023-02-25",
+    itemDate = "2024-03-22",
   },
   [167351] = { -- Crocodile Skeleton, Complete
     itemPrice = 9000,
@@ -574,7 +578,7 @@ FurC.LuxuryFurnisher[ver.DEADL] = {
   },
   [153696] = { -- Taxidermy, Bird of Prey
     itemPrice = 2500,
-    itemDate = "2023-02-25",
+    itemDate = "2024-03-22",
   },
   [153692] = { -- Orsinium Well, Covered
     itemPrice = 20000,
@@ -614,7 +618,7 @@ FurC.LuxuryFurnisher[ver.DEADL] = {
   },
   [141762] = { -- Animal Trap, Welded Open
     itemPrice = 2500,
-    itemDate = "2023-02-25",
+    itemDate = "2024-03-22",
   },
   [141759] = { -- Orcish Gazebo, Orsinium
     itemPrice = 20000,
@@ -766,19 +770,19 @@ FurC.LuxuryFurnisher[ver.DEADL] = {
   },
   [118292] = { -- Elk Head, Wall Mount
     itemPrice = 20000,
-    itemDate = "2023-02-25",
+    itemDate = "2024-03-22",
   },
   [118285] = { -- Carcass, Fresh Pheasant
     itemPrice = 7500,
-    itemDate = "2023-02-25",
+    itemDate = "2024-03-22",
   },
   [118243] = { -- Tapestry, Echatere Pelt
     itemPrice = 25000,
-    itemDate = "2023-02-25",
+    itemDate = "2024-03-22",
   },
   [116506] = { -- Orcish Grand Table with Skins
     itemPrice = 50000,
-    itemDate = "2023-02-25",
+    itemDate = "2024-03-22",
   },
 }
 
