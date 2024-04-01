@@ -89,7 +89,6 @@ FurC.Rumours[ver.ENDLESS] = {
   [203146] = rumourSource, -- Wood Elf Banner, Mages Guild",
   [203145] = rumourSource, -- Banner, Foodhall",
   [203144] = rumourSource, -- Clockwork Illuminator Holder",
-  [203143] = rumourSource, -- Clockwork Stairway, Spiral",
   [203138] = rumourSource, -- Apocrypha Plant, Feather Fern",
   [203135] = rumourSource, -- Redguard Dome, Mosaic",
   [203133] = rumourSource, -- Apocrypha Coral, Spiky",

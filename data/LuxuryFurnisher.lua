@@ -4,6 +4,10 @@ local ver = FurC.Constants.Versioning
 
 -- 28 Secrets of the Telvanni
 FurC.LuxuryFurnisher[ver.ENDLESS] = {
+  [203143] = { -- Clockwork Stairway, Spiral
+    itemPrice = 65000,
+    itemDate = "2024-03-29",
+  },
   [203142] = { -- Skeleton, Whale Spine
     itemPrice = 15000,
     itemDate = "2024-03-22",
@@ -238,7 +242,7 @@ FurC.LuxuryFurnisher[ver.DRUID] = {
   },
   [192583] = { -- Clockwork Planter, Brassbloom
     itemPrice = 7000,
-    itemDate = "2023-03-04",
+    itemDate = "2024-03-29",
   },
   [192582] = { -- Vines, Nirncrux
     itemPrice = 12000,
@@ -486,7 +490,7 @@ FurC.LuxuryFurnisher[ver.DEADL] = {
   },
   [182619] = { -- Clockwork Altar, Devotional
     itemPrice = 15000,
-    itemDate = "2023-03-04",
+    itemDate = "2024-03-29",
   },
   [182618] = { -- Nord Stone, Marked,
     itemPrice = 4000,
@@ -1746,7 +1750,7 @@ FurC.LuxuryFurnisher[ver.MARKAT] = {
   },
   [171411] = { -- Clockwork Lens Assembly, Frozen
     itemPrice = 7000,
-    itemDate = "2023-03-04",
+    itemDate = "2024-03-29",
   },
   [156665] = { -- Ayleid Constellation Stele, The Serpent
     itemPrice = 20000,
@@ -1806,7 +1810,7 @@ FurC.LuxuryFurnisher[ver.MARKAT] = {
   },
   [153697] = { -- Clockwork Telescope, Stargazers
     itemPrice = 75000,
-    itemDate = "2023-03-04",
+    itemDate = "2024-03-29",
   },
   [145470] = { -- Redguard Vase, Golden
     itemPrice = 5000,
@@ -2122,23 +2126,23 @@ FurC.LuxuryFurnisher[ver.SLAVES] = {
   },
   [134422] = { -- Clockwork Sextant, Surveyor's
     itemPrice = 75000,
-    itemDate = "2023-03-04",
+    itemDate = "2024-03-29",
   },
   [134421] = { -- Clockwork Calibration Guide, The Warrior
     itemPrice = 50000,
-    itemDate = "2023-03-04",
+    itemDate = "2024-03-29",
   },
   [134420] = { -- Clockwork Calibration Guide, The Thief
     itemPrice = 50000,
-    itemDate = "2023-03-04",
+    itemDate = "2024-03-29",
   },
   [134419] = { -- Clockwork Calibration Guide, The Mage
     itemPrice = 50000,
-    itemDate = "2023-03-04",
+    itemDate = "2024-03-29",
   },
   [134418] = { -- Clockwork Telescope, Surveyor's
     itemPrice = 15000,
-    itemDate = "2023-03-04",
+    itemDate = "2024-03-29",
   },
   [120893] = { -- Wedding Gazebo
     itemPrice = 50000,
