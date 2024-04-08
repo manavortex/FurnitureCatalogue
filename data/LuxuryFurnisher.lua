@@ -4,6 +4,10 @@ local ver = FurC.Constants.Versioning
 
 -- 28 Secrets of the Telvanni
 FurC.LuxuryFurnisher[ver.ENDLESS] = {
+  [203144] = { -- Clockwork Illuminator Holder
+    itemPrice = 65000,
+    itemDate = "2024-04-05",
+  },
   [203143] = { -- Clockwork Stairway, Spiral
     itemPrice = 65000,
     itemDate = "2024-03-29",
@@ -278,7 +282,7 @@ FurC.LuxuryFurnisher[ver.DRUID] = {
   },
   [192573] = { -- Clockwork Illuminator, Spot
     itemPrice = 14000,
-    itemDate = "2023-03-11",
+    itemDate = "2024-04-05",
   },
   [192570] = { -- Decorative Wall Drape, Mauve
     itemPrice = 3000,
@@ -486,7 +490,7 @@ FurC.LuxuryFurnisher[ver.DEADL] = {
   },
   [182620] = { -- Clockwork Door, Arched
     itemPrice = 25000,
-    itemDate = "2023-03-11",
+    itemDate = "2024-04-05",
   },
   [182619] = { -- Clockwork Altar, Devotional
     itemPrice = 15000,
@@ -1746,7 +1750,7 @@ FurC.LuxuryFurnisher[ver.MARKAT] = {
   },
   [171412] = { -- Clockwork Switch, Rotary
     itemPrice = 8000,
-    itemDate = "2023-03-11",
+    itemDate = "2024-04-05",
   },
   [171411] = { -- Clockwork Lens Assembly, Frozen
     itemPrice = 7000,
@@ -1806,7 +1810,7 @@ FurC.LuxuryFurnisher[ver.MARKAT] = {
   },
   [153698] = { -- Clockwork Orrery, Simple
     itemPrice = 35000,
-    itemDate = "2023-03-11",
+    itemDate = "2024-04-05",
   },
   [153697] = { -- Clockwork Telescope, Stargazers
     itemPrice = 75000,
@@ -2106,23 +2110,23 @@ FurC.LuxuryFurnisher[ver.SLAVES] = {
   },
   [134427] = { -- Clockwork Orrery, Intricate
     itemPrice = 100000,
-    itemDate = "2023-03-11",
+    itemDate = "2024-04-05",
   },
   [134426] = { -- Clockwork Globe, Stand
     itemPrice = 4000,
-    itemDate = "2023-03-11",
+    itemDate = "2024-04-05",
   },
   [134425] = { -- Clockwork Orrery, Compact
     itemPrice = 20000,
-    itemDate = "2023-03-11",
+    itemDate = "2024-04-05",
   },
   [134424] = { -- Clockwork Gear Display, Bell Jar
     itemPrice = 2500,
-    itemDate = "2023-03-11",
+    itemDate = "2024-04-05",
   },
   [134423] = { -- Clockwork Gear Display, Tall Jar
     itemPrice = 3000,
-    itemDate = "2023-03-11",
+    itemDate = "2024-04-05",
   },
   [134422] = { -- Clockwork Sextant, Surveyor's
     itemPrice = 75000,
