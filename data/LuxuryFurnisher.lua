@@ -4,6 +4,10 @@ local ver = FurC.Constants.Versioning
 
 -- 28 Secrets of the Telvanni
 FurC.LuxuryFurnisher[ver.ENDLESS] = {
+  [203145] = { -- Banner, Foodhall
+    itemPrice = 450,
+    itemDate = "2024-04-12",
+  },
   [203144] = { -- Clockwork Illuminator Holder
     itemPrice = 65000,
     itemDate = "2024-04-05",
@@ -226,7 +230,7 @@ FurC.LuxuryFurnisher[ver.SCRIBE] = {
   },
   [192572] = { -- Inn Sign, Hanging
     itemPrice = 4000,
-    itemDate = "2023-03-18",
+    itemDate = "2024-04-12",
   },
   [192571] = { -- Grahtwood Banner, Hanging Inn
     itemPrice = 4000,
@@ -486,7 +490,7 @@ FurC.LuxuryFurnisher[ver.DEADL] = {
   },
   [182621] = { -- Mystic's Banner
     itemPrice = 4000,
-    itemDate = "2023-03-18",
+    itemDate = "2024-04-12",
   },
   [182620] = { -- Clockwork Door, Arched
     itemPrice = 25000,
@@ -1746,7 +1750,7 @@ FurC.LuxuryFurnisher[ver.MARKAT] = {
   },
   [171413] = { -- Mages Guild Sign, Large
     itemPrice = 12000,
-    itemDate = "2023-03-18",
+    itemDate = "2024-04-12",
   },
   [171412] = { -- Clockwork Switch, Rotary
     itemPrice = 8000,
@@ -1806,7 +1810,7 @@ FurC.LuxuryFurnisher[ver.MARKAT] = {
   },
   [153699] = { -- Banner, Furnishings
     itemPrice = 25000,
-    itemDate = "2023-03-18",
+    itemDate = "2024-04-12",
   },
   [153698] = { -- Clockwork Orrery, Simple
     itemPrice = 35000,
@@ -1846,11 +1850,11 @@ FurC.LuxuryFurnisher[ver.MARKAT] = {
   },
   [141764] = { -- Banner, Outfit Small
     itemPrice = 5000,
-    itemDate = "2023-03-18",
+    itemDate = "2024-04-12",
   },
   [141763] = { -- Banner, Outfit
     itemPrice = 12000,
-    itemDate = "2023-03-18",
+    itemDate = "2024-04-12",
   },
   [134824] = { -- Redguard Tent, Rounded Silk
     itemPrice = 100000,
@@ -1942,15 +1946,15 @@ FurC.LuxuryFurnisher[ver.MARKAT] = {
   },
   [134430] = { -- Stablemaster's Sign, Large
     itemPrice = 12000,
-    itemDate = "2023-04-08",
+    itemDate = "2024-04-12",
   },
   [134429] = { -- Merchant's Sign, Large
     itemPrice = 12000,
-    itemDate = "2023-03-18",
+    itemDate = "2024-04-12",
   },
   [134428] = { -- Banker's Sign, Large
     itemPrice = 12000,
-    itemDate = "2023-03-18",
+    itemDate = "2024-04-12",
   },
   [121267] = { -- Hew’s Bane Merchant’s Basket
     itemPrice = 2500,
