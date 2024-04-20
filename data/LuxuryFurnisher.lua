@@ -4,6 +4,10 @@ local ver = FurC.Constants.Versioning
 
 -- 28 Secrets of the Telvanni
 FurC.LuxuryFurnisher[ver.ENDLESS] = {
+  [203146] = { -- Wood Elf Banner, Mages Guild
+    itemPrice = 12000, -- Gold
+    itemDate = "2024-04-19",
+  },
   [203145] = { -- Banner, Foodhall
     itemPrice = 450,
     itemDate = "2024-04-12",
@@ -234,7 +238,7 @@ FurC.LuxuryFurnisher[ver.SCRIBE] = {
   },
   [192571] = { -- Grahtwood Banner, Hanging Inn
     itemPrice = 4000,
-    itemDate = "2023-03-25",
+    itemDate = "2024-04-19",
   },
   [192569] = { -- Alchemy Shelves, Filled",
     itemPrice = 4000,
@@ -486,7 +490,7 @@ FurC.LuxuryFurnisher[ver.DEADL] = {
   },
   [182622] = { -- Grahtwood Fighters Guild Sign
     itemPrice = 12000,
-    itemDate = "2023-03-25",
+    itemDate = "2024-04-19",
   },
   [182621] = { -- Mystic's Banner
     itemPrice = 4000,
@@ -1746,7 +1750,7 @@ FurC.LuxuryFurnisher[ver.MARKAT] = {
   },
   [171414] = { -- Fighters Guild Sign, Large
     itemPrice = 12000,
-    itemDate = "2023-03-25",
+    itemDate = "2024-04-19",
   },
   [171413] = { -- Mages Guild Sign, Large
     itemPrice = 12000,
@@ -1806,7 +1810,7 @@ FurC.LuxuryFurnisher[ver.MARKAT] = {
   },
   [153700] = { -- Banner, Packs
     itemPrice = 4000,
-    itemDate = "2023-03-25",
+    itemDate = "2024-04-19",
   },
   [153699] = { -- Banner, Furnishings
     itemPrice = 25000,
@@ -1842,11 +1846,11 @@ FurC.LuxuryFurnisher[ver.MARKAT] = {
   },
   [141766] = { -- Banner, Transmute Small
     itemPrice = 5000,
-    itemDate = "2023-03-25",
+    itemDate = "2024-04-19",
   },
   [141765] = { -- Banner, Transmute
     itemPrice = 12000,
-    itemDate = "2023-03-25",
+    itemDate = "2024-04-19",
   },
   [141764] = { -- Banner, Outfit Small
     itemPrice = 5000,
@@ -1938,11 +1942,11 @@ FurC.LuxuryFurnisher[ver.MARKAT] = {
   },
   [134432] = { -- Banker's Sign, Small
     itemPrice = 3000,
-    itemDate = "2023-03-25",
+    itemDate = "2024-04-19",
   },
   [134431] = { -- Merchant's Sign, Small
     itemPrice = 3000,
-    itemDate = "2023-03-25",
+    itemDate = "2024-04-19",
   },
   [134430] = { -- Stablemaster's Sign, Large
     itemPrice = 12000,
