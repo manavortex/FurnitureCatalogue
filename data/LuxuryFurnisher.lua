@@ -4,6 +4,10 @@ local ver = FurC.Constants.Versioning
 
 -- 28 Secrets of the Telvanni
 FurC.LuxuryFurnisher[ver.ENDLESS] = {
+  [203147] = { -- Shelf, Folded Laundry
+    itemDate = "2024-04-26",
+    itemPrice = 300, -- Gold
+  },
   [203146] = { -- Wood Elf Banner, Mages Guild
     itemPrice = 12000, -- Gold
     itemDate = "2024-04-19",
@@ -230,7 +234,7 @@ FurC.LuxuryFurnisher[ver.SCRIBE] = {
   },
   [192579] = { -- Common Crate, Fabric Bolts",
     itemPrice = 4000,
-    itemDate = "2023-04-01",
+    itemDate = "2024-04-26",
   },
   [192572] = { -- Inn Sign, Hanging
     itemPrice = 4000,
@@ -486,7 +490,7 @@ FurC.LuxuryFurnisher[ver.DEADL] = {
   },
   [182623] = { -- Rugs, Rolled
     itemPrice = 2500,
-    itemDate = "2022-03-05",
+    itemDate = "2024-04-26",
   },
   [182622] = { -- Grahtwood Fighters Guild Sign
     itemPrice = 12000,
@@ -1746,7 +1750,7 @@ FurC.LuxuryFurnisher[ver.MARKAT] = {
   },
   [171415] = { -- Changing Room, Curtained
     itemPrice = 3000,
-    itemDate = "2023-04-01",
+    itemDate = "2024-04-26",
   },
   [171414] = { -- Fighters Guild Sign, Large
     itemPrice = 12000,
@@ -1806,7 +1810,7 @@ FurC.LuxuryFurnisher[ver.MARKAT] = {
   },
   [153701] = { -- Clockwork Changing Room, Curtained
     itemPrice = 20000,
-    itemDate = "2023-04-01",
+    itemDate = "2024-04-26",
   },
   [153700] = { -- Banner, Packs
     itemPrice = 4000,
@@ -2102,19 +2106,19 @@ FurC.LuxuryFurnisher[ver.SLAVES] = {
   },
   [134437] = { -- Clockwork Spinning Wheel, Sturdy
     itemPrice = 12000,
-    itemDate = "2023-04-01",
+    itemDate = "2024-04-26",
   },
   [134436] = { -- Spool, Blue Thread
     itemPrice = 450,
-    itemDate = "2023-04-01",
+    itemDate = "2024-04-26",
   },
   [134435] = { -- Clockwork Loom, Sturdy
     itemPrice = 20000,
-    itemDate = "2023-04-01",
+    itemDate = "2024-04-26",
   },
   [134434] = { -- Quality Fabric, Stacked
     itemPrice = 450,
-    itemDate = "2023-04-01",
+    itemDate = "2024-04-26",
   },
   [134427] = { -- Clockwork Orrery, Intricate
     itemPrice = 100000,
