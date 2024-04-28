@@ -85,7 +85,6 @@ FurC.Rumours[ver.ENDLESS] = {
   [203150] = rumourSource, -- Falmer Fence, Stick",
   [203149] = rumourSource, -- Redguard Seal, Spider",
   [203148] = rumourSource, -- Argonian Puzzle Totem, Head",
-  [203147] = rumourSource, -- Shelf, Folded Laundry",
   [203138] = rumourSource, -- Apocrypha Plant, Feather Fern",
   [203135] = rumourSource, -- Redguard Dome, Mosaic",
   [203133] = rumourSource, -- Apocrypha Coral, Spiky",
