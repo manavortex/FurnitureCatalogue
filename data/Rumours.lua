@@ -96,7 +96,6 @@ FurC.Rumours[ver.ENDLESS] = {
   [199125] = rumourSource, -- Inky Waterup Table",
   [199124] = rumourSource, -- Green ink ceiling light",
   [199123] = rumourSource, -- Cabinet of Curiosities",
-  [199122] = rumourSource, -- Redguard Bottle, Glowing",
   [199121] = rumourSource, -- Inky Incense Burner",
   [199120] = rumourSource, -- Framed Vision",
   [199113] = rumourSource, -- Snow Globe Music Box",
