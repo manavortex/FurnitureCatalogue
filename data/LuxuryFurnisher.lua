@@ -52,6 +52,10 @@ FurC.LuxuryFurnisher[ver.ENDLESS] = {
     itemPrice = 4500,
     itemDate = "2024-01-26",
   },
+  [199122] = { -- Redguard Bottle, Glowing
+    itemPrice = 15000,
+    itemDate = "2024-05-03",
+  },
 }
 
 -- 27 Base Game Patch
@@ -244,9 +248,9 @@ FurC.LuxuryFurnisher[ver.SCRIBE] = {
     itemPrice = 4000,
     itemDate = "2024-04-19",
   },
-  [192569] = { -- Alchemy Shelves, Filled",
+  [192569] = { -- Alchemy Shelves, Filled
     itemPrice = 4000,
-    itemDate = "2023-04-08",
+    itemDate = "2024-05-03",
   },
 }
 
@@ -486,7 +490,7 @@ FurC.LuxuryFurnisher[ver.DEADL] = {
   },
   [182624] = { -- Clockwork Coffer, Vertical
     itemPrice = 4000,
-    itemDate = "2022-03-12",
+    itemDate = "2024-05-03",
   },
   [182623] = { -- Rugs, Rolled
     itemPrice = 2500,
@@ -1746,7 +1750,7 @@ FurC.LuxuryFurnisher[ver.MARKAT] = {
   },
   [171416] = { -- Telvanni Specimen Jar, Glass Dome
     itemPrice = 1000,
-    itemDate = "2023-04-08",
+    itemDate = "2024-05-03",
   },
   [171415] = { -- Changing Room, Curtained
     itemPrice = 3000,
@@ -1806,7 +1810,7 @@ FurC.LuxuryFurnisher[ver.MARKAT] = {
   },
   [153702] = { -- Clockwork Pot, Crystals
     itemPrice = 10000,
-    itemDate = "2023-04-08",
+    itemDate = "2024-05-03",
   },
   [153701] = { -- Clockwork Changing Room, Curtained
     itemPrice = 20000,
@@ -1930,19 +1934,19 @@ FurC.LuxuryFurnisher[ver.MARKAT] = {
   },
   [134441] = { -- Animo Core, Full
     itemPrice = 10000,
-    itemDate = "2023-04-08",
+    itemDate = "2024-05-03",
   },
   [134440] = { -- Clockwork Alchemy Titration Stand
     itemPrice = 3000,
-    itemDate = "2022-03-012",
+    itemDate = "2024-05-03",
   },
   [134439] = { -- Clockwork Alchemy Flask
     itemPrice = 3000,
-    itemDate = "2023-04-08",
+    itemDate = "2024-05-03",
   },
   [134438] = { -- Clockwork Alchemy Rack, Tubes
     itemPrice = 3000,
-    itemDate = "2023-04-08",
+    itemDate = "2024-05-03",
   },
   [134432] = { -- Banker's Sign, Small
     itemPrice = 3000,
