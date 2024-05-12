@@ -66,6 +66,7 @@ local defaults = {
   -- tooltips
   disableTooltips = false,
   coloredTooltips = true,
+  dateFormat = "YYYY-MM-DD",
   hideKnowledge = false,
 
   hideBooks = true,
