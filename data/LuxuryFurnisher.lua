@@ -4,12 +4,16 @@ local ver = FurC.Constants.Versioning
 
 -- 28 Secrets of the Telvanni
 FurC.LuxuryFurnisher[ver.ENDLESS] = {
+  [203148] = { -- Argonian Puzzle Totem, Head
+    itemPrice = 3500,
+    itemDate = "2024-05-10",
+  },
   [203147] = { -- Shelf, Folded Laundry
     itemDate = "2024-04-26",
-    itemPrice = 300, -- Gold
+    itemPrice = 300,
   },
   [203146] = { -- Wood Elf Banner, Mages Guild
-    itemPrice = 12000, -- Gold
+    itemPrice = 12000,
     itemDate = "2024-04-19",
   },
   [203145] = { -- Banner, Foodhall
@@ -234,7 +238,7 @@ FurC.LuxuryFurnisher[ver.SCRIBE] = {
   },
   [193797] = { -- Wrothgar Puzzle Cube, Mountains,
     itemPrice = 20000,
-    itemDate = "2023-04-15",
+    itemDate = "2024-05-10",
   },
   [192579] = { -- Common Crate, Fabric Bolts",
     itemPrice = 4000,
@@ -474,7 +478,7 @@ FurC.LuxuryFurnisher[ver.TIDES] = {
   },
   [182625] = { -- Orcish Seal, Torch
     itemPrice = 3000,
-    itemDate = "2023-04-15",
+    itemDate = "2024-05-10",
   },
 }
 
@@ -1746,7 +1750,7 @@ FurC.LuxuryFurnisher[ver.MARKAT] = {
   },
   [171417] = { -- Orcish Seal, Owl
     itemPrice = 3000,
-    itemDate = "2023-04-15",
+    itemDate = "2024-05-10",
   },
   [171416] = { -- Telvanni Specimen Jar, Glass Dome
     itemPrice = 1000,
@@ -1794,11 +1798,11 @@ FurC.LuxuryFurnisher[ver.MARKAT] = {
   },
   [156659] = { -- Orcish Seal, Hammer
     itemPrice = 3000,
-    itemDate = "2023-04-15",
+    itemDate = "2024-05-10",
   },
   [156658] = { -- Orcish Seal, Wolf
     itemPrice = 3000,
-    itemDate = "2023-04-15",
+    itemDate = "2024-05-10",
   },
   [156647] = { -- Ra Gada Throne, Stone
     itemPrice = 50000,
@@ -1910,15 +1914,15 @@ FurC.LuxuryFurnisher[ver.MARKAT] = {
   },
   [134449] = { -- Seal of Clan Igrun, Metal
     itemPrice = 4000,
-    itemDate = "2023-04-15",
+    itemDate = "2024-05-10",
   },
   [134448] = { -- Seal of Clan Fharun, Metal
     itemPrice = 4000,
-    itemDate = "2022-03-19",
+    itemDate = "2024-05-10",
   },
   [134447] = { -- Seal of Clan Bagrakh, Metal
     itemPrice = 4000,
-    itemDate = "2023-04-15",
+    itemDate = "2024-05-10",
   },
   [134444] = { -- Seal of Clan Igrun, Stone
     itemPrice = 4000,
@@ -1926,11 +1930,11 @@ FurC.LuxuryFurnisher[ver.MARKAT] = {
   },
   [134443] = { -- Seal of Clan Fharun, Stone
     itemPrice = 4000,
-    itemDate = "2023-04-15",
+    itemDate = "2024-05-10",
   },
   [134442] = { -- Seal of Clan Bagrakh, Stone
     itemPrice = 4000,
-    itemDate = "2023-04-15",
+    itemDate = "2024-05-10",
   },
   [134441] = { -- Animo Core, Full
     itemPrice = 10000,
@@ -2102,11 +2106,11 @@ FurC.LuxuryFurnisher[ver.SLAVES] = {
   },
   [134446] = { -- Ancient Orcish Sarcophagus Lid
     itemPrice = 10000,
-    itemDate = "2023-04-15",
+    itemDate = "2024-05-10",
   },
   [134445] = { -- Ancient Orcish Sarcophagus, Peaked
-    itemPrice = 14000,
-    itemDate = "2021-03-05",
+    itemPrice = 15000,
+    itemDate = "2024-05-10",
   },
   [134437] = { -- Clockwork Spinning Wheel, Sturdy
     itemPrice = 12000,

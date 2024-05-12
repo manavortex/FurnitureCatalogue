@@ -1,5 +1,8 @@
 local ver = FurC.Constants.Versioning
 
+-- 28 Scions of Ithelia
+FurC.EventItems[ver.SCIONS] = {}
+
 -- 27 Base Game Patch
 FurC.EventItems[ver.BASED] = {
   ["Witches' Festival"] = {
