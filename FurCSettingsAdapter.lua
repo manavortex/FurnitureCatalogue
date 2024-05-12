@@ -91,6 +91,10 @@ function FurC.SetSkipDivider(value)
 end
 
 function FurC.GetFilterAllOnTextNoBooks(value)
+  return FurC.settings["filterAllOnTextNoBooks"]
+end
+
+function FurC.SetFilterAllOnTextNoBooks(value)
   FurC.settings["filterAllOnTextNoBooks"] = value
   FurC.UpdateGui()
 end
