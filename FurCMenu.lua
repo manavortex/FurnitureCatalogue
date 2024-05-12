@@ -481,6 +481,19 @@ function FurC.CreateSettings(savedVars, defaults)
         FurC.SetColouredTooltips(value)
       end,
     },
+    { -- dropdown: Date format for luxury furniture info
+      type = "dropdown",
+      name = GetString(SI_FURC_STRING_MENU_TOOLTIP_DATEFORMAT),
+      tooltip = GetString(SI_FURC_STRING_MENU_TOOLTIP_DATEFORMAT_TT),
+      choices = FurC.GetDateFormatChoices().choices,
+      choicesValues = FurC.GetDateFormatChoices().values,
+      getFunc = function()
+        return FurC.GetDateFormat()
+      end,
+      setFunc = function(value)
+        FurC.SetDateFormat(value)
+      end,
+    },
     { -- checkbox: Hide 'known by' from tooltip
       type = "checkbox",
       name = GetString(SI_FURC_STRING_MENU_TOOLTIP_HIDE_KNOWN),

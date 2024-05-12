@@ -55,7 +55,18 @@ local function getLuxurySource(recipeKey, recipeArray, stripColor)
 
   local itemData = versionData[recipeKey]
   if nil ~= itemData then
-    local weekendString = (nil == itemData.itemDate and "") or zo_strformat(WEEKEND_DATE, itemData.itemDate)
+    local yyyy, mm, dd = string.match(itemData.itemDate, "(%d+)-(%d+)-(%d+)")
+
+    local formattedDate = ""
+    if yyyy and mm and dd then
+      local formatted = FurC.GetDateFormat()
+      formatted = string.gsub(formatted, "YYYY", yyyy)
+      formatted = string.gsub(formatted, "MM", mm)
+      formatted = string.gsub(formatted, "DD", dd)
+      formattedDate = formatted
+    end
+
+    local weekendString = (nil == itemData.itemDate and "") or zo_strformat(WEEKEND_DATE, formattedDate)
     return zo_strformat(
       SOLD_BY,
       colourise(GetString(SI_FURC_STRING_ASSHOLE), colour.Vendor, stripColor),
