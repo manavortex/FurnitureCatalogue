@@ -1,3 +1,6 @@
+4.81.1 (2024-05-12)
+- hotfix: add missing default date format in settings
+
 4.81.0 (2024-05-12)
 - luxury furnishings for april and first half of may
 - fix missing setting for search filter "hide books", works now as it should
