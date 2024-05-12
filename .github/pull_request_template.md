@@ -1,22 +1,14 @@
-- describe your changes here
 
-[//]: # "❓ YOU CAN DELETE THE TEXT IF THIS IS NOT AN IMMEDIATE RELEASE ❓"
-[//]: # "⬆️⬆️⬆️ ABOVE WILL BE USED FOR LOCAL AND ESOUI CHANGELOG ⬆️⬆️⬆️"
-[//]: # "💀 LEAVE THIS LINE OR THE CHANGELOG MIGHT BREAK 💀"
-[//]: # "header like '1.23 (2023-12-12)' will be generated"
-[//]: # "⬇️⬇️⬇️ STUFF BELOW WONT BE SENT TO ESOUI ⬇️⬇️⬇️"
 
-## Checklist for automatic Release
+Switch to `Preview Tab` and click on a link to fill this box with a template:
 
-- [ ] 📑 I edited or deleted the **notes** for the changelogs
-- [ ] ⚠️ I left at least 1 invisible `[//]: # "comment block"` untouched
-- [ ] 🏷️ I labeled this PR `actions:RELEASE` (+optional version labels)
+* ⭐ [Default Template](?quick_pull=1&expand=1&template=default_template.md)
+    * pull request template for contributors
+    * used for external contributions to the dev branch
+    * pick this if you're unsure
+* 🛠️ [Release Template](?quick_pull=1&expand=1&template=pull_request_template.md)
+    * for maintainers
+    * used for merging the latest changes from dev branch into master
+    * pick this if you're doing a release (for changelog and version bump)
 
-## About this Release
-
-- optional details regarding this PR
-- will not show up in changelog
-
-## Related issues
-
-- any related issues
+Or just clear all text and use your own.

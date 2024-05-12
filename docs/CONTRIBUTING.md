@@ -13,6 +13,10 @@ You can:
 1. 🍴 **fork** the latest dev branch (default)
    - or create a new branch from dev if you're a maintainer
 2. 🛠️ **update** your branch with your changes
+   - I recommend a rebase before you make the PR, like `git fetch --all` followed by `git rebase upstream/dev`
+    - `upstream` usually means the main repository and `origin` is your fork
+    - you can set the upstream like so: `git remote set-url upstream https://github.com/manavortex/FurnitureCatalogue.git`
+    - or without setting the upstream: `git pull --rebase https://github.com/manavortex/FurnitureCatalogue.git dev`
 3. 📬 send a **PR** pointing to the dev branch
    - if you're not ready yet but want to show or discuss your changes, you can make it a draft PR
 4. 🔎 **check** the changes
@@ -27,7 +31,10 @@ You can:
 
 ## 🤝 Merge Strategy
 
-- ⭐ **merge** (preferred)
+- ⭐ **rebase** (preferred)
+  - puts all changes on top of the latest code
+  - works best, if you already rebased locally or if there were no changes in the meantime
+- **merge** 
   - creates a commit including the changes from the PR
   - makes it easier to retrace steps
 - **squash**
@@ -35,12 +42,6 @@ You can:
   - useful if you want to hide many little commits that don't do much
   - but it's fine, don't worry about spamming, it doesn't have to look pretty
   - the changelog is for looking pretty
-- **rebase**
-  - makes it look like the changes were done on the target branch
-  - GitHub rebase only works if there are no conflicts
-  - if you really have to you can use local rebase
-    - let's you change history and cherry pick commits
-    - only useful, if the PR is incompatible with the target branch
 
 ## 🌳 Branching Strategy
 
