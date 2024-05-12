@@ -154,6 +154,29 @@ function FurC.SetColouredTooltips(value)
   FurC.settings["coloredTooltips"] = value
 end
 
+function FurC.GetDateFormatChoices()
+  return {
+    choices = {
+      [1] = "2012-12-31", -- ISO
+      [2] = "31.12.2012",
+      [3] = "12/31/2012",
+    },
+    values = {
+      [1] = "YYYY-MM-DD",
+      [2] = "DD.MM.YYYY",
+      [3] = "MM/DD/YYYY",
+    },
+  }
+end
+
+function FurC.GetDateFormat()
+  return FurC.settings["dateFormat"]
+end
+
+function FurC.SetDateFormat(value)
+  FurC.settings["dateFormat"] = value
+end
+
 function FurC.GetHideKnowledge()
   return FurC.settings["hideKnowledge"]
 end
