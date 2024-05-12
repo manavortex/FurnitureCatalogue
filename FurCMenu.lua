@@ -20,13 +20,14 @@ function FurC.CreateSettings(savedVars, defaults)
     { -- checkbox: Debug output
       type = "checkbox",
       name = GetString(SI_FURC_STRING_MENU_DEBUG),
-      tooltip = "",
+      tooltip = GetString(SI_FURC_STRING_MENU_DEBUG_TT),
       getFunc = function()
         return FurC.GetEnableDebug()
       end,
       setFunc = function(value)
         FurC.SetEnableDebug(value)
       end,
+      disabled = not LibDebugLogger,
     },
     { -- button: Reset database
       type = "button",

@@ -186,6 +186,7 @@ SI_FURC_ELF_PIC = "Drops rarely from treasure chests on Summerset"
 SI_FURC_LEVELUP = "Can be gained as levelup reward"
 SI_FURC_SLAVES_DAILY = "from Murkmire daily quest reward boxes"
 SI_FURC_STRING_MENU_DEBUG = "Enable debug output"
+SI_FURC_STRING_MENU_DEBUG_TT = "Only has an effect if a debug logger is enabled"
 SI_FURC_STRING_MENU_RESET_DB_NAME = "|cFF0000Reset database"
 SI_FURC_STRING_MENU_RESET_DB_TT = "This will reset the furniture database."
 SI_FURC_STRING_MENU_RESET_DB_WARNING =
