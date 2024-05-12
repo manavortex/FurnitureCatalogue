@@ -1,3 +1,10 @@
+4.81.0 (2024-05-12)
+- luxury furnishings for april and first half of may
+- fix missing setting for search filter "hide books", works now as it should
+- add date format option for luxury furnishing tooltip (YYYY-MM-DD, DD.MM.YYYY and MM/DD/YYYY)
+- disable debug option in settings when no logger is installed (to avoid confusion)
+- thanks to @Lyhtande for the feedback
+
 4.80.0 (2024-03-11)
 - added furniture and blueprints from Scions of Ithelia (for now they show up as rumours, sources will be updated over time)
 - updated some luxury furnishings
