@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-"""Helps getting string definitions for IDE support. Can also generate missing string variables in all locale files. Make a backup, if you have manual entries.
+"""Helps getting string definitions for IDE support. Also used to generate missing string variables in all locale files. Make a backup, if you have manual entries.
 
 Use inside the project folder and paths relative it, because those are being used as identifiers for the code section markers like:
 
