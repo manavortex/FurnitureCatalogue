@@ -26,17 +26,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           ref: master
       - run: |
           git config --local user.name "Handles-Your-Releases[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
+      # Install dependencies for required scripts
       - name: Setup Python
-        uses: actions/setup-python@v4.6.0
+        uses: actions/setup-python@v4
         with:
-          python-version: "^3.6"
+          python-version: "^3.10"
+          cache: 'pip'
+      - run: pip install -r .scripts/requirements.txt
 
       # Create archive and set env vars and output for the next steps
       # should fail completely if something goes wrong
@@ -79,7 +82,7 @@ jobs:
     continue-on-error: true
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           ref: dev
       - run: |

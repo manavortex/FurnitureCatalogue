@@ -31,13 +31,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
+      # Install dependencies for required scripts
       - name: Setup Python
-        uses: actions/setup-python@v4.6.0
+        uses: actions/setup-python@v4
         with:
-          python-version: "^3.6"
-          cache: pip
+          python-version: "^3.10"
+          cache: 'pip'
       - run: pip install -r .scripts/requirements.txt
 
       # Get release data, fall back to latest release if we ran manually

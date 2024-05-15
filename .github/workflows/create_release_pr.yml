@@ -31,7 +31,7 @@ jobs:
     steps:
       # Check out master branch and set up our git config
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           ref: master
       - run: |
@@ -40,9 +40,10 @@ jobs:
 
       # Install dependencies for required scripts
       - name: Setup Python
-        uses: actions/setup-python@v4.6.0
+        uses: actions/setup-python@v4
         with:
-          python-version: "^3.6"
+          python-version: "^3.10"
+          cache: 'pip'
       - run: pip install -r .scripts/requirements.txt
 
       # Loads details from the latest valid PR
@@ -151,13 +152,29 @@ jobs:
           VERSION: ${{ steps.next_version.outputs.NEXT_VERSION }}
           NOTE: ${{ steps.get_details.outputs.BODY }}
 
+        # Cache StyLUA
+      - name: Cache StyLUA Binary
+        id: cache_stylua
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/stylua
+          key: ${{ runner.os }}-stylua
+
+      - name: Get StyLUA binary
+        if: steps.cache_stylua.outputs.cache-hit != 'true'
+        run: |
+          curl -L -o ~/.cache/stylua.zip "https://github.com/JohnnyMorganz/StyLua/releases/download/v0.20.0/stylua-linux.zip"
+          unzip ~/.cache/stylua.zip -d ~/.cache/bins
+          rm -f ~/.cache/stylua.zip
+          chmod +x ~/.cache/bins/stylua
+
       # Format LUA files
       - name: StyLUA Formatter
-        uses: JohnnyMorganz/stylua-action@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          version: 4.0.0
-          args: --config-path=stylua.toml .
+        run: |
+          # Justin Casey we chmod, if permission is lost in the cache
+          chmod +x ~/.cache/bins/stylua
+          # Format all lua files in the repository
+          ~/.cache/bins/stylua --config-path=stylua.toml .
 
       # Commit version increments and CHANGELOG (if applicable)
       # Fails if empty commit
