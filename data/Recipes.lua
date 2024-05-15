@@ -225,7 +225,6 @@ FurC.Recipes[ver.ENDLESS] = {
   198525, -- Praxis: Apocrypha Sconce, Diffuser",
   198526, -- Diagram: Apocrypha Sconce, Intricate",
   198527, -- Pattern: Apocrypha Book Piles, Floating",
-
 }
 
 -- 27 Base Game Patch
