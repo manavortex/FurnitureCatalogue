@@ -1,25 +1,18 @@
 #!/usr/bin/env python3
 
-"""Helps getting string definitions for IDE support. Make a backup, if you have manual entries.
+"""Helps getting string definitions for IDE support. Can also generate missing string variables in all locale files. Make a backup, if you have manual entries.
 
-Use inside the script folder and paths relative to the script, because those are being used as identifiers for the code section markers like:
+Use inside the project folder and paths relative it, because those are being used as identifiers for the code section markers like:
 
--- ////// START : GENERATED FROM ../locale/en.lua
+-- ////// START : GENERATED FROM locale/en.lua
 ...
--- ////// END   : GENERATED FROM ../locale/en.lua
+-- ////// END   : GENERATED FROM locale/en.lua
 
-Example calls (load the main language files only):
-  cd .scripts
-  python ./luaDoc_generateStr.py
-  python ./luaDoc_generateStr.py ../dir/lang.lua
-  python ./luaDoc_generateStr.py ../dir/lang.lua ./output.lua
-  python ./luaDoc_generateStr.py ../locale/en.lua
-
-⚠️ Attention ⚠️
-The string extraction flattens, meaning it does not support multidimensional string declarations like:
-local namespace1 = {A = "namespace1 my string"}
-local namespace2 = {A = "namespace2 my string"}
-This will result in A being overwritten with "namespace2 my string"
+Example calls (use your main language files only):
+  python .scripts/luaDoc_generateStr.py
+  python .scripts/luaDoc_generateStr.py locale/en.lua
+  python .scripts/luaDoc_generateStr.py locale/en.lua docs/autocomplete_definitions.lua
+  python .scripts/luaDoc_generateStr.py locale/en.lua locale/de.lua --generate-translation
 """
 
 import re
@@ -29,7 +22,7 @@ EXIT_FAILURE = -1
 EXIT_SUCCESS = 0
 
 def get_file_content(path: str) -> list[str]:
-  """Get content of file, empty if doesn't exist"""
+  """Get content of file as a list, empty if doesn't exist"""
   try:
     with open(path, 'r') as file:
       content = file.readlines()
@@ -37,86 +30,194 @@ def get_file_content(path: str) -> list[str]:
   except FileNotFoundError:
     return []
 
-def parse_file(lines: list) -> list:
-  """Collects valid string lines to list
+
+def extract_strings(lines: list) -> dict:
+  """Collects valid string definition pairs.
+      Caveats:
+        - includes quotation
+        - drops trailing commas
+        - drops comments
+        - does not include newlines
 
   Args:
       lines (list): Raw file content
 
   Returns:
-      list: string entries as key-value pairs
+      dict: {'KEY': VAL} like {'FURC_AV_RAZ': 'Razoufa'}
   """
 
-  # local filterDisabled = "disables this filter"
-  RE_PLACEHOLDER = re.compile(r'^\s*local (?P<KEY>\w+)\s*=\s*(?P<VAL>(\'.+\')|(\".+\"))\s*(--.+)?$')
-
   # SI_FURC_STRING_WASSOLDBY = "Was sold by <<1>> in <<2>> (<<3>>) <<4>>",
-  RE_STRING_PAIR = re.compile(r'^\s*(?P<KEY>[A-Z][A-Z0-9_]+)\s*=\s*(?P<VAL>.+?)\s*,?(\s*--.+)?\s*$')
+  RE_STRING_PAIR = re.compile(r'^\s*(?P<KEY>[A-Z][A-Z0-9_]*)\s*=\s*(?P<VAL>.+?)\s*,?(\s*--.+)?\s*$')
 
-  placeholders = []
-  strings = []
+  str_map = {}
   for line in lines:
-    placeholder_match = RE_PLACEHOLDER.fullmatch(line)
     string_match = RE_STRING_PAIR.fullmatch(line)
-
-    # normalise quotes and escapes in val or use as-is?
-    if placeholder_match:
-      key = placeholder_match.group('KEY').strip()
-      val = placeholder_match.group('VAL').strip()
-      placeholders.append(f"local {key} = {val}\n")
-    elif string_match:
+    if string_match:
       key = string_match.group('KEY').strip()
       val = string_match.group('VAL').strip()
-      strings.append(f"{key} = {val}\n")
+      str_map[key] = f"{val}"
 
-  sep_ph  = ["\n------ PLACEHOLDERS ------\n"]
-  sep_str = ["\n--------  STRINGS --------\n"]
-  return sep_ph + placeholders + sep_str + strings
+  return str_map
+
+def merge_translation(curlang_map: dict, reflang_map: dict) -> tuple[dict,dict,dict]:
+  """
+  Generates a combined map from the reference and the translations.
+
+  Args:
+    curlang_map (dict): Map of the current translation (ex 'de.lua')
+    reflang_map (dict): Reference language map, used to fill in missing keys in curlang_map.
+
+  Returns:
+    tuple[dict,dict,dict]: Merged map, leftover map, untranslated map
+      - merged map: combination of base lang and translation
+      - leftover map: definitions in translation but not in base
+      - untranslated map: strings that are the same in both (does not necessarily mean that the translation is missing, if 2 languages use the same word)
+  """
+
+  # Save leftover variables from translated file (not in reference language anymore)
+  leftovers = {key: curlang_map[key] for key in (list(set(curlang_map.keys()) - set(reflang_map.keys())))}
+
+  # Remove leftovers from translations
+  for key in leftovers.keys():
+    del curlang_map[key]
+
+  merged = {**reflang_map, **curlang_map}
+  untranslated = {}
+
+  # Check for untranslated variables
+  for key, val in merged.items():
+    if key in reflang_map and key in curlang_map and reflang_map[key] == curlang_map[key]:
+      untranslated[key] = val
+    elif not key in curlang_map:
+      untranslated[key] = val
+
+  # Remove untranslated variables from merged map
+  for key in untranslated.keys():
+    del merged[key]
+
+  return (merged, leftovers, untranslated)
+
+# markers to identify the region that will be overwritten in translation files
+TRANSL_START_MARKER  = "-- ////// START : DON'T REMOVE THIS LINE"
+TRANSL_END_MARKER    = "-- ////// END   : DON'T REMOVE THIS LINE"
+
+def write_translation_file(out_path: str, merged: tuple[dict,dict,dict]):
+  """(Re)writes the translation file with the merged map.
+        Any leftover definitions are appended at the end.
+        The file must contain the region markers or not exist yet.
+
+  Args:
+      out_path (str): Output file path
+      merged (tuple[dict,dict,list]): Merged, leftover, untranslated maps
+  """
+  current_langfile = get_file_content(out_path)
+  if not current_langfile:
+    current_langfile.extend(f"""
+  local filterDisabled = "disables this filter"
+  local strings = {{
+    {TRANSL_START_MARKER}
+    {TRANSL_END_MARKER}
+  }}
+
+  for stringId, stringValue in pairs(strings) do
+    ZO_CreateStringId(stringId, stringValue)
+    SafeAddVersion(stringId, 1)
+  end
+
+  """.splitlines(keepends=True))
+
+  # just abort if the region markers are missing
+  if not TRANSL_START_MARKER in (item.strip() for item in current_langfile):
+    print(f"Error: Missing region marker in {out_path}")
+    exit(EXIT_FAILURE)
+
+  # Extract string pairs from the maps
+  str_list = [f"{key} = {val},\n" for key, val in merged[0].items()]
+  leftover_list = [f"{key} = {val},\n" for key, val in merged[1].items()]
+  untranslated_list = [f"{key} = {val},\n" for key, val in merged[2].items()]
+
+  # Get the region that will be replaced
+  start_index = next(i for i, item in enumerate(current_langfile) if item.strip() == TRANSL_START_MARKER)
+  end_index = next(i for i, item in enumerate(current_langfile) if item.strip() == TRANSL_END_MARKER)
+
+  # 1. Insert our translations
+  current_langfile[start_index + 1:end_index] = str_list
+  end_index = start_index + 1 + len(str_list)
+
+  # 2. Insert any untranslated items
+  if untranslated_list:
+    current_langfile[end_index:end_index] = untranslated_list
+    current_langfile.insert(end_index, f"-- {len(untranslated_list)} ENTRIES THE SAME IN BOTH LANGUAGES\n")
+    end_index += len(untranslated_list) + 1
+
+  # 3. Insert any leftovers
+  if leftover_list:
+    current_langfile[end_index:end_index] = leftover_list
+    current_langfile.insert(end_index, f"-- {len(leftover_list)} LEFTOVER TRANSLATIONS, PLEASE CHECK!\n")
+
+  # save changes to file
+  with open(out_path, 'w') as file:
+    file.writelines(current_langfile)
 
 
-def write_lua_doc(identifier: str, lua_path: str, parsed: list):
-  lua_content = get_file_content(lua_path)
+def write_lua_doc(identifier: str, doc_path: str, str_map: dict):
+  current_luadoc = get_file_content(doc_path)
+  str_list = [f"{key} = {val}\n" for key, val in str_map.items()]
 
   start_marker  = f"-- ////// START : GENERATED FROM {identifier}\n"
   end_marker    = f"-- ////// END   : GENERATED FROM {identifier}\n"
-
   try:
     # replace region, if already exists
-    start_index = lua_content.index(start_marker)
-    end_index = lua_content.index(end_marker)
-    lua_content[start_index + 1:end_index] = parsed
+    start_index = current_luadoc.index(start_marker)
+    end_index = current_luadoc.index(end_marker)
+    current_luadoc[start_index + 1:end_index] = str_list
   except ValueError:
     # append region, if doesn't exist
-    lua_content.extend([start_marker] + parsed + [end_marker])
+    current_luadoc.extend([start_marker] + str_list + [end_marker])
 
   # save changes to file
-  with open(lua_path, 'w') as file:
-    file.writelines(lua_content)
-
-# ToDo: add str extraction for translation tables
-def write_translation_csv(identifier: str, tbl_path: str, parsed: list):
-  return ""
+  with open(doc_path, 'w') as file:
+    file.writelines(current_luadoc)
 
 
 if __name__ == '__main__':
-  lua_path = "luaDoc_Definitions.lua"
-  str_kv_pairs = {}
+  # Default files (relative to PWD)
+  input_file = "locale/en.lua"
+  out_path = "docs/autocomplete_definitions.lua"
 
+  # Default use case: Generate LuaDoc with default paths
   if len(sys.argv) == 1:
     # use default files if none supplied
-    lng_paths = ["../locale/en.lua"]
-    for lng_file in lng_paths:
-      resolved_names = parse_file(get_file_content(lng_file))
-      write_lua_doc(identifier=lng_file, lua_path=lua_path, parsed=resolved_names)
-      print(f"Wrote {lng_file} to {lua_path}")
+    str_map = extract_strings(get_file_content(input_file))
+    write_lua_doc(input_file, out_path, str_map)
+    print(f"Wrote {input_file} to {out_path}")
+
     exit(EXIT_SUCCESS)
 
+  # Clean up paths
   if len(sys.argv) > 1:
-    lng_file = sys.argv[1].replace('\\','/')
+    input_file = sys.argv[1].replace('\\','/')
   if len(sys.argv) > 2:
-    lua_path = sys.argv[2].replace('\\','/')
+    out_path = sys.argv[2].replace('\\','/')
 
-  resolved_names = parse_file(get_file_content(lng_file))
-  write_lua_doc(identifier=lng_file, lua_path=lua_path, parsed=resolved_names)
-  print(f"Wrote {lng_file} to {lua_path}")
+  if input_file == out_path:
+    print("Error: Input and output file are the same.")
+    exit(EXIT_FAILURE)
+
+  # Parse input file
+  str_map = extract_strings(get_file_content(input_file))
+
+  # Check if we want to generate a translation file
+  make_translation = len(sys.argv) == 4 and sys.argv[3] == '--generate-translation'
+
+  # Only 2 cases: luadoc or translation file generation
+  if(make_translation):
+    reflang_map = extract_strings(get_file_content(input_file))
+    curlang_map = extract_strings(get_file_content(out_path))
+    merged = merge_translation(curlang_map, reflang_map)
+    write_translation_file(out_path, merged)
+  else:
+    write_lua_doc(input_file, out_path, str_map)
+
+  print(f"Wrote {input_file} to {out_path}")
   exit(EXIT_SUCCESS)

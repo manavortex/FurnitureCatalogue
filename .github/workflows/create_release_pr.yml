@@ -120,6 +120,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       # Increase versions, update changelog, prepare notes_$NEXT_VERSION.tmp for the PR body (empty notes are fine)
+      # Generate translation files and luaDoc
       # BODY looks like: "- describe your changes here\r\n- testchanges\r\n\r\n[//]: # \"\u2753 ..." (not JSON)
       - name: Update files
         id: update_files
@@ -132,20 +133,57 @@ jobs:
           TOADY="$(date --iso-8601)"
           python .scripts/furc_utils.py update_changelog --notes-file $NOTES_FILE --changelog-file "CHANGELOG" --header "$VERSION ($TOADY)"
           echo "CHANGED_FILES=$CHANGED_FILES" >> $GITHUB_OUTPUT
+
+          # Generate LuaDoc
+          LUADOC_DEFINITIONS="docs/autocomplete_definitions.lua"
+          LANGFILE_EN="locale/en.lua"
+          python .scripts/luaDoc_generateStr.py $LANGFILE_EN
+          python .scripts/luaDoc_generateGui.py xml/FurnitureCatalogue.xml $LUADOC_DEFINITIONS
+          python .scripts/luaDoc_generateGui.py FurnitureCatalogue_DevUtility/xml.xml $LUADOC_DEFINITIONS
+
+          # Generate translation files
+          for langfile in locale/*.lua; do
+            if [[ $langfile != $LANGFILE_EN ]]; then
+              python .scripts/luaDoc_generateStr.py $LANGFILE_EN $langfile --generate-translation
+            fi
+          done
         env:
           VERSION: ${{ steps.next_version.outputs.NEXT_VERSION }}
           NOTE: ${{ steps.get_details.outputs.BODY }}
+
+      # Format LUA files
+      - name: StyLUA Formatter
+        uses: JohnnyMorganz/stylua-action@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          version: 4.0.0
+          args: --config-path=stylua.toml .
 
       # Commit version increments and CHANGELOG (if applicable)
       # Fails if empty commit
       - name: Commit Changelog
         run: |
+          # Add all files changed by furc_utils.py
           while read LINE ; do
             echo "Changed file: $LINE"
             git add $LINE
           done < $CHANGED_FILES
+          # Also add CHANGELOG, if it was changed
           git add 'CHANGELOG' || true
           git commit -m "Version bumps and CHANGELOG for $VERSION"
+
+          # Commit locale changes, if any
+          git add 'locale/*.lua' || true
+          git commit -m "Update translations for $VERSION" || true
+
+          # Commit luaDoc autocomplete changes, if any
+          git add ./docs/*.lua || true
+          git commit -m "Update luaDoc for $VERSION" || true
+
+          # Any remaining lua file changes must have been StyLUA
+          git add *.lua || true
+          git commit -m "Format LUA files with StyLUA" || true
+
           git push
           git reset --hard HEAD
           git clean -f -d

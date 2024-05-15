@@ -2,19 +2,18 @@
 
 """Helps getting names of GUI elements for IDE support. Make a backup, if you have manual entries.
 
-Use inside the script folder and paths relative to the script, because those are being used as identifiers for the code section markers like:
+Use inside the project folder, because the relative paths are being used as identifiers for the code section markers like:
 
--- ////// START : GENERATED FROM ../FurnitureCatalogue_DevUtility/xml.xml
+-- ////// START : GENERATED FROM xml/FurnitureCatalogue.xml
 ...
--- ////// END   : GENERATED FROM ../FurnitureCatalogue_DevUtility/xml.xml
+-- ////// END   : GENERATED FROM xml/FurnitureCatalogue.xml
 
 Example calls:
-  cd .scripts
-  python ./luaDoc_generateGui.py
-  python ./luaDoc_generateGui.py ../dir/input.xml
-  python ./luaDoc_generateGui.py ../dir/input.xml ./output.lua
-  python ./luaDoc_generateGui.py ../xml/FurnitureCatalogue.xml
-  python ./luaDoc_generateGui.py ../FurnitureCatalogue_DevUtility/xml.xml
+  python .scripts/luaDoc_generateGui.py
+  python .scripts/luaDoc_generateGui.py dir/input.xml
+  python .scripts/luaDoc_generateGui.py dir/input.xml ./output.lua
+  python .scripts/luaDoc_generateGui.py xml/FurnitureCatalogue.xml
+  python .scripts/luaDoc_generateGui.py FurnitureCatalogue_DevUtility/xml.xml
 """
 
 import sys
@@ -46,7 +45,7 @@ def load_xml_file(path: str) -> ET.Element:
     root = tree.getroot()
   except Exception:
     print(f"File not found or invalid XML: {path}")
-    print(f"Please run from inside the script folder and use relative paths like ../dir/some.xml")
+    print(f"Please run from the base folder and use relative paths like dir/some.xml")
     exit(EXIT_FAILURE)
   return root
 
@@ -117,11 +116,11 @@ def write_lua_doc(identifier: str, lua_path: str, parsed: list):
 
 
 if __name__ == '__main__':
-  lua_path = "luaDoc_Definitions.lua"
+  lua_path = "docs/autocomple_definitions.lua"
 
   if len(sys.argv) == 1:
     # use default files if none supplied
-    xml_paths = ["../xml/FurnitureCatalogue.xml", "../FurnitureCatalogue_DevUtility/xml.xml"]
+    xml_paths = ["xml/FurnitureCatalogue.xml", "FurnitureCatalogue_DevUtility/xml.xml"]
     for xml_path in xml_paths:
       resolved_names = get_resolved_hierarchy(load_xml_file(xml_path))
       write_lua_doc(identifier=xml_path, lua_path=lua_path, parsed=resolved_names)

@@ -19,7 +19,7 @@ It should not include:
 --]]
 --
 
--- ////// START : GENERATED FROM ../xml/FurnitureCatalogue.xml
+-- ////// START : GENERATED FROM xml/FurnitureCatalogue.xml
 ---------- LVL: 00 ----------
 ---------- LVL: 01 ----------
 ---------- LVL: 02 ----------
@@ -83,8 +83,8 @@ FurCGui_Header_SortBar_Quality_Button = ButtonControl
 ---------- LVL: 12 ----------
 FurC_SearchBoxBackdrop = BackdropControl
 ---------- LVL: 13 ----------
--- ////// END   : GENERATED FROM ../xml/FurnitureCatalogue.xml
--- ////// START : GENERATED FROM ../FurnitureCatalogue_DevUtility/xml.xml
+-- ////// END   : GENERATED FROM xml/FurnitureCatalogue.xml
+-- ////// START : GENERATED FROM FurnitureCatalogue_DevUtility/xml.xml
 ---------- LVL: 00 ----------
 ---------- LVL: 01 ----------
 ---------- LVL: 02 ----------
@@ -96,9 +96,9 @@ FurCDevControl_hide = ButtonControl
 FurCDevControl_clear = ButtonControl
 FurCDevControlBox = EditControl
 ---------- LVL: 05 ----------
--- ////// END   : GENERATED FROM ../FurnitureCatalogue_DevUtility/xml.xml
+-- ////// END   : GENERATED FROM FurnitureCatalogue_DevUtility/xml.xml
 
--- ////// START : GENERATED FROM ../locale/en.lua
+-- ////// START : GENERATED FROM locale/en.lua
 
 ------ PLACEHOLDERS ------
 local filterDisabled = "disables this filter"
@@ -411,7 +411,7 @@ SI_FURC_EVENT_BLACKWOOD = "From participating in the Bounties of Blackwood event
 SI_FURC_TRIBUTE = "From Tales of Tribute reward coffers"
 SI_FURC_TRIBUTE_RANKED = "From Tales of Tribute ranked matches (system mail reward)"
 SI_FURC_SEEN_IN_GUILDSTORE = "Seen in Guild Store"
--- ////// END   : GENERATED FROM ../locale/en.lua
+-- ////// END   : GENERATED FROM locale/en.lua
 
 -- ////// START   : Manual entries and overrides
 ---@class LibDebugLogger
