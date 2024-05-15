@@ -1,6 +1,6 @@
 local filterDisabled = "désactive ce filtre"
 local strings = {
-
+  -- ////// START : DON'T REMOVE THIS LINE
   FURC_AV_RAZ = "Razoufa",
   FURC_AV_MUL = "Mulvisë Valyn",
 
@@ -299,6 +299,7 @@ local strings = {
   SI_FURC_ITEMSOURCE_ITEMPACK = "Fait partie du pack d'objets de la Boutique à Couronnes [<<1>>] ",
 
   SI_FURC_SEEN_IN_GUILDSTORE = "Vu dans le magasin de guilde",
+  -- ////// END   : DON'T REMOVE THIS LINE
 }
 
 for stringId, stringValue in pairs(strings) do

@@ -1,6 +1,6 @@
 local filterDisabled = "disables this filter"
 local strings = {
-
+  -- ////// START : DON'T REMOVE THIS LINE
   FURC_AV_RAZ = "Razoufa",
   FURC_AV_MUL = "Mulvise Valyn",
 
@@ -272,6 +272,7 @@ local strings = {
   SI_FURC_ITEMSOURCE_ITEMPACK = "Part of the Crown Store item pack [<<1>>] ",
 
   SI_FURC_SEEN_IN_GUILDSTORE = "Seen in Guild Store",
+  -- ////// END   : DON'T REMOVE THIS LINE
 }
 
 for stringId, stringValue in pairs(strings) do
