@@ -4,23 +4,22 @@ local ver = FurC.Constants.Versioning
 local src = FurC.Constants.ItemSources
 
 -- locations
-local onSummerset = " on Summerset"
-local backwaterSwamp = " in Murkmire"
-local gloriousHome = " on Vvardenfell"
-local inWrothgar = " in Wrothgar"
-local in_selsweyr = " in Southern Elsweyr"
-local in_nelsweyr = " in Northern Elsweyr"
-local in_skyrim = " in Western Skyrim"
-local in_blackwood = " in Blackwood"
-local in_summerset = " in Summerset"
-local in_goldcoast = " in the Gold Coast"
-local in_elsweyr = " in Elsweyr"
-local in_necrom = " in Telvanni Peninsula or Apocrypha"
+local backwaterSwamp = GetString(SI_FURC_LOC_MURKMIRE)
+local gloriousHome = GetString(SI_FURC_LOC_VVARDENFELL)
+local in_blackwood = GetString(SI_FURC_LOC_BLACKWOOD)
+local in_elsweyr = GetString(SI_FURC_LOC_ELSWEYR)
+local in_goldcoast = GetString(SI_FURC_LOC_GOLDCOAST)
+local in_necrom = GetString(SI_FURC_LOC_NECROM)
+local in_nelsweyr = GetString(SI_FURC_LOC_NELSWEYR)
+local in_selsweyr = GetString(SI_FURC_LOC_SELSWEYR)
+local in_skyrim = GetString(SI_FURC_LOC_SKYRIM)
+local on_summerset = GetString(SI_FURC_LOC_SUMMERSET)
+local in_wrothgar = GetString(SI_FURC_LOC_WROTHGAR)
 
 -- Quests and Guilds
 local questRewardString = GetString(SI_FURC_QUESTREWARD)
-local questRewardSuran = questRewardString .. " Suran"
-local questRewardLilandril = questRewardString .. " Lilandril"
+local questRewardSuran = zo_strformat("<<1>> <<2>>", questRewardString, GetString(SI_FURC_LOC_SURAN))
+local questRewardLilandril = zo_strformat("<<1>> <<2>>", questRewardString, GetString(SI_FURC_LOC_LILANDRIL))
 local tribute = GetString(SI_FURC_TRIBUTE)
 local tribute_ranked = GetString(SI_FURC_TRIBUTE_RANKED)
 local db_poison = zo_strformat("<<1>> <<2>>", GetString(SI_FURC_DB), GetString(SI_FURC_DB_POISON))
@@ -29,7 +28,7 @@ local db_equip = zo_strformat("<<1>> <<2>>", GetString(SI_FURC_DB), GetString(SI
 
 -- Events
 local blackwood_event = GetString(SI_FURC_EVENT_BLACKWOOD)
-local sinister_hollowjack = "Sinister Hollowjack Items"
+local sinister_hollowjack = GetString(SI_FURC_EVENT_HOLLOWJACK)
 local elsweyr_event = GetString(SI_FURC_EVENT_ELSWEYR)
 
 -- Stealing
@@ -43,7 +42,7 @@ local stealable_priests = stealable .. " from priests and pilgrims"
 local stealable_thief = stealable .. " from thieves"
 local stealable_woodworkers = stealable .. " from woodworkers"
 local stealable_drunkards = stealable .. " from drunkards"
-local stealable_wrothgar = stealable .. inWrothgar
+local stealable_wrothgar = stealable .. " " .. in_wrothgar
 local stealable_swamp = stealable .. backwaterSwamp
 local stealable_elsewhere = stealable .. in_elsweyr
 local pickpocket_necrom = pickpocketable .. " in Telvanni Peninsula or Apocrypha"
@@ -57,7 +56,7 @@ local automaton_loot_cc = GetString(SI_FURC_AUTOMATON) .. " in Clockwork City"
 local automaton_loot_vv = GetString(SI_FURC_AUTOMATON) .. " on Vvardenfell"
 local chests_skyrim = chests_string .. in_skyrim
 local chests_blackwood = chests_string .. in_blackwood
-local chests_summerset = chests_string .. in_summerset
+local chests_summerset = chests_string .. on_summerset
 local chests_elsweyr = chests_string .. in_elsweyr
 local chests_high = chests_string .. " in High Isle"
 local chests_blackr_grcaverns = chests_string .. " in Blackreach: Greymoor Caverns"
@@ -66,10 +65,9 @@ local nymic = "From Bastion Nymic reward chests"
 local chests_necrom = chests_string .. in_necrom
 local puplicdungeon_fw_vv = GetString(SI_FURC_DROP) .. " in Forgotten Wastes" .. gloriousHome
 local plants_vvardenfell = GetString(SI_FURC_PLANTS) .. gloriousHome
-local fishing_summerset = GetString(SI_FURC_CANBEFISHED) .. onSummerset
+local fishing_summerset = GetString(SI_FURC_CANBEFISHED) .. on_summerset
 local fishing_swamp = GetString(SI_FURC_CANBEFISHED) .. backwaterSwamp
 local endless_archive = "From chests in the Infinite Archive"
-local chests = chests_string
 
 -- Crowns
 local priceUnknown = "?"
@@ -93,81 +91,110 @@ local function getHouseString(houseId1, houseId2) -- use collectible number from
   end
   return zo_strformat(housesource, houseName)
 end
-local mischouse = "From select house purchases"
+local mischouse = GetString(SI_FURC_ITEMSOURCE_MISCHOUSE)
 
-local scambox_string = GetString(SI_FURC_SCAMBOX)
+local scamboxes = {
+  -- Source: https://en.uesp.net/wiki/Online:Crown_Crates
+  ["carnivale"] = SI_FURC_CRATE_CARNIVALE, -- ????
+  ["db"] = SI_FURC_CRATE_DB, -- ????
+  ["mirror"] = SI_FURC_CRATE_MIRROR, -- ????
+  ["diamond"] = SI_FURC_CRATE_DIAMOND, -- 2024-07
+  ["lamp"] = SI_FURC_CRATE_LAMP, -- 2024-04
+  ["allmaker"] = SI_FURC_CRATE_ALLMAKER, -- 2023-12
+  ["armiger"] = SI_FURC_CRATE_ARMIGER, -- 2023-09
+  ["feather"] = SI_FURC_CRATE_FEATHER, -- 2023-06
+  ["rage"] = SI_FURC_CRATE_RAGE, -- 2023-04
+  ["stonelore"] = SI_FURC_CRATE_STONELORE, -- 2022-12
+  ["wraith"] = SI_FURC_CRATE_WRAITH, -- 2022-09
+  ["dark"] = SI_FURC_CRATE_DARK, -- 2022-06
+  ["sunken"] = SI_FURC_CRATE_SUNKEN, -- 2022-04
+  ["celestial"] = SI_FURC_CRATE_CELESTIAL, -- 2021-12
+  ["harlequin"] = SI_FURC_CRATE_HARLEQUIN, -- 2021-09
+  ["irony"] = SI_FURC_CRATE_IRONY, -- 2021-06
+  ["ayleid"] = SI_FURC_CRATE_AYLEID, -- 2021-03
+  ["potentate"] = SI_FURC_CRATE_POTENTATE, -- 2020-12
+  ["sovngarde"] = SI_FURC_CRATE_SOVNGARDE, -- 2020-09
+  ["nightfall"] = SI_FURC_CRATE_NIGHTFALL, -- 2020-06
+  ["gloomspore"] = SI_FURC_CRATE_GLOOMSPORE, -- 2020-04
+  ["frosty"] = SI_FURC_CRATE_FROSTY, -- 2020-01
+  ["newmoon"] = SI_FURC_CRATE_NEWMOON, -- 2019-09
+  ["baandari"] = SI_FURC_CRATE_BAANDARI, -- 2019-07
+  ["dragonscale"] = SI_FURC_CRATE_DRAGONSCALE, -- 2019-04
+  ["xanmeer"] = SI_FURC_CRATE_XANMEER, -- 2018-12
+  ["hollowjack"] = SI_FURC_CRATE_HOLLOWJACK, -- 2018-09
+  ["scalecaller"] = SI_FURC_CRATE_SCALECALLER, -- 2018-03
+  ["psijic"] = SI_FURC_CRATE_PSIJIC, -- 2018-06
+  ["fireatro"] = SI_FURC_CRATE_FIREATRO, -- 2017-11
+  ["reaper"] = SI_FURC_CRATE_REAPER, -- 2017-09
+  ["dwemer"] = SI_FURC_CRATE_DWEMER, -- 2017-07
+  ["wildhunt"] = SI_FURC_CRATE_WILDHUNT, -- 2017-04
+  -- no exclusive furnishings in Storm Atronach Crate 2016-12
+}
+local function getScamboxString(scamboxName)
+  scamboxName = string.lower(scamboxName)
+  return zo_strformat("<<1>> (<<2>>)", GetString(SI_FURC_SCAMBOX), GetString(scamboxes[scamboxName]))
+end
 
---local scambox_magesguild = zo_strformat("<<1>> (<<2>>)", scambox_string, "Mages Guild") -- 2024-04
-local scambox_allmaker = zo_strformat("<<1>> (<<2>>)", scambox_string, "All-Maker") -- 2023-12
-local scambox_armiger = zo_strformat("<<1>> (<<2>>)", scambox_string, "Buoyant Armiger") -- 2023-09
-local scambox_feather = zo_strformat("<<1>> (<<2>>)", scambox_string, "Unfeathered") -- 2023-06
-local scambox_rage = zo_strformat("<<1>> (<<2>>)", scambox_string, "Ragebound") -- 2023-04
-local scambox_stonelore = zo_strformat("<<1>> (<<2>>)", scambox_string, "Stonelore") -- 2022-12
-local scambox_wraith = zo_strformat("<<1>> (<<2>>)", scambox_string, "Wraithtide") -- 2022-09
-local scambox_dark = zo_strformat("<<1>> (<<2>>)", scambox_string, "Dark Chivalry") -- 2022-06
-local scambox_sunken = zo_strformat("<<1>> (<<2>>)", scambox_string, "Sunken Trove") -- 2022-04
-local scambox_celestial = zo_strformat("<<1>> (<<2>>)", scambox_string, "Celestial") -- 2021-12
-local scambox_harlequin = zo_strformat("<<1>> (<<2>>)", scambox_string, "Grim Harlequin") -- 2021-09
-local scambox_irony = zo_strformat("<<1>> (<<2>>)", scambox_string, "Iron Atronach") -- 2021-06
-local scambox_ayleid = zo_strformat("<<1>> (<<2>>)", scambox_string, "Ayleid") -- 2021-03
-local scambox_potentate = zo_strformat("<<1>> (<<2>>)", scambox_string, "Akaviri Potentate") -- 2020-12
-local scambox_sovngarde = zo_strformat("<<1>> (<<2>>)", scambox_string, "Sovngarde") -- 2020-09
-local scambox_nightfall = zo_strformat("<<1>> (<<2>>)", scambox_string, "Nightfall") -- 2020-06
-local scambox_gloomspore = zo_strformat("<<1>> (<<2>>)", scambox_string, "Gloomspore") -- 2020-04
-local scambox_frosty = zo_strformat("<<1>> (<<2>>)", scambox_string, "Frost Atronach") -- 2020-01
-local scambox_newmoon = zo_strformat("<<1>> (<<2>>)", scambox_string, "New Moon") -- 2019-09
-local scambox_baandari = zo_strformat("<<1>> (<<2>>)", scambox_string, "Baandari Pedlar") -- 2019-07
-local scambox_dragonscale = zo_strformat("<<1>> (<<2>>)", scambox_string, "Dragonscale") -- 2019-04
-local scambox_xanmeer = zo_strformat("<<1>> (<<2>>)", scambox_string, "Xanmeer") -- 2018-12
-local scambox_hollowjack = zo_strformat("<<1>> (<<2>>)", scambox_string, "Hollowjack") -- 2018-09
-local scambox_scalecaller = zo_strformat("<<1>> (<<2>>)", scambox_string, "Scalecaller") -- 2018-03
-local scambox_psijic = zo_strformat("<<1>> (<<2>>)", scambox_string, "Psijic") -- 2018-06
-local scambox_fireatro = zo_strformat("<<1>> (<<2>>)", scambox_string, GetString(SI_FURC_FLAME_ATRONACH)) -- 2017-11
-local scambox_reaper = zo_strformat("<<1>> (<<2>>)", scambox_string, GetString(SI_FURC_REAPER)) -- 2017-09
-local scambox_dwemer = zo_strformat("<<1>> (<<2>>)", scambox_string, GetString(SI_FURC_DWEMER)) -- 2017-07
-local scambox_wildhunt = zo_strformat("<<1>> (<<2>>)", scambox_string, "Wild Hunt") -- 2017-04
--- no exclusive furnishings in Storm Atronach Crate 2016-12
+local itempacks = {
+  ["moonbishop"] = "Moon Bishop's Sanctuary",
+  ["oasis"] = "Moons-Blessed Oasis",
+  ["vampire"] = "Vampiric Libations",
+  ["heart"] = "Heart's Day Retreat",
+  ["cragknicks"] = "Craglorn Multicultural Knick-Knacks",
+  ["hubtreasure"] = "Hubalajad's Final Treasure",
+  ["dibella"] = "Dibella's Garden",
+  ["mermaid"] = "Steam Bath Serenity",
+  ["zeni"] = "Chapel of Zenithar",
+  ["windows"] = "Windows of the Divines",
+  ["ambitions"] = "Daedric Ambitions",
+  ["forge"] = "Forge-Lord's Great Works",
+  ["coven"] = "Witches' Coven",
+  ["tyrants"] = "Tyrants of the Merethic Era",
+  ["khajiit"] = "Khajiiti Life",
+  ["malacath"] = "Malacath's Chosen",
+  ["alchemist"] = "Mad Alchemist",
+  ["azura"] = "Daedric Set of Azura",
+  ["coldharbour"] = "Coldharbour Arcanaeum",
+  ["fargrave"] = "Fargrave Bazaar",
+  ["aquatic"] = "Aquatic Splendor",
+  ["maormer"] = "Maormer Boarding Party",
+  ["newlife2018"] = "New Life Festival",
+  ["deepmire"] = "Deepmire Expedition",
+  ["dwemer"] = "Dwemer",
+  ["vivec"] = "Lord Vivec",
+  ["swamp"] = "Shadow and Stone",
+  ["molag"] = "Molag Bal",
+  ["ayleid"] = "Ayleid",
+  ["sotha"] = "The Clockwork God's Domain",
+  ["astula"] = "Shad Astula Scolars Bundle",
+  ["mephala"] = "Trappings of Mephala Worship",
+}
+local function getItempackString(itempackName)
+  itempackName = string.lower(itempackName)
+  return zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), GetString(itempacks[itempackName]))
+end
 
-local itemPackMoonBishop = zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "Moon Bishop’s Sanctuary")
-local itemPackOasis = zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "Moons-Blessed Oasis")
-local itemPackVampire = zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "Vampiric Libations")
-local itemPackHeart = zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "Heart's Day Retreat")
-local itemPackCragKnicks = zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "Craglorn Multicultural Knick-Knacks")
-local itemPackHubTreasure = zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "Hubalajad's Final Treasure")
-local itemPackDibella = zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "Dibella's Garden")
-local itemPackMermaid = zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "Steam Bath Serenity")
-local itemPackZeni = zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "Chapel of Zenithar")
-local itemPackWindows = zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "Windows of the Divines")
-local itemPackAmbitions = zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "Daedric Ambitions")
-local itemPackForge = zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "Forge-Lord's Great Works")
-local itemPackCoven = zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "Witches' Coven")
-local itemPackTyrants = zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "Tyrants of the Merethic Era")
-local itemPackKhajiit = zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "Khajiiti Life")
-local itemPackMalacath = zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "Malacath's Chosen")
-local itemPackAlchemist = zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "Mad Alchemist")
-local itemPackAzura = zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "Daedric Set of Azura")
-local itemPackColdharbour = zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "Coldharbour Arcanaeum")
-local itemPackFargrave = zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "Fargrave Bazaar")
-local itemPackAquatic = zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "Aquatic Splendor")
-local itemPackMaormer = zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "Maormer Boarding Party")
-local itemPackNewLife2018 = zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "New Life Festival")
-local itemPackDeepmire = zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "Deepmire Expedition")
-local itemPackDwemer = zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "Dwemer")
-local itemPackVivec = zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "Lord Vivec")
-local itemPackSwamp = zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "Shadow and Stone")
-local itemPackMolag = zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "Molag Bal")
-local itemPackAyleid = zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "Ayleid")
-local itemPackSotha = zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "The Clockwork God's Domain")
-local itemPackAstula = zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "Shad Astula Scolars Bundle")
-local mephalaItemSet = zo_strformat(GetString(SI_FURC_ITEMSOURCE_ITEMPACK), "Trappings of Mephala Worship")
+-- Multiple Sources
+local or_str = GetString(SI_FURC_OR)
+
+local function getMultipleSources(sources)
+  -- returns a string with all sources separated by localised " or "
+  local sourceString = ""
+  for i, source in ipairs(sources) do
+    if i > 1 then
+      sourceString = sourceString .. " " .. GetString(SI_FURC_OR) .. " "
+    end
+    sourceString = sourceString .. source
+  end
+end
 
 -- 28 Secrets of the Telvanni
 FurC.MiscItemSources[ver.ENDLESS] = {
   [src.CROWN] = {
-    [199112] = scambox_allmaker, -- Chandelier, Kyne's Radiance",
-    [199111] = scambox_allmaker, -- Fountain, Kyne's Radiance",
-    [199110] = scambox_allmaker, -- Snowfall, Gentle",
-    [199109] = scambox_allmaker, -- Boulder, Clear Ice",
+    [199112] = getScamboxString("allmaker"), -- Chandelier, Kyne's Radiance",
+    [199111] = getScamboxString("allmaker"), -- Fountain, Kyne's Radiance",
+    [199110] = getScamboxString("allmaker"), -- Snowfall, Gentle",
+    [199109] = getScamboxString("allmaker"), -- Boulder, Clear Ice",
   },
 
   [src.DROP] = {
@@ -236,37 +263,37 @@ FurC.MiscItemSources[ver.ENDLESS] = {
     [203410] = endless_archive, -- Ranks and Titles of House Telvanni",
     [203409] = endless_archive, -- Oath of the Keepers",
     [203408] = endless_archive, -- Larydeilmo is Sane",
-    [203407] = chests .. " in Wrothgar", -- Vosh Rakh",
-    [203406] = chests .. " in Wrothgar", -- Vorgrosh Rot-Tusk's Guide to Dirty Fighting",
-    [203405] = chests .. " in Wrothgar", -- Orc Clans and Symbology",
-    [203404] = chests .. " in Wrothgar", -- Birds of Wrothgar",
+    [203407] = chests_string .. " in Wrothgar", -- Vosh Rakh",
+    [203406] = chests_string .. " in Wrothgar", -- Vorgrosh Rot-Tusk's Guide to Dirty Fighting",
+    [203405] = chests_string .. " in Wrothgar", -- Orc Clans and Symbology",
+    [203404] = chests_string .. " in Wrothgar", -- Birds of Wrothgar",
     [203403] = chests_summerset, -- The Ubiquitous Sinking Isle",
     [203402] = chests_summerset, -- The Truth of Minotaurs",
     [203401] = chests_summerset, -- The Flight of Gryphons",
     [203400] = chests_summerset, -- Artaeum Lost",
-    [203399] = chests .. in_selsweyr, -- The Marriage of Moon and Tide",
-    [203398] = chests .. in_selsweyr, -- The Favored Daughter of Fadomai",
-    [203397] = chests .. in_selsweyr, -- Khunzar-ri and the Lost Alfiq",
-    [203396] = chests .. in_selsweyr, -- Azurah's Crossing",
-    [203395] = chests .. in_selsweyr, -- Trail and Tide",
-    [203394] = chests .. in_selsweyr, -- The Angry Alfiq: A Collection",
-    [203393] = chests .. in_selsweyr, -- On Those Who Know Baan Dar",
+    [203399] = chests_string .. in_selsweyr, -- The Marriage of Moon and Tide",
+    [203398] = chests_string .. in_selsweyr, -- The Favored Daughter of Fadomai",
+    [203397] = chests_string .. in_selsweyr, -- Khunzar-ri and the Lost Alfiq",
+    [203396] = chests_string .. in_selsweyr, -- Azurah's Crossing",
+    [203395] = chests_string .. in_selsweyr, -- Trail and Tide",
+    [203394] = chests_string .. in_selsweyr, -- The Angry Alfiq: A Collection",
+    [203393] = chests_string .. in_selsweyr, -- On Those Who Know Baan Dar",
     [203392] = endless_archive, -- Anequina and Pellitine: An Introduction",
-    [203391] = chests .. " in Hew's Bane", -- The Red Curse, Volume 3",
-    [203390] = chests .. " in Hew's Bane", -- The Red Curse, Volume 2",
-    [203389] = chests .. " in Hew's Bane", -- The Red Curse, Volume 1",
-    [203388] = chests .. " in the Gold Coast", -- The Wolf and the Dragon",
-    [203387] = chests .. " in the Gold Coast", -- The Blade of Woe",
-    [203386] = chests .. " in the Gold Coast", -- On Minotaurs",
-    [203385] = chests .. " in the Gold Coast", -- Cathedral Hierarchy",
-    [203384] = chests .. " in Coldharbour", -- Journal of Tsona-Ei, Part Two",
-    [203383] = chests .. " in Coldharbour", -- Journal of Tsona-Ei, Part Three",
-    [203382] = chests .. " in Coldharbour", -- Journal of Tsona-Ei, Part One",
-    [203381] = chests .. " in Coldharbour", -- Journal of Tsona-Ei, Part Four",
-    [203380] = chests .. " in Clockwork City", -- Worshiping the Illogical",
-    [203379] = chests .. " in Clockwork City", -- The Blackfeather Court",
-    [203378] = chests .. " in Clockwork City", -- Engine of Expression",
-    [203377] = chests .. " in Clockwork City", -- A Brief History of Ald Sotha",
+    [203391] = chests_string .. " in Hew's Bane", -- The Red Curse, Volume 3",
+    [203390] = chests_string .. " in Hew's Bane", -- The Red Curse, Volume 2",
+    [203389] = chests_string .. " in Hew's Bane", -- The Red Curse, Volume 1",
+    [203388] = chests_string .. " in the Gold Coast", -- The Wolf and the Dragon",
+    [203387] = chests_string .. " in the Gold Coast", -- The Blade of Woe",
+    [203386] = chests_string .. " in the Gold Coast", -- On Minotaurs",
+    [203385] = chests_string .. " in the Gold Coast", -- Cathedral Hierarchy",
+    [203384] = chests_string .. " in Coldharbour", -- Journal of Tsona-Ei, Part Two",
+    [203383] = chests_string .. " in Coldharbour", -- Journal of Tsona-Ei, Part Three",
+    [203382] = chests_string .. " in Coldharbour", -- Journal of Tsona-Ei, Part One",
+    [203381] = chests_string .. " in Coldharbour", -- Journal of Tsona-Ei, Part Four",
+    [203380] = chests_string .. " in Clockwork City", -- Worshiping the Illogical",
+    [203379] = chests_string .. " in Clockwork City", -- The Blackfeather Court",
+    [203378] = chests_string .. " in Clockwork City", -- Engine of Expression",
+    [203377] = chests_string .. " in Clockwork City", -- A Brief History of Ald Sotha",
     [203211] = endless_archive, -- Apocrypha Crescent",
     [203210] = endless_archive, -- Apocrypha Spike, Curved",
     [203209] = endless_archive, -- Apocrypha Spike, Tall",
@@ -293,7 +320,7 @@ FurC.MiscItemSources[ver.ENDLESS] = {
     [199118] = scrying .. in_necrom .. " (5 pieces)", -- Apocrypha Clothing Station",
     [198576] = scrying .. " in Deadlands", -- Shelf, Black Soul Gems",
     [198575] = scrying .. in_selsweyr, -- Khajiiti Well",
-    [198573] = scrying .. in_summerset, -- High Elf Altar, Crystal",
+    [198573] = scrying .. on_summerset, -- High Elf Altar, Crystal",
     [198572] = scrying .. " in Clockwork City", -- Clockwork Wall Gears",
     [198571] = scrying .. in_goldcoast, -- Shrine to Dibella",
     [198570] = scrying .. " in Shadowfen", -- Painted Stone Frog",
@@ -309,10 +336,10 @@ FurC.MiscItemSources[ver.ENDLESS] = {
 -- 27 Base Game Patch
 FurC.MiscItemSources[ver.BASED] = {
   [src.CROWN] = {
-    [197823] = scambox_armiger, -- Necrom Podium, Buoyant Armiger
-    [197824] = scambox_armiger, -- Harrowstorm Mists
-    [197822] = scambox_armiger, -- Redoran Sconce, Beetle
-    [197821] = scambox_armiger, -- Spellscar Bridge
+    [197823] = getScamboxString("armiger"), -- Necrom Podium, Buoyant Armiger
+    [197824] = getScamboxString("armiger"), -- Harrowstorm Mists
+    [197822] = getScamboxString("armiger"), -- Redoran Sconce, Beetle
+    [197821] = getScamboxString("armiger"), -- Spellscar Bridge
   },
 }
 
@@ -321,10 +348,10 @@ FurC.MiscItemSources[ver.NECROM] = {
   [src.CROWN] = {
     [197624] = getCrownPrice(1200), -- Apocryphal Shifting Sculpture",
 
-    [197622] = scambox_feather .. getGemPrice(400), -- Constellation Projection Apparatus",
-    [197621] = scambox_feather .. getGemPrice(40), -- Household Shrine, Meridian",
-    [197620] = scambox_feather .. getGemPrice(100), -- Throne of the Lich",
-    [197619] = scambox_feather .. getGemPrice(100), -- Meridian Mote",
+    [197622] = getScamboxString("feather") .. getGemPrice(400), -- Constellation Projection Apparatus",
+    [197621] = getScamboxString("feather") .. getGemPrice(40), -- Household Shrine, Meridian",
+    [197620] = getScamboxString("feather") .. getGemPrice(100), -- Throne of the Lich",
+    [197619] = getScamboxString("feather") .. getGemPrice(100), -- Meridian Mote",
   },
 
   [src.DROP] = {
@@ -387,13 +414,13 @@ FurC.MiscItemSources[ver.SCRIBE] = {
     [194400] = getCrownPrice(170), -- Galen Dogwood, Large,
     [194399] = getCrownPrice(1000), -- Music Box, Unfathomable Knowledge,
 
-    [193818] = itemPackAstula, -- Shad Astula Scholar, Right,
-    [193817] = itemPackAstula, -- Shad Astula Scholar, Left,
+    [193818] = getItempackString("astula"), -- Shad Astula Scholar, Right,
+    [193817] = getItempackString("astula"), -- Shad Astula Scholar, Left,
 
-    [193796] = scambox_rage .. getGemPrice(100), -- Orb of the Spirit Queen,
-    [193795] = scambox_rage .. getGemPrice(40), -- Rite of the Harrowforged,
-    [193794] = scambox_rage .. getGemPrice(100), -- Target Hagraven, Robust,
-    [193793] = scambox_rage .. getGemPrice(40), -- Reach Chandelier, Hagraven,
+    [193796] = getScamboxString("rage") .. getGemPrice(100), -- Orb of the Spirit Queen,
+    [193795] = getScamboxString("rage") .. getGemPrice(40), -- Rite of the Harrowforged,
+    [193794] = getScamboxString("rage") .. getGemPrice(100), -- Target Hagraven, Robust,
+    [193793] = getScamboxString("rage") .. getGemPrice(40), -- Reach Chandelier, Hagraven,
   },
 
   [src.DROP] = {
@@ -429,30 +456,30 @@ FurC.MiscItemSources[ver.SCRIBE] = {
 -- 24 Firesong
 FurC.MiscItemSources[ver.DRUID] = {
   [src.CROWN] = {
-    [192429] = getCrownPrice(110) .. " or " .. itemPackMaormer, -- Maormer Sconce, Serpentine
-    [192427] = getCrownPrice(70) .. " or " .. itemPackMaormer, -- Maormer Lamp, Serpentine
-    [192425] = getCrownPrice(150) .. " or " .. itemPackMaormer, -- Maormer Teapot, Serpentine
-    [192423] = getCrownPrice(340) .. " or " .. itemPackMaormer, -- Maormer Runner, Amethyst Waves
-    [192422] = getCrownPrice(80) .. " or " .. itemPackMaormer, -- Maormer Half-Rug
-    [192420] = getCrownPrice(180) .. " or " .. itemPackMaormer, -- Maormer Rug, Serpentine
-    [192418] = getCrownPrice(10) .. " or " .. itemPackMaormer, -- Maormer Mug, Serpentine
-    [192414] = getCrownPrice(160) .. " or " .. itemPackMaormer, -- Maormer Armchair, Carved
-    [192413] = getCrownPrice(180) .. " or " .. itemPackMaormer, -- Maormer Table, Carved
-    [192412] = getCrownPrice(340) .. " or " .. itemPackMaormer, -- Maormer Curtain, Serpentine Cloth
-    [192410] = getCrownPrice(85) .. " or " .. itemPackMaormer, -- Maormer Chair, Carved
-    [192409] = getCrownPrice(3000) .. " or " .. itemPackMaormer, -- Maormer Cookfire
-    [192408] = getCrownPrice(70) .. " or " .. itemPackMaormer, -- Maormer Trunk, Carved
-    [192407] = getCrownPrice(720) .. " or " .. itemPackMaormer, -- Maormer Tent, Raider's
-    [192406] = itemPackMaormer, -- Maormer Ship's Prow, Serpentine
-    [192405] = itemPackMaormer, -- Maormer Tent, Raid Leader's
+    [192429] = getMultipleSources({ getCrownPrice(110), getItempackString("Maormer") }), -- Maormer Sconce, Serpentine
+    [192427] = getMultipleSources({ getCrownPrice(70), getItempackString("Maormer") }), -- Maormer Lamp, Serpentine
+    [192425] = getMultipleSources({ getCrownPrice(150), getItempackString("Maormer") }), -- Maormer Teapot, Serpentine
+    [192423] = getMultipleSources({ getCrownPrice(340), getItempackString("Maormer") }), -- Maormer Runner, Amethyst Waves
+    [192422] = getMultipleSources({ getCrownPrice(80), getItempackString("Maormer") }), -- Maormer Half-Rug
+    [192420] = getMultipleSources({ getCrownPrice(180), getItempackString("Maormer") }), -- Maormer Rug, Serpentine
+    [192418] = getMultipleSources({ getCrownPrice(10), getItempackString("Maormer") }), -- Maormer Mug, Serpentine
+    [192414] = getMultipleSources({ getCrownPrice(160), getItempackString("Maormer") }), -- Maormer Armchair, Carved
+    [192413] = getMultipleSources({ getCrownPrice(180), getItempackString("Maormer") }), -- Maormer Table, Carved
+    [192412] = getMultipleSources({ getCrownPrice(340), getItempackString("Maormer") }), -- Maormer Curtain, Serpentine Cloth
+    [192410] = getMultipleSources({ getCrownPrice(85), getItempackString("Maormer") }), -- Maormer Chair, Carved
+    [192409] = getMultipleSources({ getCrownPrice(3000), getItempackString("Maormer") }), -- Maormer Cookfire
+    [192408] = getMultipleSources({ getCrownPrice(70), getItempackString("Maormer") }), -- Maormer Trunk, Carved
+    [192407] = getMultipleSources({ getCrownPrice(720), getItempackString("Maormer") }), -- Maormer Tent, Raider's
+    [192406] = getItempackString("Maormer"), -- Maormer Ship's Prow, Serpentine
+    [192405] = getItempackString("Maormer"), -- Maormer Tent, Raid Leader's
 
     [190945] = getCrownPrice(5000), -- Tree, Seasons of Y'ffre
     [190940] = getCrownPrice(1000), -- Music Box, Songbird's Paradise",
 
-    [190951] = scambox_stonelore .. getGemPrice(100), -- Target Spriggan, Robust
-    [190950] = scambox_stonelore .. getGemPrice(40), -- Rose Petal Cascade
-    [190947] = scambox_stonelore .. getGemPrice(40), -- Druidic Arch, Floral
-    [190946] = scambox_stonelore .. getGemPrice(40), -- Earthen Root Essence
+    [190951] = getScamboxString("stonelore") .. getGemPrice(100), -- Target Spriggan, Robust
+    [190950] = getScamboxString("stonelore") .. getGemPrice(40), -- Rose Petal Cascade
+    [190947] = getScamboxString("stonelore") .. getGemPrice(40), -- Druidic Arch, Floral
+    [190946] = getScamboxString("stonelore") .. getGemPrice(40), -- Earthen Root Essence
   },
 
   [src.DROP] = {
@@ -475,10 +502,10 @@ FurC.MiscItemSources[ver.DEPTHS] = {
     [189464] = getCrownPrice(1000), -- Music Box, Deeproot Dirge,
     [189463] = getCrownPrice(3500), -- Statue, Bendu Olo,
 
-    [188344] = scambox_wraith .. " (40 gems)", -- Y'ffre's Falling Leaves, Autumn,
-    [188343] = scambox_wraith .. " (100 gems)", -- Moonlight Path Bridge,
-    [188342] = scambox_wraith .. " (40 gems)", -- Bat Swarm, Domesticated,
-    [188341] = scambox_wraith .. " (100 gems)", -- Red Diamond Stained Glass,
+    [188344] = getScamboxString("wraith") .. " (40 gems)", -- Y'ffre's Falling Leaves, Autumn,
+    [188343] = getScamboxString("wraith") .. " (100 gems)", -- Moonlight Path Bridge,
+    [188342] = getScamboxString("wraith") .. " (40 gems)", -- Bat Swarm, Domesticated,
+    [188341] = getScamboxString("wraith") .. " (100 gems)", -- Red Diamond Stained Glass,
   },
 
   [src.DROP] = {
@@ -501,10 +528,10 @@ FurC.MiscItemSources[ver.BRETON] = {
     [187664] = getCrownPrice(6000), -- Target Deadlands Harvester, Trial
     [147926] = getCrownPrice(6000), -- Target Iron Atronach, Trial
 
-    [187663] = scambox_dark .. getGemPrice(40), -- Blue Fang Shark, Mounted
-    [187662] = scambox_dark .. getGemPrice(100), -- House Dufort Chandelier
-    [187661] = scambox_dark .. getGemPrice(40), -- Mage's Flame
-    [187660] = scambox_dark .. getGemPrice(100), -- Mages Guild Stained Glass
+    [187663] = getScamboxString("dark") .. getGemPrice(40), -- Blue Fang Shark, Mounted
+    [187662] = getScamboxString("dark") .. getGemPrice(100), -- House Dufort Chandelier
+    [187661] = getScamboxString("dark") .. getGemPrice(40), -- Mage's Flame
+    [187660] = getScamboxString("dark") .. getGemPrice(100), -- Mages Guild Stained Glass
   },
 
   [src.DROP] = {
@@ -546,41 +573,41 @@ FurC.MiscItemSources[ver.BRETON] = {
 FurC.MiscItemSources[ver.TIDES] = {
   [src.CROWN] = {
     [184250] = getCrownPrice(240), -- Nedic Banner, Ancient,
-    [184249] = getCrownPrice(20) .. " or " .. itemPackAquatic, -- Elkhorn Coral, Branching,
-    [184248] = getCrownPrice(20) .. " or " .. itemPackAquatic, -- Stones, Coral Cluster,
-    [184247] = getCrownPrice(45) .. " or " .. itemPackAquatic, -- Brittle-Vein Coral, Cluster,
+    [184249] = getMultipleSources({ getCrownPrice(20), getItempackString("aquatic") }), -- Elkhorn Coral, Branching,
+    [184248] = getMultipleSources({ getCrownPrice(20), getItempackString("aquatic") }), -- Stones, Coral Cluster,
+    [184247] = getMultipleSources({ getCrownPrice(45), getItempackString("aquatic") }), -- Brittle-Vein Coral, Cluster,
     [184246] = getCrownPrice(130), -- Nedic Bench, Carved,
     [184245] = getCrownPrice(610), -- Nedic Chandelier, Swords,
     [184244] = getCrownPrice(110), -- Nedic Sconce, Torch,
     [184243] = getCrownPrice(640), -- Nedic Brazier, Cold-Flame Pillar,
     [184242] = getCrownPrice(370), -- Nedic Brazier, Cold-Flame,
-    [184205] = getCrownPrice(120) .. " or " .. itemPackAquatic, -- Sand Drift, Oceanic,
+    [184205] = getMultipleSources({ getCrownPrice(120), getItempackString("aquatic") }), -- Sand Drift, Oceanic,
     [184175] = getCrownPrice(3500), -- Statue, Ancestor-King Auri-El,
-    [184112] = getCrownPrice(170) .. " or " .. itemPackAquatic, -- Lilac Coral, Strong,
-    [184111] = getCrownPrice(170) .. " or " .. itemPackAquatic, -- Lilac Anemone, Sprout,
-    [184110] = getCrownPrice(170) .. " or " .. itemPackAquatic, -- Verdant Anemone, Strong,
-    [184109] = getCrownPrice(90) .. " or " .. itemPackAquatic, -- Kelp Grouping, Robust,
-    [184108] = getCrownPrice(90) .. " or " .. itemPackAquatic, -- Kelp Grouping, Thin,
-    [184107] = getCrownPrice(20) .. " or " .. itemPackAquatic, -- Kelp Stalk, Tall,
-    [184106] = getCrownPrice(20) .. " or " .. itemPackAquatic, -- Kelp Stalk, Plain,
-    [184105] = getCrownPrice(45) .. " or " .. itemPackAquatic, -- Green Algae Coral Formation, Tree Capped,
-    [184104] = getCrownPrice(45) .. " or " .. itemPackAquatic, -- Red Algae Coral Formation, Waving Hands,
-    [184103] = getCrownPrice(45) .. " or " .. itemPackAquatic, -- Red Algae Coral Formation, Tree Antler,
-    [183894] = itemPackAquatic, -- Nedic Chest, Bubbling,
-    [183893] = getCrownPrice(1500) .. " or " .. itemPackAquatic, -- Bubbles of Aeration,
-    [183892] = getCrownPrice(430) .. " or " .. itemPackAquatic, -- Minnow School,
-    [183891] = itemPackAquatic, -- Jellyfish Bloom, Heliotrope,
-    [183856] = itemPackAquatic, -- Target Mudcrab, Robust Coral,
+    [184112] = getMultipleSources({ getCrownPrice(170), getItempackString("aquatic") }), -- Lilac Coral, Strong,
+    [184111] = getMultipleSources({ getCrownPrice(170), getItempackString("aquatic") }), -- Lilac Anemone, Sprout,
+    [184110] = getMultipleSources({ getCrownPrice(170), getItempackString("aquatic") }), -- Verdant Anemone, Strong,
+    [184109] = getMultipleSources({ getCrownPrice(90), getItempackString("aquatic") }), -- Kelp Grouping, Robust,
+    [184108] = getMultipleSources({ getCrownPrice(90), getItempackString("aquatic") }), -- Kelp Grouping, Thin,
+    [184107] = getMultipleSources({ getCrownPrice(20), getItempackString("aquatic") }), -- Kelp Stalk, Tall,
+    [184106] = getMultipleSources({ getCrownPrice(20), getItempackString("aquatic") }), -- Kelp Stalk, Plain,
+    [184105] = getMultipleSources({ getCrownPrice(45), getItempackString("aquatic") }), -- Green Algae Coral Formation, Tree Capped,
+    [184104] = getMultipleSources({ getCrownPrice(45), getItempackString("aquatic") }), -- Red Algae Coral Formation, Waving Hands,
+    [184103] = getMultipleSources({ getCrownPrice(45), getItempackString("aquatic") }), -- Red Algae Coral Formation, Tree Antler,
+    [183894] = getItempackString("aquatic"), -- Nedic Chest, Bubbling,
+    [183893] = getMultipleSources({ getCrownPrice(1500), getItempackString("aquatic") }), -- Bubbles of Aeration,
+    [183892] = getMultipleSources({ getCrownPrice(430), getItempackString("aquatic") }), -- Minnow School,
+    [183891] = getItempackString("aquatic"), -- Jellyfish Bloom, Heliotrope,
+    [183856] = getItempackString("aquatic"), -- Target Mudcrab, Robust Coral,
     [183201] = getCrownPrice(1000), -- Music Box: Bleak Beacon Shanty,
     [183200] = getCrownPrice(1100), -- Music Box: Wonders of the Shoals,
     [183198] = "Fargrave homegoods vendor, or " .. getCrownPrice(10), -- Bushes, Withered Cluster,
     [178477] = getCrownPrice(170), -- Nedic Bookcase, Filled,
     [120853] = "This is craftable, or " .. getCrownPrice(430), -- Stockade,
 
-    [184127] = scambox_sunken .. " (40 gems)", -- Tranquility Pond, Botanical,
-    [184126] = scambox_sunken .. " (100 gems)", -- Waterfall Fountain, Round,
-    [184072] = scambox_sunken .. " (100 gems)", -- Aquarium, Large Abecean Coral,
-    [184071] = scambox_sunken .. " (40 gems)", -- Aquarium, Abecean Coral,
+    [184127] = getScamboxString("sunken") .. " (40 gems)", -- Tranquility Pond, Botanical,
+    [184126] = getScamboxString("sunken") .. " (100 gems)", -- Waterfall Fountain, Round,
+    [184072] = getScamboxString("sunken") .. " (100 gems)", -- Aquarium, Large Abecean Coral,
+    [184071] = getScamboxString("sunken") .. " (40 gems)", -- Aquarium, Abecean Coral,
   },
 }
 
@@ -762,231 +789,237 @@ FurC.MiscItemSources[ver.DEADL] = {
     [178521] = getCrownPrice(1000), -- Music Box, \"Invitation to Chaos\",
 
     -- ====================== Crown Furnishing Packs =============================
-    [156775] = itemPackHeart, -- Bed, Petal-Strewn Double
-    [156764] = getCrownPrice(85) .. " or " .. itemPackHeart, -- Bouquet, Small Dibella's
-    [156776] = getCrownPrice(85) .. " or " .. itemPackHeart, -- Bouquet, Large Dibella's
-    [156777] = getCrownPrice(85) .. " or " .. itemPackHeart, -- Bouquet, Medium Dibella's
-    [156765] = getCrownPrice(290) .. " or " .. itemPackHeart, -- Chair, Love-Blessed
-    [156766] = getCrownPrice(180) .. " or " .. itemPackHeart, -- Petals, Blanket
-    [156767] = itemPackHeart, -- Sweetroll Platter
-    [156768] = getCrownPrice(100) .. " or " .. itemPackHeart, -- Love's Flame Candlestick
-    [156769] = getCrownPrice(500) .. " or " .. itemPackHeart, -- Kitten Moppet, Heart's Promise
-    [156770] = getCrownPrice(500) .. " or " .. itemPackHeart, -- Kitten Moppet, Love-Blessed
-    [156771] = getCrownPrice(410) .. " or " .. itemPackHeart, -- Table, Love-Blessed
-    [156772] = getCrownPrice(340) .. " or " .. itemPackHeart, -- Petals, Large Blanket
-    [156773] = getCrownPrice(180) .. " or " .. itemPackHeart, -- Rug, Love-Blessed
-    [156774] = getCrownPrice(180) .. " or " .. itemPackHeart, -- Tapestry, Love-Blessed
-    [156778] = getCrownPrice(85) .. " or " .. itemPackHeart, -- Flower, Dibella's Promise
-    [134971] = getCrownPrice(100) .. " or " .. itemPackHeart, -- Candles, Votive Group
+    [156775] = getItempackString("heart"), -- Bed, Petal-Strewn Double
+    [156764] = getMultipleSources({ getCrownPrice(85), getItempackString("heart") }), -- Bouquet, Small Dibella's
+    [156776] = getMultipleSources({ getCrownPrice(85), getItempackString("heart") }), -- Bouquet, Large Dibella's
+    [156777] = getMultipleSources({ getCrownPrice(85), getItempackString("heart") }), -- Bouquet, Medium Dibella's
+    [156765] = getMultipleSources({ getCrownPrice(290), getItempackString("heart") }), -- Chair, Love-Blessed
+    [156766] = getMultipleSources({ getCrownPrice(180), getItempackString("heart") }), -- Petals, Blanket
+    [156767] = getItempackString("heart"), -- Sweetroll Platter
+    [156768] = getMultipleSources({ getCrownPrice(100), getItempackString("heart") }), -- Love's Flame Candlestick
+    [156769] = getMultipleSources({ getCrownPrice(500), getItempackString("heart") }), -- Kitten Moppet, Heart's Promise
+    [156770] = getMultipleSources({ getCrownPrice(500), getItempackString("heart") }), -- Kitten Moppet, Love-Blessed
+    [156771] = getMultipleSources({ getCrownPrice(410), getItempackString("heart") }), -- Table, Love-Blessed
+    [156772] = getMultipleSources({ getCrownPrice(340), getItempackString("heart") }), -- Petals, Large Blanket
+    [156773] = getMultipleSources({ getCrownPrice(180), getItempackString("heart") }), -- Rug, Love-Blessed
+    [156774] = getMultipleSources({ getCrownPrice(180), getItempackString("heart") }), -- Tapestry, Love-Blessed
+    [156778] = getMultipleSources({ getCrownPrice(85), getItempackString("heart") }), -- Flower, Dibella's Promise
+    [134971] = getMultipleSources({ getCrownPrice(100), getItempackString("heart") }), -- Candles, Votive Group
 
-    [134879] = itemPackHubTreasure, -- Hubalajad's Reflection
-    [134880] = itemPackHubTreasure, -- Ra Gada Reliquary, Miniature Palace,
-    [134881] = itemPackHubTreasure, -- In Defense of Prince Hubalajad,
-    [134882] = getCrownPrice(90) .. " or " .. itemPackHubTreasure, -- Gold Drakes, Pristine,
-    [134883] = getCrownPrice(360) .. " or " .. itemPackHubTreasure, -- Ra Gada Funerary Statue, Stone Cat,
-    [134884] = getCrownPrice(360) .. " or " .. itemPackHubTreasure, -- Ra Gada Funerary Statue, Gilded Cat,
-    [134885] = getCrownPrice(360) .. " or " .. itemPackHubTreasure, -- Ra Gada Funerary Statue, Gilded Ibis,
-    [134886] = getCrownPrice(360) .. " or " .. itemPackHubTreasure, -- Ra Gada Funerary Statue, Gilded Servant,
-    [134887] = getCrownPrice(2000) .. " or " .. itemPackHubTreasure, -- Ra Gada Guardian Statue, Lion Ibis,
-    [134888] = getCrownPrice(2000) .. " or " .. itemPackHubTreasure, -- Ra Gada Guardian Statue, Winged Bull,
-    [134889] = getCrownPrice(2000) .. " or " .. itemPackHubTreasure, -- Ra Gada Guardian Statue, Riding Camel,
-    [117901] = getCrownPrice(140) .. " or " .. itemPackHubTreasure, --Redguard Amphora, Gilded,
-    [117894] = getCrownPrice(240) .. " or " .. itemPackHubTreasure, --Redguard Divider, Gilded,
-    [117904] = getCrownPrice(190) .. " or " .. itemPackHubTreasure, --Redguard Trunk, Garish,
-    [134823] = itemPackHubTreasure, -- Target Mournful Aegis,
+    [134879] = getItempackString("hubTreasure"), -- Hubalajad's Reflection
+    [134880] = getItempackString("hubTreasure"), -- Ra Gada Reliquary, Miniature Palace,
+    [134881] = getItempackString("hubTreasure"), -- In Defense of Prince Hubalajad,
+    [134882] = getMultipleSources({ getCrownPrice(90), getItempackString("hubTreasure") }), -- Gold Drakes, Pristine,
+    [134883] = getMultipleSources({ getCrownPrice(360), getItempackString("hubTreasure") }), -- Ra Gada Funerary Statue, Stone Cat,
+    [134884] = getMultipleSources({ getCrownPrice(360), getItempackString("hubTreasure") }), -- Ra Gada Funerary Statue, Gilded Cat,
+    [134885] = getMultipleSources({ getCrownPrice(360), getItempackString("hubTreasure") }), -- Ra Gada Funerary Statue, Gilded Ibis,
+    [134886] = getMultipleSources({ getCrownPrice(360), getItempackString("hubTreasure") }), -- Ra Gada Funerary Statue, Gilded Servant,
+    [134887] = getMultipleSources({ getCrownPrice(2000), getItempackString("hubTreasure") }), -- Ra Gada Guardian Statue, Lion Ibis,
+    [134888] = getMultipleSources({ getCrownPrice(2000), getItempackString("hubTreasure") }), -- Ra Gada Guardian Statue, Winged Bull,
+    [134889] = getMultipleSources({ getCrownPrice(2000), getItempackString("hubTreasure") }), -- Ra Gada Guardian Statue, Riding Camel,
+    [117901] = getMultipleSources({ getCrownPrice(140), getItempackString("hubTreasure") }), --Redguard Amphora, Gilded,
+    [117894] = getMultipleSources({ getCrownPrice(240), getItempackString("hubTreasure") }), --Redguard Divider, Gilded,
+    [117904] = getMultipleSources({ getCrownPrice(190), getItempackString("hubTreasure") }), --Redguard Trunk, Garish,
+    [134823] = getItempackString("hubTreasure"), -- Target Mournful Aegis,
 
-    [117906] = elsweyr_event .. (" or " .. itemPackCragKnicks), -- Redguard Urn, Gilded
-    [121053] = getCrownPrice(170) .. " or " .. itemPackCragKnicks .. " or " .. itemPackHubTreasure, -- Jar, Gilded Canopic
-    [121046] = itemPackCragKnicks, -- Cheeses of Tamriel,
-    [121049] = itemPackCragKnicks, -- Parcels, Wrapped,
-    [120417] = itemPackCragKnicks, -- Redguard Barrel, Corded
-    [118490] = itemPackCragKnicks, --Scroll, Rolled,
+    [117906] = elsweyr_event .. (" or " .. getItempackString("cragKnicks")), -- Redguard Urn, Gilded
+    [121053] = getMultipleSources({ getCrownPrice(170), getItempackString("cragKnicks") })
+      .. " or "
+      .. getItempackString("hubTreasure"), -- Jar, Gilded Canopic
+    [121046] = getItempackString("cragKnicks"), -- Cheeses of Tamriel,
+    [121049] = getItempackString("cragKnicks"), -- Parcels, Wrapped,
+    [120417] = getItempackString("cragKnicks"), -- Redguard Barrel, Corded
+    [118490] = getItempackString("cragKnicks"), --Scroll, Rolled,
 
-    [134890] = itemPackDibella, -- Dibella, Lady of Love,
-    [134848] = getCrownPrice(1500) .. " or " .. itemPackDibella .. " or " .. itemPackOasis, -- Blue Butterfly Flock
-    [134961] = itemPackDibella, -- Dibella's Mysteries and Revelations,
-    [134899] = getCrownPrice(45) .. " or " .. itemPackDibella, -- Flower Spray, Crimson Daisies,
-    [134901] = getCrownPrice(45) .. " or " .. itemPackDibella, -- Flower Spray, Starlight Daisies,
-    [134896] = getCrownPrice(45) .. " or " .. itemPackDibella, -- Flower, Lover's Lily
-    [134898] = getCrownPrice(45) .. " or " .. itemPackDibella, -- Flowers, Midnight Sage,
-    [134900] = getCrownPrice(20) .. " or " .. itemPackDibella, -- Flowers, Red Poppy,
-    [134902] = getCrownPrice(20) .. " or " .. itemPackDibella, -- Flowers, Violet Bellflower,
-    [134903] = getCrownPrice(45) .. " or " .. itemPackDibella, -- Flowers, Midnight Glory,
-    [94163] = getCrownPrice(290) .. " or " .. itemPackDibella, --Imperial Bench, Scrollwork
-    [134849] = getCrownPrice(1500) .. " or " .. itemPackDibella .. " or " .. itemPackOasis, -- Monarch Butterfly Flock
-    [134891] = getCrownPrice(2500) .. " or " .. itemPackDibella, -- Pergola, Festive Flowers
-    [134895] = getCrownPrice(1800) .. " or " .. itemPackDibella, -- Redguard Fountain, Mosaic
-    [134904] = getCrownPrice(260) .. " or " .. itemPackDibella, -- Seal of Dibella
-    [134905] = getCrownPrice(260) .. " or " .. itemPackDibella, -- Ritual Stone, Dibella
-    [134906] = getCrownPrice(240) .. " or " .. itemPackDibella, -- Ritual Brazier, Gilded
-    [134892] = getCrownPrice(85) .. " or " .. itemPackDibella, -- Tree, Pale Gold
-    [134893] = getCrownPrice(85) .. " or " .. itemPackDibella, -- Tree, Argent Blue
-    [134894] = getCrownPrice(20) .. " or " .. itemPackDibella, -- Wildflowers, Yellow and Orange
-    [134897] = getCrownPrice(45) .. " or " .. itemPackDibella, -- Vine Curtain, Festive Flowers
+    [134890] = getItempackString("Dibella"), -- Dibella, Lady of Love,
+    [134848] = getMultipleSources({ getCrownPrice(1500), getItempackString("Dibella") })
+      .. " or "
+      .. getItempackString("Oasis"), -- Blue Butterfly Flock
+    [134961] = getItempackString("Dibella"), -- Dibella's Mysteries and Revelations,
+    [134899] = getMultipleSources({ getCrownPrice(45), getItempackString("Dibella") }), -- Flower Spray, Crimson Daisies,
+    [134901] = getMultipleSources({ getCrownPrice(45), getItempackString("Dibella") }), -- Flower Spray, Starlight Daisies,
+    [134896] = getMultipleSources({ getCrownPrice(45), getItempackString("Dibella") }), -- Flower, Lover's Lily
+    [134898] = getMultipleSources({ getCrownPrice(45), getItempackString("Dibella") }), -- Flowers, Midnight Sage,
+    [134900] = getMultipleSources({ getCrownPrice(20), getItempackString("Dibella") }), -- Flowers, Red Poppy,
+    [134902] = getMultipleSources({ getCrownPrice(20), getItempackString("Dibella") }), -- Flowers, Violet Bellflower,
+    [134903] = getMultipleSources({ getCrownPrice(45), getItempackString("Dibella") }), -- Flowers, Midnight Glory,
+    [94163] = getMultipleSources({ getCrownPrice(290), getItempackString("Dibella") }), --Imperial Bench, Scrollwork
+    [134849] = getMultipleSources({ getCrownPrice(1500), getItempackString("Dibella") })
+      .. " or "
+      .. getItempackString("Oasis"), -- Monarch Butterfly Flock
+    [134891] = getMultipleSources({ getCrownPrice(2500), getItempackString("Dibella") }), -- Pergola, Festive Flowers
+    [134895] = getMultipleSources({ getCrownPrice(1800), getItempackString("Dibella") }), -- Redguard Fountain, Mosaic
+    [134904] = getMultipleSources({ getCrownPrice(260), getItempackString("Dibella") }), -- Seal of Dibella
+    [134905] = getMultipleSources({ getCrownPrice(260), getItempackString("Dibella") }), -- Ritual Stone, Dibella
+    [134906] = getMultipleSources({ getCrownPrice(240), getItempackString("Dibella") }), -- Ritual Brazier, Gilded
+    [134892] = getMultipleSources({ getCrownPrice(85), getItempackString("Dibella") }), -- Tree, Pale Gold
+    [134893] = getMultipleSources({ getCrownPrice(85), getItempackString("Dibella") }), -- Tree, Argent Blue
+    [134894] = getMultipleSources({ getCrownPrice(20), getItempackString("Dibella") }), -- Wildflowers, Yellow and Orange
+    [134897] = getMultipleSources({ getCrownPrice(45), getItempackString("Dibella") }), -- Vine Curtain, Festive Flowers
 
-    [181547] = getCrownPrice(1000) .. " or " .. itemPackMermaid, -- Leyawiin Fountain, Corner,
-    [181486] = getCrownPrice(2700) .. " or " .. itemPackMermaid, -- Leyawiin Fountain, Round,
-    [181599] = getCrownPrice(1100) .. " or " .. itemPackMermaid, -- Leyawiin Fountain, Tall,
-    [181485] = itemPackMermaid, -- Statue, Mermaid of Anvil,
-    [181435] = getCrownPrice(1500) .. " or " .. itemPackMermaid, -- Steam of Repose,
+    [181547] = getMultipleSources({ getCrownPrice(1000), getItempackString("Mermaid") }), -- Leyawiin Fountain, Corner,
+    [181486] = getMultipleSources({ getCrownPrice(2700), getItempackString("Mermaid") }), -- Leyawiin Fountain, Round,
+    [181599] = getMultipleSources({ getCrownPrice(1100), getItempackString("Mermaid") }), -- Leyawiin Fountain, Tall,
+    [181485] = getItempackString("Mermaid"), -- Statue, Mermaid of Anvil,
+    [181435] = getMultipleSources({ getCrownPrice(1500), getItempackString("Mermaid") }), -- Steam of Repose,
 
-    [175695] = getCrownPrice(510) .. " or " .. itemPackZeni, -- Leyawiin Shrine of the Eight,
-    [175696] = getCrownPrice(410) .. " or " .. itemPackZeni, -- Leyawiin Tapestry, Divines Horizontal,
-    [175697] = getCrownPrice(410) .. " or " .. itemPackZeni, -- Leyawiin Tapestry, Divines Vertical,
-    [175698] = itemPackZeni, -- Zenithar, God of Work and Commerce,
-    [175699] = itemPackZeni .. " or " .. itemPackWindows, -- Stained Glass of Zenithar,
+    [175695] = getMultipleSources({ getCrownPrice(510), getItempackString("Zeni") }), -- Leyawiin Shrine of the Eight,
+    [175696] = getMultipleSources({ getCrownPrice(410), getItempackString("Zeni") }), -- Leyawiin Tapestry, Divines Horizontal,
+    [175697] = getMultipleSources({ getCrownPrice(410), getItempackString("Zeni") }), -- Leyawiin Tapestry, Divines Vertical,
+    [175698] = getItempackString("Zeni"), -- Zenithar, God of Work and Commerce,
+    [175699] = getMultipleSources({ getItempackString("Zeni"), getItempackString("Windows") }), -- Stained Glass of Zenithar,
 
-    [181483] = itemPackWindows, -- Stained Glass of Akatosh,
-    [181484] = itemPackWindows, -- Stained Glass of Julianos,
-    [181482] = itemPackWindows, -- Stained Glass of Arkay,
-    [181481] = itemPackWindows, -- Stained Glass of Dibella,
-    [181480] = itemPackWindows, -- Stained Glass of Stendarr,
-    [181479] = itemPackWindows, -- Stained Glass of Mara,
-    [181478] = itemPackWindows, -- Stained Glass of Kynareth,
+    [181483] = getItempackString("Windows"), -- Stained Glass of Akatosh,
+    [181484] = getItempackString("Windows"), -- Stained Glass of Julianos,
+    [181482] = getItempackString("Windows"), -- Stained Glass of Arkay,
+    [181481] = getItempackString("Windows"), -- Stained Glass of Dibella,
+    [181480] = getItempackString("Windows"), -- Stained Glass of Stendarr,
+    [181479] = getItempackString("Windows"), -- Stained Glass of Mara,
+    [181478] = getItempackString("Windows"), -- Stained Glass of Kynareth,
 
-    [182292] = getCrownPrice(260) .. " or " .. itemPackAmbitions, -- Deadlands Base, Tower,
-    [182291] = getCrownPrice(1500) .. " or " .. itemPackAmbitions, -- Deadlands Window, Fireglass,
-    [182290] = getCrownPrice(140) .. " or " .. itemPackAmbitions, -- Deadlands Grate, Large,
-    [182289] = getCrownPrice(140) .. " or " .. itemPackAmbitions, -- Deadlands Wall, Etched,
-    [182295] = getCrownPrice(510) .. " or " .. itemPackAmbitions, -- Deadlands Firepit, Large,
-    [182294] = getCrownPrice(770) .. " or " .. itemPackAmbitions, -- Deadlands Platform, Tower,
-    [182293] = getCrownPrice(260) .. " or " .. itemPackAmbitions, -- Deadlands Stairway, Tower,
-    [182912] = getCrownPrice(270) .. " or " .. itemPackAmbitions, -- Deadlands Pillar, Tall,
+    [182292] = getMultipleSources({ getCrownPrice(260), getItempackString("ambitions") }), -- Deadlands Base, Tower,
+    [182291] = getMultipleSources({ getCrownPrice(1500), getItempackString("ambitions") }), -- Deadlands Window, Fireglass,
+    [182290] = getMultipleSources({ getCrownPrice(140), getItempackString("ambitions") }), -- Deadlands Grate, Large,
+    [182289] = getMultipleSources({ getCrownPrice(140), getItempackString("ambitions") }), -- Deadlands Wall, Etched,
+    [182295] = getMultipleSources({ getCrownPrice(510), getItempackString("ambitions") }), -- Deadlands Firepit, Large,
+    [182294] = getMultipleSources({ getCrownPrice(770), getItempackString("ambitions") }), -- Deadlands Platform, Tower,
+    [182293] = getMultipleSources({ getCrownPrice(260), getItempackString("ambitions") }), -- Deadlands Stairway, Tower,
+    [182912] = getMultipleSources({ getCrownPrice(270), getItempackString("ambitions") }), -- Deadlands Pillar, Tall,
 
-    [147585] = getCrownPrice(40) .. " or " .. itemPackForge, -- Dwarven Gear, Large Spokes,
-    [147586] = getCrownPrice(50) .. " or " .. itemPackForge, -- Dwarven Hub, Sentry Wheel,
-    [147587] = getCrownPrice(40) .. " or " .. itemPackForge, -- Dwarven Gear, Large Open,
-    [147588] = getCrownPrice(220) .. " or " .. itemPackForge, -- Dwarven Conduit, Rounded,
-    [147589] = getCrownPrice(150) .. " or " .. itemPackForge, -- Dwarven Brazier, Open,
-    [147590] = itemPackForge, -- Dwarven Bust, Forge-Lord,
-    [147664] = getCrownPrice(270) .. " or " .. itemPackForge, -- Dwarven Dais, Conduit,
-    [147574] = itemPackForge, -- Dwarven Frieze, Wrathstone,
-    [147575] = itemPackForge, -- Dwarven Frieze, Power in Twain,
-    [147576] = itemPackForge, -- Dwarven Frieze, Colossal Power,
-    [147577] = getCrownPrice(920) .. " or " .. itemPackForge, -- Dwarven Platform, Fan,
-    [147578] = getCrownPrice(1400) .. " or " .. itemPackForge, -- Dwarven Throne, Conduit,
-    [147579] = getCrownPrice(240) .. " or " .. itemPackForge, -- Dwarven Gearwork, Perpetual,
-    [147580] = getCrownPrice(310) .. " or " .. itemPackForge, -- Dwarven Lamps, Heavy,
-    [147581] = getCrownPrice(350) .. " or " .. itemPackForge, -- Dwarven Table, Heavy Workbench,
-    [147582] = getCrownPrice(50) .. " or " .. itemPackForge, -- Dwarven Part, Sentry Head,
-    [147583] = getCrownPrice(220) .. " or " .. itemPackForge, -- Dwarven Valve, Sealed,
-    [147584] = getCrownPrice(160) .. " or " .. itemPackForge, -- Dwarven Rack, Spider Legs,
+    [147585] = getMultipleSources({ getCrownPrice(40), getItempackString("Forge") }), -- Dwarven Gear, Large Spokes,
+    [147586] = getMultipleSources({ getCrownPrice(50), getItempackString("Forge") }), -- Dwarven Hub, Sentry Wheel,
+    [147587] = getMultipleSources({ getCrownPrice(40), getItempackString("Forge") }), -- Dwarven Gear, Large Open,
+    [147588] = getMultipleSources({ getCrownPrice(220), getItempackString("Forge") }), -- Dwarven Conduit, Rounded,
+    [147589] = getMultipleSources({ getCrownPrice(150), getItempackString("Forge") }), -- Dwarven Brazier, Open,
+    [147590] = getItempackString("Forge"), -- Dwarven Bust, Forge-Lord,
+    [147664] = getMultipleSources({ getCrownPrice(270), getItempackString("Forge") }), -- Dwarven Dais, Conduit,
+    [147574] = getItempackString("Forge"), -- Dwarven Frieze, Wrathstone,
+    [147575] = getItempackString("Forge"), -- Dwarven Frieze, Power in Twain,
+    [147576] = getItempackString("Forge"), -- Dwarven Frieze, Colossal Power,
+    [147577] = getMultipleSources({ getCrownPrice(920), getItempackString("Forge") }), -- Dwarven Platform, Fan,
+    [147578] = getMultipleSources({ getCrownPrice(1400), getItempackString("Forge") }), -- Dwarven Throne, Conduit,
+    [147579] = getMultipleSources({ getCrownPrice(240), getItempackString("Forge") }), -- Dwarven Gearwork, Perpetual,
+    [147580] = getMultipleSources({ getCrownPrice(310), getItempackString("Forge") }), -- Dwarven Lamps, Heavy,
+    [147581] = getMultipleSources({ getCrownPrice(350), getItempackString("Forge") }), -- Dwarven Table, Heavy Workbench,
+    [147582] = getMultipleSources({ getCrownPrice(50), getItempackString("Forge") }), -- Dwarven Part, Sentry Head,
+    [147583] = getMultipleSources({ getCrownPrice(220), getItempackString("Forge") }), -- Dwarven Valve, Sealed,
+    [147584] = getMultipleSources({ getCrownPrice(160), getItempackString("Forge") }), -- Dwarven Rack, Spider Legs,
 
-    [130226] = getCrownPrice(85) .. " or " .. itemPackCoven, -- Carcass, Hanging Deer
-    [131424] = itemPackCoven, -- Fogs of the Hag Fen,
-    [130220] = getCrownPrice(3300) .. " or " .. itemPackCoven, -- Hagraven Altar,
-    [130222] = getCrownPrice(260) .. " or " .. itemPackCoven, -- Hagraven Totem, Skull
-    [131423] = getCrownPrice(750) .. " or " .. itemPackCoven, -- Mists of the Hag Fen
-    [130221] = getCrownPrice(430) .. " or " .. itemPackCoven, -- Reachmen Cage, Sturdy
-    [130216] = getCrownPrice(510) .. " or " .. itemPackCoven, -- Witches' Basin, Scrying
-    [130219] = getCrownPrice(240) .. " or " .. itemPackCoven, -- Witches' Brazier, Beast Skull
-    [130223] = getCrownPrice(340) .. " or " .. itemPackCoven, -- Reachmen Rug, Mottled Skin
-    [130224] = getCrownPrice(180) .. " or " .. itemPackCoven, -- Reachmen Rug, Smooth Skin
-    [130225] = getCrownPrice(340) .. " or " .. itemPackCoven, -- Skulls, Heap
-    [130227] = getCrownPrice(850) .. " or " .. itemPackCoven, -- Witches' Tent, Lean-To
-    [130229] = getCrownPrice(290) .. " or " .. itemPackCoven, -- Tree, Wretched Cypress
-    [130230] = getCrownPrice(90) .. " or " .. itemPackCoven, -- Stump, Wretched Cypress
-    [130247] = getCrownPrice(290) .. " or " .. itemPackCoven, -- Tree, Fetid Cypress
-    [130228] = itemPackCoven, -- The Witches of Hag Fen,
-    [130215] = itemPackCoven, -- Witches' Cauldron, Provisioning,
-    [130334] = getCrownPrice(260) .. " or " .. itemPackCoven, -- Witches Totem, Antler Charms,
+    [130226] = getMultipleSources({ getCrownPrice(85), getItempackString("coven") }), -- Carcass, Hanging Deer
+    [131424] = getItempackString("coven"), -- Fogs of the Hag Fen,
+    [130220] = getMultipleSources({ getCrownPrice(3300), getItempackString("coven") }), -- Hagraven Altar,
+    [130222] = getMultipleSources({ getCrownPrice(260), getItempackString("coven") }), -- Hagraven Totem, Skull
+    [131423] = getMultipleSources({ getCrownPrice(750), getItempackString("coven") }), -- Mists of the Hag Fen
+    [130221] = getMultipleSources({ getCrownPrice(430), getItempackString("coven") }), -- Reachmen Cage, Sturdy
+    [130216] = getMultipleSources({ getCrownPrice(510), getItempackString("coven") }), -- Witches' Basin, Scrying
+    [130219] = getMultipleSources({ getCrownPrice(240), getItempackString("coven") }), -- Witches' Brazier, Beast Skull
+    [130223] = getMultipleSources({ getCrownPrice(340), getItempackString("coven") }), -- Reachmen Rug, Mottled Skin
+    [130224] = getMultipleSources({ getCrownPrice(180), getItempackString("coven") }), -- Reachmen Rug, Smooth Skin
+    [130225] = getMultipleSources({ getCrownPrice(340), getItempackString("coven") }), -- Skulls, Heap
+    [130227] = getMultipleSources({ getCrownPrice(850), getItempackString("coven") }), -- Witches' Tent, Lean-To
+    [130229] = getMultipleSources({ getCrownPrice(290), getItempackString("coven") }), -- Tree, Wretched Cypress
+    [130230] = getMultipleSources({ getCrownPrice(90), getItempackString("coven") }), -- Stump, Wretched Cypress
+    [130247] = getMultipleSources({ getCrownPrice(290), getItempackString("coven") }), -- Tree, Fetid Cypress
+    [130228] = getItempackString("coven"), -- The Witches of Hag Fen,
+    [130215] = getItempackString("coven"), -- Witches' Cauldron, Provisioning,
+    [130334] = getMultipleSources({ getCrownPrice(260), getItempackString("coven") }), -- Witches Totem, Antler Charms,
 
-    [134870] = itemPackTyrants, -- Ancient Nord Chest, Dragon Crest,
-    [134871] = itemPackTyrants, -- Ancient Nord Urn, Dragon Crest,
-    [134873] = itemPackTyrants, -- Ancient Nord Bookshelf, Wide,
-    [134874] = itemPackTyrants, -- Ancient Nord Bookshelf, Narrow,
-    [134875] = itemPackTyrants, -- Ancient Nord Funerary Jar, Linked Rings,
-    [134876] = itemPackTyrants, -- Ancient Nord Funerary Jar, Crimson Sash,
-    [134877] = itemPackTyrants, -- Ancient Nord Funerary Jar, Dragon Figure,
-    [134878] = itemPackTyrants, -- Ancient Nord Funerary Jar, Dragon Crest,
-    [134872] = itemPackTyrants, -- Ancient Nord Brazier, Dragon Crest
-    [134863] = itemPackTyrants, -- Ancient Nord Sconce, Dragon Crest
-    [134862] = itemPackTyrants, -- Ancient Nord Runestone, Memorial,
-    [134856] = itemPackTyrants, -- Dragon Skeleton, Mid-Flight,
-    [134857] = itemPackTyrants, -- Dragon Priest Frieze: Triumph,
-    [134858] = itemPackTyrants, -- Dragon Priest Frieze: Exodus,
-    [134859] = itemPackTyrants, -- Dragon Priest Frieze: Restoration,
-    [134860] = itemPackTyrants, -- Dragon Priest Frieze: Ascension,
-    [134861] = itemPackTyrants, -- The History of Zaan The Scalecaller,
-    [134864] = itemPackTyrants, -- Dragon Cranium, Ancient,
-    [134865] = itemPackTyrants, -- Unidentified Bones, Gargantuan,
-    [134866] = itemPackTyrants, -- Lamia Cranium, Ancient,
-    [134867] = itemPackTyrants, -- Argonian Skull, Complete,
-    [134868] = itemPackTyrants, -- Khajiit Skull, Complete,
-    [134869] = itemPackTyrants, -- Orc Skull, Complete,
+    [134870] = getItempackString("Tyrants"), -- Ancient Nord Chest, Dragon Crest,
+    [134871] = getItempackString("Tyrants"), -- Ancient Nord Urn, Dragon Crest,
+    [134873] = getItempackString("Tyrants"), -- Ancient Nord Bookshelf, Wide,
+    [134874] = getItempackString("Tyrants"), -- Ancient Nord Bookshelf, Narrow,
+    [134875] = getItempackString("Tyrants"), -- Ancient Nord Funerary Jar, Linked Rings,
+    [134876] = getItempackString("Tyrants"), -- Ancient Nord Funerary Jar, Crimson Sash,
+    [134877] = getItempackString("Tyrants"), -- Ancient Nord Funerary Jar, Dragon Figure,
+    [134878] = getItempackString("Tyrants"), -- Ancient Nord Funerary Jar, Dragon Crest,
+    [134872] = getItempackString("Tyrants"), -- Ancient Nord Brazier, Dragon Crest
+    [134863] = getItempackString("Tyrants"), -- Ancient Nord Sconce, Dragon Crest
+    [134862] = getItempackString("Tyrants"), -- Ancient Nord Runestone, Memorial,
+    [134856] = getItempackString("Tyrants"), -- Dragon Skeleton, Mid-Flight,
+    [134857] = getItempackString("Tyrants"), -- Dragon Priest Frieze: Triumph,
+    [134858] = getItempackString("Tyrants"), -- Dragon Priest Frieze: Exodus,
+    [134859] = getItempackString("Tyrants"), -- Dragon Priest Frieze: Restoration,
+    [134860] = getItempackString("Tyrants"), -- Dragon Priest Frieze: Ascension,
+    [134861] = getItempackString("Tyrants"), -- The History of Zaan The Scalecaller,
+    [134864] = getItempackString("Tyrants"), -- Dragon Cranium, Ancient,
+    [134865] = getItempackString("Tyrants"), -- Unidentified Bones, Gargantuan,
+    [134866] = getItempackString("Tyrants"), -- Lamia Cranium, Ancient,
+    [134867] = getItempackString("Tyrants"), -- Argonian Skull, Complete,
+    [134868] = getItempackString("Tyrants"), -- Khajiit Skull, Complete,
+    [134869] = getItempackString("Tyrants"), -- Orc Skull, Complete,
 
-    [151901] = getCrownPrice(20) .. " or " .. itemPackKhajiit, -- Elsweyr Bowl, Moon-Sugar,
-    [153660] = getCrownPrice(560) .. " or " .. itemPackKhajiit, -- Elsweyr Cart, Moons-Blessed
-    [153669] = getCrownPrice(300) .. " or " .. itemPackKhajiit, -- Elsweyr Well, Simple Arched
-    [153658] = getCrownPrice(70) .. " or " .. itemPackKhajiit, -- Moon-Sugar, Row
-    [153659] = getCrownPrice(30) .. " or " .. itemPackKhajiit, -- Moon-Sugar, Cluster
-    [153667] = getCrownPrice(170) .. " or " .. itemPackKhajiit, -- Moon-Sugar, Harvested Large
-    [153668] = getCrownPrice(90) .. " or " .. itemPackKhajiit, -- Moon-Sugar, Harvested Small
-    [153632] = getCrownPrice(1500) .. " or " .. itemPackKhajiit, -- Sapphire Candlefly Gathering
-    [153661] = getCrownPrice(40) .. " or " .. itemPackKhajiit, -- Straw Pile
-    [153662] = getCrownPrice(40) .. " or " .. itemPackKhajiit, -- Tool, Plow
-    [153663] = getCrownPrice(40) .. " or " .. itemPackKhajiit, -- Tool, Sickle
-    [153664] = getCrownPrice(40) .. " or " .. itemPackKhajiit, -- Tool, Pitchfork
-    [153665] = getCrownPrice(40) .. " or " .. itemPackKhajiit, -- Tool, Hoe
-    [153666] = getCrownPrice(40) .. " or " .. itemPackKhajiit, -- Tool, Two-Person Crosscut Saw
+    [151901] = getMultipleSources({ getCrownPrice(20), getItempackString("Khajiit") }), -- Elsweyr Bowl, Moon-Sugar,
+    [153660] = getMultipleSources({ getCrownPrice(560), getItempackString("Khajiit") }), -- Elsweyr Cart, Moons-Blessed
+    [153669] = getMultipleSources({ getCrownPrice(300), getItempackString("Khajiit") }), -- Elsweyr Well, Simple Arched
+    [153658] = getMultipleSources({ getCrownPrice(70), getItempackString("Khajiit") }), -- Moon-Sugar, Row
+    [153659] = getMultipleSources({ getCrownPrice(30), getItempackString("Khajiit") }), -- Moon-Sugar, Cluster
+    [153667] = getMultipleSources({ getCrownPrice(170), getItempackString("Khajiit") }), -- Moon-Sugar, Harvested Large
+    [153668] = getMultipleSources({ getCrownPrice(90), getItempackString("Khajiit") }), -- Moon-Sugar, Harvested Small
+    [153632] = getMultipleSources({ getCrownPrice(1500), getItempackString("Khajiit") }), -- Sapphire Candlefly Gathering
+    [153661] = getMultipleSources({ getCrownPrice(40), getItempackString("Khajiit") }), -- Straw Pile
+    [153662] = getMultipleSources({ getCrownPrice(40), getItempackString("Khajiit") }), -- Tool, Plow
+    [153663] = getMultipleSources({ getCrownPrice(40), getItempackString("Khajiit") }), -- Tool, Sickle
+    [153664] = getMultipleSources({ getCrownPrice(40), getItempackString("Khajiit") }), -- Tool, Pitchfork
+    [153665] = getMultipleSources({ getCrownPrice(40), getItempackString("Khajiit") }), -- Tool, Hoe
+    [153666] = getMultipleSources({ getCrownPrice(40), getItempackString("Khajiit") }), -- Tool, Two-Person Crosscut Saw
 
-    [134270] = getCrownPrice(85) .. " or " .. itemPackMalacath, -- Cave Deposit, Large Double-Sided
-    [134271] = getCrownPrice(85) .. " or " .. itemPackMalacath, -- Cave Deposit, Tall Stalagmite
-    [134272] = getCrownPrice(10) .. " or " .. itemPackMalacath, -- Cave Deposit, Stalagmite Cluster,
-    [134258] = itemPackMalacath, -- Prayer to the Furious One,
-    [134259] = itemPackMalacath, -- Malacath, God of Oaths and Curses,
-    [134260] = itemPackMalacath, -- Orcish Bas-Relief, Axe,
-    [134261] = itemPackMalacath, -- Orcish Bas-Relief, Sword,
-    [134262] = itemPackMalacath, -- Orcish Bas-Relief, Spear,
-    [134268] = getCrownPrice(570) .. " or " .. itemPackMalacath, -- Orcish Brazier, Column
-    [134269] = getCrownPrice(220) .. " or " .. itemPackMalacath, -- Orcish Dais, Raised
-    [116518] = getCrownPrice(270) .. " or " .. itemPackMalacath, -- Orcish Drop Hammer, Repeating,
-    [152147] = itemPackMalacath, -- Orcish Statue, Strength,
-    [134267] = getCrownPrice(380) .. " or " .. itemPackMalacath, -- Orcish Table, Grand Furs
-    [134263] = getCrownPrice(410) .. " or " .. itemPackMalacath, -- Orcish Throne, Ancient
+    [134270] = getMultipleSources({ getCrownPrice(85), getItempackString("Malacath") }), -- Cave Deposit, Large Double-Sided
+    [134271] = getMultipleSources({ getCrownPrice(85), getItempackString("Malacath") }), -- Cave Deposit, Tall Stalagmite
+    [134272] = getMultipleSources({ getCrownPrice(10), getItempackString("Malacath") }), -- Cave Deposit, Stalagmite Cluster,
+    [134258] = getItempackString("Malacath"), -- Prayer to the Furious One,
+    [134259] = getItempackString("Malacath"), -- Malacath, God of Oaths and Curses,
+    [134260] = getItempackString("Malacath"), -- Orcish Bas-Relief, Axe,
+    [134261] = getItempackString("Malacath"), -- Orcish Bas-Relief, Sword,
+    [134262] = getItempackString("Malacath"), -- Orcish Bas-Relief, Spear,
+    [134268] = getMultipleSources({ getCrownPrice(570), getItempackString("Malacath") }), -- Orcish Brazier, Column
+    [134269] = getMultipleSources({ getCrownPrice(220), getItempackString("Malacath") }), -- Orcish Dais, Raised
+    [116518] = getMultipleSources({ getCrownPrice(270), getItempackString("Malacath") }), -- Orcish Drop Hammer, Repeating,
+    [152147] = getItempackString("Malacath"), -- Orcish Statue, Strength,
+    [134267] = getMultipleSources({ getCrownPrice(380), getItempackString("Malacath") }), -- Orcish Table, Grand Furs
+    [134263] = getMultipleSources({ getCrownPrice(410), getItempackString("Malacath") }), -- Orcish Throne, Ancient
 
-    [126114] = itemPackAzura, -- Statue of Azura, Queen of Dawn and Dusk,
-    [126115] = itemPackAzura, -- Statue of Azura's Moon,
-    [126116] = itemPackAzura, -- Statue of Azura's Sun,
-    [126117] = itemPackAzura, -- Tapestry of Azura,
-    [126118] = itemPackAzura, -- Banner of Azura,
-    [125489] = itemPackAzura, -- Daedric Brazier, Flaming,
-    [126128] = itemPackAzura, -- The Five Points of the Star,
+    [126114] = getItempackString("azura"), -- Statue of Azura, Queen of Dawn and Dusk,
+    [126115] = getItempackString("azura"), -- Statue of Azura's Moon,
+    [126116] = getItempackString("azura"), -- Statue of Azura's Sun,
+    [126117] = getItempackString("azura"), -- Tapestry of Azura,
+    [126118] = getItempackString("azura"), -- Banner of Azura,
+    [125489] = getItempackString("azura"), -- Daedric Brazier, Flaming,
+    [126128] = getItempackString("azura"), -- The Five Points of the Star,
 
-    [134251] = itemPackColdharbour, -- Coldharbour Bookshelf, Filled,
-    [134252] = itemPackColdharbour, -- Coldharbour Bookshelf, Black Laboratory,
-    [134253] = itemPackColdharbour, -- Coldharbour Bookshelf, Filled Wide,
-    [134256] = itemPackColdharbour, -- Coldharbour Bookshelf, Filled Pillar,
-    [134254] = itemPackColdharbour, -- Seal of Molag Bal,
-    [134255] = itemPackColdharbour, -- Transliminal Rupture,
-    [134257] = itemPackColdharbour, -- Daedra Dossier: Cold-Flame Atronach
-    [134264] = getCrownPrice(190) .. " or " .. itemPackColdharbour, -- Daedric Brazier, Cold-Flame
-    [134273] = getCrownPrice(200) .. " or " .. itemPackColdharbour, -- Daedric Plinth, Sacrificial
-    [134274] = getCrownPrice(200) .. " or " .. itemPackColdharbour, -- Coldharbour Crate, Black Soul Gem
-    [134275] = getCrownPrice(200) .. " or " .. itemPackColdharbour, -- Coldharbour Bin, Black Soul Gem
+    [134251] = getItempackString("coldharbour"), -- Coldharbour Bookshelf, Filled,
+    [134252] = getItempackString("coldharbour"), -- Coldharbour Bookshelf, Black Laboratory,
+    [134253] = getItempackString("coldharbour"), -- Coldharbour Bookshelf, Filled Wide,
+    [134256] = getItempackString("coldharbour"), -- Coldharbour Bookshelf, Filled Pillar,
+    [134254] = getItempackString("coldharbour"), -- Seal of Molag Bal,
+    [134255] = getItempackString("coldharbour"), -- Transliminal Rupture,
+    [134257] = getItempackString("coldharbour"), -- Daedra Dossier: Cold-Flame Atronach
+    [134264] = getMultipleSources({ getCrownPrice(190), getItempackString("coldharbour") }), -- Daedric Brazier, Cold-Flame
+    [134273] = getMultipleSources({ getCrownPrice(200), getItempackString("coldharbour") }), -- Daedric Plinth, Sacrificial
+    [134274] = getMultipleSources({ getCrownPrice(200), getItempackString("coldharbour") }), -- Coldharbour Crate, Black Soul Gem
+    [134275] = getMultipleSources({ getCrownPrice(200), getItempackString("coldharbour") }), -- Coldharbour Bin, Black Soul Gem
 
-    [182285] = getCrownPrice(160) .. " or " .. itemPackFargrave, -- Book Wall, Levitating,
-    [182286] = getCrownPrice(860) .. " or " .. itemPackFargrave, -- Fargrave Terrarium, Snakevine,
-    [182288] = getCrownPrice(820) .. " or " .. itemPackFargrave, -- Fargrave Terrarium, Massive Gas Blossom,
-    [182284] = getCrownPrice(20) .. " or " .. itemPackFargrave, -- Fargrave Bread Loaves, Round,
-    [182283] = getCrownPrice(870) .. " or " .. itemPackFargrave, -- Fargrave Terrarium, Lantern Flower,
-    [182282] = getCrownPrice(560) .. " or " .. itemPackFargrave, -- Fargrave Water Globules, Levitating,
-    [182258] = getCrownPrice(540) .. " or " .. itemPackFargrave, -- Fargrave Terrarium, Claws,
-    [182230] = getCrownPrice(140) .. " or " .. itemPackFargrave, -- Mushrooms, Glowing Shelf,
+    [182285] = getMultipleSources({ getCrownPrice(160), getItempackString("Fargrave") }), -- Book Wall, Levitating,
+    [182286] = getMultipleSources({ getCrownPrice(860), getItempackString("Fargrave") }), -- Fargrave Terrarium, Snakevine,
+    [182288] = getMultipleSources({ getCrownPrice(820), getItempackString("Fargrave") }), -- Fargrave Terrarium, Massive Gas Blossom,
+    [182284] = getMultipleSources({ getCrownPrice(20), getItempackString("Fargrave") }), -- Fargrave Bread Loaves, Round,
+    [182283] = getMultipleSources({ getCrownPrice(870), getItempackString("Fargrave") }), -- Fargrave Terrarium, Lantern Flower,
+    [182282] = getMultipleSources({ getCrownPrice(560), getItempackString("Fargrave") }), -- Fargrave Water Globules, Levitating,
+    [182258] = getMultipleSources({ getCrownPrice(540), getItempackString("Fargrave") }), -- Fargrave Terrarium, Claws,
+    [182230] = getMultipleSources({ getCrownPrice(140), getItempackString("Fargrave") }), -- Mushrooms, Glowing Shelf,
 
-    [182280] = scambox_celestial, -- Fargrave Relic Case,
-    [182207] = scambox_celestial, -- Celestial Vortex,
-    [181643] = scambox_celestial, -- Warrior's Flame,
-    [181487] = scambox_harlequin, -- Grim Harlequin Chandelier,
-    [181438] = scambox_harlequin, -- Mad God's Monarch Flock,
-    [178800] = scambox_harlequin, -- Amethyst Candlefly Gathering,
-    [171947] = scambox_irony, -- Deadlands Chandelier, Bladed,
-    [171946] = scambox_irony, -- Deadlands Cage, Bladed,
-    [171945] = scambox_irony, -- Deadlands Sconce, Horned,
-    [171546] = scambox_ayleid, -- Ayleid Relief, Blessed Life-Tree,
-    [171545] = scambox_ayleid, -- Ayleid Gate, Large,
-    [171544] = scambox_ayleid, -- Comet, Aetherial,
-    [156644] = scambox_frosty .. " (40 gems)", -- Books, Towering Pile
+    [182280] = getScamboxString("celestial"), -- Fargrave Relic Case,
+    [182207] = getScamboxString("celestial"), -- Celestial Vortex,
+    [181643] = getScamboxString("celestial"), -- Warrior's Flame,
+    [181487] = getScamboxString("harlequin"), -- Grim Harlequin Chandelier,
+    [181438] = getScamboxString("harlequin"), -- Mad God's Monarch Flock,
+    [178800] = getScamboxString("harlequin"), -- Amethyst Candlefly Gathering,
+    [171947] = getScamboxString("irony"), -- Deadlands Chandelier, Bladed,
+    [171946] = getScamboxString("irony"), -- Deadlands Cage, Bladed,
+    [171945] = getScamboxString("irony"), -- Deadlands Sconce, Horned,
+    [171546] = getScamboxString("ayleid"), -- Ayleid Relief, Blessed Life-Tree,
+    [171545] = getScamboxString("ayleid"), -- Ayleid Gate, Large,
+    [171544] = getScamboxString("ayleid"), -- Comet, Aetherial,
+    [156644] = getScamboxString("frosty") .. " (40 gems)", -- Books, Towering Pile
   },
 }
 
@@ -1014,18 +1047,18 @@ FurC.MiscItemSources[ver.MARKAT] = {
   },
 
   [src.CROWN] = {
-    [167935] = scambox_potentate, -- Dwarven Work Lamp, Powered Floor,
-    [167934] = scambox_potentate, -- Dwarven Orrery, Scholastic,
-    [167933] = scambox_potentate, -- Dwarven Beam Emitter, Medium,
+    [167935] = getScamboxString("potentate"), -- Dwarven Work Lamp, Powered Floor,
+    [167934] = getScamboxString("potentate"), -- Dwarven Orrery, Scholastic,
+    [167933] = getScamboxString("potentate"), -- Dwarven Beam Emitter, Medium,
 
-    [171397] = itemPackAlchemist, -- Stone Garden Tank, Vacant,
-    [171398] = itemPackAlchemist, -- Stone Garden Vat, Alchemized Bristleback,
-    [171399] = itemPackAlchemist, -- Stone Garden Vat, Alchemized Chaurus,
-    [171400] = itemPackAlchemist, -- Stone Garden Vat, Alchemized Durzog,
-    [171401] = itemPackAlchemist, -- Stone Garden Vat, Vacant,
-    [171402] = itemPackAlchemist, -- Stone Garden Circulator, Rootbound,
-    [171403] = itemPackAlchemist, -- Stone Garden Casket, Alchemized Bloodknight,
-    [169117] = itemPackAlchemist, -- Target Bloodknight,
+    [171397] = getItempackString("alchemist"), -- Stone Garden Tank, Vacant,
+    [171398] = getItempackString("alchemist"), -- Stone Garden Vat, Alchemized Bristleback,
+    [171399] = getItempackString("alchemist"), -- Stone Garden Vat, Alchemized Chaurus,
+    [171400] = getItempackString("alchemist"), -- Stone Garden Vat, Alchemized Durzog,
+    [171401] = getItempackString("alchemist"), -- Stone Garden Vat, Vacant,
+    [171402] = getItempackString("alchemist"), -- Stone Garden Circulator, Rootbound,
+    [171403] = getItempackString("alchemist"), -- Stone Garden Casket, Alchemized Bloodknight,
+    [169117] = getItempackString("alchemist"), -- Target Bloodknight,
 
     [167299] = getCrownPrice(920), -- Dwarven Chandelier, Polished Braced,
     [167301] = getCrownPrice(560), -- Dwarven Lamppost, Polished Powered,
@@ -1159,8 +1192,8 @@ FurC.MiscItemSources[ver.STONET] = {
     [118131] = getCrownPrice(180), -- Pelt, Bear
     [118107] = getCrownPrice(40), -- Pie, Display
 
-    [119685] = scambox_wildhunt, -- Tapestry of Hircine
-    [119684] = scambox_wildhunt, -- Statue of Hircine
+    [119685] = getScamboxString("wildhunt"), -- Tapestry of Hircine
+    [119684] = getScamboxString("wildhunt"), -- Statue of Hircine
   },
 
   [src.DROP] = {
@@ -1298,15 +1331,15 @@ FurC.MiscItemSources[ver.SKYRIM] = {
     [159458] = getCrownPrice(310), -- Tree, Broad Wrothgar Pine
     [159459] = getCrownPrice(310), -- Trees, Paired Wrothgar Pine
 
-    [167332] = scambox_sovngarde .. " (40 gems)", -- The Mage's Staff Painting, Gold
-    [167231] = scambox_sovngarde .. " (100 gems)", -- Celestial Nimbus
-    [167230] = scambox_sovngarde .. " (100 gems)", -- Alkosh's Hourglass, Replica
-    [166030] = scambox_nightfall, -- Greymoor Tapestry, Harrowstorm
-    [166029] = scambox_nightfall, -- Vampiric Fountain, Bat Swarm
-    [165568] = scambox_nightfall, -- Ancient Nord Gate
-    [156669] = scambox_frosty, -- Target Frost Atronach
-    [153650] = scambox_newmoon, -- Crystal Sconce, Green,
-    [153631] = scambox_newmoon, -- Emerald Candlefly Gathering
+    [167332] = getScamboxString("sovngarde") .. " (40 gems)", -- The Mage's Staff Painting, Gold
+    [167231] = getScamboxString("sovngarde") .. " (100 gems)", -- Celestial Nimbus
+    [167230] = getScamboxString("sovngarde") .. " (100 gems)", -- Alkosh's Hourglass, Replica
+    [166030] = getScamboxString("nightfall"), -- Greymoor Tapestry, Harrowstorm
+    [166029] = getScamboxString("nightfall"), -- Vampiric Fountain, Bat Swarm
+    [165568] = getScamboxString("nightfall"), -- Ancient Nord Gate
+    [156669] = getScamboxString("frosty"), -- Target Frost Atronach
+    [153650] = getScamboxString("newmoon"), -- Crystal Sconce, Green,
+    [153631] = getScamboxString("newmoon"), -- Emerald Candlefly Gathering
   },
 
   [src.FISHING] = {},
@@ -1350,36 +1383,38 @@ FurC.MiscItemSources[ver.KITTY] = {
   },
 
   [src.CROWN] = {
-    [151838] = itemPackOasis, -- Elsweyr Fountain, Moons-Blessed,
-    [151840] = getCrownPrice(70) .. " or " .. itemPackOasis, -- Plant, Desert Fan,
-    [151841] = getCrownPrice(70) .. " or " .. itemPackOasis, -- Plant, Tall Desert Fan,
-    [151842] = getCrownPrice(20) .. " or " .. itemPackOasis, -- Plant, Cask Palm,
-    [151843] = getCrownPrice(45) .. " or " .. itemPackOasis, -- Cactus, Flowering Cluster,
-    [151844] = getCrownPrice(30) .. " or " .. itemPackOasis, -- Cactus, Bilberry,
-    [151845] = getCrownPrice(95) .. " or " .. itemPackOasis, -- Elsweyr Potted Cactus, Flowering,
-    [151846] = getCrownPrice(35) .. " or " .. itemPackOasis .. " or " .. itemPackMermaid, -- Elsweyr Potted Plant, Cask Palm,
-    [151835] = itemPackOasis, -- Cathay-Raht Statue, Warrior,
-    [151836] = itemPackOasis, -- Tojay Statue, Dancer,
-    [151837] = itemPackOasis, -- Ohmes-Raht Statue, Trickster,
-    [151847] = getCrownPrice(20) .. " or " .. itemPackOasis, -- Plant, Flowering Desert Aloe,
-    [151848] = getCrownPrice(15) .. " or " .. itemPackOasis, -- Trees, Sunset Palm Cluster,
-    [151849] = getCrownPrice(45) .. " or " .. itemPackOasis, -- Cactus, Lily Flower,
-    [151850] = getCrownPrice(20) .. " or " .. itemPackOasis, -- Tree, Anequina Bonsai,
-    [151834] = getCrownPrice(90) .. " or " .. itemPackOasis, -- Tree, Desert Acacia Shade,
+    [151838] = getItempackString("Oasis"), -- Elsweyr Fountain, Moons-Blessed,
+    [151840] = getMultipleSources({ getCrownPrice(70), getItempackString("Oasis") }), -- Plant, Desert Fan,
+    [151841] = getMultipleSources({ getCrownPrice(70), getItempackString("Oasis") }), -- Plant, Tall Desert Fan,
+    [151842] = getMultipleSources({ getCrownPrice(20), getItempackString("Oasis") }), -- Plant, Cask Palm,
+    [151843] = getMultipleSources({ getCrownPrice(45), getItempackString("Oasis") }), -- Cactus, Flowering Cluster,
+    [151844] = getMultipleSources({ getCrownPrice(30), getItempackString("Oasis") }), -- Cactus, Bilberry,
+    [151845] = getMultipleSources({ getCrownPrice(95), getItempackString("Oasis") }), -- Elsweyr Potted Cactus, Flowering,
+    [151846] = getMultipleSources({ getCrownPrice(35), getItempackString("Oasis") }) .. " or " .. getItempackString(
+      "Mermaid"
+    ), -- Elsweyr Potted Plant, Cask Palm,
+    [151835] = getItempackString("Oasis"), -- Cathay-Raht Statue, Warrior,
+    [151836] = getItempackString("Oasis"), -- Tojay Statue, Dancer,
+    [151837] = getItempackString("Oasis"), -- Ohmes-Raht Statue, Trickster,
+    [151847] = getMultipleSources({ getCrownPrice(20), getItempackString("Oasis") }), -- Plant, Flowering Desert Aloe,
+    [151848] = getMultipleSources({ getCrownPrice(15), getItempackString("Oasis") }), -- Trees, Sunset Palm Cluster,
+    [151849] = getMultipleSources({ getCrownPrice(45), getItempackString("Oasis") }), -- Cactus, Lily Flower,
+    [151850] = getMultipleSources({ getCrownPrice(20), getItempackString("Oasis") }), -- Tree, Anequina Bonsai,
+    [151834] = getMultipleSources({ getCrownPrice(90), getItempackString("Oasis") }), -- Tree, Desert Acacia Shade,
 
-    [151906] = itemPackMoonBishop, -- Robust Target Dro-m'Athra,
-    [151829] = itemPackMoonBishop, -- Suthay Statue, Nimble Bishop,
-    [151824] = itemPackMoonBishop, -- Lunar Tapestry, The Open Path,
-    [151825] = itemPackMoonBishop, -- Lunar Tapestry, The Gathering,
-    [151826] = itemPackMoonBishop, -- Lunar Tapestry, The Dance,
-    [151827] = itemPackMoonBishop, -- Lunar Tapestry, The Gate,
-    [151828] = itemPackMoonBishop, -- Lunar Tapestry, The Demon,
-    [151830] = getCrownPrice(190) .. " or " .. itemPackMoonBishop, -- Elsweyr Divider, Elegant Wooden,
-    [151832] = getCrownPrice(100) .. " or " .. itemPackMoonBishop, -- Elsweyr Ceremonial Lantern, Jone,
-    [151833] = getCrownPrice(100) .. " or " .. itemPackMoonBishop, -- Elsweyr Ceremonial Lantern, Jode,
+    [151906] = getItempackString("MoonBishop"), -- Robust Target Dro-m'Athra,
+    [151829] = getItempackString("MoonBishop"), -- Suthay Statue, Nimble Bishop,
+    [151824] = getItempackString("MoonBishop"), -- Lunar Tapestry, The Open Path,
+    [151825] = getItempackString("MoonBishop"), -- Lunar Tapestry, The Gathering,
+    [151826] = getItempackString("MoonBishop"), -- Lunar Tapestry, The Dance,
+    [151827] = getItempackString("MoonBishop"), -- Lunar Tapestry, The Gate,
+    [151828] = getItempackString("MoonBishop"), -- Lunar Tapestry, The Demon,
+    [151830] = getMultipleSources({ getCrownPrice(190), getItempackString("MoonBishop") }), -- Elsweyr Divider, Elegant Wooden,
+    [151832] = getMultipleSources({ getCrownPrice(100), getItempackString("MoonBishop") }), -- Elsweyr Ceremonial Lantern, Jone,
+    [151833] = getMultipleSources({ getCrownPrice(100), getItempackString("MoonBishop") }), -- Elsweyr Ceremonial Lantern, Jode,
 
-    [165578] = itemPackVampire, -- Basin of Loss
-    [165569] = itemPackVampire, -- Soul-Sworn Thrall
+    [165578] = getItempackString("Vampire"), -- Basin of Loss
+    [165569] = getItempackString("Vampire"), -- Soul-Sworn Thrall
 
     [151808] = getCrownPrice(10), -- Tree, Fan Palm,
     [151813] = getCrownPrice(10), -- Sapling, Desert Acacia,
@@ -1425,13 +1460,13 @@ FurC.MiscItemSources[ver.KITTY] = {
     [152143] = mischouse .. " or Craftable", -- Orcish Sconce, Scrolled,    CRAFTABLE
     [152142] = mischouse .. " or Craftable", -- Orcish Sconce, Bordered,    CRAFTABLE
 
-    [159438] = scambox_gloomspore, -- Fungus, Gloomspore Ghost
-    [159437] = scambox_gloomspore, -- Painting of Blackreach, Rough
-    [159436] = scambox_gloomspore, -- Dwarven Miniature Sun, Portable
-    [153630] = scambox_newmoon .. " (55 gems)", -- Shadow Tendril Patch
-    [151612] = scambox_baandari, -- Pile of Dubious Riches,
-    [151611] = scambox_baandari, -- The Mane, Moons-Blessed,
-    [151589] = scambox_baandari, -- Baandari Lunar Compass,
+    [159438] = getScamboxString("gloomspore"), -- Fungus, Gloomspore Ghost
+    [159437] = getScamboxString("gloomspore"), -- Painting of Blackreach, Rough
+    [159436] = getScamboxString("gloomspore"), -- Dwarven Miniature Sun, Portable
+    [153630] = getScamboxString("newmoon") .. " (55 gems)", -- Shadow Tendril Patch
+    [151612] = getScamboxString("baandari"), -- Pile of Dubious Riches,
+    [151611] = getScamboxString("baandari"), -- The Mane, Moons-Blessed,
+    [151589] = getScamboxString("baandari"), -- Baandari Lunar Compass,
   },
 
   [src.FISHING] = {},
@@ -1440,9 +1475,9 @@ FurC.MiscItemSources[ver.KITTY] = {
 -- 10 Wrathstone
 FurC.MiscItemSources[ver.WOTL] = {
   [src.CROWN] = {
-    [147600] = scambox_dragonscale, -- Tapestry of Namira,
-    [147599] = scambox_dragonscale, -- Banner of Namira,
-    [147591] = scambox_dragonscale, -- Namira, Mistress of Decay,
+    [147600] = getScamboxString("dragonscale"), -- Tapestry of Namira,
+    [147599] = getScamboxString("dragonscale"), -- Banner of Namira,
+    [147591] = getScamboxString("dragonscale"), -- Namira, Mistress of Decay,
   },
 }
 
@@ -1571,50 +1606,50 @@ FurC.MiscItemSources[ver.WEREWOLF] = {
     [139389] = getCrownPrice(200), -- Crystal, Crimson Cluster
     [139184] = getCrownPrice(200), -- Alinor Plinth, Sarcophagus
 
-    [130093] = itemPackMolag, -- Coldharbour Compact
-    [130071] = getCrownPrice(300) .. " or " .. itemPackMolag, -- Daedric Torch, Coldharbour
-    [130075] = getCrownPrice(380) .. " or " .. itemPackMolag, -- Daedric Altar, Molag Bal
-    [130078] = getCrownPrice(380) .. " or " .. itemPackMolag, -- Soul Gem, Single
-    [130079] = getCrownPrice(380) .. " or " .. itemPackMolag, -- Soul Gems, Pile
-    [130082] = getCrownPrice(640) .. " or " .. itemPackMolag, -- Soul-Shriven, Robed
-    [130094] = getCrownPrice(140) .. " or " .. itemPackMolag, -- Daedric Chains, Hanging
-    [130095] = getCrownPrice(640) .. " or " .. itemPackMolag, -- Daedric Torture Device, Chained
-    [130069] = getCrownPrice(2000) .. " or " .. itemPackMolag, -- Daedric Spout, Block
-    [130070] = getCrownPrice(2000) .. " or " .. itemPackMolag, -- Daedric Spout, Arched
-    [130080] = itemPackMolag, -- Soul Gems, Scattered
-    [130081] = itemPackMolag, -- Soul-Shriven, Armored
-    [130083] = itemPackMolag, -- Daedric Block, Seat
-    [130084] = itemPackMolag, -- Daedric Tapestry, Molag Bal
-    [130085] = itemPackMolag, -- Daedric Banner, Molag Bal
-    [130086] = itemPackMolag, -- Daedric Pennant, Molag Bal
-    [130089] = getCrownPrice(360) .. " or " .. itemPackMolag, -- Daedric Brazier, Molag Bal
-    [130087] = itemPackMolag, -- Daedric Shards, Coldharbour
-    [130091] = itemPackMolag, -- Statue of Molag Bal, God of Schemes
-    [130090] = getCrownPrice(310) .. " or " .. itemPackMolag, -- Daedric Sconce, Molag Bal
-    [130088] = itemPackMolag, -- Daedric Fragment, Coldharbour
-    [130092] = itemPackMolag, -- Seal of Molag Bal, Grand
+    [130093] = getItempackString("Molag"), -- Coldharbour Compact
+    [130071] = getMultipleSources({ getCrownPrice(300), getItempackString("Molag") }), -- Daedric Torch, Coldharbour
+    [130075] = getMultipleSources({ getCrownPrice(380), getItempackString("Molag") }), -- Daedric Altar, Molag Bal
+    [130078] = getMultipleSources({ getCrownPrice(380), getItempackString("Molag") }), -- Soul Gem, Single
+    [130079] = getMultipleSources({ getCrownPrice(380), getItempackString("Molag") }), -- Soul Gems, Pile
+    [130082] = getMultipleSources({ getCrownPrice(640), getItempackString("Molag") }), -- Soul-Shriven, Robed
+    [130094] = getMultipleSources({ getCrownPrice(140), getItempackString("Molag") }), -- Daedric Chains, Hanging
+    [130095] = getMultipleSources({ getCrownPrice(640), getItempackString("Molag") }), -- Daedric Torture Device, Chained
+    [130069] = getMultipleSources({ getCrownPrice(2000), getItempackString("Molag") }), -- Daedric Spout, Block
+    [130070] = getMultipleSources({ getCrownPrice(2000), getItempackString("Molag") }), -- Daedric Spout, Arched
+    [130080] = getItempackString("Molag"), -- Soul Gems, Scattered
+    [130081] = getItempackString("Molag"), -- Soul-Shriven, Armored
+    [130083] = getItempackString("Molag"), -- Daedric Block, Seat
+    [130084] = getItempackString("Molag"), -- Daedric Tapestry, Molag Bal
+    [130085] = getItempackString("Molag"), -- Daedric Banner, Molag Bal
+    [130086] = getItempackString("Molag"), -- Daedric Pennant, Molag Bal
+    [130089] = getMultipleSources({ getCrownPrice(360), getItempackString("Molag") }), -- Daedric Brazier, Molag Bal
+    [130087] = getItempackString("Molag"), -- Daedric Shards, Coldharbour
+    [130091] = getItempackString("Molag"), -- Statue of Molag Bal, God of Schemes
+    [130090] = getMultipleSources({ getCrownPrice(310), getItempackString("Molag") }), -- Daedric Sconce, Molag Bal
+    [130088] = getItempackString("Molag"), -- Daedric Fragment, Coldharbour
+    [130092] = getItempackString("Molag"), -- Seal of Molag Bal, Grand
 
-    [126138] = itemPackDwemer, -- A Guide to Dwemer Mega-Structures
-    [125516] = itemPackDwemer, -- Dwarven Gear Assembly, Grinding
+    [126138] = getItempackString("Dwemer"), -- A Guide to Dwemer Mega-Structures
+    [125516] = getItempackString("Dwemer"), -- Dwarven Gear Assembly, Grinding
 
-    [126140] = itemPackVivec, -- Vivec's Grand Bed
-    [126141] = itemPackVivec, -- Vivec's Grand Throne
-    [126142] = itemPackVivec, -- Vivec's Divination Pool
-    [126143] = itemPackVivec, -- Statue, Vivec's Triumph
-    [126144] = itemPackVivec, -- Seal of Vivec
-    [126145] = itemPackVivec, -- Sigil of Vivec
-    [126146] = itemPackVivec, -- Banner, Vivec
-    [126149] = itemPackVivec, -- Tapestry, Vivec
-    [126150] = itemPackVivec, -- Tribunal Tablet of Sotha Sil
-    [126152] = itemPackVivec, -- The Cliff-Strider Song
+    [126140] = getItempackString("Vivec"), -- Vivec's Grand Bed
+    [126141] = getItempackString("Vivec"), -- Vivec's Grand Throne
+    [126142] = getItempackString("Vivec"), -- Vivec's Divination Pool
+    [126143] = getItempackString("Vivec"), -- Statue, Vivec's Triumph
+    [126144] = getItempackString("Vivec"), -- Seal of Vivec
+    [126145] = getItempackString("Vivec"), -- Sigil of Vivec
+    [126146] = getItempackString("Vivec"), -- Banner, Vivec
+    [126149] = getItempackString("Vivec"), -- Tapestry, Vivec
+    [126150] = getItempackString("Vivec"), -- Tribunal Tablet of Sotha Sil
+    [126152] = getItempackString("Vivec"), -- The Cliff-Strider Song
 
-    [134855] = scambox_scalecaller, -- Banner of Peryite
-    [134854] = scambox_scalecaller, -- Tapestry of Peryite
-    [134853] = scambox_scalecaller, -- Peryite, The Taskmaster
-    [134475] = scambox_fireatro, -- Statue of Malacath, Orc-Father
-    [126132] = scambox_string .. " (any)", -- Resplendent Sweetroll
-    [125654] = scambox_dwemer, -- Tapestry, Clavicus Vile
-    [125480] = scambox_dwemer, -- Banner, Clavicus Vile
+    [134855] = getScamboxString("scalecaller"), -- Banner of Peryite
+    [134854] = getScamboxString("scalecaller"), -- Tapestry of Peryite
+    [134853] = getScamboxString("scalecaller"), -- Peryite, The Taskmaster
+    [134475] = getScamboxString("fireatro"), -- Statue of Malacath, Orc-Father
+    [126132] = getScamboxString("string") .. " (any)", -- Resplendent Sweetroll
+    [125654] = getScamboxString("dwemer"), -- Tapestry, Clavicus Vile
+    [125480] = getScamboxString("dwemer"), -- Banner, Clavicus Vile
   },
 }
 
@@ -1632,9 +1667,9 @@ FurC.MiscItemSources[ver.SLAVES] = {
   },
 
   [src.DROP] = {
-    [141856] = sinister_hollowjack .. " or " .. scambox_hollowjack, -- Decorative Hollowjack Daedra-Skull
-    [141855] = sinister_hollowjack .. " or " .. scambox_hollowjack, -- Decorative Hollowjack Wraith-Lantern
-    [141854] = sinister_hollowjack .. " or " .. scambox_hollowjack, -- Decorative Hollowjack Flame-Skull
+    [141856] = sinister_hollowjack .. " or " .. getScamboxString("hollowjack"), -- Decorative Hollowjack Daedra-Skull
+    [141855] = sinister_hollowjack .. " or " .. getScamboxString("hollowjack"), -- Decorative Hollowjack Wraith-Lantern
+    [141854] = sinister_hollowjack .. " or " .. getScamboxString("hollowjack"), -- Decorative Hollowjack Flame-Skull
     [141870] = sinister_hollowjack, -- Raven-Perch Cemetery Wreath
     [141875] = sinister_hollowjack, -- Witches Festival Scarecrow
     [139157] = sinister_hollowjack, -- Webs, Thick Sheet
@@ -1677,52 +1712,52 @@ FurC.MiscItemSources[ver.SLAVES] = {
     [134326] = getCrownPrice(260), -- Clockwork Pump, Horizontal
     [134250] = getCrownPrice(750), -- Fabrication Sphere, Inactive
 
-    [146062] = itemPackNewLife2018, -- Winter Ouroboros Wreath
-    [146061] = itemPackNewLife2018, -- New Life Triptych Banner
-    [146060] = itemPackNewLife2018, -- New Life Ladle
-    [146059] = itemPackNewLife2018, -- New Life Snowmortal, Khajiit
-    [146058] = itemPackNewLife2018, -- New Life Snowmortal, Argonian
-    [146057] = itemPackNewLife2018, -- New Life Snowmortal, Human
-    [146056] = itemPackNewLife2018, -- New Life Cookies and Ale
-    [146055] = itemPackNewLife2018, -- New Life Garland Wreath
-    [146054] = itemPackNewLife2018, -- New Life Garland
-    [146053] = itemPackNewLife2018, -- Guar Ice Sculpture
-    [146052] = itemPackNewLife2018, -- Vvardvark Ice Sculpture
-    [146051] = itemPackNewLife2018, -- Mudcrab Ice Sculpture
-    [146050] = itemPackNewLife2018, -- Winter Festival Hearthfire
-    [146049] = itemPackNewLife2018, -- Winter Festival Hearth
-    [146048] = itemPackNewLife2018, -- New Life Festive Fir
-    [146047] = itemPackNewLife2018, -- From Old Life To New
+    [146062] = getItempackString("NewLife2018"), -- Winter Ouroboros Wreath
+    [146061] = getItempackString("NewLife2018"), -- New Life Triptych Banner
+    [146060] = getItempackString("NewLife2018"), -- New Life Ladle
+    [146059] = getItempackString("NewLife2018"), -- New Life Snowmortal, Khajiit
+    [146058] = getItempackString("NewLife2018"), -- New Life Snowmortal, Argonian
+    [146057] = getItempackString("NewLife2018"), -- New Life Snowmortal, Human
+    [146056] = getItempackString("NewLife2018"), -- New Life Cookies and Ale
+    [146055] = getItempackString("NewLife2018"), -- New Life Garland Wreath
+    [146054] = getItempackString("NewLife2018"), -- New Life Garland
+    [146053] = getItempackString("NewLife2018"), -- Guar Ice Sculpture
+    [146052] = getItempackString("NewLife2018"), -- Vvardvark Ice Sculpture
+    [146051] = getItempackString("NewLife2018"), -- Mudcrab Ice Sculpture
+    [146050] = getItempackString("NewLife2018"), -- Winter Festival Hearthfire
+    [146049] = getItempackString("NewLife2018"), -- Winter Festival Hearth
+    [146048] = getItempackString("NewLife2018"), -- New Life Festive Fir
+    [146047] = getItempackString("NewLife2018"), -- From Old Life To New
 
-    [146073] = getCrownPrice(70) .. " or " .. itemPackDeepmire, -- Plant Cluster, Marsh Nigella,
-    [145461] = getCrownPrice(30) .. " or " .. itemPackDeepmire, -- Plant Cluster, Cardinal Flower
-    [145447] = getCrownPrice(260) .. " or " .. itemPackSwamp, -- Murkmire Dais, Engraved
-    [145445] = itemPackDeepmire, -- The Sharper Tongue: A Jel Primer
-    [145443] = getCrownPrice(270) .. " or " .. itemPackDeepmire, -- Murkmire Shrine, Sithis Looming
-    [145442] = getCrownPrice(140) .. " or " .. itemPackDeepmire, -- Grave Stake, Large Twinned
-    [145441] = getCrownPrice(140) .. " or " .. itemPackDeepmire, -- Grave Stake, Large Serpent
-    [145440] = getCrownPrice(140) .. " or " .. itemPackDeepmire, -- Grave Stake, Large Skull
-    [145439] = getCrownPrice(140) .. " or " .. itemPackDeepmire, -- Grave Stake, Large Fearsome
-    [145438] = getCrownPrice(140) .. " or " .. itemPackDeepmire, -- Grave Stake, Large Glyphed
-    [145437] = getCrownPrice(240) .. " or " .. itemPackDeepmire, -- Reed Felucca, Double Hulled
-    [145436] = itemPackDeepmire, -- Canopied Felucca, Double Hulled
-    [145435] = getCrownPrice(110) .. " or " .. itemPackDeepmire, -- Plant, Marsh Mani Flower
-    [145434] = getCrownPrice(110) .. " or " .. itemPackDeepmire, -- Plant, Large Inert Lantern Flower
-    [145433] = getCrownPrice(60) .. " or " .. itemPackDeepmire, -- Plant, Rafflesia
-    [145432] = getCrownPrice(70) .. " or " .. itemPackDeepmire, -- Plant, Canna Lily
-    [145431] = getCrownPrice(35) .. " or " .. itemPackDeepmire, -- Plant, Marsh Nigella
-    [145430] = getCrownPrice(55) .. " or " .. itemPackDeepmire, -- Plant, Star Blossom
-    [145428] = getCrownPrice(65) .. " or " .. itemPackDeepmire, -- Murkmire Lantern Post, Covered
-    [145427] = itemPackDeepmire, -- Serpent Skull, Colossal
-    [145426] = getCrownPrice(410) .. " or " .. itemPackDeepmire, -- Murkmire Felucca, Canopied
+    [146073] = getMultipleSources({ getCrownPrice(70), getItempackString("Deepmire") }), -- Plant Cluster, Marsh Nigella,
+    [145461] = getMultipleSources({ getCrownPrice(30), getItempackString("Deepmire") }), -- Plant Cluster, Cardinal Flower
+    [145447] = getMultipleSources({ getCrownPrice(260), getItempackString("Swamp") }), -- Murkmire Dais, Engraved
+    [145445] = getItempackString("Deepmire"), -- The Sharper Tongue: A Jel Primer
+    [145443] = getMultipleSources({ getCrownPrice(270), getItempackString("Deepmire") }), -- Murkmire Shrine, Sithis Looming
+    [145442] = getMultipleSources({ getCrownPrice(140), getItempackString("Deepmire") }), -- Grave Stake, Large Twinned
+    [145441] = getMultipleSources({ getCrownPrice(140), getItempackString("Deepmire") }), -- Grave Stake, Large Serpent
+    [145440] = getMultipleSources({ getCrownPrice(140), getItempackString("Deepmire") }), -- Grave Stake, Large Skull
+    [145439] = getMultipleSources({ getCrownPrice(140), getItempackString("Deepmire") }), -- Grave Stake, Large Fearsome
+    [145438] = getMultipleSources({ getCrownPrice(140), getItempackString("Deepmire") }), -- Grave Stake, Large Glyphed
+    [145437] = getMultipleSources({ getCrownPrice(240), getItempackString("Deepmire") }), -- Reed Felucca, Double Hulled
+    [145436] = getItempackString("Deepmire"), -- Canopied Felucca, Double Hulled
+    [145435] = getMultipleSources({ getCrownPrice(110), getItempackString("Deepmire") }), -- Plant, Marsh Mani Flower
+    [145434] = getMultipleSources({ getCrownPrice(110), getItempackString("Deepmire") }), -- Plant, Large Inert Lantern Flower
+    [145433] = getMultipleSources({ getCrownPrice(60), getItempackString("Deepmire") }), -- Plant, Rafflesia
+    [145432] = getMultipleSources({ getCrownPrice(70), getItempackString("Deepmire") }), -- Plant, Canna Lily
+    [145431] = getMultipleSources({ getCrownPrice(35), getItempackString("Deepmire") }), -- Plant, Marsh Nigella
+    [145430] = getMultipleSources({ getCrownPrice(55), getItempackString("Deepmire") }), -- Plant, Star Blossom
+    [145428] = getMultipleSources({ getCrownPrice(65), getItempackString("Deepmire") }), -- Murkmire Lantern Post, Covered
+    [145427] = getItempackString("Deepmire"), -- Serpent Skull, Colossal
+    [145426] = getMultipleSources({ getCrownPrice(410), getItempackString("Deepmire") }), -- Murkmire Felucca, Canopied
 
-    [134249] = itemPackSotha, -- Sotha Sil, The Clockwork God
-    [134248] = itemPackSotha, -- Grand Mnemograph
-    [134246] = itemPackSotha, -- The Law of Gears
+    [134249] = getItempackString("Sotha"), -- Sotha Sil, The Clockwork God
+    [134248] = getItempackString("Sotha"), -- Grand Mnemograph
+    [134246] = getItempackString("Sotha"), -- The Law of Gears
 
-    [145493] = scambox_xanmeer, -- Lantern Mantis
-    [145492] = scambox_xanmeer, -- Gas Blossom
-    [145491] = scambox_xanmeer, -- Static Pitcher
+    [145493] = getScamboxString("xanmeer"), -- Lantern Mantis
+    [145492] = getScamboxString("xanmeer"), -- Gas Blossom
+    [145491] = getScamboxString("xanmeer"), -- Static Pitcher
   },
 
   [src.FISHING] = {
@@ -1775,7 +1810,7 @@ FurC.MiscItemSources[ver.ALTMER] = {
     [139335] = getCrownPrice(310), -- Tree, Shade Ancient
     [139334] = getCrownPrice(20), -- Coral Formation, Tree Capped (green)
     [139333] = getCrownPrice(45), -- Coral Formation, Trees Capped
-    [139332] = getCrownPrice(45) .. " or " .. itemPackAquatic, -- Coral Formation, Tree Shelf
+    [139332] = getMultipleSources({ getCrownPrice(45), getItempackString("aquatic") }), -- Coral Formation, Tree Shelf
     [139331] = getCrownPrice(45), -- Coral Formation, Tree Antler
     [139330] = getCrownPrice(45), -- Coral Formation, Waving Hands
     [139329] = getCrownPrice(45), -- Coral Formation, Heart
@@ -1840,17 +1875,17 @@ FurC.MiscItemSources[ver.ALTMER] = {
     [118140] = getCrownPrice(410), -- Painting of a Waterfall, Refined
     [118138] = getCrownPrice(410), -- Painting of Mountains, Refined
 
-    [140220] = mephalaItemSet, -- Rumours of the Spiral Skein
-    [139163] = mephalaItemSet, -- Mephala, The Webspinner (statue)
-    [139097] = mephalaItemSet, -- Spiral Skein Glowstalks, Sprouts
+    [140220] = getItempackString("Mephala"), -- Rumours of the Spiral Skein
+    [139163] = getItempackString("Mephala"), -- Mephala, The Webspinner (statue)
+    [139097] = getItempackString("Mephala"), -- Spiral Skein Glowstalks, Sprouts
 
-    [139139] = scambox_psijic, -- Nocturnal, Mistress of Shadows
-    [139138] = scambox_psijic, -- Banner, Nocturnal
-    [139137] = scambox_psijic, -- Tapestry, Nocturnal
-    [134474] = scambox_fireatro, -- Banner, Malacath
-    [130192] = scambox_reaper, -- Statue of Sheogorath, the Madgod
-    [130190] = scambox_reaper, -- Banner of Sheogorath
-    [130189] = scambox_reaper, -- Tapestry of Sheogorath
+    [139139] = getScamboxString("psijic"), -- Nocturnal, Mistress of Shadows
+    [139138] = getScamboxString("psijic"), -- Banner, Nocturnal
+    [139137] = getScamboxString("psijic"), -- Tapestry, Nocturnal
+    [134474] = getScamboxString("fireatro"), -- Banner, Malacath
+    [130192] = getScamboxString("reaper"), -- Statue of Sheogorath, the Madgod
+    [130190] = getScamboxString("reaper"), -- Banner of Sheogorath
+    [130189] = getScamboxString("reaper"), -- Tapestry of Sheogorath
   },
 
   [src.DROP] = {
@@ -2089,16 +2124,16 @@ FurC.MiscItemSources[ver.MORROWIND] = {
   },
 
   [src.CROWN] = {
-    [130213] = getCrownPrice(430) .. " or " .. itemPackAyleid, -- Ayleid Cage, Hanging
-    [130212] = itemPackAyleid, -- Daedra Worship: The Ayleids
-    [130207] = getCrownPrice(270) .. " or " .. itemPackAyleid, -- Ayleid Plinth, Engraved
-    [130206] = getCrownPrice(370) .. " or " .. itemPackAyleid, -- Ayleid Apparatus, Welkynd
-    [130205] = getCrownPrice(680) .. " or " .. itemPackAyleid, -- Ayleid Statue, Pious Priest
-    [130204] = getCrownPrice(410) .. " or " .. itemPackAyleid, -- Welkynd Stones, Glowing
-    [130202] = getCrownPrice(170) .. " or " .. itemPackAyleid, -- Ayleid Grate, Tall
-    [130201] = getCrownPrice(170) .. " or " .. itemPackAyleid, -- Ayleid Grate, Small
-    [130199] = getCrownPrice(170) .. " or " .. itemPackAyleid, -- Ayleid Bookshelf, Bare
-    [130197] = getCrownPrice(170) .. " or " .. itemPackAyleid, -- Ayleid Bookcase, Filled
+    [130213] = getMultipleSources({ getCrownPrice(430), getItempackString("ayleid") }), -- Ayleid Cage, Hanging
+    [130212] = getItempackString("ayleid"), -- Daedra Worship: The Ayleids
+    [130207] = getMultipleSources({ getCrownPrice(270), getItempackString("ayleid") }), -- Ayleid Plinth, Engraved
+    [130206] = getMultipleSources({ getCrownPrice(370), getItempackString("ayleid") }), -- Ayleid Apparatus, Welkynd
+    [130205] = getMultipleSources({ getCrownPrice(680), getItempackString("ayleid") }), -- Ayleid Statue, Pious Priest
+    [130204] = getMultipleSources({ getCrownPrice(410), getItempackString("ayleid") }), -- Welkynd Stones, Glowing
+    [130202] = getMultipleSources({ getCrownPrice(170), getItempackString("ayleid") }), -- Ayleid Grate, Tall
+    [130201] = getMultipleSources({ getCrownPrice(170), getItempackString("ayleid") }), -- Ayleid Grate, Small
+    [130199] = getMultipleSources({ getCrownPrice(170), getItempackString("ayleid") }), -- Ayleid Bookshelf, Bare
+    [130197] = getMultipleSources({ getCrownPrice(170), getItempackString("ayleid") }), -- Ayleid Bookcase, Filled
 
     [134578] = getCrownPrice(110), -- Ice Floe, Thick
     [134577] = getCrownPrice(50), -- Ice Floe, Thin
@@ -2206,11 +2241,11 @@ FurC.MiscItemSources[ver.MORROWIND] = {
     [120408] = getCrownPrice(25), -- Argonian Fish in a Basket
     [118663] = getHouseString(1078, 1079), -- Dark Elf Bed of Coals
 
-    [126039] = scambox_dwemer, -- Statue of masked Clavicus Vile with Barbas
+    [126039] = getScamboxString("dwemer"), -- Statue of masked Clavicus Vile with Barbas
   },
 
   [src.JUSTICE] = {
-    [126481] = stealable_priests .. " in Vvardenfell", -- Indoril Incense, Burning
+    [126481] = zo_strformat("<<1>> <<2>>", stealable_priests, gloriousHome), -- Indoril Incense, Burning
     [126772] = stealable_thief, -- Khajiiti Ponder sphere
   },
 }
@@ -2315,6 +2350,6 @@ FurC.MiscItemSources[ver.HOMESTEAD] = {
     [115395] = getCrownPrice(40), -- Nord Drinking Horn, Display
     [94098] = getCrownPrice(95), -- Imperial Bed, Single
 
-    [134473] = scambox_fireatro, -- Tapestry,  Malacath
+    [134473] = getScamboxString("fireatro"), -- Tapestry,  Malacath
   },
 }
