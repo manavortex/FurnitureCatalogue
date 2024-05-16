@@ -69,18 +69,92 @@ local fishing_summerset = GetString(SI_FURC_CANBEFISHED) .. on_summerset
 local fishing_swamp = GetString(SI_FURC_CANBEFISHED) .. backwaterSwamp
 local endless_archive = "From chests in the Infinite Archive"
 
--- Crowns
+local colours = FurC.ItemLinkColours
+local currencies = {
+  [CURT_NONE] = {
+    colour = colours.Gold,
+    name = GetCurrencyName(CURT_NONE),
+  },
+  [CURT_MONEY] = {
+    colour = colours.Gold,
+    name = GetCurrencyName(CURT_MONEY),
+  },
+  [CURT_ALLIANCE_POINTS] = {
+    colour = colours.AP,
+    name = GetCurrencyName(CURT_ALLIANCE_POINTS),
+  },
+  [CURT_TELVAR_STONES] = {
+    colour = colours.TelVar,
+    name = GetCurrencyName(CURT_TELVAR_STONES),
+  },
+  [CURT_WRIT_VOUCHERS] = {
+    colour = colours.Voucher,
+    name = GetCurrencyName(CURT_WRIT_VOUCHERS),
+  },
+  [CURT_CHAOTIC_CREATIA] = {
+    colour = colours.TelVar,
+    name = GetCurrencyName(CURT_CHAOTIC_CREATIA),
+  },
+  [CURT_CROWN_GEMS] = {
+    colour = colours.TelVar,
+    name = GetCurrencyName(CURT_CROWN_GEMS),
+  },
+  [CURT_CROWNS] = {
+    colour = colours.Vendor,
+    name = GetCurrencyName(CURT_CROWNS),
+  },
+  [CURT_STYLE_STONES] = {
+    colour = colours.Voucher,
+    name = GetCurrencyName(CURT_STYLE_STONES),
+  },
+  [CURT_EVENT_TICKETS] = {
+    colour = colours.Voucher,
+    name = GetCurrencyName(CURT_EVENT_TICKETS),
+  },
+  [CURT_UNDAUNTED_KEYS] = {
+    colour = colours.Vendor,
+    name = GetCurrencyName(CURT_UNDAUNTED_KEYS),
+  },
+  [CURT_ENDEAVOR_SEALS] = {
+    colour = colours.Vendor,
+    name = GetCurrencyName(CURT_ENDEAVOR_SEALS),
+  },
+}
+
 local priceUnknown = "?"
-local crownstoresource = GetString(SI_FURC_CROWNSTORESOURCE)
-local function getCrownPrice(price)
+local function getPriceString(price, currency_id)
   local priceString = ((not price or price < 0) and priceUnknown) or tostring(price)
-  return string.format("%s (%s)", crownstoresource, priceString)
+
+  local currency = currencies[currency_id]
+  priceString = FurC.colourise(priceString, currency.colour)
+
+  return zo_strformat("<<1>> (<<2>>)", currency.name, priceString)
+end
+FurC.GetPriceString = getPriceString
+
+local function getPartOfItemString(itemid, note)
+  if not itemid or itemid == 0 then
+    return ""
+  end
+
+  local itemLink = zo_strformat("|H1:item:<<1>>:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h", tostring(itemid))
+
+  local result_str = zo_strformat(GetString(SI_FURC_PART_OF), itemLink)
+  if note then
+    return result_str .. " - " .. note
+  end
+
+  return result_str
+end
+FurC.GetPartOfItemString = getPartOfItemString
+
+-- Crowns
+local function getCrownPrice(price)
+  return getPriceString(price, CURT_CROWNS)
 end
 
-local scamgemString = GetString(SI_FURC_SCAMBOX_GEMS)
 local function getGemPrice(price)
-  local priceString = ((not price or price < 0) and priceUnknown) or tostring(price)
-  return string.format("%s (%s)", scamgemString, priceString)
+  return getPriceString(price, CURT_CROWN_GEMS)
 end
 
 local housesource = GetString(SI_FURC_HOUSE)
@@ -132,42 +206,42 @@ local scamboxes = {
 }
 local function getScamboxString(scamboxName)
   scamboxName = string.lower(scamboxName)
-  return zo_strformat("<<1>> (<<2>>)", GetString(SI_FURC_SCAMBOX), GetString(scamboxes[scamboxName]))
+  return zo_strformat("<<1>> [<<2>>]", GetString(SI_FURC_SCAMBOX), GetString(scamboxes[scamboxName]))
 end
 
 local itempacks = {
-  ["moonbishop"] = "Moon Bishop's Sanctuary",
-  ["oasis"] = "Moons-Blessed Oasis",
-  ["vampire"] = "Vampiric Libations",
-  ["heart"] = "Heart's Day Retreat",
-  ["cragknicks"] = "Craglorn Multicultural Knick-Knacks",
-  ["hubtreasure"] = "Hubalajad's Final Treasure",
-  ["dibella"] = "Dibella's Garden",
-  ["mermaid"] = "Steam Bath Serenity",
-  ["zeni"] = "Chapel of Zenithar",
-  ["windows"] = "Windows of the Divines",
-  ["ambitions"] = "Daedric Ambitions",
-  ["forge"] = "Forge-Lord's Great Works",
-  ["coven"] = "Witches' Coven",
-  ["tyrants"] = "Tyrants of the Merethic Era",
-  ["khajiit"] = "Khajiiti Life",
-  ["malacath"] = "Malacath's Chosen",
-  ["alchemist"] = "Mad Alchemist",
-  ["azura"] = "Daedric Set of Azura",
-  ["coldharbour"] = "Coldharbour Arcanaeum",
-  ["fargrave"] = "Fargrave Bazaar",
-  ["aquatic"] = "Aquatic Splendor",
-  ["maormer"] = "Maormer Boarding Party",
-  ["newlife2018"] = "New Life Festival",
-  ["deepmire"] = "Deepmire Expedition",
-  ["dwemer"] = "Dwemer",
-  ["vivec"] = "Lord Vivec",
-  ["swamp"] = "Shadow and Stone",
-  ["molag"] = "Molag Bal",
-  ["ayleid"] = "Ayleid",
-  ["sotha"] = "The Clockwork God's Domain",
-  ["astula"] = "Shad Astula Scolars Bundle",
-  ["mephala"] = "Trappings of Mephala Worship",
+  ["moonbishop"] = SI_FURC_ITEMPACK_MOONBISHOP,
+  ["oasis"] = SI_FURC_ITEMPACK_OASIS,
+  ["vampire"] = SI_FURC_ITEMPACK_VAMPIRE,
+  ["heart"] = SI_FURC_ITEMPACK_HEART,
+  ["cragknicks"] = SI_FURC_ITEMPACK_CRAGKNICKS,
+  ["hubtreasure"] = SI_FURC_ITEMPACK_HUBTREASURE,
+  ["dibella"] = SI_FURC_ITEMPACK_DIBELLA,
+  ["mermaid"] = SI_FURC_ITEMPACK_MERMAID,
+  ["zeni"] = SI_FURC_ITEMPACK_ZENI,
+  ["windows"] = SI_FURC_ITEMPACK_WINDOWS,
+  ["ambitions"] = SI_FURC_ITEMPACK_AMBITIONS,
+  ["forge"] = SI_FURC_ITEMPACK_FORGE,
+  ["coven"] = SI_FURC_ITEMPACK_COVEN,
+  ["tyrants"] = SI_FURC_ITEMPACK_TYRANTS,
+  ["khajiit"] = SI_FURC_ITEMPACK_KHAJIIT,
+  ["malacath"] = SI_FURC_ITEMPACK_MALACATH,
+  ["alchemist"] = SI_FURC_ITEMPACK_ALCHEMIST,
+  ["azura"] = SI_FURC_ITEMPACK_AZURA,
+  ["coldharbour"] = SI_FURC_ITEMPACK_COLDHARBOUR,
+  ["fargrave"] = SI_FURC_ITEMPACK_FARGRAVE,
+  ["aquatic"] = SI_FURC_ITEMPACK_AQUATIC,
+  ["maormer"] = SI_FURC_ITEMPACK_MAORMER,
+  ["newlife2018"] = SI_FURC_ITEMPACK_NEWLIFE2018,
+  ["deepmire"] = SI_FURC_ITEMPACK_DEEPMIRE,
+  ["dwemer"] = SI_FURC_ITEMPACK_DWEMER,
+  ["vivec"] = SI_FURC_ITEMPACK_VIVEC,
+  ["swamp"] = SI_FURC_ITEMPACK_SWAMP,
+  ["molag"] = SI_FURC_ITEMPACK_MOLAG,
+  ["ayleid"] = SI_FURC_ITEMPACK_AYLEID,
+  ["sotha"] = SI_FURC_ITEMPACK_SOTHA,
+  ["astula"] = SI_FURC_ITEMPACK_ASTULA,
+  ["mephala"] = SI_FURC_ITEMPACK_MEPHALA,
 }
 local function getItempackString(itempackName)
   itempackName = string.lower(itempackName)
@@ -175,8 +249,6 @@ local function getItempackString(itempackName)
 end
 
 -- Multiple Sources
-local or_str = GetString(SI_FURC_OR)
-
 local function getMultipleSources(sources)
   -- returns a string with all sources separated by localised " or "
   local sourceString = ""
@@ -186,6 +258,7 @@ local function getMultipleSources(sources)
     end
     sourceString = sourceString .. source
   end
+  return sourceString
 end
 
 -- 28 Secrets of the Telvanni
@@ -710,10 +783,10 @@ FurC.MiscItemSources[ver.DEADL] = {
     [141835] = getCrownPrice(70), -- Tree, Whorled Fig,
     [181532] = getCrownPrice(3600), -- Leyawiin Fountain, Round Grand,
     [182281] = getCrownPrice(2300), -- Fargrave Fountain,
-    [118148] = getCrownPrice(80) .. " or " .. mischouse, --Firelogs, Ashen,
-    [118146] = getCrownPrice(80) .. " or " .. mischouse, --Firelogs, Flaming,
-    [118147] = getCrownPrice(80) .. " or " .. mischouse, --Firelogs, Charred,
-    [167294] = getCrownPrice(20) .. " or " .. mischouse, -- Boulder, Jagged Stone,
+    [118148] = getMultipleSources({ getCrownPrice(80), mischouse }), --Firelogs, Ashen,
+    [118146] = getMultipleSources({ getCrownPrice(80), mischouse }), --Firelogs, Flaming,
+    [118147] = getMultipleSources({ getCrownPrice(80), mischouse }), --Firelogs, Charred,
+    [167294] = getMultipleSources({ getCrownPrice(20), mischouse }), -- Boulder, Jagged Stone,
     [118350] = getCrownPrice(25), --Box of Tangerines,
     [118352] = getCrownPrice(25), --Box of Oranges,
     [118353] = getCrownPrice(25), --Box of Grapes,
@@ -725,7 +798,7 @@ FurC.MiscItemSources[ver.DEADL] = {
     [134277] = getCrownPrice(3000), --Clockwork Provisioning Station,
     [134276] = getCrownPrice(4500), --Clockwork Dye Station,
     [134280] = getCrownPrice(3500), --Clockwork Enchanting Station,
-    [139064] = getCrownPrice(20) .. " or " .. mischouse, -- Flowers, Hummingbird Mint
+    [139064] = getMultipleSources({ getCrownPrice(20), mischouse }), -- Flowers, Hummingbird Mint
     [118175] = getCrownPrice(170), --Shutters, Hinged Lattice,
     [118174] = getCrownPrice(170), --Shutters, Blue Lattice,
     [118173] = getCrownPrice(170), --Shutters, Blue Hinged,
@@ -740,7 +813,7 @@ FurC.MiscItemSources[ver.DEADL] = {
     [182919] = getCrownPrice(160), -- Rocks, Fargrave Cluster,
     [141841] = getCrownPrice(40), -- Tree Ferns, Cluster,
     [141842] = getCrownPrice(10), -- Tree Ferns, Juvenile Cluster,
-    [171817] = getCrownPrice(730) .. " or " .. mischouse, -- Ayleid Chandelier, Caged,
+    [171817] = getMultipleSources({ getCrownPrice(730), mischouse }), -- Ayleid Chandelier, Caged,
     [181602] = getCrownPrice(30), -- Bush, Low Greenleaf Cluster,
     [181604] = getCrownPrice(30), -- Bush, Snow Lillies,
     [182935] = getCrownPrice(140), -- Stump, Charred Deadlands,
@@ -822,19 +895,18 @@ FurC.MiscItemSources[ver.DEADL] = {
     [117904] = getMultipleSources({ getCrownPrice(190), getItempackString("hubTreasure") }), --Redguard Trunk, Garish,
     [134823] = getItempackString("hubTreasure"), -- Target Mournful Aegis,
 
-    [117906] = elsweyr_event .. (" or " .. getItempackString("cragKnicks")), -- Redguard Urn, Gilded
-    [121053] = getMultipleSources({ getCrownPrice(170), getItempackString("cragKnicks") })
-      .. " or "
-      .. getItempackString("hubTreasure"), -- Jar, Gilded Canopic
+    [117906] = getMultipleSources({ elsweyr_event, getItempackString("cragKnicks") }), -- Redguard Urn, Gilded
+    [121053] = getMultipleSources({
+      getCrownPrice(170),
+      getItempackString("cragKnicks"),
+      getItempackString("hubTreasure"),
+    }), -- Jar, Gilded Canopic
     [121046] = getItempackString("cragKnicks"), -- Cheeses of Tamriel,
     [121049] = getItempackString("cragKnicks"), -- Parcels, Wrapped,
     [120417] = getItempackString("cragKnicks"), -- Redguard Barrel, Corded
     [118490] = getItempackString("cragKnicks"), --Scroll, Rolled,
-
     [134890] = getItempackString("Dibella"), -- Dibella, Lady of Love,
-    [134848] = getMultipleSources({ getCrownPrice(1500), getItempackString("Dibella") })
-      .. " or "
-      .. getItempackString("Oasis"), -- Blue Butterfly Flock
+    [134848] = getMultipleSources({ getCrownPrice(1500), getItempackString("Dibella"), getItempackString("Oasis") }), -- Blue Butterfly Flock
     [134961] = getItempackString("Dibella"), -- Dibella's Mysteries and Revelations,
     [134899] = getMultipleSources({ getCrownPrice(45), getItempackString("Dibella") }), -- Flower Spray, Crimson Daisies,
     [134901] = getMultipleSources({ getCrownPrice(45), getItempackString("Dibella") }), -- Flower Spray, Starlight Daisies,
@@ -844,9 +916,7 @@ FurC.MiscItemSources[ver.DEADL] = {
     [134902] = getMultipleSources({ getCrownPrice(20), getItempackString("Dibella") }), -- Flowers, Violet Bellflower,
     [134903] = getMultipleSources({ getCrownPrice(45), getItempackString("Dibella") }), -- Flowers, Midnight Glory,
     [94163] = getMultipleSources({ getCrownPrice(290), getItempackString("Dibella") }), --Imperial Bench, Scrollwork
-    [134849] = getMultipleSources({ getCrownPrice(1500), getItempackString("Dibella") })
-      .. " or "
-      .. getItempackString("Oasis"), -- Monarch Butterfly Flock
+    [134849] = getMultipleSources({ getCrownPrice(1500), getItempackString("Dibella"), getItempackString("Oasis") }), -- Monarch Butterfly Flock
     [134891] = getMultipleSources({ getCrownPrice(2500), getItempackString("Dibella") }), -- Pergola, Festive Flowers
     [134895] = getMultipleSources({ getCrownPrice(1800), getItempackString("Dibella") }), -- Redguard Fountain, Mosaic
     [134904] = getMultipleSources({ getCrownPrice(260), getItempackString("Dibella") }), -- Seal of Dibella
@@ -1390,9 +1460,7 @@ FurC.MiscItemSources[ver.KITTY] = {
     [151843] = getMultipleSources({ getCrownPrice(45), getItempackString("Oasis") }), -- Cactus, Flowering Cluster,
     [151844] = getMultipleSources({ getCrownPrice(30), getItempackString("Oasis") }), -- Cactus, Bilberry,
     [151845] = getMultipleSources({ getCrownPrice(95), getItempackString("Oasis") }), -- Elsweyr Potted Cactus, Flowering,
-    [151846] = getMultipleSources({ getCrownPrice(35), getItempackString("Oasis") }) .. " or " .. getItempackString(
-      "Mermaid"
-    ), -- Elsweyr Potted Plant, Cask Palm,
+    [151846] = getMultipleSources({ getCrownPrice(35), getItempackString("Oasis"), getItempackString("Mermaid") }), -- Elsweyr Potted Plant, Cask Palm,
     [151835] = getItempackString("Oasis"), -- Cathay-Raht Statue, Warrior,
     [151836] = getItempackString("Oasis"), -- Tojay Statue, Dancer,
     [151837] = getItempackString("Oasis"), -- Ohmes-Raht Statue, Trickster,
@@ -1463,7 +1531,7 @@ FurC.MiscItemSources[ver.KITTY] = {
     [159438] = getScamboxString("gloomspore"), -- Fungus, Gloomspore Ghost
     [159437] = getScamboxString("gloomspore"), -- Painting of Blackreach, Rough
     [159436] = getScamboxString("gloomspore"), -- Dwarven Miniature Sun, Portable
-    [153630] = getScamboxString("newmoon") .. " (55 gems)", -- Shadow Tendril Patch
+    [153630] = getMultipleSources({ getScamboxString("newmoon"), " (55 gems)" }), -- Shadow Tendril Patch
     [151612] = getScamboxString("baandari"), -- Pile of Dubious Riches,
     [151611] = getScamboxString("baandari"), -- The Mane, Moons-Blessed,
     [151589] = getScamboxString("baandari"), -- Baandari Lunar Compass,
@@ -1641,7 +1709,7 @@ FurC.MiscItemSources[ver.WEREWOLF] = {
     [126146] = getItempackString("Vivec"), -- Banner, Vivec
     [126149] = getItempackString("Vivec"), -- Tapestry, Vivec
     [126150] = getItempackString("Vivec"), -- Tribunal Tablet of Sotha Sil
-    [126152] = getItempackString("Vivec"), -- The Cliff-Strider Song
+    [126152] = getItempackString("vivec"), -- The Cliff-Strider Song
 
     [134855] = getScamboxString("scalecaller"), -- Banner of Peryite
     [134854] = getScamboxString("scalecaller"), -- Tapestry of Peryite
@@ -1661,15 +1729,15 @@ FurC.MiscItemSources[ver.SLAVES] = {
     [145398] = stealable_swamp, -- Murkmire Rug, Supine Turtle Worn
     [145397] = stealable_swamp, -- Murkmire Rug, Hist Gathering Worn
     [145396] = stealable_swamp, -- Murkmire Tapestry, Hist Gathering Worn
-    [145550] = stealable_swamp .. " or random mobs in Murkmire", -- Murkmire Hunting Lure, Grisly
+    [145550] = getMultipleSources({ stealable_swamp, GetString(SI_FURC_DROP_MURKMIRE) }), -- Murkmire Hunting Lure, Grisly
     [145401] = stealable_swamp, -- Murkmire Tapestry, Xanmeer Worn
     [145403] = stealable_swamp, -- Jel Parchment
   },
 
   [src.DROP] = {
-    [141856] = sinister_hollowjack .. " or " .. getScamboxString("hollowjack"), -- Decorative Hollowjack Daedra-Skull
-    [141855] = sinister_hollowjack .. " or " .. getScamboxString("hollowjack"), -- Decorative Hollowjack Wraith-Lantern
-    [141854] = sinister_hollowjack .. " or " .. getScamboxString("hollowjack"), -- Decorative Hollowjack Flame-Skull
+    [141856] = getMultipleSources({ sinister_hollowjack, getScamboxString("hollowjack") }), -- Decorative Hollowjack Daedra-Skull
+    [141855] = getMultipleSources({ sinister_hollowjack, getScamboxString("hollowjack") }), -- Decorative Hollowjack Wraith-Lantern
+    [141854] = getMultipleSources({ sinister_hollowjack, getScamboxString("hollowjack") }), -- Decorative Hollowjack Flame-Skull
     [141870] = sinister_hollowjack, -- Raven-Perch Cemetery Wreath
     [141875] = sinister_hollowjack, -- Witches Festival Scarecrow
     [139157] = sinister_hollowjack, -- Webs, Thick Sheet
@@ -1686,11 +1754,52 @@ FurC.MiscItemSources[ver.SLAVES] = {
     [120875] = sinister_hollowjack, -- Gravestone, Clover Engraving
     [141778] = sinister_hollowjack, -- Target Wraith-of-Crows
 
-    [145923] = "Part of the achievement item 'Look upon Their Nothing Eyes' in Lilmoth, Murkmire, 15k gold", -- Lies of the Dread-Father
-    [145926] = "Part of the achievement item 'Look upon Their Nothing Eyes' in Lilmoth, Murkmire, 15k gold", -- That of Void
-    [145927] = "Part of the achievement item 'Look upon Their Nothing Eyes' in Lilmoth, Murkmire, 15k gold", -- Acts of Honoring
-    [145928] = "Part of the achievement item 'Look upon Their Nothing Eyes' in Lilmoth, Murkmire, 15k gold", -- Speakers of Nothing
-    [145597] = "Part of the achievement item 'Look upon Their Nothing Eyes' in Lilmoth, Murkmire, 15k gold", -- Scales of Shadow
+    -- "Part of the item 'Look upon Their Nothing Eyes' in Lilmoth, Murkmire, 15k gold"
+    [145923] = getPartOfItemString(
+      145596,
+      zo_strformat(
+        "<<1>>, <<2>>: <<3>>",
+        GetString(SI_FURC_LOC_MURKMIRE),
+        GetString(SI_FURC_LOC_LILMOTH),
+        getPriceString(15000, CURT_MONEY)
+      )
+    ), -- Lies of the Dread-Father
+    [145926] = getPartOfItemString(
+      145596,
+      zo_strformat(
+        "<<1>>, <<2>>: <<3>>",
+        GetString(SI_FURC_LOC_MURKMIRE),
+        GetString(SI_FURC_LOC_LILMOTH),
+        getPriceString(15000, CURT_MONEY)
+      )
+    ), -- That of Void
+    [145927] = getPartOfItemString(
+      145596,
+      zo_strformat(
+        "<<1>>, <<2>>: <<3>>",
+        GetString(SI_FURC_LOC_MURKMIRE),
+        GetString(SI_FURC_LOC_LILMOTH),
+        getPriceString(15000, CURT_MONEY)
+      )
+    ), -- Acts of Honoring
+    [145928] = getPartOfItemString(
+      145596,
+      zo_strformat(
+        "<<1>>, <<2>>: <<3>>",
+        GetString(SI_FURC_LOC_MURKMIRE),
+        GetString(SI_FURC_LOC_LILMOTH),
+        getPriceString(15000, CURT_MONEY)
+      )
+    ), -- Speakers of Nothing
+    [145597] = getPartOfItemString(
+      145596,
+      zo_strformat(
+        "<<1>>, <<2>>: <<3>>",
+        GetString(SI_FURC_LOC_MURKMIRE),
+        GetString(SI_FURC_LOC_LILMOTH),
+        getPriceString(15000, CURT_MONEY)
+      )
+    ), -- Scales of Shadow
   },
 
   [src.CROWN] = {

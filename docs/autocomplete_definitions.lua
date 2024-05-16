@@ -244,8 +244,8 @@ SI_FURC_CRATE_LAMP = "Order of the Lamp"
 SI_FURC_CRATE_MIRROR = "Mirrormoor"
 SI_FURC_CRATE_NEWMOON = "New Moon"
 SI_FURC_CRATE_NIGHTFALL = "Nightfall"
-SI_FURC_CRATE_PSIJIC = "Psijic"
 SI_FURC_CRATE_POTENTATE = "Akaviri Potentate"
+SI_FURC_CRATE_PSIJIC = "Psijic"
 SI_FURC_CRATE_RAGE = "Ragebound"
 SI_FURC_CRATE_REAPER = "Reaper's Harvest"
 SI_FURC_CRATE_SCALECALLER = "Scalecaller"
@@ -273,6 +273,7 @@ SI_FURC_DOM_DUNGEON_DROP = "Drops in Depth of Malatar"
 SI_FURC_DRAGON_DUNGEON_DROP = "Fang Lair/Scalecaller Peak"
 SI_FURC_DROP = "This item is a drop "
 SI_FURC_DROP_ALTMER = "This item is a drop on Summerset"
+SI_FURC_DROP_MURKMIRE = "Random mobs in Murkmire"
 SI_FURC_ELF_PIC = "Drops rarely from treasure chests on Summerset"
 SI_FURC_EVENT_BLACKWOOD = "From participating in the Bounties of Blackwood event"
 SI_FURC_EVENT_ELSWEYR = "Elsweyr dragon event"
@@ -358,6 +359,7 @@ SI_FURC_LOC_BLACKWOOD = "in Blackwood"
 SI_FURC_LOC_ELSWEYR = "in Elsweyr"
 SI_FURC_LOC_GOLDCOAST = "in the Gold Coast"
 SI_FURC_LOC_LILANDRIL = "Lilandril"
+SI_FURC_LOC_LILMOTH = "Lilmoth"
 SI_FURC_LOC_MURKMIRE = "in Murkmire"
 SI_FURC_LOC_NECROM = "in Telvanni Peninsula or Apocrypha"
 SI_FURC_LOC_NELSWEYR = "in Northern Elsweyr"
@@ -572,6 +574,13 @@ Logger = nil
 ---@field GetLastScanTime fun(server: any, charId: any): number
 ---@field RegisterForCallback fun(name: string, eventCode: number, callback: function): boolean
 ---@field UnregisterForCallback fun(name: string, eventCode: number): boolean
+
+--- @param currencyType number
+--- @param isSingular bool|nil
+--- @param isLower bool|nil
+--- @return string name
+function GetCurrencyName(currencyType, isSingular, isLower) end
+
 LibCharacterKnowledge = {}
 
 LibCharacterKnowledge.ITEM_CATEGORY_NONE = 0

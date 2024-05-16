@@ -26,7 +26,7 @@ this.PVP = {}
 this.MiscItemSources = {}
 this.RumourRecipes = {}
 
-this.ItemLinkColours = {
+FurC.ItemLinkColours = {
   Vendor = "D68957",
   Gold = "E5dA40",
   Voucher = "25C31E",

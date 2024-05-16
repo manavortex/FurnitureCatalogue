@@ -77,13 +77,14 @@ function FurC.stripColor(aString)
 end
 
 -- ToDo: remove/change ret param
+-- ToDo: don't replace with thousands here, that should happen earlier
 function FurC.colourise(txt, colourCode, ret)
   txt = tostring(txt)
   if txt:find("%d000$") then
     txt = txt:gsub("000$", "k")
   end
   if ret then
-    return txt
+    return ret(txt)
   end
   return string.format("|c%s%s|r", colourCode, txt)
 end
