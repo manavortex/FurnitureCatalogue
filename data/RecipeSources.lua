@@ -24,8 +24,8 @@ local function soldBy(vendorName, locationName, price, requirement)
 end
 
 local daily_reward_elswhere = GetString(SI_FURC_DAILY_ELSWEYR)
-local artaeum = GetString(FURC_AV_ARTAEUM)
-local nalirsewen = GetString(FURC_AV_NAL)
+local artaeum = GetString(SI_FURC_LOC_ARTAEUM)
+local nalirsewen = GetString(SI_FURC_TRADERS_NALIRSEWEN)
 
 FurC.RecipeSources = {
   [139489] = soldBy(nalirsewen, artaeum, 5000, rank(2)), -- Blueprint: Psijic Chair, Arched

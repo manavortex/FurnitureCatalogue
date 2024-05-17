@@ -75,6 +75,39 @@ local function getAchievementId(achievementName)
 
   return 0
 end
+FurCDev.GetAchievementId = getAchievementId
+
+local questTable = {}
+local function buildQuestTable()
+  local maxval = 10000
+  for id = 1, maxval do
+    local questName = GetQuestName(id)
+    if questName ~= "" then
+      questTable[id] = LocaleAwareToLower(zo_strformat(questName))
+    end
+  end
+end
+buildQuestTable()
+
+local function getQuestId(questName)
+  if not questName or questName == "" then
+    return 0
+  end
+
+  if {} == questTable then
+    buildQuestTable()
+  end
+
+  questName = LocaleAwareToLower(zo_strformat(questName))
+  for id, name in pairs(questTable) do
+    if name == questName then
+      return id
+    end
+  end
+
+  return 0
+end
+FurCDev.GetQuestId = getQuestId
 
 local s2 = "\t"
 local s4 = "\t\t"
