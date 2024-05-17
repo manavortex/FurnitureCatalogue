@@ -55,7 +55,9 @@ local function updateItemInInventory(control)
 
   WINDOW_MANAGER:ApplyTemplateToControl(icon, templateName)
 
-  icon.data = { tooltipText = ((known and GetString(SI_FURC_CRAFTING_KNOWN)) or GetString(SI_FURC_CRAFTING_UNKNOWN)) }
+  icon.data = {
+    tooltipText = ((known and GetString(SI_FURC_FILTER_CRAFTING_KNOWN)) or GetString(SI_FURC_FILTER_CRAFTING_UNKNOWN)),
+  }
   icon:SetHandler("OnMouseEnter", ZO_Options_OnMouseEnter)
   icon:SetHandler("OnMouseExit", ZO_Options_OnMouseExit)
 end

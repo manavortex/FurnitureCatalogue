@@ -69,8 +69,8 @@ local function getLuxurySource(recipeKey, recipeArray, stripColor)
     local weekendString = (nil == itemData.itemDate and "") or zo_strformat(WEEKEND_DATE, formattedDate)
     return zo_strformat(
       SOLD_BY,
-      colourise(GetString(SI_FURC_STRING_ASSHOLE), colour.Vendor, stripColor),
-      colourise(GetString(SI_FURC_STRING_HC), colour.Vendor, stripColor),
+      colourise(GetString(SI_FURC_TRADERS_ZANIL), colour.Vendor, stripColor),
+      colourise(GetString(SI_FURC_LOC_COLDH_HOLLOW), colour.Vendor, stripColor),
       colourise(itemData.itemPrice, colour.Gold, stripColor),
       weekendString
     )
