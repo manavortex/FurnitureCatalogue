@@ -1229,7 +1229,7 @@ local miscVendor = merge(merge(merge(structures, boxes), laundry), fishing_trip)
 
 -- 28 Secrets of the Telvanni
 FurC.AchievementVendors[ver.ENDLESS] = {
-  [GetString(FURC_AV_NECROM_FRF)] = {
+  [GetString(SI_FURC_TELVANNI_NECROM_FRF)] = {
 
     [GetString(SI_FURC_TRADERS_MURKHOLG)] = {
       [198463] = { -- Apocrypha Boulder
@@ -1327,7 +1327,7 @@ FurC.AchievementVendors[ver.ENDLESS] = {
 
 -- 26 Necrom
 FurC.AchievementVendors[ver.NECROM] = {
-  [GetString(FURC_AV_NECROM_FRF)] = {
+  [GetString(SI_FURC_TELVANNI_NECROM_FRF)] = {
 
     [GetString(SI_FURC_TRADERS_MURKHOLG)] = {
       [197642] = { -- Apocrypha Plant, Anemone Cluster
@@ -1742,7 +1742,7 @@ FurC.AchievementVendors[ver.DEADL] = {
 
 -- 19 Blackwood
 FurC.AchievementVendors[ver.BLACKW] = {
-  [GetString(FURC_AV_LEYAWIIN_DBF)] = {
+  [GetString(SI_FURC_LOC_BLACKWOOD_LEYAWIIN_DBF)] = {
     [GetString(SI_FURC_TRADERS_MIRASO)] = {
       [175707] = { --Banner of Leyawiin
         itemPrice = 12000,
@@ -1925,7 +1925,7 @@ FurC.AchievementVendors[ver.STONET] = {
 
 -- 17 Markarth
 FurC.AchievementVendors[ver.MARKAT] = {
-  [GetString(FURC_AV_MARKARTH_MM)] = {
+  [GetString(SI_FURC_LOC_REACH_MARKARTH_MM)] = {
     [GetString(SI_FURC_TRADERS_AVERIO)] = {
       [171383] = { -- Dwarven Broom, Restored
         itemPrice = 400,
@@ -2909,7 +2909,7 @@ FurC.AchievementVendors[ver.CLOCKWORK] = {
 
 -- 4 Horns of the Reach
 FurC.AchievementVendors[ver.REACH] = {
-  [GetString(FURC_AV_HOLLOW_CICERO)] = {
+  [GetString(SI_FURC_LOC_COLDH_HOLLOW_CGG)] = {
     [GetString(SI_FURC_TRADERS_KRRZTRRB)] = {
       [130273] = { -- Boulder, Coldharbour Fan
         itemPrice = 5000,
@@ -3064,7 +3064,7 @@ FurC.AchievementVendors[ver.REACH] = {
     },
   },
 
-  [GetString(FURC_AV_SKYWATCH)] = {
+  [GetString(SI_FURC_LOC_AURIDON_SKYWATCH)] = {
     [GetString(SI_FURC_TRADERS_MALADDIQ)] = {
       [120652] = { -- Boulder, Flat Lichen
         itemPrice = 100,
@@ -3717,7 +3717,7 @@ FurC.AchievementVendors[ver.HOMESTEAD] = {
     },
   },
 
-  [GetString(FURC_AV_FORTAMOL)] = {
+  [GetString(SI_FURC_LOC_EASTMARCH_AMOL)] = {
     [GetString(SI_FURC_TRADERS_FROHILDE)] = miscVendor,
 
     [GetString(SI_FURC_TRADERS_LTS)] = {
@@ -3851,7 +3851,7 @@ FurC.AchievementVendors[ver.HOMESTEAD] = {
       },
     },
   },
-  [GetString(FURC_AV_KOZANZET_SWI)] = {
+  [GetString(SI_FURC_LOC_ALIKR_KOZANZET_SWI)] = {
     [GetString(SI_FURC_TRADERS_LOZOTUSK)] = {
       [119879] = { -- Kneeling Ansei Statue
         itemPrice = 15000,
@@ -4133,7 +4133,7 @@ FurC.AchievementVendors[ver.HOMESTEAD] = {
     },
   },
 
-  [GetString(FURC_AV_SKYWATCH)] = {
+  [GetString(SI_FURC_LOC_AURIDON_SKYWATCH)] = {
     [GetString(SI_FURC_TRADERS_ATHRAGOR)] = {
       [119823] = { -- Tanzelwil Culanda Stone
         itemPrice = 5000,
@@ -4170,7 +4170,7 @@ FurC.AchievementVendors[ver.HOMESTEAD] = {
     },
   },
 
-  [GetString(FURC_AV_MARBRUK)] = {
+  [GetString(SI_FURC_LOC_GREENSHADE_MARBRUK)] = {
     [GetString(SI_FURC_TRADERS_MALADDIQ)] = {
       [120597] = { -- Fern Plant, Vibrant
         itemPrice = 100,
@@ -4237,7 +4237,7 @@ FurC.AchievementVendors[ver.HOMESTEAD] = {
     },
   },
 
-  [GetString(FURC_AV_MISTRAL)] = {
+  [GetString(SI_FURC_LOC_KHENARTHI_MISTRAL)] = {
     [GetString(SI_FURC_TRADERS_MALADDIQ)] = miscVendor,
     [GetString(SI_FURC_TRADERS_ATHRAGOR)] = {
       [119986] = { -- Maomer Totem
@@ -4608,7 +4608,7 @@ FurC.AchievementVendors[ver.HOMESTEAD] = {
       },
     },
   },
-  [GetString(FURC_AV_HOLLOW_CICERO)] = {
+  [GetString(SI_FURC_LOC_COLDH_HOLLOW_CGG)] = {
     [GetString(SI_FURC_TRADERS_LOZOTUSK)] = {
       [119828] = { -- Ayleid Throne
         itemPrice = 50000,
@@ -4639,7 +4639,7 @@ FurC.AchievementVendors[ver.HOMESTEAD] = {
     [GetString(SI_FURC_TRADERS_KRRZTRRB)] = boxes,
   },
 
-  [GetString(FURC_AV_KVATCH)] = {
+  [GetString(SI_FURC_LOC_GOLDCOAST_KVATCH)] = {
     [GetString(SI_FURC_TRADERS_ATHRAGOR)] = {
       [119947] = { -- Banner of the Kvatch Guard
         itemPrice = 15000,
@@ -4900,7 +4900,7 @@ FurC.AchievementVendors[ver.HOMESTEAD] = {
       },
     },
 
-    [GetString(FURC_AV_OUT)] = {
+    [GetString(SI_FURC_TRADERS_OUTLAW)] = {
       [120993] = { -- Scales of Felonious Recompense
         itemPrice = 5000,
         achievement = 1196, -- Felonious Recompense
@@ -5043,7 +5043,9 @@ function FurC.InitAchievementVendorList()
     FurC.AchievementVendors[ver.HOMESTEAD][GetString(FURC_AV_WAYREST_MERCHANT)][GetString(SI_FURC_TRADERS_ROHZIKA)]
   listTable = merge(listTable, addTable)
 
-  listTable = FurC.AchievementVendors[ver.HOMESTEAD][GetString(FURC_AV_MARBRUK)][GetString(SI_FURC_TRADERS_MALADDIQ)]
+  listTable = FurC.AchievementVendors[ver.HOMESTEAD][GetString(SI_FURC_LOC_GREENSHADE_MARBRUK)][GetString(
+    SI_FURC_TRADERS_MALADDIQ
+  )]
   listTable = merge(listTable, addTable)
 
   listTable =
@@ -5065,10 +5067,11 @@ function FurC.InitAchievementVendorList()
   listTable = merge(listTable, furnishingVendor)
 
   listTable =
-    FurC.AchievementVendors[ver.HOMESTEAD][GetString(FURC_AV_HOLLOW_CICERO)][GetString(SI_FURC_TRADERS_KRRZTRRB)]
+    FurC.AchievementVendors[ver.HOMESTEAD][GetString(SI_FURC_LOC_COLDH_HOLLOW_CGG)][GetString(SI_FURC_TRADERS_KRRZTRRB)]
   listTable = merge(listTable, structures)
 
-  listTable = FurC.AchievementVendors[ver.HOMESTEAD][GetString(FURC_AV_KVATCH)][GetString(SI_FURC_TRADERS_FROHILDE)]
+  listTable =
+    FurC.AchievementVendors[ver.HOMESTEAD][GetString(SI_FURC_LOC_GOLDCOAST_KVATCH)][GetString(SI_FURC_TRADERS_FROHILDE)]
   listTable = merge(listTable, furnishingVendor)
 
   listTable = FurC.AchievementVendors[ver.HOMESTEAD][GetString(SI_FURC_LOC_HEW)][GetString(SI_FURC_TRADERS_ROHZIKA)]

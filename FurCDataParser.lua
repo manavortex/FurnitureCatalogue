@@ -1,5 +1,7 @@
 local db = FurC.settings["data"]
 
+local getItemId = FurC.Utils.GetItemId
+
 function FurC.PrintCraftingStation(itemId, recipeArray)
   local craftingType = FurC.GetCraftingSkillType(itemId, recipeArray)
   if not craftingType or not GetCraftingSkillName(craftingType) then
@@ -54,7 +56,7 @@ function FurC.PrintSource(itemLink, recipeArray)
     return
   end
 
-  local source = FurC.GetItemDescription(FurC.GetItemId(itemLink), recipeArray, true)
+  local source = FurC.GetItemDescription(getItemId(itemLink), recipeArray, true)
   local output = string.format("%s: %s", itemLink, source)
   if recipeArray.achievement and recipeArray.achievement ~= "" then
     output = string.format("%s, requires %s", output, recipeArray.achievement)
