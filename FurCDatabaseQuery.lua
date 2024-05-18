@@ -189,7 +189,7 @@ local function getEventDropSource(recipeKey, recipeArray, stripColor)
 end
 FurC.getEventDropSource = getEventDropSource
 
-local emptyString = GetString(SI_FURC_ITEMSOURCE_EMPTY)
+local emptyString = GetString(SI_FURC_SRC_EMPTY)
 local function registerEmptyItem(recipeKey)
   if recipeKey and tonumber(recipeKey) > 0 then
     FurC.settings.emptyItemSources[recipeKey] = ", --" .. GetItemLinkName(FurC.GetItemLink(recipeKey))
@@ -236,7 +236,7 @@ end
 FurC.getRecipeSource = getRecipeSource
 
 function FurC.getRumourSource(recipeKey, recipeArray)
-  return (recipeArray.blueprint and GetString(SI_FURC_RUMOUR_SOURCE_RECIPE)) or GetString(SI_FURC_RUMOUR_SOURCE_ITEM)
+  return (recipeArray.blueprint and GetString(SI_FURC_SRC_RUMOUR_RECIPE)) or GetString(SI_FURC_SRC_RUMOUR_ITEM)
 end
 
 function FurC.GetCrafterList(itemLink, recipeArray)

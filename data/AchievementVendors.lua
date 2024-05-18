@@ -11,7 +11,7 @@ local function getQuestString(questIdOrName)
   if type(questIdOrName) == "number" then
     questName = GetQuestName(questIdOrName)
   end
-  return zo_strformat("<<1>>: <<2>>", GetString(SI_FURC_ITEMSRC_QUEST), questName)
+  return zo_strformat("<<1>>: <<2>>", GetString(SI_FURC_SRC_QUEST), questName)
 end
 
 local b2 = {

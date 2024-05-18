@@ -2,7 +2,7 @@ FurC.Rumours = FurC.Rumours or {}
 
 local ver = FurC.Constants.Versioning
 
-local rumourSource = GetString(SI_FURC_RUMOUR_SOURCE_ITEM)
+local rumourSource = GetString(SI_FURC_SRC_RUMOUR_ITEM)
 local dataminedUnclear = GetString(SI_FURC_DATAMINED_UNCLEAR)
 
 -- 30 Gold Road
