@@ -273,6 +273,7 @@ SI_FURC_GEYSER = "Drops from geyser reward clams on Summerset"
 SI_FURC_GIANT_CLAM = "Drops from giant clams and geyser reward clams on Summerset"
 SI_FURC_GRAMMAR_CONJ_OR = "or"
 SI_FURC_GRAMMAR_ORDER_LOC = "<<1>> <<2>>"
+SI_FURC_GRAMMAR_ORDER_QTY = "<<1>> <<2>>"
 SI_FURC_GRAMMAR_PREP_LOC_DEFAULT = "in"
 SI_FURC_GRAMMAR_PREP_SRC_DEFAULT = "from"
 SI_FURC_HOUSE = "From a furnished purchase of <<1>>"
@@ -513,7 +514,9 @@ SI_FURC_STRING_MENU_TOOLTIP_HIDE_UNKNOWN_TT = "Hides 'you cannot craft this yet'
 SI_FURC_STRING_MENU_USETINY = "Use tiny interface?"
 SI_FURC_STRING_MENU_USETINY_TT =
   "Use a smaller interface (Craft Store like). \nYou can toggle this from the UI by clicking the +/- button."
+SI_FURC_STRING_PART = "part;parts"
 SI_FURC_STRING_PART_OF_COLL = "part of a collection"
+SI_FURC_STRING_PIECE = "piece;pieces"
 SI_FURC_STRING_RECIPELEARNED = "Recipe learned: <<1>> <<2>> <<3>>"
 SI_FURC_STRING_RECIPESFORCHAR = "recipes for <<1>>"
 SI_FURC_STRING_ROLIS = "Sold by |cd68957Rolis Hlaalu|r <<1>>"
@@ -590,6 +593,200 @@ SI_FURC_WW_DUNGEON_DROP = "Drops in Monster Hunter Keep/March of the Sacrifices"
 -- ////// END   : GENERATED FROM locale/en.lua
 
 -- ////// START   : Manual entries and overrides
+
+-- ESOAPI
+
+--- @param currencyType number
+--- @param isSingular bool|nil
+--- @param isLower bool|nil
+--- @return string name
+function GetCurrencyName(currencyType, isSingular, isLower)
+  return ""
+end
+
+--[[
+  The ESO API provides a very useful function called `zo_strformat`.
+And it also provides a cached function for strings which are used more than once, called `ZO_CachedStrFormat`.
+
+With it you can format strings with interpolation, pluralization, localization and many other features. It is also used together with `ZO_LocalizeDecimalNumber` (see below) to format human-readable numbers.
+
+`zo_strformat(format[, arg1[, arg2, arg3, arg4, arg5, arg6, arg7\]\])`
+
+The first argument is the actual string, and the following optional arguments are the parameters to be included in the string. `zo_strformat takes up to 7 parameters!)`
+
+The syntax `<<n>>` is used as placeholder for the replacement value, where the number `n` is the position of the argument when you called the function.
+
+`d(zo_strformat("<<1>>, <<2>>, <<3>>, <<4>>, <<5>>, <<6>>, <<7>> <<8>>", "one", "two", "three", "four", "five", "six", "seven", "eight"))` -> one, two, three, four, five, six, seven
+
+`d(zo_strformat("Hello, <<1>>!", "player"))` -> Hello, player!
+
+`d(zo_strformat("<<2>>, <<1>>!", "you", "Hey"))` -> Hey, you!
+
+Pluralisation:
+There's special syntax for pluralization.
+
+`zo_strformat("We've seen <<1[no examples/one example/$d examples]>>", 1)` -> We've seen one example.
+`zo_strformat("We've seen <<1[no examples/one example/$d examples]>>", 0)` -> We've seen no examples.
+`zo_strformat("We've seen <<1[no examples/one example/$d examples]>>", 3)` -> We've seen 3 examples.
+
+Modifiers:
+There's also another special syntax called modifiers. For instance, the modifier `l` prepends "at the " to the value.
+
+`zo_strformat("I'm <<l:1>>.", "shrine")` -> I'm at the shrine.
+
+There's a myriad of modifiers you can use, check out the table below:
+
+Modifier  Effect
+a         Adds indefinite article in correct form ("a/an") if the value is not name (does not contain ^M, ^F, ^N). If used with 'm' (<<ma:1>>) it will add "some".
+A         Adds definite article if string is not name (does not contain ^M, ^F, or ^N).
+c         Converts the first character to lower case.
+C         Converts the first character to upper case, used to display names.
+d         Demonstrative pronoun; adds "this " if string is not a name (does not contain ^M, ^F, ^N).
+D         returns demonstrative pronoun
+g         Appends " of a". If string is a name it will append "'s" for singular, or "'" for plural
+G         Appends " of the". If string is a name it will append "'s" for singular, or nothing for plural
+i         Changes number to ordinal (1st, 2nd, 3rd, ..., 100th)
+I          ?
+l         Prepends "at the ", used with locations.
+L         Prepends "to the ", used with locations.
+m         Multiplication, displays singular or plural according to the second argument. If you have a number on any other position, this will not work.
+n         Number to text (one, two, three, ..., twelve). Does not work for numbers higher then 12.
+N         Same as above. But the first letter is capital (One, Two, ..., Twelve)
+o         Possessive pronoun (subject). Returns "his", "her", or "its" according to the gender (^m, ^M, ^f, ^F, ^n, or ^N at the end of the string)
+O         possessive pronoun (object). Returns "his", "hers", or "its" according to the gender (^m, ^M, ^f, ^F, ^n, or ^N at the end of the string)
+p         Personal pronoun (subject). Returns "he", "she", or "it" according to the gender (^m, ^M, ^f, ^F, ^n, or ^N at the end of the string)
+P         Personal pronoun (object). Returns "him", "her", or "it" according to the gender (^m, ^M, ^f, ^F, ^n, or ^N at the end of the string)
+r         Reflexive pronoun. Returns "himself", "herself", or "itself" according to the gender (^m, ^M, ^f, ^F, ^n, or ^N at the end of the string)
+R         Number to roman numerals (I, II, III, ..., XII)
+t         Converts the first letter to upper case in all words that have more than 1 character (used by default to format item links).
+T         Converts the first letter to upper case in all words (including single letter words).
+X         Raw format (probably, it does not remove ^ control chars from strings, links are unchanged).
+z         Converts to lower case letters, works for special characters like ÁÉÄËÍÏ etc.
+Z         Converts to upper case letters, works for special characters like áäéëíï etc.
+
+# Modifiers can be used in two forms: `<<Z:1>>` or `<<1{Z}>>`
+# Instead of `<<2>><<m:1>>`, it can be simplified to `<<2*1>>`
+
+Almost all modifiers can be used together, so:
+
+`zo_strformat("<<C:1>> <<2>> <<tm:3>>.", "i have", 10, "blue colored item") -- I have 10 Blue Colored Items.`
+
+Translations:
+If you want to work with translations, there are some control characters that you can add to the end of a string:
+
+^f  Femine gender
+^F  Femine name
+^m  Masculine gender
+^M  Masculine name
+^n  Neuter gender
+^N  Neuter name
+^p  Plural
+^P  Plural name
+
+Example: `zo_strformat("<<g:1>><<2>>.", "Peter^M", "item") -- "Peter's item."`
+
+]]
+
+--[[ NUMBER FORMATTING
+
+  Formatting and Localizing Numbers:
+The ZO_LocalizeDecimalNumber function in libraries/globals/localization.lua provides this function to format numbers nicely for humans.
+
+Usage is simple: call this function on your number, and then pass the result through the `zo_strformat` function to localize it. If you do not, you will use English localization even in foreign languages.
+
+```lua
+zo_strformat("<<1>>", ZO_LocalizeDecimalNumber(1000000))
+-- in English: 1,000,000
+-- in German: 1.000.000
+```
+
+This also correctly handles decimals:
+```lua
+zo_strformat("<<1>>", ZO_LocalizeDecimalNumber(1000.987))
+-- in English: 1,000.987
+-- in German: 1.000,987
+```
+
+You should always use this method to format numbers that people will read.
+
+Additional number formatting functions, which abbreviate the value (e.g. 10000 -> 10k) are:
+- `ZO_AbbreviateNumber(amount, precision, useUppercaseSuffixes)`
+- `ZO_AbbreviateAndLocalizeNumber(amount, precision, useUppercaseSuffixes)`
+
+]]
+
+--[[ COLOURING
+You can color a string with handlers. The handler starts with |cXXXXXX and ends with |r. <br>
+The color definition takes the hex value.
+
+```lua
+local coloredString = string.format("|cFFFFFF%s|r %s", "White", "yellow")
+/script d(string.format("%s %s", "My", "string"))
+```
+]]
+
+--[[ CONCAT
+Concatenating strings:
+
+Concatenating a lot of strings in LUA is expensive and can cause client crashes. <br>
+It is more performant to use string.format, because that executes the string operation in the c-backend and not in LUA:
+
+`local string = string.format("%s %s", "My", "string")`
+]]
+
+---Formats a string using the provided arguments.
+---The function supports string interpolation, pluralization, localization and many other features.
+---
+---The syntax `<<n>>` is used as placeholder for the replacement value, where the number `n` is the position of the argument, with a maximum of 7 positional arguments.
+---
+---<h2>Pluralization</h2>
+--- - handled with special syntax like `<<1[no examples/one example/$d examples]>>`
+---
+---<h2>Modifiers</h2>
+---
+--- - can be used in two forms: `<<Z:1>>` or `<<1{Z}>>`
+--- - `zo_strformat("I'm <<l:1>>.", "shrine")` : `I'm at the shrine.`
+---
+---<h2>List of control characters for translations</h2>
+---
+--- - `^f` : Femine gender
+--- - `^F` : Femine name
+--- - `^m` : Masculine gender
+--- - `^M` : Masculine name
+--- - `^n` : Neuter gender
+--- - `^N` : Neuter name
+--- - `^p` : Plural
+--- - `^P` : Plural name
+--- - `^d` : destination, definitive??? (example: `Greymoor Caverns^pd,in`)
+---
+---<h1>Format Modifiers</h1>
+---
+--- <h2>Articles</h2>
+---
+--- - `a` : indefinite article ("a/an") if value not names. If used with `m` (`<<ma:1>>`) will add "some"
+---   - `"Verfügbar <<1{lA}>>.", "Sommersend Inseln^p,auf"` => `Verfügbar auf den Sommersend Inseln.`
+---
+--- <h2>Locations</h2>
+---
+--- - `l` : "at the ", used with locations
+---   - `"<<lA:1>>", "Höhlen des Glenumbramoors^pd,in"` => `in den Höhlen des Glenumbramoors`
+---
+---@param format string The format of the string like "Hello <<1>>"
+---@param arg1 string|nil positional arg
+---@param arg2 string|nil positional arg
+---@param arg3 string|nil positional arg
+---@param arg4 string|nil positional arg
+---@param arg5 string|nil positional arg
+---@param arg6 string|nil positional arg
+---@param arg7 string|nil positional arg
+---@return string formatted result
+---@see esoui [ESOUI-Documentation](https://wiki.esoui.com/How_to_format_strings_with_zo_strformat)
+function zo_strformat(format, arg1, arg2, arg3, arg4, arg5, arg6, arg7)
+  return ""
+end
+
+-- LIBS
+
 ---@class LibDebugLogger
 ---@field Create fun(tag: string): Logger
 ---@field ClearLog fun(self: LibDebugLogger): self
@@ -629,15 +826,6 @@ Logger = nil
 ---@field GetLastScanTime fun(server: any, charId: any): number
 ---@field RegisterForCallback fun(name: string, eventCode: number, callback: function): boolean
 ---@field UnregisterForCallback fun(name: string, eventCode: number): boolean
-
---- @param currencyType number
---- @param isSingular bool|nil
---- @param isLower bool|nil
---- @return string name
-function GetCurrencyName(currencyType, isSingular, isLower)
-  return ""
-end
-
 LibCharacterKnowledge = {}
 
 LibCharacterKnowledge.ITEM_CATEGORY_NONE = 0

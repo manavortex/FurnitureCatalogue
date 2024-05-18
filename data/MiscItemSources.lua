@@ -5,26 +5,27 @@ local src = FurC.Constants.ItemSources
 
 local strEvent = FurC.Utils.FormatEvent
 local strLoc = FurC.Utils.FormatLocation
-local strNPC = FurC.Utils.GetNPCString
+local strNPC = FurC.Utils.FormatNPC
 local strPartOf = FurC.Utils.FormatPartOf
 local strPrice = FurC.Utils.FormatPrice
 local strDungeon = FurC.Utils.FormatDungeon
-local strQuest = FurC.Utils.GetQuestString
+local strQuest = FurC.Utils.FormatQuest
+local strScry = FurC.Utils.FormatScry
 local join = FurC.Utils.Join
 
 -- locations
-local backwaterSwamp = GetString(SI_FURC_LOC_MURKMIRE)
-local gloriousHome = GetString(SI_FURC_LOC_VVARDENFELL)
-local blackwood = GetString(SI_FURC_LOC_BLACKWOOD)
-local elsweyr = GetString(SI_FURC_LOC_ELSWEYR)
-local goldcoast = GetString(SI_FURC_LOC_GOLDCOAST)
+local loc_murkmire = GetString(SI_FURC_LOC_MURKMIRE)
+local loc_vvardenfell = GetString(SI_FURC_LOC_VVARDENFELL)
+local loc_blackwood = GetString(SI_FURC_LOC_BLACKWOOD)
+local loc_elsweyr = GetString(SI_FURC_LOC_ELSWEYR)
+local loc_goldcoast = GetString(SI_FURC_LOC_GOLDCOAST)
 local telpocrypha = join({ GetString(SI_FURC_LOC_TELVANNI), GetString(SI_FURC_LOC_APOCRYPHA) })
-local hewsbane = GetString(SI_FURC_LOC_HEW)
-local in_nelsweyr = GetString(SI_FURC_LOC_NELSWEYR)
-local in_selsweyr = GetString(SI_FURC_LOC_SELSWEYR)
-local in_skyrim = GetString(SI_FURC_LOC_WSKYRIM)
-local summerset = GetString(SI_FURC_LOC_SUMMERSET)
-local wrothgar = GetString(SI_FURC_LOC_WROTHGAR)
+local loc_hewsbane = GetString(SI_FURC_LOC_HEW)
+local loc_nelsweyr = GetString(SI_FURC_LOC_NELSWEYR)
+local loc_selsweyr = GetString(SI_FURC_LOC_SELSWEYR)
+local loc_skyrim = GetString(SI_FURC_LOC_WSKYRIM)
+local loc_summerset = GetString(SI_FURC_LOC_SUMMERSET)
+local loc_wrothgar = GetString(SI_FURC_LOC_WROTHGAR)
 
 local loc_fl = GetString(SI_FURC_DUNG_FL)
 local loc_scp = GetString(SI_FURC_DUNG_SCP)
@@ -59,32 +60,31 @@ local stealable_pilgrims = stealable .. ": " .. strNPC(SI_FURC_NPC_PILGRIM)
 local stealable_thief = stealable .. ": " .. strNPC(SI_FURC_NPC_THIEF)
 local stealable_wood = stealable .. ": " .. strNPC(SI_FURC_NPC_WOODWORKER)
 local stealable_drunkards = stealable .. ": " .. strNPC(SI_FURC_NPC_DRUNKARD)
-local stealable_wrothgar = stealable .. ": " .. wrothgar
-local stealable_swamp = stealable .. backwaterSwamp
-local stealable_elsewhere = stealable .. elsweyr
+local stealable_loc_wrothgar = stealable .. ": " .. loc_wrothgar
+local stealable_swamp = stealable .. loc_murkmire
+local stealable_elsewhere = stealable .. loc_elsweyr
 local pickpocket_necrom = pickpocketable .. telpocrypha
-local painting_summerset = GetString(SI_FURC_SRC_SAFEBOX) .. strLoc(summerset, true)
+local painting_loc_summerset = GetString(SI_FURC_SRC_SAFEBOX) .. strLoc(loc_summerset, true)
 
 -- Looting/Harvesting
-local scrying = GetString(SI_FURC_LOOT_SCRYING)
 local chests_string = GetString(SI_FURC_LOOT_CHESTS)
 
 local automaton_loot_cc = GetString(SI_FURC_NPC_AUTOMATON) .. strLoc(SI_FURC_LOC_CC, true)
 local automaton_loot_vv = GetString(SI_FURC_NPC_AUTOMATON) .. strLoc(SI_FURC_LOC_VVARDENFELL, true)
-local chests_skyrim = chests_string .. in_skyrim
-local chests_blackwood = chests_string .. blackwood
-local chests_summerset = chests_string .. summerset
-local chests_elsweyr = chests_string .. elsweyr
+local chests_skyrim = chests_string .. loc_skyrim
+local chests_blackwood = chests_string .. loc_blackwood
+local chests_loc_summerset = chests_string .. loc_summerset
+local chests_elsweyr = chests_string .. loc_elsweyr
 local chests_high = chests_string .. " in High Isle"
 local chests_blackr_grcaverns = chests_string .. " in Blackreach: Greymoor Caverns"
 local book_hall = "From chests in the Scrivener's Hall vault"
 local nymic = "From Bastion Nymic reward chests"
 local chests_necrom = chests_string .. telpocrypha
-local puplicdungeon_fw_vv = GetString(SI_FURC_DROP) .. " in Forgotten Wastes" .. gloriousHome
-local plants_vvardenfell = GetString(SI_FURC_LOOT_PLANTS) .. gloriousHome
+local puplicdungeon_fw_vv = GetString(SI_FURC_DROP) .. " in Forgotten Wastes" .. loc_vvardenfell
+local plants_vvardenfell = GetString(SI_FURC_LOOT_PLANTS) .. loc_vvardenfell
 local fishing = GetString(SI_FURC_LOOT_FISH)
-local fishing_summerset = fishing .. summerset
-local fishing_swamp = fishing .. backwaterSwamp
+local fishing_loc_summerset = fishing .. loc_summerset
+local fishing_swamp = fishing .. loc_murkmire
 local endless_archive = "From chests in the Infinite Archive"
 
 -- Crowns
@@ -266,21 +266,21 @@ FurC.MiscItemSources[ver.ENDLESS] = {
     [203406] = chests_string .. " in Wrothgar", -- Vorgrosh Rot-Tusk's Guide to Dirty Fighting",
     [203405] = chests_string .. " in Wrothgar", -- Orc Clans and Symbology",
     [203404] = chests_string .. " in Wrothgar", -- Birds of Wrothgar",
-    [203403] = chests_summerset, -- The Ubiquitous Sinking Isle",
-    [203402] = chests_summerset, -- The Truth of Minotaurs",
-    [203401] = chests_summerset, -- The Flight of Gryphons",
-    [203400] = chests_summerset, -- Artaeum Lost",
-    [203399] = chests_string .. in_selsweyr, -- The Marriage of Moon and Tide",
-    [203398] = chests_string .. in_selsweyr, -- The Favored Daughter of Fadomai",
-    [203397] = chests_string .. in_selsweyr, -- Khunzar-ri and the Lost Alfiq",
-    [203396] = chests_string .. in_selsweyr, -- Azurah's Crossing",
-    [203395] = chests_string .. in_selsweyr, -- Trail and Tide",
-    [203394] = chests_string .. in_selsweyr, -- The Angry Alfiq: A Collection",
-    [203393] = chests_string .. in_selsweyr, -- On Those Who Know Baan Dar",
+    [203403] = chests_loc_summerset, -- The Ubiquitous Sinking Isle",
+    [203402] = chests_loc_summerset, -- The Truth of Minotaurs",
+    [203401] = chests_loc_summerset, -- The Flight of Gryphons",
+    [203400] = chests_loc_summerset, -- Artaeum Lost",
+    [203399] = chests_string .. loc_selsweyr, -- The Marriage of Moon and Tide",
+    [203398] = chests_string .. loc_selsweyr, -- The Favored Daughter of Fadomai",
+    [203397] = chests_string .. loc_selsweyr, -- Khunzar-ri and the Lost Alfiq",
+    [203396] = chests_string .. loc_selsweyr, -- Azurah's Crossing",
+    [203395] = chests_string .. loc_selsweyr, -- Trail and Tide",
+    [203394] = chests_string .. loc_selsweyr, -- The Angry Alfiq: A Collection",
+    [203393] = chests_string .. loc_selsweyr, -- On Those Who Know Baan Dar",
     [203392] = endless_archive, -- Anequina and Pellitine: An Introduction",
-    [203391] = chests_string .. " " .. hewsbane, -- The Red Curse, Volume 3",
-    [203390] = chests_string .. " " .. hewsbane, -- The Red Curse, Volume 2",
-    [203389] = chests_string .. " " .. hewsbane, -- The Red Curse, Volume 1",
+    [203391] = chests_string .. " " .. loc_hewsbane, -- The Red Curse, Volume 3",
+    [203390] = chests_string .. " " .. loc_hewsbane, -- The Red Curse, Volume 2",
+    [203389] = chests_string .. " " .. loc_hewsbane, -- The Red Curse, Volume 1",
     [203388] = chests_string .. " in the Gold Coast", -- The Wolf and the Dragon",
     [203387] = chests_string .. " in the Gold Coast", -- The Blade of Woe",
     [203386] = chests_string .. " in the Gold Coast", -- On Minotaurs",
@@ -305,30 +305,30 @@ FurC.MiscItemSources[ver.ENDLESS] = {
     [199115] = tribute, -- Seeker Aspirant Tapestry, Large",
     [199114] = tribute, -- Seeker Aspirant Tapestry",
 
-    [199933] = scrying .. telpocrypha, -- Scrying Brazier, Tall",
-    [199932] = scrying .. telpocrypha, -- Scrying Brazier, Short",
-    [199890] = scrying .. telpocrypha, -- Archival Light Diffuser, Large",
-    [199132] = scrying .. telpocrypha, -- Apocrypha Fossil, Tree",
-    [199131] = scrying .. telpocrypha, -- Apocrypha Fossil, Wall Beast",
-    [199130] = scrying .. telpocrypha, -- Apocrypha Fossil, Slug",
-    [199129] = scrying .. telpocrypha, -- Apocrypha Fossil, Ribcage",
-    [199128] = scrying .. telpocrypha, -- Watchful Light",
-    [199127] = scrying .. telpocrypha, -- Petrified Watcher",
-    [199126] = scrying .. telpocrypha, -- Forged Black Book",
-    [199119] = scrying .. telpocrypha .. " (3 pieces)", -- Infinite Tome",
-    [199118] = scrying .. telpocrypha .. " (5 pieces)", -- Apocrypha Clothing Station",
-    [198576] = scrying .. " in Deadlands", -- Shelf, Black Soul Gems",
-    [198575] = scrying .. in_selsweyr, -- Khajiiti Well",
-    [198573] = scrying .. summerset, -- High Elf Altar, Crystal",
-    [198572] = scrying .. " in Clockwork City", -- Clockwork Wall Gears",
-    [198571] = scrying .. goldcoast, -- Shrine to Dibella",
-    [198570] = scrying .. " in Shadowfen", -- Painted Stone Frog",
-    [198569] = scrying .. " in Deshaan", -- Dark Elf Altar, Ceremonial",
-    [198568] = scrying .. " in Alik'r Desert", -- Stone Relief, Yokudan",
-    [198567] = scrying .. " in Glenumbra", -- Breton Well, Storm Grey",
-    [198566] = scrying .. " in Reaper's March", -- Khajiiti Arch, Rising",
-    [198325] = scrying .. telpocrypha .. " (3 pieces)", -- Vision of Mora",
-    [197916] = scrying .. telpocrypha, -- Archival Light Diffuser, Small",
+    [199933] = strScry(telpocrypha), -- Scrying Brazier, Tall",
+    [199932] = strScry(telpocrypha), -- Scrying Brazier, Short",
+    [199890] = strScry(telpocrypha), -- Archival Light Diffuser, Large",
+    [199132] = strScry(telpocrypha), -- Apocrypha Fossil, Tree",
+    [199131] = strScry(telpocrypha), -- Apocrypha Fossil, Wall Beast",
+    [199130] = strScry(telpocrypha), -- Apocrypha Fossil, Slug",
+    [199129] = strScry(telpocrypha), -- Apocrypha Fossil, Ribcage",
+    [199128] = strScry(telpocrypha), -- Watchful Light",
+    [199127] = strScry(telpocrypha), -- Petrified Watcher",
+    [199126] = strScry(telpocrypha), -- Forged Black Book",
+    [199119] = strScry(telpocrypha, 3), -- Infinite Tome",
+    [199118] = strScry(telpocrypha, 5), -- Apocrypha Clothing Station",
+    [198576] = strScry("in Deadlands"), -- Shelf, Black Soul Gems",
+    [198575] = strScry(loc_selsweyr), -- Khajiiti Well",
+    [198573] = strScry(loc_summerset), -- High Elf Altar, Crystal",
+    [198572] = strScry("in Clockwork City"), -- Clockwork Wall Gears",
+    [198571] = strScry(loc_goldcoast), -- Shrine to Dibella",
+    [198570] = strScry("in Shadowfen"), -- Painted Stone Frog",
+    [198569] = strScry("in Deshaan"), -- Dark Elf Altar, Ceremonial",
+    [198568] = strScry("in Alik'r Desert"), -- Stone Relief, Yokudan",
+    [198567] = strScry("in Glenumbra"), -- Breton Well, Storm Grey",
+    [198566] = strScry("in Reaper's March"), -- Khajiiti Arch, Rising",
+    [198325] = strScry(telpocrypha, 3), -- Vision of Mora",
+    [197916] = strScry(telpocrypha), -- Archival Light Diffuser, Small",
   },
 }
 
@@ -359,7 +359,7 @@ FurC.MiscItemSources[ver.NECROM] = {
     [197919] = nymic, -- The Legend of Fathoms Drift",
     [197918] = nymic, -- Deal with a Daedric Prince",
     [197917] = nymic, -- Ode to Vaermina",
-    [197829] = scrying .. telpocrypha .. " (10 pieces)", -- Music Box, Glyphic Secrets",
+    [197829] = strScry(telpocrypha, 10), -- Music Box, Glyphic Secrets",
     [197783] = chests_necrom, -- Pilgrimage Triptych Painting, Wood",
     [197782] = chests_necrom, -- Alleyway Still Life Painting",
     [197781] = chests_necrom, -- The City of Necrom Painting, Wood",
@@ -372,18 +372,18 @@ FurC.MiscItemSources[ver.NECROM] = {
     [197751] = chests_necrom, -- Sunset Fleet Painting, Wood",
     [197750] = chests_necrom, -- Telvanni Mushroom Spire Painting, Wood",
     [197749] = chests_necrom, -- Necrom Still Life Painting, Wood",
-    [197712] = scrying .. telpocrypha, -- Antique Map of Apocrypha",
-    [197711] = scrying .. telpocrypha, -- Antique Map of the Telvanni Peninsula",
-    [197710] = scrying .. telpocrypha, -- Mushroom Classification Book",
-    [197709] = scrying .. telpocrypha, -- Tribunal Window, Stained Glass",
-    [197708] = scrying .. telpocrypha, -- Cliffracer Skeleton Stand",
-    [197707] = scrying .. telpocrypha .. " (3 pieces)", -- Apocryphal Well",
-    [197706] = scrying .. telpocrypha .. " (3 pieces)", -- Trifold Mirror of Alternatives",
-    [197705] = scrying .. telpocrypha .. " (10 pieces)", -- Telvanni Alchemy Station",
-    [197703] = scrying .. telpocrypha, -- Apocrypha Fossil, Arch",
-    [197702] = scrying .. telpocrypha, -- Apocrypha Fossil, Worm",
-    [197701] = scrying .. telpocrypha, -- Apocrypha Fossil, Nautilus",
-    [197700] = scrying .. telpocrypha, -- Apocrypha Fossil, Bones Large",
+    [197712] = strScry(telpocrypha), -- Antique Map of Apocrypha",
+    [197711] = strScry(telpocrypha), -- Antique Map of the Telvanni Peninsula",
+    [197710] = strScry(telpocrypha), -- Mushroom Classification Book",
+    [197709] = strScry(telpocrypha), -- Tribunal Window, Stained Glass",
+    [197708] = strScry(telpocrypha), -- Cliffracer Skeleton Stand",
+    [197707] = strScry(telpocrypha, 3), -- Apocryphal Well",
+    [197706] = strScry(telpocrypha, 3), -- Trifold Mirror of Alternatives",
+    [197705] = strScry(telpocrypha, 10), -- Telvanni Alchemy Station",
+    [197703] = strScry(telpocrypha), -- Apocrypha Fossil, Arch",
+    [197702] = strScry(telpocrypha), -- Apocrypha Fossil, Worm",
+    [197701] = strScry(telpocrypha), -- Apocrypha Fossil, Nautilus",
+    [197700] = strScry(telpocrypha), -- Apocrypha Fossil, Bones Large",
     [197647] = pickpocket_necrom, -- Telvanni Knife, Bread",
     [197646] = pickpocket_necrom, -- Telvanni Knife, Wooden",
     [197645] = pickpocket_necrom, -- Telvanni Fork, Wooden",
@@ -482,15 +482,15 @@ FurC.MiscItemSources[ver.DRUID] = {
   },
 
   [src.DROP] = {
-    [192432] = scrying .. " in Galen (3 Pieces)", -- Shipbuilder's Woodworking Station",
-    [192431] = scrying .. " in Galen ", -- Antique Map of Galen",
-    [192430] = scrying .. " in Galen ", -- Vulk'esh Egg",
+    [192432] = strScry(" in Galen", 3), -- Shipbuilder's Woodworking Station",
+    [192431] = strScry(" in Galen"), -- Antique Map of Galen",
+    [192430] = strScry(" in Galen"), -- Vulk'esh Egg",
     [192404] = tribute, -- Forest Wraith Tribute Tapestry, Large",
     [192403] = tribute, -- Forest Wraith Tribute Tapestry",
     [192402] = tribute, -- The Chimera Tribute Tapestry, Large",
     [192401] = tribute, -- The Chimera Tribute Tapestry",
-    [190938] = scrying .. " in Galen (5 Pieces)", -- Music Box, Blessings of Stone",
-    [187922] = scrying .. " in Fargrave ", -- Antique Map of Fargrave",
+    [190938] = strScry(" in Galen", 5), -- Music Box, Blessings of Stone",
+    [187922] = strScry("in Fargrave"), -- Antique Map of Fargrave",
   },
 }
 
@@ -561,10 +561,10 @@ FurC.MiscItemSources[ver.BRETON] = {
     [187869] = chests_high, -- Noble Still Life Painting, Metal
     [187868] = chests_high, -- Ascendant Silence Painting, Metal
     [187808] = tribute_ranked, -- Tribute Trophy, Rubedite
-    [187802] = scrying .. " in High Isle ", -- Druidic Provisioning Station
-    [187801] = scrying .. " in High Isle ", -- Sea Elf Galleon Helm
-    [187800] = scrying .. " in High Isle ", -- Draoife Storystone
-    [187799] = scrying .. " in High Isle ", -- Antique Map of High Isle
+    [187802] = strScry(" in High Isle "), -- Druidic Provisioning Station
+    [187801] = strScry(" in High Isle "), -- Sea Elf Galleon Helm
+    [187800] = strScry(" in High Isle "), -- Draoife Storystone
+    [187799] = strScry(" in High Isle "), -- Antique Map of High Isle
   },
 }
 
@@ -650,16 +650,16 @@ FurC.MiscItemSources[ver.DEADL] = {
     [178694] = ev_blackwood, -- Target Ogrim,
     [166960] = "From combining Stone Husk Fragments from the Labyrinthian in Western Skyrim", -- Target Stone Husk,
 
-    [182302] = scrying .. " in the Deadlands (3 pieces)", -- Daedric Enchanting Station,
-    [175728] = scrying .. " in Blackwood", -- Z'en Idol,
-    [175729] = scrying .. " in Blackwood", -- Kothringi Tidal Canoe,
-    [178459] = scrying .. " in Blackwood", -- Antique Map of Blackwood,
-    [183196] = scrying .. " in the Deadlands", -- Antique Map of the Deadlands,
-    [171431] = scrying .. " in the Reach", -- Antique Map of the Reach,
-    [165992] = scrying .. " in Western Skyrim", -- Antique Map of Western Skyrim
-    [163431] = scrying .. " (3 pieces)", -- Music Box, Aldmeri Symphonia "in dreams and memories"
-    [182303] = scrying .. " in the Deadlands", -- Dagon's Scalding Gibbet,
-    [165863] = scrying .. " in Grahtwood", -- St. Alessia, Paravant
+    [182302] = strScry(" in the Deadlands (3 pieces)"), -- Daedric Enchanting Station,
+    [175728] = strScry(" in Blackwood"), -- Z'en Idol,
+    [175729] = strScry(" in Blackwood"), -- Kothringi Tidal Canoe,
+    [178459] = strScry(" in Blackwood"), -- Antique Map of Blackwood,
+    [183196] = strScry(" in the Deadlands"), -- Antique Map of the Deadlands,
+    [171431] = strScry(" in the Reach"), -- Antique Map of the Reach,
+    [165992] = strScry(" in Western Skyrim"), -- Antique Map of Western Skyrim
+    [163431] = strScry(" (3 pieces)"), -- Music Box, Aldmeri Symphonia "in dreams and memories"
+    [182303] = strScry(" in the Deadlands"), -- Dagon's Scalding Gibbet,
+    [165863] = strScry(" in Grahtwood"), -- St. Alessia, Paravant
 
     [178442] = chests_blackwood, -- Idylls of Gideon Painting, Wood,
     [178443] = chests_blackwood, -- Path of Eternity Painting, Wood,
@@ -671,14 +671,14 @@ FurC.MiscItemSources[ver.DEADL] = {
     [178449] = chests_blackwood, -- The Legacy of Kaladas Painting, Wood,
     [178450] = chests_blackwood, -- Harvest's Gifts Painting, Wood,
     [178451] = chests_blackwood, -- Reverence's Mandate Painting, Wood,
-    [139076] = chests_summerset, -- Painting of Ancient Road, Refined
+    [139076] = chests_loc_summerset, -- Painting of Ancient Road, Refined
     [165829] = chests_elsweyr, -- Before the Trade Gathering Painting, Wood
     [165830] = chests_elsweyr, -- Elsweyr Vista Painting, Wood
     [165831] = chests_elsweyr, -- Catnap Painting, Gold
     [165832] = chests_elsweyr, -- Elsweyr Landscape Painting, Gold
     [165833] = chests_elsweyr, -- Elsweyr Dome Architecture Painting, Gold
     [165835] = chests_elsweyr, -- Painting of Khajiiti Arch, Gold,
-    [139075] = chests_summerset, -- Painting of Sinkhole, Refined
+    [139075] = chests_loc_summerset, -- Painting of Sinkhole, Refined
 
     [94100] = "Can be gained as a level up reward or Crown Store (50)", -- Imperial BookCase, Swirled
     [145595] = "From sneaking up on Scuttleblooms in Murkmire", -- Scuttlebloom
@@ -1032,14 +1032,14 @@ FurC.MiscItemSources[ver.FLAMES] = {
   },
 
   [src.DROP] = {
-    [171428] = scrying .. " (gold lead, Harrowstorm Reliquary)", -- Vampiric Stained Glass
+    [171428] = strScry(" (gold lead, Harrowstorm Reliquary)"), -- Vampiric Stained Glass
   },
 }
 
 -- 17 Markarth
 FurC.MiscItemSources[ver.MARKAT] = {
   [src.DROP] = {
-    [171428] = scrying .. " in the Reach (Harrowstorms)", -- Vampiric Stained Glass
+    [171428] = strScry(" in the Reach (Harrowstorms)"), -- Vampiric Stained Glass
   },
 
   [src.CROWN] = {
@@ -1193,14 +1193,14 @@ FurC.MiscItemSources[ver.STONET] = {
   },
 
   [src.DROP] = {
-    [171429] = scrying .. "in the Reach", -- Red Eagle Cave Painting:1
+    [171429] = strScry("in the Reach"), -- Red Eagle Cave Painting:1
   },
 }
 
 -- 15 Greymoor
 FurC.MiscItemSources[ver.SKYRIM] = {
   [src.JUSTICE] = {
-    [165828] = GetString(SI_FURC_LOOT_STEALING) .. in_skyrim, -- Painting: Life in Repose Painting, Wood
+    [165828] = GetString(SI_FURC_LOOT_STEALING) .. loc_skyrim, -- Painting: Life in Repose Painting, Wood
   },
 
   [src.DROP] = {
@@ -1230,87 +1230,87 @@ FurC.MiscItemSources[ver.SKYRIM] = {
     [166446] = chests_blackr_grcaverns, -- Painting: Still Life in Death Painting, Wood
     [166437] = chests_blackr_grcaverns, -- Painting: Stillness Everlasting Painting, Wood
 
-    [165866] = scrying .. " in Stonefalls", -- Ashen Infernace Gate
-    [165859] = scrying .. " in Bal Foyen", -- The Dutiful Guar
-    [165854] = scrying .. " in Murkmire", -- Nisswo's Soul Tender
-    [165860] = scrying .. " in Grahtwood", -- Eight-Star Chandelier
-    [166474] = scrying .. " in Craglorn", -- Altar of Celestial Convergence
-    [161204] = scrying .. " in Wrothgar", -- Anvil of Old Orsinium
-    [165875] = scrying .. " in Betnikh", -- Ayleid Lightwell
-    [163705] = scrying .. " in Betnikh", -- Warcaller's Painted Drum
-    [165848] = scrying .. in_skyrim, -- Font of Auri-El
-    [165870] = scrying .. " in Coldharbour", -- Daedric Pillar of Torment
-    [166434] = scrying .. " in Alikr", -- The Heartland
-    [165876] = scrying .. " in Bleakrock Isle", -- Ruby Dragon Skull",
-    [161216] = scrying .. " in Bal Foyen", -- Tri-Angled Truth Altar
-    [163706] = scrying .. " in Stros M'Kai", -- Dwemer Star Chart
-    [166013] = scrying .. " in Rift", -- Ebony Fox Totem
-    [165849] = scrying .. " in Auridon", -- Echoes of Aldmeris
-    [161206] = scrying .. " in Greenshade", -- Branch of Falinesti
-    [165857] = scrying .. " in Bleakrock Isle", -- Brazier of Frozen Flame
-    [165871] = scrying .. " in Eastmarch", -- Carved Whale Totem
-    [165864] = scrying .. " in Deshaan", -- Blessed Dais of Mother Morrowind
-    [165861] = scrying .. " in Gold Coast", -- Golden Idol of Morihaus
-    [166473] = scrying .. " in Greenshade", -- Greensong Gathering Circle
-    [166436] = scrying .. " in Wrothgar ", -- Tusks of the Orc-Father
-    [165856] = scrying .. " in Eastmarch", -- Sacred Chalice of Ysgramor
-    [165852] = scrying .. " in Vvardenfell", -- St. Nerevar, Moon-and-Star
-    [161207] = scrying .. " in Malabal Tor", -- Hollowbone Wind Chimes
-    [165874] = scrying .. " in Glenumbra", -- Jeweled Skull of Ayleid Kings
-    [165867] = scrying .. " in Khenarthi's Roost", -- Cat's Eye Prism
-    [161213] = scrying .. " in Reaper's March", -- Sorcerer-King's Blade
-    [163704] = scrying .. " in Glenumbra", -- Kingmaker's Trove
-    [166471] = scrying .. " in Bangkorai", -- Tall Papa's Lamp
-    [161205] = scrying .. " in Coldharbour", -- Void-Crystal Anomaly
-    [165865] = scrying .. " in Stormhaven", -- Beacon of Tower Zero
-    [166015] = scrying .. " in Khenarthi's Roost", -- Sweet Khenarthi's Song
-    [165869] = scrying .. " in Auridon", -- Maormeri Serpent Shrine
-    [165873] = scrying .. " in Gold Coast", -- Meridian Sconce
-    [165850] = scrying .. " in Clockw. City", -- Mnemonic Star-Sphere
-    [165853] = scrying .. in_selsweyr, -- Moons-Blessed Ceremonial Pool
-    [165868] = scrying .. " in Reaper's March", -- Moonlight Mirror
-    [165872] = scrying .. in_nelsweyr, -- Stained Glass of Lunar Phases
-    [166472] = scrying .. " " .. hewsbane, -- Morwha's Blessing
-    [165862] = scrying .. in_nelsweyr, -- Moth Priest's Cleansing Bowl
-    [161210] = scrying .. " in Summerset", -- Prismatic Sunbird Feather
-    [165878] = scrying .. " in Stros M'Kai", -- Dwarven Puzzle Box
-    [165851] = scrying .. " in Vvardenfell", -- Sixth House Ritual Table
-    [165855] = scrying .. " in Stormhaven", -- Noble Knight's Rest
-    [161208] = scrying .. " in Rift", -- Rune-Carved Mammoth Skull
-    [161209] = scrying .. " in Shadowfen", -- Nest of Shadows
-    [161212] = scrying .. " in Malabal Tor", -- Silvenari Sap-Stone
-    [166435] = scrying .. in_skyrim, -- Seat of the Snow Prince
-    [166451] = scrying .. " in Rivenspire", -- Riven King's Throne
-    [161211] = scrying .. " in Rivenspire", -- Remnant of the False Tower
-    [165858] = scrying .. " in Alikr", -- Coil of Satakal
-    [161215] = scrying .. " " .. hewsbane, -- Yokudan Skystone Scabbard
-    [161214] = scrying .. " in Craglorn", -- Spellscar Shard
-    [166014] = scrying .. in_selsweyr, -- Shrine of Boethra
-    [163710] = scrying .. " in Alik'r Desert", -- Antique Map of Alik'r Desert
-    [165996] = scrying .. " in Gold Coast", -- Antique Map of Gold Coast
-    [163727] = scrying .. in_nelsweyr, -- Antique Map of Northern Elsweyr
-    [163728] = scrying .. in_selsweyr, -- Antique Map of Southern Elsweyr
-    [163717] = scrying .. " in Auridon", -- Antique Map of Auridon
-    [163711] = scrying .. " in Bangkorai", -- Antique Map of Bangkorai
-    [163713] = scrying .. " in Deshaan", -- Antique Map of Deshaan
-    [163707] = scrying .. " in Glenumbra", -- Antique Map of Glenumbra
-    [163718] = scrying .. " in Grahtwood", -- Antique Map of Grahtwood
-    [163719] = scrying .. " in Greenshade", -- Antique Map of Greenshade
-    [165997] = scrying .. " " .. hewsbane, -- Antique Map of Hew's Bane
-    [165993] = scrying .. " in Coldharbour", -- Antique Map of Coldharbour
-    [165994] = scrying .. " in Craglorn", -- Antique Map of Craglorn
-    [163709] = scrying .. " in Rivenspire", -- Antique Map of Rivenspire
-    [163720] = scrying .. " in Malabal Tor", -- Antique Map of Malabal Tor
-    [163715] = scrying .. " in Eastmarch", -- Antique Map of Eastmarch
-    [163716] = scrying .. " in Rift", -- Antique Map of The Rift
-    [163714] = scrying .. " in Shadowfen", -- Antique Map of Shadowfen
-    [163721] = scrying .. " in Reaper's March", -- Antique Map of Reaper's March
-    [163725] = scrying .. " in Summerset", -- Antique Map of Summerset
-    [163708] = scrying .. " in Stormhaven", -- Antique Map of Stormhaven
-    [163712] = scrying .. " in Stonefalls", -- Antique Map of Stonefalls
-    [163724] = scrying .. " in Vvardenfell", -- Antique Map of Vvardenfell
-    [163726] = scrying .. " in Murkmire", -- Antique Map of Murkmire
-    [163723] = scrying .. " in Wrothgar", -- Antique Map of Wrothgar
+    [165866] = strScry(" in Stonefalls"), -- Ashen Infernace Gate
+    [165859] = strScry(" in Bal Foyen"), -- The Dutiful Guar
+    [165854] = strScry(" in Murkmire"), -- Nisswo's Soul Tender
+    [165860] = strScry(" in Grahtwood"), -- Eight-Star Chandelier
+    [166474] = strScry(" in Craglorn"), -- Altar of Celestial Convergence
+    [161204] = strScry(" in Wrothgar"), -- Anvil of Old Orsinium
+    [165875] = strScry(" in Betnikh"), -- Ayleid Lightwell
+    [163705] = strScry(" in Betnikh"), -- Warcaller's Painted Drum
+    [165848] = strScry(loc_skyrim), -- Font of Auri-El
+    [165870] = strScry(" in Coldharbour"), -- Daedric Pillar of Torment
+    [166434] = strScry(" in Alikr"), -- The Heartland
+    [165876] = strScry(" in Bleakrock Isle"), -- Ruby Dragon Skull",
+    [161216] = strScry(" in Bal Foyen"), -- Tri-Angled Truth Altar
+    [163706] = strScry(" in Stros M'Kai"), -- Dwemer Star Chart
+    [166013] = strScry(" in Rift"), -- Ebony Fox Totem
+    [165849] = strScry(" in Auridon"), -- Echoes of Aldmeris
+    [161206] = strScry(" in Greenshade"), -- Branch of Falinesti
+    [165857] = strScry(" in Bleakrock Isle"), -- Brazier of Frozen Flame
+    [165871] = strScry(" in Eastmarch"), -- Carved Whale Totem
+    [165864] = strScry(" in Deshaan"), -- Blessed Dais of Mother Morrowind
+    [165861] = strScry(" in Gold Coast"), -- Golden Idol of Morihaus
+    [166473] = strScry(" in Greenshade"), -- Greensong Gathering Circle
+    [166436] = strScry(" in Wrothgar "), -- Tusks of the Orc-Father
+    [165856] = strScry(" in Eastmarch"), -- Sacred Chalice of Ysgramor
+    [165852] = strScry(" in Vvardenfell"), -- St. Nerevar, Moon-and-Star
+    [161207] = strScry(" in Malabal Tor"), -- Hollowbone Wind Chimes
+    [165874] = strScry(" in Glenumbra"), -- Jeweled Skull of Ayleid Kings
+    [165867] = strScry(" in Khenarthi's Roost"), -- Cat's Eye Prism
+    [161213] = strScry(" in Reaper's March"), -- Sorcerer-King's Blade
+    [163704] = strScry(" in Glenumbra"), -- Kingmaker's Trove
+    [166471] = strScry(" in Bangkorai"), -- Tall Papa's Lamp
+    [161205] = strScry(" in Coldharbour"), -- Void-Crystal Anomaly
+    [165865] = strScry(" in Stormhaven"), -- Beacon of Tower Zero
+    [166015] = strScry(" in Khenarthi's Roost"), -- Sweet Khenarthi's Song
+    [165869] = strScry(" in Auridon"), -- Maormeri Serpent Shrine
+    [165873] = strScry(" in Gold Coast"), -- Meridian Sconce
+    [165850] = strScry(" in Clockw. City"), -- Mnemonic Star-Sphere
+    [165853] = strScry(loc_selsweyr), -- Moons-Blessed Ceremonial Pool
+    [165868] = strScry(" in Reaper's March"), -- Moonlight Mirror
+    [165872] = strScry(loc_nelsweyr), -- Stained Glass of Lunar Phases
+    [166472] = strScry(loc_hewsbane), -- Morwha's Blessing
+    [165862] = strScry(loc_nelsweyr), -- Moth Priest's Cleansing Bowl
+    [161210] = strScry(" in Summerset"), -- Prismatic Sunbird Feather
+    [165878] = strScry(" in Stros M'Kai"), -- Dwarven Puzzle Box
+    [165851] = strScry(" in Vvardenfell"), -- Sixth House Ritual Table
+    [165855] = strScry(" in Stormhaven"), -- Noble Knight's Rest
+    [161208] = strScry(" in Rift"), -- Rune-Carved Mammoth Skull
+    [161209] = strScry(" in Shadowfen"), -- Nest of Shadows
+    [161212] = strScry(" in Malabal Tor"), -- Silvenari Sap-Stone
+    [166435] = strScry(loc_skyrim), -- Seat of the Snow Prince
+    [166451] = strScry(" in Rivenspire"), -- Riven King's Throne
+    [161211] = strScry(" in Rivenspire"), -- Remnant of the False Tower
+    [165858] = strScry(" in Alikr"), -- Coil of Satakal
+    [161215] = strScry(loc_hewsbane), -- Yokudan Skystone Scabbard
+    [161214] = strScry(" in Craglorn"), -- Spellscar Shard
+    [166014] = strScry(loc_selsweyr), -- Shrine of Boethra
+    [163710] = strScry(" in Alik'r Desert"), -- Antique Map of Alik'r Desert
+    [165996] = strScry(" in Gold Coast"), -- Antique Map of Gold Coast
+    [163727] = strScry(loc_nelsweyr), -- Antique Map of Northern Elsweyr
+    [163728] = strScry(loc_selsweyr), -- Antique Map of Southern Elsweyr
+    [163717] = strScry(" in Auridon"), -- Antique Map of Auridon
+    [163711] = strScry(" in Bangkorai"), -- Antique Map of Bangkorai
+    [163713] = strScry(" in Deshaan"), -- Antique Map of Deshaan
+    [163707] = strScry(" in Glenumbra"), -- Antique Map of Glenumbra
+    [163718] = strScry(" in Grahtwood"), -- Antique Map of Grahtwood
+    [163719] = strScry(" in Greenshade"), -- Antique Map of Greenshade
+    [165997] = strScry(loc_hewsbane), -- Antique Map of Hew's Bane
+    [165993] = strScry(" in Coldharbour"), -- Antique Map of Coldharbour
+    [165994] = strScry(" in Craglorn"), -- Antique Map of Craglorn
+    [163709] = strScry(" in Rivenspire"), -- Antique Map of Rivenspire
+    [163720] = strScry(" in Malabal Tor"), -- Antique Map of Malabal Tor
+    [163715] = strScry(" in Eastmarch"), -- Antique Map of Eastmarch
+    [163716] = strScry(" in Rift"), -- Antique Map of The Rift
+    [163714] = strScry(" in Shadowfen"), -- Antique Map of Shadowfen
+    [163721] = strScry(" in Reaper's March"), -- Antique Map of Reaper's March
+    [163725] = strScry(" in Summerset"), -- Antique Map of Summerset
+    [163708] = strScry(" in Stormhaven"), -- Antique Map of Stormhaven
+    [163712] = strScry(" in Stonefalls"), -- Antique Map of Stonefalls
+    [163724] = strScry(" in Vvardenfell"), -- Antique Map of Vvardenfell
+    [163726] = strScry(" in Murkmire"), -- Antique Map of Murkmire
+    [163723] = strScry(" in Wrothgar"), -- Antique Map of Wrothgar
   },
 
   [src.CROWN] = {
@@ -1942,21 +1942,21 @@ FurC.MiscItemSources[ver.ALTMER] = {
     [87709] = GetString(SI_FURC_SRC_LVLUP), -- Imperial Brazier, Spiked
     [94098] = GetString(SI_FURC_SRC_LVLUP), -- Imperial Bed, Single
 
-    [118143] = painting_summerset, -- Painting of Tree, Refined
-    [118141] = painting_summerset, -- Painting of Cottage, Refined
-    [118139] = painting_summerset, -- Painting of Valley, Refined
+    [118143] = painting_loc_summerset, -- Painting of Tree, Refined
+    [118141] = painting_loc_summerset, -- Painting of Cottage, Refined
+    [118139] = painting_loc_summerset, -- Painting of Valley, Refined
   },
 
   [src.FISHING] = {
-    [139080] = fishing_summerset, -- Coral Formation, Ancient Pillar Polyps
-    [139079] = fishing_summerset, -- Coral Formation, Fan Cluster
-    [139081] = fishing_summerset, -- Plant, Sea Grapes
-    [139084] = fishing_summerset, -- Plants, Pearlwort Cluster
-    [139085] = fishing_summerset, -- Plants, Pearlwort Cluster
-    [139068] = fishing_summerset, -- Plants, Springwheeze
-    [139077] = fishing_summerset, -- Coral Formation, Bulwark
-    [139078] = fishing_summerset, -- Coral Formation, Pillar Polyps
-    [139082] = fishing_summerset, -- Plants, Ruby Glasswort Patch
+    [139080] = fishing_loc_summerset, -- Coral Formation, Ancient Pillar Polyps
+    [139079] = fishing_loc_summerset, -- Coral Formation, Fan Cluster
+    [139081] = fishing_loc_summerset, -- Plant, Sea Grapes
+    [139084] = fishing_loc_summerset, -- Plants, Pearlwort Cluster
+    [139085] = fishing_loc_summerset, -- Plants, Pearlwort Cluster
+    [139068] = fishing_loc_summerset, -- Plants, Springwheeze
+    [139077] = fishing_loc_summerset, -- Coral Formation, Bulwark
+    [139078] = fishing_loc_summerset, -- Coral Formation, Pillar Polyps
+    [139082] = fishing_loc_summerset, -- Plants, Ruby Glasswort Patch
   },
 }
 
@@ -2280,7 +2280,7 @@ FurC.MiscItemSources[ver.MORROWIND] = {
   },
 
   [src.JUSTICE] = {
-    [126481] = zo_strformat("<<1>> <<2>>", join({ stealable_priests, stealable_pilgrims }), gloriousHome), -- Indoril Incense, Burning
+    [126481] = zo_strformat("<<1>> <<2>>", join({ stealable_priests, stealable_pilgrims }), loc_vvardenfell), -- Indoril Incense, Burning
     [126772] = stealable_thief, -- Khajiiti Ponder sphere
   },
 }
@@ -2309,7 +2309,7 @@ FurC.MiscItemSources[ver.HOMESTEAD] = {
 
     [121055] = stealable_drunkards, -- Breton Mug, Full
 
-    [116512] = stealable_wrothgar, -- Orcish Carpet Blood
+    [116512] = stealable_loc_wrothgar, -- Orcish Carpet Blood
   },
 
   [src.FISHING] = {
