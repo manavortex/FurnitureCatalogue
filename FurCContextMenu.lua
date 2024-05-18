@@ -22,7 +22,7 @@ function AddFurnitureShoppingListMenuEntry(itemId, calledFromFurC)
     end
   end
 
-  local itemLink = FurC.GetItemLink(itemId)
+  local itemLink = FurC.Utils.GetItemLink(itemId)
   if {} == FurC.Find(itemLink) then
     return
   end
@@ -53,7 +53,7 @@ local function postItemSource()
   FurC.ToChat(FurC.GetItemDescription(cachedItemLink, cachedRecipeArray, true, true))
 end
 local function postRecipe()
-  FurC.ToChat(FurC.GetItemLink(cachedRecipeArray.blueprint))
+  FurC.ToChat(FurC.Utils.GetItemLink(cachedRecipeArray.blueprint))
 end
 local function postRecipeResult()
   FurC.ToChat(GetItemLinkRecipeResultItemLink(cachedItemLink))

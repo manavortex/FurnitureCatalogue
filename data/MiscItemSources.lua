@@ -26,9 +26,9 @@ local in_skyrim = GetString(SI_FURC_LOC_WSKYRIM)
 local summerset = GetString(SI_FURC_LOC_SUMMERSET)
 local wrothgar = GetString(SI_FURC_LOC_WROTHGAR)
 
-local dung_fl = strDungeon(GetString(SI_FURC_DUNG_FL))
-local dung_scp = GetString(SI_FURC_DUNG_SCP)
-local dung_dragonbones = GetString(SI_FURC_SRC_DROP_DUNG) .. ": " .. join({ dung_fl, dung_scp }, "/")
+local loc_fl = GetString(SI_FURC_DUNG_FL)
+local loc_scp = GetString(SI_FURC_DUNG_SCP)
+local dung_dragonbones = strDungeon({ loc_fl, loc_scp })
 
 -- Quests and Guilds
 local questRewardString = GetString(SI_FURC_QUESTREWARD)
@@ -41,9 +41,9 @@ local db_sneaky = zo_strformat("<<1>> <<2>>", GetString(SI_FURC_DB), GetString(S
 local db_equip = zo_strformat("<<1>> <<2>>", GetString(SI_FURC_DB), GetString(SI_FURC_DB_EQUIP))
 
 -- Events
-local blackwood_event = strEvent(SI_FURC_EVENT_BLACKWOOD)
-local sinister_hollowjack = GetString(SI_FURC_EVENT_HOLLOWJACK)
-local elsweyr_event = GetString(SI_FURC_EVENT_ELSWEYR)
+local ev_blackwood = strEvent({ GetString(SI_FURC_EVENT_BLACKWOOD) })
+local ev_hollowjack = strEvent({ GetString(SI_FURC_EVENT_HOLLOWJACK) })
+local ev_elsweyr = strEvent({ GetString(SI_FURC_EVENT_ELSWEYR) })
 
 -- Stealing
 
@@ -81,7 +81,7 @@ local book_hall = "From chests in the Scrivener's Hall vault"
 local nymic = "From Bastion Nymic reward chests"
 local chests_necrom = chests_string .. telpocrypha
 local puplicdungeon_fw_vv = GetString(SI_FURC_DROP) .. " in Forgotten Wastes" .. gloriousHome
-local plants_vvardenfell = GetString(SI_FURC_PLANTS) .. gloriousHome
+local plants_vvardenfell = GetString(SI_FURC_LOOT_PLANTS) .. gloriousHome
 local fishing = GetString(SI_FURC_LOOT_FISH)
 local fishing_summerset = fishing .. summerset
 local fishing_swamp = fishing .. backwaterSwamp
@@ -647,7 +647,7 @@ FurC.MiscItemSources[ver.DEADL] = {
 	]]
 
   [src.DROP] = {
-    [178694] = blackwood_event, -- Target Ogrim,
+    [178694] = ev_blackwood, -- Target Ogrim,
     [166960] = "From combining Stone Husk Fragments from the Labyrinthian in Western Skyrim", -- Target Stone Husk,
 
     [182302] = scrying .. " in the Deadlands (3 pieces)", -- Daedric Enchanting Station,
@@ -821,7 +821,7 @@ FurC.MiscItemSources[ver.DEADL] = {
     [117904] = join({ strCrown(190), strPack("hubtreasure") }), --Redguard Trunk, Garish,
     [134823] = strPack("hubtreasure"), -- Target Mournful Aegis,
 
-    [117906] = join({ elsweyr_event, strPack("cragknicks") }), -- Redguard Urn, Gilded
+    [117906] = join({ ev_elsweyr, strPack("cragknicks") }), -- Redguard Urn, Gilded
     [121053] = join({
       strCrown(170),
       strPack("cragknicks"),
@@ -1371,8 +1371,8 @@ FurC.MiscItemSources[ver.KITTY] = {
   },
 
   [src.DROP] = {
-    [153563] = elsweyr_event, -- Target Bone Goliath, Reanimated
-    [153814] = elsweyr_event, -- Dragon's Treasure Trove
+    [153563] = ev_elsweyr, -- Target Bone Goliath, Reanimated
+    [153814] = ev_elsweyr, -- Dragon's Treasure Trove
     [145317] = "Witches' Festival, Plunder Skull", -- Gravestone, Broken
     [153751] = "In Cyrodiil for Volundrung Vanquisher or Volendrung Wielder", -- Volendrung Replica TODO set up properly
     [165834] = chests_elsweyr, -- A Simple Five-Claw Life Painting, Gold
@@ -1661,24 +1661,24 @@ FurC.MiscItemSources[ver.SLAVES] = {
   },
 
   [src.DROP] = {
-    [141856] = join({ sinister_hollowjack, strCrate("hollowjack") }), -- Decorative Hollowjack Daedra-Skull
-    [141855] = join({ sinister_hollowjack, strCrate("hollowjack") }), -- Decorative Hollowjack Wraith-Lantern
-    [141854] = join({ sinister_hollowjack, strCrate("hollowjack") }), -- Decorative Hollowjack Flame-Skull
-    [141870] = sinister_hollowjack, -- Raven-Perch Cemetery Wreath
-    [141875] = sinister_hollowjack, -- Witches Festival Scarecrow
-    [139157] = sinister_hollowjack, -- Webs, Thick Sheet
-    [139162] = sinister_hollowjack, -- Webs, Cone
-    [141939] = sinister_hollowjack, -- Grave, Grasping
-    [141965] = sinister_hollowjack, -- Hollowjack Lantern, Soaring Dragon
-    [141966] = sinister_hollowjack, -- Hollowjack Lantern, Toothy Grin
-    [141967] = sinister_hollowjack, -- Hollowjack Lantern, Ouroboros
-    [142004] = sinister_hollowjack, -- Specimen Jar, Spare Brain
-    [142005] = sinister_hollowjack, -- Specimen Jar, Monstrous Remains
-    [142003] = sinister_hollowjack, -- Specimen Jar, Eyes
-    [120877] = sinister_hollowjack, -- Gravestone, Cracked
-    [120876] = sinister_hollowjack, -- Gravestone, Imp Engraving
-    [120875] = sinister_hollowjack, -- Gravestone, Clover Engraving
-    [141778] = sinister_hollowjack, -- Target Wraith-of-Crows
+    [141856] = join({ ev_hollowjack, strCrate("hollowjack") }), -- Decorative Hollowjack Daedra-Skull
+    [141855] = join({ ev_hollowjack, strCrate("hollowjack") }), -- Decorative Hollowjack Wraith-Lantern
+    [141854] = join({ ev_hollowjack, strCrate("hollowjack") }), -- Decorative Hollowjack Flame-Skull
+    [141870] = ev_hollowjack, -- Raven-Perch Cemetery Wreath
+    [141875] = ev_hollowjack, -- Witches Festival Scarecrow
+    [139157] = ev_hollowjack, -- Webs, Thick Sheet
+    [139162] = ev_hollowjack, -- Webs, Cone
+    [141939] = ev_hollowjack, -- Grave, Grasping
+    [141965] = ev_hollowjack, -- Hollowjack Lantern, Soaring Dragon
+    [141966] = ev_hollowjack, -- Hollowjack Lantern, Toothy Grin
+    [141967] = ev_hollowjack, -- Hollowjack Lantern, Ouroboros
+    [142004] = ev_hollowjack, -- Specimen Jar, Spare Brain
+    [142005] = ev_hollowjack, -- Specimen Jar, Monstrous Remains
+    [142003] = ev_hollowjack, -- Specimen Jar, Eyes
+    [120877] = ev_hollowjack, -- Gravestone, Cracked
+    [120876] = ev_hollowjack, -- Gravestone, Imp Engraving
+    [120875] = ev_hollowjack, -- Gravestone, Clover Engraving
+    [141778] = ev_hollowjack, -- Target Wraith-of-Crows
 
     -- "Part of the item 'Look upon Their Nothing Eyes' in Lilmoth, Murkmire, 15k gold"
     [145923] = strPartOf(
@@ -2155,7 +2155,7 @@ FurC.MiscItemSources[ver.MORROWIND] = {
 
     [126759] = questRewardSuran, -- Sir Sock's Ball of Yarn
 
-    [126592] = GetString(SI_FURC_PLANTS), -- Plants, Hanging Pitcher Pair
+    [126592] = GetString(SI_FURC_LOOT_PLANTS), -- Plants, Hanging Pitcher Pair
   },
 
   [src.CROWN] = {

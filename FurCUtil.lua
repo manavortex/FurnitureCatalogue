@@ -231,6 +231,8 @@ end
 ---@param events table Resolved names from GetString(SI_FURC_XYZ) like {"Bounties of Blackwood", "Elsweyr Dragons"}
 ---@return string formatted like "Events: Bounties of Blackwood, Elsweyr Dragons"
 function this.FormatEvent(events)
+  assert(type(events) == "table", "events must be a table")
+
   local prefix = GetString(SI_FURC_EVENT)
   local colonIndex = string.find(prefix, ";")
 
@@ -252,6 +254,8 @@ end
 ---@param dungeons table Resolved names from GetString(SI_FURC_XYZ) like {"Fungal Grotto", "Depths of Malatar"}
 ---@return string formatted like "Dungeon: Depths of Malatar"
 function this.FormatDungeon(dungeons)
+  assert(type(dungeons) == "table", "dungeons must be a table")
+
   local prefix = GetString(SI_FURC_DUNG)
   local colonIndex = string.find(prefix, ";")
 
@@ -272,21 +276,20 @@ end
 -- TODO #INVESTIGATE: GetZoneNameById, GetZoneNameByIndex for all map available zones?
 
 ---Get the plural or singular form of an NPC type
----@param stringRef string reference like SI_FURC_NPC_GUARD, saved as "singular;plural" or "1form"
+---@param npcType string resolved name like "guard;guards" or "guards"
 ---@param singular boolean|nil request singular form
 ---@return string npcString plural form
-function this.GetNPCString(stringRef, singular)
-  local npcType = GetString(stringRef) -- incoming like "guard;guards"
+function this.GetNPCString(npcType, singular)
+  local pluralIndex = string.find(npcType, ";")
 
   -- Return the full translation stringId if we don't have singular+plural
-  local colonIndex = npcType:find(";")
-  if not colonIndex then
+  if not pluralIndex then
     return npcType
   end
   if singular then
-    npcType = string.sub(npcType, 1, colonIndex - 1)
+    npcType = string.sub(npcType, 1, pluralIndex - 1)
   else
-    npcType = string.sub(npcType, colonIndex + 1)
+    npcType = string.sub(npcType, pluralIndex + 1)
   end
   return npcType
 end

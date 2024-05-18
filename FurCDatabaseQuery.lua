@@ -3,7 +3,7 @@ local FurC = FurC or {}
 local colour = FurC.ItemLinkColours
 local src = FurC.Constants.ItemSources
 
-local colourise = FurC.colourise
+local colourise = FurC.Utils.Colourise
 
 local function makeAchievementLink(achievementId)
   if not achievementId then
@@ -192,7 +192,7 @@ FurC.getEventDropSource = getEventDropSource
 local emptyString = GetString(SI_FURC_SRC_EMPTY)
 local function registerEmptyItem(recipeKey)
   if recipeKey and tonumber(recipeKey) > 0 then
-    FurC.settings.emptyItemSources[recipeKey] = ", --" .. GetItemLinkName(FurC.GetItemLink(recipeKey))
+    FurC.settings.emptyItemSources[recipeKey] = ", --" .. GetItemLinkName(FurC.Utils.GetItemLink(recipeKey))
   end
   return emptyString
 end
@@ -211,7 +211,7 @@ local function getMiscItemSource(recipeKey, recipeArray, attachItemLink)
     return registerEmptyItem(recipeKey)
   end
 
-  return (attachItemLink and string.format("%s: %s", FurC.GetItemLink(recipeKey), originData)) or originData
+  return (attachItemLink and string.format("%s: %s", FurC.Utils.GetItemLink(recipeKey), originData)) or originData
 end
 FurC.getMiscItemSource = getMiscItemSource
 

@@ -8,6 +8,7 @@ local ver = FurC.Constants.Versioning
 local src = FurC.Constants.ItemSources
 
 local getItemId = FurC.Utils.GetItemId
+local getItemLink = FurC.Utils.GetItemLink
 local getCurrentChar = FurC.Utils.GetCurrentChar
 
 local function printItemLink(itemId)
@@ -61,7 +62,7 @@ function FurC.GetIngredients(itemLink, recipeArray)
   recipeArray = recipeArray or FurC.Find(itemLink)
   local ingredients = {}
   if {} ~= recipeArray and recipeArray.blueprint then
-    local blueprintLink = FurC.GetItemLink(recipeArray.blueprint)
+    local blueprintLink = getItemLink(recipeArray.blueprint)
     local numIngredients = GetItemLinkRecipeNumIngredients(blueprintLink)
     for ingredientIndex = 1, numIngredients do
       local name, _, qty = GetItemLinkRecipeIngredientInfo(blueprintLink, ingredientIndex)
@@ -140,7 +141,7 @@ end
 ---@return table
 function FurC.Find(itemOrBlueprintLink)
   if tonumber(itemOrBlueprintLink) == itemOrBlueprintLink then
-    itemOrBlueprintLink = FurC.GetItemLink(itemOrBlueprintLink)
+    itemOrBlueprintLink = getItemLink(itemOrBlueprintLink)
   end
   -- do not return empty arrays. If this returns nil, abort!
   if nil == itemOrBlueprintLink or #itemOrBlueprintLink == 0 then
@@ -259,11 +260,11 @@ function FurC.CanCraft(recipeKey, recipeArray)
 end
 
 function FurC.GetCraftingSkillType(recipeKey, recipeArray)
-  local itemLink = FurC.GetItemLink(recipeKey)
+  local itemLink = getItemLink(recipeKey)
   local craftingSkillType = GetItemLinkCraftingSkillType(itemLink)
 
   if 0 == craftingSkillType and recipeArray.blueprint then
-    craftingSkillType = GetItemLinkRecipeCraftingSkillType(FurC.GetItemLink(recipeArray.blueprint))
+    craftingSkillType = GetItemLinkRecipeCraftingSkillType(getItemLink(recipeArray.blueprint))
   elseif 0 == craftingSkillType and recipeArray.recipeListIndex and recipeArray.recipeIndex then
     _, _, _, _, _, _, craftingSkillType = GetRecipeInfo(recipeArray.recipeListIndex, recipeArray.recipeIndex)
   end
@@ -309,7 +310,7 @@ local function scanFromFiles(shouldScanCharacter)
   local function parseZoneData(zoneName, zoneData, versionNumber, origin)
     for vendorName, vendorData in pairs(zoneData) do
       for itemId, itemData in pairs(vendorData) do
-        recipeArray = parseFurnitureItem(FurC.GetItemLink(itemId), true)
+        recipeArray = parseFurnitureItem(getItemLink(itemId), true)
         if not recipeArray then
           FurC.Logger:Debug("Error when scanning %s", itemId)
         else
@@ -338,8 +339,8 @@ local function scanFromFiles(shouldScanCharacter)
       end
 
       for _, recipeId in ipairs(ary) do
-        local recipeLink = FurC.GetItemLink(recipeId)
-        local itemLink = GetItemLinkRecipeResultItemLink(recipeLink) or FurC.GetItemLink(recipeId)
+        local recipeLink = getItemLink(recipeId)
+        local itemLink = GetItemLinkRecipeResultItemLink(recipeLink) or getItemLink(recipeId)
         recipeArray = FurC.Find(itemLink) or parseBlueprint(recipeLink) or parseFurnitureItem(itemLink)
         local recipeListIndex, recipeIndex = GetItemLinkGrantedRecipeIndices(recipeLink)
         if nil == recipeArray then
@@ -372,7 +373,7 @@ local function scanFromFiles(shouldScanCharacter)
   local function scanRolis()
     for versionNumber, versionData in pairs(FurC.Rolis) do
       for itemId, itemSource in pairs(versionData) do
-        recipeArray = parseFurnitureItem(FurC.GetItemLink(itemId), true)
+        recipeArray = parseFurnitureItem(getItemLink(itemId), true)
         if nil ~= recipeArray then
           recipeArray.version = versionNumber
           recipeArray.origin = src.ROLIS
@@ -382,7 +383,7 @@ local function scanFromFiles(shouldScanCharacter)
     end
     for versionNumber, versionData in pairs(FurC.Faustina) do
       for itemId, itemSource in pairs(versionData) do
-        recipeArray = parseFurnitureItem(FurC.GetItemLink(itemId), true)
+        recipeArray = parseFurnitureItem(getItemLink(itemId), true)
         if nil ~= recipeArray then
           recipeArray.version = versionNumber
           recipeArray.origin = src.ROLIS
@@ -412,8 +413,8 @@ local function scanFromFiles(shouldScanCharacter)
     for versionNumber, versionData in pairs(FurC.MiscItemSources) do
       for origin, originData in pairs(versionData) do
         for itemId, itemSource in pairs(originData) do
-          local itemLink = FurC.GetItemLink(itemId)
-          recipeArray = parseFurnitureItem(FurC.GetItemLink(itemId))
+          local itemLink = getItemLink(itemId)
+          recipeArray = parseFurnitureItem(getItemLink(itemId))
           if nil ~= recipeArray then
             recipeArray.version = versionNumber
 
@@ -425,7 +426,7 @@ local function scanFromFiles(shouldScanCharacter)
             addDatabaseEntry(itemId, recipeArray)
           else
             if origin == src.RUMOUR then
-              FurC.Logger:Debug("invalid rumour item: %s (%s)", itemId, FurC.GetItemLink(itemId))
+              FurC.Logger:Debug("invalid rumour item: %s (%s)", itemId, getItemLink(itemId))
             else
               FurC.Logger:Debug("scanMiscItemFile: Error when scanning item ID %s (origin %s)", itemId, origin)
             end
@@ -465,7 +466,7 @@ local function scanFromFiles(shouldScanCharacter)
   local function scanRumours()
     for versionNumber, items in pairs(FurC.Rumours) do
       for itemId, itemSource in pairs(items) do
-        recipeArray = parseFurnitureItem(FurC.GetItemLink(itemId), true)
+        recipeArray = parseFurnitureItem(getItemLink(itemId), true)
         if nil ~= recipeArray then
           recipeArray.version = versionNumber
           recipeArray.origin = src.RUMOUR
@@ -474,7 +475,7 @@ local function scanFromFiles(shouldScanCharacter)
       end
     end
     for index, blueprintId in pairs(FurC.RumourRecipes) do
-      local blueprintLink = FurC.GetItemLink(blueprintId)
+      local blueprintLink = getItemLink(blueprintId)
       local itemLink = GetItemLinkRecipeResultItemLink(blueprintLink, LINK_STYLE_BRACKETS)
       if #itemLink == 0 then
         itemLink = blueprintLink
@@ -587,7 +588,7 @@ function FurC.GetItemDescription(recipeKey, recipeArray, stripColor, attachItemL
 end
 
 function FurC.ShouldBeInFurC(link)
-  link = FurC.GetItemLink(link)
+  link = getItemLink(link)
   if not link then
     return false
   end

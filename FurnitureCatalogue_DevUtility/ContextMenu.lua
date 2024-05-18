@@ -193,7 +193,7 @@ end
 
 function this.concatToTextbox(itemId)
   if itemId then
-    cachedItemLink = FurC.GetItemLink(itemId)
+    cachedItemLink = FurC.Utils.GetItemLink(itemId)
     cachedName = GetItemLinkName(cachedItemLink)
     cachedPrice = 0
     concatToTextbox()
