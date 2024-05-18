@@ -1,6 +1,6 @@
 local colours = FurC.ItemLinkColours
 
-local strSoldBy = FurC.SoldBy
+local strSoldBy = FurC.Utils.SoldBy
 
 local requires = GetString(SI_FURC_REQUIRES_ACHIEVEMENT)
 local requiresPsijicRank = string.format("%s %s", requires, GetString(SI_FURC_PSIJIC_RANK))

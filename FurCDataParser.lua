@@ -33,7 +33,7 @@ end
 
 function FurC.ToChat(output, refresh)
   if type(output) == "number" then
-    output = FurC.GetItemLink(output)
+    output = FurC.Utils.GetItemLink(output)
   end
   prefillChatBox(output, refresh)
 end

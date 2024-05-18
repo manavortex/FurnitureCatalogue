@@ -12,7 +12,7 @@ local function addItemLink(data)
 
   local logger = FurC.Logger
 
-  local itemLink = FurC.GetItemLink(data.id)
+  local itemLink = FurC.Utils.GetItemLink(data.id)
   if not FurC.ShouldBeInFurC(itemLink) then
     return
   end

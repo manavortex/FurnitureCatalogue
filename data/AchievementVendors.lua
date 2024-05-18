@@ -1,7 +1,7 @@
 FurC.AchievementVendors = FurC.AchievementVendors or {}
 FurC.Books = FurC.Books or {}
 
-local merge = FurC.MergeTable
+local merge = FurC.Utils.MergeTable
 local ver = FurC.Constants.Versioning
 
 -- /script for i = 6000, 6300 do if string.match(string.lower(GetQuestName(i)), ("verloren")) then d(tostring(i) .. ": " .. GetQuestName(i)) end end
