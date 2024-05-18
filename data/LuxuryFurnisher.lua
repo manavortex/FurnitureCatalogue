@@ -4,6 +4,10 @@ local ver = FurC.Constants.Versioning
 
 -- 28 Secrets of the Telvanni
 FurC.LuxuryFurnisher[ver.ENDLESS] = {
+  [203149] = { -- Redguard Seal, Spider
+    itemPrice = 8000,
+    itemDate = "2024-05-17",
+  },
   [203148] = { -- Argonian Puzzle Totem, Head
     itemPrice = 3500,
     itemDate = "2024-05-10",
@@ -234,7 +238,7 @@ FurC.LuxuryFurnisher[ver.SCRIBE] = {
   },
   [193798] = { -- Wrothgar Puzzle Cube, Hunter,
     itemPrice = 20000,
-    itemDate = "2023-04-22",
+    itemDate = "2024-05-17",
   },
   [193797] = { -- Wrothgar Puzzle Cube, Mountains,
     itemPrice = 20000,
@@ -474,7 +478,7 @@ FurC.LuxuryFurnisher[ver.TIDES] = {
   },
   [182626] = { -- Orcish Seal, Mountains
     itemPrice = 3000,
-    itemDate = "2023-04-22",
+    itemDate = "2024-05-17",
   },
   [182625] = { -- Orcish Seal, Torch
     itemPrice = 3000,
@@ -1746,7 +1750,7 @@ FurC.LuxuryFurnisher[ver.MARKAT] = {
   },
   [171418] = { -- Orcish Seal, Anvil
     itemPrice = 3000,
-    itemDate = "2023-04-22",
+    itemDate = "2024-05-17",
   },
   [171417] = { -- Orcish Seal, Owl
     itemPrice = 3000,
@@ -1790,11 +1794,11 @@ FurC.LuxuryFurnisher[ver.MARKAT] = {
   },
   [156661] = { -- Orcish Seal, Battle-Axe
     itemPrice = 3000,
-    itemDate = "2023-04-22",
+    itemDate = "2024-05-17",
   },
   [156660] = { -- Orcish Seal, Malacath
     itemPrice = 3000,
-    itemDate = "2023-04-22",
+    itemDate = "2024-05-17",
   },
   [156659] = { -- Orcish Seal, Hammer
     itemPrice = 3000,
@@ -2078,31 +2082,31 @@ FurC.LuxuryFurnisher[ver.SLAVES] = {
   },
   [134456] = { -- Seal of Clan Tumnosh, Metal
     itemPrice = 4000,
-    itemDate = "2023-04-22",
+    itemDate = "2024-05-17",
   },
   [134455] = { -- Seal of Clan Shatul, Metal
     itemPrice = 4000,
-    itemDate = "2023-04-22",
+    itemDate = "2024-05-17",
   },
   [134454] = { -- Seal of Clan Morkul, Metal
     itemPrice = 4000,
-    itemDate = "2023-04-22",
+    itemDate = "2024-05-17",
   },
   [134453] = { -- Ancient Orcish Counterweight
     itemPrice = 20000,
-    itemDate = "2023-04-22",
+    itemDate = "2024-05-17",
   },
   [134452] = { -- Seal of Clan Tumnosh, Stone
     itemPrice = 4000,
-    itemDate = "2023-04-22",
+    itemDate = "2024-05-17",
   },
   [134451] = { -- Seal of Clan Shatul, Stone
     itemPrice = 4000,
-    itemDate = "2023-04-22",
+    itemDate = "2024-05-17",
   },
   [134450] = { -- Seal of Clan Morkul, Stone
     itemPrice = 4000,
-    itemDate = "2023-04-22",
+    itemDate = "2024-05-17",
   },
   [134446] = { -- Ancient Orcish Sarcophagus Lid
     itemPrice = 10000,
