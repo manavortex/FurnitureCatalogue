@@ -74,10 +74,7 @@ end
 -- STRING UTILS --
 
 function this.capitalise(str)
-  str = str:gsub("^(%l)(%w*)", function(a, b)
-    return LocaleAwareToUpper(a) .. b
-  end)
-  return str
+  return LocaleAwareToUpper(string.sub(str, 1, 1)) .. string.sub(str, 2)
 end
 
 -- TODO #REFACTOR: make more flexible
@@ -106,7 +103,9 @@ end
 ---@param conjunction string|nil (optional) like `, ` (defaults to ` or `)
 ---@return string
 function this.Join(strings, conjunction)
-  if not strings or #strings == 0 then
+  assert(type(strings) == "table", "strings must be a table")
+
+  if #strings == 0 then
     return ""
   end
 
@@ -120,6 +119,19 @@ end
 ---@return string
 function this.GetCurrentChar()
   return zo_strformat(GetUnitName("player"))
+end
+
+---Extract the singular and plural form of a string
+---@param str string like "guard;guards" or "guards"
+---@return string,string [singular,plural] identical if no semicolon
+function this.GetSingularPlural(str)
+  local pluralIndex = string.find(str, ";")
+  local singular, plural = str, str
+  if pluralIndex then
+    singular = string.sub(str, 1, pluralIndex - 1)
+    plural = string.sub(str, pluralIndex + 1)
+  end
+  return singular, plural
 end
 
 -- TODO #REFACTOR: collecting those in 1 place for now, move later, make some available in API
@@ -227,28 +239,31 @@ function this.FormatLocation(loc, showPrep)
   return noPrep
 end
 
+local eventTranslation = GetString(SI_FURC_EVENT)
+local eventStr, eventsStr = this.GetSingularPlural(eventTranslation)
+
 ---Formatted Event String
 ---@param events table Resolved names from GetString(SI_FURC_XYZ) like {"Bounties of Blackwood", "Elsweyr Dragons"}
 ---@return string formatted like "Events: Bounties of Blackwood, Elsweyr Dragons"
 function this.FormatEvent(events)
   assert(type(events) == "table", "events must be a table")
 
-  local prefix = GetString(SI_FURC_EVENT)
-  local colonIndex = string.find(prefix, ";")
-
   local joined = ""
+  local prefix = eventsStr
   -- decide on singular or plural from event;events
   if #events > 1 then
     joined = this.Join(events, ", ")
-    prefix = string.sub(prefix, colonIndex + 1)
+    prefix = eventsStr
   else
     joined = events[1]
-    prefix = string.sub(prefix, 1, colonIndex - 1)
+    prefix = eventStr
   end
 
-  prefix = LocaleAwareToUpper(string.sub(prefix, 1, 1)) .. string.sub(prefix, 2)
-  return prefix .. ": " .. joined
+  return this.capitalise(prefix) .. ": " .. joined
 end
+
+local dungTranslation = GetString(SI_FURC_DUNG)
+local dungeonStr, dungeonsStr = this.GetSingularPlural(dungTranslation)
 
 ---Formatted Dungeon String
 ---@param dungeons table Resolved names from GetString(SI_FURC_XYZ) like {"Fungal Grotto", "Depths of Malatar"}
@@ -256,42 +271,49 @@ end
 function this.FormatDungeon(dungeons)
   assert(type(dungeons) == "table", "dungeons must be a table")
 
-  local prefix = GetString(SI_FURC_DUNG)
-  local colonIndex = string.find(prefix, ";")
-
   local joined = ""
+  local prefix = dungeonStr
+
   -- decide on singular or plural from dungeon;dungeons
   if #dungeons > 1 then
     joined = this.Join(dungeons, ", ")
-    prefix = string.sub(prefix, colonIndex + 1)
+    prefix = dungeonsStr
   else
     joined = dungeons[1]
-    prefix = string.sub(prefix, 1, colonIndex - 1)
+    prefix = dungeonStr
   end
 
-  prefix = LocaleAwareToUpper(string.sub(prefix, 1, 1)) .. string.sub(prefix, 2)
-  return prefix .. ": " .. joined
+  return this.capitalise(prefix) .. ": " .. joined
 end
 
 -- TODO #INVESTIGATE: GetZoneNameById, GetZoneNameByIndex for all map available zones?
+-- /script for i = 1, 100 do if "" ~= GetZoneNameById(i) then d(tostring(i) .. ": " .. GetZoneNameById(i)) end end
 
 ---Get the plural or singular form of an NPC type
 ---@param npcType string resolved name like "guard;guards" or "guards"
----@param singular boolean|nil request singular form
----@return string npcString plural form
-function this.GetNPCString(npcType, singular)
-  local pluralIndex = string.find(npcType, ";")
+---@param useSingular boolean|nil request singular form
+---@return string npcString singular or plural form
+function this.FormatNPC(npcType, useSingular)
+  local singular, plural = this.GetSingularPlural(npcType)
+  return useSingular and singular or plural
+end
 
-  -- Return the full translation stringId if we don't have singular+plural
-  if not pluralIndex then
-    return npcType
+local scyringTranslation = GetString(SI_FURC_LOOT_SCRYING)
+local pieceStr = GetString(SI_FURC_STRING_PIECE)
+local piece, pieces = this.GetSingularPlural(pieceStr)
+local pieceFormat = GetString(SI_FURC_GRAMMAR_ORDER_QTY) -- "<<1>> <<2>>"
+
+---Formatted Antiquities String
+---@param location string Expects already formatted location string like "on Summerset"
+---@param pieceNum number|nil optional required amount of parts
+---@return string formatted like "Scyring on Summerset"
+function this.FormatScry(location, pieceNum)
+  local suffix = ""
+  if pieceNum and pieceNum > 1 then
+    suffix = zo_strformat(" (" .. pieceFormat .. ")", pieces, pieceNum)
   end
-  if singular then
-    npcType = string.sub(npcType, 1, pluralIndex - 1)
-  else
-    npcType = string.sub(npcType, pluralIndex + 1)
-  end
-  return npcType
+
+  return scyringTranslation .. ":" .. location .. suffix
 end
 
 local vendorString = GetString(SI_FURC_STRING_VENDOR)

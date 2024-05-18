@@ -43,8 +43,15 @@ function this.onTextboxTextChanged()
   this.clearControl()
 end
 
--- Inspired by AchievementFinder from Rhyono
 local achievementTable = {}
+local questTable = {}
+local zoneTable = {}
+
+FurCDev.Achievements = achievementTable
+FurCDev.Quests = questTable
+FurCDev.Zones = zoneTable
+
+-- Inspired by AchievementFinder from Rhyono
 local function buildAchievementTable()
   for id = 11, MAX_ACHIEVEMENTS + 11 do
     local achieveName = select(1, GetAchievementInfo(id))
@@ -54,7 +61,51 @@ local function buildAchievementTable()
     end
   end
 end
-buildAchievementTable()
+
+local function buildQuestTable()
+  local MAX_QUESTS = 10000
+  for id = 1, MAX_QUESTS do
+    local questName = GetQuestName(id)
+    if questName ~= "" then
+      questTable[id] = LocaleAwareToLower(zo_strformat(questName))
+    end
+  end
+end
+
+-- /script d(FurCDev.FindZone("weide"))
+local NUM_ZONES = GetNumZones() -- 982 as of version 101041
+local MAX_INDEX = NUM_ZONES * 100 -- don't iterate higher than that, man
+local STEP_SIZE = NUM_ZONES -- "What are you doing, step size?"
+local zoneLock = false
+local function buildZoneTable(iFrom)
+  if zoneLock then
+    return
+  end
+  zoneLock = true -- protect from call conflicts
+  iFrom = iFrom or 1
+  local iTo = iFrom + STEP_SIZE - 1
+
+  FurC.Logger:Debug("Building Zone Table: %d/%d [%5d...%5d]", NonContiguousCount(FurCDev.Zones), NUM_ZONES, iFrom, iTo)
+  for id = iFrom, iTo do
+    -- do NOT use `GetZoneNameByIndex` as it's a contiguous version of *ById, means the indices change
+    local zoneName = GetZoneNameById(id)
+    if zoneName ~= "" then
+      zoneTable[id] = zoneName
+    end
+    iFrom = id
+  end
+
+  -- If we haven't found all zones yet, slowly iterate through the rest
+  if NonContiguousCount(FurCDev.Zones) < NUM_ZONES and iFrom <= MAX_INDEX then
+    zo_callLater(function()
+      zoneLock = false
+      buildZoneTable(iFrom + 1)
+    end, 2000)
+  else
+    FurC.Logger:Debug("Zones table done: %d/%d [%d]", NonContiguousCount(FurCDev.Zones), NUM_ZONES, iFrom)
+    zoneLock = false
+  end
+end
 
 local function getAchievementId(achievementName)
   if not achievementName or achievementName == "" then
@@ -77,37 +128,76 @@ local function getAchievementId(achievementName)
 end
 FurCDev.GetAchievementId = getAchievementId
 
-local questTable = {}
-local function buildQuestTable()
-  local maxval = 10000
-  for id = 1, maxval do
-    local questName = GetQuestName(id)
-    if questName ~= "" then
-      questTable[id] = LocaleAwareToLower(zo_strformat(questName))
+---@param achievementName string part of the achievement name
+---@return table results list of achievements that match the given name
+local function findAchievement(achievementName)
+  local results = {}
+  if not achievementName or achievementName == "" then
+    return results
+  end
+
+  if #achievementTable < 1 then
+    buildAchievementTable()
+  end
+
+  achievementName = LocaleAwareToLower(zo_strformat(achievementName))
+  for id, name in pairs(achievementTable) do
+    if string.find(name, achievementName) then
+      table.insert(results, zo_strformat("<<1>>: <<2>>", id, name))
     end
   end
+  return results
 end
-buildQuestTable()
+FurCDev.FindAchievement = findAchievement
 
-local function getQuestId(questName)
+---@param questName string part of the quest name
+---@return table results list of quests that match the given name
+local function findQuest(questName)
+  local results = {}
   if not questName or questName == "" then
-    return 0
+    return results
   end
 
-  if {} == questTable then
+  if #questTable < 1 then
     buildQuestTable()
   end
 
   questName = LocaleAwareToLower(zo_strformat(questName))
   for id, name in pairs(questTable) do
-    if name == questName then
-      return id
+    if string.find(name, questName) then
+      table.insert(results, zo_strformat("<<1>>: <<2>>", id, name))
     end
   end
-
-  return 0
+  return results
 end
-FurCDev.GetQuestId = getQuestId
+FurCDev.FindQuest = findQuest
+
+---@param zoneName string part of the zone name
+---@return table results list of zones that match the given name (unformatted)
+local function findZone(zoneName)
+  local results = {}
+  if not zoneName or zoneName == "" then
+    return results
+  end
+
+  if #zoneTable < 1 then
+    FurC.Logger:Debug("Have to build zone table, search again when it's done")
+    buildZoneTable()
+  end
+
+  zoneName = LocaleAwareToLower(zo_strformat(zoneName))
+  for id, name in pairs(zoneTable) do
+    if string.find(LocaleAwareToLower(name), zoneName) then
+      results[id] = name
+    end
+  end
+  return results
+end
+FurCDev.FindZone = findZone
+
+--buildAchievementTable()
+--buildQuestTable()
+--buildZoneTable()
 
 local s2 = "\t"
 local s4 = "\t\t"
