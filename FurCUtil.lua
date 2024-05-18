@@ -110,19 +110,20 @@ function this.Join(strings, conjunction)
     return ""
   end
 
-  conjunction = conjunction or (" " .. GetString(SI_FURC_OR) .. " ")
+  conjunction = conjunction or (" " .. GetString(SI_FURC_GRAMMAR_CONJ_OR) .. " ")
   return table.concat(strings, conjunction)
 end
 
 -- GAME UTILS --
-
--- TODO #REFACTOR: collecting those in 1 place for now, move later, make some available in API
 
 ---Get the current character name in desired format
 ---@return string
 function this.GetCurrentChar()
   return zo_strformat(GetUnitName("player"))
 end
+
+-- TODO #REFACTOR: collecting those in 1 place for now, move later, make some available in API
+-- TODO #REFACTOR: for now separate formatters for each use case for more flexibility, later merge into one
 
 local colours = FurC.ItemLinkColours
 local currencies = {
@@ -201,29 +202,71 @@ function this.FormatPartOf(itemid, note)
   return result_str
 end
 
-local prepDefault = GetString(SI_FURC_GRAMMAR_LOC_PREP_DEFAULT)
----Format a location string containing an optional preposition like "Summerset^on".
----<br>Will remove the preposition by default.
----@param locRef string location reference like SI_FURC_LOC_SUMMERSET, saved as "Summerset^on"
----@param showPrep boolean|nil show the preposition, defaults to false
+local prepDefault = GetString(SI_FURC_GRAMMAR_PREP_LOC_DEFAULT) -- "in"
+local wordOrder = GetString(SI_FURC_GRAMMAR_ORDER_LOC) -- "<<1>> <<2>>"
+---Format a location string containing an optional preposition form.
+---<br>- if a preposition is requested but missing, the default is used (EN: "in")
+---@param loc string location resolved by GetString like "Summerset;on Summerset"
+---@param showPrep boolean|nil show the preposition form, defaults to false
 ---@return string locStr location with or without preposition, like "on Summerset" and "Summerset"
-function this.GetLocationString(locRef, showPrep)
-  local format = GetString(SI_FURC_GRAMMAR_WORDORDER_LOC)
-  local locStr = GetString(locRef)
+function this.FormatLocation(loc, showPrep)
+  local locStr = GetString(loc)
+  local prepIndex = string.find(locStr, ";")
+  local withPrep = ""
+  local noPrep = locStr
 
-  -- if the translation contains a preposition, get it out of the location string
-  local preposition = prepDefault
-  local prepIndex = string.find(locStr, "^")
   if prepIndex then
-    preposition = string.sub(locStr, prepIndex + 1)
-    locStr = string.sub(locStr, 1, prepIndex - 1)
+    withPrep = string.sub(locStr, prepIndex + 1)
+    noPrep = string.sub(locStr, 1, prepIndex - 1)
   end
 
   if showPrep then
-    return zo_strformat(format, preposition, locStr)
-  else
-    return locStr
+    return prepIndex and withPrep or zo_strformat(wordOrder, prepDefault, noPrep)
   end
+
+  return noPrep
+end
+
+---Formatted Event String
+---@param events table Resolved names from GetString(SI_FURC_XYZ) like {"Bounties of Blackwood", "Elsweyr Dragons"}
+---@return string formatted like "Events: Bounties of Blackwood, Elsweyr Dragons"
+function this.FormatEvent(events)
+  local prefix = GetString(SI_FURC_EVENT)
+  local colonIndex = string.find(prefix, ";")
+
+  local joined = ""
+  -- decide on singular or plural from event;events
+  if #events > 1 then
+    joined = this.Join(events, ", ")
+    prefix = string.sub(prefix, colonIndex + 1)
+  else
+    joined = events[1]
+    prefix = string.sub(prefix, 1, colonIndex - 1)
+  end
+
+  prefix = LocaleAwareToUpper(string.sub(prefix, 1, 1)) .. string.sub(prefix, 2)
+  return prefix .. ": " .. joined
+end
+
+---Formatted Dungeon String
+---@param dungeons table Resolved names from GetString(SI_FURC_XYZ) like {"Fungal Grotto", "Depths of Malatar"}
+---@return string formatted like "Dungeon: Depths of Malatar"
+function this.FormatDungeon(dungeons)
+  local prefix = GetString(SI_FURC_DUNG)
+  local colonIndex = string.find(prefix, ";")
+
+  local joined = ""
+  -- decide on singular or plural from dungeon;dungeons
+  if #dungeons > 1 then
+    joined = this.Join(dungeons, ", ")
+    prefix = string.sub(prefix, colonIndex + 1)
+  else
+    joined = dungeons[1]
+    prefix = string.sub(prefix, 1, colonIndex - 1)
+  end
+
+  prefix = LocaleAwareToUpper(string.sub(prefix, 1, 1)) .. string.sub(prefix, 2)
+  return prefix .. ": " .. joined
 end
 
 -- TODO #INVESTIGATE: GetZoneNameById, GetZoneNameByIndex for all map available zones?
