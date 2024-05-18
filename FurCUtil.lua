@@ -73,6 +73,7 @@ end
 
 -- STRING UTILS --
 
+-- TODO #REFACTOR: do it in any zo_strformat calls instead
 function this.capitalise(str)
   return LocaleAwareToUpper(string.sub(str, 1, 1)) .. string.sub(str, 2)
 end
@@ -86,7 +87,7 @@ function this.stripColour(aString)
 end
 
 -- TODO #REFACTOR: remove/change ret param
--- TODO #REFACTOR: don't replace with thousands here, that should happen earlier
+-- TODO #REFACTOR: don't replace with thousands here @see FurC.Utils.FormatPrice
 function this.Colourise(txt, colourCode, ret)
   txt = tostring(txt)
   if txt:find("%d000$") then
@@ -189,6 +190,11 @@ local currencies = {
   },
 }
 
+--[[ CURRENCIES
+Formatting currencies:
+You can format currencies via ZO_Currency_Format$Platform. Check the link for further info.
+]]
+-- TODO #REFACTOR: Use ZO_Currency_Format$Platform
 function this.FormatPrice(price, currency_id)
   local priceUnknown = "?"
   local priceString = ((not price or price < 0) and priceUnknown) or tostring(price)

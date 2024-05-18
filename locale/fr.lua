@@ -241,7 +241,7 @@ local strings = {
   SI_FURC_VV_PAINTING = "Extrêmement rarement dans les coffres ou des Cassetes à Vvardenfell ",
   SI_FURC_WW = "Parfois trouvé dans les nœuds de bois ",
   SI_FURC_WW_DUNGEON_DROP = "Trouvez sur les Monstres à Le Fort du Chasseur Lunaire/La Procession des Sacrifiés",
-  -- 229 ENTRIES THE SAME IN BOTH LANGUAGES
+  -- 232 ENTRIES THE SAME IN BOTH LANGUAGES
   FURC_AV_DRAGONHOLD = "Dragonhold Armoury",
   FURC_AV_ENDLESS = "Endless Archive",
   FURC_AV_EVERMORE = "Bangkorai, Evermore",
@@ -348,6 +348,7 @@ local strings = {
   SI_FURC_FILTER_VERSION_WOTL_TT = "Wrathstone!",
   SI_FURC_GRAMMAR_CONJ_OR = "or",
   SI_FURC_GRAMMAR_ORDER_LOC = "<<1>> <<2>>",
+  SI_FURC_GRAMMAR_ORDER_QTY = "<<1>> <<2>>",
   SI_FURC_GRAMMAR_PREP_LOC_DEFAULT = "in",
   SI_FURC_GRAMMAR_PREP_SRC_DEFAULT = "from",
   SI_FURC_ITEMPACK_ALCHEMIST = "Mad Alchemist",
@@ -426,7 +427,9 @@ local strings = {
   SI_FURC_STRING_MENU_DEBUG_TT = "Only has an effect if a debug logger is enabled",
   SI_FURC_STRING_MENU_TOOLTIP_DATEFORMAT = "Preferred date format",
   SI_FURC_STRING_MENU_TOOLTIP_DATEFORMAT_TT = "Affects luxury furnishing info",
+  SI_FURC_STRING_PART = "part;parts",
   SI_FURC_STRING_PART_OF_COLL = "part of a collection",
+  SI_FURC_STRING_PIECE = "piece;pieces",
   SI_FURC_STRING_TRADER = "Trader",
   SI_FURC_TELVANNI_NECROM_FRF = "Necrom, Final Rest Furnishings",
   SI_FURC_TRADERS_ADOSA = "Adosa Veralor",
