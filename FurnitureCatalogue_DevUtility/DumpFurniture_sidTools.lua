@@ -5,6 +5,9 @@ if not sidTools then
   return
 end
 
+local getItemLink = FurC.Utils.GetItemLink
+local getItemId = FurC.Utils.GetItemId
+
 local function addItemLink(data)
   if not FurC or not sidTools then
     return
@@ -12,7 +15,7 @@ local function addItemLink(data)
 
   local logger = FurC.Logger
 
-  local itemLink = FurC.Utils.GetItemLink(data.id)
+  local itemLink = getItemLink(data.id)
   if not FurC.ShouldBeInFurC(itemLink) then
     return
   end
@@ -29,7 +32,7 @@ local function addItemLink(data)
   else
     -- should be in furC, but isn't furniture: gonna be a recipe
     local recipeResultItemLink = GetItemLinkRecipeResultItemLink(itemLink, LINK_STYLE_BRACKETS)
-    local recipeKey = FurC.GetItemId(recipeResultItemLink)
+    local recipeKey = getItemId(recipeResultItemLink)
     if recipeKey then
       logger:Debug("item is recipe: " .. itemLink .. " / " .. recipeResultItemLink)
       sidTools_SaveData.furnitureRecipes[data.id] = string.format("%s, -- %s", data.id, data.name)
