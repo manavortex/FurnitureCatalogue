@@ -141,17 +141,20 @@ def write_translation_file(out_path: str, merged: tuple[dict,dict,dict]):
   end_index = next(i for i, item in enumerate(current_langfile) if item.strip() == TRANSL_END_MARKER)
 
   # 1. Insert our translations
+  str_list.sort()
   current_langfile[start_index + 1:end_index] = str_list
   end_index = start_index + 1 + len(str_list)
 
   # 2. Insert any untranslated items
   if untranslated_list:
+    untranslated_list.sort()
     current_langfile[end_index:end_index] = untranslated_list
     current_langfile.insert(end_index, f"-- {len(untranslated_list)} ENTRIES THE SAME IN BOTH LANGUAGES\n")
     end_index += len(untranslated_list) + 1
 
   # 3. Insert any leftovers
   if leftover_list:
+    leftover_list.sort()
     current_langfile[end_index:end_index] = leftover_list
     current_langfile.insert(end_index, f"-- {len(leftover_list)} LEFTOVER TRANSLATIONS, PLEASE CHECK!\n")
 
@@ -163,6 +166,7 @@ def write_translation_file(out_path: str, merged: tuple[dict,dict,dict]):
 def write_lua_doc(identifier: str, doc_path: str, str_map: dict):
   current_luadoc = get_file_content(doc_path)
   str_list = [f"{key} = {val}\n" for key, val in str_map.items()]
+  str_list.sort()
 
   start_marker  = f"-- ////// START : GENERATED FROM {identifier}\n"
   end_marker    = f"-- ////// END   : GENERATED FROM {identifier}\n"
