@@ -2136,7 +2136,7 @@ FurC.AchievementVendors[ver.DRAGON2] = {
 
 -- 12 Scalebreaker
 FurC.AchievementVendors[ver.SCALES] = {
-  [GetString(FURC_AV_IC_EVENT)] = {
+  [GetString(SI_FURC_EVENT_IC)] = {
     [GetString(SI_FURC_TRADERS_IMPRESS)] = {
       [153554] = { -- Imperial Mirror, Standing
         itemPrice = 1,

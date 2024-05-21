@@ -106,7 +106,6 @@ FURC_AV_FARGRAVE_FF = "Fargrave, Felicitous Furnishings"
 FURC_AV_FIGHTERS = "the Fighters' guild"
 FURC_AV_FIGHTERS_STEWARD = "Hall Steward"
 FURC_AV_GONFALON_FOFF = "Gonfalon Bay, Furnishings of Fine Finesse"
-FURC_AV_IC_EVENT = "Imperial City Event"
 FURC_AV_LEGERDEMAIN_20 = "Legerdemain Rank 20"
 FURC_AV_MAGES = "the Mages' guild"
 FURC_AV_MOURNHOLDBANK = "Mournhold Bank"
@@ -167,22 +166,16 @@ SI_FURC_DB_STEALTH = "as a way to be less obtrusive"
 SI_FURC_DEBUG_CHARSCANCOMPLETE = "Furniture Catalogue: Character scan complete..."
 SI_FURC_DIALOGUE_RESET_DB_BODY = "This will re-create the FurnitureCatalogue database from scratch"
 SI_FURC_DIALOGUE_RESET_DB_HEADER = "Really re-create furniture database?"
-SI_FURC_DOM_DUNGEON_DROP = "Drops in Depth of Malatar"
 SI_FURC_DROP = "This item is a drop "
 SI_FURC_DROP_ALTMER = "This item is a drop on Summerset"
 SI_FURC_DROP_MURKMIRE = "Random mobs in Murkmire"
-SI_FURC_DUNG = "dungeon;dungeons"
-SI_FURC_DUNG_DOM = "Depths of Malatar"
-SI_FURC_DUNG_FL = "Fang Lair"
-SI_FURC_DUNG_MHK = "Monster Hunter Keep"
-SI_FURC_DUNG_MOS = "March of the Sacrifices"
-SI_FURC_DUNG_SCP = "Scalecaller Peak"
+SI_FURC_DUNG = "dungeon"
 SI_FURC_ELF_PIC = "Drops rarely from treasure chests on Summerset"
-SI_FURC_EVENT = "event;events"
+SI_FURC_EVENT = "event"
 SI_FURC_EVENT_BLACKWOOD = "Bounties of Blackwood"
 SI_FURC_EVENT_ELSWEYR = "Elsweyr dragon event"
 SI_FURC_EVENT_HOLLOWJACK = "Sinister Hollowjack Items"
-SI_FURC_FESTIVAL_DROP = "can be acquired during <<1>> (<<2>>)"
+SI_FURC_EVENT_IC = "Imperial City Event"
 SI_FURC_FILTER_CHAR_OFF = "Character filter: off"
 SI_FURC_FILTER_CHAR_OFF_TT = "disables this filter"
 SI_FURC_FILTER_CROWN_HIDE_TT = "Showing crown store. Click to hide."
@@ -226,9 +219,9 @@ SI_FURC_FILTER_VERSION_DEADL_TT = "What is this place with the sparkly meat?"
 SI_FURC_FILTER_VERSION_DEPTHS = "Lost Depths"
 SI_FURC_FILTER_VERSION_DEPTHS_TT = "What the heck is a Pangrit?"
 SI_FURC_FILTER_VERSION_DRAGON = "Dragon Bones"
-SI_FURC_FILTER_VERSION_DRAGON_TT = "If you got this from Narsis Dren, well..."
 SI_FURC_FILTER_VERSION_DRAGON2 = "Dragonhold"
 SI_FURC_FILTER_VERSION_DRAGON2_TT = "Now with more dragons"
+SI_FURC_FILTER_VERSION_DRAGON_TT = "If you got this from Narsis Dren, well..."
 SI_FURC_FILTER_VERSION_DRUID = "Firesong"
 SI_FURC_FILTER_VERSION_DRUID_TT = "Remember when we could block?"
 SI_FURC_FILTER_VERSION_ENDLESS = "Secrets of the Telvanni"
@@ -242,9 +235,9 @@ SI_FURC_FILTER_VERSION_HS_TT = "Items released in Homestead update"
 SI_FURC_FILTER_VERSION_KITTY = "Elsweyr"
 SI_FURC_FILTER_VERSION_KITTY_TT = "Khajiit has furniture, if you have coin!"
 SI_FURC_FILTER_VERSION_M = "Morrowind"
-SI_FURC_FILTER_VERSION_M_TT = "YOU N'WAH!"
 SI_FURC_FILTER_VERSION_MARKAT = "Markarth"
 SI_FURC_FILTER_VERSION_MARKAT_TT = "With Dwemer Plumbing"
+SI_FURC_FILTER_VERSION_M_TT = "YOU N'WAH!"
 SI_FURC_FILTER_VERSION_NECROM = "Necrom"
 SI_FURC_FILTER_VERSION_NECROM_TT = "So many tentacles"
 SI_FURC_FILTER_VERSION_OFF = "Version filter: off"
@@ -272,8 +265,8 @@ SI_FURC_FILTER_VERSION_WOTL_TT = "Wrathstone!"
 SI_FURC_GEYSER = "Drops from geyser reward clams on Summerset"
 SI_FURC_GIANT_CLAM = "Drops from giant clams and geyser reward clams on Summerset"
 SI_FURC_GRAMMAR_CONJ_OR = "or"
+SI_FURC_GRAMMAR_OBTAINABLE = "can be acquired during <<1>> (<<2>>)"
 SI_FURC_GRAMMAR_ORDER_LOC = "<<1>> <<2>>"
-SI_FURC_GRAMMAR_ORDER_QTY = "<<1>> <<2>>"
 SI_FURC_GRAMMAR_PREP_LOC_DEFAULT = "in"
 SI_FURC_GRAMMAR_PREP_SRC_DEFAULT = "from"
 SI_FURC_HOUSE = "From a furnished purchase of <<1>>"
@@ -311,53 +304,34 @@ SI_FURC_ITEMPACK_WINDOWS = "Windows of the Divines"
 SI_FURC_ITEMPACK_ZENI = "Chapel of Zenithar"
 SI_FURC_LABEL_ENTRIES = " entries -"
 SI_FURC_LOC_ALIKR_KOZANZET_SWI = "Sweetwater Inn"
-SI_FURC_LOC_APOCRYPHA = "Apocrypha"
-SI_FURC_LOC_ARTAEUM = "Artaeum"
-SI_FURC_LOC_AURIDON_SKYWATCH = "Auridon"
-SI_FURC_LOC_BALFOYEN = "Bal Foyen"
+SI_FURC_LOC_AURIDON_SKYWATCH = "Skywatch"
 SI_FURC_LOC_BALFOYEN_DHALMORA = "Dhalmora"
 SI_FURC_LOC_BETHNIKH_LTT = "Loose Tooth Tavern"
-SI_FURC_LOC_BLACKWOOD = "Blackwood"
 SI_FURC_LOC_BLACKWOOD_LEYAWIIN = "Leyawiin"
 SI_FURC_LOC_BLACKWOOD_LEYAWIIN_DBF = "Domestic Bliss Furnishings"
 SI_FURC_LOC_CAPITAL = "any capital city"
-SI_FURC_LOC_CC = "Clockwork City"
-SI_FURC_LOC_CC_CITADEL_MARKET = "The Brass Citadel, Market"
 SI_FURC_LOC_CITY = "any city"
 SI_FURC_LOC_COLDH_HOLLOW = "Hollow City"
 SI_FURC_LOC_COLDH_HOLLOW_CGG = "Cicero's General Good"
-SI_FURC_LOC_CRAGLORN = "Craglorn"
 SI_FURC_LOC_CRAGLORN_BELKARTH = "Belkarth"
-SI_FURC_LOC_CRAGLORN_BELKARTH_WOOD = "Craglorn, Belkarth Woodworking store"
-SI_FURC_LOC_EASTMARCH = "Eastmarch"
+SI_FURC_LOC_CRAGLORN_BELKARTH_WOOD = "Woodworking store"
+SI_FURC_LOC_CWC_CITADEL_MARKET = "The Brass Citadel, Market"
 SI_FURC_LOC_EASTMARCH_AMOL = "Fort Amol"
 SI_FURC_LOC_ELSWEYR = "Elsweyr"
-SI_FURC_LOC_GLENUMBRA_DAGGERFALL_RL = "Glenumbra, Daggerfall, The Rosy Lion"
-SI_FURC_LOC_GOLDCOAST = "Gold Coast"
 SI_FURC_LOC_GOLDCOAST_KVATCH = "Kvatch"
 SI_FURC_LOC_GRAHTWOOD_REDFUR = "Grahtwood, Redfur Trading Post"
-SI_FURC_LOC_GREENSHADE_MARBRUK = "Greenshade, Marbruk"
-SI_FURC_LOC_HEW = "Hew's Bane"
-SI_FURC_LOC_KHENARTHI_MISTRAL = "Khenarthi's Roost, Mistral"
+SI_FURC_LOC_GREENSHADE_MARBRUK = "Marbruk"
+SI_FURC_LOC_KHENARTHI_MISTRAL = "Mistral"
 SI_FURC_LOC_LILANDRIL = "Lilandril"
 SI_FURC_LOC_LILMOTH = "Lilmoth"
-SI_FURC_LOC_MURKMIRE = "Murkmire"
-SI_FURC_LOC_NELSWEYR = "Northern Elsweyr"
 SI_FURC_LOC_PLACE_ORSINIUM = "Orsinium"
-SI_FURC_LOC_REACH_MARKARTH_MM = "Markarth, Markarth Mercantile"
-SI_FURC_LOC_SELSWEYR = "Southern Elsweyr"
-SI_FURC_LOC_SHADOWFEN = "Shadowfen"
-SI_FURC_LOC_SHADOWFEN_CORIMONT = "Shadowfen, Alten Corimont"
-SI_FURC_LOC_STONEFALLS__EBONHEART = "Stonefalls, Ebonheart"
-SI_FURC_LOC_SUMMERSET = "Summerset;on Summerset"
+SI_FURC_LOC_REACH_MARKARTH_MM = "Markarth Mercantile"
+SI_FURC_LOC_SHADOWFEN_CORIMONT = "Alten Corimont"
+SI_FURC_LOC_STONEFALLS_EBONHEART = "Ebonheart"
 SI_FURC_LOC_SUMMERSET_ALINOR = "Alinor"
-SI_FURC_LOC_SUMMERSET_ALINOR_RIVERSIDE = "Alinor, Riverside Market"
-SI_FURC_LOC_TELVANNI = "Telvanni Peninsula"
+SI_FURC_LOC_SUMMERSET_ALINOR_RIVERSIDE = "Riverside Market"
 SI_FURC_LOC_UNDAUNTED = "Undaunted Enclaves"
-SI_FURC_LOC_VVARDENFELL = "Vvardenfell;on Vvardenfell"
 SI_FURC_LOC_VVARDENFELL_SURAN = "Suran"
-SI_FURC_LOC_WROTHGAR = "Wrothgar"
-SI_FURC_LOC_WSKYRIM = "Western Skyrim"
 SI_FURC_LOOT_CHESTS = "treasure chests"
 SI_FURC_LOOT_FISH = "can be fished"
 SI_FURC_LOOT_HARVEST = "from harvesting nodes"
@@ -366,15 +340,15 @@ SI_FURC_LOOT_PLANTS = "from harvesting plants"
 SI_FURC_LOOT_SCRYING = "from scrying"
 SI_FURC_LOOT_STEALING = "Stealing"
 SI_FURC_MENU_HEADER = "- |cD3B830Furniture|r:"
-SI_FURC_NPC_AUTOMATON = "automaton;automatons"
-SI_FURC_NPC_DRUNKARD = "drunkard;drunkards"
-SI_FURC_NPC_GUARD = "guard;guards"
-SI_FURC_NPC_MAGE = "mage;mages"
-SI_FURC_NPC_PILGRIM = "pilgrim;pilgrims"
-SI_FURC_NPC_PRIEST = "priest;priests"
-SI_FURC_NPC_SCHOLAR = "scholar;scholars"
-SI_FURC_NPC_THIEF = "thief;thieves"
-SI_FURC_NPC_WOODWORKER = "woodworker;woodworkers"
+SI_FURC_NPC_AUTOMATON = "automaton"
+SI_FURC_NPC_DRUNKARD = "drunkard"
+SI_FURC_NPC_GUARD = "guard"
+SI_FURC_NPC_MAGE = "mage"
+SI_FURC_NPC_PILGRIM = "pilgrim"
+SI_FURC_NPC_PRIEST = "priest"
+SI_FURC_NPC_SCHOLAR = "scholar"
+SI_FURC_NPC_THIEF = "thief"
+SI_FURC_NPC_WOODWORKER = "woodworker"
 SI_FURC_PART_OF = "Part of item <<1>>"
 SI_FURC_PLUGIN_SL_ADD_FIVE = "Add 5 to shopping list"
 SI_FURC_PLUGIN_SL_ADD_ONE = "Add 1 to shopping list"
@@ -416,7 +390,7 @@ SI_FURC_STRING_CONTEXTMENU_INVENTORY = "Disable context menu in inventory?"
 SI_FURC_STRING_CONTEXTMENU_INVENTORY_TT =
   "Disables the context for inventory items like posting material and adding to favourites."
 SI_FURC_STRING_CRAFTABLE_BY = "Can be crafted by "
-SI_FURC_STRING_DUNG = "dungeon;dungeons"
+SI_FURC_STRING_DUNG = "dungeon"
 SI_FURC_STRING_FAUSTINA = "Sold by |cd68957Faustina Curio|r <<1>>"
 SI_FURC_STRING_FOR_VOUCHERS = "for <<1>> vouchers"
 SI_FURC_STRING_MENU_ADD_ITEMS_NAME = "Add items to known/unknown recipes?"
@@ -441,7 +415,6 @@ SI_FURC_STRING_MENU_DELETE_CHAR_TT =
   "Deletes all knowledge for this character from the database. \nCharacter will be scanned again the next time they log in with the add-on enabled. \n Character name won't show up in the dropdown if they don't know any recipes!"
 SI_FURC_STRING_MENU_DELETE_CHAR_WARNING = "Character knowledge will be wiped immediately"
 SI_FURC_STRING_MENU_ENABLE_SHOPPINGLIST = "Enable integration?"
-SI_FURC_STRING_MENU_F_ALL_ON_TEXT = "Configure this filter"
 SI_FURC_STRING_MENU_FALL_HIDE_BOOKS = "Hide books anyway"
 SI_FURC_STRING_MENU_FALL_HIDE_BOOKS_TT = "Even when filtering all items, still hide books?"
 SI_FURC_STRING_MENU_FALL_HIDE_CROWN = "Hide crown store items anyway"
@@ -449,15 +422,16 @@ SI_FURC_STRING_MENU_FALL_HIDE_CROWN_TT = "Even when filtering all items, still h
 SI_FURC_STRING_MENU_FALL_HIDE_RUMOUR = "Hide rumour items anyway"
 SI_FURC_STRING_MENU_FALL_HIDE_RUMOUR_TT = "Even when filtering all items, still hide rumour items?"
 SI_FURC_STRING_MENU_FALL_HIDE_UI_BUTTON = "Hide UI button in search box?"
+SI_FURC_STRING_MENU_FILTERING = "Catalogue filtering"
 SI_FURC_STRING_MENU_FILTER_ALL_ON_TEXT = "Search filtered items when doing a text search with no dropdown filters set?"
 SI_FURC_STRING_MENU_FILTER_ALL_ON_TEXT_TT = "When doing a text search without any dropdown "
 SI_FURC_STRING_MENU_FILTER_BOOKS = "Mages guild books"
 SI_FURC_STRING_MENU_FILTER_BOOKS_N = "Hide books?"
 SI_FURC_STRING_MENU_FILTER_BOOKS_TT =
   "A real book lover knows where everything is by heart. Hide books from Furniture Catalogue?"
-SI_FURC_STRING_MENU_FILTERING = "Catalogue filtering"
 SI_FURC_STRING_MENU_FONTSIZE = "Font size"
 SI_FURC_STRING_MENU_FONTSIZE_TT = "adjust font size for FurnitureCatalogue here"
+SI_FURC_STRING_MENU_F_ALL_ON_TEXT = "Configure this filter"
 SI_FURC_STRING_MENU_HEADER_F_ALL_DESC =
   "Configure filter settings for text search with disabled dropdowns. \nThese settings will only take effect when you have not set a source, character or version filter."
 SI_FURC_STRING_MENU_HEADER_F_ALL_ON_TEXT = "Filter settings for text search"
@@ -514,9 +488,8 @@ SI_FURC_STRING_MENU_TOOLTIP_HIDE_UNKNOWN_TT = "Hides 'you cannot craft this yet'
 SI_FURC_STRING_MENU_USETINY = "Use tiny interface?"
 SI_FURC_STRING_MENU_USETINY_TT =
   "Use a smaller interface (Craft Store like). \nYou can toggle this from the UI by clicking the +/- button."
-SI_FURC_STRING_PART = "part;parts"
 SI_FURC_STRING_PART_OF_COLL = "part of a collection"
-SI_FURC_STRING_PIECE = "piece;pieces"
+SI_FURC_STRING_PIECES = "<<1[ / /($d pieces)]>>"
 SI_FURC_STRING_RECIPELEARNED = "Recipe learned: <<1>> <<2>> <<3>>"
 SI_FURC_STRING_RECIPESFORCHAR = "recipes for <<1>>"
 SI_FURC_STRING_ROLIS = "Sold by |cd68957Rolis Hlaalu|r <<1>>"
@@ -589,7 +562,6 @@ SI_FURC_VERBOSE_STARTUP =
   "Furniture Catalogue: If you miss any recipes, please trigger a scan on your furniture crafter by clicking the refresh button in the UI."
 SI_FURC_VV_PAINTING = "Extremely rarely from chests or lockboxes on Vvardenfell"
 SI_FURC_WW = "occasionally found in wood nodes"
-SI_FURC_WW_DUNGEON_DROP = "Drops in Monster Hunter Keep/March of the Sacrifices"
 -- ////// END   : GENERATED FROM locale/en.lua
 
 -- ////// START   : Manual entries and overrides
@@ -616,53 +588,24 @@ The first argument is the actual string, and the following optional arguments ar
 
 The syntax `<<n>>` is used as placeholder for the replacement value, where the number `n` is the position of the argument when you called the function.
 
-`d(zo_strformat("<<1>>, <<2>>, <<3>>, <<4>>, <<5>>, <<6>>, <<7>> <<8>>", "one", "two", "three", "four", "five", "six", "seven", "eight"))` -> one, two, three, four, five, six, seven
+`d(zo_strformat("<<1>>, <<2>>, <<3>>, <<4>>, <<5>>, <<6>>, <<7>> <<8>>", "one", "two", "three", "four", "five", "six", "seven", "eight"))` => one, two, three, four, five, six, seven
 
-`d(zo_strformat("Hello, <<1>>!", "player"))` -> Hello, player!
+`d(zo_strformat("Hello, <<1>>!", "player"))` => Hello, player!
 
-`d(zo_strformat("<<2>>, <<1>>!", "you", "Hey"))` -> Hey, you!
+`d(zo_strformat("<<2>>, <<1>>!", "you", "Hey"))` => Hey, you!
 
 Pluralisation:
 There's special syntax for pluralization.
 
-`zo_strformat("We've seen <<1[no examples/one example/$d examples]>>", 1)` -> We've seen one example.
-`zo_strformat("We've seen <<1[no examples/one example/$d examples]>>", 0)` -> We've seen no examples.
-`zo_strformat("We've seen <<1[no examples/one example/$d examples]>>", 3)` -> We've seen 3 examples.
+`zo_strformat("We've seen <<1[no examples/one example/$d examples]>>", 1)` => We've seen one example.
+`zo_strformat("We've seen <<1[no examples/one example/$d examples]>>", 0)` => We've seen no examples.
+`zo_strformat("We've seen <<1[no examples/one example/$d examples]>>", 3)` => We've seen 3 examples.
 
 Modifiers:
 There's also another special syntax called modifiers. For instance, the modifier `l` prepends "at the " to the value.
 
-`zo_strformat("I'm <<l:1>>.", "shrine")` -> I'm at the shrine.
+`zo_strformat("I'm <<l:1>>.", "shrine")` => I'm at the shrine.
 
-There's a myriad of modifiers you can use, check out the table below:
-
-Modifier  Effect
-a         Adds indefinite article in correct form ("a/an") if the value is not name (does not contain ^M, ^F, ^N). If used with 'm' (<<ma:1>>) it will add "some".
-A         Adds definite article if string is not name (does not contain ^M, ^F, or ^N).
-c         Converts the first character to lower case.
-C         Converts the first character to upper case, used to display names.
-d         Demonstrative pronoun; adds "this " if string is not a name (does not contain ^M, ^F, ^N).
-D         returns demonstrative pronoun
-g         Appends " of a". If string is a name it will append "'s" for singular, or "'" for plural
-G         Appends " of the". If string is a name it will append "'s" for singular, or nothing for plural
-i         Changes number to ordinal (1st, 2nd, 3rd, ..., 100th)
-I          ?
-l         Prepends "at the ", used with locations.
-L         Prepends "to the ", used with locations.
-m         Multiplication, displays singular or plural according to the second argument. If you have a number on any other position, this will not work.
-n         Number to text (one, two, three, ..., twelve). Does not work for numbers higher then 12.
-N         Same as above. But the first letter is capital (One, Two, ..., Twelve)
-o         Possessive pronoun (subject). Returns "his", "her", or "its" according to the gender (^m, ^M, ^f, ^F, ^n, or ^N at the end of the string)
-O         possessive pronoun (object). Returns "his", "hers", or "its" according to the gender (^m, ^M, ^f, ^F, ^n, or ^N at the end of the string)
-p         Personal pronoun (subject). Returns "he", "she", or "it" according to the gender (^m, ^M, ^f, ^F, ^n, or ^N at the end of the string)
-P         Personal pronoun (object). Returns "him", "her", or "it" according to the gender (^m, ^M, ^f, ^F, ^n, or ^N at the end of the string)
-r         Reflexive pronoun. Returns "himself", "herself", or "itself" according to the gender (^m, ^M, ^f, ^F, ^n, or ^N at the end of the string)
-R         Number to roman numerals (I, II, III, ..., XII)
-t         Converts the first letter to upper case in all words that have more than 1 character (used by default to format item links).
-T         Converts the first letter to upper case in all words (including single letter words).
-X         Raw format (probably, it does not remove ^ control chars from strings, links are unchanged).
-z         Converts to lower case letters, works for special characters like ÁÉÄËÍÏ etc.
-Z         Converts to upper case letters, works for special characters like áäéëíï etc.
 
 # Modifiers can be used in two forms: `<<Z:1>>` or `<<1{Z}>>`
 # Instead of `<<2>><<m:1>>`, it can be simplified to `<<2*1>>`
@@ -689,10 +632,10 @@ Example: `zo_strformat("<<g:1>><<2>>.", "Peter^M", "item") -- "Peter's item."`
 
 --[[ NUMBER FORMATTING
 
-  Formatting and Localizing Numbers:
+Formatting and Localizing Numbers:
 The ZO_LocalizeDecimalNumber function in libraries/globals/localization.lua provides this function to format numbers nicely for humans.
 
-Usage is simple: call this function on your number, and then pass the result through the `zo_strformat` function to localize it. If you do not, you will use English localization even in foreign languages.
+  Usage is simple: call this function on your number, and then pass the result through the `zo_strformat` function to localize it. If you do not, you will use English localization even in foreign languages.
 
 ```lua
 zo_strformat("<<1>>", ZO_LocalizeDecimalNumber(1000000))
@@ -709,7 +652,7 @@ zo_strformat("<<1>>", ZO_LocalizeDecimalNumber(1000.987))
 
 You should always use this method to format numbers that people will read.
 
-Additional number formatting functions, which abbreviate the value (e.g. 10000 -> 10k) are:
+Additional number formatting functions, which abbreviate the value (e.g. 10000 => 10k) are:
 - `ZO_AbbreviateNumber(amount, precision, useUppercaseSuffixes)`
 - `ZO_AbbreviateAndLocalizeNumber(amount, precision, useUppercaseSuffixes)`
 
@@ -734,42 +677,109 @@ It is more performant to use string.format, because that executes the string ope
 `local string = string.format("%s %s", "My", "string")`
 ]]
 
----Formats a string using the provided arguments.
----The function supports string interpolation, pluralization, localization and many other features.
+--- Formats a string using the provided arguments.
 ---
----The syntax `<<n>>` is used as placeholder for the replacement value, where the number `n` is the position of the argument, with a maximum of 7 positional arguments.
+--- The syntax `<<n>>` is used as placeholder for the replacement value, where the number `n` is the position of the argument, with a maximum of 7 positional arguments.
 ---
----<h2>Pluralization</h2>
+--- <h2>Pluralisation</h2>
+---
 --- - handled with special syntax like `<<1[no examples/one example/$d examples]>>`
+--- - multi layer example:
+---   - `<<1[no <<m:2>>/one <<2>>/$d <<m:2>>]>>`
+---   - `fun(expr, 0, "Dungeon^n")` => `no Dungeons`
+---   - `fun(expr, 1, "Dungeon^n")` => `one Dungeon`
+---   - `fun(expr, 9, "Dungeon^n")` => `9 Dungeons`
 ---
----<h2>Modifiers</h2>
+---<h2>Control Characters</h2>
 ---
---- - can be used in two forms: `<<Z:1>>` or `<<1{Z}>>`
---- - `zo_strformat("I'm <<l:1>>.", "shrine")` : `I'm at the shrine.`
+--- Control characters added to the end of a string can determine the transormations performed with format modifiers.
 ---
----<h2>List of control characters for translations</h2>
----
---- - `^f` : Femine gender
---- - `^F` : Femine name
---- - `^m` : Masculine gender
---- - `^M` : Masculine name
---- - `^n` : Neuter gender
---- - `^N` : Neuter name
---- - `^p` : Plural
---- - `^P` : Plural name
---- - `^d` : destination, definitive??? (example: `Greymoor Caverns^pd,in`)
+--- - unique words, people or places (big letters)
+---   - `^F` : feminine name (`Ayrenn^F`)
+---   - `^M` : masculine name (`Jorunn^M`)
+---   - `^N` : neuter name (`Nchuleft^N`)
+---   - `^P` : plural name (`Faroe^P`) - "the Faroe (islands)"
+--- - common nouns (small letters)
+---   - `^f` : feminine gender (`Wand^f` => `die Wand`) - "the wall"
+---   - `^m` : masculine gender (`Boden^m` => `der Boden`) -"the floor"
+---   - `^n` : neuter gender (`Dach^n` => `das Dach`) - "the roof"
+---   - `^p` : plural
+--- - other modifiers
+---   - `^c` : capitalise the word before the noun (`endloses Archiv^nc` => `Endloses Archiv`)
+---   - `^d` : forces definitive article for unique names???
+---     - `Archiv^nd` => `das Archiv`
+---     - `Archiv^n` => `Archiv`
 ---
 ---<h1>Format Modifiers</h1>
 ---
+--- Can be used in two forms: `<<Z:1>>` or `<<1{Z}>>`
+---
 --- <h2>Articles</h2>
 ---
---- - `a` : indefinite article ("a/an") if value not names. If used with `m` (`<<ma:1>>`) will add "some"
----   - `"Verfügbar <<1{lA}>>.", "Sommersend Inseln^p,auf"` => `Verfügbar auf den Sommersend Inseln.`
+--- - `a` : indefinite article ("a/an")
+---   - `<<a:1>> Dungeon^n,in` => `ein Dungeon`
+---   - `m` adds "some" quantifier
+---   - `l` adds "at/in/on" propositions for locations
+--- - `A`: definite article
+---   - `"<<IA:1>>", "Dungeon^n,in"` => `im Dungeon` ("in the dungeon")
 ---
 --- <h2>Locations</h2>
 ---
---- - `l` : "at the ", used with locations
----   - `"<<lA:1>>", "Höhlen des Glenumbramoors^pd,in"` => `in den Höhlen des Glenumbramoors`
+--- - `l` : location propositions ("in the/on the/..")
+---   - `<<l:1>> Dungeon^n,in` => `im Dungeon` ("in the dungeon")
+--- - `L` : location propositions ("to the/..")
+---   - `<<L:1>> Dungeon^n,in` => `in das Dungeon` ("into the dungeon")
+---
+--- <h2>Pronouns</h2>
+---
+--- - `d` : demonstrative pronoun ("this/these/...")
+---   - `<<d:1>> Dungeon^n,in` => `dieses Dungeon`
+--- - `D` : just the pronoun ("this/these/...")
+---   - `<<D:1>> Dungeon^n,in` => `dieses` ("this")
+--- - `g` : append possessive form ("'s"/"'") or "of a"
+---   - `<<g:1>> Dungeon^n,in` => `eines Dungeons` ("of a dungeon")
+--- - `G` : append possessive form ("'s"/"") or "of the"
+---   - `<<G:1>> Dungeon^n,in` => `des Dungeons` ("of the dungeon")
+--- - `p` : personal pronoun ("he/she/it")
+---   - `<<p:1>> Wand^f,auf` => `sie`
+---   - `<<p:1>> Boden^m,auf` => `er`
+---   - `<<p:1>> Dungeon^n,in` => `es`
+--- - `P` : personal pronoun ("him/her/it")
+---   - `<<P:1>> Wand^f,auf` => `ihr` ("her")
+---   - `<<P:1>> Boden^m,auf` => `ihm` ("him")
+---   - `<<P:1>> Dungeon^n,in` => `ihm` ("it")
+--- - `r` : reflexive ("himself","herself","itself")
+---   - `<<r:1>> Dungeon^n` => `sich` ("itself")
+--- - `o` : possessive pronoun subject ("his","her","its") - NOT IMPLEMENTED?
+--- - `O` : possessive pronoun object ("his","hers","its") - NOT IMPLEMENTED?
+---
+--- <h2>Formatting</h2>
+---
+--- - `c` : `ABC DE F` => `aBC DE F` (lowercase first letter)
+--- - `C` : `abc de f` => `Abc de f` (uppercase first letter)
+--- - `t` : `abc de f` => `Abc De f` (uppercase 1st each word)
+--- - `T` : `abc de f` => `Abc De F` (uppearcase 1st each string)
+--- - `n` : `3` => `three` (number to text)
+--- - `N` : `3` => `Three` (number to text, capitalised)
+--- - `i`/`I` : `1` => `1st` (number to ordinal)
+--- - `R` : `12` => `XII` (number to roman)
+--- - `X` : `Dungeon^n,in` => `Dungeon^n,in` (no formatting)
+--- - `z` : `AÖÄẞ` => `aöäß` (to lowercase)
+--- - `Z` : `aöäß` => `AÖÄẞ` (to uppercase)
+---
+--- <h2>Multiples</h2>
+---
+--- - `m` : pluralises a word
+---   - `<<m:1>> Dungeon^n,in` => `Dungeons`
+---
+--- <h2>Combinations</h2>
+---
+--- All modifiers can be combined, for example. Incompatible ones are ignored.
+--- - `<<al:1>> Dungeon^n,in` => `in einem Dungeon` ("in a dungeon")
+--- - `<<m:1>> Dungeon^n,in` => `Dungeons`
+--- - `<<ml:1>> Dungeon^n,in` => `in den Dungeons` ("in the dungeons")
+--- - `<<mL:1>> Dungeon^n,in` => `in die Dungeons` ("into the dungeons")
+--- - `<<ma:1>> Dungeon^n,in` => `einige Dungeons` ("some dungeons")
 ---
 ---@param format string The format of the string like "Hello <<1>>"
 ---@param arg1 string|nil positional arg
@@ -782,6 +792,12 @@ It is more performant to use string.format, because that executes the string ope
 ---@return string formatted result
 ---@see esoui [ESOUI-Documentation](https://wiki.esoui.com/How_to_format_strings_with_zo_strformat)
 function zo_strformat(format, arg1, arg2, arg3, arg4, arg5, arg6, arg7)
+  return ""
+end
+
+--- @param zoneId integer
+--- @return string names
+function GetZoneNameById(zoneId)
   return ""
 end
 

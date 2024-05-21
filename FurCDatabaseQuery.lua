@@ -160,7 +160,7 @@ local function getEventDropSource(recipeKey, recipeArray, stripColor)
         if eventSourceData[recipeKey] then
           local vendorString = colourise(eventItemSource, colour.Vendor, stripColor)
           itemPriceString = zo_strformat(
-            GetString(SI_FURC_FESTIVAL_DROP),
+            GetString(SI_FURC_GRAMMAR_OBTAINABLE),
             colourise(eventName, colour.Vendor, stripColor),
             vendorString
           )
