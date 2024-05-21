@@ -71,6 +71,77 @@ FurC.Constants.Versioning = {
 
 FurC.Constants.Versioning.LATEST = FurC.Constants.Versioning.SCIONS
 
+local getZoneStr = GetZoneNameById
+
+-- Location Ids
+FurC.Constants.Locations = {
+  -- Translations exist ingame
+  ALIKR = getZoneStr(104), -- Alik'r Desert
+  APOCRYPHA = getZoneStr(1413), -- Apocrypha
+  ARTAEUM = getZoneStr(1027), -- Artaeum
+  AURIDON = getZoneStr(381), -- Auridon
+  BALFOYEN = getZoneStr(281), -- Bal Foyen
+  BETHNIKH = getZoneStr(535), -- Betnikh,
+  BLACKWOOD = getZoneStr(1261), -- Blackwood
+  CRAGLORN = getZoneStr(888), -- Craglorn
+  CWC = getZoneStr(980), -- Clockwork City
+  DUNG_DOM = getZoneStr(1081), -- Depths of Malatar
+  DUNG_FL = getZoneStr(1009), -- Fang Lair
+  DUNG_MHK = getZoneStr(1052), -- Moon Hunter Keep
+  DUNG_MOS = getZoneStr(1055), -- March of the Sacrifices
+  DUNG_SCP = getZoneStr(1010), -- Scalecaller Peak
+  EASTMARCH = getZoneStr(101), -- Eastmarch
+  GLENUMBRA = getZoneStr(3), -- Glenumbra
+  GLENUMBRA_DF_RL = getZoneStr(942), -- The Rosy Lion (reuse house string)
+  GOLDCOAST = getZoneStr(823), -- Gold Coast
+  GRAHTWOOD = getZoneStr(383), -- Grahtwood
+  GREENSHADE = getZoneStr(108), -- Greenshade
+  HEWSBANE = getZoneStr(816), -- Hew's Bane
+  KHENARTHI = getZoneStr(537), -- Khenarthi's Roost
+  MURKMIRE = getZoneStr(726), -- Murkmire
+  NELSWEYR = getZoneStr(1086), -- Northern Elsweyr
+  REACH = getZoneStr(1207), -- The Reach
+  SELSWEYR = getZoneStr(1133), -- Southern Elsweyr
+  SHADOWFEN = getZoneStr(117), -- Shadowfen
+  STONEFALLS = getZoneStr(41), -- Stonefalls
+  SUMMERSET = getZoneStr(1011), -- Summerset
+  TELVANNI = getZoneStr(1414), -- Telvanni Peninsula
+  VVARDENFELL = getZoneStr(849), -- Vvardenfell
+  WROTHGAR = getZoneStr(684), -- Wrothgar
+  WSKYRIM = getZoneStr(1160), -- Western Skyrim
+  -- Todo
+  -- No translations found (might exist in string table, but ids keep changing)
+  STONEFALLS_EBONHEART = GetString(SI_FURC_LOC_STONEFALLS_EBONHEART),
+  SHADOWFEN_CORIMONT = GetString(SI_FURC_LOC_SHADOWFEN_CORIMONT),
+  CAPITAL = GetString(SI_FURC_LOC_CAPITAL),
+  CITY = GetString(SI_FURC_LOC_CITY),
+  CWC_CITADEL_MARKET = GetString(SI_FURC_LOC_CWC_CITADEL_MARKET),
+  KHENARTHI_MISTRAL = GetString(SI_FURC_LOC_KHENARTHI_MISTRAL),
+  REACH_MARKARTH_MM = GetString(SI_FURC_LOC_REACH_MARKARTH_MM),
+  GREENSHADE_MARBRUK = GetString(SI_FURC_LOC_GREENSHADE_MARBRUK),
+  GRAHTWOOD_REDFUR = GetString(SI_FURC_LOC_GRAHTWOOD_REDFUR),
+  ELSWEYR = GetString(SI_FURC_LOC_ELSWEYR),
+  LILANDRIL = GetString(SI_FURC_LOC_LILANDRIL),
+  EASTMARCH_AMOL = GetString(SI_FURC_LOC_EASTMARCH_AMOL),
+  SUMMERSET_ALINOR = GetString(SI_FURC_LOC_SUMMERSET_ALINOR),
+  SUMMERSET_ALINOR_RIVERSIDE = GetString(SI_FURC_LOC_SUMMERSET_ALINOR_RIVERSIDE),
+  UNDAUNTED = GetString(SI_FURC_LOC_UNDAUNTED),
+  CRAGLORN_BELKARTH_WOOD = GetString(SI_FURC_LOC_CRAGLORN_BELKARTH_WOOD),
+  BLACKWOOD_LEYAWIIN_DBF = GetString(SI_FURC_LOC_BLACKWOOD_LEYAWIIN_DBF),
+  PLACE_ORSINIUM = GetString(SI_FURC_LOC_PLACE_ORSINIUM),
+  LILMOTH = GetString(SI_FURC_LOC_LILMOTH),
+  BLACKWOOD_LEYAWIIN = GetString(SI_FURC_LOC_BLACKWOOD_LEYAWIIN),
+  GOLDCOAST_KVATCH = GetString(SI_FURC_LOC_GOLDCOAST_KVATCH),
+  COLDH_HOLLOW = GetString(SI_FURC_LOC_COLDH_HOLLOW),
+  COLDH_HOLLOW_CGG = GetString(SI_FURC_LOC_COLDH_HOLLOW_CGG),
+  CRAGLORN_BELKARTH = GetString(SI_FURC_LOC_CRAGLORN_BELKARTH),
+  VVARDENFELL_SURAN = GetString(SI_FURC_LOC_VVARDENFELL_SURAN),
+  ALIKR_KOZANZET_SWI = GetString(SI_FURC_LOC_ALIKR_KOZANZET_SWI),
+  AURIDON_SKYWATCH = GetString(SI_FURC_LOC_AURIDON_SKYWATCH),
+  BALFOYEN_DHALMORA = GetString(SI_FURC_LOC_BALFOYEN_DHALMORA),
+  BETHNIKH_LTT = GetString(SI_FURC_LOC_BETHNIKH_LTT),
+}
+
 -- Old Constants as a fallback for other AddOns that use them
 -- ToDo: required functionality will be moved to an API in the future
 

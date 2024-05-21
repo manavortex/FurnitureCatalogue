@@ -83,36 +83,36 @@ function this.stripColour(aString)
   if nil == aString then
     return ""
   end
-  return aString:gsub("|%l%l%d%d%d%d%d", ""):gsub("|%l%l%d%l%l%d%d", ""):gsub("|c25C31E", ""):gsub("", "")
+  return aString:gsub("|%l%l%d%d%d%d%d", ""):gsub("|%l%l%d%l%l%d%d", ""):gsub("|c25C31E", ""):gsub("|r", "")
 end
 
--- TODO #REFACTOR: remove/change ret param
--- TODO #REFACTOR: don't replace with thousands here @see FurC.Utils.FormatPrice
-function this.Colourise(txt, colourCode, ret)
+-- TODO #REFACTOR: remove/change ret param?
+-- TODO builtin colorization function?
+local function colourise(txt, colourCode, ret)
   txt = tostring(txt)
-  if txt:find("%d000$") then
-    txt = txt:gsub("000$", "k")
-  end
   if ret then
     return txt
   end
   return string.format("|c%s%s|r", colourCode, txt)
 end
+this.Colourise = colourise
 
 ---Join multiple strings with a custom concatenation string
+---@see zo_strjoin for an alternative using varargs
 ---@param strings table
 ---@param conjunction string|nil (optional) like `, ` (defaults to ` or `)
 ---@return string
-function this.Join(strings, conjunction)
+local function join(strings, conjunction)
   assert(type(strings) == "table", "strings must be a table")
 
   if #strings == 0 then
     return ""
   end
 
-  conjunction = conjunction or (" " .. GetString(SI_FURC_GRAMMAR_CONJ_OR) .. " ")
+  conjunction = conjunction or (string.format(" %s ", GetString(SI_FURC_GRAMMAR_CONJ_OR)))
   return table.concat(strings, conjunction)
 end
+this.Join = join
 
 -- GAME UTILS --
 
@@ -220,37 +220,37 @@ function this.FormatPartOf(itemid, note)
   return result_str
 end
 
-local prepDefault = GetString(SI_FURC_GRAMMAR_PREP_LOC_DEFAULT) -- "in"
-local wordOrder = GetString(SI_FURC_GRAMMAR_ORDER_LOC) -- "<<1>> <<2>>"
----Format a location string containing an optional preposition form.
----<br>- if a preposition is requested but missing, the default is used (EN: "in")
----@param loc string location resolved by GetString like "Summerset;on Summerset"
----@param showPrep boolean|nil show the preposition form, defaults to false
----@return string locStr location with or without preposition, like "on Summerset" and "Summerset"
-function this.FormatLocation(loc, showPrep)
-  local locStr = GetString(loc)
-  local prepIndex = string.find(locStr, ";")
-  local withPrep = ""
-  local noPrep = locStr
-
-  if prepIndex then
-    withPrep = string.sub(locStr, prepIndex + 1)
-    noPrep = string.sub(locStr, 1, prepIndex - 1)
-  end
-
+local function formatSingleLocation(loc, showPrep)
   if showPrep then
-    return prepIndex and withPrep or zo_strformat(wordOrder, prepDefault, noPrep)
+    return zo_strformat("<<Al:1>>", loc)
+  end
+  return zo_strformat("<<1>>", loc)
+end
+
+---Format a location table or a a single location string
+---<br>- if a preposition is requested but missing, the default is used (EN: "in")
+---@param locs string|table locations resolved by GetString like "Summerset^N,on"
+---@param glue string|nil concatenation string for multiple locations
+---@return string locStr single location with preposition or multiple comma separated locations
+function this.FormatLocation(locs, glue)
+  if type(locs) == "string" then
+    return colourise(formatSingleLocation(locs, true), colours.Location)
   end
 
-  return noPrep
+  glue = glue or ", "
+  for i, str in ipairs(locs) do
+    locs[i] = zo_strformat(formatSingleLocation(str, false))
+  end
+
+  return colourise(join(locs, glue), colours.Location)
 end
 
 local eventTranslation = GetString(SI_FURC_EVENT)
 local eventStr, eventsStr = this.GetSingularPlural(eventTranslation)
 
 ---Formatted Event String
----@param events table Resolved names from GetString(SI_FURC_XYZ) like {"Bounties of Blackwood", "Elsweyr Dragons"}
----@return string formatted like "Events: Bounties of Blackwood, Elsweyr Dragons"
+---@param events table raw strings from GetString(SI_FURC_XYZ) like {"Bounties of Blackwood", "Elsweyr Dragons^p,from"}
+---@return string formatted like "From the events: Bounties of Blackwood, Elsweyr Dragons"
 function this.FormatEvent(events)
   assert(type(events) == "table", "events must be a table")
 
@@ -264,6 +264,10 @@ function this.FormatEvent(events)
     joined = events[1]
     prefix = eventStr
   end
+
+  -- local fmtEv = "erhältlich <<1[<<aCl:2>>/<<ACl:2>> <<3>>/<<>>]>> "
+  -- zo_strformat(fmtEv, #events, joined)
+  -- "<<AClm:1>>: ", "Ereignis^n,bei" -> "Bei den Ereignissen: "
 
   return this.capitalise(prefix) .. ": " .. joined
 end
@@ -304,22 +308,66 @@ function this.FormatNPC(npcType, useSingular)
   return useSingular and singular or plural
 end
 
-local scyringTranslation = GetString(SI_FURC_LOOT_SCRYING)
-local pieceStr = GetString(SI_FURC_STRING_PIECE)
-local piece, pieces = this.GetSingularPlural(pieceStr)
-local pieceFormat = GetString(SI_FURC_GRAMMAR_ORDER_QTY) -- "<<1>> <<2>>"
+local translSteal = GetString(SI_FURC_LOOT_STEALING)
+function this.FormatSteal(people, places)
+  people = people or {}
+  places = places or {}
 
----Formatted Antiquities String
----@param location string Expects already formatted location string like "on Summerset"
----@param pieceNum number|nil optional required amount of parts
----@return string formatted like "Scyring on Summerset"
-function this.FormatScry(location, pieceNum)
-  local suffix = ""
-  if pieceNum and pieceNum > 1 then
-    suffix = zo_strformat(" (" .. pieceFormat .. ")", pieces, pieceNum)
+  local formatted = zo_strformat("<<C:1>>", translSteal)
+  if #people == 0 and #places == 0 then
+    return formatted
   end
 
-  return scyringTranslation .. ":" .. location .. suffix
+  if #people > 0 then
+    local peopleStr = this.Join(people)
+    formatted = peopleStr
+  end
+
+  if #places > 0 then
+    local placeStr = this.Join(places, ", ")
+    formatted = string.format("%s%s%s", formatted, #people > 0 and ", " or "", placeStr)
+  end
+
+  return formatted
+end
+
+local translPick = GetString(SI_FURC_LOOT_PICKPOCKET)
+function this.FormatPickpocket(people, places)
+  people = people or {}
+  places = places or {}
+
+  local formatted = zo_strformat("<<C:1>>", translPick)
+  if #people == 0 and #places == 0 then
+    return formatted
+  end
+
+  if #people > 0 then
+    local peopleStr = this.Join(people)
+    formatted = peopleStr
+  end
+
+  if #places > 0 then
+    local placeStr = this.Join(places, ", ")
+    formatted = string.format("%s%s%s", formatted, #people > 0 and ", " or "", placeStr)
+  end
+
+  return formatted
+end
+
+local scrFrom = GetString(SI_FURC_LOOT_SCRYING)
+local piecesFmt = GetString(SI_FURC_STRING_PIECES)
+
+---Formatted Antiquities String
+---@param location string|table table or string with raw location like "Summerset^N,on"
+---@param pieceNum number|nil optional required amount of pieces
+---@return string formatted like "Scyring on Summerset"
+function this.FormatScry(location, pieceNum)
+  pieceNum = pieceNum or 0
+
+  location = this.FormatLocation(location)
+  local pieces = zo_strformat(piecesFmt, pieceNum)
+
+  return string.format("%s %s %s", zo_strformat("<<C:1>>", scrFrom), location, pieces)
 end
 
 local vendorString = GetString(SI_FURC_STRING_VENDOR)

@@ -3,32 +3,36 @@ FurC.MiscItemSources = FurC.MiscItemSources or {}
 local ver = FurC.Constants.Versioning
 local src = FurC.Constants.ItemSources
 
+local join = FurC.Utils.Join
+local loc = FurC.Constants.Locations
+local strDungeon = FurC.Utils.FormatDungeon
 local strEvent = FurC.Utils.FormatEvent
 local strLoc = FurC.Utils.FormatLocation
 local strNPC = FurC.Utils.FormatNPC
 local strPartOf = FurC.Utils.FormatPartOf
+local strPick = FurC.Utils.FormatPickpocket
 local strPrice = FurC.Utils.FormatPrice
-local strDungeon = FurC.Utils.FormatDungeon
 local strQuest = FurC.Utils.FormatQuest
 local strScry = FurC.Utils.FormatScry
-local join = FurC.Utils.Join
+local strSteal = FurC.Utils.FormatSteal
 
 -- locations
-local loc_murkmire = GetString(SI_FURC_LOC_MURKMIRE)
-local loc_vvardenfell = GetString(SI_FURC_LOC_VVARDENFELL)
-local loc_blackwood = GetString(SI_FURC_LOC_BLACKWOOD)
-local loc_elsweyr = GetString(SI_FURC_LOC_ELSWEYR)
-local loc_goldcoast = GetString(SI_FURC_LOC_GOLDCOAST)
-local telpocrypha = join({ GetString(SI_FURC_LOC_TELVANNI), GetString(SI_FURC_LOC_APOCRYPHA) })
-local loc_hewsbane = GetString(SI_FURC_LOC_HEW)
-local loc_nelsweyr = GetString(SI_FURC_LOC_NELSWEYR)
-local loc_selsweyr = GetString(SI_FURC_LOC_SELSWEYR)
-local loc_skyrim = GetString(SI_FURC_LOC_WSKYRIM)
-local loc_summerset = GetString(SI_FURC_LOC_SUMMERSET)
-local loc_wrothgar = GetString(SI_FURC_LOC_WROTHGAR)
+local loc_murkmire = loc.MURKMIRE
+local loc_vvardenfell = loc.VVARDENFELL
+local loc_blackwood = loc.BLACKWOOD
+local loc_goldcoast = loc.GOLDCOAST
+local telpocrypha = { loc.TELVANNI, loc.APOCRYPHA }
+local loc_hewsbane = loc.HEWSBANE
+local loc_nelsweyr = loc.NELSWEYR
+local loc_selsweyr = loc.SELSWEYR
+local loc_elsweyr = { loc_nelsweyr, loc_selsweyr }
+local loc_skyrim = loc.WSKYRIM
+local loc_summerset = loc.SUMMERSET
+local loc_wrothgar = loc.WROTHGAR
+local loc_cwc = loc.CWC
 
-local loc_fl = GetString(SI_FURC_DUNG_FL)
-local loc_scp = GetString(SI_FURC_DUNG_SCP)
+local loc_fl = loc.DUNG_FL
+local loc_scp = loc.DUNG_SCP
 local dung_dragonbones = strDungeon({ loc_fl, loc_scp })
 
 -- Quests and Guilds
@@ -50,8 +54,8 @@ local ev_elsweyr = strEvent({ GetString(SI_FURC_EVENT_ELSWEYR) })
 
 local stealable = GetString(SI_FURC_LOOT_STEALING)
 local pickpocketable = GetString(SI_FURC_LOOT_PICKPOCKET)
-local stealable_guard = pickpocketable .. ": " .. strNPC(SI_FURC_NPC_GUARD)
-local stealable_cc = stealable .. strLoc(GetString(SI_FURC_LOC_CC), true)
+local stealable_guard = strPick({ GetString(SI_FURC_NPC_GUARD) })
+local stealable_cc = strSteal({}, { loc_cwc })
 local stealable_scholars = stealable .. strNPC(SI_FURC_NPC_SCHOLAR)
 local stealable_mages = stealable .. ": " .. strNPC(SI_FURC_NPC_MAGE)
 local stealable_nerds = stealable .. ": " .. join({ strNPC(SI_FURC_NPC_MAGE), strNPC(SI_FURC_NPC_SCHOLAR) })
@@ -60,31 +64,31 @@ local stealable_pilgrims = stealable .. ": " .. strNPC(SI_FURC_NPC_PILGRIM)
 local stealable_thief = stealable .. ": " .. strNPC(SI_FURC_NPC_THIEF)
 local stealable_wood = stealable .. ": " .. strNPC(SI_FURC_NPC_WOODWORKER)
 local stealable_drunkards = stealable .. ": " .. strNPC(SI_FURC_NPC_DRUNKARD)
-local stealable_loc_wrothgar = stealable .. ": " .. loc_wrothgar
-local stealable_swamp = stealable .. loc_murkmire
-local stealable_elsewhere = stealable .. loc_elsweyr
-local pickpocket_necrom = pickpocketable .. telpocrypha
-local painting_loc_summerset = GetString(SI_FURC_SRC_SAFEBOX) .. strLoc(loc_summerset, true)
+local stealable_loc_wrothgar = stealable .. ": " .. " loc_wrothgar"
+local stealable_swamp = stealable .. " loc_murkmire"
+local stealable_elsewhere = strSteal(loc_elsweyr)
+local pickpocket_necrom = strPick(telpocrypha)
+local painting_loc_summerset = GetString(SI_FURC_SRC_SAFEBOX) .. strLoc(loc_summerset)
 
 -- Looting/Harvesting
 local chests_string = GetString(SI_FURC_LOOT_CHESTS)
 
-local automaton_loot_cc = GetString(SI_FURC_NPC_AUTOMATON) .. strLoc(SI_FURC_LOC_CC, true)
-local automaton_loot_vv = GetString(SI_FURC_NPC_AUTOMATON) .. strLoc(SI_FURC_LOC_VVARDENFELL, true)
-local chests_skyrim = chests_string .. loc_skyrim
-local chests_blackwood = chests_string .. loc_blackwood
-local chests_loc_summerset = chests_string .. loc_summerset
-local chests_elsweyr = chests_string .. loc_elsweyr
+local automaton_loot_cc = GetString(SI_FURC_NPC_AUTOMATON) .. strLoc(loc_cwc)
+local automaton_loot_vv = GetString(SI_FURC_NPC_AUTOMATON) .. strLoc(loc_vvardenfell, true)
+local chests_skyrim = chests_string .. "loc_skyrim"
+local chests_blackwood = chests_string .. "loc_blackwood"
+local chests_loc_summerset = chests_string .. "loc_summerset"
+local chests_elsweyr = chests_string .. "loc_elsweyr"
 local chests_high = chests_string .. " in High Isle"
 local chests_blackr_grcaverns = chests_string .. " in Blackreach: Greymoor Caverns"
 local book_hall = "From chests in the Scrivener's Hall vault"
 local nymic = "From Bastion Nymic reward chests"
-local chests_necrom = chests_string .. telpocrypha
-local puplicdungeon_fw_vv = GetString(SI_FURC_DROP) .. " in Forgotten Wastes" .. loc_vvardenfell
-local plants_vvardenfell = GetString(SI_FURC_LOOT_PLANTS) .. loc_vvardenfell
+local chests_necrom = "chests_string .. telpocrypha"
+local puplicdungeon_fw_vv = GetString(SI_FURC_DROP) .. " in Forgotten Wastes" .. "loc_vvardenfell"
+local plants_vvardenfell = GetString(SI_FURC_LOOT_PLANTS) .. "loc_vvardenfell"
 local fishing = GetString(SI_FURC_LOOT_FISH)
-local fishing_loc_summerset = fishing .. loc_summerset
-local fishing_swamp = fishing .. loc_murkmire
+local fishing_loc_summerset = fishing .. " loc_summerset"
+local fishing_swamp = fishing .. "loc_murkmire"
 local endless_archive = "From chests in the Infinite Archive"
 
 -- Crowns
@@ -270,17 +274,17 @@ FurC.MiscItemSources[ver.ENDLESS] = {
     [203402] = chests_loc_summerset, -- The Truth of Minotaurs",
     [203401] = chests_loc_summerset, -- The Flight of Gryphons",
     [203400] = chests_loc_summerset, -- Artaeum Lost",
-    [203399] = chests_string .. loc_selsweyr, -- The Marriage of Moon and Tide",
-    [203398] = chests_string .. loc_selsweyr, -- The Favored Daughter of Fadomai",
-    [203397] = chests_string .. loc_selsweyr, -- Khunzar-ri and the Lost Alfiq",
-    [203396] = chests_string .. loc_selsweyr, -- Azurah's Crossing",
-    [203395] = chests_string .. loc_selsweyr, -- Trail and Tide",
-    [203394] = chests_string .. loc_selsweyr, -- The Angry Alfiq: A Collection",
-    [203393] = chests_string .. loc_selsweyr, -- On Those Who Know Baan Dar",
+    [203399] = chests_string .. " loc_selsweyr", -- The Marriage of Moon and Tide",
+    [203398] = chests_string .. " loc_selsweyr", -- The Favored Daughter of Fadomai",
+    [203397] = chests_string .. " loc_selsweyr", -- Khunzar-ri and the Lost Alfiq",
+    [203396] = chests_string .. " loc_selsweyr", -- Azurah's Crossing",
+    [203395] = chests_string .. " loc_selsweyr", -- Trail and Tide",
+    [203394] = chests_string .. " loc_selsweyr", -- The Angry Alfiq: A Collection",
+    [203393] = chests_string .. " loc_selsweyr", -- On Those Who Know Baan Dar",
     [203392] = endless_archive, -- Anequina and Pellitine: An Introduction",
-    [203391] = chests_string .. " " .. loc_hewsbane, -- The Red Curse, Volume 3",
-    [203390] = chests_string .. " " .. loc_hewsbane, -- The Red Curse, Volume 2",
-    [203389] = chests_string .. " " .. loc_hewsbane, -- The Red Curse, Volume 1",
+    [203391] = chests_string .. " " .. " loc_hewsbane", -- The Red Curse, Volume 3",
+    [203390] = chests_string .. " " .. " loc_hewsbane", -- The Red Curse, Volume 2",
+    [203389] = chests_string .. " " .. " loc_hewsbane", -- The Red Curse, Volume 1",
     [203388] = chests_string .. " in the Gold Coast", -- The Wolf and the Dragon",
     [203387] = chests_string .. " in the Gold Coast", -- The Blade of Woe",
     [203386] = chests_string .. " in the Gold Coast", -- On Minotaurs",
@@ -1200,7 +1204,7 @@ FurC.MiscItemSources[ver.STONET] = {
 -- 15 Greymoor
 FurC.MiscItemSources[ver.SKYRIM] = {
   [src.JUSTICE] = {
-    [165828] = GetString(SI_FURC_LOOT_STEALING) .. loc_skyrim, -- Painting: Life in Repose Painting, Wood
+    [165828] = GetString(SI_FURC_LOOT_STEALING) .. " loc_skyrim", -- Painting: Life in Repose Painting, Wood
   },
 
   [src.DROP] = {
@@ -1233,7 +1237,7 @@ FurC.MiscItemSources[ver.SKYRIM] = {
     [165866] = strScry(" in Stonefalls"), -- Ashen Infernace Gate
     [165859] = strScry(" in Bal Foyen"), -- The Dutiful Guar
     [165854] = strScry(" in Murkmire"), -- Nisswo's Soul Tender
-    [165860] = strScry(" in Grahtwood"), -- Eight-Star Chandelier
+    [165860] = strScry(loc.GRAHTWOOD), -- Eight-Star Chandelier
     [166474] = strScry(" in Craglorn"), -- Altar of Celestial Convergence
     [161204] = strScry(" in Wrothgar"), -- Anvil of Old Orsinium
     [165875] = strScry(" in Betnikh"), -- Ayleid Lightwell
