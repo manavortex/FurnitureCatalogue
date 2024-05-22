@@ -131,17 +131,17 @@ FurC.EventItems[ver.REACH] = {
       [130328] = true, -- Witches Skull, Horned Ram,
       [130327] = true, -- Witches Totem, Wooden Rack,
       [130325] = true, -- Witches Totem, Emphatic Warning,
-      [130302] = GetString(SI_FURC_WW), -- Shrub, Burnt Brush
-      [130301] = GetString(SI_FURC_WW), -- Saplings, Burnt Sparse
-      [130300] = GetString(SI_FURC_WW), -- Saplings, Burnt Tall
-      [130299] = GetString(SI_FURC_WW), -- Saplings, Burnt Cluster
-      [130298] = GetString(SI_FURC_WW), -- Branch, Curved Laurel
-      [130297] = GetString(SI_FURC_WW), -- Branch, Forked Laurel
-      [130296] = GetString(SI_FURC_WW), -- Branch, Sturdy Laurel
-      [130295] = GetString(SI_FURC_WW), -- Branch, Sturdy Burnt
-      [130294] = GetString(SI_FURC_WW), -- Branch, Forked Burnt
-      [130293] = GetString(SI_FURC_WW), -- Branch, Curved Burnt
-      [130280] = GetString(SI_FURC_WW), -- Sapling, Petrified Ashen
+      [130302] = GetString(SI_FURC_LOOT_HARVEST_WOOD), -- Shrub, Burnt Brush
+      [130301] = GetString(SI_FURC_LOOT_HARVEST_WOOD), -- Saplings, Burnt Sparse
+      [130300] = GetString(SI_FURC_LOOT_HARVEST_WOOD), -- Saplings, Burnt Tall
+      [130299] = GetString(SI_FURC_LOOT_HARVEST_WOOD), -- Saplings, Burnt Cluster
+      [130298] = GetString(SI_FURC_LOOT_HARVEST_WOOD), -- Branch, Curved Laurel
+      [130297] = GetString(SI_FURC_LOOT_HARVEST_WOOD), -- Branch, Forked Laurel
+      [130296] = GetString(SI_FURC_LOOT_HARVEST_WOOD), -- Branch, Sturdy Laurel
+      [130295] = GetString(SI_FURC_LOOT_HARVEST_WOOD), -- Branch, Sturdy Burnt
+      [130294] = GetString(SI_FURC_LOOT_HARVEST_WOOD), -- Branch, Forked Burnt
+      [130293] = GetString(SI_FURC_LOOT_HARVEST_WOOD), -- Branch, Curved Burnt
+      [130280] = GetString(SI_FURC_LOOT_HARVEST_WOOD), -- Sapling, Petrified Ashen
     },
   },
 }
