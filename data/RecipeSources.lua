@@ -1,4 +1,4 @@
-local colours = FurC.ItemLinkColours
+local colours = FurC.Constants.Colours
 
 local strSoldBy = FurC.Utils.SoldBy
 

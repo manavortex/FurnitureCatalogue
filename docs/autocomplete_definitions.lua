@@ -374,7 +374,6 @@ SI_FURC_SHOW_RUMOUR_TT = "Confirmed items only. Click to show rumour items."
 SI_FURC_SLAVES_DAILY = "from Murkmire daily quest reward boxes"
 SI_FURC_SRC_CROWNSTORE = "Crown Store "
 SI_FURC_SRC_DROP = "Drops <<1>>"
-SI_FURC_SRC_DROP_DUNG = "Dungeon drop"
 SI_FURC_SRC_EMPTY =
   "Item source unknown.\nTry to re-scan files (refresh button right click).\nIf the item is still unknown - and not part of the weekend furnisher's current inventory - please send a mail with the item link and -source to @berylbones."
 SI_FURC_SRC_ITEMPACK = "Part of the Crown Store item pack [<<1>>] "
@@ -396,6 +395,7 @@ SI_FURC_STRING_CONTEXTMENU_INVENTORY_TT =
   "Disables the context for inventory items like posting material and adding to favourites."
 SI_FURC_STRING_CRAFTABLE_BY = "Can be crafted by "
 SI_FURC_STRING_DUNG = "dungeon"
+SI_FURC_STRING_DUNGEONS = "<<1[found in dungeons/found in <<2>>/From dungeons: <<2>>]>>"
 SI_FURC_STRING_FAUSTINA = "Sold by |cd68957Faustina Curio|r <<1>>"
 SI_FURC_STRING_FOR_VOUCHERS = "for <<1>> vouchers"
 SI_FURC_STRING_MENU_ADD_ITEMS_NAME = "Add items to known/unknown recipes?"
@@ -578,60 +578,6 @@ function GetCurrencyName(currencyType, isSingular, isLower)
   return ""
 end
 
---[[
-  The ESO API provides a very useful function called `zo_strformat`.
-And it also provides a cached function for strings which are used more than once, called `ZO_CachedStrFormat`.
-
-With it you can format strings with interpolation, pluralization, localization and many other features. It is also used together with `ZO_LocalizeDecimalNumber` (see below) to format human-readable numbers.
-
-`zo_strformat(format[, arg1[, arg2, arg3, arg4, arg5, arg6, arg7\]\])`
-
-The first argument is the actual string, and the following optional arguments are the parameters to be included in the string. `zo_strformat takes up to 7 parameters!)`
-
-The syntax `<<n>>` is used as placeholder for the replacement value, where the number `n` is the position of the argument when you called the function.
-
-`d(zo_strformat("<<1>>, <<2>>, <<3>>, <<4>>, <<5>>, <<6>>, <<7>> <<8>>", "one", "two", "three", "four", "five", "six", "seven", "eight"))` => one, two, three, four, five, six, seven
-
-`d(zo_strformat("Hello, <<1>>!", "player"))` => Hello, player!
-
-`d(zo_strformat("<<2>>, <<1>>!", "you", "Hey"))` => Hey, you!
-
-Pluralisation:
-There's special syntax for pluralization.
-
-`zo_strformat("We've seen <<1[no examples/one example/$d examples]>>", 1)` => We've seen one example.
-`zo_strformat("We've seen <<1[no examples/one example/$d examples]>>", 0)` => We've seen no examples.
-`zo_strformat("We've seen <<1[no examples/one example/$d examples]>>", 3)` => We've seen 3 examples.
-
-Modifiers:
-There's also another special syntax called modifiers. For instance, the modifier `l` prepends "at the " to the value.
-
-`zo_strformat("I'm <<l:1>>.", "shrine")` => I'm at the shrine.
-
-
-# Modifiers can be used in two forms: `<<Z:1>>` or `<<1{Z}>>`
-# Instead of `<<2>><<m:1>>`, it can be simplified to `<<2*1>>`
-
-Almost all modifiers can be used together, so:
-
-`zo_strformat("<<C:1>> <<2>> <<tm:3>>.", "i have", 10, "blue colored item") -- I have 10 Blue Colored Items.`
-
-Translations:
-If you want to work with translations, there are some control characters that you can add to the end of a string:
-
-^f  Femine gender
-^F  Femine name
-^m  Masculine gender
-^M  Masculine name
-^n  Neuter gender
-^N  Neuter name
-^p  Plural
-^P  Plural name
-
-Example: `zo_strformat("<<g:1>><<2>>.", "Peter^M", "item") -- "Peter's item."`
-
-]]
-
 --[[ NUMBER FORMATTING
 
 Formatting and Localizing Numbers:
@@ -660,30 +606,11 @@ Additional number formatting functions, which abbreviate the value (e.g. 10000 =
 
 ]]
 
---[[ COLOURING
-You can color a string with handlers. The handler starts with |cXXXXXX and ends with |r. <br>
-The color definition takes the hex value.
-
-```lua
-local coloredString = string.format("|cFFFFFF%s|r %s", "White", "yellow")
-/script d(string.format("%s %s", "My", "string"))
-```
-]]
-
---[[ CONCAT
-Concatenating strings:
-
-Concatenating a lot of strings in LUA is expensive and can cause client crashes. <br>
-It is more performant to use string.format, because that executes the string operation in the c-backend and not in LUA:
-
-`local string = string.format("%s %s", "My", "string")`
-]]
-
 --- Formats a string using the provided arguments.
 ---
 --- The syntax `<<n>>` is used as placeholder for the replacement value, where the number `n` is the position of the argument, with a maximum of 7 positional arguments.
 ---
---- <h2>Pluralisation</h2>
+--- <h2>Sentence Pluralisation</h2>
 ---
 --- - handled with special syntax like `<<1[no examples/one example/$d examples]>>`
 --- - multi layer example:
@@ -711,6 +638,10 @@ It is more performant to use string.format, because that executes the string ope
 ---   - `^d` : forces definitive article for unique names???
 ---     - `Archiv^nd` => `das Archiv`
 ---     - `Archiv^n` => `Archiv`
+---
+--- Formatting adds articles, when handling lowercase gender in English! Use uppercase genders like `name^P` in the translations for any languages, that need to avoid those articles:
+--- - `<<l:1>> guards^p,from` => `from the guards`
+--- - `<<l:1>> guards^P,from` => `from guards`
 ---
 ---<h1>Format Modifiers</h1>
 ---
@@ -794,6 +725,14 @@ It is more performant to use string.format, because that executes the string ope
 ---@return string formatted result
 ---@see esoui [ESOUI-Documentation](https://wiki.esoui.com/How_to_format_strings_with_zo_strformat)
 function zo_strformat(format, arg1, arg2, arg3, arg4, arg5, arg6, arg7)
+  return ""
+end
+
+---table.concat but with custom separator as first argument
+---@param separator string glue
+---@param ... string items
+---@return string
+function zo_strjoin(separator, ...)
   return ""
 end
 

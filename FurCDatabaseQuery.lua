@@ -1,6 +1,6 @@
 local FurC = FurC or {}
 
-local colour = FurC.ItemLinkColours
+local colour = FurC.Constants.Colours
 local src = FurC.Constants.ItemSources
 
 local colourise = FurC.Utils.Colourise

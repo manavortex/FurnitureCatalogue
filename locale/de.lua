@@ -173,6 +173,7 @@ local strings = {
   SI_FURC_STRING_CONTEXTMENU_INVENTORY_TT = "Deaktiviert den Kontext für Inventar-Gegenstände, wie das Schreiben von Material in den Chat und das Hinzufügen zu Favoriten.",
   SI_FURC_STRING_CRAFTABLE_BY = "Herstellbar von ",
   SI_FURC_STRING_DUNG = "Dungeon^n",
+  SI_FURC_STRING_DUNGEONS = "<<1[gefunden in Dungeons/gefunden in <<2>>/Aus Dungeons: <<2>>]>>",
   SI_FURC_STRING_FAUSTINA = "Wird von |cd68957Faustina Curio|r <<1>> verkauft",
   SI_FURC_STRING_FOR_VOUCHERS = "für <<1>> Schriebe",
   SI_FURC_STRING_MENU_ADD_ITEMS_NAME = "Bekannt/unbekannt hinzufügen",
@@ -280,7 +281,7 @@ local strings = {
   SI_FURC_VERBOSE_SCANNING_DATA_FILE = "Furniture Catalogue: Scannen von Datensätzen...",
   SI_FURC_VERBOSE_STARTUP = "Furniture Catalogue: Wenn Ihr ein Rezept vermisst, löst bitte einen Scan Eures Möbel-Handwerkers aus, indem Ihr auf den Button 'Aktualisieren' in der Benutzeroberfläche klickt.",
   SI_FURC_VV_PAINTING = "Äußerst selten von Truhen oder Wertkassetten auf Vvardenfell",
-  -- 168 ENTRIES THE SAME IN BOTH LANGUAGES
+  -- 167 ENTRIES THE SAME IN BOTH LANGUAGES
   FURC_AV_LEGERDEMAIN_20 = "Legerdemain Rank 20",
   FURC_AV_SENCHAL_MARKET = "Senchal, Marketplace",
   FURC_AV_SOLITUDE_DH = "Solitude, Dragon's Hearth",
@@ -399,7 +400,6 @@ local strings = {
   SI_FURC_LOC_VVARDENFELL_SURAN = "Suran",
   SI_FURC_PART_OF = "Part of item <<1>>",
   SI_FURC_SRC_DROP = "Drops <<1>>",
-  SI_FURC_SRC_DROP_DUNG = "Dungeon drop",
   SI_FURC_SRC_MISCHOUSE = "From select house purchases",
   SI_FURC_SRC_QUEST = "Quest",
   SI_FURC_STRING_AP = " AP",
