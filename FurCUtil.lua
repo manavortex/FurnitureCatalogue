@@ -227,6 +227,8 @@ local function formatSingleLocation(loc, showPrep)
   return zo_strformat("<<1>>", loc)
 end
 
+local inStr = GetString(SI_FURC_GRAMMAR_PREP_LOC_DEFAULT) -- "in"
+
 ---Format a location table or a a single location string
 ---<br>- if a preposition is requested but missing, the default is used (EN: "in")
 ---@param locs string|table locations resolved by GetString like "Summerset^N,on"
@@ -241,6 +243,9 @@ function this.FormatLocation(locs, glue)
   for i, str in ipairs(locs) do
     locs[i] = zo_strformat(formatSingleLocation(str, false))
   end
+
+  -- prepend "in", good for now, but won't work for all languages
+  locs[1] = string.format("%s %s", inStr, locs[1])
 
   return colourise(join(locs, glue), colours.Location)
 end
@@ -358,16 +363,23 @@ local scrFrom = GetString(SI_FURC_LOOT_SCRYING)
 local piecesFmt = GetString(SI_FURC_STRING_PIECES)
 
 ---Formatted Antiquities String
----@param location string|table table or string with raw location like "Summerset^N,on"
----@param pieceNum number|nil optional required amount of pieces
+---@param pieceNum number required amount of pieces
+---@param ... string with raw location like "Summerset^N,on"
 ---@return string formatted like "Scyring on Summerset"
-function this.FormatScry(location, pieceNum)
+function this.FormatScry(pieceNum, ...)
   pieceNum = pieceNum or 0
 
-  location = this.FormatLocation(location)
+  local locations = { ... }
+
+  for i = 1, #locations do
+    if type(locations[i]) == "string" then
+      locations[i] = this.FormatLocation(locations[i])
+    end
+  end
+
   local pieces = zo_strformat(piecesFmt, pieceNum)
 
-  return string.format("%s %s %s", zo_strformat("<<C:1>>", scrFrom), location, pieces)
+  return string.format("%s %s %s", zo_strformat("<<C:1>>", scrFrom), table.concat(locations, "/"), pieces)
 end
 
 local vendorString = GetString(SI_FURC_STRING_VENDOR)
