@@ -26,15 +26,6 @@ this.PVP = {}
 this.MiscItemSources = {}
 this.RumourRecipes = {}
 
-FurC.ItemLinkColours = {
-  Vendor = "D68957",
-  Location = "D68957",
-  Gold = "E5dA40",
-  Voucher = "25C31E",
-  AP = "5EA4FF",
-  TelVar = "82BCFF",
-}
-
 local defaults = {
   hideMats = true,
   dontScanTradingHouse = false,

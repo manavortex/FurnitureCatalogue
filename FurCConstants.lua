@@ -1,6 +1,8 @@
 FurC = FurC or {}
 FurC.Constants = {}
 
+local getZoneStr = GetZoneNameById
+
 -- TODO #DBOVERHAUL maybe: Current DB is tree-like which works well with LUA. Right now entries are indexed by localised strings, which may change, may not be unique and are different per language. That is no problem, because people usually don't switch between languages and rebuilding the DB doesn't take long. But if we, for whatever reason, switch to a relational DB or want to sync it with an online relational DB we will need unique and consistent indices.
 
 local idCounter = {}
@@ -72,8 +74,6 @@ FurC.Constants.Versioning = {
 }
 
 FurC.Constants.Versioning.LATEST = FurC.Constants.Versioning.SCIONS
-
-local getZoneStr = GetZoneNameById
 
 -- Location Ids, mix of ingame strings and translations, more control over translations
 FurC.Constants.Locations = {
@@ -220,6 +220,67 @@ FurC.Constants.NPC = {
   YATAVA = GetString(SI_FURC_TRADERS_YATAVA),
   ZADRASKA = GetString(SI_FURC_TRADERS_ZADRASKA),
   ZANIL = GetString(SI_FURC_TRADERS_ZANIL),
+}
+
+local colours = {
+  Vendor = "D68957",
+  Location = "D68957",
+  Gold = "E5dA40",
+  Voucher = "25C31E",
+  AP = "5EA4FF",
+  TelVar = "82BCFF",
+}
+FurC.Constants.Colours = colours
+
+FurC.Constants.Currencies = {
+  [CURT_NONE] = {
+    colour = colours.Gold,
+    name = GetCurrencyName(CURT_NONE),
+  },
+  [CURT_MONEY] = {
+    colour = colours.Gold,
+    name = GetCurrencyName(CURT_MONEY),
+  },
+  [CURT_ALLIANCE_POINTS] = {
+    colour = colours.AP,
+    name = GetCurrencyName(CURT_ALLIANCE_POINTS),
+  },
+  [CURT_TELVAR_STONES] = {
+    colour = colours.TelVar,
+    name = GetCurrencyName(CURT_TELVAR_STONES),
+  },
+  [CURT_WRIT_VOUCHERS] = {
+    colour = colours.Voucher,
+    name = GetCurrencyName(CURT_WRIT_VOUCHERS),
+  },
+  [CURT_CHAOTIC_CREATIA] = {
+    colour = colours.TelVar,
+    name = GetCurrencyName(CURT_CHAOTIC_CREATIA),
+  },
+  [CURT_CROWN_GEMS] = {
+    colour = colours.TelVar,
+    name = GetCurrencyName(CURT_CROWN_GEMS),
+  },
+  [CURT_CROWNS] = {
+    colour = colours.Vendor,
+    name = GetCurrencyName(CURT_CROWNS),
+  },
+  [CURT_STYLE_STONES] = {
+    colour = colours.Voucher,
+    name = GetCurrencyName(CURT_STYLE_STONES),
+  },
+  [CURT_EVENT_TICKETS] = {
+    colour = colours.Voucher,
+    name = GetCurrencyName(CURT_EVENT_TICKETS),
+  },
+  [CURT_UNDAUNTED_KEYS] = {
+    colour = colours.Vendor,
+    name = GetCurrencyName(CURT_UNDAUNTED_KEYS),
+  },
+  [CURT_ENDEAVOR_SEALS] = {
+    colour = colours.Vendor,
+    name = GetCurrencyName(CURT_ENDEAVOR_SEALS),
+  },
 }
 
 -- Old Constants as a fallback for other AddOns that use them
