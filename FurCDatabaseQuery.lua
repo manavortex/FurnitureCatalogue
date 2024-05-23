@@ -1,22 +1,26 @@
 local FurC = FurC or {}
 
 local colour = FurC.Constants.Colours
-local src = FurC.Constants.ItemSources
-local loc = FurC.Constants.Locations
 local curr = FurC.Constants.Currencies
+local loc = FurC.Constants.Locations
+local npc = FurC.Constants.NPC
+local src = FurC.Constants.ItemSources
 
 local join = zo_strjoin
 
 local colourise = FurC.Utils.Colourise
 local getItemLink = FurC.Utils.GetItemLink
-local strDungeon = FurC.Utils.FormatDungeon
-local strEvent = FurC.Utils.FormatEvent
-local strLoc = FurC.Utils.FormatLocations
+local strDungeon = FurC.Utils.FmtDungeon
+local strEvent = FurC.Utils.FmtEvent
+local strLoc = FurC.Utils.FmtLocations
 local strPartOf = FurC.Utils.FormatPartOf
 local strPick = FurC.Utils.FormatPickpocket
 local strPrice = FurC.Utils.FormatPrice
 local strScry = FurC.Utils.FmtScryWithPieces
 local strSteal = FurC.Utils.FormatSteal
+
+local strVoucherVendor = GetString(SI_FURC_STRING_VOUCHER_VENDOR)
+local fmtVendor = GetString(SI_FURC_STRING_VENDOR)
 
 local function makeAchievementLink(achievementId)
   if not achievementId then
@@ -49,7 +53,7 @@ local function getRolisSource(recipeKey, recipeArray)
     return zo_strformat(GetString(SI_FURC_STRING_FAUSTINA), itemPrice)
   end
 
-  return GetString(SI_FURC_STRING_VOUCHER_VENDOR)
+  return strVoucherVendor -- fallback
 end
 FurC.getRolisSource = getRolisSource
 
@@ -82,8 +86,8 @@ local function getLuxurySource(recipeKey, recipeArray, stripColor)
     local weekendString = (nil == itemData.itemDate and "") or zo_strformat(WEEKEND_DATE, formattedDate)
     return zo_strformat(
       SOLD_BY,
-      colourise(GetString(SI_FURC_TRADERS_ZANIL), colour.Vendor, stripColor),
-      colourise(GetString(SI_FURC_LOC_COLDH_HOLLOW), colour.Vendor, stripColor),
+      colourise(npc.LUXF, colour.Vendor, stripColor),
+      colourise(loc.COLDH, colour.Vendor, stripColor),
       colourise(itemData.itemPrice, colour.Gold, stripColor),
       weekendString
     )
@@ -107,7 +111,7 @@ local function getPvpSource(recipeKey, recipeArray, stripColor)
     for locationName, locationData in pairs(vendorData) do
       if nil ~= locationData[recipeKey] then
         return zo_strformat(
-          GetString(SI_FURC_STRING_VENDOR),
+          fmtVendor,
           colourise(vendorName, colour.Vendor, stripColor),
           colourise(locationName, colour.Vendor, stripColor),
           colourise(locationData[recipeKey].itemPrice, colour.AP, stripColor),
@@ -142,7 +146,7 @@ local function getAchievementVendorSource(recipeKey, recipeArray, stripColor)
       local databaseEntry = vendorData[recipeKey]
       if databaseEntry then
         return zo_strformat(
-          GetString(SI_FURC_STRING_VENDOR),
+          fmtVendor,
           colourise(vendorName, colour.Vendor, stripColor),
           colourise(zoneName, colour.Vendor, stripColor),
           colourise(databaseEntry.itemPrice, colour.Gold, stripColor),
@@ -247,10 +251,14 @@ local function getRecipeSource(recipeKey, recipeArray)
 end
 FurC.getRecipeSource = getRecipeSource
 
+local strRItem = GetString(SI_FURC_SRC_RUMOUR_ITEM)
+local strRRecipe = GetString(SI_FURC_SRC_RUMOUR_RECIPE)
 function FurC.getRumourSource(recipeKey, recipeArray)
-  return (recipeArray.blueprint and GetString(SI_FURC_SRC_RUMOUR_RECIPE)) or GetString(SI_FURC_SRC_RUMOUR_ITEM)
+  return (recipeArray.blueprint and strRRecipe) or strRItem
 end
 
+local strCantCraft = GetString(SI_FURC_STRING_CANNOT_CRAFT)
+local strCraftedBy = GetString(SI_FURC_STRING_CRAFTABLE_BY)
 function FurC.GetCrafterList(itemLink, recipeArray)
   if nil == recipeArray and nil == itemLink then
     return
@@ -261,9 +269,9 @@ function FurC.GetCrafterList(itemLink, recipeArray)
   end
 
   if nil == recipeArray.characters or NonContiguousCount(recipeArray.characters) == 0 then
-    return GetString(SI_FURC_STRING_CANNOT_CRAFT)
+    return strCantCraft
   end
-  local ret = GetString(SI_FURC_STRING_CRAFTABLE_BY)
+  local ret = strCraftedBy
   for characterName, characterKnowledge in pairs(recipeArray.characters) do
     ret = string.format("%s %s, ", ret, characterName)
   end

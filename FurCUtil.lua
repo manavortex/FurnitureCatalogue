@@ -9,6 +9,8 @@ local sFormat = zo_strformat
 
 local colours = FurC.Constants.Colours
 local currencies = FurC.Constants.Currencies
+local loc = FurC.Constants.Locations
+local npc = FurC.Constants.NPC
 
 -- TABLE UTILS --
 
@@ -143,14 +145,14 @@ function this.FormatPartOf(itemid, note)
 end
 
 ---Helper for single location formatting
----@param loc string
+---@param location string
 ---@param showPrep boolean|nil
 ---@return string
-local function fmtLocation(loc, showPrep)
+local function _fmtLocation(location, showPrep)
   if showPrep then
-    return sFormat("<<Al:1>>", loc) --> "in (the) XYZ"
+    return sFormat("<<Al:1>>", location) --> "in (the) XYZ"
   end
-  return sFormat("<<1>>", loc) --> "XYZ"
+  return sFormat("<<1>>", location) --> "XYZ"
 end
 
 local inStr = GetString(SI_FURC_GRAMMAR_PREP_LOC_DEFAULT) -- "in"
@@ -158,7 +160,7 @@ local inStr = GetString(SI_FURC_GRAMMAR_PREP_LOC_DEFAULT) -- "in"
 ---<br>- if a preposition is requested but missing, the default is used (EN: "in")
 ---@param ... string locations resolved by GetString like "Summerset^N,on"
 ---@return string locStr single location with preposition or multiple comma separated locations
-function this.FormatLocations(...)
+function this.FmtLocations(...)
   local numLocs = select("#", ...)
 
   if numLocs == 0 then
@@ -167,12 +169,12 @@ function this.FormatLocations(...)
 
   if numLocs == 1 then
     assert(type(...) == "string", "location must be a string")
-    return colourise(fmtLocation(..., true), colours.Location)
+    return colourise(_fmtLocation(..., true), colours.Location)
   end
 
   local locs = { ... }
   for i, str in ipairs(locs) do
-    locs[i] = sFormat(fmtLocation(str, false))
+    locs[i] = sFormat(_fmtLocation(str, false))
   end
 
   -- prepend "in" before joined location strings. good for now, but won't look great with all languages
@@ -182,11 +184,10 @@ function this.FormatLocations(...)
 end
 
 local eventTranslation = GetString(SI_FURC_EVENT)
-
 ---Formatted Event String
 ---@param ... string event strings from GetString(SI_FURC_XYZ) like "Elsweyr Dragons^p,from"
 ---@return string formatted like "From the events: Bounties of Blackwood, Elsweyr Dragons"
-function this.FormatEvent(...)
+function this.FmtEvent(...)
   local numEvents = select("#", ...)
 
   if numEvents == 1 then
@@ -205,16 +206,38 @@ function this.FormatEvent(...)
   return colourise(table.concat(events, ", "), colours.Location)
 end
 
-local dungFmt = GetString(SI_FURC_STRING_DUNGEONS)
-
+local dungFmt = GetString(SI_FURC_SRC_DUNG)
 ---Formatted Dungeon String
 ---@param ... string Resolved names from GetString(SI_FURC_XYZ) like "Fungal Grotto"
 ---@return string formatted like "Dungeon: Fungal Grotto"
-function this.FormatDungeon(...)
+function this.FmtDungeon(...)
   local numDungs = select("#", ...)
   local joined = sJoin(", ", ...)
 
   return sFormat(dungFmt, numDungs, joined)
+end
+
+---Formatted Generic String
+---<br>can be used for the middle part between type and price
+---@see this.FormatPrefixSuffix
+---@param src string source string like "mobs"
+---@param ... string locations like ("Auridon^N,on", "Skywatch")
+---@return string formatted like "mobs in xyz"
+function this.FmtSrcLoc(src, ...)
+  assert(type(src) == "string", "src must be a string")
+
+  local numLocs = select("#", ...)
+
+  if numLocs == 0 then
+    return src
+  end
+
+  if numLocs == 1 then
+    return sFormat("<<1>> <<2>>", src, ...)
+  end
+
+  local joined = sJoin(", ", ...)
+  return sFormat("<<1>>: <<2>>", src, joined)
 end
 
 ---Surround text with prefix and suffix
@@ -264,33 +287,41 @@ function this.FormatPickpocket(people, places)
   return fmtPeoplePlaces(people, places, strPick)
 end
 
-local strHGF = GetString(SI_FURC_TRADERS_HGF)
-
---TODO #DBOVERHAUL: use location here once we have new structure
+--TODO #DBOVERHAUL: use location here once we have new structure, so we can merge the functions
 ---Home Goods Furnisher string
 ---@param location string
 ---@return string ""
 function this.FormatHomeGoods(location)
-  return sFormat("<<1>>", strHGF)
-  -- return sFormat("<<Cl:1>> <<l:2>>", strHGF, location)
+  return sFormat("<<1>>", npc.HGF)
+  -- return sFormat("<<Cl:1>> <<l:2>>", npc.HGF, location)
 end
 
---TODO #DBOVERHAUL: use location here once we have new structure
-local strAF = GetString(SI_FURC_TRADERS_AF)
+--TODO #DBOVERHAUL: use location here once we have new structure, so we can merge the functions
 ---@param location string
 ---@return string ""
 function this.FormatAchievementFurnisher(location)
-  return sFormat("<<1>>", strAF)
-  -- return sFormat("<<Cl:1>> <<l:2>>", strHGF, location)
+  return sFormat("<<1>>", npc.AF)
 end
 
---TODO #DBOVERHAUL: use location here once we have new structure
-local strCAF = GetString(SI_FURC_TRADERS_CAF)
+--TODO #DBOVERHAUL: use location here once we have new structure, so we can merge the functions
 ---@param location string
 ---@return string ""
 function this.FormatCapitalAchievementFurnisher(location)
-  return sFormat("<<1>>", strCAF)
-  -- return sFormat("<<Cl:1>> <<l:2>>", strHGF, location)
+  return sFormat("<<1>>", npc.CAF)
+end
+
+--TODO #DBOVERHAUL: use location here once we have new structure, so we can merge the functions
+---@param location string
+---@return string ""
+function this.FormatHolidayFurnisher(location)
+  return sFormat("<<1>>", npc.HOLIDAY)
+end
+
+--TODO #DBOVERHAUL: use location here once we have new structure, so we can merge the functions
+---@param location string
+---@return string ""
+function this.FormatBattlegroundFurnisher(location)
+  return sFormat("<<1>>", npc.BGF)
 end
 
 local scrFrom = GetString(SI_FURC_LOOT_SCRYING)
@@ -307,7 +338,7 @@ function this.FmtScryWithPieces(pieceNum, ...)
 
   for i = 1, #locations do
     if type(locations[i]) == "string" then
-      locations[i] = this.FormatLocations(locations[i])
+      locations[i] = this.FmtLocations(locations[i])
     end
   end
 
@@ -316,12 +347,20 @@ function this.FmtScryWithPieces(pieceNum, ...)
   return string.format("%s %s %s", sFormat("<<C:1>>", scrFrom), table.concat(locations, "/"), pieces)
 end
 
+local questFmt = GetString(SI_FURC_QUESTREWARD)
+function this.FmtQuest(questid, location)
+  local name = GetQuestName(questid)
+  local flagQ = (name ~= "" and 1) or 0
+  local flagL = (location ~= "" and 1) or 0
+  return zo_strformat(questFmt, flagQ + flagL, name, location)
+end
+
 function this.FmtScry(...)
   local locations = { ... }
 
   for i = 1, #locations do
     if type(locations[i]) == "string" then
-      locations[i] = this.FormatLocations(locations[i])
+      locations[i] = this.FmtLocations(locations[i])
     end
   end
 
@@ -329,7 +368,6 @@ function this.FmtScry(...)
 end
 
 local vendorString = GetString(SI_FURC_STRING_VENDOR)
-
 ---comment
 ---@param vendorRef string vendor string like SI_FURC_GUILD_PSIJIC_NALIRSEWEN
 ---@param locRefs table locations with optional hierarchies like {*_ZONE, *_PLACE, *_SHOP}

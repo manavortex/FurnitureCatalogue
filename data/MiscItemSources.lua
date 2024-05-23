@@ -1,16 +1,18 @@
 FurC.MiscItemSources = FurC.MiscItemSources or {}
 
+local loc = FurC.Constants.Locations
 local ver = FurC.Constants.Versioning
 local src = FurC.Constants.ItemSources
 
 local join = zo_strjoin
-local loc = FurC.Constants.Locations
-local strDungeon = FurC.Utils.FormatDungeon
-local strEvent = FurC.Utils.FormatEvent
-local strLoc = FurC.Utils.FormatLocations
+local strSrcLoc = FurC.Utils.FmtSrcLoc
+local strDungeon = FurC.Utils.FmtDungeon
+local strEvent = FurC.Utils.FmtEvent
+local strLoc = FurC.Utils.FmtLocations
 local strPartOf = FurC.Utils.FormatPartOf
 local strPick = FurC.Utils.FormatPickpocket
 local strPrice = FurC.Utils.FormatPrice
+local strQuest = FurC.Utils.FmtQuest
 local strScry = FurC.Utils.FmtScryWithPieces
 local strSteal = FurC.Utils.FormatSteal
 
@@ -22,8 +24,6 @@ local loc_cwc = loc.CWC
 
 -- Quests and Guilds
 local questRewardString = GetString(SI_FURC_QUESTREWARD)
-local questRewardSuran = zo_strformat("<<1>> <<2>>", questRewardString, GetString(SI_FURC_LOC_VVARDENFELL_SURAN))
-local questRewardLilandril = zo_strformat("<<1>> <<2>>", questRewardString, GetString(SI_FURC_LOC_LILANDRIL))
 local tribute = GetString(SI_FURC_SRC_TOT)
 local tribute_ranked = GetString(SI_FURC_SRC_TOT_RANKED)
 local db_poison = zo_strformat("<<1>> <<2>>", GetString(SI_FURC_DB), GetString(SI_FURC_DB_POISON))
@@ -68,7 +68,7 @@ local chests_blackr_grcaverns = chests_string .. " in Blackreach: Greymoor Caver
 local book_hall = "From chests in the Scrivener's Hall vault"
 local nymic = "From Bastion Nymic reward chests"
 local chests_necrom = chests_string .. loc.TELVANNI .. loc.APOCRYPHA
-local puplicdungeon_fw_vv = GetString(SI_FURC_DROP) .. " in Forgotten Wastes" .. "loc_vvardenfell"
+local pdung_vv_fw = strSrcLoc(GetString(SI_FURC_DROP), loc.PDUNG_VVARDENFELL_FW, loc.VVARDENFELL)
 local plants_vvardenfell = GetString(SI_FURC_LOOT_PLANTS) .. "loc_vvardenfell"
 local fishing = GetString(SI_FURC_LOOT_FISH)
 local fishing_summerset = fishing .. loc.SUMMERSET
@@ -586,7 +586,7 @@ FurC.MiscItemSources[ver.TIDES] = {
     [183856] = strPack("aquatic"), -- Target Mudcrab, Robust Coral,
     [183201] = strCrown(1000), -- Music Box: Bleak Beacon Shanty,
     [183200] = strCrown(1100), -- Music Box: Wonders of the Shoals,
-    [183198] = join(", ", loc.FARGRAVE_FF, strCrown(10)), -- Bushes, Withered Cluster,
+    [183198] = join(", ", loc.FARGRAVE, strCrown(10)), -- Bushes, Withered Cluster,
     [178477] = strCrown(170), -- Nedic Bookcase, Filled,
     [120853] = "This is craftable, or " .. strCrown(430), -- Stockade,
 
@@ -1890,7 +1890,7 @@ FurC.MiscItemSources[ver.ALTMER] = {
     [139063] = GetString(SI_FURC_GIANT_CLAM), -- Pearl, Enormous
     [139061] = GetString(SI_FURC_GIANT_CLAM), -- Giant Clam, Sealed
 
-    [139073] = questRewardLilandril, -- Painting of Summerset Coast, Refined
+    [139073] = strQuest(6129, strLoc(loc.SUMMERSET, loc.LILANDRIL)), -- Painting of Summerset Coast, Refined ; Quest: The Perils of Art
     [139072] = GetString(SI_FURC_ELF_PIC), -- Painting of Monastery of Serene Harmony, Refined
     [139074] = GetString(SI_FURC_ELF_PIC), -- Painting of Aldmeri Ruins, Refined
     [139069] = GetString(SI_FURC_ELF_PIC), -- Painting of Griffin Nest, Refined
@@ -2022,7 +2022,7 @@ FurC.MiscItemSources[ver.MORROWIND] = {
   [src.DROP] = {
 
     --Public dungeon Forgotten Wastes / maybe rarest drop at all ingame
-    [127149] = puplicdungeon_fw_vv, -- Morrowind Banner of the 6th House
+    [127149] = pdung_vv_fw, -- Morrowind Banner of the 6th House
 
     -- Dwemer parts
     [126660] = automaton_loot_vv, -- Dwemer Gear, Tiered
@@ -2111,7 +2111,7 @@ FurC.MiscItemSources[ver.MORROWIND] = {
     [125671] = plants_vvardenfell, -- Toadstool, Bloodtooth Cap
     [125672] = plants_vvardenfell, -- Toadstool, Bloodtooth Cluster
 
-    [126759] = questRewardSuran, -- Sir Sock's Ball of Yarn
+    [126759] = strQuest(5864, strLoc(loc.VVARDENFELL, loc.VVARDENFELL_SURAN)), -- Sir Sock's Ball of Yarn ; Quest: 'Nothing to Sneeze At'
 
     [126592] = GetString(SI_FURC_LOOT_PLANTS), -- Plants, Hanging Pitcher Pair
   },
