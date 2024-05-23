@@ -87,12 +87,11 @@ FurC.Constants.Locations = {
   BETHNIKH = getZoneStr(535), -- Betnikh
   BLACKWOOD = getZoneStr(1261), -- Blackwood
   BLEAK = getZoneStr(280), -- Bleakrock Isle
+  COLDH = getZoneStr(347), -- Coldharbor
   CRAGLORN = getZoneStr(888), -- Craglorn
   CWC = getZoneStr(980), -- Clockwork City
-  COLDH = getZoneStr(347), -- Coldharbor
   DEADLANDS = getZoneStr(1286), -- Deadlands
   DESHAAN = getZoneStr(57), -- Deshaan
-  DESHAAN_MH = getZoneStr(600), -- Mournhold
   DUNG_DOM = getZoneStr(1081), -- Depths of Malatar
   DUNG_FL = getZoneStr(1009), -- Fang Lair
   DUNG_IA = getZoneStr(1436), -- Infinite Archive
@@ -112,6 +111,7 @@ FurC.Constants.Locations = {
   MALABAL = getZoneStr(58), -- Malabal Tor
   MURKMIRE = getZoneStr(726), -- Murkmire
   NELSWEYR = getZoneStr(1086), -- Northern Elsweyr
+  PDUNG_VVARDENFELL_FW = getZoneStr(919), -- Forgotten Wastes
   REACH = getZoneStr(1207), -- The Reach
   REAPER = getZoneStr(382), -- Reaper's March
   RIFT = getZoneStr(103), -- Rift
@@ -126,36 +126,11 @@ FurC.Constants.Locations = {
   VVARDENFELL = getZoneStr(849), -- Vvardenfell
   WROTHGAR = getZoneStr(684), -- Wrothgar
   WSKYRIM = getZoneStr(1160), -- Western Skyrim
-  -- Custom or not directly available ingame (might exist in string table, but ids keep changing)
-  -- TODO: Could extract city names from outlaw refuge string, but would be a bit hacky
-  ALIKR_KOZANZET_SWI = GetString(SI_FURC_LOC_ALIKR_KOZANZET_SWI),
+  -- Custom
   ANY = GetString(SI_FURC_LOC_ANY),
   ANY_CAPITAL = GetString(SI_FURC_LOC_ANY_CAPITAL),
   ANY_CITY = GetString(SI_FURC_LOC_ANY_CITY),
-  AURIDON_SKYWATCH = GetString(SI_FURC_LOC_AURIDON_SKYWATCH),
-  BALFOYEN_DHALMORA = GetString(SI_FURC_LOC_BALFOYEN_DHALMORA),
-  BANG_EVERMORE = GetString(SI_FURC_LOC_BANG_EVERMORE),
-  BETHNIKH_LTT = GetString(SI_FURC_LOC_BETHNIKH_LTT),
-  BLACKWOOD_LEYAWIIN = GetString(SI_FURC_LOC_BLACKWOOD_LEYAWIIN),
-  BLACKWOOD_LEYAWIIN_DBF = GetString(SI_FURC_LOC_BLACKWOOD_LEYAWIIN_DBF),
-  COLDH_HOLLOW = GetString(SI_FURC_LOC_COLDH_HOLLOW),
-  COLDH_HOLLOW_CGG = GetString(SI_FURC_LOC_COLDH_HOLLOW_CGG),
-  CRAGLORN_BELKARTH = GetString(SI_FURC_LOC_CRAGLORN_BELKARTH),
-  CRAGLORN_BELKARTH_WOOD = GetString(SI_FURC_LOC_CRAGLORN_BELKARTH_WOOD),
-  CWC_CITADEL_MARKET = GetString(SI_FURC_LOC_CWC_CITADEL_MARKET),
-  DESHAAN_MH_BANK = GetString(SI_FURC_LOC_DESHAAN_MH_BANK),
-  EASTMARCH_AMOL = GetString(SI_FURC_LOC_EASTMARCH_AMOL),
-  ELSWEYR = GetString(SI_FURC_LOC_ELSWEYR),
-  FARGRAVE_FF = GetString(SI_FURC_LOC_FARGRAVE_FF),
-  GALEN_VAS = GetString(SI_FURC_LOC_GALEN_VAS),
-  GALEN_VAS_TOHF = GetString(SI_FURC_LOC_GALEN_VAS_TOHF),
-  GLENUMBRA_DF_RL = GetString(SI_FURC_LOC_GLENUMBRA_DF_RL),
-  GOLDCOAST_KVATCH = GetString(SI_FURC_LOC_GOLDCOAST_KVATCH),
-  GRAHTWOOD_REDFUR = GetString(SI_FURC_LOC_GRAHTWOOD_REDFUR),
-  GREENSHADE_MARBRUK = GetString(SI_FURC_LOC_GREENSHADE_MARBRUK),
-  HIGHISLE_GFB = GetString(SI_FURC_LOC_HIGHISLE_GFB),
-  HIGHISLE_GFB_FOFF = GetString(SI_FURC_LOC_HIGHISLE_GFB_FOFF),
-  KHENARTHI_MISTRAL = GetString(SI_FURC_LOC_KHENARTHI_MISTRAL),
+  -- TODO
   LILANDRIL = GetString(SI_FURC_LOC_LILANDRIL),
   MURKMIRE_LIL = GetString(SI_FURC_LOC_MURKMIRE_LIL),
   PLACE_ORSINIUM = GetString(SI_FURC_LOC_PLACE_ORSINIUM),
@@ -180,11 +155,6 @@ FurC.Constants.Locations = {
 -- NPC ids, for better readability and more control of the string sources
 FurC.Constants.NPC = {
 
-  -- Battleground Furnishers
-  -- there are a dozen or so, can be merged, despite there being 1 for banners and 1 for furniture
-  BRELDA = GetString(SI_FURC_TRADERS_BRELDA), -- Vvardenfell, Vivec City, Battleground Housing Goods
-  LLIVAS = GetString(SI_FURC_TRADERS_LLIVAS), -- Battle Grounds Furnisher, Vivec City
-
   -- Other Furnishers
   ALCHEMISTS = GetString(SI_FURC_TRADERS_ALCHEMISTS), -- any alchemist
   BLACKSMITHS = GetString(SI_FURC_TRADERS_BLACKSMITHS), -- any blacksmith
@@ -194,13 +164,13 @@ FurC.Constants.NPC = {
   ENCHANTERS = GetString(SI_FURC_TRADERS_ENCHANTERS), -- any enchanter
 
   -- Special Merchants
-  IMPRESS = GetString(SI_FURC_TRADERS_IMPRESS), -- Event Merchant, any capital city
-  ZANIL = GetString(SI_FURC_TRADERS_ZANIL), -- Luxury Furnisher
-
-  HGF = GetString(SI_FURC_TRADERS_HGF), -- Home Goods Furnisher: Maladiq, Rohzika, ...
   AF = GetString(SI_FURC_TRADERS_AF), -- Achievement Vendor: Lozotusk, ...
+  BGF = GetString(SI_FURC_TRADERS_BGF), -- Battlegrounds Furnishers
   CAF = GetString(SI_FURC_TRADERS_CAF), -- Main Achievement Vendor: Nolenowen, ...
+  EVENT = GetString(SI_FURC_TRADERS_EVENT), -- Event Merchant, any capital city: The Impressario
+  HGF = GetString(SI_FURC_TRADERS_HGF), -- Home Goods Furnisher: Maladiq, Rohzika, ...
   HOLIDAY = GetString(SI_FURC_TRADERS_HOLIDAY), -- Heralda, Tildannire, ...
+  LUXF = GetString(SI_FURC_TRADERS_LUXF), -- Luxury Furnisher: Zanil
 
   -- Guild Traders
   FIGHTERS_STEWARD = GetString(SI_FURC_GUILD_FIGHTERS_STEWARD), -- stewards in Fighters Guild locations

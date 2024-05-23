@@ -7,9 +7,11 @@ local npc = FurC.Constants.NPC
 
 local join = zo_strjoin
 local merge = FurC.Utils.MergeTable
-local strHGF = FurC.Utils.FormatHomeGoods
 local strAF = FurC.Utils.FormatAchievementFurnisher
+local strBGF = FurC.Utils.FormatBattlegroundFurnisher
 local strCAF = FurC.Utils.FormatCapitalAchievementFurnisher
+local strHF = FurC.Utils.FormatHolidayFurnisher
+local strHGF = FurC.Utils.FormatHomeGoods
 
 local function getQuestString(questIdOrName)
   local questName = questIdOrName
@@ -2142,7 +2144,7 @@ FurC.AchievementVendors[ver.DRAGON2] = {
 -- 12 Scalebreaker
 FurC.AchievementVendors[ver.SCALES] = {
   [GetString(SI_FURC_EVENT_IC)] = {
-    [npc.IMPRESS] = {
+    [npc.EVENT] = {
       [153554] = { itemPrice = 1 }, -- Imperial Mirror, Standing
       [153562] = { itemPrice = 1 }, -- Daedric Brazier, Standing
       [153561] = { itemPrice = 3 }, -- Daedric Chandelier, Ritual
@@ -2897,7 +2899,7 @@ FurC.AchievementVendors[ver.CLOCKWORK] = {
   },
 
   [loc.ANY_CAPITAL] = {
-    [npc.HOLIDAY] = {
+    [strHF(loc.ANY_CAPITAL)] = {
       [134291] = { -- New Life Bonfire
         itemPrice = 10000,
         achievement = 1671,
@@ -3468,8 +3470,8 @@ FurC.AchievementVendors[ver.MORROWIND] = {
     },
   },
 
-  [loc.VVARDENFELL_VIVEC_GQ] = {
-    [npc.BRELDA] = {
+  [loc.ANY_CAPITAL] = {
+    [strBGF(loc.ANY_CAPITAL)] = {
       [126649] = { -- Banner of the Fire Drakes
         itemPrice = 50000,
         achievement = 1909, -- Crowd Favorite
@@ -3494,7 +3496,6 @@ FurC.AchievementVendors[ver.MORROWIND] = {
         itemPrice = 25000,
         achievement = 1907, -- Grand Standard-Guardian
       },
-
       [126713] = { -- Tapestry of the FD
         itemPrice = 100000,
         achievement = 1910, -- Conquering Hero
@@ -3505,12 +3506,8 @@ FurC.AchievementVendors[ver.MORROWIND] = {
       },
       [126714] = { -- Tapestry of the SL
         itemPrice = 100000,
-
         achievement = 1910, -- Conquering Hero
       },
-    },
-
-    [npc.LLIVAS] = {
       [126716] = { -- Brazier of the FD
         itemPrice = 50000,
         achievement = 1913, -- Grand Champion
@@ -3536,10 +3533,8 @@ FurC.AchievementVendors[ver.MORROWIND] = {
         achievement = 1901, -- Grand Relic Guardian
       },
     },
-  },
 
-  [loc.ANY_CAPITAL] = {
-    [npc.HOLIDAY] = {
+    [strHF(loc.ANY_CAPITAL)] = {
       [126720] = { -- Banner of Mayhem
         itemPrice = 5000,
         achievement = 1883, -- Mayhem Connaiseour
@@ -3578,7 +3573,7 @@ FurC.Books[ver.HOMESTEAD] = bookList
 FurC.AchievementVendors[ver.HOMESTEAD] = {
   [loc.ANY_CAPITAL] = {
     [npc.CAF] = capitalVendor,
-    [npc.HOLIDAY] = holidayVendor,
+    [strHF(loc.ANY_CAPITAL)] = holidayVendor,
   },
   [loc.DESHAAN] = {
     [strAF(loc.DESHAAN)] = {

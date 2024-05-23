@@ -67,12 +67,11 @@ local function buildQuestTable()
   for id = 1, MAX_QUESTS do
     local questName = GetQuestName(id)
     if questName ~= "" then
-      questTable[id] = LocaleAwareToLower(zo_strformat(questName))
+      questTable[id] = questName
     end
   end
 end
 
--- /script d(FurCDev.FindZone("weide"))
 local NUM_ZONES = GetNumZones() -- 982 as of version 101041
 local MAX_INDEX = NUM_ZONES * 100 -- don't iterate higher than that, man
 local STEP_SIZE = NUM_ZONES -- "What are you doing, step size?"
@@ -158,14 +157,16 @@ local function findQuest(questName)
     return results
   end
 
-  if #questTable < 1 then
+  if NonContiguousCount(questTable) < 1 then
+    FurC.Logger:Debug("Have to build quest table, search again")
     buildQuestTable()
+    return results
   end
 
   questName = LocaleAwareToLower(zo_strformat(questName))
   for id, name in pairs(questTable) do
     if string.find(name, questName) then
-      table.insert(results, zo_strformat("<<1>>: <<2>>", id, name))
+      results[id] = name
     end
   end
   return results
@@ -180,9 +181,10 @@ local function findZone(zoneName)
     return results
   end
 
-  if #zoneTable < 1 then
+  if NonContiguousCount(zoneTable) < 1 then
     FurC.Logger:Debug("Have to build zone table, search again when it's done")
     buildZoneTable()
+    return results
   end
 
   zoneName = LocaleAwareToLower(zo_strformat(zoneName))
