@@ -266,11 +266,22 @@ end
 
 local strHGF = GetString(SI_FURC_TRADERS_HGF)
 
+--TODO #DBOVERHAUL: use location here once we have new structure
 ---Home Goods Furnisher string
 ---@param location string
 ---@return string ""
 function this.FormatHomeGoods(location)
-  return sFormat("<<Cl:1>> <<l:2>>", strHGF, location)
+  return sFormat("<<1>>", strHGF)
+  -- return sFormat("<<Cl:1>> <<l:2>>", strHGF, location)
+end
+
+--TODO #DBOVERHAUL: use location here once we have new structure
+local strAch = GetString(SI_FURC_TRADERS_ACH)
+---@param location string
+---@return string ""
+function this.FormatAchTrader(location)
+  return sFormat("<<1>>", strAch)
+  -- return sFormat("<<Cl:1>> <<l:2>>", strHGF, location)
 end
 
 local scrFrom = GetString(SI_FURC_LOOT_SCRYING)

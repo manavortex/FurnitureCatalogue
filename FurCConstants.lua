@@ -115,6 +115,7 @@ FurC.Constants.Locations = {
   REACH = getZoneStr(1207), -- The Reach
   REAPER = getZoneStr(382), -- Reaper's March
   RIFT = getZoneStr(103), -- Rift
+  RIVEN = getZoneStr(20), -- Rivenspire
   SELSWEYR = getZoneStr(1133), -- Southern Elsweyr
   SHADOWFEN = getZoneStr(117), -- Shadowfen
   STONEFALLS = getZoneStr(41), -- Stonefalls
@@ -160,6 +161,7 @@ FurC.Constants.Locations = {
   PLACE_ORSINIUM = GetString(SI_FURC_LOC_PLACE_ORSINIUM),
   REACH_MARKARTH_MM = GetString(SI_FURC_LOC_REACH_MARKARTH_MM),
   SELSWEYR_DHA = GetString(SI_FURC_LOC_SELSWEYR_DHA),
+  SELSWEYR_SENCHAL_MARKET = GetString(SI_FURC_LOC_SELSWEYR_SENCHAL_MARKET),
   SHADOWFEN_CORIMONT = GetString(SI_FURC_LOC_SHADOWFEN_CORIMONT),
   STONEFALLS_EBONHEART = GetString(SI_FURC_LOC_STONEFALLS_EBONHEART),
   SUMMERSET_ALINOR = GetString(SI_FURC_LOC_SUMMERSET_ALINOR),
@@ -167,10 +169,12 @@ FurC.Constants.Locations = {
   UNDAUNTED = GetString(SI_FURC_LOC_UNDAUNTED),
   MALABAL_VULKW_TAVERN = GetString(SI_FURC_LOC_MALABAL_VULKW_TAVERN),
   STORMHVN_WAY_MERCH = GetString(SI_FURC_LOC_STORMHVN_WAY_MERCH),
+  TELVANNI_NECROM_FRF = GetString(SI_FURC_TELVANNI_NECROM_FRF),
   VVARDENFELL_SURAN = GetString(SI_FURC_LOC_VVARDENFELL_SURAN),
   VVARDENFELL_VIVEC = GetString(SI_FURC_LOC_VVARDENFELL_VIVEC),
   VVARDENFELL_VIVEC_GQ = GetString(SI_FURC_LOC_VVARDENFELL_VIVEC_GQ),
   VVARDENFELL_VIVEC_SDI = GetString(SI_FURC_LOC_VVARDENFELL_VIVEC_SDI),
+  WSKYRIM_SOLI_DH = GetString(SI_FURC_LOC_WSKYRIM_SOLI_DH),
 }
 
 -- NPC ids, for better readability and more control of the string sources
@@ -178,17 +182,16 @@ FurC.Constants.NPC = {
 
   -- Achievement Traders
   ATHRAGOR = GetString(SI_FURC_TRADERS_ATHRAGOR), -- ACH: in AD zones + Kvatch + Cyrodiil: Western Elseweyr Gate
-  NETINNDEL = GetString(SI_FURC_TRADERS_NETINNDEL), -- WSKYRIM
-  DROPSNOGLASS = GetString(SI_FURC_TRADERS_DROPSNOGLASS), -- VVARDENFELL
-  HARNWULF = GetString(SI_FURC_TRADERS_HARNWULF), -- MURKMIRE
-  IDRENIE = GetString(SI_FURC_TRADERS_IDRENIE), -- ACH: on Highisle, Vastyr, Touch of Home Furnishings
+  NETINNDEL = GetString(SI_FURC_TRADERS_NETINNDEL), -- ACH: WSKYRIM
+  DROPSNOGLASS = GetString(SI_FURC_TRADERS_DROPSNOGLASS), -- ACH: VVARDENFELL
+  HARNWULF = GetString(SI_FURC_TRADERS_HARNWULF), -- ACH: MURKMIRE
+  IDRENIE = GetString(SI_FURC_TRADERS_IDRENIE), -- ACH: on Galen, Vastyr, Touch of Home Furnishings
   JERAN = GetString(SI_FURC_TRADERS_JERAN), -- ACH: on Highisle, Gonfalon Bay, Furnishings of Finesse
   LATHAHIM = GetString(SI_FURC_TRADERS_LATHAHIM), -- ACH: in Northern Elsweyr, Rimmen, Fine Furniture
   LOZOTUSK = GetString(SI_FURC_TRADERS_LOZOTUSK), -- ACH: in DC zones + Orsinium + Hollow City + Imperial Sewers: Daggerfall Base
   LTS = GetString(SI_FURC_TRADERS_LTS), -- ACH: in EP zones + Hew's Bane + Cyrodiil: Southern Morrwind Gate
   MARTINA = GetString(SI_FURC_TRADERS_MARTINA), -- ACH: in Southern Elsweyr, Tideholm, Dragonguard Sanctum
   MIRASO = GetString(SI_FURC_TRADERS_MIRASO), -- ACH: in Blackwood, Leyawiin, Domestic Bliss Furnishings
-  NARWAAWENDE = GetString(SI_FURC_TRADERS_NARWAAWENDE), -- ACH: in alliance capital cities + Vivec City
   RAZOUFA = GetString(SI_FURC_TRADERS_RAZOUFA), -- ACH: in Clockwork City, Brass Fortress, Domicile Enhancement Hub
   TARMIMN = GetString(SI_FURC_TRADERS_TARMIMN), -- ACH: on Summerset, Alinor, Riverside Market
   TEZURS = GetString(SI_FURC_TRADERS_TEZURS), -- ACH: in the Infinite Archive
@@ -228,9 +231,12 @@ FurC.Constants.NPC = {
   CLOTHIERS = GetString(SI_FURC_TRADERS_CLOTHIERS), -- any clothier
   COOKS = GetString(SI_FURC_TRADERS_COOKS), -- any cook
   ENCHANTERS = GetString(SI_FURC_TRADERS_ENCHANTERS), -- any enchanter
+
+  -- Special Merchants
   IMPRESS = GetString(SI_FURC_TRADERS_IMPRESS), -- Event Merchant, any capital city
   ZANIL = GetString(SI_FURC_TRADERS_ZANIL), -- Luxury Furnisher
   HERALDA = GetString(SI_FURC_TRADERS_HERALDA), -- Event Achievement Trader, any capital city
+  NARWAAWENDE = GetString(SI_FURC_TRADERS_NARWAAWENDE), -- Global Achievement Vendor in alliance capital cities + Vivec City
 
   -- Guild Traders
   FIGHTERS_STEWARD = GetString(SI_FURC_GUILD_FIGHTERS_STEWARD), -- stewards in Fighters Guild locations

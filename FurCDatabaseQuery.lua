@@ -3,6 +3,7 @@ local FurC = FurC or {}
 local colour = FurC.Constants.Colours
 local src = FurC.Constants.ItemSources
 local loc = FurC.Constants.Locations
+local curr = FurC.Constants.Currencies
 
 local join = zo_strjoin
 
@@ -105,7 +106,6 @@ local function getPvpSource(recipeKey, recipeArray, stripColor)
   for vendorName, vendorData in pairs(versionData) do
     for locationName, locationData in pairs(vendorData) do
       if nil ~= locationData[recipeKey] then
-        --TODO: FurC.Utils.FormatPrefixSuffix()
         return zo_strformat(
           GetString(SI_FURC_STRING_VENDOR),
           colourise(vendorName, colour.Vendor, stripColor),
@@ -121,6 +121,7 @@ local function getPvpSource(recipeKey, recipeArray, stripColor)
 end
 FurC.getPvpSource = getPvpSource
 
+-- TODO #REFACTOR: add info to item in DB and generate str from that. then use lookup by id
 local function getAchievementVendorSource(recipeKey, recipeArray, stripColor)
   recipeArray = recipeArray or FurC.Find(recipeKey)
   if {} == recipeArray then
@@ -136,12 +137,10 @@ local function getAchievementVendorSource(recipeKey, recipeArray, stripColor)
     )
   end
 
-  local databaseEntry
-
   for zoneName, zoneData in pairs(versionData) do
     for vendorName, vendorData in pairs(zoneData) do
-      databaseEntry = vendorData[recipeKey]
-      if nil ~= databaseEntry then
+      local databaseEntry = vendorData[recipeKey]
+      if databaseEntry then
         return zo_strformat(
           GetString(SI_FURC_STRING_VENDOR),
           colourise(vendorName, colour.Vendor, stripColor),

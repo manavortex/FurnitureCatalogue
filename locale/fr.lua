@@ -248,7 +248,7 @@ local strings = {
   SI_FURC_VERBOSE_SCANNING_DATA_FILE = "Furniture Catalogue: Analyse des fichiers de données...",
   SI_FURC_VERBOSE_STARTUP = "Furniture Catalogue: Si vous manquez de recettes, veuillez déclencher une analyse de votre artisan de meubles en cliquant sur le bouton Actualiser dans l'UI.",
   SI_FURC_VV_PAINTING = "Extrêmement rarement dans les coffres ou des Cassetes à Vvardenfell ",
-  -- 202 ENTRIES THE SAME IN BOTH LANGUAGES
+  -- 203 ENTRIES THE SAME IN BOTH LANGUAGES
   FURC_AV_LEGERDEMAIN_20 = "Legerdemain Rank 20",
   SI_FURC_CRATE_ALLMAKER = "All-Maker",
   SI_FURC_CRATE_ARMIGER = "Buoyant Armiger",
@@ -412,6 +412,7 @@ local strings = {
   SI_FURC_STRING_PIECES = "<<1[ / /($d pieces)]>>",
   SI_FURC_STRING_TRADER = "Trader",
   SI_FURC_TELVANNI_NECROM_FRF = "Necrom, Final Rest Furnishings",
+  SI_FURC_TRADERS_ACH = "Achievement Furnisher^n,from",
   SI_FURC_TRADERS_ADOSA = "Adosa Veralor",
   SI_FURC_TRADERS_ATHRAGOR = "Athragor",
   SI_FURC_TRADERS_AVERIO = "Averio Brassac",
