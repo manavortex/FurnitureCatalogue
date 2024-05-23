@@ -7,16 +7,13 @@ local join = zo_strjoin
 local loc = FurC.Constants.Locations
 local strDungeon = FurC.Utils.FormatDungeon
 local strEvent = FurC.Utils.FormatEvent
-local strLoc = FurC.Utils.FormatLocation
-local strNPC = FurC.Utils.FormatNPC
+local strLoc = FurC.Utils.FormatLocations
 local strPartOf = FurC.Utils.FormatPartOf
 local strPick = FurC.Utils.FormatPickpocket
 local strPrice = FurC.Utils.FormatPrice
-local strQuest = FurC.Utils.FormatQuest
-local strScry = FurC.Utils.FormatScry
+local strScry = FurC.Utils.FmtScryWithPieces
 local strSteal = FurC.Utils.FormatSteal
 
--- locations
 local loc_vvardenfell = loc.VVARDENFELL
 local loc_nelsweyr = loc.NELSWEYR
 local loc_selsweyr = loc.SELSWEYR
@@ -34,23 +31,23 @@ local db_sneaky = zo_strformat("<<1>> <<2>>", GetString(SI_FURC_DB), GetString(S
 local db_equip = zo_strformat("<<1>> <<2>>", GetString(SI_FURC_DB), GetString(SI_FURC_DB_EQUIP))
 
 -- Events
-local ev_blackwood = strEvent({ GetString(SI_FURC_EVENT_BLACKWOOD) })
-local ev_hollowjack = strEvent({ GetString(SI_FURC_EVENT_HOLLOWJACK) })
-local ev_elsweyr = strEvent({ GetString(SI_FURC_EVENT_ELSWEYR) })
+local ev_blackwood = strEvent(GetString(SI_FURC_EVENT_BLACKWOOD))
+local ev_hollowjack = strEvent(GetString(SI_FURC_EVENT_HOLLOWJACK))
+local ev_elsweyr = strEvent(GetString(SI_FURC_EVENT_ELSWEYR))
 
 -- Stealing
 
 local stealable = GetString(SI_FURC_LOOT_STEALING)
-local stealable_guard = strPick({ GetString(SI_FURC_NPC_GUARD) })
+local stealable_guard = strPick({ GetString(SI_FURC_NPC_GUARD) }, {})
 local stealable_cc = strSteal({}, { loc_cwc })
-local stealable_scholars = stealable .. strNPC(SI_FURC_NPC_SCHOLAR)
-local stealable_mages = stealable .. ": " .. strNPC(SI_FURC_NPC_MAGE)
-local stealable_nerds = stealable .. ": " .. join(strNPC(SI_FURC_NPC_MAGE), strNPC(SI_FURC_NPC_SCHOLAR))
-local stealable_priests = stealable .. ": " .. strNPC(SI_FURC_NPC_PRIEST)
-local stealable_pilgrims = stealable .. ": " .. strNPC(SI_FURC_NPC_PILGRIM)
-local stealable_thief = stealable .. ": " .. strNPC(SI_FURC_NPC_THIEF)
-local stealable_wood = stealable .. ": " .. strNPC(SI_FURC_NPC_WOODWORKER)
-local stealable_drunkards = stealable .. ": " .. strNPC(SI_FURC_NPC_DRUNKARD)
+local stealable_scholars = stealable .. GetString(SI_FURC_NPC_SCHOLAR)
+local stealable_mages = stealable .. ": " .. GetString(SI_FURC_NPC_MAGE)
+local stealable_nerds = stealable .. ": " .. join(",", GetString(SI_FURC_NPC_MAGE), GetString(SI_FURC_NPC_SCHOLAR))
+local stealable_priests = stealable .. ": " .. GetString(SI_FURC_NPC_PRIEST)
+local stealable_pilgrims = stealable .. ": " .. GetString(SI_FURC_NPC_PILGRIM)
+local stealable_thief = stealable .. ": " .. GetString(SI_FURC_NPC_THIEF)
+local stealable_wood = stealable .. ": " .. GetString(SI_FURC_NPC_WOODWORKER)
+local stealable_drunkards = stealable .. ": " .. GetString(SI_FURC_NPC_DRUNKARD)
 local stealable_loc_wrothgar = stealable .. ": " .. " loc_wrothgar"
 local stealable_swamp = stealable .. " loc_murkmire"
 local stealable_elsewhere = strSteal(loc_elsweyr)
@@ -589,7 +586,7 @@ FurC.MiscItemSources[ver.TIDES] = {
     [183856] = strPack("aquatic"), -- Target Mudcrab, Robust Coral,
     [183201] = strCrown(1000), -- Music Box: Bleak Beacon Shanty,
     [183200] = strCrown(1100), -- Music Box: Wonders of the Shoals,
-    [183198] = join(", ", GetString(SI_FURC_LOC_FARGRAVE_FF), strCrown(10)), -- Bushes, Withered Cluster,
+    [183198] = join(", ", loc.FARGRAVE_FF, strCrown(10)), -- Bushes, Withered Cluster,
     [178477] = strCrown(170), -- Nedic Bookcase, Filled,
     [120853] = "This is craftable, or " .. strCrown(430), -- Stockade,
 
@@ -1669,48 +1666,23 @@ FurC.MiscItemSources[ver.SLAVES] = {
     -- "Part of the item 'Look upon Their Nothing Eyes' in Lilmoth, Murkmire, 15k gold"
     [145923] = strPartOf(
       145596,
-      zo_strformat(
-        "<<1>>, <<2>>: <<3>>",
-        loc.MURKMIRE,
-        GetString(SI_FURC_LOC_MURKMIRE_LIL),
-        strPrice(15000, CURT_MONEY)
-      )
+      zo_strformat("<<1>>, <<2>>: <<3>>", loc.MURKMIRE, loc.MURKMIRE_LIL, strPrice(15000, CURT_MONEY))
     ), -- Lies of the Dread-Father
     [145926] = strPartOf(
       145596,
-      zo_strformat(
-        "<<1>>, <<2>>: <<3>>",
-        loc.MURKMIRE,
-        GetString(SI_FURC_LOC_MURKMIRE_LIL),
-        strPrice(15000, CURT_MONEY)
-      )
+      zo_strformat("<<1>>, <<2>>: <<3>>", loc.MURKMIRE, loc.MURKMIRE_LIL, strPrice(15000, CURT_MONEY))
     ), -- That of Void
     [145927] = strPartOf(
       145596,
-      zo_strformat(
-        "<<1>>, <<2>>: <<3>>",
-        loc.MURKMIRE,
-        GetString(SI_FURC_LOC_MURKMIRE_LIL),
-        strPrice(15000, CURT_MONEY)
-      )
+      zo_strformat("<<1>>, <<2>>: <<3>>", loc.MURKMIRE, loc.MURKMIRE_LIL, strPrice(15000, CURT_MONEY))
     ), -- Acts of Honoring
     [145928] = strPartOf(
       145596,
-      zo_strformat(
-        "<<1>>, <<2>>: <<3>>",
-        loc.MURKMIRE,
-        GetString(SI_FURC_LOC_MURKMIRE_LIL),
-        strPrice(15000, CURT_MONEY)
-      )
+      zo_strformat("<<1>>, <<2>>: <<3>>", loc.MURKMIRE, loc.MURKMIRE_LIL, strPrice(15000, CURT_MONEY))
     ), -- Speakers of Nothing
     [145597] = strPartOf(
       145596,
-      zo_strformat(
-        "<<1>>, <<2>>: <<3>>",
-        loc.MURKMIRE,
-        GetString(SI_FURC_LOC_MURKMIRE_LIL),
-        strPrice(15000, CURT_MONEY)
-      )
+      zo_strformat("<<1>>, <<2>>: <<3>>", loc.MURKMIRE, loc.MURKMIRE_LIL, strPrice(15000, CURT_MONEY))
     ), -- Scales of Shadow
   },
 

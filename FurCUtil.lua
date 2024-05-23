@@ -142,11 +142,15 @@ function this.FormatPartOf(itemid, note)
   return result_str
 end
 
-local function formatSingleLocation(loc, showPrep)
+---Helper for single location formatting
+---@param loc string
+---@param showPrep boolean|nil
+---@return string
+local function fmtLocation(loc, showPrep)
   if showPrep then
-    return sFormat("<<Al:1>>", loc)
+    return sFormat("<<Al:1>>", loc) --> "in (the) XYZ"
   end
-  return sFormat("<<1>>", loc)
+  return sFormat("<<1>>", loc) --> "XYZ"
 end
 
 local inStr = GetString(SI_FURC_GRAMMAR_PREP_LOC_DEFAULT) -- "in"
@@ -154,7 +158,7 @@ local inStr = GetString(SI_FURC_GRAMMAR_PREP_LOC_DEFAULT) -- "in"
 ---<br>- if a preposition is requested but missing, the default is used (EN: "in")
 ---@param ... string locations resolved by GetString like "Summerset^N,on"
 ---@return string locStr single location with preposition or multiple comma separated locations
-function this.FormatLocation(...)
+function this.FormatLocations(...)
   local numLocs = select("#", ...)
 
   if numLocs == 0 then
@@ -163,41 +167,42 @@ function this.FormatLocation(...)
 
   if numLocs == 1 then
     assert(type(...) == "string", "location must be a string")
-    return colourise(formatSingleLocation(..., true), colours.Location)
+    return colourise(fmtLocation(..., true), colours.Location)
   end
 
   local locs = { ... }
   for i, str in ipairs(locs) do
-    locs[i] = sFormat(formatSingleLocation(str, false))
+    locs[i] = sFormat(fmtLocation(str, false))
   end
 
   -- prepend "in" before joined location strings. good for now, but won't look great with all languages
   locs[1] = string.format("%s %s", inStr, locs[1])
 
-  return colourise(sJoin(", ", unpack(locs)), colours.Location)
+  return colourise(table.concat(locs, ", "), colours.Location)
 end
 
 local eventTranslation = GetString(SI_FURC_EVENT)
-local eventStr, eventsStr = this.GetSingularPlural(eventTranslation)
 
 ---Formatted Event String
----@param events table raw strings from GetString(SI_FURC_XYZ) like {"Bounties of Blackwood", "Elsweyr Dragons^p,from"}
+---@param ... string event strings from GetString(SI_FURC_XYZ) like "Elsweyr Dragons^p,from"
 ---@return string formatted like "From the events: Bounties of Blackwood, Elsweyr Dragons"
-function this.FormatEvent(events)
-  assert(type(events) == "table", "events must be a table")
+function this.FormatEvent(...)
+  local numEvents = select("#", ...)
 
-  local joined = ""
-  local prefix = eventsStr
-  -- decide on singular or plural from event;events
-  if #events > 1 then
-    joined = this.Join(events, ", ")
-    prefix = eventsStr
-  else
-    joined = events[1]
-    prefix = eventStr
+  if numEvents == 1 then
+    return sFormat(eventTranslation, ...)
   end
 
-  return this.capitalise(prefix) .. ": " .. joined
+  local events = { ... }
+  local prefix = eventTranslation
+  -- decide on singular or plural from event;events
+  for i, str in ipairs(events) do
+    events[i] = sFormat(str)
+  end
+
+  events[1] = string.format("%s %s", eventTranslation, events[1])
+
+  return colourise(table.concat(events, ", "), colours.Location)
 end
 
 local dungFmt = GetString(SI_FURC_STRING_DUNGEONS)
@@ -212,59 +217,60 @@ function this.FormatDungeon(...)
   return sFormat(dungFmt, numDungs, joined)
 end
 
----Get the plural or singular form of an NPC type
----@param npcType string resolved name like "guard^m,from" or "guards"
----@param useSingular boolean|nil request singular (default plural)
----@return string npcString singular or plural form
-function this.FormatNPC(npcType, useSingular)
-  local singular, plural = this.GetSingularPlural(npcType)
-  return useSingular and singular or plural
+---Surround text with prefix and suffix
+---@param text string Current text
+---@param prefix any
+---@param suffix any
+---@return string
+function this.FormatPrefixSuffix(text, prefix, suffix)
+  assert(type(text) == "string", "text must be a string")
+
+  prefix = prefix or ""
+  suffix = suffix or ""
+
+  if prefix == "" and suffix == "" then
+    return text
+  end
+
+  return sJoin(" ", prefix, text, suffix)
 end
 
-local translSteal = GetString(SI_FURC_LOOT_STEALING)
+local function fmtPeoplePlaces(people, places, prefix, suffix)
+  people = people or {}
+  places = places or {}
+  prefix = prefix or ""
+
+  local formatted = ""
+  if #people > 0 then
+    local peopleStr = table.concat(people, ", ")
+    formatted = peopleStr
+  end
+
+  if #places > 0 then
+    local placeStr = table.concat(places, ", ")
+    formatted = string.format("%s%s%s", formatted, #people > 0 and ", " or "", placeStr)
+  end
+
+  return formatted
+end
+
+local strSeal = sFormat("<<C:1>>", GetString(SI_FURC_LOOT_STEALING))
 function this.FormatSteal(people, places)
-  people = people or {}
-  places = places or {}
-
-  local formatted = sFormat("<<C:1>>", translSteal)
-  if #people == 0 and #places == 0 then
-    return formatted
-  end
-
-  if #people > 0 then
-    local peopleStr = this.Join(people)
-    formatted = peopleStr
-  end
-
-  if #places > 0 then
-    local placeStr = this.Join(places, ", ")
-    formatted = string.format("%s%s%s", formatted, #people > 0 and ", " or "", placeStr)
-  end
-
-  return formatted
+  return fmtPeoplePlaces(people, places, strSeal)
 end
 
-local translPick = GetString(SI_FURC_LOOT_PICKPOCKET)
+local strPick = sFormat("<<C:1>>", GetString(SI_FURC_LOOT_PICKPOCKET))
 function this.FormatPickpocket(people, places)
-  people = people or {}
-  places = places or {}
+  return fmtPeoplePlaces(people, places, strPick)
+end
 
-  local formatted = sFormat("<<C:1>>", translPick)
-  if #people == 0 and #places == 0 then
-    return formatted
-  end
+local strHGF = GetString(SI_FURC_TRADERS_HGF)
 
-  if #people > 0 then
-    local peopleStr = this.Join(people)
-    formatted = peopleStr
-  end
-
-  if #places > 0 then
-    local placeStr = this.Join(places, ", ")
-    formatted = string.format("%s%s%s", formatted, #people > 0 and ", " or "", placeStr)
-  end
-
-  return formatted
+---Home Goods Furnisher string
+---@param location string
+---@return string ""
+function this.FormatHomeGoods(location)
+  return sFormat("<<Cl:1>> <<l:2>>", strHGF, location)
 end
 
 local scrFrom = GetString(SI_FURC_LOOT_SCRYING)
@@ -274,14 +280,14 @@ local piecesFmt = GetString(SI_FURC_STRING_PIECES)
 ---@param pieceNum number required amount of pieces
 ---@param ... string with raw location like "Summerset^N,on"
 ---@return string formatted like "Scyring on Summerset"
-function this.FormatScry(pieceNum, ...)
+function this.FmtScryWithPieces(pieceNum, ...)
   pieceNum = pieceNum or 0
 
   local locations = { ... }
 
   for i = 1, #locations do
     if type(locations[i]) == "string" then
-      locations[i] = this.FormatLocation(locations[i])
+      locations[i] = this.FormatLocations(locations[i])
     end
   end
 
@@ -290,10 +296,22 @@ function this.FormatScry(pieceNum, ...)
   return string.format("%s %s %s", sFormat("<<C:1>>", scrFrom), table.concat(locations, "/"), pieces)
 end
 
+function this.FmtScry(...)
+  local locations = { ... }
+
+  for i = 1, #locations do
+    if type(locations[i]) == "string" then
+      locations[i] = this.FormatLocations(locations[i])
+    end
+  end
+
+  return string.format("%s %s", sFormat("<<C:1>>", scrFrom), table.concat(locations, "/"))
+end
+
 local vendorString = GetString(SI_FURC_STRING_VENDOR)
 
 ---comment
----@param vendorRef string vendor string like SI_FURC_TRADERS_NALIRSEWEN
+---@param vendorRef string vendor string like SI_FURC_GUILD_PSIJIC_NALIRSEWEN
 ---@param locRefs table locations with optional hierarchies like {*_ZONE, *_PLACE, *_SHOP}
 ---@param price any
 ---@param requirement any
