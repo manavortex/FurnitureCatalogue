@@ -1,4 +1,5 @@
 local colours = FurC.Constants.Colours
+local loc = FurC.Constants.Locations
 
 local strSoldBy = FurC.Utils.SoldBy
 
@@ -11,8 +12,8 @@ local function rank(aNumber)
 end
 
 local daily_reward_elswhere = GetString(SI_FURC_DAILY_ELSWEYR)
-local artaeum = GetString(SI_FURC_LOC_ARTAEUM)
-local nalirsewen = GetString(SI_FURC_TRADERS_NALIRSEWEN)
+local artaeum = loc.ARTAEUM
+local nalirsewen = GetString(SI_FURC_GUILD_PSIJIC_NALIRSEWEN)
 
 FurC.RecipeSources = {
   [139489] = strSoldBy(nalirsewen, { artaeum }, 5000, rank(2)), -- Blueprint: Psijic Chair, Arched

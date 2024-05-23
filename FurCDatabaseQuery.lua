@@ -2,8 +2,20 @@ local FurC = FurC or {}
 
 local colour = FurC.Constants.Colours
 local src = FurC.Constants.ItemSources
+local loc = FurC.Constants.Locations
+
+local join = zo_strjoin
 
 local colourise = FurC.Utils.Colourise
+local getItemLink = FurC.Utils.GetItemLink
+local strDungeon = FurC.Utils.FormatDungeon
+local strEvent = FurC.Utils.FormatEvent
+local strLoc = FurC.Utils.FormatLocations
+local strPartOf = FurC.Utils.FormatPartOf
+local strPick = FurC.Utils.FormatPickpocket
+local strPrice = FurC.Utils.FormatPrice
+local strScry = FurC.Utils.FmtScryWithPieces
+local strSteal = FurC.Utils.FormatSteal
 
 local function makeAchievementLink(achievementId)
   if not achievementId then
@@ -93,6 +105,7 @@ local function getPvpSource(recipeKey, recipeArray, stripColor)
   for vendorName, vendorData in pairs(versionData) do
     for locationName, locationData in pairs(vendorData) do
       if nil ~= locationData[recipeKey] then
+        --TODO: FurC.Utils.FormatPrefixSuffix()
         return zo_strformat(
           GetString(SI_FURC_STRING_VENDOR),
           colourise(vendorName, colour.Vendor, stripColor),
@@ -211,7 +224,7 @@ local function getMiscItemSource(recipeKey, recipeArray, attachItemLink)
     return registerEmptyItem(recipeKey)
   end
 
-  return (attachItemLink and string.format("%s: %s", FurC.Utils.GetItemLink(recipeKey), originData)) or originData
+  return (attachItemLink and string.format("%s: %s", getItemLink(recipeKey), originData)) or originData
 end
 FurC.getMiscItemSource = getMiscItemSource
 
