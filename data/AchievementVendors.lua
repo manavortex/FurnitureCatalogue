@@ -8,7 +8,8 @@ local npc = FurC.Constants.NPC
 local join = zo_strjoin
 local merge = FurC.Utils.MergeTable
 local strHGF = FurC.Utils.FormatHomeGoods
-local strAch = FurC.Utils.FormatAchTrader
+local strAF = FurC.Utils.FormatAchievementFurnisher
+local strCAF = FurC.Utils.FormatCapitalAchievementFurnisher
 
 local function getQuestString(questIdOrName)
   local questName = questIdOrName
@@ -1287,8 +1288,8 @@ FurC.AchievementVendors[ver.ENDLESS] = {
     },
   },
   [loc.DUNG_IA] = {
-    -- TODO: These items are purchased with Archival Fortunes, not gold.
-    [npc.TEZURS] = {
+    -- TODO #FIX: These items are purchased with Archival Fortunes, not gold.
+    [strAF(loc.DUNG_IA)] = {
       [203155] = { --Apocrypha Drying Rack, Paper
         itemPrice = 1000,
         achievement = 3765, -- A Little Help Never Hurt
@@ -1369,7 +1370,7 @@ FurC.AchievementVendors[ver.NECROM] = {
       },
     },
 
-    [strAch(loc.TELVANNI)] = {
+    [strAF(loc.TELVANNI)] = {
       [197717] = { --Apocrypha Altar, Lighted
         itemPrice = 25000,
         achievement = 3642, -- Apocryphal Investigator
@@ -1468,7 +1469,7 @@ FurC.AchievementVendors[ver.DRUID] = {
       },
     },
 
-    [strAch(loc.GALEN)] = {
+    [strAF(loc.GALEN)] = {
       [192426] = { --Ascendant Knight Banner
         itemPrice = 12000,
         achievement = 3508, -- Bane of the Dreadsails
@@ -1564,7 +1565,7 @@ FurC.AchievementVendors[ver.BRETON] = {
       },
     },
 
-    [strAch(loc.HIGHISLE)] = {
+    [strAF(loc.HIGHISLE)] = {
       [187867] = { --Dreadsail Door, Grand
         itemPrice = 35000,
         achievement = 3242, -- Dreadsail Reef Vanquisher
@@ -1697,7 +1698,7 @@ FurC.AchievementVendors[ver.DEADL] = {
       },
     },
 
-    [strAch(loc.FARGRAVE)] = {
+    [strAF(loc.FARGRAVE)] = {
       [182306] = { --Daedric Altar, Mehrunes Dagon
         itemPrice = 4500,
         achievement = 3145, -- Hero of Fargrave
@@ -1747,7 +1748,7 @@ FurC.AchievementVendors[ver.DEADL] = {
 -- 19 Blackwood
 FurC.AchievementVendors[ver.BLACKW] = {
   [loc.BLACKWOOD] = {
-    [strAch(loc.BLACKWOOD)] = {
+    [strAF(loc.BLACKWOOD)] = {
       [175707] = { --Banner of Leyawiin
         itemPrice = 12000,
         achievement = 3056, -- Blackwood Grand Adventurer
@@ -1870,7 +1871,7 @@ FurC.AchievementVendors[ver.STONET] = {
   },
 
   [loc.SELSWEYR] = {
-    [strAch(loc.SELSWEYR)] = {
+    [strAF(loc.SELSWEYR)] = {
       [156752] = { -- Aeonstone Formation, Large
         itemPrice = 50000,
         achievement = 2604, -- Bright Moons over Elsweyr
@@ -1945,7 +1946,7 @@ FurC.AchievementVendors[ver.MARKAT] = {
       },
     },
 
-    [strAch(loc.REACH)] = {
+    [strAF(loc.REACH)] = {
       [171395] = { -- Dwarven Beacon, Aetheric
         itemPrice = 50000,
         achievement = 2860, -- Dynastor Deposted
@@ -2051,7 +2052,7 @@ FurC.AchievementVendors[ver.SKYRIM] = {
       },
     },
 
-    [strAch(loc.WSKYRIM)] = {
+    [strAF(loc.WSKYRIM)] = {
       [166018] = { --Doll, Heiruna
         itemPrice = 2000,
         achievement = 2645, -- Western Skyrim Cave Delver
@@ -2181,7 +2182,7 @@ FurC.AchievementVendors[ver.SCALES] = {
 -- 11 Elsweyr
 FurC.AchievementVendors[ver.KITTY] = {
   [loc.NELSWEYR] = {
-    [strAch(loc.NELSWEYR)] = {
+    [strAF(loc.NELSWEYR)] = {
       [151790] = { --Akaviri Table, Stone
         itemPrice = 10000,
         achievement = getQuestString(6307), -- Descendant of the Potentate
@@ -2412,7 +2413,7 @@ FurC.AchievementVendors[ver.WEREWOLF] = {
   },
 
   [loc.HEWSBANE] = {
-    [strAch(loc.HEWSBANE)] = {
+    [strAF(loc.HEWSBANE)] = {
       [119966] = { -- Iron Wheel Banner
         itemPrice = 15000,
       },
@@ -2471,7 +2472,7 @@ FurC.AchievementVendors[ver.WEREWOLF] = {
 -- 8 Murkmire
 FurC.AchievementVendors[ver.SLAVES] = {
   [loc.MURKMIRE] = {
-    [strAch(loc.MURKMIRE)] = {
+    [strAF(loc.MURKMIRE)] = {
       [145408] = { --Argon Pedestal, Replica
         itemPrice = 15000,
         achievement = 2339, -- The river of rebirth
@@ -2663,7 +2664,7 @@ FurC.AchievementVendors[ver.ALTMER] = {
       },
     },
 
-    [strAch(loc.SUMMERSET)] = {
+    [strAF(loc.SUMMERSET)] = {
       [139369] = { -- Abyssal Pearl, Sealed
         itemPrice = 75000,
         achievement = 2101, -- Back to the Abyss
@@ -2819,7 +2820,7 @@ FurC.Books[ver.CLOCKWORK] = {
 FurC.AchievementVendors[ver.CLOCKWORK] = {
   [loc.CWC] = {
     [npc.RAZOUFA_COLL] = FurC.Books[ver.CLOCKWORK],
-    [strAch(loc.CWC)] = {
+    [strAF(loc.CWC)] = {
       [134285] = { -- Active Fabrication Tank
         itemPrice = 75000,
         achievement = 2049, -- Hero of Clockwork City
@@ -2896,7 +2897,7 @@ FurC.AchievementVendors[ver.CLOCKWORK] = {
   },
 
   [loc.ANY_CAPITAL] = {
-    [npc.HERALDA] = {
+    [npc.HOLIDAY] = {
       [134291] = { -- New Life Bonfire
         itemPrice = 10000,
         achievement = 1671,
@@ -3259,7 +3260,7 @@ FurC.Books[ver.MORROWIND] = {
 FurC.AchievementVendors[ver.MORROWIND] = {
   [loc.VVARDENFELL] = {
     [npc.DROPSNOGLASS_COLL] = FurC.Books[ver.MORROWIND],
-    [strAch(loc.VVARDENFELL)] = {
+    [strAF(loc.VVARDENFELL)] = {
       [126638] = { -- Ashlander Altar, Anticipations
         itemPrice = 50000,
         achievement = 1825, -- Clanfriend
@@ -3538,7 +3539,7 @@ FurC.AchievementVendors[ver.MORROWIND] = {
   },
 
   [loc.ANY_CAPITAL] = {
-    [npc.HERALDA] = {
+    [npc.HOLIDAY] = {
       [126720] = { -- Banner of Mayhem
         itemPrice = 5000,
         achievement = 1883, -- Mayhem Connaiseour
@@ -3576,11 +3577,11 @@ FurC.Books[ver.HOMESTEAD] = bookList
 
 FurC.AchievementVendors[ver.HOMESTEAD] = {
   [loc.ANY_CAPITAL] = {
-    [npc.NARWAAWENDE] = capitalVendor,
-    [npc.HERALDA] = holidayVendor,
+    [npc.CAF] = capitalVendor,
+    [npc.HOLIDAY] = holidayVendor,
   },
   [loc.DESHAAN] = {
-    [strAch(loc.DESHAAN)] = {
+    [strAF(loc.DESHAAN)] = {
       [119908] = { -- Swamp Anemone
         itemPrice = 15000,
         achievement = 595,
@@ -3640,7 +3641,7 @@ FurC.AchievementVendors[ver.HOMESTEAD] = {
       },
     },
 
-    [strAch(loc.BALFOYEN)] = {
+    [strAF(loc.BALFOYEN)] = {
       [120956] = { -- Atmoran Eagle Totem Medallion
         itemPrice = 3000,
         achievement = 194,
@@ -3695,7 +3696,7 @@ FurC.AchievementVendors[ver.HOMESTEAD] = {
       },
     },
 
-    [strAch(loc.STONEFALLS)] = {
+    [strAF(loc.STONEFALLS)] = {
       [119890] = { -- Blood Fountain
         itemPrice = 100000,
         achievement = 948,
@@ -3722,7 +3723,7 @@ FurC.AchievementVendors[ver.HOMESTEAD] = {
   [loc.EASTMARCH] = {
     [strHGF(loc.EASTMARCH)] = miscVendor,
 
-    [strAch(loc.EASTMARCH)] = {
+    [strAF(loc.EASTMARCH)] = {
       [119905] = { -- Dragon Shrine Altar
         itemPrice = 20000,
         achievement = 598,
@@ -3777,7 +3778,7 @@ FurC.AchievementVendors[ver.HOMESTEAD] = {
       },
     },
 
-    [npc.LTS] = {
+    [strAF(loc.SHADOWFEN)] = {
       [119897] = { -- Argonian Egg
         itemPrice = 2500,
         achievement = 185,
@@ -3830,7 +3831,7 @@ FurC.AchievementVendors[ver.HOMESTEAD] = {
       },
     },
 
-    [strAch(loc.RIFT)] = {
+    [strAF(loc.RIFT)] = {
       [119915] = { -- Ancient Cultist Totem
         itemPrice = 5000,
         achievement = 337,
@@ -3854,7 +3855,7 @@ FurC.AchievementVendors[ver.HOMESTEAD] = {
     },
   },
   [loc.ALIKR] = {
-    [strAch(loc.ALIKR)] = {
+    [strAF(loc.ALIKR)] = {
       [119879] = { -- Kneeling Ansei Statue
         itemPrice = 15000,
         achievement = 518,
@@ -3880,7 +3881,7 @@ FurC.AchievementVendors[ver.HOMESTEAD] = {
   },
 
   [loc.BANG] = {
-    [strAch(loc.BANG)] = {
+    [strAF(loc.BANG)] = {
       [119885] = { -- ceremonial Redguard vessel
         itemPrice = 3000,
         achievement = 147,
@@ -3973,7 +3974,7 @@ FurC.AchievementVendors[ver.HOMESTEAD] = {
   },
 
   [loc.BETHNIKH] = {
-    [strAch(loc.BETHNIKH)] = {
+    [strAF(loc.BETHNIKH)] = {
       [119984] = { -- Pirate Banner
         itemPrice = 10000,
         achievement = 415,
@@ -3984,7 +3985,7 @@ FurC.AchievementVendors[ver.HOMESTEAD] = {
   },
 
   [loc.GLENUMBRA] = {
-    [strAch(loc.GLENUMBRA)] = {
+    [strAF(loc.GLENUMBRA)] = {
       [119855] = { -- Wyrdstone
         itemPrice = 2500,
         achievement = 30,
@@ -4047,8 +4048,8 @@ FurC.AchievementVendors[ver.HOMESTEAD] = {
     },
   },
 
-  [loc.RIVEN] = {
-    [strAch(loc.RIVEN)] = {
+  [loc.RIVENSPIRE] = {
+    [strAF(loc.RIVENSPIRE)] = {
       [119871] = { -- Wagon of DEATH
         itemPrice = 25000,
         achievement = 58,
@@ -4079,7 +4080,7 @@ FurC.AchievementVendors[ver.HOMESTEAD] = {
       },
     },
 
-    [strHGF(loc.RIVEN)] = {
+    [strHGF(loc.RIVENSPIRE)] = {
       [120578] = { -- Sapling, Young Aspen
         itemPrice = 100,
       },
@@ -4095,8 +4096,8 @@ FurC.AchievementVendors[ver.HOMESTEAD] = {
     },
   },
 
-  [loc.STORMHVN] = {
-    [strAch(loc.STORMHVN)] = {
+  [loc.STORMHAVEN] = {
+    [strAF(loc.STORMHAVEN)] = {
       [119865] = { -- Wayrest Guillotine
         itemPrice = 75000,
         achievement = 156,
@@ -4119,7 +4120,7 @@ FurC.AchievementVendors[ver.HOMESTEAD] = {
       },
     },
 
-    [strHGF(loc.STORMHVN)] = {
+    [strHGF(loc.STORMHAVEN)] = {
       [120582] = { -- Tree, Yellowing Oak
         itemPrice = 20000,
       },
@@ -4136,7 +4137,7 @@ FurC.AchievementVendors[ver.HOMESTEAD] = {
   },
 
   [loc.AURIDON] = {
-    [strAch(loc.AURIDON)] = {
+    [strAF(loc.AURIDON)] = {
       [119823] = { -- Tanzelwil Culanda Stone
         itemPrice = 5000,
         achievement = 360,
@@ -4215,7 +4216,7 @@ FurC.AchievementVendors[ver.HOMESTEAD] = {
       },
     },
 
-    [strAch(loc.GREENSHADE)] = {
+    [strAF(loc.GREENSHADE)] = {
       [119839] = { -- Fires of the WIlderking
         itemPrice = 4000,
         achievement = 510,
@@ -4241,7 +4242,7 @@ FurC.AchievementVendors[ver.HOMESTEAD] = {
 
   [loc.KHENARTHI] = {
     [strHGF(loc.KHENARTHI)] = miscVendor,
-    [strAch(loc.KHENARTHI)] = {
+    [strAF(loc.KHENARTHI)] = {
       [119986] = { -- Maomer Totem
         itemPrice = 10000,
       },
@@ -4309,7 +4310,7 @@ FurC.AchievementVendors[ver.HOMESTEAD] = {
       },
     },
 
-    [strAch(loc.MALABAL)] = {
+    [strAF(loc.MALABAL)] = {
       [119847] = { -- Handfast
         itemPrice = 25000,
         achievement = 611,
@@ -4364,7 +4365,7 @@ FurC.AchievementVendors[ver.HOMESTEAD] = {
       },
     },
 
-    [strAch(loc.GRAHTWOOD)] = {
+    [strAF(loc.GRAHTWOOD)] = {
       [119834] = { -- Aulus's Captive Audience
         itemPrice = 10000,
         achievement = 605,
@@ -4458,7 +4459,7 @@ FurC.AchievementVendors[ver.HOMESTEAD] = {
       },
     },
 
-    [strAch(loc.REAPER)] = {
+    [strAF(loc.REAPER)] = {
       [119848] = { -- Colovian Projection Crystal
         itemPrice = 5000,
         achievement = 536,
@@ -4491,7 +4492,7 @@ FurC.AchievementVendors[ver.HOMESTEAD] = {
   },
 
   [loc.CRAGLORN] = {
-    [strAch(loc.CRAGLORN)] = {
+    [strAF(loc.CRAGLORN)] = {
       [119933] = { -- Craglorn Brazier
         itemPrice = 5000,
         achievement = 1663,
@@ -4611,7 +4612,7 @@ FurC.AchievementVendors[ver.HOMESTEAD] = {
     },
   },
   [loc.COLDH] = {
-    [strAch(loc.COLDH)] = {
+    [strAF(loc.COLDH)] = {
       [119828] = { -- Ayleid Throne
         itemPrice = 50000,
         achievement = 612,
@@ -4642,7 +4643,7 @@ FurC.AchievementVendors[ver.HOMESTEAD] = {
   },
 
   [loc.GOLDCOAST] = {
-    [strAch(loc.GOLDCOAST)] = {
+    [strAF(loc.GOLDCOAST)] = {
       [119947] = { -- Banner of the Kvatch Guard
         itemPrice = 15000,
         achievement = 1433,
@@ -4701,7 +4702,7 @@ FurC.AchievementVendors[ver.HOMESTEAD] = {
   },
 
   [loc.HEWSBANE] = {
-    [strAch(loc.HEWSBANE)] = {
+    [strAF(loc.HEWSBANE)] = {
       [119965] = { -- Abah's Landing Banner
         itemPrice = 10000,
         achievement = 1366,
@@ -4764,7 +4765,7 @@ FurC.AchievementVendors[ver.HOMESTEAD] = {
   },
 
   [loc.WROTHGAR] = {
-    [strAch(loc.WROTHGAR)] = {
+    [strAF(loc.WROTHGAR)] = {
       [119981] = { -- Throne of the Orc King
         itemPrice = 50000,
         achievement = 1260,
@@ -5033,7 +5034,7 @@ function FurC.InitAchievementVendorList()
   listTable = FurC.AchievementVendors[ver.HOMESTEAD][loc.BANG][strHGF(loc.BANG)]
   listTable = merge(listTable, addTable)
 
-  listTable = FurC.AchievementVendors[ver.HOMESTEAD][loc.STORMHVN][strHGF(loc.STORMHVN)]
+  listTable = FurC.AchievementVendors[ver.HOMESTEAD][loc.STORMHAVEN][strHGF(loc.STORMHAVEN)]
   listTable = merge(listTable, addTable)
 
   listTable = FurC.AchievementVendors[ver.HOMESTEAD][loc.GREENSHADE][strHGF(loc.GREENSHADE)]
@@ -5067,7 +5068,7 @@ function FurC.InitAchievementVendorList()
   listTable = FurC.AchievementVendors[ver.HOMESTEAD][loc.GLENUMBRA][strHGF(loc.GLENUMBRA)]
   listTable = merge(listTable, furnishingVendor)
 
-  listTable = FurC.AchievementVendors[ver.HOMESTEAD][loc.RIVEN][strHGF(loc.RIVEN)]
+  listTable = FurC.AchievementVendors[ver.HOMESTEAD][loc.RIVENSPIRE][strHGF(loc.RIVENSPIRE)]
   listTable = merge(listTable, furnishingVendor)
 
   listTable = FurC.AchievementVendors[ver.HOMESTEAD][loc.WROTHGAR][strHGF(loc.WROTHGAR)]

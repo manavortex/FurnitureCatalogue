@@ -115,11 +115,11 @@ FurC.Constants.Locations = {
   REACH = getZoneStr(1207), -- The Reach
   REAPER = getZoneStr(382), -- Reaper's March
   RIFT = getZoneStr(103), -- Rift
-  RIVEN = getZoneStr(20), -- Rivenspire
+  RIVENSPIRE = getZoneStr(20), -- Rivenspire
   SELSWEYR = getZoneStr(1133), -- Southern Elsweyr
   SHADOWFEN = getZoneStr(117), -- Shadowfen
   STONEFALLS = getZoneStr(41), -- Stonefalls
-  STORMHVN = getZoneStr(19), -- Stormhaven
+  STORMHAVEN = getZoneStr(19), -- Stormhaven
   STROSMKAI = getZoneStr(534), -- Stonefalls
   SUMMERSET = getZoneStr(1011), -- Summerset
   TELVANNI = getZoneStr(1414), -- Telvanni Peninsula
@@ -168,7 +168,7 @@ FurC.Constants.Locations = {
   SUMMERSET_ALINOR_RIVERSIDE = GetString(SI_FURC_LOC_SUMMERSET_ALINOR_RIVERSIDE),
   UNDAUNTED = GetString(SI_FURC_LOC_UNDAUNTED),
   MALABAL_VULKW_TAVERN = GetString(SI_FURC_LOC_MALABAL_VULKW_TAVERN),
-  STORMHVN_WAY_MERCH = GetString(SI_FURC_LOC_STORMHVN_WAY_MERCH),
+  STORMHAVEN_WAY_MERCH = GetString(SI_FURC_LOC_STORMHAVEN_WAY_MERCH),
   TELVANNI_NECROM_FRF = GetString(SI_FURC_TELVANNI_NECROM_FRF),
   VVARDENFELL_SURAN = GetString(SI_FURC_LOC_VVARDENFELL_SURAN),
   VVARDENFELL_VIVEC = GetString(SI_FURC_LOC_VVARDENFELL_VIVEC),
@@ -179,45 +179,6 @@ FurC.Constants.Locations = {
 
 -- NPC ids, for better readability and more control of the string sources
 FurC.Constants.NPC = {
-
-  -- Achievement Traders
-  ATHRAGOR = GetString(SI_FURC_TRADERS_ATHRAGOR), -- ACH: in AD zones + Kvatch + Cyrodiil: Western Elseweyr Gate
-  NETINNDEL = GetString(SI_FURC_TRADERS_NETINNDEL), -- ACH: WSKYRIM
-  DROPSNOGLASS = GetString(SI_FURC_TRADERS_DROPSNOGLASS), -- ACH: VVARDENFELL
-  HARNWULF = GetString(SI_FURC_TRADERS_HARNWULF), -- ACH: MURKMIRE
-  IDRENIE = GetString(SI_FURC_TRADERS_IDRENIE), -- ACH: on Galen, Vastyr, Touch of Home Furnishings
-  JERAN = GetString(SI_FURC_TRADERS_JERAN), -- ACH: on Highisle, Gonfalon Bay, Furnishings of Finesse
-  LATHAHIM = GetString(SI_FURC_TRADERS_LATHAHIM), -- ACH: in Northern Elsweyr, Rimmen, Fine Furniture
-  LOZOTUSK = GetString(SI_FURC_TRADERS_LOZOTUSK), -- ACH: in DC zones + Orsinium + Hollow City + Imperial Sewers: Daggerfall Base
-  LTS = GetString(SI_FURC_TRADERS_LTS), -- ACH: in EP zones + Hew's Bane + Cyrodiil: Southern Morrwind Gate
-  MARTINA = GetString(SI_FURC_TRADERS_MARTINA), -- ACH: in Southern Elsweyr, Tideholm, Dragonguard Sanctum
-  MIRASO = GetString(SI_FURC_TRADERS_MIRASO), -- ACH: in Blackwood, Leyawiin, Domestic Bliss Furnishings
-  RAZOUFA = GetString(SI_FURC_TRADERS_RAZOUFA), -- ACH: in Clockwork City, Brass Fortress, Domicile Enhancement Hub
-  TARMIMN = GetString(SI_FURC_TRADERS_TARMIMN), -- ACH: on Summerset, Alinor, Riverside Market
-  TEZURS = GetString(SI_FURC_TRADERS_TEZURS), -- ACH: in the Infinite Archive
-  TIRUDILMO = GetString(SI_FURC_TRADERS_TIRUDILMO), -- ACH: in the Reach, Markarth, Markarth Mercantile
-  ULZ = GetString(SI_FURC_TRADERS_ULZ), -- ACH: in Fargrave
-  VASEI = GetString(SI_FURC_TRADERS_VASEI), -- ACH: on the Telvanni-Peninsula, Necrom, Final Rest Furnishings
-
-  -- Home Goods Furnishers
-  -- String can be merged into "Home Goods Furnisher^n,from", with reference to location
-  ADOSA = GetString(SI_FURC_TRADERS_ADOSA), -- HG: Murkmire, Lilmoth, High-End Furnishings
-  AVERIO = GetString(SI_FURC_TRADERS_AVERIO), -- HG: Reach, Markarth, Sticks and Stones
-  BARNABE = GetString(SI_FURC_TRADERS_BARNABE), -- HG: Blackwood, Leyawiin, Domestic Bliss Furnishings
-  FROHILDE = GetString(SI_FURC_TRADERS_FROHILDE), -- HG: in EP zones + Kvatch + Cyrodiil: Southern Morrowind Gate
-  KRRZTRRB = GetString(SI_FURC_TRADERS_KRRZTRRB), -- HG: Belkarth + Hollow City
-  MALADDIQ = GetString(SI_FURC_TRADERS_MALADDIQ), -- HG: in AD zones + Orsinium + Cyrodiil: Western Elseweyr Gate
-  MASELA = GetString(SI_FURC_TRADERS_MASELA), -- HG: in Western Skyrim, Solitude, Dragon's Hearth
-  MIRUZA = GetString(SI_FURC_TRADERS_MIRUZA), -- HG: on Highisle, Gonfalon Bay, Furnishings of Finesse
-  MULVISE = GetString(SI_FURC_TRADERS_MULVISE), -- HG: in Clockwork City, Brass Citadel, Domicile Enhancement Hub
-  MURKHOLG = GetString(SI_FURC_TRADERS_MURKHOLG), -- HG: on the Telvanni-Peninsula, Necrom, Final Rest Furnishings
-  NIF = GetString(SI_FURC_TRADERS_NIF), -- HG: in Fargrave, Felicitous Furnishings
-  ORMAX = GetString(SI_FURC_TRADERS_ORMAX), -- HG: on Galen, Vastyr, Touch of Home Furnishings
-  ROHZIKA = GetString(SI_FURC_TRADERS_ROHZIKA), -- HG: in DC zones + Cyrodiil: Northern High Rock Gate + Imperial Sewers DC Base + Hew's Bane
-  UNWOLTIL = GetString(SI_FURC_TRADERS_UNWOLTIL), -- HG: on Summerset, Alinor, Riverside Market
-  UZIPA = GetString(SI_FURC_TRADERS_UZIPA), -- HG: on Vvardenfell, Vivec City, Vivec City Furnishing
-  YATAVA = GetString(SI_FURC_TRADERS_YATAVA), -- HG: in Northern Elsweyr, Rimmen, Baandari Bazaar
-  ZADRASKA = GetString(SI_FURC_TRADERS_ZADRASKA), -- HG: in Southern Elsweyr, Senchal, Senchal Merchant Squar
 
   -- Battleground Furnishers
   -- there are a dozen or so, can be merged, despite there being 1 for banners and 1 for furniture
@@ -235,8 +196,11 @@ FurC.Constants.NPC = {
   -- Special Merchants
   IMPRESS = GetString(SI_FURC_TRADERS_IMPRESS), -- Event Merchant, any capital city
   ZANIL = GetString(SI_FURC_TRADERS_ZANIL), -- Luxury Furnisher
-  HERALDA = GetString(SI_FURC_TRADERS_HERALDA), -- Event Achievement Trader, any capital city
-  NARWAAWENDE = GetString(SI_FURC_TRADERS_NARWAAWENDE), -- Global Achievement Vendor in alliance capital cities + Vivec City
+
+  HGF = GetString(SI_FURC_TRADERS_HGF), -- Home Goods Furnisher: Maladiq, Rohzika, ...
+  AF = GetString(SI_FURC_TRADERS_AF), -- Achievement Vendor: Lozotusk, ...
+  CAF = GetString(SI_FURC_TRADERS_CAF), -- Main Achievement Vendor: Nolenowen, ...
+  HOLIDAY = GetString(SI_FURC_TRADERS_HOLIDAY), -- Heralda, Tildannire, ...
 
   -- Guild Traders
   FIGHTERS_STEWARD = GetString(SI_FURC_GUILD_FIGHTERS_STEWARD), -- stewards in Fighters Guild locations

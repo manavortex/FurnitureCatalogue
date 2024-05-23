@@ -276,11 +276,20 @@ function this.FormatHomeGoods(location)
 end
 
 --TODO #DBOVERHAUL: use location here once we have new structure
-local strAch = GetString(SI_FURC_TRADERS_ACH)
+local strAF = GetString(SI_FURC_TRADERS_AF)
 ---@param location string
 ---@return string ""
-function this.FormatAchTrader(location)
-  return sFormat("<<1>>", strAch)
+function this.FormatAchievementFurnisher(location)
+  return sFormat("<<1>>", strAF)
+  -- return sFormat("<<Cl:1>> <<l:2>>", strHGF, location)
+end
+
+--TODO #DBOVERHAUL: use location here once we have new structure
+local strCAF = GetString(SI_FURC_TRADERS_CAF)
+---@param location string
+---@return string ""
+function this.FormatCapitalAchievementFurnisher(location)
+  return sFormat("<<1>>", strCAF)
   -- return sFormat("<<Cl:1>> <<l:2>>", strHGF, location)
 end
 
