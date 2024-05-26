@@ -4,6 +4,10 @@ local ver = FurC.Constants.Versioning
 
 -- 28 Secrets of the Telvanni
 FurC.LuxuryFurnisher[ver.ENDLESS] = {
+  [203150] = { -- Falmer Fence, Stick
+    itemPrice = 200,
+    itemDate = "2024-05-24",
+  },
   [203149] = { -- Redguard Seal, Spider
     itemPrice = 8000,
     itemDate = "2024-05-17",
@@ -234,7 +238,7 @@ FurC.LuxuryFurnisher[ver.SCRIBE] = {
   },
   [193799] = { -- Falmer Hut, Long,
     itemPrice = 14000,
-    itemDate = "2023-04-29",
+    itemDate = "2024-05-24",
   },
   [193798] = { -- Wrothgar Puzzle Cube, Hunter,
     itemPrice = 20000,
@@ -474,7 +478,7 @@ FurC.LuxuryFurnisher[ver.TIDES] = {
   },
   [182627] = { -- Hovel, Rock
     itemPrice = 4500,
-    itemDate = "2023-04-29",
+    itemDate = "2024-05-24",
   },
   [182626] = { -- Orcish Seal, Mountains
     itemPrice = 3000,
@@ -1746,7 +1750,7 @@ FurC.LuxuryFurnisher[ver.MARKAT] = {
   },
   [171419] = { -- Riekling Shelter, Painted Megaliths
     itemPrice = 4000,
-    itemDate = "2023-04-29",
+    itemDate = "2024-05-24",
   },
   [171418] = { -- Orcish Seal, Anvil
     itemPrice = 3000,
@@ -1908,14 +1912,6 @@ FurC.LuxuryFurnisher[ver.MARKAT] = {
     itemPrice = 450,
     itemDate = "2023-05-06",
   },
-  [134460] = { -- Riekling Lean-To, Boar Pelt
-    itemPrice = 4000,
-    itemDate = "2023-04-29",
-  },
-  [134459] = { -- Riekling Pit, Ash and Bone
-    itemPrice = 7500,
-    itemDate = "2023-04-29",
-  },
   [134449] = { -- Seal of Clan Igrun, Metal
     itemPrice = 4000,
     itemDate = "2024-05-10",
@@ -2003,7 +1999,7 @@ FurC.LuxuryFurnisher[ver.HARROW] = {}
 FurC.LuxuryFurnisher[ver.SCALES] = {
   [156662] = { -- Riekling Banner, Wolf Pelt
     itemPrice = 4000,
-    itemDate = "2020-01-25",
+    itemDate = "2024-05-24",
   },
   [153695] = { -- Titan Skull, Colossal
     itemPrice = 4000,
@@ -2011,19 +2007,19 @@ FurC.LuxuryFurnisher[ver.SCALES] = {
   },
   [134460] = { -- Riekling Lean-To, Boar Pelt
     itemPrice = 4000,
-    itemDate = "2020-01-25",
+    itemDate = "2024-05-24",
   },
   [134459] = { -- Riekling Pit, Ash and Bone
     itemPrice = 7500,
-    itemDate = "2020-01-25",
+    itemDate = "2024-05-24",
   },
   [134458] = { -- Riekling Pelt, Boar
     itemPrice = 4000,
-    itemDate = "2023-04-29",
+    itemDate = "2024-05-24",
   },
   [134457] = { -- Riekling Bedding, Icy Straw
     itemPrice = 2500,
-    itemDate = "2023-04-29",
+    itemDate = "2024-05-24",
   },
   [118298] = { -- Wolf Head, Wall Mount
     itemPrice = 20000,
