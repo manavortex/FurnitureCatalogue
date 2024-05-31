@@ -118,15 +118,14 @@ end
 -- TODO #REFACTOR: collecting those in 1 place for now, move later, make some available in API
 -- TODO #REFACTOR maybe: for now separate formatters for each use case for more flexibility, later merge into one
 
--- TODO #REFACTOR: Use ZO_Currency_Format$Platform
-function this.FormatPrice(price, currency_id)
-  local priceUnknown = "?"
-  local priceString = ((not price or price < 0) and priceUnknown) or tostring(price)
-
-  local currency = currencies[currency_id]
-  priceString = this.Colourise(priceString, currency.colour)
-
-  return sFormat("<<1>> (<<2>>)", currency.name, priceString)
+---Format price string with currency
+---@param price number
+---@param currency CurrencyType defaults to CURT_MONEY
+---@return string
+function this.FormatPrice(price, currency)
+  ---@type FormatType
+  local curFmt = ZO_CURRENCY_FORMAT_AMOUNT_ICON
+  return ZO_Currency_FormatKeyboard(currency, price, curFmt)
 end
 
 function this.FormatPartOf(itemid, note)
@@ -187,7 +186,7 @@ local eventTranslation = GetString(SI_FURC_EVENT)
 ---Formatted Event String
 ---@param ... string event strings from GetString(SI_FURC_XYZ) like "Elsweyr Dragons^p,from"
 ---@return string formatted like "From the events: Bounties of Blackwood, Elsweyr Dragons"
-function this.FmtEvent(...)
+function this.FormatEvent(...)
   local numEvents = select("#", ...)
 
   if numEvents == 1 then
@@ -288,40 +287,64 @@ function this.FormatPickpocket(people, places)
 end
 
 --TODO #DBOVERHAUL: use location here once we have new structure, so we can merge the functions
----Home Goods Furnisher string
----@param location string
----@return string ""
-function this.FormatHomeGoods(location)
-  return sFormat("<<1>>", npc.HGF)
-  -- return sFormat("<<Cl:1>> <<l:2>>", npc.HGF, location)
+
+local fmtAch = GetString(SI_FURC_REQUIRES_ACHIEVEMENT)
+
+---Make an achievement link from a requirement id or description
+---@param req number|string
+---@return string
+local function makeAchievementLink(req)
+  assert(type(req) == "string" or type(req) == "number", "requirement must be a string or number")
+
+  if type(req) == "string" then
+    -- probably description, format as is
+    return sFormat(fmtAch, req)
+  end
+  -- probably achievement id, make link
+  return sFormat(fmtAch, GetAchievementLink(req, LINK_STYLE_DEFAULT))
 end
 
---TODO #DBOVERHAUL: use location here once we have new structure, so we can merge the functions
----@param location string
----@return string ""
-function this.FormatAchievementFurnisher(location)
-  return sFormat("<<1>>", npc.AF)
-end
+---Format furnisher (Home Goods, Achievement, others)
+---@param trader string formatted furnisher string
+---@param location string formatted location string
+---@param price? integer price, defaults to 0
+---@param curt? CurrencyType currency type (default: CURT_MONEY)
+---@param req? string|number requirement id or description
+---@return string
+function this.FormatFurnisher(trader, location, price, curt, req)
+  trader = trader or "UNKNOWN TRADER"
+  location = location or "UNKNOWN LOCATION"
+  price = price or 0
+  curt = curt or CURT_MONEY
 
---TODO #DBOVERHAUL: use location here once we have new structure, so we can merge the functions
----@param location string
----@return string ""
-function this.FormatCapitalAchievementFurnisher(location)
-  return sFormat("<<1>>", npc.CAF)
-end
+  local strPrice = ""
+  local hasPrice = (price > 0 and 1) or 0
+  if hasPrice == 1 then
+    strPrice = this.FormatPrice(price, curt)
+  end
 
---TODO #DBOVERHAUL: use location here once we have new structure, so we can merge the functions
----@param location string
----@return string ""
-function this.FormatHolidayFurnisher(location)
-  return sFormat("<<1>>", npc.HOLIDAY)
-end
+  local strReq = ""
+  local hasReq = (req and req ~= "" and 1) or 0
+  if hasReq == 1 then
+    strReq = makeAchievementLink(req) or ""
+  end
 
---TODO #DBOVERHAUL: use location here once we have new structure, so we can merge the functions
----@param location string
----@return string ""
-function this.FormatBattlegroundFurnisher(location)
-  return sFormat("<<1>>", npc.BGF)
+  local colVendor = colours.Vendor
+  local colLoc = colours.Location
+  local strVendor = colourise(trader, colVendor)
+  local strLoc = colourise(location, colLoc)
+
+  -- 0=none, 1=price, 2=price+req (no price + req doesn't exist)
+  local priceReqFlag = hasPrice + hasReq
+  if priceReqFlag == 0 then
+    return sFormat("<<1>> : <<2>>", strVendor, strLoc)
+  end
+
+  if priceReqFlag == 1 then
+    return sFormat("<<1>> : <<2>> (<<3>>)", strVendor, strLoc, strPrice)
+  end
+
+  return sFormat("<<1>> : <<2>> (<<3>>, <<4>>)", strVendor, strLoc, strPrice, strReq)
 end
 
 local scrFrom = GetString(SI_FURC_LOOT_SCRYING)
@@ -331,7 +354,7 @@ local piecesFmt = GetString(SI_FURC_STRING_PIECES)
 ---@param pieceNum number required amount of pieces
 ---@param ... string with raw location like "Summerset^N,on"
 ---@return string formatted like "Scyring on Summerset"
-function this.FmtScryWithPieces(pieceNum, ...)
+function this.FormatScryingWithPieces(pieceNum, ...)
   pieceNum = pieceNum or 0
 
   local locations = { ... }
@@ -352,10 +375,10 @@ function this.FmtQuest(questid, location)
   local name = GetQuestName(questid)
   local flagQ = (name ~= "" and 1) or 0
   local flagL = (location ~= "" and 1) or 0
-  return zo_strformat(questFmt, flagQ + flagL, name, location)
+  return sFormat(questFmt, flagQ + flagL, name, location)
 end
 
-function this.FmtScry(...)
+function this.FormatScrying(...)
   local locations = { ... }
 
   for i = 1, #locations do

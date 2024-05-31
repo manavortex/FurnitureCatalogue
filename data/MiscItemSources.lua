@@ -7,13 +7,13 @@ local src = FurC.Constants.ItemSources
 local join = zo_strjoin
 local strSrcLoc = FurC.Utils.FmtSrcLoc
 local strDungeon = FurC.Utils.FmtDungeon
-local strEvent = FurC.Utils.FmtEvent
+local strEvent = FurC.Utils.FormatEvent
 local strLoc = FurC.Utils.FmtLocations
 local strPartOf = FurC.Utils.FormatPartOf
 local strPick = FurC.Utils.FormatPickpocket
 local strPrice = FurC.Utils.FormatPrice
 local strQuest = FurC.Utils.FmtQuest
-local strScry = FurC.Utils.FmtScryWithPieces
+local strScry = FurC.Utils.FormatScryingWithPieces
 local strSteal = FurC.Utils.FormatSteal
 
 local loc_vvardenfell = loc.VVARDENFELL

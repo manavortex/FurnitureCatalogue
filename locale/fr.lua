@@ -126,7 +126,6 @@ local strings = {
   SI_FURC_STRING_CONTEXTMENU_DIVIDER_TT = "Ajoute un séparateur au menu contextuel au-dessus de l'entrée - Meubles. Cochez pour désactiver",
   SI_FURC_STRING_CRAFTABLE_BY = "Peut être fabriqué par ",
   SI_FURC_STRING_DUNG = "dungeon;dungeons",
-  SI_FURC_STRING_FAUSTINA = "Vendu par |cd68957Faustina Curio|r <<1>>",
   SI_FURC_STRING_FOR_VOUCHERS = "Pour <<1>> Assignats",
   SI_FURC_STRING_MENU_ADD_ITEMS_NAME = "Ajouter des éléments à des recettes connues/inconnues?",
   SI_FURC_STRING_MENU_ADD_ITEMS_TT = "Vous ne devriez remarquer aucun retard",
@@ -208,7 +207,6 @@ local strings = {
   SI_FURC_STRING_MENU_USETINY_TT = "Utilisez une interface plus petite (comme Craft Store). \nVous pouvez basculer cela depuis l'interface utilisateur en cliquant sur le bouton +/-.",
   SI_FURC_STRING_RECIPELEARNED = "Recette apprise: <<1>> <<2>> <<3>>",
   SI_FURC_STRING_RECIPESFORCHAR = "Recettes pour <<1>>",
-  SI_FURC_STRING_ROLIS = "Vendu par |cd68957Rolis Hlaalu|r <<1>>",
   SI_FURC_STRING_VENDOR = "Vendu par <<1>> à <<2>> (<<3>><<4>>)",
   SI_FURC_STRING_VOUCHER_VENDOR = "Vendu par l'un ou l'autre Rolis Hlaalu ou Faustina Curio",
   SI_FURC_STRING_WASSOLDBY = "A été vendu par <<1>> à <<2>> (<<3>>) <<4>>",
@@ -231,7 +229,7 @@ local strings = {
   SI_FURC_VERBOSE_SCANNING_DATA_FILE = "Furniture Catalogue: Analyse des fichiers de données...",
   SI_FURC_VERBOSE_STARTUP = "Furniture Catalogue: Si vous manquez de recettes, veuillez déclencher une analyse de votre artisan de meubles en cliquant sur le bouton Actualiser dans l'UI.",
   SI_FURC_VV_PAINTING = "Extrêmement rarement dans les coffres ou des Cassetes à Vvardenfell ",
-  -- 159 ENTRIES THE SAME IN BOTH LANGUAGES
+  -- 161 ENTRIES THE SAME IN BOTH LANGUAGES
   FURC_AV_LEGERDEMAIN_20 = "Legerdemain Rank 20",
   SI_FURC_CRATE_ALLMAKER = "All-Maker",
   SI_FURC_CRATE_ARMIGER = "Buoyant Armiger",
@@ -388,9 +386,11 @@ local strings = {
   SI_FURC_TELVANNI_NECROM_FRF = "Necrom, Final Rest Furnishings",
   SI_FURC_TRADERS_AF = "Achievement Furnisher^n,from",
   SI_FURC_TRADERS_DROPSNOGLASS_COLL = "Drops-No-Glass, Temple Doctrine Collection",
+  SI_FURC_TRADERS_FAUSTINA = "Faustina Curio",
   SI_FURC_TRADERS_HGF = "Home Goods Furnisher^n,from",
   SI_FURC_TRADERS_HOLIDAY = "Holiday Furnisher^n,from",
   SI_FURC_TRADERS_RAZOUFA_COLL = "Razoufa as part of a collection",
+  SI_FURC_TRADERS_ROLIS = "Rolis Hlaalu",
   -- ////// END   : DON'T REMOVE THIS LINE
 }
 

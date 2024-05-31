@@ -341,10 +341,10 @@ SI_FURC_POST_ITEM = " Post item"
 SI_FURC_POST_ITEMSOURCE = " Post item source"
 SI_FURC_POST_MATERIAL = " Post material"
 SI_FURC_POST_RECIPE = " Post recipe"
-SI_FURC_PSIJIC_RANK = "Psijic Order Rank "
+SI_FURC_PSIJIC_RANK = "Psijic Order Rank <<1>>"
 SI_FURC_QUESTREWARD = "<<1[Quest reward/Quest: '<<2>>'/Quests]>> <<l:2>>"
 SI_FURC_REMOVE_FAVE = " Remove Favorite"
-SI_FURC_REQUIRES_ACHIEVEMENT = ", requires "
+SI_FURC_REQUIRES_ACHIEVEMENT = "requires <<1>>"
 SI_FURC_SCAMBOX = "Crown Crates"
 SI_FURC_SCAMBOX_GEMS = "Crown Crate Gems"
 SI_FURC_SEEN_IN_GUILDSTORE = "Seen in Guild Store"
@@ -375,7 +375,6 @@ SI_FURC_STRING_CONTEXTMENU_INVENTORY_TT =
   "Disables the context for inventory items like posting material and adding to favourites."
 SI_FURC_STRING_CRAFTABLE_BY = "Can be crafted by "
 SI_FURC_STRING_DUNG = "dungeon"
-SI_FURC_STRING_FAUSTINA = "Sold by |cd68957Faustina Curio|r <<1>>"
 SI_FURC_STRING_FOR_VOUCHERS = "for <<1>> vouchers"
 SI_FURC_STRING_MENU_ADD_ITEMS_NAME = "Add items to known/unknown recipes?"
 SI_FURC_STRING_MENU_ADD_ITEMS_TT = "You shouldn't notice any lag"
@@ -476,7 +475,6 @@ SI_FURC_STRING_PART_OF_COLL = "part of a collection"
 SI_FURC_STRING_PIECES = "<<1[ / /($d pieces)]>>"
 SI_FURC_STRING_RECIPELEARNED = "Recipe learned: <<1>> <<2>> <<3>>"
 SI_FURC_STRING_RECIPESFORCHAR = "recipes for <<1>>"
-SI_FURC_STRING_ROLIS = "|cd68957Rolis Hlaalu|r <<1>>"
 SI_FURC_STRING_TRADER = "Trader"
 SI_FURC_STRING_VENDOR = "<<1>> <<l:2>> (<<3>><<4>>)"
 SI_FURC_STRING_VOUCHER_VENDOR = "Rolis Hlaalu or Faustina Curio"
@@ -497,10 +495,12 @@ SI_FURC_TRADERS_COOKS = "cooks"
 SI_FURC_TRADERS_DROPSNOGLASS_COLL = "Drops-No-Glass, Temple Doctrine Collection"
 SI_FURC_TRADERS_ENCHANTERS = "enchanters"
 SI_FURC_TRADERS_EVENT = "Event Merchant^nd,from"
+SI_FURC_TRADERS_FAUSTINA = "Faustina Curio"
 SI_FURC_TRADERS_HGF = "Home Goods Furnisher^n,from"
 SI_FURC_TRADERS_HOLIDAY = "Holiday Furnisher^n,from"
 SI_FURC_TRADERS_LUXF = "Luxury Furnisher^nd,from"
 SI_FURC_TRADERS_RAZOUFA_COLL = "Razoufa as part of a collection"
+SI_FURC_TRADERS_ROLIS = "Rolis Hlaalu"
 SI_FURC_VERBOSE_DB_UPTODATE = "Furniture Catalogue: The database is up-to-date."
 SI_FURC_VERBOSE_SCANNING_CHARS = "Not scanning files, scanning character knowledge now..."
 SI_FURC_VERBOSE_SCANNING_DATA_FILE = "Furniture Catalogue: Scanning data files..."
@@ -676,6 +676,88 @@ end
 ---@param ... string items
 ---@return string
 function zo_strjoin(separator, ...)
+  return ""
+end
+
+--- @alias CurrencyType : number
+---| 0 # CURT_NONE (No currency)
+---| 1 # CURT_MONEY (Gold)
+---| 2 # CURT_ALLIANCE_POINTS (AP)
+---| 3 # CURT_TELVAR_STONES (TelVar)
+---| 4 # CURT_WRIT_VOUCHERS (Writ Vouchers)
+---| 5 # CURT_CHAOTIC_CREATIA (Transmutation Crystal)
+---| 6 # CURT_CROWN_GEMS (Crown Gems)
+---| 7 # CURT_CROWNS (Crowns)
+---| 8 # CURT_STYLE_STONES (Style Mimic Stones)
+---| 9 # CURT_EVENT_TICKETS (Event Tickets)
+---| 10 # CURT_UNDAUNTED_KEYS (Undaunted Keys)
+---| 11 # CURT_ENDEAVOR_SEALS (Seals of Endeavor)
+---| 12 # CURT_ENDLESS_DUNGEON (Infinite Archive)
+
+---@type CurrencyType
+CURT_NONE = 0
+---@type CurrencyType
+CURT_MONEY = 1
+---@type CurrencyType
+CURT_ALLIANCE_POINTS = 2
+---@type CurrencyType
+CURT_TELVAR_STONES = 3
+---@type CurrencyType
+CURT_WRIT_VOUCHERS = 4
+---@type CurrencyType
+CURT_CHAOTIC_CREATIA = 5
+---@type CurrencyType
+CURT_CROWN_GEMS = 6
+---@type CurrencyType
+CURT_CROWNS = 7
+---@type CurrencyType
+CURT_STYLE_STONES = 8
+---@type CurrencyType
+CURT_EVENT_TICKETS = 9
+---@type CurrencyType
+CURT_UNDAUNTED_KEYS = 10
+---@type CurrencyType
+CURT_ENDEAVOR_SEALS = 11
+---@type CurrencyType
+CURT_ENDLESS_DUNGEON = 12
+
+---@alias FormatType : number
+---| 1 # ZO_CURRENCY_FORMAT_AMOUNT_NAME
+---| 2 # ZO_CURRENCY_FORMAT_WHITE_AMOUNT_WHITE_NAME
+---| 3 # ZO_CURRENCY_FORMAT_PARENTHETICAL_AMOUNT
+---| 4 # ZO_CURRENCY_FORMAT_AMOUNT_ICON
+---| 5 # ZO_CURRENCY_FORMAT_WHITE_AMOUNT_ICON
+---| 6 # ZO_CURRENCY_FORMAT_ERROR_AMOUNT_ICON
+---| 7 # ZO_CURRENCY_FORMAT_PLURAL_NAME_ICON
+---| 8 # ZO_CURRENCY_FORMAT_STRIKETHROUGH_AMOUNT_ICON
+
+---@type FormatType
+ZO_CURRENCY_FORMAT_AMOUNT_NAME = 1
+---@type FormatType
+ZO_CURRENCY_FORMAT_WHITE_AMOUNT_WHITE_NAME = 2
+---@type FormatType
+ZO_CURRENCY_FORMAT_PARENTHETICAL_AMOUNT = 3
+---@type FormatType
+ZO_CURRENCY_FORMAT_AMOUNT_ICON = 4
+---@type FormatType
+ZO_CURRENCY_FORMAT_WHITE_AMOUNT_ICON = 5
+---@type FormatType
+ZO_CURRENCY_FORMAT_ERROR_AMOUNT_ICON = 6
+---@type FormatType
+ZO_CURRENCY_FORMAT_PLURAL_NAME_ICON = 7
+---@type FormatType
+ZO_CURRENCY_FORMAT_STRIKETHROUGH_AMOUNT_ICON = 8
+
+---Format currency string for PC/Keyboard
+---<br>Example:
+---<br>    ZO_Currency_FormatKeyboard(CURT_TELVAR_STONES, 12345, ZO_CURRENCY_FORMAT_PLURAL_NAME_ICON)
+---<br> --> "12,345 Tel Var Stones [ICON]"
+---@param currencyType CurrencyType
+---@param currencyAmount integer like 12345
+---@param formatType FormatType like ZO_CURRENCY_FORMAT_PLURAL_NAME_ICON
+---@param extraOptions table|nil {showCap, currencyLocation, color, iconInheritColor}
+---@return string
+function ZO_Currency_FormatKeyboard(currencyType, currencyAmount, formatType, extraOptions)
   return ""
 end
 
