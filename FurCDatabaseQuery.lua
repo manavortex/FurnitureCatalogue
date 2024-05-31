@@ -10,27 +10,10 @@ local join = zo_strjoin
 
 local colourise = FurC.Utils.Colourise
 local getItemLink = FurC.Utils.GetItemLink
-local strDungeon = FurC.Utils.FmtDungeon
-local strEvent = FurC.Utils.FmtEvent
-local strLoc = FurC.Utils.FmtLocations
-local strPartOf = FurC.Utils.FormatPartOf
-local strPick = FurC.Utils.FormatPickpocket
-local strPrice = FurC.Utils.FormatPrice
-local strScry = FurC.Utils.FmtScryWithPieces
-local strSteal = FurC.Utils.FormatSteal
+local fmtFurnisher = FurC.Utils.FormatFurnisher
 
 local strVoucherVendor = GetString(SI_FURC_STRING_VOUCHER_VENDOR)
 local fmtVendor = GetString(SI_FURC_STRING_VENDOR)
-
-local function makeAchievementLink(achievementId)
-  if not achievementId then
-    return
-  end
-  if tonumber(achievementId) ~= achievementId then
-    return GetString(SI_FURC_REQUIRES_ACHIEVEMENT) .. achievementId
-  end
-  return GetString(SI_FURC_REQUIRES_ACHIEVEMENT) .. GetAchievementLink(achievementId, LINK_STYLE_DEFAULT)
-end
 
 local function getRolisSource(recipeKey, recipeArray)
   recipeArray = recipeArray or FurC.Find(recipeKey)
@@ -43,14 +26,14 @@ local function getRolisSource(recipeKey, recipeArray)
   if nil ~= versionData and nil ~= versionData[recipeKey] then
     local itemPrice =
       zo_strformat(GetString(SI_FURC_STRING_FOR_VOUCHERS), colourise(versionData[recipeKey], colour.Voucher))
-    return zo_strformat(GetString(SI_FURC_STRING_ROLIS), itemPrice)
+    return zo_strformat(GetString(SI_FURC_TRADERS_ROLIS), itemPrice)
   end
 
   versionData = FurC.Faustina[recipeArray.version]
   if nil ~= versionData and nil ~= versionData[recipeKey] then
     local itemPrice =
       zo_strformat(GetString(SI_FURC_STRING_FOR_VOUCHERS), colourise(versionData[recipeKey], colour.Voucher))
-    return zo_strformat(GetString(SI_FURC_STRING_FAUSTINA), itemPrice)
+    return zo_strformat(GetString(SI_FURC_TRADERS_FAUSTINA), itemPrice)
   end
 
   return strVoucherVendor -- fallback
@@ -145,13 +128,9 @@ local function getAchievementVendorSource(recipeKey, recipeArray, stripColor)
     for vendorName, vendorData in pairs(zoneData) do
       local databaseEntry = vendorData[recipeKey]
       if databaseEntry then
-        return zo_strformat(
-          fmtVendor,
-          colourise(vendorName, colour.Vendor, stripColor),
-          colourise(zoneName, colour.Vendor, stripColor),
-          colourise(databaseEntry.itemPrice, colour.Gold, stripColor),
-          makeAchievementLink(databaseEntry.achievement)
-        )
+        return fmtFurnisher(npc.AF, zoneName, databaseEntry.itemPrice, nil, databaseEntry.achievement)
+
+        -- return zo_strformat(fmtVendor,colourise(vendorName,colour.Vendor, stripColor),colourise(zoneName, colour.Vendor, stripColor),colourise(databaseEntry.itemPrice, colour.Gold, stripColor),makeAchievementLink(databaseEntry.achievement)
       end
     end
   end

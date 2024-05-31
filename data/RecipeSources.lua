@@ -1,48 +1,44 @@
 local colours = FurC.Constants.Colours
 local loc = FurC.Constants.Locations
+local npc = FurC.Constants.NPC
 
-local strSoldBy = FurC.Utils.SoldBy
+local sFormat = zo_strformat
 
-local requires = GetString(SI_FURC_REQUIRES_ACHIEVEMENT)
-local requiresPsijicRank = string.format("%s %s", requires, GetString(SI_FURC_PSIJIC_RANK))
-local rankFormattingString = requiresPsijicRank .. "%d"
+local strFurnisher = FurC.Utils.FormatFurnisher
 
+local psijikRank = GetString(SI_FURC_PSIJIC_RANK)
 local function rank(aNumber)
-  return string.format(requiresPsijicRank, aNumber)
+  return sFormat(psijikRank, aNumber)
 end
 
 local daily_reward_elswhere = GetString(SI_FURC_DAILY_ELSWEYR)
 local artaeum = loc.ARTAEUM
-local nalirsewen = GetString(SI_FURC_GUILD_PSIJIC_NALIRSEWEN)
+local nalirsewen = npc.PSIJIC_NALIRSEWEN
 
 FurC.RecipeSources = {
-  [139489] = strSoldBy(nalirsewen, { artaeum }, 5000, rank(2)), -- Blueprint: Psijic Chair, Arched
-  [139490] = strSoldBy(nalirsewen, { artaeum }, 10000, rank(3)), -- Blueprint: Psijic Table, Small
-  [139493] = strSoldBy(nalirsewen, { artaeum }, 10000, rank(6)), -- Blueprint: Psijic Banner
-  [139496] = strSoldBy(nalirsewen, { artaeum }, 20000, rank(9)), -- Blueprint: Psijic Banner, Large
-  [141822] = strSoldBy(nalirsewen, { artaeum }, 25000, rank(9)), -- Blueprint: Psijic Banner, Long
-  [139487] = strSoldBy(nalirsewen, { artaeum }, 5000, rank(1)), -- Praxis: Book Row, Levitating
-  [139488] = strSoldBy(nalirsewen, { artaeum }, 5000, rank(1)), -- Praxis: Book Stack, Levitating
-  [139495] = strSoldBy(nalirsewen, { artaeum }, 20000, rank(8)), -- Praxis: Psijic Lighting Globe, Large
-  [139491] = strSoldBy(nalirsewen, { artaeum }, 10000, rank(4)), -- Praxis: Psijic Lighting Globe, Small
-  [139497] = strSoldBy(nalirsewen, { artaeum }, 100000, rank(10)), -- Praxis: Psijic Table, Grand
-  [139492] = strSoldBy(nalirsewen, { artaeum }, 20000, rank(5)), -- Praxis: Psijic Table, Scalloped
-  [139494] = strSoldBy(nalirsewen, { artaeum }, 20000, rank(7)), -- Praxis: Psijic Table, Six-Fold Symmetry
+  [139489] = strFurnisher(nalirsewen, artaeum, 5000, nil, rank(2)), -- Blueprint: Psijic Chair, Arched
+  [139490] = strFurnisher(nalirsewen, artaeum, 10000, nil, rank(3)), -- Blueprint: Psijic Table, Small
+  [139493] = strFurnisher(nalirsewen, artaeum, 10000, nil, rank(6)), -- Blueprint: Psijic Banner
+  [139496] = strFurnisher(nalirsewen, artaeum, 20000, nil, rank(9)), -- Blueprint: Psijic Banner, Large
+  [141822] = strFurnisher(nalirsewen, artaeum, 25000, nil, rank(9)), -- Blueprint: Psijic Banner, Long
+  [139487] = strFurnisher(nalirsewen, artaeum, 5000, nil, rank(1)), -- Praxis: Book Row, Levitating
+  [139488] = strFurnisher(nalirsewen, artaeum, 5000, nil, rank(1)), -- Praxis: Book Stack, Levitating
+  [139495] = strFurnisher(nalirsewen, artaeum, 20000, nil, rank(8)), -- Praxis: Psijic Lighting Globe, Large
+  [139491] = strFurnisher(nalirsewen, artaeum, 10000, nil, rank(4)), -- Praxis: Psijic Lighting Globe, Small
+  [139497] = strFurnisher(nalirsewen, artaeum, 100000, nil, rank(10)), -- Praxis: Psijic Table, Grand
+  [139492] = strFurnisher(nalirsewen, artaeum, 20000, nil, rank(5)), -- Praxis: Psijic Table, Scalloped
+  [139494] = strFurnisher(nalirsewen, artaeum, 20000, nil, rank(7)), -- Praxis: Psijic Table, Six-Fold Symmetry
   [121203] = daily_reward_elswhere, -- Praxis: Khajiit Brazier, Enchanted
 }
 
 for versionNo, rolisRecipes in pairs(FurC.RolisRecipes) do
   for recipeId, itemPrice in pairs(rolisRecipes) do
-    local priceString = zo_strformat(GetString(SI_FURC_STRING_FOR_VOUCHERS), itemPrice, colours.Voucher)
-    FurC.RecipeSources[recipeId] = zo_strformat(GetString(SI_FURC_STRING_ROLIS), priceString)
+    FurC.RecipeSources[recipeId] = strFurnisher(npc.ROLIS, loc.ANY_CAPITAL, itemPrice, CURT_WRIT_VOUCHERS)
   end
 end
 
 for versionNo, faustinaRecipes in pairs(FurC.FaustinaRecipes) do
   for recipeId, itemPrice in pairs(faustinaRecipes) do
-    local unsurpassedCrafter = GetAchievementLink(1801, LINK_STYLE_DEFAULT)
-    local priceString = zo_strformat(GetString(SI_FURC_STRING_FOR_VOUCHERS), itemPrice, colours.Voucher)
-    local strSoldByFaustinaFor = zo_strformat(GetString(SI_FURC_STRING_FAUSTINA), priceString)
-    FurC.RecipeSources[recipeId] = strSoldByFaustinaFor .. requires .. unsurpassedCrafter
+    FurC.RecipeSources[recipeId] = strFurnisher(npc.FAUSTINA, loc.ANY_CAPITAL, itemPrice, CURT_WRIT_VOUCHERS, 1801)
   end
 end

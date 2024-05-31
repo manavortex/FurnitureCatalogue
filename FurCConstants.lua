@@ -154,6 +154,9 @@ FurC.Constants.Locations = {
 
 -- NPC ids, for better readability and more control of the string sources
 FurC.Constants.NPC = {
+  -- Writ Furnishers
+  ROLIS = GetString(SI_FURC_TRADERS_ROLIS), -- Rolis Hlaalu, Mastercraft Mediator
+  FAUSTINA = GetString(SI_FURC_TRADERS_FAUSTINA), -- Faustina Curio, Achievement Mediator
 
   -- Other Furnishers
   ALCHEMISTS = GetString(SI_FURC_TRADERS_ALCHEMISTS), -- any alchemist
@@ -186,9 +189,9 @@ FurC.Constants.NPC = {
 }
 
 local colours = {
-  Vendor = "D68957",
-  Location = "D68957",
-  Gold = "E5dA40",
+  Vendor = "72DB00",
+  Location = "CF6D00",
+  Gold = "E5DA40",
   Voucher = "25C31E",
   AP = "5EA4FF",
   TelVar = "82BCFF",
@@ -198,7 +201,7 @@ FurC.Constants.Colours = colours
 FurC.Constants.Currencies = {
   [CURT_NONE] = {
     colour = colours.Gold,
-    name = GetCurrencyName(CURT_NONE),
+    name = "??",
   },
   [CURT_MONEY] = {
     colour = colours.Gold,
@@ -243,6 +246,10 @@ FurC.Constants.Currencies = {
   [CURT_ENDEAVOR_SEALS] = {
     colour = colours.Vendor,
     name = GetCurrencyName(CURT_ENDEAVOR_SEALS),
+  },
+  [CURT_ENDLESS_DUNGEON] = {
+    colour = colours.Vendor,
+    name = GetCurrencyName(CURT_ENDLESS_DUNGEON),
   },
 }
 
