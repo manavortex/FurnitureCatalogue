@@ -193,7 +193,6 @@ FurC.Rumours[ver.ENDLESS] = {
   [203177] = rumourSource, -- Apocrypha Coral, Pink Tube
   [203176] = rumourSource, -- Apocrypha Geyser, Ink
   [203166] = rumourSource, -- Sai Sahan Statue
-  [203151] = rumourSource, -- Falmer Gate, Stick"
   [203138] = rumourSource, -- Apocrypha Plant, Feather Fern
   [203135] = rumourSource, -- Redguard Dome, Mosaic
   [203133] = rumourSource, -- Apocrypha Coral, Spiky

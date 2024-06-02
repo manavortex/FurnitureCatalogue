@@ -4,6 +4,10 @@ local ver = FurC.Constants.Versioning
 
 -- 28 Secrets of the Telvanni
 FurC.LuxuryFurnisher[ver.ENDLESS] = {
+  [203151] = { -- Falmer Gate, Stick
+    itemPrice = 3000,
+    itemDate = "2024-05-31",
+  },
   [203150] = { -- Falmer Fence, Stick
     itemPrice = 200,
     itemDate = "2024-05-24",
@@ -234,7 +238,7 @@ FurC.LuxuryFurnisher[ver.SCRIBE] = {
   },
   [193800] = { -- Falmer Tent, Conical,
     itemPrice = 4000,
-    itemDate = "2023-05-06",
+    itemDate = "2024-05-31",
   },
   [193799] = { -- Falmer Hut, Long,
     itemPrice = 14000,
@@ -474,7 +478,7 @@ FurC.LuxuryFurnisher[ver.TIDES] = {
   },
   [182628] = { -- Riekr Tent, Snowy
     itemPrice = 3500,
-    itemDate = "2023-05-06",
+    itemDate = "2024-05-31",
   },
   [182627] = { -- Hovel, Rock
     itemPrice = 4500,
@@ -1746,7 +1750,7 @@ FurC.LuxuryFurnisher[ver.MARKAT] = {
   },
   [171420] = { -- Riekling Rack, Giant Bone
     itemPrice = 3000,
-    itemDate = "2023-05-06",
+    itemDate = "2024-05-31",
   },
   [171419] = { -- Riekling Shelter, Painted Megaliths
     itemPrice = 4000,
@@ -1794,7 +1798,7 @@ FurC.LuxuryFurnisher[ver.MARKAT] = {
   },
   [156663] = { -- Riekling Banner, Boar Pelt
     itemPrice = 4000,
-    itemDate = "2023-05-06",
+    itemDate = "2024-05-31",
   },
   [156661] = { -- Orcish Seal, Battle-Axe
     itemPrice = 3000,
@@ -1898,19 +1902,19 @@ FurC.LuxuryFurnisher[ver.MARKAT] = {
   },
   [134464] = { -- Riekling Bonfire, Ceremonial
     itemPrice = 4000,
-    itemDate = "2023-05-06",
+    itemDate = "2024-05-31",
   },
   [134463] = { -- Riekling Brazier, Ceremonial
     itemPrice = 4000,
-    itemDate = "2023-05-06",
+    itemDate = "2024-05-31",
   },
   [134462] = { -- Riekling Grinding Stone
     itemPrice = 450,
-    itemDate = "2023-05-06",
+    itemDate = "2024-05-31",
   },
   [134461] = { -- Riekling Tanning Rack, Stretched
     itemPrice = 450,
-    itemDate = "2023-05-06",
+    itemDate = "2024-05-31",
   },
   [134449] = { -- Seal of Clan Igrun, Metal
     itemPrice = 4000,
