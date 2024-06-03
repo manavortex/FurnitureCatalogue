@@ -78,12 +78,14 @@ FurC.Constants.Versioning.LATEST = FurC.Constants.Versioning.SCIONS
 -- Location Ids, mix of ingame strings and translations, more control over translations
 FurC.Constants.Locations = {
   -- Translations exist ingame
+  --  Careful: the ids may change with expansions, use FurCDev.FindZone to fix any broken ones
+  -- TODO: if the id change happens often, write autofixer for it
   ALIKR = getZoneStr(104), -- Alik'r Desert
   APOCRYPHA = getZoneStr(1413), -- Apocrypha
   ARTAEUM = getZoneStr(1027), -- Artaeum
   AURIDON = getZoneStr(381), -- Auridon
   BALFOYEN = getZoneStr(281), -- Bal Foyen
-  BANG = getZoneStr(94), -- Bangkorai
+  BANG = getZoneStr(92), -- Bangkorai
   BETHNIKH = getZoneStr(535), -- Betnikh
   BLACKWOOD = getZoneStr(1261), -- Blackwood
   BLEAK = getZoneStr(280), -- Bleakrock Isle

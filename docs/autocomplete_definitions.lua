@@ -309,7 +309,7 @@ SI_FURC_LOC_STONEFALLS_EBONHEART = "Ebonheart"
 SI_FURC_LOC_STORMHAVEN_WAY_MERCH = "Stormhaven, Wayrest, Merchant district"
 SI_FURC_LOC_SUMMERSET_ALINOR = "Alinor"
 SI_FURC_LOC_SUMMERSET_ALINOR_RIVERSIDE = "Riverside Market"
-SI_FURC_LOC_UNDAUNTED = "Undaunted Enclaves"
+SI_FURC_LOC_UNDAUNTED = "Undaunted Enclaves^p,in"
 SI_FURC_LOC_VVARDENFELL_SURAN = "Suran"
 SI_FURC_LOC_VVARDENFELL_VIVEC = "Vivec City"
 SI_FURC_LOC_VVARDENFELL_VIVEC_GQ = "Gladiator's Quarters"
@@ -479,7 +479,7 @@ SI_FURC_STRING_TRADER = "Trader"
 SI_FURC_STRING_VENDOR = "<<1>> <<l:2>> (<<3>><<4>>)"
 SI_FURC_STRING_VOUCHER_VENDOR = "Rolis Hlaalu or Faustina Curio"
 SI_FURC_STRING_WASSOLDBY = "<<1>> in <<2>> (<<3>>) <<4>>"
-SI_FURC_STRING_WEEKEND_AROUND = "(around <<1>>)"
+SI_FURC_STRING_WEEKEND_AROUND = "around <<1>>"
 SI_FURC_TELVANNI_NECROM_FRF = "Necrom, Final Rest Furnishings"
 SI_FURC_TEXTBOX_FILTER_DEFAULT = "Filter by text search"
 SI_FURC_TOGGLE_SHOPPINGLIST = " Toggle shopping list"
@@ -581,6 +581,8 @@ Additional number formatting functions, which abbreviate the value (e.g. 10000 =
 ---   - `^d` : forces definitive article for unique names???
 ---     - `Archiv^nd` => `das Archiv`
 ---     - `Archiv^n` => `Archiv`
+---   - `^f:m`: supply separate modifiers for colon separated words (formatting converts colon expressions into a sentence structure)
+---     - `Blaupause: Tisch^fd:m` => `die Blaupause für einen Tisch` - "the blueprint for a table"
 ---
 --- Formatting adds articles, when handling lowercase gender in English! Use uppercase genders like `name^P` in the translations for any languages, that need to avoid those articles:
 --- - `<<l:1>> guards^p,from` => `from the guards`

@@ -414,23 +414,6 @@ function this.FormatScrying(...)
   return string.format("%s %s", sFormat("<<C:1>>", scrFrom), table.concat(locations, "/"))
 end
 
-local vendorString = GetString(SI_FURC_STRING_VENDOR)
----comment
----@param vendorRef string vendor string like SI_FURC_GUILD_PSIJIC_NALIRSEWEN
----@param locRefs table locations with optional hierarchies like {*_ZONE, *_PLACE, *_SHOP}
----@param price any
----@param requirement any
----@return string
-function this.SoldBy(vendorRef, locRefs, price, requirement)
-  return sFormat(
-    vendorString,
-    this.Colourise(vendorRef, colours.Vendor, this.stripTxt),
-    this.Colourise(locRefs, colours.Vendor, this.stripTxt),
-    this.Colourise(price, colours.Gold, this.stripTxt),
-    requirement
-  )
-end
-
 -- FURNITURE UTILS --
 
 ---Check if item is a furnishing
