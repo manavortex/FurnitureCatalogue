@@ -754,7 +754,6 @@ FurC.Rumours[ver.WEREWOLF] = {
 
 -- 8 Murkmire
 FurC.Rumours[ver.SLAVES] = {
-  [145576] = rumourSource, -- Timid Vine-Tongue
   [145556] = rumourSource, -- Tree, Tall Snowy Fir
   [145555] = rumourSource, -- Tree, Snowy Fir
   [145554] = rumourSource, -- Tree, Towering Snowy Fir
