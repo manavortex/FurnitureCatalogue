@@ -66,6 +66,7 @@ FurC.Constants.Versioning = {
   BASED = getNextIdFor("VERSIONING"), -- 27 Base Game Patch
   ENDLESS = getNextIdFor("VERSIONING"), -- 28 Secrets of the Telvanni
   SCIONS = getNextIdFor("VERSIONING"), -- 29 Scions of Ithelia
+  WEALD = getNextIdFor("VERSIONING"), -- 30 Gold Road
 }
 
 FurC.Constants.Versioning.LATEST = FurC.Constants.Versioning.SCIONS
