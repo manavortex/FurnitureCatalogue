@@ -247,7 +247,7 @@ FurC.Constants.Currencies = {
     colour = colours.Vendor,
     name = GetCurrencyName(CURT_ENDEAVOR_SEALS),
   },
-  [CURT_ENDLESS_DUNGEON] = {
+  [CURT_ENDLESS_DUNGEON] = { -- CURT_ARCHIVAL_FORTUNES ???
     colour = colours.Vendor,
     name = GetCurrencyName(CURT_ENDLESS_DUNGEON),
   },
