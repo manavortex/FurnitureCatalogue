@@ -86,12 +86,30 @@ function this.capitalise(str)
   return LocaleAwareToUpper(string.sub(str, 1, 1)) .. string.sub(str, 2)
 end
 
--- TODO #REFACTOR: make more flexible
-function this.stripColour(aString)
-  if nil == aString then
+-- Patterns that are incompatible with chat messages
+local STRIP_PATTERNS = {
+  "|c%x%x%x%x%x%x", -- <colour>
+  "|r", -- </colour>
+  "|u%d+:%d+.+|u", -- <number/>
+  "|t%d+.+|t", -- <texture/>
+}
+
+---Strips patterns from string
+---@param txt string Text containing `|` tags
+---@param patterns? table<string> list of patterns to strip
+---@return string txt stripped text
+function this.stripTxt(txt, patterns)
+  assert(type(txt) == "string", "How do you strip that which is no string?")
+  if txt == "" then
     return ""
   end
-  return aString:gsub("|%l%l%d%d%d%d%d", ""):gsub("|%l%l%d%l%l%d%d", ""):gsub("|c25C31E", ""):gsub("|r", "")
+
+  patterns = patterns or STRIP_PATTERNS
+  for _, pattern in ipairs(patterns) do
+    txt = txt:gsub(pattern, "")
+  end
+
+  return txt
 end
 
 -- TODO #REFACTOR: remove/change ret param?
@@ -309,9 +327,9 @@ end
 ---@param location string formatted location string
 ---@param price? integer price, defaults to 0
 ---@param curt? CurrencyType currency type (default: CURT_MONEY)
----@param req? string|number requirement id or description
+---@param info? string|number description or achievement id
 ---@return string
-function this.FormatFurnisher(trader, location, price, curt, req)
+function this.FormatFurnisher(trader, location, price, curt, info)
   trader = trader or "UNKNOWN TRADER"
   location = location or "UNKNOWN LOCATION"
   price = price or 0
@@ -323,10 +341,16 @@ function this.FormatFurnisher(trader, location, price, curt, req)
     strPrice = this.FormatPrice(price, curt)
   end
 
-  local strReq = ""
-  local hasReq = (req and req ~= "" and 1) or 0
+  local strInfo = ""
+  local hasReq = (info and info ~= "" and 1) or 0
   if hasReq == 1 then
-    strReq = makeAchievementLink(req) or ""
+    if type(info) == "number" then
+      -- must be an achievment ID
+      strInfo = makeAchievementLink(info) or ""
+    else
+      -- must be a description
+      strInfo = info or ""
+    end
   end
 
   local colVendor = colours.Vendor
@@ -344,7 +368,7 @@ function this.FormatFurnisher(trader, location, price, curt, req)
     return sFormat("<<1>> : <<2>> (<<3>>)", strVendor, strLoc, strPrice)
   end
 
-  return sFormat("<<1>> : <<2>> (<<3>>, <<4>>)", strVendor, strLoc, strPrice, strReq)
+  return sFormat("<<1>> : <<2>> (<<3>>, <<4>>)", strVendor, strLoc, strPrice, strInfo)
 end
 
 local scrFrom = GetString(SI_FURC_LOOT_SCRYING)
@@ -400,9 +424,9 @@ local vendorString = GetString(SI_FURC_STRING_VENDOR)
 function this.SoldBy(vendorRef, locRefs, price, requirement)
   return sFormat(
     vendorString,
-    this.Colourise(vendorRef, colours.Vendor, this.stripColour),
-    this.Colourise(locRefs, colours.Vendor, this.stripColour),
-    this.Colourise(price, colours.Gold, this.stripColour),
+    this.Colourise(vendorRef, colours.Vendor, this.stripTxt),
+    this.Colourise(locRefs, colours.Vendor, this.stripTxt),
+    this.Colourise(price, colours.Gold, this.stripTxt),
     requirement
   )
 end

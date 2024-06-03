@@ -9,6 +9,7 @@ local src = FurC.Constants.ItemSources
 local join = zo_strjoin
 
 local colourise = FurC.Utils.Colourise
+local stripText = FurC.Utils.stripTxt
 local getItemLink = FurC.Utils.GetItemLink
 local fmtFurnisher = FurC.Utils.FormatFurnisher
 
@@ -40,8 +41,7 @@ local function getRolisSource(recipeKey, recipeArray)
 end
 FurC.getRolisSource = getRolisSource
 
-local WEEKEND_DATE = GetString(SI_FURC_STRING_WEEKEND_AROUND)
-local SOLD_BY = GetString(SI_FURC_STRING_WASSOLDBY)
+local strAroundDate = GetString(SI_FURC_STRING_WEEKEND_AROUND)
 local function getLuxurySource(recipeKey, recipeArray, stripColor)
   recipeArray = recipeArray or FurC.Find(recipeKey)
   if {} == recipeArray then
@@ -66,15 +66,15 @@ local function getLuxurySource(recipeKey, recipeArray, stripColor)
       formattedDate = formatted
     end
 
-    local weekendString = (nil == itemData.itemDate and "") or zo_strformat(WEEKEND_DATE, formattedDate)
-    return zo_strformat(
-      SOLD_BY,
-      colourise(npc.LUXF, colour.Vendor, stripColor),
-      colourise(loc.COLDH, colour.Vendor, stripColor),
-      colourise(itemData.itemPrice, colour.Gold, stripColor),
-      weekendString
-    )
+    local weekendString = (nil == itemData.itemDate and "")
+      or zo_strformat(strAroundDate, colourise(formattedDate, colour.Gold))
+    local result = fmtFurnisher(npc.LUXF, loc.COLDH, itemData.itemPrice, nil, weekendString)
+    if stripColor then
+      result = stripText(result)
+    end
+    return result
   end
+
   return "SI_FURC_STRING_FETCHER" -- ToDo: placeholder until I know who it is
 end
 FurC.getLuxurySource = getLuxurySource
@@ -127,10 +127,16 @@ local function getAchievementVendorSource(recipeKey, recipeArray, stripColor)
   for zoneName, zoneData in pairs(versionData) do
     for vendorName, vendorData in pairs(zoneData) do
       local databaseEntry = vendorData[recipeKey]
+      local currency = CURT_MONEY
+      if zoneName == loc.DUNG_IA then -- workaround for now, store this info in item in the future
+        currency = CURT_ENDLESS_DUNGEON
+      end
       if databaseEntry then
-        return fmtFurnisher(npc.AF, zoneName, databaseEntry.itemPrice, nil, databaseEntry.achievement)
-
-        -- return zo_strformat(fmtVendor,colourise(vendorName,colour.Vendor, stripColor),colourise(zoneName, colour.Vendor, stripColor),colourise(databaseEntry.itemPrice, colour.Gold, stripColor),makeAchievementLink(databaseEntry.achievement)
+        local result = fmtFurnisher(vendorName, zoneName, databaseEntry.itemPrice, currency, databaseEntry.achievement)
+        if stripColor then
+          result = stripText(result)
+        end
+        return result
       end
     end
   end
