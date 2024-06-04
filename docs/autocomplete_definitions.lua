@@ -252,7 +252,7 @@ SI_FURC_GRAMMAR_PREP_SRC_DEFAULT = "from"
 SI_FURC_GUILD_FIGHTERS = "the Fighters' guild"
 SI_FURC_GUILD_FIGHTERS_STEWARD = "Hall Steward"
 SI_FURC_GUILD_MAGES = "the Mages' guild"
-SI_FURC_GUILD_MAGES_MYSTIC = "the Mystic"
+SI_FURC_GUILD_MAGES_MYSTIC = "Mystic^n"
 SI_FURC_GUILD_MAGES_MYSTIC_COLL = "the Mystic as part of a collection"
 SI_FURC_GUILD_PSIJIC_NALIRSEWEN = "Nalirsewen"
 SI_FURC_GUILD_THIEVES_MERCH = "Outlaw Refuge, Merchant"
@@ -315,24 +315,11 @@ SI_FURC_LOC_VVARDENFELL_VIVEC = "Vivec City"
 SI_FURC_LOC_VVARDENFELL_VIVEC_GQ = "Gladiator's Quarters"
 SI_FURC_LOC_VVARDENFELL_VIVEC_SDI = "Saint Delyn Inn"
 SI_FURC_LOC_WSKYRIM_SOLI_DH = "Solitude, Dragon's Hearth"
-SI_FURC_LOOT_CHESTS = "treasure chests"
 SI_FURC_LOOT_FISH = "can be fished"
 SI_FURC_LOOT_HARVEST = "from harvesting nodes"
 SI_FURC_LOOT_HARVEST_WOOD = "occasionally found in wood nodes"
-SI_FURC_LOOT_PICKPOCKET = "Pickpocket"
-SI_FURC_LOOT_PLANTS = "from harvesting plants"
-SI_FURC_LOOT_SCRYING = "from scrying"
-SI_FURC_LOOT_STEALING = "Stealing"
 SI_FURC_MENU_HEADER = "- |cD3B830Furniture|r:"
-SI_FURC_NPC_AUTOMATON = "automaton"
-SI_FURC_NPC_DRUNKARD = "drunkard"
-SI_FURC_NPC_GUARD = "guard"
-SI_FURC_NPC_MAGE = "mage"
-SI_FURC_NPC_PILGRIM = "pilgrim"
-SI_FURC_NPC_PRIEST = "priest"
-SI_FURC_NPC_SCHOLAR = "scholar"
-SI_FURC_NPC_THIEF = "thief"
-SI_FURC_NPC_WOODWORKER = "woodworker"
+SI_FURC_NPC_AUTOMATON = "automaton^n"
 SI_FURC_PART_OF = "Part of item <<1>>"
 SI_FURC_PLUGIN_SL_ADD_FIVE = "Add 5 to shopping list"
 SI_FURC_PLUGIN_SL_ADD_ONE = "Add 1 to shopping list"
@@ -343,6 +330,9 @@ SI_FURC_POST_MATERIAL = " Post material"
 SI_FURC_POST_RECIPE = " Post recipe"
 SI_FURC_PSIJIC_RANK = "Psijic Order Rank <<1>>"
 SI_FURC_QUESTREWARD = "<<1[Quest reward/Quest: '<<2>>'/Quests]>> <<l:2>>"
+SI_FURC_RARITY_EXTREMELYRARE = "extremely rare"
+SI_FURC_RARITY_RARE = "rare"
+SI_FURC_RARITY_VERYRARE = "very rare"
 SI_FURC_REMOVE_FAVE = " Remove Favorite"
 SI_FURC_REQUIRES_ACHIEVEMENT = "requires <<1>>"
 SI_FURC_SCAMBOX = "Crown Crates"
@@ -351,21 +341,25 @@ SI_FURC_SEEN_IN_GUILDSTORE = "Seen in Guild Store"
 SI_FURC_SHOW_CROWN_TT = "Hiding crown store. Click to show."
 SI_FURC_SHOW_RUMOUR_TT = "Confirmed items only. Click to show rumour items."
 SI_FURC_SLAVES_DAILY = "from Murkmire daily quest reward boxes"
+SI_FURC_SRC_CHESTS = "treasure chests^p,from"
 SI_FURC_SRC_CROWNSTORE = "Crown Store "
-SI_FURC_SRC_DROP = "<<1[can drop/drops <<2>>/Drops: <<2>>]>>"
-SI_FURC_SRC_DUNG = "<<1[found in dungeons/found in <<2>>/From dungeons: <<2>>]>>"
+SI_FURC_SRC_DROP = "<<1[can drop/drops <<l:2>>/Drops: <<2>>]>>"
+SI_FURC_SRC_DUNG = "dungeon^n,from"
 SI_FURC_SRC_EMPTY =
   "Item source unknown.\nTry to re-scan files (refresh button right click).\nIf the item is still unknown - and not part of the weekend furnisher's current inventory - please send a mail with the item link and -source to @berylbones."
+SI_FURC_SRC_HARVEST = "harvesting^N,from"
 SI_FURC_SRC_ITEMPACK = "Part of the Crown Store item pack [<<1>>] "
 SI_FURC_SRC_LVLUP = "Can be gained as levelup reward"
 SI_FURC_SRC_MISCHOUSE = "From select house purchases"
+SI_FURC_SRC_PICK = "pickpocket^N,from"
 SI_FURC_SRC_QUEST = "Quest"
 SI_FURC_SRC_RUMOUR_ITEM = "This item has been datamined, but not seen in-game"
 SI_FURC_SRC_RUMOUR_RECIPE = "This recipe has been datamined, but not seen in-game"
 SI_FURC_SRC_SAFEBOX = "extremely rarely from safeboxes"
+SI_FURC_SRC_SCRYING = "scrying^N,from"
+SI_FURC_SRC_STEAL = "stealing^N,from"
 SI_FURC_SRC_TOT = "From Tales of Tribute reward coffers"
 SI_FURC_SRC_TOT_RANKED = "From Tales of Tribute ranked matches (system mail reward)"
-SI_FURC_STRING_AP = " AP"
 SI_FURC_STRING_CANNOT_CRAFT = "You cannot craft this yet"
 SI_FURC_STRING_CONTEXTMENU_DIVIDER = "Don't use divider in context menu?"
 SI_FURC_STRING_CONTEXTMENU_DIVIDER_TT =
@@ -768,6 +762,101 @@ end
 function GetZoneNameById(zoneId)
   return ""
 end
+
+---@class MonsterSocialClass : number
+
+---@type MonsterSocialClass Alchemist
+SI_MONSTERSOCIALCLASS2 = 1021
+---@type MonsterSocialClass Artisan
+SI_MONSTERSOCIALCLASS3 = 1022
+---@type MonsterSocialClass Assassin
+SI_MONSTERSOCIALCLASS4 = 1023
+---@type MonsterSocialClass Bard
+SI_MONSTERSOCIALCLASS5 = 1024
+---@type MonsterSocialClass Beggar
+SI_MONSTERSOCIALCLASS6 = 1025
+---@type MonsterSocialClass Chef
+SI_MONSTERSOCIALCLASS7 = 1026
+---@type MonsterSocialClass Civil Servant
+SI_MONSTERSOCIALCLASS8 = 1027
+---@type MonsterSocialClass Clothier
+SI_MONSTERSOCIALCLASS9 = 1028
+---@type MonsterSocialClass Commoner
+SI_MONSTERSOCIALCLASS10 = 1029
+---@type MonsterSocialClass Crafter
+SI_MONSTERSOCIALCLASS11 = 1030
+---@type MonsterSocialClass Cultist
+SI_MONSTERSOCIALCLASS12 = 1031
+---@type MonsterSocialClass Drunkard
+SI_MONSTERSOCIALCLASS13 = 1032
+---@type MonsterSocialClass Farmer
+SI_MONSTERSOCIALCLASS14 = 1033
+---@type MonsterSocialClass Fighter
+SI_MONSTERSOCIALCLASS15 = 1034
+---@type MonsterSocialClass Fisher
+SI_MONSTERSOCIALCLASS16 = 1035
+---@type MonsterSocialClass Gatherer
+SI_MONSTERSOCIALCLASS17 = 1036
+---@type MonsterSocialClass Ghost
+SI_MONSTERSOCIALCLASS18 = 1037
+---@type MonsterSocialClass Guard
+SI_MONSTERSOCIALCLASS19 = 1038
+---@type MonsterSocialClass Healer
+SI_MONSTERSOCIALCLASS20 = 1039
+---@type MonsterSocialClass Hunter
+SI_MONSTERSOCIALCLASS21 = 1040
+---@type MonsterSocialClass Laborer
+SI_MONSTERSOCIALCLASS22 = 1041
+---@type MonsterSocialClass Mage
+SI_MONSTERSOCIALCLASS23 = 1042
+---@type MonsterSocialClass Merchant
+SI_MONSTERSOCIALCLASS24 = 1043
+---@type MonsterSocialClass Noble
+SI_MONSTERSOCIALCLASS25 = 1044
+---@type MonsterSocialClass Nude
+SI_MONSTERSOCIALCLASS26 = 1045
+---@type MonsterSocialClass Ordinator
+SI_MONSTERSOCIALCLASS27 = 1046
+---@type MonsterSocialClass Outlaw
+SI_MONSTERSOCIALCLASS28 = 1047
+---@type MonsterSocialClass Pilgrim
+SI_MONSTERSOCIALCLASS29 = 1048
+---@type MonsterSocialClass Priest
+SI_MONSTERSOCIALCLASS30 = 1049
+---@type MonsterSocialClass Prisoner
+SI_MONSTERSOCIALCLASS31 = 1050
+---@type MonsterSocialClass Provisioner
+SI_MONSTERSOCIALCLASS32 = 1051
+---@type MonsterSocialClass Sailor
+SI_MONSTERSOCIALCLASS33 = 1052
+---@type MonsterSocialClass Scholar
+SI_MONSTERSOCIALCLASS34 = 1053
+---@type MonsterSocialClass Servant
+SI_MONSTERSOCIALCLASS35 = 1054
+---@type MonsterSocialClass Skeleton
+SI_MONSTERSOCIALCLASS36 = 1055
+---@type MonsterSocialClass Slave
+SI_MONSTERSOCIALCLASS37 = 1056
+---@type MonsterSocialClass Smith
+SI_MONSTERSOCIALCLASS38 = 1057
+---@type MonsterSocialClass Soldier
+SI_MONSTERSOCIALCLASS39 = 1058
+---@type MonsterSocialClass Student
+SI_MONSTERSOCIALCLASS40 = 1059
+---@type MonsterSocialClass Thief
+SI_MONSTERSOCIALCLASS41 = 1060
+---@type MonsterSocialClass Vampire
+SI_MONSTERSOCIALCLASS42 = 1061
+---@type MonsterSocialClass Warrior
+SI_MONSTERSOCIALCLASS43 = 1062
+---@type MonsterSocialClass Watchmen
+SI_MONSTERSOCIALCLASS44 = 1063
+---@type MonsterSocialClass Werewolf
+SI_MONSTERSOCIALCLASS45 = 1064
+---@type MonsterSocialClass Woodwoker
+SI_MONSTERSOCIALCLASS46 = 1065
+---@type MonsterSocialClass Daedra
+SI_MONSTERSOCIALCLASS47 = 1066
 
 -- LIBS
 

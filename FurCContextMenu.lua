@@ -50,7 +50,7 @@ local function fave()
   FurC.Fave(cachedItemLink)
 end
 local function postItemSource()
-  FurC.ToChat(FurC.GetItemDescription(cachedItemLink, cachedRecipeArray, true, true))
+  FurC.ToChat(FurC.GetItemDescription(cachedItemLink, cachedRecipeArray, true))
 end
 local function postRecipe()
   FurC.ToChat(FurC.Utils.GetItemLink(cachedRecipeArray.blueprint))

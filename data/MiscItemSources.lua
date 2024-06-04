@@ -3,24 +3,30 @@ FurC.MiscItemSources = FurC.MiscItemSources or {}
 local loc = FurC.Constants.Locations
 local ver = FurC.Constants.Versioning
 local src = FurC.Constants.ItemSources
+local npc = FurC.Constants.NPC
 
 local join = zo_strjoin
-local strSrcLoc = FurC.Utils.FmtSrcLoc
 local strDungeon = FurC.Utils.FmtDungeon
 local strEvent = FurC.Utils.FormatEvent
-local strLoc = FurC.Utils.FmtLocations
+local strSrc = FurC.Utils.FmtSources
 local strPartOf = FurC.Utils.FormatPartOf
 local strPick = FurC.Utils.FormatPickpocket
 local strPrice = FurC.Utils.FormatPrice
 local strQuest = FurC.Utils.FmtQuest
-local strScry = FurC.Utils.FormatScryingWithPieces
+local strScry = FurC.Utils.FmtScrying
 local strSteal = FurC.Utils.FormatSteal
+local strGeneric = FurC.Utils.FmtCategorySourcesSuffix
 
 local loc_vvardenfell = loc.VVARDENFELL
 local loc_nelsweyr = loc.NELSWEYR
 local loc_selsweyr = loc.SELSWEYR
 local loc_elsweyr = { loc_nelsweyr, loc_selsweyr }
 local loc_cwc = loc.CWC
+
+local srcDrop = GetString(SI_FURC_SRC_DROP)
+local srcQuest = GetString(SI_FURC_SRC_QUEST)
+
+local rarityExtremely = GetString(SI_FURC_RARITY_EXTREMELYRARE)
 
 -- Quests and Guilds
 local questRewardString = GetString(SI_FURC_QUESTREWARD)
@@ -36,30 +42,32 @@ local ev_hollowjack = strEvent(GetString(SI_FURC_EVENT_HOLLOWJACK))
 local ev_elsweyr = strEvent(GetString(SI_FURC_EVENT_ELSWEYR))
 
 -- Stealing
+local srcSafe = GetString(SI_FURC_SRC_SAFEBOX)
+local srcSteal = GetString(SI_FURC_SRC_STEAL)
+local srcChest = GetString(SI_FURC_SRC_CHEST)
 
-local stealable = GetString(SI_FURC_LOOT_STEALING)
-local stealable_guard = strPick({ GetString(SI_FURC_NPC_GUARD) }, {})
+local stealable_guard = strPick({ npc.CLASS_GUARD }, {})
 local stealable_cc = strSteal({}, { loc_cwc })
-local stealable_scholars = stealable .. GetString(SI_FURC_NPC_SCHOLAR)
-local stealable_mages = stealable .. ": " .. GetString(SI_FURC_NPC_MAGE)
-local stealable_nerds = stealable .. ": " .. join(",", GetString(SI_FURC_NPC_MAGE), GetString(SI_FURC_NPC_SCHOLAR))
-local stealable_priests = stealable .. ": " .. GetString(SI_FURC_NPC_PRIEST)
-local stealable_pilgrims = stealable .. ": " .. GetString(SI_FURC_NPC_PILGRIM)
-local stealable_thief = stealable .. ": " .. GetString(SI_FURC_NPC_THIEF)
-local stealable_wood = stealable .. ": " .. GetString(SI_FURC_NPC_WOODWORKER)
-local stealable_drunkards = stealable .. ": " .. GetString(SI_FURC_NPC_DRUNKARD)
-local stealable_loc_wrothgar = stealable .. ": " .. " loc_wrothgar"
-local stealable_swamp = stealable .. " loc_murkmire"
+local stealable_scholars = strPick({ npc.CLASS_SCHOLAR }, {})
+local stealable_mages = srcSteal .. ": " .. npc.CLASS_MAGE
+local stealable_nerds = srcSteal .. ": " .. join(",", npc.CLASS_MAGE, npc.CLASS_SCHOLAR)
+local stealable_priests = srcSteal .. ": " .. npc.CLASS_PRIEST
+local stealable_pilgrims = srcSteal .. ": " .. npc.CLASS_PILGRIM
+local stealable_thief = srcSteal .. ": " .. npc.CLASS_THIEF
+local stealable_wood = srcSteal .. ": " .. npc.CLASS_WOODWORKER
+local stealable_drunkards = srcSteal .. ": " .. npc.CLASS_DRUNKARD
+local stealable_loc_wrothgar = srcSteal .. ": " .. " loc_wrothgar"
+local stealable_swamp = srcSteal .. " loc_murkmire"
 local stealable_elsewhere = strSteal(loc_elsweyr)
 local pickpocket_necrom = strPick({ loc.TELVANNI, loc.APOCRYPHA })
-local painting_summerset = GetString(SI_FURC_SRC_SAFEBOX) .. strLoc(loc.SUMMERSET)
+local painting_summerset = strGeneric(srcSafe, rarityExtremely, nil, loc.SUMMERSET)
 
 -- Looting/Harvesting
-local chests_string = GetString(SI_FURC_LOOT_CHESTS)
+local chests_string = GetString(SI_FURC_SRC_CHESTS)
 
-local automaton_loot_cc = GetString(SI_FURC_NPC_AUTOMATON) .. strLoc(loc_cwc)
-local automaton_loot_vv = GetString(SI_FURC_NPC_AUTOMATON) .. strLoc(loc_vvardenfell)
-local chests_skyrim = chests_string .. loc.WSKYRIM
+local automaton_loot_cc = strGeneric(srcDrop, npc.ENEMY_AUTOMATON, nil, loc_cwc)
+local automaton_loot_vv = strGeneric(srcDrop, npc.ENEMY_AUTOMATON, nil, loc_vvardenfell)
+local chests_skyrim = strGeneric(srcChest, nil, nil, loc.WSKYRIM)
 local chests_blackwood = chests_string .. loc.BLACKWOOD
 local chests_summerset = chests_string .. loc.SUMMERSET
 local chests_elsweyr = chests_string .. "loc_elsweyr"
@@ -68,8 +76,8 @@ local chests_blackr_grcaverns = chests_string .. " in Blackreach: Greymoor Caver
 local book_hall = "From chests in the Scrivener's Hall vault"
 local nymic = "From Bastion Nymic reward chests"
 local chests_necrom = chests_string .. loc.TELVANNI .. loc.APOCRYPHA
-local pdung_vv_fw = strSrcLoc(GetString(SI_FURC_DROP), loc.PDUNG_VVARDENFELL_FW, loc.VVARDENFELL)
-local plants_vvardenfell = GetString(SI_FURC_LOOT_PLANTS) .. "loc_vvardenfell"
+local pdung_vv_fw = strGeneric(srcDrop, nil, ", ", loc.VVARDENFELL, loc.PDUNG_VVARDENFELL_FW)
+local plants_vvardenfell = GetString(SI_FURC_SRC_HARVEST) .. "loc_vvardenfell"
 local fishing = GetString(SI_FURC_LOOT_FISH)
 local fishing_summerset = fishing .. loc.SUMMERSET
 local fishing_swamp = fishing .. loc.MURKMIRE
@@ -1183,7 +1191,7 @@ FurC.MiscItemSources[ver.STONET] = {
 -- 15 Greymoor
 FurC.MiscItemSources[ver.SKYRIM] = {
   [src.JUSTICE] = {
-    [165828] = GetString(SI_FURC_LOOT_STEALING) .. " loc_skyrim", -- Painting: Life in Repose Painting, Wood
+    [165828] = GetString(SI_FURC_SRC_STEAL) .. " loc_skyrim", -- Painting: Life in Repose Painting, Wood
   },
 
   [src.DROP] = {
@@ -1344,8 +1352,8 @@ FurC.MiscItemSources[ver.KITTY] = {
     [151900] = stealable_elsewhere, -- Elsweyr Pillow, Gold-Ruby Throw,
     [151895] = stealable_elsewhere, -- Elsweyr Cloth, Rolled,
     [151643] = stealable_elsewhere, -- Elsweyr Rolling Pin, Well-Worn,
-    [151890] = stealable .. " from nobles", -- Elsweyr Hand Mirror, Bronze Oval,
-    [151891] = stealable .. " from nobles", -- Elsweyr Hand Mirror, Rectangular,
+    [151890] = strPick({ npc.CLASS_NOBLE }, {}), -- Elsweyr Hand Mirror, Bronze Oval,
+    [151891] = strPick({ npc.CLASS_NOBLE }, {}), -- Elsweyr Hand Mirror, Rectangular,
     [151897] = stealable_elsewhere, -- Elsweyr Fabric, Display,
     [151886] = stealable_elsewhere, -- Elsweyr Fan, Handheld,
     [151887] = stealable_elsewhere, -- Elsweyr Brush, Body,
@@ -1461,11 +1469,11 @@ FurC.MiscItemSources[ver.WOTL] = {
 -- 9 Wolfhunter
 FurC.MiscItemSources[ver.WEREWOLF] = {
   [src.DROP] = {
-    [141851] = strDungeon(loc.DUNG_MHK, loc.DUNG_MOS), -- Bear Skull, Fresh
-    [141850] = strDungeon(loc.DUNG_MHK, loc.DUNG_MOS), -- Bear Skeleton, Picked Clean
-    [141847] = strDungeon(loc.DUNG_MHK, loc.DUNG_MOS), -- Animal Bones, Gnawed
-    [141848] = strDungeon(loc.DUNG_MHK, loc.DUNG_MOS), -- Animal Bones, Jumbled
-    [141849] = strDungeon(loc.DUNG_MHK, loc.DUNG_MOS), -- Animal Bones, Fresh
+    [141851] = strDungeon(nil, loc.DUNG_MHK, loc.DUNG_MOS), -- Bear Skull, Fresh
+    [141850] = strDungeon(nil, loc.DUNG_MHK, loc.DUNG_MOS), -- Bear Skeleton, Picked Clean
+    [141847] = strDungeon(nil, loc.DUNG_MHK, loc.DUNG_MOS), -- Animal Bones, Gnawed
+    [141848] = strDungeon(nil, loc.DUNG_MHK, loc.DUNG_MOS), -- Animal Bones, Jumbled
+    [141849] = strDungeon(nil, loc.DUNG_MHK, loc.DUNG_MOS), -- Animal Bones, Fresh
 
     [141921] = GetString(SI_FURC_SLAVES_DAILY), -- Murkmire Bowl, Geometric Pattern
 
@@ -1476,9 +1484,9 @@ FurC.MiscItemSources[ver.WEREWOLF] = {
     [141926] = GetString(SI_FURC_SLAVES_DAILY), -- Murkmire Hearth Shrine, Sithis Figure
     [141920] = GetString(SI_FURC_SLAVES_DAILY), -- Murkmire Brazier, Ceremonial
 
-    [147639] = strDungeon(loc.DUNG_DOM), -- Magna-Geode
-    [147640] = strDungeon(loc.DUNG_DOM), -- Magna-Geode, Large
-    [147641] = strDungeon(loc.DUNG_DOM), -- Garlas Alpinia, Tall
+    [147639] = strDungeon(nil, loc.DUNG_DOM), -- Magna-Geode
+    [147640] = strDungeon(nil, loc.DUNG_DOM), -- Magna-Geode, Large
+    [147641] = strDungeon(nil, loc.DUNG_DOM), -- Garlas Alpinia, Tall
   },
 
   [src.CROWN] = {
@@ -1890,7 +1898,7 @@ FurC.MiscItemSources[ver.ALTMER] = {
     [139063] = GetString(SI_FURC_GIANT_CLAM), -- Pearl, Enormous
     [139061] = GetString(SI_FURC_GIANT_CLAM), -- Giant Clam, Sealed
 
-    [139073] = strQuest(6129, strLoc(loc.SUMMERSET, loc.LILANDRIL)), -- Painting of Summerset Coast, Refined ; Quest: The Perils of Art
+    [139073] = strQuest(6129, strSrc("loc", loc.SUMMERSET, loc.LILANDRIL)), -- Painting of Summerset Coast, Refined ; Quest: The Perils of Art
     [139072] = GetString(SI_FURC_ELF_PIC), -- Painting of Monastery of Serene Harmony, Refined
     [139074] = GetString(SI_FURC_ELF_PIC), -- Painting of Aldmeri Ruins, Refined
     [139069] = GetString(SI_FURC_ELF_PIC), -- Painting of Griffin Nest, Refined
@@ -1921,12 +1929,12 @@ FurC.MiscItemSources[ver.ALTMER] = {
 -- 6 Dragon Bones
 FurC.MiscItemSources[ver.DRAGONS] = {
   [src.DROP] = {
-    [134909] = strDungeon(loc.DUNG_FL, loc.DUNG_SCP), -- Mushrooms, Puspocket Group
-    [134910] = strDungeon(loc.DUNG_FL, loc.DUNG_SCP), -- Mushrooms, Puspocket Cluster
-    [134911] = strDungeon(loc.DUNG_FL, loc.DUNG_SCP), -- Mushroom, Puspocket Sporecap
-    [134912] = strDungeon(loc.DUNG_FL, loc.DUNG_SCP), -- Mushroom, Large Puspocket
-    [134913] = strDungeon(loc.DUNG_FL, loc.DUNG_SCP), -- Mushroom, Tall Puspocket
-    [134914] = strDungeon(loc.DUNG_FL, loc.DUNG_SCP), -- Mushrooms, Large Puspocket Cluster
+    [134909] = strDungeon(nil, loc.DUNG_FL, loc.DUNG_SCP), -- Mushrooms, Puspocket Group
+    [134910] = strDungeon(nil, loc.DUNG_FL, loc.DUNG_SCP), -- Mushrooms, Puspocket Cluster
+    [134911] = strDungeon(nil, loc.DUNG_FL, loc.DUNG_SCP), -- Mushroom, Puspocket Sporecap
+    [134912] = strDungeon(nil, loc.DUNG_FL, loc.DUNG_SCP), -- Mushroom, Large Puspocket
+    [134913] = strDungeon(nil, loc.DUNG_FL, loc.DUNG_SCP), -- Mushroom, Tall Puspocket
+    [134914] = strDungeon(nil, loc.DUNG_FL, loc.DUNG_SCP), -- Mushrooms, Large Puspocket Cluster
   },
 
   [src.JUSTICE] = {},
@@ -1964,11 +1972,11 @@ FurC.MiscItemSources[ver.CLOCKWORK] = {
     [134414] = stealable_cc, -- Clockwork Micrometer, Handheld
     [134415] = stealable_cc, -- Clockwork Dial Calipers, Handheld
     [134416] = stealable_cc, -- Clockwork Slide Calipers, Handheld
-    [134402] = stealable, -- Spool, Empty
-    [134400] = stealable, -- Soft Leather, Stacked
-    [134401] = stealable, -- Soft Leather, Folded
+    [134402] = strSteal({}, {}), -- Spool, Empty
+    [134400] = strSteal({}, {}), -- Soft Leather, Stacked
+    [134401] = strSteal({}, {}), -- Soft Leather, Folded
     [134417] = stealable_cc, -- Clockwork Firm-Joint Calipers, Handheld
-    [134399] = stealable, -- Quality Fabric, Folded
+    [134399] = strSteal({}, {}), -- Quality Fabric, Folded
     [117939] = stealable_wood, -- Rough Axe, Practical
   },
 
@@ -2000,7 +2008,7 @@ FurC.MiscItemSources[ver.CLOCKWORK] = {
 -- 4 Horns of the Reach
 FurC.MiscItemSources[ver.REACH] = {
   [src.JUSTICE] = {
-    [130191] = stealable, -- Shivering Cheese
+    [130191] = strSteal({}, {}), -- Shivering Cheese
     [118206] = stealable_thief, -- Gaming dice
   },
   [src.DROP] = {
@@ -2111,9 +2119,9 @@ FurC.MiscItemSources[ver.MORROWIND] = {
     [125671] = plants_vvardenfell, -- Toadstool, Bloodtooth Cap
     [125672] = plants_vvardenfell, -- Toadstool, Bloodtooth Cluster
 
-    [126759] = strQuest(5864, strLoc(loc.VVARDENFELL, loc.VVARDENFELL_SURAN)), -- Sir Sock's Ball of Yarn ; Quest: 'Nothing to Sneeze At'
+    [126759] = strQuest(5864, strSrc("loc", loc.VVARDENFELL, loc.VVARDENFELL_SURAN)), -- Sir Sock's Ball of Yarn ; Quest: 'Nothing to Sneeze At'
 
-    [126592] = GetString(SI_FURC_LOOT_PLANTS), -- Plants, Hanging Pitcher Pair
+    [126592] = GetString(SI_FURC_SRC_HARVEST), -- Plants, Hanging Pitcher Pair
   },
 
   [src.CROWN] = {
@@ -2248,8 +2256,8 @@ FurC.MiscItemSources[ver.HOMESTEAD] = {
   [src.JUSTICE] = {
     -- stealing
     [118489] = stealable_scholars, -- Papers, Stack
-    [118528] = stealable, -- Signed Contract
-    [118890] = stealable, -- Skull, Human
+    [118528] = strSteal({}, {}), -- Signed Contract
+    [118890] = strSteal({}, {}), -- Skull, Human
     [118487] = stealable_scholars, -- Letter, Personal
     [120008] = stealable_nerds, -- Lesser Soul Gem, Empty
     [120005] = stealable_nerds, -- Papers, Stack

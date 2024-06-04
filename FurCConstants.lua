@@ -2,6 +2,7 @@ FurC = FurC or {}
 FurC.Constants = {}
 
 local getZoneStr = GetZoneNameById
+local sFormat = zo_strformat
 
 -- TODO #DBOVERHAUL maybe: Current DB is tree-like which works well with LUA. Right now entries are indexed by localised strings, which may change, may not be unique and are different per language. That is no problem, because people usually don't switch between languages and rebuilding the DB doesn't take long. But if we, for whatever reason, switch to a relational DB or want to sync it with an online relational DB we will need unique and consistent indices.
 
@@ -92,6 +93,7 @@ FurC.Constants.Locations = {
   COLDH = getZoneStr(347), -- Coldharbor
   CRAGLORN = getZoneStr(888), -- Craglorn
   CWC = getZoneStr(980), -- Clockwork City
+  CYRO = getZoneStr(181), -- Cyrodiil
   DEADLANDS = getZoneStr(1286), -- Deadlands
   DESHAAN = getZoneStr(57), -- Deshaan
   DUNG_DOM = getZoneStr(1081), -- Depths of Malatar
@@ -109,6 +111,7 @@ FurC.Constants.Locations = {
   GREENSHADE = getZoneStr(108), -- Greenshade
   HEWSBANE = getZoneStr(816), -- Hew's Bane
   HIGHISLE = getZoneStr(1318), -- High Isle
+  IMPCITY = getZoneStr(584), -- Imperial City
   KHENARTHI = getZoneStr(537), -- Khenarthi's Roost
   MALABAL = getZoneStr(58), -- Malabal Tor
   MURKMIRE = getZoneStr(726), -- Murkmire
@@ -188,6 +191,55 @@ FurC.Constants.NPC = {
   DROPSNOGLASS_COLL = GetString(SI_FURC_TRADERS_DROPSNOGLASS_COLL), -- TODO: make collections into special sources
   MAGES_MYSTIC_COLL = GetString(SI_FURC_GUILD_MAGES_MYSTIC_COLL), -- TODO: make collections into special sources
   RAZOUFA_COLL = GetString(SI_FURC_TRADERS_RAZOUFA_COLL), -- TODO: make collections into special sources
+
+  -- enemies (loot) and social classes (pickpocketing)
+  ENEMY_AUTOMATON = GetString(SI_FURC_NPC_AUTOMATON),
+  CLASS_ALCHEMIST = sFormat("<<1>>", GetString(SI_MONSTERSOCIALCLASS2)),
+  CLASS_ARTISAN = sFormat("<<1>>", GetString(SI_MONSTERSOCIALCLASS3)),
+  CLASS_ASSASSIN = sFormat("<<1>>", GetString(SI_MONSTERSOCIALCLASS4)),
+  CLASS_BARD = sFormat("<<1>>", GetString(SI_MONSTERSOCIALCLASS5)),
+  CLASS_BEGGAR = sFormat("<<1>>", GetString(SI_MONSTERSOCIALCLASS6)),
+  CLASS_CHEF = sFormat("<<1>>", GetString(SI_MONSTERSOCIALCLASS7)),
+  CLASS_CIVIL_SERVANT = sFormat("<<1>>", GetString(SI_MONSTERSOCIALCLASS8)),
+  CLASS_CLOTHIER = sFormat("<<1>>", GetString(SI_MONSTERSOCIALCLASS9)),
+  CLASS_COMMONER = sFormat("<<1>>", GetString(SI_MONSTERSOCIALCLASS10)),
+  CLASS_CRAFTER = sFormat("<<1>>", GetString(SI_MONSTERSOCIALCLASS11)),
+  CLASS_CULTIST = sFormat("<<1>>", GetString(SI_MONSTERSOCIALCLASS12)),
+  CLASS_DAEDRA = sFormat("<<1>>", GetString(SI_MONSTERSOCIALCLASS47)),
+  CLASS_DRUNKARD = sFormat("<<1>>", GetString(SI_MONSTERSOCIALCLASS13)),
+  CLASS_FARMER = sFormat("<<1>>", GetString(SI_MONSTERSOCIALCLASS14)),
+  CLASS_FIGHTER = sFormat("<<1>>", GetString(SI_MONSTERSOCIALCLASS15)),
+  CLASS_FISHER = sFormat("<<1>>", GetString(SI_MONSTERSOCIALCLASS16)),
+  CLASS_GATHERER = sFormat("<<1>>", GetString(SI_MONSTERSOCIALCLASS17)),
+  CLASS_GHOST = sFormat("<<1>>", GetString(SI_MONSTERSOCIALCLASS18)),
+  CLASS_GUARD = sFormat("<<1>>", GetString(SI_MONSTERSOCIALCLASS19)),
+  CLASS_HEALER = sFormat("<<1>>", GetString(SI_MONSTERSOCIALCLASS20)),
+  CLASS_HUNTER = sFormat("<<1>>", GetString(SI_MONSTERSOCIALCLASS21)),
+  CLASS_LABORER = sFormat("<<1>>", GetString(SI_MONSTERSOCIALCLASS22)),
+  CLASS_MAGE = sFormat("<<1>>", GetString(SI_MONSTERSOCIALCLASS23)),
+  CLASS_MERCHANT = sFormat("<<1>>", GetString(SI_MONSTERSOCIALCLASS24)),
+  CLASS_NOBLE = sFormat("<<1>>", GetString(SI_MONSTERSOCIALCLASS25)),
+  CLASS_NUDE = sFormat("<<1>>", GetString(SI_MONSTERSOCIALCLASS26)),
+  CLASS_ORDINATOR = sFormat("<<1>>", GetString(SI_MONSTERSOCIALCLASS27)),
+  CLASS_OUTLAW = sFormat("<<1>>", GetString(SI_MONSTERSOCIALCLASS28)),
+  CLASS_PILGRIM = sFormat("<<1>>", GetString(SI_MONSTERSOCIALCLASS29)),
+  CLASS_PRIEST = sFormat("<<1>>", GetString(SI_MONSTERSOCIALCLASS30)),
+  CLASS_PRISONER = sFormat("<<1>>", GetString(SI_MONSTERSOCIALCLASS31)),
+  CLASS_PROVISIONER = sFormat("<<1>>", GetString(SI_MONSTERSOCIALCLASS32)),
+  CLASS_SAILOR = sFormat("<<1>>", GetString(SI_MONSTERSOCIALCLASS33)),
+  CLASS_SCHOLAR = sFormat("<<1>>", GetString(SI_MONSTERSOCIALCLASS34)),
+  CLASS_SERVANT = sFormat("<<1>>", GetString(SI_MONSTERSOCIALCLASS35)),
+  CLASS_SKELETON = sFormat("<<1>>", GetString(SI_MONSTERSOCIALCLASS36)),
+  CLASS_SLAVE = sFormat("<<1>>", GetString(SI_MONSTERSOCIALCLASS37)),
+  CLASS_SMITH = sFormat("<<1>>", GetString(SI_MONSTERSOCIALCLASS38)),
+  CLASS_SOLDIER = sFormat("<<1>>", GetString(SI_MONSTERSOCIALCLASS39)),
+  CLASS_STUDENT = sFormat("<<1>>", GetString(SI_MONSTERSOCIALCLASS40)),
+  CLASS_THIEF = sFormat("<<1>>", GetString(SI_MONSTERSOCIALCLASS41)),
+  CLASS_VAMPIRE = sFormat("<<1>>", GetString(SI_MONSTERSOCIALCLASS42)),
+  CLASS_WARRIOR = sFormat("<<1>>", GetString(SI_MONSTERSOCIALCLASS43)),
+  CLASS_WATCHMEN = sFormat("<<1>>", GetString(SI_MONSTERSOCIALCLASS44)),
+  CLASS_WEREWOLF = sFormat("<<1>>", GetString(SI_MONSTERSOCIALCLASS45)),
+  CLASS_WOODWORKER = sFormat("<<1>>", GetString(SI_MONSTERSOCIALCLASS46)),
 }
 
 local colours = {
@@ -199,61 +251,6 @@ local colours = {
   TelVar = "82BCFF",
 }
 FurC.Constants.Colours = colours
-
-FurC.Constants.Currencies = {
-  [CURT_NONE] = {
-    colour = colours.Gold,
-    name = "??",
-  },
-  [CURT_MONEY] = {
-    colour = colours.Gold,
-    name = GetCurrencyName(CURT_MONEY),
-  },
-  [CURT_ALLIANCE_POINTS] = {
-    colour = colours.AP,
-    name = GetCurrencyName(CURT_ALLIANCE_POINTS),
-  },
-  [CURT_TELVAR_STONES] = {
-    colour = colours.TelVar,
-    name = GetCurrencyName(CURT_TELVAR_STONES),
-  },
-  [CURT_WRIT_VOUCHERS] = {
-    colour = colours.Voucher,
-    name = GetCurrencyName(CURT_WRIT_VOUCHERS),
-  },
-  [CURT_CHAOTIC_CREATIA] = {
-    colour = colours.TelVar,
-    name = GetCurrencyName(CURT_CHAOTIC_CREATIA),
-  },
-  [CURT_CROWN_GEMS] = {
-    colour = colours.TelVar,
-    name = GetCurrencyName(CURT_CROWN_GEMS),
-  },
-  [CURT_CROWNS] = {
-    colour = colours.Vendor,
-    name = GetCurrencyName(CURT_CROWNS),
-  },
-  [CURT_STYLE_STONES] = {
-    colour = colours.Voucher,
-    name = GetCurrencyName(CURT_STYLE_STONES),
-  },
-  [CURT_EVENT_TICKETS] = {
-    colour = colours.Voucher,
-    name = GetCurrencyName(CURT_EVENT_TICKETS),
-  },
-  [CURT_UNDAUNTED_KEYS] = {
-    colour = colours.Vendor,
-    name = GetCurrencyName(CURT_UNDAUNTED_KEYS),
-  },
-  [CURT_ENDEAVOR_SEALS] = {
-    colour = colours.Vendor,
-    name = GetCurrencyName(CURT_ENDEAVOR_SEALS),
-  },
-  [CURT_ENDLESS_DUNGEON] = { -- CURT_ARCHIVAL_FORTUNES ???
-    colour = colours.Vendor,
-    name = GetCurrencyName(CURT_ENDLESS_DUNGEON),
-  },
-}
 
 -- Old Constants as a fallback for other AddOns that use them
 -- ToDo: required functionality will be moved to an API in the future

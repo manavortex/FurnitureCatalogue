@@ -386,7 +386,6 @@ FurC.Rumours[ver.STONET] = {
   [119687] = rumourSource, -- Statue of the Wild Hunt
   [119686] = rumourSource, -- Totem of the Wild Hunt
   [119679] = rumourSource, -- Covenant Pennant, Small
-  [119678] = rumourSource, -- Covenant Keep Pennant
   [119677] = rumourSource, -- Surplus Covenant Cold Fire Trebuchet
   [119676] = rumourSource, -- Surplus Covenant Cold Fire Ballista
   [119674] = rumourSource, -- Surplus Covenant Iceball Trebuchet

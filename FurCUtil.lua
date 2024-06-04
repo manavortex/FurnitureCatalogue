@@ -8,11 +8,11 @@ local sJoin = zo_strjoin
 local sFormat = zo_strformat
 
 local colours = FurC.Constants.Colours
-local currencies = FurC.Constants.Currencies
-local loc = FurC.Constants.Locations
-local npc = FurC.Constants.NPC
 
--- TABLE UTILS --
+--[[_______________________
+    |                     |
+    |     TABLE UTILS     |
+    |_____________________|]]
 
 --- Merges Table2 into Table1, mutates Table1 inplace and replaces its values if they have the same key. Example: merge({a="1",b="3"},{b="2"}) => {a="1",b="2"}
 --- @param t1 any
@@ -79,12 +79,10 @@ function this.SortTable(tTable, sortKey, SortOrderUp)
   return ret
 end
 
--- STRING UTILS --
-
--- TODO #REFACTOR: do it in any zo_strformat calls instead
-function this.capitalise(str)
-  return LocaleAwareToUpper(string.sub(str, 1, 1)) .. string.sub(str, 2)
-end
+--[[_______________________
+    |                     |
+    |    STRING UTILS     |
+    |_____________________|]]
 
 -- Patterns that are incompatible with chat messages
 local STRIP_PATTERNS = {
@@ -94,11 +92,16 @@ local STRIP_PATTERNS = {
   "|t%d+.+|t", -- <texture/>
 }
 
+-- Patterns to remove any control and gender suffix to get the clean name, necessary when we have no control over the raw string
+local STRIP_CONTROL = {
+  "%^.+",
+}
+
 ---Strips patterns from string
 ---@param txt string Text containing `|` tags
 ---@param patterns? table<string> list of patterns to strip
 ---@return string txt stripped text
-function this.stripTxt(txt, patterns)
+local function stripTxt(txt, patterns)
   assert(type(txt) == "string", "How do you strip that which is no string?")
   if txt == "" then
     return ""
@@ -111,9 +114,13 @@ function this.stripTxt(txt, patterns)
 
   return txt
 end
+this.stripTxt = stripTxt
 
--- TODO #REFACTOR: remove/change ret param?
--- TODO builtin colorization function?
+--[[
+TODO #REFACTOR
+  right now we are calling this function even with stripColor=true,
+    and stripColor is passed from `FurC.GetItemDescription` to `FurC.getXYZSource`, then as `ret` to `this.colourise`, so in some cases colourise actually means "do nothing"
+]]
 local function colourise(txt, colourCode, ret)
   txt = tostring(txt)
   if ret then
@@ -123,7 +130,10 @@ local function colourise(txt, colourCode, ret)
 end
 this.Colourise = colourise
 
--- GAME UTILS --
+--[[_______________________
+    |                     |
+    |     GAME UTILS      |
+    |_____________________|]]
 
 local currentChar
 ---Get the current character name in desired format
@@ -146,6 +156,7 @@ function this.FormatPrice(price, currency)
   return ZO_Currency_FormatKeyboard(currency, price, curFmt)
 end
 
+-- TODO #REFACTOR: handle containers
 function this.FormatPartOf(itemid, note)
   if not itemid or itemid == 0 then
     return ""
@@ -161,147 +172,121 @@ function this.FormatPartOf(itemid, note)
   return result_str
 end
 
----Helper for single location formatting
----@param location string
----@param showPrep boolean|nil
+---Helper for formatting a single source
+---@param source string a raw location (`Summserset^N,on`) or people (`Guards^P,from`)
+---@param format? string defaults to "<<1>>"
+---@param colour? string colour code like "A1B2C3", defaults to no colour
 ---@return string
-local function _fmtLocation(location, showPrep)
-  if showPrep then
-    return sFormat("<<Al:1>>", location) --> "in (the) XYZ"
+local function _fmtSource(source, format, colour)
+  format = format or "<<1>>"
+  local result = sFormat(format, source) --> "XYZ"
+  if colour then
+    result = colourise(result, colour)
   end
-  return sFormat("<<1>>", location) --> "XYZ"
+  return result
 end
 
-local inStr = GetString(SI_FURC_GRAMMAR_PREP_LOC_DEFAULT) -- "in"
----Format a location table or a a single location string
----<br>- if a preposition is requested but missing, the default is used (EN: "in")
----@param ... string locations resolved by GetString like "Summerset^N,on"
----@return string locStr single location with preposition or multiple comma separated locations
-function this.FmtLocations(...)
-  local numLocs = select("#", ...)
+local srcType = {
+  ["loc"] = {
+    prep = GetString(SI_FURC_GRAMMAR_PREP_LOC_DEFAULT), -- "in"
+    colour = colours.Location,
+  },
+  ["src"] = {
+    prep = GetString(SI_FURC_GRAMMAR_PREP_SRC_DEFAULT), -- "from"
+    colour = colours.Vendor,
+  },
+}
 
-  if numLocs == 0 then
+---Format sources (locations or people)
+---<br>- if a source preposition is missing, the default is used (EN: "in" for locations, "from" for general sources)
+---@param cat string source category "loc" or "src"
+---@param ... string locations resolved by GetString like "Summerset^N,on"
+---@return string srcStr single source with preposition or multiple comma separated sources
+local function fmtSources(cat, ...)
+  local srcCount = select("#", ...)
+
+  if srcCount == 0 then
     return ""
   end
 
-  if numLocs == 1 then
-    assert(type(...) == "string", "location must be a string")
-    return colourise(_fmtLocation(..., true), colours.Location)
+  cat = cat or "loc"
+  assert(nil ~= srcType[cat], "Unknown source type: " .. tostring(cat))
+  if srcCount == 1 then
+    assert(type(...) == "string", "source must be a string")
+    local format = "<<Al:1>>"
+    return _fmtSource(..., format, srcType[cat].colour)
   end
 
   local locs = { ... }
   for i, str in ipairs(locs) do
-    locs[i] = sFormat(_fmtLocation(str, false))
+    locs[i] = sFormat(_fmtSource(str))
   end
 
-  -- prepend "in" before joined location strings. good for now, but won't look great with all languages
-  locs[1] = string.format("%s %s", inStr, locs[1])
+  -- prepend "in" or "from" before joined source strings
+  locs[1] = string.format("%s %s", srcType[cat].prep, locs[1])
 
-  return colourise(table.concat(locs, ", "), colours.Location)
+  return colourise(table.concat(locs, ", "), srcType[cat].colour)
 end
+this.FmtSources = fmtSources
 
-local eventTranslation = GetString(SI_FURC_EVENT)
+---Generic formatter for strings like `<PREFIX> <LOCATIONS> [SUFFIX]`
+---@param cat string raw category string like "Dungeon^n,from" or "Scrying^N,from"
+---@param suffix string|nil formatted info like "from chests, very rare"
+---@param locSep string|nil override default location separator ", "
+---@param ... string raw locations like "Fungal Grotto^N,in"
+---@return string formatted like "Dungeon: Fungal Grotto (from chests)"
+local function fmtCategorySourcesSuffix(cat, suffix, locSep, ...)
+  assert(cat, "need a source string")
+  suffix = suffix or ""
+  locSep = locSep or ", "
+
+  local locations = { ... }
+
+  local suffixFlag = (suffix ~= "" and 1) or 0
+  if #locations == 0 then
+    -- `<<Cal:1>>, "dungeon^n,from` => "From a Dungeon"
+    return sFormat("<<Cal:1>><<2[/ (<<3>>)/]>>", cat, suffixFlag, suffix)
+  end
+
+  if #locations == 1 then
+    -- `<<Cl:1>>, "dungeon^n,from` => "From the dungeon"
+    return sFormat("<<Cl:1>> <<C:2>><<3[/ (<<4>>)/]>>", cat, locations[1], suffixFlag, suffix)
+  end
+
+  for i = 1, #locations do
+    locations[i] = stripTxt(locations[i], STRIP_CONTROL) -- remove `^...` from raw str
+    locations[i] = colourise(locations[i], colours.Location)
+  end
+
+  -- `<<m:1>>, "dungeon^n,from` => "Dungeons"
+  local joined = table.concat(locations, locSep)
+  return string.format(
+    "%s%s",
+    sFormat("<<m:1>>: <<2>>", cat, joined), -- Dungeons: x, y
+    sFormat("<<1[/ (<<2>>)/]>>", suffixFlag, suffix) -- (from chests)
+  )
+end
+this.FmtCategorySourcesSuffix = fmtCategorySourcesSuffix
+
+local strEvent = GetString(SI_FURC_EVENT)
 ---Formatted Event String
 ---@param ... string event strings from GetString(SI_FURC_XYZ) like "Elsweyr Dragons^p,from"
 ---@return string formatted like "From the events: Bounties of Blackwood, Elsweyr Dragons"
 function this.FormatEvent(...)
-  local numEvents = select("#", ...)
-
-  if numEvents == 1 then
-    return sFormat(eventTranslation, ...)
-  end
-
-  local events = { ... }
-  local prefix = eventTranslation
-  -- decide on singular or plural from event;events
-  for i, str in ipairs(events) do
-    events[i] = sFormat(str)
-  end
-
-  events[1] = string.format("%s %s", eventTranslation, events[1])
-
-  return colourise(table.concat(events, ", "), colours.Location)
+  return fmtCategorySourcesSuffix(strEvent, nil, nil, ...)
 end
 
-local dungFmt = GetString(SI_FURC_SRC_DUNG)
----Formatted Dungeon String
----@param ... string Resolved names from GetString(SI_FURC_XYZ) like "Fungal Grotto"
----@return string formatted like "Dungeon: Fungal Grotto"
-function this.FmtDungeon(...)
-  local numDungs = select("#", ...)
-  local joined = sJoin(", ", ...)
-
-  return sFormat(dungFmt, numDungs, joined)
-end
-
----Formatted Generic String
----<br>can be used for the middle part between type and price
----@see this.FormatPrefixSuffix
----@param src string source string like "mobs"
----@param ... string locations like ("Auridon^N,on", "Skywatch")
----@return string formatted like "mobs in xyz"
-function this.FmtSrcLoc(src, ...)
-  assert(type(src) == "string", "src must be a string")
-
-  local numLocs = select("#", ...)
-
-  if numLocs == 0 then
-    return src
-  end
-
-  if numLocs == 1 then
-    return sFormat("<<1>> <<2>>", src, ...)
-  end
-
-  local joined = sJoin(", ", ...)
-  return sFormat("<<1>>: <<2>>", src, joined)
-end
-
----Surround text with prefix and suffix
----@param text string Current text
----@param prefix any
----@param suffix any
----@return string
-function this.FormatPrefixSuffix(text, prefix, suffix)
-  assert(type(text) == "string", "text must be a string")
-
-  prefix = prefix or ""
-  suffix = suffix or ""
-
-  if prefix == "" and suffix == "" then
-    return text
-  end
-
-  return sJoin(" ", prefix, text, suffix)
-end
-
-local function fmtPeoplePlaces(people, places, prefix, suffix)
-  people = people or {}
-  places = places or {}
-  prefix = prefix or ""
-
-  local formatted = ""
-  if #people > 0 then
-    local peopleStr = table.concat(people, ", ")
-    formatted = peopleStr
-  end
-
-  if #places > 0 then
-    local placeStr = table.concat(places, ", ")
-    formatted = string.format("%s%s%s", formatted, #people > 0 and ", " or "", placeStr)
-  end
-
-  return formatted
-end
-
-local strSeal = sFormat("<<C:1>>", GetString(SI_FURC_LOOT_STEALING))
+-- fmtCategorySourcesSuffix(strSteal, people, ", ", places)
+local strSteal = GetString(SI_FURC_SRC_STEAL)
 function this.FormatSteal(people, places)
-  return fmtPeoplePlaces(people, places, strSeal)
+  local suffix = table.concat(people, ", ")
+  return fmtCategorySourcesSuffix(strSteal, suffix, ", ", places)
 end
 
-local strPick = sFormat("<<C:1>>", GetString(SI_FURC_LOOT_PICKPOCKET))
+local strPick = GetString(SI_FURC_SRC_PICK)
 function this.FormatPickpocket(people, places)
-  return fmtPeoplePlaces(people, places, strPick)
+  local suffix = table.concat(people, ", ")
+  return fmtCategorySourcesSuffix(strPick, suffix, nil, places)
 end
 
 --TODO #DBOVERHAUL: use location here once we have new structure, so we can merge the functions
@@ -353,10 +338,8 @@ function this.FormatFurnisher(trader, location, price, curt, info)
     end
   end
 
-  local colVendor = colours.Vendor
-  local colLoc = colours.Location
-  local strVendor = colourise(trader, colVendor)
-  local strLoc = colourise(location, colLoc)
+  local strVendor = colourise(trader, colours.Vendor)
+  local strLoc = colourise(location, colours.Location)
 
   -- 0=none, 1=price, 2=price+req (no price + req doesn't exist)
   local priceReqFlag = hasPrice + hasReq
@@ -371,27 +354,30 @@ function this.FormatFurnisher(trader, location, price, curt, info)
   return sFormat("<<1>> : <<2>> (<<3>>, <<4>>)", strVendor, strLoc, strPrice, strInfo)
 end
 
-local scrFrom = GetString(SI_FURC_LOOT_SCRYING)
+local scrFrom = GetString(SI_FURC_SRC_SCRYING)
 local piecesFmt = GetString(SI_FURC_STRING_PIECES)
-
 ---Formatted Antiquities String
----@param pieceNum number required amount of pieces
+---@param pieceNum number|nil required amount of pieces
 ---@param ... string with raw location like "Summerset^N,on"
 ---@return string formatted like "Scyring on Summerset"
-function this.FormatScryingWithPieces(pieceNum, ...)
+function this.FmtScrying(pieceNum, ...)
+  assert(nil == pieceNum or type(pieceNum) == "number", "first parameter (pieceNum) must be a number or nil") -- we crash here so we don't consume the first location by mistake
   pieceNum = pieceNum or 0
-
   local locations = { ... }
 
   for i = 1, #locations do
-    if type(locations[i]) == "string" then
-      locations[i] = this.FmtLocations(locations[i])
-    end
+    locations[i] = this.FmtSources(locations[i])
   end
 
   local pieces = sFormat(piecesFmt, pieceNum)
 
   return string.format("%s %s %s", sFormat("<<C:1>>", scrFrom), table.concat(locations, "/"), pieces)
+end
+
+local dungStr = GetString(SI_FURC_SRC_DUNG)
+-- TODO #REFACTOR: remove
+function this.FmtDungeon(suffix, ...)
+  return this.FmtCategorySourcesSuffix(dungStr, suffix, " / ", ...)
 end
 
 local questFmt = GetString(SI_FURC_QUESTREWARD)
@@ -402,19 +388,10 @@ function this.FmtQuest(questid, location)
   return sFormat(questFmt, flagQ + flagL, name, location)
 end
 
-function this.FormatScrying(...)
-  local locations = { ... }
-
-  for i = 1, #locations do
-    if type(locations[i]) == "string" then
-      locations[i] = this.FmtLocations(locations[i])
-    end
-  end
-
-  return string.format("%s %s", sFormat("<<C:1>>", scrFrom), table.concat(locations, "/"))
-end
-
--- FURNITURE UTILS --
+--[[_______________________
+    |                     |
+    |   FURNITURE UTILS   |
+    |_____________________|]]
 
 ---Check if item is a furnishing
 ---@param itemLink string
@@ -485,7 +462,10 @@ function this.GetItemLink(item)
   return item
 end
 
--- OTHER --
+--[[_______________________
+    |                     |
+    |     OTHER UTILS     |
+    |_____________________|]]
 
 -- make available for use and autocompletion
 FurC.Utils = this
