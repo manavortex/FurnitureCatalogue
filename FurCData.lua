@@ -551,7 +551,7 @@ function FurC.ScanRecipes(shouldScanFiles, shouldScanCharacter) -- returns datab
   end
 end
 
-function FurC.GetItemDescription(recipeKey, recipeArray, stripColor, attachItemLink)
+function FurC.GetItemDescription(recipeKey, recipeArray, stripColor)
   recipeKey = getItemId(recipeKey)
   FurC.settings.emptyItemSources = FurC.settings.emptyItemSources or {}
   recipeArray = recipeArray or FurC.Find(recipeKey)
@@ -561,30 +561,30 @@ function FurC.GetItemDescription(recipeKey, recipeArray, stripColor, attachItemL
 
   local origin = recipeArray.origin
   if origin == src.CRAFTING or origin == src.WRIT_VENDOR then
-    return FurC.GetMats(recipeKey, recipeArray, stripColor, attachItemLink)
+    return FurC.GetMats(recipeKey, recipeArray, stripColor)
   end
   if origin == src.ROLIS then
-    return FurC.getRolisSource(recipeKey, recipeArray, stripColor, attachItemLink)
+    return FurC.getRolisSource(recipeKey, recipeArray, stripColor)
   end
   if origin == src.LUXURY then
-    return FurC.getLuxurySource(recipeKey, recipeArray, stripColor, attachItemLink)
+    return FurC.getLuxurySource(recipeKey, recipeArray, stripColor)
   end
   if origin == src.GUILDSTORE then
     return GetString(SI_FURC_SEEN_IN_GUILDSTORE)
   end
   if origin == src.VENDOR then
-    return FurC.getAchievementVendorSource(recipeKey, recipeArray, stripColor, attachItemLink)
+    return FurC.getAchievementVendorSource(recipeKey, recipeArray, stripColor)
   end
   if origin == src.FESTIVAL_DROP then
-    return FurC.getEventDropSource(recipeKey, recipeArray, stripColor, attachItemLink)
+    return FurC.getEventDropSource(recipeKey, recipeArray, stripColor)
   end
   if origin == src.PVP then
-    return FurC.getPvpSource(recipeKey, recipeArray, stripColor, attachItemLink)
+    return FurC.getPvpSource(recipeKey, recipeArray, stripColor)
   end
   if origin == src.RUMOUR then
-    return FurC.getRumourSource(recipeKey, recipeArray, stripColor, attachItemLink)
+    return FurC.getRumourSource(recipeKey, recipeArray, stripColor)
   end
-  return FurC.getMiscItemSource(recipeKey, recipeArray, stripColor, attachItemLink)
+  return FurC.getMiscItemSource(recipeKey, recipeArray, stripColor)
 end
 
 function FurC.ShouldBeInFurC(link)
