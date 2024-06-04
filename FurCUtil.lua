@@ -212,7 +212,7 @@ local function fmtSources(cat, ...)
   cat = cat or "loc"
   assert(nil ~= srcType[cat], "Unknown source type: " .. tostring(cat))
   if srcCount == 1 then
-    assert(type(...) == "string", "source must be a string")
+    assert(type(...) == "string", string.format("Source must be a string, got %s", type(...)))
     local format = "<<Al:1>>"
     return _fmtSource(..., format, srcType[cat].colour)
   end
@@ -250,7 +250,7 @@ local function fmtCategorySourcesSuffix(cat, suffix, locSep, ...)
 
   if #locations == 1 then
     -- `<<Cl:1>>, "dungeon^n,from` => "From the dungeon"
-    return sFormat("<<Cl:1>> <<C:2>><<3[/ (<<4>>)/]>>", cat, locations[1], suffixFlag, suffix)
+    return sFormat("<<Cl:1>> <<l:2>><<3[/ (<<4>>)/]>>", cat, fmtSources("loc", locations[1]), suffixFlag, suffix)
   end
 
   for i = 1, #locations do
@@ -276,23 +276,7 @@ function this.FormatEvent(...)
   return fmtCategorySourcesSuffix(strEvent, nil, nil, ...)
 end
 
--- fmtCategorySourcesSuffix(strSteal, people, ", ", places)
-local strSteal = GetString(SI_FURC_SRC_STEAL)
-function this.FormatSteal(people, places)
-  local suffix = table.concat(people, ", ")
-  return fmtCategorySourcesSuffix(strSteal, suffix, ", ", places)
-end
-
-local strPick = GetString(SI_FURC_SRC_PICK)
-function this.FormatPickpocket(people, places)
-  local suffix = table.concat(people, ", ")
-  return fmtCategorySourcesSuffix(strPick, suffix, nil, places)
-end
-
---TODO #DBOVERHAUL: use location here once we have new structure, so we can merge the functions
-
 local fmtAch = GetString(SI_FURC_REQUIRES_ACHIEVEMENT)
-
 ---Make an achievement link from a requirement id or description
 ---@param req number|string
 ---@return string
@@ -357,19 +341,19 @@ end
 local scrFrom = GetString(SI_FURC_SRC_SCRYING)
 local piecesFmt = GetString(SI_FURC_STRING_PIECES)
 ---Formatted Antiquities String
----@param pieceNum number|nil required amount of pieces
+---@param pieceNum? number required amount of pieces
 ---@param ... string with raw location like "Summerset^N,on"
 ---@return string formatted like "Scyring on Summerset"
 function this.FmtScrying(pieceNum, ...)
-  assert(nil == pieceNum or type(pieceNum) == "number", "first parameter (pieceNum) must be a number or nil") -- we crash here so we don't consume the first location by mistake
   pieceNum = pieceNum or 0
+  assert(type(pieceNum) == "number", "first parameter (pieceNum) must be a number or nil") -- we crash here so we don't consume the first location by mistake
   local locations = { ... }
 
   for i = 1, #locations do
-    locations[i] = this.FmtSources(locations[i])
+    locations[i] = fmtSources("loc", locations[i])
   end
 
-  local pieces = sFormat(piecesFmt, pieceNum)
+  local pieces = sFormat(piecesFmt, tostring(pieceNum))
 
   return string.format("%s %s %s", sFormat("<<C:1>>", scrFrom), table.concat(locations, "/"), pieces)
 end
@@ -380,12 +364,44 @@ function this.FmtDungeon(suffix, ...)
   return this.FmtCategorySourcesSuffix(dungStr, suffix, " / ", ...)
 end
 
-local questFmt = GetString(SI_FURC_QUESTREWARD)
-function this.FmtQuest(questid, location)
-  local name = GetQuestName(questid)
-  local flagQ = (name ~= "" and 1) or 0
-  local flagL = (location ~= "" and 1) or 0
-  return sFormat(questFmt, flagQ + flagL, name, location)
+local strQuest = GetString(SI_FURC_SRC_QUEST)
+---Format a quest
+---@param questId? number defaults to 0 = no quest
+---@param location? string location string (raw)
+---@param suffix? string additional infotext (formatted)
+---@return string
+function this.FmtQuest(questId, location, suffix)
+  questId = questId or 0
+  location = location or ""
+  suffix = suffix or ""
+
+  local hasQName = false
+  local hasLoc = "" ~= location
+  local hasSuff = "" ~= suffix
+
+  local name = ""
+  if questId > 0 then
+    name = GetQuestName(questId)
+    if "" ~= name then
+      hasQName = true
+      name = colourise(name, colours.Quest)
+    end
+  end
+
+  if hasLoc then
+    location = fmtSources("loc", location)
+  end
+
+  if hasSuff then
+    suffix = " " .. suffix
+  end
+
+  -- just return "from a quest"
+  if not (hasQName or hasLoc or hasSuff) then
+    return sFormat("<<Cal:1>>", strQuest)
+  end
+
+  return string.format("%s%s%s", name, location, suffix)
 end
 
 --[[_______________________

@@ -315,7 +315,6 @@ SI_FURC_LOC_VVARDENFELL_VIVEC = "Vivec City"
 SI_FURC_LOC_VVARDENFELL_VIVEC_GQ = "Gladiator's Quarters"
 SI_FURC_LOC_VVARDENFELL_VIVEC_SDI = "Saint Delyn Inn"
 SI_FURC_LOC_WSKYRIM_SOLI_DH = "Solitude, Dragon's Hearth"
-SI_FURC_LOOT_FISH = "can be fished"
 SI_FURC_LOOT_HARVEST = "from harvesting nodes"
 SI_FURC_LOOT_HARVEST_WOOD = "occasionally found in wood nodes"
 SI_FURC_MENU_HEADER = "- |cD3B830Furniture|r:"
@@ -343,16 +342,18 @@ SI_FURC_SHOW_RUMOUR_TT = "Confirmed items only. Click to show rumour items."
 SI_FURC_SLAVES_DAILY = "from Murkmire daily quest reward boxes"
 SI_FURC_SRC_CHESTS = "treasure chests^p,from"
 SI_FURC_SRC_CROWNSTORE = "Crown Store "
-SI_FURC_SRC_DROP = "<<1[can drop/drops <<l:2>>/Drops: <<2>>]>>"
+SI_FURC_SRC_DROP = "drop^n,from"
 SI_FURC_SRC_DUNG = "dungeon^n,from"
 SI_FURC_SRC_EMPTY =
   "Item source unknown.\nTry to re-scan files (refresh button right click).\nIf the item is still unknown - and not part of the weekend furnisher's current inventory - please send a mail with the item link and -source to @berylbones."
+SI_FURC_SRC_FISH = "can be fished"
 SI_FURC_SRC_HARVEST = "harvesting^N,from"
 SI_FURC_SRC_ITEMPACK = "Part of the Crown Store item pack [<<1>>] "
 SI_FURC_SRC_LVLUP = "Can be gained as levelup reward"
 SI_FURC_SRC_MISCHOUSE = "From select house purchases"
 SI_FURC_SRC_PICK = "pickpocket^N,from"
-SI_FURC_SRC_QUEST = "Quest"
+SI_FURC_SRC_QUEST = "quest"
+SI_FURC_SRC_QUEST_DAILY = "daily quests^p,from"
 SI_FURC_SRC_RUMOUR_ITEM = "This item has been datamined, but not seen in-game"
 SI_FURC_SRC_RUMOUR_RECIPE = "This recipe has been datamined, but not seen in-game"
 SI_FURC_SRC_SAFEBOX = "extremely rarely from safeboxes"
@@ -506,6 +507,13 @@ SI_FURC_VV_PAINTING = "Extremely rarely from chests or lockboxes on Vvardenfell"
 -- ////// START   : Manual entries and overrides
 
 -- ESOAPI
+
+---Get localised quest name by id
+---@param questId integer
+---@return string name or empty string
+function GetQuestName(questId)
+  return ""
+end
 
 --- @param currencyType number
 --- @param isSingular bool|nil
@@ -760,6 +768,14 @@ end
 --- @param zoneId integer
 --- @return string names
 function GetZoneNameById(zoneId)
+  return ""
+end
+
+--- @param stringVariablePrefix string
+--- @param contextId integer
+--- @overload fun(contextId: integer|string): string
+--- @return string
+function GetString(stringVariablePrefix, contextId)
   return ""
 end
 

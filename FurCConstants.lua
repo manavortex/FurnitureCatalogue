@@ -88,6 +88,7 @@ FurC.Constants.Locations = {
   BALFOYEN = getZoneStr(281), -- Bal Foyen
   BANG = getZoneStr(92), -- Bangkorai
   BETHNIKH = getZoneStr(535), -- Betnikh
+  BLACKREACH_GMC = getZoneStr(1161), --  Blackreach: Greymoor Caverns
   BLACKWOOD = getZoneStr(1261), -- Blackwood
   BLEAK = getZoneStr(280), -- Bleakrock Isle
   COLDH = getZoneStr(347), -- Coldharbor
@@ -102,6 +103,7 @@ FurC.Constants.Locations = {
   DUNG_MHK = getZoneStr(1052), -- Moon Hunter Keep
   DUNG_MOS = getZoneStr(1055), -- March of the Sacrifices
   DUNG_SCP = getZoneStr(1010), -- Scalecaller Peak
+  DUNG_SCRIV = getZoneStr(1390), -- Scrivener's Hall
   EASTMARCH = getZoneStr(101), -- Eastmarch
   FARGRAVE = getZoneStr(1282), -- Fargrave
   GALEN = getZoneStr(1383), -- Galen
@@ -242,13 +244,15 @@ FurC.Constants.NPC = {
   CLASS_WOODWORKER = sFormat("<<1>>", GetString(SI_MONSTERSOCIALCLASS46)),
 }
 
+-- TODO: allow customisable colours, getting from options
 local colours = {
-  Vendor = "72DB00",
-  Location = "CF6D00",
-  Gold = "E5DA40",
-  Voucher = "25C31E",
   AP = "5EA4FF",
+  Gold = "E5DA40",
+  Location = "CF6D00",
+  Quest = "E5DA40",
   TelVar = "82BCFF",
+  Vendor = "72DB00",
+  Voucher = "25C31E",
 }
 FurC.Constants.Colours = colours
 

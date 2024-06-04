@@ -10,21 +10,15 @@ local strDungeon = FurC.Utils.FmtDungeon
 local strEvent = FurC.Utils.FormatEvent
 local strSrc = FurC.Utils.FmtSources
 local strPartOf = FurC.Utils.FormatPartOf
-local strPick = FurC.Utils.FormatPickpocket
 local strPrice = FurC.Utils.FormatPrice
 local strQuest = FurC.Utils.FmtQuest
 local strScry = FurC.Utils.FmtScrying
-local strSteal = FurC.Utils.FormatSteal
 local strGeneric = FurC.Utils.FmtCategorySourcesSuffix
 
-local loc_vvardenfell = loc.VVARDENFELL
-local loc_nelsweyr = loc.NELSWEYR
-local loc_selsweyr = loc.SELSWEYR
-local loc_elsweyr = { loc_nelsweyr, loc_selsweyr }
-local loc_cwc = loc.CWC
-
 local srcDrop = GetString(SI_FURC_SRC_DROP)
-local srcQuest = GetString(SI_FURC_SRC_QUEST)
+local srcHarvest = GetString(SI_FURC_SRC_HARVEST)
+local srcFish = GetString(SI_FURC_SRC_FISH)
+local srcDung = GetString(SI_FURC_SRC_DUNG)
 
 local rarityExtremely = GetString(SI_FURC_RARITY_EXTREMELYRARE)
 
@@ -44,43 +38,39 @@ local ev_elsweyr = strEvent(GetString(SI_FURC_EVENT_ELSWEYR))
 -- Stealing
 local srcSafe = GetString(SI_FURC_SRC_SAFEBOX)
 local srcSteal = GetString(SI_FURC_SRC_STEAL)
-local srcChest = GetString(SI_FURC_SRC_CHEST)
+local srcPick = GetString(SI_FURC_SRC_PICK)
+local srcChest = GetString(SI_FURC_SRC_CHESTS)
 
-local stealable_guard = strPick({ npc.CLASS_GUARD }, {})
-local stealable_cc = strSteal({}, { loc_cwc })
-local stealable_scholars = strPick({ npc.CLASS_SCHOLAR }, {})
-local stealable_mages = srcSteal .. ": " .. npc.CLASS_MAGE
-local stealable_nerds = srcSteal .. ": " .. join(",", npc.CLASS_MAGE, npc.CLASS_SCHOLAR)
-local stealable_priests = srcSteal .. ": " .. npc.CLASS_PRIEST
-local stealable_pilgrims = srcSteal .. ": " .. npc.CLASS_PILGRIM
-local stealable_thief = srcSteal .. ": " .. npc.CLASS_THIEF
-local stealable_wood = srcSteal .. ": " .. npc.CLASS_WOODWORKER
-local stealable_drunkards = srcSteal .. ": " .. npc.CLASS_DRUNKARD
-local stealable_loc_wrothgar = srcSteal .. ": " .. " loc_wrothgar"
-local stealable_swamp = srcSteal .. " loc_murkmire"
-local stealable_elsewhere = strSteal(loc_elsweyr)
-local pickpocket_necrom = strPick({ loc.TELVANNI, loc.APOCRYPHA })
+local stealable = strGeneric(srcSteal, nil, nil)
+local stealable_guard = strGeneric(srcPick, strSrc("src", npc.CLASS_GUARD), nil)
+local stealable_cc = strGeneric(srcSteal, nil, nil, loc.CWC)
+local stealable_scholars = strGeneric(srcPick, strSrc("src", npc.CLASS_SCHOLAR))
+local stealable_nerds = strGeneric(srcPick, strSrc("src", npc.CLASS_MAGE, npc.CLASS_SCHOLAR))
+local stealable_thief = strGeneric(srcPick, strSrc("src", npc.CLASS_THIEF))
+local stealable_noble = strGeneric(srcPick, strSrc("src", npc.CLASS_NOBLE))
+local stealable_swamp = strGeneric(srcSteal, nil, nil, loc.MURKMIRE)
+local stealable_elsewhere = strGeneric(srcSteal, nil, " / ", loc.NELSWEYR, loc.SELSWEYR)
+local pickpocket_necrom = strGeneric(srcPick, nil, " / ", loc.TELVANNI, loc.APOCRYPHA)
 local painting_summerset = strGeneric(srcSafe, rarityExtremely, nil, loc.SUMMERSET)
 
 -- Looting/Harvesting
 local chests_string = GetString(SI_FURC_SRC_CHESTS)
 
-local automaton_loot_cc = strGeneric(srcDrop, npc.ENEMY_AUTOMATON, nil, loc_cwc)
-local automaton_loot_vv = strGeneric(srcDrop, npc.ENEMY_AUTOMATON, nil, loc_vvardenfell)
+local automaton_loot_cc = strGeneric(srcDrop, npc.ENEMY_AUTOMATON, nil, loc.CWC)
+local automaton_loot_vv = strGeneric(srcDrop, npc.ENEMY_AUTOMATON, nil, loc.VVARDENFELL)
 local chests_skyrim = strGeneric(srcChest, nil, nil, loc.WSKYRIM)
-local chests_blackwood = chests_string .. loc.BLACKWOOD
-local chests_summerset = chests_string .. loc.SUMMERSET
-local chests_elsweyr = chests_string .. "loc_elsweyr"
-local chests_high = chests_string .. loc.HIGHISLE
-local chests_blackr_grcaverns = chests_string .. " in Blackreach: Greymoor Caverns"
-local book_hall = "From chests in the Scrivener's Hall vault"
+local chests_blackwood = strGeneric(srcChest, nil, nil, loc.BLACKWOOD)
+local chests_summerset = strGeneric(srcChest, nil, nil, loc.SUMMERSET)
+local chests_elsweyr = strGeneric(srcChest, nil, " / ", loc.NELSWEYR, loc.SELSWEYR)
+local chests_high = strGeneric(srcChest, nil, nil, loc.HIGHISLE)
+local chests_blackr_grcaverns = strGeneric(srcChest, nil, nil, loc.BLACKREACH_GMC)
+local book_hall = strGeneric(srcDung, "vault chests", nil, loc.DUNG_SCRIV)
 local nymic = "From Bastion Nymic reward chests"
-local chests_necrom = chests_string .. loc.TELVANNI .. loc.APOCRYPHA
+local chests_necrom = strGeneric(srcChest, nil, " / ", loc.TELVANNI, loc.APOCRYPHA)
 local pdung_vv_fw = strGeneric(srcDrop, nil, ", ", loc.VVARDENFELL, loc.PDUNG_VVARDENFELL_FW)
-local plants_vvardenfell = GetString(SI_FURC_SRC_HARVEST) .. "loc_vvardenfell"
-local fishing = GetString(SI_FURC_LOOT_FISH)
-local fishing_summerset = fishing .. loc.SUMMERSET
-local fishing_swamp = fishing .. loc.MURKMIRE
+local plants_vvardenfell = strGeneric(srcHarvest, nil, nil, loc.VVARDENFELL)
+local fishing_summerset = strGeneric(srcFish, nil, nil, loc.SUMMERSET)
+local fishing_swamp = strGeneric(srcFish, nil, nil, loc.MURKMIRE)
 
 -- Crowns
 local function strCrown(price)
@@ -257,37 +247,37 @@ FurC.MiscItemSources[ver.ENDLESS] = {
     [203410] = loc.DUNG_IA, -- Ranks and Titles of House Telvanni",
     [203409] = loc.DUNG_IA, -- Oath of the Keepers",
     [203408] = loc.DUNG_IA, -- Larydeilmo is Sane",
-    [203407] = chests_string .. " in Wrothgar", -- Vosh Rakh",
-    [203406] = chests_string .. " in Wrothgar", -- Vorgrosh Rot-Tusk's Guide to Dirty Fighting",
-    [203405] = chests_string .. " in Wrothgar", -- Orc Clans and Symbology",
-    [203404] = chests_string .. " in Wrothgar", -- Birds of Wrothgar",
+    [203407] = strGeneric(srcChest, nil, nil, loc.WROTHGAR), -- Vosh Rakh",
+    [203406] = strGeneric(srcChest, nil, nil, loc.WROTHGAR), -- Vorgrosh Rot-Tusk's Guide to Dirty Fighting",
+    [203405] = strGeneric(srcChest, nil, nil, loc.WROTHGAR), -- Orc Clans and Symbology",
+    [203404] = strGeneric(srcChest, nil, nil, loc.WROTHGAR), -- Birds of Wrothgar",
     [203403] = chests_summerset, -- The Ubiquitous Sinking Isle",
     [203402] = chests_summerset, -- The Truth of Minotaurs",
     [203401] = chests_summerset, -- The Flight of Gryphons",
     [203400] = chests_summerset, -- Artaeum Lost",
-    [203399] = chests_string .. " loc_selsweyr", -- The Marriage of Moon and Tide",
-    [203398] = chests_string .. " loc_selsweyr", -- The Favored Daughter of Fadomai",
-    [203397] = chests_string .. " loc_selsweyr", -- Khunzar-ri and the Lost Alfiq",
-    [203396] = chests_string .. " loc_selsweyr", -- Azurah's Crossing",
-    [203395] = chests_string .. " loc_selsweyr", -- Trail and Tide",
-    [203394] = chests_string .. " loc_selsweyr", -- The Angry Alfiq: A Collection",
-    [203393] = chests_string .. " loc_selsweyr", -- On Those Who Know Baan Dar",
+    [203399] = strGeneric(srcChest, nil, nil, loc.SELSWEYR), -- The Marriage of Moon and Tide",
+    [203398] = strGeneric(srcChest, nil, nil, loc.SELSWEYR), -- The Favored Daughter of Fadomai",
+    [203397] = strGeneric(srcChest, nil, nil, loc.SELSWEYR), -- Khunzar-ri and the Lost Alfiq",
+    [203396] = strGeneric(srcChest, nil, nil, loc.SELSWEYR), -- Azurah's Crossing",
+    [203395] = strGeneric(srcChest, nil, nil, loc.SELSWEYR), -- Trail and Tide",
+    [203394] = strGeneric(srcChest, nil, nil, loc.SELSWEYR), -- The Angry Alfiq: A Collection",
+    [203393] = strGeneric(srcChest, nil, nil, loc.SELSWEYR), -- On Those Who Know Baan Dar",
     [203392] = loc.DUNG_IA, -- Anequina and Pellitine: An Introduction",
-    [203391] = chests_string .. " " .. " loc_hewsbane", -- The Red Curse, Volume 3",
-    [203390] = chests_string .. " " .. " loc_hewsbane", -- The Red Curse, Volume 2",
-    [203389] = chests_string .. " " .. " loc_hewsbane", -- The Red Curse, Volume 1",
-    [203388] = chests_string .. " in the Gold Coast", -- The Wolf and the Dragon",
-    [203387] = chests_string .. " in the Gold Coast", -- The Blade of Woe",
-    [203386] = chests_string .. " in the Gold Coast", -- On Minotaurs",
-    [203385] = chests_string .. " in the Gold Coast", -- Cathedral Hierarchy",
-    [203384] = chests_string .. " in Coldharbour", -- Journal of Tsona-Ei, Part Two",
-    [203383] = chests_string .. " in Coldharbour", -- Journal of Tsona-Ei, Part Three",
-    [203382] = chests_string .. " in Coldharbour", -- Journal of Tsona-Ei, Part One",
-    [203381] = chests_string .. " in Coldharbour", -- Journal of Tsona-Ei, Part Four",
-    [203380] = chests_string .. " in Clockwork City", -- Worshiping the Illogical",
-    [203379] = chests_string .. " in Clockwork City", -- The Blackfeather Court",
-    [203378] = chests_string .. " in Clockwork City", -- Engine of Expression",
-    [203377] = chests_string .. " in Clockwork City", -- A Brief History of Ald Sotha",
+    [203391] = strGeneric(srcChest, nil, nil, loc.HEWSBANE), -- The Red Curse, Volume 3",
+    [203390] = strGeneric(srcChest, nil, nil, loc.HEWSBANE), -- The Red Curse, Volume 2",
+    [203389] = strGeneric(srcChest, nil, nil, loc.HEWSBANE), -- The Red Curse, Volume 1",
+    [203388] = strGeneric(srcChest, nil, nil, loc.GOLDCOAST), -- The Wolf and the Dragon",
+    [203387] = strGeneric(srcChest, nil, nil, loc.GOLDCOAST), -- The Blade of Woe",
+    [203386] = strGeneric(srcChest, nil, nil, loc.GOLDCOAST), -- On Minotaurs",
+    [203385] = strGeneric(srcChest, nil, nil, loc.GOLDCOAST), -- Cathedral Hierarchy",
+    [203384] = strGeneric(srcChest, nil, nil, loc.COLDH), -- Journal of Tsona-Ei, Part Two",
+    [203383] = strGeneric(srcChest, nil, nil, loc.COLDH), -- Journal of Tsona-Ei, Part Three",
+    [203382] = strGeneric(srcChest, nil, nil, loc.COLDH), -- Journal of Tsona-Ei, Part One",
+    [203381] = strGeneric(srcChest, nil, nil, loc.COLDH), -- Journal of Tsona-Ei, Part Four",
+    [203380] = strGeneric(srcChest, nil, nil, loc.CWC), -- Worshiping the Illogical",
+    [203379] = strGeneric(srcChest, nil, nil, loc.CWC), -- The Blackfeather Court",
+    [203378] = strGeneric(srcChest, nil, nil, loc.CWC), -- Engine of Expression",
+    [203377] = strGeneric(srcChest, nil, nil, loc.CWC), -- A Brief History of Ald Sotha",
     [203211] = loc.DUNG_IA, -- Apocrypha Crescent",
     [203210] = loc.DUNG_IA, -- Apocrypha Spike, Curved",
     [203209] = loc.DUNG_IA, -- Apocrypha Spike, Tall",
@@ -1191,7 +1181,7 @@ FurC.MiscItemSources[ver.STONET] = {
 -- 15 Greymoor
 FurC.MiscItemSources[ver.SKYRIM] = {
   [src.JUSTICE] = {
-    [165828] = GetString(SI_FURC_SRC_STEAL) .. " loc_skyrim", -- Painting: Life in Repose Painting, Wood
+    [165828] = strGeneric(srcSteal, nil, nil, loc.WSKYRIM), -- Painting: Life in Repose Painting, Wood
   },
 
   [src.DROP] = {
@@ -1251,7 +1241,7 @@ FurC.MiscItemSources[ver.SKYRIM] = {
     [165867] = strScry(0, loc.KHENARTHI), -- Cat's Eye Prism
     [161213] = strScry(0, loc.REAPER), -- Sorcerer-King's Blade
     [163704] = strScry(0, loc.GLENUMBRA), -- Kingmaker's Trove
-    [166471] = strScry(0, loc.BANGKORAI), -- Tall Papa's Lamp
+    [166471] = strScry(0, loc.BANG), -- Tall Papa's Lamp
     [161205] = strScry(0, loc.COLDH), -- Void-Crystal Anomaly
     [165865] = strScry(0, loc.STORMHAVEN), -- Beacon of Tower Zero
     [166015] = strScry(0, loc.KHENARTHI), -- Sweet Khenarthi's Song
@@ -1282,7 +1272,7 @@ FurC.MiscItemSources[ver.SKYRIM] = {
     [163727] = strScry(0, loc.NELSWEYR), -- Antique Map of Northern Elsweyr
     [163728] = strScry(0, loc.SELSWEYR), -- Antique Map of Southern Elsweyr
     [163717] = strScry(0, loc.AURIDON), -- Antique Map of Auridon
-    [163711] = strScry(0, loc.BANGKORAI), -- Antique Map of Bangkorai
+    [163711] = strScry(0, loc.BANG), -- Antique Map of Bangkorai
     [163713] = strScry(0, loc.DESHAAN), -- Antique Map of Deshaan
     [163707] = strScry(0, loc.GLENUMBRA), -- Antique Map of Glenumbra
     [163718] = strScry(0, loc.GRAHTWOOD), -- Antique Map of Grahtwood
@@ -1352,8 +1342,8 @@ FurC.MiscItemSources[ver.KITTY] = {
     [151900] = stealable_elsewhere, -- Elsweyr Pillow, Gold-Ruby Throw,
     [151895] = stealable_elsewhere, -- Elsweyr Cloth, Rolled,
     [151643] = stealable_elsewhere, -- Elsweyr Rolling Pin, Well-Worn,
-    [151890] = strPick({ npc.CLASS_NOBLE }, {}), -- Elsweyr Hand Mirror, Bronze Oval,
-    [151891] = strPick({ npc.CLASS_NOBLE }, {}), -- Elsweyr Hand Mirror, Rectangular,
+    [151890] = stealable_noble, -- Elsweyr Hand Mirror, Bronze Oval,
+    [151891] = stealable_noble, -- Elsweyr Hand Mirror, Rectangular,
     [151897] = stealable_elsewhere, -- Elsweyr Fabric, Display,
     [151886] = stealable_elsewhere, -- Elsweyr Fan, Handheld,
     [151887] = stealable_elsewhere, -- Elsweyr Brush, Body,
@@ -1469,11 +1459,11 @@ FurC.MiscItemSources[ver.WOTL] = {
 -- 9 Wolfhunter
 FurC.MiscItemSources[ver.WEREWOLF] = {
   [src.DROP] = {
-    [141851] = strDungeon(nil, loc.DUNG_MHK, loc.DUNG_MOS), -- Bear Skull, Fresh
-    [141850] = strDungeon(nil, loc.DUNG_MHK, loc.DUNG_MOS), -- Bear Skeleton, Picked Clean
-    [141847] = strDungeon(nil, loc.DUNG_MHK, loc.DUNG_MOS), -- Animal Bones, Gnawed
-    [141848] = strDungeon(nil, loc.DUNG_MHK, loc.DUNG_MOS), -- Animal Bones, Jumbled
-    [141849] = strDungeon(nil, loc.DUNG_MHK, loc.DUNG_MOS), -- Animal Bones, Fresh
+    [141851] = strGeneric(srcDung, nil, nil, loc.DUNG_MHK, loc.DUNG_MOS), -- Bear Skull, Fresh
+    [141850] = strGeneric(srcDung, nil, nil, loc.DUNG_MHK, loc.DUNG_MOS), -- Bear Skeleton, Picked Clean
+    [141847] = strGeneric(srcDung, nil, nil, loc.DUNG_MHK, loc.DUNG_MOS), -- Animal Bones, Gnawed
+    [141848] = strGeneric(srcDung, nil, nil, loc.DUNG_MHK, loc.DUNG_MOS), -- Animal Bones, Jumbled
+    [141849] = strGeneric(srcDung, nil, nil, loc.DUNG_MHK, loc.DUNG_MOS), -- Animal Bones, Fresh
 
     [141921] = GetString(SI_FURC_SLAVES_DAILY), -- Murkmire Bowl, Geometric Pattern
 
@@ -1484,9 +1474,9 @@ FurC.MiscItemSources[ver.WEREWOLF] = {
     [141926] = GetString(SI_FURC_SLAVES_DAILY), -- Murkmire Hearth Shrine, Sithis Figure
     [141920] = GetString(SI_FURC_SLAVES_DAILY), -- Murkmire Brazier, Ceremonial
 
-    [147639] = strDungeon(nil, loc.DUNG_DOM), -- Magna-Geode
-    [147640] = strDungeon(nil, loc.DUNG_DOM), -- Magna-Geode, Large
-    [147641] = strDungeon(nil, loc.DUNG_DOM), -- Garlas Alpinia, Tall
+    [147639] = strGeneric(srcDung, nil, nil, loc.DUNG_DOM), -- Magna-Geode
+    [147640] = strGeneric(srcDung, nil, nil, loc.DUNG_DOM), -- Magna-Geode, Large
+    [147641] = strGeneric(srcDung, nil, nil, loc.DUNG_DOM), -- Garlas Alpinia, Tall
   },
 
   [src.CROWN] = {
@@ -1972,12 +1962,12 @@ FurC.MiscItemSources[ver.CLOCKWORK] = {
     [134414] = stealable_cc, -- Clockwork Micrometer, Handheld
     [134415] = stealable_cc, -- Clockwork Dial Calipers, Handheld
     [134416] = stealable_cc, -- Clockwork Slide Calipers, Handheld
-    [134402] = strSteal({}, {}), -- Spool, Empty
-    [134400] = strSteal({}, {}), -- Soft Leather, Stacked
-    [134401] = strSteal({}, {}), -- Soft Leather, Folded
+    [134402] = stealable, -- Spool, Empty
+    [134400] = stealable, -- Soft Leather, Stacked
+    [134401] = stealable, -- Soft Leather, Folded
     [134417] = stealable_cc, -- Clockwork Firm-Joint Calipers, Handheld
-    [134399] = strSteal({}, {}), -- Quality Fabric, Folded
-    [117939] = stealable_wood, -- Rough Axe, Practical
+    [134399] = stealable, -- Quality Fabric, Folded
+    [117939] = strGeneric(srcPick, strSrc("src", npc.CLASS_WOODWORKER)), -- Rough Axe, Practical
   },
 
   [src.CROWN] = {
@@ -2008,7 +1998,7 @@ FurC.MiscItemSources[ver.CLOCKWORK] = {
 -- 4 Horns of the Reach
 FurC.MiscItemSources[ver.REACH] = {
   [src.JUSTICE] = {
-    [130191] = strSteal({}, {}), -- Shivering Cheese
+    [130191] = stealable, -- Shivering Cheese
     [118206] = stealable_thief, -- Gaming dice
   },
   [src.DROP] = {
@@ -2121,7 +2111,7 @@ FurC.MiscItemSources[ver.MORROWIND] = {
 
     [126759] = strQuest(5864, strSrc("loc", loc.VVARDENFELL, loc.VVARDENFELL_SURAN)), -- Sir Sock's Ball of Yarn ; Quest: 'Nothing to Sneeze At'
 
-    [126592] = GetString(SI_FURC_SRC_HARVEST), -- Plants, Hanging Pitcher Pair
+    [126592] = strGeneric(srcHarvest, nil, nil), -- Plants, Hanging Pitcher Pair
   },
 
   [src.CROWN] = {
@@ -2246,7 +2236,7 @@ FurC.MiscItemSources[ver.MORROWIND] = {
   },
 
   [src.JUSTICE] = {
-    [126481] = zo_strformat("<<1>> <<2>>", join(",", stealable_priests, stealable_pilgrims), loc_vvardenfell), -- Indoril Incense, Burning
+    [126481] = strGeneric(srcPick, strSrc("src", npc.CLASS_PRIEST, npc.CLASS_PILGRIM), loc.VVARDENFELL), -- Indoril Incense, Burning
     [126772] = stealable_thief, -- Khajiiti Ponder sphere
   },
 }
@@ -2256,8 +2246,8 @@ FurC.MiscItemSources[ver.HOMESTEAD] = {
   [src.JUSTICE] = {
     -- stealing
     [118489] = stealable_scholars, -- Papers, Stack
-    [118528] = strSteal({}, {}), -- Signed Contract
-    [118890] = strSteal({}, {}), -- Skull, Human
+    [118528] = stealable, -- Signed Contract
+    [118890] = stealable, -- Skull, Human
     [118487] = stealable_scholars, -- Letter, Personal
     [120008] = stealable_nerds, -- Lesser Soul Gem, Empty
     [120005] = stealable_nerds, -- Papers, Stack
@@ -2273,27 +2263,27 @@ FurC.MiscItemSources[ver.HOMESTEAD] = {
     [118716] = stealable_guard, -- Orc Female
     [118717] = stealable_guard, -- Orc Male
 
-    [121055] = stealable_drunkards, -- Breton Mug, Full
+    [121055] = strGeneric(srcPick, strSrc("src", npc.CLASS_DRUNKARD)), -- Breton Mug, Full
 
-    [116512] = stealable_loc_wrothgar, -- Orcish Carpet Blood
+    [116512] = strGeneric(srcSteal, nil, nil, loc.WROTHGAR), -- Orcish Carpet Blood
   },
 
   [src.FISHING] = {
     -- fishing
-    [118902] = fishing, -- Coral, Sun
-    [118903] = fishing, -- Coral, Crown
-    [118896] = fishing, -- Seashell, Sandcake
-    [118901] = fishing, -- Sea sponge
-    [118338] = fishing, -- Fish, Bass
-    [118339] = fishing, -- Fish, Salmon
-    [118337] = fishing, -- Fish, Trout
-    [120753] = fishing, -- Kelp, Green Pile
-    [120755] = fishing, -- Kelp, Lush Pile
-    [120754] = fishing, -- Kelp, Small Pile
-    [118897] = fishing, -- Seashell, Pink Scallop
-    [118898] = fishing, -- Seashell, White Scallop
-    [118899] = fishing, -- Seashell, Starfish
-    [118900] = fishing, -- Seashell, Noble Starfish
+    [118902] = srcFish, -- Coral, Sun
+    [118903] = srcFish, -- Coral, Crown
+    [118896] = srcFish, -- Seashell, Sandcake
+    [118901] = srcFish, -- Sea sponge
+    [118338] = srcFish, -- Fish, Bass
+    [118339] = srcFish, -- Fish, Salmon
+    [118337] = srcFish, -- Fish, Trout
+    [120753] = srcFish, -- Kelp, Green Pile
+    [120755] = srcFish, -- Kelp, Lush Pile
+    [120754] = srcFish, -- Kelp, Small Pile
+    [118897] = srcFish, -- Seashell, Pink Scallop
+    [118898] = srcFish, -- Seashell, White Scallop
+    [118899] = srcFish, -- Seashell, Starfish
+    [118900] = srcFish, -- Seashell, Noble Starfish
   },
 
   [src.DROP] = {
