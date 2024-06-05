@@ -1,8 +1,8 @@
 ## Title: FurnitureCatalogue_DevUtility
 ## Author: manavortex
 ## Description: This is a utility addon that helps generating entries for the furniture database.\nYou will only need it if you want to help with development or the database.
-## Version: 2.0.0
-## AddonVersion: 2000000
+## Version: 2.1.0
+## AddonVersion: 2001000
 ## APIVersion: 101042
 ## DependsOn: FurnitureCatalogue
 ## OptionalDependsOn: sidTools LibDebugLogger DebugLogViewer
