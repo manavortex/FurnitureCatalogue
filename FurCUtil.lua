@@ -189,17 +189,24 @@ end
 local srcType = {
   ["loc"] = {
     prep = GetString(SI_FURC_GRAMMAR_PREP_LOC_DEFAULT), -- "in"
+    sep = ", ",
     colour = colours.Location,
   },
   ["src"] = {
     prep = GetString(SI_FURC_GRAMMAR_PREP_SRC_DEFAULT), -- "from"
+    sep = ", ",
     colour = colours.Vendor,
+  },
+  ["other"] = {
+    prep = "", -- no preposition
+    sep = string.format(" %s ", GetString(SI_FURC_GRAMMAR_CONJ_OR)),
+    colour = colours.Voucher,
   },
 }
 
 ---Format sources (locations or people)
 ---<br>- if a source preposition is missing, the default is used (EN: "in" for locations, "from" for general sources)
----@param cat string source category "loc" or "src"
+---@param cat string source category "loc", "src" or "other"
 ---@param ... string locations resolved by GetString like "Summerset^N,on"
 ---@return string srcStr single source with preposition or multiple comma separated sources
 local function fmtSources(cat, ...)
@@ -223,9 +230,11 @@ local function fmtSources(cat, ...)
   end
 
   -- prepend "in" or "from" before joined source strings
-  locs[1] = string.format("%s %s", srcType[cat].prep, locs[1])
+  if srcType[cat].prep ~= "" then
+    locs[1] = string.format("%s%s", srcType[cat].prep, locs[1])
+  end
 
-  return colourise(table.concat(locs, ", "), srcType[cat].colour)
+  return colourise(table.concat(locs, srcType[cat].sep), srcType[cat].colour)
 end
 this.FmtSources = fmtSources
 
@@ -522,7 +531,7 @@ FurC.GetItemId = this.GetItemId
 --- Get item link from itemId (or itemLink)
 --- @param item number|string ID or itemlink
 --- @return string link or empty string
-function this.GetItemLink(item)
+local function getItemLink(item)
   if not item or (type(item) ~= "number" and type(item) ~= "string") then
     return ""
   end
@@ -539,6 +548,20 @@ function this.GetItemLink(item)
 
   -- already a link, nothing to do
   return item
+end
+this.GetItemLink = getItemLink
+
+---Return the formatted item name
+---@param itemId number
+---@param fmt? string optional format, default is stripped of gender control characters
+---@return string
+function this.GetItemName(itemId, fmt)
+  local name = GetItemLinkName(getItemLink(itemId))
+  if fmt then
+    return sFormat(fmt, name)
+  end
+
+  return stripTxt(name, STRIP_CONTROL)
 end
 
 --[[_______________________

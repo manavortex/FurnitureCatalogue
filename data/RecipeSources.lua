@@ -5,12 +5,15 @@ local skillLine = FurC.Constants.SkillLines
 
 local sFormat = zo_strformat
 
+local strGeneric = FurC.Utils.FmtCategorySourcesSuffix
 local strRank = FurC.Utils.FmtRank
 local strFurnisher = FurC.Utils.FormatFurnisher
 
+local srcDaily = GetString(SI_FURC_SRC_QUEST_DAILY)
+
 local skillPsijic = skillLine.PSIJIC
 
-local daily_reward_elswhere = GetString(SI_FURC_DAILY_ELSWEYR)
+local daily_reward_elswhere = strGeneric(srcDaily, nil, " / ", loc.NELSWEYR, loc.SELSWEYR)
 local artaeum = loc.ARTAEUM
 local nalirsewen = npc.PSIJIC_NALIRSEWEN
 
