@@ -5,8 +5,7 @@ local ver = FurC.Constants.Versioning
 local src = FurC.Constants.ItemSources
 local npc = FurC.Constants.NPC
 local crates = FurC.Constants.CrownCrates
-
-local join = zo_strjoin
+local events = FurC.Constants.Events
 
 local strCrate = FurC.Utils.FmtCrownCrate
 local strDungeon = FurC.Utils.FmtDungeon
@@ -38,9 +37,9 @@ local db_sneaky = zo_strformat("<<1>> <<2>>", GetString(SI_FURC_DB), GetString(S
 local db_equip = zo_strformat("<<1>> <<2>>", GetString(SI_FURC_DB), GetString(SI_FURC_DB_EQUIP))
 
 -- Events
-local ev_blackwood = strEvent(GetString(SI_FURC_EVENT_BLACKWOOD))
-local ev_hollowjack = strEvent(GetString(SI_FURC_EVENT_HOLLOWJACK))
-local ev_elsweyr = strEvent(GetString(SI_FURC_EVENT_ELSWEYR))
+local ev_blackwood = strEvent(events.BLACKWOOD)
+local ev_hollowjack = strEvent(events.HOLLOWJACK)
+local ev_elsweyr = strEvent(events.ELSWEYR)
 
 -- Stealing
 local stealable = strGeneric(srcSteal, nil, nil)
@@ -79,6 +78,7 @@ local inf_archive = strDungeon(nil, loc.DUNG_IA)
 local collection_nothingeyes =
   strPartOf(145596, zo_strformat("<<1>>, <<2>>: <<3>>", loc.MURKMIRE, loc.MURKMIRE_LIL, strPrice(15000, CURT_MONEY)))
 
+local join = zo_strjoin
 local function strMultiple(...)
   return join(" + ", ...)
 end

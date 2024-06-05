@@ -1,10 +1,11 @@
 FurC.AchievementVendors = FurC.AchievementVendors or {}
 FurC.Books = FurC.Books or {}
 
-local ver = FurC.Constants.Versioning
+local events = FurC.Constants.Events
 local loc = FurC.Constants.Locations
 local npc = FurC.Constants.NPC
 local skillLine = FurC.Constants.SkillLines
+local ver = FurC.Constants.Versioning
 
 local merge = FurC.Utils.MergeTable
 
@@ -1287,42 +1288,50 @@ FurC.AchievementVendors[ver.ENDLESS] = {
     },
   },
   [loc.DUNG_IA] = {
-    -- TODO #FIX: These items are purchased with Archival Fortunes, not gold.
     [npc.AF] = {
       [203155] = { --Apocrypha Drying Rack, Paper
         itemPrice = 1000,
+        currency = CURT_ENDLESS_DUNGEON,
         achievement = 3765, -- A Little Help Never Hurt
       },
       [203153] = { --Apocrypha Pedestal
         itemPrice = 5500,
+        currency = CURT_ENDLESS_DUNGEON,
         achievement = 3799, -- Battle Ready (Armed Onslaught 5/25)
       },
       [203158] = { --Apocrypha Plant, Languid Tentacles
         itemPrice = 20000,
+        currency = CURT_ENDLESS_DUNGEON,
         achievement = 3798, -- Archive's Most Adored
       },
       [203152] = { --Apocrypha Window, Eye
         itemPrice = 6800,
+        currency = CURT_ENDLESS_DUNGEON,
         achievement = 3763, -- probably "Fabled Foil" after rename of "Dynamic Destroyer"
       },
       [203157] = { --Apocryphal Obelisk
         itemPrice = 7500,
+        currency = CURT_ENDLESS_DUNGEON,
         achievement = 3769, -- First Splurge!
       },
       [203154] = { --Choral Altar
         itemPrice = 7500,
+        currency = CURT_ENDLESS_DUNGEON,
         achievement = 3805, -- Studying Up
       },
       [203159] = { --Daedric Arch, Glass
         itemPrice = 6500,
+        currency = CURT_ENDLESS_DUNGEON,
         achievement = 3760, -- Heavy Hitter
       },
       [203160] = { --Endless Archive Access, Replica
         itemPrice = 6000,
+        currency = CURT_ENDLESS_DUNGEON,
         achievement = 3802, -- A Sturdy Shield
       },
       [203156] = { --Endless Archive Index, Replica
         itemPrice = 25000,
+        currency = CURT_ENDLESS_DUNGEON,
         achievement = 3772, -- Running the Gauntlet
       },
     },
@@ -2140,19 +2149,19 @@ FurC.AchievementVendors[ver.DRAGON2] = {
 
 -- 12 Scalebreaker
 FurC.AchievementVendors[ver.SCALES] = {
-  [GetString(SI_FURC_EVENT_IC)] = {
+  [events.IC] = {
     [npc.EVENT] = {
-      [153554] = { itemPrice = 1 }, -- Imperial Mirror, Standing
-      [153562] = { itemPrice = 1 }, -- Daedric Brazier, Standing
-      [153561] = { itemPrice = 3 }, -- Daedric Chandelier, Ritual
-      [153557] = { itemPrice = 1 }, -- Imperial Footlocker, Scrollwork
-      [153558] = { itemPrice = 2 }, -- Imperial Wardrobe, Scrollwork
-      [153553] = { itemPrice = 1 }, -- Imperial Dresser, Scrollwork
-      [153556] = { itemPrice = 1 }, -- Imperial Divider, Folding
-      [153555] = { itemPrice = 1 }, -- Imperial Nightstand, Scrollwork
-      [153560] = { itemPrice = 2 }, -- Imperial Shrine of the Bay
-      [153552] = { itemPrice = 1 }, -- Imperial Tapestry, Akatosh
-      [153559] = { itemPrice = 2 }, -- Imperial Bed, Canopy
+      [153554] = { itemPrice = 1, currency = CURT_EVENT_TICKETS }, -- Imperial Mirror, Standing
+      [153562] = { itemPrice = 1, currency = CURT_EVENT_TICKETS }, -- Daedric Brazier, Standing
+      [153561] = { itemPrice = 3, currency = CURT_EVENT_TICKETS }, -- Daedric Chandelier, Ritual
+      [153557] = { itemPrice = 1, currency = CURT_EVENT_TICKETS }, -- Imperial Footlocker, Scrollwork
+      [153558] = { itemPrice = 2, currency = CURT_EVENT_TICKETS }, -- Imperial Wardrobe, Scrollwork
+      [153553] = { itemPrice = 1, currency = CURT_EVENT_TICKETS }, -- Imperial Dresser, Scrollwork
+      [153556] = { itemPrice = 1, currency = CURT_EVENT_TICKETS }, -- Imperial Divider, Folding
+      [153555] = { itemPrice = 1, currency = CURT_EVENT_TICKETS }, -- Imperial Nightstand, Scrollwork
+      [153560] = { itemPrice = 2, currency = CURT_EVENT_TICKETS }, -- Imperial Shrine of the Bay
+      [153552] = { itemPrice = 1, currency = CURT_EVENT_TICKETS }, -- Imperial Tapestry, Akatosh
+      [153559] = { itemPrice = 2, currency = CURT_EVENT_TICKETS }, -- Imperial Bed, Canopy
     },
   },
 
