@@ -277,19 +277,26 @@ function this.FormatEvent(...)
 end
 
 local fmtAch = GetString(SI_FURC_REQUIRES_ACHIEVEMENT)
----Make an achievement link from a requirement id or description
+local fmtReward = GetString(SI_FURC_STRING_REWARD_FOR)
+---Format an achievement string from a requirement id or description
 ---@param req number|string
+---@param isReward? boolean defaults to false
 ---@return string
-local function makeAchievementLink(req)
+local function formatAchievement(req, isReward)
   assert(type(req) == "string" or type(req) == "number", "requirement must be a string or number")
 
+  local fmt = fmtAch
+  if isReward then
+    fmt = fmtReward
+  end
   if type(req) == "string" then
     -- probably description, format as is
-    return sFormat(fmtAch, req)
+    return sFormat(fmt, req)
   end
   -- probably achievement id, make link
-  return sFormat(fmtAch, GetAchievementLink(req, LINK_STYLE_DEFAULT))
+  return sFormat(fmt, GetAchievementLink(req, LINK_STYLE_DEFAULT))
 end
+this.FormatAchievement = formatAchievement
 
 ---Format furnisher (Home Goods, Achievement, others)
 ---@param trader string formatted furnisher string
@@ -315,7 +322,7 @@ function this.FormatFurnisher(trader, location, price, curt, info)
   if hasReq == 1 then
     if type(info) == "number" then
       -- must be an achievment ID
-      strInfo = makeAchievementLink(info) or ""
+      strInfo = formatAchievement(info) or ""
     else
       -- must be a description
       strInfo = info or ""

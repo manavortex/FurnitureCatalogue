@@ -7,6 +7,7 @@ local npc = FurC.Constants.NPC
 local crates = FurC.Constants.CrownCrates
 local events = FurC.Constants.Events
 
+local formatAchievement = FurC.Utils.FormatAchievement
 local strCrate = FurC.Utils.FmtCrownCrate
 local strDungeon = FurC.Utils.FmtDungeon
 local strEvent = FurC.Utils.FormatEvent
@@ -26,8 +27,10 @@ local srcHarvest = GetString(SI_FURC_SRC_HARVEST)
 local srcPick = GetString(SI_FURC_SRC_PICK)
 local srcSafe = GetString(SI_FURC_SRC_SAFEBOX)
 local srcSteal = GetString(SI_FURC_SRC_STEAL)
+local srcLvlup = GetString(SI_FURC_SRC_LVLUP)
 
 local rarityExtremely = GetString(SI_FURC_RARITY_EXTREMELYRARE)
+local rarityRare = GetString(SI_FURC_RARITY_RARE)
 
 -- Quests and Guilds
 local tribute = GetString(SI_FURC_SRC_TOT)
@@ -58,6 +61,7 @@ local painting_summerset = strGeneric(srcSafe, rarityExtremely, nil, loc.SUMMERS
 local automaton_loot_cc = strGeneric(srcDrop, npc.ENEMY_AUTOMATON, nil, loc.CWC)
 local automaton_loot_vv = strGeneric(srcDrop, npc.ENEMY_AUTOMATON, nil, loc.VVARDENFELL)
 local book_hall = strGeneric(srcDung, "vault chests", nil, loc.DUNG_SCRIV)
+local chestsGeneral = strGeneric(srcChest)
 local chests_blackr_grcaverns = strGeneric(srcChest, nil, nil, loc.BLACKREACH_GMC)
 local chests_blackwood = strGeneric(srcChest, nil, nil, loc.BLACKWOOD)
 local chests_elsweyr = strGeneric(srcChest, nil, " / ", loc.NELSWEYR, loc.SELSWEYR)
@@ -73,6 +77,7 @@ local nymic = strDungeon(srcChest, loc.NYMIC)
 local pdung_vv_fw = strGeneric(srcDrop, nil, ", ", loc.VVARDENFELL, loc.PDUNG_VVARDENFELL_FW)
 local plants_vvardenfell = strGeneric(srcHarvest, nil, nil, loc.VVARDENFELL)
 local inf_archive = strDungeon(nil, loc.DUNG_IA)
+local frostvault = strDungeon(rarityRare, loc.DUNG_FV)
 
 -- "Part of the item 'Look upon Their Nothing Eyes' in Lilmoth, Murkmire, 15k gold"
 local collection_nothingeyes =
@@ -634,15 +639,15 @@ FurC.MiscItemSources[ver.DEADL] = {
     [165835] = chests_elsweyr, -- Painting of Khajiiti Arch, Gold,
     [139075] = chests_summerset, -- Painting of Sinkhole, Refined
 
-    [94100] = "Can be gained as a level up reward or Crown Store (50)", -- Imperial BookCase, Swirled
-    [145595] = "From sneaking up on Scuttleblooms in Murkmire", -- Scuttlebloom
-    [147644] = "Frostvault rare drop", -- Palisade, Crude,
-    [147642] = "Frostvault rare drop", -- Boar Totem, Balance,
-    [147643] = "Frostvault rare drop", -- Boar Totem, Solitary,
-    [163432] = "Reward for 'An Instrumental Triumph' achievement from the Bard's College in Solitude, Western Skyrim", -- Music Box, Merry Mead Maker
-    [166027] = "Drops from chaurus mobs in Blackreach", -- Chaurus Egg, Dormant
+    [94100] = strMultiple(strCrown(50), strGeneric(srcLvlup)), -- Imperial BookCase, Swirled
+    [145595] = strGeneric(srcHarvest, "Scuttleblooms", nil, loc.MURKMIRE), -- Scuttlebloom
+    [147644] = frostvault, -- Palisade, Crude,
+    [147642] = frostvault, -- Boar Totem, Balance,
+    [147643] = frostvault, -- Boar Totem, Solitary,
+    [163432] = string.format("%s %s", formatAchievement(2669, true), strSrc("loc", loc.WSKYRIM)), -- Music Box, Merry Mead Maker ; Achievement
+    [166027] = strGeneric(srcDrop, "chaurus mobs", nil, loc.BLACKREACH_GMC), -- Chaurus Egg, Dormant
 
-    [134403] = "Can be stolen, mostly from wardrobes in Hew's Bane", --Spool, Red Thread,
+    [134403] = strGeneric(srcSteal, "from wardrobes", nil, loc.HEWSBANE), --Spool, Red Thread,
 
     [178472] = "Given to members of the Dauntless Bananas Guild as part of a 2020 contest", -- Guild Banner, Dauntless Bananas,
     [178498] = "Given to members of the Dauntless Bananas Guild as part of a 2020 contest", -- A Tale of the Dauntless Bananas,
@@ -2063,7 +2068,7 @@ FurC.MiscItemSources[ver.MORROWIND] = {
 
     [126759] = strQuest(5864, strSrc("loc", loc.VVARDENFELL, loc.VVARDENFELL_SURAN)), -- Sir Sock's Ball of Yarn ; Quest: 'Nothing to Sneeze At'
 
-    [126592] = strGeneric(srcHarvest, nil, nil), -- Plants, Hanging Pitcher Pair
+    [126592] = strGeneric(srcHarvest), -- Plants, Hanging Pitcher Pair
   },
 
   [src.CROWN] = {
@@ -2245,18 +2250,18 @@ FurC.MiscItemSources[ver.HOMESTEAD] = {
     [119952] = db_equip, -- Sacrificial Heart
 
     -- Paintings
-    [118216] = srcChest, -- Painting of Spring, Sturdy
-    [118217] = srcChest, -- Painting of Pasture, Sturdy
-    [118218] = srcChest, -- Painting of Creek, Sturdy
-    [118219] = srcChest, -- Painting of Lakes, Sturdy
-    [118220] = srcChest, -- Painting of Crags, Sturdy
-    [118221] = srcChest, -- Painting of Summer, Sturdy
-    [118222] = srcChest, -- Painting of Jungle, Sturdy
-    [118223] = srcChest, -- Painting of Palms, Sturdy
-    [118265] = srcChest, -- Painting of Winter, Bolted
-    [118266] = srcChest, -- Painting of Bridge, Bolted
-    [118267] = srcChest, -- Painting of Autumn, Bolted
-    [118268] = srcChest, -- Painting of Great Ruins, Bolted
+    [118216] = chestsGeneral, -- Painting of Spring, Sturdy
+    [118217] = chestsGeneral, -- Painting of Pasture, Sturdy
+    [118218] = chestsGeneral, -- Painting of Creek, Sturdy
+    [118219] = chestsGeneral, -- Painting of Lakes, Sturdy
+    [118220] = chestsGeneral, -- Painting of Crags, Sturdy
+    [118221] = chestsGeneral, -- Painting of Summer, Sturdy
+    [118222] = chestsGeneral, -- Painting of Jungle, Sturdy
+    [118223] = chestsGeneral, -- Painting of Palms, Sturdy
+    [118265] = chestsGeneral, -- Painting of Winter, Bolted
+    [118266] = chestsGeneral, -- Painting of Bridge, Bolted
+    [118267] = chestsGeneral, -- Painting of Autumn, Bolted
+    [118268] = chestsGeneral, -- Painting of Great Ruins, Bolted
   },
 
   [src.CROWN] = {

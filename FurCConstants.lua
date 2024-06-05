@@ -101,6 +101,7 @@ FurC.Constants.Locations = {
   DESHAAN = getZoneStr(57), -- Deshaan
   DUNG_DOM = getZoneStr(1081), -- Depths of Malatar
   DUNG_FL = getZoneStr(1009), -- Fang Lair
+  DUNG_FV = getZoneStr(1080), -- Frostvault
   DUNG_IA = getZoneStr(1436), -- Infinite Archive
   DUNG_MHK = getZoneStr(1052), -- Moon Hunter Keep
   DUNG_MOS = getZoneStr(1055), -- March of the Sacrifices
