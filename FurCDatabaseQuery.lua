@@ -1,20 +1,17 @@
 local FurC = FurC or {}
 
 local colour = FurC.Constants.Colours
-local curr = FurC.Constants.Currencies
 local loc = FurC.Constants.Locations
 local npc = FurC.Constants.NPC
 local src = FurC.Constants.ItemSources
-
-local join = zo_strjoin
 
 local colourise = FurC.Utils.Colourise
 local stripText = FurC.Utils.stripTxt
 local getItemLink = FurC.Utils.GetItemLink
 local fmtFurnisher = FurC.Utils.FormatFurnisher
+local strSrc = FurC.Utils.FmtSources
 
-local strVoucherVendor = GetString(SI_FURC_STRING_VOUCHER_VENDOR)
-local fmtVendor = GetString(SI_FURC_STRING_VENDOR)
+local strVoucherVendor = strSrc("src", npc.ROLIS, npc.FAUSTINA)
 
 local function getRolisSource(recipeKey, recipeArray)
   recipeArray = recipeArray or FurC.Find(recipeKey)
@@ -25,16 +22,12 @@ local function getRolisSource(recipeKey, recipeArray)
   local versionData = FurC.Rolis[recipeArray.version]
 
   if nil ~= versionData and nil ~= versionData[recipeKey] then
-    local itemPrice =
-      zo_strformat(GetString(SI_FURC_STRING_FOR_VOUCHERS), colourise(versionData[recipeKey], colour.Voucher))
-    return zo_strformat(GetString(SI_FURC_TRADERS_ROLIS), itemPrice)
+    return fmtFurnisher(npc.ROLIS, loc.ANY_CAPITAL, versionData[recipeKey], CURT_WRIT_VOUCHERS)
   end
 
   versionData = FurC.Faustina[recipeArray.version]
   if nil ~= versionData and nil ~= versionData[recipeKey] then
-    local itemPrice =
-      zo_strformat(GetString(SI_FURC_STRING_FOR_VOUCHERS), colourise(versionData[recipeKey], colour.Voucher))
-    return zo_strformat(GetString(SI_FURC_TRADERS_FAUSTINA), itemPrice)
+    return fmtFurnisher(npc.FAUSTINA, loc.ANY_CAPITAL, versionData[recipeKey], CURT_WRIT_VOUCHERS)
   end
 
   return strVoucherVendor -- fallback

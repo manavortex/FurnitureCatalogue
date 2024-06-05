@@ -165,7 +165,7 @@ local function findQuest(questName)
 
   questName = LocaleAwareToLower(zo_strformat(questName))
   for id, name in pairs(questTable) do
-    if string.find(name, questName) then
+    if string.find(LocaleAwareToLower(name), questName) then
       results[id] = name
     end
   end

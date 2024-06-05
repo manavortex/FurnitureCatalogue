@@ -1,12 +1,15 @@
 local ver = FurC.Constants.Versioning
+local events = FurC.Constants.Events
+local npc = FurC.Constants.NPC
+local containers = FurC.Constants.Containers
 
 -- 28 Scions of Ithelia
 FurC.EventItems[ver.SCIONS] = {}
 
 -- 27 Base Game Patch
 FurC.EventItems[ver.BASED] = {
-  ["Witches' Festival"] = {
-    ["Plunder Skull"] = {
+  [events.WITCHES] = {
+    [containers.PLUNDERSKULL] = {
       [198390] = true, -- Apocrypha Specimen Jar, Leech
       [198389] = true, -- Apocrypha Specimen Jar, Spider
       [198388] = true, -- Apocrypha Specimen Jar, Tomeshell Viscera
@@ -32,8 +35,8 @@ FurC.EventItems[ver.BASED] = {
 
 -- 25 Scribes of Fate
 FurC.EventItems[ver.SCRIBE] = {
-  ["Anniversary Jubilee"] = {
-    ["Impresario"] = {
+  [events.ANNIVERSARY] = {
+    [npc.EVENT] = {
       [194359] = { itemPrice = 3 }, -- Replica Jubilee Cake 2023,
     },
   },
@@ -41,8 +44,8 @@ FurC.EventItems[ver.SCRIBE] = {
 
 -- 21 Ascending Tide
 FurC.EventItems[ver.TIDES] = {
-  ["Anniversary Jubilee"] = {
-    ["Impresario"] = {
+  [events.ANNIVERSARY] = {
+    [npc.EVENT] = {
       [183902] = { itemPrice = 3 }, -- Replica Jubilee Cake 2022,
     },
   },
@@ -50,14 +53,14 @@ FurC.EventItems[ver.TIDES] = {
 
 -- 20 Deadlands
 FurC.EventItems[ver.DEADL] = {
-  ["Bounties of Blackwood"] = { -- 2021-9-30 - 2021-10-12
-    ["Impressario"] = {
+  [events.BLACKWOOD] = { -- 2021-9-30 - 2021-10-12
+    [npc.EVENT] = {
       [181488] = { itemPrice = 5 }, -- Statue, Saint Kaladas
     },
   },
 
-  ["Witches' Festival"] = {
-    ["Plunder Skull"] = {
+  [events.WITCHES] = {
+    [containers.PLUNDERSKULL] = {
       [181494] = true, -- Vampiric Container, Yellow Liquid,
       [181493] = true, -- Vampiric Container, Congealed Liquid,
       [181492] = true, -- Vampiric Flask Stand, Double,
@@ -87,8 +90,8 @@ FurC.EventItems[ver.DEADL] = {
 
 -- 14 Harrowstorm
 FurC.EventItems[ver.HARROW] = {
-  ["Anniversary Jubilee"] = { -- 2020-04-02 till 2020-04-14; 2021-04-01 till 2021-04-15
-    ["Impresario"] = {
+  [events.ANNIVERSARY] = { -- 2020-04-02 till 2020-04-14; 2021-04-01 till 2021-04-15
+    [npc.EVENT] = {
       [171601] = { itemPrice = 3 }, -- Replica Jubilee Cake 2021
       [159470] = { itemPrice = 3 }, -- Replica Jubilee Cake 2020
       [159467] = { itemPrice = 3 }, -- Replica Jubilee Cake 2019
@@ -101,8 +104,8 @@ FurC.EventItems[ver.HARROW] = {
 
 -- 11 Elsweyr
 FurC.EventItems[ver.KITTY] = {
-  ["Witches' Festival"] = {
-    ["Plunder Skull"] = {
+  [events.WITCHES] = {
+    [containers.PLUNDERSKULL] = {
       [145317] = true, -- Gravestone, Broken
       [118149] = true, -- Block and Axe, Chopping
     },
@@ -111,8 +114,8 @@ FurC.EventItems[ver.KITTY] = {
 
 -- 6 Dragon Bones
 FurC.EventItems[ver.DRAGONS] = {
-  ["Jester's Festival"] = {
-    ["Jester's Boxes"] = {
+  [events.JESTER] = {
+    [containers.JESTERBOX] = {
       [134680] = true, -- Jester Box
     },
   },
@@ -120,8 +123,8 @@ FurC.EventItems[ver.DRAGONS] = {
 
 -- 4 Horns of the Reach
 FurC.EventItems[ver.REACH] = {
-  ["Witches' Festival"] = {
-    ["Plunder Skull"] = {
+  [events.WITCHES] = {
+    [containers.PLUNDERSKULL] = {
       [145318] = true, -- Small Gravestone
       [130340] = true, -- Witches Totem, Gnarled Vines and Skull,
       [130339] = true, -- Witches Totem, Twisted Vines and Skull
@@ -148,8 +151,8 @@ FurC.EventItems[ver.REACH] = {
 
 -- 3 Morrowind
 FurC.EventItems[ver.MORROWIND] = {
-  ["Midyear Mayhem"] = {
-    ["Boon Box"] = {
+  [events.MAYHEM] = {
+    [containers.BOONBOX] = {
       [126164] = true, -- Song of Pelinal, #8
       [126163] = true, -- Song of Pelinal, #7
       [126162] = true, -- Song of Pelinal, #6
@@ -161,8 +164,8 @@ FurC.EventItems[ver.MORROWIND] = {
     },
   },
 
-  ["New Life"] = {
-    ["Gift Box"] = {
+  [events.NEWLIFE] = {
+    [containers.NEWLIFEBOX] = {
       [118053] = true, -- Common Campfire, Outdoor
     },
   },
@@ -170,8 +173,8 @@ FurC.EventItems[ver.MORROWIND] = {
 
 -- 2 Homestead
 FurC.EventItems[ver.HOMESTEAD] = {
-  ["Jester Festival"] = {
-    ["Jester Boxes"] = {
+  [events.JESTER] = {
+    [containers.JESTERBOX] = {
       [134680] = true, -- Banner, Jester's Standard
       [120995] = true, -- Banner, Jester's Standard
     },

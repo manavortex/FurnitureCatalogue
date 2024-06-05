@@ -358,18 +358,49 @@ function this.FmtScrying(pieceNum, ...)
   return string.format("%s %s %s", sFormat("<<C:1>>", scrFrom), table.concat(locations, "/"), pieces)
 end
 
+local strRank = GetString(SI_FURC_RANK)
+---Format a rank requirement text
+---@param skill? string raw skill line name
+---@param rank? number required rank
+---@param info? string formatted info
+---@return string
+local function fmtRank(skill, rank, info)
+  skill = skill or ""
+  rank = rank or 0
+  info = info or ""
+
+  if "" ~= skill then
+    skill = colourise(stripTxt(skill, STRIP_CONTROL), colours.Quest)
+  end
+
+  local sRank = sFormat(strRank, tostring(rank))
+
+  return string.format("%s : %s", skill, sRank)
+end
+this.FmtRank = fmtRank
+
 local dungStr = GetString(SI_FURC_SRC_DUNG)
 -- TODO #REFACTOR: remove
 function this.FmtDungeon(suffix, ...)
   return this.FmtCategorySourcesSuffix(dungStr, suffix, " / ", ...)
 end
 
+local srcScambox = GetString(SI_FURC_SRC_SCAMBOX)
+local function fmtCrownCrate(scamboxName)
+  if scamboxName and "" ~= scamboxName then
+    return fmtCategorySourcesSuffix(srcScambox, colourise(scamboxName, colours.Gold))
+  end
+
+  return zo_strformat("<<alm:1>>", srcScambox)
+end
+this.FmtCrownCrate = fmtCrownCrate
+
 local strQuest = GetString(SI_FURC_SRC_QUEST)
 ---Format a quest
 ---@param questId? number defaults to 0 = no quest
----@param location? string location string (raw)
+---@param location? string location string (formatted)
 ---@param suffix? string additional infotext (formatted)
----@return string
+---@return string questString like "Quest 'ABC' in Bangkorai (XYZ)"
 function this.FmtQuest(questId, location, suffix)
   questId = questId or 0
   location = location or ""
@@ -392,16 +423,41 @@ function this.FmtQuest(questId, location, suffix)
     location = fmtSources("loc", location)
   end
 
-  if hasSuff then
-    suffix = " " .. suffix
-  end
-
-  -- just return "from a quest"
+  -- `000` = 0 -> From a quest
   if not (hasQName or hasLoc or hasSuff) then
     return sFormat("<<Cal:1>>", strQuest)
   end
+  -- `001` = 1 -> From a quest (`<SUFF>`)
+  if not (hasQName or hasLoc) and hasSuff then
+    return sFormat("<<Cal:1>> (<<2>>)", strQuest, suffix)
+  end
+  -- `010` = 2 -> From a quest `<IN_LOC>`
+  if not hasQName and hasLoc and not hasSuff then
+    return sFormat("<<Cal:1>> <<2>>", strQuest, location)
+  end
+  -- `011` = 3 -> From a quest `<IN_LOC>` (`<SUFF>`)
+  if not hasQName and (hasLoc and hasSuff) then
+    return sFormat("<<Cal:1>> <<2>> (<<3>>)", strQuest, location, suffix)
+  end
+  -- `100` = 4 -> From the quest '<NAME>'
+  if hasQName and not (hasLoc or hasSuff) then
+    return sFormat("<<Cl:1>> '<<2>>'", strQuest, name)
+  end
+  -- `101` = 5 -> From the quest '<NAME>' (`<SUFF>`)
+  if hasQName and not hasLoc and hasSuff then
+    return sFormat("<<Cl:1>> '<<2>>' (<<3>>)", strQuest, name, suffix)
+  end
+  -- `110` = 6 -> Quest '<NAME>' `<IN_LOC>`
+  if hasQName and hasLoc and not hasSuff then
+    return sFormat("<<1>> '<<2>>' <<3>>", strQuest, name, location)
+  end
+  -- `111` = 7 -> Quest '<NAME>' `<IN_LOC>` (`<SUFF>`)
+  if hasQName and hasLoc and hasSuff then
+    return sFormat("<<1>>: '<<2>>' <<3>> (<<4>>)", stripTxt(strQuest, STRIP_CONTROL), name, location, suffix)
+  end
 
-  return string.format("%s%s%s", name, location, suffix)
+  assert(false, "unreachable")
+  return ""
 end
 
 --[[_______________________
