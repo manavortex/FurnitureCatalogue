@@ -672,7 +672,6 @@ FurC.Rumours[ver.KITTY] = {
 
 -- 10 Wrathstone
 FurC.Rumours[ver.WOTL] = {
-  [147644] = rumourSource, -- Palisade, Crude,
   [147636] = rumourSource, -- Banner of Hermaeus Mora,
   [147573] = rumourSource, -- Barricade, Bladed Hurdle,
   [147572] = rumourSource, -- Barricade, Bladed Fence,

@@ -331,6 +331,7 @@ local strings = {
   SI_FURC_STRING_RECIPELEARNED = "Recipe learned: <<1>> <<2>> <<3>>",
   SI_FURC_STRING_RECIPESFORCHAR = "recipes for <<1>>",
   SI_FURC_STRING_REWARD = "reward^n,from",
+  SI_FURC_STRING_REWARD_FOR = "reward for <<1>>",
   SI_FURC_STRING_TRADER = "Trader",
   SI_FURC_STRING_VENDOR = "<<1>> <<l:2>> (<<3>><<4>>)",
   SI_FURC_STRING_VOUCHER_VENDOR = "Rolis Hlaalu or Faustina Curio",
