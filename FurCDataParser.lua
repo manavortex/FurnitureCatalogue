@@ -1,5 +1,8 @@
 local db = FurC.settings["data"]
 
+local sFormat = zo_strformat
+
+local stripTxt = FurC.Utils.stripTxt
 local getItemId = FurC.Utils.GetItemId
 
 function FurC.PrintCraftingStation(itemId, recipeArray)
@@ -7,11 +10,16 @@ function FurC.PrintCraftingStation(itemId, recipeArray)
   if not craftingType or not GetCraftingSkillName(craftingType) then
     return ""
   end
-  return zo_strformat(" (<<1>>)", GetCraftingSkillName(craftingType))
+  return sFormat(" (<<1>>)", GetCraftingSkillName(craftingType))
 end
 
-local function prefillChatBox(output, refresh)
-  output = zo_strformat(output)
+function FurC.ToChat(output, refresh)
+  if type(output) == "number" then
+    output = FurC.Utils.GetItemLink(output)
+  end
+
+  output = sFormat(output)
+  output = stripTxt(output) -- remove chat incompatible parts
   if nil == output or "" == output then
     return
   end
@@ -29,13 +37,6 @@ local function prefillChatBox(output, refresh)
   else
     StartChatInput(output)
   end
-end
-
-function FurC.ToChat(output, refresh)
-  if type(output) == "number" then
-    output = FurC.Utils.GetItemLink(output)
-  end
-  prefillChatBox(output, refresh)
 end
 
 local function getNameFromEntry(recipeArray)

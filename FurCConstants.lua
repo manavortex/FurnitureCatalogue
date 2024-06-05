@@ -1,4 +1,6 @@
 FurC = FurC or {}
+
+--- Collection of some variables for easier access. Not intended as an API. Some values are constants, while others are generated from string localisation and may change between play sessions or game patches.
 FurC.Constants = {}
 
 local getZoneStr = GetZoneNameById
@@ -196,6 +198,7 @@ FurC.Constants.NPC = {
 
   -- enemies (loot) and social classes (pickpocketing)
   ENEMY_AUTOMATON = GetString(SI_FURC_NPC_AUTOMATON),
+  ENEMY_RND = sFormat("<<m:1>>", GetString(SI_FURC_SRC_RNDMOB)),
   CLASS_ALCHEMIST = sFormat("<<1>>", GetString(SI_MONSTERSOCIALCLASS2)),
   CLASS_ARTISAN = sFormat("<<1>>", GetString(SI_MONSTERSOCIALCLASS3)),
   CLASS_ASSASSIN = sFormat("<<1>>", GetString(SI_MONSTERSOCIALCLASS4)),
@@ -242,6 +245,80 @@ FurC.Constants.NPC = {
   CLASS_WATCHMEN = sFormat("<<1>>", GetString(SI_MONSTERSOCIALCLASS44)),
   CLASS_WEREWOLF = sFormat("<<1>>", GetString(SI_MONSTERSOCIALCLASS45)),
   CLASS_WOODWORKER = sFormat("<<1>>", GetString(SI_MONSTERSOCIALCLASS46)),
+}
+
+FurC.Constants.CrownCrates = {
+  -- Source: https://en.uesp.net/wiki/Online:Crown_Crates
+
+  CARNIVALE = GetCrownCrateName(0), -- TBA
+  DB = GetCrownCrateName(0), -- TBA
+  MIRROR = GetCrownCrateName(0), -- TBA
+
+  DIAMOND = GetCrownCrateName(59), -- 2024-07
+  LAMP = GetCrownCrateName(58), -- 2024-04
+  ALLMAKER = GetCrownCrateName(57), -- 2023-12
+  ARMIGER = GetCrownCrateName(55), -- 2023-09
+  FEATHER = GetCrownCrateName(54), -- 2023-06, Unfeathered
+  RAGE = GetCrownCrateName(53), -- 2023-04
+  STONELORE = GetCrownCrateName(52), -- 2022-12
+  WRAITH = GetCrownCrateName(51), -- 2022-09
+  DARK = GetCrownCrateName(50), -- 2022-06
+  SUNKEN = GetCrownCrateName(49), -- 2022-04
+  CELESTIAL = GetCrownCrateName(48), -- 2021-12
+  HARLEQUIN = GetCrownCrateName(47), -- 2021-09
+  IRON_ATRO = GetCrownCrateName(46), -- 2021-06
+  AYLEID = GetCrownCrateName(45), -- 2021-03
+  POTENTATE = GetCrownCrateName(44), -- 2020-12, Akaviri Potentate
+  SOVNGARDE = GetCrownCrateName(41), -- 2020-09
+  NIGHTFALL = GetCrownCrateName(39), -- 2020-06
+  GLOOMSPORE = GetCrownCrateName(37), -- 2020-04
+  FROST_ATRO = GetCrownCrateName(30), -- 2020-01
+  NEWMOON = GetCrownCrateName(27), -- 2019-09
+  BAANDARI = GetCrownCrateName(21), -- 2019-07, Baandari Pedlar
+  DRAGONSCALE = GetCrownCrateName(24), -- 2019-04
+  XANMEER = GetCrownCrateName(12), -- 2018-12, Xanmeer
+  HOLLOWJACK = GetCrownCrateName(10), -- 2018-09, Hollowjack
+  PSIJIC = GetCrownCrateName(9), -- 2018-06, Psijic Vault
+  SCALECALLER = GetCrownCrateName(8), -- 2018-03, Scalecaller
+  FIRE_ATRO = GetCrownCrateName(6), -- 2017-11, Flame Atronach
+  REAPER = GetCrownCrateName(5), -- 2017-09, Reaper's Harvest
+  DWEMER = GetCrownCrateName(4), -- 2017-07, Dwemer
+  WILD_HUNT = GetCrownCrateName(2), -- 2017-04, Wild Hund
+  --STORM_ATRO = GetCrownCrateName(1), -- 2016-12, Storm Atronach, no exclusive furnishings
+}
+
+FurC.Constants.SkillLines = {
+  -- manual lookup for now:
+  -- /script for i=1, 1000 do if (string.find(LocaleAwareToLower(GetSkillLineNameById(i)), "psijic")) then d(string.format("%d: %s", i, GetSkillLineNameById(i))) end end
+
+  LEGERDEMAIN = GetSkillLineNameById(111),
+  PSIJIC = GetSkillLineNameById(130),
+}
+
+FurC.Constants.Events = {
+  ANNIVERSARY = GetString(SI_FURC_EVENT_ANNIVERSARY), -- Anniversary Jubilee
+  BLACKWOOD = GetString(SI_FURC_EVENT_BLACKWOOD), -- Bounties of Blackwood
+  ELSWEYR = GetString(SI_FURC_EVENT_ELSWEYR), -- Season of the Dragon
+  HOLLOWJACK = GetString(SI_FURC_EVENT_HOLLOWJACK), -- Sinister Hollowjack
+  IC = GetString(SI_FURC_EVENT_IC), -- Imperial City Celebration Event
+  JESTER = GetString(SI_FURC_EVENT_JESTER), -- Jester's Festival
+  MAYHEM = GetString(SI_FURC_EVENT_MAYHEM), -- Whitestrake's Mayhem
+  NEWLIFE = GetString(SI_FURC_EVENT_NEWLIFE), -- New Life Festival
+  UNDAUNTED = GetString(SI_FURC_EVENT_UNDAUNTED), -- Undaunted Celebration
+  WITCHES = GetString(SI_FURC_EVENT_WITCHES), -- Witches Festival
+  ZENITHAR = GetString(SI_FURC_EVENT_ZENITHAR), -- Zeal of Zenithar
+}
+
+FurC.Constants.Containers = {
+  BOONBOX = "|H0:item:121526:1:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h", -- during Whitestrake's Mayhem
+  ELSWEYRCOFFER = "|H0:item:175580:1:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h", -- during Season of the Dragon
+  JESTERBOX = "|H0:item:194414:1:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h", -- during Jester's Festival
+  JUBILEEBOX = "|H0:item:134797:1:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h", -- during Anniversary Jubilee
+  LEGIONZEROBOX = "|H0:item:167210:1:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h", -- during Imperial City Celebration
+  NEWLIFEBOX = "|H0:item:96390:367:50:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h", -- during New Life Festival
+  PLUNDERSKULL = "|H0:item:84521:1:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h", -- during Witches' Festival
+  UNDAUNTEDBOX = "|H0:item:171267:1:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h", -- during Undaunted Celebration
+  ZENITHARPARCEL = "|H0:item:187701:1:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h", -- during Zenithar's Zeal
 }
 
 -- TODO: allow customisable colours, getting from options

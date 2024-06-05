@@ -4,9 +4,11 @@ FurC.Books = FurC.Books or {}
 local ver = FurC.Constants.Versioning
 local loc = FurC.Constants.Locations
 local npc = FurC.Constants.NPC
+local skillLine = FurC.Constants.SkillLines
 
-local join = zo_strjoin
 local merge = FurC.Utils.MergeTable
+
+local strRank = FurC.Utils.FmtRank
 
 local function getQuestString(questIdOrName)
   local questName = questIdOrName
@@ -4900,7 +4902,7 @@ FurC.AchievementVendors[ver.HOMESTEAD] = {
       },
       [120957] = { -- Faded fence banner
         itemPrice = 10000,
-        achievement = GetString(FURC_AV_LEGERDEMAIN_20),
+        achievement = strRank(skillLine.LEGERDEMAIN, 20),
       },
       [120033] = { -- Decorative Safebox
         itemPrice = 5000,
@@ -4940,7 +4942,7 @@ FurC.AchievementVendors[ver.HOMESTEAD] = {
       },
       [120023] = { -- Outlaw Banner
         itemPrice = 5000,
-        achievement = GetString(FURC_AV_LEGERDEMAIN_20),
+        achievement = strRank(skillLine.LEGERDEMAIN, 20),
       },
     },
   },
