@@ -8,6 +8,10 @@ local crates = FurC.Constants.CrownCrates
 local events = FurC.Constants.Events
 
 local formatAchievement = FurC.Utils.FormatAchievement
+
+local getItemName = FurC.Utils.GetItemName
+local getItemLink = FurC.Utils.GetItemLink
+
 local strCrate = FurC.Utils.FmtCrownCrate
 local strDungeon = FurC.Utils.FmtDungeon
 local strEvent = FurC.Utils.FormatEvent
@@ -28,16 +32,25 @@ local srcPick = GetString(SI_FURC_SRC_PICK)
 local srcSafe = GetString(SI_FURC_SRC_SAFEBOX)
 local srcSteal = GetString(SI_FURC_SRC_STEAL)
 local srcLvlup = GetString(SI_FURC_SRC_LVLUP)
+local srcDaily = GetString(SI_FURC_SRC_QUEST_DAILY)
+local srcTot = GetString(SI_FURC_SRC_TOT)
 
 local rarityExtremely = GetString(SI_FURC_RARITY_EXTREMELYRARE)
 local rarityRare = GetString(SI_FURC_RARITY_RARE)
 
 -- Quests and Guilds
-local tribute = GetString(SI_FURC_SRC_TOT)
-local tribute_ranked = GetString(SI_FURC_SRC_TOT_RANKED)
+local tribute = strGeneric(srcTot)
+local tribute_ranked = strGeneric(srcTot, GetString(SI_FURC_REWARD_RANKED_MAIL))
 local db_poison = zo_strformat("<<1>> <<2>>", GetString(SI_FURC_DB), GetString(SI_FURC_DB_POISON))
 local db_sneaky = zo_strformat("<<1>> <<2>>", GetString(SI_FURC_DB), GetString(SI_FURC_DB_STEALTH))
 local db_equip = zo_strformat("<<1>> <<2>>", GetString(SI_FURC_DB), GetString(SI_FURC_DB_EQUIP))
+
+--- TODO maybe: add reward coffers to containers in Constants
+
+-- reward boxes: 126030, 126031
+local daily_ashlander = strGeneric(srcDaily, getItemLink(126030), nil, loc.VVARDENFELL, loc.VVARDENFELL_ALDRUHN)
+-- reward box: 145568 Tribal Treasure Crate
+local daily_murk = strGeneric(srcDaily, getItemLink(145568), nil, loc.MURKMIRE)
 
 -- Events
 local ev_blackwood = strEvent(events.BLACKWOOD)
@@ -56,6 +69,12 @@ local stealable_swamp = strGeneric(srcSteal, nil, nil, loc.MURKMIRE)
 local stealable_elsewhere = strGeneric(srcSteal, nil, " / ", loc.NELSWEYR, loc.SELSWEYR)
 local pickpocket_necrom = strGeneric(srcPick, nil, " / ", loc.TELVANNI, loc.APOCRYPHA)
 local painting_summerset = strGeneric(srcSafe, rarityExtremely, nil, loc.SUMMERSET)
+local painting_vvardenfell = strGeneric(
+  srcDrop,
+  string.format("%s, %s", strSrc("other", srcChest, srcSafe), rarityExtremely),
+  nil,
+  loc.VVARDENFELL
+)
 
 -- Looting/Harvesting
 local automaton_loot_cc = strGeneric(srcDrop, npc.ENEMY_AUTOMATON, nil, loc.CWC)
@@ -72,6 +91,13 @@ local chests_summerset = strGeneric(srcChest, nil, nil, loc.SUMMERSET)
 local fishing = strGeneric(srcFish)
 local fishing_summerset = strGeneric(srcFish, nil, nil, loc.SUMMERSET)
 local fishing_swamp = strGeneric(srcFish, nil, nil, loc.MURKMIRE)
+
+local painting_vvardenfell_chests = strGeneric(srcChest, rarityExtremely, nil, loc.VVARDENFELL)
+local summerset_clamsngeysers =
+  strGeneric(srcDrop, strSrc("other", GetString(SI_FURC_SRC_CLAM_GIANT), GetString(SI_FURC_SRC_GEYSER)))
+local elfpic = strGeneric(srcChest, rarityRare, nil, loc.SUMMERSET)
+local vvardenfell_tombsruins =
+  strGeneric(srcDrop, strSrc("other", GetString(SI_FURC_TOMBS), GetString(SI_FURC_RUINS)), nil, loc.VVARDENFELL)
 
 local nymic = strDungeon(srcChest, loc.NYMIC)
 local pdung_vv_fw = strGeneric(srcDrop, nil, ", ", loc.VVARDENFELL, loc.PDUNG_VVARDENFELL_FW)
@@ -640,7 +666,7 @@ FurC.MiscItemSources[ver.DEADL] = {
     [139075] = chests_summerset, -- Painting of Sinkhole, Refined
 
     [94100] = strMultiple(strCrown(50), strGeneric(srcLvlup)), -- Imperial BookCase, Swirled
-    [145595] = strGeneric(srcHarvest, "Scuttleblooms", nil, loc.MURKMIRE), -- Scuttlebloom
+    [145595] = strGeneric(srcHarvest, strSrc("src", getItemName(145595)), nil, loc.MURKMIRE), -- Scuttlebloom
     [147644] = frostvault, -- Palisade, Crude,
     [147642] = frostvault, -- Boar Totem, Balance,
     [147643] = frostvault, -- Boar Totem, Solitary,
@@ -1438,14 +1464,13 @@ FurC.MiscItemSources[ver.WEREWOLF] = {
     [141848] = strGeneric(srcDung, nil, nil, loc.DUNG_MHK, loc.DUNG_MOS), -- Animal Bones, Jumbled
     [141849] = strGeneric(srcDung, nil, nil, loc.DUNG_MHK, loc.DUNG_MOS), -- Animal Bones, Fresh
 
-    [141921] = GetString(SI_FURC_SLAVES_DAILY), -- Murkmire Bowl, Geometric Pattern
-
-    [141923] = GetString(SI_FURC_SLAVES_DAILY), -- Murkmire Amphora, Seed Pattern
-    [141922] = GetString(SI_FURC_SLAVES_DAILY), -- Murkmire Dish, Geometric Pattern
-    [141924] = GetString(SI_FURC_SLAVES_DAILY), -- Murkmire Vase, Scale Pattern
-    [141925] = GetString(SI_FURC_SLAVES_DAILY), -- Murkmire Hearth Shrine, Sithis Relief
-    [141926] = GetString(SI_FURC_SLAVES_DAILY), -- Murkmire Hearth Shrine, Sithis Figure
-    [141920] = GetString(SI_FURC_SLAVES_DAILY), -- Murkmire Brazier, Ceremonial
+    [141921] = daily_murk, -- Murkmire Bowl, Geometric Pattern
+    [141923] = daily_murk, -- Murkmire Amphora, Seed Pattern
+    [141922] = daily_murk, -- Murkmire Dish, Geometric Pattern
+    [141924] = daily_murk, -- Murkmire Vase, Scale Pattern
+    [141925] = daily_murk, -- Murkmire Hearth Shrine, Sithis Relief
+    [141926] = daily_murk, -- Murkmire Hearth Shrine, Sithis Figure
+    [141920] = daily_murk, -- Murkmire Brazier, Ceremonial
 
     [147639] = strGeneric(srcDung, nil, nil, loc.DUNG_DOM), -- Magna-Geode
     [147640] = strGeneric(srcDung, nil, nil, loc.DUNG_DOM), -- Magna-Geode, Large
@@ -1837,23 +1862,23 @@ FurC.MiscItemSources[ver.ALTMER] = {
   },
 
   [src.DROP] = {
-    [139059] = GetString(SI_FURC_DROP), -- Ivory, Polished - drops from Echatere, and probably alot else
-    [139066] = GetString(SI_FURC_LOOT_HARVEST), -- Plant, Redtop Grass
+    [139059] = strGeneric(srcDrop), -- Ivory, Polished - drops from Echatere, and probably alot else
+    [139066] = strGeneric(srcHarvest), -- Plant, Redtop Grass
 
-    [139060] = GetString(SI_FURC_GIANT_CLAM), -- Giant Clam, Ancient
-    [139062] = GetString(SI_FURC_GIANT_CLAM), -- Pearl, Large
-    [139063] = GetString(SI_FURC_GIANT_CLAM), -- Pearl, Enormous
-    [139061] = GetString(SI_FURC_GIANT_CLAM), -- Giant Clam, Sealed
+    [139060] = summerset_clamsngeysers, -- Giant Clam, Ancient
+    [139062] = summerset_clamsngeysers, -- Pearl, Large
+    [139063] = summerset_clamsngeysers, -- Pearl, Enormous
+    [139061] = summerset_clamsngeysers, -- Giant Clam, Sealed
 
     [139073] = strQuest(6129, nil, strSrc("loc", loc.SUMMERSET, loc.LILANDRIL)), -- Painting of Summerset Coast, Refined ; Quest: The Perils of Art
-    [139072] = GetString(SI_FURC_ELF_PIC), -- Painting of Monastery of Serene Harmony, Refined
-    [139074] = GetString(SI_FURC_ELF_PIC), -- Painting of Aldmeri Ruins, Refined
-    [139069] = GetString(SI_FURC_ELF_PIC), -- Painting of Griffin Nest, Refined
-    [139070] = GetString(SI_FURC_ELF_PIC), -- Painting of College of the Sapiarchs, Refined
-    [139071] = GetString(SI_FURC_ELF_PIC), -- Painting of High Elf Tower, Refined
+    [139072] = elfpic, -- Painting of Monastery of Serene Harmony, Refined
+    [139074] = elfpic, -- Painting of Aldmeri Ruins, Refined
+    [139069] = elfpic, -- Painting of Griffin Nest, Refined
+    [139070] = elfpic, -- Painting of College of the Sapiarchs, Refined
+    [139071] = elfpic, -- Painting of High Elf Tower, Refined
 
-    [87709] = GetString(SI_FURC_SRC_LVLUP), -- Imperial Brazier, Spiked
-    [94098] = GetString(SI_FURC_SRC_LVLUP), -- Imperial Bed, Single
+    [87709] = strGeneric(srcLvlup), -- Imperial Brazier, Spiked
+    [94098] = strMultiple(strCrown(95), strGeneric(srcLvlup)), -- Imperial Bed, Single
 
     [118143] = painting_summerset, -- Painting of Tree, Refined
     [118141] = painting_summerset, -- Painting of Cottage, Refined
@@ -1960,15 +1985,15 @@ FurC.MiscItemSources[ver.REACH] = {
   },
   [src.DROP] = {
     -- Coldharbour items
-    [130284] = GetString(SI_FURC_LOOT_HARVEST), -- Glowstalk, Seedlings
-    [131422] = GetString(SI_FURC_LOOT_HARVEST), -- Flower Patch, Glowstalks
-    [130283] = GetString(SI_FURC_LOOT_HARVEST), -- Glowstalk, Sprout
-    [130285] = GetString(SI_FURC_LOOT_HARVEST), -- Glowstalk, Young
-    [131420] = GetString(SI_FURC_LOOT_HARVEST), -- Shrub, Glowing Thistle
-    [130281] = GetString(SI_FURC_LOOT_HARVEST), -- Glowstalk, Towering
-    [130282] = GetString(SI_FURC_LOOT_HARVEST), -- Glowstalk, Strong
+    [130284] = strGeneric(srcHarvest), -- Glowstalk, Seedlings
+    [131422] = strGeneric(srcHarvest), -- Flower Patch, Glowstalks
+    [130283] = strGeneric(srcHarvest), -- Glowstalk, Sprout
+    [130285] = strGeneric(srcHarvest), -- Glowstalk, Young
+    [131420] = strGeneric(srcHarvest), -- Shrub, Glowing Thistle
+    [130281] = strGeneric(srcHarvest), -- Glowstalk, Towering
+    [130282] = strGeneric(srcHarvest), -- Glowstalk, Strong
 
-    [130067] = GetString(SI_FURC_DAEDRA_SOURCE), -- Daedric Chain Segment
+    [130067] = strGeneric(srcDrop, strSrc("other", npc.CLASS_DAEDRA, GetString(SI_FURC_SRC_DOLMEN))), -- Daedric Chain Segment
   },
 }
 
@@ -1984,48 +2009,45 @@ FurC.MiscItemSources[ver.MORROWIND] = {
     [126659] = automaton_loot_vv, -- Dwemer Gear, Flat
 
     -- lootable in tombs
-    [126754] = GetString(SI_FURC_TOMBS), -- Velothi Shroud, Seeker
-    [126705] = GetString(SI_FURC_TOMBS), -- Velothi Shroud, Wisdom
-    [126704] = GetString(SI_FURC_TOMBS), -- Velothi Shroud, Majesty
-    [126706] = GetString(SI_FURC_TOMBS), -- Velothi Shroud, Knowledge
-    [126701] = GetString(SI_FURC_TOMBS), -- Velothi Shroud, Nerevar
-    [126764] = GetString(SI_FURC_TOMBS), -- Velothi Shroud, Prowess
-    [126702] = GetString(SI_FURC_TOMBS), -- Velothi Shroud, Reverance
-    [126700] = GetString(SI_FURC_TOMBS), -- Velothi Shroud, Honor
-    [126703] = GetString(SI_FURC_TOMBS), -- Velothi Shroud, Mysteries
-    [126752] = GetString(SI_FURC_TOMBS), -- Velothi Shroud, Discovery
-    [126755] = GetString(SI_FURC_TOMBS), -- Velothi Shroud, Change
-    [126756] = GetString(SI_FURC_TOMBS), -- Velothi Shroud, Mercy
+    [126754] = vvardenfell_tombsruins, -- Velothi Shroud, Seeker
+    [126705] = vvardenfell_tombsruins, -- Velothi Shroud, Wisdom
+    [126704] = vvardenfell_tombsruins, -- Velothi Shroud, Majesty
+    [126706] = vvardenfell_tombsruins, -- Velothi Shroud, Knowledge
+    [126701] = vvardenfell_tombsruins, -- Velothi Shroud, Nerevar
+    [126764] = vvardenfell_tombsruins, -- Velothi Shroud, Prowess
+    [126702] = vvardenfell_tombsruins, -- Velothi Shroud, Reverance
+    [126700] = vvardenfell_tombsruins, -- Velothi Shroud, Honor
+    [126703] = vvardenfell_tombsruins, -- Velothi Shroud, Mysteries
+    [126752] = vvardenfell_tombsruins, -- Velothi Shroud, Discovery
+    [126755] = vvardenfell_tombsruins, -- Velothi Shroud, Change
+    [126756] = vvardenfell_tombsruins, -- Velothi Shroud, Mercy
+    [126773] = vvardenfell_tombsruins, -- Velothi Caisson, Crypt
+    [126753] = vvardenfell_tombsruins, -- Velothi Cerecloth, Austere
+    [126758] = vvardenfell_tombsruins, -- Velothi Mat, Prayer
+    [126757] = vvardenfell_tombsruins,
 
-    [126773] = GetString(SI_FURC_TOMBS), -- Velothi Caisson, Crypt
-    [126753] = GetString(SI_FURC_TOMBS), -- Velothi Cerecloth, Austere
-    [126758] = GetString(SI_FURC_TOMBS), -- Velothi Mat, Prayer
-    [126757] = GetString(SI_FURC_TOMBS),
-
-    [126465] = GetString(SI_FURC_CHEST_VV), -- Telvanni Painting, Modest Volcanic
-    [126466] = GetString(SI_FURC_CHEST_VV), -- Telvanni Painting, Modest Forest
-    [126467] = GetString(SI_FURC_CHEST_VV), -- Telvanni Painting, Modest Valley
-
-    [126468] = GetString(SI_FURC_CHEST_VV), -- Telvanni Painting, Classic Volcanic
-    [126469] = GetString(SI_FURC_CHEST_VV), -- Telvanni Painting, Classic Forest
-    [126470] = GetString(SI_FURC_CHEST_VV), -- Telvanni Painting, Classic Valley
-
-    [126593] = GetString(SI_FURC_VV_PAINTING), -- Velothi Tryptich, Volcano
-    [126594] = GetString(SI_FURC_VV_PAINTING), -- Velothi Painting, Classic Volcano
-    [126595] = GetString(SI_FURC_VV_PAINTING), -- Velothi Painting, Modest Volcano
-    [126596] = GetString(SI_FURC_VV_PAINTING), -- Velothi Tapestry, Volcano
-    [126605] = GetString(SI_FURC_VV_PAINTING), -- Velothi Tryptich, Waterfall
-    [126606] = GetString(SI_FURC_VV_PAINTING), -- Velothi Tapestry, Waterfall
-    [126608] = GetString(SI_FURC_VV_PAINTING), -- Velothi Painting, Classic Waterfall
-    [126609] = GetString(SI_FURC_VV_PAINTING), -- Velothi Painting, Modest Waterfall
-    [126599] = GetString(SI_FURC_VV_PAINTING), -- Velothi Tryptich, Geyser
-    [126600] = GetString(SI_FURC_VV_PAINTING), -- Velothi Tapestry, Geyser
-    [126602] = GetString(SI_FURC_VV_PAINTING), -- Velothi Painting, Classic Geyser
-    [126603] = GetString(SI_FURC_VV_PAINTING), -- Velothi Painting, Modest Geyser
+    [126465] = painting_vvardenfell_chests, -- Telvanni Painting, Modest Volcanic
+    [126466] = painting_vvardenfell_chests, -- Telvanni Painting, Modest Forest
+    [126467] = painting_vvardenfell_chests, -- Telvanni Painting, Modest Valley
+    [126468] = painting_vvardenfell_chests, -- Telvanni Painting, Classic Volcanic
+    [126469] = painting_vvardenfell_chests, -- Telvanni Painting, Classic Forest
+    [126470] = painting_vvardenfell_chests, -- Telvanni Painting, Classic Valley
+    [126593] = painting_vvardenfell, -- Velothi Tryptich, Volcano
+    [126594] = painting_vvardenfell, -- Velothi Painting, Classic Volcano
+    [126595] = painting_vvardenfell, -- Velothi Painting, Modest Volcano
+    [126596] = painting_vvardenfell, -- Velothi Tapestry, Volcano
+    [126605] = painting_vvardenfell, -- Velothi Tryptich, Waterfall
+    [126606] = painting_vvardenfell, -- Velothi Tapestry, Waterfall
+    [126608] = painting_vvardenfell, -- Velothi Painting, Classic Waterfall
+    [126609] = painting_vvardenfell, -- Velothi Painting, Modest Waterfall
+    [126599] = painting_vvardenfell, -- Velothi Tryptich, Geyser
+    [126600] = painting_vvardenfell, -- Velothi Tapestry, Geyser
+    [126602] = painting_vvardenfell, -- Velothi Painting, Classic Geyser
+    [126603] = painting_vvardenfell, -- Velothi Painting, Modest Geyser
 
     -- Ashlander dailies
-    [126119] = GetString(SI_FURC_DAILY_ASH), -- Crimson Shard of Moonshadow
-    [126393] = GetString(SI_FURC_DAILY_ASH), -- Ashlander Knife, Cheese
+    [126119] = daily_ashlander, -- Crimson Shard of Moonshadow
+    [126393] = daily_ashlander, -- Ashlander Knife, Cheese
 
     -- drops from plants
     [125631] = plants_vvardenfell, -- Plants, Ash Frond
@@ -2296,7 +2318,6 @@ FurC.MiscItemSources[ver.HOMESTEAD] = {
     [117952] = strCrown(35), -- Rough Torch, Wall
     [115698] = strCrown(1100), -- Khajiit Statue, Guardian
     [115395] = strCrown(40), -- Nord Drinking Horn, Display
-    [94098] = strCrown(95), -- Imperial Bed, Single
 
     [134473] = strCrate(crates.FIREATRO), -- Tapestry,  Malacath
   },
