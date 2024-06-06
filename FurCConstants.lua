@@ -105,6 +105,7 @@ FurC.Constants.Locations = {
   DUNG_IA = getZoneStr(1436), -- Infinite Archive
   DUNG_MHK = getZoneStr(1052), -- Moon Hunter Keep
   DUNG_MOS = getZoneStr(1055), -- March of the Sacrifices
+  DUNG_NYMIC = getZoneStr(1420), -- Bastion Nymic
   DUNG_SCP = getZoneStr(1010), -- Scalecaller Peak
   DUNG_SCRIV = getZoneStr(1390), -- Scrivener's Hall
   EASTMARCH = getZoneStr(101), -- Eastmarch

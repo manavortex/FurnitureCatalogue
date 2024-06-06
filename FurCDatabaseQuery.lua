@@ -9,8 +9,11 @@ local colourise = FurC.Utils.Colourise
 local getItemLink = FurC.Utils.GetItemLink
 local strEvent = FurC.Utils.FormatEvent
 local strFurnisher = FurC.Utils.FormatFurnisher
+local strGeneric = FurC.Utils.FmtGeneric
 local stripText = FurC.Utils.stripTxt
 local strSrc = FurC.Utils.FmtSources
+
+local srcEvent = GetString(SI_FURC_EVENT)
 
 local strVoucherVendor = strSrc("src", npc.ROLIS, npc.FAUSTINA)
 
@@ -176,11 +179,11 @@ local function getEventDropSource(recipeKey, recipeArray)
           assert(validEventItemTypes[itemType], "getEventDropSource: invalid item type")
 
           if itemType == "boolean" then -- probably a drop
-            return string.format("%s (%s)", strEvent(eventName), srcName)
+            return strGeneric(srcEvent, srcName, "src", eventName)
           end
 
           if itemType == "string" then -- must be additional source
-            local src1 = string.format("%s (%s)", strEvent(eventName), srcName)
+            local src1 = strGeneric(srcEvent, srcName, "src", eventName)
             local src2 = strSrc("src", item)
             return strMultiple(src1, src2)
           end
