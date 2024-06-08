@@ -2,7 +2,7 @@
 ## Author: manavortex
 ## AddonVersion: 4081001
 ## Version: 4.81.1
-## APIVersion: 101041
+## APIVersion: 101042
 ## SavedVariables: FurnitureCatalogue_Settings
 ## DependsOn: LibCustomMenu LibAddonMenu-2.0 LibAsync
 ## OptionalDependsOn: LibDebugLogger LibDebugViewer

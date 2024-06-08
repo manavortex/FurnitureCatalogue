@@ -26,14 +26,6 @@ this.PVP = {}
 this.MiscItemSources = {}
 this.RumourRecipes = {}
 
-this.ItemLinkColours = {
-  Vendor = "D68957",
-  Gold = "E5dA40",
-  Voucher = "25C31E",
-  AP = "5EA4FF",
-  TelVar = "82BCFF",
-}
-
 local defaults = {
   hideMats = true,
   dontScanTradingHouse = false,
@@ -109,18 +101,18 @@ this.GetSourceIndicesKeys = getSourceIndicesKeys
 
 local choicesSource = {}
 local function getChoicesSource()
-  choicesSource[src.NONE] = GetString(SI_FURC_NONE)
-  choicesSource[src.FAVE] = GetString(SI_FURC_FAVE)
-  choicesSource[src.CRAFTING] = GetString(SI_FURC_CRAFTING)
-  choicesSource[src.CRAFTING_KNOWN] = GetString(SI_FURC_CRAFTING_KNOWN)
-  choicesSource[src.CRAFTING_UNKNOWN] = GetString(SI_FURC_CRAFTING_UNKNOWN)
-  choicesSource[src.VENDOR] = GetString(SI_FURC_VENDOR)
-  choicesSource[src.PVP] = GetString(SI_FURC_PVP)
-  choicesSource[src.WRIT_VENDOR] = GetString(SI_FURC_STRING_WRIT_VENDOR)
-  choicesSource[src.CROWN] = GetString(SI_FURC_CROWN)
-  choicesSource[src.RUMOUR] = GetString(SI_FURC_RUMOUR)
-  choicesSource[src.LUXURY] = GetString(SI_FURC_LUXURY)
-  choicesSource[src.OTHER] = GetString(SI_FURC_OTHER)
+  choicesSource[src.NONE] = GetString(SI_FURC_FILTER_SRC_NONE)
+  choicesSource[src.FAVE] = GetString(SI_FURC_FILTER_SRC_FAVE)
+  choicesSource[src.CRAFTING] = GetString(SI_FURC_FILTER_SRC_CRAFTING)
+  choicesSource[src.CRAFTING_KNOWN] = GetString(SI_FURC_FILTER_SRC_CRAFTING_KNOWN)
+  choicesSource[src.CRAFTING_UNKNOWN] = GetString(SI_FURC_FILTER_SRC_CRAFTING_UNKNOWN)
+  choicesSource[src.VENDOR] = GetString(SI_FURC_FILTER_SRC_SOLD_GOLD)
+  choicesSource[src.PVP] = GetString(SI_FURC_FILTER_SRC_SOLD_AP)
+  choicesSource[src.WRIT_VENDOR] = GetString(SI_FURC_FILTER_SRC_SOLD_WRIT)
+  choicesSource[src.CROWN] = GetString(SI_FURC_FILTER_SRC_CROWN)
+  choicesSource[src.RUMOUR] = GetString(SI_FURC_FILTER_SRC_RUMOUR)
+  choicesSource[src.LUXURY] = GetString(SI_FURC_FILTER_SRC_LUX)
+  choicesSource[src.OTHER] = GetString(SI_FURC_FILTER_SRC_OTHER)
   --choicesSource[src.ROLIS]            = "ROLIS"
   --choicesSource[src.DROP]             = "DROP"
   --choicesSource[src.JUSTICE]          = "JUSTICE"
@@ -134,18 +126,18 @@ this.GetChoicesSource = getChoicesSource
 
 local tooltipsSource = {}
 local function getTooltipsSource()
-  tooltipsSource[src.NONE] = GetString(SI_FURC_NONE_TT)
-  tooltipsSource[src.FAVE] = GetString(SI_FURC_FAVE_TT)
-  tooltipsSource[src.CRAFTING] = GetString(SI_FURC_CRAFTING_TT)
-  tooltipsSource[src.CRAFTING_KNOWN] = GetString(SI_FURC_CRAFTING_KNOWN_TT)
-  tooltipsSource[src.CRAFTING_UNKNOWN] = GetString(SI_FURC_CRAFTING_UNKNOWN_TT)
-  tooltipsSource[src.VENDOR] = GetString(SI_FURC_VENDOR_TT)
-  tooltipsSource[src.PVP] = GetString(SI_FURC_PVP_TT)
-  tooltipsSource[src.CROWN] = GetString(SI_FURC_CROWN_TT)
-  tooltipsSource[src.WRIT_VENDOR] = GetString(SI_FURC_STRING_WRIT_VENDOR_TT)
-  tooltipsSource[src.RUMOUR] = GetString(SI_FURC_RUMOUR_TT)
-  tooltipsSource[src.LUXURY] = GetString(SI_FURC_LUXURY_TT)
-  tooltipsSource[src.OTHER] = GetString(SI_FURC_OTHER_TT)
+  tooltipsSource[src.NONE] = GetString(SI_FURC_FILTER_SRC_NONE_TT)
+  tooltipsSource[src.FAVE] = GetString(SI_FURC_FILTER_SRC_FAVE_TT)
+  tooltipsSource[src.CRAFTING] = GetString(SI_FURC_FILTER_SRC_CRAFTING_TT)
+  tooltipsSource[src.CRAFTING_KNOWN] = GetString(SI_FURC_FILTER_SRC_CRAFTING_KNOWN_TT)
+  tooltipsSource[src.CRAFTING_UNKNOWN] = GetString(SI_FURC_FILTER_SRC_CRAFTING_UNKNOWN_TT)
+  tooltipsSource[src.VENDOR] = GetString(SI_FURC_FILTER_SRC_SOLD_GOLD_TT)
+  tooltipsSource[src.PVP] = GetString(SI_FURC_FILTER_SRC_SOLD_AP_TT)
+  tooltipsSource[src.CROWN] = GetString(SI_FURC_FILTER_SRC_CROWN_TT)
+  tooltipsSource[src.WRIT_VENDOR] = GetString(SI_FURC_FILTER_SRC_SOLD_WRIT_TT)
+  tooltipsSource[src.RUMOUR] = GetString(SI_FURC_FILTER_SRC_RUMOUR_TT)
+  tooltipsSource[src.LUXURY] = GetString(SI_FURC_FILTER_SRC_LUX_TT)
+  tooltipsSource[src.OTHER] = GetString(SI_FURC_FILTER_SRC_OTHER_TT)
   --tooltipsSource[src.ROLIS]            = "ROLIS"
   --tooltipsSource[src.DROP]             = "DROP"
   --tooltipsSource[src.JUSTICE]          = "JUSTICE"

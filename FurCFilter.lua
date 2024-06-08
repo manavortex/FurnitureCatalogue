@@ -26,6 +26,7 @@ local GetItemLinkName = GetItemLinkName
 local LocaleAwareToLower = LocaleAwareToLower
 local gsub = string.gsub
 local match = string.match
+local getItemLink = FurC.Utils.GetItemLink
 
 function FurC.SetFilter(useDefaults, skipRefresh)
   ClearTooltip(InformationTooltip)
@@ -180,7 +181,7 @@ local function filterBooks(itemId, recipeArray)
 end
 
 function FurC.MatchFilter(currentItemId, currentRecipeArray)
-  itemLink = FurC.GetItemLink(currentItemId)
+  itemLink = getItemLink(currentItemId)
   recipeArray = currentRecipeArray or FurC.Find(itemLink)
   itemType, sItemType = GetItemLinkItemType(itemLink)
   if 0 == itemType and 0 == sItemType then

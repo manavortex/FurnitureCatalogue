@@ -1,13 +1,40 @@
 FurC.PVP = FurC.PVP or {}
-FURC_CYRO = "Cyrodiil"
-FURC_IC = "Imperial City"
-FURC_ITEMSOURCE_VENDOR = "Furnishing vendor"
 
+local loc = FurC.Constants.Locations
+local npc = FurC.Constants.NPC
 local ver = FurC.Constants.Versioning
 
+-- TODO: add missing, npc.HGF has nothing unique
+
+-- 16 Stonethorn
+FurC.PVP[ver.STONET] = {
+  [npc.AF] = {
+    [loc.CYRO] = {
+      [119678] = { -- Covenant Keep Pennant
+        itemPrice = 8000,
+        achievement = 113,
+      },
+    },
+  },
+}
+
+-- 11 Elsweyr
+FurC.PVP[ver.KITTY] = {
+  [npc.AF] = {
+    [loc.CYRO] = {
+      [153751] = { -- Volendrung Replica
+        itemPrice = 2000000,
+        -- TODO #DBOVERHAUL : allow for list of achievements if this happens often
+        achievement = 2510, -- Volendrung Wielder (2510) and Volundrung Vanquisher (2511)
+      },
+    },
+  },
+}
+
+-- 2 Homestead
 FurC.PVP[ver.HOMESTEAD] = {
-  [FURC_ITEMSOURCE_VENDOR] = {
-    [FURC_CYRO] = {
+  [npc.AF] = {
+    [loc.CYRO] = {
       [120079] = { -- Transitus shrine
         itemPrice = 100000,
         achievement = 114,
@@ -121,12 +148,14 @@ FurC.PVP[ver.HOMESTEAD] = {
         achievement = 104, -- Tribune
       },
     },
-    ["Imperial City"] = {
+    [loc.IMPCITY] = {
       [119983] = { -- Imperial Banner
         itemPrice = 15000,
+        achievement = 1169, -- all POI in sewers, TODO: check if correct
       },
       [119982] = { -- Molag Bal Brazier
         itemPrice = 25000,
+        achievement = 1175, -- Molag Bal Achievement TODO: check if correct
       },
     },
   },

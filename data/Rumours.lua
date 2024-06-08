@@ -2,38 +2,12 @@ FurC.Rumours = FurC.Rumours or {}
 
 local ver = FurC.Constants.Versioning
 
-local rumourSource = GetString(SI_FURC_RUMOUR_SOURCE_ITEM)
+local rumourSource = GetString(SI_FURC_SRC_RUMOUR_ITEM)
 local dataminedUnclear = GetString(SI_FURC_DATAMINED_UNCLEAR)
 
 -- 30 Gold Road
 FurC.Rumours[ver.WEALD] = {
-  [204800] = rumourSource, -- Preparing to Entertain Painting, Wood",
-  [204801] = rumourSource, -- Great Chapel of Julianos Painting, Wood",
-  [204802] = rumourSource, -- Wonders of Water Painting, Wood",
-  [204803] = rumourSource, -- An Alfiq in Skingrad Painting, Metal",
-  [204804] = rumourSource, -- Arch to Ayleid Mysteries Painting, Wood",
-  [204805] = rumourSource, -- Colovian Windmill Painting, Wood",
-  [204806] = rumourSource, -- Autumn on the Gold Road Painting, Wood",
-  [204807] = rumourSource, -- A Clear Day in Colovia Painting, Metal",
-  [204808] = rumourSource, -- West Weald Adventures Painting, Metal",
-  [204810] = rumourSource, -- Tree, Towering Slim Autumnal Cypress",
-  [204811] = rumourSource, -- Tree, Towering Slim Cypress",
-  [198673] = rumourSource, -- Scholarium Door, Study",
-  [204836] = rumourSource, -- Colovian Wine Basket, Plain",
-  [207961] = rumourSource, -- Scholarium Ward",
-  [206538] = rumourSource, -- Scholarium Door, Netch",
-  [205388] = rumourSource, -- Colovian Windmill, Decorative",
-  [204424] = rumourSource, -- Antique Map of West Weald",
-  [204423] = rumourSource, -- Music Box, Lament for the Path Not Taken",
   [204422] = rumourSource, -- Music Box, Ascension to the Ruby Throne",
-  [204618] = rumourSource, -- Ayleid Arch, Wide",
-  [204619] = rumourSource, -- Ayleid Window, Large",
-  [204620] = rumourSource, -- Ayleid Sculpture, Simple Tree",
-  [204621] = rumourSource, -- Ayleid Sculpture, Complex Tree",
-  [204622] = rumourSource, -- Ayleid Lens Array, Reassembled",
-  [204623] = rumourSource, -- Colovian Tapestry, Worn",
-  [204624] = rumourSource, -- Colovian Tapestry, Pastoral Farm",
-  [204625] = rumourSource, -- Colovian Tapestry, Fancy Gate",
   [204626] = rumourSource, -- Coldharbour Gravestone, Etched",
   [204627] = rumourSource, -- Coldharbour Column, Skulls",
   [204628] = rumourSource, -- Apocrypha Statue, Lurker's Maw",
@@ -50,71 +24,6 @@ FurC.Rumours[ver.WEALD] = {
   [204410] = rumourSource, -- Five Companions Tome",
   [204411] = rumourSource, -- Coldharbour Sentinel",
   [204412] = rumourSource, -- Revelry Sparkles",
-  [204413] = rumourSource, -- Morihaus the Archer Tapestry",
-  [204414] = rumourSource, -- Morihaus the Archer Tapestry, Large",
-  [204415] = rumourSource, -- Saint's Wrath Tapestry",
-  [204736] = rumourSource, -- Colovian Shovel, Rough",
-  [204737] = rumourSource, -- Colovian Rake, Rough",
-  [204738] = rumourSource, -- Cheesemaking Sieve, Metal",
-  [204739] = rumourSource, -- Woodworking Planer, Simple",
-  [204740] = rumourSource, -- Beekeeping Smoker, Handheld",
-  [204741] = rumourSource, -- Glassblowing Shears, Metal",
-  [204742] = rumourSource, -- Corking Hammer, Metal",
-  [204743] = rumourSource, -- Cheesemaking Whisk, Wooden",
-  [204744] = rumourSource, -- Winemaking Cork, Metal",
-  [204745] = rumourSource, -- Corkscrew, Metal",
-  [204746] = rumourSource, -- Honey Dipper, Wooden",
-  [204747] = rumourSource, -- Colovian Cheese Wheel, Wax",
-  [204748] = rumourSource, -- Smoked Cheese Wheel, Wax",
-  [204749] = rumourSource, -- Dawnwood Spoon, Bone",
-  [204750] = rumourSource, -- Dawnwood Fork, Bone",
-  [204751] = rumourSource, -- Dawnwood Knife, Bone",
-  [204752] = rumourSource, -- Dawnwood Serving Fork, Bone",
-  [204753] = rumourSource, -- Dawnwood Carving Knife, Bone",
-  [204754] = rumourSource, -- Sun-Gilded Vineyard Painting, Metal",
-  [204755] = rumourSource, -- Colovian Bounty Painting, Wood",
-  [204756] = rumourSource, -- Tree, Giant Autumn Maple",
-  [204757] = rumourSource, -- Tree, Giant Dawnwood Growth",
-  [204758] = rumourSource, -- Tree, Giant Oak",
-  [204759] = rumourSource, -- Tree, Healthy Willow",
-  [204760] = rumourSource, -- Sapling, Autumn Oak",
-  [204761] = rumourSource, -- Tree, Autumn Aspen",
-  [204762] = rumourSource, -- Sapling, Autumn Maple",
-  [204763] = rumourSource, -- Tree, Autumn Conical Cypress",
-  [204764] = rumourSource, -- Tree, Tall Autumn Conical Cypress",
-  [204765] = rumourSource, -- Shrub, Juniper Cluster",
-  [204766] = rumourSource, -- Tree, Squat Cypress",
-  [204767] = rumourSource, -- Bush, Squat Maple",
-  [204768] = rumourSource, -- Sapling, Young Autumn Maple",
-  [204769] = rumourSource, -- Bush, Autumn Oak",
-  [204770] = rumourSource, -- Bush, Autumn Oak Cluster",
-  [204771] = rumourSource, -- Stump, Old Maple",
-  [204772] = rumourSource, -- Sawdust Pile, Logging",
-  [204773] = rumourSource, -- Leaf Pile, Autumn",
-  [204774] = rumourSource, -- Boulder, Colovian Highland",
-  [204419] = rumourSource, -- Ayleid Sculpture, Grand Tree",
-  [204418] = rumourSource, -- Pottery, Sanguine Repaired",
-  [204417] = rumourSource, -- Fresco, Colovian Lady",
-  [204416] = rumourSource, -- Saint's Wrath Tapestry, Large",
-  [204779] = rumourSource, -- Portal to the Loom of the Untraveled Road, Replica",
-  [204780] = rumourSource, -- Fable of the Dragon",
-  [204781] = rumourSource, -- Skingrad Banner, Small",
-  [204782] = rumourSource, -- Fable of the Gryphon",
-  [204783] = rumourSource, -- Fable of the Indrik",
-  [204785] = rumourSource, -- Recollection Camp Sign, Sprouted",
-  [204786] = rumourSource, -- Lucent Throne, Replica",
-  [204787] = rumourSource, -- Colovian Lamppost, Overgrown",
-  [204788] = rumourSource, -- Colovian Cheese Press, Large",
-  [204789] = rumourSource, -- Ayleid Stele, Tall",
-  [204790] = rumourSource, -- Fable of the Netch",
-  [204791] = rumourSource, -- Sapling, Dawnwood Growth",
-  [204793] = rumourSource, -- Scholarium Column, Large",
-  [204794] = rumourSource, -- Null Arca, Replica",
-  [204795] = rumourSource, -- Scholarium Door, Dragon",
-  [204796] = rumourSource, -- Scholarium Door, Gryphon",
-  [204797] = rumourSource, -- Scholarium Door, Indrik",
-  [204798] = rumourSource, -- Mirror of Truth, Replica",
-  [204799] = rumourSource, -- The Optimism of Dogs Painting, Metal",
 }
 
 -- 29 Scions of Ithelia
@@ -136,14 +45,6 @@ FurC.Rumours[ver.SCIONS] = {
   [203896] = rumourSource, -- Bush, Cave Lichen Patch
   [203895] = rumourSource, -- Bush, Cave Lichen Cluster
   [203894] = rumourSource, -- Bush, Cave Lichen
-  [203888] = rumourSource, -- Replica Jubilee Cake Slice 2024
-  [203887] = rumourSource, -- Replica Jubilee Cake Slice 2023
-  [203886] = rumourSource, -- Replica Jubilee Cake Slice 2022
-  [203885] = rumourSource, -- Replica Jubilee Cake Slice 2021
-  [203884] = rumourSource, -- Replica Jubilee Cake Slice 2020
-  [203883] = rumourSource, -- Replica Jubilee Cake Slice 2019
-  [203882] = rumourSource, -- Replica Jubilee Cake Slice 2016-2018
-  [203829] = rumourSource, -- Replica Jubilee Cake 2024
   [203599] = rumourSource, -- Redguard Fountain, Lion
   [203598] = rumourSource, -- Flowers, Desert Blush
   [203597] = rumourSource, -- Shrubs, Speckled Forest Cluster
@@ -161,9 +62,6 @@ FurC.Rumours[ver.SCIONS] = {
   [203585] = rumourSource, -- Alinor Maple, Large Red
   [203584] = rumourSource, -- Altmer Stable, Summerset
   [203583] = rumourSource, -- Ayleid Panel, Arched
-  [203582] = rumourSource, -- Ayleid Doorway, Tall Arched
-  [203313] = rumourSource, -- Many Paths Monument
-  [203312] = rumourSource, -- Mirror Barrier, Shattered
   [203276] = rumourSource, -- Rough Dresser
   [203275] = rumourSource, -- Fish, Silver Trout
   [203274] = rumourSource, -- Box of Tomatoes
@@ -173,10 +71,6 @@ FurC.Rumours[ver.SCIONS] = {
   [203270] = rumourSource, -- Target King Boar, Robust
   [203269] = rumourSource, -- Chamber Pot Throne
   [203268] = rumourSource, -- Jester's Festival Stage
-  [203267] = rumourSource, -- Order of the Lamp Pedestal
-  [203266] = rumourSource, -- Twinkling Lights, Blue
-  [203265] = rumourSource, -- Prismatic Cherry Tree
-  [203264] = rumourSource, -- Cursed Curio Aether
   [203165] = rumourSource, -- Dazzler Dispenser
   [117914] = rumourSource, -- Redguard Canopy, Florid
   [117912] = rumourSource, -- Redguard Awning, Florid
@@ -188,22 +82,7 @@ FurC.Rumours[ver.SCIONS] = {
 
 -- 28 Secrets of the Telvanni Peninsula
 FurC.Rumours[ver.ENDLESS] = {
-  [203202] = rumourSource, -- Hermaeus Mora Banner, Large
-  [203178] = rumourSource, -- Apocrypha Coral, Large Teal Tube
-  [203177] = rumourSource, -- Apocrypha Coral, Pink Tube
-  [203176] = rumourSource, -- Apocrypha Geyser, Ink
-  [203166] = rumourSource, -- Sai Sahan Statue
-  [203151] = rumourSource, -- Falmer Gate, Stick"
-  [203150] = rumourSource, -- Falmer Fence, Stick
-  [203149] = rumourSource, -- Redguard Seal, Spider
   [203138] = rumourSource, -- Apocrypha Plant, Feather Fern
-  [203135] = rumourSource, -- Redguard Dome, Mosaic
-  [203133] = rumourSource, -- Apocrypha Coral, Spiky
-  [203132] = rumourSource, -- Mushroom, Apocrypha Fossilized
-  [199136] = rumourSource, -- Apocrypha Stalks, Scryeball Patch
-  [199135] = rumourSource, -- Apocrypha Pool, Inky
-  [199134] = rumourSource, -- Apocrypha Waterfall, Inky
-  [199133] = rumourSource, -- Target Daedra, Seeker
   [199125] = rumourSource, -- Inky Waterup Table
   [199124] = rumourSource, -- Green ink ceiling light
   [199123] = rumourSource, -- Cabinet of Curiosities
@@ -238,7 +117,7 @@ FurC.Rumours[ver.ENDLESS] = {
   [198648] = rumourSource, -- Druidic Rack, Hide Stretcher
   [198647] = rumourSource, -- Druidic Drying Rack, Tall
   [198646] = rumourSource, -- Druidic Drying Rack, Wide
-  [198574] = rumourSource, -- Khajiiti Water Vessel, Large
+  
 }
 
 -- 27 Base Game Patch
@@ -271,7 +150,6 @@ FurC.Rumours[ver.BASED] = {
   [197834] = rumourSource, -- Statue, Telvanni Magister
   [197833] = rumourSource, -- Statue, Telvanni Spellwright
   [197832] = rumourSource, -- Necrom Gazebo
-  [197826] = rumourSource, -- Music Box, Witchmother's Bubbling Brew
   [197825] = rumourSource, -- Statue, The Thirty-Fourth Sermon
 }
 
@@ -279,12 +157,10 @@ FurC.Rumours[ver.BASED] = {
 FurC.Rumours[ver.NECROM] = {
   [197704] = rumourSource, -- Book of Whispers
   [197625] = rumourSource, -- Music Box, Oath of the Keepers
-  [197623] = rumourSource, -- Statue, Hermaeus Mora
   [194539] = rumourSource, -- Rough Hammock, Pole-Strung
   [194538] = rumourSource, -- Cargo Netting, Large
   [194536] = rumourSource, -- Dock Buoys, Mounted
   [194534] = rumourSource, -- Dock Bell, Mounted
-  [190942] = rumourSource, -- Music Box, Sheogorath Butterfly Garden
   [120485] = rumourSource, -- Cactus, Columnar
   [118288] = rumourSource, -- Deer Carcass, Hanging
   [116474] = rumourSource, -- Orcish Effigy, Bear
@@ -295,15 +171,11 @@ FurC.Rumours[ver.NECROM] = {
   [115705] = rumourSource, -- Khajiit Tile, New Moons
 }
 
--- 25 Scribes of Fate
-FurC.Rumours[ver.SCRIBE] = {
-  [190941] = rumourSource, -- Music Box, Direnni's Swan,
-}
+-- 24 Scribes of Fate
+FurC.Rumours[ver.SCRIBE] = {}
 
 -- 24 Firesong
-FurC.Rumours[ver.DRUID] = {
-  [190939] = rumourSource, -- Music Box, Dawnbreaker's Forging
-}
+FurC.Rumours[ver.DRUID] = {}
 
 -- 23 Lost Depths
 FurC.Rumours[ver.DEPTHS] = {}
@@ -389,7 +261,6 @@ FurC.Rumours[ver.STONET] = {
   [119687] = rumourSource, -- Statue of the Wild Hunt
   [119686] = rumourSource, -- Totem of the Wild Hunt
   [119679] = rumourSource, -- Covenant Pennant, Small
-  [119678] = rumourSource, -- Covenant Keep Pennant
   [119677] = rumourSource, -- Surplus Covenant Cold Fire Trebuchet
   [119676] = rumourSource, -- Surplus Covenant Cold Fire Ballista
   [119674] = rumourSource, -- Surplus Covenant Iceball Trebuchet
@@ -676,7 +547,6 @@ FurC.Rumours[ver.KITTY] = {
 
 -- 10 Wrathstone
 FurC.Rumours[ver.WOTL] = {
-  [147644] = rumourSource, -- Palisade, Crude,
   [147636] = rumourSource, -- Banner of Hermaeus Mora,
   [147573] = rumourSource, -- Barricade, Bladed Hurdle,
   [147572] = rumourSource, -- Barricade, Bladed Fence,
@@ -757,7 +627,6 @@ FurC.Rumours[ver.WEREWOLF] = {
 
 -- 8 Murkmire
 FurC.Rumours[ver.SLAVES] = {
-  [145576] = rumourSource, -- Timid Vine-Tongue
   [145556] = rumourSource, -- Tree, Tall Snowy Fir
   [145555] = rumourSource, -- Tree, Snowy Fir
   [145554] = rumourSource, -- Tree, Towering Snowy Fir

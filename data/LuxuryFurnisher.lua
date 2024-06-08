@@ -2,8 +2,28 @@ FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
 local ver = FurC.Constants.Versioning
 
+-- 29 Scions of Ithelia
+FurC.LuxuryFurnisher[ver.SCIONS] = {
+  [203582] = { -- Ayleid Doorway, Tall Arched
+	itemPrice = 20000,
+	itemDate = "2024-06-07",
+  },
+}
+
 -- 28 Secrets of the Telvanni
 FurC.LuxuryFurnisher[ver.ENDLESS] = {
+  [203151] = { -- Falmer Gate, Stick
+    itemPrice = 3000,
+    itemDate = "2024-05-31",
+  },
+  [203150] = { -- Falmer Fence, Stick
+    itemPrice = 200,
+    itemDate = "2024-05-24",
+  },
+  [203149] = { -- Redguard Seal, Spider
+    itemPrice = 8000,
+    itemDate = "2024-05-17",
+  },
   [203148] = { -- Argonian Puzzle Totem, Head
     itemPrice = 3500,
     itemDate = "2024-05-10",
@@ -226,15 +246,15 @@ FurC.LuxuryFurnisher[ver.SCRIBE] = {
   },
   [193800] = { -- Falmer Tent, Conical,
     itemPrice = 4000,
-    itemDate = "2023-05-06",
+    itemDate = "2024-05-31",
   },
   [193799] = { -- Falmer Hut, Long,
     itemPrice = 14000,
-    itemDate = "2023-04-29",
+    itemDate = "2024-05-24",
   },
   [193798] = { -- Wrothgar Puzzle Cube, Hunter,
     itemPrice = 20000,
-    itemDate = "2023-04-22",
+    itemDate = "2024-05-17",
   },
   [193797] = { -- Wrothgar Puzzle Cube, Mountains,
     itemPrice = 20000,
@@ -279,6 +299,10 @@ FurC.LuxuryFurnisher[ver.DRUID] = {
   [192580] = { -- Redguard Archway, Four-Column
     itemPrice = 50000,
     itemDate = "2023-02-11",
+  },
+  [203135] = { -- Redguard Dome, Mosaic
+    itemPrice = 90000,
+	itemDate = "2024-02-18",
   },
   [192578] = { -- Orsinium Well, Snowy Grated
     itemPrice = 10000,
@@ -466,15 +490,15 @@ FurC.LuxuryFurnisher[ver.TIDES] = {
   },
   [182628] = { -- Riekr Tent, Snowy
     itemPrice = 3500,
-    itemDate = "2023-05-06",
+    itemDate = "2024-05-31",
   },
   [182627] = { -- Hovel, Rock
     itemPrice = 4500,
-    itemDate = "2023-04-29",
+    itemDate = "2024-05-24",
   },
   [182626] = { -- Orcish Seal, Mountains
     itemPrice = 3000,
-    itemDate = "2023-04-22",
+    itemDate = "2024-05-17",
   },
   [182625] = { -- Orcish Seal, Torch
     itemPrice = 3000,
@@ -1738,15 +1762,15 @@ FurC.LuxuryFurnisher[ver.MARKAT] = {
   },
   [171420] = { -- Riekling Rack, Giant Bone
     itemPrice = 3000,
-    itemDate = "2023-05-06",
+    itemDate = "2024-05-31",
   },
   [171419] = { -- Riekling Shelter, Painted Megaliths
     itemPrice = 4000,
-    itemDate = "2023-04-29",
+    itemDate = "2024-05-24",
   },
   [171418] = { -- Orcish Seal, Anvil
     itemPrice = 3000,
-    itemDate = "2023-04-22",
+    itemDate = "2024-05-17",
   },
   [171417] = { -- Orcish Seal, Owl
     itemPrice = 3000,
@@ -1786,15 +1810,15 @@ FurC.LuxuryFurnisher[ver.MARKAT] = {
   },
   [156663] = { -- Riekling Banner, Boar Pelt
     itemPrice = 4000,
-    itemDate = "2023-05-06",
+    itemDate = "2024-05-31",
   },
   [156661] = { -- Orcish Seal, Battle-Axe
     itemPrice = 3000,
-    itemDate = "2023-04-22",
+    itemDate = "2024-05-17",
   },
   [156660] = { -- Orcish Seal, Malacath
     itemPrice = 3000,
-    itemDate = "2023-04-22",
+    itemDate = "2024-05-17",
   },
   [156659] = { -- Orcish Seal, Hammer
     itemPrice = 3000,
@@ -1890,27 +1914,19 @@ FurC.LuxuryFurnisher[ver.MARKAT] = {
   },
   [134464] = { -- Riekling Bonfire, Ceremonial
     itemPrice = 4000,
-    itemDate = "2023-05-06",
+    itemDate = "2024-05-31",
   },
   [134463] = { -- Riekling Brazier, Ceremonial
     itemPrice = 4000,
-    itemDate = "2023-05-06",
+    itemDate = "2024-05-31",
   },
   [134462] = { -- Riekling Grinding Stone
     itemPrice = 450,
-    itemDate = "2023-05-06",
+    itemDate = "2024-05-31",
   },
   [134461] = { -- Riekling Tanning Rack, Stretched
     itemPrice = 450,
-    itemDate = "2023-05-06",
-  },
-  [134460] = { -- Riekling Lean-To, Boar Pelt
-    itemPrice = 4000,
-    itemDate = "2023-04-29",
-  },
-  [134459] = { -- Riekling Pit, Ash and Bone
-    itemPrice = 7500,
-    itemDate = "2023-04-29",
+    itemDate = "2024-05-31",
   },
   [134449] = { -- Seal of Clan Igrun, Metal
     itemPrice = 4000,
@@ -1999,7 +2015,7 @@ FurC.LuxuryFurnisher[ver.HARROW] = {}
 FurC.LuxuryFurnisher[ver.SCALES] = {
   [156662] = { -- Riekling Banner, Wolf Pelt
     itemPrice = 4000,
-    itemDate = "2020-01-25",
+    itemDate = "2024-05-24",
   },
   [153695] = { -- Titan Skull, Colossal
     itemPrice = 4000,
@@ -2007,19 +2023,19 @@ FurC.LuxuryFurnisher[ver.SCALES] = {
   },
   [134460] = { -- Riekling Lean-To, Boar Pelt
     itemPrice = 4000,
-    itemDate = "2020-01-25",
+    itemDate = "2024-05-24",
   },
   [134459] = { -- Riekling Pit, Ash and Bone
     itemPrice = 7500,
-    itemDate = "2020-01-25",
+    itemDate = "2024-05-24",
   },
   [134458] = { -- Riekling Pelt, Boar
     itemPrice = 4000,
-    itemDate = "2023-04-29",
+    itemDate = "2024-05-24",
   },
   [134457] = { -- Riekling Bedding, Icy Straw
     itemPrice = 2500,
-    itemDate = "2023-04-29",
+    itemDate = "2024-05-24",
   },
   [118298] = { -- Wolf Head, Wall Mount
     itemPrice = 20000,
@@ -2078,31 +2094,31 @@ FurC.LuxuryFurnisher[ver.SLAVES] = {
   },
   [134456] = { -- Seal of Clan Tumnosh, Metal
     itemPrice = 4000,
-    itemDate = "2023-04-22",
+    itemDate = "2024-05-17",
   },
   [134455] = { -- Seal of Clan Shatul, Metal
     itemPrice = 4000,
-    itemDate = "2023-04-22",
+    itemDate = "2024-05-17",
   },
   [134454] = { -- Seal of Clan Morkul, Metal
     itemPrice = 4000,
-    itemDate = "2023-04-22",
+    itemDate = "2024-05-17",
   },
   [134453] = { -- Ancient Orcish Counterweight
     itemPrice = 20000,
-    itemDate = "2023-04-22",
+    itemDate = "2024-05-17",
   },
   [134452] = { -- Seal of Clan Tumnosh, Stone
     itemPrice = 4000,
-    itemDate = "2023-04-22",
+    itemDate = "2024-05-17",
   },
   [134451] = { -- Seal of Clan Shatul, Stone
     itemPrice = 4000,
-    itemDate = "2023-04-22",
+    itemDate = "2024-05-17",
   },
   [134450] = { -- Seal of Clan Morkul, Stone
     itemPrice = 4000,
-    itemDate = "2023-04-22",
+    itemDate = "2024-05-17",
   },
   [134446] = { -- Ancient Orcish Sarcophagus Lid
     itemPrice = 10000,
