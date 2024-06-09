@@ -127,6 +127,7 @@ FurC.Constants.Locations = {
   REAPER = getZoneStr(382), -- Reaper's March
   RIFT = getZoneStr(103), -- Rift
   RIVENSPIRE = getZoneStr(20), -- Rivenspire
+  SCHOLAR = getZoneStr(1463), -- The Scholarium
   SELSWEYR = getZoneStr(1133), -- Southern Elsweyr
   SHADOWFEN = getZoneStr(117), -- Shadowfen
   STONEFALLS = getZoneStr(41), -- Stonefalls
@@ -135,6 +136,7 @@ FurC.Constants.Locations = {
   SUMMERSET = getZoneStr(1011), -- Summerset
   TELVANNI = getZoneStr(1414), -- Telvanni Peninsula
   VVARDENFELL = getZoneStr(849), -- Vvardenfell
+  WEALD = getZoneStr(1443), -- West Weald
   WROTHGAR = getZoneStr(684), -- Wrothgar
   WSKYRIM = getZoneStr(1160), -- Western Skyrim
   -- Custom

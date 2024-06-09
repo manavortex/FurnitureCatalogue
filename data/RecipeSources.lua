@@ -6,6 +6,7 @@ local skillLine = FurC.Constants.SkillLines
 local sFormat = zo_strformat
 
 local strGeneric = FurC.Utils.FmtGeneric
+
 local strRank = FurC.Utils.FmtRank
 local strFurnisher = FurC.Utils.FormatFurnisher
 

@@ -1231,7 +1231,186 @@ local bookList = {
 }
 
 local miscVendor = merge(merge(merge(structures, boxes), laundry), fishing_trip)
+-- 30 Gold Road
+FurC.AchievementVendors[ver.WEALD] = {
+  [loc.WEALD] = {
+	[npc.HGF] = {
+	  [204774] = {		-- Boulder, Colovian Highland
+	  	itemPrice   = 100,
+	  },
+	  [204769] = {		-- Bush, Autumn Oak
+	  	itemPrice   = 250,
+	  },
+	  [204770] = {		-- Bush, Autumn Oak Cluster
+	  	itemPrice   = 250,
+	  },
+	  [204767] = {		-- Bush, Squat Maple
+	  	itemPrice   = 600,
+	  },
+	  [204773] = {		-- Leaf Pile, Autumn
+	  	itemPrice   = 450,
+	  },
+	  [204762] = {		-- Sapling, Autumn Maple
+	  	itemPrice   = 500,
+	  },
+	  [204760] = {		-- Sapling, Autumn Oak
+	  	itemPrice   = 500,
+	  },
+	  [204768] = {		-- Sapling, Young Autumn Maple
+	  	itemPrice   = 500,
+	  },
+	  [204772] = {		-- Sawdust Pile, Logging
+	  	itemPrice   = 100,
+	  },
+	  [204765] = {		-- Shrub, Juniper Cluster
+	  	itemPrice   = 250,
+	  },
+	  [204771] = {		-- Stump, Old Maple
+	  	itemPrice   = 100,
+	  },
+	  [204761] = {		-- Tree, Autumn Aspen
+	  	itemPrice   = 500,
+	  },
+	  [204763] = {		-- Tree, Autumn Conical Cypress
+	  	itemPrice   = 1000,
+	  },
+	  [204756] = {		-- Tree, Giant Autumn Maple
+	  	itemPrice   = 20000,
+	  },
+	  [204757] = {		-- Tree, Giant Dawnwood Growth
+	  	itemPrice   = 25000,
+	  },
+	  [204758] = {		-- Tree, Giant Oak
+	  	itemPrice   = 2500,
+	  },
+	  [204759] = {		-- Tree, Healthy Willow
+	  	itemPrice   = 5000,
+	  },
+	  [204766] = {		-- Tree, Squat Cypress
+	  	itemPrice   = 250,
+	  },
+	  [204764] = {		-- Tree, Tall Autumn Conical Cypress
+	  	itemPrice   = 250,
+	  },
+	  [204810] = {		-- Tree, Towering Slim Autumnal Cypress
+	  	itemPrice   = 1500,
+	  },
+	  [204811] = {		-- Tree, Towering Slim Cypress
+	  	itemPrice   = 1500,
+	  },
 
+	},
+	[npc.AF] = {
+	  [204789] = {		-- Ayleid Stele, Tall
+		itemPrice   = 20000,
+		achievement = 3951, -- Gold Road Master Explorer
+	   },
+	  [204788] = {		-- Colovian Cheese Press, Large
+		itemPrice   = 10000,
+		achievement = 3970, -- Quality Colovian Tools
+	  },
+	  [204787] = {		-- Colovian Lamppost, Overgrown
+		itemPrice   = 15000,
+		achievement = 3962, -- Fate-Eater Bane
+	  },
+	  [204786] = {		-- Lucent Throne, Replica
+		itemPrice   = 20000,
+		achievement = 3976, -- Seeker of the Forgotten
+	  },
+	  [204798] = {		-- Mirror of Truth, Replica
+		itemPrice   = 25000,
+		achievement = 3949, -- West Weald Skyshard Hunter
+	   },
+	  [204794] = {		-- Null Arca, Replica
+		itemPrice   = 75000,
+		achievement = 4013, -- Lucent Citadel Vanquisher
+	  },
+	  [204779] = {		-- Portal to the Loom of the Untraveled Road, Replica
+		itemPrice   = 50000,
+		achievement = 4043, -- Champion of Gold Road
+	  },
+	  [204785] = {		-- Recollection Camp Sign, Sprouted
+		itemPrice   = 15000,
+		achievement = 3950, -- Hero of the Gold Road
+	  },
+	  [204791] = {		-- Sapling, Dawnwood Growth
+		itemPrice   = 4000,
+		achievement = 3968, -- Gold Road Partaker
+	  },
+	  [204781] = {		-- Skingrad Banner, Small
+		itemPrice   = 10000,
+		achievement = 3974, -- False Hope
+	  },
+	},
+  },
+  
+  [loc.SCHOLAR] = {
+	[npc.AF] = {
+	  [204780] = {		--Fable of the Dragon
+	  	itemPrice   = 4000,
+	  	achievement = 3997,		-- Signature Script Mastery
+	  },
+	  [204782] = {		--Fable of the Gryphon
+	  	itemPrice   = 4000,
+	  	achievement = 3996,		-- Focus Script Mastery
+	  },
+	  [204783] = {		--Fable of the Indrik
+	  	itemPrice   = 4000,
+	  	achievement = 3988,		-- Master Scriber
+	  },
+	  [204790] = {		--Fable of the Netch
+	  	itemPrice   = 4000,
+	  	achievement = 3998,		-- Affix Script Mastery
+	  },
+	  [204793] = {		--Scholarium Column, Large
+	  	itemPrice   = 8000,
+	  	achievement = 3991,		-- Ink Amasser
+	  },
+	  [204795] = {		-- Scholarium Door, Dragon
+	  	itemPrice   = 20000,
+		achievement = 4103, -- This One's a Puzzler
+	  },
+	  [204796] = {		-- Scholarium Door, Gryphon
+	  	itemPrice   = 20000,
+		achievement = 4102, -- Feathered Knight, Furred Thief
+	  },
+	  [204797] = {		-- Scholarium Door, Indrik
+	  	itemPrice   = 20000,
+		achievement = 4100, -- The Responsibility of Power
+	  },
+	  [206538] = {		-- Scholarium Door, Netch
+	  	itemPrice   = 20000,
+		achievement = 4101, -- Stay Buoyant, Be Joyous
+	  },
+	  [198673] = {		-- Scholarium Door, Study
+	  	itemPrice   = 15000,
+		achievement = 4099, -- A Portal to Last a Lifetime
+	  },
+	  [207961] = {		-- Scholarium Ward
+	  	itemPrice   = 65000,
+		achievement = 4104, -- Beyond the Locked Door
+	  },
+	},
+  },
+}
+
+-- 29 Scions of Ithelia
+FurC.AchievementVendors[ver.SCIONS] = {
+  [loc.UNDAUNTED] = {
+    [npc.UNDAUNTED_QM] = {
+      [203313] = {		-- Many Paths Monument
+		itemPrice   = 20000,
+		achievement = 3810, -- Oathsworn Pit Vanquisher
+	},
+	[203312] = {		-- Mirror Barrier, Shattered
+		itemPrice   = 15000,
+		achievement = 3851, -- Bedlam Veil Vanquisher
+	},
+
+    },
+  },
+}
+  
 -- 28 Secrets of the Telvanni
 FurC.AchievementVendors[ver.ENDLESS] = {
   [loc.TELVANNI] = {

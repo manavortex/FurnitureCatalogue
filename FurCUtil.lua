@@ -91,7 +91,6 @@ local STRIP_PATTERNS = {
   "|u%d+:%d+.+|u", -- <number/>
   "|t%d+.+|t", -- <texture/>
 }
-
 -- Patterns to remove any control and gender suffix to get the clean name, necessary when we have no control over the raw string
 local STRIP_CONTROL = {
   "%^.+",
@@ -156,6 +155,7 @@ function this.FormatPrice(price, currency)
   return ZO_Currency_FormatKeyboard(currency, price, curFmt)
 end
 
+
 local strPieces = GetString(SI_FURC_STRING_PIECES)
 local function fmtPieces(piecenum)
   if piecenum <= 1 then
@@ -173,6 +173,7 @@ function this.FormatPartOf(itemid, note)
 
   local itemLink = this.GetItemLink(itemid)
 
+
   local result_str = sFormat(fmtPartOf, itemLink)
   if note then
     return string.format("%s - %s", result_str, note)
@@ -180,6 +181,7 @@ function this.FormatPartOf(itemid, note)
 
   return result_str
 end
+
 
 --- Unique locations in the English client mostly come without the `^N` suffix (unique name)
 --- This causes results like "at the Clockwork City" instead of "in Clockwork City"
@@ -207,6 +209,7 @@ local function _fmtSource(source, format, colour)
   end
   return result
 end
+
 
 local SOURCE_TYPES = {
   ["loc"] = {
@@ -239,6 +242,7 @@ local function fmtSources(cat, ...)
   end
 
   cat = cat or "loc"
+
   assert(nil ~= SOURCE_TYPES[cat], "Unknown source type: " .. tostring(cat))
   if srcCount == 1 then
     local srcStr = ...
@@ -271,6 +275,7 @@ end
 this.FmtSources = fmtSources
 
 ---Generic formatter for strings like `<PREFIX> <LOCATIONS> [SUFFIX]`
+
 ---@param cat string raw category string like "dungeon^n,from" or "scrying^N,from"
 ---@param suffix string|nil formatted info like "from chests, very rare"
 ---@param srcType string|nil "loc", "src", "other", defaults to "loc"
@@ -308,6 +313,7 @@ local function fmtGeneric(cat, suffix, srcType, ...)
     locations[i] = stripTxt(locations[i], STRIP_CONTROL) -- remove `^...` from raw str
     locations[i] = colourise(locations[i], colours.Location)
   end
+
 
   local joined = table.concat(locations, " \\ ")
   if hasSuffix then
@@ -395,6 +401,7 @@ function this.FormatFurnisher(trader, location, price, curt, info)
   return sFormat("<<1>> : <<2>> (<<3>>, <<4>>)", strVendor, strLoc, strPrice, strInfo)
 end
 
+
 local strScr = GetString(SI_FURC_SRC_SCRYING)
 ---Formatted Antiquities String
 ---@param pieceNum? number required amount of pieces
@@ -449,6 +456,7 @@ end
 local srcScambox = GetString(SI_FURC_SRC_SCAMBOX)
 local function fmtCrownCrate(scamboxName)
   if scamboxName and "" ~= scamboxName then
+
     return fmtGeneric(srcScambox, colourise(scamboxName, colours.Gold))
   end
 
@@ -459,6 +467,7 @@ this.FmtCrownCrate = fmtCrownCrate
 local strQuest = GetString(SI_FURC_SRC_QUEST)
 ---Format a quest
 ---@param questId? number defaults to 0 = no quest
+
 ---@param info? string additional infotext or description
 ---@param ... string location strings (raw)
 ---@return string questString like "Quest: in Bangkorai ('ABC', daily)"

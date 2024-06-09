@@ -79,6 +79,7 @@ local strings = {
   SI_FURC_HOUSE = "Von einem Möbelkauf von <<1>>",
   SI_FURC_LABEL_ENTRIES = " Einträge -",
   SI_FURC_LOC_ANY = "irgendwo^X",
+
   SI_FURC_LOC_ANY_CAPITAL = "in jeder Hauptstadt",
   SI_FURC_LOC_ANY_CITY = "beliebige Stadt",
   SI_FURC_LOC_PLACE_ORSINIUM = "Wrothgar, Orsinium",
@@ -230,6 +231,7 @@ local strings = {
   SI_FURC_STRING_MENU_USETINY_TT = "Eine kleinere Benutzeroberfläche verwenden (ähnlich dem Craft Store). \nIhr könnt dies von der Benutzeroberfläche aus durch Klicken auf den '+/-' Button umschalten.",
   SI_FURC_STRING_PART_OF_COLL = "Teil einer Sammlung",
   SI_FURC_STRING_PIECES = "<<1>> Teile",
+
   SI_FURC_STRING_RECIPELEARNED = "Rezept gelernt: <<1>> <<2>> <<3>>",
   SI_FURC_STRING_RECIPESFORCHAR = "Rezepte für <<1>>",
   SI_FURC_STRING_REWARD = "Belohnung^f,durch",
@@ -294,6 +296,7 @@ local strings = {
   SI_FURC_FILTER_VERSION_TIDES = "Ascending Tide",
   SI_FURC_FILTER_VERSION_WEALD = "Gold Road",
   SI_FURC_FILTER_VERSION_WEALD_TT = "We forgot about...who?",
+
   SI_FURC_FILTER_VERSION_WEREWOLF = "Wolfhunter",
   SI_FURC_FILTER_VERSION_WEREWOLF_TT = "In Soviet Hunting Ground, werewolf hunt you",
   SI_FURC_FILTER_VERSION_WOTL = "Wrathstone",

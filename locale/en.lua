@@ -35,6 +35,7 @@ local strings = {
   SI_FURC_FILTER_SRC_CRAFTING_TT = "Shows all craftable items",
   SI_FURC_FILTER_SRC_CRAFTING_UNKNOWN = "Craftable: Unknown",
   SI_FURC_FILTER_SRC_CRAFTING_UNKNOWN_TT = "Shows only unknown craftable items",
+=======
   SI_FURC_FILTER_SRC_CROWN = "Crown Store",
   SI_FURC_FILTER_SRC_CROWN_TT = "Shows items that can only be acquired from crown store",
   SI_FURC_FILTER_SRC_FAVE = "Favorites",
@@ -134,6 +135,8 @@ local strings = {
   SI_FURC_ITEMPACK_COLDHARBOUR = "Coldharbour Arcanaeum",
   SI_FURC_ITEMPACK_COVEN = "Witches' Coven",
   SI_FURC_ITEMPACK_CRAGKNICKS = "Craglorn Multicultural Knick-Knacks",
+  SI_FURC_ITEMPACK_CURIOSITIES = "Apocryphal Curiosities",
+
   SI_FURC_ITEMPACK_DEEPMIRE = "Deepmire Expedition",
   SI_FURC_ITEMPACK_DIBELLA = "Dibella's Garden",
   SI_FURC_ITEMPACK_DWEMER = "Dwemer",
@@ -236,6 +239,7 @@ local strings = {
   SI_FURC_STRING_CONTEXTMENU_INVENTORY_TT = "Disables the context for inventory items like posting material and adding to favourites.",
   SI_FURC_STRING_CRAFTABLE_BY = "Can be crafted by ",
   SI_FURC_STRING_DUNG = "dungeon",
+
   SI_FURC_STRING_MENU_ADD_ITEMS_NAME = "Add items to known/unknown recipes?",
   SI_FURC_STRING_MENU_ADD_ITEMS_TT = "You shouldn't notice any lag",
   SI_FURC_STRING_MENU_CROWN = "Crown store items",

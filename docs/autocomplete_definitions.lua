@@ -640,6 +640,7 @@ Additional number formatting functions, which abbreviate the value (e.g. 10000 =
 --- - `<<ma:1>> Dungeon^n,in` => `einige Dungeons` ("some dungeons")
 ---
 ---@param format string The format of the string like "Hello <<1>>"
+
 ---@param arg1 string|number positional arg
 ---@param arg2? string|number positional arg
 ---@param arg3? string|number positional arg
@@ -647,6 +648,7 @@ Additional number formatting functions, which abbreviate the value (e.g. 10000 =
 ---@param arg5? string|number positional arg
 ---@param arg6? string|number positional arg
 ---@param arg7? string|number positional arg
+
 ---@return string formatted result
 ---@see esoui [ESOUI-Documentation](https://wiki.esoui.com/How_to_format_strings_with_zo_strformat)
 function zo_strformat(format, arg1, arg2, arg3, arg4, arg5, arg6, arg7)
