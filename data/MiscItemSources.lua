@@ -91,7 +91,7 @@ local painting_summerset = strGeneric(srcSafe, rarityExtremely, "loc", loc.SUMME
 local painting_vvardenfell = strGeneric(
   srcDrop,
   string.format("%s, %s", strSrc("other", srcChest, srcSafe), rarityExtremely),
-  "loc"
+  "loc",
   loc.VVARDENFELL
 )
 
