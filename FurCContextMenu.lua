@@ -1,7 +1,7 @@
 FurC_LinkHandlerBackup_OnLinkMouseUp = nil
 
-local FURC_S_SHOPPINGLIST_1 = GetString(SI_FURC_ONE_TO_SHOPPINGLIST)
-local FURC_S_SHOPPINGLIST_5 = GetString(SI_FURC_FIVE_TO_SHOPPINGLIST)
+local FURC_S_SHOPPINGLIST_1 = GetString(SI_FURC_PLUGIN_SL_ADD_ONE)
+local FURC_S_SHOPPINGLIST_5 = GetString(SI_FURC_PLUGIN_SL_ADD_FIVE)
 local FURC_S_TOGGLE_SL = GetString(SI_FURC_TOGGLE_SHOPPINGLIST)
 
 local linkStyle = LINK_STYLE_DEFAULT
@@ -22,7 +22,7 @@ function AddFurnitureShoppingListMenuEntry(itemId, calledFromFurC)
     end
   end
 
-  local itemLink = FurC.GetItemLink(itemId)
+  local itemLink = FurC.Utils.GetItemLink(itemId)
   if {} == FurC.Find(itemLink) then
     return
   end
@@ -50,10 +50,10 @@ local function fave()
   FurC.Fave(cachedItemLink)
 end
 local function postItemSource()
-  FurC.ToChat(FurC.GetItemDescription(cachedItemLink, cachedRecipeArray, true, true))
+  FurC.ToChat(FurC.GetItemDescription(cachedItemLink, cachedRecipeArray, true))
 end
 local function postRecipe()
-  FurC.ToChat(FurC.GetItemLink(cachedRecipeArray.blueprint))
+  FurC.ToChat(FurC.Utils.GetItemLink(cachedRecipeArray.blueprint))
 end
 local function postRecipeResult()
   FurC.ToChat(GetItemLinkRecipeResultItemLink(cachedItemLink))

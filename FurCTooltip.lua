@@ -93,10 +93,10 @@ local function ReturnItemLink(itemLink)
   if FurC.showBlueprints then
     local recipeArray = FurC.Find(itemLink)
     if recipeArray and recipeArray.blueprint then
-      return FurC.GetItemLink(recipeArray.blueprint)
+      return FurC.Utils.GetItemLink(recipeArray.blueprint)
     end
   end
-  return FurC.GetItemLink(itemLink)
+  return FurC.Utils.GetItemLink(itemLink)
 end
 
 do

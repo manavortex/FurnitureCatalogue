@@ -5,7 +5,7 @@ FurC.ScrollSortUp = true
 local task = LibAsync:Create("FurnitureCatalogue_updateLineVisibility")
 local otherTask = LibAsync:Create("FurnitureCatalogue_ToggleGui")
 
-local sortTable = FurC.SortTable
+local sortTable = FurC.Utils.SortTable
 local src = FurC.Constants.ItemSources
 
 local function sort(myTable)
@@ -46,7 +46,7 @@ local function updateLineVisibility()
     else
       local recipeArray = FurC.Find(curData.itemLink)
       if FurC.showBlueprints and recipeArray and recipeArray.blueprint then
-        curLine.itemLink = FurC.GetItemLink(recipeArray.blueprint)
+        curLine.itemLink = FurC.Utils.GetItemLink(recipeArray.blueprint)
       else
         curLine.itemLink = curData.itemLink
       end
@@ -115,7 +115,7 @@ local function updateScrollDataLinesData()
   local function filterData()
     for itemId, recipeArray in pairs(FurC.settings.data) do
       if FurC.MatchFilter(itemId, recipeArray) then
-        local itemLink = FurC.GetItemLink(itemId)
+        local itemLink = FurC.Utils.GetItemLink(itemId)
         if itemLink then
           local tempDataLine = ZO_DeepTableCopy({}, recipeArray)
           tempDataLine.itemId = itemId

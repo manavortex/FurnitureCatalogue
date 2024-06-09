@@ -22,7 +22,7 @@ function this.Export()
   local itemNames = {}
   for itemId, recipeArray in pairs(FurC.settings.data) do
     if recipeArray.origin == src.CRAFTING then
-      itemNames[GetItemLinkName(FurC.GetItemLink(itemId))] = FurC.GetItemLink(itemId)
+      itemNames[GetItemLinkName(FurC.Utils.GetItemLink(itemId))] = FurC.Utils.GetItemLink(itemId)
     end
   end
 

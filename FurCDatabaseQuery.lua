@@ -1,18 +1,25 @@
 local FurC = FurC or {}
 
-local colour = FurC.ItemLinkColours
+local colour = FurC.Constants.Colours
+local loc = FurC.Constants.Locations
+local npc = FurC.Constants.NPC
 local src = FurC.Constants.ItemSources
 
-local colourise = FurC.colourise
+local colourise = FurC.Utils.Colourise
+local getItemLink = FurC.Utils.GetItemLink
+local strEvent = FurC.Utils.FormatEvent
+local strFurnisher = FurC.Utils.FormatFurnisher
+local strGeneric = FurC.Utils.FmtGeneric
+local stripText = FurC.Utils.stripTxt
+local strSrc = FurC.Utils.FmtSources
 
-local function makeAchievementLink(achievementId)
-  if not achievementId then
-    return
-  end
-  if tonumber(achievementId) ~= achievementId then
-    return GetString(SI_FURC_REQUIRES_ACHIEVEMENT) .. achievementId
-  end
-  return GetString(SI_FURC_REQUIRES_ACHIEVEMENT) .. GetAchievementLink(achievementId, LINK_STYLE_DEFAULT)
+local srcEvent = GetString(SI_FURC_EVENT)
+
+local strVoucherVendor = strSrc("src", npc.ROLIS, npc.FAUSTINA)
+
+local join = zo_strjoin
+local function strMultiple(...)
+  return join(" + ", ...)
 end
 
 local function getRolisSource(recipeKey, recipeArray)
@@ -24,24 +31,19 @@ local function getRolisSource(recipeKey, recipeArray)
   local versionData = FurC.Rolis[recipeArray.version]
 
   if nil ~= versionData and nil ~= versionData[recipeKey] then
-    local itemPrice =
-      zo_strformat(GetString(SI_FURC_STRING_FOR_VOUCHERS), colourise(versionData[recipeKey], colour.Voucher))
-    return zo_strformat(GetString(SI_FURC_STRING_ROLIS), itemPrice)
+    return strFurnisher(npc.ROLIS, loc.ANY_CAPITAL, versionData[recipeKey], CURT_WRIT_VOUCHERS)
   end
 
   versionData = FurC.Faustina[recipeArray.version]
   if nil ~= versionData and nil ~= versionData[recipeKey] then
-    local itemPrice =
-      zo_strformat(GetString(SI_FURC_STRING_FOR_VOUCHERS), colourise(versionData[recipeKey], colour.Voucher))
-    return zo_strformat(GetString(SI_FURC_STRING_FAUSTINA), itemPrice)
+    return strFurnisher(npc.FAUSTINA, loc.ANY_CAPITAL, versionData[recipeKey], CURT_WRIT_VOUCHERS)
   end
 
-  return GetString(SI_FURC_STRING_VOUCHER_VENDOR)
+  return strVoucherVendor -- fallback
 end
 FurC.getRolisSource = getRolisSource
 
-local WEEKEND_DATE = GetString(SI_FURC_STRING_WEEKEND_AROUND)
-local SOLD_BY = GetString(SI_FURC_STRING_WASSOLDBY)
+local strAroundDate = GetString(SI_FURC_STRING_WEEKEND_AROUND)
 local function getLuxurySource(recipeKey, recipeArray, stripColor)
   recipeArray = recipeArray or FurC.Find(recipeKey)
   if {} == recipeArray then
@@ -66,15 +68,15 @@ local function getLuxurySource(recipeKey, recipeArray, stripColor)
       formattedDate = formatted
     end
 
-    local weekendString = (nil == itemData.itemDate and "") or zo_strformat(WEEKEND_DATE, formattedDate)
-    return zo_strformat(
-      SOLD_BY,
-      colourise(GetString(SI_FURC_STRING_ASSHOLE), colour.Vendor, stripColor),
-      colourise(GetString(SI_FURC_STRING_HC), colour.Vendor, stripColor),
-      colourise(itemData.itemPrice, colour.Gold, stripColor),
-      weekendString
-    )
+    local weekendString = (nil == itemData.itemDate and "")
+      or zo_strformat(strAroundDate, colourise(formattedDate, colour.Gold))
+    local result = strFurnisher(npc.LUXF, loc.COLDH, itemData.itemPrice, nil, weekendString)
+    if stripColor then
+      result = string.format("%s %s", getItemLink(recipeKey), stripText(result))
+    end
+    return result
   end
+
   return "SI_FURC_STRING_FETCHER" -- ToDo: placeholder until I know who it is
 end
 FurC.getLuxurySource = getLuxurySource
@@ -90,16 +92,16 @@ local function getPvpSource(recipeKey, recipeArray, stripColor)
     return "getPvpSource: nil"
   end
 
+  -- structure: [2] = {[Furnishing vendor] = {[Cyrodiil] = {[123] = {}}}}
   for vendorName, vendorData in pairs(versionData) do
     for locationName, locationData in pairs(vendorData) do
       if nil ~= locationData[recipeKey] then
-        return zo_strformat(
-          GetString(SI_FURC_STRING_VENDOR),
-          colourise(vendorName, colour.Vendor, stripColor),
-          colourise(locationName, colour.Vendor, stripColor),
-          colourise(locationData[recipeKey].itemPrice, colour.AP, stripColor),
-          GetString(SI_FURC_STRING_AP)
-        )
+        local item = locationData[recipeKey]
+        local result = strFurnisher(vendorName, locationName, item.itemPrice, CURT_ALLIANCE_POINTS, item.achievement)
+        if stripColor then
+          result = string.format("%s %s", getItemLink(recipeKey), stripText(result))
+        end
+        return result
       end
     end
   end
@@ -108,6 +110,7 @@ local function getPvpSource(recipeKey, recipeArray, stripColor)
 end
 FurC.getPvpSource = getPvpSource
 
+-- TODO #REFACTOR: add info to item in DB and generate str from that. then use lookup by id
 local function getAchievementVendorSource(recipeKey, recipeArray, stripColor)
   recipeArray = recipeArray or FurC.Find(recipeKey)
   if {} == recipeArray then
@@ -123,19 +126,21 @@ local function getAchievementVendorSource(recipeKey, recipeArray, stripColor)
     )
   end
 
-  local databaseEntry
-
   for zoneName, zoneData in pairs(versionData) do
     for vendorName, vendorData in pairs(zoneData) do
-      databaseEntry = vendorData[recipeKey]
-      if nil ~= databaseEntry then
-        return zo_strformat(
-          GetString(SI_FURC_STRING_VENDOR),
-          colourise(vendorName, colour.Vendor, stripColor),
-          colourise(zoneName, colour.Vendor, stripColor),
-          colourise(databaseEntry.itemPrice, colour.Gold, stripColor),
-          makeAchievementLink(databaseEntry.achievement)
-        )
+      local databaseEntry = vendorData[recipeKey]
+      if databaseEntry then
+        local currency = CURT_MONEY
+
+        if databaseEntry.currency then
+          currency = databaseEntry.currency
+        end
+
+        local result = strFurnisher(vendorName, zoneName, databaseEntry.itemPrice, currency, databaseEntry.achievement)
+        if stripColor then
+          result = string.format("%s %s", getItemLink(recipeKey), stripText(result))
+        end
+        return result
       end
     end
   end
@@ -143,7 +148,12 @@ local function getAchievementVendorSource(recipeKey, recipeArray, stripColor)
 end
 FurC.getAchievementVendorSource = getAchievementVendorSource
 
-local function getEventDropSource(recipeKey, recipeArray, stripColor)
+local validEventItemTypes = {
+  ["boolean"] = true,
+  ["string"] = true,
+  ["table"] = true,
+}
+local function getEventDropSource(recipeKey, recipeArray)
   recipeArray = recipeArray or FurC.Find(recipeKey)
   if {} == recipeArray then
     return
@@ -154,49 +164,49 @@ local function getEventDropSource(recipeKey, recipeArray, stripColor)
   if not versionDataExists then
     return itemPriceString
   end
-  for versionNumber, versionData in pairs(FurC.EventItems) do
-    for eventName, eventData in pairs(versionData) do
-      for eventItemSource, eventSourceData in pairs(eventData) do
-        if eventSourceData[recipeKey] then
-          local vendorString = colourise(eventItemSource, colour.Vendor, stripColor)
-          itemPriceString = zo_strformat(
-            GetString(SI_FURC_FESTIVAL_DROP),
-            colourise(eventName, colour.Vendor, stripColor),
-            vendorString
-          )
 
-          if not eventSourceData[recipeKey] then
-            return itemPriceString
+  -- leaf can have 3 types: boolean, string or table
+  -- FurC.EventItems[27]["Witches Festival"]["plunderskulllink"][198390] = true
+  -- FurC.EventItems[4]["Witches Festival"]["plunderskulllink"][130302] = "text"
+  -- FurC.EventItems[25]["Anniversary"]["npcname"][198390] = {itemPrice=123}
+  for version, events in pairs(FurC.EventItems) do
+    for eventName, sources in pairs(events) do
+      for srcName, items in pairs(sources) do
+        local item = items[recipeKey]
+
+        if nil ~= item then -- item found
+          local itemType = type(item)
+          assert(validEventItemTypes[itemType], "getEventDropSource: invalid item type")
+
+          if itemType == "boolean" then -- probably a drop
+            return strGeneric(srcEvent, srcName, "src", eventName)
           end
 
-          local additionalSource = eventSourceData[recipeKey]
-          if additionalSource and type(additionalSource) == "table" and additionalSource.itemPrice then
-            local itemPrice = colourise(additionalSource.itemPrice, colour.Voucher, stripColor)
-            itemPriceString = itemPriceString:sub(1, -2)
-              .. zo_strformat(GetString(SI_FURC_STRING_FOR_VOUCHERS), itemPrice)
-              .. ")"
-          elseif #(tostring(additionalSource)) > 4 then
-            itemPriceString = itemPriceString .. "\n" .. tostring(additionalSource)
+          if itemType == "string" then -- must be additional source
+            local src1 = strGeneric(srcEvent, srcName, "src", eventName)
+            local src2 = strSrc("src", item)
+            return strMultiple(src1, src2)
           end
 
-          return itemPriceString
+          if itemType == "table" then -- must have price
+            return strFurnisher(srcName, eventName, item.itemPrice, CURT_EVENT_TICKETS)
+          end
         end
       end
     end
   end
-
-  return itemPriceString
 end
 FurC.getEventDropSource = getEventDropSource
 
-local emptyString = GetString(SI_FURC_ITEMSOURCE_EMPTY)
+local emptyString = GetString(SI_FURC_SRC_EMPTY)
 local function registerEmptyItem(recipeKey)
   if recipeKey and tonumber(recipeKey) > 0 then
-    FurC.settings.emptyItemSources[recipeKey] = ", --" .. GetItemLinkName(FurC.GetItemLink(recipeKey))
+    FurC.settings.emptyItemSources[recipeKey] =
+      zo_strformat(", -- <<1>>", GetItemLinkName(FurC.Utils.GetItemLink(recipeKey)))
   end
   return emptyString
 end
-local function getMiscItemSource(recipeKey, recipeArray, attachItemLink)
+local function getMiscItemSource(recipeKey, recipeArray, stripColor)
   recipeArray = recipeArray or FurC.Find(recipeKey)
   if {} == recipeArray or not recipeArray.version or not recipeArray.origin then
     return registerEmptyItem(recipeKey)
@@ -211,7 +221,11 @@ local function getMiscItemSource(recipeKey, recipeArray, attachItemLink)
     return registerEmptyItem(recipeKey)
   end
 
-  return (attachItemLink and string.format("%s: %s", FurC.GetItemLink(recipeKey), originData)) or originData
+  if stripColor then
+    originData = string.format("%s %s", getItemLink(recipeKey), stripText(originData))
+  end
+
+  return originData
 end
 FurC.getMiscItemSource = getMiscItemSource
 
@@ -235,10 +249,14 @@ local function getRecipeSource(recipeKey, recipeArray)
 end
 FurC.getRecipeSource = getRecipeSource
 
+local strRItem = GetString(SI_FURC_SRC_RUMOUR_ITEM)
+local strRRecipe = GetString(SI_FURC_SRC_RUMOUR_RECIPE)
 function FurC.getRumourSource(recipeKey, recipeArray)
-  return (recipeArray.blueprint and GetString(SI_FURC_RUMOUR_SOURCE_RECIPE)) or GetString(SI_FURC_RUMOUR_SOURCE_ITEM)
+  return (recipeArray.blueprint and strRRecipe) or strRItem
 end
 
+local strCantCraft = GetString(SI_FURC_STRING_CANNOT_CRAFT)
+local strCraftedBy = GetString(SI_FURC_STRING_CRAFTABLE_BY)
 function FurC.GetCrafterList(itemLink, recipeArray)
   if nil == recipeArray and nil == itemLink then
     return
@@ -249,9 +267,9 @@ function FurC.GetCrafterList(itemLink, recipeArray)
   end
 
   if nil == recipeArray.characters or NonContiguousCount(recipeArray.characters) == 0 then
-    return GetString(SI_FURC_STRING_CANNOT_CRAFT)
+    return strCantCraft
   end
-  local ret = GetString(SI_FURC_STRING_CRAFTABLE_BY)
+  local ret = strCraftedBy
   for characterName, characterKnowledge in pairs(recipeArray.characters) do
     ret = string.format("%s %s, ", ret, characterName)
   end

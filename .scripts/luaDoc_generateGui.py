@@ -116,7 +116,7 @@ def write_lua_doc(identifier: str, lua_path: str, parsed: list):
 
 
 if __name__ == '__main__':
-  lua_path = "docs/autocomple_definitions.lua"
+  lua_path = "docs/autocomplete_definitions.lua"
 
   if len(sys.argv) == 1:
     # use default files if none supplied

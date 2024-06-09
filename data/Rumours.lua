@@ -2,8 +2,29 @@ FurC.Rumours = FurC.Rumours or {}
 
 local ver = FurC.Constants.Versioning
 
-local rumourSource = GetString(SI_FURC_RUMOUR_SOURCE_ITEM)
+local rumourSource = GetString(SI_FURC_SRC_RUMOUR_ITEM)
 local dataminedUnclear = GetString(SI_FURC_DATAMINED_UNCLEAR)
+
+-- 30 Gold Road
+FurC.Rumours[ver.WEALD] = {
+  [204422] = rumourSource, -- Music Box, Ascension to the Ruby Throne",
+  [204626] = rumourSource, -- Coldharbour Gravestone, Etched",
+  [204627] = rumourSource, -- Coldharbour Column, Skulls",
+  [204628] = rumourSource, -- Apocrypha Statue, Lurker's Maw",
+  [204629] = rumourSource, -- Dwarven Statue, Guardian",
+  [204630] = rumourSource, -- Fountain, Wolf Head",
+  [204631] = rumourSource, -- Order of the Hour Banner, Large",
+  [204632] = rumourSource, -- Dwarven Archway, Temple",
+  [204633] = rumourSource, -- Dwarven Puzzle Cube, Lady Ascendant",
+  [204634] = rumourSource, -- Reach Totem, Twig Crescent",
+  [204635] = rumourSource, -- Reach Totem, Twig Archway",
+  [204407] = rumourSource, -- Daedric Statue, Sanguine",
+  [204408] = rumourSource, -- Target Serpent's Image, Trial",
+  [204409] = rumourSource, -- Dark Anchor Gateway",
+  [204410] = rumourSource, -- Five Companions Tome",
+  [204411] = rumourSource, -- Coldharbour Sentinel",
+  [204412] = rumourSource, -- Revelry Sparkles",
+}
 
 -- 29 Scions of Ithelia
 FurC.Rumours[ver.SCIONS] = {
@@ -24,14 +45,6 @@ FurC.Rumours[ver.SCIONS] = {
   [203896] = rumourSource, -- Bush, Cave Lichen Patch
   [203895] = rumourSource, -- Bush, Cave Lichen Cluster
   [203894] = rumourSource, -- Bush, Cave Lichen
-  [203888] = rumourSource, -- Replica Jubilee Cake Slice 2024
-  [203887] = rumourSource, -- Replica Jubilee Cake Slice 2023
-  [203886] = rumourSource, -- Replica Jubilee Cake Slice 2022
-  [203885] = rumourSource, -- Replica Jubilee Cake Slice 2021
-  [203884] = rumourSource, -- Replica Jubilee Cake Slice 2020
-  [203883] = rumourSource, -- Replica Jubilee Cake Slice 2019
-  [203882] = rumourSource, -- Replica Jubilee Cake Slice 2016-2018
-  [203829] = rumourSource, -- Replica Jubilee Cake 2024
   [203599] = rumourSource, -- Redguard Fountain, Lion
   [203598] = rumourSource, -- Flowers, Desert Blush
   [203597] = rumourSource, -- Shrubs, Speckled Forest Cluster
@@ -49,9 +62,6 @@ FurC.Rumours[ver.SCIONS] = {
   [203585] = rumourSource, -- Alinor Maple, Large Red
   [203584] = rumourSource, -- Altmer Stable, Summerset
   [203583] = rumourSource, -- Ayleid Panel, Arched
-  [203582] = rumourSource, -- Ayleid Doorway, Tall Arched
-  [203313] = rumourSource, -- Many Paths Monument
-  [203312] = rumourSource, -- Mirror Barrier, Shattered
   [203276] = rumourSource, -- Rough Dresser
   [203275] = rumourSource, -- Fish, Silver Trout
   [203274] = rumourSource, -- Box of Tomatoes
@@ -61,10 +71,6 @@ FurC.Rumours[ver.SCIONS] = {
   [203270] = rumourSource, -- Target King Boar, Robust
   [203269] = rumourSource, -- Chamber Pot Throne
   [203268] = rumourSource, -- Jester's Festival Stage
-  [203267] = rumourSource, -- Order of the Lamp Pedestal
-  [203266] = rumourSource, -- Twinkling Lights, Blue
-  [203265] = rumourSource, -- Prismatic Cherry Tree
-  [203264] = rumourSource, -- Cursed Curio Aether
   [203165] = rumourSource, -- Dazzler Dispenser
   [117914] = rumourSource, -- Redguard Canopy, Florid
   [117912] = rumourSource, -- Redguard Awning, Florid
@@ -76,22 +82,7 @@ FurC.Rumours[ver.SCIONS] = {
 
 -- 28 Secrets of the Telvanni Peninsula
 FurC.Rumours[ver.ENDLESS] = {
-  [203202] = rumourSource, -- Hermaeus Mora Banner, Large
-  [203178] = rumourSource, -- Apocrypha Coral, Large Teal Tube
-  [203177] = rumourSource, -- Apocrypha Coral, Pink Tube
-  [203176] = rumourSource, -- Apocrypha Geyser, Ink
-  [203166] = rumourSource, -- Sai Sahan Statue
-  [203151] = rumourSource, -- Falmer Gate, Stick"
-  [203150] = rumourSource, -- Falmer Fence, Stick
-  [203149] = rumourSource, -- Redguard Seal, Spider
   [203138] = rumourSource, -- Apocrypha Plant, Feather Fern
-  [203135] = rumourSource, -- Redguard Dome, Mosaic
-  [203133] = rumourSource, -- Apocrypha Coral, Spiky
-  [203132] = rumourSource, -- Mushroom, Apocrypha Fossilized
-  [199136] = rumourSource, -- Apocrypha Stalks, Scryeball Patch
-  [199135] = rumourSource, -- Apocrypha Pool, Inky
-  [199134] = rumourSource, -- Apocrypha Waterfall, Inky
-  [199133] = rumourSource, -- Target Daedra, Seeker
   [199125] = rumourSource, -- Inky Waterup Table
   [199124] = rumourSource, -- Green ink ceiling light
   [199123] = rumourSource, -- Cabinet of Curiosities
@@ -126,7 +117,7 @@ FurC.Rumours[ver.ENDLESS] = {
   [198648] = rumourSource, -- Druidic Rack, Hide Stretcher
   [198647] = rumourSource, -- Druidic Drying Rack, Tall
   [198646] = rumourSource, -- Druidic Drying Rack, Wide
-  [198574] = rumourSource, -- Khajiiti Water Vessel, Large
+  
 }
 
 -- 27 Base Game Patch
@@ -159,7 +150,6 @@ FurC.Rumours[ver.BASED] = {
   [197834] = rumourSource, -- Statue, Telvanni Magister
   [197833] = rumourSource, -- Statue, Telvanni Spellwright
   [197832] = rumourSource, -- Necrom Gazebo
-  [197826] = rumourSource, -- Music Box, Witchmother's Bubbling Brew
   [197825] = rumourSource, -- Statue, The Thirty-Fourth Sermon
 }
 
@@ -167,12 +157,10 @@ FurC.Rumours[ver.BASED] = {
 FurC.Rumours[ver.NECROM] = {
   [197704] = rumourSource, -- Book of Whispers
   [197625] = rumourSource, -- Music Box, Oath of the Keepers
-  [197623] = rumourSource, -- Statue, Hermaeus Mora
   [194539] = rumourSource, -- Rough Hammock, Pole-Strung
   [194538] = rumourSource, -- Cargo Netting, Large
   [194536] = rumourSource, -- Dock Buoys, Mounted
   [194534] = rumourSource, -- Dock Bell, Mounted
-  [190942] = rumourSource, -- Music Box, Sheogorath Butterfly Garden
   [120485] = rumourSource, -- Cactus, Columnar
   [118288] = rumourSource, -- Deer Carcass, Hanging
   [116474] = rumourSource, -- Orcish Effigy, Bear
@@ -183,15 +171,11 @@ FurC.Rumours[ver.NECROM] = {
   [115705] = rumourSource, -- Khajiit Tile, New Moons
 }
 
--- 25 Scribes of Fate
-FurC.Rumours[ver.SCRIBE] = {
-  [190941] = rumourSource, -- Music Box, Direnni's Swan,
-}
+-- 24 Scribes of Fate
+FurC.Rumours[ver.SCRIBE] = {}
 
 -- 24 Firesong
-FurC.Rumours[ver.DRUID] = {
-  [190939] = rumourSource, -- Music Box, Dawnbreaker's Forging
-}
+FurC.Rumours[ver.DRUID] = {}
 
 -- 23 Lost Depths
 FurC.Rumours[ver.DEPTHS] = {}
@@ -277,7 +261,6 @@ FurC.Rumours[ver.STONET] = {
   [119687] = rumourSource, -- Statue of the Wild Hunt
   [119686] = rumourSource, -- Totem of the Wild Hunt
   [119679] = rumourSource, -- Covenant Pennant, Small
-  [119678] = rumourSource, -- Covenant Keep Pennant
   [119677] = rumourSource, -- Surplus Covenant Cold Fire Trebuchet
   [119676] = rumourSource, -- Surplus Covenant Cold Fire Ballista
   [119674] = rumourSource, -- Surplus Covenant Iceball Trebuchet
@@ -564,7 +547,6 @@ FurC.Rumours[ver.KITTY] = {
 
 -- 10 Wrathstone
 FurC.Rumours[ver.WOTL] = {
-  [147644] = rumourSource, -- Palisade, Crude,
   [147636] = rumourSource, -- Banner of Hermaeus Mora,
   [147573] = rumourSource, -- Barricade, Bladed Hurdle,
   [147572] = rumourSource, -- Barricade, Bladed Fence,
@@ -645,7 +627,6 @@ FurC.Rumours[ver.WEREWOLF] = {
 
 -- 8 Murkmire
 FurC.Rumours[ver.SLAVES] = {
-  [145576] = rumourSource, -- Timid Vine-Tongue
   [145556] = rumourSource, -- Tree, Tall Snowy Fir
   [145555] = rumourSource, -- Tree, Snowy Fir
   [145554] = rumourSource, -- Tree, Towering Snowy Fir
