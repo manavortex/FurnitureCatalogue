@@ -187,7 +187,7 @@ jobs:
           done < $CHANGED_FILES
           # Also add CHANGELOG, if it was changed
           git add 'CHANGELOG' || true
-          git commit -m "Version bumps and CHANGELOG for $VERSION"
+          git commit -m "Version bumps and CHANGELOG for $VERSION" || true
 
           # Commit locale changes, if any
           git add 'locale/*.lua' || true
@@ -199,6 +199,7 @@ jobs:
 
           # Any remaining lua file changes must have been StyLUA
           git add *.lua || true
+          git add */**.lua || true
           git commit -m "Format LUA files with StyLUA" || true
 
           git push
