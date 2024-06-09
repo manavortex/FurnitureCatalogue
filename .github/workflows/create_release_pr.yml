@@ -177,17 +177,19 @@ jobs:
           ~/.cache/bins/stylua --config-path=stylua.toml .
 
       # Commit version increments and CHANGELOG (if applicable)
-      # Fails if empty commit
-      - name: Commit Changelog
+      - name: Commit Changes
         run: |
           # Add all files changed by furc_utils.py
           while read LINE ; do
             echo "Changed file: $LINE"
             git add $LINE
           done < $CHANGED_FILES
+          # If no files changed, something broke and we want to fail here
+          git commit -m "Version bumps for $VERSION"
+          
           # Also add CHANGELOG, if it was changed
           git add 'CHANGELOG' || true
-          git commit -m "Version bumps and CHANGELOG for $VERSION" || true
+          git commit -m "CHANGELOG for $VERSION" || true
 
           # Commit locale changes, if any
           git add 'locale/*.lua' || true
