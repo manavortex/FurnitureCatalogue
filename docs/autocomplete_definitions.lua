@@ -131,7 +131,7 @@ SI_FURC_FILTER_SRC_CRAFTING_KNOWN_TT = "Shows only known craftable items"
 SI_FURC_FILTER_SRC_CRAFTING_TT = "Shows all craftable items"
 SI_FURC_FILTER_SRC_CRAFTING_UNKNOWN = "Craftable: Unknown"
 SI_FURC_FILTER_SRC_CRAFTING_UNKNOWN_TT = "Shows only unknown craftable items"
-SI_FURC_FILTER_SRC_CROWN = "Crown Store^N,from"
+SI_FURC_FILTER_SRC_CROWN = "Crown Store"
 SI_FURC_FILTER_SRC_CROWN_TT = "Shows items that can only be acquired from crown store"
 SI_FURC_FILTER_SRC_FAVE = "Favorites"
 SI_FURC_FILTER_SRC_FAVE_TT = "Shows your favorites"
@@ -210,7 +210,6 @@ SI_FURC_FILTER_VERSION_WEREWOLF_TT = "In Soviet Hunting Ground, werewolf hunt yo
 SI_FURC_FILTER_VERSION_WOTL = "Wrathstone"
 SI_FURC_FILTER_VERSION_WOTL_TT = "Wrathstone!"
 SI_FURC_GRAMMAR_CONJ_OR = "or"
-SI_FURC_GRAMMAR_OBTAINABLE = "can be acquired during <<1>> (<<2>>)"
 SI_FURC_GRAMMAR_PREP_LOC_DEFAULT = "in"
 SI_FURC_GRAMMAR_PREP_SRC_DEFAULT = "from"
 SI_FURC_GUILD_FIGHTERS = "the Fighters' guild"
@@ -255,7 +254,7 @@ SI_FURC_ITEMPACK_VIVEC = "Lord Vivec"
 SI_FURC_ITEMPACK_WINDOWS = "Windows of the Divines"
 SI_FURC_ITEMPACK_ZENI = "Chapel of Zenithar"
 SI_FURC_LABEL_ENTRIES = " entries -"
-SI_FURC_LOC_ANY = "anywhere"
+SI_FURC_LOC_ANY = "anywhere^X"
 SI_FURC_LOC_ANY_CAPITAL = "any capital city"
 SI_FURC_LOC_ANY_CITY = "any city"
 SI_FURC_LOC_LILANDRIL = "Lilandril"
@@ -301,10 +300,10 @@ SI_FURC_RUINS = "ruins^p"
 SI_FURC_SEEN_IN_GUILDSTORE = "Seen in Guild Store"
 SI_FURC_SHOW_CROWN_TT = "Hiding crown store. Click to show."
 SI_FURC_SHOW_RUMOUR_TT = "Confirmed items only. Click to show rumour items."
-SI_FURC_SRC_CHESTS = "treasure chests^p,from"
+SI_FURC_SRC_CHESTS = "treasure chests^P,from"
 SI_FURC_SRC_CLAM_GIANT = "giant clams^p,from"
 SI_FURC_SRC_CRAFTING = "crafting^N,by"
-SI_FURC_SRC_CROWNSTORE = "Crown Store^N,from"
+SI_FURC_SRC_CROWNSTORE = "Crown Store^n,from"
 SI_FURC_SRC_DOLMEN = "Dolmen^P,from"
 SI_FURC_SRC_DROP = "drop^n,from"
 SI_FURC_SRC_DUNG = "dungeon^n,from"
@@ -316,13 +315,13 @@ SI_FURC_SRC_HARVEST = "harvesting^N,from"
 SI_FURC_SRC_ITEMPACK = "Part of the Crown Store item pack [<<1>>] "
 SI_FURC_SRC_LVLUP = "levelup reward^n,from"
 SI_FURC_SRC_MISCHOUSE = "From select house purchases"
-SI_FURC_SRC_PICK = "pickpocket^N,from"
+SI_FURC_SRC_PICK = "pickpocketing^N,from"
 SI_FURC_SRC_QUEST = "quest^n,from"
 SI_FURC_SRC_QUEST_DAILY = "daily quests^p,from"
 SI_FURC_SRC_RNDMOB = "random mobs^p,from"
 SI_FURC_SRC_RUMOUR_ITEM = "This item has been datamined, but not seen in-game"
 SI_FURC_SRC_RUMOUR_RECIPE = "This recipe has been datamined, but not seen in-game"
-SI_FURC_SRC_SAFEBOX = "extremely rarely from safeboxes"
+SI_FURC_SRC_SAFEBOX = "safeboxes^P,from"
 SI_FURC_SRC_SCAMBOX = "Crown Crate^n,from"
 SI_FURC_SRC_SCRYING = "scrying^N,from"
 SI_FURC_SRC_STEAL = "stealing^N,from"
@@ -336,7 +335,6 @@ SI_FURC_STRING_CONTEXTMENU_INVENTORY_TT =
   "Disables the context for inventory items like posting material and adding to favourites."
 SI_FURC_STRING_CRAFTABLE_BY = "Can be crafted by "
 SI_FURC_STRING_DUNG = "dungeon"
-SI_FURC_STRING_FOR_VOUCHERS = "for <<1>> vouchers"
 SI_FURC_STRING_MENU_ADD_ITEMS_NAME = "Add items to known/unknown recipes?"
 SI_FURC_STRING_MENU_ADD_ITEMS_TT = "You shouldn't notice any lag"
 SI_FURC_STRING_MENU_CROWN = "Crown store items"
@@ -433,7 +431,7 @@ SI_FURC_STRING_MENU_USETINY = "Use tiny interface?"
 SI_FURC_STRING_MENU_USETINY_TT =
   "Use a smaller interface (Craft Store like). \nYou can toggle this from the UI by clicking the +/- button."
 SI_FURC_STRING_PART_OF_COLL = "part of a collection"
-SI_FURC_STRING_PIECES = "<<1[ / /($d pieces)]>>"
+SI_FURC_STRING_PIECES = "<<1>> pieces"
 SI_FURC_STRING_RECIPELEARNED = "Recipe learned: <<1>> <<2>> <<3>>"
 SI_FURC_STRING_RECIPESFORCHAR = "recipes for <<1>>"
 SI_FURC_STRING_REWARD = "reward^n,from"
@@ -458,7 +456,7 @@ SI_FURC_TRADERS_EVENT = "Impressario^Nd,from"
 SI_FURC_TRADERS_FAUSTINA = "Faustina Curio"
 SI_FURC_TRADERS_HGF = "Home Goods Furnisher^n,from"
 SI_FURC_TRADERS_HOLIDAY = "Holiday Furnisher^n,from"
-SI_FURC_TRADERS_LUXF = "Luxury Furnisher^nd,from"
+SI_FURC_TRADERS_LUXF = "Luxury Furnisher^Nd,from"
 SI_FURC_TRADERS_RAZOUFA_COLL = "Razoufa as part of a collection"
 SI_FURC_TRADERS_ROLIS = "Rolis Hlaalu"
 SI_FURC_VERBOSE_DB_UPTODATE = "Furniture Catalogue: The database is up-to-date."
@@ -484,6 +482,22 @@ end
 --- @param isLower bool|nil
 --- @return string name
 function GetCurrencyName(currencyType, isSingular, isLower)
+  return ""
+end
+
+--- @param unitTag string
+--- @return string name
+function GetUnitName(unitTag)
+  return ""
+end
+
+---@class LinkStyle : number
+LinkStyle = nil
+
+--- @param achievementId integer
+--- @param linkStyle LinkStyle
+--- @return string link
+function GetAchievementLink(achievementId, linkStyle)
   return ""
 end
 
@@ -626,13 +640,15 @@ Additional number formatting functions, which abbreviate the value (e.g. 10000 =
 --- - `<<ma:1>> Dungeon^n,in` => `einige Dungeons` ("some dungeons")
 ---
 ---@param format string The format of the string like "Hello <<1>>"
----@param arg1 string|nil positional arg
----@param arg2 string|nil positional arg
----@param arg3 string|nil positional arg
----@param arg4 string|nil positional arg
----@param arg5 string|nil positional arg
----@param arg6 string|nil positional arg
----@param arg7 string|nil positional arg
+
+---@param arg1 string|number positional arg
+---@param arg2? string|number positional arg
+---@param arg3? string|number positional arg
+---@param arg4? string|number positional arg
+---@param arg5? string|number positional arg
+---@param arg6? string|number positional arg
+---@param arg7? string|number positional arg
+
 ---@return string formatted result
 ---@see esoui [ESOUI-Documentation](https://wiki.esoui.com/How_to_format_strings_with_zo_strformat)
 function zo_strformat(format, arg1, arg2, arg3, arg4, arg5, arg6, arg7)

@@ -111,7 +111,6 @@ FurC.Recipes[ver.WEALD] = {
   207869, -- Formula: Dawnwood Lantern, Antlers",
   207870, -- Formula: Dawnwood Lantern String, Long",
   207871, -- Formula: Dawnwood Lantern String, Short",
-
 }
 
 FurC.Recipes[ver.SCIONS] = {
