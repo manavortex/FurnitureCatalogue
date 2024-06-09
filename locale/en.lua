@@ -35,7 +35,6 @@ local strings = {
   SI_FURC_FILTER_SRC_CRAFTING_TT = "Shows all craftable items",
   SI_FURC_FILTER_SRC_CRAFTING_UNKNOWN = "Craftable: Unknown",
   SI_FURC_FILTER_SRC_CRAFTING_UNKNOWN_TT = "Shows only unknown craftable items",
-=======
   SI_FURC_FILTER_SRC_CROWN = "Crown Store",
   SI_FURC_FILTER_SRC_CROWN_TT = "Shows items that can only be acquired from crown store",
   SI_FURC_FILTER_SRC_FAVE = "Favorites",
