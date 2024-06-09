@@ -155,7 +155,6 @@ function this.FormatPrice(price, currency)
   return ZO_Currency_FormatKeyboard(currency, price, curFmt)
 end
 
-
 local strPieces = GetString(SI_FURC_STRING_PIECES)
 local function fmtPieces(piecenum)
   if piecenum <= 1 then
@@ -173,7 +172,6 @@ function this.FormatPartOf(itemid, note)
 
   local itemLink = this.GetItemLink(itemid)
 
-
   local result_str = sFormat(fmtPartOf, itemLink)
   if note then
     return string.format("%s - %s", result_str, note)
@@ -181,7 +179,6 @@ function this.FormatPartOf(itemid, note)
 
   return result_str
 end
-
 
 --- Unique locations in the English client mostly come without the `^N` suffix (unique name)
 --- This causes results like "at the Clockwork City" instead of "in Clockwork City"
@@ -209,7 +206,6 @@ local function _fmtSource(source, format, colour)
   end
   return result
 end
-
 
 local SOURCE_TYPES = {
   ["loc"] = {
@@ -314,7 +310,6 @@ local function fmtGeneric(cat, suffix, srcType, ...)
     locations[i] = colourise(locations[i], colours.Location)
   end
 
-
   local joined = table.concat(locations, " \\ ")
   if hasSuffix then
     return string.format("%s: %s (%s)", prefix, joined, suffix)
@@ -401,7 +396,6 @@ function this.FormatFurnisher(trader, location, price, curt, info)
   return sFormat("<<1>> : <<2>> (<<3>>, <<4>>)", strVendor, strLoc, strPrice, strInfo)
 end
 
-
 local strScr = GetString(SI_FURC_SRC_SCRYING)
 ---Formatted Antiquities String
 ---@param pieceNum? number required amount of pieces
@@ -456,7 +450,6 @@ end
 local srcScambox = GetString(SI_FURC_SRC_SCAMBOX)
 local function fmtCrownCrate(scamboxName)
   if scamboxName and "" ~= scamboxName then
-
     return fmtGeneric(srcScambox, colourise(scamboxName, colours.Gold))
   end
 
