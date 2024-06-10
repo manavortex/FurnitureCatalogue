@@ -242,7 +242,7 @@ FurC.LuxuryFurnisher[ver.SCRIBE] = {
   },
   [193801] = { -- Ayleid Partition, Arched,
     itemPrice = 20000,
-    itemDate = "2023-05-13",
+    itemDate = "2024-06-07",
   },
   [193800] = { -- Falmer Tent, Conical,
     itemPrice = 4000,
@@ -486,7 +486,7 @@ FurC.LuxuryFurnisher[ver.TIDES] = {
   },
   [182629] = { -- Ayleid Brazier, Stone
     itemPrice = 10000,
-    itemDate = "2023-05-13",
+    itemDate = "2024-06-07",
   },
   [182628] = { -- Riekr Tent, Snowy
     itemPrice = 3500,
@@ -1758,7 +1758,7 @@ FurC.LuxuryFurnisher[ver.MARKAT] = {
   },
   [171421] = { -- Ayleid Pillar, Large Empty
     itemPrice = 14000,
-    itemDate = "2023-05-13",
+    itemDate = "2024-06-07",
   },
   [171420] = { -- Riekling Rack, Giant Bone
     itemPrice = 3000,
@@ -1806,7 +1806,7 @@ FurC.LuxuryFurnisher[ver.MARKAT] = {
   },
   [156664] = { -- Ayleid Pillar, Small Empty
     itemPrice = 5000,
-    itemDate = "2023-05-13",
+    itemDate = "2024-06-07",
   },
   [156663] = { -- Riekling Banner, Boar Pelt
     itemPrice = 4000,
@@ -2078,19 +2078,19 @@ FurC.LuxuryFurnisher[ver.SLAVES] = {
   },
   [134468] = { -- Ayleid Switch, Ancient
     itemPrice = 4000,
-    itemDate = "2023-05-13",
+    itemDate = "2024-06-07",
   },
   [134467] = { -- Culanda Stone ,Glowing
     itemPrice = 5000,
-    itemDate = "2023-05-13",
+    itemDate = "2024-06-07",
   },
   [134466] = { -- Ayleid Sconce, Empty
     itemPrice = 4000,
-    itemDate = "2023-05-13",
+    itemDate = "2024-06-07",
   },
   [134465] = { -- Varla Stone ,Glowing
     itemPrice = 5000,
-    itemDate = "2023-05-13",
+    itemDate = "2024-06-07",
   },
   [134456] = { -- Seal of Clan Tumnosh, Metal
     itemPrice = 4000,

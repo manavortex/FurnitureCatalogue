@@ -87,6 +87,7 @@ local stealable_noble = strGeneric(srcPick, strSrc("other", npc.CLASS_NOBLE))
 local stealable_swamp = strGeneric(srcSteal, nil, "loc", loc.MURKMIRE)
 local stealable_elsewhere = strGeneric(srcSteal, nil, "other", loc.NELSWEYR, loc.SELSWEYR)
 local pickpocket_necrom = strGeneric(srcPick, nil, "other", loc.TELVANNI, loc.APOCRYPHA)
+local pickpocket_weald = strGeneric(srcPick, nil, "other", loc.WEALD)
 local painting_summerset = strGeneric(srcSafe, rarityExtremely, "loc", loc.SUMMERSET)
 local painting_vvardenfell = strGeneric(
   srcDrop,
@@ -202,18 +203,18 @@ FurC.MiscItemSources[ver.WEALD] = {
   },
   
   [src.DROP] = {
-	[204800] = strGeneric(srcChest, nil, nil, loc.WEALD), -- Preparing to Entertain Painting, Wood",
-	[204801] = strGeneric(srcChest, nil, nil, loc.WEALD), -- Great Chapel of Julianos Painting, Wood",
-	[204802] = strGeneric(srcChest, nil, nil, loc.WEALD), -- Wonders of Water Painting, Wood",
-	[204803] = strGeneric(srcChest, nil, nil, loc.WEALD), -- An Alfiq in Skingrad Painting, Metal",
-	[204804] = strGeneric(srcChest, nil, nil, loc.WEALD), -- Arch to Ayleid Mysteries Painting, Wood",
-	[204805] = strGeneric(srcChest, nil, nil, loc.WEALD), -- Colovian Windmill Painting, Wood",
-	[204806] = strGeneric(srcChest, nil, nil, loc.WEALD), -- Autumn on the Gold Road Painting, Wood",
-	[204807] = strGeneric(srcChest, nil, nil, loc.WEALD), -- A Clear Day in Colovia Painting, Metal",
-	[204808] = strGeneric(srcChest, nil, nil, loc.WEALD), -- West Weald Adventures Painting, Metal",
-	[204754] = strGeneric(srcChest, nil, nil, loc.WEALD), -- Sun-Gilded Vineyard Painting, Metal",
-	[204755] = strGeneric(srcChest, nil, nil, loc.WEALD), -- Colovian Bounty Painting, Wood",
-	[204799] = strGeneric(srcChest, nil, nil, loc.WEALD), -- The Optimism of Dogs Painting, Metal",
+	[204800] = strChests(loc.WEALD), -- Preparing to Entertain Painting, Wood",
+	[204801] = strChests(loc.WEALD), -- Great Chapel of Julianos Painting, Wood",
+	[204802] = strChests(loc.WEALD), -- Wonders of Water Painting, Wood",
+	[204803] = strChests(loc.WEALD), -- An Alfiq in Skingrad Painting, Metal",
+	[204804] = strChests(loc.WEALD), -- Arch to Ayleid Mysteries Painting, Wood",
+	[204805] = strChests(loc.WEALD), -- Colovian Windmill Painting, Wood",
+	[204806] = strChests(loc.WEALD), -- Autumn on the Gold Road Painting, Wood",
+	[204807] = strChests(loc.WEALD), -- A Clear Day in Colovia Painting, Metal",
+	[204808] = strChests(loc.WEALD), -- West Weald Adventures Painting, Metal",
+	[204754] = strChests(loc.WEALD), -- Sun-Gilded Vineyard Painting, Metal",
+	[204755] = strChests(loc.WEALD), -- Colovian Bounty Painting, Wood",
+	[204799] = strChests(loc.WEALD), -- The Optimism of Dogs Painting, Metal",
 	
 	[204424] = strScry(loc.WEALD), -- Antique Map of West Weald",	
     [204423] = strScry(5, loc.WEALD), -- Music Box, Lament for the Path Not Taken",
