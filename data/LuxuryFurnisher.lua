@@ -5,8 +5,8 @@ local ver = FurC.Constants.Versioning
 -- 29 Scions of Ithelia
 FurC.LuxuryFurnisher[ver.SCIONS] = {
   [203582] = { -- Ayleid Doorway, Tall Arched
-	itemPrice = 20000,
-	itemDate = "2024-06-07",
+    itemPrice = 20000,
+    itemDate = "2024-06-07",
   },
 }
 
@@ -302,7 +302,7 @@ FurC.LuxuryFurnisher[ver.DRUID] = {
   },
   [203135] = { -- Redguard Dome, Mosaic
     itemPrice = 90000,
-	itemDate = "2024-02-18",
+    itemDate = "2024-02-18",
   },
   [192578] = { -- Orsinium Well, Snowy Grated
     itemPrice = 10000,

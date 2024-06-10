@@ -190,7 +190,7 @@ local itempacks = {
   ["sotha"] = SI_FURC_ITEMPACK_SOTHA,
   ["astula"] = SI_FURC_ITEMPACK_ASTULA,
   ["mephala"] = SI_FURC_ITEMPACK_MEPHALA,
-  ["curio"] = SI_FURC_ITEMPACK_CURIOSITIES
+  ["curio"] = SI_FURC_ITEMPACK_CURIOSITIES,
 }
 local function strPack(itempackName)
   itempackName = string.lower(itempackName)
@@ -199,24 +199,23 @@ end
 
 -- 30 Gold Road
 FurC.MiscItemSources[ver.WEALD] = {
-  [src.CROWN] = {
-  },
-  
+  [src.CROWN] = {},
+
   [src.DROP] = {
-	[204800] = strChests(loc.WEALD), -- Preparing to Entertain Painting, Wood",
-	[204801] = strChests(loc.WEALD), -- Great Chapel of Julianos Painting, Wood",
-	[204802] = strChests(loc.WEALD), -- Wonders of Water Painting, Wood",
-	[204803] = strChests(loc.WEALD), -- An Alfiq in Skingrad Painting, Metal",
-	[204804] = strChests(loc.WEALD), -- Arch to Ayleid Mysteries Painting, Wood",
-	[204805] = strChests(loc.WEALD), -- Colovian Windmill Painting, Wood",
-	[204806] = strChests(loc.WEALD), -- Autumn on the Gold Road Painting, Wood",
-	[204807] = strChests(loc.WEALD), -- A Clear Day in Colovia Painting, Metal",
-	[204808] = strChests(loc.WEALD), -- West Weald Adventures Painting, Metal",
-	[204754] = strChests(loc.WEALD), -- Sun-Gilded Vineyard Painting, Metal",
-	[204755] = strChests(loc.WEALD), -- Colovian Bounty Painting, Wood",
-	[204799] = strChests(loc.WEALD), -- The Optimism of Dogs Painting, Metal",
-	
-	[204424] = strScry(loc.WEALD), -- Antique Map of West Weald",	
+    [204800] = strChests(loc.WEALD), -- Preparing to Entertain Painting, Wood",
+    [204801] = strChests(loc.WEALD), -- Great Chapel of Julianos Painting, Wood",
+    [204802] = strChests(loc.WEALD), -- Wonders of Water Painting, Wood",
+    [204803] = strChests(loc.WEALD), -- An Alfiq in Skingrad Painting, Metal",
+    [204804] = strChests(loc.WEALD), -- Arch to Ayleid Mysteries Painting, Wood",
+    [204805] = strChests(loc.WEALD), -- Colovian Windmill Painting, Wood",
+    [204806] = strChests(loc.WEALD), -- Autumn on the Gold Road Painting, Wood",
+    [204807] = strChests(loc.WEALD), -- A Clear Day in Colovia Painting, Metal",
+    [204808] = strChests(loc.WEALD), -- West Weald Adventures Painting, Metal",
+    [204754] = strChests(loc.WEALD), -- Sun-Gilded Vineyard Painting, Metal",
+    [204755] = strChests(loc.WEALD), -- Colovian Bounty Painting, Wood",
+    [204799] = strChests(loc.WEALD), -- The Optimism of Dogs Painting, Metal",
+
+    [204424] = strScry(loc.WEALD), -- Antique Map of West Weald",
     [204423] = strScry(5, loc.WEALD), -- Music Box, Lament for the Path Not Taken",
     [204618] = strScry(loc.WEALD), -- Ayleid Arch, Wide",
     [204619] = strScry(loc.WEALD), -- Ayleid Window, Large",
@@ -229,33 +228,33 @@ FurC.MiscItemSources[ver.WEALD] = {
     [204623] = strScry(loc.WEALD), -- Colovian Tapestry, Worn",
     [204624] = strScry(loc.WEALD), -- Colovian Tapestry, Pastoral Farm",
     [204625] = strScry(loc.WEALD), -- Colovian Tapestry, Fancy Gate",
-	
-    [204416] = tribute, -- Saint's Wrath Tapestry, Large",	
+
+    [204416] = tribute, -- Saint's Wrath Tapestry, Large",
     [204413] = tribute, -- Morihaus the Archer Tapestry",
     [204414] = tribute, -- Morihaus the Archer Tapestry, Large",
-    [204415] = tribute, -- Saint's Wrath Tapestry", 
-	
-	[204736] = pickpocket_weald, -- Colovian Shovel, Rough",
-	[204737] = pickpocket_weald, -- Colovian Rake, Rough",
-	[204738] = pickpocket_weald, -- Cheesemaking Sieve, Metal",
-	[204739] = pickpocket_weald, -- Woodworking Planer, Simple",
-	[204740] = pickpocket_weald, -- Beekeeping Smoker, Handheld",
-	[204741] = pickpocket_weald, -- Glassblowing Shears, Metal",
-	[204742] = pickpocket_weald, -- Corking Hammer, Metal",
-	[204743] = pickpocket_weald, -- Cheesemaking Whisk, Wooden",
-	[204744] = pickpocket_weald, -- Winemaking Cork, Metal",
-	[204745] = pickpocket_weald, -- Corkscrew, Metal",
-	[204746] = pickpocket_weald, -- Honey Dipper, Wooden",
-	[204747] = pickpocket_weald, -- Colovian Cheese Wheel, Wax",
-	[204748] = pickpocket_weald, -- Smoked Cheese Wheel, Wax",
-	[204749] = pickpocket_weald, -- Dawnwood Spoon, Bone",
-	[204750] = pickpocket_weald, -- Dawnwood Fork, Bone",
-	[204751] = pickpocket_weald, -- Dawnwood Knife, Bone",
-	[204752] = pickpocket_weald, -- Dawnwood Serving Fork, Bone",
-	[204753] = pickpocket_weald, -- Dawnwood Carving Knife, Bone",	
-	[204836] = pickpocket_weald, -- Colovian Wine Basket, Plain", 
-	
-	[205388] = strMultiple(strCrown(2400), getHouseString(12472)), -- Colovian Windmill, Decorative",	
+    [204415] = tribute, -- Saint's Wrath Tapestry",
+
+    [204736] = pickpocket_weald, -- Colovian Shovel, Rough",
+    [204737] = pickpocket_weald, -- Colovian Rake, Rough",
+    [204738] = pickpocket_weald, -- Cheesemaking Sieve, Metal",
+    [204739] = pickpocket_weald, -- Woodworking Planer, Simple",
+    [204740] = pickpocket_weald, -- Beekeeping Smoker, Handheld",
+    [204741] = pickpocket_weald, -- Glassblowing Shears, Metal",
+    [204742] = pickpocket_weald, -- Corking Hammer, Metal",
+    [204743] = pickpocket_weald, -- Cheesemaking Whisk, Wooden",
+    [204744] = pickpocket_weald, -- Winemaking Cork, Metal",
+    [204745] = pickpocket_weald, -- Corkscrew, Metal",
+    [204746] = pickpocket_weald, -- Honey Dipper, Wooden",
+    [204747] = pickpocket_weald, -- Colovian Cheese Wheel, Wax",
+    [204748] = pickpocket_weald, -- Smoked Cheese Wheel, Wax",
+    [204749] = pickpocket_weald, -- Dawnwood Spoon, Bone",
+    [204750] = pickpocket_weald, -- Dawnwood Fork, Bone",
+    [204751] = pickpocket_weald, -- Dawnwood Knife, Bone",
+    [204752] = pickpocket_weald, -- Dawnwood Serving Fork, Bone",
+    [204753] = pickpocket_weald, -- Dawnwood Carving Knife, Bone",
+    [204836] = pickpocket_weald, -- Colovian Wine Basket, Plain",
+
+    [205388] = strMultiple(strCrown(2400), getHouseString(12472)), -- Colovian Windmill, Decorative",
   },
 }
 
@@ -263,9 +262,9 @@ FurC.MiscItemSources[ver.WEALD] = {
 FurC.MiscItemSources[ver.SCIONS] = {
   [src.CROWN] = {
     [203267] = strCrate(crates.LAMP), -- Order of the Lamp Pedestal
-	[203266] = strCrate(crates.LAMP), -- Twinkling Lights, Blue
-	[203265] = strCrate(crates.LAMP), -- Prismatic Cherry Tree
-	[203264] = strCrate(crates.LAMP), -- Cursed Curio Aether 
+    [203266] = strCrate(crates.LAMP), -- Twinkling Lights, Blue
+    [203265] = strCrate(crates.LAMP), -- Prismatic Cherry Tree
+    [203264] = strCrate(crates.LAMP), -- Cursed Curio Aether
   },
 }
 
@@ -276,19 +275,19 @@ FurC.MiscItemSources[ver.ENDLESS] = {
     [199111] = strCrate(crates.ALLMAKER), -- Fountain, Kyne's Radiance",
     [199110] = strCrate(crates.ALLMAKER), -- Snowfall, Gentle",
     [199109] = strCrate(crates.ALLMAKER), -- Boulder, Clear Ice",
-	
-	[203166] = strCrown(2800), -- Sai Sahan Statue
-	[203133] = strCrown(20),  -- Apocrypha Coral, Spiky
-	[203132] = strCrown(50), -- Mushroom, Apocrypha Fossilized	
-	[203202] = strCrown(770), -- Hermaeus Mora Banner, Large
-	
-	[203178] = strMultiple(strCrown(140), strPack("curio")), -- Apocrypha Coral, Large Teal Tube
-	[203177] = strMultiple(strCrown(140), strPack("curio")), -- Apocrypha Coral, Pink Tube
-	[203176] = strMultiple(strCrown(770), strPack("curio")), -- Apocrypha Geyser, Ink
-	[199136] = strMultiple(strCrown(130), strPack("curio")), -- Apocrypha Stalks, Scryeball Patch
-	[199135] = strPack("curio"), -- Apocrypha Pool, Inky
-	[199134] = strPack("curio"), -- Apocrypha Waterfall, Inky
-	[199133] = strPack("curio"), -- Target Daedra, Seeker
+
+    [203166] = strCrown(2800), -- Sai Sahan Statue
+    [203133] = strCrown(20), -- Apocrypha Coral, Spiky
+    [203132] = strCrown(50), -- Mushroom, Apocrypha Fossilized
+    [203202] = strCrown(770), -- Hermaeus Mora Banner, Large
+
+    [203178] = strMultiple(strCrown(140), strPack("curio")), -- Apocrypha Coral, Large Teal Tube
+    [203177] = strMultiple(strCrown(140), strPack("curio")), -- Apocrypha Coral, Pink Tube
+    [203176] = strMultiple(strCrown(770), strPack("curio")), -- Apocrypha Geyser, Ink
+    [199136] = strMultiple(strCrown(130), strPack("curio")), -- Apocrypha Stalks, Scryeball Patch
+    [199135] = strPack("curio"), -- Apocrypha Pool, Inky
+    [199134] = strPack("curio"), -- Apocrypha Waterfall, Inky
+    [199133] = strPack("curio"), -- Target Daedra, Seeker
   },
 
   [src.DROP] = {
@@ -448,7 +447,7 @@ FurC.MiscItemSources[ver.NECROM] = {
   [src.CROWN] = {
     [197624] = strCrown(1200), -- Apocryphal Shifting Sculpture",
     [197623] = strCrown(3000), -- Statue, Hermaeus Mora
-	[190942] = strCrown(1000), -- Music Box, Sheogorath Butterfly Garden
+    [190942] = strCrown(1000), -- Music Box, Sheogorath Butterfly Garden
 
     [197622] = strMultiple(strGem(400), strCrate(crates.FEATHER)), -- Constellation Projection Apparatus",
     [197621] = strMultiple(strGem(40), strCrate(crates.FEATHER)), -- Household Shrine, Meridian",
@@ -476,7 +475,7 @@ FurC.MiscItemSources[ver.NECROM] = {
     [197751] = chests_necrom, -- Sunset Fleet Painting, Wood",
     [197750] = chests_necrom, -- Telvanni Mushroom Spire Painting, Wood",
     [197749] = chests_necrom, -- Necrom Still Life Painting, Wood",
-    
+
     [197712] = strScry(loc.TELVANNI, loc.APOCRYPHA), -- Antique Map of Apocrypha",
     [197711] = strScry(loc.TELVANNI, loc.APOCRYPHA), -- Antique Map of the Telvanni Peninsula",
     [197710] = strScry(loc.TELVANNI, loc.APOCRYPHA), -- Mushroom Classification Book",
@@ -518,7 +517,7 @@ FurC.MiscItemSources[ver.SCRIBE] = {
     [194401] = strCrown(150), -- Galen Dogwood, Medium Cluster,
     [194400] = strCrown(170), -- Galen Dogwood, Large,
     [194399] = strCrown(1000), -- Music Box, Unfathomable Knowledge,
-	[190941] = strCrown(1000), -- Music Box, Direnni's Swan,
+    [190941] = strCrown(1000), -- Music Box, Direnni's Swan,
 
     [193818] = strPack("astula"), -- Shad Astula Scholar, Right,
     [193817] = strPack("astula"), -- Shad Astula Scholar, Left,
@@ -581,8 +580,7 @@ FurC.MiscItemSources[ver.DRUID] = {
 
     [190945] = strCrown(5000), -- Tree, Seasons of Y'ffre
     [190940] = strCrown(1000), -- Music Box, Songbird's Paradise",
-	[190939] = strCrown(1100), -- Music Box, Dawnbreaker's Forging
-
+    [190939] = strCrown(1100), -- Music Box, Dawnbreaker's Forging
 
     [190951] = strMultiple(strGem(100), strCrate(crates.STONELORE)), -- Target Spriggan, Robust
     [190950] = strMultiple(strGem(40), strCrate(crates.STONELORE)), -- Rose Petal Cascade
@@ -1299,7 +1297,6 @@ FurC.MiscItemSources[ver.STONET] = {
 
   [src.DROP] = {
     [171429] = strScry(loc.REACH), -- Red Eagle Cave Painting:1
-
   },
 }
 
@@ -2061,7 +2058,6 @@ FurC.MiscItemSources[ver.CLOCKWORK] = {
     [134406] = automaton_loot_cc, -- Factotum Body, Obsolete
 
     [132348] = strQuest(6075, nil, loc.CWC), -- The Precursor ; Quest: The Oscillating Son
-
   },
 
   [src.JUSTICE] = {
