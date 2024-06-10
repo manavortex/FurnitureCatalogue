@@ -7,14 +7,14 @@ local containers = FurC.Constants.Containers
 FurC.EventItems[ver.SCIONS] = {
   [events.ANNIVERSARY] = {
     [npc.EVENT] = {
-	  [203888] = { itemPrice = 1 }, -- Replica Jubilee Cake Slice 2024
-	  [203887] = { itemPrice = 1 }, -- Replica Jubilee Cake Slice 2023
-	  [203886] = { itemPrice = 1 }, -- Replica Jubilee Cake Slice 2022
-	  [203885] = { itemPrice = 1 }, -- Replica Jubilee Cake Slice 2021
-	  [203884] = { itemPrice = 1 }, -- Replica Jubilee Cake Slice 2020
-	  [203883] = { itemPrice = 1 }, -- Replica Jubilee Cake Slice 2019
-	  [203882] = { itemPrice = 1 }, -- Replica Jubilee Cake Slice 2016-2018
-	  [203829] = { itemPrice = 3 }, -- Replica Jubilee Cake 2024
+      [203888] = { itemPrice = 1 }, -- Replica Jubilee Cake Slice 2024
+      [203887] = { itemPrice = 1 }, -- Replica Jubilee Cake Slice 2023
+      [203886] = { itemPrice = 1 }, -- Replica Jubilee Cake Slice 2022
+      [203885] = { itemPrice = 1 }, -- Replica Jubilee Cake Slice 2021
+      [203884] = { itemPrice = 1 }, -- Replica Jubilee Cake Slice 2020
+      [203883] = { itemPrice = 1 }, -- Replica Jubilee Cake Slice 2019
+      [203882] = { itemPrice = 1 }, -- Replica Jubilee Cake Slice 2016-2018
+      [203829] = { itemPrice = 3 }, -- Replica Jubilee Cake 2024
     },
   },
 }
