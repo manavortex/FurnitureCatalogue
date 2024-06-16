@@ -4,6 +4,10 @@ local ver = FurC.Constants.Versioning
 
 -- 29 Scions of Ithelia
 FurC.LuxuryFurnisher[ver.SCIONS] = {
+  [203583] = { -- Ayleid Panel, Arched
+    itemPrice = 10000,
+    itemDate = "2024-06-14",
+  },
   [203582] = { -- Ayleid Doorway, Tall Arched
     itemPrice = 20000,
     itemDate = "2024-06-07",
@@ -238,7 +242,7 @@ FurC.LuxuryFurnisher[ver.SCRIBE] = {
   },
   [193802] = { -- Ayleid Constellation Stele, The Steed,
     itemPrice = 20000,
-    itemDate = "2023-05-20",
+    itemDate = "2024-06-14",
   },
   [193801] = { -- Ayleid Partition, Arched,
     itemPrice = 20000,
@@ -482,7 +486,7 @@ FurC.LuxuryFurnisher[ver.TIDES] = {
   },
   [182630] = { -- Ayleid Constellation Stele, The Lord
     itemPrice = 20000,
-    itemDate = "2023-05-20",
+    itemDate = "2024-06-14",
   },
   [182629] = { -- Ayleid Brazier, Stone
     itemPrice = 10000,
@@ -1754,7 +1758,7 @@ FurC.LuxuryFurnisher[ver.MARKAT] = {
   },
   [171422] = { -- Ayleid Constellation Stele, The Apprentice
     itemPrice = 20000,
-    itemDate = "2023-05-20",
+    itemDate = "2024-06-14",
   },
   [171421] = { -- Ayleid Pillar, Large Empty
     itemPrice = 14000,
@@ -1802,7 +1806,7 @@ FurC.LuxuryFurnisher[ver.MARKAT] = {
   },
   [156665] = { -- Ayleid Constellation Stele, The Serpent
     itemPrice = 20000,
-    itemDate = "2023-05-20",
+    itemDate = "2024-06-14",
   },
   [156664] = { -- Ayleid Pillar, Small Empty
     itemPrice = 5000,
@@ -1870,15 +1874,15 @@ FurC.LuxuryFurnisher[ver.MARKAT] = {
   },
   [141769] = { -- Ayleid Constellation Stele, The Atronach
     itemPrice = 20000,
-    itemDate = "2023-05-20",
+    itemDate = "2024-06-14",
   },
   [141768] = { -- Ayleid Constellation Stele, The Lover
     itemPrice = 20000,
-    itemDate = "2023-05-20",
+    itemDate = "2024-06-14",
   },
   [141767] = { -- Ayleid Constellation Stele, The Lady
     itemPrice = 20000,
-    itemDate = "2023-05-20",
+    itemDate = "2024-06-14",
   },
   [141766] = { -- Banner, Transmute Small
     itemPrice = 5000,
@@ -1902,15 +1906,15 @@ FurC.LuxuryFurnisher[ver.MARKAT] = {
   },
   [134471] = { -- Ayleid Constellation Stele, Warrior
     itemPrice = 20000,
-    itemDate = "2023-05-20",
+    itemDate = "2024-06-14",
   },
   [134470] = { -- Ayleid Constellation Stele, Thief
     itemPrice = 20000,
-    itemDate = "2023-05-20",
+    itemDate = "2024-06-14",
   },
   [134469] = { -- Ayleid Constellation Stele, the Mage
     itemPrice = 20000,
-    itemDate = "2023-05-20",
+    itemDate = "2024-06-14",
   },
   [134464] = { -- Riekling Bonfire, Ceremonial
     itemPrice = 4000,
