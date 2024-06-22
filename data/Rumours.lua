@@ -60,7 +60,6 @@ FurC.Rumours[ver.SCIONS] = {
   [203587] = rumourSource, -- Redguard Colonnade, Mosaic
   [203586] = rumourSource, -- Redguard Archway, Brass
   [203585] = rumourSource, -- Alinor Maple, Large Red
-  [203584] = rumourSource, -- Altmer Stable, Summerset
   [203276] = rumourSource, -- Rough Dresser
   [203275] = rumourSource, -- Fish, Silver Trout
   [203274] = rumourSource, -- Box of Tomatoes
