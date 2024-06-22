@@ -4,6 +4,10 @@ local ver = FurC.Constants.Versioning
 
 -- 29 Scions of Ithelia
 FurC.LuxuryFurnisher[ver.SCIONS] = {
+  [203584] = { -- Altmer Stable, Summerset
+    itemPrice = 60000,
+    itemDate = "2024-06-21",
+  },
   [203583] = { -- Ayleid Panel, Arched
     itemPrice = 10000,
     itemDate = "2024-06-14",
@@ -238,7 +242,7 @@ FurC.LuxuryFurnisher[ver.SCRIBE] = {
   },
   [193803] = { -- Tree, Large Pink Maple,
     itemPrice = 13000,
-    itemDate = "2023-05-27",
+    itemDate = "2024-06-21",
   },
   [193802] = { -- Ayleid Constellation Stele, The Steed,
     itemPrice = 20000,
@@ -482,7 +486,7 @@ FurC.LuxuryFurnisher[ver.TIDES] = {
   },
   [184193] = { -- Alinor Trellis, Purple Wisteria
     itemPrice = 15000,
-    itemDate = "2023-05-27",
+    itemDate = "2024-06-21",
   },
   [182630] = { -- Ayleid Constellation Stele, The Lord
     itemPrice = 20000,
@@ -1710,7 +1714,7 @@ FurC.LuxuryFurnisher[ver.FLAMES] = {
   },
   [171423] = { -- Alinor Trellis, Blue Wisteria
     itemPrice = 15000,
-    itemDate = "2022-04-30",
+    itemDate = "2024-06-21",
   },
   [151866] = { -- Alinor Maple, Sinuous
     itemPrice = 15000,
@@ -1730,19 +1734,19 @@ FurC.LuxuryFurnisher[ver.FLAMES] = {
   },
   [151862] = { -- Tree, Blue Wisteria
     itemPrice = 7500,
-    itemDate = "2023-05-27",
+    itemDate = "2024-06-21",
   },
   [151861] = { -- Tree, Purple Wisteria
     itemPrice = 9000,
-    itemDate = "2023-05-27",
+    itemDate = "2024-06-21",
   },
   [151860] = { -- Sapling, Blue Wisteria
     itemPrice = 5000,
-    itemDate = "2023-05-27",
+    itemDate = "2024-06-21",
   },
   [151859] = { -- Alinor Greenhouse, Summer
     itemPrice = 100000,
-    itemDate = "2023-05-27",
+    itemDate = "2024-06-21",
   },
 }
 
