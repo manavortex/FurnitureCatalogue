@@ -4,6 +4,10 @@ local ver = FurC.Constants.Versioning
 
 -- 29 Scions of Ithelia
 FurC.LuxuryFurnisher[ver.SCIONS] = {
+  [203585] = { -- Alinor Maple, Large Red
+    itemPrice = 10000,
+    itemDate = "2024-06-28",
+  },
   [203584] = { -- Altmer Stable, Summerset
     itemPrice = 60000,
     itemDate = "2024-06-21",
@@ -238,7 +242,7 @@ FurC.LuxuryFurnisher[ver.SCRIBE] = {
   },
   [193804] = { -- High Elf Wine Pot,
     itemPrice = 18000,
-    itemDate = "2023-06-03",
+    itemDate = "2024-06-28",
   },
   [193803] = { -- Tree, Large Pink Maple,
     itemPrice = 13000,
@@ -482,7 +486,7 @@ FurC.LuxuryFurnisher[ver.TIDES] = {
   },
   [184194] = { -- Alinor Maple, Red
     itemPrice = 4000,
-    itemDate = "2023-06-03",
+    itemDate = "2024-06-28",
   },
   [184193] = { -- Alinor Trellis, Purple Wisteria
     itemPrice = 15000,
@@ -1710,7 +1714,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
 FurC.LuxuryFurnisher[ver.FLAMES] = {
   [171424] = { -- Bush, Rhododendron
     itemPrice = 2000,
-    itemDate = "2023-06-03",
+    itemDate = "2024-06-28",
   },
   [171423] = { -- Alinor Trellis, Blue Wisteria
     itemPrice = 15000,
@@ -1718,19 +1722,19 @@ FurC.LuxuryFurnisher[ver.FLAMES] = {
   },
   [151866] = { -- Alinor Maple, Sinuous
     itemPrice = 15000,
-    itemDate = "2023-06-03",
+    itemDate = "2024-06-28",
   },
   [151865] = { -- Alinor Maple, Purple
     itemPrice = 4000,
-    itemDate = "2023-06-03",
+    itemDate = "2024-06-28",
   },
   [151864] = { -- Alinor Maple, Diminutive
     itemPrice = 4000,
-    itemDate = "2023-06-03",
+    itemDate = "2024-06-28",
   },
   [151863] = { -- Alinor Windmill, Decorative
     itemPrice = 250000,
-    itemDate = "2023-06-03",
+    itemDate = "2024-06-28",
   },
   [151862] = { -- Tree, Blue Wisteria
     itemPrice = 7500,
