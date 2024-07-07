@@ -4,6 +4,10 @@ local ver = FurC.Constants.Versioning
 
 -- 29 Scions of Ithelia
 FurC.LuxuryFurnisher[ver.SCIONS] = {
+  [203586] = { -- Redguard Archway, Brass
+    itemPrice = 3000,
+    itemDate = "2024-07-05",
+  },
   [203585] = { -- Alinor Maple, Large Red
     itemPrice = 10000,
     itemDate = "2024-06-28",
@@ -218,7 +222,7 @@ FurC.LuxuryFurnisher[ver.NECROM] = {
   },
   [193805] = { -- Yokudan Sarcophagus Base, Gilded,
     itemPrice = 25000,
-    itemDate = "2023-06-10",
+    itemDate = "2024-07-05",
   },
   [193791] = { -- Palm, Blooming Tropical,
     itemPrice = 4500,
@@ -482,7 +486,7 @@ FurC.LuxuryFurnisher[ver.TIDES] = {
   },
   [184195] = { -- Yokudan Sarcophagus Lid, Gilded
     itemPrice = 35000,
-    itemDate = "2023-06-10",
+    itemDate = "2024-07-05",
   },
   [184194] = { -- Alinor Maple, Red
     itemPrice = 4000,
@@ -970,7 +974,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [171820] = { -- Redguard Urn, Wrapped Golden
     itemPrice = 12000,
-    itemDate = "2023-06-10",
+    itemDate = "2024-07-05",
   },
   [167350] = { -- Minecart, Skeletal Remains
     itemPrice = 8000,
@@ -1094,7 +1098,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [156648] = { -- Ra Gada Funerary Statue, Miniature Ibis
     itemPrice = 15000,
-    itemDate = "2023-06-10",
+    itemDate = "2024-07-05",
   },
   [153694] = { -- Tree, Murkmire Ossuary
     itemPrice = 50000,
@@ -1704,10 +1708,6 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
     itemPrice = 5000,
     itemDate = "2023-06-17",
   },
-  [120803] = { -- Hew’s Bane Bed, Royal
-    itemPrice = 20000,
-    itemDate = "2023-06-10",
-  },
 }
 
 -- 18 Flames of Ambition
@@ -1874,7 +1874,7 @@ FurC.LuxuryFurnisher[ver.MARKAT] = {
   },
   [145470] = { -- Redguard Vase, Golden
     itemPrice = 5000,
-    itemDate = "2023-06-10",
+    itemDate = "2024-07-05",
   },
   [145469] = { -- Redguard Gazebo, Palatial Domed
     itemPrice = 75000,
@@ -1910,7 +1910,7 @@ FurC.LuxuryFurnisher[ver.MARKAT] = {
   },
   [134824] = { -- Redguard Tent, Rounded Silk
     itemPrice = 100000,
-    itemDate = "2023-06-10",
+    itemDate = "2024-07-05",
   },
   [134471] = { -- Ayleid Constellation Stele, Warrior
     itemPrice = 20000,
@@ -2002,15 +2002,15 @@ FurC.LuxuryFurnisher[ver.MARKAT] = {
   },
   [121267] = { -- Hew’s Bane Merchant’s Basket
     itemPrice = 2500,
-    itemDate = "2023-06-10",
+    itemDate = "2024-07-05",
   },
   [121266] = { -- Hew’s Bane Lantern
     itemPrice = 5000,
-    itemDate = "2023-06-10",
+    itemDate = "2024-07-05",
   },
   [120803] = { -- Hew’s Bane Bed, Royal
     itemPrice = 20000,
-    itemDate = "2019-02-23",
+    itemDate = "2024-07-05",
   },
 }
 
