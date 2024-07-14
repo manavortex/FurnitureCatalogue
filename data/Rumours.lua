@@ -57,7 +57,6 @@ FurC.Rumours[ver.SCIONS] = {
   [203590] = rumourSource, -- Flowers, Snowspray
   [203589] = rumourSource, -- Festering Coral, Large Crimson-Orange
   [203588] = rumourSource, -- Alinor Boat, Unfinished
-  [203587] = rumourSource, -- Redguard Colonnade, Mosaic
   [203276] = rumourSource, -- Rough Dresser
   [203275] = rumourSource, -- Fish, Silver Trout
   [203274] = rumourSource, -- Box of Tomatoes
