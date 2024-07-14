@@ -4,6 +4,10 @@ local ver = FurC.Constants.Versioning
 
 -- 29 Scions of Ithelia
 FurC.LuxuryFurnisher[ver.SCIONS] = {
+  [203587] = { -- Redguard Colonnade, Mosaic
+    itemPrice = 80000,
+    itemDate = "2024-07-12",
+  },
   [203586] = { -- Redguard Archway, Brass
     itemPrice = 3000,
     itemDate = "2024-07-05",
@@ -218,7 +222,7 @@ FurC.LuxuryFurnisher[ver.NECROM] = {
   },
   [193806] = { -- Redguard Window, Iron Lattice,
     itemPrice = 20000,
-    itemDate = "2023-06-17",
+    itemDate = "2024-07-12",
   },
   [193805] = { -- Yokudan Sarcophagus Base, Gilded,
     itemPrice = 25000,
@@ -482,7 +486,7 @@ FurC.LuxuryFurnisher[ver.TIDES] = {
   },
   [184196] = { -- Redguard Canopy, Striped
     itemPrice = 5000,
-    itemDate = "2023-06-17",
+    itemDate = "2024-07-12",
   },
   [184195] = { -- Yokudan Sarcophagus Lid, Gilded
     itemPrice = 35000,
@@ -970,7 +974,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [171821] = { -- Redguard Amphora, Golden
     itemPrice = 15000,
-    itemDate = "2023-06-17",
+    itemDate = "2024-07-12",
   },
   [171820] = { -- Redguard Urn, Wrapped Golden
     itemPrice = 12000,
@@ -1094,7 +1098,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [156649] = { -- Redguard Tent, Rounded Blue
     itemPrice = 100000,
-    itemDate = "2023-06-17",
+    itemDate = "2024-07-12",
   },
   [156648] = { -- Ra Gada Funerary Statue, Miniature Ibis
     itemPrice = 15000,
@@ -1238,7 +1242,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [145471] = { -- Redguard Raincatcher, Golden
     itemPrice = 35000,
-    itemDate = "2023-06-17",
+    itemDate = "2024-07-12",
   },
   [141761] = { -- Reach Sapling, Contorted Briarheart
     itemPrice = 35000,
@@ -1370,7 +1374,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [134825] = { -- Redguard Tent, Squared Silk
     itemPrice = 100000,
-    itemDate = "2023-06-17",
+    itemDate = "2024-07-12",
   },
   [132158] = { -- Witch's Remains, Offering
     itemPrice = 50000,
@@ -1698,15 +1702,15 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [120807] = { -- Hew's Bane Well
     itemPrice = 10000,
-    itemDate = "2023-06-17",
+    itemDate = "2024-07-12",
   },
   [120806] = { -- Hew'S Bane Candlestick
     itemPrice = 2500,
-    itemDate = "2023-06-17",
+    itemDate = "2024-07-12",
   },
   [120805] = { -- Hew's Bane Rug
     itemPrice = 5000,
-    itemDate = "2023-06-17",
+    itemDate = "2024-07-12",
   },
 }
 
