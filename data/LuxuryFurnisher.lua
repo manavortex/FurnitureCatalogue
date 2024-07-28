@@ -4,6 +4,10 @@ local ver = FurC.Constants.Versioning
 
 -- 29 Scions of Ithelia
 FurC.LuxuryFurnisher[ver.SCIONS] = {
+  [203589] = { -- Festering Coral, Large Crimson-Orange
+    itemPrice = 5000,
+    itemDate = "2024-07-26",
+  },
   [203588] = { -- Alinor Boat, Unfinished
     itemPrice = 4500,
     itemDate = "2024-07-19",
@@ -238,7 +242,7 @@ FurC.LuxuryFurnisher[ver.NECROM] = {
   },
   [193790] = { -- Festering Coral, Crimson-Orange,
     itemPrice = 4000,
-    itemDate = "2023-07-01",
+    itemDate = "2024-07-26",
   },
   [193789] = { -- Gonfalon Bay Dockside Bell,
     itemPrice = 18000,
@@ -482,7 +486,7 @@ FurC.LuxuryFurnisher[ver.TIDES] = {
   },
   [184198] = { -- Coral Formation, Branching Red Cluster,
     itemPrice = 1000,
-    itemDate = "2023-07-01",
+    itemDate = "2024-07-26",
   },
   [184197] = { -- Canopy, Netted,
     itemPrice = 4000,
@@ -970,7 +974,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [171823] = { -- Coral Formation, Branching Red
     itemPrice = 2000,
-    itemDate = "2023-07-01",
+    itemDate = "2024-07-26",
   },
   [171822] = { -- Harbor Winch, Treadwheel
     itemPrice = 7000,
@@ -1094,7 +1098,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [156651] = { -- Anchor, Hanging
     itemPrice = 20000,
-    itemDate = "2023-07-01",
+    itemDate = "2024-07-26",
   },
   [156650] = { -- Platform, Floating Dock
     itemPrice = 3000,
@@ -1238,7 +1242,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [145473] = { -- Antler Coral, Stout Crimson
     itemPrice = 75000,
-    itemDate = "2023-07-01",
+    itemDate = "2024-07-26",
   },
   [145472] = { -- Antler Coral, Crimson
     itemPrice = 50000,
@@ -1366,7 +1370,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [134828] = { -- Antler Coral, Branched Spiree
     itemPrice = 100000,
-    itemDate = "2023-07-01",
+    itemDate = "2024-07-26",
   },
   [134827] = { -- Mooring Line, Coiled
     itemPrice = 7500,
@@ -1534,7 +1538,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [121269] = { -- Ocean Antler Coral
     itemPrice = 7500,
-    itemDate = "2023-07-01",
+    itemDate = "2024-07-26",
   },
   [121268] = { -- Fisher's Catch of the Day Rack
     itemPrice = 5000,
@@ -1574,15 +1578,15 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [120849] = { -- Anchor
     itemPrice = 10000,
-    itemDate = "2023-07-01",
+    itemDate = "2024-07-26",
   },
   [120848] = { -- Fishing Pole Rack
     itemPrice = 2500,
-    itemDate = "2023-07-01",
+    itemDate = "2024-07-26",
   },
   [120847] = { -- Dock Winch
     itemPrice = 4000,
-    itemDate = "2023-07-01",
+    itemDate = "2024-07-26",
   },
   [120846] = { -- Dock Rope Wheel
     itemPrice = 3000,
