@@ -4,6 +4,10 @@ local ver = FurC.Constants.Versioning
 
 -- 29 Scions of Ithelia
 FurC.LuxuryFurnisher[ver.SCIONS] = {
+  [203590] = { -- Flowers, Snowspray
+    itemPrice = 10000,
+    itemDate = "2024-08-02",
+  },
   [203589] = { -- Festering Coral, Large Crimson-Orange
     itemPrice = 5000,
     itemDate = "2024-07-26",
@@ -238,7 +242,7 @@ FurC.LuxuryFurnisher[ver.NECROM] = {
   },
   [193791] = { -- Palm, Blooming Tropical,
     itemPrice = 4500,
-    itemDate = "2023-07-08",
+    itemDate = "2024-08-02",
   },
   [193790] = { -- Festering Coral, Crimson-Orange,
     itemPrice = 4000,
@@ -482,7 +486,7 @@ FurC.LuxuryFurnisher[ver.TIDES] = {
   },
   [184199] = { -- Mushroom, Twisted Tufted Cap
     itemPrice = 4500,
-    itemDate = "2023-07-08",
+    itemDate = "2024-08-02",
   },
   [184198] = { -- Coral Formation, Branching Red Cluster,
     itemPrice = 1000,
@@ -970,7 +974,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [171824] = { -- Mushroom, Tufted Cap
     itemPrice = 5000,
-    itemDate = "2023-07-08",
+    itemDate = "2024-08-02",
   },
   [171823] = { -- Coral Formation, Branching Red
     itemPrice = 2000,
@@ -1094,7 +1098,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [156652] = { -- Garlas Alpinia, Branching
     itemPrice = 2000,
-    itemDate = "2023-07-08",
+    itemDate = "2024-08-02",
   },
   [156651] = { -- Anchor, Hanging
     itemPrice = 20000,
@@ -1238,7 +1242,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [145474] = { -- Plant, Flytrap
     itemPrice = 4000,
-    itemDate = "2023-07-08",
+    itemDate = "2024-08-02",
   },
   [145473] = { -- Antler Coral, Stout Crimson
     itemPrice = 75000,
@@ -1366,7 +1370,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [134829] = { -- Fern, Woody Slough
     itemPrice = 3000,
-    itemDate = "2023-07-08",
+    itemDate = "2024-08-02",
   },
   [134828] = { -- Antler Coral, Branched Spiree
     itemPrice = 100000,
@@ -1558,19 +1562,19 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [120886] = { -- White Hosta
     itemPrice = 3000,
-    itemDate = "2023-07-08",
+    itemDate = "2024-08-02",
   },
   [120885] = { -- Alik'r Cactus
     itemPrice = 2000,
-    itemDate = "2023-07-08",
+    itemDate = "2024-08-02",
   },
   [120884] = { -- Buckthorn
     itemPrice = 4000,
-    itemDate = "2023-07-08",
+    itemDate = "2024-08-02",
   },
   [120883] = { -- Voidflower
     itemPrice = 5000,
-    itemDate = "2023-07-08",
+    itemDate = "2024-08-02",
   },
   [120850] = { -- Harbor Floats
     itemPrice = 5000,
