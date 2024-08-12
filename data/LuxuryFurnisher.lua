@@ -4,6 +4,10 @@ local ver = FurC.Constants.Versioning
 
 -- 29 Scions of Ithelia
 FurC.LuxuryFurnisher[ver.SCIONS] = {
+  [203591] = { -- Flowers, Dibella's Tears
+    itemPrice = 2000,
+    itemDate = "2024-08-09",
+  },
   [203590] = { -- Flowers, Snowspray
     itemPrice = 10000,
     itemDate = "2024-08-02",
@@ -314,7 +318,7 @@ FurC.LuxuryFurnisher[ver.SCRIBE] = {
 FurC.LuxuryFurnisher[ver.DRUID] = {
   [193792] = { -- Plant, Galen Palm Cluster,
     itemPrice = 2000,
-    itemDate = "2023-07-14",
+    itemDate = "2024-08-09",
   },
   [192583] = { -- Clockwork Planter, Brassbloom
     itemPrice = 7000,
@@ -482,7 +486,7 @@ FurC.LuxuryFurnisher[ver.TIDES] = {
   },
   [184200] = { -- Mushroom, Giant Glowtendril
     itemPrice = 20000,
-    itemDate = "2023-07-15",
+    itemDate = "2024-08-09",
   },
   [184199] = { -- Mushroom, Twisted Tufted Cap
     itemPrice = 4500,
@@ -970,7 +974,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [171825] = { -- Mushroom, Large Glowtendril
     itemPrice = 20000,
-    itemDate = "2023-07-14",
+    itemDate = "2024-08-09",
   },
   [171824] = { -- Mushroom, Tufted Cap
     itemPrice = 5000,
@@ -1094,7 +1098,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [156653] = { -- Plant, Luminescent Valeflower
     itemPrice = 2500,
-    itemDate = "2023-07-14",
+    itemDate = "2024-08-09",
   },
   [156652] = { -- Garlas Alpinia, Branching
     itemPrice = 2000,
@@ -1238,7 +1242,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [145475] = { -- Plant, Soulsplinter Weed
     itemPrice = 12500,
-    itemDate = "2023-07-14",
+    itemDate = "2024-08-09",
   },
   [145474] = { -- Plant, Flytrap
     itemPrice = 4000,
@@ -1366,7 +1370,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [134830] = { -- Flowers, Blue Starbloom
     itemPrice = 15000,
-    itemDate = "2023-07-14",
+    itemDate = "2024-08-09",
   },
   [134829] = { -- Fern, Woody Slough
     itemPrice = 3000,
@@ -1550,15 +1554,15 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [120889] = { -- Glow Bush, Purple
     itemPrice = 20000,
-    itemDate = "2023-07-14",
+    itemDate = "2024-08-09",
   },
   [120888] = { -- Bat Bloom
     itemPrice = 15000,
-    itemDate = "2023-07-15",
+    itemDate = "2024-08-09",
   },
   [120887] = { -- Fan Bush
     itemPrice = 1000,
-    itemDate = "2023-07-15",
+    itemDate = "2024-08-09",
   },
   [120886] = { -- White Hosta
     itemPrice = 3000,
