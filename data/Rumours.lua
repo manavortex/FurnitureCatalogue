@@ -53,7 +53,6 @@ FurC.Rumours[ver.SCIONS] = {
   [203594] = rumourSource, -- Druidic Cage, Ivy
   [203593] = rumourSource, -- Deadlands Brazier
   [203592] = rumourSource, -- Orc Brazier
-  [203591] = rumourSource, -- Flowers, Dibella's Tears
   [203276] = rumourSource, -- Rough Dresser
   [203275] = rumourSource, -- Fish, Silver Trout
   [203274] = rumourSource, -- Box of Tomatoes
