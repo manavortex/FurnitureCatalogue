@@ -4,6 +4,10 @@ local ver = FurC.Constants.Versioning
 
 -- 29 Scions of Ithelia
 FurC.LuxuryFurnisher[ver.SCIONS] = {
+  [203592] = { -- Orc Brazier
+    itemPrice = 12000,
+    itemDate = "2024-08-16",
+  },
   [203591] = { -- Flowers, Dibella's Tears
     itemPrice = 2000,
     itemDate = "2024-08-09",
@@ -234,7 +238,7 @@ FurC.LuxuryFurnisher[ver.NECROM] = {
   },
   [196204] = { -- Blackwood Brazier, Cold-Flame",
     itemPrice = 15000,
-    itemDate = "2023-07-22",
+    itemDate = "2024-08-16",
   },
   [193806] = { -- Redguard Window, Iron Lattice,
     itemPrice = 20000,
@@ -482,7 +486,7 @@ FurC.LuxuryFurnisher[ver.TIDES] = {
   },
   [184201] = { -- Elsweyr Brazier, Cold-Flame Column
     itemPrice = 20000,
-    itemDate = "2023-07-22",
+    itemDate = "2024-08-16",
   },
   [184200] = { -- Mushroom, Giant Glowtendril
     itemPrice = 20000,
@@ -970,7 +974,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [171826] = { -- Brazier, Stone Cold-Flame
     itemPrice = 30000,
-    itemDate = "2023-07-21",
+    itemDate = "2024-08-16",
   },
   [171825] = { -- Mushroom, Large Glowtendril
     itemPrice = 20000,
@@ -1094,7 +1098,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [156654] = { -- Alinor Shrine, Magnus
     itemPrice = 50000,
-    itemDate = "2023-07-21",
+    itemDate = "2024-08-16",
   },
   [156653] = { -- Plant, Luminescent Valeflower
     itemPrice = 2500,
@@ -1234,11 +1238,11 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [145477] = { -- Alinor Pedestal, Shrine
     itemPrice = 10000,
-    itemDate = "2023-07-28",
+    itemDate = "2024-08-16",
   },
   [145476] = { -- Alinor Shrine, Trinimac
     itemPrice = 50000,
-    itemDate = "2023-07-21",
+    itemDate = "2024-08-16",
   },
   [145475] = { -- Plant, Soulsplinter Weed
     itemPrice = 12500,
@@ -1366,7 +1370,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [134831] = { -- Altar of the Divines
     itemPrice = 50000,
-    itemDate = "2023-07-21",
+    itemDate = "2024-08-16",
   },
   [134830] = { -- Flowers, Blue Starbloom
     itemPrice = 15000,
@@ -1658,7 +1662,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [120823] = { -- Sigil Stand
     itemPrice = 15000,
-    itemDate = "2023-07-28",
+    itemDate = "2024-08-16",
   },
   [120822] = { -- Sigil, Zenithar
     itemPrice = 20000,
@@ -1674,19 +1678,19 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [120818] = { -- Sigil, Julianos
     itemPrice = 20000,
-    itemDate = "2023-07-21",
+    itemDate = "2024-08-16",
   },
   [120817] = { -- Sigil, Dibella
     itemPrice = 20000,
-    itemDate = "2023-07-21",
+    itemDate = "2024-08-16",
   },
   [120816] = { -- Sigil, Arkay
     itemPrice = 20000,
-    itemDate = "2023-07-21",
+    itemDate = "2024-08-16",
   },
   [120815] = { -- Sigil, Akatosh
     itemPrice = 20000,
-    itemDate = "2023-07-21",
+    itemDate = "2024-08-16",
   },
   [120814] = { -- Statue, Order
     itemPrice = 25000,
