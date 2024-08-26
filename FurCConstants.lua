@@ -74,9 +74,10 @@ FurC.Constants.Versioning = {
   ENDLESS = getNextIdFor("VERSIONING"), -- 28 Secrets of the Telvanni
   SCIONS = getNextIdFor("VERSIONING"), -- 29 Scions of Ithelia
   WEALD = getNextIdFor("VERSIONING"), -- 30 Gold Road
+  BASE43 = getNextIdFor("VERSIONING"), -- 31 Base Game Update 43
 }
 
-FurC.Constants.Versioning.LATEST = FurC.Constants.Versioning.WEALD
+FurC.Constants.Versioning.LATEST = FurC.Constants.Versioning.BASE43
 
 -- Location Ids, mix of ingame strings and translations, more control over translations
 FurC.Constants.Locations = {
@@ -483,7 +484,10 @@ FURC_ENDLESS = FurC.Constants.Versioning.ENDLESS -- 28 Secrets of the Telvanni
 FURC_SCIONS = FurC.Constants.Versioning.SCIONS -- 29 Scions of Ithelia
 
 -- @warning deprecated
-FURC_SCIONS = FurC.Constants.Versioning.WEALD -- 30 Gold Road
+FURC_WEALD = FurC.Constants.Versioning.WEALD -- 30 Gold Road
+
+-- @warning deprecated
+FURC_BASE43 = FurC.Constants.Versioning.BASE43 -- 31 Update 43 Base Game Patch
 
 -- @warning deprecated
 FURC_LATEST = FurC.Constants.Versioning.LATEST
