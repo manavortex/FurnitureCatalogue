@@ -5,6 +5,9 @@ local ver = FurC.Constants.Versioning
 local rumourSource = GetString(SI_FURC_SRC_RUMOUR_ITEM)
 local dataminedUnclear = GetString(SI_FURC_DATAMINED_UNCLEAR)
 
+-- 31 Base Game Update 43
+FurC.Rumours[ver.BASE43] = {}
+
 -- 30 Gold Road
 FurC.Rumours[ver.WEALD] = {
   [204422] = rumourSource, -- Music Box, Ascension to the Ruby Throne",
