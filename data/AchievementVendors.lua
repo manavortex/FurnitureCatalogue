@@ -1231,6 +1231,20 @@ local bookList = {
 }
 
 local miscVendor = merge(merge(merge(structures, boxes), laundry), fishing_trip)
+
+-- 31 Base Game Update 43
+FurC.AchievementVendors[ver.BASE43] = {
+  [loc.DUNG_IA] = {
+    [npc.AF] = {
+      [203600] = { -- Scribing Altar
+        itemPrice = 30000,
+        currency = CURT_ENDLESS_DUNGEON,
+        achievement = 3985, -- Inheritor of the Scholarium
+      },
+    },
+  },
+}
+
 -- 30 Gold Road
 FurC.AchievementVendors[ver.WEALD] = {
   [loc.WEALD] = {
