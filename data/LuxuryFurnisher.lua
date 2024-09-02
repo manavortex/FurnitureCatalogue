@@ -4,6 +4,10 @@ local ver = FurC.Constants.Versioning
 
 -- 29 Scions of Ithelia
 FurC.LuxuryFurnisher[ver.SCIONS] = {
+  [203594] = { -- Druidic Cage, Ivy
+    itemPrice = 8000,
+    itemDate = "2024-08-30",
+  },
   [203593] = { -- Deadlands Brazier
     itemPrice = 10000,
     itemDate = "2024-08-23",
@@ -238,7 +242,7 @@ FurC.LuxuryFurnisher[ver.NECROM] = {
   },
   [196206] = { -- Daedric Post, Spike"
     itemPrice = 3000,
-    itemDate = "2023-08-04",
+    itemDate = "2024-08-30",
   },
   [196204] = { -- Blackwood Brazier, Cold-Flame",
     itemPrice = 15000,
@@ -482,7 +486,7 @@ FurC.LuxuryFurnisher[ver.TIDES] = {
   },
   [187785] = { -- Vampiric Table, Flat Exsanguination
     itemPrice = 35000,
-    itemDate = "2023-08-04",
+    itemDate = "2024-08-30",
   },
   [184202] = { -- Altmer Brazier, Cold-Flame Column
     itemPrice = 20000,
@@ -970,7 +974,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [171828] = { -- Vampiric Table, Exsanguination
     itemPrice = 35000,
-    itemDate = "2023-08-04",
+    itemDate = "2024-08-30",
   },
   [171827] = { -- Brazier, Dragon-Headed Cold-Flame
     itemPrice = 25000,
@@ -1082,7 +1086,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [156668] = { -- Skeletal Remains, Slumped Over
     itemPrice = 10000,
-    itemDate = "2023-08-04",
+    itemDate = "2024-08-30",
   },
   [156667] = { -- Gate, Spiked Iron
     itemPrice = 15000,
@@ -1234,7 +1238,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [145479] = { -- Iron Maiden, Occupied
     itemPrice = 100000,
-    itemDate = "2023-08-04",
+    itemDate = "2024-08-30",
   },
   [145478] = { -- Alinor Shrine, Y'ffre
     itemPrice = 50000,
@@ -1366,7 +1370,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [134833] = { -- Gibbet, Hanging Hooked
     itemPrice = 75000,
-    itemDate = "2023-08-04",
+    itemDate = "2024-08-30",
   },
   [134832] = { -- Basin of the Divines
     itemPrice = 35000,
@@ -1650,15 +1654,15 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [120827] = { -- Iron Maiden, Chained
     itemPrice = 20000,
-    itemDate = "2023-08-04",
+    itemDate = "2024-08-30",
   },
   [120826] = { -- Iron Cross
     itemPrice = 10000,
-    itemDate = "2023-08-04",
+    itemDate = "2024-08-30",
   },
   [120825] = { -- Iron Cross, Large
     itemPrice = 25000,
-    itemDate = "2023-08-04",
+    itemDate = "2024-08-30",
   },
   [120824] = { -- Body Cage
     itemPrice = 5000,
