@@ -20,7 +20,7 @@ local strings = {
   SI_FURC_TOMBS = "Ancestor tombs and ruins on Vvardenfell",
   SI_FURC_TRADERS_EVENT = "Event Merchant^nd,from",
   SI_FURC_TRADERS_LUXF = "Luxury Furnisher^nd,from",
-  -- 329 ENTRIES THE SAME IN BOTH LANGUAGES
+  -- 331 ENTRIES THE SAME IN BOTH LANGUAGES
   SI_FURC_ADD_FAVE = " Add Favorite",
   SI_FURC_DATAMINED_UNCLEAR = "This item has been seen in-game, but it's not yet known where you can get it.",
   SI_FURC_DB = "The Dark Brotherhood supplies vendor hands these out ",
@@ -70,6 +70,8 @@ local strings = {
   SI_FURC_FILTER_SRC_SOLD_WRIT_TT = "Obtainable for Master Writs in your alliance's capital",
   SI_FURC_FILTER_VERSION_ALTMER = "Summerset",
   SI_FURC_FILTER_VERSION_ALTMER_TT = "Still think the Dunmer are bad?",
+  SI_FURC_FILTER_VERSION_BASE43 = "Base Game Update 43",
+  SI_FURC_FILTER_VERSION_BASE43_TT = "Home tours are here",
   SI_FURC_FILTER_VERSION_BASED = "Base Game Patch",
   SI_FURC_FILTER_VERSION_BASED_TT = "When you run out of names",
   SI_FURC_FILTER_VERSION_BLACKW = "Blackwood",
