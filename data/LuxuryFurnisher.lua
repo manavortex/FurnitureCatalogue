@@ -4,6 +4,10 @@ local ver = FurC.Constants.Versioning
 
 -- 29 Scions of Ithelia
 FurC.LuxuryFurnisher[ver.SCIONS] = {
+  [203595] = { -- Vampiric Cage, Hanging
+    itemPrice = 8000,
+    itemDate = "2024-09-06",
+  },
   [203594] = { -- Druidic Cage, Ivy
     itemPrice = 8000,
     itemDate = "2024-08-30",
@@ -238,7 +242,7 @@ FurC.LuxuryFurnisher[ver.NECROM] = {
   },
   [196207] = { -- Daedric Turret, Flame Tower",
     itemPrice = 35000,
-    itemDate = "2023-08-11",
+    itemDate = "2024-09-06",
   },
   [196206] = { -- Daedric Post, Spike"
     itemPrice = 3000,
@@ -482,7 +486,7 @@ FurC.LuxuryFurnisher[ver.TIDES] = {
   },
   [187786] = { -- Rubble Pile, Skeletal Remains
     itemPrice = 4000,
-    itemDate = "2023-08-11",
+    itemDate = "2024-09-06",
   },
   [187785] = { -- Vampiric Table, Flat Exsanguination
     itemPrice = 35000,
@@ -970,7 +974,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [171829] = { -- Laboratory Instruments
     itemPrice = 5000,
-    itemDate = "2023-08-11",
+    itemDate = "2024-09-06",
   },
   [171828] = { -- Vampiric Table, Exsanguination
     itemPrice = 35000,
@@ -1090,7 +1094,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [156667] = { -- Gate, Spiked Iron
     itemPrice = 15000,
-    itemDate = "2023-08-11",
+    itemDate = "2024-09-06",
   },
   [156657] = { -- Azure Plasm Cage, Hanging
     itemPrice = 100000,
@@ -1230,11 +1234,11 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [145481] = { -- Corpse, Burned Sprawled
     itemPrice = 2500,
-    itemDate = "2023-08-11",
+    itemDate = "2024-09-06",
   },
   [145480] = { -- Corpse, Burned Seated
     itemPrice = 2500,
-    itemDate = "2023-08-11",
+    itemDate = "2024-09-06",
   },
   [145479] = { -- Iron Maiden, Occupied
     itemPrice = 100000,
@@ -1362,11 +1366,11 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [134835] = { -- Orcish Burial Urn, Exhumed
     itemPrice = 20000,
-    itemDate = "2023-08-11",
+    itemDate = "2024-09-06",
   },
   [134834] = { -- Bandages, Blood-Soaked
     itemPrice = 2000,
-    itemDate = "2023-08-11",
+    itemDate = "2024-09-06",
   },
   [134833] = { -- Gibbet, Hanging Hooked
     itemPrice = 75000,
@@ -1646,11 +1650,11 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [120829] = { -- Torture Rack
     itemPrice = 5000,
-    itemDate = "2023-08-11",
+    itemDate = "2024-09-06",
   },
   [120828] = { -- Torture Wheel
     itemPrice = 100000,
-    itemDate = "2023-08-11",
+    itemDate = "2024-09-06",
   },
   [120827] = { -- Iron Maiden, Chained
     itemPrice = 20000,
@@ -1666,7 +1670,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [120824] = { -- Body Cage
     itemPrice = 5000,
-    itemDate = "2023-08-11",
+    itemDate = "2024-09-06",
   },
   [120823] = { -- Sigil Stand
     itemPrice = 15000,
