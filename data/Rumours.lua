@@ -52,7 +52,6 @@ FurC.Rumours[ver.SCIONS] = {
   [203598] = rumourSource, -- Flowers, Desert Blush
   [203597] = rumourSource, -- Shrubs, Speckled Forest Cluster
   [203596] = rumourSource, -- Ferns, Desert Cluster
-  [203595] = rumourSource, -- Vampiric Cage, Hanging
   [203276] = rumourSource, -- Rough Dresser
   [203275] = rumourSource, -- Fish, Silver Trout
   [203274] = rumourSource, -- Box of Tomatoes
