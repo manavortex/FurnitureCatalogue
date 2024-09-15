@@ -2,6 +2,14 @@ FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
 local ver = FurC.Constants.Versioning
 
+-- 30 Gold Road
+FurC.LuxuryFurnisher[ver.WEALD] = {
+  [204626] = { -- Coldharbour Gravestone, Etched",
+    itemPrice = 4000,
+    itemDate = "2024-09-13",
+  },
+}
+
 -- 29 Scions of Ithelia
 FurC.LuxuryFurnisher[ver.SCIONS] = {
   [203595] = { -- Vampiric Cage, Hanging
@@ -234,11 +242,11 @@ FurC.LuxuryFurnisher[ver.NECROM] = {
   },
   [196209] = { -- Sarcophagus, Stone Lid"
     itemPrice = 4500,
-    itemDate = "2023-08-18",
+    itemDate = "2024-09-13",
   },
   [196208] = { -- Sarcophagus, Stone Base",
     itemPrice = 3500,
-    itemDate = "2023-08-18",
+    itemDate = "2024-09-13",
   },
   [196207] = { -- Daedric Turret, Flame Tower",
     itemPrice = 35000,
@@ -482,7 +490,7 @@ FurC.LuxuryFurnisher[ver.TIDES] = {
   },
   [187787] = { -- Mausoleum Pillar, Tall
     itemPrice = 10000,
-    itemDate = "2023-08-18",
+    itemDate = "2024-09-13",
   },
   [187786] = { -- Rubble Pile, Skeletal Remains
     itemPrice = 4000,
@@ -970,7 +978,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [171830] = { -- Mausoleum Bookcase, Filled
     itemPrice = 15000,
-    itemDate = "2023-08-18",
+    itemDate = "2024-09-13",
   },
   [171829] = { -- Laboratory Instruments
     itemPrice = 5000,
@@ -1102,7 +1110,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [156656] = { -- Pedestal, Dark Stone
     itemPrice = 4000,
-    itemDate = "2023-08-18",
+    itemDate = "2024-09-13",
   },
   [156655] = { -- Alinor Shrine, Phynaster
     itemPrice = 50000,
@@ -1230,7 +1238,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [145482] = { -- Wheelbarrow, Bones
     itemPrice = 1000,
-    itemDate = "2023-08-18",
+    itemDate = "2024-09-13",
   },
   [145481] = { -- Corpse, Burned Sprawled
     itemPrice = 2500,
@@ -1354,15 +1362,15 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [134838] = { -- Necromancer's Spire, Alcove
     itemPrice = 75000,
-    itemDate = "2023-08-18",
+    itemDate = "2024-09-13",
   },
   [134837] = { -- Necromancer's Spire, Narrow
     itemPrice = 50000,
-    itemDate = "2023-08-18",
+    itemDate = "2024-09-13",
   },
   [134836] = { -- Necromancer's Brazier, Flame
     itemPrice = 10000,
-    itemDate = "2023-08-18",
+    itemDate = "2024-09-13",
   },
   [134835] = { -- Orcish Burial Urn, Exhumed
     itemPrice = 20000,
