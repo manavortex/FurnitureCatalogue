@@ -11,7 +11,6 @@ FurC.Rumours[ver.BASE43] = {}
 -- 30 Gold Road
 FurC.Rumours[ver.WEALD] = {
   [204422] = rumourSource, -- Music Box, Ascension to the Ruby Throne",
-  [204626] = rumourSource, -- Coldharbour Gravestone, Etched",
   [204627] = rumourSource, -- Coldharbour Column, Skulls",
   [204628] = rumourSource, -- Apocrypha Statue, Lurker's Maw",
   [204629] = rumourSource, -- Dwarven Statue, Guardian",
