@@ -10,22 +10,21 @@ FurC.Rumours[ver.BASE43] = {}
 
 -- 30 Gold Road
 FurC.Rumours[ver.WEALD] = {
-  [204422] = rumourSource, -- Music Box, Ascension to the Ruby Throne",
-  [204627] = rumourSource, -- Coldharbour Column, Skulls",
-  [204628] = rumourSource, -- Apocrypha Statue, Lurker's Maw",
-  [204629] = rumourSource, -- Dwarven Statue, Guardian",
-  [204630] = rumourSource, -- Fountain, Wolf Head",
-  [204631] = rumourSource, -- Order of the Hour Banner, Large",
-  [204632] = rumourSource, -- Dwarven Archway, Temple",
-  [204633] = rumourSource, -- Dwarven Puzzle Cube, Lady Ascendant",
-  [204634] = rumourSource, -- Reach Totem, Twig Crescent",
   [204635] = rumourSource, -- Reach Totem, Twig Archway",
-  [204407] = rumourSource, -- Daedric Statue, Sanguine",
-  [204408] = rumourSource, -- Target Serpent's Image, Trial",
-  [204409] = rumourSource, -- Dark Anchor Gateway",
-  [204410] = rumourSource, -- Five Companions Tome",
-  [204411] = rumourSource, -- Coldharbour Sentinel",
+  [204634] = rumourSource, -- Reach Totem, Twig Crescent",
+  [204633] = rumourSource, -- Dwarven Puzzle Cube, Lady Ascendant",
+  [204632] = rumourSource, -- Dwarven Archway, Temple",
+  [204631] = rumourSource, -- Order of the Hour Banner, Large",
+  [204630] = rumourSource, -- Fountain, Wolf Head",
+  [204629] = rumourSource, -- Dwarven Statue, Guardian",
+  [204628] = rumourSource, -- Apocrypha Statue, Lurker's Maw",
+  [204422] = rumourSource, -- Music Box, Ascension to the Ruby Throne",
   [204412] = rumourSource, -- Revelry Sparkles",
+  [204411] = rumourSource, -- Coldharbour Sentinel",
+  [204410] = rumourSource, -- Five Companions Tome",
+  [204409] = rumourSource, -- Dark Anchor Gateway",
+  [204408] = rumourSource, -- Target Serpent's Image, Trial",
+  [204407] = rumourSource, -- Daedric Statue, Sanguine",
 }
 
 -- 29 Scions of Ithelia
