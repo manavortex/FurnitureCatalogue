@@ -4,6 +4,10 @@ local ver = FurC.Constants.Versioning
 
 -- 30 Gold Road
 FurC.LuxuryFurnisher[ver.WEALD] = {
+  [204627] = { -- Coldharbour Column, Skulls",
+    itemPrice = 15000, -- Gold
+    itemDate = "2024-09-20",
+  },
   [204626] = { -- Coldharbour Gravestone, Etched",
     itemPrice = 4000,
     itemDate = "2024-09-13",
@@ -238,7 +242,7 @@ FurC.LuxuryFurnisher[ver.NECROM] = {
   },
   [196210] = { -- Necrom Coffin",
     itemPrice = 17000,
-    itemDate = "2023-08-25",
+    itemDate = "2024-09-20",
   },
   [196209] = { -- Sarcophagus, Stone Lid"
     itemPrice = 4500,
@@ -486,7 +490,7 @@ FurC.LuxuryFurnisher[ver.TIDES] = {
   },
   [187788] = { -- Skull Candles, Triple
     itemPrice = 10000,
-    itemDate = "2023-08-25",
+    itemDate = "2024-09-20",
   },
   [187787] = { -- Mausoleum Pillar, Tall
     itemPrice = 10000,
@@ -974,7 +978,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [171831] = { --Mad Architect's Medallion
     itemPrice = 2500,
-    itemDate = "2023-08-25",
+    itemDate = "2024-09-20",
   },
   [171830] = { -- Mausoleum Bookcase, Filled
     itemPrice = 15000,
@@ -1106,7 +1110,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [156657] = { -- Azure Plasm Cage, Hanging
     itemPrice = 100000,
-    itemDate = "2023-08-25",
+    itemDate = "2024-09-20",
   },
   [156656] = { -- Pedestal, Dark Stone
     itemPrice = 4000,
@@ -1234,7 +1238,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [145483] = { -- Column, Ossuary
     itemPrice = 20000,
-    itemDate = "2023-08-25",
+    itemDate = "2024-09-20",
   },
   [145482] = { -- Wheelbarrow, Bones
     itemPrice = 1000,
@@ -1350,15 +1354,15 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [134841] = { -- Necromancer's Spire, Huge
     itemPrice = 100000,
-    itemDate = "2023-08-25",
+    itemDate = "2024-09-20",
   },
   [134840] = { -- Necromancer's Spire, Compact
     itemPrice = 25000,
-    itemDate = "2023-08-25",
+    itemDate = "2024-09-20",
   },
   [134839] = { -- Necromancer's Brazier, Cold Flame
     itemPrice = 10000,
-    itemDate = "2023-08-25",
+    itemDate = "2024-09-20",
   },
   [134838] = { -- Necromancer's Spire, Alcove
     itemPrice = 75000,
