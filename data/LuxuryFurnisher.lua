@@ -4,6 +4,10 @@ local ver = FurC.Constants.Versioning
 
 -- 30 Gold Road
 FurC.LuxuryFurnisher[ver.WEALD] = {
+  [204628] = { -- Apocrypha Statue, Lurker's Maw
+    itemPrice = 15000, -- Gold
+    itemDate = "2024-09-27",
+  },
   [204627] = { -- Coldharbour Column, Skulls",
     itemPrice = 15000, -- Gold
     itemDate = "2024-09-20",
@@ -238,7 +242,7 @@ FurC.LuxuryFurnisher[ver.NECROM] = {
   },
   [196211] = { -- Apocrypha Statue, Lurker",
     itemPrice = 22500,
-    itemDate = "2023-09-01",
+    itemDate = "2024-09-27",
   },
   [196210] = { -- Necrom Coffin",
     itemPrice = 17000,
@@ -486,7 +490,7 @@ FurC.LuxuryFurnisher[ver.TIDES] = {
   },
   [187789] = { -- Daedric Statue, Mephala
     itemPrice = 25000,
-    itemDate = "2023-09-01",
+    itemDate = "2024-09-27",
   },
   [187788] = { -- Skull Candles, Triple
     itemPrice = 10000,
@@ -974,7 +978,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [171832] = { -- Dark Elf Statue, St. Olms
     itemPrice = 35000,
-    itemDate = "2023-09-01",
+    itemDate = "2024-09-27",
   },
   [171831] = { --Mad Architect's Medallion
     itemPrice = 2500,
@@ -1098,7 +1102,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [159447] = { -- Imperial Statue, Legion Champion
     itemPrice = 20000,
-    itemDate = "2023-09-01",
+    itemDate = "2024-09-27",
   },
   [156668] = { -- Skeletal Remains, Slumped Over
     itemPrice = 10000,
@@ -1234,7 +1238,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [145484] = { -- Dark Elf Statue, Ordinator
     itemPrice = 20000,
-    itemDate = "2023-09-01",
+    itemDate = "2024-09-27",
   },
   [145483] = { -- Column, Ossuary
     itemPrice = 20000,
@@ -1346,11 +1350,11 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [134843] = { -- Ra Gada Statue, Battlemage
     itemPrice = 25000,
-    itemDate = "2023-09-01",
+    itemDate = "2024-09-27",
   },
   [134842] = { -- Ra Gada Statue, Blademaster
     itemPrice = 25000,
-    itemDate = "2023-09-01",
+    itemDate = "2024-09-27",
   },
   [134841] = { -- Necromancer's Spire, Huge
     itemPrice = 100000,
@@ -1726,7 +1730,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [120812] = { -- Statue, Light
     itemPrice = 25000,
-    itemDate = "2023-09-01",
+    itemDate = "2024-09-27",
   },
   [120811] = { -- Statue, Justice
     itemPrice = 25000,
@@ -1734,11 +1738,11 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [120810] = { -- Statue, Faith
     itemPrice = 25000,
-    itemDate = "2023-09-01",
+    itemDate = "2024-09-27",
   },
   [120809] = { -- Statue Base, Square
     itemPrice = 2500,
-    itemDate = "2023-09-01",
+    itemDate = "2024-09-27",
   },
   [120808] = { -- Statue Base, Circular
     itemPrice = 2500,
