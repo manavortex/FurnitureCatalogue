@@ -4,6 +4,10 @@ local ver = FurC.Constants.Versioning
 
 -- 30 Gold Road
 FurC.LuxuryFurnisher[ver.WEALD] = {
+  [204629] = { -- Dwarven Statue, Guardian",
+    itemPrice = 20000,
+    itemDate = "2024-10-04",
+  },
   [204628] = { -- Apocrypha Statue, Lurker's Maw
     itemPrice = 15000, -- Gold
     itemDate = "2024-09-27",
@@ -238,7 +242,7 @@ FurC.LuxuryFurnisher[ver.NECROM] = {
   },
   [196212] = { -- Apocrypha Statue, Mouth of Mora",
     itemPrice = 17500,
-    itemDate = "2023-09-08",
+    itemDate = "2024-10-04",
   },
   [196211] = { -- Apocrypha Statue, Lurker",
     itemPrice = 22500,
@@ -486,7 +490,7 @@ FurC.LuxuryFurnisher[ver.TIDES] = {
   },
   [187790] = { -- Statue, Stendarr
     itemPrice = 35000,
-    itemDate = "2023-09-08",
+    itemDate = "2024-10-04",
   },
   [187789] = { -- Daedric Statue, Mephala
     itemPrice = 25000,
@@ -974,7 +978,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [171833] = { -- Dark Elf Statue, St. Delyn
     itemPrice = 35000,
-    itemDate = "2023-09-08",
+    itemDate = "2024-10-04",
   },
   [171832] = { -- Dark Elf Statue, St. Olms
     itemPrice = 35000,
@@ -1098,7 +1102,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [159448] = { -- Breton Statue, Arkay
     itemPrice = 20000,
-    itemDate = "2023-09-08",
+    itemDate = "2024-10-04",
   },
   [159447] = { -- Imperial Statue, Legion Champion
     itemPrice = 20000,
@@ -1234,7 +1238,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [145485] = { -- Dark Elf Statue, Knight
     itemPrice = 20000,
-    itemDate = "2023-09-08",
+    itemDate = "2024-10-04",
   },
   [145484] = { -- Dark Elf Statue, Ordinator
     itemPrice = 20000,
@@ -1346,7 +1350,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [134844] = { -- Ra Gada Statue, Forward Scout
     itemPrice = 25000,
-    itemDate = "2023-09-08",
+    itemDate = "2024-10-04",
   },
   [134843] = { -- Ra Gada Statue, Battlemage
     itemPrice = 25000,
@@ -1722,11 +1726,11 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [120814] = { -- Statue, Order
     itemPrice = 25000,
-    itemDate = "2023-09-08",
+    itemDate = "2024-10-04",
   },
   [120813] = { -- Statue, Truth
     itemPrice = 25000,
-    itemDate = "2023-09-08",
+    itemDate = "2024-10-04",
   },
   [120812] = { -- Statue, Light
     itemPrice = 25000,
@@ -1734,7 +1738,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [120811] = { -- Statue, Justice
     itemPrice = 25000,
-    itemDate = "2023-09-08",
+    itemDate = "2024-10-04",
   },
   [120810] = { -- Statue, Faith
     itemPrice = 25000,
@@ -1746,7 +1750,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [120808] = { -- Statue Base, Circular
     itemPrice = 2500,
-    itemDate = "2023-09-08",
+    itemDate = "2024-10-04",
   },
   [120807] = { -- Hew's Bane Well
     itemPrice = 10000,

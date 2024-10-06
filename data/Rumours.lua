@@ -16,7 +16,6 @@ FurC.Rumours[ver.WEALD] = {
   [204632] = rumourSource, -- Dwarven Archway, Temple",
   [204631] = rumourSource, -- Order of the Hour Banner, Large",
   [204630] = rumourSource, -- Fountain, Wolf Head",
-  [204629] = rumourSource, -- Dwarven Statue, Guardian",
   [204422] = rumourSource, -- Music Box, Ascension to the Ruby Throne",
   [204412] = rumourSource, -- Revelry Sparkles",
   [204411] = rumourSource, -- Coldharbour Sentinel",
