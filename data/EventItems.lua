@@ -3,6 +3,19 @@ local events = FurC.Constants.Events
 local npc = FurC.Constants.NPC
 local containers = FurC.Constants.Containers
 
+-- 31 Base Game Update 43
+FurC.EventItems[ver.BASE43] = {
+  [events.UNDAUNTED] = {
+    [containers.UNDAUNTEDBOX] = {
+      [208112] = true, -- Rug of the Undaunted, Rectangular
+      [208110] = true, -- Tankard of Undaunted Victory, Infernal
+      [208108] = true, -- Tankard of Undaunted Victory, Green
+      [208107] = true, -- Wind Chimes, Undaunted Glory
+      [208106] = true, -- Stuffed Troll Head, Ivy-Adorned
+    },
+  },
+}
+
 -- 28 Scions of Ithelia
 FurC.EventItems[ver.SCIONS] = {
   [events.ANNIVERSARY] = {
