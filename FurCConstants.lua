@@ -75,9 +75,10 @@ FurC.Constants.Versioning = {
   SCIONS = getNextIdFor("VERSIONING"), -- 29 Scions of Ithelia
   WEALD = getNextIdFor("VERSIONING"), -- 30 Gold Road
   BASE43 = getNextIdFor("VERSIONING"), -- 31 Base Game Update 43
+  BASE44 = getNextIdFor("VERSIONING"), -- 32 Base Game Update 44
 }
 
-FurC.Constants.Versioning.LATEST = FurC.Constants.Versioning.BASE43
+FurC.Constants.Versioning.LATEST = FurC.Constants.Versioning.BASE44
 
 -- Location Ids, mix of ingame strings and translations, more control over translations
 FurC.Constants.Locations = {
@@ -488,6 +489,9 @@ FURC_WEALD = FurC.Constants.Versioning.WEALD -- 30 Gold Road
 
 -- @warning deprecated
 FURC_BASE43 = FurC.Constants.Versioning.BASE43 -- 31 Update 43 Base Game Patch
+
+-- @warning deprecated
+FURC_BASE44 = FurC.Constants.Versioning.BASE44 -- 32 Update 44 Base Game Patch
 
 -- @warning deprecated
 FURC_LATEST = FurC.Constants.Versioning.LATEST
