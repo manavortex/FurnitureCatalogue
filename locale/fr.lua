@@ -205,7 +205,7 @@ local strings = {
   SI_FURC_VERBOSE_SCANNING_CHARS = "Ne pas analyser les fichiers, scanner la connaissance des personnages maintenant...",
   SI_FURC_VERBOSE_SCANNING_DATA_FILE = "Furniture Catalogue: Analyse des fichiers de données...",
   SI_FURC_VERBOSE_STARTUP = "Furniture Catalogue: Si vous manquez de recettes, veuillez déclencher une analyse de votre artisan de meubles en cliquant sur le bouton Actualiser dans l'UI.",
-  -- 145 ENTRIES THE SAME IN BOTH LANGUAGES
+  -- 147 ENTRIES THE SAME IN BOTH LANGUAGES
   SI_FURC_DB_EQUIP = "with equipment",
   SI_FURC_EVENT_ANNIVERSARY = "Anniversary Jubilee",
   SI_FURC_EVENT_JESTER = "Jester's Festival",
@@ -217,6 +217,8 @@ local strings = {
   SI_FURC_FILTER_VERSION_ALTMER = "Summerset",
   SI_FURC_FILTER_VERSION_BASE43 = "Base Game Update 43",
   SI_FURC_FILTER_VERSION_BASE43_TT = "Home tours are here",
+  SI_FURC_FILTER_VERSION_BASE44 = "Base Game Update 44",
+  SI_FURC_FILTER_VERSION_BASE44_TT = "2-sided BGs",
   SI_FURC_FILTER_VERSION_BASED = "Base Game Patch",
   SI_FURC_FILTER_VERSION_BASED_TT = "When you run out of names",
   SI_FURC_FILTER_VERSION_BLACKW = "Blackwood",
