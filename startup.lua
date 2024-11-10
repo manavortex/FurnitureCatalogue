@@ -183,6 +183,7 @@ this.DropdownData = {
     [ver.SCIONS] = GetString(SI_FURC_FILTER_VERSION_SCIONS),
     [ver.WEALD] = GetString(SI_FURC_FILTER_VERSION_WEALD),
     [ver.BASE43] = GetString(SI_FURC_FILTER_VERSION_BASE43),
+    [ver.BASE44] = GetString(SI_FURC_FILTER_VERSION_BASE44),
   },
 
   TooltipsVersion = {
@@ -217,6 +218,7 @@ this.DropdownData = {
     [ver.SCIONS] = GetString(SI_FURC_FILTER_VERSION_SCIONS_TT),
     [ver.WEALD] = GetString(SI_FURC_FILTER_VERSION_WEALD_TT),
     [ver.BASE43] = GetString(SI_FURC_FILTER_VERSION_BASE43_TT),
+    [ver.BASE44] = GetString(SI_FURC_FILTER_VERSION_BASE44_TT),
   },
 
   ChoicesCharacter = {
