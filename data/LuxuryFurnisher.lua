@@ -4,6 +4,10 @@ local ver = FurC.Constants.Versioning
 
 -- 30 Gold Road
 FurC.LuxuryFurnisher[ver.WEALD] = {
+  [204632] = { -- Dwarven Archway, Temple",
+    itemPrice = 4500,
+    itemDate = "2024-11-08",
+  },
   [204629] = { -- Dwarven Statue, Guardian",
     itemPrice = 20000,
     itemDate = "2024-10-04",
@@ -230,7 +234,7 @@ FurC.LuxuryFurnisher[ver.BASED] = {
 FurC.LuxuryFurnisher[ver.NECROM] = {
   [198048] = { -- Markarth Barrier, Low
     itemPrice = 18000,
-    itemDate = "2023-09-29",
+    itemDate = "2024-11-08",
   },
   [196214] = { -- Order of the Hour Rug, Winged",
     itemPrice = 15000,
@@ -474,7 +478,7 @@ FurC.LuxuryFurnisher[ver.DEPTHS] = {
   },
   [187793] = { -- Blackreach Gate, Large
     itemPrice = 30000,
-    itemDate = "2023-09-29",
+    itemDate = "2024-11-08",
   },
   [187792] = { -- Imperial Archway, Cemetery
     itemPrice = 15000,
@@ -966,7 +970,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [175762] = { -- Dwarven Hatch, Sealed
     itemPrice = 12000,
-    itemDate = "2023-09-29",
+    itemDate = "2024-11-08",
   },
   [175761] = { -- Imperial Curtains, Heavy
     itemPrice = 12000,
@@ -1086,7 +1090,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [159454] = { -- Dwarven Crucible, Heavy
     itemPrice = 4000,
-    itemDate = "2023-09-29",
+    itemDate = "2024-11-08",
   },
   [159451] = { -- Hourglass Banner, Akatosh
     itemPrice = 12000,
@@ -1226,7 +1230,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [147648] = { -- Dwarven Press Bed, Forge-Sized
     itemPrice = 22000,
-    itemDate = "2023-09-29",
+    itemDate = "2024-11-08",
   },
   [145487] = { -- Banner, Order of the Hour
     itemPrice = 12000,
@@ -1338,7 +1342,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [139092] = { -- Dwarven Engine, Fused
     itemPrice = 24000,
-    itemDate = "2023-09-29",
+    itemDate = "2024-11-08",
   },
   [134846] = { -- Brotherhood Carpet, Large
     itemPrice = 15000,
@@ -1546,7 +1550,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [126564] = { -- Dwarven Clock, Deactivated
     itemPrice = 15000,
-    itemDate = "2023-09-29",
+    itemDate = "2024-11-08",
   },
   [126563] = { -- Dwarven Orrery, Reference
     itemPrice = 25000,
@@ -1558,11 +1562,11 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [126561] = { -- Dwarven Pillar, Forged
     itemPrice = 10000,
-    itemDate = "2023-09-29",
+    itemDate = "2024-11-08",
   },
   [126560] = { -- Dwarven fountain, forged
     itemPrice = 50000,
-    itemDate = "2023-09-29",
+    itemDate = "2024-11-08",
   },
   [126559] = { -- Dwarven Schematics, technical
     itemPrice = 8000,

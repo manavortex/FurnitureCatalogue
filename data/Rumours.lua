@@ -13,7 +13,6 @@ FurC.Rumours[ver.WEALD] = {
   [204635] = rumourSource, -- Reach Totem, Twig Archway",
   [204634] = rumourSource, -- Reach Totem, Twig Crescent",
   [204633] = rumourSource, -- Dwarven Puzzle Cube, Lady Ascendant",
-  [204632] = rumourSource, -- Dwarven Archway, Temple",
   [204631] = rumourSource, -- Order of the Hour Banner, Large",
   [204630] = rumourSource, -- Fountain, Wolf Head",
   [204422] = rumourSource, -- Music Box, Ascension to the Ruby Throne",
