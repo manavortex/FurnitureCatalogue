@@ -149,6 +149,8 @@ local function getTooltipsSource()
 end
 this.GetTooltipsSource = getTooltipsSource
 
+-- TODO #REFACTOR Just auto generate those from Constants.Versioning ¯\_(ツ)_/¯
+
 -- [UPGRADING GAME VERSIONS, PTS compatibility]
 this.DropdownData = {
   ChoicesVersion = {
@@ -184,6 +186,7 @@ this.DropdownData = {
     [ver.WEALD] = GetString(SI_FURC_FILTER_VERSION_WEALD),
     [ver.BASE43] = GetString(SI_FURC_FILTER_VERSION_BASE43),
     [ver.BASE44] = GetString(SI_FURC_FILTER_VERSION_BASE44),
+    [ver.FALLBAN] = GetString(SI_FURC_FILTER_VERSION_FALLBAN),
   },
 
   TooltipsVersion = {
@@ -219,6 +222,7 @@ this.DropdownData = {
     [ver.WEALD] = GetString(SI_FURC_FILTER_VERSION_WEALD_TT),
     [ver.BASE43] = GetString(SI_FURC_FILTER_VERSION_BASE43_TT),
     [ver.BASE44] = GetString(SI_FURC_FILTER_VERSION_BASE44_TT),
+    [ver.FALLBAN] = GetString(SI_FURC_FILTER_VERSION_FALLBAN_TT),
   },
 
   ChoicesCharacter = {

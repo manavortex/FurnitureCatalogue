@@ -42,6 +42,8 @@ FurC.Constants.ItemSources = {
   FESTIVAL_DROP = getNextIdFor("ITEM_SOURCES"), -- 18
 }
 
+-- TODO #REFACTOR Switch version numbering to the same as game update numbers
+
 -- versioning
 FurC.Constants.Versioning = {
   NONE = getNextIdFor("VERSIONING"), -- 1 off
@@ -76,9 +78,10 @@ FurC.Constants.Versioning = {
   WEALD = getNextIdFor("VERSIONING"), -- 30 Gold Road
   BASE43 = getNextIdFor("VERSIONING"), -- 31 Base Game Update 43
   BASE44 = getNextIdFor("VERSIONING"), -- 32 Base Game Update 44
+  FALLBAN = getNextIdFor("VERSIONING"), -- 33 Fallen Banners (U45)
 }
 
-FurC.Constants.Versioning.LATEST = FurC.Constants.Versioning.BASE44
+FurC.Constants.Versioning.LATEST = FurC.Constants.Versioning.FALLBAN
 
 -- Location Ids, mix of ingame strings and translations, more control over translations
 FurC.Constants.Locations = {
