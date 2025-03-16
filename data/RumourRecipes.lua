@@ -3,9 +3,7 @@
 	This list will make sure they don't show up under "Recipes: Unknown" and drive the OCD people up the walls
 ]]
 FurC.RumourRecipes = {
-  [211039] = 211039, -- Blueprint: Colovian Keg, Gigantic Wine
   [211038] = 211038, -- Design: Dawnwood Platter, Feast
-  [211037] = 211037, -- Sketch: Colovian Mirror, Standing
   [211036] = 211036, -- Praxis: Colovian Glassblower's Furnace
   [211035] = 211035, -- Pattern: Colovian Tapestry, Red Diamond
   [211034] = 211034, -- Diagram: Colovian Chandelier, Grapes

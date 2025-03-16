@@ -197,6 +197,13 @@ local function strPack(itempackName)
   return zo_strformat(GetString(SI_FURC_SRC_ITEMPACK), GetString(itempacks[itempackName]))
 end
 
+FurC.MiscItemSources[ver.BASE44] = {
+  [src.DROP] = {
+    [211505] = strQuest(nil, "Tanlorin rapport"), -- Letter from Tanlorin
+    [211503] = strQuest(nil, "Zerith-Var rapport"), -- Letter from Zerith-var
+  },
+}
+
 -- 30 Gold Road
 FurC.MiscItemSources[ver.WEALD] = {
   [src.CROWN] = {},
