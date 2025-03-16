@@ -35,13 +35,21 @@ FurC.RecipeSources = {
 }
 
 for versionNo, rolisRecipes in pairs(FurC.RolisRecipes) do
+  FurC.Rolis = FurC.Rolis or {}
+  FurC.Rolis[versionNo] = FurC.Rolis[versionNo] or {}
   for recipeId, itemPrice in pairs(rolisRecipes) do
     FurC.RecipeSources[recipeId] = strFurnisher(npc.ROLIS, loc.ANY_CAPITAL, itemPrice, CURT_WRIT_VOUCHERS)
+    -- Workaround to show blueprints in list
+    FurC.Rolis[versionNo][recipeId] = itemPrice
   end
 end
 
 for versionNo, faustinaRecipes in pairs(FurC.FaustinaRecipes) do
+  FurC.Faustina = FurC.Faustina or {}
+  FurC.Faustina[versionNo] = FurC.Faustina[versionNo] or {}
   for recipeId, itemPrice in pairs(faustinaRecipes) do
     FurC.RecipeSources[recipeId] = strFurnisher(npc.FAUSTINA, loc.ANY_CAPITAL, itemPrice, CURT_WRIT_VOUCHERS, 1801)
+    -- Workaround to show blueprints in list
+    FurC.Faustina[versionNo][recipeId] = itemPrice
   end
 end
