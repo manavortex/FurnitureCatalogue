@@ -259,11 +259,15 @@ FurC.Constants.NPC = {
 FurC.Constants.CrownCrates = {
   -- Source: https://en.uesp.net/wiki/Online:Crown_Crates
 
-  CARNIVALE = GetCrownCrateName(0), -- TBA
-  DB = GetCrownCrateName(0), -- TBA
-  MIRROR = GetCrownCrateName(0), -- TBA
+  -- ids not confirmed ingame yet
+  AKA_ALDU = GetCrownCrateName(63), -- 2025-09, Akatosh vs. Alduin
+  CARNAVAL = GetCrownCrateName(62), -- 2025-06, Carnaval
 
-  DIAMOND = GetCrownCrateName(59), -- 2024-07
+  MIRROR = GetCrownCrateName(61), -- 2025-03, Mirrormoor
+  DB = GetCrownCrateName(60), -- 2024-12, Dark Brotherhood
+
+  -- confirmed ids
+  DIAMOND = GetCrownCrateName(59), -- 2024-07, Diamond Anniversary
   LAMP = GetCrownCrateName(58), -- 2024-04
   ALLMAKER = GetCrownCrateName(57), -- 2023-12
   ARMIGER = GetCrownCrateName(55), -- 2023-09

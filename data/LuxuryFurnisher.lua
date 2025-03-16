@@ -8,6 +8,50 @@ FurC.LuxuryFurnisher[ver.FALLBAN] = {
     itemPrice = 4500,
     itemDate = "2025-03-14",
   },
+  [210885] = { -- Apocrypha Plant, Papyrus Cluster
+    itemPrice = 2500,
+    itemDate = "2025-03-07",
+  },
+  [210884] = { -- Plant, Tall Galen Palm Cluster
+    itemPrice = 4500,
+    itemDate = "2025-02-28",
+  },
+  [210883] = { -- Skyrim Beehive, Thatch
+    itemPrice = 3000,
+    itemDate = "2025-02-21",
+  },
+  [210882] = { -- Dwarven Lamppost, Reachfolk Adorned
+    itemPrice = 4500,
+    itemDate = "2025-02-14",
+  },
+  [210881] = { -- Serpent Door, Metal
+    itemPrice = 24500,
+    itemDate = "2025-02-08",
+  },
+  [210880] = { -- Serpent Column, Right
+    itemPrice = 20000,
+    itemDate = "2025-01-31",
+  },
+  [210879] = { -- Serpent Column, Left
+    itemPrice = 20000,
+    itemDate = "2025-01-31",
+  },
+  [210878] = { -- Glass Crystal, Opaque Pillar
+    itemPrice = 20000,
+    itemDate = "2025-01-24",
+  },
+  [210877] = { -- Obsidian Deposit, Smooth
+    itemPrice = 15000,
+    itemDate = "2025-01-17",
+  },
+  [210874] = { -- Necrom Urn, White
+    itemPrice = 10000,
+    itemDate = "2025-01-10",
+  },
+  [210873] = { -- Necrom Funerary Offering, Incense
+    itemPrice = 7500,
+    itemDate = "2025-01-03",
+  },
 }
 
 -- 30 Gold Road
@@ -15,6 +59,10 @@ FurC.LuxuryFurnisher[ver.WEALD] = {
   [204632] = { -- Dwarven Archway, Temple",
     itemPrice = 4500,
     itemDate = "2024-11-08",
+  },
+  [204630] = { -- Fountain, Wolf Head
+    itemPrice = 40000,
+    itemDate = "2024-10-11",
   },
   [204629] = { -- Dwarven Statue, Guardian",
     itemPrice = 20000,
@@ -148,17 +196,21 @@ FurC.LuxuryFurnisher[ver.ENDLESS] = {
     itemPrice = 150000,
     itemDate = "2025-03-14",
   },
+  [203138] = { -- Apocrypha Plant, Feather Fern
+    itemPrice = 1500,
+    itemDate = "2025-03-07",
+  },
   [203134] = { -- Wedding Planter, Octagonal
     itemPrice = 20000,
     itemDate = "2024-02-09",
   },
   [203137] = { -- Apocrypha Plant, Crimson
     itemPrice = 3000,
-    itemDate = "2024-02-02",
+    itemDate = "2025-02-28",
   },
   [203136] = { -- Reach Totem, Mammoth Rib
     itemPrice = 4500,
-    itemDate = "2024-01-26",
+    itemDate = "2025-02-28",
   },
   [199122] = { -- Redguard Bottle, Glowing
     itemPrice = 15000,
@@ -190,15 +242,15 @@ FurC.LuxuryFurnisher[ver.BASED] = {
   },
   [198056] = { -- Necrom Urn, Blue Elegant
     itemPrice = 12000,
-    itemDate = "2023-12-15",
+    itemDate = "2025-01-10",
   },
   [198055] = { -- Necrom Funerary Offering, Mushrooms
     itemPrice = 800,
-    itemDate = "2023-12-08",
+    itemDate = "2025-01-03",
   },
   [198054] = { -- Necrom Funerary Pyre, Logs
     itemPrice = 6000,
-    itemDate = "2023-12-08",
+    itemDate = "2025-01-03",
   },
   [198049] = { -- Elsweyr Door, Lunar Reverence
     itemPrice = 50000,
@@ -870,39 +922,39 @@ FurC.LuxuryFurnisher[ver.DEADL] = {
   },
   [121272] = { -- Soul Gem, Great
     itemPrice = 20000,
-    itemDate = "2023-12-29",
+    itemDate = "2025-01-24",
   },
   [120845] = { -- Craglorn Sword Sconce
     itemPrice = 5000,
-    itemDate = "2024-01-12",
+    itemDate = "2025-02-08",
   },
   [120844] = { -- Craglorn Brazier, Ornate
     itemPrice = 15000,
-    itemDate = "2024-01-12",
+    itemDate = "2025-02-08",
   },
   [120843] = { -- Craglorn Skull, Carved
     itemPrice = 35000,
-    itemDate = "2024-01-12",
+    itemDate = "2025-02-08",
   },
   [120842] = { -- Craglorn Chair, Serpent
     itemPrice = 2500,
-    itemDate = "2024-01-05",
+    itemDate = "2025-01-31",
   },
   [120841] = { -- Craglorn Urn, Standing
     itemPrice = 7500,
-    itemDate = "2024-01-05",
+    itemDate = "2025-01-31",
   },
   [120840] = { -- Craglorn Coffer, Ornate
     itemPrice = 5000,
-    itemDate = "2024-01-05",
+    itemDate = "2025-01-31",
   },
   [120834] = { -- Blue Flame Brazier
     itemPrice = 5000,
-    itemDate = "2023-12-29",
+    itemDate = "2025-01-24",
   },
   [120832] = { -- Blue Crystal Spire
     itemPrice = 12000,
-    itemDate = "2023-12-29",
+    itemDate = "2025-01-24",
   },
   [118292] = { -- Elk Head, Wall Mount
     itemPrice = 20000,
@@ -1186,7 +1238,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [151947] = { -- Dark Elf Ash Garden, Communal
     itemPrice = 15000,
-    itemDate = "2023-12-08",
+    itemDate = "2025-01-03",
   },
   [151946] = { -- Flower, Coda
     itemPrice = 3000,
@@ -1318,15 +1370,15 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [139101] = { -- Blue Crystal Cluster, Large
     itemPrice = 20000,
-    itemDate = "2023-12-22",
+    itemDate = "2025-01-17",
   },
   [139100] = { -- Dark Elf Ash Garden, Familial
     itemPrice = 10000,
-    itemDate = "2023-12-15",
+    itemDate = "2025-01-10",
   },
   [139099] = { -- Dark Elf Brazier, Ancestral Tomb
     itemPrice = 15000,
-    itemDate = "2023-12-08",
+    itemDate = "2025-01-03",
   },
   [139097] = { -- Spiral Skein Glowstalks, Sprouts
     itemPrice = 8000,
@@ -1582,7 +1634,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [121273] = { -- Soul Gem, Grand
     itemPrice = 5000,
-    itemDate = "2023-12-22",
+    itemDate = "2025-01-17",
   },
   [121271] = { -- Brotherhood Tapestry
     itemPrice = 10000,
@@ -1670,15 +1722,15 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
   },
   [120833] = { -- Blue Crystal Fragments
     itemPrice = 8000,
-    itemDate = "2023-12-22",
+    itemDate = "2025-01-17",
   },
   [120831] = { -- Blue Crystal Cluster
     itemPrice = 10000,
-    itemDate = "2023-12-22",
+    itemDate = "2025-01-17",
   },
   [120830] = { -- Blue Flame Candles
     itemPrice = 2500,
-    itemDate = "2023-12-22",
+    itemDate = "2025-01-17",
   },
   [120829] = { -- Torture Rack
     itemPrice = 5000,
