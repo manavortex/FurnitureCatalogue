@@ -6,6 +6,21 @@ FurC.FaustinaRecipes = FurC.FaustinaRecipes or {}
 
 local ver = FurC.Constants.Versioning
 
+FurC.Faustina[ver.FALLBAN] = {
+  [212567] = 125, -- Sketch: Guardian Key, Replica
+  [212566] = 125, -- Praxis: Ayleid Sconce, Winged Floor
+  [212565] = 125, -- Diagram: Ayleid Window, Turquoise Glass
+  [212564] = 125, -- Formula: Dawnwood Hut, Partial
+  [212563] = 125, -- Design: Colovian Grape Vat, Large
+  [212562] = 125, -- Blueprint: Colovian Wine Press
+  [212561] = 125, -- Pattern: Wood Elf Tent, Saplings
+}
+
+FurC.Faustina[ver.BASE43] = {
+  [211039] = 125, -- Blueprint: Colovian Keg, Gigantic Wine
+  [211037] = 125, -- Sketch: Colovian Mirror, Standing
+}
+
 -- 28 Secrets of the Telvanni
 FurC.Faustina[ver.ENDLESS] = {
   [203556] = 1500, -- Grandmaster Jewelry Station

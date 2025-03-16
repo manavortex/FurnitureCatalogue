@@ -38,14 +38,6 @@ FurC.Recipes[ver.FALLBAN] = {
   212612,
   -- colovian
   212617,
-  -- rolis
-  212561,
-  212562,
-  212563,
-  212564,
-  212565,
-  212566,
-  212567,
 }
 
 FurC.Recipes[ver.BASE44] = {
