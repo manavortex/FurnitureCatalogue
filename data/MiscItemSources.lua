@@ -197,10 +197,38 @@ local function strPack(itempackName)
   return zo_strformat(GetString(SI_FURC_SRC_ITEMPACK), GetString(itempacks[itempackName]))
 end
 
+-- 33 Fallen Banners
+FurC.MiscItemSources[ver.FALLBAN] = {
+  [src.CROWN] = {
+    [212419] = strCrate(crates.CARNAVAL), -- Carnaval Window, Stained Glass
+    [212418] = strCrate(crates.CARNAVAL), -- Sanguine's Wall
+    [212417] = strCrate(crates.CARNAVAL), -- Carnaval Stage
+    [212416] = strCrate(crates.CARNAVAL), -- Lightning Wall
+  },
+}
+
+-- 32 Base Game Update 44
 FurC.MiscItemSources[ver.BASE44] = {
+  [src.CROWN] = {
+    [211302] = strCrate(crates.MIRROR), -- Mirrormoor Wall Sconce
+    [211301] = strCrate(crates.MIRROR), -- Replica Fate-Thread Fracture
+    [211300] = strCrate(crates.MIRROR), -- Target Tho'at Replicanum, Robust
+    [211299] = strCrate(crates.MIRROR), -- Fargrave Miasma Censer
+  },
+
   [src.DROP] = {
     [211505] = strQuest(nil, "Tanlorin rapport"), -- Letter from Tanlorin
     [211503] = strQuest(nil, "Zerith-Var rapport"), -- Letter from Zerith-var
+  },
+}
+
+-- 31 Base Game Update 43
+FurC.MiscItemSources[ver.BASE43] = {
+  [src.CROWN] = {
+    [208125] = strCrate(crates.DB), -- Hollowsoul Arrangement
+    [208124] = strCrate(crates.DB), -- Ardor's Cascade
+    [208123] = strCrate(crates.DB), -- Bloodfont of Sithis
+    [208122] = strCrate(crates.DB), -- Vision of the Bloodmoon
   },
 }
 

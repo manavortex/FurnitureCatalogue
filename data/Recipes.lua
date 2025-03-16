@@ -2297,7 +2297,6 @@ FurC.Recipes[ver.MORROWIND] = {
   126898, -- Dwarven Sconce, Barred
   126894, -- Dwarven Chandelier, Framework
   126866, -- Dwarven Pew, Refined
-  121305, -- Redguard Chandelier, Dark
   127068, -- Redoran Fork, Wooden
   127072, -- Indoril Banner, Sotha Sil
   126983, -- Telvanni Nightstand, Organic
@@ -2338,7 +2337,6 @@ FurC.Recipes[ver.MORROWIND] = {
   126915, -- Dres Trestle, Corridor
   126897, -- Dwarven Sconce, Powered
   126893, -- Dwarven Chandelier, Braced
-  121313, -- Wood Elf Throne, Vine
   126968, -- Redoran Table, Kitchen
   126913, -- Hlaalu Armchair, Polished
   127090, -- Indoril Lantern, Hanging
@@ -2433,7 +2431,6 @@ FurC.Recipes[ver.MORROWIND] = {
   126836, -- Daedric Bench, Ashen
   126952, -- Hlaalu End Table, Formal Turtle
   126984, -- Telvanni Desk, Organic
-  121304, -- Redguard Chandelier, Grated
   126982, -- Telvanni Sofa, Organic
   126981, -- Telvanni Throne, Organic
   126980, -- Telvanni Armchair, Organic
@@ -2515,7 +2512,6 @@ FurC.Recipes[ver.MORROWIND] = {
   126872, -- Dwarven Bowl, Forged
   126908, -- Hlaalu Bench, Mossy Cushion
   126868, -- Dwarven Bookcase, Full
-  121366, -- Orcish Tapestry, Hunt
   126892, -- Dwarven Chandelier, Barred
   126948, -- Hlaalu Dresser, Scroll Drawers
   126864, -- Dwarven Engine, Switch
@@ -3566,8 +3562,6 @@ FurC.Recipes[ver.HOMESTEAD] = {
   -- 116214, -- Nord Banner, Bear
   -- 115786, -- Argonian Skiff, Common Reed
 
-  121207, -- Orcish Table with Fur
-
   121372, -- Noble Standing Cauldron
   121059, -- Rough Cup, Empty
 
@@ -3578,18 +3572,4 @@ FurC.Recipes[ver.HOMESTEAD] = {
   121304, -- Redguard Chandelier, Grated
   121366, -- Orcish Tapestry, Hunt
   121365, -- High Elf Tapestry, Gilded
-
-  -- Rolis's recipes
-  121200, -- Cabinet, Poisonmaker's
-  121166, -- Podium, Skinning
-  121168, -- Tools, Case
-  121199, -- Mortar and Pestle
-  121214, -- Orcish Skull Goblet, Full
-  121163, -- Apparatus, Boiler
-  121197, -- Bottle, Poison Elixir
-  121164, -- Case of Vials
-  121209, -- Orcish Tapestry, Spear
-  121207, -- Orcish Table with Fur
-  121315, -- Target Skeleton, Robust Humanoid
-  119592, -- Target Skeleton, Humanoid
 }
