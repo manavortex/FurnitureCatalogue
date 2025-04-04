@@ -1,7 +1,6 @@
 local filterDisabled = "disables this filter"
 local strings = {
   -- ////// START : DON'T REMOVE THIS LINE
-  -- 354 ENTRIES THE SAME IN BOTH LANGUAGES
   SI_FURC_ADD_FAVE = "お気に入りに追加",
   SI_FURC_DATAMINED_UNCLEAR = "ゲーム内に存在はしていますが、入手方法は不明です。",
   SI_FURC_DB = "闇の一党の配達人から確率で入手",
@@ -163,7 +162,6 @@ local strings = {
   SI_FURC_ITEMPACK_VIVEC = "ヴィベク卿",
   SI_FURC_ITEMPACK_WINDOWS = "聖なる窓",
   SI_FURC_ITEMPACK_ZENI = "ゼニタール礼拝堂",
-  SI_FURC_LABEL_ENTRIES = " entries -",
   SI_FURC_LOC_ANY = "どこでも^X",
   SI_FURC_LOC_ANY_CAPITAL = "各地の首都",
   SI_FURC_LOC_ANY_CITY = "いずれかの街",
@@ -190,7 +188,6 @@ local strings = {
   SI_FURC_LOC_WSKYRIM_SOLI_DH = "ソリチュードのドラゴンの炉",
   SI_FURC_LOOT_HARVEST = "植物素材を採取時に確率で入手",
   SI_FURC_LOOT_HARVEST_WOOD = "木工素材を採取時に確率で入手",
-  SI_FURC_MENU_HEADER = "- |cD3B830Furniture|r:",
   SI_FURC_NPC_AUTOMATON = "オートマトン^n",
   SI_FURC_PART_OF = "<<1>>のパーツアイテム",
   SI_FURC_PLUGIN_SL_ADD_FIVE = "買い物リストに5つ追加",
@@ -247,8 +244,6 @@ local strings = {
   SI_FURC_STRING_MENU_CROWN = "クラウンストアのアイテム",
   SI_FURC_STRING_MENU_CROWN_DESC = "ツールチップに家具アイテムが表示されるたびに、家具データベースが更新されます。クラウンストアのみで入手可能な物も含まれます。 \nこのボックスにチェックを入れると、デフォルトのフィルターからクラウンストアが除外されます。 \n(入手方法フィルターから選択することで引き続き確認可能です)",
   SI_FURC_STRING_MENU_CROWN_N = "クラウンストアのアイテムを非表示にする",
-  SI_FURC_STRING_MENU_DEBUG = "Enable debug output",
-  SI_FURC_STRING_MENU_DEBUG_TT = "Only has an effect if a debug logger is enabled",
   SI_FURC_STRING_MENU_DEFAULT_DD = "デフォルトのフィルタ設定",
   SI_FURC_STRING_MENU_DEFAULT_DD_CHAR = "デフォルトのキャラクターフィルタ",
   SI_FURC_STRING_MENU_DEFAULT_DD_RESET = "UIを閉じたときにフィルタをリセットする",
@@ -281,9 +276,9 @@ local strings = {
   SI_FURC_STRING_MENU_HEADER_F_ALL_ON_TEXT = "テキスト検索時のフィルタ設定",
   SI_FURC_STRING_MENU_HEADER_ICONS = "所持品と銀行のアイコン設定",
   SI_FURC_STRING_MENU_HIDE_MENU = "メニュー項目を非表示にする",
-  SI_FURC_STRING_MENU_HIDE_MENU_CROWN = 'ドロップダウンリストからクラウンストアの項目を非表示にする',
-  SI_FURC_STRING_MENU_HIDE_MENU_RUMOUR = 'ドロップダウンリストから噂の品の項目を非表示にする',
-  SI_FURC_STRING_MENU_HIDE_MENU_TT = 'レシピのドロップダウンリストからクラウンストアと噂の品の項目を非表示にする \nクラウンストアはデフォルトで有効です。 \nUIのリロードが必要です \n自動でリロードは行われません。',
+  SI_FURC_STRING_MENU_HIDE_MENU_CROWN = "ドロップダウンリストからクラウンストアの項目を非表示にする",
+  SI_FURC_STRING_MENU_HIDE_MENU_RUMOUR = "ドロップダウンリストから噂の品の項目を非表示にする",
+  SI_FURC_STRING_MENU_HIDE_MENU_TT = "レシピのドロップダウンリストからクラウンストアと噂の品の項目を非表示にする \nクラウンストアはデフォルトで有効です。 \nUIのリロードが必要です \n自動でリロードは行われません。",
   SI_FURC_STRING_MENU_IT_THIS_ONLY = "このキャラクタのみの設定",
   SI_FURC_STRING_MENU_IT_THIS_ONLY_TT = "他のキャラクタはアカウント共通となる",
   SI_FURC_STRING_MENU_IT_UNKNOWN_NAME = "不明なレシピのみマークする",
@@ -356,6 +351,11 @@ local strings = {
   SI_FURC_VERBOSE_SCANNING_CHARS = "データファイルをスキャンしていません。キャラクタの知識をスキャンしています…",
   SI_FURC_VERBOSE_SCANNING_DATA_FILE = "Furniture Catalogue：データファイルをスキャンしています…",
   SI_FURC_VERBOSE_STARTUP = "Furniture Catalogue：レシピの取得漏れがある場合は、更新ボタンをクリックしてキャラクターのスキャンを開始してください。",
+  -- 4 ENTRIES THE SAME IN BOTH LANGUAGES
+  SI_FURC_LABEL_ENTRIES = " entries -",
+  SI_FURC_MENU_HEADER = "- |cD3B830Furniture|r:",
+  SI_FURC_STRING_MENU_DEBUG = "Enable debug output",
+  SI_FURC_STRING_MENU_DEBUG_TT = "Only has an effect if a debug logger is enabled",
   -- ////// END   : DON'T REMOVE THIS LINE
 }
 
