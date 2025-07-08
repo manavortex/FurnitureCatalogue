@@ -6,6 +6,29 @@ FurC.FaustinaRecipes = FurC.FaustinaRecipes or {}
 
 local ver = FurC.Constants.Versioning
 
+FurC.FaustinaRecipes[ver.FALLBAN] = {
+  [211038] = 100, -- Design: Dawnwood Platter, Feast
+  [211036] = 100, -- Praxis: Colovian Glassblower's Furnace
+  [211035] = 100, -- Pattern: Colovian Tapestry, Red Diamond
+  [211034] = 100, -- Diagram: Colovian Chandelier, Grapes
+  [211033] = 100, -- Formula: Colovian Alembic Set, Colorful
+}
+
+FurC.RolisRecipes[ver.FALLBAN] = {
+  [212567] = 125, -- Sketch: Guardian Key, Replica
+  [212566] = 125, -- Praxis: Ayleid Sconce, Winged Floor
+  [212565] = 125, -- Diagram: Ayleid Window, Turquoise Glass
+  [212564] = 125, -- Formula: Dawnwood Hut, Partial
+  [212563] = 125, -- Design: Colovian Grape Vat, Large
+  [212562] = 125, -- Blueprint: Colovian Wine Press
+  [212561] = 125, -- Pattern: Wood Elf Tent, Saplings
+}
+
+FurC.FaustinaRecipes[ver.BASE43] = {
+  [211039] = 125, -- Blueprint: Colovian Keg, Gigantic Wine
+  [211037] = 125, -- Sketch: Colovian Mirror, Standing
+}
+
 -- 28 Secrets of the Telvanni
 FurC.Faustina[ver.ENDLESS] = {
   [203556] = 1500, -- Grandmaster Jewelry Station
@@ -59,38 +82,38 @@ FurC.FaustinaRecipes[ver.DRAGONS] = {
 
 -- 6 Dragon Bones
 FurC.FaustinaRecipes[ver.DRAGONS] = {
-  [121200] = 100, -- Blueprint: Cabinet, Poisonmaker's
-  [121166] = 100, -- Blueprint: Podium, Skinning
-  [132195] = 100, -- Blueprint: Telvanni Candelabra, Masterwork
-  [121168] = 100, -- Blueprint: Tools, Case
-  [132194] = 100, -- Design: Mammoth Cheese, Mastercrafted
-  [121199] = 100, -- Design: Mortar and Pestle
-  [121214] = 100, -- Design: Orcish Skull Goblet, Full
-  [121163] = 100, -- Diagram: Apparatus, Boiler
-  [121165] = 100, -- Diagram: Apparatus, Gem Calipers
-  [132191] = 100, -- Diagram: Dwarven Gyroscope, Masterwork
-  [121197] = 100, -- Formula: Bottle, Poison Elixir
-  [121164] = 100, -- Formula: Case of Vials
-  [132190] = 100, -- Formula: Mages Apparatus, Master
-  [132192] = 100, -- Pattern: Dres Sewing Kit, Master's
-  [121209] = 100, -- Pattern: Orcish Tapestry, Spear
-  [132193] = 100, -- Praxis: Hlaalu Bath Tub, Masterwork
-  [121207] = 100, -- Praxis: Orcish Table with Fur
-  [134982] = 100, -- Formula: Alchemical Apparatus, Master
-  [134985] = 100, -- Praxis: Hlaalu Trinket Box, Curious Turtle
+  [139486] = 100, -- Sketch: High Elf Ancestor Clock, Celestial
   [134987] = 100, -- Blueprint: Hlaalu Gaming Table, "Foxes & Felines"
   [134986] = 100, -- Design: Miniature Garden, Bottled
-  [134983] = 100, -- Diagram: Hlaalu Gong
+  [134985] = 100, -- Praxis: Hlaalu Trinket Box, Curious Turtle
   [134984] = 100, -- Pattern: Clothier's Form, Brass
-  [139486] = 100, -- Sketch: High Elf Ancestor Clock, Celestial
+  [134983] = 100, -- Diagram: Hlaalu Gong
+  [134982] = 100, -- Formula: Alchemical Apparatus, Master
+  [132195] = 100, -- Blueprint: Telvanni Candelabra, Masterwork
+  [132194] = 100, -- Design: Mammoth Cheese, Mastercrafted
+  [132193] = 100, -- Praxis: Hlaalu Bath Tub, Masterwork
+  [132192] = 100, -- Pattern: Dres Sewing Kit, Master's
+  [132191] = 100, -- Diagram: Dwarven Gyroscope, Masterwork
+  [132190] = 100, -- Formula: Mages Apparatus, Master
+  [121214] = 100, -- Design: Orcish Skull Goblet, Full
+  [121209] = 100, -- Pattern: Orcish Tapestry, Spear
+  [121207] = 100, -- Praxis: Orcish Table with Fur
+  [121200] = 100, -- Blueprint: Cabinet, Poisonmaker's
+  [121199] = 100, -- Design: Mortar and Pestle
+  [121197] = 100, -- Formula: Bottle, Poison Elixir
+  [121168] = 100, -- Blueprint: Tools, Case
+  [121166] = 100, -- Blueprint: Podium, Skinning
+  [121165] = 100, -- Diagram: Apparatus, Gem Calipers
+  [121164] = 100, -- Formula: Case of Vials
+  [121163] = 100, -- Diagram: Apparatus, Boiler
 }
 
 -- 6 Dragon Bones
 FurC.Faustina[ver.DRAGONS] = {
-  [134675] = 500, -- Outfit station
-  [137870] = 125, -- Jewelry Station
+  [139391] = 10, -- Master Crafter's Banner, Hanging
   [137947] = 250, -- Attunable Jewelry Station
-  [139391] = 10, -- Master Crafter's Banner, Hanging,
+  [137870] = 125, -- Jewelry Station
+  [134675] = 500, -- Outfit station
 }
 
 -- 6 Dragon Bones
@@ -100,33 +123,22 @@ FurC.Rolis[ver.DRAGONS] = {
 
 -- 2 Homestead
 FurC.Rolis[ver.HOMESTEAD] = {
-  -- Alchemy station
-  [118328] = 35,
-  -- Blacksmithing station
-  [119781] = 35,
-  -- Clothing station
-  [119707] = 35,
-  -- Dye Station
-  [118329] = 35,
-  -- Enchanting station
-  [118330] = 35,
-  -- Provisioning station
-  [118327] = 35,
-  -- Woodworking station
-  [119744] = 35,
-
-  -- Attunable Blacksmithing station
-  [119594] = 250,
-  -- Attunable Clothing station
-  [119821] = 250,
-  -- Attunable Woodworking station
-  [119822] = 250,
+  [119822] = 250, -- Attunable Woodworking station
+  [119821] = 250, -- Attunable Clothing station
+  [119781] = 35, -- Blacksmithing station
+  [119744] = 35, -- Woodworking station
+  [119707] = 35, -- Clothing station
+  [119594] = 250, -- Attunable Blacksmithing station
+  [118330] = 35, -- Enchanting station
+  [118329] = 35, -- Dye Station
+  [118328] = 35, -- Alchemy station
+  [118327] = 35, -- Provisioning station
 }
 
 -- 2 Homestead
 FurC.RolisRecipes[ver.HOMESTEAD] = {
-  [126582] = 275, -- Praxis: Target Centurion, Dwarf-Brass
   [126583] = 450, -- Praxis: Target Centurion, Robust Refabricated
-  [119592] = 125, -- Praxis: Target Skeleton, Humanoid
+  [126582] = 275, -- Praxis: Target Centurion, Dwarf-Brass
   [121315] = 200, -- Praxis: Target Skeleton, Robust Humanoid
+  [119592] = 125, -- Praxis: Target Skeleton, Humanoid
 }

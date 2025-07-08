@@ -1,3 +1,23 @@
+4.87.1 (2025-04-04)
+- Japanese translations (by @Warashi-JP)
+
+4.87.0 (2025-03-16)
+- always show blueprints from master writ vendors
+- update crown crates up to mirrormoore
+- update luxury furnishings for 2025
+- add some missing item sources (thx @sbordeyne)
+
+4.86.0 (2025-03-15)
+- U45 Fallen Banners, added some missing items (thanks harakira)
+- l10n: bug fixes and some improvements to FR (thanks @sbordeyne)
+- lux w11
+
+4.85.0 (2024-11-10)
+- some luxury furnishing updates
+- recipes for base game patch 44 (thanks to user harakira)
+- some drops from undaunted event
+- version dropdown currently in wrong order
+
 4.84.1 (2024-09-30)
 - luxury furnishings 2024-09
 
