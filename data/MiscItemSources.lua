@@ -88,6 +88,7 @@ local stealable_swamp = strGeneric(srcSteal, nil, "loc", loc.MURKMIRE)
 local stealable_elsewhere = strGeneric(srcSteal, nil, "other", loc.NELSWEYR, loc.SELSWEYR)
 local pickpocket_necrom = strGeneric(srcPick, nil, "other", loc.TELVANNI, loc.APOCRYPHA)
 local pickpocket_weald = strGeneric(srcPick, nil, "other", loc.WEALD)
+local pickpock_solstice = strGeneric(srcPick, nil, "other", loc.W_SOLSTICE)
 local painting_summerset = strGeneric(srcSafe, rarityExtremely, "loc", loc.SUMMERSET)
 local painting_vvardenfell = strGeneric(
   srcDrop,
@@ -128,6 +129,7 @@ local pdung_vv_fw = strGeneric(srcDrop, nil, "loc", loc.VVARDENFELL, loc.PDUNG_V
 local plants_vvardenfell = strGeneric(srcHarvest, nil, "loc", loc.VVARDENFELL)
 local inf_archive = strDungeon(nil, loc.DUNG_IA)
 local frostvault = strDungeon(rarityRare, loc.DUNG_FV)
+local plants_solstice = strGeneric(srcHarvest, nil, "loc", loc.W_SOLSTICE)
 
 -- "Part of the item 'Look upon Their Nothing Eyes' in Lilmoth, Murkmire, 15k gold"
 local collection_nothingeyes =
@@ -197,6 +199,98 @@ local function strPack(itempackName)
   return zo_strformat(GetString(SI_FURC_SRC_ITEMPACK), GetString(itempacks[itempackName]))
 end
 
+-- Seasons of the Worm Cult // Solstice
+FurC.MiscItemSources[ver.WORMS] = {
+  [src.CROWN] = {
+    
+	[210890] = getHouseString(12732), -- 10-Year Anniversary Banner, Large",
+    [210891] = getHouseString(12732), -- 10-Year Anniversary Banner, Medium",
+    [210892] = getHouseString(12732), -- 10-Year Anniversary Banner, Small",
+    [210893] = getHouseString(12732), -- 10-Year Anniversary Rug, Round",
+    [210894] = getHouseString(12732), -- 10-Year Anniversary Rug, Rectangular",
+    [210895] = getHouseString(12732), -- 10-Year Anniversary Rug, Runner",
+    [210896] = getHouseString(12732), -- 10-Year Anniversary Drape, Wall",
+	-- Crates
+    [212417] = strCrate(crates.CARNAVAL), -- Carnaval Stage",  
+    [212419] = strCrate(crates.CARNAVAL), -- Carnaval Window, Stained Glass",	
+  },
+  
+  [src.DROP] = {
+  
+        [211517] = strQuest(5952), -- Storm Lord Shield",
+        [211518] = strQuest(5952), -- Pit Daemon Shield",
+        [211519] = strQuest(5952), -- Fire Drake Shield",
+        [211520] = strQuest(5952), -- Pit Daemon Wreath",
+        [211521] = strQuest(5952), -- Storm Lord Wreath",
+        [211522] = strQuest(5952), -- Fire Drake Wreath",
+        [211523] = strQuest(5952), -- Storm Lord Rug, Round",
+        [211530] = strQuest(5952), -- Fire Drake Banner, Long",
+        [211531] = strQuest(5952), -- Fire Drake Banner, Short",
+        [211532] = strQuest(5952), -- Fire Drake Mug",
+        [211533] = strQuest(5952), -- Fire Drake Rug, Horizontal",
+        [211534] = strQuest(5952), -- Fire Drake Rug, Vertical",
+        [211535] = strQuest(5952), -- Pit Daemon Rug, Round",
+        [211536] = strQuest(5952), -- Pit Daemon Banner, Long",
+        [211537] = strQuest(5952), -- Pit Daemon Banner, Short",
+        [211538] = strQuest(5952), -- Pit Daemon Mug",
+        [211539] = strQuest(5952), -- Pit Daemon Rug, Horizontal",
+        [211540] = strQuest(5952), -- Pit Daemon Rug, Vertical",
+        [211525] = strQuest(5952), -- Storm Lord Mug",
+        [211524] = strQuest(5952), -- Storm Lord Banner, Short",
+        [211526] = strQuest(5952), -- Storm Lord Banner, Long",
+        [211527] = strQuest(5952), -- Storm Lord Rug, Horizontal",
+        [211529] = strQuest(5952), -- Fire Drake Rug, Round",
+        [211528] = strQuest(5952), -- Storm Lord Rug, Vertical",		
+  
+    [211503] = strQuest(nil, "Zerith-var rapport"), -- Letter from Zerith-var",
+    [211505] = strQuest(nil, "Tanlorin rapport"), -- Letter from Tanlorin",
+  
+    [214471] = pickpock_solstice, -- Tide-Born Spoon, Wooden",
+    [214470] = pickpock_solstice, -- Tide-Born Spatula, Wooden",
+    [214469] = pickpock_solstice, -- Tide-Born Mallet, Crab",
+    [214468] = pickpock_solstice, -- Tide-Born Serving Fork, Wooden",
+    [214467] = pickpock_solstice, -- Tide-Born Ladle, Wooden",
+    [214466] = pickpock_solstice, -- Tide-Born Knife, Kitchen",
+    [214465] = pickpock_solstice, -- Tide-Born Fork, Wooden",
+    [214477] = pickpock_solstice, -- Green Coconut, Display",
+    [214476] = pickpock_solstice, -- Mango, Display",
+    [214475] = pickpock_solstice, -- Lychee, Display",
+    [214474] = pickpock_solstice, -- Lime, Display",
+    [214472] = pickpock_solstice, -- Coconut, Display",
+    [214464] = pickpock_solstice, -- Pineapple, Display",	
+    [214473] = pickpock_solstice, -- Lemon, Display",	
+	
+    [214363] = strChests(loc.W_SOLSTICE), -- Tide-Born Tapestry, Turtle",
+    [214364] = strChests(loc.W_SOLSTICE), -- Tide-Born Tapestry, Contemplation",
+    [214365] = strChests(loc.W_SOLSTICE), -- Tide-Born Tapestry, Origins",
+    [214366] = strChests(loc.W_SOLSTICE), -- Tide-Born Tapestry, Training",
+    [214367] = strChests(loc.W_SOLSTICE), -- Tide-Born Tapestry, Lizard",
+    [214368] = strChests(loc.W_SOLSTICE), -- Tide-Born Tapestry, Triptych",
+    [214369] = strChests(loc.W_SOLSTICE), -- Tide-Born Tapestry, Sap",
+    [214370] = strChests(loc.W_SOLSTICE), -- Tide-Born Tapestry, Snake",
+    [214371] = strChests(loc.W_SOLSTICE), -- Tide-Born Reed Art, Turtle",	
+	
+    --Harvesting
+	[214479] = strGeneric(srcHarvest, strSrc("src", "Blacksmithing and Jewelry"), nil, loc.W_SOLSTICE),  -- Solstice Bismuth, Deposit II",
+    [214478] = strGeneric(srcHarvest, strSrc("src", "Blacksmithing and Jewelry"), nil, loc.W_SOLSTICE),  -- Solstice Bismuth, Deposit I",
+	[214485] = plants_solstice, -- Plant, Pineapple",
+    [214482] = plants_solstice, -- Fanik Goc, Sprouted",	
+    [214480] = plants_solstice, -- Flowers, Poinsettia",	
+    [214481] = plants_solstice, -- Flower Patch, Flame Lily",
+    [214483] = plants_solstice, -- Flowering Gorse, Orange",
+    [214484] = plants_solstice, -- Grass, Pampas Cluster",
+    [214486] = plants_solstice, -- Flowers, Sea Lavender Cluster",
+    [214487] = plants_solstice, -- Bush, Sea Lavender",	
+	
+	-- Scrying
+	[214358] = strScry(loc.W_SOLSTICE), -- Solstice Bismuth, Large Tower",
+	[214343] = strScry(5, loc.W_SOLSTICE), -- Music Box, The Hermit Crab Dance",
+	[214355] = strScry(loc.W_SOLSTICE), -- Solstice Giant Crocodile Skull",
+    [214356] = strScry(loc.W_SOLSTICE), -- Solstice Giant Crocodile Ribs",
+    [214357] = strScry(loc.W_SOLSTICE), -- Solstice Giant Crocodile Tail",	
+  },
+}
+
 -- 30 Gold Road
 FurC.MiscItemSources[ver.WEALD] = {
   [src.CROWN] = {},
@@ -256,6 +350,7 @@ FurC.MiscItemSources[ver.WEALD] = {
 
     [205388] = strMultiple(strCrown(2400), getHouseString(12472)), -- Colovian Windmill, Decorative",
   },
+  
 }
 
 -- 29 Scions of Ithelia
@@ -2214,7 +2309,6 @@ FurC.MiscItemSources[ver.MORROWIND] = {
 
     [126759] = strQuest(5864, nil, loc.VVARDENFELL, loc.VVARDENFELL_SURAN), -- Sir Sock's Ball of Yarn ; Quest: 'Nothing to Sneeze At'
 
-    [126592] = strGeneric(srcHarvest), -- Plants, Hanging Pitcher Pair
   },
 
   [src.CROWN] = {

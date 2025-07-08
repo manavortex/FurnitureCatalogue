@@ -5,7 +5,7 @@ this.name = "FurnitureCatalogue"
 this.author = "manavortex"
 this.tag = "FurC"
 
-this.version = 4084001 -- will be AUTOREPLACED with AddonVersion
+this.version = 4085000 -- will be AUTOREPLACED with AddonVersion
 this.CharacterName = nil
 this.website = "https://www.esoui.com/downloads/fileinfo.php?id=1617"
 this.settings = {}
@@ -183,6 +183,8 @@ this.DropdownData = {
     [ver.SCIONS] = GetString(SI_FURC_FILTER_VERSION_SCIONS),
     [ver.WEALD] = GetString(SI_FURC_FILTER_VERSION_WEALD),
     [ver.BASE43] = GetString(SI_FURC_FILTER_VERSION_BASE43),
+    [ver.BASE44] = GetString(SI_FURC_FILTER_VERSION_BASE44),
+	[ver.WORMS] = GetString(SI_FURC_FILTER_VERSION_WORMS),
   },
 
   TooltipsVersion = {
@@ -217,6 +219,8 @@ this.DropdownData = {
     [ver.SCIONS] = GetString(SI_FURC_FILTER_VERSION_SCIONS_TT),
     [ver.WEALD] = GetString(SI_FURC_FILTER_VERSION_WEALD_TT),
     [ver.BASE43] = GetString(SI_FURC_FILTER_VERSION_BASE43_TT),
+    [ver.BASE44] = GetString(SI_FURC_FILTER_VERSION_BASE44_TT),
+	[ver.WORMS] = GetString(SI_FURC_FILTER_VERSTION_WORMS_TT),
   },
 
   ChoicesCharacter = {

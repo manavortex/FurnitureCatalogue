@@ -75,9 +75,11 @@ FurC.Constants.Versioning = {
   SCIONS = getNextIdFor("VERSIONING"), -- 29 Scions of Ithelia
   WEALD = getNextIdFor("VERSIONING"), -- 30 Gold Road
   BASE43 = getNextIdFor("VERSIONING"), -- 31 Base Game Update 43
+  BASE44 = getNextIdFor("VERSIONING"), -- 32 Base Game Update 44
+  WORMS = getNextIdFor("VERSIONING"), -- Seasons of the Worm Cult
 }
 
-FurC.Constants.Versioning.LATEST = FurC.Constants.Versioning.BASE43
+FurC.Constants.Versioning.LATEST = FurC.Constants.Versioning.BASE44
 
 -- Location Ids, mix of ingame strings and translations, more control over translations
 FurC.Constants.Locations = {
@@ -138,6 +140,7 @@ FurC.Constants.Locations = {
   TELVANNI = getZoneStr(1414), -- Telvanni Peninsula
   VVARDENFELL = getZoneStr(849), -- Vvardenfell
   WEALD = getZoneStr(1443), -- West Weald
+  W_SOLSTICE = getZoneStr(1502), -- Western Solstice
   WROTHGAR = getZoneStr(684), -- Wrothgar
   WSKYRIM = getZoneStr(1160), -- Western Skyrim
   -- Custom
@@ -255,7 +258,7 @@ FurC.Constants.NPC = {
 FurC.Constants.CrownCrates = {
   -- Source: https://en.uesp.net/wiki/Online:Crown_Crates
 
-  CARNIVALE = GetCrownCrateName(0), -- TBA
+  CARNAVAL = GetCrownCrateName(62), -- TBA
   DB = GetCrownCrateName(0), -- TBA
   MIRROR = GetCrownCrateName(0), -- TBA
 
@@ -303,6 +306,7 @@ FurC.Constants.SkillLines = {
 FurC.Constants.Events = {
   ANNIVERSARY = GetString(SI_FURC_EVENT_ANNIVERSARY), -- Anniversary Jubilee
   BLACKWOOD = GetString(SI_FURC_EVENT_BLACKWOOD), -- Bounties of Blackwood
+  CRIME = GetString(SI_FURC_EVENT_CRIME), -- Crime Wave
   ELSWEYR = GetString(SI_FURC_EVENT_ELSWEYR), -- Season of the Dragon
   HOLLOWJACK = GetString(SI_FURC_EVENT_HOLLOWJACK), -- Sinister Hollowjack
   IC = GetString(SI_FURC_EVENT_IC), -- Imperial City Celebration Event
@@ -324,6 +328,7 @@ FurC.Constants.Containers = {
   PLUNDERSKULL = "|H0:item:84521:1:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h", -- during Witches' Festival
   UNDAUNTEDBOX = "|H0:item:171267:1:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h", -- during Undaunted Celebration
   ZENITHARPARCEL = "|H0:item:187701:1:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h", -- during Zenithar's Zeal
+  POUCH = "|H0:item:214263:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h", -- during Crime Wave
 }
 
 -- TODO: allow customisable colours, getting from options
@@ -488,6 +493,9 @@ FURC_WEALD = FurC.Constants.Versioning.WEALD -- 30 Gold Road
 
 -- @warning deprecated
 FURC_BASE43 = FurC.Constants.Versioning.BASE43 -- 31 Update 43 Base Game Patch
+
+-- @warning deprecated
+FURC_BASE44 = FurC.Constants.Versioning.BASE44 -- 32 Update 44 Base Game Patch
 
 -- @warning deprecated
 FURC_LATEST = FurC.Constants.Versioning.LATEST

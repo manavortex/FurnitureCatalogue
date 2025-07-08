@@ -92,6 +92,64 @@ local holidayVendor = {
     itemPrice = 25000,
     achievement = 1543,
   },
+  [211553] = {		-- Jester's Festival Garland, Long Flags
+  	itemPrice   = 5000,
+  },
+  [211552] = {		-- Jester's Festival Garland, Short Flags
+  	itemPrice   = 2500,
+  },
+  [211554] = {		-- Jester's Festival Plaque, King Boar
+  	itemPrice   = 50000,
+  },
+  [211555] = {		-- Jester's Festival Plaque, Queen Boar
+  	itemPrice   = 50000,
+  },
+  [211558] = {		-- Jester's Festival Rug, Star
+  	itemPrice   = 10000,
+  },
+  [211557] = {		-- Jester's Festival Rug, Swirls
+  	itemPrice   = 5000,
+  },
+  [211559] = {		-- Jester's Festival Sign
+  	itemPrice   = 10000,
+  },
+  [211556] = {		-- Jester's Festival Wreath
+  	itemPrice   = 10000,
+  },
+  [211549] = {		-- Jubilee Banner, Hanging
+  	itemPrice   = 10000,
+  },
+  [211550] = {		-- Jubilee Banner, Small
+  	itemPrice   = 2500,
+  },
+  [211541] = {		-- Jubilee Garland, Curved
+  	itemPrice   = 2500,
+  },
+  [211544] = {		-- Jubilee Garland, Curved Double
+  	itemPrice   = 5000,
+  },
+  [211542] = {		-- Jubilee Garland, Straight Long
+  	itemPrice   = 2500,
+  },
+  [211543] = {		-- Jubilee Garland, Straight Short
+  	itemPrice   = 2500,
+  },
+  [211551] = {		-- Jubilee Garland, Streamers
+  	itemPrice   = 5000,
+  },
+  [211548] = {		-- Jubilee Rug, Small
+  	itemPrice   = 5000,
+  },
+  [211547] = {		-- Jubilee Wind Chime, Floral
+  	itemPrice   = 10000,
+  },
+  [211545] = {		-- Jubilee Wreath
+  	itemPrice   = 5000,
+  },
+  [211546] = {		-- Jubilee Wreath, Bell Chime
+  	itemPrice   = 10000,
+  },
+  
 }
 
 local capitalVendor = {
@@ -187,6 +245,13 @@ local capitalVendor = {
     itemPrice = 100000,
     achievement = 1003,
   },
+  [217650] = {		--Argonian Houseboat
+		itemPrice   = 50000,
+		achievement = 4426,		-- Commemorative Master Angler
+  },
+  [217601] = {		-- Molag Bal Plaque
+		itemPrice   = 14000,
+  },  
 }
 
 local furnishingVendor = {
@@ -1232,6 +1297,116 @@ local bookList = {
 
 local miscVendor = merge(merge(merge(structures, boxes), laundry), fishing_trip)
 
+FurC.AchievementVendors[ver.WORMS] = {
+  [loc.W_SOLSTICE] = {
+    [npc.AF] = {
+	 [217593] = {		-- Doorway, Daedric Vertebrae
+		itemPrice   = 25000,
+		-- achievement = -- Ossien Cage Vanquisher
+	},
+	[217592] = {		-- Inert Portal
+		itemPrice   = 24000,
+		-- achievement = -- Deetra Grotto Group event
+	},
+	[217591] = {		-- Solstice Bismuth, Giant Formation
+		itemPrice   = 70000,
+		-- achievement = -- Western Solstice Cave Delver
+	},
+	[217596] = {		-- Subclassing Banner
+		itemPrice   = 12000,
+	},
+	[217599] = {		-- Sunport Banner
+		itemPrice   = 12000,
+		-- achievement = -- Sunport Savior
+	},
+	[217595] = {		-- Tide-Born Boat
+		itemPrice   = 8000,
+		-- achievement = -- Western Solstice Master Angler
+	},
+	[217598] = {		-- Worm Cult Banner
+		itemPrice   = 12000,
+		-- achievement = -- Archmage Whisperer
+	},
+
+	},
+    [npc.HGF] = {
+    [214496] = {		-- Boulder, Horizontal Sandstone
+		itemPrice   = 500,
+	},
+	[214495] = {		-- Boulder, Vertical Sandstone
+		itemPrice   = 500,
+	},
+	[214498] = {		-- Clam Shell, Large
+		itemPrice   = 3000,
+	},
+	[214497] = {		-- Conch, Large Spiny
+		itemPrice   = 3000,
+	},
+	[214500] = {		-- Driftwood, Large Gnarled
+		itemPrice   = 500,
+	},
+	[214501] = {		-- Driftwood, Large Trunk
+		itemPrice   = 250,
+	},
+	[217631] = {		-- Flower Curtain, Summertide
+		itemPrice   = 450,
+	},
+	[217630] = {		-- Flower Patch, Summertide
+		itemPrice   = 1500,
+	},
+	[214511] = {		-- Flowering Gorse, Purple
+		itemPrice   = 2500,
+	},
+	[217629] = {		-- Flowers, Climbing Summertide
+		itemPrice   = 450,
+	},
+	[217628] = {		-- Flowers, Large Climbing Summertide
+		itemPrice   = 1500,
+	},
+	[214512] = {		-- Grass, Beach Cluster
+		itemPrice   = 250,
+	},
+	[214510] = {		-- Plant Cluster, Majesty Palm
+		itemPrice   = 500,
+	},
+	[214509] = {		-- Plant, Majesty Palm
+		itemPrice   = 350,
+	},
+	[214507] = {		-- Sapling, Royal Palm
+		itemPrice   = 300,
+	},
+	[214503] = {		-- Sapling, Thatch Palm
+		itemPrice   = 300,
+	},
+	[214493] = {		-- Solstice Bismuth, Gigantic Deposit I
+		itemPrice   = 90000,
+	},
+	[214494] = {		-- Solstice Bismuth, Gigantic Deposit II
+		itemPrice   = 90000,
+	},
+	[214499] = {		-- Tree, Banana
+		itemPrice   = 450,
+	},
+	[214505] = {		-- Tree, Gigantic Water Chestnut
+		itemPrice   = 4500,
+	},
+	[214504] = {		-- Tree, Large Water Chestnut
+		itemPrice   = 4500,
+	},
+	[214506] = {		-- Tree, Royal Palm
+		itemPrice   = 1000,
+	},
+	[214508] = {		-- Tree, Sierra Palm
+		itemPrice   = 350,
+	},
+	[214502] = {		-- Tree, Thatch Palm
+		itemPrice   = 1000,
+	},
+
+  },	
+  },
+}
+
 -- 31 Base Game Update 43
 FurC.AchievementVendors[ver.BASE43] = {
   [loc.DUNG_IA] = {
@@ -1312,7 +1487,38 @@ FurC.AchievementVendors[ver.WEALD] = {
       [204811] = { -- Tree, Towering Slim Cypress
         itemPrice = 1500,
       },
+      [211514] = {		-- Fern, Small Mammoth Leaf
+		itemPrice   = 100,
+	  },
+	  [211513] = {		-- Fern, Tall Mammoth Leaf
+		itemPrice   = 500,
+   	  },
+	  [211516] = {		-- Hosta, Orange
+		itemPrice   = 5000,
+	  },
+	  [211507] = {		-- Quarry Stone, Large
+		itemPrice   = 1000,
+	  },
+	  [211508] = {		-- Quarry Stone, Small
+		itemPrice   = 500,
+	  },
+	  [211515] = {		-- Shrub Cluster, Large Red Boxwood
+		itemPrice   = 200,
+	  },
+	  [211509] = {		-- Tree, Curled Dawnwood
+		itemPrice   = 20000,
+	  },
+	  [211510] = {		-- Tree, Sheltering Dawnwood
+		itemPrice   = 15000,
+	  },
+	  [211512] = {		-- Tree, Small Willow
+		itemPrice   = 2500,
+	  },
+	  [211511] = {		-- Tree, Twisted Dawnwood
+		itemPrice   = 25000,
+	  },
     },
+	
     [npc.AF] = {
       [204789] = { -- Ayleid Stele, Tall
         itemPrice = 20000,
