@@ -5,7 +5,6 @@ local ver = FurC.Constants.Versioning
 local rumourSource = GetString(SI_FURC_SRC_RUMOUR_ITEM)
 local dataminedUnclear = GetString(SI_FURC_DATAMINED_UNCLEAR)
 
-
 -- Season of the Worm Cult // Solstice
 FurC.Rumours[ver.WORMS] = {
   [214336] = rumourSource, -- Scrolling Theater Backdrop",
