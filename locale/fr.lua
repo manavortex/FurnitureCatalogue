@@ -218,12 +218,11 @@ local strings = {
   SI_FURC_VERBOSE_SCANNING_CHARS = "Ne pas analyser les fichiers, scanner la connaissance des personnages maintenant...",
   SI_FURC_VERBOSE_SCANNING_DATA_FILE = "Furniture Catalogue: Analyse des fichiers de données...",
   SI_FURC_VERBOSE_STARTUP = "Furniture Catalogue: Si vous manquez de recettes, veuillez déclencher une analyse de votre artisan de meubles en cliquant sur le bouton Actualiser dans l'UI.",
-
-  -- 136 ENTRIES THE SAME IN BOTH LANGUAGES
-
+  -- 139 ENTRIES THE SAME IN BOTH LANGUAGES
   SI_FURC_DB_EQUIP = "with equipment",
   SI_FURC_EVENT_ANNIVERSARY = "Anniversary Jubilee",
   SI_FURC_EVENT_BLACKWOOD = "Bounties of Blackwood",
+  SI_FURC_EVENT_CRIME = "Crime Wave",
   SI_FURC_EVENT_HOLLOWJACK = "Sinister Hollowjack",
   SI_FURC_EVENT_IC = "Imperial City Celebration",
   SI_FURC_EVENT_JESTER = "Jester's Festival",
@@ -281,6 +280,8 @@ local strings = {
   SI_FURC_FILTER_VERSION_WEALD = "Gold Road",
   SI_FURC_FILTER_VERSION_WEALD_TT = "We forgot about...who?",
   SI_FURC_FILTER_VERSION_WEREWOLF = "Wolfhunter",
+  SI_FURC_FILTER_VERSION_WORMS = "Seasons of the Worm Cult",
+  SI_FURC_FILTER_VERSION_WORMS_TT = "Another new island! This time with a creepy soul wall!",
   SI_FURC_FILTER_VERSION_WOTL = "Wrathstone",
   SI_FURC_FILTER_VERSION_WOTL_TT = "Wrathstone!",
   SI_FURC_GUILD_FIGHTERS = "the Fighters' guild",

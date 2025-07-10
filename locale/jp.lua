@@ -351,7 +351,10 @@ local strings = {
   SI_FURC_VERBOSE_SCANNING_CHARS = "データファイルをスキャンしていません。キャラクタの知識をスキャンしています…",
   SI_FURC_VERBOSE_SCANNING_DATA_FILE = "Furniture Catalogue：データファイルをスキャンしています…",
   SI_FURC_VERBOSE_STARTUP = "Furniture Catalogue：レシピの取得漏れがある場合は、更新ボタンをクリックしてキャラクターのスキャンを開始してください。",
-  -- 4 ENTRIES THE SAME IN BOTH LANGUAGES
+  -- 7 ENTRIES THE SAME IN BOTH LANGUAGES
+  SI_FURC_EVENT_CRIME = "Crime Wave",
+  SI_FURC_FILTER_VERSION_WORMS = "Seasons of the Worm Cult",
+  SI_FURC_FILTER_VERSION_WORMS_TT = "Another new island! This time with a creepy soul wall!",
   SI_FURC_LABEL_ENTRIES = " entries -",
   SI_FURC_MENU_HEADER = "- |cD3B830Furniture|r:",
   SI_FURC_STRING_MENU_DEBUG = "Enable debug output",

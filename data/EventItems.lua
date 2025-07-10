@@ -3,7 +3,6 @@ local events = FurC.Constants.Events
 local npc = FurC.Constants.NPC
 local containers = FurC.Constants.Containers
 
-
 FurC.EventItems[ver.FALLBAN] = {
   [events.CRIME] = {
     [containers.POUCH] = {
@@ -12,9 +11,9 @@ FurC.EventItems[ver.FALLBAN] = {
       [214246] = true, -- Coin, Single",
       [214247] = true, -- Coin Pile, Small",
       [214248] = true, -- Coin Pile, Tall",
-	  },
+    },
   },
- }
+}
 
 -- 31 Base Game Update 43
 FurC.EventItems[ver.BASE43] = {
