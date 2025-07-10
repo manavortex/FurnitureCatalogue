@@ -307,7 +307,9 @@ local strings = {
   SI_FURC_VERBOSE_SCANNING_CHARS = "Scanne keine Dateien, scanne jetzt Charakter-Kenntnisse...",
   SI_FURC_VERBOSE_SCANNING_DATA_FILE = "Furniture Catalogue: Scannen von Datensätzen...",
   SI_FURC_VERBOSE_STARTUP = "Furniture Catalogue: Wenn Ihr ein Rezept vermisst, löst bitte einen Scan Eures Möbel-Handwerkers aus, indem Ihr auf den Button 'Aktualisieren' in der Benutzeroberfläche klickt.",
+
   -- 48 ENTRIES THE SAME IN BOTH LANGUAGES
+
   SI_FURC_EVENT_ANNIVERSARY = "Anniversary Jubilee",
   SI_FURC_FILTER_VERSION_ALTMER = "Summerset",
   SI_FURC_FILTER_VERSION_BASE43 = "Base Game Update 43",

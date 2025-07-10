@@ -218,7 +218,9 @@ local strings = {
   SI_FURC_VERBOSE_SCANNING_CHARS = "Ne pas analyser les fichiers, scanner la connaissance des personnages maintenant...",
   SI_FURC_VERBOSE_SCANNING_DATA_FILE = "Furniture Catalogue: Analyse des fichiers de données...",
   SI_FURC_VERBOSE_STARTUP = "Furniture Catalogue: Si vous manquez de recettes, veuillez déclencher une analyse de votre artisan de meubles en cliquant sur le bouton Actualiser dans l'UI.",
+
   -- 136 ENTRIES THE SAME IN BOTH LANGUAGES
+
   SI_FURC_DB_EQUIP = "with equipment",
   SI_FURC_EVENT_ANNIVERSARY = "Anniversary Jubilee",
   SI_FURC_EVENT_BLACKWOOD = "Bounties of Blackwood",

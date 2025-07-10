@@ -1,6 +1,7 @@
 local filterDisabled = "disables this filter"
 local strings = {
   -- ////// START : DON'T REMOVE THIS LINE
+
   -- 354 ENTRIES THE SAME IN BOTH LANGUAGES
   SI_FURC_ADD_FAVE = " Add Favorite",
   SI_FURC_DATAMINED_UNCLEAR = "This item has been seen in-game, but it's not yet known where you can get it.",
