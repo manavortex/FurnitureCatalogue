@@ -16,11 +16,7 @@ local strings = {
   SI_FURC_EVENT = "event",
   SI_FURC_EVENT_ANNIVERSARY = "Anniversary Jubilee",
   SI_FURC_EVENT_BLACKWOOD = "Bounties of Blackwood",
-<<<<<<< Updated upstream
-  SI_FURC_EVENT_CRIME = "Crime Wave",
-=======
   SI_FURC_EVENT_CRIME = "Crime Wave",  
->>>>>>> Stashed changes
   SI_FURC_EVENT_ELSWEYR = "Season of the Dragon",
   SI_FURC_EVENT_HOLLOWJACK = "Sinister Hollowjack",
   SI_FURC_EVENT_IC = "Imperial City Celebration",
@@ -127,11 +123,7 @@ local strings = {
   SI_FURC_FILTER_VERSION_WEREWOLF = "Wolfhunter",
   SI_FURC_FILTER_VERSION_WEREWOLF_TT = "In Soviet Hunting Ground, werewolf hunt you",
   SI_FURC_FILTER_VERSION_WORMS = "Seasons of the Worm Cult",
-<<<<<<< Updated upstream
-  SI_FURC_FILTER_VERSION_WORMS_TT = "Another new island! This time, with a creepy soul wall!",
-=======
   SI_FURC_FILTER_VERSION_WORMS_TT = "Another new island! This time with a creepy soul wall!",
->>>>>>> Stashed changes
   SI_FURC_FILTER_VERSION_WOTL = "Wrathstone",
   SI_FURC_FILTER_VERSION_WOTL_TT = "Wrathstone!",
   SI_FURC_GRAMMAR_CONJ_OR = "or",

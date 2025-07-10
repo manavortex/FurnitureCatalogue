@@ -210,46 +210,10 @@ FurC.MiscItemSources[ver.WORMS] = {
     [210894] = getHouseString(12732), -- 10-Year Anniversary Rug, Rectangular",
     [210895] = getHouseString(12732), -- 10-Year Anniversary Rug, Runner",
     [210896] = getHouseString(12732), -- 10-Year Anniversary Drape, Wall",
-<<<<<<< Updated upstream
-	-- Crates
-    [212417] = strCrate(crates.CARNAVAL), -- Carnaval Stage",  
-    [212419] = strCrate(crates.CARNAVAL), -- Carnaval Window, Stained Glass",	
-=======
-
->>>>>>> Stashed changes
   },
   
   [src.DROP] = {
   
-<<<<<<< Updated upstream
-        [211517] = strQuest(5952), -- Storm Lord Shield",
-        [211518] = strQuest(5952), -- Pit Daemon Shield",
-        [211519] = strQuest(5952), -- Fire Drake Shield",
-        [211520] = strQuest(5952), -- Pit Daemon Wreath",
-        [211521] = strQuest(5952), -- Storm Lord Wreath",
-        [211522] = strQuest(5952), -- Fire Drake Wreath",
-        [211523] = strQuest(5952), -- Storm Lord Rug, Round",
-        [211530] = strQuest(5952), -- Fire Drake Banner, Long",
-        [211531] = strQuest(5952), -- Fire Drake Banner, Short",
-        [211532] = strQuest(5952), -- Fire Drake Mug",
-        [211533] = strQuest(5952), -- Fire Drake Rug, Horizontal",
-        [211534] = strQuest(5952), -- Fire Drake Rug, Vertical",
-        [211535] = strQuest(5952), -- Pit Daemon Rug, Round",
-        [211536] = strQuest(5952), -- Pit Daemon Banner, Long",
-        [211537] = strQuest(5952), -- Pit Daemon Banner, Short",
-        [211538] = strQuest(5952), -- Pit Daemon Mug",
-        [211539] = strQuest(5952), -- Pit Daemon Rug, Horizontal",
-        [211540] = strQuest(5952), -- Pit Daemon Rug, Vertical",
-        [211525] = strQuest(5952), -- Storm Lord Mug",
-        [211524] = strQuest(5952), -- Storm Lord Banner, Short",
-        [211526] = strQuest(5952), -- Storm Lord Banner, Long",
-        [211527] = strQuest(5952), -- Storm Lord Rug, Horizontal",
-        [211529] = strQuest(5952), -- Fire Drake Rug, Round",
-        [211528] = strQuest(5952), -- Storm Lord Rug, Vertical",		
-  
-    [211503] = strQuest(nil, "Zerith-var rapport"), -- Letter from Zerith-var",
-    [211505] = strQuest(nil, "Tanlorin rapport"), -- Letter from Tanlorin",
-=======
     [211517] = strQuest(5952), -- Storm Lord Shield",
     [211518] = strQuest(5952), -- Pit Daemon Shield",
     [211519] = strQuest(5952), -- Fire Drake Shield",
@@ -275,7 +239,6 @@ FurC.MiscItemSources[ver.WORMS] = {
     [211529] = strQuest(5952), -- Fire Drake Rug, Round",
     [211528] = strQuest(5952), -- Storm Lord Rug, Vertical",		
   
->>>>>>> Stashed changes
   
     [214471] = pickpock_solstice, -- Tide-Born Spoon, Wooden",
     [214470] = pickpock_solstice, -- Tide-Born Spatula, Wooden",
@@ -323,9 +286,6 @@ FurC.MiscItemSources[ver.WORMS] = {
   },
 }
 
-<<<<<<< Updated upstream
-=======
-
 -- 33 Fallen Banners
 FurC.MiscItemSources[ver.FALLBAN] = {
   [src.CROWN] = {
@@ -361,7 +321,6 @@ FurC.MiscItemSources[ver.BASE43] = {
   },
 }
 
->>>>>>> Stashed changes
 -- 30 Gold Road
 FurC.MiscItemSources[ver.WEALD] = {
   [src.CROWN] = {},

@@ -1,30 +1,8 @@
 local filterDisabled = "disables this filter"
 local strings = {
   -- ////// START : DON'T REMOVE THIS LINE
-<<<<<<< Updated upstream
-  SI_FURC_EVENT_ELSWEYR = "Elsweyr dragon event",
-  SI_FURC_EVENT_HOLLOWJACK = "Sinister Hollowjack Items",
-  SI_FURC_EVENT_IC = "Imperial City Event",
-  SI_FURC_GUILD_MAGES_MYSTIC = "the Mystic",
-  SI_FURC_LOC_ANY = "anywhere",
-  SI_FURC_LOC_UNDAUNTED = "Undaunted Enclaves",
-  SI_FURC_NPC_AUTOMATON = "automaton",
-  SI_FURC_SRC_CROWNSTORE = "Crown Store ",
-  SI_FURC_SRC_DROP = "<<1[can drop/drops <<2>>/Drops: <<2>>]>>",
-  SI_FURC_SRC_DUNG = "<<1[found in dungeons/found in <<2>>/From dungeons: <<2>>]>>",
-  SI_FURC_SRC_LVLUP = "Can be gained as levelup reward",
-  SI_FURC_SRC_QUEST = "Quest",
-  SI_FURC_SRC_SAFEBOX = "extremely rarely from safeboxes",
-  SI_FURC_SRC_TOT = "From Tales of Tribute reward coffers",
-  SI_FURC_STRING_PIECES = "<<1[ / /($d pieces)]>>",
-  SI_FURC_STRING_WEEKEND_AROUND = "(around <<1>>)",
-  SI_FURC_TOMBS = "Ancestor tombs and ruins on Vvardenfell",
-  SI_FURC_TRADERS_EVENT = "Event Merchant^nd,from",
-  SI_FURC_TRADERS_LUXF = "Luxury Furnisher^nd,from",
-  -- 333 ENTRIES THE SAME IN BOTH LANGUAGES
-=======
+
   -- 354 ENTRIES THE SAME IN BOTH LANGUAGES
->>>>>>> Stashed changes
   SI_FURC_ADD_FAVE = " Add Favorite",
   SI_FURC_DATAMINED_UNCLEAR = "This item has been seen in-game, but it's not yet known where you can get it.",
   SI_FURC_DB = "The Dark Brotherhood supplies vendor hands these out ",
