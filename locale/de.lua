@@ -307,10 +307,9 @@ local strings = {
   SI_FURC_VERBOSE_SCANNING_CHARS = "Scanne keine Dateien, scanne jetzt Charakter-Kenntnisse...",
   SI_FURC_VERBOSE_SCANNING_DATA_FILE = "Furniture Catalogue: Scannen von Datensätzen...",
   SI_FURC_VERBOSE_STARTUP = "Furniture Catalogue: Wenn Ihr ein Rezept vermisst, löst bitte einen Scan Eures Möbel-Handwerkers aus, indem Ihr auf den Button 'Aktualisieren' in der Benutzeroberfläche klickt.",
-
-  -- 48 ENTRIES THE SAME IN BOTH LANGUAGES
-
+  -- 51 ENTRIES THE SAME IN BOTH LANGUAGES
   SI_FURC_EVENT_ANNIVERSARY = "Anniversary Jubilee",
+  SI_FURC_EVENT_CRIME = "Crime Wave",
   SI_FURC_FILTER_VERSION_ALTMER = "Summerset",
   SI_FURC_FILTER_VERSION_BASE43 = "Base Game Update 43",
   SI_FURC_FILTER_VERSION_BASE43_TT = "Home tours are here",
@@ -345,6 +344,8 @@ local strings = {
   SI_FURC_FILTER_VERSION_TIDES = "Ascending Tide",
   SI_FURC_FILTER_VERSION_WEALD = "Gold Road",
   SI_FURC_FILTER_VERSION_WEREWOLF = "Wolfhunter",
+  SI_FURC_FILTER_VERSION_WORMS = "Seasons of the Worm Cult",
+  SI_FURC_FILTER_VERSION_WORMS_TT = "Another new island! This time with a creepy soul wall!",
   SI_FURC_FILTER_VERSION_WOTL = "Wrathstone",
   SI_FURC_FILTER_VERSION_WOTL_TT = "Wrathstone!",
   SI_FURC_GRAMMAR_PREP_LOC_DEFAULT = "in",

@@ -1,8 +1,8 @@
 local filterDisabled = "disables this filter"
 local strings = {
   -- ////// START : DON'T REMOVE THIS LINE
-
-  -- 354 ENTRIES THE SAME IN BOTH LANGUAGES
+  SI_FURC_HOUSE = "From a furnished purchase of <<1>>",
+  -- 356 ENTRIES THE SAME IN BOTH LANGUAGES
   SI_FURC_ADD_FAVE = " Add Favorite",
   SI_FURC_DATAMINED_UNCLEAR = "This item has been seen in-game, but it's not yet known where you can get it.",
   SI_FURC_DB = "The Dark Brotherhood supplies vendor hands these out ",
@@ -16,6 +16,7 @@ local strings = {
   SI_FURC_EVENT = "event",
   SI_FURC_EVENT_ANNIVERSARY = "Anniversary Jubilee",
   SI_FURC_EVENT_BLACKWOOD = "Bounties of Blackwood",
+  SI_FURC_EVENT_CRIME = "Crime Wave",
   SI_FURC_EVENT_ELSWEYR = "Season of the Dragon",
   SI_FURC_EVENT_HOLLOWJACK = "Sinister Hollowjack",
   SI_FURC_EVENT_IC = "Imperial City Celebration",
@@ -117,6 +118,8 @@ local strings = {
   SI_FURC_FILTER_VERSION_WEALD_TT = "We forgot about...who?",
   SI_FURC_FILTER_VERSION_WEREWOLF = "Wolfhunter",
   SI_FURC_FILTER_VERSION_WEREWOLF_TT = "In Soviet Hunting Ground, werewolf hunt you",
+  SI_FURC_FILTER_VERSION_WORMS = "Seasons of the Worm Cult",
+  SI_FURC_FILTER_VERSION_WORMS_TT = "Another new island! This time with a creepy soul wall!",
   SI_FURC_FILTER_VERSION_WOTL = "Wrathstone",
   SI_FURC_FILTER_VERSION_WOTL_TT = "Wrathstone!",
   SI_FURC_GRAMMAR_CONJ_OR = "or",
@@ -130,7 +133,6 @@ local strings = {
   SI_FURC_GUILD_PSIJIC_NALIRSEWEN = "Nalirsewen",
   SI_FURC_GUILD_THIEVES_MERCH = "Outlaw Refuge, Merchant",
   SI_FURC_GUILD_UNDAUNTED_QM = "Quartermaster",
-  SI_FURC_HOUSE = "From a furnished purchase of <<1>>",
   SI_FURC_ITEMPACK_ALCHEMIST = "Mad Alchemist",
   SI_FURC_ITEMPACK_AMBITIONS = "Daedric Ambitions",
   SI_FURC_ITEMPACK_AQUATIC = "Aquatic Splendor",
