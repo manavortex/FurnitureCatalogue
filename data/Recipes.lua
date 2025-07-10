@@ -2,6 +2,7 @@ FurC.Recipes = FurC.Recipes or {}
 
 local ver = FurC.Constants.Versioning
 
+<<<<<<< Updated upstream
 
 FurC.Recipes[ver.WORMS] = {
 
@@ -124,6 +125,145 @@ FurC.Recipes[ver.WORMS] = {
 		
 		}
 
+=======
+FurC.Recipes[ver.WORMS] = {
+
+    217504, -- Praxis: Tide-Born Chest, Large",
+    217505, -- Praxis: Tide-Born Chest, Small",
+    217506, -- Praxis: Tide-Born Coffer, Trinket",
+    217508, -- Pattern: Tide-Born Bed, Double",
+    217509, -- Blueprint: Tide-Born Bench, Wicker",
+    217511, -- Blueprint: Tide-Born Chair, Wicker",
+    217513, -- Praxis: Tide-Born Oven, Stone",
+    217514, -- Blueprint: Tide-Born Shelves, Double",
+    217515, -- Blueprint: Tide-Born Shelves, Tall",
+    217516, -- Blueprint: Tide-Born Table, Grand",
+    217517, -- Blueprint: Tide-Born Table, Dining",
+    217518, -- Design: Tide-Born Art, Flame Lily",
+    217519, -- Design: Tide-Born Art, Decorative Shrimp",
+    217520, -- Design: Tide-Born Windcatcher, Feathered",
+    217521, -- Praxis: Tide-Born Art, Stone Tree",
+    217522, -- Design: Tide-Born Pot, Shell-Topped",
+    217523, -- Pattern: Tide-Born Bag, Leather",
+    217524, -- Pattern: Tide-Born Basket, Rope-Handled",
+    217525, -- Pattern: Tide-Born Basket, Shell-Topped",
+    217526, -- Pattern: Tide-Born Mat, Geometric Round",
+    217527, -- Blueprint: Tide-Born Rug, Large Round",
+    217528, -- Pattern: Tide-Born Rug, Large Rectangular",
+    217529, -- Pattern: Tide-Born Rug, Medium Rectangular",
+    217530, -- Blueprint: Tide-Born Runner, Wicker",
+    217531, -- Design: Tide-Born Gourd Shaker",
+    217532, -- Design: Tide-Born Pot, Egg",
+    217533, -- Formula: Tide-Born Wall Mirror",
+    217534, -- Pattern: Tide-Born Wall Art, Rope",
+    217535, -- Design: Coconut Bunch, Display",
+    217536, -- Design: Fruit Bunch, Display",
+    217537, -- Design: Lemon Slice, Display",
+    217538, -- Design: Lime Slice, Display",
+    217539, -- Design: Lychee Bowl, Display",
+    217540, -- Design: Lychee Bunch, Display",
+    217541, -- Design: Mussel Bowl, Display",
+    217542, -- Design: Oyster Plate, Display",
+    217543, -- Design: Seafood Platter, Display",
+    217545, -- Design: Snail Bowl, Display",
+    217546, -- Design: Green Coconut Bunch, Display",
+    217547, -- Praxis: Tide-Born Mortar and Pestle",
+    217548, -- Praxis: Tide-Born Plate, Rectangular",
+    217549, -- Praxis: Tide-Born Plate, Square",
+    217550, -- Praxis: Tide-Born Plate, Triangular",
+    217551, -- Praxis: Tide-Born Bowl, Stone Serving",
+    217552, -- Praxis: Tide-Born Pitcher, Stone",
+    217553, -- Design: Tide-Born Chandelier, Coral",
+    217555, -- Design: Tide-Born Candleholder, Stone",
+    217556, -- Design: Tide-Born Sconce, Coral",
+    217557, -- Praxis: Sunport Bracket, Banner",
+    217558, -- Pattern: Sunport Scarf Valance, Lavender",
+    217559, -- Praxis: Sunport Fountain, Floral Wall",
+    217560, -- Praxis: Sunport Planter, Stone",
+    217561, -- Diagram: Sunport Planter, Hanging",
+    217562, -- Praxis: Sunport Table, Tall",
+    217563, -- Praxis: Sunport Game, Marbles",
+    217564, -- Blueprint: Paint Muller Board",
+    217565, -- Blueprint: Pigment Bowl, Green",
+    217566, -- Blueprint: Pigment Bowl, Red",
+    217568, -- Blueprint: Pigment Bowl, Blue Large",
+    217570, -- Pattern: Canvas, Blank",
+    217571, -- Blueprint: Tide-Born Duster, Wicker",
+    217573, -- Praxis: Tide-Born Sculpture, Turtle",
+    217574, -- Praxis: Tide-Born Sculpture, Coral",
+    217575, -- Design: Tide-Born Floor Lamp, Coral",
+    217576, -- Design: Tide-Born Lamp, Coral",
+    217577, -- Praxis: Tide-Born Firepit, Covered Stone",
+    217579, -- Blueprint: Tide-Born Totem, Medium",
+    217580, -- Blueprint: Tide-Born Totem, Short",
+}
+
+FurC.Recipes[ver.FALLBAN] = {
+  -- mirrormoor
+  212206,
+  212207,
+  212208,
+  212209,
+  212210,
+  -- dawnwood
+  212589,
+  212590,
+  212591,
+  212592,
+  212593,
+  212594,
+  212595,
+  212596,
+  212597,
+  -- ayleid
+  212598,
+  212599,
+  212600,
+  212601,
+  212602,
+  212603,
+  212604,
+  212605,
+  212606,
+  212607,
+  212608,
+  212609,
+  212610,
+  212611,
+  -- glass harp
+  212612,
+  -- colovian
+  212617,
+  211032, -- Blueprint: Colovian Archway, Wooden
+  211031, -- Blueprint: Colovian Banister Post, Wooden
+  211030, -- Blueprint: Colovian Banister, Wooden
+  211029, -- Praxis: Colovian Garden Wall, Straight
+  211028, -- Praxis: Colovian Garden Wall, Curved
+  211027, -- Praxis: Colovian Garden Pillar, Stone
+  211026, -- Praxis: Colovian Platform, Circular
+  211025, -- Praxis: Colovian Doorway, Stone
+  211024, -- Praxis: Colovian Wall, Flat Stone
+  211023, -- Formula: Colovian Window, Peaked
+  211022, -- Formula: Colovian Window, Rectangular
+  211021, -- Praxis: Colovian Fireplace, Stone
+  211020, -- Blueprint: Colovian Wall, Plaster
+  211019, -- Blueprint: Colovian Archway, Plaster
+  211018, -- Blueprint: Colovian Door, Painted
+  211017, -- Blueprint: Colovian Door, Wooden
+  211016, -- Blueprint: Colovian Doorway, Plaster
+  211015, -- Blueprint: Colovian Trim, Short Wooden
+  211014, -- Blueprint: Colovian Pillar, Wooden
+  211013, -- Blueprint: Colovian Trim, Wall
+  211012, -- Blueprint: Colovian Wall, Small Plaster
+  211011, -- Blueprint: Colovian Wall, Wooden
+  211010, -- Blueprint: Colovian Roof Gable, Large
+  211009, -- Blueprint: Colovian Floor, Small Dual-Sided
+  211008, -- Blueprint: Colovian Floor, Dual-Sided
+  211007, -- Blueprint: Colovian Staircase, Straight
+  211006, -- Blueprint: Colovian Staircase, Eastern Landing
+  211005, -- Blueprint: Colovian Staircase, Western Landing  
+}
+>>>>>>> Stashed changes
 
 FurC.Recipes[ver.BASE44] = {
   -- lucent
@@ -598,7 +738,6 @@ FurC.Recipes[ver.SCRIBE] = {
   194396, -- Praxis: Stone, Lava-Etched,
   194397, -- Diagram: Statue, Bronze Tentacle,
   194398, -- Blueprint: Druidic Bridge, Living,
-  184155, -- Formula: Alinor Painting, Unfinished,
   194365, -- Praxis: Druidic Nook Wall, Long Stone,
   194366, -- Praxis: Druidic Stairway, Stone,
   194367, -- Praxis: Druidic Chimney, Stone,
@@ -2382,7 +2521,6 @@ FurC.Recipes[ver.MORROWIND] = {
   126898, -- Dwarven Sconce, Barred
   126894, -- Dwarven Chandelier, Framework
   126866, -- Dwarven Pew, Refined
-  121305, -- Redguard Chandelier, Dark
   127068, -- Redoran Fork, Wooden
   127072, -- Indoril Banner, Sotha Sil
   126983, -- Telvanni Nightstand, Organic
@@ -2423,7 +2561,6 @@ FurC.Recipes[ver.MORROWIND] = {
   126915, -- Dres Trestle, Corridor
   126897, -- Dwarven Sconce, Powered
   126893, -- Dwarven Chandelier, Braced
-  121313, -- Wood Elf Throne, Vine
   126968, -- Redoran Table, Kitchen
   126913, -- Hlaalu Armchair, Polished
   127090, -- Indoril Lantern, Hanging
@@ -2518,7 +2655,6 @@ FurC.Recipes[ver.MORROWIND] = {
   126836, -- Daedric Bench, Ashen
   126952, -- Hlaalu End Table, Formal Turtle
   126984, -- Telvanni Desk, Organic
-  121304, -- Redguard Chandelier, Grated
   126982, -- Telvanni Sofa, Organic
   126981, -- Telvanni Throne, Organic
   126980, -- Telvanni Armchair, Organic
@@ -2600,7 +2736,6 @@ FurC.Recipes[ver.MORROWIND] = {
   126872, -- Dwarven Bowl, Forged
   126908, -- Hlaalu Bench, Mossy Cushion
   126868, -- Dwarven Bookcase, Full
-  121366, -- Orcish Tapestry, Hunt
   126892, -- Dwarven Chandelier, Barred
   126948, -- Hlaalu Dresser, Scroll Drawers
   126864, -- Dwarven Engine, Switch
@@ -3651,8 +3786,6 @@ FurC.Recipes[ver.HOMESTEAD] = {
   -- 116214, -- Nord Banner, Bear
   -- 115786, -- Argonian Skiff, Common Reed
 
-  121207, -- Orcish Table with Fur
-
   121372, -- Noble Standing Cauldron
   121059, -- Rough Cup, Empty
 
@@ -3663,18 +3796,4 @@ FurC.Recipes[ver.HOMESTEAD] = {
   121304, -- Redguard Chandelier, Grated
   121366, -- Orcish Tapestry, Hunt
   121365, -- High Elf Tapestry, Gilded
-
-  -- Rolis's recipes
-  121200, -- Cabinet, Poisonmaker's
-  121166, -- Podium, Skinning
-  121168, -- Tools, Case
-  121199, -- Mortar and Pestle
-  121214, -- Orcish Skull Goblet, Full
-  121163, -- Apparatus, Boiler
-  121197, -- Bottle, Poison Elixir
-  121164, -- Case of Vials
-  121209, -- Orcish Tapestry, Spear
-  121207, -- Orcish Table with Fur
-  121315, -- Target Skeleton, Robust Humanoid
-  119592, -- Target Skeleton, Humanoid
 }

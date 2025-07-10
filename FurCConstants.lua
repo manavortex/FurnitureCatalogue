@@ -42,6 +42,8 @@ FurC.Constants.ItemSources = {
   FESTIVAL_DROP = getNextIdFor("ITEM_SOURCES"), -- 18
 }
 
+-- TODO #REFACTOR Switch version numbering to the same as game update numbers
+
 -- versioning
 FurC.Constants.Versioning = {
   NONE = getNextIdFor("VERSIONING"), -- 1 off
@@ -76,10 +78,18 @@ FurC.Constants.Versioning = {
   WEALD = getNextIdFor("VERSIONING"), -- 30 Gold Road
   BASE43 = getNextIdFor("VERSIONING"), -- 31 Base Game Update 43
   BASE44 = getNextIdFor("VERSIONING"), -- 32 Base Game Update 44
+<<<<<<< Updated upstream
   WORMS = getNextIdFor("VERSIONING"), -- Seasons of the Worm Cult
 }
 
 FurC.Constants.Versioning.LATEST = FurC.Constants.Versioning.BASE44
+=======
+  FALLBAN = getNextIdFor("VERSIONING"), -- 33 Fallen Banners (U45)
+  WORMS = getNextIdFor("VERSIONING"), -- 34 Seasons of the Worm Cult (U46)
+}
+
+FurC.Constants.Versioning.LATEST = FurC.Constants.Versioning.FALLBAN
+>>>>>>> Stashed changes
 
 -- Location Ids, mix of ingame strings and translations, more control over translations
 FurC.Constants.Locations = {
@@ -143,6 +153,7 @@ FurC.Constants.Locations = {
   W_SOLSTICE = getZoneStr(1502), -- Western Solstice
   WROTHGAR = getZoneStr(684), -- Wrothgar
   WSKYRIM = getZoneStr(1160), -- Western Skyrim
+  W_SOLSTICE = getZoneStr(1502), -- Western Solstice  
   -- Custom
   ANY = GetString(SI_FURC_LOC_ANY),
   ANY_CAPITAL = GetString(SI_FURC_LOC_ANY_CAPITAL),
@@ -258,11 +269,21 @@ FurC.Constants.NPC = {
 FurC.Constants.CrownCrates = {
   -- Source: https://en.uesp.net/wiki/Online:Crown_Crates
 
+<<<<<<< Updated upstream
   CARNAVAL = GetCrownCrateName(62), -- TBA
   DB = GetCrownCrateName(0), -- TBA
   MIRROR = GetCrownCrateName(0), -- TBA
+=======
+  -- ids not confirmed ingame yet
+  AKA_ALDU = GetCrownCrateName(63), -- 2025-09, Akatosh vs. Alduin
+  CARNAVAL = GetCrownCrateName(62), -- 2025-06, Carnaval
+>>>>>>> Stashed changes
 
-  DIAMOND = GetCrownCrateName(59), -- 2024-07
+  MIRROR = GetCrownCrateName(61), -- 2025-03, Mirrormoor
+  DB = GetCrownCrateName(60), -- 2024-12, Dark Brotherhood
+
+  -- confirmed ids
+  DIAMOND = GetCrownCrateName(59), -- 2024-07, Diamond Anniversary
   LAMP = GetCrownCrateName(58), -- 2024-04
   ALLMAKER = GetCrownCrateName(57), -- 2023-12
   ARMIGER = GetCrownCrateName(55), -- 2023-09
@@ -306,7 +327,11 @@ FurC.Constants.SkillLines = {
 FurC.Constants.Events = {
   ANNIVERSARY = GetString(SI_FURC_EVENT_ANNIVERSARY), -- Anniversary Jubilee
   BLACKWOOD = GetString(SI_FURC_EVENT_BLACKWOOD), -- Bounties of Blackwood
+<<<<<<< Updated upstream
   CRIME = GetString(SI_FURC_EVENT_CRIME), -- Crime Wave
+=======
+  CRIME = GetString(SI_FURC_EVENT_CRIME), -- Crime Wave  
+>>>>>>> Stashed changes
   ELSWEYR = GetString(SI_FURC_EVENT_ELSWEYR), -- Season of the Dragon
   HOLLOWJACK = GetString(SI_FURC_EVENT_HOLLOWJACK), -- Sinister Hollowjack
   IC = GetString(SI_FURC_EVENT_IC), -- Imperial City Celebration Event
@@ -328,7 +353,11 @@ FurC.Constants.Containers = {
   PLUNDERSKULL = "|H0:item:84521:1:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h", -- during Witches' Festival
   UNDAUNTEDBOX = "|H0:item:171267:1:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h", -- during Undaunted Celebration
   ZENITHARPARCEL = "|H0:item:187701:1:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h", -- during Zenithar's Zeal
+<<<<<<< Updated upstream
   POUCH = "|H0:item:214263:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h", -- during Crime Wave
+=======
+  POUCH = "|H0:item:214263:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h", -- during Crime Wave  
+>>>>>>> Stashed changes
 }
 
 -- TODO: allow customisable colours, getting from options

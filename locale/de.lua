@@ -307,7 +307,11 @@ local strings = {
   SI_FURC_VERBOSE_SCANNING_CHARS = "Scanne keine Dateien, scanne jetzt Charakter-Kenntnisse...",
   SI_FURC_VERBOSE_SCANNING_DATA_FILE = "Furniture Catalogue: Scannen von Datensätzen...",
   SI_FURC_VERBOSE_STARTUP = "Furniture Catalogue: Wenn Ihr ein Rezept vermisst, löst bitte einen Scan Eures Möbel-Handwerkers aus, indem Ihr auf den Button 'Aktualisieren' in der Benutzeroberfläche klickt.",
+<<<<<<< Updated upstream
   -- 46 ENTRIES THE SAME IN BOTH LANGUAGES
+=======
+  -- 48 ENTRIES THE SAME IN BOTH LANGUAGES
+>>>>>>> Stashed changes
   SI_FURC_EVENT_ANNIVERSARY = "Anniversary Jubilee",
   SI_FURC_FILTER_VERSION_ALTMER = "Summerset",
   SI_FURC_FILTER_VERSION_BASE43 = "Base Game Update 43",
@@ -323,6 +327,8 @@ local strings = {
   SI_FURC_FILTER_VERSION_DRAGON2 = "Dragonhold",
   SI_FURC_FILTER_VERSION_DRUID = "Firesong",
   SI_FURC_FILTER_VERSION_ENDLESS = "Secrets of the Telvanni",
+  SI_FURC_FILTER_VERSION_FALLBAN = "Fallen Banners",
+  SI_FURC_FILTER_VERSION_FALLBAN_TT = "Fallen Banners + Visual update",
   SI_FURC_FILTER_VERSION_FLAMES = "Flames of Ambition",
   SI_FURC_FILTER_VERSION_HARROW = "Harrowstorm",
   SI_FURC_FILTER_VERSION_HS = "Homestead",

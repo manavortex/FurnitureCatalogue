@@ -3,6 +3,7 @@
 	This list will make sure they don't show up under "Recipes: Unknown" and drive the OCD people up the walls
 ]]
 FurC.RumourRecipes = {
+<<<<<<< Updated upstream
   [211032] = 211032, -- Blueprint: Colovian Archway, Wooden
   [211031] = 211031, -- Blueprint: Colovian Banister Post, Wooden
   [211030] = 211030, -- Blueprint: Colovian Banister, Wooden
@@ -31,4 +32,7 @@ FurC.RumourRecipes = {
   [211007] = 211007, -- Blueprint: Colovian Staircase, Straight
   [211006] = 211006, -- Blueprint: Colovian Staircase, Eastern Landing
   [211005] = 211005, -- Blueprint: Colovian Staircase, Western Landing
+=======
+  184155, -- Formula: Alinor Painting, Unfinished,
+>>>>>>> Stashed changes
 }

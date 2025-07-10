@@ -3,7 +3,11 @@ local events = FurC.Constants.Events
 local npc = FurC.Constants.NPC
 local containers = FurC.Constants.Containers
 
+<<<<<<< Updated upstream
 FurC.EventItems[ver.WORMS] = {
+=======
+FurC.EventItems[ver.FALLBAN] = {
+>>>>>>> Stashed changes
   [events.CRIME] = {
     [containers.POUCH] = {
       [214244] = true, -- Crime Notice, Large",
@@ -15,7 +19,10 @@ FurC.EventItems[ver.WORMS] = {
   },
  }
 
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 -- 31 Base Game Update 43
 FurC.EventItems[ver.BASE43] = {
   [events.UNDAUNTED] = {

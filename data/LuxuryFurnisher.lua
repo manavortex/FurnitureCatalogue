@@ -2,7 +2,11 @@ FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
 local ver = FurC.Constants.Versioning
 
+<<<<<<< Updated upstream
 -- 31 Seasons of the Worm Cult
+=======
+-- Seasons of the Worm Cult
+>>>>>>> Stashed changes
 FurC.LuxuryFurnisher[ver.WORMS] = {
    [212574] = { -- Ayleid Sconce, Tall Floor",
     itemPrice = 12000,
@@ -21,8 +25,14 @@ FurC.LuxuryFurnisher[ver.WORMS] = {
     itemDate = "2025-06-06",
   },
 }
+<<<<<<< Updated upstream
 -- 30 Gold Road
 FurC.LuxuryFurnisher[ver.WEALD] = {
+=======
+
+-- 35 Fallen Banners
+FurC.LuxuryFurnisher[ver.FALLBAN] = {
+>>>>>>> Stashed changes
    [211570] = { -- Redguard Plaque, Beetle",
     itemPrice = 16000,
     itemDate = "2025-05-30",
@@ -67,6 +77,7 @@ FurC.LuxuryFurnisher[ver.WEALD] = {
     itemPrice = 16000,
     itemDate = "2025-03-21",
   },
+<<<<<<< Updated upstream
   [210886] = { -- Orcish Gateway, City",
     itemPrice = 4500,
     itemDate = "2025-03-14",
@@ -119,6 +130,60 @@ FurC.LuxuryFurnisher[ver.WEALD] = {
     itemPrice = 7500,
     itemDate = "2025-01-03",
   },
+=======
+  [210886] = { -- Orcish Gateway, City
+    itemPrice = 4500,
+    itemDate = "2025-03-14",
+  },
+  [210885] = { -- Apocrypha Plant, Papyrus Cluster
+    itemPrice = 2500,
+    itemDate = "2025-03-07",
+  },
+  [210884] = { -- Plant, Tall Galen Palm Cluster
+    itemPrice = 4500,
+    itemDate = "2025-02-28",
+  },
+  [210883] = { -- Skyrim Beehive, Thatch
+    itemPrice = 3000,
+    itemDate = "2025-02-21",
+  },
+  [210882] = { -- Dwarven Lamppost, Reachfolk Adorned
+    itemPrice = 4500,
+    itemDate = "2025-02-14",
+  },
+  [210881] = { -- Serpent Door, Metal
+    itemPrice = 24500,
+    itemDate = "2025-02-08",
+  },
+  [210880] = { -- Serpent Column, Right
+    itemPrice = 20000,
+    itemDate = "2025-01-31",
+  },
+  [210879] = { -- Serpent Column, Left
+    itemPrice = 20000,
+    itemDate = "2025-01-31",
+  },
+  [210878] = { -- Glass Crystal, Opaque Pillar
+    itemPrice = 20000,
+    itemDate = "2025-01-24",
+  },
+  [210877] = { -- Obsidian Deposit, Smooth
+    itemPrice = 15000,
+    itemDate = "2025-01-17",
+  },
+  [210874] = { -- Necrom Urn, White
+    itemPrice = 10000,
+    itemDate = "2025-01-10",
+  },
+  [210873] = { -- Necrom Funerary Offering, Incense
+    itemPrice = 7500,
+    itemDate = "2025-01-03",
+  },
+}
+
+-- 30 Gold Road
+FurC.LuxuryFurnisher[ver.WEALD] = {
+>>>>>>> Stashed changes
   [210876] = { -- Moongrave Fane Ritual Block",
     itemPrice = 50000,
     itemDate = "2024-12-27",
@@ -146,11 +211,22 @@ FurC.LuxuryFurnisher[ver.WEALD] = {
   [204633] = { -- Dwarven Puzzle Cube, Lady Ascendant",
     itemPrice = 20000,
     itemDate = "2024-11-15",
+<<<<<<< Updated upstream
   },
+=======
+  },  
+>>>>>>> Stashed changes
   [204632] = { -- Dwarven Archway, Temple",
     itemPrice = 4500,
     itemDate = "2024-11-08",
   },
+<<<<<<< Updated upstream
+=======
+  [204630] = { -- Fountain, Wolf Head
+    itemPrice = 40000,
+    itemDate = "2024-10-11",
+  },
+>>>>>>> Stashed changes
   [204629] = { -- Dwarven Statue, Guardian",
     itemPrice = 20000,
     itemDate = "2024-10-04",

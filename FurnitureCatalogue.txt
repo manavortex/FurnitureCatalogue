@@ -1,8 +1,14 @@
 ## Title: FurnitureCatalogue
 ## Author: manavortex
+<<<<<<< Updated upstream
 ## AddonVersion: 4085000
 ## Version: 4.85.0
 ## APIVersion: 101044
+=======
+## AddonVersion: 4087001
+## Version: 4.87.1
+## APIVersion: 101045
+>>>>>>> Stashed changes
 ## SavedVariables: FurnitureCatalogue_Settings
 ## DependsOn: LibCustomMenu LibAddonMenu-2.0 LibAsync
 ## OptionalDependsOn: LibDebugLogger LibDebugViewer
@@ -32,8 +38,8 @@ data\EventItems.lua
 data\LuxuryFurnisher.lua
 data\PvP.lua
 data\Recipes.lua
-data\RecipeSources.lua
 data\Rolis.lua
+data\RecipeSources.lua
 
 FurCDatabaseQuery.lua
 FurCData.lua

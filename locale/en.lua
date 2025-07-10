@@ -16,7 +16,11 @@ local strings = {
   SI_FURC_EVENT = "event",
   SI_FURC_EVENT_ANNIVERSARY = "Anniversary Jubilee",
   SI_FURC_EVENT_BLACKWOOD = "Bounties of Blackwood",
+<<<<<<< Updated upstream
   SI_FURC_EVENT_CRIME = "Crime Wave",
+=======
+  SI_FURC_EVENT_CRIME = "Crime Wave",  
+>>>>>>> Stashed changes
   SI_FURC_EVENT_ELSWEYR = "Season of the Dragon",
   SI_FURC_EVENT_HOLLOWJACK = "Sinister Hollowjack",
   SI_FURC_EVENT_IC = "Imperial City Celebration",
@@ -56,6 +60,10 @@ local strings = {
   SI_FURC_FILTER_SRC_SOLD_WRIT_TT = "Obtainable for Master Writs in your alliance's capital",
   SI_FURC_FILTER_VERSION_ALTMER = "Summerset",
   SI_FURC_FILTER_VERSION_ALTMER_TT = "Still think the Dunmer are bad?",
+  SI_FURC_FILTER_VERSION_BASE43 = "Base Game Update 43",
+  SI_FURC_FILTER_VERSION_BASE43_TT = "Home tours are here",
+  SI_FURC_FILTER_VERSION_BASE44 = "Base Game Update 44",
+  SI_FURC_FILTER_VERSION_BASE44_TT = "2-sided BGs",
   SI_FURC_FILTER_VERSION_BASED = "Base Game Patch",
   SI_FURC_FILTER_VERSION_BASED_TT = "When you run out of names",
   SI_FURC_FILTER_VERSION_BASE43 = "Base Game Update 43",
@@ -80,6 +88,8 @@ local strings = {
   SI_FURC_FILTER_VERSION_DRUID_TT = "Remember when we could block?",
   SI_FURC_FILTER_VERSION_ENDLESS = "Secrets of the Telvanni",
   SI_FURC_FILTER_VERSION_ENDLESS_TT = "Now with infinite tentacles",
+  SI_FURC_FILTER_VERSION_FALLBAN = "Fallen Banners",
+  SI_FURC_FILTER_VERSION_FALLBAN_TT = "Fallen Banners + Visual update",
   SI_FURC_FILTER_VERSION_FLAMES = "Flames of Ambition",
   SI_FURC_FILTER_VERSION_FLAMES_TT = "Mildly flammable",
   SI_FURC_FILTER_VERSION_HARROW = "Harrowstorm",
@@ -117,7 +127,11 @@ local strings = {
   SI_FURC_FILTER_VERSION_WEREWOLF = "Wolfhunter",
   SI_FURC_FILTER_VERSION_WEREWOLF_TT = "In Soviet Hunting Ground, werewolf hunt you",
   SI_FURC_FILTER_VERSION_WORMS = "Seasons of the Worm Cult",
+<<<<<<< Updated upstream
   SI_FURC_FILTER_VERSION_WORMS_TT = "Another new island! This time, with a creepy soul wall!",
+=======
+  SI_FURC_FILTER_VERSION_WORMS_TT = "Another new island! This time with a creepy soul wall!",
+>>>>>>> Stashed changes
   SI_FURC_FILTER_VERSION_WOTL = "Wrathstone",
   SI_FURC_FILTER_VERSION_WOTL_TT = "Wrathstone!",
   SI_FURC_GRAMMAR_CONJ_OR = "or",
@@ -130,8 +144,8 @@ local strings = {
   SI_FURC_GUILD_MAGES_MYSTIC_COLL = "the Mystic as part of a collection",
   SI_FURC_GUILD_PSIJIC_NALIRSEWEN = "Nalirsewen",
   SI_FURC_GUILD_THIEVES_MERCH = "Outlaw Refuge, Merchant",
-  SI_FURC_GUILD_UNDAUNTED_QM = "Undaunted Quartermaster",
-  SI_FURC_HOUSE = "From a furnished purchase of <<1>>",
+  SI_FURC_GUILD_UNDAUNTED_QM = "Quartermaster",
+  SI_FURC_HOUSE = "From purchasing or acquiring <<1>>",
   SI_FURC_ITEMPACK_ALCHEMIST = "Mad Alchemist",
   SI_FURC_ITEMPACK_AMBITIONS = "Daedric Ambitions",
   SI_FURC_ITEMPACK_AQUATIC = "Aquatic Splendor",
@@ -142,7 +156,6 @@ local strings = {
   SI_FURC_ITEMPACK_COVEN = "Witches' Coven",
   SI_FURC_ITEMPACK_CRAGKNICKS = "Craglorn Multicultural Knick-Knacks",
   SI_FURC_ITEMPACK_CURIOSITIES = "Apocryphal Curiosities",
-
   SI_FURC_ITEMPACK_DEEPMIRE = "Deepmire Expedition",
   SI_FURC_ITEMPACK_DIBELLA = "Dibella's Garden",
   SI_FURC_ITEMPACK_DWEMER = "Dwemer",
@@ -245,7 +258,6 @@ local strings = {
   SI_FURC_STRING_CONTEXTMENU_INVENTORY_TT = "Disables the context for inventory items like posting material and adding to favourites.",
   SI_FURC_STRING_CRAFTABLE_BY = "Can be crafted by ",
   SI_FURC_STRING_DUNG = "dungeon",
-
   SI_FURC_STRING_MENU_ADD_ITEMS_NAME = "Add items to known/unknown recipes?",
   SI_FURC_STRING_MENU_ADD_ITEMS_TT = "You shouldn't notice any lag",
   SI_FURC_STRING_MENU_CROWN = "Crown store items",
