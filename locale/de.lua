@@ -359,6 +359,12 @@ local strings = {
   SI_FURC_LOC_VVARDENFELL_SURAN = "Suran",
   SI_FURC_TRADERS_FAUSTINA = "Faustina Curio",
   SI_FURC_TRADERS_ROLIS = "Rolis Hlaalu",
+  SI_FURC_FILTER_VERSION_SHADOWS = "Fest der Schatten",
+  SI_FURC_FILTER_VERSION_SHADOWS_TT = "Essen im Dunkeln",
+  SI_FURC_FILTER_VERSION_WORMS2 = "Jahreszeiten des Wurmkults, Teil 2",
+  SI_FURC_FILTER_VERSION_WORMS2_TT = "Nieder mit der Mauer!",
+  SI_FURC_FILTER_VERSION_ZERO = "Staffel Null",
+  SI_FURC_FILTER_VERSION_ZERO_TT = "Denn warum mit Eins anfangen?",
   -- ////// END   : DON'T REMOVE THIS LINE
 }
 
