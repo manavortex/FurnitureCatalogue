@@ -1,3 +1,8 @@
+6.0.0 (2026-04-27)
+- All crafted furnishings to U49.
+- Sourcing for current and past master writ vendor stock and prices. 
+- Updated Luxury furnishing dates and added missing ones to present.
+
 5.0.0 (2025-07-10)
 This update adds sourcing for most of the new Solstice items, catches up on luxury items, and adds some missing misc sources.
 
@@ -6,7 +11,7 @@ This update adds sourcing for most of the new Solstice items, catches up on luxu
 
 4.87.0 (2025-03-16)
 - always show blueprints from master writ vendors
-- update crown crates up to mirrormoore
+- update crown crates up to mirrormoor
 - update luxury furnishings for 2025
 - add some missing item sources (thx @sbordeyne)
 
