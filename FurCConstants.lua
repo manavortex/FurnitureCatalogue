@@ -80,9 +80,12 @@ FurC.Constants.Versioning = {
   BASE44 = getNextIdFor("VERSIONING"), -- 32 Base Game Update 44
   FALLBAN = getNextIdFor("VERSIONING"), -- 33 Fallen Banners (U45)
   WORMS = getNextIdFor("VERSIONING"), -- 34 Seasons of the Worm Cult (U46)
+  SHADOWS = getNextIdFor("VERSIONING"), -- 35 Feast of Shadows (U47)
+  WORMS2 = getNextIdFor("VERSIONING"), -- 36 Seasons of the Worm Cult Part 2 (U48)
+  ZERO = getNextIdFor("VERSIONING"), -- 37 Season Zero (U49)
 }
 
-FurC.Constants.Versioning.LATEST = FurC.Constants.Versioning.WORMS
+FurC.Constants.Versioning.LATEST = FurC.Constants.Versioning.ZERO
 
 -- Location Ids, mix of ingame strings and translations, more control over translations
 FurC.Constants.Locations = {
@@ -146,7 +149,7 @@ FurC.Constants.Locations = {
   W_SOLSTICE = getZoneStr(1502), -- Western Solstice
   WROTHGAR = getZoneStr(684), -- Wrothgar
   WSKYRIM = getZoneStr(1160), -- Western Skyrim
-  W_SOLSTICE = getZoneStr(1502), -- Western Solstice
+  W_SOLSTICE = getZoneStr(1502), -- Western Solstice (what about eastern solstice?)
   -- Custom
   ANY = GetString(SI_FURC_LOC_ANY),
   ANY_CAPITAL = GetString(SI_FURC_LOC_ANY_CAPITAL),
