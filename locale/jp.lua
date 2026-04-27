@@ -359,6 +359,12 @@ local strings = {
   SI_FURC_MENU_HEADER = "- |cD3B830Furniture|r:",
   SI_FURC_STRING_MENU_DEBUG = "Enable debug output",
   SI_FURC_STRING_MENU_DEBUG_TT = "Only has an effect if a debug logger is enabled",
+  SI_FURC_FILTER_VERSION_SHADOWS = "DLC：影の饗宴",
+  SI_FURC_FILTER_VERSION_SHADOWS_TT = "暗闇の中で食事をする",
+  SI_FURC_FILTER_VERSION_WORMS2 = "DLC：ワーム教団の季節 第2部",
+  SI_FURC_FILTER_VERSION_WORMS2_TT = "壁を打ち倒せ！",
+  SI_FURC_FILTER_VERSION_ZERO = "シーズン・ゼロ",
+  SI_FURC_FILTER_VERSION_ZERO_TT = "なぜ1から始めるのか？",
   -- ////// END   : DON'T REMOVE THIS LINE
 }
 
