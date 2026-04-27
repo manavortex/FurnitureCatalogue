@@ -6,6 +6,36 @@ FurC.FaustinaRecipes = FurC.FaustinaRecipes or {}
 
 local ver = FurC.Constants.Versioning
 
+FurC.RolisRecipes[ver.ZERO] = {
+  [223930] = 125, -- Pattern: Worm Cult Tent, Large
+  [223927] = 125, -- Sketch: Golden Skull, Argonian
+  [223929] = 125, -- Praxis: Stone-Nest Fountain, Four Headed
+  [223926] = 125, -- Formula: Coldharbour Focusing Lens
+  [223931] = 125, -- Diagram: Worm Cult Forge, Mining
+  [223928] = 125, -- Design: Shell-Tide Hatchery Altar, Replica
+  [223932] = 125, -- Blueprint: Worm Cult Torture Rack
+}
+
+FurC.FaustinaRecipes[ver.ZERO] = {
+  [219665] = 100, -- Blueprint: Tide-Born Hut, Elevated
+  [219663] = 100, -- Design: Fruit Arrangement, Tide-Born
+  [219664] = 100, -- Diagram: Naj-Caldeesh Impaler, Deactivated
+  [219660] = 100, -- Formula: High Elf Castle Painting, In Progress
+  [219661] = 100, -- Pattern: Vossa-Satl, Display
+  [219666] = 100, -- Praxis: Stone-Nest Fountain, Triple Spout
+  [219662] = 100, -- Sketch: Meridian Bell, Temple
+}
+
+FurC.FaustinaRecipes[ver.SHADOWS] = {
+  [212567] = 100, -- Sketch: Guardian Key, Replica
+  [212566] = 100, -- Praxis: Ayleid Sconce, Winged Floor
+  [212565] = 100, -- Diagram: Ayleid Window, Turquoise Glass
+  [212564] = 100, -- Formula: Dawnwood Hut, Partial
+  [212563] = 100, -- Design: Colovian Grape Vat, Large
+  [212562] = 100, -- Blueprint: Colovian Wine Press
+  [212561] = 100, -- Pattern: Wood Elf Tent, Saplings
+}
+
 FurC.FaustinaRecipes[ver.FALLBAN] = {
   [211038] = 100, -- Design: Dawnwood Platter, Feast
   [211036] = 100, -- Praxis: Colovian Glassblower's Furnace
@@ -25,8 +55,8 @@ FurC.RolisRecipes[ver.FALLBAN] = {
 }
 
 FurC.FaustinaRecipes[ver.BASE43] = {
-  [211039] = 125, -- Blueprint: Colovian Keg, Gigantic Wine
-  [211037] = 125, -- Sketch: Colovian Mirror, Standing
+  [211039] = 100, -- Blueprint: Colovian Keg, Gigantic Wine
+  [211037] = 100, -- Sketch: Colovian Mirror, Standing
 }
 
 -- 28 Secrets of the Telvanni
@@ -50,12 +80,12 @@ FurC.RolisRecipes[ver.FLAMES] = {
 
 -- 14 Harrowstorm
 FurC.FaustinaRecipes[ver.HARROW] = {
-  [159501] = 125, -- Praxis: Khajiit Sigil, Moon Cycle
-  [159499] = 125, -- Pattern: Elsweyr Bed, Senche-Raht
-  [159502] = 125, -- Formula: Elsweyr Mortar and Pestle, Engraved
-  [159498] = 125, -- Diagram: Elsweyr Gong, Ornate
-  [159503] = 125, -- Design: Elsweyr Bread Basket, Feast-Day
-  [159500] = 125, -- Blueprint: Elsweyr Well, Covered
+  [159501] = 100, -- Praxis: Khajiit Sigil, Moon Cycle
+  [159499] = 100, -- Pattern: Elsweyr Bed, Senche-Raht
+  [159502] = 100, -- Formula: Elsweyr Mortar and Pestle, Engraved
+  [159498] = 100, -- Diagram: Elsweyr Gong, Ornate
+  [159503] = 100, -- Design: Elsweyr Bread Basket, Feast-Day
+  [159500] = 100, -- Blueprint: Elsweyr Well, Covered
 }
 
 -- 10 Wrathstone
