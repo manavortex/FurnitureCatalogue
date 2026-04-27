@@ -1,10 +1,10 @@
 ## Title: FurnitureCatalogue
 ## Author: manavortex
-## AddonVersion: 5000000
-## Version: 5.0.0
-## APIVersion: 101045
+## AddonVersion: 6000000
+## Version: 6.0.0
+## APIVersion: 101049 101050
 ## SavedVariables: FurnitureCatalogue_Settings
-## DependsOn: LibCustomMenu LibAddonMenu-2.0 LibAsync
+## DependsOn: LibCustomMenu>=730 LibAddonMenu-2.0>=41 LibAsync>=30102
 ## OptionalDependsOn: LibDebugLogger LibDebugViewer
 
 locale\en.lua
