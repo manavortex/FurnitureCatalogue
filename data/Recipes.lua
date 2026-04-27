@@ -2,76 +2,273 @@ FurC.Recipes = FurC.Recipes or {}
 
 local ver = FurC.Constants.Versioning
 
+-- Season Zero
+FurC.Recipes[ver.ZERO] = {
+223872,
+223873,
+223874,
+223895,
+223896,
+223897,
+223898,
+223899,
+223900,
+223901,
+223902,
+223903,
+223904,
+223905,
+223906,
+223907,
+223908,
+223909,
+223910,
+223911,
+223912,
+223913,
+223914,
+223915,
+223916,
+223917,
+223918,
+223919,
+223920,
+223921,
+223922,
+223923,
+223924,
+223925,
+223933,
+223934,
+223935,
+223936,
+223937,
+223938,
+223939,
+223940,
+224277,
+224278,
+224279,
+224280,
+224281,
+}
+
+-- Seasons of the Worm Cult Part 2
+FurC.Recipes[ver.WORMS2] = {
+220289,
+223181,
+223566,
+223567,
+223568,
+223569,
+223570,
+223571,
+223572,
+223573,
+223574,
+223575,
+223576,
+223577,
+223578,
+223579,
+223580,
+223581,
+223582,
+223583,
+223584,
+223585,
+223586,
+223587,
+223588,
+223589,
+223590,
+223591,
+223592,
+223593,
+223594,
+223595,
+223596,
+223597,
+223598,
+223599,
+223600,
+223601,
+223602,
+223603,
+223604,
+223605,
+223606,
+223607,
+223608,
+223609,
+223610,
+223611,
+223612,
+223613,
+223614,
+223615,
+223616,
+223617,
+223618,
+223619,
+223620,
+223621,
+223622,
+223623,
+223624,
+223625,
+223626,
+223627,
+223628,
+223629,
+223630,
+223631,
+223632,
+223633,
+223634,
+223635,
+223636,
+223637,
+223638,
+223639,
+223640,
+223641,
+223642,
+223643,
+223644,
+223645,
+}
+
+-- Feast of Shadows
+FurC.Recipes[ver.SHADOWS] = {
+219667,
+219668,
+219669,
+219670,
+219671,
+219672,
+219673,
+219674,
+219675,
+219676,
+219677,
+219678,
+219679,
+219680,
+219681,
+219682,
+219683,
+219684,
+219685,
+219686,
+219687,
+219688,
+219689,
+219690,
+219691,
+219692,
+219693,
+219694,
+219695,
+219696,
+219697,
+219698,
+219699,
+219704,
+219766,
+219767,
+219769,
+219770,
+219771,
+219772,
+219773,
+219774,
+219775,
+219776,
+219777,
+219768,
+}
+
+-- Seasons of the Worm Cult
 FurC.Recipes[ver.WORMS] = {
 
-  217504, -- Praxis: Tide-Born Chest, Large",
-  217505, -- Praxis: Tide-Born Chest, Small",
-  217506, -- Praxis: Tide-Born Coffer, Trinket",
-  217508, -- Pattern: Tide-Born Bed, Double",
-  217509, -- Blueprint: Tide-Born Bench, Wicker",
-  217511, -- Blueprint: Tide-Born Chair, Wicker",
-  217513, -- Praxis: Tide-Born Oven, Stone",
-  217514, -- Blueprint: Tide-Born Shelves, Double",
-  217515, -- Blueprint: Tide-Born Shelves, Tall",
-  217516, -- Blueprint: Tide-Born Table, Grand",
-  217517, -- Blueprint: Tide-Born Table, Dining",
-  217518, -- Design: Tide-Born Art, Flame Lily",
-  217519, -- Design: Tide-Born Art, Decorative Shrimp",
-  217520, -- Design: Tide-Born Windcatcher, Feathered",
-  217521, -- Praxis: Tide-Born Art, Stone Tree",
-  217522, -- Design: Tide-Born Pot, Shell-Topped",
-  217523, -- Pattern: Tide-Born Bag, Leather",
-  217524, -- Pattern: Tide-Born Basket, Rope-Handled",
-  217525, -- Pattern: Tide-Born Basket, Shell-Topped",
-  217526, -- Pattern: Tide-Born Mat, Geometric Round",
-  217527, -- Blueprint: Tide-Born Rug, Large Round",
-  217528, -- Pattern: Tide-Born Rug, Large Rectangular",
-  217529, -- Pattern: Tide-Born Rug, Medium Rectangular",
-  217530, -- Blueprint: Tide-Born Runner, Wicker",
-  217531, -- Design: Tide-Born Gourd Shaker",
-  217532, -- Design: Tide-Born Pot, Egg",
-  217533, -- Formula: Tide-Born Wall Mirror",
-  217534, -- Pattern: Tide-Born Wall Art, Rope",
-  217535, -- Design: Coconut Bunch, Display",
-  217536, -- Design: Fruit Bunch, Display",
-  217537, -- Design: Lemon Slice, Display",
-  217538, -- Design: Lime Slice, Display",
-  217539, -- Design: Lychee Bowl, Display",
-  217540, -- Design: Lychee Bunch, Display",
-  217541, -- Design: Mussel Bowl, Display",
-  217542, -- Design: Oyster Plate, Display",
-  217543, -- Design: Seafood Platter, Display",
-  217545, -- Design: Snail Bowl, Display",
-  217546, -- Design: Green Coconut Bunch, Display",
-  217547, -- Praxis: Tide-Born Mortar and Pestle",
-  217548, -- Praxis: Tide-Born Plate, Rectangular",
-  217549, -- Praxis: Tide-Born Plate, Square",
-  217550, -- Praxis: Tide-Born Plate, Triangular",
-  217551, -- Praxis: Tide-Born Bowl, Stone Serving",
-  217552, -- Praxis: Tide-Born Pitcher, Stone",
-  217553, -- Design: Tide-Born Chandelier, Coral",
-  217555, -- Design: Tide-Born Candleholder, Stone",
-  217556, -- Design: Tide-Born Sconce, Coral",
-  217557, -- Praxis: Sunport Bracket, Banner",
-  217558, -- Pattern: Sunport Scarf Valance, Lavender",
-  217559, -- Praxis: Sunport Fountain, Floral Wall",
-  217560, -- Praxis: Sunport Planter, Stone",
-  217561, -- Diagram: Sunport Planter, Hanging",
-  217562, -- Praxis: Sunport Table, Tall",
-  217563, -- Praxis: Sunport Game, Marbles",
-  217564, -- Blueprint: Paint Muller Board",
-  217565, -- Blueprint: Pigment Bowl, Green",
-  217566, -- Blueprint: Pigment Bowl, Red",
-  217568, -- Blueprint: Pigment Bowl, Blue Large",
-  217570, -- Pattern: Canvas, Blank",
-  217571, -- Blueprint: Tide-Born Duster, Wicker",
-  217573, -- Praxis: Tide-Born Sculpture, Turtle",
-  217574, -- Praxis: Tide-Born Sculpture, Coral",
-  217575, -- Design: Tide-Born Floor Lamp, Coral",
-  217576, -- Design: Tide-Born Lamp, Coral",
-  217577, -- Praxis: Tide-Born Firepit, Covered Stone",
-  217579, -- Blueprint: Tide-Born Totem, Medium",
-  217580, -- Blueprint: Tide-Born Totem, Short",
+  217504, -- Praxis: Tide-Born Chest, Large
+  217505, -- Praxis: Tide-Born Chest, Small
+  217506, -- Praxis: Tide-Born Coffer, Trinket
+  217508, -- Pattern: Tide-Born Bed, Double
+  217509, -- Blueprint: Tide-Born Bench, Wicker
+  217511, -- Blueprint: Tide-Born Chair, Wicker
+  217513, -- Praxis: Tide-Born Oven, Stone
+  217514, -- Blueprint: Tide-Born Shelves, Double
+  217515, -- Blueprint: Tide-Born Shelves, Tall
+  217516, -- Blueprint: Tide-Born Table, Grand
+  217517, -- Blueprint: Tide-Born Table, Dining
+  217518, -- Design: Tide-Born Art, Flame Lily
+  217519, -- Design: Tide-Born Art, Decorative Shrimp
+  217520, -- Design: Tide-Born Windcatcher, Feathered
+  217521, -- Praxis: Tide-Born Art, Stone Tree
+  217522, -- Design: Tide-Born Pot, Shell-Topped
+  217523, -- Pattern: Tide-Born Bag, Leather
+  217524, -- Pattern: Tide-Born Basket, Rope-Handled
+  217525, -- Pattern: Tide-Born Basket, Shell-Topped
+  217526, -- Pattern: Tide-Born Mat, Geometric Round
+  217527, -- Blueprint: Tide-Born Rug, Large Round
+  217528, -- Pattern: Tide-Born Rug, Large Rectangular
+  217529, -- Pattern: Tide-Born Rug, Medium Rectangular
+  217530, -- Blueprint: Tide-Born Runner, Wicker
+  217531, -- Design: Tide-Born Gourd Shaker
+  217532, -- Design: Tide-Born Pot, Egg
+  217533, -- Formula: Tide-Born Wall Mirror
+  217534, -- Pattern: Tide-Born Wall Art, Rope
+  217535, -- Design: Coconut Bunch, Display
+  217536, -- Design: Fruit Bunch, Display
+  217537, -- Design: Lemon Slice, Display
+  217538, -- Design: Lime Slice, Display
+  217539, -- Design: Lychee Bowl, Display
+  217540, -- Design: Lychee Bunch, Display
+  217541, -- Design: Mussel Bowl, Display
+  217542, -- Design: Oyster Plate, Display
+  217543, -- Design: Seafood Platter, Display
+  217545, -- Design: Snail Bowl, Display
+  217546, -- Design: Green Coconut Bunch, Display
+  217547, -- Praxis: Tide-Born Mortar and Pestle
+  217548, -- Praxis: Tide-Born Plate, Rectangular
+  217549, -- Praxis: Tide-Born Plate, Square
+  217550, -- Praxis: Tide-Born Plate, Triangular
+  217551, -- Praxis: Tide-Born Bowl, Stone Serving
+  217552, -- Praxis: Tide-Born Pitcher, Stone
+  217553, -- Design: Tide-Born Chandelier, Coral
+  217555, -- Design: Tide-Born Candleholder, Stone
+  217556, -- Design: Tide-Born Sconce, Coral
+  217557, -- Praxis: Sunport Bracket, Banner
+  217558, -- Pattern: Sunport Scarf Valance, Lavendar
+  217559, -- Praxis: Sunport Fountain, Floral Wall
+  217560, -- Praxis: Sunport Planter, Stone
+  217561, -- Diagram: Sunport Planter, Hanging
+  217562, -- Praxis: Sunport Table, Tall
+  217563, -- Praxis: Sunport Game, Marbles
+  217564, -- Blueprint: Paint Muller Board
+  217565, -- Blueprint: Pigment Bowl, Green
+  217566, -- Blueprint: Pigment Bowl, Red
+  217568, -- Blueprint: Pigment Bowl, Blue Large
+  217570, -- Pattern: Canvas, Blank
+  217571, -- Blueprint: Tide-Born Duster, Wicker
+  217573, -- Praxis: Tide-Born Sculpture, Turtle
+  217574, -- Praxis: Tide-Born Sculpture, Coral
+  217575, -- Design: Tide-Born Floor Lamp, Coral
+  217576, -- Design: Tide-Born Lamp, Coral
+  217577, -- Praxis: Tide-Born Firepit, Covered Stone
+  217579, -- Blueprint: Tide-Born Totem, Medium
+  217580, -- Blueprint: Tide-Born Totem, Short
+  217569, -- Blueprint: Cup, Paint Water
+  217507,
+  217510,
+  217512,
+  217544,
+  217554,
+  217567,
+  217578,
+  217581,
 }
 
 FurC.Recipes[ver.FALLBAN] = {
