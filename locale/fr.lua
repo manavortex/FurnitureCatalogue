@@ -358,11 +358,12 @@ local strings = {
   SI_FURC_TRADERS_FAUSTINA = "Faustina Curio",
   SI_FURC_TRADERS_RAZOUFA_COLL = "Razoufa as part of a collection",
   SI_FURC_TRADERS_ROLIS = "Rolis Hlaalu",
-  -- 4 LEFTOVER TRANSLATIONS, PLEASE CHECK!
-  SI_FURC_CHEST_VV = "Extrêmement rarement dans les coffres à Vvardenfell",
-  SI_FURC_GRAMMAR_OBTAINABLE = "Peut être acquis pendant <<1>> (<<2>>)",
-  SI_FURC_PLUNDERSKULL = "Ramasser dans les Crânes, pendant le festival des sorcières ",
-  SI_FURC_VV_PAINTING = "Extrêmement rarement dans les coffres ou des Cassetes à Vvardenfell ",
+  SI_FURC_FILTER_VERSION_SHADOWS = "Festin des Ombres",
+  SI_FURC_FILTER_VERSION_SHADOWS_TT = "Manger dans le noir",
+  SI_FURC_FILTER_VERSION_WORMS2 = "Saisons du Culte du Ver, Partie 2",
+  SI_FURC_FILTER_VERSION_WORMS2_TT = "À bas le mur !",
+  SI_FURC_FILTER_VERSION_ZERO = "Saison Zéro",
+  SI_FURC_FILTER_VERSION_ZERO_TT = "Parce que pourquoi commencer par un ?",
   -- ////// END   : DON'T REMOVE THIS LINE
 }
 
