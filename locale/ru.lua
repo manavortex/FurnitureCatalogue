@@ -359,6 +359,12 @@ local strings = {
   SI_FURC_VERBOSE_SCANNING_CHARS = "Not scanning files, scanning character knowledge now...",
   SI_FURC_VERBOSE_SCANNING_DATA_FILE = "Furniture Catalogue: Scanning data files...",
   SI_FURC_VERBOSE_STARTUP = "Furniture Catalogue: If you miss any recipes, please trigger a scan on your furniture crafter by clicking the refresh button in the UI.",
+  SI_FURC_FILTER_VERSION_SHADOWS = "Пир теней",
+  SI_FURC_FILTER_VERSION_SHADOWS_TT = "Ужин в темноте",
+  SI_FURC_FILTER_VERSION_WORMS2 = "Сезоны культа червя, часть 2",
+  SI_FURC_FILTER_VERSION_WORMS2_TT = "Долой стену!",
+  SI_FURC_FILTER_VERSION_ZERO = "Нулевой сезон",
+  SI_FURC_FILTER_VERSION_ZERO_TT = "Потому что зачем начинать с единицы?",
   -- ////// END   : DON'T REMOVE THIS LINE
 }
 
