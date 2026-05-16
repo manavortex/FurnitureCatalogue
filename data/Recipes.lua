@@ -559,222 +559,223 @@ FurC.Recipes[ver.SCIONS] = {
 
 -- 28 Secrets of the Telvanni Peninsula
 FurC.Recipes[ver.ENDLESS] = {
-  198528, -- Blueprint: Necrom Cart, Merchant",
-  198529, -- Praxis: Necrom Wind Chimes, Stone",
-  198530, -- Blueprint: Necrom Dresser, Elegant",
-  198531, -- Blueprint: Necrom Dresser, Elegant Short",
-  198532, -- Blueprint: Necrom Stool, Padded",
-  198533, -- Blueprint: Necrom Table, Elegant Round",
-  198534, -- Blueprint: Necrom Shelf, Elegant Small",
-  198535, -- Blueprint: Necrom Planter, Large",
-  198536, -- Praxis: Necrom Planter, Small",
-  198537, -- Formula: Necrom Incense Burner, Delicate Brass",
-  198538, -- Formula: Necrom Incense Burner, Squat Brass",
-  198539, -- Diagram: Necrom Planter, Hanging Round",
-  198540, -- Pattern: Necrom Carpet, Ruby",
-  198541, -- Praxis: Necrom Planter, Tall",
-  198542, -- Praxis: Necrom Vase, Small Square Floral",
-  198543, -- Design: Pumpkin, Sliced Green",
-  198544, -- Design: Necrom Candle, Elegant",
-  198545, -- Diagram: Necrom Candle, Tall",
-  198546, -- Diagram: Necrom Lamp Post, Metal",
-  198547, -- Diagram: Necrom Sconce, Brass",
-  198548, -- Praxis: Necrom Brazier, Tall Stone",
-  198549, -- Praxis: Apocrypha Bookcase, Large Spiked Filled",
-  198094, -- Praxis: Telvanni Doorframe, Round",
-  198480, -- Pattern: Apocrypha Book Pile, Large Twisted",
-  198481, -- Praxis: Apocrypha Bookcase, Corner",
-  198482, -- Praxis: Apocrypha Stele, Tentacles",
-  198483, -- Praxis: Apocrypha Stele, Arched",
-  198484, -- Praxis: Apocrypha Stele, Wide Arched",
-  198485, -- Praxis: Apocrypha Stele, Tablet",
-  198486, -- Pattern: Apocrypha Bed, Intricate Double",
-  198487, -- Pattern: Apocrypha Bed, Spiked Double",
-  198488, -- Diagram: Apocrypha Bench, Intricate",
-  198489, -- Diagram: Apocrypha Bench, Spiked",
-  198490, -- Praxis: Floating Apocrypha Bookcase, Tall",
-  198491, -- Praxis: Floating Apocrypha Bookcase, Nautilus",
-  198492, -- Praxis: Floating Apocrypha Bookcase, Shell",
-  198493, -- Praxis: Floating Apocrypha Bookcase, Roots",
-  198494, -- Praxis: Floating Apocrypha Bookcase, Short",
-  198495, -- Praxis: Apocrypha Bookcase, Large Intricate",
-  198496, -- Diagram: Apocrypha Chair, Intricate",
-  198497, -- Praxis: Apocrypha Desk, Intricate",
-  198498, -- Diagram: Apocrypha Divider, Intricate",
-  198499, -- Praxis: Apocrypha Divider, Spiked",
-  198500, -- Praxis: Apocrypha Dresser, Intricate",
-  198501, -- Diagram: Apocrypha Dresser, Spiked",
-  198502, -- Praxis: Apocrypha Bookcase, Large",
-  198503, -- Praxis: Apocrypha Mirror, Spiked",
-  198504, -- Praxis: Apocrypha Nightstand, Intricate",
-  198505, -- Diagram: Apocrypha Stool, Intricate",
-  198506, -- Praxis: Apocrypha Stool, Spiked",
-  198507, -- Praxis: Apocrypha Table, Intricate",
-  198508, -- Praxis: Apocrypha Table, Spiked",
-  198509, -- Praxis: Apocrypha Bookcase, Intricate",
-  198510, -- Praxis: Apocrypha Wardrobe, Intricate",
-  198511, -- Praxis: Apocrypha Bookcase, Large Intricate Filled",
-  198512, -- Praxis: Apocrypha Bookcase, Spiked",
-  198513, -- Praxis: Apocrypha Wardobe, Spiked",
-  198514, -- Pattern: Apocrypha Book Pile, Short",
-  198515, -- Pattern: Apocrypha Book Pile, Medium",
-  198516, -- Praxis: Paper Making Frame",
-  198517, -- Praxis: Vat, Paper Pulp",
-  198518, -- Praxis: Pulp Masher, Paper Making",
-  198519, -- Blueprint: Awl, Bookbinding",
-  198520, -- Pattern: Spindle, Bookbinding Thread",
-  198521, -- Diagram: Apocrypha Light Diffusers, Bowl",
-  198522, -- Praxis: Apocrypha Lamp, Desk",
-  198523, -- Praxis: Apocrypha Lamp, Large",
-  198524, -- Diagram: Apocrypha Chandelier, Diffusers",
-  198525, -- Praxis: Apocrypha Sconce, Diffuser",
-  198526, -- Diagram: Apocrypha Sconce, Intricate",
-  198527, -- Pattern: Apocrypha Book Piles, Floating",
+  198528, -- Blueprint: Necrom Cart, Merchant
+  198529, -- Praxis: Necrom Wind Chimes, Stone
+  198530, -- Blueprint: Necrom Dresser, Elegant
+  198531, -- Blueprint: Necrom Dresser, Elegant Short
+  198532, -- Blueprint: Necrom Stool, Padded
+  198533, -- Blueprint: Necrom Table, Elegant Round
+  198534, -- Blueprint: Necrom Shelf, Elegant Small
+  198535, -- Blueprint: Necrom Planter, Large
+  198536, -- Praxis: Necrom Planter, Small
+  198537, -- Formula: Necrom Incense Burner, Delicate Brass
+  198538, -- Formula: Necrom Incense Burner, Squat Brass
+  198539, -- Diagram: Necrom Planter, Hanging Round
+  198540, -- Pattern: Necrom Carpet, Ruby
+  198541, -- Praxis: Necrom Planter, Tall
+  198542, -- Praxis: Necrom Vase, Small Square Floral
+  198543, -- Design: Pumpkin, Sliced Green
+  198544, -- Design: Necrom Candle, Elegant
+  198545, -- Diagram: Necrom Candle, Tall
+  198546, -- Diagram: Necrom Lamp Post, Metal
+  198547, -- Diagram: Necrom Sconce, Brass
+  198548, -- Praxis: Necrom Brazier, Tall Stone
+  198549, -- Praxis: Apocrypha Bookcase, Large Spiked Filled
+  198094, -- Praxis: Telvanni Doorframe, Round
+  198479, -- Blueprint: Necrom Lamp Post, Wood
+  198480, -- Pattern: Apocrypha Book Pile, Large Twisted
+  198481, -- Praxis: Apocrypha Bookcase, Corner
+  198482, -- Praxis: Apocrypha Stele, Tentacles
+  198483, -- Praxis: Apocrypha Stele, Arched
+  198484, -- Praxis: Apocrypha Stele, Wide Arched
+  198485, -- Praxis: Apocrypha Stele, Tablet
+  198486, -- Pattern: Apocrypha Bed, Intricate Double
+  198487, -- Pattern: Apocrypha Bed, Spiked Double
+  198488, -- Diagram: Apocrypha Bench, Intricate
+  198489, -- Diagram: Apocrypha Bench, Spiked
+  198490, -- Praxis: Floating Apocrypha Bookcase, Tall
+  198491, -- Praxis: Floating Apocrypha Bookcase, Nautilus
+  198492, -- Praxis: Floating Apocrypha Bookcase, Shell
+  198493, -- Praxis: Floating Apocrypha Bookcase, Roots
+  198494, -- Praxis: Floating Apocrypha Bookcase, Short
+  198495, -- Praxis: Apocrypha Bookcase, Large Intricate
+  198496, -- Diagram: Apocrypha Chair, Intricate
+  198497, -- Praxis: Apocrypha Desk, Intricate
+  198498, -- Diagram: Apocrypha Divider, Intricate
+  198499, -- Praxis: Apocrypha Divider, Spiked
+  198500, -- Praxis: Apocrypha Dresser, Intricate
+  198501, -- Diagram: Apocrypha Dresser, Spiked
+  198502, -- Praxis: Apocrypha Bookcase, Large
+  198503, -- Praxis: Apocrypha Mirror, Spiked
+  198504, -- Praxis: Apocrypha Nightstand, Intricate
+  198505, -- Diagram: Apocrypha Stool, Intricate
+  198506, -- Praxis: Apocrypha Stool, Spiked
+  198507, -- Praxis: Apocrypha Table, Intricate
+  198508, -- Praxis: Apocrypha Table, Spiked
+  198509, -- Praxis: Apocrypha Bookcase, Intricate
+  198510, -- Praxis: Apocrypha Wardrobe, Intricate
+  198511, -- Praxis: Apocrypha Bookcase, Large Intricate Filled
+  198512, -- Praxis: Apocrypha Bookcase, Spiked
+  198513, -- Praxis: Apocrypha Wardobe, Spiked
+  198514, -- Pattern: Apocrypha Book Pile, Short
+  198515, -- Pattern: Apocrypha Book Pile, Medium
+  198516, -- Praxis: Paper Making Frame
+  198517, -- Praxis: Vat, Paper Pulp
+  198518, -- Praxis: Pulp Masher, Paper Making
+  198519, -- Blueprint: Awl, Bookbinding
+  198520, -- Pattern: Spindle, Bookbinding Thread
+  198521, -- Diagram: Apocrypha Light Diffusers, Bowl
+  198522, -- Praxis: Apocrypha Lamp, Desk
+  198523, -- Praxis: Apocrypha Lamp, Large
+  198524, -- Diagram: Apocrypha Chandelier, Diffusers
+  198525, -- Praxis: Apocrypha Sconce, Diffuser
+  198526, -- Diagram: Apocrypha Sconce, Intricate
+  198527, -- Pattern: Apocrypha Book Piles, Floating
 }
 
 -- 27 Base Game Patch
 FurC.Recipes[ver.BASED] = {
-  198093, -- Praxis: Telvanni Doorframe, Round",
-  198092, -- Blueprint: Telvanni Door, Round",
-  198091, -- Diagram: Necrom Roof, Domed",
-  198090, -- Praxis: Necrom Wall, Corner Stone",
-  198089, -- Praxis: Necrom Wall, Stone",
-  198088, -- Praxis: Necrom Archway, Stone",
-  198087, -- Diagram: Necrom Window, Unframed Exterior",
-  198086, -- Praxis: Necrom Window, Framed Exterior",
-  198085, -- Praxis: Necrom Funerary Recess, Stone",
-  198084, -- Praxis: Necrom Monolith, Stone",
-  198083, -- Diagram: Necrom Roof, Tiled",
-  198082, -- Diagram: Necrom Door, Large Metal",
-  198081, -- Blueprint: Necrom Ramp, Wood",
-  198080, -- Praxis: Necrom Stairs, Inner Corner Stone",
-  198079, -- Praxis: Necrom Stairs, Outer Corner Stone",
-  198078, -- Praxis: Necrom Stairway, Stone",
-  198077, -- Praxis: Necrom Column, Stone",
-  198076, -- Praxis: Necrom Platform, Stone",
-  198075, -- Praxis: Necrom Roof, Gable",
-  198074, -- Praxis: Necrom Railing",
-  198073, -- Praxis: Necrom Wall, Tall Simple",
-  198072, -- Praxis: Necrom Wall, Tall Ornate",
-  198071, -- Blueprint: Necrom Door, Tall",
-  198070, -- Praxis: Necrom Doorway, Tall",
-  198069, -- Praxis: Necrom Ceiling, Domed",
-  198068, -- Diagram: Necrom Window, Leaded Interior",
-  198067, -- Praxis: Necrom Floor, Trimmed",
-  198066, -- Praxis: Necrom Floor, Patterned",
-  198065, -- Praxis: Necrom Column, Tall Elegant",
-  198064, -- Design: Indoril Chandelier, Vine-Covered",
-  198063, -- Formula: Telvanni Lantern, Luminous Mushroom",
-  198062, -- Praxis: Necrom Crematory, Furnace",
-  198061, -- Blueprint: Necrom Cart, Funerary",
-  198060, -- Diagram: Dwarven Door, Bronze",
-  198059, -- Pattern: Dark Elf Tent, Multiroom",
-  198058, -- Sketch: Daedric Mirror, Nightmarish",
+  198093, -- Praxis: Telvanni Doorframe, Round
+  198092, -- Blueprint: Telvanni Door, Round
+  198091, -- Diagram: Necrom Roof, Domed
+  198090, -- Praxis: Necrom Wall, Corner Stone
+  198089, -- Praxis: Necrom Wall, Stone
+  198088, -- Praxis: Necrom Archway, Stone
+  198087, -- Diagram: Necrom Window, Unframed Exterior
+  198086, -- Praxis: Necrom Window, Framed Exterior
+  198085, -- Praxis: Necrom Funerary Recess, Stone
+  198084, -- Praxis: Necrom Monolith, Stone
+  198083, -- Diagram: Necrom Roof, Tiled
+  198082, -- Diagram: Necrom Door, Large Metal
+  198081, -- Blueprint: Necrom Ramp, Wood
+  198080, -- Praxis: Necrom Stairs, Inner Corner Stone
+  198079, -- Praxis: Necrom Stairs, Outer Corner Stone
+  198078, -- Praxis: Necrom Stairway, Stone
+  198077, -- Praxis: Necrom Column, Stone
+  198076, -- Praxis: Necrom Platform, Stone
+  198075, -- Praxis: Necrom Roof, Gable
+  198074, -- Praxis: Necrom Railing
+  198073, -- Praxis: Necrom Wall, Tall Simple
+  198072, -- Praxis: Necrom Wall, Tall Ornate
+  198071, -- Blueprint: Necrom Door, Tall
+  198070, -- Praxis: Necrom Doorway, Tall
+  198069, -- Praxis: Necrom Ceiling, Domed
+  198068, -- Diagram: Necrom Window, Leaded Interior
+  198067, -- Praxis: Necrom Floor, Trimmed
+  198066, -- Praxis: Necrom Floor, Patterned
+  198065, -- Praxis: Necrom Column, Tall Elegant
+  198064, -- Design: Indoril Chandelier, Vine-Covered
+  198063, -- Formula: Telvanni Lantern, Luminous Mushroom
+  198062, -- Praxis: Necrom Crematory, Furnace
+  198061, -- Blueprint: Necrom Cart, Funerary
+  198060, -- Diagram: Dwarven Door, Bronze
+  198059, -- Pattern: Dark Elf Tent, Multiroom
+  198058, -- Sketch: Daedric Mirror, Nightmarish
 }
 
 -- 26 Necrom
 FurC.Recipes[ver.NECROM] = {
-  197760, -- Design: Necrom Candle, Large Square",
-  197761, -- Design: Necrom Candle, Small Square",
-  197762, -- Blueprint: Wood Carving, Cat",
-  197763, -- Blueprint: Wood Carving, Dog",
-  197764, -- Blueprint: Wood Carving, Kwama",
-  197765, -- Pattern: Funerary Offering, Ribbon",
-  197766, -- Praxis: Stone Carving, Hand",
-  197767, -- Praxis: Stone Carving, Bird",
-  197768, -- Praxis: Stone Carving, Orb",
-  197769, -- Praxis: Stone Carving, Hooks",
-  197770, -- Praxis: Stone Carving, Tribunal",
-  197771, -- Blueprint: Wood Carving, Strider",
-  197772, -- Pattern: Necrom Banner, Small Patterned",
-  197773, -- Pattern: Necrom Banner, Long Patterned",
-  197774, -- Pattern: Necrom Banner, Narrow Bronze-Stitched",
-  197775, -- Pattern: Necrom Banner, Small Sage-Stitched",
-  197784, -- Praxis: Vaermina Pillar, Mind Terror",
-  197785, -- Pattern: Book Pile, Vertical Levitating",
-  197786, -- Pattern: Book Pile, Spiral Levitating",
-  197787, -- Pattern: Book Pile, Circle Levitating",
-  197788, -- Praxis: Peryite Vat, Plague",
-  197549, -- Blueprint: Necrom Bookcase, Elegant Tall",
-  197550, -- Blueprint: Necrom Bookcase, Elegant Grand",
-  197551, -- Blueprint: Necrom Wardrobe, Elegant",
-  197552, -- Blueprint: Necrom End Table, Elegant",
-  197553, -- Blueprint: Necrom Chest, Elegant",
-  197554, -- Pattern: Necrom Bed, Elegant Double",
-  197555, -- Pattern: Necrom Bed, Elegant Single",
-  197556, -- Blueprint: Necrom Divider, Elegant",
-  197557, -- Sketch: Necrom Mirror, Elegant Standing",
-  197558, -- Blueprint: Necrom Shelf, Elegant",
-  197559, -- Blueprint: Necrom Chair, Elegant",
-  197560, -- Blueprint: Necrom Bench, Elegant",
-  197561, -- Blueprint: Necrom Counter, Corner",
-  197562, -- Blueprint: Necrom Counter, Cabinet",
-  197563, -- Blueprint: Necrom Table, Elegant Dining",
-  197564, -- Diagram: Necrom Firepit, Elegant",
-  197565, -- Diagram: Necrom Lamppost, Elegant",
-  197566, -- Diagram: Necrom Sconce, Elegant",
-  197567, -- Praxis: Necrom Lamp, Elegant",
-  197568, -- Praxis: Necrom Lamp, Elegant Standing",
-  197569, -- Praxis: Necrom Vase, Elegant Rounded Floral",
-  197570, -- Praxis: Necrom Vase, Elegant Square Floral",
-  197571, -- Design: Necrom Bowl, Elegant",
-  197572, -- Diagram: Necrom Hanging Flowers, Elegant",
-  197573, -- Praxis: Necrom Wind Chimes, Elegant",
-  197574, -- Praxis: Necrom Memorial, Large",
-  197575, -- Praxis: Necrom Memorial, Small",
-  197576, -- Diagram: Necrom Ossuary, Plated",
-  197577, -- Design: Necrom Urn, Malachite",
-  197578, -- Design: Necrom Incense, Mushroom Offering",
-  197579, -- Pattern: Telvanni Bed, Fungal Double",
-  197580, -- Blueprint: Telvanni Dresser, Small Fungal",
-  197581, -- Blueprint: Telvanni Wardrobe, Fungal",
-  197582, -- Sketch: Telvanni Mirror, Fungal",
-  197583, -- Blueprint: Telvanni Nightstand, Fungal",
-  197584, -- Design: Telvanni Bookcase, Tall Fungal",
-  197585, -- Design: Telvanni Dresser, Large Fungal",
-  197586, -- Blueprint: Telvanni Chest, Fungal",
-  197587, -- Design: Telvanni Table, Round Fungal",
-  197588, -- Blueprint: Telvanni Box, Fungal",
-  197589, -- Design: Telvanni Planter, Fungal",
-  197590, -- Blueprint: Telvanni Chair, Fungal",
-  197591, -- Blueprint: Telvanni Stool, Fungal",
-  197592, -- Formula: Telvanni Candles, Fungal Group",
-  197593, -- Formula: Telvanni Water Jug, Fungal",
-  197594, -- Design: Telvanni Soup, Hearty Mushroom",
-  197595, -- Design: Telvanni Meal, Fish Dinner",
-  197596, -- Design: Telvanni Mug, Fungal",
-  197597, -- Blueprint: Telvanni Teapot, Fungal",
-  197598, -- Blueprint: Telvanni Teacup, Fungal",
-  197599, -- Design: Telvanni Meal, Kebab Lunch",
-  197600, -- Formula: Telvanni Chandelier, Fungal",
-  197601, -- Formula: Telvanni Sconce, Fungal Wall",
-  197602, -- Formula: Telvanni Sconce, Fungal Standing",
-  197603, -- Design: Telvanni Meal, Fruit Breakfast",
-  197604, -- Praxis: Apocrypha Bookcase, Tall Marble",
-  197605, -- Praxis: Apocrypha Desk, Marble",
-  197606, -- Praxis: Apocrypha Candlestick, Twisted",
-  197607, -- Praxis: Apocrypha Sconce, Cylindrical",
-  197608, -- Praxis: Apocrypha Sconce, Spiral",
-  197609, -- Praxis: Apocrypha Chair, Marble",
-  197610, -- Praxis: Apocrypha Nightstand, Marble",
-  197611, -- Pattern: Apocrypha Bed, Marble Twin",
-  197612, -- Pattern: Book Stack, Trio",
-  197613, -- Pattern: Book Pile, Large",
-  197614, -- Pattern: Necrom Carpet, Large",
-  197615, -- Pattern: Necrom Carpet, Medium",
-  197616, -- Pattern: Necrom Runner, Small",
-  197631, -- Praxis: Apocrypha Bookcase, Tall Marble Filled",
-  197630, -- Blueprint: Necrom Bookcase, Elegant Grand Filled",
-  197629, -- Blueprint: Necrom Bookcase, Elegant Tall Filled",
-  197851, -- Praxis: Apocrypha Lamp, Floor",
-  197714, -- Pattern: Tribunal Rug",
-  197693, -- Diagram: Necrom Chandelier, Elegant",
-  197849, -- Praxis: Apocrypha Podium, Candlelit",
-  197850, -- Praxis: Apocrypha Specimen Jar, Large Empty",
-  197756, -- Pattern: Necrom Banner, Medium Patterned",
-  197757, -- Pattern: Necrom Banner, Narrow Patterned",
-  197758, -- Pattern: Necrom Banner, Medium Bronze-Stitched",
-  197759, -- Pattern: Necrom Banner, Medium Sage-Stitched",
+  197760, -- Design: Necrom Candle, Large Square
+  197761, -- Design: Necrom Candle, Small Square
+  197762, -- Blueprint: Wood Carving, Cat
+  197763, -- Blueprint: Wood Carving, Dog
+  197764, -- Blueprint: Wood Carving, Kwama
+  197765, -- Pattern: Funerary Offering, Ribbon
+  197766, -- Praxis: Stone Carving, Hand
+  197767, -- Praxis: Stone Carving, Bird
+  197768, -- Praxis: Stone Carving, Orb
+  197769, -- Praxis: Stone Carving, Hooks
+  197770, -- Praxis: Stone Carving, Tribunal
+  197771, -- Blueprint: Wood Carving, Strider
+  197772, -- Pattern: Necrom Banner, Small Patterned
+  197773, -- Pattern: Necrom Banner, Long Patterned
+  197774, -- Pattern: Necrom Banner, Narrow Bronze-Stitched
+  197775, -- Pattern: Necrom Banner, Small Sage-Stitched
+  197784, -- Praxis: Vaermina Pillar, Mind Terror
+  197785, -- Pattern: Book Pile, Vertical Levitating
+  197786, -- Pattern: Book Pile, Spiral Levitating
+  197787, -- Pattern: Book Pile, Circle Levitating
+  197788, -- Praxis: Peryite Vat, Plague
+  197549, -- Blueprint: Necrom Bookcase, Elegant Tall
+  197550, -- Blueprint: Necrom Bookcase, Elegant Grand
+  197551, -- Blueprint: Necrom Wardrobe, Elegant
+  197552, -- Blueprint: Necrom End Table, Elegant
+  197553, -- Blueprint: Necrom Chest, Elegant
+  197554, -- Pattern: Necrom Bed, Elegant Double
+  197555, -- Pattern: Necrom Bed, Elegant Single
+  197556, -- Blueprint: Necrom Divider, Elegant
+  197557, -- Sketch: Necrom Mirror, Elegant Standing
+  197558, -- Blueprint: Necrom Shelf, Elegant
+  197559, -- Blueprint: Necrom Chair, Elegant
+  197560, -- Blueprint: Necrom Bench, Elegant
+  197561, -- Blueprint: Necrom Counter, Corner
+  197562, -- Blueprint: Necrom Counter, Cabinet
+  197563, -- Blueprint: Necrom Table, Elegant Dining
+  197564, -- Diagram: Necrom Firepit, Elegant
+  197565, -- Diagram: Necrom Lamppost, Elegant
+  197566, -- Diagram: Necrom Sconce, Elegant
+  197567, -- Praxis: Necrom Lamp, Elegant
+  197568, -- Praxis: Necrom Lamp, Elegant Standing
+  197569, -- Praxis: Necrom Vase, Elegant Rounded Floral
+  197570, -- Praxis: Necrom Vase, Elegant Square Floral
+  197571, -- Design: Necrom Bowl, Elegant
+  197572, -- Diagram: Necrom Hanging Flowers, Elegant
+  197573, -- Praxis: Necrom Wind Chimes, Elegant
+  197574, -- Praxis: Necrom Memorial, Large
+  197575, -- Praxis: Necrom Memorial, Small
+  197576, -- Diagram: Necrom Ossuary, Plated
+  197577, -- Design: Necrom Urn, Malachite
+  197578, -- Design: Necrom Incense, Mushroom Offering
+  197579, -- Pattern: Telvanni Bed, Fungal Double
+  197580, -- Blueprint: Telvanni Dresser, Small Fungal
+  197581, -- Blueprint: Telvanni Wardrobe, Fungal
+  197582, -- Sketch: Telvanni Mirror, Fungal
+  197583, -- Blueprint: Telvanni Nightstand, Fungal
+  197584, -- Design: Telvanni Bookcase, Tall Fungal
+  197585, -- Design: Telvanni Dresser, Large Fungal
+  197586, -- Blueprint: Telvanni Chest, Fungal
+  197587, -- Design: Telvanni Table, Round Fungal
+  197588, -- Blueprint: Telvanni Box, Fungal
+  197589, -- Design: Telvanni Planter, Fungal
+  197590, -- Blueprint: Telvanni Chair, Fungal
+  197591, -- Blueprint: Telvanni Stool, Fungal
+  197592, -- Formula: Telvanni Candles, Fungal Group
+  197593, -- Formula: Telvanni Water Jug, Fungal
+  197594, -- Design: Telvanni Soup, Hearty Mushroom
+  197595, -- Design: Telvanni Meal, Fish Dinner
+  197596, -- Design: Telvanni Mug, Fungal
+  197597, -- Blueprint: Telvanni Teapot, Fungal
+  197598, -- Blueprint: Telvanni Teacup, Fungal
+  197599, -- Design: Telvanni Meal, Kebab Lunch
+  197600, -- Formula: Telvanni Chandelier, Fungal
+  197601, -- Formula: Telvanni Sconce, Fungal Wall
+  197602, -- Formula: Telvanni Sconce, Fungal Standing
+  197603, -- Design: Telvanni Meal, Fruit Breakfast
+  197604, -- Praxis: Apocrypha Bookcase, Tall Marble
+  197605, -- Praxis: Apocrypha Desk, Marble
+  197606, -- Praxis: Apocrypha Candlestick, Twisted
+  197607, -- Praxis: Apocrypha Sconce, Cylindrical
+  197608, -- Praxis: Apocrypha Sconce, Spiral
+  197609, -- Praxis: Apocrypha Chair, Marble
+  197610, -- Praxis: Apocrypha Nightstand, Marble
+  197611, -- Pattern: Apocrypha Bed, Marble Twin
+  197612, -- Pattern: Book Stack, Trio
+  197613, -- Pattern: Book Pile, Large
+  197614, -- Pattern: Necrom Carpet, Large
+  197615, -- Pattern: Necrom Carpet, Medium
+  197616, -- Pattern: Necrom Runner, Small
+  197631, -- Praxis: Apocrypha Bookcase, Tall Marble Filled
+  197630, -- Blueprint: Necrom Bookcase, Elegant Grand Filled
+  197629, -- Blueprint: Necrom Bookcase, Elegant Tall Filled
+  197851, -- Praxis: Apocrypha Lamp, Floor
+  197714, -- Pattern: Tribunal Rug
+  197693, -- Diagram: Necrom Chandelier, Elegant
+  197849, -- Praxis: Apocrypha Podium, Candlelit
+  197850, -- Praxis: Apocrypha Specimen Jar, Large Empty
+  197756, -- Pattern: Necrom Banner, Medium Patterned
+  197757, -- Pattern: Necrom Banner, Narrow Patterned
+  197758, -- Pattern: Necrom Banner, Medium Bronze-Stitched
+  197759, -- Pattern: Necrom Banner, Medium Sage-Stitched
 }
 
 -- 25 Scribes of Fate
