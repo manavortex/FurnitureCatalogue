@@ -42,19 +42,6 @@ FurC.FaustinaRecipes[ver.FALLBAN] = {
   [211035] = 100, -- Pattern: Colovian Tapestry, Red Diamond
   [211034] = 100, -- Diagram: Colovian Chandelier, Grapes
   [211033] = 100, -- Formula: Colovian Alembic Set, Colorful
-}
-
-FurC.RolisRecipes[ver.FALLBAN] = {
-  [212567] = 125, -- Sketch: Guardian Key, Replica
-  [212566] = 125, -- Praxis: Ayleid Sconce, Winged Floor
-  [212565] = 125, -- Diagram: Ayleid Window, Turquoise Glass
-  [212564] = 125, -- Formula: Dawnwood Hut, Partial
-  [212563] = 125, -- Design: Colovian Grape Vat, Large
-  [212562] = 125, -- Blueprint: Colovian Wine Press
-  [212561] = 125, -- Pattern: Wood Elf Tent, Saplings
-}
-
-FurC.FaustinaRecipes[ver.BASE43] = {
   [211039] = 100, -- Blueprint: Colovian Keg, Gigantic Wine
   [211037] = 100, -- Sketch: Colovian Mirror, Standing
 }
@@ -68,14 +55,14 @@ FurC.Faustina[ver.ENDLESS] = {
 }
 
 -- 18 Flames of Ambition
-FurC.RolisRecipes[ver.FLAMES] = {
-  [171803] = 125, -- Blueprint: Solitude Well, Noble
-  [171806] = 125, -- Design: Provisioning Station, Solitude Grill
-  [171801] = 125, -- Diagram: Dwarven Minecart, Ornate
-  [171805] = 125, -- Formula: Vampiric Cauldron, Distilled Coagulant
-  [171802] = 125, -- Pattern: Solitude Yarn Rack, Colorful
-  [171804] = 125, -- Praxis: Solitude Hearth, Rounded Tall
-  [171807] = 125, -- Sketch: Dwarven Crystal Sconce, Mirror
+FurC.FaustinaRecipes[ver.FLAMES] = {
+  [171803] = 100, -- Blueprint: Solitude Well, Noble
+  [171806] = 100, -- Design: Provisioning Station, Solitude Grill
+  [171801] = 100, -- Diagram: Dwarven Minecart, Ornate
+  [171805] = 100, -- Formula: Vampiric Cauldron, Distilled Coagulant
+  [171802] = 100, -- Pattern: Solitude Yarn Rack, Colorful
+  [171804] = 100, -- Praxis: Solitude Hearth, Rounded Tall
+  [171807] = 100, -- Sketch: Dwarven Crystal Sconce, Mirror
 }
 
 -- 14 Harrowstorm
@@ -89,14 +76,14 @@ FurC.FaustinaRecipes[ver.HARROW] = {
 }
 
 -- 10 Wrathstone
-FurC.RolisRecipes[ver.WOTL] = {
-  [147656] = 125, -- Dark Elf Tent, Canopy,
-  [147657] = 125, -- Hlaalu Stove, Chiminea,
-  [147651] = 125, -- Silver Kettle, Masterworked,
-  [147652] = 125, -- Frog-Caller, Untuned,
-  [147653] = 125, -- Pottery Wheel, Ever-Turning,
-  [147654] = 125, -- Alchemical Apparatus, Condens
-  [147655] = 125, -- Hlaalu Salt Lamp, Enchanted,
+FurC.FaustinaRecipes[ver.WOTL] = {
+  [147656] = 100, -- Dark Elf Tent, Canopy,
+  [147657] = 100, -- Hlaalu Stove, Chiminea,
+  [147651] = 100, -- Silver Kettle, Masterworked,
+  [147652] = 100, -- Frog-Caller, Untuned,
+  [147653] = 100, -- Pottery Wheel, Ever-Turning,
+  [147654] = 100, -- Alchemical Apparatus, Condens
+  [147655] = 100, -- Hlaalu Salt Lamp, Enchanted,
 }
 
 -- 6 Dragon Bones
