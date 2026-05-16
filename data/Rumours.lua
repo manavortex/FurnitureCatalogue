@@ -5,65 +5,162 @@ local ver = FurC.Constants.Versioning
 local rumourSource = GetString(SI_FURC_SRC_RUMOUR_ITEM)
 local dataminedUnclear = GetString(SI_FURC_DATAMINED_UNCLEAR)
 
+-- Season Zero Part 2
+FurC.Rumours[ver.ZERO2] = {
+        [224843] = rumourSource, -- Starsong Staircase, Spiral
+        [224844] = rumourSource, -- Sigil Trim, Anu Pattern
+		[224847] = rumourSource, -- Marble Platform, Padomay Pattern Square
+        [224848] = rumourSource, -- Marble Pillar, Anu Pattern
+        [224849] = rumourSource, -- Marble Pillar, Padomay Pattern
+		[224856] = rumourSource, -- Tapestry of the Prince's Hunt
+		[224876] = rumourSource, -- Music Box, A Wish for Fish
+        [224879] = rumourSource, -- Rope, Twisted
+		[224880] = rumourSource, -- Rope, Short Twisted
+        [224882] = rumourSource, -- Rope, Thin Knotted
+		[224921] = rumourSource, -- Breton Support Beam, Wood
+        [224922] = rumourSource, -- Breton Panel, Wood
+		[220320] = rumourSource, -- Worm Cult Brew, Bubbling
+		[220358] = rumourSource, -- Sapling, Magenta Summertide
+		[225015] = rumourSource, -- Amber Chunk, Display
+        [225016] = rumourSource, -- Ore, Display
+		[225032] = rumourSource, -- Logs, Unprocessed
+        [225033] = rumourSource, -- Tree, Giant Climbing Wyrdbloom
+        [225034] = rumourSource, -- Cave Doorway, Mossy Vine-Covered
+        [225035] = rumourSource, -- Ruined Floor, Stonework
+        [225036] = rumourSource, -- Rough Crates, Cargo Shipment
+        [225037] = rumourSource, -- Rough Crates, Stack
+        [225038] = rumourSource, -- Stones, Loose Rubble
+        [225088] = rumourSource, -- Cheers to the Hero Painting, Gold
+		[217940] = rumourSource, -- Colovian Well, Overgrown Dawnwood
+		[224087] = rumourSource, -- Glittering Goad Banner, Large Hanging
+		[224100] = rumourSource, -- Hourglass of Akatosh, Shattered
+        [225197] = rumourSource, -- Aspect of the Mad God, Laughter
+        [225196] = rumourSource, -- Aspect of the Mad God, Amusement
+		[225195] = rumourSource, -- Aspect of the Mad God, Anger
+        [225184] = rumourSource, -- Pipe, Stately
+        [225182] = rumourSource, -- Cheese Stack, Giant
+        [225181] = rumourSource, -- Thieves Moon, Replica
+        [225180] = rumourSource, -- Nowhere Key, Replica
+        [225031] = rumourSource, -- Boulder, Angular Mossy Striated
+        [225030] = rumourSource, -- Boulder, Round Mossy Striated
+        [225029] = rumourSource, -- Boulders, Mossy Cluster
+        [225027] = rumourSource, -- Cheese Crumbs, Echatere
+        [225026] = rumourSource, -- Chef Hat, Decorative
+        [225025] = rumourSource, -- Teeba-Enoo Ball, Patchwork Leather
+        [225024] = rumourSource, -- Key, Brass
+        [225023] = rumourSource, -- Order Ledger, Business
+        [225022] = rumourSource, -- Hand Mirror, Silver-Plated
+        [225021] = rumourSource, -- Pocket Whistle, Brass
+        [225020] = rumourSource, -- Handbell, Brass
+        [225019] = rumourSource, -- Flask, Fancy
+        [225018] = rumourSource, -- Pin Cushion, Red
+        [225017] = rumourSource, -- Keg Spigot, Brass
+		[223125] = rumourSource, -- Skull, Whale
+        [223126] = rumourSource, -- Stormhaven Potted Plant, Poinsettia
+		[225179] = rumourSource, -- Koldane Cartel Banner
+		[223662] = rumourSource, -- Ashbound Hall Aspect Lock, Replica
+		[223163] = rumourSource, -- Kelp Shelf, Medium Brown
+		[223176] = rumourSource, -- Leg Armor, Arrow-Damaged
+		[223844] = rumourSource, -- Hearts Week Decor, Red Bow
+		[223942] = rumourSource, -- Druidspring Gazebo, Round
+        [224739] = rumourSource, -- Aetherean Rupture, Liminal
+        [224858] = rumourSource, -- Zenithar Devotional Stele
+        [224857] = rumourSource, -- Window of Divinity
+        [224855] = rumourSource, -- Fool's Gold Pile
+        [224853] = rumourSource, -- A Hero Strides Forth Painting, Gold
+        [224852] = rumourSource, -- An Evening with Darien Painting, Gold
+        [224851] = rumourSource, -- Statue, Meridia's Champion
+        [224846] = rumourSource, -- Marble Platform, Anu Pattern Square
+        [224845] = rumourSource, -- Sigil Trim, Padomay Pattern
+        [223664] = rumourSource, -- Worm Cult Tent, Cultist's
+        [224091] = rumourSource, -- Ruckus Banner, Small Hanging
+        [223149] = rumourSource, -- Stone-Nest Counterweight
+		
+}
+
+-- Season Zero
+FurC.Rumours[ver.ZERO] = {
+  [223894] = rumourSource, -- Flowers, Blue Moth
+  [223993] = rumourSource, -- Jornibret's Last Dance
+  [223994] = rumourSource, -- Rislav the Righteous, Part 1
+  [223995] = rumourSource, -- Heavy Armor Forging
+  [217665] = rumourSource, -- Solitude Fence, Stick Curved
+  [217703] = rumourSource, -- Music Box, Delight of the Does
+  [223848] = rumourSource, -- Hearts Week Garland, Curved Floral
+  [223849] = rumourSource, -- Hearts Week Decor, Floral Dangle
+  [223850] = rumourSource, -- Hearts Week Decor, Long Floral Dangle
+  [223851] = rumourSource, -- Hearts Week Wreath, Floral
+  [223892] = rumourSource, -- Kelp Tree, Giant
+  [223891] = rumourSource, -- Common Cargo, Floating Waterlogged
+  [223841] = rumourSource, -- Hearts Week Banner, Standing
+  [223842] = rumourSource, -- Hearts Week Banner, Hanging
+  [223843] = rumourSource, -- Hearts Week Banner, Small Standing
+  [223884] = rumourSource, -- Rock Altar, Spiked
+  [223844] = rumourSource, -- Hearts Week Decor, Red Bow
+  [223845] = rumourSource, -- Hearts Week Garland, Curved Ribbon
+  [223881] = rumourSource, -- Argonian Tile, Trap Trigger Display
+  [220288] = rumourSource, -- Worm Cult Rug, Triangular Sigil
+  [223846] = rumourSource, -- Hearts Week Garland, Curved Long Ribbon
+  [223847] = rumourSource, -- Hearts Week Garland, Curved Floral Dangles
+  [223877] = rumourSource, -- Colovian Medallion, Winery
+  [223878] = rumourSource, -- Blank Wood Sign, Post
+  [223879] = rumourSource, -- Fabric Line
+  [223880] = rumourSource, -- Vampiric Scales, Laboratory
+  [220297] = rumourSource, -- Worm Cult Lamp, Jaw
+  [223882] = rumourSource, -- Nord Tile, Trap Trigger Display
+  [223883] = rumourSource, -- Goblin Bedding, Leather
+  [220300] = rumourSource, -- Worm Cult Sconce, Jaw
+  [223885] = rumourSource, -- Ayleid Staircase, Split
+  [223886] = rumourSource, -- Ayleid Apparatus, Lamp
+  [223887] = rumourSource, -- Alinor Colonnade, Summerset
+  [223888] = rumourSource, -- Hedge, Camellia Shrub
+  [223889] = rumourSource, -- Redguard Door, Gilded
+  [223890] = rumourSource, -- Redguard Bridge, Covered
+  [223893] = rumourSource, -- Plants, Sunset Pitcher Patch
+  [223139] = rumourSource, -- Worm Cult Shrine
+  [223141] = rumourSource, -- Coldharbour Sconce
+  [219862] = rumourSource, -- Music Box, Grave-Stake Gambol
+  [219870] = rumourSource, -- Antique Map of Solstice
+  [223163] = rumourSource, -- Kelp Shelf, Medium Brown
+  [223164] = rumourSource, -- Kelp, Small Brown Pile
+  [223165] = rumourSource, -- Kelp, Long Brown Pile
+  [223177] = rumourSource, -- Skull, Extinct Seabeast
+  [223175] = rumourSource, -- Nord Shed Painting, Unfinished
+  [223174] = rumourSource, -- Cook's Still Life Painting, Unfinished
+  [223735] = rumourSource, -- Music Box, Duel of the Seablades
+  [223743] = rumourSource, -- Almalexia, Mother Morrowind
+}
+
 -- Season of the Worm Cult // Solstice
 FurC.Rumours[ver.WORMS] = {
-  [214336] = rumourSource, -- Scrolling Theater Backdrop",
-  [214337] = rumourSource, -- Statue, Nereid",
-  [214338] = rumourSource, -- Waterfall, Everlasting",
-  [214339] = rumourSource, -- Scenic Waterfall, Linear",
-  [214340] = rumourSource, -- Scenic Waterfall, Branched",
-  [214341] = rumourSource, -- Everlasting Splashes",
-  [214342] = rumourSource, -- Geyser, Cone",
-  [214344] = rumourSource, -- Basin, Grand",
-  [217597] = rumourSource, -- Meridian Cynosure, Inert",
-  [217594] = rumourSource, -- Tide-Born Pool, Ceremonial",
-  [214359] = rumourSource, -- Stone-Nest Totem, Geometric",
-  [214360] = rumourSource, -- Stone-Nest Totem, Iguana",
-  [214361] = rumourSource, -- Stone-Nest Totem, Behemoth",
-  [214362] = rumourSource, -- Stone-Nest Totem, Massive Skull",
-  [214491] = rumourSource, -- Jester's Mask, Sad",
-  [214492] = rumourSource, -- Jester's Festival Flyer",
-  [214461] = rumourSource, -- Shrimp, Display",
-  [214462] = rumourSource, -- Snail, Display",
-  [214463] = rumourSource, -- Crab, Display",
-  [214521] = rumourSource, -- Elkhorn Coral, Cluster",
-  [214372] = rumourSource, -- Forest Study Painting, Unfinished",
-  [214373] = rumourSource, -- Meadow Study Painting, Unfinished",
-  [214520] = rumourSource, -- Elkhorn Coral, Sturdy Branching",
-  [214519] = rumourSource, -- Elkhorn Coral, Verdant Branching",
-  [214518] = rumourSource, -- Coral Formation, Tiered Shelves",
-  [214516] = rumourSource, -- Antler Coral, Glowing Branched Crimson",
-  [214459] = rumourSource, -- Oyster, Display",
-  [214460] = rumourSource, -- Seahorse, Display",
-  [214490] = rumourSource, -- Jester's Garland, Short",
-  [214489] = rumourSource, -- Jester's Garland, Long",
-  [214488] = rumourSource, -- Jester's Mask, Happy",
-  [214514] = rumourSource, -- Antler Coral, Glowing Short Crimson",
-  [214515] = rumourSource, -- Antler Coral, Glowing Broad Crimson",
-  [214452] = rumourSource, -- Solstice Shell, Fossilized Nautilus",
-  [214453] = rumourSource, -- Solstice Shell, Fossilized Turritella",
-  [214454] = rumourSource, -- Solstice Shell, Fossilized Echinoid",
-  [214455] = rumourSource, -- Solstice Shell, Fossilized Conch",
-  [214456] = rumourSource, -- Conch Flute, Ceremonial",
-  [214457] = rumourSource, -- Lobster Claw, Display",
-  [214458] = rumourSource, -- Mussel, Display",
-  [214331] = rumourSource, -- World-Eater Effigy",
-  [214332] = rumourSource, -- Dragonclash Firepit",
-  [214333] = rumourSource, -- Stone-Nest Spellmote",
-  [214334] = rumourSource, -- Illusory Dragon God Ornamentation",
-  [214335] = rumourSource, -- Clockwork Spotlight Cycler",
+  [217597] = rumourSource, -- Meridian Cynosure, Inert
+  [217594] = rumourSource, -- Tide-Born Pool, Ceremonial
+  [214462] = rumourSource, -- Snail, Display
+  [214463] = rumourSource, -- Crab, Display
+  [214521] = rumourSource, -- Elkhorn Coral, Cluster
+  [214372] = rumourSource, -- Forest Study Painting, Unfinished
+  [214373] = rumourSource, -- Meadow Study Painting, Unfinished
+  [214520] = rumourSource, -- Elkhorn Coral, Sturdy Branching
+  [214519] = rumourSource, -- Elkhorn Coral, Verdant Branching
+  [214518] = rumourSource, -- Coral Formation, Tiered Shelves
+  [214516] = rumourSource, -- Antler Coral, Glowing Branched Crimson
+  [214459] = rumourSource, -- Oyster, Display
+  [214460] = rumourSource, -- Seahorse, Display
+  [214514] = rumourSource, -- Antler Coral, Glowing Short Crimson
+  [214515] = rumourSource, -- Antler Coral, Glowing Broad Crimson
+  [214452] = rumourSource, -- Solstice Shell, Fossilized Nautilus
+  [214453] = rumourSource, -- Solstice Shell, Fossilized Turritella
+  [214454] = rumourSource, -- Solstice Shell, Fossilized Echinoid
+  [214455] = rumourSource, -- Solstice Shell, Fossilized Conch
+  [214456] = rumourSource, -- Conch Flute, Ceremonial
+  [214457] = rumourSource, -- Lobster Claw, Display
+  [214458] = rumourSource, -- Mussel, Display
 }
 
 -- 33 Fallen Banners (U45)
 FurC.Rumours[ver.FALLBAN] = {
-  [214254] = rumourSource, -- Battleground Powerup, Speed
-  [214253] = rumourSource, -- Battleground Powerup, Ultimate
-  [214252] = rumourSource, -- Battleground Powerup, Defense
-  [214251] = rumourSource, -- Battleground Powerup, Damage
-  [214250] = rumourSource, -- Dueling Mat
+  
   [214249] = rumourSource, -- Replica Soul Reaper
-  [214243] = rumourSource, -- Replica Jubilee Cake Slice 2025
-  [214242] = rumourSource, -- Replica Jubilee Cake 2025
   [212587] = rumourSource, -- Exiled Redoubt Banner
   [212586] = rumourSource, -- Redguard Boat, Sailing
   [212581] = rumourSource, -- Colovian Path Marker
@@ -92,104 +189,35 @@ FurC.Rumours[ver.FALLBAN] = {
   [211574] = rumourSource, -- Imperial Dais, Raised
   [211573] = rumourSource, -- Imperial Tent, Meeting
   [211572] = rumourSource, -- Imperial Tent, Large
-  [211506] = rumourSource, -- Empathic Portal Remnant
-  [211504] = rumourSource, -- Sky Spirits Reflection Pool
-  [211502] = rumourSource, -- Dwarven Furnace
-  [211501] = rumourSource, -- Dwarven Dais, Stone
-  [211500] = rumourSource, -- Dwarven Archway
-  [211499] = rumourSource, -- Target Dwarf-light the Destroyer, Robust
-  [211498] = rumourSource, -- Music Box, Merry Mudcrab Melody
   [211303] = rumourSource, -- Statue of Molag Bal, Harvester
-  [208358] = rumourSource, -- Handbook for New Homeowners
   [208160] = rumourSource, -- Music Box, Sorrow of the Night Mother
   [208159] = rumourSource, -- Imperial Banner, Emperor's
-  [208127] = rumourSource, -- Haunted Table
   [208126] = rumourSource, -- Statue, Mistress of Nightmares
-  [208114] = rumourSource, -- Garland of Undaunted Trophies
-  [208113] = rumourSource, -- Rug of the Undaunted, Octagram
-  [208111] = rumourSource, -- Keg of Triumph, Jeering Clannfear Beer
-  [208109] = rumourSource, -- Tankard of Undaunted Victory, Bone
   [207979] = rumourSource, -- Tree, Small Yellow Beech Cluster
   [207978] = rumourSource, -- Tree, Large Yellow Beech
   [207977] = rumourSource, -- Tree, Small Red Beech
   [207976] = rumourSource, -- Tree, Large Red Beech
   [207975] = rumourSource, -- Tree, Small Green Beech
   [207974] = rumourSource, -- Tree, Large Green Beech
-  [204792] = rumourSource, -- Table, Visions of the Five Companions
   [204778] = rumourSource, -- Wine Press Scaffolding, Tall
   [204777] = rumourSource, -- Wine Press Scaffolding, Short
   [204776] = rumourSource, -- Colovian Grape Press, Compact
   [204775] = rumourSource, -- Colovian Grape Tub, Tall
-  [203880] = rumourSource, -- Dwarven Red Lamp, Cylinder Cage
-  [203608] = rumourSource, -- Spooky Fog, Glowing
-  [203607] = rumourSource, -- Haunted Chair
-  [203606] = rumourSource, -- Haunted Skull
-  [203605] = rumourSource, -- Haunted Broom
-  [203604] = rumourSource, -- Haunted Bookcase, Whispering
-  [203603] = rumourSource, -- Haunted Still Life Painting
-  [203602] = rumourSource, -- Haunted Door, Clattering
-  [203601] = rumourSource, -- Haunted Dresser, Floating
-  [198574] = rumourSource, -- Khajiiti Water Vessel, Large
-  [125561] = rumourSource, -- Mushrooms, Mucksponge Podlet
   [115271] = rumourSource, -- Breton Statue, Druid
   [115270] = rumourSource, -- Breton Statue, Guard
   [115083] = rumourSource, -- Imperial Rug, Arkay
   [115052] = rumourSource, -- Imperial Simple Lamppost
 }
 
--- 31 Base Game Update 43
-FurC.Rumours[ver.BASE43] = {}
-
--- 30 Gold Road
-FurC.Rumours[ver.WEALD] = {
-  [204422] = rumourSource, -- Music Box, Ascension to the Ruby Throne
-  [204412] = rumourSource, -- Revelry Sparkles
-  [204411] = rumourSource, -- Coldharbour Sentinel
-  [204410] = rumourSource, -- Five Companions Tome
-  [204409] = rumourSource, -- Dark Anchor Gateway
-  [204408] = rumourSource, -- Target Serpent's Image, Trial
-  [204407] = rumourSource, -- Daedric Statue, Sanguine
-}
-
 -- 29 Scions of Ithelia
 FurC.Rumours[ver.SCIONS] = {
-  [204455] = rumourSource, -- Redguard Tent, Squared Blue
-  [204434] = rumourSource, -- Breton Rowboat
-  [204433] = rumourSource, -- Lily Pads, Flowering Patch
-  [204432] = rumourSource, -- Lily Pads, Flowering Cluster
-  [204431] = rumourSource, -- Tree, Young Gentle Weeping Willow
-  [204430] = rumourSource, -- Tree, Tall Gentle Weeping Willow
-  [204429] = rumourSource, -- Tree, Giant Gentle Weeping Willow
-  [204428] = rumourSource, -- Stumps, Swampshadow Cluster
-  [204427] = rumourSource, -- Tree, Young Swampshadow
-  [204426] = rumourSource, -- Tree, Swampshadow
-  [204425] = rumourSource, -- Tree, Giant Swampshadow
-  [203899] = rumourSource, -- Redguard Tent, Rectangular Silk
   [203898] = rumourSource, -- Redguard Tent, Rectangular Blue
-  [203897] = rumourSource, -- Redguard Tent, Blue Lean-To
-  [203896] = rumourSource, -- Bush, Cave Lichen Patch
-  [203895] = rumourSource, -- Bush, Cave Lichen Cluster
-  [203894] = rumourSource, -- Bush, Cave Lichen
-  [203599] = rumourSource, -- Redguard Fountain, Lion
-  [203598] = rumourSource, -- Flowers, Desert Blush
-  [203597] = rumourSource, -- Shrubs, Speckled Forest Cluster
-  [203596] = rumourSource, -- Ferns, Desert Cluster
   [203276] = rumourSource, -- Rough Dresser
   [203275] = rumourSource, -- Fish, Silver Trout
   [203274] = rumourSource, -- Box of Tomatoes
   [203273] = rumourSource, -- Rough Chair
   [203272] = rumourSource, -- Rough Bench
-  [203271] = rumourSource, -- Banner, Jester's Festival
-  [203270] = rumourSource, -- Target King Boar, Robust
-  [203269] = rumourSource, -- Chamber Pot Throne
-  [203268] = rumourSource, -- Jester's Festival Stage
-  [203165] = rumourSource, -- Dazzler Dispenser
-  [117914] = rumourSource, -- Redguard Canopy, Florid
-  [117912] = rumourSource, -- Redguard Awning, Florid
-  [117873] = rumourSource, -- Redguard Rugs, Rolled
-  [117867] = rumourSource, -- Statue, Redguard's Respect
   [117862] = rumourSource, -- Redguard Cart, Merchant
-  [116485] = rumourSource, -- Orcish Shrine, Malacath
 }
 
 -- 28 Secrets of the Telvanni Peninsula
@@ -199,78 +227,12 @@ FurC.Rumours[ver.ENDLESS] = {
   [199123] = rumourSource, -- Cabinet of Curiosities
   [199121] = rumourSource, -- Inky Incense Burner
   [199120] = rumourSource, -- Framed Vision
-  [199113] = rumourSource, -- Snow Globe Music Box
-  [198747] = rumourSource, -- Druidic Statue, Ancient Augur
-  [198674] = rumourSource, -- Galen Dogwood, Tall
-  [198672] = rumourSource, -- Vines, Verdant Ivy Runner
-  [198671] = rumourSource, -- Druid King's Sentinel
-  [198670] = rumourSource, -- Druidic Hut, Conical Stone
-  [198669] = rumourSource, -- Breton Statue, Chimera
-  [198667] = rumourSource, -- Galen Dogwood, Curved
-  [198666] = rumourSource, -- Galen Dogwood, Twisted
-  [198665] = rumourSource, -- Plant, Emerald Heart Begonia
-  [198664] = rumourSource, -- Galen Dogwood, Small
-  [198663] = rumourSource, -- Fern Plant, Low Lush
-  [198662] = rumourSource, -- Flowers, Orange Daylily Cluster
-  [198661] = rumourSource, -- Druidic Pot, Stout Clay
-  [198660] = rumourSource, -- Druidic Pitcher, Clay
-  [198659] = rumourSource, -- Druidic Kettle, Clay
-  [198658] = rumourSource, -- Druidic Pot, Wide Clay
-  [198657] = rumourSource, -- Druidic Plate, Clay
-  [198656] = rumourSource, -- Druidic Plates, Clay Stack
-  [198655] = rumourSource, -- Druidic Covered Dish, Stone
-  [198654] = rumourSource, -- Druidic Plate, Stone
-  [198653] = rumourSource, -- Druidic Goblet, Stone
-  [198652] = rumourSource, -- Druidic Bowl, Stone
-  [198651] = rumourSource, -- Druidic Brazier, Standing
-  [198650] = rumourSource, -- Druidic Brazier, Leaning
-  [198649] = rumourSource, -- Druidic Smoking Rack, Fish
-  [198648] = rumourSource, -- Druidic Rack, Hide Stretcher
-  [198647] = rumourSource, -- Druidic Drying Rack, Tall
-  [198646] = rumourSource, -- Druidic Drying Rack, Wide
 }
 
--- 27 Base Game Patch
-FurC.Rumours[ver.BASED] = {
-  [198561] = rumourSource, -- Vine, Wide Moonlit Ivy Drape
-  [198560] = rumourSource, -- Vine, Large Moonlit Ivy Swath
-  [198559] = rumourSource, -- Vine, Large Moonlit Ivy Drape
-  [198558] = rumourSource, -- Vine, Medium Moonlit Ivy Swath
-  [198557] = rumourSource, -- Vine, Small Moonlit Ivy Drape
-  [198555] = rumourSource, -- Shrub, Moonlit Ivy
-  [198371] = rumourSource, -- Necrom Lamppost, Single
-  [198319] = rumourSource, -- Ice Sculpture
-  [198109] = rumourSource, -- Trees, Dead Oak Sapling Duo
-  [198108] = rumourSource, -- Tree, Twisted Dead Oak Sapling
-  [198107] = rumourSource, -- Trees, Dead Oak Sapling Cluster
-  [198106] = rumourSource, -- Tree, Dead Oak Sapling
-  [198105] = rumourSource, -- Tree, Large Ancient Dead Oak
-  [198104] = rumourSource, -- Tree, Old Dead Oak
-  [198103] = rumourSource, -- Tree, Ancient Dead Oak
-  [198005] = rumourSource, -- Hedge, Dense Low Angled Wall
-  [198004] = rumourSource, -- Hedge, Dense Low Extensive Wall
-  [198003] = rumourSource, -- Hedge, Dense Low Corner Wall
-  [198002] = rumourSource, -- Hedge, Dense Low Long Wall
-  [197840] = rumourSource, -- Necrom Brazier, Elegant Stone
-  [197839] = rumourSource, -- Mushrooms, Ambershine Ring
-  [197838] = rumourSource, -- Mushrooms, Ambershine Patch
-  [197837] = rumourSource, -- Mushrooms, Tall Green Morel Cluster
-  [197836] = rumourSource, -- Mushroom, Tall Green Morel
-  [197835] = rumourSource, -- Mushrooms, Tall Chanterelle Cluster
-  [197834] = rumourSource, -- Statue, Telvanni Magister
-  [197833] = rumourSource, -- Statue, Telvanni Spellwright
-  [197832] = rumourSource, -- Necrom Gazebo
-  [197825] = rumourSource, -- Statue, The Thirty-Fourth Sermon
-}
 
 -- 26 Necrom
 FurC.Rumours[ver.NECROM] = {
-  [197704] = rumourSource, -- Book of Whispers
-  [197625] = rumourSource, -- Music Box, Oath of the Keepers
-  [194539] = rumourSource, -- Rough Hammock, Pole-Strung
-  [194538] = rumourSource, -- Cargo Netting, Large
-  [194536] = rumourSource, -- Dock Buoys, Mounted
-  [194534] = rumourSource, -- Dock Bell, Mounted
+
   [120485] = rumourSource, -- Cactus, Columnar
   [118288] = rumourSource, -- Deer Carcass, Hanging
   [116474] = rumourSource, -- Orcish Effigy, Bear
@@ -281,26 +243,11 @@ FurC.Rumours[ver.NECROM] = {
   [115705] = rumourSource, -- Khajiit Tile, New Moons
 }
 
--- 24 Scribes of Fate
-FurC.Rumours[ver.SCRIBE] = {}
-
--- 24 Firesong
-FurC.Rumours[ver.DRUID] = {}
-
--- 23 Lost Depths
-FurC.Rumours[ver.DEPTHS] = {}
-
--- 22 High Isle
-FurC.Rumours[ver.BRETON] = {}
-
--- 21 Ascending Tide
-FurC.Rumours[ver.TIDES] = {}
 
 -- 20 Deadlands
 FurC.Rumours[ver.DEADL] = {
   [182925] = rumourSource, -- Rocks, Deadlands Cluster,
   [182922] = rumourSource, -- Vines, Thornpinch,
-  [182921] = rumourSource, -- Fargrave Canopy, Large,
   [181611] = rumourSource, -- Vines, Snow Lillies Climber,
   [181610] = rumourSource, -- Vines, Snow Lillies Swath,
   [181609] = rumourSource, -- Tree, Blackwood Beech Cluster,
@@ -347,7 +294,6 @@ FurC.Rumours[ver.FLAMES] = {}
 
 -- 17 Markarth
 FurC.Rumours[ver.MARKAT] = {
-  [171382] = rumourSource, -- Reachmen Pergola, Ivy Overhang,
   [167306] = rumourSource, -- Tree, Towering Snowy White Pine,
   [167302] = rumourSource, -- Solitude Brazier, Metal,
   [167297] = rumourSource, -- Trees, Young Snowy White Pine Cluster,
@@ -364,7 +310,6 @@ FurC.Rumours[ver.MARKAT] = {
 
 -- 16 Stonethorn
 FurC.Rumours[ver.STONET] = {
-  [119970] = rumourSource, -- Redguard Round Table
   [119690] = rumourSource, -- Banner of Hircine
   [119689] = rumourSource, -- Arch of the Wild Hunt
   [119688] = rumourSource, -- Basin of the Wild Hunt
@@ -506,23 +451,8 @@ FurC.Rumours[ver.STONET] = {
   [118309] = rumourSource, -- Barrel, Pink Dye
   [118308] = rumourSource, -- Barrel, Orange Dye
   [118277] = rumourSource, -- Ram Horns, Mounted
-  [118264] = rumourSource, -- Tuffet, Faded Yellow
-  [118263] = rumourSource, -- Tuffet, Faded Blue
-  [118262] = rumourSource, -- Tuffet, Faded Red
-  [118258] = rumourSource, -- Pillow Roll, Faded Yellow
-  [118257] = rumourSource, -- Pillow Roll, Faded Blue
-  [118256] = rumourSource, -- Pillow Roll, Faded Red
-  [118255] = rumourSource, -- Pillow, Faded Blue Floral
-  [118254] = rumourSource, -- Pillow, Faded Purple Floral
-  [118253] = rumourSource, -- Pillow, Faded Red Floral
-  [118252] = rumourSource, -- Pillow, Faded Yellow Floral
-  [118251] = rumourSource, -- Pillow, Faded Blue
-  [118250] = rumourSource, -- Pillow, Faded Purple
-  [118249] = rumourSource, -- Pillow, Faded Red
-  [118248] = rumourSource, -- Pillow, Faded Yellow
   [118240] = rumourSource, -- Cake, Anniversary
   [118239] = rumourSource, -- Vial of Blood
-  [118174] = rumourSource, -- Shutters, Blue Lattice
   [118168] = rumourSource, -- Block, Carved Stone
   [118157] = rumourSource, -- Runner of the Sun, Faded
   [118156] = rumourSource, -- Runner of the Oasis, Faded
@@ -557,7 +487,6 @@ FurC.Rumours[ver.STONET] = {
   [117947] = rumourSource, -- Rough Spoon, Common
   [117946] = rumourSource, -- Rough Knife, Butter
   [117944] = rumourSource, -- Rough Fork, Common
-  [117941] = rumourSource, -- Rough Broom, Practical
   [117938] = rumourSource, -- Rough Sack, Burlap
   [117936] = rumourSource, -- Rough Pouch, Coarse Cloth
   [117935] = rumourSource, -- Rough Pouch, Burlap
@@ -570,19 +499,7 @@ FurC.Rumours[ver.STONET] = {
   [117904] = rumourSource, -- Redguard Trunk, Garish
   [117903] = rumourSource, -- Redguard Vessel, Gilded
   [117902] = rumourSource, -- Redguard Pot, Gilded
-  [117899] = rumourSource, -- Redguard Chest, Crested
   [117898] = rumourSource, -- Redguard Carpet, Dawn
-  [117897] = rumourSource, -- Redguard Mat, Sun
-  [117896] = rumourSource, -- Redguard Wine Rack, Bolted
-  [117894] = rumourSource, -- Redguard Divider, Gilded
-  [117893] = rumourSource, -- Redguard Footlocker, Bolted
-  [117892] = rumourSource, -- Redguard Chair, Lattice
-  [117891] = rumourSource, -- Redguard Armchair, Lattice
-  [117887] = rumourSource, -- Redguard Tuffet, Sands
-  [117886] = rumourSource, -- Redguard Throw Pillow, Sands
-  [117885] = rumourSource, -- Redguard Pillow Roll, Sands
-  [117882] = rumourSource, -- Redguard Pillow, Florid Sands
-  [117881] = rumourSource, -- Redguard Pillow, Lattice Sands
   [117843] = rumourSource, -- Redguard Bed, Wide Lattice
   [117835] = rumourSource, -- Redguard Lamp, Oil
   [117765] = rumourSource, -- Redguard Canopy, Dusk
@@ -632,15 +549,6 @@ FurC.Rumours[ver.SKYRIM] = {
   [152257] = rumourSource, -- Banner of Mephala
 }
 
--- 14 Harrowstorm
-FurC.Rumours[ver.HARROW] = {}
-
--- 13 Dragonhold
-FurC.Rumours[ver.DRAGON2] = {}
-
--- 12 Scalebreaker
-FurC.Rumours[ver.SCALES] = {}
-
 -- 11 Elsweyr
 FurC.Rumours[ver.KITTY] = {
   [152149] = rumourSource, -- Orcish Brazier, Pillar,     CRAFTABLE
@@ -657,48 +565,26 @@ FurC.Rumours[ver.KITTY] = {
 
 -- 10 Wrathstone
 FurC.Rumours[ver.WOTL] = {
-  [147636] = rumourSource, -- Banner of Hermaeus Mora,
-  [147573] = rumourSource, -- Barricade, Bladed Hurdle,
-  [147572] = rumourSource, -- Barricade, Bladed Fence,
-  [146069] = rumourSource, -- Target Voriplasm,
-  [140297] = rumourSource, -- Replica Throne of Alinor,
-  [134246] = rumourSource, -- The Law of Gears,
-  [132204] = rumourSource, -- Imperial Statue, Truth,
-  [132203] = rumourSource, -- Stone, Anvil Limestone,
-  [132202] = rumourSource, -- Rock, Anvil Limestone,
-  [132201] = rumourSource, -- Tree, Kvatch Nut,
-  [132200] = rumourSource, -- Imperial Well, Akatosh,
-  [132197] = rumourSource, -- Death Skeleton, Shrouded,
-  [132166] = rumourSource, -- Death Skeleton, Robed,
-  [130195] = rumourSource, -- Target Iron Atronach,
-  [130194] = rumourSource, -- Target Stone Atronach,
-  [130193] = rumourSource, -- Robust Target Minotaur Handler,
-  [130091] = rumourSource, -- Statue of Molag Bal, God of Schemes,
-  [130089] = rumourSource, -- Daedric Brazier, Molag Bal,
-  [130087] = rumourSource, -- Daedric Shards, Coldharbour,
-  [130086] = rumourSource, -- Daedric Pennant, Molag Bal,
-  [130085] = rumourSource, -- Daedric Banner, Molag Bal,
-  [130084] = rumourSource, -- Daedric Tapestry, Molag Bal,
-  [130083] = rumourSource, -- Daedric Block, Seat,
-  [130081] = rumourSource, -- Soul-Shriven, Armored,
-  [130080] = rumourSource, -- Soul Gems, Scattered,
-  [120882] = rumourSource, -- Tombstone, Small,
-  [120881] = rumourSource, -- Tombstone, Engraved, Order of the Hour,
-  [120880] = rumourSource, -- Tombstone, Engraved, Decorative,
-  [120874] = rumourSource, -- Daedric Coffin, Lid,
-  [120872] = rumourSource, -- Daedric Pike, Daedroth Head,
-  [120861] = rumourSource, -- Yokudan Sitting Griffin Statue,
-  [120860] = rumourSource, -- Yokudan Throne,
-  [120858] = rumourSource, -- Yokudan Tapestry,
-  [120857] = rumourSource, -- Yokudan Sarcophagus Lid,
-  [120856] = rumourSource, -- Yokudan Sarcophagus,
-  [120852] = rumourSource, -- Holding Cell,
+  [132197] = rumourSource, -- Death Skeleton, Shrouded
+  [132166] = rumourSource, -- Death Skeleton, Robed
+  [130195] = rumourSource, -- Target Iron Atronach
+  [130194] = rumourSource, -- Target Stone Atronach
+  [130193] = rumourSource, -- Robust Target Minotaur Handler
+  [120882] = rumourSource, -- Tombstone, Small
+  [120881] = rumourSource, -- Tombstone, Engraved, Order of the Hour
+  [120880] = rumourSource, -- Tombstone, Engraved, Decorative
+  [120874] = rumourSource, -- Daedric Coffin, Lid
+  [120872] = rumourSource, -- Daedric Pike, Daedroth Head
+  [120861] = rumourSource, -- Yokudan Sitting Griffin Statue
+  [120860] = rumourSource, -- Yokudan Throne
+  [120858] = rumourSource, -- Yokudan Tapestry
+  [120857] = rumourSource, -- Yokudan Sarcophagus Lid
+  [120856] = rumourSource, -- Yokudan Sarcophagus
+  [120852] = rumourSource, -- Holding Cell
 }
 
 -- 9 Wolfhunter
 FurC.Rumours[ver.WEREWOLF] = {
-  [134823] = dataminedUnclear, -- Target Mournful Aegis
-  [134686] = dataminedUnclear, -- Sithis, The Dread Father
   [132198] = dataminedUnclear, -- Death Skeleton, Wrapped
   [126776] = dataminedUnclear, -- Indoril Tapestry, House
   [126771] = dataminedUnclear, -- Velothi Podium of Illumination
@@ -706,24 +592,12 @@ FurC.Rumours[ver.WEREWOLF] = {
   [126108] = dataminedUnclear, -- Display Atronach Crown Crate
   [126107] = dataminedUnclear, -- Display Wild Hunt Crown Crate
   [125592] = dataminedUnclear, -- Mushroom, Lavaburster
-  [125537] = dataminedUnclear, -- Dwarven Piston Cylinder
-  [125532] = dataminedUnclear, -- Dwarven Pipeline, Fan
-  [125489] = dataminedUnclear, -- Daedric Brazier, Flaming
-  [121023] = dataminedUnclear, -- Tree, Strong Olive
-  [121022] = dataminedUnclear, -- Bush, Green Forest
-  [121016] = dataminedUnclear, -- Bush, Red Berry
-  [121015] = dataminedUnclear, -- Shrub, Sparse Green
-  [121013] = dataminedUnclear, -- Saplings, Fragile Autumn Birch
-  [121010] = dataminedUnclear, -- Tree, Young Green Birch
-  [121008] = dataminedUnclear, -- Tree, Autumn Maple
-  [121007] = dataminedUnclear, -- Tree, Strong Maple
-  [121004] = dataminedUnclear, -- Hedge, Solid Arc
   [121000] = dataminedUnclear, -- Shrub, Trimmed Green
   [120987] = dataminedUnclear, -- Dark Elf Lightpost, Capped
   --[120986] = dataminedUnclear, -- Dark Elf Lightpost, Full ; removed @BASE44?
   [120985] = dataminedUnclear, -- Dark Elf Lightpost, Single
   [120873] = dataminedUnclear, -- Daedric Coffin
-  [120871] = dataminedUnclear, -- Deadric Vase, Spiked
+  [120871] = dataminedUnclear, -- Daedric Vase, Spiked
   [120867] = dataminedUnclear, -- Daedric Pike, Clannfear Head
   [120866] = dataminedUnclear, -- Daedric Brazier, Tabletop
   [120865] = dataminedUnclear, -- Daedric Table
@@ -734,40 +608,14 @@ FurC.Rumours[ver.WEREWOLF] = {
   [120854] = dataminedUnclear, -- Guard Lamppost
 }
 
--- 8 Murkmire
-FurC.Rumours[ver.SLAVES] = {
-  [145556] = rumourSource, -- Tree, Tall Snowy Fir
-  [145555] = rumourSource, -- Tree, Snowy Fir
-  [145554] = rumourSource, -- Tree, Towering Snowy Fir
-  [145467] = rumourSource, -- The Way of Shadow
-  [145458] = rumourSource, -- Tree, Huge Ancient Banyan
-  [145457] = rumourSource, -- Tree, Banyan
-  [145456] = rumourSource, -- Plant, Hist Bulb
-  [145455] = rumourSource, -- Plant, Dendritic Hist Bulb
-  [145454] = rumourSource, -- Plant, Marsh Aloe Pod
-  [145453] = rumourSource, -- Plant, Marsh Aloe
-  [145452] = rumourSource, -- Shrine, Sithis Looming Anointed
-  [145451] = rumourSource, -- Shrine, Sithis Figure Anointed
-  [145450] = rumourSource, -- Stele, Hist Cultivation
-  [145449] = rumourSource, -- Stele, Hist Guardians
-  [145446] = rumourSource, -- Sithis, the Hungering Dark
-}
-
 -- 7 Summerset Isles
 FurC.Rumours[ver.ALTMER] = {
-  [140297] = dataminedUnclear, -- Replica Throne of Alinor,
-  [139367] = dataminedUnclear, -- Regal Sauna Pool, Two Person
   -- [134287] = rumourSource, -- Projector TBD ; removed @BASE44?
-  [132203] = dataminedUnclear, -- Stone, Anvil Limestone
-  [132202] = dataminedUnclear, -- Rock, Anvil Limestone
-  [132201] = dataminedUnclear, -- Tree, Kvatch Nut
-  [132200] = dataminedUnclear, -- Imperial Well, Akatosh
   [132197] = dataminedUnclear, -- Death Skeleton, Shrouded
   [132166] = dataminedUnclear, -- Death Skeleton, Robed
   [130195] = dataminedUnclear, -- Target Iron Atronach
   [130194] = dataminedUnclear, -- Target Stone Atronach
   [130193] = dataminedUnclear, -- Robust Target Minotaur Handler
-  [130070] = dataminedUnclear, -- Daedric Spout, Arched,
   [120882] = dataminedUnclear, -- Tombstone, Small
   [120881] = dataminedUnclear, -- Tombstone, Engraved, Order of the Hour
   [120880] = dataminedUnclear, -- Tombstone, Engraved, Decorative
@@ -778,16 +626,10 @@ FurC.Rumours[ver.ALTMER] = {
   [120856] = dataminedUnclear, -- Yokudan Sarcophagus
 }
 
--- 6 Dragon Bones
-FurC.Rumours[ver.DRAGONS] = {}
-
 -- 5 Clockwork City
 FurC.Rumours[ver.CLOCKWORK] = {
   [125509] = dataminedUnclear, -- Replica Dwarven Crown Crate
 }
-
--- 4 Horns of the Reach
-FurC.Rumours[ver.REACH] = {}
 
 -- 3 Morrowind
 FurC.Rumours[ver.MORROWIND] = {
@@ -815,6 +657,5 @@ FurC.Rumours[ver.HOMESTEAD] = {
   [118289] = rumourSource, -- Haj Mota Shell, Wall Mount
   [118284] = rumourSource, -- Horn, Display, Cracked
   [118283] = rumourSource, -- Horn, Display, Huge
-  [118127] = rumourSource, -- Plaque, Small
   [116433] = rumourSource, -- Orcish Desk with Furs
 }
