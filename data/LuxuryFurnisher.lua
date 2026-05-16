@@ -20,6 +20,18 @@ FurC.LuxuryFurnisher[ver.ZERO] = {
     itemPrice = 8000,
 	itemDate = "2026-04-17",
   },
+  [223125] = { -- Skull, Whale
+    itemPrice = 20000,
+	itemDate = "2026-05-01",
+  },
+  [223875] = { -- Clockwork Grating, Pedestal
+    itemPrice = 2000,
+	itemDate = "2026-05-08",
+  },
+  [223876] = { -- Clockwork Door, Mechanical
+    itemPrice = 100000,
+	itemDate = "2026-05-15",
+  },
 }
 
  -- Seasons of the Worm Cult
@@ -210,15 +222,15 @@ FurC.LuxuryFurnisher[ver.FALLBAN] = {
   },
   [211564] = { -- Clockwork Archway, Fan
     itemPrice = 15000,
-    itemDate = "2025-04-18",
+    itemDate = "2026-05-15",
   },
   [211563] = { -- Clockwork Door, Octagonal
     itemPrice = 40000,
-    itemDate = "2025-04-11",
+    itemDate = "2026-05-08",
   },
   [211560] = { -- Skeleton, Whale Jaw
     itemPrice = 4500,
-    itemDate = "2025-04-04",
+    itemDate = "2026-05-01",
   },
   [211565] = { -- Skull, Carved Deer
     itemPrice = 3000,
@@ -372,7 +384,7 @@ FurC.LuxuryFurnisher[ver.WEALD] = {
     itemPrice = 3000,
 	itemDate = "2025-10-24",
   },
-  [204634] = { -- Reach Totem, Twig Archway
+  [204635] = { -- Reach Totem, Twig Archway
     itemPrice = 10000,
 	itemDate = "2025-10-31",
   },
@@ -474,15 +486,15 @@ FurC.LuxuryFurnisher[ver.ENDLESS] = {
   },
   [203144] = { -- Clockwork Illuminator Holder
     itemPrice = 65000,
-    itemDate = "2025-04-18",
+    itemDate = "2026-05-15",
   },
   [203143] = { -- Clockwork Stairway, Spiral
     itemPrice = 65000,
-    itemDate = "2025-04-11",
+    itemDate = "2026-05-08",
   },
   [203142] = { -- Skeleton, Whale Spine
     itemPrice = 15000,
-    itemDate = "2025-04-04",
+    itemDate = "2026-05-01",
   },
   [203141] = { -- Skeleton, Daedric Titan
     itemPrice = 200000,
@@ -722,7 +734,7 @@ FurC.LuxuryFurnisher[ver.DRUID] = {
   },
   [192583] = { -- Clockwork Planter, Brassbloom
     itemPrice = 7000,
-    itemDate = "2025-04-11",
+    itemDate = "2026-05-08",
   },
   [192582] = { -- Vines, Nirncrux
     itemPrice = 12000,
@@ -750,7 +762,7 @@ FurC.LuxuryFurnisher[ver.DRUID] = {
   },
   [192576] = { -- Druidic Totem, Animal
     itemPrice = 3500,
-    itemDate = "2025-04-04",
+    itemDate = "2026-05-01",
   },
   [192575] = { -- Nedic Banner, Blood
     itemPrice = 4000,
@@ -762,7 +774,7 @@ FurC.LuxuryFurnisher[ver.DRUID] = {
   },
   [192573] = { -- Clockwork Illuminator, Spot
     itemPrice = 14000,
-    itemDate = "2025-04-18",
+    itemDate = "2026-05-15",
   },
   [192570] = { -- Decorative Wall Drape, Mauve
     itemPrice = 3000,
@@ -970,15 +982,15 @@ FurC.LuxuryFurnisher[ver.DEADL] = {
   },
   [182620] = { -- Clockwork Door, Arched
     itemPrice = 25000,
-    itemDate = "2025-04-18",
+    itemDate = "2026-05-15",
   },
   [182619] = { -- Clockwork Altar, Devotional
     itemPrice = 15000,
-    itemDate = "2025-04-11",
+    itemDate = "2026-05-08",
   },
   [182618] = { -- Nord Stone, Marked,
     itemPrice = 4000,
-    itemDate = "2025-04-04",
+    itemDate = "2026-05-01",
   },
   [182617] = { -- Unidentified Fargrave Bones
     itemPrice = 9000,
@@ -1022,7 +1034,7 @@ FurC.LuxuryFurnisher[ver.DEADL] = {
   },
   [167352] = { -- Pelt, Fox
     itemPrice = 2500,
-    itemDate = "2025-04-04",
+    itemDate = "2026-05-01",
   },
   [167351] = { -- Crocodile Skeleton, Complete
     itemPrice = 9000,
@@ -1066,7 +1078,7 @@ FurC.LuxuryFurnisher[ver.DEADL] = {
   },
   [153696] = { -- Taxidermy, Bird of Prey
     itemPrice = 2500,
-    itemDate = "2025-04-04",
+    itemDate = "2026-05-01",
   },
   [153692] = { -- Orsinium Well, Covered
     itemPrice = 20000,
@@ -1106,7 +1118,7 @@ FurC.LuxuryFurnisher[ver.DEADL] = {
   },
   [141762] = { -- Animal Trap, Welded Open
     itemPrice = 2500,
-    itemDate = "2025-04-04",
+    itemDate = "2026-05-01",
   },
   [141759] = { -- Orcish Gazebo, Orsinium
     itemPrice = 20000,
@@ -1258,19 +1270,19 @@ FurC.LuxuryFurnisher[ver.DEADL] = {
   },
   [118292] = { -- Elk Head, Wall Mount
     itemPrice = 20000,
-    itemDate = "2025-04-04",
+    itemDate = "2026-05-01",
   },
   [118285] = { -- Carcass, Fresh Pheasant
     itemPrice = 7500,
-    itemDate = "2025-04-04",
+    itemDate = "2026-05-01",
   },
   [118243] = { -- Tapestry, Echatere Pelt
     itemPrice = 25000,
-    itemDate = "2025-04-04",
+    itemDate = "2026-05-01",
   },
   [116506] = { -- Orcish Grand Table with Skins
     itemPrice = 50000,
-    itemDate = "2025-04-04",
+    itemDate = "2026-05-01",
   },
 }
 
@@ -2230,11 +2242,11 @@ FurC.LuxuryFurnisher[ver.MARKAT] = {
   },
   [171412] = { -- Clockwork Switch, Rotary
     itemPrice = 8000,
-    itemDate = "2025-04-18",
+    itemDate = "2026-05-15",
   },
   [171411] = { -- Clockwork Lens Assembly, Frozen
     itemPrice = 7000,
-    itemDate = "2025-04-11",
+    itemDate = "2026-05-08",
   },
   [156665] = { -- Ayleid Constellation Stele, The Serpent
     itemPrice = 20000,
@@ -2290,11 +2302,11 @@ FurC.LuxuryFurnisher[ver.MARKAT] = {
   },
   [153698] = { -- Clockwork Orrery, Simple
     itemPrice = 35000,
-    itemDate = "2025-04-18",
+    itemDate = "2026-05-15",
   },
   [153697] = { -- Clockwork Telescope, Stargazers
     itemPrice = 75000,
-    itemDate = "2025-04-11",
+    itemDate = "2026-05-08",
   },
   [145470] = { -- Redguard Vase, Golden
     itemPrice = 5000,
@@ -2582,43 +2594,43 @@ FurC.LuxuryFurnisher[ver.SLAVES] = {
   },
   [134427] = { -- Clockwork Orrery, Intricate
     itemPrice = 100000,
-    itemDate = "2025-04-18",
+    itemDate = "2026-05-15",
   },
   [134426] = { -- Clockwork Globe, Stand
     itemPrice = 4000,
-    itemDate = "2025-04-18",
+    itemDate = "2026-05-15",
   },
   [134425] = { -- Clockwork Orrery, Compact
     itemPrice = 20000,
-    itemDate = "2025-04-18",
+    itemDate = "2026-05-15",
   },
   [134424] = { -- Clockwork Gear Display, Bell Jar
     itemPrice = 2500,
-    itemDate = "2025-04-18",
+    itemDate = "2026-05-15",
   },
   [134423] = { -- Clockwork Gear Display, Tall Jar
     itemPrice = 3000,
-    itemDate = "2025-04-18",
+    itemDate = "2026-05-15",
   },
   [134422] = { -- Clockwork Sextant, Surveyor's
     itemPrice = 75000,
-    itemDate = "2025-04-11",
+    itemDate = "2026-05-08",
   },
   [134421] = { -- Clockwork Calibration Guide, The Warrior
     itemPrice = 50000,
-    itemDate = "2025-04-11",
+    itemDate = "2026-05-08",
   },
   [134420] = { -- Clockwork Calibration Guide, The Thief
     itemPrice = 50000,
-    itemDate = "2025-04-11",
+    itemDate = "2026-05-08",
   },
   [134419] = { -- Clockwork Calibration Guide, The Mage
     itemPrice = 50000,
-    itemDate = "2025-04-11",
+    itemDate = "2026-05-08",
   },
   [134418] = { -- Clockwork Telescope, Surveyor's
     itemPrice = 15000,
-    itemDate = "2025-04-11",
+    itemDate = "2026-05-08",
   },
   [120893] = { -- Wedding Gazebo
     itemPrice = 50000,
