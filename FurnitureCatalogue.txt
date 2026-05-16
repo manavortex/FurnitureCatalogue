@@ -1,5 +1,57 @@
 ## Title: FurnitureCatalogue
 ## Author: manavortex
+## AddonVersion: 6.1.0
+## APIVersion: 101049 101050
+## SavedVariables: FurnitureCatalogue_Settings
+## DependsOn: LibCustomMenu>=730 LibAddonMenu-2.0>=43 LibAsync>=30103
+## OptionalDependsOn: LibDebugLogger LibDebugViewer
+
+locale\en.lua
+locale\$(language).lua
+
+xml\Bindings.xml
+xml\FurnitureCatalogue.xml
+
+FurCConstants.lua
+
+startup.lua
+FurCUtil.lua
+
+FurCSettingsAdapter.lua
+FurCMenu.lua
+FurCEvents.lua
+
+data\RumourRecipes.lua
+data\Rumours.lua
+
+data\MiscItemSources.lua
+
+data\AchievementVendors.lua
+data\EventItems.lua
+data\LuxuryFurnisher.lua
+data\PvP.lua
+data\Recipes.lua
+data\Rolis.lua
+data\RecipeSources.lua
+
+FurCDatabaseQuery.lua
+FurCData.lua
+FurCDataParser.lua
+FurCFilter.lua
+FurCGui.lua
+FurCContextMenu.lua
+FurCControlBridge.lua
+FurCTooltip.lua
+
+; This Add-on is not created by, affiliated with or sponsored by ZeniMax
+; Media Inc. or its affiliates. The Elder Scrolls? and related logos are
+; registered trademarks or trademarks of ZeniMax Media Inc. in the United
+; States and/or other countries.
+;
+; You can read the full terms at:
+; https://account.elderscrollsonline.com/add-on-terms
+## Title: FurnitureCatalogue
+## Author: manavortex
 ## AddonVersion: 6000000
 ## Version: 6.0.0
 ## APIVersion: 101049 101050
