@@ -5,7 +5,7 @@ this.name = "FurnitureCatalogue"
 this.author = "manavortex"
 this.tag = "FurC"
 
-this.version = 6000000 -- will be AUTOREPLACED with AddonVersion
+this.version = 601000 -- will be AUTOREPLACED with AddonVersion
 
 this.CharacterName = nil
 this.website = "https://www.esoui.com/downloads/fileinfo.php?id=1617"
@@ -84,6 +84,8 @@ local function getSourceIndicesKeys()
   sourceIndicesKeys[src.CRAFTING_UNKNOWN] = "craft_unknown"
   sourceIndicesKeys[src.VENDOR] = "purch_gold"
   sourceIndicesKeys[src.PVP] = "purch_ap"
+  sourceIndicesKeys[src.BAZAAR] = "purch_tbars"
+ -- sourceIndicesKeys[src.TOMES] = "purch_tomepoints"
   sourceIndicesKeys[src.WRIT_VENDOR] = "writ_vendor"
   sourceIndicesKeys[src.CROWN] = "crownstore"
   sourceIndicesKeys[src.RUMOUR] = "rumour"
@@ -109,6 +111,8 @@ local function getChoicesSource()
   choicesSource[src.CRAFTING_UNKNOWN] = GetString(SI_FURC_FILTER_SRC_CRAFTING_UNKNOWN)
   choicesSource[src.VENDOR] = GetString(SI_FURC_FILTER_SRC_SOLD_GOLD)
   choicesSource[src.PVP] = GetString(SI_FURC_FILTER_SRC_SOLD_AP)
+  choicesSource[src.BAZAAR] = GetString(SI_FURC_FILTER_SRC_SOLD_TBARS)
+ -- choicesSource[src.TOMES] = GetString(SI_FURC_FILTER_SRC_SOLD_TOMEPOINTS)
   choicesSource[src.WRIT_VENDOR] = GetString(SI_FURC_FILTER_SRC_SOLD_WRIT)
   choicesSource[src.CROWN] = GetString(SI_FURC_FILTER_SRC_CROWN)
   choicesSource[src.RUMOUR] = GetString(SI_FURC_FILTER_SRC_RUMOUR)
@@ -134,6 +138,8 @@ local function getTooltipsSource()
   tooltipsSource[src.CRAFTING_UNKNOWN] = GetString(SI_FURC_FILTER_SRC_CRAFTING_UNKNOWN_TT)
   tooltipsSource[src.VENDOR] = GetString(SI_FURC_FILTER_SRC_SOLD_GOLD_TT)
   tooltipsSource[src.PVP] = GetString(SI_FURC_FILTER_SRC_SOLD_AP_TT)
+  tooltipsSource[src.BAZAAR] = GetString(SI_FURC_FILTER_SRC_SOLD_TBARS_TT)
+ -- tooltipsSource[src.TOMES] = GetString(SI_FURC_FILTER_SRC_SOLD_TOMEPOINTS_TT)
   tooltipsSource[src.CROWN] = GetString(SI_FURC_FILTER_SRC_CROWN_TT)
   tooltipsSource[src.WRIT_VENDOR] = GetString(SI_FURC_FILTER_SRC_SOLD_WRIT_TT)
   tooltipsSource[src.RUMOUR] = GetString(SI_FURC_FILTER_SRC_RUMOUR_TT)
@@ -192,6 +198,7 @@ this.DropdownData = {
 	[ver.SHADOWS] = GetString(SI_FURC_FILTER_VERSION_SHADOWS),
 	[ver.WORMS2] = GetString(SI_FURC_FILTER_VERSION_WORMS2),
 	[ver.ZERO] = GetString(SI_FURC_FILTER_VERSION_ZERO),
+	[ver.ZERO2] = GetString(SI_FURC_FILTER_VERSION_ZERO2),
   },
 
   TooltipsVersion = {
@@ -232,6 +239,7 @@ this.DropdownData = {
 	[ver.SHADOWS] = GetString(SI_FURC_FILTER_VERSION_SHADOWS_TT),
 	[ver.WORMS2] = GetString(SI_FURC_FILTER_VERSION_WORMS2_TT),
 	[ver.ZERO] = GetString(SI_FURC_FILTER_VERSION_ZERO_TT),
+	[ver.ZERO2] = GetString(SI_FURC_FILTER_VERSION_ZERO2_TT),
   },
 
   ChoicesCharacter = {
