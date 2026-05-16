@@ -40,6 +40,8 @@ FurC.Constants.ItemSources = {
   FISHING = getNextIdFor("ITEM_SOURCES"), -- 16
   GUILDSTORE = getNextIdFor("ITEM_SOURCES"), -- 17
   FESTIVAL_DROP = getNextIdFor("ITEM_SOURCES"), -- 18
+  BAZAAR = getNextIdFor("ITEM_SOURCES"), -- 19
+  TOMES = getNextIdFor("ITEM_SOURCES"),  -- 20
 }
 
 -- TODO #REFACTOR Switch version numbering to the same as game update numbers
@@ -73,16 +75,17 @@ FurC.Constants.Versioning = {
   SCRIBE = getNextIdFor("VERSIONING"), -- 25 Scribes of Fate
   NECROM = getNextIdFor("VERSIONING"), -- 26 Necrom
   BASED = getNextIdFor("VERSIONING"), -- 27 Base Game Patch
-  ENDLESS = getNextIdFor("VERSIONING"), -- 28 Secrets of the Telvanni
-  SCIONS = getNextIdFor("VERSIONING"), -- 29 Scions of Ithelia
-  WEALD = getNextIdFor("VERSIONING"), -- 30 Gold Road
-  BASE43 = getNextIdFor("VERSIONING"), -- 31 Base Game Update 43
-  BASE44 = getNextIdFor("VERSIONING"), -- 32 Base Game Update 44
+  ENDLESS = getNextIdFor("VERSIONING"), -- 28 Secrets of the Telvanni U40
+  SCIONS = getNextIdFor("VERSIONING"), -- 29 Scions of Ithelia U41
+  WEALD = getNextIdFor("VERSIONING"), -- 30 Gold Road U42
+  BASE43 = getNextIdFor("VERSIONING"), -- 31 Home Tours U43
+  BASE44 = getNextIdFor("VERSIONING"), -- 32 Golden Pursuits Update 44
   FALLBAN = getNextIdFor("VERSIONING"), -- 33 Fallen Banners (U45)
   WORMS = getNextIdFor("VERSIONING"), -- 34 Seasons of the Worm Cult (U46)
   SHADOWS = getNextIdFor("VERSIONING"), -- 35 Feast of Shadows (U47)
   WORMS2 = getNextIdFor("VERSIONING"), -- 36 Seasons of the Worm Cult Part 2 (U48)
   ZERO = getNextIdFor("VERSIONING"), -- 37 Season Zero (U49)
+  ZERO2 = getNextIdFor("VERSIONING"), -- 38 Season Zero Part 2(U50)
 }
 
 FurC.Constants.Versioning.LATEST = FurC.Constants.Versioning.ZERO
@@ -131,6 +134,7 @@ FurC.Constants.Locations = {
   MALABAL = getZoneStr(58), -- Malabal Tor
   MURKMIRE = getZoneStr(726), -- Murkmire
   NELSWEYR = getZoneStr(1086), -- Northern Elsweyr
+  NMARKET = getZoneStr(1559), -- Night Market
   PDUNG_VVARDENFELL_FW = getZoneStr(919), -- Forgotten Wastes
   REACH = getZoneStr(1207), -- The Reach
   REAPER = getZoneStr(382), -- Reaper's March
@@ -139,6 +143,7 @@ FurC.Constants.Locations = {
   SCHOLAR = getZoneStr(1463), -- The Scholarium
   SELSWEYR = getZoneStr(1133), -- Southern Elsweyr
   SHADOWFEN = getZoneStr(117), -- Shadowfen
+  SOLSTICE = getZoneStr(1502), -- Solstice
   STONEFALLS = getZoneStr(41), -- Stonefalls
   STORMHAVEN = getZoneStr(19), -- Stormhaven
   STROSMKAI = getZoneStr(534), -- Stonefalls
@@ -146,10 +151,10 @@ FurC.Constants.Locations = {
   TELVANNI = getZoneStr(1414), -- Telvanni Peninsula
   VVARDENFELL = getZoneStr(849), -- Vvardenfell
   WEALD = getZoneStr(1443), -- West Weald
-  W_SOLSTICE = getZoneStr(1502), -- Western Solstice
+ 
   WROTHGAR = getZoneStr(684), -- Wrothgar
   WSKYRIM = getZoneStr(1160), -- Western Skyrim
-  W_SOLSTICE = getZoneStr(1502), -- Western Solstice (what about eastern solstice?)
+ 
   -- Custom
   ANY = GetString(SI_FURC_LOC_ANY),
   ANY_CAPITAL = GetString(SI_FURC_LOC_ANY_CAPITAL),
@@ -198,11 +203,12 @@ FurC.Constants.NPC = {
   HGF = GetString(SI_FURC_TRADERS_HGF), -- Home Goods Furnisher: Maladiq, Rohzika, ...
   HOLIDAY = GetString(SI_FURC_TRADERS_HOLIDAY), -- Heralda, Tildannire, ...
   LUXF = GetString(SI_FURC_TRADERS_LUXF), -- Luxury Furnisher: Zanil
+  NM = GetString(SI_FURC_TRADERS_NM), -- Night Market Vendors: Nymisasha, Fennel, Najirra
 
   -- Guild Traders
   FIGHTERS_STEWARD = GetString(SI_FURC_GUILD_FIGHTERS_STEWARD), -- stewards in Fighters Guild locations
   MAGES_MYSTIC = GetString(SI_FURC_GUILD_MAGES_MYSTIC), --  mystics in Mages Guild locations
-  PSIJIC_NALIRSEWEN = GetString(SI_FURC_GUILD_PSIJIC_NALIRSEWEN), -- Psijik Trader on Artaeum
+  PSIJIC_NALIRSEWEN = GetString(SI_FURC_GUILD_PSIJIC_NALIRSEWEN), -- Psijic Trader on Artaeum
   THIEVES_MERCH = GetString(SI_FURC_GUILD_THIEVES_MERCH), -- Outlaw Merchant in any refuge
   UNDAUNTED_QM = GetString(SI_FURC_GUILD_UNDAUNTED_QM), -- Undaunted Achievement trader
 
@@ -266,43 +272,47 @@ FurC.Constants.CrownCrates = {
   -- Source: https://en.uesp.net/wiki/Online:Crown_Crates
 
   -- ids not confirmed ingame yet
-  AKA_ALDU = GetCrownCrateName(63), -- 2025-09, Akatosh vs. Alduin
-  CARNAVAL = GetCrownCrateName(62), -- 2025-06, Carnaval
-
-  MIRROR = GetCrownCrateName(61), -- 2025-03, Mirrormoor
-  DB = GetCrownCrateName(60), -- 2024-12, Dark Brotherhood
+  
+  KINDRED = GetCrownCrateName(64), -- 2025-12, Hidden Kindred
+  ANU_PAD = GetCrownCrateName(67), -- 2026-07, Anu vs. Padomay
 
   -- confirmed ids
+  DB = GetCrownCrateName(60), -- 2024-12, Dark Brotherhood
+  MIRROR = GetCrownCrateName(61), -- 2025-03, Mirrormoor
+  WAVE = GetCrownCrateName(66), -- 2026-06, Warrior Wave
+  AKA_ALDU = GetCrownCrateName(63), -- 2025-09, Akatosh vs. Alduin
+  CARNAVAL = GetCrownCrateName(62), -- 2025-06, Carnaval
+  ORSINIUM = GetCrownCrateName(65), -- 2026-03, Moons Over Orsinium
   DIAMOND = GetCrownCrateName(59), -- 2024-07, Diamond Anniversary
-  LAMP = GetCrownCrateName(58), -- 2024-04
-  ALLMAKER = GetCrownCrateName(57), -- 2023-12
-  ARMIGER = GetCrownCrateName(55), -- 2023-09
+  LAMP = GetCrownCrateName(58), -- 2024-04 Order of the Lamp
+  ALLMAKER = GetCrownCrateName(57), -- 2023-12 All-Maker
+  ARMIGER = GetCrownCrateName(55), -- 2023-09 Buoyant Armiger
   FEATHER = GetCrownCrateName(54), -- 2023-06, Unfeathered
-  RAGE = GetCrownCrateName(53), -- 2023-04
-  STONELORE = GetCrownCrateName(52), -- 2022-12
-  WRAITH = GetCrownCrateName(51), -- 2022-09
-  DARK = GetCrownCrateName(50), -- 2022-06
-  SUNKEN = GetCrownCrateName(49), -- 2022-04
-  CELESTIAL = GetCrownCrateName(48), -- 2021-12
-  HARLEQUIN = GetCrownCrateName(47), -- 2021-09
-  IRON_ATRO = GetCrownCrateName(46), -- 2021-06
-  AYLEID = GetCrownCrateName(45), -- 2021-03
+  RAGE = GetCrownCrateName(53), -- 2023-04 Ragebound
+  STONELORE = GetCrownCrateName(52), -- 2022-12 Stonelore
+  WRAITH = GetCrownCrateName(51), -- 2022-09 Wraithtide
+  DARK = GetCrownCrateName(50), -- 2022-06 Dark Chivalry
+  SUNKEN = GetCrownCrateName(49), -- 2022-04 Sunken Trove
+  CELESTIAL = GetCrownCrateName(48), -- 2021-12 Celestial
+  HARLEQUIN = GetCrownCrateName(47), -- 2021-09 Grim Harlequin
+  IRON_ATRO = GetCrownCrateName(46), -- 2021-06 Iron Atronach
+  AYLEID = GetCrownCrateName(45), -- 2021-03 Ayleid
   POTENTATE = GetCrownCrateName(44), -- 2020-12, Akaviri Potentate
-  SOVNGARDE = GetCrownCrateName(41), -- 2020-09
-  NIGHTFALL = GetCrownCrateName(39), -- 2020-06
-  GLOOMSPORE = GetCrownCrateName(37), -- 2020-04
-  FROST_ATRO = GetCrownCrateName(30), -- 2020-01
-  NEWMOON = GetCrownCrateName(27), -- 2019-09
+  SOVNGARDE = GetCrownCrateName(41), -- 2020-09 Sovngarde
+  NIGHTFALL = GetCrownCrateName(39), -- 2020-06 Nightfall
+  GLOOMSPORE = GetCrownCrateName(37), -- 2020-04 Gloomspore
+  FROST_ATRO = GetCrownCrateName(30), -- 2020-01 Frost Atronach
+  NEWMOON = GetCrownCrateName(27), -- 2019-09 New Moon
   BAANDARI = GetCrownCrateName(21), -- 2019-07, Baandari Pedlar
-  DRAGONSCALE = GetCrownCrateName(24), -- 2019-04
+  DRAGONSCALE = GetCrownCrateName(24), -- 2019-04 Dragonscale
   XANMEER = GetCrownCrateName(12), -- 2018-12, Xanmeer
   HOLLOWJACK = GetCrownCrateName(10), -- 2018-09, Hollowjack
   PSIJIC = GetCrownCrateName(9), -- 2018-06, Psijic Vault
   SCALECALLER = GetCrownCrateName(8), -- 2018-03, Scalecaller
   FIRE_ATRO = GetCrownCrateName(6), -- 2017-11, Flame Atronach
   REAPER = GetCrownCrateName(5), -- 2017-09, Reaper's Harvest
-  DWEMER = GetCrownCrateName(4), -- 2017-07, Dwemer
-  WILD_HUNT = GetCrownCrateName(2), -- 2017-04, Wild Hund
+  DWEMER = GetCrownCrateName(4), -- 2017-07, Dwarven
+  WILD_HUNT = GetCrownCrateName(2), -- 2017-04, Wild Hunt
   --STORM_ATRO = GetCrownCrateName(1), -- 2016-12, Storm Atronach, no exclusive furnishings
 }
 
@@ -327,6 +337,7 @@ FurC.Constants.Events = {
   UNDAUNTED = GetString(SI_FURC_EVENT_UNDAUNTED), -- Undaunted Celebration
   WITCHES = GetString(SI_FURC_EVENT_WITCHES), -- Witches Festival
   ZENITHAR = GetString(SI_FURC_EVENT_ZENITHAR), -- Zeal of Zenithar
+  HEARTS = GetString(SI_FURC_EVENT_HEARTS), -- Hearts Week
 }
 
 FurC.Constants.Containers = {
