@@ -14,8 +14,7 @@ name: PrepareRelease
 # - updates CHANGELOG
 # - opens `release/<version>` PR against master
 # Merging that PR triggers FinalizeRelease, which tags version and attaches packaged addon to a GitHub release.
-
-# ESOUI upload is separate step with PublishToESOUI (3). Use it after FinalizeRelease (2) is done, so we don't upload a failed update. And that way if upload fails we don't have to create the package again, because we still have the zip file on the GitHub release page.
+# ESOUI upload is separate step with PublishToESOUI (3). Use it after FinalizeRelease (2) is done
 
 permissions:
   contents: write
