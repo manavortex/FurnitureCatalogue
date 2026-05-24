@@ -1,0 +1,120 @@
+name: FinalizeRelease
+
+# Connected workflows are:
+# 1. PrepareRelease      - prepare_release.yml (opens the release/<version> PR)
+# 2. 📍FinalizeRelease   - finalize_release.yml
+# 3. PublishToESOUI      - publish_to_esoui.yml
+# Refer to CONTRIBUTING.md for more info.
+
+# Triggered when release/<version> PR is merged into master.
+# Packages AddOn, creates version tag, creates a GitHub release with the zip attached.
+# Does NOT upload to ESOUI, that's an extra step via PublishToESOUI
+
+permissions:
+  contents: write
+
+on:
+  pull_request:
+    types: [closed]
+    branches: [master]
+
+jobs:
+  # Only react to merged release PRs from release/*
+  finalize:
+    if: github.event.pull_request.merged == true && startsWith(github.event.pull_request.head.ref, 'release/')
+
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout master (post-merge)
+        uses: actions/checkout@v6
+        with:
+          ref: master
+          fetch-depth: 0
+
+      - uses: ./.github/actions/configure-bot
+      - uses: ./.github/actions/setup-python-env
+
+      # Get version from the release/<version> branch name, not from manifest. This catches the case where someone hand-edits the manifest version between PrepareRelease and merge
+      - name: Resolve version from branch name
+        id: version
+        env:
+          HEAD_REF: ${{ github.event.pull_request.head.ref }}
+        run: |
+          NEXT="${HEAD_REF#release/}"
+          if [[ -z "$NEXT" || "$NEXT" == "$HEAD_REF" ]]; then
+            echo "🔥 Cannot derive version from branch '$HEAD_REF'" >&2
+            exit 1
+          fi
+          # Cross-check against the manifest.
+          MANIFEST_VERSION="$(python -c "import sys; sys.path.insert(0, '.scripts'); import furc_utils as F; print(F.get_manifest_data('FurnitureCatalogue.txt')[F.PROP_MF_VERSION])")"
+          if [[ "$NEXT" != "$MANIFEST_VERSION" ]]; then
+            echo "🔥 Branch says $NEXT but manifest says $MANIFEST_VERSION — aborting to avoid mismatched release." >&2
+            exit 1
+          fi
+          echo "NEXT=$NEXT" >> "$GITHUB_OUTPUT"
+
+      # if release for this tag already exists we skip cleanly
+      - name: Skip if release already published
+        id: gate
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if gh release view "${{ steps.version.outputs.NEXT }}" >/dev/null 2>&1; then
+            echo "Release ${{ steps.version.outputs.NEXT }} already exists. Nothing to do."
+            echo "SKIP=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "SKIP=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Package zip
+        if: steps.gate.outputs.SKIP != 'true'
+        id: pkg
+        run: |
+          python .scripts/package.py
+          ARCHIVE="$(ls -1 *.zip | head -1)"
+          test -s "$ARCHIVE" || { echo "🔥 package.py produced no zip" >&2; exit 1; }
+          echo "ARCHIVE=$ARCHIVE" >> "$GITHUB_OUTPUT"
+
+      # Recreate tag forcibly (have to overwrite any manual or wrong tags). tag must point at merge commit so the zip and the tag are in sync
+      - name: Recreate version tag
+        if: steps.gate.outputs.SKIP != 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          NEXT="${{ steps.version.outputs.NEXT }}"
+          git push origin ":refs/tags/$NEXT" 2>/dev/null || true
+          git tag --delete "$NEXT" 2>/dev/null || true
+          git tag "$NEXT"
+          git push origin "refs/tags/$NEXT"
+
+      # Notes come from the merged PR body written by PrepareRelease (heading + body). CHANGELOG also has them, this is just for the GitHub release page
+      - name: Create GitHub release with attached zip
+        if: steps.gate.outputs.SKIP != 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_BODY: ${{ github.event.pull_request.body }}
+        run: |
+          NEXT="${{ steps.version.outputs.NEXT }}"
+          ARCHIVE="${{ steps.pkg.outputs.ARCHIVE }}"
+          NOTES_FILE="$(mktemp)"
+          printf '%s' "$PR_BODY" > "$NOTES_FILE"
+          gh release create "$NEXT" "$ARCHIVE" \
+            --target master \
+            --title "Version $NEXT" \
+            --notes-file "$NOTES_FILE"
+          {
+            echo "## ✅ Released $NEXT"
+            echo ""
+            echo "- Tag: \`$NEXT\` (forced to current master HEAD)"
+            echo "- Asset: \`$ARCHIVE\`"
+            echo "- Next step: trigger **PublishToESOUI** when ready (or upload \`$ARCHIVE\` to ESOUI manually)."
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      # Attempt cleanup, but don't fail workflow on error
+      - name: Delete merged release branch
+        if: steps.gate.outputs.SKIP != 'true'
+        continue-on-error: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: ${{ github.event.pull_request.head.ref }}
+        run: git push origin --delete "$BRANCH"

@@ -1,0 +1,299 @@
+name: PrepareRelease
+
+# Connected workflows are:
+# 1. 📍PrepareRelease    - prepare_release.yml
+# 2. FinalizeRelease     - finalize_release.yml
+# 3. PublishToESOUI      - publish_to_esoui.yml
+# Refer to CONTRIBUTING.md for more info.
+
+# Prepares a release:
+# - bumps version
+# - regenerates autocomplete
+# - regenerates translation files
+# - formats with StyLUA
+# - updates CHANGELOG
+# - opens `release/<version>` PR against master
+# Merging that PR triggers FinalizeRelease, which tags version and attaches packaged addon to a GitHub release.
+
+# ESOUI upload is separate step with PublishToESOUI (3). Use it after FinalizeRelease (2) is done, so we don't upload a failed update. And that way if upload fails we don't have to create the package again, because we still have the zip file on the GitHub release page.
+
+permissions:
+  contents: write
+  pull-requests: write
+
+on:
+  workflow_dispatch:
+    inputs:
+      impact:
+        description: 'Version impact (determines version increase from the current ESOUI version)'
+        type: choice
+        options: [patch, minor, major]
+        default: minor
+      notes:
+        description: "Release notes. Empty = no relevant change this release. If this is just a maintenance update and no gamefiles are changes, don't create a release for that."
+        type: string
+        default: ''
+      dry_run:
+        description: 'Dry run: compute everything, upload a diff artifact, do not push or open a PR.'
+        type: boolean
+        default: true
+
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    steps:
+      # Master can drift from web-edits and pushes. Must get latest
+      - name: Checkout master
+        uses: actions/checkout@v6
+        with:
+          ref: master
+          fetch-depth: 0
+
+      - uses: ./.github/actions/configure-bot
+      - uses: ./.github/actions/setup-python-env
+      - uses: ./.github/actions/setup-stylua
+
+      # Catch garbage on master before any changes. Web edits and guerilla pushes are possible, so we cannot trust the tree. StyLUA also takes care of syntax check
+      - name: Pre-flight - StyLUA check (formatting + syntax)
+        run: ~/.cache/bins/stylua --check --config-path=stylua.toml .
+      - name: Pre-flight - Manifest validate
+        run: |
+          python - <<'PY'
+          import sys
+          sys.path.insert(0, '.scripts')
+          import furc_utils as F
+          m = F.get_manifest_data('FurnitureCatalogue.txt')
+          assert m.get(F.PROP_MF_TITLE), 'missing Title in manifest'
+          assert m.get(F.PROP_MF_VERSION), 'missing Version in manifest'
+          assert m.get(F.PROP_MF_APIVERSION), 'missing APIVersion in manifest'
+          print(f"manifest OK: {m[F.PROP_MF_TITLE]} v{m[F.PROP_MF_VERSION]}")
+          PY
+      - name: Pre-flight - Package dry-run
+        run: |
+          python .scripts/package.py
+          # zip path is <Title>-<Version>.zip per package.py — check it exists + is non-empty
+          ZIP="$(ls -1 *.zip | head -1)"
+          test -n "$ZIP" && test -s "$ZIP" || { echo "package.py produced no zip"; exit 1; }
+          unzip -l "$ZIP" >/dev/null
+          rm -f "$ZIP"  # this is a dry-run; the real zip is built by FinalizeRelease
+
+      # Resolve LIVE version from ESOUI, derive NEXT from inputs.impact.
+      - name: Resolve target version
+        id: version
+        env:
+          ESOUI_API_TOKEN: ${{ secrets.ESOUI_API_TOKEN }}
+        run: |
+          LIVE="$(python .scripts/esoui_utils.py version)"
+          case "${{ inputs.impact }}" in
+            major) FLAG="--major" ;;
+            patch) FLAG="--patch" ;;
+            *)     FLAG="" ;;
+          esac
+          # shellcheck disable=SC2086
+          NEXT="$(python .scripts/furc_utils.py nextversion --current "$LIVE" $FLAG)"
+          echo "LIVE=$LIVE" >> "$GITHUB_OUTPUT"
+          echo "NEXT=$NEXT" >> "$GITHUB_OUTPUT"
+          echo "Live on ESOUI: $LIVE -> Next: $NEXT"
+
+      # refuse if target tag already exists (locally or remote). Stops a re-trigger.
+      - name: Check tag does not exist
+        run: |
+          NEXT="${{ steps.version.outputs.NEXT }}"
+          if git rev-parse -q --verify "refs/tags/$NEXT" >/dev/null; then
+            echo "🔥 Tag $NEXT already exists locally. Aborting." >&2
+            exit 1
+          fi
+          if git ls-remote --exit-code --tags origin "refs/tags/$NEXT" >/dev/null 2>&1; then
+            echo "🔥 Tag $NEXT already exists on origin. Aborting." >&2
+            exit 1
+          fi
+
+      # All changes happen on release/$NEXT. Even in dry-run we make changes locally so we can produce a real diff artifact.
+      - name: Create release branch
+        id: branch
+        run: |
+          BRANCH="release/${{ steps.version.outputs.NEXT }}"
+          # Wipe any leftover local/remote branch with the same name from a prior aborted run.
+          git branch -D "$BRANCH" 2>/dev/null || true
+          if [[ "${{ inputs.dry_run }}" != "true" ]]; then
+            git push origin --delete "$BRANCH" 2>/dev/null || true
+          fi
+          git checkout -b "$BRANCH"
+          echo "BRANCH=$BRANCH" >> "$GITHUB_OUTPUT"
+
+      # ------ Mutation block --------
+      # Everything below writes files in working tree
+      # ------------------------------
+
+      - name: Bump version (FurnitureCatalogue.txt + startup.lua)
+        id: bump
+        run: |
+          VERSION="${{ steps.version.outputs.NEXT }}"
+          CHANGED="changed_${VERSION}.tmp"
+          python .scripts/furc_utils.py changeversion --new-version "$VERSION" --output-file "$CHANGED"
+          echo "CHANGED_FILES=$CHANGED" >> "$GITHUB_OUTPUT"
+
+      - name: Update CHANGELOG (no-op if notes are empty)
+        env:
+          NOTES: ${{ inputs.notes }}
+        run: |
+          # Notes are plain text — ESOUI's addon page uses BBCode, not markdown,
+          # and we forward the same text to both places. Avoid markdown-only
+          # constructs (asterisks for italic, fenced code, etc) if you care
+          # about the ESOUI rendering.
+          NOTES_FILE="notes_${{ steps.version.outputs.NEXT }}.tmp"
+          # printf preserves multi-line input verbatim, including blank lines.
+          printf '%s' "$NOTES" > "$NOTES_FILE"
+          python .scripts/furc_utils.py update_changelog \
+            --notes-file "$NOTES_FILE" \
+            --changelog-file CHANGELOG \
+            --header "${{ steps.version.outputs.NEXT }} ($(date --iso-8601))"
+
+      - name: Regenerate autocomplete defs (XML + strings)
+        run: |
+          LUADOC_DEFINITIONS="docs/autocomplete_definitions.lua"
+          LANGFILE_EN="locale/en.lua"
+          python .scripts/luaDoc_generateStr.py "$LANGFILE_EN"
+          python .scripts/luaDoc_generateGui.py xml/FurnitureCatalogue.xml "$LUADOC_DEFINITIONS"
+          python .scripts/luaDoc_generateGui.py FurnitureCatalogue_DevUtility/xml.xml "$LUADOC_DEFINITIONS"
+
+      - name: Regenerate translation files
+        run: |
+          LANGFILE_EN="locale/en.lua"
+          for langfile in locale/*.lua; do
+            if [[ "$langfile" != "$LANGFILE_EN" ]]; then
+              python .scripts/luaDoc_generateStr.py "$LANGFILE_EN" "$langfile" --generate-translation
+            fi
+          done
+
+      - name: Format with StyLUA
+        run: ~/.cache/bins/stylua --config-path=stylua.toml .
+
+      # ----- Decision fork ----------
+      # dry-run?  -> artifact + summary
+      # real-run? -> commit + PR
+      # ------------------------------
+
+      - name: Capture diff for summary + artifact
+        id: diff
+        run: |
+          git add -A
+          git diff --cached --stat > /tmp/release_diff.stat
+          git diff --cached > /tmp/release_diff.patch
+          {
+            echo "## Release preview: ${{ steps.version.outputs.NEXT }}"
+            echo ""
+            echo "_Live ESOUI version: ${{ steps.version.outputs.LIVE }}_"
+            echo "_Impact: ${{ inputs.impact }}_"
+            echo "_Dry run: ${{ inputs.dry_run }}_"
+            echo ""
+            echo "### Files changed"
+            echo '```'
+            cat /tmp/release_diff.stat
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload dry-run artifact
+        if: ${{ inputs.dry_run }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-preview-${{ steps.version.outputs.NEXT }}
+          path: |
+            /tmp/release_diff.stat
+            /tmp/release_diff.patch
+            FurnitureCatalogue.txt
+            CHANGELOG
+
+      - name: Dry-run summary - stop here
+        if: ${{ inputs.dry_run }}
+        run: |
+          {
+            echo ""
+            echo "### ✅ Dry run complete for ${{ steps.version.outputs.NEXT }}"
+            echo ""
+            ARTIFACT_NAME="release-preview-${{ steps.version.outputs.NEXT }}"
+            echo "Nothing pushed."
+            echo ""
+            echo "The full diff + bumped \`FurnitureCatalogue.txt\` + new top of"
+            echo "\`CHANGELOG\` are attached to this run as the **\`$ARTIFACT_NAME\`**"
+            echo "artifact — see the **Artifacts** section at the bottom of this run"
+            echo "page (right under this summary)."
+            echo ""
+            echo "Re-run with **dry_run=false** to commit + open the release PR."
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      # ----- Real run ----------
+      # commit, push, open PR
+      # -------------------------
+
+      # Multiple commit stages so we can identify fails easier
+      # PR will squash on merge anyway
+      - name: Commit changes
+        if: ${{ !inputs.dry_run }}
+        env:
+          CHANGED_FILES: ${{ steps.bump.outputs.CHANGED_FILES }}
+          VERSION: ${{ steps.version.outputs.NEXT }}
+        run: |
+          # Reset the all-in-one staging done for diff capture; redo in stages.
+          git reset
+
+          # 1. Version bumps (manifest + startup.lua)
+          while read -r LINE; do
+            [[ -n "$LINE" ]] && git add "$LINE"
+          done < "$CHANGED_FILES"
+          git commit -m "Version bumps for $VERSION"
+
+          # 2. CHANGELOG (optional, notes can be empty)
+          git add CHANGELOG 2>/dev/null || true
+          git commit -m "CHANGELOG for $VERSION" 2>/dev/null || true
+
+          # 3. Translations
+          git add 'locale/*.lua' 2>/dev/null || true
+          git commit -m "Update translations for $VERSION" 2>/dev/null || true
+
+          # 4. luaDoc autocomplete.
+          git add 'docs/*.lua' 2>/dev/null || true
+          git commit -m "Update luaDoc for $VERSION" 2>/dev/null || true
+
+          # 5. stylua reformatting (can result in 0 changes)
+          git add '*.lua' '**/*.lua' 2>/dev/null || true
+          git commit -m "Format LUA files with StyLUA" 2>/dev/null || true
+
+          # Cleanup tmp files so they don't get added.
+          rm -f "$CHANGED_FILES" "notes_${VERSION}.tmp"
+
+      - name: Push release branch
+        if: ${{ !inputs.dry_run }}
+        run: git push --set-upstream origin "${{ steps.branch.outputs.BRANCH }}"
+
+      - name: Open release PR
+        if: ${{ !inputs.dry_run }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NOTES: ${{ inputs.notes }}
+        run: |
+          VERSION="${{ steps.version.outputs.NEXT }}"
+          BODY_FILE="$(mktemp)"
+          {
+            echo "## Release $VERSION"
+            echo ""
+            echo "_Triggered by: @${{ github.actor }} — impact: \`${{ inputs.impact }}\`_"
+            echo ""
+            if [[ -n "$NOTES" ]]; then
+              echo "### Release notes"
+              echo ""
+              echo "$NOTES"
+            else
+              echo "_No CHANGELOG entry this release._"
+            fi
+            echo ""
+            echo "---"
+            echo "Merging this PR will trigger **FinalizeRelease**, which tags \`$VERSION\` and creates the GitHub release. ESOUI upload is a separate manual step (PublishToESOUI)."
+          } > "$BODY_FILE"
+
+          gh pr create \
+            --title "Release $VERSION" \
+            --head "${{ steps.branch.outputs.BRANCH }}" \
+            --base master \
+            --body-file "$BODY_FILE" \
+            --no-maintainer-edit

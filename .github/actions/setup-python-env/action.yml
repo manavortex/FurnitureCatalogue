@@ -1,11 +1,5 @@
 name: Setup Python environment
-description: Installs Python version we use + libs from requirements.txt. Caches pip.
-
-inputs:
-  python-version:
-    description: Python version passed to setup-python
-    required: false
-    default: "^3.13"
+description: Installs Python + libs from requirements.txt. Caches pip. Version pinned repo-wide.
 
 runs:
   using: composite
@@ -13,7 +7,7 @@ runs:
     - name: Setup Python
       uses: actions/setup-python@v6
       with:
-        python-version: ${{ inputs.python-version }}
+        python-version: "3.13"
         cache: pip
     - name: Install Python deps
       shell: bash
