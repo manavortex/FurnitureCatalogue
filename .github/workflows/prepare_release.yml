@@ -192,7 +192,7 @@ jobs:
             echo ""
             echo "### Files changed"
             echo '```'
-            cat /tmp/release_diff.stat
+            cat release-preview/release_diff.stat
             echo '```'
           } >> "$GITHUB_STEP_SUMMARY"
 
