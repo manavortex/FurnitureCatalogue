@@ -177,8 +177,12 @@ jobs:
         id: diff
         run: |
           git add -A
-          git diff --cached --stat > /tmp/release_diff.stat
-          git diff --cached > /tmp/release_diff.patch
+          # Stage everything under release-preview/ so the uploaded zip has a
+          # flat structure (upload-artifact keeps the FS layout of absolute paths).
+          rm -rf release-preview && mkdir release-preview
+          git diff --cached --stat > release-preview/release_diff.stat
+          git diff --cached > release-preview/release_diff.patch
+          cp FurnitureCatalogue.txt CHANGELOG release-preview/
           {
             echo "## Release preview: ${{ steps.version.outputs.NEXT }}"
             echo ""
@@ -194,29 +198,42 @@ jobs:
 
       - name: Upload dry-run artifact
         if: ${{ inputs.dry_run }}
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: release-preview-${{ steps.version.outputs.NEXT }}
-          path: |
-            /tmp/release_diff.stat
-            /tmp/release_diff.patch
-            FurnitureCatalogue.txt
-            CHANGELOG
+          path: release-preview/
 
       - name: Dry-run summary - stop here
         if: ${{ inputs.dry_run }}
         run: |
+          ARTIFACT_NAME="release-preview-${{ steps.version.outputs.NEXT }}"
           {
             echo ""
             echo "### ✅ Dry run complete for ${{ steps.version.outputs.NEXT }}"
             echo ""
-            ARTIFACT_NAME="release-preview-${{ steps.version.outputs.NEXT }}"
             echo "Nothing pushed."
             echo ""
             echo "The full diff + bumped \`FurnitureCatalogue.txt\` + new top of"
             echo "\`CHANGELOG\` are attached to this run as the **\`$ARTIFACT_NAME\`**"
             echo "artifact — see the **Artifacts** section at the bottom of this run"
             echo "page (right under this summary)."
+            echo ""
+            echo "#### Apply the patch locally (preview in your editor, or test in-game)"
+            echo ""
+            echo "1. Download \`$ARTIFACT_NAME.zip\` from the Artifacts section above and unzip it. It contains \`release_diff.patch\`."
+            echo "2. From your local repo root (checked out on \`master\`):"
+            echo ""
+            echo '   ```bash'
+            echo "   git checkout -b release/${{ steps.version.outputs.NEXT }}-preview"
+            echo "   git apply /path/to/release_diff.patch"
+            echo '   ```'
+            echo ""
+            echo "Your working tree now matches what PrepareRelease would commit."
+            echo "Open the changed files in your editor, or copy the repo into your"
+            echo "live AddOns dir and \`/reloadui\` to test in-game."
+            echo ""
+            echo "To roll back: \`git restore .\` (drops the unstaged patch), then"
+            echo "\`git checkout master && git branch -D release/${{ steps.version.outputs.NEXT }}-preview\`."
             echo ""
             echo "Re-run with **dry_run=false** to commit + open the release PR."
           } >> "$GITHUB_STEP_SUMMARY"
