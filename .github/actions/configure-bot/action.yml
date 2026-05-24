@@ -1,0 +1,11 @@
+name: Configure bot identity
+description: Sets the git user.name/user.email used by workflows that commit on behalf of the release bot.
+
+runs:
+  using: composite
+  steps:
+    - name: Configure bot identity
+      shell: bash
+      run: |
+        git config --local user.name "Handles-Your-Releases[bot]"
+        git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"

@@ -1,0 +1,20 @@
+name: Setup Python environment
+description: Installs Python version we use + libs from requirements.txt. Caches pip.
+
+inputs:
+  python-version:
+    description: Python version passed to setup-python
+    required: false
+    default: "^3.13"
+
+runs:
+  using: composite
+  steps:
+    - name: Setup Python
+      uses: actions/setup-python@v6
+      with:
+        python-version: ${{ inputs.python-version }}
+        cache: pip
+    - name: Install Python deps
+      shell: bash
+      run: pip install -r .scripts/requirements.txt

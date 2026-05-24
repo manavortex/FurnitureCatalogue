@@ -26,10 +26,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Configure bot identity
-        run: |
-          git config --local user.name "Handles-Your-Releases[bot]"
-          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      - uses: ./.github/actions/configure-bot
 
       - name: Fetch latest refs
         run: git fetch origin master dev --tags
