@@ -52,9 +52,9 @@ jobs:
       - uses: ./.github/actions/setup-python-env
       - uses: ./.github/actions/setup-stylua
 
-      # Catch garbage on master before any changes. Web edits and guerilla pushes are possible, so we cannot trust the tree. StyLUA also takes care of syntax check
-      - name: Pre-flight - StyLUA check (formatting + syntax)
-        run: ~/.cache/bins/stylua --check --config-path=stylua.toml .
+      # Pre-flight: catch only what the workflow cannot fix automatically.
+      #   - Manifest validate: header fields (Title / Version / APIVersion) must parse
+      #   - Package dry-run: zip builds and is non-empty.
       - name: Pre-flight - Manifest validate
         run: |
           python - <<'PY'
