@@ -141,8 +141,11 @@ def extract_header(note: str, delim: str="[//]:") -> str:
 CL_FILE = 'CHANGELOG'
 
 def update_changelog(notes_file:str, header: str, cl_file: str=CL_FILE):
-  # Prepare changelog
-  change = extract_header_from_file(notes_file)
+  # Empty/missing file = nothing to mention, no error
+  change = ''
+  if os.path.exists(notes_file):
+    with open(notes_file, 'r', encoding='utf-8') as f:
+      change = f.read().strip()
   if change:
     if header:
       # strip existing header, if any

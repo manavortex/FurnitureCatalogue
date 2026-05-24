@@ -17,6 +17,9 @@ btm/*
 .gitattributes
 
 .vscode
+.zed
+*.lock
+*.swp
 *.bak
 *.zip
 *.tmp

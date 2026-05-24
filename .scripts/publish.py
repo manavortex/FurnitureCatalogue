@@ -79,7 +79,7 @@ def publish_to_esoui(optional_params: dict = {}):
 
   # Pick latest x changes to show in the ESOUI CL
   changelog_file = optional_params['changelog_file'] or FU.CL_FILE
-  max_entries = params['changelog_max_entries'] or CL_LIVE_MAX_ENTRIES
+  max_entries = optional_params['changelog_max_entries'] or CL_LIVE_MAX_ENTRIES
   new_kids_on_the_log.extend(FU.get_log_entries(changelog_file, max_entries))
   body[EU.PROP_LIVE_CHANGELOG] = '\n'.join(new_kids_on_the_log)
 

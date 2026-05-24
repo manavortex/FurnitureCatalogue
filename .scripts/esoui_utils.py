@@ -14,16 +14,20 @@ https://petstore.swagger.io/?url=https://raw.githubusercontent.com/manavortex/Fu
 ADDON_ID = 1617
 ADDON_MANIFEST_FILE = 'FurnitureCatalogue.txt'
 
-API_BASE = "https://api.esoui.com/addons"
-
-API_TOKEN = os.getenv('ESOUI_API_TOKEN')
-HEADERS = {'x-api-token': API_TOKEN}
+API_BASE = os.getenv("ESOUI_API_BASE", "https://api.esoui.com/addons")
 
 PROP_LIVE_ID = 'id'
 PROP_LIVE_VERSION = 'version'
 PROP_LIVE_CHANGELOG = 'changelog'
 PROP_LIVE_COMPATIBLE = 'compatible'
 PROP_LIVE_UPDATEFILE = 'updatefile'
+
+def get_headers(require_token: bool = True) -> dict:
+  """Only use token when it's required. Abort if noken"""
+  token = os.getenv("ESOUI_API_TOKEN")
+  if require_token and not token:
+      raise RuntimeError("ESOUI_API_TOKEN not set in env")
+  return {"x-api-token": token} if token else {}
 
 
 def get_addon_details(addon_id: int=ADDON_ID) -> dict[any]:
@@ -33,7 +37,7 @@ def get_addon_details(addon_id: int=ADDON_ID) -> dict[any]:
     - LIVE_CHANGELOG
   """
   endpoint_details = f"{API_BASE}/details/{addon_id}.json"
-  response = requests.get(endpoint_details, headers=HEADERS)
+  response = requests.get(endpoint_details, headers=get_headers(require_token=False))
   response.raise_for_status()
   response_json = response.json()[0]
 
@@ -74,7 +78,7 @@ def send_update_request(data: dict, archivename: str) -> dict[any]:
     PROP_LIVE_UPDATEFILE: (archivename, data[PROP_LIVE_UPDATEFILE], 'application/octet-stream')
   }
 
-  response = requests.post(endpoint_update, headers=HEADERS, files=form_data)
+  response = requests.post(endpoint_update, headers=get_headers(), files=form_data)
   response.raise_for_status()
 
   # The test API returns invalid JSON like [{COMPATIBILITY LISTS}]{REAL TESTRESPONSE}
@@ -106,7 +110,7 @@ def get_compatible(apiversion: str) -> str:
   if not apiversion: raise ValueError('No APIVersion given, AddOn manifest might be broken!')
 
   try:
-    response = requests.get(endpoint, headers=HEADERS)
+    response = requests.get(endpoint, headers=get_headers(require_token=False))
     response.raise_for_status()
     response_json = response.json()
 

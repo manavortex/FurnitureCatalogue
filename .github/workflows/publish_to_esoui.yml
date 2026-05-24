@@ -1,0 +1,90 @@
+name: PublishToESOUI
+
+# Connected workflows are:
+# 1. PrepareRelease      - prepare_release.yml
+# 2. FinalizeRelease     - finalize_release.yml
+# 3. 📍PublishToESOUI    - publish_to_esoui.yml
+# Refer to CONTRIBUTING.md for more info.
+
+# Standalone manual upload. Publishes release zip to ESOUI. If upload fails, GitHub release still exists and you can re-run this workflow or upload the zip by hand. No re-packaging needed.
+
+permissions:
+  contents: read
+
+on:
+  workflow_dispatch:
+    inputs:
+      release_tag:
+        description: 'Release tag to upload (empty = latest). Must match the manifest version.'
+        type: string
+        default: ''
+      print_response:
+        description: 'Full ESOUI response 4 debug.'
+        type: boolean
+        default: false
+
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout (for .scripts/)
+        uses: actions/checkout@v4
+
+      # Install dependencies for required scripts
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "^3.10"
+          cache: pip
+      - name: Install Python deps
+        run: pip install -r .scripts/requirements.txt
+
+      # Get release data, fall back to latest release if no tag added. If tag set, check it matches latest. Uploading older releases should only be done manually.
+      - name: Resolve release tag
+        id: tag
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          INPUT_TAG: ${{ inputs.release_tag }}
+        run: |
+          LATEST_TAG="$(gh release list --limit 10 | python .scripts/furc_utils.py getlatest)"
+          if [[ -n "$INPUT_TAG" ]]; then
+            if [[ "$INPUT_TAG" != "$LATEST_TAG" ]]; then
+              echo "🔥 Requested tag '$INPUT_TAG' is not the latest release ('$LATEST_TAG')." >&2
+              echo "🔥 Publish nonstandard releases manually via the ESOUI web UI to avoid surprises." >&2
+              exit 1
+            fi
+            TAG="$INPUT_TAG"
+          else
+            TAG="$LATEST_TAG"
+          fi
+          ARCHIVE_URL="$(gh release view "$TAG" --json assets --jq '.assets[0].url')"
+          test -n "$ARCHIVE_URL" || { echo "🔥 Release $TAG has no asset attached" >&2; exit 1; }
+          echo "TAG=$TAG" >> "$GITHUB_OUTPUT"
+          echo "ARCHIVE_URL=$ARCHIVE_URL" >> "$GITHUB_OUTPUT"
+
+      # Manifest must match release tag
+      - name: Check manifest matches tag
+        run: |
+          MANIFEST_VERSION="$(python -c "import sys; sys.path.insert(0, '.scripts'); import furc_utils as F; print(F.get_manifest_data('FurnitureCatalogue.txt')[F.PROP_MF_VERSION])")"
+          TAG="${{ steps.tag.outputs.TAG }}"
+          if [[ "$MANIFEST_VERSION" != "$TAG" ]]; then
+            echo "🔥 Manifest version ($MANIFEST_VERSION) does not match release tag ($TAG)." >&2
+            echo "🔥 The repo is probably not checked out at the release commit. Aborting." >&2
+            exit 1
+          fi
+
+      # New version must be higher than live one. We check it here so we don't spam ESOUI with missclicks
+      - name: Upload to ESOUI
+        env:
+          ESOUI_API_TOKEN: ${{ secrets.ESOUI_API_TOKEN }}
+        run: |
+          ARGS=( --changelog-max-entries 15 --archive-file "${{ steps.tag.outputs.ARCHIVE_URL }}" )
+          if [[ "${{ inputs.print_response }}" == "true" ]]; then
+            ARGS+=( --print-response )
+          fi
+          python .scripts/publish.py "${ARGS[@]}"
+          {
+            echo "## ✅ Uploaded ${{ steps.tag.outputs.TAG }} to ESOUI"
+            echo ""
+            echo "Asset source: ${{ steps.tag.outputs.ARCHIVE_URL }}"
+          } >> "$GITHUB_STEP_SUMMARY"

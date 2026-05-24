@@ -1,0 +1,102 @@
+name: SyncDevWithMaster
+
+# Use when dev is behind master! (commits in master that are not in dev)
+# Manual dev<-master sync after a release. Releases add changelog, generated files and version bumps. Use this action to update dev after a release
+
+# Don't use when dev is ahead of master and you still need the commits! (commits in dev that are not in master)
+# It refuses to overwrite unless you pick force overwrite. If you want to keep your changes you have to fix this yourself (merge/rebase your dev) and then use this action or do an artisanal handcrafted sync.
+
+permissions:
+  contents: write
+
+on:
+  workflow_dispatch:
+    inputs:
+      force:
+        description: "Drop dev-only commits (⚠️ use only when you know what you're doing)"
+        type: boolean
+        default: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout (full history for comparison)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Configure bot identity
+        run: |
+          git config --local user.name "Handles-Your-Releases[bot]"
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Fetch latest refs
+        run: git fetch origin master dev --tags
+
+      - name: Compare dev to master
+        id: compare
+        run: |
+          AHEAD="$(git rev-list --count origin/master..origin/dev)"
+          BEHIND="$(git rev-list --count origin/dev..origin/master)"
+          echo "AHEAD=$AHEAD" >> "$GITHUB_OUTPUT"
+          echo "BEHIND=$BEHIND" >> "$GITHUB_OUTPUT"
+
+          {
+            echo "## dev <- master sync check"
+            echo ""
+            echo "- dev commits not in master: **$AHEAD**"
+            echo "- master commits not in dev: **$BEHIND**"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+          if [[ "$AHEAD" -gt 0 ]]; then
+            {
+              echo ""
+              echo "### dev-only commits (would be lost on overwrite)"
+              echo ""
+              echo '```'
+              git log --oneline origin/master..origin/dev
+              echo '```'
+            } >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Refuse if dev ahead and force=false
+        if: steps.compare.outputs.AHEAD != '0' && !inputs.force
+        run: |
+          {
+            echo ""
+            echo "### ❌ Refusing to overwrite dev"
+            echo ""
+            echo "dev has commits master does not:"
+            echo ""
+            echo "1. **Merge master into dev locally**, push, then re-run workflow"
+            echo "   \`\`\`"
+            echo "   git fetch origin"
+            echo "   git checkout dev && git merge origin/master && git push"
+            echo "   \`\`\`"
+            echo "2. **Rebase dev onto master** if dev-only commits are not done"
+            echo "3. **Re-run this workflow with \`force: true\`** to drop the listed commits (irreversible)"
+          } >> "$GITHUB_STEP_SUMMARY"
+          exit 1
+
+      - name: Fast-forward dev to master
+        if: steps.compare.outputs.AHEAD == '0' && steps.compare.outputs.BEHIND != '0'
+        run: |
+          # fast-forward possible when dev is cleanly behind
+          git push origin "refs/remotes/origin/master:refs/heads/dev"
+          echo "✅ dev fast-forwarded to master (+${{ steps.compare.outputs.BEHIND }} commits)" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Force overwrite dev with master
+        if: steps.compare.outputs.AHEAD != '0' && inputs.force
+        run: |
+          # --force-with-lease so we still abort if dev changed while we checked
+          DEV_SHA="$(git rev-parse origin/dev)"
+          git push --force-with-lease="dev:$DEV_SHA" origin "refs/remotes/origin/master:refs/heads/dev"
+          {
+            echo "⚠️ dev force-overwritten with master."
+            echo "Dropped ${{ steps.compare.outputs.AHEAD }} commits (listed above)."
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Already in sync
+        if: steps.compare.outputs.AHEAD == '0' && steps.compare.outputs.BEHIND == '0'
+        run: echo "✅ dev already up to date with master" >> "$GITHUB_STEP_SUMMARY"
