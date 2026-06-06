@@ -327,11 +327,17 @@ def semver_to_int(version: str) -> int:
   if min(major, minor, patch) < 0: raise ValueError("No support for negative values")
 
   # minor/patch are max 3 digits. Value over 999 is typo, hand-edited and/or a crime
-  # assuming it's legitimate it carries over into the next field: 1.2.1000 -> 1.3.0, 1.1000.5 -> 2.0.0
-  if minor > FIELD_MAX or patch > FIELD_MAX:
-    minor, patch = minor + patch // SCALE_MINOR, patch % SCALE_MINOR
-    major, minor = major + minor // SCALE_MINOR, minor % SCALE_MINOR
-    print(f"⚠️️ {version}: minor/patch over {FIELD_MAX}, carried over to {major}.{minor}.{patch}, but don't do that again", file=sys.stderr)
+  # assuming it's legitimate it carries over like in a normal bump:
+  # 1.2.1000 -> 1.3.0, 1.1000.5 -> 2.0.0
+  if patch > FIELD_MAX or minor > FIELD_MAX:
+    if patch > FIELD_MAX:
+      patch = 0
+      minor += 1
+    if minor > FIELD_MAX:
+      patch = 0
+      minor = 0
+      major += 1
+    print(f"⚠️️ {version}: minor/patch over {FIELD_MAX}, pulled some strings and rolled it up to {major}.{minor}.{patch}, but don't do that again", file=sys.stderr)
 
   num = major * SCALE_MAJOR + minor * SCALE_MINOR + patch
   if num > MAX_ADDON_VERSION:
@@ -368,6 +374,29 @@ def get_next_version(current: str, impact: str = VERSION_IMPACT_MINOR) -> str:
     ver_int = (ver_int // SCALE_MINOR + 1) * SCALE_MINOR
 
   return int_to_semver(ver_int)
+
+
+def is_single_increment(current: str, nxt: str) -> bool:
+  """True when `nxt` is exactly one increment above `current`"""
+
+  cmaj, cmin, cpat = (int(p) for p in to_semver(current).split('.'))
+  nmaj, nmin, npat = (int(p) for p in to_semver(nxt).split('.'))
+
+  pat_incr = (nmaj, nmin, npat) == (cmaj, cmin, cpat + 1)
+  min_incr = (nmaj, nmin, npat) == (cmaj, cmin + 1, 0)
+  maj_incr = (nmaj, nmin, npat) == (cmaj + 1, 0, 0)
+
+  return pat_incr or min_incr or maj_incr
+
+
+def assert_single_increment(current: str, nxt: str):
+  """Abort if `nxt` skips more than one step above `current` (that's illegal)
+
+  Guards release against jumping over ESOUI version by >1 step
+  which would mean something failed and needs manual intervention
+  """
+  if not is_single_increment(current, nxt):
+    crash_and_burn(f"{nxt} is not a single step above {current}; refusing to skip versions, bump manually if deliberate")
 
 
 RE_GHLIST_TAG = re.compile(r"\s+(\d+[\.\d]+)\s+")
@@ -507,6 +536,11 @@ if __name__ == "__main__":
   parser_mver = subparsers.add_parser('manifestversion', help='Print the Version field from a manifest')
   parser_mver.add_argument('manifest', help='Path to manifest file')
 
+  # 11. Guard: reject version skips
+  parser_inc = subparsers.add_parser('checkincrement', help='Abort if --next skips more than one step above --current')
+  parser_inc.add_argument('--current', required=True, help='Current (live) version')
+  parser_inc.add_argument('--next', dest='next', required=True, help='Proposed next version')
+
   args = parser.parse_args()
   # 1. Bump Versions
   if args.command == 'changeversion':
@@ -555,5 +589,9 @@ if __name__ == "__main__":
   # 10. Read manifest Version field
   elif args.command == 'manifestversion':
     print(get_manifest_version(args.manifest))
+  # 11. Guard: reject version skips
+  elif args.command == 'checkincrement':
+    assert_single_increment(args.current, args.next)
+    print(f"OK: {args.next} is a single step above {args.current}")
   else:
     parser.print_help()

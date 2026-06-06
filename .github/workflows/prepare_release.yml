@@ -81,6 +81,8 @@ jobs:
           esac
           # shellcheck disable=SC2086
           NEXT="$(python .scripts/furc_utils.py nextversion --current "$LIVE" $FLAG)"
+          # Refuse to skip more than 1 step over live ESOUI version
+          python .scripts/furc_utils.py checkincrement --current "$LIVE" --next "$NEXT"
           echo "LIVE=$LIVE" >> "$GITHUB_OUTPUT"
           echo "NEXT=$NEXT" >> "$GITHUB_OUTPUT"
           echo "Live on ESOUI: $LIVE -> Next: $NEXT"
