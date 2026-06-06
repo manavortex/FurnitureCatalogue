@@ -149,7 +149,7 @@ def write_translation_file(out_path: str, merged: tuple[dict,dict,dict]):
   if untranslated_list:
     untranslated_list.sort()
     current_langfile[end_index:end_index] = untranslated_list
-    current_langfile.insert(end_index, f"-- {len(untranslated_list)} ENTRIES THE SAME IN BOTH LANGUAGES\n")
+    current_langfile.insert(end_index, f"-- {len(untranslated_list)} ENTRIES UNTRANSLATED/IDENTICAL\n")
     end_index += len(untranslated_list) + 1
 
   # 3. Insert any leftovers

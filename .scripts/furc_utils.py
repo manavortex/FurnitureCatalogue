@@ -442,14 +442,14 @@ def replace_versions(new_semver: str, output_file: str=None):
   # Replace version in main manifest
   mfpath = 'FurnitureCatalogue.txt'
   mf_values = [
-    (RE_MF_VERSION_LINE, f"\g<PREFIX>{new_semver}", f"## Version: {new_semver}"),
-    (RE_MF_ADDONVERSION_LINE, f"\g<PREFIX>{new_intver}", f"## AddOnVersion: {new_intver}"),
+    (RE_MF_VERSION_LINE, rf"\g<PREFIX>{new_semver}", f"## Version: {new_semver}"),
+    (RE_MF_ADDONVERSION_LINE, rf"\g<PREFIX>{new_intver}", f"## AddOnVersion: {new_intver}"),
   ]
   if replace_once_in_file(mf_values, mfpath): changes.append(mfpath)
 
   # Replace version in main file
   luapath = 'startup.lua'
-  lua_values = [(RE_MAINLUA_VERSION_LINE, f"\g<PREFIX>{new_intver} -- will be AUTOREPLACED with AddonVersion",
+  lua_values = [(RE_MAINLUA_VERSION_LINE, rf"\g<PREFIX>{new_intver} -- will be AUTOREPLACED with AddonVersion",
     f"this.version = {new_intver} -- will be AUTOREPLACED with AddonVersion")]
   if replace_once_in_file(lua_values, luapath): changes.append(luapath)
 
