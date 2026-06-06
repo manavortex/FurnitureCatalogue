@@ -1,0 +1,24 @@
+name: PRFormat
+
+# Auto-formats PRs from this repo (commits only if format changes files)
+on:
+  pull_request:
+    branches: [dev, master]
+
+permissions:
+  contents: write
+
+jobs:
+  format:
+    # no fork PRs, which are only style checked and handled by pr_ci.yml
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout PR branch
+        uses: actions/checkout@v6
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+      - name: Format and commit if changed
+        uses: ./.github/actions/run-stylua
+        with:
+          mode: format

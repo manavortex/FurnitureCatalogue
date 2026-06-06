@@ -46,9 +46,9 @@ jobs:
             exit 1
           fi
           # Cross-check against the manifest.
-          MANIFEST_VERSION="$(python -c "import sys; sys.path.insert(0, '.scripts'); import furc_utils as F; print(F.get_manifest_data('FurnitureCatalogue.txt')[F.PROP_MF_VERSION])")"
+          MANIFEST_VERSION="$(python .scripts/furc_utils.py manifestversion FurnitureCatalogue.txt)"
           if [[ "$NEXT" != "$MANIFEST_VERSION" ]]; then
-            echo "🔥 Branch says $NEXT but manifest says $MANIFEST_VERSION — aborting to avoid mismatched release." >&2
+            echo "🔥 Branch says $NEXT, manifest says $MANIFEST_VERSION. Aborting mismatched release." >&2
             exit 1
           fi
           echo "NEXT=$NEXT" >> "$GITHUB_OUTPUT"

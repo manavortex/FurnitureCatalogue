@@ -1,0 +1,29 @@
+name: FormatCode
+
+# Manual StyLua formatting. Run on any branch to reformat and commit (only if something changed)
+# PRs from INTERNAL branches are formatted automatically by pr_format.yml
+
+on:
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: "Branch to format (blank = the branch you launch it from)"
+        type: string
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+
+jobs:
+  format:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          ref: ${{ inputs.ref }}
+      - name: Format and commit if changed
+        uses: ./.github/actions/run-stylua
+        with:
+          mode: format

@@ -17,9 +17,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v6
-      - uses: ./.github/actions/setup-stylua
-      - name: stylua --check
-        run: ~/.cache/bins/stylua --check --config-path=stylua.toml .
+      - name: StyLua check
+        uses: ./.github/actions/run-stylua
+        with:
+          mode: check
 
   manifest-validate:
     runs-on: ubuntu-latest
@@ -29,17 +30,7 @@ jobs:
       - uses: ./.github/actions/setup-python-env
       - name: Parse manifest
       # TODO: if change from "*.txt" to "*.addon", change here too
-        run: |
-          python - <<'PY'
-          import sys
-          sys.path.insert(0, '.scripts')
-          import furc_utils as F
-          m = F.get_manifest_data('FurnitureCatalogue.txt')
-          assert m.get(F.PROP_MF_TITLE), 'missing Title'
-          assert m.get(F.PROP_MF_VERSION), 'missing Version'
-          assert m.get(F.PROP_MF_APIVERSION), 'missing APIVersion'
-          print(f"manifest OK: {m[F.PROP_MF_TITLE]} v{m[F.PROP_MF_VERSION]}")
-          PY
+        run: python .scripts/furc_utils.py validatemanifest FurnitureCatalogue.txt
 
   package-dryrun:
     runs-on: ubuntu-latest

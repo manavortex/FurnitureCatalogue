@@ -1,0 +1,46 @@
+name: Run StyLua
+description: >
+  Run StyLua on repo in 'check' or 'format' mode.
+  (check: finds syntax and styling errors;
+  format: commit and push if it resulted in changes).
+
+# Safe to run repeatedly, because consecutive formatting does nothing
+
+inputs:
+  mode:
+    description: "check | format (format reformats, then commits + pushes if anything changed)"
+    required: false
+    default: check
+
+runs:
+  using: composite
+  steps:
+    - uses: ./.github/actions/setup-stylua
+
+    - name: StyLua (${{ inputs.mode }})
+      shell: bash
+      run: |
+        set -euo pipefail
+        if [ "${{ inputs.mode }}" = "format" ]; then
+          ~/.cache/bins/stylua --config-path=stylua.toml .
+        else
+          ~/.cache/bins/stylua --check --config-path=stylua.toml .
+        fi
+
+    - name: Configure bot identity
+      if: ${{ inputs.mode == 'format' }}
+      uses: ./.github/actions/configure-bot
+
+    - name: Commit formatting if changed
+      if: ${{ inputs.mode == 'format' }}
+      shell: bash
+      run: |
+        set -euo pipefail
+        if git diff --quiet; then
+          echo "StyLua produced no changes, nothing to commit."
+          exit 0
+        fi
+        git add -A
+        git commit -m "style: apply StyLua formatting"
+        git push
+        echo "Committed StyLua formatting."

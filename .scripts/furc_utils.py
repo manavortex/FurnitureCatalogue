@@ -29,8 +29,13 @@ EXT_MF_ADDITIONAL = '.manifest'
 TYPE_MF_ADDITIONAL = 'TYPE_MF_ADDITIONAL'
 
 PROP_MF_TITLE='Title'
+
 PROP_MF_VERSION='Version'
+"""human readable version like 1.2.3"""
+
 PROP_MF_APIVERSION='APIVersion'
+"""ESOAPI Version like 101050"""
+
 PROP_MF_TYPE='type'
 PROP_MF_FILES='files'
 
@@ -98,6 +103,23 @@ def get_manifest_data(manifest_file: str) -> dict:
   except Exception as ex:
     print(f"Failed to get data from {manifest_file}: {ex}")
   return manifest
+
+
+def validate_manifest(manifest_file: str) -> dict:
+  """Parse manifest and assert mandatory header fields are present.
+
+  Returns the manifest dict on success; crashes on missing field
+  """
+  manifest = get_manifest_data(manifest_file)
+  for field in (PROP_MF_TITLE, PROP_MF_VERSION, PROP_MF_APIVERSION):
+    if not manifest.get(field):
+      crash_and_burn(f"missing {field} in manifest {manifest_file}")
+  return manifest
+
+
+def get_manifest_version(manifest_file: str) -> str:
+  """Return the human-readable Version field from a manifest (empty if unset)."""
+  return get_manifest_data(manifest_file).get(PROP_MF_VERSION, '')
 
 
 def get_log_entries(cl_file: str, entries: int=20) -> list[str]:
@@ -256,6 +278,14 @@ def replace_once_in_file(pattern_repl_fallback: list[tuple], path: str) -> bool:
 .---------------------------------------.
 '''
 
+
+SCALE_MAJOR = 1_000_000
+SCALE_MINOR = 1_000
+FIELD_MAX = 999
+
+MAX_ADDON_VERSION = 2_147_483_647
+"""Just to catch mistakes. Version >2147.483.647 not realistically reachable"""
+
 def to_semver(ver: str) -> str:
   return int_to_semver(semver_to_int(ver))
 
@@ -284,26 +314,34 @@ def compare_versions(a: str, b: str) -> int:
       return 0
 
 def semver_to_int(version: str) -> int:
+  """AddOnVersion from semver to: major*1_000_000 + minor*1_000 + patch
+
+  That way we can easily see which version we're on, without having to track separate number
+  """
   if not version: raise ValueError("Version required")
 
   parts = version.split('.')
   major = int(parts[0])
-  if major < 0: raise ValueError("No support for negative values")
+  minor = int(parts[1]) if len(parts) > 1 else 0
+  patch = int(parts[2]) if len(parts) > 2 else 0
+  if min(major, minor, patch) < 0: raise ValueError("No support for negative values")
 
-  num = major * 1e6
-  num += int(parts[1]) * 1e3 if len(parts) > 1 else 0
-  num += int(parts[2]) if len(parts) > 2 else 0
+  # minor/patch are max 3 digits. Value over 999 is typo, hand-edited and/or a crime
+  # assuming it's legitimate it carries over into the next field: 1.2.1000 -> 1.3.0, 1.1000.5 -> 2.0.0
+  if minor > FIELD_MAX or patch > FIELD_MAX:
+    minor, patch = minor + patch // SCALE_MINOR, patch % SCALE_MINOR
+    major, minor = major + minor // SCALE_MINOR, minor % SCALE_MINOR
+    print(f"⚠️️ {version}: minor/patch over {FIELD_MAX}, carried over to {major}.{minor}.{patch}, but don't do that again", file=sys.stderr)
 
-  return int(num)
+  num = major * SCALE_MAJOR + minor * SCALE_MINOR + patch
+  if num > MAX_ADDON_VERSION:
+    crash_and_burn(f"AddOnVersion {num} ({major}.{minor}.{patch}) exceeds max allowed int {MAX_ADDON_VERSION}, assuming mistake")
+  return num
 
 def int_to_semver(num: int) -> str:
-    major = int(num // 1e6)
-    num %= 1e6
-    minor = int(num // 1e3)
-    num %= 1e3
-    patch = int(num)
-
-    return f"{major}.{minor}.{patch}"
+  major, rest = divmod(int(num), SCALE_MAJOR)
+  minor, patch = divmod(rest, SCALE_MINOR)
+  return f"{major}.{minor}.{patch}"
 
 
 VERSION_IMPACT_MAJOR = 'major'
@@ -314,10 +352,10 @@ def get_next_version(current: str, impact: str = VERSION_IMPACT_MINOR) -> str:
 
   Args:
       current (str): version `x.y.z`, like `1.23.4` or `1`
-      breaking_change (bool, optional): Defaults to False.
+      impact (str): 'major', 'minor' or 'patch'. Defaults to 'minor'.
 
   Returns:
-      str: `1.2.3` => major: `2.0.0`, minor: `1.24.0`, patch: `1.23.5`
+      str: from `1.23.4` => major: `2.0.0`, minor: `1.24.0`, patch: `1.23.5`
   """
   # Validates version number and converts it to int
   ver_int = semver_to_int(current)
@@ -325,15 +363,11 @@ def get_next_version(current: str, impact: str = VERSION_IMPACT_MINOR) -> str:
   if impact == VERSION_IMPACT_PATCH:
     ver_int += 1
   elif impact == VERSION_IMPACT_MAJOR:
-    ver_int //= 1e6
-    ver_int += 1
-    ver_int *= 1e6
+    ver_int = (ver_int // SCALE_MAJOR + 1) * SCALE_MAJOR
   else:
-    ver_int //= 1e3
-    ver_int += 1
-    ver_int *= 1e3
+    ver_int = (ver_int // SCALE_MINOR + 1) * SCALE_MINOR
 
-  return int_to_semver(int(ver_int))
+  return int_to_semver(ver_int)
 
 
 RE_GHLIST_TAG = re.compile(r"\s+(\d+[\.\d]+)\s+")
@@ -368,7 +402,7 @@ def get_highest_version_from_gh_list(gh_list :str) -> str:
 
 
 RE_MF_VERSION_LINE = re.compile(r"(?P<PREFIX>^##\s*Version:\s*).*$", re.MULTILINE)
-RE_MF_ADDONVERSION_LINE = re.compile(r"(?P<PREFIX>^##\s*AddonVersion:\s*).*$", re.MULTILINE)
+RE_MF_ADDONVERSION_LINE = re.compile(r"(?P<PREFIX>^##\s*AddOnVersion:\s*).*$", re.MULTILINE | re.IGNORECASE)
 RE_MAINLUA_VERSION_LINE = re.compile(r"(?P<PREFIX>^this\.version\s*=\s*).*$", re.MULTILINE)
 
 def replace_versions(new_semver: str, output_file: str=None):
@@ -380,7 +414,7 @@ def replace_versions(new_semver: str, output_file: str=None):
   mfpath = 'FurnitureCatalogue.txt'
   mf_values = [
     (RE_MF_VERSION_LINE, f"\g<PREFIX>{new_semver}", f"## Version: {new_semver}"),
-    (RE_MF_ADDONVERSION_LINE, f"\g<PREFIX>{new_intver}", f"## AddonVersion: {new_intver}"),
+    (RE_MF_ADDONVERSION_LINE, f"\g<PREFIX>{new_intver}", f"## AddOnVersion: {new_intver}"),
   ]
   if replace_once_in_file(mf_values, mfpath): changes.append(mfpath)
 
@@ -409,7 +443,10 @@ def replace_versions(new_semver: str, output_file: str=None):
 EXIT_FAILURE = -1
 
 def crash_and_burn(msg: str=''):
-  """Performs some crashing and/or burning"""
+  """Performs some crashing and/or burning
+
+  raises SystemExit
+  """
   print(f"🔥 ABORT ABORT ABORT: {msg} 🔥")
   exit(EXIT_FAILURE)
 
@@ -431,8 +468,8 @@ if __name__ == "__main__":
   # 3. Convert Version
   parser_conv = subparsers.add_parser('convert_version', help='Semver to int or other way around')
   conv_grp = parser_conv.add_mutually_exclusive_group(required=True)
-  conv_grp.add_argument('--int', type=int, help='Int to semver like 3456780 -> 3.456.78')
-  conv_grp.add_argument('--semver', type=str, help='Semver to int like 1.23.4 -> 1002304')
+  conv_grp.add_argument('--int', type=int, help='Int to semver like 3456780 -> 3.456.780')
+  conv_grp.add_argument('--semver', type=str, help='Semver to int like 1.23.4 -> 1023004')
 
   # 4. Get String before delimiter
   parser_eh = subparsers.add_parser('extract_header', help='Get the first part of a text split at given delimiter')
@@ -461,6 +498,14 @@ if __name__ == "__main__":
   parser_clup.add_argument('--notes-file', help='File containing notes')
   parser_clup.add_argument('--changelog-file', help='File to add changes to', default=CL_FILE)
   parser_clup.add_argument('--header', help='Header to add to the notes.')
+
+  # 9. Validate manifest header fields
+  parser_valm = subparsers.add_parser('validatemanifest', help='Assert manifest has Title, Version and APIVersion')
+  parser_valm.add_argument('manifest', help='Path to manifest file')
+
+  # 10. Read manifest Version field
+  parser_mver = subparsers.add_parser('manifestversion', help='Print the Version field from a manifest')
+  parser_mver.add_argument('manifest', help='Path to manifest file')
 
   args = parser.parse_args()
   # 1. Bump Versions
@@ -503,5 +548,12 @@ if __name__ == "__main__":
   # 8. Get next version number
   elif args.command == 'update_changelog':
     update_changelog(args.notes_file, args.header, args.changelog_file)
+  # 9. Validate manifest header fields
+  elif args.command == 'validatemanifest':
+    m = validate_manifest(args.manifest)
+    print(f"manifest OK: {m[PROP_MF_TITLE]} v{m[PROP_MF_VERSION]}")
+  # 10. Read manifest Version field
+  elif args.command == 'manifestversion':
+    print(get_manifest_version(args.manifest))
   else:
     parser.print_help()
