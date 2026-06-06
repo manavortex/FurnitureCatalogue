@@ -14,10 +14,6 @@ permissions:
 on:
   workflow_dispatch:
     inputs:
-      release_tag:
-        description: 'Release tag to upload (empty = latest). Must match the manifest version.'
-        type: string
-        default: ''
       print_response:
         description: 'Full ESOUI response 4 debug.'
         type: boolean
@@ -32,24 +28,13 @@ jobs:
 
       - uses: ./.github/actions/setup-python-env
 
-      # Get release data, fall back to latest release if no tag added. If tag set, check it matches latest. Uploading older releases should only be done manually.
-      - name: Resolve release tag
+      # Always publish latest GitHub release
+      - name: Resolve latest release
         id: tag
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          INPUT_TAG: ${{ inputs.release_tag }}
         run: |
-          LATEST_TAG="$(gh release list --limit 10 | python .scripts/furc_utils.py getlatest)"
-          if [[ -n "$INPUT_TAG" ]]; then
-            if [[ "$INPUT_TAG" != "$LATEST_TAG" ]]; then
-              echo "🔥 Requested tag '$INPUT_TAG' is not the latest release ('$LATEST_TAG')." >&2
-              echo "🔥 Publish nonstandard releases manually via the ESOUI web UI to avoid surprises." >&2
-              exit 1
-            fi
-            TAG="$INPUT_TAG"
-          else
-            TAG="$LATEST_TAG"
-          fi
+          TAG="$(gh release list --limit 10 | python .scripts/furc_utils.py getlatest)"
           ARCHIVE_URL="$(gh release view "$TAG" --json assets --jq '.assets[0].url')"
           test -n "$ARCHIVE_URL" || { echo "🔥 Release $TAG has no asset attached" >&2; exit 1; }
           echo "TAG=$TAG" >> "$GITHUB_OUTPUT"
@@ -58,7 +43,7 @@ jobs:
       # Manifest must match release tag
       - name: Check manifest matches tag
         run: |
-          MANIFEST_VERSION="$(python -c "import sys; sys.path.insert(0, '.scripts'); import furc_utils as F; print(F.get_manifest_data('FurnitureCatalogue.txt')[F.PROP_MF_VERSION])")"
+          MANIFEST_VERSION="$(python .scripts/furc_utils.py manifestversion FurnitureCatalogue.txt)"
           TAG="${{ steps.tag.outputs.TAG }}"
           if [[ "$MANIFEST_VERSION" != "$TAG" ]]; then
             echo "🔥 Manifest version ($MANIFEST_VERSION) does not match release tag ($TAG)." >&2
