@@ -18,6 +18,7 @@ local strEvent = FurC.Utils.FormatEvent
 local strGeneric = FurC.Utils.FmtGeneric
 local strPartOf = FurC.Utils.FormatPartOf
 local strPrice = FurC.Utils.FormatPrice
+local strFurnisher = FurC.Utils.FormatFurnisher
 local strQuest = FurC.Utils.FmtQuest
 local strSrc = FurC.Utils.FmtSources
 
@@ -90,6 +91,7 @@ local stealable_elsewhere = strGeneric(srcSteal, nil, "other", loc.NELSWEYR, loc
 local pickpocket_necrom = strGeneric(srcPick, nil, "other", loc.TELVANNI, loc.APOCRYPHA)
 local pickpocket_weald = strGeneric(srcPick, nil, "other", loc.WEALD)
 local pickpock_solstice = strGeneric(srcPick, nil, "other", loc.SOLSTICE)
+local pickpocket_glenumbra = strGeneric(srcPick, nil, "other", loc.GLENUMBRA)
 local painting_summerset = strGeneric(srcSafe, rarityExtremely, "loc", loc.SUMMERSET)
 local painting_vvardenfell = strGeneric(
   srcDrop,
@@ -151,9 +153,14 @@ local function strGem(price)
   return strPrice(price, CURT_CROWN_GEMS)
 end
 
--- Trade Bars, hopefully
+-- Trade Bars
 local function strTBars(price)
   return strPrice(price, CURT_TRADE_BARS)
+end
+
+local srcBazaar = GetString(SI_FURC_SRC_BAZAAR)
+local function strBazaar(price)
+  return strGeneric(srcBazaar, strPrice(price, CURT_TRADE_BARS), "src")
 end
 
 local housesource = GetString(SI_FURC_HOUSE)
@@ -224,7 +231,11 @@ local itempacks = {
   ["pipes"] = SI_FURC_ITEMPACK_DWARVENPIPES,
   ["firstblade"] = SI_FURC_ITEMPACK_FIRSTBLADE,
   ["armor"] = SI_FURC_TOMESPACK_ARMOR,
-  
+  ["loom"] = SI_FURC_ITEMPACK_LOOM,
+  ["jyggalag"] = SI_FURC_ITEMPACK_JYGGALAG,
+  ["ebony"] = SI_FURC_ITEMPACK_EBONY,
+  ["razor"] = SI_FURC_ITEMPACK_RAZOR,
+  ["hollowjack"] = SI_FURC_EVENT_HOLLOWJACK,
 }
 
 local function strPack(itempackName)
@@ -237,10 +248,38 @@ local function strTomesPack(itempackName)
   return zo_strformat(GetString(SI_FURC_SRC_TOMESPACK), GetString(itempacks[itempackName]))
 end
 
+-- Season Zero Part 2
+FurC.MiscItemSources[ver.ZERO2] = {
+  [src.DROP] = {
+    -- Scrying
+	[224855] = strScry(loc.GLENUMBRA), -- Fool's Gold Pile
+	[224857] = strScry(loc.GLENUMBRA), -- Window of Divinity
+	[224858] = strScry(loc.GLENUMBRA), -- Zenithar Devotional Stele
+	[224856] = strScry(loc.GLENUMBRA), -- Tapestry of the Prince's Hunt
+	
+	-- Justice
+	[225017] = pickpocket_glenumbra, -- Keg Spigot, Brass
+	[225018] = pickpocket_glenumbra, -- Pin Cushion, Red
+	[225019] = pickpocket_glenumbra, -- Flask, Fancy
+	[225020] = pickpocket_glenumbra, -- Handbell, Brass
+	[225021] = pickpocket_glenumbra, -- Pocket Whistle, Brass
+	[225022] = pickpocket_glenumbra, -- Hand Mirror, Silver-Plated
+	[225023] = pickpocket_glenumbra, -- Order Ledger, Business
+	[225024] = pickpocket_glenumbra, -- Key, Brass
+	[225025] = pickpocket_glenumbra, -- Teeba-Enoo Ball, Patchwork Leather
+	[225026] = pickpocket_glenumbra, -- Chef Hat, Decorative
+	[225027] = pickpocket_glenumbra, -- Cheese Crumbs, Echatere
+	[225016] = pickpocket_glenumbra, -- Ore, Display
+	[225015] = pickpocket_glenumbra, -- Amber Chunk, Display
+  },
+
+}
+
 -- Season Zero
 FurC.MiscItemSources[ver.ZERO] = {
   [src.CROWN] = {
-	
+	[223743] = strCrown(4000), -- Almalexia, Mother Morrowind
+	[223735] = strCrown(1200), -- Music Box, Duel of the Seablades
   },
   
   [src.DROP] = {
@@ -254,7 +293,7 @@ FurC.MiscItemSources[ver.ZERO] = {
   },
   
   [src.BAZAAR] = {
-    [197625] = strTBars(2000), -- Music Box, Oath of the Keepers
+    [197625] = strBazaar(2000), -- Music Box, Oath of the Keepers
   },
   
   [src.TOMES] = {
@@ -369,6 +408,7 @@ FurC.MiscItemSources[ver.WORMS2] = {
 	[223154] = strScry(loc.SOLSTICE), -- Coldharbour Soul Furnace
 	[223155] = strScry(loc.SOLSTICE), -- Daedric Gate, Coldharbour
 	[223156] = strScry(loc.SOLSTICE), -- Reaper, Pattern Template
+	[219870] = strScry(loc.SOLSTICE), -- Antique Map of Solstice
 	
     [223161] = strGeneric(srcDrop, "mobs in public dungeons and delves", nil, loc.SOLSTICE), -- Worm Cult Tongs, Metal
 	[223160] = strGeneric(srcDrop, "mobs in public dungeons and delves", nil, loc.SOLSTICE), -- Worm Cult Carving, Eye
@@ -376,6 +416,7 @@ FurC.MiscItemSources[ver.WORMS2] = {
 	[223158] = strGeneric(srcDrop, "mobs in public dungeons and delves", nil, loc.SOLSTICE), -- Worm Cult Hammer, Mining
 	[223157] = strGeneric(srcDrop, "mobs in public dungeons and delves", nil, loc.SOLSTICE), -- Worm Cult Bucket, Bismuth Samples
 	[223176] = strGeneric(srcDrop, "mobs in public dungeons and delves", nil, loc.SOLSTICE), -- Leg Armor, Arrow-Damaged
+	[223177] = strGeneric(srcDrop, "mobs in public dungeons and delves", nil, loc.SOLSTICE), -- Skull, Extinct Seabeast
 	
 	-- Harvesting
 	[223173] = strGeneric(srcHarvest, strSrc("src", "Woodworking"), nil, loc.SOLSTICE), -- Leaf Pile, Royal Palm
@@ -384,11 +425,16 @@ FurC.MiscItemSources[ver.WORMS2] = {
     [223170] = strGeneric(srcHarvest, strSrc("src", "Clothing"), nil, loc.SOLSTICE), -- Plant, Corrupted Flowering Fanik Goc
 	[223169] = strGeneric(srcHarvest, strSrc("src", "Blacksmithing"), nil, loc.SOLSTICE), -- Stones, Jagged Granite Cluster
 	[223168] = strGeneric(srcHarvest, strSrc("src", "Blacksmithing"), nil, loc.SOLSTICE), -- Stone, Smooth Limestone
+	
+	[223174] = strChests(loc.SOLSTICE), -- Cook's Still Life Painting, Unfinished
   },
   
   [src.FISHING] = {
     -- fishing
     [223162] = fishing, -- Kelp Shelf, Small Brown
+	[223163] = fishing, -- Kelp Shelf, Medium Brown
+	[223164] = fishing, -- Kelp, Small Brown Pile
+    [223165] = fishing, -- Kelp, Long Brown Pile
 	[223167] = fishing, -- Argonian Paddle, Wooden
 	[223166] = fishing, -- Knife, Fishing
   },
@@ -426,6 +472,18 @@ FurC.MiscItemSources[ver.WORMS] = {
     [210894] = getHouseString(12732), -- 10-Year Anniversary Rug, Rectangular
     [210895] = getHouseString(12732), -- 10-Year Anniversary Rug, Runner
     [210896] = getHouseString(12732), -- 10-Year Anniversary Drape, Wall
+	[214454] = getHouseString(13558), -- Solstice Shell, Fossilized Echinoid
+	[214520] = strMultiple(strCrown(45), getHouseString(13560)), -- Elkhorn Coral, Sturdy Branching
+	[214518] = strMultiple(strCrown(20), getHouseString(13560)), -- Coral Formation, Tiered Shelves
+	[214521] = strMultiple(strCrown(20), getHouseString(13560)), -- Elkhorn Coral, Cluster
+	[214519] = strMultiple(strCrown(90), getHouseString(13560)), -- Elkhorn Coral, Verdant Branching
+	[214516] = strMultiple(strCrown(350), getHouseString(13560)), -- Antler Coral, Glowing Branched Crimson
+	[214515] = strMultiple(strCrown(350), getHouseString(13560)), -- Antler Coral, Glowing Broad Crimson
+	[118152] = strMultiple(strCrown(180), getHouseString(13560)), -- Carpet Roll, Sunrise
+	[118153] = strMultiple(strCrown(180), getHouseString(13560)), -- Carpet Roll, Floral
+	[118154] = strMultiple(strCrown(180), getHouseString(13560)), -- Carpet Roll, Oasis
+	[118155] = strMultiple(strCrown(180), getHouseString(13560)), -- Carpet Roll, Desert
+	[214514] = strCrown(350), -- Antler Coral, Glowing Short Crimson
 	
 	[214332] = strCrate(crates.AKA_ALDU), -- Dragonclash Firepit
 	[214333] = strCrate(crates.AKA_ALDU), -- Stone-Nest Spellmote
@@ -439,6 +497,16 @@ FurC.MiscItemSources[ver.WORMS] = {
   [src.FISHING] = {
     -- fishing
     [214461] = fishing, -- Shrimp, Display
+	[214460] = fishing, -- Seahorse, Display
+	[214459] = fishing, -- Oyster, Display
+	[214458] = fishing, -- Mussel, Display
+	[214457] = fishing, -- Lobster Claw, Display
+	[214456] = fishing, -- Conch Flute, Ceremonial
+	[214463] = fishing, -- Crab, Display
+	[214462] = fishing, -- Snail, Display
+	[214452] = strMultiple(fishing, getHouseString(13558)), -- Solstice Shell, Fossilized Nautilus
+    [214453] = strMultiple(fishing, getHouseString(13558)), -- Solstice Shell, Fossilized Turritella
+    [214455] = strMultiple(fishing, getHouseString(13558)), -- Solstice Shell, Fossilized Conch
   },
 
   [src.DROP] = {
@@ -492,6 +560,10 @@ FurC.MiscItemSources[ver.WORMS] = {
     [214369] = strChests(loc.SOLSTICE), -- Tide-Born Tapestry, Sap
     [214370] = strChests(loc.SOLSTICE), -- Tide-Born Tapestry, Snake
     [214371] = strChests(loc.SOLSTICE), -- Tide-Born Reed Art, Turtle
+	[214373] = strChests(loc.SOLSTICE), -- Meadow Study Painting, Unfinished
+	[214372] = strChests(loc.SOLSTICE), -- Forest Study Painting, Unfinished
+	
+	
 
     -- Harvesting
     [214479] = strGeneric(srcHarvest, strSrc("src", "Blacksmithing and Jewelry"), nil, loc.SOLSTICE), -- Solstice Bismuth, Deposit II
@@ -531,6 +603,14 @@ FurC.MiscItemSources[ver.FALLBAN] = {
     [214253] = strPack("combat"), -- Battleground Powerup, Ultimate
     [214252] = strPack("combat"), -- Battleground Powerup, Defense
     [214251] = strPack("combat"), -- Battleground Powerup, Damage
+	[212423] = strPack("loom"), -- Replica Mirrormoor Loom, Altar
+    [212422] = strPack("loom"), -- Replica Mirrormoor Loom, Backing
+    [212421] = strPack("loom"), -- Replica Mirrormoor Loom, Spindle
+	
+	[212213] = getHouseString(13078, 13759), -- Colovian Gazebo
+	[212214] = getHouseString(13078), -- Skingrad Banner
+	
+	[212420] = strCrown(1200), -- Music Box, Jester's Caprice
   },
 }
 
@@ -543,6 +623,8 @@ FurC.MiscItemSources[ver.BASE44] = {
     [211299] = strCrate(crates.MIRROR), -- Fargrave Miasma Censer
 	
 	[125561] = getHouseString(12732), -- Mushrooms, Mucksponge Podlet
+	[115271] = getHouseString(12732), -- Breton Statue, Druid
+	[115270] = getHouseString(12732), -- Breton Statue, Guard
 	
 	[211502] = strPack("dwarven"), -- Dwarven Furnace
 	[211501] = strPack("dwarven"), -- Dwarven Dais, Stone
@@ -552,6 +634,13 @@ FurC.MiscItemSources[ver.BASE44] = {
 	
 	[199113] = strCrown(1100), -- Music Box, New Life Snow Symphony
 	[211498] = strCrown(1200), -- Music Box, Merry Mudcrab Melody
+  },
+  
+  [src.BAZAAR] = {
+    [212186] = strBazaar(2000), -- Statue, Breton Hero
+	[212187] = strBazaar(2000), -- Statue, Nord Hero
+	[212188] = strBazaar(2000), -- Statue, High Elf Hero
+	[211303] = strBazaar(2000), -- Statue of Molag Bal, Harvester
   },
 
   [src.DROP] = {
@@ -569,8 +658,18 @@ FurC.MiscItemSources[ver.BASE43] = {
     [208123] = strCrate(crates.DB), -- Bloodfont of Sithis
     [208122] = strCrate(crates.DB), -- Vision of the Bloodmoon
 	
-	[204792] = getHouseString(12656), -- Table, Visions of the Five Companions
 	[208358] = getHouseString(12655), -- Handbook for New Homeowners
+	[204792] = getHouseString(12656), -- Table, Visions of the Five Companions
+	[115052] = getHouseString(12656), -- Imperial Simple Lamppost
+	[208159] = getHouseString(12656), -- Imperial Banner, Emperor's
+	[207974] = strMultiple(strCrown(90), getHouseString(12656)), -- Tree, Large Green Beech
+	[207978] = strMultiple(strCrown(90), getHouseString(12656)), -- Tree, Large Yellow Beech
+	[207979] = strMultiple(strCrown(90), getHouseString(12656)), -- Tree, Small Yellow Beech Cluster
+	[207975] = strMultiple(strCrown(60), getHouseString(12656)), -- Tree, Small Green Beech
+	[207977] = strMultiple(strCrown(60), getHouseString(12656)), -- Tree, Small Red Beech
+	[207976] = strMultiple(strCrown(430), getHouseString(12656)), -- Tree, Large Red Beech
+	
+	[208126] = strCrown(3500), -- Statue, Mistress of Nightmares
 	
 	[203608] = strPack("haunted"), -- Spooky Fog, Glowing
     [203607] = strPack("haunted"), -- Haunted Chair
@@ -676,6 +775,7 @@ FurC.MiscItemSources[ver.SCIONS] = {
 	[203596] = getHouseString(11456), -- Ferns, Desert Cluster
 	[117873] = getHouseString(11456), -- Redguard Rugs, Rolled
 	[117867] = getHouseString(11456), -- Statue, Redguard's Respect
+	[117862] = getHouseString(11456), -- Redguard Cart, Merchant
 	
 	[204434] = strMultiple(strCrown(320), getHouseString(14078, 12270)), -- Breton Rowboat
 	[204433] = strMultiple(strCrown(45), getHouseString(12270)), -- Lily Pads, Flowering Patch
@@ -693,6 +793,11 @@ FurC.MiscItemSources[ver.SCIONS] = {
     [203268] = strPack("jester"), -- Jester's Festival Stage
     [203165] = strPack("jester"), -- Dazzler Dispenser
     [203271] = strPack("jester"), -- Banner, Jester's Festival
+	[203274] = strMultiple(strCrown(10), strPack("jester")), -- Box of Tomatoes
+	[203275] = strMultiple(strCrown(25), strPack("jester")), -- Fish, Silver Trout
+	[203272] = strMultiple(strCrown(60), strPack("jester")), -- Rough Bench
+	[203273] = strMultiple(strCrown(40), strPack("jester")), -- Rough Chair
+	[203276] = strMultiple(strCrown(50), strPack("jester")), -- Rough Dresser
   },
 }
 
@@ -767,117 +872,117 @@ FurC.MiscItemSources[ver.ENDLESS] = {
   },
 
   [src.DROP] = {
-    [203472] = inf_archive, -- Materials for Novice Necromancers",
-    [203471] = inf_archive, -- The Spotted Towers",
-    [203470] = inf_archive, -- Song of Fate",
-    [203469] = inf_archive, -- House Telvanni Song",
-    [203468] = inf_archive, -- The Waiting Door",
-    [203467] = inf_archive, -- Captain Burwarah's Records",
-    [203466] = inf_archive, -- The Silver Rose Blooms over Borderwatch",
-    [203465] = inf_archive, -- Archmagister Mavon's Ascension",
-    [203464] = inf_archive, -- Fynboar the Resurrected",
-    [203463] = inf_archive, -- Obscure Killers of the North",
-    [203462] = inf_archive, -- The Remnant Truth",
-    [203461] = inf_archive, -- Parables of Saint Vorys",
-    [203460] = inf_archive, -- Malkhest's Journal",
-    [203459] = inf_archive, -- A Servant's Tale",
-    [203458] = inf_archive, -- The Last Addition of Bikkus-Muz",
-    [203457] = inf_archive, -- Preparing Necrom Kwama, Fifth Draft",
-    [203456] = inf_archive, -- The Prior's Fulcrum",
-    [203455] = inf_archive, -- Plague Concoctor's Instructions",
-    [203454] = inf_archive, -- Dusksaber Report",
-    [203453] = inf_archive, -- Mouth Vabdru's Journal",
-    [203452] = inf_archive, -- First Mate Dalmir's Log",
-    [203451] = inf_archive, -- Fanlyrion's Journal",
-    [203450] = inf_archive, -- Tidefall Cantos I",
-    [203449] = inf_archive, -- Our Dunmer Heritage",
-    [203448] = inf_archive, -- A Feast Among the Dead, Chapter IV",
-    [203447] = inf_archive, -- A Feast Among the Dead, Chapter III",
-    [203446] = inf_archive, -- A Feast Among the Dead, Chapter II",
-    [203445] = inf_archive, -- What's an Arcanist? Part 1",
-    [203444] = inf_archive, -- What's an Arcanist? Part 2",
-    [203443] = inf_archive, -- Working in the Infinite Panopticon",
-    [203442] = inf_archive, -- What About Glyphics?",
-    [203441] = inf_archive, -- On Cipher's Midden",
-    [203440] = inf_archive, -- The Littlest Tomeshell",
-    [203439] = inf_archive, -- A New Cult Arises",
-    [203438] = inf_archive, -- Torvesard's Journal",
-    [203437] = inf_archive, -- Daedric Worship and the Dark Elves",
-    [203436] = inf_archive, -- Ciphers of the Eye",
-    [203435] = inf_archive, -- Planar Exploration Vol. 14: Darkreave Curators",
-    [203434] = inf_archive, -- Beverages for the Bereaved",
-    [203433] = inf_archive, -- Denizens of Apocrypha",
-    [203432] = inf_archive, -- History of Necrom: The City of the Dead",
-    [203431] = inf_archive, -- Brave Little Scrib and the River Troll",
-    [203430] = inf_archive, -- A Brief History of House Telvanni",
-    [203429] = inf_archive, -- A Feast Among the Dead, Chapter I",
-    [203428] = inf_archive, -- Visitor's Guide: Telvanni Peninsula",
-    [203427] = inf_archive, -- Critter Dangers: Telvanni Peninsula",
-    [203426] = inf_archive, -- We Reject the Pact",
-    [203425] = inf_archive, -- Our Puny Allies",
-    [203424] = inf_archive, -- The Spires of the 34th Sermon",
-    [203423] = inf_archive, -- Master of the Tides of Fate",
-    [203422] = inf_archive, -- On the Nature of Nymics",
-    [203421] = inf_archive, -- The Dangers of Truth",
-    [203420] = inf_archive, -- A Summoner's Guide to Nymics",
-    [203419] = inf_archive, -- Kynmarcher Strix's Journal",
-    [203418] = inf_archive, -- Life in the Camonna Tong",
-    [203417] = inf_archive, -- Herma-Mora: The Woodland Man?",
-    [203416] = inf_archive, -- How Rajhin Stole the Book that Knows",
-    [203415] = inf_archive, -- On Tracts Perilous",
-    [203414] = inf_archive, -- Uluscant's Manifesto",
-    [203413] = inf_archive, -- The Currency of Secrets",
-    [203412] = inf_archive, -- On Joining the Keepers of the Dead",
-    [203411] = inf_archive, -- A Report on the Dusksabers",
-    [203410] = inf_archive, -- Ranks and Titles of House Telvanni",
-    [203409] = inf_archive, -- Oath of the Keepers",
-    [203408] = inf_archive, -- Larydeilmo is Sane",
+    [203472] = inf_archive, -- Materials for Novice Necromancers
+    [203471] = inf_archive, -- The Spotted Towers
+    [203470] = inf_archive, -- Song of Fate
+    [203469] = inf_archive, -- House Telvanni Song
+    [203468] = inf_archive, -- The Waiting Door
+    [203467] = inf_archive, -- Captain Burwarah's Records
+    [203466] = inf_archive, -- The Silver Rose Blooms over Borderwatch
+    [203465] = inf_archive, -- Archmagister Mavon's Ascension
+    [203464] = inf_archive, -- Fynboar the Resurrected
+    [203463] = inf_archive, -- Obscure Killers of the North
+    [203462] = inf_archive, -- The Remnant Truth
+    [203461] = inf_archive, -- Parables of Saint Vorys
+    [203460] = inf_archive, -- Malkhest's Journal
+    [203459] = inf_archive, -- A Servant's Tale
+    [203458] = inf_archive, -- The Last Addition of Bikkus-Muz
+    [203457] = inf_archive, -- Preparing Necrom Kwama, Fifth Draft
+    [203456] = inf_archive, -- The Prior's Fulcrum
+    [203455] = inf_archive, -- Plague Concoctor's Instructions
+    [203454] = inf_archive, -- Dusksaber Report
+    [203453] = inf_archive, -- Mouth Vabdru's Journal
+    [203452] = inf_archive, -- First Mate Dalmir's Log
+    [203451] = inf_archive, -- Fanlyrion's Journal
+    [203450] = inf_archive, -- Tidefall Cantos I
+    [203449] = inf_archive, -- Our Dunmer Heritage
+    [203448] = inf_archive, -- A Feast Among the Dead, Chapter IV
+    [203447] = inf_archive, -- A Feast Among the Dead, Chapter III
+    [203446] = inf_archive, -- A Feast Among the Dead, Chapter II
+    [203445] = inf_archive, -- What's an Arcanist? Part 1
+    [203444] = inf_archive, -- What's an Arcanist? Part 2
+    [203443] = inf_archive, -- Working in the Infinite Panopticon
+    [203442] = inf_archive, -- What About Glyphics?
+    [203441] = inf_archive, -- On Cipher's Midden
+    [203440] = inf_archive, -- The Littlest Tomeshell
+    [203439] = inf_archive, -- A New Cult Arises
+    [203438] = inf_archive, -- Torvesard's Journal
+    [203437] = inf_archive, -- Daedric Worship and the Dark Elves
+    [203436] = inf_archive, -- Ciphers of the Eye
+    [203435] = inf_archive, -- Planar Exploration Vol. 14: Darkreave Curators
+    [203434] = inf_archive, -- Beverages for the Bereaved
+    [203433] = inf_archive, -- Denizens of Apocrypha
+    [203432] = inf_archive, -- History of Necrom: The City of the Dead
+    [203431] = inf_archive, -- Brave Little Scrib and the River Troll
+    [203430] = inf_archive, -- A Brief History of House Telvanni
+    [203429] = inf_archive, -- A Feast Among the Dead, Chapter I
+    [203428] = inf_archive, -- Visitor's Guide: Telvanni Peninsula
+    [203427] = inf_archive, -- Critter Dangers: Telvanni Peninsula
+    [203426] = inf_archive, -- We Reject the Pact
+    [203425] = inf_archive, -- Our Puny Allies
+    [203424] = inf_archive, -- The Spires of the 34th Sermon
+    [203423] = inf_archive, -- Master of the Tides of Fate
+    [203422] = inf_archive, -- On the Nature of Nymics
+    [203421] = inf_archive, -- The Dangers of Truth
+    [203420] = inf_archive, -- A Summoner's Guide to Nymics
+    [203419] = inf_archive, -- Kynmarcher Strix's Journal
+    [203418] = inf_archive, -- Life in the Camonna Tong
+    [203417] = inf_archive, -- Herma-Mora: The Woodland Man?
+    [203416] = inf_archive, -- How Rajhin Stole the Book that Knows
+    [203415] = inf_archive, -- On Tracts Perilous
+    [203414] = inf_archive, -- Uluscant's Manifesto
+    [203413] = inf_archive, -- The Currency of Secrets
+    [203412] = inf_archive, -- On Joining the Keepers of the Dead
+    [203411] = inf_archive, -- A Report on the Dusksabers
+    [203410] = inf_archive, -- Ranks and Titles of House Telvanni
+    [203409] = inf_archive, -- Oath of the Keepers
+    [203408] = inf_archive, -- Larydeilmo is Sane
 
-    [203407] = strChests(loc.WROTHGAR), -- Vosh Rakh",
-    [203406] = strChests(loc.WROTHGAR), -- Vorgrosh Rot-Tusk's Guide to Dirty Fighting",
-    [203405] = strChests(loc.WROTHGAR), -- Orc Clans and Symbology",
-    [203404] = strChests(loc.WROTHGAR), -- Birds of Wrothgar",
+    [203407] = strChests(loc.WROTHGAR), -- Vosh Rakh
+    [203406] = strChests(loc.WROTHGAR), -- Vorgrosh Rot-Tusk's Guide to Dirty Fighting
+    [203405] = strChests(loc.WROTHGAR), -- Orc Clans and Symbology
+    [203404] = strChests(loc.WROTHGAR), -- Birds of Wrothgar
 
-    [203403] = chests_summerset, -- The Ubiquitous Sinking Isle",
-    [203402] = chests_summerset, -- The Truth of Minotaurs",
-    [203401] = chests_summerset, -- The Flight of Gryphons",
-    [203400] = chests_summerset, -- Artaeum Lost",
+    [203403] = chests_summerset, -- The Ubiquitous Sinking Isle
+    [203402] = chests_summerset, -- The Truth of Minotaurs
+    [203401] = chests_summerset, -- The Flight of Gryphons
+    [203400] = chests_summerset, -- Artaeum Lost
 
-    [203399] = strChests(loc.SELSWEYR), -- The Marriage of Moon and Tide",
-    [203398] = strChests(loc.SELSWEYR), -- The Favored Daughter of Fadomai",
-    [203397] = strChests(loc.SELSWEYR), -- Khunzar-ri and the Lost Alfiq",
-    [203396] = strChests(loc.SELSWEYR), -- Azurah's Crossing",
-    [203395] = strChests(loc.SELSWEYR), -- Trail and Tide",
-    [203394] = strChests(loc.SELSWEYR), -- The Angry Alfiq: A Collection",
-    [203393] = strChests(loc.SELSWEYR), -- On Those Who Know Baan Dar",
-    [203392] = inf_archive, -- Anequina and Pellitine: An Introduction",
-    [203391] = strChests(loc.HEWSBANE), -- The Red Curse, Volume 3",
-    [203390] = strChests(loc.HEWSBANE), -- The Red Curse, Volume 2",
-    [203389] = strChests(loc.HEWSBANE), -- The Red Curse, Volume 1",
-    [203388] = strChests(loc.GOLDCOAST), -- The Wolf and the Dragon",
-    [203387] = strChests(loc.GOLDCOAST), -- The Blade of Woe",
-    [203386] = strChests(loc.GOLDCOAST), -- On Minotaurs",
-    [203385] = strChests(loc.GOLDCOAST), -- Cathedral Hierarchy",
-    [203384] = strChests(loc.COLDH), -- Journal of Tsona-Ei, Part Two",
-    [203383] = strChests(loc.COLDH), -- Journal of Tsona-Ei, Part Three",
-    [203382] = strChests(loc.COLDH), -- Journal of Tsona-Ei, Part One",
-    [203381] = strChests(loc.COLDH), -- Journal of Tsona-Ei, Part Four",
-    [203380] = strChests(loc.CWC), -- Worshiping the Illogical",
-    [203379] = strChests(loc.CWC), -- The Blackfeather Court",
-    [203378] = strChests(loc.CWC), -- Engine of Expression",
-    [203377] = strChests(loc.CWC), -- A Brief History of Ald Sotha",
+    [203399] = strChests(loc.SELSWEYR), -- The Marriage of Moon and Tide
+    [203398] = strChests(loc.SELSWEYR), -- The Favored Daughter of Fadomai
+    [203397] = strChests(loc.SELSWEYR), -- Khunzar-ri and the Lost Alfiq
+    [203396] = strChests(loc.SELSWEYR), -- Azurah's Crossing
+    [203395] = strChests(loc.SELSWEYR), -- Trail and Tide
+    [203394] = strChests(loc.SELSWEYR), -- The Angry Alfiq: A Collection
+    [203393] = strChests(loc.SELSWEYR), -- On Those Who Know Baan Dar
+    [203392] = inf_archive, -- Anequina and Pellitine: An Introduction
+    [203391] = strChests(loc.HEWSBANE), -- The Red Curse, Volume 3
+    [203390] = strChests(loc.HEWSBANE), -- The Red Curse, Volume 2
+    [203389] = strChests(loc.HEWSBANE), -- The Red Curse, Volume 1
+    [203388] = strChests(loc.GOLDCOAST), -- The Wolf and the Dragon
+    [203387] = strChests(loc.GOLDCOAST), -- The Blade of Woe
+    [203386] = strChests(loc.GOLDCOAST), -- On Minotaurs
+    [203385] = strChests(loc.GOLDCOAST), -- Cathedral Hierarchy
+    [203384] = strChests(loc.COLDH), -- Journal of Tsona-Ei, Part Two
+    [203383] = strChests(loc.COLDH), -- Journal of Tsona-Ei, Part Three
+    [203382] = strChests(loc.COLDH), -- Journal of Tsona-Ei, Part One
+    [203381] = strChests(loc.COLDH), -- Journal of Tsona-Ei, Part Four
+    [203380] = strChests(loc.CWC), -- Worshiping the Illogical
+    [203379] = strChests(loc.CWC), -- The Blackfeather Court
+    [203378] = strChests(loc.CWC), -- Engine of Expression
+    [203377] = strChests(loc.CWC), -- A Brief History of Ald Sotha
 
-    [203211] = inf_archive, -- Apocrypha Crescent",
-    [203210] = inf_archive, -- Apocrypha Spike, Curved",
-    [203209] = inf_archive, -- Apocrypha Spike, Tall",
-    [203208] = inf_archive, -- Apocrypha Pipe, Small",
-    [203207] = inf_archive, -- Apocrypha Pipe, Small Curved",
-    [203206] = inf_archive, -- Apocrypha Pipe, Medium",
-    [203204] = inf_archive, -- Apocrypha Pipe, Large Curved",
-    [199117] = tribute, -- Chromatic Reservoir Tapestry, Large",
-    [199116] = tribute, -- Chromatic Reservoir Tapestry",
-    [199115] = tribute, -- Seeker Aspirant Tapestry, Large",
-    [199114] = tribute, -- Seeker Aspirant Tapestry",
+    [203211] = inf_archive, -- Apocrypha Crescent
+    [203210] = inf_archive, -- Apocrypha Spike, Curved
+    [203209] = inf_archive, -- Apocrypha Spike, Tall
+    [203208] = inf_archive, -- Apocrypha Pipe, Small
+    [203207] = inf_archive, -- Apocrypha Pipe, Small Curved
+    [203206] = inf_archive, -- Apocrypha Pipe, Medium
+    [203204] = inf_archive, -- Apocrypha Pipe, Large Curved
+    [199117] = tribute, -- Chromatic Reservoir Tapestry, Large
+    [199116] = tribute, -- Chromatic Reservoir Tapestry
+    [199115] = tribute, -- Seeker Aspirant Tapestry, Large
+    [199114] = tribute, -- Seeker Aspirant Tapestry
 
     [199933] = strScry(loc.TELVANNI, loc.APOCRYPHA), -- Scrying Brazier, Tall
     [199932] = strScry(loc.TELVANNI, loc.APOCRYPHA), -- Scrying Brazier, Short
@@ -997,57 +1102,57 @@ FurC.MiscItemSources[ver.NECROM] = {
 FurC.MiscItemSources[ver.SCRIBE] = {
 
   [src.CROWN] = {
-    [194411] = strCrown(240), -- Stonelore Tale Pillar, Rounded Stone,
-    [194410] = strCrown(240), -- Stonelore Tale Pillar, Slanted Stone,
-    [194409] = strCrown(140), -- Potted Tree, Systres Pine,
-    [194408] = strCrown(150), -- Systres Brewing Still, Copper,
-    [194407] = strCrown(40), -- Harbor Rope, Hanging,
-    [194406] = strCrown(110), -- Harbor Rope, Coiled Buoy,
-    [194405] = strCrown(40), -- Harbor Line, Coiled,
-    [194404] = strCrown(40), -- Harbor Line, Loose,
-    [194403] = strCrown(110), -- Harbor Netting, Buoy Cluster,
-    [194402] = strCrown(110), -- Harbor Netting, Hanging Wall,
-    [194401] = strCrown(150), -- Galen Dogwood, Medium Cluster,
-    [194400] = strCrown(170), -- Galen Dogwood, Large,
-    [194399] = strCrown(1000), -- Music Box, Unfathomable Knowledge,
-    [190941] = strCrown(1000), -- Music Box, Direnni's Swan,
+    [194411] = strCrown(240), -- Stonelore Tale Pillar, Rounded Stone
+    [194410] = strCrown(240), -- Stonelore Tale Pillar, Slanted Stone
+    [194409] = strCrown(140), -- Potted Tree, Systres Pine
+    [194408] = strCrown(150), -- Systres Brewing Still, Copper
+    [194407] = strCrown(40), -- Harbor Rope, Hanging
+    [194406] = strCrown(110), -- Harbor Rope, Coiled Buoy
+    [194405] = strCrown(40), -- Harbor Line, Coiled
+    [194404] = strCrown(40), -- Harbor Line, Loose
+    [194403] = strCrown(110), -- Harbor Netting, Buoy Cluster
+    [194402] = strCrown(110), -- Harbor Netting, Hanging Wall
+    [194401] = strCrown(150), -- Galen Dogwood, Medium Cluster
+    [194400] = strCrown(170), -- Galen Dogwood, Large
+    [194399] = strCrown(1000), -- Music Box, Unfathomable Knowledge
+    [190941] = strCrown(1000), -- Music Box, Direnni's Swan
 
-    [193818] = strPack("astula"), -- Shad Astula Scholar, Right,
-    [193817] = strPack("astula"), -- Shad Astula Scholar, Left,
+    [193818] = strPack("astula"), -- Shad Astula Scholar, Right
+    [193817] = strPack("astula"), -- Shad Astula Scholar, Left
 
-    [193796] = strMultiple(strGem(100), strCrate(crates.RAGE)), -- Orb of the Spirit Queen,
-    [193795] = strMultiple(strGem(40), strCrate(crates.RAGE)), -- Rite of the Harrowforged,
-    [193794] = strMultiple(strGem(100), strCrate(crates.RAGE)), -- Target Hagraven, Robust,
-    [193793] = strMultiple(strGem(40), strCrate(crates.RAGE)), -- Reach Chandelier, Hagraven,
+    [193796] = strMultiple(strGem(100), strCrate(crates.RAGE)), -- Orb of the Spirit Queen
+    [193795] = strMultiple(strGem(40), strCrate(crates.RAGE)), -- Rite of the Harrowforged
+    [193794] = strMultiple(strGem(100), strCrate(crates.RAGE)), -- Target Hagraven, Robust
+    [193793] = strMultiple(strGem(40), strCrate(crates.RAGE)), -- Reach Chandelier, Hagraven
   },
 
   [src.DROP] = {
-    [194460] = book_hall, -- Apocrypha, Apocrypha,
-    [194459] = book_hall, -- Dream of a Thousand Dreamers,
-    [194458] = book_hall, -- Lord Hollowjack's Dream Realm,
-    [194456] = book_hall, -- Invocation of Hircine,
-    [194455] = book_hall, -- Havocrel: Strangers from Oblivion,
-    [194454] = book_hall, -- The Waters of Oblivion,
-    [194453] = book_hall, -- A Memory Book, Part 1,
-    [194452] = book_hall, -- A Memory Book, Part 2,
-    [194451] = book_hall, -- A Memory Book, Part 3,
-    [194450] = book_hall, -- Thwarting the Daedra: Dagon's Cult,
-    [194449] = book_hall, -- In Dreams We Awaken,
-    [194448] = book_hall, -- Glorious Upheaval,
-    [194447] = book_hall, -- Stonefire Ritual Tome,
-    [194446] = book_hall, -- Bisnensel: Our Ancient Roots,
-    [194445] = book_hall, -- Boethiah and Her Avatars,
-    [194444] = book_hall, -- Persistence of Daedric Veneration,
-    [194443] = book_hall, -- Daedra Dossier: The Titans,
-    [194442] = book_hall, -- Journal of Culanwe,
-    [194441] = book_hall, -- Graccus' Journal, Volume I,
-    [194440] = book_hall, -- Tome of Daedric Portals,
-    [194439] = book_hall, -- The Journal of Emperor Leovic,
-    [194423] = book_hall, -- Hermaeus Mora Banner, Long,
-    [194422] = book_hall, -- Hermaeus Mora Banner, Extra Long,
-    [194421] = book_hall, -- Nesting Boulder, Green,
-    [194420] = book_hall, -- Nesting Stones, Green,
-    [194419] = book_hall, -- Scrivener's Hall Vault Door,
+    [194460] = book_hall, -- Apocrypha, Apocrypha
+    [194459] = book_hall, -- Dream of a Thousand Dreamers
+    [194458] = book_hall, -- Lord Hollowjack's Dream Realm
+    [194456] = book_hall, -- Invocation of Hircine
+    [194455] = book_hall, -- Havocrel: Strangers from Oblivion
+    [194454] = book_hall, -- The Waters of Oblivion
+    [194453] = book_hall, -- A Memory Book, Part 1
+    [194452] = book_hall, -- A Memory Book, Part 2
+    [194451] = book_hall, -- A Memory Book, Part 3
+    [194450] = book_hall, -- Thwarting the Daedra: Dagon's Cult
+    [194449] = book_hall, -- In Dreams We Awaken
+    [194448] = book_hall, -- Glorious Upheaval
+    [194447] = book_hall, -- Stonefire Ritual Tome
+    [194446] = book_hall, -- Bisnensel: Our Ancient Roots
+    [194445] = book_hall, -- Boethiah and Her Avatars
+    [194444] = book_hall, -- Persistence of Daedric Veneration
+    [194443] = book_hall, -- Daedra Dossier: The Titans
+    [194442] = book_hall, -- Journal of Culanwe
+    [194441] = book_hall, -- Graccus' Journal, Volume I
+    [194440] = book_hall, -- Tome of Daedric Portals
+    [194439] = book_hall, -- The Journal of Emperor Leovic
+    [194423] = book_hall, -- Hermaeus Mora Banner, Long
+    [194422] = book_hall, -- Hermaeus Mora Banner, Extra Long
+    [194421] = book_hall, -- Nesting Boulder, Green
+    [194420] = book_hall, -- Nesting Stones, Green
+    [194419] = book_hall, -- Scrivener's Hall Vault Door
   },
 }
 
@@ -1072,7 +1177,7 @@ FurC.MiscItemSources[ver.DRUID] = {
     [192405] = strPack("maormer"), -- Maormer Tent, Raid Leader's
 
     [190945] = strCrown(5000), -- Tree, Seasons of Y'ffre
-    [190940] = strCrown(1000), -- Music Box, Songbird's Paradise",
+    [190940] = strCrown(1000), -- Music Box, Songbird's Paradise
     [190939] = strCrown(1100), -- Music Box, Dawnbreaker's Forging
 
     [190951] = strMultiple(strGem(100), strCrate(crates.STONELORE)), -- Target Spriggan, Robust
@@ -1082,37 +1187,37 @@ FurC.MiscItemSources[ver.DRUID] = {
   },
 
   [src.DROP] = {
-    [192432] = strScry(3, loc.GALEN), -- Shipbuilder's Woodworking Station",
-    [192431] = strScry(loc.GALEN), -- Antique Map of Galen",
-    [192430] = strScry(loc.GALEN), -- Vulk'esh Egg",
+    [192432] = strScry(3, loc.GALEN), -- Shipbuilder's Woodworking Station
+    [192431] = strScry(loc.GALEN), -- Antique Map of Galen
+    [192430] = strScry(loc.GALEN), -- Vulk'esh Egg
 
-    [192404] = tribute, -- Forest Wraith Tribute Tapestry, Large",
-    [192403] = tribute, -- Forest Wraith Tribute Tapestry",
-    [192402] = tribute, -- The Chimera Tribute Tapestry, Large",
-    [192401] = tribute, -- The Chimera Tribute Tapestry",
-    [190938] = strScry(5, loc.GALEN), -- Music Box, Blessings of Stone",
-    [187922] = strScry(loc.FARGRAVE), -- Antique Map of Fargrave",
+    [192404] = tribute, -- Forest Wraith Tribute Tapestry, Large
+    [192403] = tribute, -- Forest Wraith Tribute Tapestry
+    [192402] = tribute, -- The Chimera Tribute Tapestry, Large
+    [192401] = tribute, -- The Chimera Tribute Tapestry
+    [190938] = strScry(5, loc.GALEN), -- Music Box, Blessings of Stone
+    [187922] = strScry(loc.FARGRAVE), -- Antique Map of Fargrave
   },
 }
 
 -- 23 Lost Depths
 FurC.MiscItemSources[ver.DEPTHS] = {
   [src.CROWN] = {
-    [189465] = strCrown(1200), -- Music Box, Gonfalon Galliard,
-    [189464] = strCrown(1000), -- Music Box, Deeproot Dirge,
-    [189463] = strCrown(3500), -- Statue, Bendu Olo,
+    [189465] = strCrown(1200), -- Music Box, Gonfalon Galliard
+    [189464] = strCrown(1000), -- Music Box, Deeproot Dirge
+    [189463] = strCrown(3500), -- Statue, Bendu Olo
 
-    [188344] = strMultiple(strGem(40), strCrate(crates.WRAITH)), -- Y'ffre's Falling Leaves, Autumn,
-    [188343] = strMultiple(strGem(100), strCrate(crates.WRAITH)), -- Moonlight Path Bridge,
-    [188342] = strMultiple(strGem(40), strCrate(crates.WRAITH)), -- Bat Swarm, Domesticated,
-    [188341] = strMultiple(strGem(100), strCrate(crates.WRAITH)), -- Red Diamond Stained Glass,
+    [188344] = strMultiple(strGem(40), strCrate(crates.WRAITH)), -- Y'ffre's Falling Leaves, Autumn
+    [188343] = strMultiple(strGem(100), strCrate(crates.WRAITH)), -- Moonlight Path Bridge
+    [188342] = strMultiple(strGem(40), strCrate(crates.WRAITH)), -- Bat Swarm, Domesticated
+    [188341] = strMultiple(strGem(100), strCrate(crates.WRAITH)), -- Red Diamond Stained Glass
   },
 
   [src.DROP] = {
-    [187807] = tribute_ranked, -- Tribute Trophy, Voidsteel,
-    [187806] = tribute_ranked, -- Tribute Trophy, Quicksilver,
-    [187805] = tribute_ranked, -- Tribute Trophy, Ebony,
-    [187804] = tribute_ranked, -- Tribute Trophy, Orichalcum,
+    [187807] = tribute_ranked, -- Tribute Trophy, Voidsteel
+    [187806] = tribute_ranked, -- Tribute Trophy, Quicksilver
+    [187805] = tribute_ranked, -- Tribute Trophy, Ebony
+    [187804] = tribute_ranked, -- Tribute Trophy, Orichalcum
   },
 }
 
@@ -1173,41 +1278,41 @@ FurC.MiscItemSources[ver.BRETON] = {
 FurC.MiscItemSources[ver.TIDES] = {
   [src.CROWN] = {
     [184250] = strCrown(240), -- Nedic Banner, Ancient,
-    [184249] = strMultiple(strCrown(20), strPack("aquatic")), -- Elkhorn Coral, Branching,
-    [184248] = strMultiple(strCrown(20), strPack("aquatic")), -- Stones, Coral Cluster,
-    [184247] = strMultiple(strCrown(45), strPack("aquatic")), -- Brittle-Vein Coral, Cluster,
-    [184246] = strCrown(130), -- Nedic Bench, Carved,
-    [184245] = strCrown(610), -- Nedic Chandelier, Swords,
-    [184244] = strCrown(110), -- Nedic Sconce, Torch,
-    [184243] = strCrown(640), -- Nedic Brazier, Cold-Flame Pillar,
-    [184242] = strCrown(370), -- Nedic Brazier, Cold-Flame,
-    [184205] = strMultiple(strCrown(120), strPack("aquatic")), -- Sand Drift, Oceanic,
-    [184175] = strCrown(3500), -- Statue, Ancestor-King Auri-El,
-    [184112] = strMultiple(strCrown(170), strPack("aquatic")), -- Lilac Coral, Strong,
-    [184111] = strMultiple(strCrown(170), strPack("aquatic")), -- Lilac Anemone, Sprout,
-    [184110] = strMultiple(strCrown(170), strPack("aquatic")), -- Verdant Anemone, Strong,
-    [184109] = strMultiple(strCrown(90), strPack("aquatic")), -- Kelp Grouping, Robust,
-    [184108] = strMultiple(strCrown(90), strPack("aquatic")), -- Kelp Grouping, Thin,
-    [184107] = strMultiple(strCrown(20), strPack("aquatic")), -- Kelp Stalk, Tall,
-    [184106] = strMultiple(strCrown(20), strPack("aquatic")), -- Kelp Stalk, Plain,
-    [184105] = strMultiple(strCrown(45), strPack("aquatic")), -- Green Algae Coral Formation, Tree Capped,
-    [184104] = strMultiple(strCrown(45), strPack("aquatic")), -- Red Algae Coral Formation, Waving Hands,
-    [184103] = strMultiple(strCrown(45), strPack("aquatic")), -- Red Algae Coral Formation, Tree Antler,
-    [183894] = strPack("aquatic"), -- Nedic Chest, Bubbling,
-    [183893] = strMultiple(strCrown(1500), strPack("aquatic")), -- Bubbles of Aeration,
-    [183892] = strMultiple(strCrown(430), strPack("aquatic")), -- Minnow School,
-    [183891] = strPack("aquatic"), -- Jellyfish Bloom, Heliotrope,
-    [183856] = strPack("aquatic"), -- Target Mudcrab, Robust Coral,
-    [183201] = strCrown(1000), -- Music Box: Bleak Beacon Shanty,
-    [183200] = strCrown(1100), -- Music Box: Wonders of the Shoals,
-    [183198] = strCrown(10), -- Bushes, Withered Cluster,
-    [178477] = strCrown(170), -- Nedic Bookcase, Filled,
-    [120853] = strMultiple(strCrown(430), strGeneric(srcCraft)), -- Stockade,
+    [184249] = strMultiple(strCrown(20), strPack("aquatic")), -- Elkhorn Coral, Branching
+    [184248] = strMultiple(strCrown(20), strPack("aquatic")), -- Stones, Coral Cluster
+    [184247] = strMultiple(strCrown(45), strPack("aquatic")), -- Brittle-Vein Coral, Cluster
+    [184246] = strCrown(130), -- Nedic Bench, Carved
+    [184245] = strCrown(610), -- Nedic Chandelier, Swords
+    [184244] = strCrown(110), -- Nedic Sconce, Torch
+    [184243] = strCrown(640), -- Nedic Brazier, Cold-Flame Pillar
+    [184242] = strCrown(370), -- Nedic Brazier, Cold-Flame
+    [184205] = strMultiple(strCrown(120), strPack("aquatic")), -- Sand Drift, Oceanic
+    [184175] = strCrown(3500), -- Statue, Ancestor-King Auri-El
+    [184112] = strMultiple(strCrown(170), strPack("aquatic")), -- Lilac Coral, Strong
+    [184111] = strMultiple(strCrown(170), strPack("aquatic")), -- Lilac Anemone, Sprout
+    [184110] = strMultiple(strCrown(170), strPack("aquatic")), -- Verdant Anemone, Strong
+    [184109] = strMultiple(strCrown(90), strPack("aquatic")), -- Kelp Grouping, Robust
+    [184108] = strMultiple(strCrown(90), strPack("aquatic")), -- Kelp Grouping, Thin
+    [184107] = strMultiple(strCrown(20), strPack("aquatic")), -- Kelp Stalk, Tall
+    [184106] = strMultiple(strCrown(20), strPack("aquatic")), -- Kelp Stalk, Plain
+    [184105] = strMultiple(strCrown(45), strPack("aquatic")), -- Green Algae Coral Formation, Tree Capped
+    [184104] = strMultiple(strCrown(45), strPack("aquatic")), -- Red Algae Coral Formation, Waving Hands
+    [184103] = strMultiple(strCrown(45), strPack("aquatic")), -- Red Algae Coral Formation, Tree Antler
+    [183894] = strPack("aquatic"), -- Nedic Chest, Bubbling
+    [183893] = strMultiple(strCrown(1500), strPack("aquatic")), -- Bubbles of Aeration
+    [183892] = strMultiple(strCrown(430), strPack("aquatic")), -- Minnow School
+    [183891] = strPack("aquatic"), -- Jellyfish Bloom, Heliotrope
+    [183856] = strPack("aquatic"), -- Target Mudcrab, Robust Coral
+    [183201] = strCrown(1000), -- Music Box: Bleak Beacon Shanty
+    [183200] = strCrown(1100), -- Music Box: Wonders of the Shoals
+    [183198] = strCrown(10), -- Bushes, Withered Cluster
+    [178477] = strCrown(170), -- Nedic Bookcase, Filled
+    [120853] = strMultiple(strCrown(430), strGeneric(srcCraft)), -- Stockade
 
-    [184127] = strMultiple(strCrate(crates.SUNKEN), strGem(40)), -- Tranquility Pond, Botanical,
-    [184126] = strMultiple(strCrate(crates.SUNKEN), strGem(100)), -- Waterfall Fountain, Round,
-    [184072] = strMultiple(strCrate(crates.SUNKEN), strGem(100)), -- Aquarium, Large Abecean Coral,
-    [184071] = strMultiple(strCrate(crates.SUNKEN), strGem(40)), -- Aquarium, Abecean Coral,
+    [184127] = strMultiple(strCrate(crates.SUNKEN), strGem(40)), -- Tranquility Pond, Botanical
+    [184126] = strMultiple(strCrate(crates.SUNKEN), strGem(100)), -- Waterfall Fountain, Round
+    [184072] = strMultiple(strCrate(crates.SUNKEN), strGem(100)), -- Aquarium, Large Abecean Coral
+    [184071] = strMultiple(strCrate(crates.SUNKEN), strGem(40)), -- Aquarium, Abecean Coral
   },
 }
 
@@ -1218,24 +1323,15 @@ FurC.MiscItemSources[ver.DEADL] = {
 	Furnishing packs!
 		Limited Time -
 			intrepid gourmet
-			clockwork god's domain
-			stone and shadow
-			dwarven pipes?
 			island hideaway parlor
 
 		Always in crown store -
-			Summerset Noble's Bathing
-			Summerset Noble's Parlor
 			Formal Garden Shrubbery
 			Tamrielic Household Necessities
-			Trees of Tamriel Garden
-			Craglorn Multicultural Bedroom
 			Home in Nibenay Bedroom
 			Summerset Noble's Bedroom
-			Craglorn Multicultural Kitchen
 			Niben Valley Kitchen
 			Summerset Noble's Kitchen
-			Craglorn Multicultural Parlor
 			Cyrodilic Parlor
 
 	 Can I add a separate crown source for housing editor vs normal crown store? Seems like it should be fairly easy. Model after SI_FURC_SRC_CROWNSTORE and strCrown
@@ -1248,130 +1344,129 @@ FurC.MiscItemSources[ver.DEADL] = {
 	]]
 
   [src.DROP] = {
-    [178694] = ev_blackwood, -- Target Ogrim,
-    [166960] = "From combining Stone Husk Fragments from the Labyrinthian in Western Skyrim", -- Target Stone Husk,
+    [178694] = ev_blackwood, -- Target Ogrim
+    [166960] = "From combining Stone Husk Fragments from the Labyrinthian in Western Skyrim", -- Target Stone Husk
 
-    [182302] = strScry(3, loc.DEADLANDS), -- Daedric Enchanting Station,
-    [175728] = strScry(loc.BLACKWOOD), -- Z'en Idol,
-    [175729] = strScry(loc.BLACKWOOD), -- Kothringi Tidal Canoe,
-    [178459] = strScry(loc.BLACKWOOD), -- Antique Map of Blackwood,
-    [183196] = strScry(loc.DEADLANDS), -- Antique Map of the Deadlands,
-    [171431] = strScry(loc.REACH), -- Antique Map of the Reach,
+    [182302] = strScry(3, loc.DEADLANDS), -- Daedric Enchanting Station
+    [175728] = strScry(loc.BLACKWOOD), -- Z'en Idol
+    [175729] = strScry(loc.BLACKWOOD), -- Kothringi Tidal Canoe
+    [178459] = strScry(loc.BLACKWOOD), -- Antique Map of Blackwood
+    [183196] = strScry(loc.DEADLANDS), -- Antique Map of the Deadlands
+    [171431] = strScry(loc.REACH), -- Antique Map of the Reach
     [165992] = strScry(loc.WSKYRIM), -- Antique Map of Western Skyrim
     [163431] = strScry(3, loc.ANY), -- Music Box, Aldmeri Symphonia "in dreams and memories"
-    [182303] = strScry(loc.DEADLANDS), -- Dagon's Scalding Gibbet,
+    [182303] = strScry(loc.DEADLANDS), -- Dagon's Scalding Gibbet
     [165863] = strScry(loc.GRAHTWOOD), -- St. Alessia, Paravant
 
-    [178442] = chests_blackwood, -- Idylls of Gideon Painting, Wood,
-    [178443] = chests_blackwood, -- Path of Eternity Painting, Wood,
-    [178444] = chests_blackwood, -- A Study in Structure Painting, Wood,
-    [178445] = chests_blackwood, -- Leyawiin at Night Painting, Wood,
-    [178446] = chests_blackwood, -- Fire-Shaped Shadows Painting, Silver,
-    [178447] = chests_blackwood, -- Music in Repose Painting, Silver,
-    [178448] = chests_blackwood, -- Undying Light Painting, Silver,
-    [178449] = chests_blackwood, -- The Legacy of Kaladas Painting, Wood,
-    [178450] = chests_blackwood, -- Harvest's Gifts Painting, Wood,
-    [178451] = chests_blackwood, -- Reverence's Mandate Painting, Wood,
+    [178442] = chests_blackwood, -- Idylls of Gideon Painting, Wood
+    [178443] = chests_blackwood, -- Path of Eternity Painting, Wood
+    [178444] = chests_blackwood, -- A Study in Structure Painting, Wood
+    [178445] = chests_blackwood, -- Leyawiin at Night Painting, Wood
+    [178446] = chests_blackwood, -- Fire-Shaped Shadows Painting, Silver
+    [178447] = chests_blackwood, -- Music in Repose Painting, Silver
+    [178448] = chests_blackwood, -- Undying Light Painting, Silver
+    [178449] = chests_blackwood, -- The Legacy of Kaladas Painting, Wood
+    [178450] = chests_blackwood, -- Harvest's Gifts Painting, Wood
+    [178451] = chests_blackwood, -- Reverence's Mandate Painting, Wood
     [139076] = chests_summerset, -- Painting of Ancient Road, Refined
     [165829] = chests_elsweyr, -- Before the Trade Gathering Painting, Wood
     [165830] = chests_elsweyr, -- Elsweyr Vista Painting, Wood
     [165831] = chests_elsweyr, -- Catnap Painting, Gold
     [165832] = chests_elsweyr, -- Elsweyr Landscape Painting, Gold
     [165833] = chests_elsweyr, -- Elsweyr Dome Architecture Painting, Gold
-    [165835] = chests_elsweyr, -- Painting of Khajiiti Arch, Gold,
+    [165835] = chests_elsweyr, -- Painting of Khajiiti Arch, Gold
     [139075] = chests_summerset, -- Painting of Sinkhole, Refined
 
     [94100] = strMultiple(strCrown(50), strGeneric(srcLvlup)), -- Imperial BookCase, Swirled
     [145595] = strGeneric(srcHarvest, strSrc("src", getItemName(145595)), nil, loc.MURKMIRE), -- Scuttlebloom
-    [147644] = frostvault, -- Palisade, Crude,
-    [147642] = frostvault, -- Boar Totem, Balance,
-    [147643] = frostvault, -- Boar Totem, Solitary,
+    [147644] = frostvault, -- Palisade, Crude
+    [147642] = frostvault, -- Boar Totem, Balance
+    [147643] = frostvault, -- Boar Totem, Solitary
     [163432] = string.format("%s %s", formatAchievement(2669, true), strSrc("loc", loc.WSKYRIM)), -- Music Box, Merry Mead Maker ; Achievement
     [166027] = strGeneric(srcDrop, "chaurus mobs", nil, loc.BLACKREACH_GMC), -- Chaurus Egg, Dormant
 
-    [134403] = strGeneric(srcSteal, "from wardrobes", nil, loc.HEWSBANE), --Spool, Red Thread,
-
-    [178472] = "Given to members of the Dauntless Bananas Guild as part of a 2020 contest", -- Guild Banner, Dauntless Bananas,
-    [178498] = "Given to members of the Dauntless Bananas Guild as part of a 2020 contest", -- A Tale of the Dauntless Bananas,
+    [134403] = strGeneric(srcSteal, "from wardrobes", nil, loc.HEWSBANE), -- Spool, Red Thread
   },
 
   [src.CROWN] = {
-    [171857] = strCrown(3000), -- Aetherial Well,
+    [171857] = strCrown(3000), -- Aetherial Well
 
     -- ==================== Crown Housing Editor ==============================
-    [182915] = strCrown(260), -- Fargrave Container Plants, Long,
-    [182916] = strCrown(260), -- Fargrave Container Plant, Large Square,
-    [182917] = strCrown(260), -- Fargrave Container Plants, Large Round,
-    [182914] = strCrown(140), -- Fargrave Container Plants,
-    [182913] = strCrown(140), -- Fargrave Container Plants, Small,
-    [141832] = strCrown(70), -- Tree, Robust Fig,
-    [141833] = strCrown(150), -- Tree, Ancient Fig,
-    [141834] = strCrown(170), -- Tree, Towering Fig,
-    [141835] = strCrown(70), -- Tree, Whorled Fig,
-    [181532] = strCrown(3600), -- Leyawiin Fountain, Round Grand,
-    [182281] = strCrown(2300), -- Fargrave Fountain,
-    [118148] = strMultiple(strCrown(80), mischouse), --Firelogs, Ashen,
-    [118146] = strMultiple(strCrown(80), mischouse), --Firelogs, Flaming,
-    [118147] = strMultiple(strCrown(80), mischouse), --Firelogs, Charred,
-    [167294] = strMultiple(strCrown(20), mischouse), -- Boulder, Jagged Stone,
-    [118350] = strCrown(25), --Box of Tangerines,
-    [118352] = strCrown(25), --Box of Oranges,
-    [118353] = strCrown(25), --Box of Grapes,
-    [118354] = strCrown(25), --Box of Fruit,
-    [134278] = strCrown(3500), --Clockwork Alchemy Station,
-    [134279] = strCrown(3500), --Clockwork Blacksmithing Station,
-    [134282] = strCrown(3500), --Clockwork Woodworking Station,
-    [134281] = strCrown(3500), --Clockwork Clothing Station,
-    [134277] = strCrown(3000), --Clockwork Provisioning Station,
-    [134276] = strCrown(4500), --Clockwork Dye Station,
-    [134280] = strCrown(3500), --Clockwork Enchanting Station,
+    [182915] = strCrown(260), -- Fargrave Container Plants, Long
+    [182916] = strCrown(260), -- Fargrave Container Plant, Large Square
+    [182917] = strCrown(260), -- Fargrave Container Plants, Large Round
+    [182914] = strCrown(140), -- Fargrave Container Plants
+    [182913] = strCrown(140), -- Fargrave Container Plants, Small
+    [141832] = strCrown(70), -- Tree, Robust Fig
+    [141833] = strCrown(150), -- Tree, Ancient Fig
+    [141834] = strCrown(170), -- Tree, Towering Fig
+    [141835] = strCrown(70), -- Tree, Whorled Fig
+    [181532] = strCrown(3600), -- Leyawiin Fountain, Round Grand
+    [182281] = strCrown(2300), -- Fargrave Fountain
+    [118148] = strMultiple(strCrown(80), mischouse), --Firelogs, Ashen
+    [118146] = strMultiple(strCrown(80), mischouse), --Firelogs, Flaming
+    [118147] = strMultiple(strCrown(80), mischouse), --Firelogs, Charred
+    [167294] = strMultiple(strCrown(20), mischouse), -- Boulder, Jagged Stone
+    [118350] = strCrown(25), --Box of Tangerines
+    [118352] = strCrown(25), --Box of Oranges
+    [118353] = strCrown(25), --Box of Grapes
+    [118354] = strCrown(25), --Box of Fruit
+    [134278] = strCrown(3500), --Clockwork Alchemy Station
+    [134279] = strCrown(3500), --Clockwork Blacksmithing Station
+    [134282] = strCrown(3500), --Clockwork Woodworking Station
+    [134281] = strCrown(3500), --Clockwork Clothing Station
+    [134277] = strCrown(3000), --Clockwork Provisioning Station
+    [134276] = strCrown(4500), --Clockwork Dye Station
+    [134280] = strCrown(3500), --Clockwork Enchanting Station
     [139064] = strMultiple(strCrown(20), mischouse), -- Flowers, Hummingbird Mint
 	[182921] = strMultiple(strCrown(490), getHouseString(10051)), -- Fargrave Canopy, Large
-    [118175] = strCrown(170), --Shutters, Hinged Lattice,
-    [118174] = strCrown(170), --Shutters, Blue Lattice,
-    [118173] = strCrown(170), --Shutters, Blue Hinged,
-    [118172] = strCrown(170), --Shutters, Blue Slatted,
-    [118171] = strCrown(170), --Shutters, Blue Hatch,
-    [118170] = strCrown(170), --Shutters, Blue Double,
-    [118169] = strCrown(170), --Shutters, Blue Single,
+    [118175] = strCrown(170), --Shutters, Hinged Lattice
+    [118174] = strCrown(170), --Shutters, Blue Lattice
+    [118173] = strCrown(170), --Shutters, Blue Hinged
+    [118172] = strCrown(170), --Shutters, Blue Slatted
+    [118171] = strCrown(170), --Shutters, Blue Hatch
+    [118170] = strCrown(170), --Shutters, Blue Double
+    [118169] = strCrown(170), --Shutters, Blue Single
     [141845] = strCrown(370), -- Mushrooms, Climbing Ambershine
     [141846] = strCrown(370), -- Mushrooms, Ambershine Cluster
     [141844] = strCrown(70), -- Plants, Amber Spadeleaf Cluster
-    [182918] = strCrown(160), -- Boulder, Weathered Fargrave,
-    [182919] = strCrown(160), -- Rocks, Fargrave Cluster,
-    [141841] = strCrown(40), -- Tree Ferns, Cluster,
-    [141842] = strCrown(10), -- Tree Ferns, Juvenile Cluster,
-    [171817] = strMultiple(strCrown(730), mischouse), -- Ayleid Chandelier, Caged,
-    [181602] = strCrown(30), -- Bush, Low Greenleaf Cluster,
-    [181604] = strCrown(30), -- Bush, Snow Lillies,
-    [182935] = strCrown(140), -- Stump, Charred Deadlands,
-    [182934] = strCrown(140), -- Log, Charred Deadlands,
-    [182933] = strCrown(260), -- Tree, Charred Large Deadlands,
-    [182932] = strCrown(260), -- Tree, Charred Large Twisted Deadlands,
-    [182931] = strCrown(140), -- Tree, Charred Deadlands,
-    [182930] = strCrown(110), -- Plant, Pixas,
-    [182929] = strCrown(110), -- Plant, Hynvik,
-    [125581] = strCrown(25), -- Mushroom, Buttercake,
+    [182918] = strCrown(160), -- Boulder, Weathered Fargrave
+    [182919] = strCrown(160), -- Rocks, Fargrave Cluster
+    [141841] = strCrown(40), -- Tree Ferns, Cluster
+    [141842] = strCrown(10), -- Tree Ferns, Juvenile Cluster
+    [171817] = strMultiple(strCrown(730), mischouse), -- Ayleid Chandelier, Caged
+    [181602] = strCrown(30), -- Bush, Low Greenleaf Cluster
+    [181604] = strCrown(30), -- Bush, Snow Lillies
+    [182935] = strCrown(140), -- Stump, Charred Deadlands
+    [182934] = strCrown(140), -- Log, Charred Deadlands
+    [182933] = strCrown(260), -- Tree, Charred Large Deadlands
+    [182932] = strCrown(260), -- Tree, Charred Large Twisted Deadlands
+    [182931] = strCrown(140), -- Tree, Charred Deadlands
+    [182930] = strCrown(110), -- Plant, Pixas
+    [182929] = strCrown(110), -- Plant, Hynvik
+    [125581] = strCrown(25), -- Mushroom, Buttercake
+	[182922] = strCrown(40), -- Vines, Thornpinch
+	[182925] = strCrown(160), -- Rocks, Deadlands Cluster
 
     --======================= Limited Time Crown Store Items ==========================
     [156645] = strCrown(4000), -- Statue, Kaalgrontiid's Ascent
     [159439] = strCrown(3500), -- Statue, Pride of Alkosh Hero
-    [147646] = strCrown(3000), -- Meridia, Lady of Infinite Energies,
+    [147646] = strCrown(3000), -- Meridia, Lady of Infinite Energies
     [165991] = strCrown(3500), -- Statue, Vampiric Sovereign
     [147747] = strCrown(2500), -- Cadwell's Astounding Portal
     [147746] = strCrown(1400), -- Bust: Abnur Tharn
 
     --======================= Music Boxes ===========================================
     [156554] = strCrown(800), -- Music Box, A Frost Melt Melody
-    [171943] = strCrown(1000), -- Music Box, The Liberation of Leyawiin,
+    [171943] = strCrown(1000), -- Music Box, The Liberation of Leyawiin
     [142235] = strCrown(800), -- Music Box, Flickering Shadows
-    [171543] = strCrown(1000), -- Music Box, Feast of All Flames,
-    [171944] = strCrown(1000), -- Music Box, The Mirefrog's Hymn,
-    [171542] = strCrown(800), -- Music Box, Farewell to Nenalata,
-    [167428] = strCrown(1000), -- Music Box, Mother Morrowind's Sacred Lullaby,
-    [167429] = strCrown(1000), -- Music Box, Never Fall, Never Die,
-    [167007] = strCrown(1000), -- Music Box, Subterranean Sonata,
-    [167006] = strCrown(1000), -- Music Box, Hymn of Five-Hundred Axes,
+    [171543] = strCrown(1000), -- Music Box, Feast of All Flames
+    [171944] = strCrown(1000), -- Music Box, The Mirefrog's Hymn
+    [171542] = strCrown(800), -- Music Box, Farewell to Nenalata
+    [167428] = strCrown(1000), -- Music Box, Mother Morrowind's Sacred Lullaby
+    [167429] = strCrown(1000), -- Music Box, Never Fall, Never Die
+    [167007] = strCrown(1000), -- Music Box, Subterranean Sonata
+    [167006] = strCrown(1000), -- Music Box, Hymn of Five-Hundred Axes
     [153634] = strCrown(800), -- Music Box, Diamond Melody
     [163428] = strCrown(800), -- Music Box, The Shadows Stir
     [163429] = strCrown(1000), -- Music Box, Enigmas of the Elder Way
@@ -1408,37 +1503,37 @@ FurC.MiscItemSources[ver.DEADL] = {
     [134971] = strMultiple(strCrown(100), strPack("heart")), -- Candles, Votive Group
 
     [134879] = strPack("hubtreasure"), -- Hubalajad's Reflection
-    [134880] = strPack("hubtreasure"), -- Ra Gada Reliquary, Miniature Palace,
-    [134881] = strPack("hubtreasure"), -- In Defense of Prince Hubalajad,
-    [134882] = strMultiple(strCrown(90), strPack("hubtreasure")), -- Gold Drakes, Pristine,
-    [134883] = strMultiple(strCrown(360), strPack("hubtreasure")), -- Ra Gada Funerary Statue, Stone Cat,
-    [134884] = strMultiple(strCrown(360), strPack("hubtreasure")), -- Ra Gada Funerary Statue, Gilded Cat,
-    [134885] = strMultiple(strCrown(360), strPack("hubtreasure")), -- Ra Gada Funerary Statue, Gilded Ibis,
-    [134886] = strMultiple(strCrown(360), strPack("hubtreasure")), -- Ra Gada Funerary Statue, Gilded Servant,
-    [134887] = strMultiple(strCrown(2000), strPack("hubtreasure")), -- Ra Gada Guardian Statue, Lion Ibis,
-    [134888] = strMultiple(strCrown(2000), strPack("hubtreasure")), -- Ra Gada Guardian Statue, Winged Bull,
-    [134889] = strMultiple(strCrown(2000), strPack("hubtreasure")), -- Ra Gada Guardian Statue, Riding Camel,
-    [117901] = strMultiple(strCrown(140), strPack("hubtreasure")), --Redguard Amphora, Gilded,
-    [117894] = strMultiple(strCrown(240), strPack("cragbed"), strPack("hubtreasure")), --Redguard Divider, Gilded
-    [117904] = strMultiple(strCrown(190), strPack("hubtreasure")), --Redguard Trunk, Garish,
-    [134823] = strPack("hubtreasure"), -- Target Mournful Aegis,
+    [134880] = strPack("hubtreasure"), -- Ra Gada Reliquary, Miniature Palace
+    [134881] = strPack("hubtreasure"), -- In Defense of Prince Hubalajad
+    [134882] = strMultiple(strCrown(90), strPack("hubtreasure")), -- Gold Drakes, Pristine
+    [134883] = strMultiple(strCrown(360), strPack("hubtreasure")), -- Ra Gada Funerary Statue, Stone Cat
+    [134884] = strMultiple(strCrown(360), strPack("hubtreasure")), -- Ra Gada Funerary Statue, Gilded Cat
+    [134885] = strMultiple(strCrown(360), strPack("hubtreasure")), -- Ra Gada Funerary Statue, Gilded Ibis
+    [134886] = strMultiple(strCrown(360), strPack("hubtreasure")), -- Ra Gada Funerary Statue, Gilded Servant
+    [134887] = strMultiple(strCrown(2000), strPack("hubtreasure")), -- Ra Gada Guardian Statue, Lion Ibis
+    [134888] = strMultiple(strCrown(2000), strPack("hubtreasure")), -- Ra Gada Guardian Statue, Winged Bull
+    [134889] = strMultiple(strCrown(2000), strPack("hubtreasure")), -- Ra Gada Guardian Statue, Riding Camel
+    [117901] = strMultiple(strCrown(140), strPack("hubtreasure")), -- Redguard Amphora, Gilded
+    [117894] = strMultiple(strCrown(240), strPack("cragbed"), strPack("hubtreasure")), -- Redguard Divider, Gilded
+    [117904] = strMultiple(strCrown(190), strPack("cragbed"), strPack("hubtreasure")), -- Redguard Trunk, Garish
+    [134823] = strPack("hubtreasure"), -- Target Mournful Aegis
 
     [117906] = strMultiple(ev_elsweyr, strPack("cragknicks")), -- Redguard Urn, Gilded
     [121053] = strMultiple(strCrown(170), strPack("cragknicks"), strPack("hubtreasure")), -- Jar, Gilded Canopic
-    [121046] = strPack("cragknicks"), -- Cheeses of Tamriel,
-    [121049] = strPack("cragknicks"), -- Parcels, Wrapped,
+    [121046] = strPack("cragknicks"), -- Cheeses of Tamriel
+    [121049] = strPack("cragknicks"), -- Parcels, Wrapped
     [120417] = strPack("cragknicks"), -- Redguard Barrel, Corded
-    [118490] = strPack("cragknicks"), --Scroll, Rolled,
-    [134890] = strPack("dibella"), -- Dibella, Lady of Love,
+    [118490] = strPack("cragknicks"), --Scroll, Rolled
+    [134890] = strPack("dibella"), -- Dibella, Lady of Love
     [134848] = strMultiple(strCrown(1500), strPack("dibella"), strPack("oasis")), -- Blue Butterfly Flock
-    [134961] = strPack("dibella"), -- Dibella's Mysteries and Revelations,
-    [134899] = strMultiple(strCrown(45), strPack("dibella")), -- Flower Spray, Crimson Daisies,
-    [134901] = strMultiple(strCrown(45), strPack("dibella")), -- Flower Spray, Starlight Daisies,
+    [134961] = strPack("dibella"), -- Dibella's Mysteries and Revelations
+    [134899] = strMultiple(strCrown(45), strPack("dibella")), -- Flower Spray, Crimson Daisies
+    [134901] = strMultiple(strCrown(45), strPack("dibella")), -- Flower Spray, Starlight Daisies
     [134896] = strMultiple(strCrown(45), strPack("dibella")), -- Flower, Lover's Lily
-    [134898] = strMultiple(strCrown(45), strPack("dibella")), -- Flowers, Midnight Sage,
-    [134900] = strMultiple(strCrown(20), strPack("dibella")), -- Flowers, Red Poppy,
-    [134902] = strMultiple(strCrown(20), strPack("dibella")), -- Flowers, Violet Bellflower,
-    [134903] = strMultiple(strCrown(45), strPack("dibella")), -- Flowers, Midnight Glory,
+    [134898] = strMultiple(strCrown(45), strPack("dibella")), -- Flowers, Midnight Sage
+    [134900] = strMultiple(strCrown(20), strPack("dibella")), -- Flowers, Red Poppy
+    [134902] = strMultiple(strCrown(20), strPack("dibella")), -- Flowers, Violet Bellflower
+    [134903] = strMultiple(strCrown(45), strPack("dibella")), -- Flowers, Midnight Glory
     [94163] = strMultiple(strCrown(290), strPack("dibella")), --Imperial Bench, Scrollwork
     [134849] = strMultiple(strCrown(1500), strPack("dibella"), strPack("oasis")), -- Monarch Butterfly Flock
     [134891] = strMultiple(strCrown(2500), strPack("dibella")), -- Pergola, Festive Flowers
@@ -1451,57 +1546,57 @@ FurC.MiscItemSources[ver.DEADL] = {
     [134894] = strMultiple(strCrown(20), strPack("dibella")), -- Wildflowers, Yellow and Orange
     [134897] = strMultiple(strCrown(45), strPack("dibella")), -- Vine Curtain, Festive Flowers
 
-    [181547] = strMultiple(strCrown(1000), strPack("mermaid")), -- Leyawiin Fountain, Corner,
-    [181486] = strMultiple(strCrown(2700), strPack("mermaid")), -- Leyawiin Fountain, Round,
-    [181599] = strMultiple(strCrown(1100), strPack("mermaid")), -- Leyawiin Fountain, Tall,
-    [181485] = strPack("mermaid"), -- Statue, Mermaid of Anvil,
-    [181435] = strMultiple(strCrown(1500), strPack("mermaid")), -- Steam of Repose,
+    [181547] = strMultiple(strCrown(1000), strPack("mermaid")), -- Leyawiin Fountain, Corner
+    [181486] = strMultiple(strCrown(2700), strPack("mermaid")), -- Leyawiin Fountain, Round
+    [181599] = strMultiple(strCrown(1100), strPack("mermaid")), -- Leyawiin Fountain, Tall
+    [181485] = strPack("mermaid"), -- Statue, Mermaid of Anvil
+    [181435] = strMultiple(strCrown(1500), strPack("mermaid")), -- Steam of Repose
 
-    [175695] = strMultiple(strCrown(510), strPack("zeni")), -- Leyawiin Shrine of the Eight,
-    [175696] = strMultiple(strCrown(410), strPack("zeni")), -- Leyawiin Tapestry, Divines Horizontal,
-    [175697] = strMultiple(strCrown(410), strPack("zeni")), -- Leyawiin Tapestry, Divines Vertical,
-    [175698] = strPack("zeni"), -- Zenithar, God of Work and Commerce,
-    [175699] = strMultiple(strPack("zeni"), strPack("windows")), -- Stained Glass of Zenithar,
+    [175695] = strMultiple(strCrown(510), strPack("zeni")), -- Leyawiin Shrine of the Eight
+    [175696] = strMultiple(strCrown(410), strPack("zeni")), -- Leyawiin Tapestry, Divines Horizontal
+    [175697] = strMultiple(strCrown(410), strPack("zeni")), -- Leyawiin Tapestry, Divines Vertical
+    [175698] = strPack("zeni"), -- Zenithar, God of Work and Commerce
+    [175699] = strMultiple(strPack("zeni"), strPack("windows")), -- Stained Glass of Zenithar
 
-    [181483] = strPack("windows"), -- Stained Glass of Akatosh,
-    [181484] = strPack("windows"), -- Stained Glass of Julianos,
-    [181482] = strPack("windows"), -- Stained Glass of Arkay,
-    [181481] = strPack("windows"), -- Stained Glass of Dibella,
-    [181480] = strPack("windows"), -- Stained Glass of Stendarr,
-    [181479] = strPack("windows"), -- Stained Glass of Mara,
-    [181478] = strPack("windows"), -- Stained Glass of Kynareth,
+    [181483] = strPack("windows"), -- Stained Glass of Akatosh
+    [181484] = strPack("windows"), -- Stained Glass of Julianos
+    [181482] = strPack("windows"), -- Stained Glass of Arkay
+    [181481] = strPack("windows"), -- Stained Glass of Dibella
+    [181480] = strPack("windows"), -- Stained Glass of Stendarr
+    [181479] = strPack("windows"), -- Stained Glass of Mara
+    [181478] = strPack("windows"), -- Stained Glass of Kynareth
 
-    [182292] = strMultiple(strCrown(260), strPack("ambitions")), -- Deadlands Base, Tower,
-    [182291] = strMultiple(strCrown(1500), strPack("ambitions")), -- Deadlands Window, Fireglass,
-    [182290] = strMultiple(strCrown(140), strPack("ambitions")), -- Deadlands Grate, Large,
-    [182289] = strMultiple(strCrown(140), strPack("ambitions")), -- Deadlands Wall, Etched,
-    [182295] = strMultiple(strCrown(510), strPack("ambitions")), -- Deadlands Firepit, Large,
-    [182294] = strMultiple(strCrown(770), strPack("ambitions")), -- Deadlands Platform, Tower,
-    [182293] = strMultiple(strCrown(260), strPack("ambitions")), -- Deadlands Stairway, Tower,
-    [182912] = strMultiple(strCrown(270), strPack("ambitions")), -- Deadlands Pillar, Tall,
+    [182292] = strMultiple(strCrown(260), strPack("ambitions")), -- Deadlands Base, Tower
+    [182291] = strMultiple(strCrown(1500), strPack("ambitions")), -- Deadlands Window, Fireglass
+    [182290] = strMultiple(strCrown(140), strPack("ambitions")), -- Deadlands Grate, Large
+    [182289] = strMultiple(strCrown(140), strPack("ambitions")), -- Deadlands Wall, Etched
+    [182295] = strMultiple(strCrown(510), strPack("ambitions")), -- Deadlands Firepit, Large
+    [182294] = strMultiple(strCrown(770), strPack("ambitions")), -- Deadlands Platform, Tower
+    [182293] = strMultiple(strCrown(260), strPack("ambitions")), -- Deadlands Stairway, Tower
+    [182912] = strMultiple(strCrown(270), strPack("ambitions")), -- Deadlands Pillar, Tall
 
-    [147585] = strMultiple(strCrown(40), strPack("forge")), -- Dwarven Gear, Large Spokes,
-    [147586] = strMultiple(strCrown(50), strPack("forge")), -- Dwarven Hub, Sentry Wheel,
-    [147587] = strMultiple(strCrown(40), strPack("forge")), -- Dwarven Gear, Large Open,
-    [147588] = strMultiple(strCrown(220), strPack("forge")), -- Dwarven Conduit, Rounded,
-    [147589] = strMultiple(strCrown(150), strPack("forge")), -- Dwarven Brazier, Open,
-    [147590] = strPack("forge"), -- Dwarven Bust, Forge-Lord,
-    [147664] = strMultiple(strCrown(270), strPack("forge")), -- Dwarven Dais, Conduit,
-    [147574] = strPack("forge"), -- Dwarven Frieze, Wrathstone,
-    [147575] = strPack("forge"), -- Dwarven Frieze, Power in Twain,
-    [147576] = strPack("forge"), -- Dwarven Frieze, Colossal Power,
-    [147577] = strMultiple(strCrown(920), strPack("forge")), -- Dwarven Platform, Fan,
-    [147578] = strMultiple(strCrown(1400), strPack("forge")), -- Dwarven Throne, Conduit,
-    [147579] = strMultiple(strCrown(240), strPack("forge")), -- Dwarven Gearwork, Perpetual,
-    [147580] = strMultiple(strCrown(310), strPack("forge")), -- Dwarven Lamps, Heavy,
-    [147581] = strMultiple(strCrown(350), strPack("forge")), -- Dwarven Table, Heavy Workbench,
-    [147582] = strMultiple(strCrown(50), strPack("forge")), -- Dwarven Part, Sentry Head,
-    [147583] = strMultiple(strCrown(220), strPack("forge")), -- Dwarven Valve, Sealed,
-    [147584] = strMultiple(strCrown(160), strPack("forge")), -- Dwarven Rack, Spider Legs,
+    [147585] = strMultiple(strCrown(40), strPack("forge")), -- Dwarven Gear, Large Spokes
+    [147586] = strMultiple(strCrown(50), strPack("forge")), -- Dwarven Hub, Sentry Wheel
+    [147587] = strMultiple(strCrown(40), strPack("forge")), -- Dwarven Gear, Large Open
+    [147588] = strMultiple(strCrown(220), strPack("forge")), -- Dwarven Conduit, Rounded
+    [147589] = strMultiple(strCrown(150), strPack("forge")), -- Dwarven Brazier, Open
+    [147590] = strPack("forge"), -- Dwarven Bust, Forge-Lord
+    [147664] = strMultiple(strCrown(270), strPack("forge")), -- Dwarven Dais, Conduit
+    [147574] = strPack("forge"), -- Dwarven Frieze, Wrathstone
+    [147575] = strPack("forge"), -- Dwarven Frieze, Power in Twain
+    [147576] = strPack("forge"), -- Dwarven Frieze, Colossal Power
+    [147577] = strMultiple(strCrown(920), strPack("forge")), -- Dwarven Platform, Fan
+    [147578] = strMultiple(strCrown(1400), strPack("forge")), -- Dwarven Throne, Conduit
+    [147579] = strMultiple(strCrown(240), strPack("forge")), -- Dwarven Gearwork, Perpetual
+    [147580] = strMultiple(strCrown(310), strPack("forge")), -- Dwarven Lamps, Heavy
+    [147581] = strMultiple(strCrown(350), strPack("forge")), -- Dwarven Table, Heavy Workbench
+    [147582] = strMultiple(strCrown(50), strPack("forge")), -- Dwarven Part, Sentry Head
+    [147583] = strMultiple(strCrown(220), strPack("forge")), -- Dwarven Valve, Sealed
+    [147584] = strMultiple(strCrown(160), strPack("forge")), -- Dwarven Rack, Spider Legs
 
     [130226] = strMultiple(strCrown(85), strPack("coven")), -- Carcass, Hanging Deer
-    [131424] = strPack("coven"), -- Fogs of the Hag Fen,
-    [130220] = strMultiple(strCrown(3300), strPack("coven")), -- Hagraven Altar,
+    [131424] = strPack("coven"), -- Fogs of the Hag Fen
+    [130220] = strMultiple(strCrown(3300), strPack("coven")), -- Hagraven Altar
     [130222] = strMultiple(strCrown(260), strPack("coven")), -- Hagraven Totem, Skull
     [131423] = strMultiple(strCrown(750), strPack("coven")), -- Mists of the Hag Fen
     [130221] = strMultiple(strCrown(430), strPack("coven")), -- Reachmen Cage, Sturdy
@@ -1514,35 +1609,35 @@ FurC.MiscItemSources[ver.DEADL] = {
     [130229] = strMultiple(strCrown(290), strPack("coven")), -- Tree, Wretched Cypress
     [130230] = strMultiple(strCrown(90), strPack("coven")), -- Stump, Wretched Cypress
     [130247] = strMultiple(strCrown(290), strPack("coven")), -- Tree, Fetid Cypress
-    [130228] = strPack("coven"), -- The Witches of Hag Fen,
-    [130215] = strPack("coven"), -- Witches' Cauldron, Provisioning,
-    [130334] = strMultiple(strCrown(260), strPack("coven")), -- Witches Totem, Antler Charms,
+    [130228] = strPack("coven"), -- The Witches of Hag Fen
+    [130215] = strPack("coven"), -- Witches' Cauldron, Provisioning
+    [130334] = strMultiple(strCrown(260), strPack("coven")), -- Witches Totem, Antler Charms
 
-    [134870] = strPack("tyrants"), -- Ancient Nord Chest, Dragon Crest,
-    [134871] = strPack("tyrants"), -- Ancient Nord Urn, Dragon Crest,
-    [134873] = strPack("tyrants"), -- Ancient Nord Bookshelf, Wide,
-    [134874] = strPack("tyrants"), -- Ancient Nord Bookshelf, Narrow,
-    [134875] = strPack("tyrants"), -- Ancient Nord Funerary Jar, Linked Rings,
-    [134876] = strPack("tyrants"), -- Ancient Nord Funerary Jar, Crimson Sash,
-    [134877] = strPack("tyrants"), -- Ancient Nord Funerary Jar, Dragon Figure,
-    [134878] = strPack("tyrants"), -- Ancient Nord Funerary Jar, Dragon Crest,
+    [134870] = strPack("tyrants"), -- Ancient Nord Chest, Dragon Crest
+    [134871] = strPack("tyrants"), -- Ancient Nord Urn, Dragon Crest
+    [134873] = strPack("tyrants"), -- Ancient Nord Bookshelf, Wide
+    [134874] = strPack("tyrants"), -- Ancient Nord Bookshelf, Narrow
+    [134875] = strPack("tyrants"), -- Ancient Nord Funerary Jar, Linked Rings
+    [134876] = strPack("tyrants"), -- Ancient Nord Funerary Jar, Crimson Sash
+    [134877] = strPack("tyrants"), -- Ancient Nord Funerary Jar, Dragon Figure
+    [134878] = strPack("tyrants"), -- Ancient Nord Funerary Jar, Dragon Crest
     [134872] = strPack("tyrants"), -- Ancient Nord Brazier, Dragon Crest
     [134863] = strPack("tyrants"), -- Ancient Nord Sconce, Dragon Crest
-    [134862] = strPack("tyrants"), -- Ancient Nord Runestone, Memorial,
-    [134856] = strPack("tyrants"), -- Dragon Skeleton, Mid-Flight,
-    [134857] = strPack("tyrants"), -- Dragon Priest Frieze: Triumph,
-    [134858] = strPack("tyrants"), -- Dragon Priest Frieze: Exodus,
-    [134859] = strPack("tyrants"), -- Dragon Priest Frieze: Restoration,
-    [134860] = strPack("tyrants"), -- Dragon Priest Frieze: Ascension,
-    [134861] = strPack("tyrants"), -- The History of Zaan The Scalecaller,
-    [134864] = strPack("tyrants"), -- Dragon Cranium, Ancient,
-    [134865] = strPack("tyrants"), -- Unidentified Bones, Gargantuan,
-    [134866] = strPack("tyrants"), -- Lamia Cranium, Ancient,
-    [134867] = strPack("tyrants"), -- Argonian Skull, Complete,
-    [134868] = strPack("tyrants"), -- Khajiit Skull, Complete,
-    [134869] = strPack("tyrants"), -- Orc Skull, Complete,
+    [134862] = strPack("tyrants"), -- Ancient Nord Runestone, Memorial
+    [134856] = strPack("tyrants"), -- Dragon Skeleton, Mid-Flight
+    [134857] = strPack("tyrants"), -- Dragon Priest Frieze: Triumph
+    [134858] = strPack("tyrants"), -- Dragon Priest Frieze: Exodus
+    [134859] = strPack("tyrants"), -- Dragon Priest Frieze: Restoration
+    [134860] = strPack("tyrants"), -- Dragon Priest Frieze: Ascension
+    [134861] = strPack("tyrants"), -- The History of Zaan The Scalecaller
+    [134864] = strPack("tyrants"), -- Dragon Cranium, Ancient
+    [134865] = strPack("tyrants"), -- Unidentified Bones, Gargantuan
+    [134866] = strPack("tyrants"), -- Lamia Cranium, Ancient
+    [134867] = strPack("tyrants"), -- Argonian Skull, Complete
+    [134868] = strPack("tyrants"), -- Khajiit Skull, Complete
+    [134869] = strPack("tyrants"), -- Orc Skull, Complete
 
-    [151901] = strMultiple(strCrown(20), strPack("khajiit")), -- Elsweyr Bowl, Moon-Sugar,
+    [151901] = strMultiple(strCrown(20), strPack("khajiit")), -- Elsweyr Bowl, Moon-Sugar
     [153660] = strMultiple(strCrown(560), strPack("khajiit")), -- Elsweyr Cart, Moons-Blessed
     [153669] = strMultiple(strCrown(300), strPack("khajiit")), -- Elsweyr Well, Simple Arched
     [153658] = strMultiple(strCrown(70), strPack("khajiit")), -- Moon-Sugar, Row
@@ -1559,73 +1654,102 @@ FurC.MiscItemSources[ver.DEADL] = {
 
     [134270] = strMultiple(strCrown(85), strPack("malacath")), -- Cave Deposit, Large Double-Sided
     [134271] = strMultiple(strCrown(85), strPack("malacath")), -- Cave Deposit, Tall Stalagmite
-    [134272] = strMultiple(strCrown(10), strPack("malacath")), -- Cave Deposit, Stalagmite Cluster,
-    [134258] = strPack("malacath"), -- Prayer to the Furious One,
-    [134259] = strPack("malacath"), -- Malacath, God of Oaths and Curses,
-    [134260] = strPack("malacath"), -- Orcish Bas-Relief, Axe,
-    [134261] = strPack("malacath"), -- Orcish Bas-Relief, Sword,
-    [134262] = strPack("malacath"), -- Orcish Bas-Relief, Spear,
+    [134272] = strMultiple(strCrown(10), strPack("malacath")), -- Cave Deposit, Stalagmite Cluster
+    [134258] = strPack("malacath"), -- Prayer to the Furious One
+    [134259] = strPack("malacath"), -- Malacath, God of Oaths and Curses
+    [134260] = strPack("malacath"), -- Orcish Bas-Relief, Axe
+    [134261] = strPack("malacath"), -- Orcish Bas-Relief, Sword
+    [134262] = strPack("malacath"), -- Orcish Bas-Relief, Spear
     [134268] = strMultiple(strCrown(570), strPack("malacath")), -- Orcish Brazier, Column
     [134269] = strMultiple(strCrown(220), strPack("malacath")), -- Orcish Dais, Raised
-    [116518] = strMultiple(strCrown(270), strPack("malacath")), -- Orcish Drop Hammer, Repeating,
-    [152147] = strPack("malacath"), -- Orcish Statue, Strength,
+    [116518] = strMultiple(strCrown(270), strPack("malacath")), -- Orcish Drop Hammer, Repeating
+    [152147] = strPack("malacath"), -- Orcish Statue, Strength
     [134267] = strMultiple(strCrown(380), strPack("malacath")), -- Orcish Table, Grand Furs
     [134263] = strMultiple(strCrown(410), strPack("malacath")), -- Orcish Throne, Ancient
 
-    [126114] = strPack("azura"), -- Statue of Azura, Queen of Dawn and Dusk,
-    [126115] = strPack("azura"), -- Statue of Azura's Moon,
-    [126116] = strPack("azura"), -- Statue of Azura's Sun,
-    [126117] = strPack("azura"), -- Tapestry of Azura,
-    [126118] = strPack("azura"), -- Banner of Azura,
-    [125489] = strPack("azura"), -- Daedric Brazier, Flaming,
-    [126128] = strPack("azura"), -- The Five Points of the Star,
+    [126114] = strPack("azura"), -- Statue of Azura, Queen of Dawn and Dusk
+    [126115] = strPack("azura"), -- Statue of Azura's Moon
+    [126116] = strPack("azura"), -- Statue of Azura's Sun
+    [126117] = strPack("azura"), -- Tapestry of Azura
+    [126118] = strPack("azura"), -- Banner of Azura
+    [125489] = strPack("azura"), -- Daedric Brazier, Flaming
+    [126128] = strPack("azura"), -- The Five Points of the Star
 
-    [134251] = strPack("coldharbour"), -- Coldharbour Bookshelf, Filled,
-    [134252] = strPack("coldharbour"), -- Coldharbour Bookshelf, Black Laboratory,
-    [134253] = strPack("coldharbour"), -- Coldharbour Bookshelf, Filled Wide,
-    [134256] = strPack("coldharbour"), -- Coldharbour Bookshelf, Filled Pillar,
-    [134254] = strPack("coldharbour"), -- Seal of Molag Bal,
-    [134255] = strPack("coldharbour"), -- Transliminal Rupture,
+    [134251] = strPack("coldharbour"), -- Coldharbour Bookshelf, Filled
+    [134252] = strPack("coldharbour"), -- Coldharbour Bookshelf, Black Laboratory
+    [134253] = strPack("coldharbour"), -- Coldharbour Bookshelf, Filled Wide
+    [134256] = strPack("coldharbour"), -- Coldharbour Bookshelf, Filled Pillar
+    [134254] = strPack("coldharbour"), -- Seal of Molag Bal
+    [134255] = strPack("coldharbour"), -- Transliminal Rupture
     [134257] = strPack("coldharbour"), -- Daedra Dossier: Cold-Flame Atronach
     [134264] = strMultiple(strCrown(190), strPack("coldharbour")), -- Daedric Brazier, Cold-Flame
     [134273] = strMultiple(strCrown(200), strPack("coldharbour")), -- Daedric Plinth, Sacrificial
     [134274] = strMultiple(strCrown(200), strPack("coldharbour")), -- Coldharbour Crate, Black Soul Gem
     [134275] = strMultiple(strCrown(200), strPack("coldharbour")), -- Coldharbour Bin, Black Soul Gem
-    [182285] = strMultiple(strCrown(160), strPack("fargrave")), -- Book Wall, Levitating,
-    [182286] = strMultiple(strCrown(860), strPack("fargrave")), -- Fargrave Terrarium, Snakevine,
-    [182288] = strMultiple(strCrown(820), strPack("fargrave")), -- Fargrave Terrarium, Massive Gas Blossom,
-    [182284] = strMultiple(strCrown(20), strPack("fargrave")), -- Fargrave Bread Loaves, Round,
-    [182283] = strMultiple(strCrown(870), strPack("fargrave")), -- Fargrave Terrarium, Lantern Flower,
-    [182282] = strMultiple(strCrown(560), strPack("fargrave")), -- Fargrave Water Globules, Levitating,
-    [182258] = strMultiple(strCrown(540), strPack("fargrave")), -- Fargrave Terrarium, Claws,
-    [182230] = strMultiple(strCrown(140), strPack("fargrave")), -- Mushrooms, Glowing Shelf,
+    [182285] = strMultiple(strCrown(160), strPack("fargrave")), -- Book Wall, Levitating
+    [182286] = strMultiple(strCrown(860), strPack("fargrave")), -- Fargrave Terrarium, Snakevine
+    [182288] = strMultiple(strCrown(820), strPack("fargrave")), -- Fargrave Terrarium, Massive Gas Blossom
+    [182284] = strMultiple(strCrown(20), strPack("fargrave")), -- Fargrave Bread Loaves, Round
+    [182283] = strMultiple(strCrown(870), strPack("fargrave")), -- Fargrave Terrarium, Lantern Flower
+    [182282] = strMultiple(strCrown(560), strPack("fargrave")), -- Fargrave Water Globules, Levitating
+    [182258] = strMultiple(strCrown(540), strPack("fargrave")), -- Fargrave Terrarium, Claws
+    [182230] = strMultiple(strCrown(140), strPack("fargrave")), -- Mushrooms, Glowing Shelf
 
-    [182280] = strCrate(crates.CELESTIAL), -- Fargrave Relic Case,
-    [182207] = strCrate(crates.CELESTIAL), -- Celestial Vortex,
-    [181643] = strCrate(crates.CELESTIAL), -- Warrior's Flame,
-    [181487] = strCrate(crates.HARLEQUIN), -- Grim Harlequin Chandelier,
-    [181438] = strCrate(crates.HARLEQUIN), -- Mad God's Monarch Flock,
-    [178800] = strCrate(crates.HARLEQUIN), -- Amethyst Candlefly Gathering,
-    [171947] = strCrate(crates.IRONY), -- Deadlands Chandelier, Bladed,
-    [171946] = strCrate(crates.IRONY), -- Deadlands Cage, Bladed,
-    [171945] = strCrate(crates.IRONY), -- Deadlands Sconce, Horned,
-    [171546] = strCrate(crates.AYLEID), -- Ayleid Relief, Blessed Life-Tree,
-    [171545] = strCrate(crates.AYLEID), -- Ayleid Gate, Large,
-    [171544] = strCrate(crates.AYLEID), -- Comet, Aetherial,
+    [182280] = strCrate(crates.CELESTIAL), -- Fargrave Relic Case
+    [182207] = strCrate(crates.CELESTIAL), -- Celestial Vortex
+    [181643] = strCrate(crates.CELESTIAL), -- Warrior's Flame
+    [181487] = strCrate(crates.HARLEQUIN), -- Grim Harlequin Chandelier
+    [181438] = strCrate(crates.HARLEQUIN), -- Mad God's Monarch Flock
+    [178800] = strCrate(crates.HARLEQUIN), -- Amethyst Candlefly Gathering
+    [171947] = strCrate(crates.IRONY), -- Deadlands Chandelier, Bladed
+    [171946] = strCrate(crates.IRONY), -- Deadlands Cage, Bladed
+    [171945] = strCrate(crates.IRONY), -- Deadlands Sconce, Horned
+    [171546] = strCrate(crates.AYLEID), -- Ayleid Relief, Blessed Life-Tree
+    [171545] = strCrate(crates.AYLEID), -- Ayleid Gate, Large
+    [171544] = strCrate(crates.AYLEID), -- Comet, Aetherial
     [156644] = strMultiple(strGem(40), strCrate(crates.FROSTY)), -- Books, Towering Pile
   },
 }
 
+-- Waking Flame
+FurC.MiscItemSources[ver.WAKE] = {
+  [src.CROWN] = {
+    [181600] = strCrown(20), -- Rock, Gabbro Boulder
+	[181606] = strCrown(50), -- Rock, Gabbro Boulder Cluster
+	[181605] = strCrown(5), -- Rock, Gabbro Set
+	[181601] = strCrown(50), -- Rock, Wide Gabbro Slab
+	[181603] = strCrown(70), -- Plant, White Flowered Lily Pads
+	[181607] = strCrown(90), -- Tree, Elder Blackwood Beech
+	[181608] = strCrown(20), -- Tree, Blackwood Beech
+	[181609] = strCrown(20), -- Tree, Blackwood Beech Cluster
+	[181610] = strCrown(25), -- Vines, Snow Lillies Swath
+	[181611] = strCrown(10), -- Vines, Snow Lillies Climber
+	
+  },
+}
+
 -- 19 Blackwood
-FurC.MiscItemSources[ver.BLACKW] = {}
+FurC.MiscItemSources[ver.BLACKW] = {
+  [src.CROWN] = {
+    [175135] = strCrown(3500), -- Statue, Prince of Ambition
+  },
+}
 
 -- 18 Flames of Ambition
 FurC.MiscItemSources[ver.FLAMES] = {
   [src.CROWN] = {
-    [171932] = strCrown(160), -- Daedric Sconce, Torch,
-    [171933] = strCrown(80), -- Daedric Candles, Tall Stand,
-    [171934] = strCrown(360), -- Daedric Brazier, Plinth,
+    [171932] = strCrown(160), -- Daedric Sconce, Torch
+    [171933] = strCrown(80), -- Daedric Candles, Tall Stand
+    [171934] = strCrown(360), -- Daedric Brazier, Plinth
     [118482] = strCrown(25), -- Book Stack, Tall
+	[171818] = strCrown(310), -- Tree, Giant Cork Oak
+	[171819] = strCrown(310), -- Tree, Towering Cork Oak
+	[171834] = strCrown(40), -- Tree, Charred Vvardenfell Pine
+	[171835] = strCrown(40), -- Tree, Charred Leaning Vvardenfell Pine
+	[171836] = strCrown(40), -- Tree, Charred Slim Vvardenfell Pine
+	[171875] = strCrown(6000), -- Target Harrowing Reaper, Trial
+	[171940] = strCrown(280), -- Statue of Sheogorath, Shivering Isles Sovereign
+	
   },
 
   [src.DROP] = {
@@ -1640,24 +1764,24 @@ FurC.MiscItemSources[ver.MARKAT] = {
   },
 
   [src.CROWN] = {
-    [167935] = strCrate(crates.POTENTATE), -- Dwarven Work Lamp, Powered Floor,
-    [167934] = strCrate(crates.POTENTATE), -- Dwarven Orrery, Scholastic,
-    [167933] = strCrate(crates.POTENTATE), -- Dwarven Beam Emitter, Medium,
+    [167935] = strCrate(crates.POTENTATE), -- Dwarven Work Lamp, Powered Floor
+    [167934] = strCrate(crates.POTENTATE), -- Dwarven Orrery, Scholastic
+    [167933] = strCrate(crates.POTENTATE), -- Dwarven Beam Emitter, Medium
 
-    [171397] = strPack("alchemist"), -- Stone Garden Tank, Vacant,
-    [171398] = strPack("alchemist"), -- Stone Garden Vat, Alchemized Bristleback,
-    [171399] = strPack("alchemist"), -- Stone Garden Vat, Alchemized Chaurus,
-    [171400] = strPack("alchemist"), -- Stone Garden Vat, Alchemized Durzog,
-    [171401] = strPack("alchemist"), -- Stone Garden Vat, Vacant,
-    [171402] = strPack("alchemist"), -- Stone Garden Circulator, Rootbound,
-    [171403] = strPack("alchemist"), -- Stone Garden Casket, Alchemized Bloodknight,
-    [169117] = strPack("alchemist"), -- Target Bloodknight,
+    [171397] = strPack("alchemist"), -- Stone Garden Tank, Vacant
+    [171398] = strPack("alchemist"), -- Stone Garden Vat, Alchemized Bristleback
+    [171399] = strPack("alchemist"), -- Stone Garden Vat, Alchemized Chaurus
+    [171400] = strPack("alchemist"), -- Stone Garden Vat, Alchemized Durzog
+    [171401] = strPack("alchemist"), -- Stone Garden Vat, Vacant
+    [171402] = strPack("alchemist"), -- Stone Garden Circulator, Rootbound
+    [171403] = strPack("alchemist"), -- Stone Garden Casket, Alchemized Bloodknight
+    [169117] = strPack("alchemist"), -- Target Bloodknight
 
-    [167299] = strCrown(920), -- Dwarven Chandelier, Polished Braced,
-    [167301] = strCrown(560), -- Dwarven Lamppost, Polished Powered,
-    [167300] = strCrown(160), -- Dwarven Lantern, Polished Wall,
-    [167298] = strCrown(310), -- Dwarven Sconce, Polished Barred,
-	[171382] = strMultiple(strCrown(180), getHouseString(8697)), -- Reachmen Pergola, Ivy Overhang,
+    [167299] = strCrown(920), -- Dwarven Chandelier, Polished Braced
+    [167301] = strCrown(560), -- Dwarven Lamppost, Polished Powered
+    [167300] = strCrown(160), -- Dwarven Lantern, Polished Wall
+    [167298] = strCrown(310), -- Dwarven Sconce, Polished Barred
+	[171382] = strMultiple(strCrown(180), getHouseString(8697)), -- Reachmen Pergola, Ivy Overhang
   },
 }
 
@@ -1679,6 +1803,14 @@ FurC.MiscItemSources[ver.STONET] = {
     [118261] = strCrown(25), -- Cushion, Faded Yellow
     [118260] = strCrown(25), -- Cushion, Faded Blue
     [118259] = strCrown(25), -- Cushion, Faded Red
+	[167289] = strCrown(20), -- Tree, Lowland White Pine
+	[167290] = strCrown(20), -- Tree, Great Lowland White Pine
+	[167291] = strCrown(150), -- Tree, Towering Royal Pine
+	[167306] = strCrown(70), -- Tree, Towering Snowy White Pine
+	[167292] = strCrown(5), -- Rocks, Large Jagged Set
+	[167293] = strCrown(30), -- Shrub, Long Amber Bayberry
+	[167297] = strCrown(30), -- Trees, Young Snowy White Pine Cluster
+	[167296] = strCrown(20), -- Tree, Giant Snowy White Pine
     [94091] = strCrown(95), -- Imperial Carpet, Akatosh
     [94092] = strCrown(95), -- Imperial Carpet, Kyne
     [94093] = strCrown(95), -- Imperial Carpet, Stendarr
@@ -1702,7 +1834,7 @@ FurC.MiscItemSources[ver.STONET] = {
     [94113] = strCrown(70), -- Imperial Basin, Stone
     [94114] = strCrown(430), -- Imperial Statue, Monolith
     [94115] = strCrown(430), -- Imperial Statue, Obelisk
-    [94117] = strCrown(220), -- Imperial Rug, Akatosh
+    [115083] = strCrown(220), -- Imperial Rug, Arkay
     [94118] = strCrown(220), -- Imperial Rug, Kynareth
     [94119] = strCrown(220), -- Imperial Rug, Stars
     [94120] = strCrown(220), -- Imperial Rug, Stendarr
@@ -1786,12 +1918,15 @@ FurC.MiscItemSources[ver.STONET] = {
     [118131] = strCrown(180), -- Pelt, Bear
     [118107] = strCrown(40), -- Pie, Display
 
+    [167295] = getHouseString(13882, 8323), -- Tree, Great Snowy White Pine
+	[167302] = getHouseString(8652, 8323), -- Solitude Brazier, Metal
+
     [119685] = strCrate(crates.WILD_HUNT), -- Tapestry of Hircine
     [119684] = strCrate(crates.WILD_HUNT), -- Statue of Hircine
   },
 
   [src.DROP] = {
-    [171429] = strScry(loc.REACH), -- Red Eagle Cave Painting:1
+    [171429] = strScry(loc.REACH), -- Red Eagle Cave Painting
   },
 }
 
@@ -1940,13 +2075,24 @@ FurC.MiscItemSources[ver.SKYRIM] = {
 }
 
 -- 14 Harrowstorm
-FurC.MiscItemSources[ver.HARROW] = {}
+FurC.MiscItemSources[ver.HARROW] = {
+  [src.CROWN] = {
+    [118277] = strMultiple(strCrown(140), strPack("hollowjack")), -- Ram Horns, Mounted
+	
+  },
+}
 
 -- 13 Dragonhold
 FurC.MiscItemSources[ver.DRAGON2] = {}
 
 -- 12 Scalebreaker
-FurC.MiscItemSources[ver.SCALES] = {}
+FurC.MiscItemSources[ver.SCALES] = {
+  [src.CROWN] = {
+    [152257] = strPack("ebony"), -- Banner of Mephala
+	[152259] = strPack("razor"), -- Banner of Mehrunes Dagon
+  },
+  
+}
 
 -- 11 Elsweyr
 FurC.MiscItemSources[ver.KITTY] = {
@@ -1954,17 +2100,17 @@ FurC.MiscItemSources[ver.KITTY] = {
     [151892] = stealable_elsewhere, -- Elsweyr Fragrance Bottle, Moons-Blessed
     [151889] = stealable_elsewhere, -- Elsweyr Comb, Grooming
     [151893] = stealable_elsewhere, -- Elsweyr Fragrance Bottle, Moonlit Tryst
-    [151899] = stealable_elsewhere, -- Elsweyr Pillow, Night Blues Wide,
-    [151898] = stealable_elsewhere, -- Elsweyr Pillow, Gold-Ruby Roll,
-    [151900] = stealable_elsewhere, -- Elsweyr Pillow, Gold-Ruby Throw,
-    [151895] = stealable_elsewhere, -- Elsweyr Cloth, Rolled,
-    [151643] = stealable_elsewhere, -- Elsweyr Rolling Pin, Well-Worn,
-    [151890] = stealable_noble, -- Elsweyr Hand Mirror, Bronze Oval,
-    [151891] = stealable_noble, -- Elsweyr Hand Mirror, Rectangular,
-    [151897] = stealable_elsewhere, -- Elsweyr Fabric, Display,
-    [151886] = stealable_elsewhere, -- Elsweyr Fan, Handheld,
-    [151887] = stealable_elsewhere, -- Elsweyr Brush, Body,
-    [151888] = stealable_elsewhere, -- Elsweyr Brush, Head,
+    [151899] = stealable_elsewhere, -- Elsweyr Pillow, Night Blues Wide
+    [151898] = stealable_elsewhere, -- Elsweyr Pillow, Gold-Ruby Roll
+    [151900] = stealable_elsewhere, -- Elsweyr Pillow, Gold-Ruby Throw
+    [151895] = stealable_elsewhere, -- Elsweyr Cloth, Rolled
+    [151643] = stealable_elsewhere, -- Elsweyr Rolling Pin, Well-Worn
+    [151890] = stealable_noble, -- Elsweyr Hand Mirror, Bronze Oval
+    [151891] = stealable_noble, -- Elsweyr Hand Mirror, Rectangular
+    [151897] = stealable_elsewhere, -- Elsweyr Fabric, Display
+    [151886] = stealable_elsewhere, -- Elsweyr Fan, Handheld
+    [151887] = stealable_elsewhere, -- Elsweyr Brush, Body
+    [151888] = stealable_elsewhere, -- Elsweyr Brush, Head
     [151894] = stealable_elsewhere, -- Elsweyr Mirror, Carved Wall
   },
 
@@ -1977,99 +2123,104 @@ FurC.MiscItemSources[ver.KITTY] = {
   },
 
   [src.CROWN] = {
-    [151838] = strPack("oasis"), -- Elsweyr Fountain, Moons-Blessed,
-    [151840] = strMultiple(strCrown(70), strPack("oasis")), -- Plant, Desert Fan,
-    [151841] = strMultiple(strCrown(70), strPack("oasis")), -- Plant, Tall Desert Fan,
-    [151842] = strMultiple(strCrown(20), strPack("oasis")), -- Plant, Cask Palm,
-    [151843] = strMultiple(strCrown(45), strPack("oasis")), -- Cactus, Flowering Cluster,
-    [151844] = strMultiple(strCrown(30), strPack("oasis")), -- Cactus, Bilberry,
-    [151845] = strMultiple(strCrown(95), strPack("oasis")), -- Elsweyr Potted Cactus, Flowering,
-    [151846] = strMultiple(strCrown(35), strPack("oasis"), strPack("mermaid")), -- Elsweyr Potted Plant, Cask Palm,
-    [151835] = strPack("oasis"), -- Cathay-Raht Statue, Warrior,
-    [151836] = strPack("oasis"), -- Tojay Statue, Dancer,
-    [151837] = strPack("oasis"), -- Ohmes-Raht Statue, Trickster,
-    [151847] = strMultiple(strCrown(20), strPack("oasis")), -- Plant, Flowering Desert Aloe,
-    [151848] = strMultiple(strCrown(15), strPack("oasis")), -- Trees, Sunset Palm Cluster,
-    [151849] = strMultiple(strCrown(45), strPack("oasis")), -- Cactus, Lily Flower,
-    [151850] = strMultiple(strCrown(20), strPack("oasis")), -- Tree, Anequina Bonsai,
-    [151834] = strMultiple(strCrown(90), strPack("oasis")), -- Tree, Desert Acacia Shade,
+    [151838] = strPack("oasis"), -- Elsweyr Fountain, Moons-Blessed
+    [151840] = strMultiple(strCrown(70), strPack("oasis")), -- Plant, Desert Fan
+    [151841] = strMultiple(strCrown(70), strPack("oasis")), -- Plant, Tall Desert Fan
+    [151842] = strMultiple(strCrown(20), strPack("oasis")), -- Plant, Cask Palm
+    [151843] = strMultiple(strCrown(45), strPack("oasis")), -- Cactus, Flowering Cluster
+    [151844] = strMultiple(strCrown(30), strPack("oasis")), -- Cactus, Bilberry
+    [151845] = strMultiple(strCrown(95), strPack("oasis")), -- Elsweyr Potted Cactus, Flowering
+    [151846] = strMultiple(strCrown(35), strPack("oasis"), strPack("mermaid")), -- Elsweyr Potted Plant, Cask Palm
+    [151835] = strPack("oasis"), -- Cathay-Raht Statue, Warrior
+    [151836] = strPack("oasis"), -- Tojay Statue, Dancer
+    [151837] = strPack("oasis"), -- Ohmes-Raht Statue, Trickster
+    [151847] = strMultiple(strCrown(20), strPack("oasis")), -- Plant, Flowering Desert Aloe
+    [151848] = strMultiple(strCrown(15), strPack("oasis")), -- Trees, Sunset Palm Cluster
+    [151849] = strMultiple(strCrown(45), strPack("oasis")), -- Cactus, Lily Flower
+    [151850] = strMultiple(strCrown(20), strPack("oasis")), -- Tree, Anequina Bonsai
+    [151834] = strMultiple(strCrown(90), strPack("oasis")), -- Tree, Desert Acacia Shade
 
-    [151906] = strPack("moonbishop"), -- Robust Target Dro-m'Athra,
-    [151829] = strPack("moonbishop"), -- Suthay Statue, Nimble Bishop,
-    [151824] = strPack("moonbishop"), -- Lunar Tapestry, The Open Path,
-    [151825] = strPack("moonbishop"), -- Lunar Tapestry, The Gathering,
-    [151826] = strPack("moonbishop"), -- Lunar Tapestry, The Dance,
-    [151827] = strPack("moonbishop"), -- Lunar Tapestry, The Gate,
-    [151828] = strPack("moonbishop"), -- Lunar Tapestry, The Demon,
-    [151830] = strMultiple(strCrown(190), strPack("moonbishop")), -- Elsweyr Divider, Elegant Wooden,
-    [151832] = strMultiple(strCrown(100), strPack("moonbishop")), -- Elsweyr Ceremonial Lantern, Jone,
-    [151833] = strMultiple(strCrown(100), strPack("moonbishop")), -- Elsweyr Ceremonial Lantern, Jode,
+    [151906] = strPack("moonbishop"), -- Robust Target Dro-m'Athra
+    [151829] = strPack("moonbishop"), -- Suthay Statue, Nimble Bishop
+    [151824] = strPack("moonbishop"), -- Lunar Tapestry, The Open Path
+    [151825] = strPack("moonbishop"), -- Lunar Tapestry, The Gathering
+    [151826] = strPack("moonbishop"), -- Lunar Tapestry, The Dance
+    [151827] = strPack("moonbishop"), -- Lunar Tapestry, The Gate
+    [151828] = strPack("moonbishop"), -- Lunar Tapestry, The Demon
+	[150775] = strPack("jyggalag"), -- Banner of Jyggalag
+    [151830] = strMultiple(strCrown(190), strPack("moonbishop")), -- Elsweyr Divider, Elegant Wooden
+    [151832] = strMultiple(strCrown(100), strPack("moonbishop")), -- Elsweyr Ceremonial Lantern, Jone
+    [151833] = strMultiple(strCrown(100), strPack("moonbishop")), -- Elsweyr Ceremonial Lantern, Jode
 
     [165578] = strPack("vampire"), -- Basin of Loss
     [165569] = strPack("vampire"), -- Soul-Sworn Thrall
 
-    [151808] = strCrown(10), -- Tree, Fan Palm,
-    [151813] = strCrown(10), -- Sapling, Desert Acacia,
-    [151816] = strCrown(10), -- Plant, Flowering Thorned Succulent,
-    [151820] = strCrown(10), -- Desert Grass, Tall,
-    [151821] = strCrown(15), -- Desert Grass, Patch,
-    [151831] = strCrown(290), -- Elsweyr Sugar Pipe, Ceremonial,
-    [151857] = strCrown(150), -- Elsweyr Gazebo, Ancient Stone,
-    [151867] = strCrown(340), -- Hakoshae Lanterns, Festival,
-    [151868] = strCrown(180), -- Hakoshae Banners, Festival,
-    [151869] = strCrown(300), -- Elsweyr Wagon, Covered,
-    [151870] = strCrown(560), -- Elsweyr Wagon, Pedlar,
-    [151871] = strCrown(300), -- Elsweyr Dais, Temple,
-    [151874] = strCrown(300), -- Elsweyr Shrine, Ancient Stone,
-    [151875] = strCrown(560), -- Elsweyr Bridge, Ancient Stone,
-    [151876] = strCrown(590), -- Elsweyr Tent, Caravan,
-    [151877] = strCrown(590), -- Elsweyr Canopy, Bazaar,
-    [151878] = strCrown(450), -- Elsweyr Canopy, Peaked,
-    [151883] = strCrown(240), -- Tree, Towering Iroko,
-    [151905] = strCrown(10), -- Rock, Wide Flat Slate,
-    [151911] = strCrown(5), -- Rock, Flat Slate,
-    [151912] = strCrown(10), -- Stepping Stones, Slate,
-    [151914] = strCrown(25), -- Tree, Desert Acacia Tall,
-    [151804] = strCrown(30), -- Elsweyr Pillar, Rough Wooden,
-    [151807] = strCrown(5), -- Rock Field, Ancient Stone,
-    [151884] = strCrown(310), -- Tree, Giant Ficus,
-    [151885] = strCrown(310), -- Tree, Massive Ficus,
-    [151872] = strCrown(110), -- Boulder, Towering Lunar Spire,
-    [151873] = strCrown(50), -- Boulder, Lunar Crag,
-    [151879] = strCrown(560), -- Cactus, Lunar Tendrils,
-    [151880] = strCrown(640), -- Cactus, Lunar Branching,
-    [151881] = strCrown(640), -- Cactus, Lunar Branching Tall,
-    [151882] = strCrown(140), -- Cactus, Banded Lunar Violet Trio,
-    [151904] = strCrown(370), -- Glowgrass, Patch,
-    [151913] = strCrown(5), -- Rock, Slate,
+    [151808] = strCrown(10), -- Tree, Fan Palm
+    [151813] = strCrown(10), -- Sapling, Desert Acacia
+    [151816] = strCrown(10), -- Plant, Flowering Thorned Succulent
+    [151820] = strCrown(10), -- Desert Grass, Tall
+    [151821] = strCrown(15), -- Desert Grass, Patch
+    [151831] = strCrown(290), -- Elsweyr Sugar Pipe, Ceremonial
+    [151857] = strCrown(150), -- Elsweyr Gazebo, Ancient Stone
+    [151867] = strCrown(340), -- Hakoshae Lanterns, Festival
+    [151868] = strCrown(180), -- Hakoshae Banners, Festival
+    [151869] = strCrown(300), -- Elsweyr Wagon, Covered
+    [151870] = strCrown(560), -- Elsweyr Wagon, Pedlar
+    [151871] = strCrown(300), -- Elsweyr Dais, Temple
+    [151874] = strCrown(300), -- Elsweyr Shrine, Ancient Stone
+    [151875] = strCrown(560), -- Elsweyr Bridge, Ancient Stone
+    [151876] = strCrown(590), -- Elsweyr Tent, Caravan
+    [151877] = strCrown(590), -- Elsweyr Canopy, Bazaar
+    [151878] = strCrown(450), -- Elsweyr Canopy, Peaked
+    [151883] = strCrown(240), -- Tree, Towering Iroko
+    [151905] = strCrown(10), -- Rock, Wide Flat Slate
+    [151911] = strCrown(5), -- Rock, Flat Slate
+    [151912] = strCrown(10), -- Stepping Stones, Slate
+    [151914] = strCrown(25), -- Tree, Desert Acacia Tall
+    [151804] = strCrown(30), -- Elsweyr Pillar, Rough Wooden
+    [151807] = strCrown(5), -- Rock Field, Ancient Stone
+    [151884] = strCrown(310), -- Tree, Giant Ficus
+    [151885] = strCrown(310), -- Tree, Massive Ficus
+    [151872] = strCrown(110), -- Boulder, Towering Lunar Spire
+    [151873] = strCrown(50), -- Boulder, Lunar Crag
+    [151879] = strCrown(560), -- Cactus, Lunar Tendrils
+    [151880] = strCrown(640), -- Cactus, Lunar Branching
+    [151881] = strCrown(640), -- Cactus, Lunar Branching Tall
+    [151882] = strCrown(140), -- Cactus, Banded Lunar Violet Trio
+    [151904] = strCrown(370), -- Glowgrass, Patch
+    [151913] = strCrown(5), -- Rock, Slate
 
-    [152145] = strMultiple(mischouse, srcCraft), -- Orcish Tapestry, War,       CRAFTABLE
-    [152149] = strMultiple(mischouse, srcCraft), -- Orcish Brazier, Pillar,     CRAFTABLE
-    [152148] = strMultiple(mischouse, srcCraft), -- Orcish Tapestry, Hunt,      CRAFTABLE
-    [152146] = strMultiple(mischouse, srcCraft), -- Orcish Chandelier, Spiked,  CRAFTABLE
-    [152141] = strMultiple(mischouse, srcCraft), -- Orcish Brazier, Bordered,   CRAFTABLE
-    [152144] = strMultiple(mischouse, srcCraft), -- Orcish Mirror, Peaked,      CRAFTABLE
-    [152143] = strMultiple(mischouse, srcCraft), -- Orcish Sconce, Scrolled,    CRAFTABLE
-    [152142] = strMultiple(mischouse, srcCraft), -- Orcish Sconce, Bordered,    CRAFTABLE
+    [152145] = strMultiple(mischouse, srcCraft), -- Orcish Tapestry, War       CRAFTABLE
+    [152149] = strMultiple(mischouse, srcCraft), -- Orcish Brazier, Pillar     CRAFTABLE
+    [152148] = strMultiple(mischouse, srcCraft), -- Orcish Tapestry, Hunt      CRAFTABLE
+    [152146] = strMultiple(mischouse, srcCraft), -- Orcish Chandelier, Spiked  CRAFTABLE
+    [152141] = strMultiple(mischouse, srcCraft), -- Orcish Brazier, Bordered   CRAFTABLE
+    [152144] = strMultiple(mischouse, srcCraft), -- Orcish Mirror, Peaked      CRAFTABLE
+    [152143] = strMultiple(mischouse, srcCraft), -- Orcish Sconce, Scrolled    CRAFTABLE
+    [152142] = strMultiple(mischouse, srcCraft), -- Orcish Sconce, Bordered    CRAFTABLE
 
     [159438] = strCrate(crates.GLOOMSPORE), -- Fungus, Gloomspore Ghost
     [159437] = strCrate(crates.GLOOMSPORE), -- Painting of Blackreach, Rough
     [159436] = strCrate(crates.GLOOMSPORE), -- Dwarven Miniature Sun, Portable
     [153630] = strMultiple(strGem(55), strCrate(crates.NEWMOON)), -- Shadow Tendril Patch
-    [151612] = strCrate(crates.BAANDARI), -- Pile of Dubious Riches,
-    [151611] = strCrate(crates.BAANDARI), -- The Mane, Moons-Blessed,
-    [151589] = strCrate(crates.BAANDARI), -- Baandari Lunar Compass,
+    [151612] = strCrate(crates.BAANDARI), -- Pile of Dubious Riches
+    [151611] = strCrate(crates.BAANDARI), -- The Mane, Moons-Blessed
+    [151589] = strCrate(crates.BAANDARI), -- Baandari Lunar Compass
   },
 
   [src.FISHING] = {},
+  
+  [src.BAZAAR] = {
+    [153814] = strBazaar(2550), -- Dragon's Treasure Trove
+  },
 }
 
 -- 10 Wrathstone
 FurC.MiscItemSources[ver.WOTL] = {
   [src.CROWN] = {
-    [147600] = strCrate(crates.DRAGONSCALE), -- Tapestry of Namira,
-    [147599] = strCrate(crates.DRAGONSCALE), -- Banner of Namira,
-    [147591] = strCrate(crates.DRAGONSCALE), -- Namira, Mistress of Decay,
+    [147600] = strCrate(crates.DRAGONSCALE), -- Tapestry of Namira
+    [147599] = strCrate(crates.DRAGONSCALE), -- Banner of Namira
+    [147591] = strCrate(crates.DRAGONSCALE), -- Namira, Mistress of Decay
   },
 }
 
@@ -2500,7 +2651,7 @@ FurC.MiscItemSources[ver.ALTMER] = {
   },
 
   [src.DROP] = {
-    [139059] = strGeneric(srcDrop), -- Ivory, Polished - drops from Echatere, and probably alot else
+    [139059] = strGeneric(srcDrop), -- Ivory, Polished - drops from Echatere, and probably a lot else
     [139066] = strGeneric(srcHarvest), -- Plant, Redtop Grass
 
     [139060] = summerset_clamsngeysers, -- Giant Clam, Ancient
@@ -2737,6 +2888,8 @@ FurC.MiscItemSources[ver.MORROWIND] = {
     [125670] = plants_vvardenfell, -- Toadstool, Bloodtooth
     [125671] = plants_vvardenfell, -- Toadstool, Bloodtooth Cap
     [125672] = plants_vvardenfell, -- Toadstool, Bloodtooth Cluster
+	
+	[125597] = strGeneric(srcDrop, strSrc("src", "shroom beetles"), nil, loc.VVARDENFELL), -- Mushroom, Polyp Stinkhorn
 
     [126759] = strQuest(5864, nil, loc.VVARDENFELL, loc.VVARDENFELL_SURAN), -- Sir Sock's Ball of Yarn ; Quest: 'Nothing to Sneeze At'
   },
@@ -3006,6 +3159,46 @@ FurC.MiscItemSources[ver.HOMESTEAD] = {
 	[121016] = strPack("trees"), -- Bush, Red Berry
 	[121022] = strPack("trees"), -- Bush, Green Forest
 	[121023] = strMultiple(strPack("trees"), getHouseString(1309)), -- Tree, Strong Olive
-    
+	[94181] = getHouseString(6752), -- Imperial Throne of the Bay
+    [116420] = strCrown(1200), -- Orcish Throne, Pedestal
+	[117843] = getHouseString(1094), -- Redguard Bed, Wide Lattice
+	[117902] = getHouseString(14077), -- Redguard Pot, Gilded
+	[117903] = strMultiple(strPack("cragparlour"), strCrown(140)), -- Redguard Vessel, Gilded
+	[117908] = getHouseString(1100), -- Redguard Candlestick, Twisted
+	[118117] = strCrown(340), -- Table, Carved
+	[118156] = strCrown(340), -- Runner of the Oasis, Faded
+	[118157] = strMultiple(strCrown(340), getHouseString(13060)), -- Runner of the Sun, Faded
+	[118075] = strCrown(270), -- Banner, War
+	[118076] = strCrown(270), -- Banner, Forge
+	[118077] = strMultiple(strCrown(270), getHouseString(1445)), -- Banner, Forceful
+	[118078] = strCrown(270), -- Banner, Mighty
+	[118079] = strMultiple(strCrown(270), getHouseString(1445)), -- Banner, Crafting
+	[118128] = getHouseString(1445), -- Pelt, Hanging
+	[119576] = getHouseString(4795), -- Palm Tree Cluster
+	[118350] = strCrown(25), -- Box of Tangerines
+	[118352] = strCrown(25), -- Box of Oranges
+	[118353] = strCrown(25), -- Box of Grapes
+	[118354] = strCrown(25), -- Box of Fruit
+	[118482] = strCrown(25), -- Book Stack, Tall	
+	[118125] = strCrown(95), -- Plaque, Large
+	[118137] = strCrown(70), -- Podium, Engraved
+	[118111] = strCrown(50), -- Steak, Display
+	[118112] = strCrown(50), -- Teapot, Common
+	[117925] = strCrown(30), -- Rough Cot, Military
+	[117962] = strCrown(30), -- Rough Bedroll, Rolled
+	[117927] = strCrown(15), -- Rough Barrel, Sturdy
+	[117932] = strCrown(15), -- Rough Tray, Sturdy
+	[117933] = strCrown(15), -- Rough Bin, Sturdy
+	[117934] = strCrown(15), -- Rough Carton, Sturdy
+	[117935] = strCrown(10), -- Rough Pouch, Burlap
+	[117938] = strCrown(10), -- Rough Sack, Burlap
+	[117936] = strCrown(10), -- Rough Pouch, Coarse Cloth
+	[117948] = strCrown(10), -- Rough Candle, Tealight
+	[117949] = strCrown(10), -- Rough Candle, Pillar
+	[120997] = strCrown(120), -- Banner, Tattered Blue
+	[117944] = strCrown(5), -- Rough Fork, Common
+	[117946] = strCrown(5), -- Rough Knife, Butter
+	[117947] = strCrown(5), -- Rough Spoon, Common
+	[117951] = strCrown(35), -- Rough Torch, Basic
   },
 }
