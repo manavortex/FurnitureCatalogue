@@ -145,7 +145,9 @@ local function matchSourceDropdown()
     end
     -- look up the item in PVP data to check its currency
     local versionData = FurC.PVP[recipeArray.version]
-    if not versionData then return false end
+    if not versionData then
+      return false
+    end
     for vendorName, vendorData in pairs(versionData) do
       for locationName, locationData in pairs(vendorData) do
         local item = locationData[itemId]
@@ -162,7 +164,9 @@ local function matchSourceDropdown()
     end
     -- exclude TelVar items from the AP filter
     local versionData = FurC.PVP[recipeArray.version]
-    if not versionData then return true end
+    if not versionData then
+      return true
+    end
     for vendorName, vendorData in pairs(versionData) do
       for locationName, locationData in pairs(vendorData) do
         local item = locationData[itemId]

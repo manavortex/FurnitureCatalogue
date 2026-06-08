@@ -4,238 +4,238 @@ local ver = FurC.Constants.Versioning
 
 -- Season Zero Part 2
 FurC.Recipes[ver.ZERO2] = {
-225089, -- Pattern: Breton Drapes, Maroon
-225090, -- Pattern: Breton Drapes, Sage
-225091, -- Blueprint: Breton Trellis, Wooden
-225092, -- Blueprint: Breton Fireplace, Wooden
-225093, -- Blueprint: Chicken Coop, Rustic
-225094, -- Diagram: Spiked Chain, Long
-225095, -- Diagram: Brass Chain, Fine
-225096, -- Blueprint: Breton Armoire, Mirrored Knotwork
-225097, -- Blueprint: Breton Hutch, Large Knotwork
-225098, -- Blueprint: Breton Hutch, Tall Knotwork
-225099, -- Blueprint: Breton Hutch, Narrow Knotwork
-225100, -- Blueprint: Breton Wardobe, Knotwork
-225101, -- Blueprint: Breton Sideboard, Wide Knotwork
-225102, -- Blueprint: Breton Trunk, Knotwork
-225104, -- Blueprint: Breton Writing Desk, Knotwork
-225105, -- Blueprint: Beehive, Thatched Yurt
-225106, -- Praxis: Breton Vase, Snake Tails
-225107, -- Praxis: Breton Amphora, Marble
-225108, -- Praxis: Breton Vase, Marble
-225109, -- Praxis: Breton Planter, Blue Ivy
-225111, -- Blueprint: Birdhouse, Large Cylindrical Mounted
-225112, -- Blueprint: Birdhouse, Small Red
-225113, -- Blueprint: Birdhouse, Small Green
-225114, -- Design: Apple Pie, Lattice Crust
-225115, -- Formula: Mushroom Planter, Half Barrel
-225116, -- Formula: Mushroom Planter, Tiered Rack
-225117, -- Formula: Mushroom Planter, Barrel Stand
-225132, -- Blueprint: Secret Door, Bookcase
-225161, -- Praxis: High Elf Wall, Ancient Ornate
-225162, -- Praxis: High Elf Doorway, Ancient Ornate
-225163, -- Praxis: High Elf Wall, Windowed Ancient Ornate
-225164, -- Praxis: High Elf Wall, Grated Ancient Ornate
-225165, -- Praxis: High Elf Trim, Ancient Ornate
-225166, -- Praxis: High Elf Column, Tall Ancient Ornate
-225167, -- Praxis: High Elf Walkway, Curved Ancient Ornate
-225168, -- Praxis: High Elf Walkway, Square Ancient Ornate
-225169, -- Praxis: High Elf Walkway, Long Ancient Ornate
-225170, -- Praxis: High Elf Walkway, Broad Ancient Ornate
-225171, -- Praxis: High Elf Staircase, Right Ancient Ornate
-225189, -- Praxis: High Elf Platform, Thick Ancient Ornate
-225190, -- Praxis: High Elf Platform, Thin Ancient Ornate
-225191, -- Praxis: High Elf Staircase, Left Ancient Ornate
-225192, -- Praxis: High Elf Column, Thin Ancient Ornate
-225198, -- Praxis: High Elf Planter, Empty Ancient Ornate
-225199, -- Praxis: High Elf Pillar, Thick Ancient Ornate
+  225089, -- Pattern: Breton Drapes, Maroon
+  225090, -- Pattern: Breton Drapes, Sage
+  225091, -- Blueprint: Breton Trellis, Wooden
+  225092, -- Blueprint: Breton Fireplace, Wooden
+  225093, -- Blueprint: Chicken Coop, Rustic
+  225094, -- Diagram: Spiked Chain, Long
+  225095, -- Diagram: Brass Chain, Fine
+  225096, -- Blueprint: Breton Armoire, Mirrored Knotwork
+  225097, -- Blueprint: Breton Hutch, Large Knotwork
+  225098, -- Blueprint: Breton Hutch, Tall Knotwork
+  225099, -- Blueprint: Breton Hutch, Narrow Knotwork
+  225100, -- Blueprint: Breton Wardobe, Knotwork
+  225101, -- Blueprint: Breton Sideboard, Wide Knotwork
+  225102, -- Blueprint: Breton Trunk, Knotwork
+  225104, -- Blueprint: Breton Writing Desk, Knotwork
+  225105, -- Blueprint: Beehive, Thatched Yurt
+  225106, -- Praxis: Breton Vase, Snake Tails
+  225107, -- Praxis: Breton Amphora, Marble
+  225108, -- Praxis: Breton Vase, Marble
+  225109, -- Praxis: Breton Planter, Blue Ivy
+  225111, -- Blueprint: Birdhouse, Large Cylindrical Mounted
+  225112, -- Blueprint: Birdhouse, Small Red
+  225113, -- Blueprint: Birdhouse, Small Green
+  225114, -- Design: Apple Pie, Lattice Crust
+  225115, -- Formula: Mushroom Planter, Half Barrel
+  225116, -- Formula: Mushroom Planter, Tiered Rack
+  225117, -- Formula: Mushroom Planter, Barrel Stand
+  225132, -- Blueprint: Secret Door, Bookcase
+  225161, -- Praxis: High Elf Wall, Ancient Ornate
+  225162, -- Praxis: High Elf Doorway, Ancient Ornate
+  225163, -- Praxis: High Elf Wall, Windowed Ancient Ornate
+  225164, -- Praxis: High Elf Wall, Grated Ancient Ornate
+  225165, -- Praxis: High Elf Trim, Ancient Ornate
+  225166, -- Praxis: High Elf Column, Tall Ancient Ornate
+  225167, -- Praxis: High Elf Walkway, Curved Ancient Ornate
+  225168, -- Praxis: High Elf Walkway, Square Ancient Ornate
+  225169, -- Praxis: High Elf Walkway, Long Ancient Ornate
+  225170, -- Praxis: High Elf Walkway, Broad Ancient Ornate
+  225171, -- Praxis: High Elf Staircase, Right Ancient Ornate
+  225189, -- Praxis: High Elf Platform, Thick Ancient Ornate
+  225190, -- Praxis: High Elf Platform, Thin Ancient Ornate
+  225191, -- Praxis: High Elf Staircase, Left Ancient Ornate
+  225192, -- Praxis: High Elf Column, Thin Ancient Ornate
+  225198, -- Praxis: High Elf Planter, Empty Ancient Ornate
+  225199, -- Praxis: High Elf Pillar, Thick Ancient Ornate
 }
 
 -- Season Zero
 FurC.Recipes[ver.ZERO] = {
-223872,
-223873,
-223874,
-223895,
-223896,
-223897,
-223898,
-223899,
-223900,
-223901,
-223902,
-223903,
-223904,
-223905,
-223906,
-223907,
-223908,
-223909,
-223910,
-223911,
-223912,
-223913,
-223914,
-223915,
-223916,
-223917,
-223918,
-223919,
-223920,
-223921,
-223922,
-223923,
-223924,
-223925,
-223933,
-223934,
-223935,
-223936,
-223937,
-223938,
-223939,
-223940,
-224277,
-224278,
-224279,
-224280,
-224281,
+  223872,
+  223873,
+  223874,
+  223895,
+  223896,
+  223897,
+  223898,
+  223899,
+  223900,
+  223901,
+  223902,
+  223903,
+  223904,
+  223905,
+  223906,
+  223907,
+  223908,
+  223909,
+  223910,
+  223911,
+  223912,
+  223913,
+  223914,
+  223915,
+  223916,
+  223917,
+  223918,
+  223919,
+  223920,
+  223921,
+  223922,
+  223923,
+  223924,
+  223925,
+  223933,
+  223934,
+  223935,
+  223936,
+  223937,
+  223938,
+  223939,
+  223940,
+  224277,
+  224278,
+  224279,
+  224280,
+  224281,
 }
 
 -- Seasons of the Worm Cult Part 2
 FurC.Recipes[ver.WORMS2] = {
-220289,
-223181,
-223566,
-223567,
-223568,
-223569,
-223570,
-223571,
-223572,
-223573,
-223574,
-223575,
-223576,
-223577,
-223578,
-223579,
-223580,
-223581,
-223582,
-223583,
-223584,
-223585,
-223586,
-223587,
-223588,
-223589,
-223590,
-223591,
-223592,
-223593,
-223594,
-223595,
-223596,
-223597,
-223598,
-223599,
-223600,
-223601,
-223602,
-223603,
-223604,
-223605,
-223606,
-223607,
-223608,
-223609,
-223610,
-223611,
-223612,
-223613,
-223614,
-223615,
-223616,
-223617,
-223618,
-223619,
-223620,
-223621,
-223622,
-223623,
-223624,
-223625,
-223626,
-223627,
-223628,
-223629,
-223630,
-223631,
-223632,
-223633,
-223634,
-223635,
-223636,
-223637,
-223638,
-223639,
-223640,
-223641,
-223642,
-223643,
-223644,
-223645,
+  220289,
+  223181,
+  223566,
+  223567,
+  223568,
+  223569,
+  223570,
+  223571,
+  223572,
+  223573,
+  223574,
+  223575,
+  223576,
+  223577,
+  223578,
+  223579,
+  223580,
+  223581,
+  223582,
+  223583,
+  223584,
+  223585,
+  223586,
+  223587,
+  223588,
+  223589,
+  223590,
+  223591,
+  223592,
+  223593,
+  223594,
+  223595,
+  223596,
+  223597,
+  223598,
+  223599,
+  223600,
+  223601,
+  223602,
+  223603,
+  223604,
+  223605,
+  223606,
+  223607,
+  223608,
+  223609,
+  223610,
+  223611,
+  223612,
+  223613,
+  223614,
+  223615,
+  223616,
+  223617,
+  223618,
+  223619,
+  223620,
+  223621,
+  223622,
+  223623,
+  223624,
+  223625,
+  223626,
+  223627,
+  223628,
+  223629,
+  223630,
+  223631,
+  223632,
+  223633,
+  223634,
+  223635,
+  223636,
+  223637,
+  223638,
+  223639,
+  223640,
+  223641,
+  223642,
+  223643,
+  223644,
+  223645,
 }
 
 -- Feast of Shadows
 FurC.Recipes[ver.SHADOWS] = {
-219667,
-219668,
-219669,
-219670,
-219671,
-219672,
-219673,
-219674,
-219675,
-219676,
-219677,
-219678,
-219679,
-219680,
-219681,
-219682,
-219683,
-219684,
-219685,
-219686,
-219687,
-219688,
-219689,
-219690,
-219691,
-219692,
-219693,
-219694,
-219695,
-219696,
-219697,
-219698,
-219699,
-219704,
-219766,
-219767,
-219769,
-219770,
-219771,
-219772,
-219773,
-219774,
-219775,
-219776,
-219777,
-219768,
+  219667,
+  219668,
+  219669,
+  219670,
+  219671,
+  219672,
+  219673,
+  219674,
+  219675,
+  219676,
+  219677,
+  219678,
+  219679,
+  219680,
+  219681,
+  219682,
+  219683,
+  219684,
+  219685,
+  219686,
+  219687,
+  219688,
+  219689,
+  219690,
+  219691,
+  219692,
+  219693,
+  219694,
+  219695,
+  219696,
+  219697,
+  219698,
+  219699,
+  219704,
+  219766,
+  219767,
+  219769,
+  219770,
+  219771,
+  219772,
+  219773,
+  219774,
+  219775,
+  219776,
+  219777,
+  219768,
 }
 
 -- Seasons of the Worm Cult
@@ -464,9 +464,9 @@ FurC.Recipes[ver.BASE43] = {
   211039, -- Blueprint: Colovian Keg, Gigantic Wine
   211038, -- Design: Dawnwood Platter, Feast
   211034, -- Diagram: Colovian Chandelier, Grapes
-  211033, -- Formula: Colovian Alembic Set, Colorful 
+  211033, -- Formula: Colovian Alembic Set, Colorful
   211035, -- Pattern: Colovian Tapestry, Red Diamond
-  211036, -- Praxis: Colovian Glassblower's Furnace 
+  211036, -- Praxis: Colovian Glassblower's Furnace
   211037, -- Sketch: Colovian Mirror, Standing
 }
 
@@ -1135,7 +1135,7 @@ FurC.Recipes[ver.DEADL] = {
   181553, -- Formula: Vampiric Lab Jar, Large,
   181554, -- Formula: Vampiric Lab Jar, Small,
   181555, -- Formula: Vampiric Lab Jar, Red Gelatinous,
-  
+
   175932, -- Pattern: Leyawiin Bed, Sturdy Single,
   181565, -- Blueprint: Leyawiin Turret, Castle,
   181566, -- Praxis: Leyawiin Wall, Castle Door Arch,
@@ -1311,13 +1311,13 @@ FurC.Recipes[ver.BLACKW] = {
 
 -- 18 Flames of Ambition
 FurC.Recipes[ver.FLAMES] = {
-    171803, -- Blueprint: Solitude Well, Noble
-    171806, -- Design: Provisioning Station, Solitude Grill
-    171801, -- Diagram: Dwarven Minecart, Ornate
-    171805, -- Formula: Vampiric Cauldron, Distilled Coagulant
-    171802, -- Pattern: Solitude Yarn Rack, Colorful
-    171804, -- Praxis: Solitude Hearth, Rounded Tall
-    171807, -- Sketch: Dwarven Crystal Sconce, Mirror
+  171803, -- Blueprint: Solitude Well, Noble
+  171806, -- Design: Provisioning Station, Solitude Grill
+  171801, -- Diagram: Dwarven Minecart, Ornate
+  171805, -- Formula: Vampiric Cauldron, Distilled Coagulant
+  171802, -- Pattern: Solitude Yarn Rack, Colorful
+  171804, -- Praxis: Solitude Hearth, Rounded Tall
+  171807, -- Sketch: Dwarven Crystal Sconce, Mirror
 }
 
 -- 17 Markarth
@@ -1889,7 +1889,6 @@ FurC.Recipes[ver.SKYRIM] = {
   167375, -- Pattern: Solitude Tent, Open
   167376, -- Pattern: Solitude Tent, Enclosed
   167377, -- Blueprint: Solitude Door, Arched Wooden
- 
 }
 
 -- 14 Harrowstorm
@@ -2514,11 +2513,11 @@ FurC.Recipes[ver.DRAGONS] = {
   127054, -- Pattern: Redoran Table Runner, Gilded Ochre
   134998, -- Pattern: Jester's Pavillon, Open
   134987, -- Blueprint: Hlaalu Gaming Table, Foxes & Felines
-    134986, -- Design: Miniature Garden, Bottled
-    134985, -- Praxis: Hlaalu Trinket Box, Curious Turtle
-    134984, -- Pattern: Clothier's Form, Brass
-    134983, -- Diagram: Hlaalu Gong
-    134982, -- Formula: Alchemical Apparatus, Master
+  134986, -- Design: Miniature Garden, Bottled
+  134985, -- Praxis: Hlaalu Trinket Box, Curious Turtle
+  134984, -- Pattern: Clothier's Form, Brass
+  134983, -- Diagram: Hlaalu Gong
+  134982, -- Formula: Alchemical Apparatus, Master
 }
 
 -- 5 Clockwork City
@@ -2907,16 +2906,16 @@ FurC.Recipes[ver.MORROWIND] = {
 -- 2 Homestead
 FurC.Recipes[ver.HOMESTEAD] = {
   121200, -- Blueprint: Cabinet, Poisonmaker's
-    121199, -- Design: Mortar and Pestle
-    121197, -- Formula: Bottle, Poison Elixir
-	121214, -- Design: Orcish Skull Goblet, Full
-    121209, -- Pattern: Orcish Tapestry, Spear
-    121207, -- Praxis: Orcish Table with Fur
-    121168, -- Blueprint: Tools, Case
-    121166, -- Blueprint: Podium, Skinning
-    121165, -- Diagram: Apparatus, Gem Calipers
-    121164, -- Formula: Case of Vials
-    121163, -- Diagram: Apparatus, Boiler
+  121199, -- Design: Mortar and Pestle
+  121197, -- Formula: Bottle, Poison Elixir
+  121214, -- Design: Orcish Skull Goblet, Full
+  121209, -- Pattern: Orcish Tapestry, Spear
+  121207, -- Praxis: Orcish Table with Fur
+  121168, -- Blueprint: Tools, Case
+  121166, -- Blueprint: Podium, Skinning
+  121165, -- Diagram: Apparatus, Gem Calipers
+  121164, -- Formula: Case of Vials
+  121163, -- Diagram: Apparatus, Boiler
   115721, -- Argonian Chimney Stack
   115722, -- Argonian Rack, Sturdy
   115723, -- Argonian Shelves, Half

@@ -4,7 +4,7 @@ local npc = FurC.Constants.NPC
 local containers = FurC.Constants.Containers
 
 FurC.EventItems[ver.ZERO] = {
-    [events.ANNIVERSARY] = {
+  [events.ANNIVERSARY] = {
     [npc.EVENT] = {
       [223759] = { itemPrice = 1 }, -- Replica Jubilee Cake Slice 2026
       [224081] = { itemPrice = 3 }, -- Replica Jubilee Cake 2026
@@ -22,8 +22,8 @@ FurC.EventItems[ver.FALLBAN] = {
       [214248] = true, -- Coin Pile, Tall
     },
   },
-  
-    [events.ANNIVERSARY] = {
+
+  [events.ANNIVERSARY] = {
     [npc.EVENT] = {
       [214243] = { itemPrice = 1 }, -- Replica Jubilee Cake Slice 2025
       [214242] = { itemPrice = 3 }, -- Replica Jubilee Cake 2025
@@ -33,34 +33,34 @@ FurC.EventItems[ver.FALLBAN] = {
 
 -- Golden Pursuits 44
 FurC.EventItems[ver.BASE44] = {
-	[events.JESTER] = {
-	  [containers.JESTERBOX] = {
-	    [211553] = { -- Jester's Festival Garland, Long Flags
-		  itemPrice = 5000,
-	    },
-	    [211552] = { -- Jester's Festival Garland, Short Flags
-		  itemPrice = 2500,
-	    },
-	    [211554] = { -- Jester's Festival Plaque, King Boar
-		  itemPrice = 50000,
-	    },
-	    [211555] = { -- Jester's Festival Plaque, Queen Boar
-		  itemPrice = 50000,
-	    },
-		[211558] = { -- Jester's Festival Rug, Star
-	 	  itemPrice = 10000,
-	    },
-	    [211557] = { -- Jester's Festival Rug, Swirls
-		  itemPrice = 5000,
-	    },
-	    [211559] = { -- Jester's Festival Sign
-		  itemPrice = 10000,
-	    },
-	    [211556] = { -- Jester's Festival Wreath
-		  itemPrice = 10000,
-	    },
-	  },
-	},
+  [events.JESTER] = {
+    [containers.JESTERBOX] = {
+      [211553] = { -- Jester's Festival Garland, Long Flags
+        itemPrice = 5000,
+      },
+      [211552] = { -- Jester's Festival Garland, Short Flags
+        itemPrice = 2500,
+      },
+      [211554] = { -- Jester's Festival Plaque, King Boar
+        itemPrice = 50000,
+      },
+      [211555] = { -- Jester's Festival Plaque, Queen Boar
+        itemPrice = 50000,
+      },
+      [211558] = { -- Jester's Festival Rug, Star
+        itemPrice = 10000,
+      },
+      [211557] = { -- Jester's Festival Rug, Swirls
+        itemPrice = 5000,
+      },
+      [211559] = { -- Jester's Festival Sign
+        itemPrice = 10000,
+      },
+      [211556] = { -- Jester's Festival Wreath
+        itemPrice = 10000,
+      },
+    },
+  },
 }
 
 -- 31 Home Tours Update 43
@@ -72,10 +72,10 @@ FurC.EventItems[ver.BASE43] = {
       [208108] = true, -- Tankard of Undaunted Victory, Green
       [208107] = true, -- Wind Chimes, Undaunted Glory
       [208106] = true, -- Stuffed Troll Head, Ivy-Adorned
-	  [208114] = true, -- Garland of Undaunted Trophies
-	  [208113] = true, -- Rug of the Undaunted, Octagram
-	  [208111] = true, -- Keg of Triumph, Jeering Clannfear Beer
-	  [208109] = true, -- Tankard of Undaunted Victory, Bone
+      [208114] = true, -- Garland of Undaunted Trophies
+      [208113] = true, -- Rug of the Undaunted, Octagram
+      [208111] = true, -- Keg of Triumph, Jeering Clannfear Beer
+      [208109] = true, -- Tankard of Undaunted Victory, Bone
     },
   },
 }
