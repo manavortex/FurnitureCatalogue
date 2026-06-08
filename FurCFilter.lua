@@ -112,6 +112,8 @@ local validSourcesForOther = {
   [src.FISHING] = true,
   [src.JUSTICE] = true,
   [src.GUILDSTORE] = true,
+  [src.TOMES] = true,
+  [src.BAZAAR] = true,
 }
 
 -- Source: All, All (craftable), Craftable (known), craftable (unknown), purchaseable
@@ -137,6 +139,40 @@ local function matchSourceDropdown()
   if src.WRIT_VENDOR == ddSource then
     return recipeArray.origin == src.ROLIS
   end
+  if src.TELVAR == ddSource then
+    if recipeArray.origin ~= src.PVP then
+      return false
+    end
+    -- look up the item in PVP data to check its currency
+    local versionData = FurC.PVP[recipeArray.version]
+    if not versionData then return false end
+    for vendorName, vendorData in pairs(versionData) do
+      for locationName, locationData in pairs(vendorData) do
+        local item = locationData[itemId]
+        if item then
+          return item.currency == CURT_TELVAR_STONES
+        end
+      end
+    end
+    return false
+  end
+  if src.PVP == ddSource then
+    if recipeArray.origin ~= src.PVP then
+      return false
+    end
+    -- exclude TelVar items from the AP filter
+    local versionData = FurC.PVP[recipeArray.version]
+    if not versionData then return true end
+    for vendorName, vendorData in pairs(versionData) do
+      for locationName, locationData in pairs(vendorData) do
+        local item = locationData[itemId]
+        if item and item.currency == CURT_TELVAR_STONES then
+          return false
+        end
+      end
+    end
+    return true
+  end
   if src.OTHER == ddSource then
     return validSourcesForOther[recipeArray.origin]
   end
@@ -155,7 +191,28 @@ local function matchSearchString()
   local itemName = LocaleAwareToLower(GetItemLinkName(itemLink))
   local escapedStr = LocaleAwareToLower(searchString)
   escapedStr = gsub(escapedStr, "-", "%%-")
-  return match(itemName, escapedStr)
+  if match(itemName, escapedStr) then
+    return true
+  end
+
+  -- Also match if the item belongs to a folio whose name matches
+  if FurC.FurnishingFolios then
+    for folioId, folioData in pairs(FurC.FurnishingFolios) do
+      if folioData.contents then
+        for _, contentId in ipairs(folioData.contents) do
+          if contentId == itemId then
+            local folioLink = FurC.Utils.GetItemLink(folioId)
+            local folioName = LocaleAwareToLower(GetItemLinkName(folioLink))
+            if match(folioName, escapedStr) then
+              return true
+            end
+          end
+        end
+      end
+    end
+  end
+
+  return false
 end
 
 local function matchCraftingTypeFilter()
@@ -181,6 +238,7 @@ local function filterBooks(itemId, recipeArray)
 end
 
 function FurC.MatchFilter(currentItemId, currentRecipeArray)
+  itemId = currentItemId
   itemLink = getItemLink(currentItemId)
   recipeArray = currentRecipeArray or FurC.Find(itemLink)
   itemType, sItemType = GetItemLinkItemType(itemLink)
