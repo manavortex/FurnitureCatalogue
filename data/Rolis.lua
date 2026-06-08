@@ -6,6 +6,12 @@ FurC.FaustinaRecipes = FurC.FaustinaRecipes or {}
 
 local ver = FurC.Constants.Versioning
 
+local strPartOf = FurC.Utils.FormatPartOf
+FurC.FurnishingFolios = FurC.FurnishingFolios or {}
+
+local npc = FurC.Constants.NPC
+local loc = FurC.Constants.Locations 
+
 FurC.RolisRecipes[ver.ZERO] = {
   [223930] = 125, -- Pattern: Worm Cult Tent, Large
   [223927] = 125, -- Sketch: Golden Skull, Argonian
@@ -26,116 +32,338 @@ FurC.FaustinaRecipes[ver.ZERO] = {
   [219662] = 100, -- Sketch: Meridian Bell, Temple
 }
 
-FurC.FaustinaRecipes[ver.SHADOWS] = {
-  [212567] = 100, -- Sketch: Guardian Key, Replica
-  [212566] = 100, -- Praxis: Ayleid Sconce, Winged Floor
-  [212565] = 100, -- Diagram: Ayleid Window, Turquoise Glass
-  [212564] = 100, -- Formula: Dawnwood Hut, Partial
-  [212563] = 100, -- Design: Colovian Grape Vat, Large
-  [212562] = 100, -- Blueprint: Colovian Wine Press
-  [212561] = 100, -- Pattern: Wood Elf Tent, Saplings
+-- 34 Fallen Banners
+FurC.FurnishingFolios[219721] = { -- West Weald 2
+  vendor   = npc.FAUSTINA,
+  location = loc.ANY_CAPITAL,
+  price    = 700,
+  currency = CURT_WRIT_VOUCHERS,
+  version  = ver.FALLBAN,
+  contents = {
+	212567, -- Sketch: Guardian Key, Replica
+    212566, -- Praxis: Ayleid Sconce, Winged Floor
+    212565, -- Diagram: Ayleid Window, Turquoise Glass
+    212564, -- Formula: Dawnwood Hut, Partial
+    212563, -- Design: Colovian Grape Vat, Large
+    212562, -- Blueprint: Colovian Wine Press
+    212561, -- Pattern: Wood Elf Tent, Saplings
+  },
 }
 
-FurC.FaustinaRecipes[ver.FALLBAN] = {
-  [211038] = 100, -- Design: Dawnwood Platter, Feast
-  [211036] = 100, -- Praxis: Colovian Glassblower's Furnace
-  [211035] = 100, -- Pattern: Colovian Tapestry, Red Diamond
-  [211034] = 100, -- Diagram: Colovian Chandelier, Grapes
-  [211033] = 100, -- Formula: Colovian Alembic Set, Colorful
-  [211039] = 100, -- Blueprint: Colovian Keg, Gigantic Wine
-  [211037] = 100, -- Sketch: Colovian Mirror, Standing
+-- 32 Home Tours
+FurC.FurnishingFolios[223978] = { -- West Weald 1
+  vendor   = npc.FAUSTINA,
+  location = loc.ANY_CAPITAL,
+  price    = 700,
+  currency = CURT_WRIT_VOUCHERS,
+  version  = ver.BASE43,
+  contents = {
+    211039, -- Blueprint: Colovian Keg, Gigantic Wine
+    211038, -- Design: Dawnwood Platter, Feast
+    211034, -- Diagram: Colovian Chandelier, Grapes
+    211033, -- Formula: Colovian Alembic Set, Colorful 
+    211035, -- Pattern: Colovian Tapestry, Red Diamond
+    211036, -- Praxis: Colovian Glassblower's Furnace 
+    211037, -- Sketch: Colovian Mirror, Standing
+  },
 }
 
--- 28 Secrets of the Telvanni
+-- 30 Scions of Ithelia
+FurC.FurnishingFolios[214255] = { -- Tomehold
+  vendor   = npc.FAUSTINA,
+  location = loc.ANY_CAPITAL,
+  price    = 700,
+  currency = CURT_WRIT_VOUCHERS,
+  version  = ver.SCIONS,
+  contents = {
+    203325, -- Praxis: Apocrypha Wall, Eye
+    203324, -- Sketch: Apocrypha Mirror, Intricate
+    203323, -- Diagram: Apocrypha Bookcase Platform
+    203322, -- Pattern: Apocrypha Book Press
+    203321, -- Formula: Apocrypha Light Diffuser, Stalk
+    203320, -- Design: Apocrypha Tree, Spore
+    203319, -- Blueprint: Pergola, Reclaimed Wood
+  },
+}
+
+-- 29 Secrets of the Telvanni
 FurC.Faustina[ver.ENDLESS] = {
-  [203556] = 1500, -- Grandmaster Jewelry Station
-  [203555] = 1500, -- Grandmaster Blacksmithing Station
-  [203553] = 1500, -- Grandmaster Clothing Station
-  [203554] = 1500, -- Grandmaster Woodworking Station
+  [203556] = { itemPrice = 1500, info = 1801 }, -- Grandmaster Jewelry Station
+  [203555] = { itemPrice = 1500, info = 1801 }, -- Grandmaster Blacksmithing Station
+  [203553] = { itemPrice = 1500, info = 1801 }, -- Grandmaster Clothing Station
+  [203554] = { itemPrice = 1500, info = 1801 }, -- Grandmaster Woodworking Station
+}
+
+-- 27 Based
+FurC.FurnishingFolios[211090] = { -- Necrom
+  vendor   = npc.FAUSTINA,
+  location = loc.ANY_CAPITAL,
+  price    = 700,
+  currency = CURT_WRIT_VOUCHERS,
+  version  = ver.BASED,
+  contents = {
+    198065, -- Design: Indoril Chandelier, Vine-Covered
+    198064, -- Formula: Telvanni Lantern, Luminous Mushroom
+    198063, -- Praxis: Necrom Crematory, Furnace
+    198062, -- Blueprint: Necrom Cart, Funerary
+    198061, -- Diagram: Dwarven Door, Bronze
+    198060, -- Pattern: Dark Elf Tent, Multiroom
+    198059, -- Sketch: Daedric Mirror, Nightmarish
+  },
+}
+
+-- 26 Scribes of Fate
+FurC.FurnishingFolios[204499] = { -- Galen
+  vendor   = npc.FAUSTINA,
+  location = loc.ANY_CAPITAL,
+  price    = 700,
+  currency = CURT_WRIT_VOUCHERS,
+  version  = ver.SCRIBE,
+  contents = {
+    194392, -- Sketch: Resonance Crystal, Cerulean
+    194393, -- Forumula: Druidic Throne, Y'ffre's Bloom
+    194394, -- Design: Druidic Oven, Stone
+    194395, -- Pattern: Mage Tapestry, Aurbic Phoenix
+    194396, -- Praxis: Stone, Lava-Etched
+    194397, -- Diagram: Statue, Bronze Tentacle
+    194398, -- Blueprint: Druidic Bridge, Living
+  },
+}
+
+-- 24 Lost Depths
+FurC.FurnishingFolios[198597] = { -- High Isle
+  vendor   = npc.FAUSTINA,
+  location = loc.ANY_CAPITAL,
+  price    = 700,
+  currency = CURT_WRIT_VOUCHERS,
+  version  = ver.DEPTHS,
+  contents = {
+	190075, -- Diagram: High Isle Beacon, Unlit
+    190074, -- Formula: Potted Trees, Stonelore Dogwood
+    190076, -- Pattern: High Isle Tapestry, Seaside Tourney
+    190077, -- Praxis: High Isle Hearth, Tilework
+    190078, -- Sketch: High Isle Hourglass, Gold
+    190079, -- Design: Shark Jaw, Massive
+	190080, -- Blueprint: High Isle Caravel, Miniature,
+  },
+}
+
+-- 22 Ascending Tides
+FurC.FurnishingFolios[194429] = { -- Deadlands
+  vendor   = npc.FAUSTINA,
+  location = loc.ANY_CAPITAL,
+  price    = 700,
+  currency = CURT_WRIT_VOUCHERS,
+  version  = ver.TIDES,
+  contents = {
+	184154, -- Blueprint: Alinor Easel, Carved
+    184156, -- Design: Blackwood Provisioning Station
+    184151, -- Pattern: Deadlands Tapestry, Mehrunes Dagon
+    184149, -- Praxis: Deadlands Puzzle Cube
+	184150, -- Diagram: Deadlands Throne
+    184152, -- Formula: Fargrave Water Globules, Static
+    184153, -- Sketch: Fargrave Window, Grand Medallion
+  },
+}
+
+-- 20 Waking Flame
+FurC.FurnishingFolios[190121] = { -- Blackwood
+  vendor   = npc.FAUSTINA,
+  location = loc.ANY_CAPITAL,
+  price    = 700,
+  currency = CURT_WRIT_VOUCHERS,
+  version  = ver.WAKE,
+  contents = {
+	181556, -- Diagram: Deadlands Torture Rack
+    181557, -- Blueprint: Leyawiin Divider, Carved Starfish
+    181558, -- Pattern: Leyawiin Tapestry, Hunting Party
+    181559, -- Praxis: Leyawiin Hearth, Carved Wood
+    181560, -- Design: Leyawiin Bowl, Squid Special
+    181561, -- Formula: Blackwood Cottage Painting, Unframed
+    181562, -- Sketch: Leyawiin Lightpost, Ornate
+  },
 }
 
 -- 18 Flames of Ambition
-FurC.FaustinaRecipes[ver.FLAMES] = {
-  [171803] = 100, -- Blueprint: Solitude Well, Noble
-  [171806] = 100, -- Design: Provisioning Station, Solitude Grill
-  [171801] = 100, -- Diagram: Dwarven Minecart, Ornate
-  [171805] = 100, -- Formula: Vampiric Cauldron, Distilled Coagulant
-  [171802] = 100, -- Pattern: Solitude Yarn Rack, Colorful
-  [171804] = 100, -- Praxis: Solitude Hearth, Rounded Tall
-  [171807] = 100, -- Sketch: Dwarven Crystal Sconce, Mirror
+FurC.FurnishingFolios[184192] = { -- Markarth
+  vendor   = npc.FAUSTINA,
+  location = loc.ANY_CAPITAL,
+  price    = 700,
+  currency = CURT_WRIT_VOUCHERS,
+  version  = ver.FLAMES,
+  contents = {
+    171803, -- Blueprint: Solitude Well, Noble
+    171806, -- Design: Provisioning Station, Solitude Grill
+    171801, -- Diagram: Dwarven Minecart, Ornate
+    171805, -- Formula: Vampiric Cauldron, Distilled Coagulant
+    171802, -- Pattern: Solitude Yarn Rack, Colorful
+    171804, -- Praxis: Solitude Hearth, Rounded Tall
+    171807, -- Sketch: Dwarven Crystal Sconce, Mirror
+  },
+}
+
+-- 16 Stonethorn
+FurC.FurnishingFolios[171808] = { -- Western Skyrim
+  vendor   = npc.FAUSTINA,
+  location = loc.ANY_CAPITAL,
+  price    = 700,
+  currency = CURT_WRIT_VOUCHERS,
+  version  = ver.STONET,
+  contents = {
+    167378, -- Diagram: Vampiric Chandelier, Azure Wrought-Iron
+    167379, -- Pattern: Solitude Loom, Warp-Weighted
+    167380, -- Blueprint: Solitude Game, Blood-on-the-Snow
+    167381, -- Praxis: Ancient Nord Monolith, Head
+    167382, -- Formula: Winter Cardinal Painting, In Progress
+    167383, -- Design: Solitude Smoking Rack, Fish
+    167384, -- Sketch: Blackreach Geode, Iridescent
+  },
 }
 
 -- 14 Harrowstorm
-FurC.FaustinaRecipes[ver.HARROW] = {
-  [159501] = 100, -- Praxis: Khajiit Sigil, Moon Cycle
-  [159499] = 100, -- Pattern: Elsweyr Bed, Senche-Raht
-  [159502] = 100, -- Formula: Elsweyr Mortar and Pestle, Engraved
-  [159498] = 100, -- Diagram: Elsweyr Gong, Ornate
-  [159503] = 100, -- Design: Elsweyr Bread Basket, Feast-Day
-  [159500] = 100, -- Blueprint: Elsweyr Well, Covered
+FurC.FurnishingFolios[171778] = { -- Dragonhold
+  vendor   = npc.FAUSTINA,
+  location = loc.ANY_CAPITAL,
+  price    = 700,
+  currency = CURT_WRIT_VOUCHERS,
+  version  = ver.HARROW,
+  contents = {
+    159501, -- Praxis: Khajiit Sigil, Moon Cycle
+    159499, -- Pattern: Elsweyr Bed, Senche-Raht
+    159502, -- Formula: Elsweyr Mortar and Pestle, Engraved
+    159498, -- Diagram: Elsweyr Gong, Ornate
+    159503, -- Design: Elsweyr Bread Basket, Feast-Day
+    159500, -- Blueprint: Elsweyr Well, Covered
+    159504, -- Sketch: Elsweyr Game, Swan Stones
+  },
+}
+
+-- 13 Scalebreaker
+FurC.FurnishingFolios[171574] = { -- Elsweyr
+  vendor   = npc.FAUSTINA,
+  location = loc.ANY_CAPITAL,
+  price    = 700,
+  currency = CURT_WRIT_VOUCHERS,
+  version  = ver.SCALES,
+  contents = {
+    153731, -- Blueprint: Elsweyr Cart, Masterwork
+    153729, -- Diagram: Elsweyr Gate, Masterwork
+    153730, -- Pattern: Elsweyr Chaise Lounge, Upholstered
+    153732, -- Praxis: Elsweyr Statue, Shrine Lion
+    153733, -- Formula: Elsweyr Incense, Fragrant
+    153734, -- Design: Provisioning Station, Elsweyr Grill
+    153735, -- Sketch: Elsweyr Cage, Filigree
+  },
 }
 
 -- 10 Wrathstone
-FurC.FaustinaRecipes[ver.WOTL] = {
-  [147656] = 100, -- Dark Elf Tent, Canopy,
-  [147657] = 100, -- Hlaalu Stove, Chiminea,
-  [147651] = 100, -- Silver Kettle, Masterworked,
-  [147652] = 100, -- Frog-Caller, Untuned,
-  [147653] = 100, -- Pottery Wheel, Ever-Turning,
-  [147654] = 100, -- Alchemical Apparatus, Condens
-  [147655] = 100, -- Hlaalu Salt Lamp, Enchanted,
+FurC.FurnishingFolios[171573] = { -- Ebonheart
+  vendor   = npc.FAUSTINA,
+  location = loc.ANY_CAPITAL,
+  price    = 700,
+  currency = CURT_WRIT_VOUCHERS,
+  version  = ver.WOTL,
+  contents = {
+  147656, -- Dark Elf Tent, Canopy
+  147657, -- Hlaalu Stove, Chiminea
+  147651, -- Silver Kettle, Masterworked
+  147652, -- Frog-Caller, Untuned
+  147653, -- Pottery Wheel, Ever-Turning
+  147654, -- Alchemical Apparatus, Condenser
+  147655, -- Hlaalu Salt Lamp, Enchanted
+  },
+}
+
+-- 9 Wolfhunter
+FurC.FurnishingFolios[171572] = { -- Summerset
+  vendor   = npc.FAUSTINA,
+  location = loc.ANY_CAPITAL,
+  price    = 800,
+  currency = CURT_WRIT_VOUCHERS,
+  version  = ver.WEREWOLF,
+  contents = {
+    141896, -- Sketch: Figurine, The Dragon's Glare
+    141902, -- Diagram: Relic Vault, Impenetrable
+    141903, -- Pattern: Alinor Bed, Levitating
+    141904, -- Blueprint: Alinor Bookshelf, Grand Full
+    141907, -- Design: Alinor Grape Stomping Tub
+    141906, -- Formula: Artist's Palette, Pigment
+    141905, -- Praxis: Alinor Gaming Table, Punctilious Conflict
+    139486, -- Sketch: Alinor Ancestor Clock, Celestial
+  },
 }
 
 -- 6 Dragon Bones
-FurC.FaustinaRecipes[ver.DRAGONS] = {
-  [141904] = 100, -- Blueprint: Alinor Bookshelf, Grand Full,
-  [141905] = 100, -- Praxis: Alinor Gaming Table, Punctilious Conflict,
-  [141906] = 100, -- Formula: Artist's Palette, Pigment,
-  [141907] = 100, -- Design: Alinor Grape Stomping Tub,
-  [141901] = 100, -- Pattern: Psijic Banner, Long,
-  [141903] = 100, -- Pattern: Alinor Bed, Levitating,
-  [141902] = 100, -- Schematic: Relic Vault, Impenetrable,
+FurC.FurnishingFolios[171571] = { -- Dark Elf
+  vendor   = npc.FAUSTINA,
+  location = loc.ANY_CAPITAL,
+  price    = 600,
+  currency = CURT_WRIT_VOUCHERS,
+  version  = ver.DRAGONS,
+  contents = {
+    134987, -- Blueprint: Hlaalu Gaming Table, Foxes & Felines
+    134986, -- Design: Miniature Garden, Bottled
+    134985, -- Praxis: Hlaalu Trinket Box, Curious Turtle
+    134984, -- Pattern: Clothier's Form, Brass
+    134983, -- Diagram: Hlaalu Gong
+    134982, -- Formula: Alchemical Apparatus, Master
+  },
 }
 
--- 6 Dragon Bones
-FurC.FaustinaRecipes[ver.DRAGONS] = {
-  [139486] = 100, -- Sketch: High Elf Ancestor Clock, Celestial
-  [134987] = 100, -- Blueprint: Hlaalu Gaming Table, "Foxes & Felines"
-  [134986] = 100, -- Design: Miniature Garden, Bottled
-  [134985] = 100, -- Praxis: Hlaalu Trinket Box, Curious Turtle
-  [134984] = 100, -- Pattern: Clothier's Form, Brass
-  [134983] = 100, -- Diagram: Hlaalu Gong
-  [134982] = 100, -- Formula: Alchemical Apparatus, Master
-  [132195] = 100, -- Blueprint: Telvanni Candelabra, Masterwork
-  [132194] = 100, -- Design: Mammoth Cheese, Mastercrafted
-  [132193] = 100, -- Praxis: Hlaalu Bath Tub, Masterwork
-  [132192] = 100, -- Pattern: Dres Sewing Kit, Master's
-  [132191] = 100, -- Diagram: Dwarven Gyroscope, Masterwork
-  [132190] = 100, -- Formula: Mages Apparatus, Master
-  [121214] = 100, -- Design: Orcish Skull Goblet, Full
-  [121209] = 100, -- Pattern: Orcish Tapestry, Spear
-  [121207] = 100, -- Praxis: Orcish Table with Fur
-  [121200] = 100, -- Blueprint: Cabinet, Poisonmaker's
-  [121199] = 100, -- Design: Mortar and Pestle
-  [121197] = 100, -- Formula: Bottle, Poison Elixir
-  [121168] = 100, -- Blueprint: Tools, Case
-  [121166] = 100, -- Blueprint: Podium, Skinning
-  [121165] = 100, -- Diagram: Apparatus, Gem Calipers
-  [121164] = 100, -- Formula: Case of Vials
-  [121163] = 100, -- Diagram: Apparatus, Boiler
+-- 7 Summerset
+FurC.Faustina[ver.ALTMER] = {
+  [137947] = 250, -- Attunable Jewelry Station
+  [137870] = 125, -- Jewelry Station
 }
 
 -- 6 Dragon Bones
 FurC.Faustina[ver.DRAGONS] = {
-  [139391] = 10, -- Master Crafter's Banner, Hanging
-  [137947] = 250, -- Attunable Jewelry Station
-  [137870] = 125, -- Jewelry Station
   [134675] = 500, -- Outfit station
+  [139391] = { itemPrice = 10, info = 1801 }, -- Master Crafter's Banner, Hanging
 }
 
--- 6 Dragon Bones
-FurC.Rolis[ver.DRAGONS] = {
-  [133576] = 1250,
+-- 5 Clockwork City
+FurC.Rolis[ver.CLOCKWORK] = {
+  [133576] = 1250, -- Transmute Station
+}
+
+-- 4 Reach
+FurC.FurnishingFolios[171569] = { -- Morrowind
+  vendor   = npc.FAUSTINA,
+  location = loc.ANY_CAPITAL,
+  price    = 600,
+  currency = CURT_WRIT_VOUCHERS,
+  version  = ver.REACH,
+  contents = {
+	132195, -- Blueprint: Telvanni Candelabra, Masterwork
+    132194, -- Design: Mammoth Cheese, Mastercrafted
+    132193, -- Praxis: Hlaalu Bath Tub, Masterwork
+    132192, -- Pattern: Dres Sewing Kit, Master's
+    132191, -- Diagram: Dwarven Gyroscope, Masterwork
+    132190, -- Formula: Mages Apparatus, Master
+  },
+}
+
+-- 2 Homestead
+FurC.FurnishingFolios[171568] = { -- Crafter's
+  vendor   = npc.FAUSTINA,
+  location = loc.ANY_CAPITAL,
+  price    = 1100,
+  currency = CURT_WRIT_VOUCHERS,
+  version  = ver.HOMESTEAD,
+  contents = {
+	121200, -- Blueprint: Cabinet, Poisonmaker's
+    121199, -- Design: Mortar and Pestle
+    121197, -- Formula: Bottle, Poison Elixir
+	121214, -- Design: Orcish Skull Goblet, Full
+    121209, -- Pattern: Orcish Tapestry, Spear
+    121207, -- Praxis: Orcish Table with Fur
+    121168, -- Blueprint: Tools, Case
+    121166, -- Blueprint: Podium, Skinning
+    121165, -- Diagram: Apparatus, Gem Calipers
+    121164, -- Formula: Case of Vials
+    121163, -- Diagram: Apparatus, Boiler
+  },
 }
 
 -- 2 Homestead
