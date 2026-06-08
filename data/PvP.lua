@@ -9,43 +9,43 @@ local ver = FurC.Constants.Versioning
 FurC.PVP[ver.BASE44] = {
   [npc.COLL_MERCH] = {
     [loc.IMPCITY] = {
-	  [211572] = { -- Imperial Tent, Large
-	    itemPrice = 18000,
-		currency = CURT_TELVAR_STONES,
-	  },
-	  [211573] = { -- Imperial Tent, Meeting
-	    itemPrice = 16000,
-		currency = CURT_TELVAR_STONES,
-	  },
-	  [211574] = { -- Imperial Dais, Raised
-	    itemPrice = 9500,
-		currency = CURT_TELVAR_STONES,
-	  },
-	  [211575] = { -- Daedric Chest, Molag Bal
-	    itemPrice = 7500,
-		currency = CURT_TELVAR_STONES,
-	  },
-	  [211576] = { -- Imperial Chest, Reinforced
-	    itemPrice = 500,
-		currency = CURT_TELVAR_STONES,
-	  },
-	  [211577] = { -- Imperial Pedestal, Siege
-	    itemPrice = 4000,
-		currency = CURT_TELVAR_STONES,
-	  },
-	  [211578] = { -- Imperial Archway, Stone
-	    itemPrice = 250,
-		currency = CURT_TELVAR_STONES,
-	  },
-	  [211579] = { -- Imperial Door, Diamond
-	    itemPrice = 7500,
-		currency = CURT_TELVAR_STONES,
-	  },
-	  [211580] = { -- Imperial Firepit, Round
-	    itemPrice = 4000,
-		currency = CURT_TELVAR_STONES,
-	  },
-	},
+      [211572] = { -- Imperial Tent, Large
+        itemPrice = 18000,
+        currency = CURT_TELVAR_STONES,
+      },
+      [211573] = { -- Imperial Tent, Meeting
+        itemPrice = 16000,
+        currency = CURT_TELVAR_STONES,
+      },
+      [211574] = { -- Imperial Dais, Raised
+        itemPrice = 9500,
+        currency = CURT_TELVAR_STONES,
+      },
+      [211575] = { -- Daedric Chest, Molag Bal
+        itemPrice = 7500,
+        currency = CURT_TELVAR_STONES,
+      },
+      [211576] = { -- Imperial Chest, Reinforced
+        itemPrice = 500,
+        currency = CURT_TELVAR_STONES,
+      },
+      [211577] = { -- Imperial Pedestal, Siege
+        itemPrice = 4000,
+        currency = CURT_TELVAR_STONES,
+      },
+      [211578] = { -- Imperial Archway, Stone
+        itemPrice = 250,
+        currency = CURT_TELVAR_STONES,
+      },
+      [211579] = { -- Imperial Door, Diamond
+        itemPrice = 7500,
+        currency = CURT_TELVAR_STONES,
+      },
+      [211580] = { -- Imperial Firepit, Round
+        itemPrice = 4000,
+        currency = CURT_TELVAR_STONES,
+      },
+    },
   },
 }
 
@@ -70,11 +70,11 @@ FurC.PVP[ver.HOMESTEAD] = {
         itemPrice = 100000,
         achievement = 114, -- Overlord
       },
-	  [119678] = { -- Covenant Keep Pennant
+      [119678] = { -- Covenant Keep Pennant
         itemPrice = 8000,
         achievement = 113, -- Grand War lord
       },
-	  [119632] = { -- Dominion Keep Pennant
+      [119632] = { -- Dominion Keep Pennant
         itemPrice = 8000,
         achievement = 113, -- Grand War lord
       },
@@ -94,7 +94,7 @@ FurC.PVP[ver.HOMESTEAD] = {
         itemPrice = 2000,
         achievement = 110, -- Legate
       },
-	  [119652] = { -- Defaced Pact Flag
+      [119652] = { -- Defaced Pact Flag
         itemPrice = 2000,
         achievement = 110, -- Legate
       },
@@ -102,11 +102,11 @@ FurC.PVP[ver.HOMESTEAD] = {
         itemPrice = 200,
         achievement = 92, -- Volunteer
       },
-	  [119633] = { -- Dominion Pennant, Small
+      [119633] = { -- Dominion Pennant, Small
         itemPrice = 200,
         achievement = 92, -- Volunteer
       },
-	  [119679] = { -- Covenant Pennant, Small
+      [119679] = { -- Covenant Pennant, Small
         itemPrice = 200,
         achievement = 92, -- Volunteer
       },
@@ -118,11 +118,11 @@ FurC.PVP[ver.HOMESTEAD] = {
         itemPrice = 50000,
         achievement = 112, -- Warlord
       },
-	  [119631] = { -- Surplus Dominion Cold Fire Trebuchet
+      [119631] = { -- Surplus Dominion Cold Fire Trebuchet
         itemPrice = 50000,
         achievement = 112, -- Warlord
       },
-	  [119677] = { -- Surplus Covenant Cold Fire Trebuchet
+      [119677] = { -- Surplus Covenant Cold Fire Trebuchet
         itemPrice = 50000,
         achievement = 112, -- Warlord
       },
@@ -130,11 +130,11 @@ FurC.PVP[ver.HOMESTEAD] = {
         itemPrice = 30000,
         achievement = 111, -- General
       },
-	  [119630] = { -- Surplus Dominion Cold Fire Ballista
+      [119630] = { -- Surplus Dominion Cold Fire Ballista
         itemPrice = 30000,
         achievement = 111, -- General
       },
-	  [119676] = { -- Surplus Covenant Cold Fire Ballista
+      [119676] = { -- Surplus Covenant Cold Fire Ballista
         itemPrice = 30000,
         achievement = 111, -- General
       },
@@ -142,11 +142,11 @@ FurC.PVP[ver.HOMESTEAD] = {
         itemPrice = 50000,
         achievement = 109, -- August Palatine
       },
-	  [119628] = { -- Surplus Dominion Iceball Trebuchet
+      [119628] = { -- Surplus Dominion Iceball Trebuchet
         itemPrice = 50000,
         achievement = 109, -- August Palatine
       },
-	  [119674] = { -- Surplus Covenant Iceball Trebuchet
+      [119674] = { -- Surplus Covenant Iceball Trebuchet
         itemPrice = 50000,
         achievement = 109, -- August Palatine
       },
@@ -154,7 +154,7 @@ FurC.PVP[ver.HOMESTEAD] = {
         itemPrice = 30000,
         achievement = 108, -- Palatine
       },
-	  [119673] = { -- Surplus Covenant Meatbag Catapult
+      [119673] = { -- Surplus Covenant Meatbag Catapult
         itemPrice = 30000,
         achievement = 108, -- Palatine
       },
@@ -162,11 +162,11 @@ FurC.PVP[ver.HOMESTEAD] = {
         itemPrice = 30000,
         achievement = 107, -- Praetorian
       },
-	  [119626] = { -- Surplus Dominion Lightning Ballista
+      [119626] = { -- Surplus Dominion Lightning Ballista
         itemPrice = 30000,
         achievement = 107, -- Praetorian
       },
-	  [119672] = { -- Surplus Covenant Lightning Ballista
+      [119672] = { -- Surplus Covenant Lightning Ballista
         itemPrice = 30000,
         achievement = 107, -- Praetorian
       },
@@ -174,11 +174,11 @@ FurC.PVP[ver.HOMESTEAD] = {
         itemPrice = 50000,
         achievement = 106, -- Prefect
       },
-	  [119625] = { -- Surplus Dominion Forward Camp
+      [119625] = { -- Surplus Dominion Forward Camp
         itemPrice = 50000,
         achievement = 106, -- Prefect
       },
-	  [119671] = { -- Surplus Covenant Forward Camp
+      [119671] = { -- Surplus Covenant Forward Camp
         itemPrice = 50000,
         achievement = 106, -- Prefect
       },
@@ -186,27 +186,27 @@ FurC.PVP[ver.HOMESTEAD] = {
         itemPrice = 45000,
         achievement = 105, -- Brigadier
       },
-	  [119624] = { -- Surplus Dominion Firepot Trebuchet
+      [119624] = { -- Surplus Dominion Firepot Trebuchet
         itemPrice = 45000,
         achievement = 105, -- Brigadier
       },
-	  [119670] = { -- Surplus Covenant Firepot Trebuchet
+      [119670] = { -- Surplus Covenant Firepot Trebuchet
         itemPrice = 45000,
         achievement = 105, -- Brigadier
       },
       [119646] = { -- Surplus Pact Oil Catapult
         itemPrice = 25000,
-        achievement = 104,  -- Tribune
+        achievement = 104, -- Tribune
       },
       [119645] = { -- Pact Fire Ballista
         itemPrice = 30000,
         achievement = 103, -- Colonel
       },
-	  [119622] = { -- Surplus Dominion Fire Ballista
+      [119622] = { -- Surplus Dominion Fire Ballista
         itemPrice = 30000,
         achievement = 103, -- Colonel
       },
-	  [119668] = { -- Surplus Covenant Fire Ballista
+      [119668] = { -- Surplus Covenant Fire Ballista
         itemPrice = 30000,
         achievement = 103, -- Colonel
       },
@@ -214,11 +214,11 @@ FurC.PVP[ver.HOMESTEAD] = {
         itemPrice = 25000,
         achievement = 102, -- Centurion
       },
-	  [119621] = { -- Surplus Dominion Battering Ram
+      [119621] = { -- Surplus Dominion Battering Ram
         itemPrice = 25000,
         achievement = 102, -- Centurion
       },
-	  [119667] = { -- Surplus Covenant Battering Ram
+      [119667] = { -- Surplus Covenant Battering Ram
         itemPrice = 25000,
         achievement = 102, -- Centurion
       },
@@ -226,7 +226,7 @@ FurC.PVP[ver.HOMESTEAD] = {
         itemPrice = 40000,
         achievement = 101, -- Major
       },
-	  [119627] = { -- Surplus Dominion Meatbag Catapult
+      [119627] = { -- Surplus Dominion Meatbag Catapult
         itemPrice = 30000,
         achievement = 108, -- Palatine
       },
@@ -234,11 +234,11 @@ FurC.PVP[ver.HOMESTEAD] = {
         itemPrice = 15000,
         achievement = 100, -- Captain
       },
-	  [119619] = { -- Surplus Dominion Scattershot Catapult
+      [119619] = { -- Surplus Dominion Scattershot Catapult
         itemPrice = 15000,
         achievement = 100, -- Captain
       },
-	  [119665] = { -- Surplus Covenant Scattershot Catapult
+      [119665] = { -- Surplus Covenant Scattershot Catapult
         itemPrice = 15000,
         achievement = 100, -- Captain
       },
@@ -246,11 +246,11 @@ FurC.PVP[ver.HOMESTEAD] = {
         itemPrice = 20000,
         achievement = 99, -- Lieutenant
       },
-	  [119618] = { -- Surplus Dominion Ballista
+      [119618] = { -- Surplus Dominion Ballista
         itemPrice = 20000,
         achievement = 99, -- Lieutenant
       },
-	  [119664] = { -- Surplus Covenant Ballista
+      [119664] = { -- Surplus Covenant Ballista
         itemPrice = 20000,
         achievement = 99, -- Lieutenant
       },
@@ -258,11 +258,11 @@ FurC.PVP[ver.HOMESTEAD] = {
         itemPrice = 5000,
         achievement = 98, -- Sergeant
       },
-	  [119616] = { -- Spare Dominion Ballista Figurehead
+      [119616] = { -- Spare Dominion Ballista Figurehead
         itemPrice = 5000,
         achievement = 98, -- Sergeant
       },
-	  [119662] = { -- Spare Covenant Ballista Figurehead
+      [119662] = { -- Spare Covenant Ballista Figurehead
         itemPrice = 5000,
         achievement = 98, -- Sergeant
       },
@@ -270,11 +270,11 @@ FurC.PVP[ver.HOMESTEAD] = {
         itemPrice = 4000,
         achievement = 97, -- Corporal
       },
-	  [119615] = { -- Surplus Dominion Point Capture Flag
+      [119615] = { -- Surplus Dominion Point Capture Flag
         itemPrice = 4000,
         achievement = 97, -- Corporal
       },
-	  [119661] = { -- Surplus Covenant Point Capture Flag
+      [119661] = { -- Surplus Covenant Point Capture Flag
         itemPrice = 4000,
         achievement = 97, -- Corporal
       },
@@ -282,11 +282,11 @@ FurC.PVP[ver.HOMESTEAD] = {
         itemPrice = 3000,
         achievement = 96, -- Veteran
       },
-	  [119614] = { -- Dominion Wall Banner, Large
+      [119614] = { -- Dominion Wall Banner, Large
         itemPrice = 3000,
         achievement = 96, -- Veteran
       },
-	  [119660] = { -- Covenant Wall Banner, Large
+      [119660] = { -- Covenant Wall Banner, Large
         itemPrice = 3000,
         achievement = 96, -- Veteran
       },
@@ -294,11 +294,11 @@ FurC.PVP[ver.HOMESTEAD] = {
         itemPrice = 1000,
         achievement = 95, -- Legionary
       },
-	  [119613] = { -- Dominion Camp Banner
+      [119613] = { -- Dominion Camp Banner
         itemPrice = 1000,
         achievement = 95, -- Legionary
       },
-	  [119659] = { -- Covenant Camp Banner
+      [119659] = { -- Covenant Camp Banner
         itemPrice = 1000,
         achievement = 95, -- Legionary
       },
@@ -318,55 +318,53 @@ FurC.PVP[ver.HOMESTEAD] = {
         itemPrice = 10000,
         achievement = 706, -- First Sergeant
       },
-	  [119611] = { -- Dominion Wall Banner, Small
-	    itemPrice = 400,
-		achievement = 93, -- Recruit
-	  },
-	  [119657] = { -- Covenant Wall Banner, Small
-	    itemPrice = 400,
-		achievement = 93, -- Recruit
-	  },
-	  [119612] = { -- Dominion Wall Banner, Medium
+      [119611] = { -- Dominion Wall Banner, Small
+        itemPrice = 400,
+        achievement = 93, -- Recruit
+      },
+      [119657] = { -- Covenant Wall Banner, Small
+        itemPrice = 400,
+        achievement = 93, -- Recruit
+      },
+      [119612] = { -- Dominion Wall Banner, Medium
         itemPrice = 600,
         achievement = 94, -- Tyro
       },
-	  [119658] = { -- Covenant Wall Banner, Medium
+      [119658] = { -- Covenant Wall Banner, Medium
         itemPrice = 600,
         achievement = 94, -- Tyro
       },
-	  [119620] = { -- Surplus Dominion Stone Trebuchet
-	    itemPrice = 40000,
-		achievement = 101, -- Major
-	  },
-	  [119666] = { -- Surplus Covenant Stone Trebuchet
-	    itemPrice = 40000,
-		achievement = 101, -- Major
-	  },
-	  [119623] = { -- Surplus Dominion Oil Catapult
-	    itemPrice = 25000,
+      [119620] = { -- Surplus Dominion Stone Trebuchet
+        itemPrice = 40000,
+        achievement = 101, -- Major
+      },
+      [119666] = { -- Surplus Covenant Stone Trebuchet
+        itemPrice = 40000,
+        achievement = 101, -- Major
+      },
+      [119623] = { -- Surplus Dominion Oil Catapult
+        itemPrice = 25000,
         achievement = 104, -- Tribune
-	  },
-	  [119669] = { -- Surplus Covenant Oil Catapult
-	    itemPrice = 25000,
+      },
+      [119669] = { -- Surplus Covenant Oil Catapult
+        itemPrice = 25000,
         achievement = 104, -- Tribune
-	  },
+      },
     },
   },
-  
+
   [npc.COLL_MERCH] = {
     [loc.IMPCITY] = {
       [119983] = { -- Imperial Banner
         itemPrice = 15000,
-		currency = CURT_TELVAR_STONES,
+        currency = CURT_TELVAR_STONES,
         achievement = 1169, -- all POI in sewers
       },
       [119982] = { -- Molag Bal Brazier
         itemPrice = 25000,
-		currency = CURT_TELVAR_STONES,
+        currency = CURT_TELVAR_STONES,
         achievement = 1175, -- Molag Bal Achievement
       },
-	  
-	},
+    },
   },
-  
 }

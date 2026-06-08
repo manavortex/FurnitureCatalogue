@@ -7,21 +7,21 @@ local dataminedUnclear = GetString(SI_FURC_DATAMINED_UNCLEAR)
 
 -- Season Zero Part 2
 FurC.Rumours[ver.ZERO2] = {
-    [224843] = rumourSource, -- Starsong Staircase, Spiral
-    [224844] = rumourSource, -- Sigil Trim, Anu Pattern
-	[224847] = rumourSource, -- Marble Platform, Padomay Pattern Square
-    [224848] = rumourSource, -- Marble Pillar, Anu Pattern
-    [224849] = rumourSource, -- Marble Pillar, Padomay Pattern
-	[224876] = rumourSource, -- Music Box, A Wish for Fish
-    [225088] = rumourSource, -- Cheers to the Hero Painting, Gold
-    [225184] = rumourSource, -- Pipe, Stately
-	[223844] = rumourSource, -- Hearts Week Decor, Red Bow
-    [224739] = rumourSource, -- Aetherean Rupture, Liminal
-    [224853] = rumourSource, -- A Hero Strides Forth Painting, Gold
-    [224852] = rumourSource, -- An Evening with Darien Painting, Gold
-    [224851] = rumourSource, -- Statue, Meridia's Champion
-    [224846] = rumourSource, -- Marble Platform, Anu Pattern Square
-    [224845] = rumourSource, -- Sigil Trim, Padomay Pattern	
+  [224843] = rumourSource, -- Starsong Staircase, Spiral
+  [224844] = rumourSource, -- Sigil Trim, Anu Pattern
+  [224847] = rumourSource, -- Marble Platform, Padomay Pattern Square
+  [224848] = rumourSource, -- Marble Pillar, Anu Pattern
+  [224849] = rumourSource, -- Marble Pillar, Padomay Pattern
+  [224876] = rumourSource, -- Music Box, A Wish for Fish
+  [225088] = rumourSource, -- Cheers to the Hero Painting, Gold
+  [225184] = rumourSource, -- Pipe, Stately
+  [223844] = rumourSource, -- Hearts Week Decor, Red Bow
+  [224739] = rumourSource, -- Aetherean Rupture, Liminal
+  [224853] = rumourSource, -- A Hero Strides Forth Painting, Gold
+  [224852] = rumourSource, -- An Evening with Darien Painting, Gold
+  [224851] = rumourSource, -- Statue, Meridia's Champion
+  [224846] = rumourSource, -- Marble Platform, Anu Pattern Square
+  [224845] = rumourSource, -- Sigil Trim, Padomay Pattern
 }
 
 -- Season Zero
@@ -60,7 +60,7 @@ FurC.Rumours[ver.ZERO] = {
   [223141] = rumourSource, -- Coldharbour Sconce
   [219862] = rumourSource, -- Music Box, Grave-Stake Gambol
   [223175] = rumourSource, -- Nord Shed Painting, Unfinished
-  }
+}
 
 -- 33 Fallen Banners (U45)
 FurC.Rumours[ver.FALLBAN] = {
@@ -76,8 +76,6 @@ FurC.Rumours[ver.FALLBAN] = {
   [204777] = rumourSource, -- Wine Press Scaffolding, Short
   [204776] = rumourSource, -- Colovian Grape Press, Compact
   [204775] = rumourSource, -- Colovian Grape Tub, Tall
-  
-  
 }
 
 -- 29 Scions of Ithelia
@@ -94,7 +92,6 @@ FurC.Rumours[ver.ENDLESS] = {
   [199120] = rumourSource, -- Framed Vision
 }
 
-
 -- 26 Necrom
 FurC.Rumours[ver.NECROM] = {
   [120485] = rumourSource, -- Cactus, Columnar
@@ -106,7 +103,6 @@ FurC.Rumours[ver.NECROM] = {
   [115706] = rumourSource, -- Khajiit Tile, Full Moons
   [115705] = rumourSource, -- Khajiit Tile, New Moons
 }
-
 
 -- 20 Deadlands
 FurC.Rumours[ver.DEADL] = {
@@ -154,7 +150,7 @@ FurC.Rumours[ver.STONET] = {
   [119584] = rumourSource, -- Auridon Fern, Orange
   [119583] = rumourSource, -- Rough Limestone Tile
   [119582] = rumourSource, -- Rough Timber
-  [119579] = rumourSource, -- Murky Palm Tree 
+  [119579] = rumourSource, -- Murky Palm Tree
   [119575] = rumourSource, -- Tree, Slender Oak
   [119574] = rumourSource, -- Twisted Oak Tree
   [119573] = rumourSource, -- Young Oak Tree
@@ -235,15 +231,15 @@ FurC.Rumours[ver.STONET] = {
   [118240] = rumourSource, -- Cake, Anniversary
   [118239] = rumourSource, -- Vial of Blood
   [118151] = rumourSource, -- Carpet Roll, Sunset
-  [118150] = rumourSource, -- Carpet Roll, Colorful  
+  [118150] = rumourSource, -- Carpet Roll, Colorful
   [118124] = rumourSource, -- Pelt, Wolf
-  [118123] = rumourSource, -- Pelt, Ice Wolf 
+  [118123] = rumourSource, -- Pelt, Ice Wolf
   [118106] = rumourSource, -- Painting Palette
   [118105] = rumourSource, -- Painting Brush, Angled
   [118104] = rumourSource, -- Painting Brush, Detail
   [118103] = rumourSource, -- Painting Brush, Wide
   [118100] = rumourSource, -- Horn, Carved
-    [117898] = rumourSource, -- Redguard Carpet, Dawn
+  [117898] = rumourSource, -- Redguard Carpet, Dawn
   [116490] = rumourSource, -- Orcish Head, Stone
   [116489] = rumourSource, -- Orcish Mask, Shield
   [116488] = rumourSource, -- Orcish Mask, Decorative
@@ -257,7 +253,7 @@ FurC.Rumours[ver.STONET] = {
   [116472] = rumourSource, -- Orcish Throne, Skull
   [116469] = rumourSource, -- Orcish Figure, Stone
   [116445] = rumourSource, -- Orcish Table with Furs
-    [115624] = rumourSource, -- Wood Elf Rug, Boar Hide
+  [115624] = rumourSource, -- Wood Elf Rug, Boar Hide
   [115623] = rumourSource, -- Wood Elf Pedestal, Stone
   [115622] = rumourSource, -- Wood Elf Handfast Statue
   [115621] = rumourSource, -- Wood Elf Tapestry, Skull Totem
@@ -282,7 +278,7 @@ FurC.Rumours[ver.STONET] = {
 FurC.Rumours[ver.SKYRIM] = {
   [165995] = rumourSource, -- Antique Map of Cyrodiil
   [163722] = rumourSource, -- Antique Map of Tamriel
-    [152258] = rumourSource, -- Banner of Boethiah
+  [152258] = rumourSource, -- Banner of Boethiah
 }
 
 -- 11 Elsweyr
@@ -295,7 +291,7 @@ FurC.Rumours[ver.KITTY] = {
   [152143] = rumourSource, -- Orcish Sconce, Scrolled,    Orsinium Celebration Event 2019.
   [152142] = rumourSource, -- Orcish Sconce, Bordered,    Orsinium Celebration Event 2019.
   [152141] = rumourSource, -- Orcish Brazier, Bordered,   Orsinium Celebration Event 2019.
-    [150774] = rumourSource, -- Banner of Vaermina
+  [150774] = rumourSource, -- Banner of Vaermina
 }
 
 -- 10 Wrathstone
@@ -370,7 +366,7 @@ FurC.Rumours[ver.CLOCKWORK] = {
 FurC.Rumours[ver.MORROWIND] = {
   [132531] = dataminedUnclear, -- Hlaalu Planter, Tall
   [126568] = dataminedUnclear, -- Daedric Urn, Ritual
-    [125591] = dataminedUnclear, -- Mushroom, Lavaburst Patch
+  [125591] = dataminedUnclear, -- Mushroom, Lavaburst Patch
   [125576] = dataminedUnclear, -- Hlaalu Wall Pillar, Sillar Stone
   [125570] = dataminedUnclear, -- Hlaalu Stairs, Sillar Stone
   [125569] = dataminedUnclear, -- Hlaalu Sidewalk, Sillar Stone Corner

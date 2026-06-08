@@ -41,8 +41,8 @@ FurC.Constants.ItemSources = {
   GUILDSTORE = getNextIdFor("ITEM_SOURCES"), -- 17
   FESTIVAL_DROP = getNextIdFor("ITEM_SOURCES"), -- 18
   BAZAAR = getNextIdFor("ITEM_SOURCES"), -- 19
-  TOMES = getNextIdFor("ITEM_SOURCES"),  -- 20
-  TELVAR = getNextIdFor("ITEM_SOURCES"),  -- 21
+  TOMES = getNextIdFor("ITEM_SOURCES"), -- 20
+  TELVAR = getNextIdFor("ITEM_SOURCES"), -- 21
   COLL_MERCH = getNextIdFor("ITEM_SOURCES"), -- 22
 }
 
@@ -154,10 +154,10 @@ FurC.Constants.Locations = {
   TELVANNI = getZoneStr(1414), -- Telvanni Peninsula
   VVARDENFELL = getZoneStr(849), -- Vvardenfell
   WEALD = getZoneStr(1443), -- West Weald
- 
+
   WROTHGAR = getZoneStr(684), -- Wrothgar
   WSKYRIM = getZoneStr(1160), -- Western Skyrim
- 
+
   -- Custom
   ANY = GetString(SI_FURC_LOC_ANY),
   ANY_CAPITAL = GetString(SI_FURC_LOC_ANY_CAPITAL),
@@ -207,7 +207,7 @@ FurC.Constants.NPC = {
   HOLIDAY = GetString(SI_FURC_TRADERS_HOLIDAY), -- Heralda, Tildannire, ...
   LUXF = GetString(SI_FURC_TRADERS_LUXF), -- Luxury Furnisher: Zanil
   NM = GetString(SI_FURC_TRADERS_NM), -- Night Market Vendors: Nymisasha, Fennel, Najirra
-  COLL_MERCH = GetString(SI_FURC_TRADERS_COLL_MERCH),     -- Tel Var Collectibles Merchant: Enruvie, Skoref Bearblood, Bernamund Bertault
+  COLL_MERCH = GetString(SI_FURC_TRADERS_COLL_MERCH), -- Tel Var Collectibles Merchant: Enruvie, Skoref Bearblood, Bernamund Bertault
 
   -- Guild Traders
   FIGHTERS_STEWARD = GetString(SI_FURC_GUILD_FIGHTERS_STEWARD), -- stewards in Fighters Guild locations
@@ -276,7 +276,7 @@ FurC.Constants.CrownCrates = {
   -- Source: https://en.uesp.net/wiki/Online:Crown_Crates
 
   -- ids not confirmed ingame yet
-  
+
   KINDRED = GetCrownCrateName(64), -- 2025-12, Hidden Kindred
   ANU_PAD = GetCrownCrateName(67), -- 2026-07, Anu vs. Padomay
 

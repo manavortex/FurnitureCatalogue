@@ -128,7 +128,7 @@ local function getPvpSource(recipeKey, recipeArray, stripColor)
       if nil ~= locationData[recipeKey] then
         local item = locationData[recipeKey]
         local currency = item.currency or CURT_ALLIANCE_POINTS
-		local result = strFurnisher(vendorName, locationName, item.itemPrice, currency, item.achievement)
+        local result = strFurnisher(vendorName, locationName, item.itemPrice, currency, item.achievement)
         if stripColor then
           result = string.format("%s %s", getItemLink(recipeKey), stripText(result))
         end

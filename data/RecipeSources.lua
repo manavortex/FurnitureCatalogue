@@ -59,7 +59,8 @@ for folioId, folioData in pairs(FurC.FurnishingFolios) do
   if folioData.contents then
     FurC.Faustina[folioData.version] = FurC.Faustina[folioData.version] or {}
     for _, recipeId in ipairs(folioData.contents) do
-      FurC.RecipeSources[recipeId] = strFurnisher(npc.FAUSTINA, loc.ANY_CAPITAL, folioData.price, CURT_WRIT_VOUCHERS, strPartOf(folioId))
+      FurC.RecipeSources[recipeId] =
+        strFurnisher(npc.FAUSTINA, loc.ANY_CAPITAL, folioData.price, CURT_WRIT_VOUCHERS, strPartOf(folioId))
       -- Store as table so getRolisSource can access both price and folio info
       FurC.Faustina[folioData.version][recipeId] = { itemPrice = folioData.price, info = strPartOf(folioId) }
     end

@@ -134,7 +134,6 @@ local inf_archive = strDungeon(nil, loc.DUNG_IA)
 local frostvault = strDungeon(rarityRare, loc.DUNG_FV)
 local plants_solstice = strGeneric(srcHarvest, nil, "loc", loc.SOLSTICE)
 
-
 -- "Part of the item 'Look upon Their Nothing Eyes' in Lilmoth, Murkmire, 15k gold"
 local collection_nothingeyes =
   strPartOf(145596, zo_strformat("<<1>>, <<2>>: <<3>>", loc.MURKMIRE, loc.MURKMIRE_LIL, strPrice(15000, CURT_MONEY)))
@@ -252,64 +251,63 @@ end
 FurC.MiscItemSources[ver.ZERO2] = {
   [src.DROP] = {
     -- Scrying
-	[224855] = strScry(loc.GLENUMBRA), -- Fool's Gold Pile
-	[224857] = strScry(loc.GLENUMBRA), -- Window of Divinity
-	[224858] = strScry(loc.GLENUMBRA), -- Zenithar Devotional Stele
-	[224856] = strScry(loc.GLENUMBRA), -- Tapestry of the Prince's Hunt
-	
-	-- Justice
-	[225017] = pickpocket_glenumbra, -- Keg Spigot, Brass
-	[225018] = pickpocket_glenumbra, -- Pin Cushion, Red
-	[225019] = pickpocket_glenumbra, -- Flask, Fancy
-	[225020] = pickpocket_glenumbra, -- Handbell, Brass
-	[225021] = pickpocket_glenumbra, -- Pocket Whistle, Brass
-	[225022] = pickpocket_glenumbra, -- Hand Mirror, Silver-Plated
-	[225023] = pickpocket_glenumbra, -- Order Ledger, Business
-	[225024] = pickpocket_glenumbra, -- Key, Brass
-	[225025] = pickpocket_glenumbra, -- Teeba-Enoo Ball, Patchwork Leather
-	[225026] = pickpocket_glenumbra, -- Chef Hat, Decorative
-	[225027] = pickpocket_glenumbra, -- Cheese Crumbs, Echatere
-	[225016] = pickpocket_glenumbra, -- Ore, Display
-	[225015] = pickpocket_glenumbra, -- Amber Chunk, Display
-  },
+    [224855] = strScry(loc.GLENUMBRA), -- Fool's Gold Pile
+    [224857] = strScry(loc.GLENUMBRA), -- Window of Divinity
+    [224858] = strScry(loc.GLENUMBRA), -- Zenithar Devotional Stele
+    [224856] = strScry(loc.GLENUMBRA), -- Tapestry of the Prince's Hunt
 
+    -- Justice
+    [225017] = pickpocket_glenumbra, -- Keg Spigot, Brass
+    [225018] = pickpocket_glenumbra, -- Pin Cushion, Red
+    [225019] = pickpocket_glenumbra, -- Flask, Fancy
+    [225020] = pickpocket_glenumbra, -- Handbell, Brass
+    [225021] = pickpocket_glenumbra, -- Pocket Whistle, Brass
+    [225022] = pickpocket_glenumbra, -- Hand Mirror, Silver-Plated
+    [225023] = pickpocket_glenumbra, -- Order Ledger, Business
+    [225024] = pickpocket_glenumbra, -- Key, Brass
+    [225025] = pickpocket_glenumbra, -- Teeba-Enoo Ball, Patchwork Leather
+    [225026] = pickpocket_glenumbra, -- Chef Hat, Decorative
+    [225027] = pickpocket_glenumbra, -- Cheese Crumbs, Echatere
+    [225016] = pickpocket_glenumbra, -- Ore, Display
+    [225015] = pickpocket_glenumbra, -- Amber Chunk, Display
+  },
 }
 
 -- Season Zero
 FurC.MiscItemSources[ver.ZERO] = {
   [src.CROWN] = {
-	[223743] = strCrown(4000), -- Almalexia, Mother Morrowind
-	[223735] = strCrown(1200), -- Music Box, Duel of the Seablades
+    [223743] = strCrown(4000), -- Almalexia, Mother Morrowind
+    [223735] = strCrown(1200), -- Music Box, Duel of the Seablades
   },
-  
+
   [src.DROP] = {
-  
+
     -- Scrying
-	[223867] = strScry(loc.COLDH), -- Bearer of Fargrave, Skeletal Jaw
-	[223868] = strScry(loc.COLDH), -- Bearer of Fargrave, Broken Skull
-	[223869] = strScry(loc.COLDH), -- Imperial Titan Slayer
-	[223870] = strScry(loc.COLDH), -- Valenwood Skull Blocks
+    [223867] = strScry(loc.COLDH), -- Bearer of Fargrave, Skeletal Jaw
+    [223868] = strScry(loc.COLDH), -- Bearer of Fargrave, Broken Skull
+    [223869] = strScry(loc.COLDH), -- Imperial Titan Slayer
+    [223870] = strScry(loc.COLDH), -- Valenwood Skull Blocks
     [223871] = strScry(loc.COLDH), -- Hourglass of Akatosh Brace, Massive
   },
-  
+
   [src.BAZAAR] = {
     [197625] = strBazaar(2000), -- Music Box, Oath of the Keepers
   },
-  
+
   [src.TOMES] = {
     [224078] = strTomesPack("dawn"), -- Dusklight Rift
     [224077] = strTomesPack("dawn"), -- Dusklight Mote
-	[224079] = strTomesPack("dawn"), -- Dawnlight Rift
+    [224079] = strTomesPack("dawn"), -- Dawnlight Rift
     [224080] = strTomesPack("dawn"), -- Dawnlight Mote
-	[224074] = strTomesPack("logic"), -- High Isle Fireplace, Stone
-	[224076] = strTomesPack("logic"), -- Fireplace Screen, Wrought Iron
-	[224075] = strTomesPack("logic"), -- Stained Glass of Julianos, Symbol
-	[223996] = strTomesPack("armor"), -- Report: Quality of Recruits
+    [224074] = strTomesPack("logic"), -- High Isle Fireplace, Stone
+    [224076] = strTomesPack("logic"), -- Fireplace Screen, Wrought Iron
+    [224075] = strTomesPack("logic"), -- Stained Glass of Julianos, Symbol
+    [223996] = strTomesPack("armor"), -- Report: Quality of Recruits
     [224007] = strTomesPack("armor"), -- The Rotwood Enigma
     [224006] = strTomesPack("armor"), -- Armor of Myth and Legend
     [224005] = strTomesPack("armor"), -- Folly in Fixation
-	[224003] = strTomesPack("armor"), -- Husks and Bones
-	[224004] = strTomesPack("armor"), -- The Masters' Hall
+    [224003] = strTomesPack("armor"), -- Husks and Bones
+    [224004] = strTomesPack("armor"), -- The Masters' Hall
     [224002] = strTomesPack("armor"), -- Azarrid's Race
     [224001] = strTomesPack("armor"), -- Settling the Debate
     [224000] = strTomesPack("armor"), -- Discomforts of War
@@ -317,7 +315,6 @@ FurC.MiscItemSources[ver.ZERO] = {
     [223998] = strTomesPack("armor"), -- Undeniable Truths of Attire
     [223997] = strTomesPack("armor"), -- Xil-Go's Spell
   },
-
 }
 
 -- Seasons of the Worm Cult Part 2
@@ -330,117 +327,114 @@ FurC.MiscItemSources[ver.WORMS2] = {
     [217698] = strPack("sanguine"), -- Carnaval Wall, Triangular Cloth
     [217699] = strPack("sanguine"), -- Carnaval Pennants, String
     [217700] = strPack("sanguine"), -- Carnaval Stall, Merchant
-	[217701] = strPack("sanguine"), -- Carnaval Confetti, Cascade
-	[217702] = strPack("sanguine"), -- Carnaval Confetti, Burst
-	[223146] = strPack("writhing"), -- Writhing Wall, Soulstream
-	[223145] = strPack("writhing"), -- Writhing Wall, Segment
-	[223144] = strPack("writhing"), -- Black Soul Gems, Giant Cluster
-	[223142] = strPack("writhing"), -- Black Soul Gems, Spiky Cluster
+    [217701] = strPack("sanguine"), -- Carnaval Confetti, Cascade
+    [217702] = strPack("sanguine"), -- Carnaval Confetti, Burst
+    [223146] = strPack("writhing"), -- Writhing Wall, Soulstream
+    [223145] = strPack("writhing"), -- Writhing Wall, Segment
+    [223144] = strPack("writhing"), -- Black Soul Gems, Giant Cluster
+    [223142] = strPack("writhing"), -- Black Soul Gems, Spiky Cluster
     [223143] = strPack("writhing"), -- Black Soul Gems, Patch
-	[223135] = strPack("writhing"), -- Worm King's Throne, Base Replica
-	[223136] = strPack("writhing"), -- Writhing Fortress Pylon, Massive
-	[223184] = strPack("writhing"), -- Writhing Fortress Pylon, Massive Crystal
-	[219876] = strPack("writhing"), -- Target Maldrith
-	[223182] = strPack("writhing"), -- Black Soul Gems, Massive Spire
+    [223135] = strPack("writhing"), -- Worm King's Throne, Base Replica
+    [223136] = strPack("writhing"), -- Writhing Fortress Pylon, Massive
+    [223184] = strPack("writhing"), -- Writhing Fortress Pylon, Massive Crystal
+    [219876] = strPack("writhing"), -- Target Maldrith
+    [223182] = strPack("writhing"), -- Black Soul Gems, Massive Spire
     [223183] = strPack("writhing"), -- Replica Soul Flayer
-	[223137] = strPack("writhing"), -- Worm Cult Banner, Post
+    [223137] = strPack("writhing"), -- Worm Cult Banner, Post
     [223138] = strPack("writhing"), -- Worm Cult Banner, Hanging
-	[223140] = strPack("writhing"), -- Worm Cult Relic, Panel
-	[223134] = strMultiple(strPack("writhing"), getHouseString(13881)), -- Statue, Arch-Deacon of Worms
-	[223178] = strMultiple(strCrown(2800), getHouseString(13881)), -- Worm Cult Winch, Chain
-	[223179] = strMultiple(strCrown(260), getHouseString(13881)), -- Worm Cult Rack, Ballista
-	[223180] = strMultiple(strCrown(380), getHouseString(13881)), -- Worm Cult Ballista, Decommissioned
-	[223181] = strMultiple(strCrown(240), getHouseString(13881)), -- Worm Cult Armchair, Padded
-	[223744] = strPack("toymaker"), -- Toymaker's Diorama, Racing
+    [223140] = strPack("writhing"), -- Worm Cult Relic, Panel
+    [223134] = strMultiple(strPack("writhing"), getHouseString(13881)), -- Statue, Arch-Deacon of Worms
+    [223178] = strMultiple(strCrown(2800), getHouseString(13881)), -- Worm Cult Winch, Chain
+    [223179] = strMultiple(strCrown(260), getHouseString(13881)), -- Worm Cult Rack, Ballista
+    [223180] = strMultiple(strCrown(380), getHouseString(13881)), -- Worm Cult Ballista, Decommissioned
+    [223181] = strMultiple(strCrown(240), getHouseString(13881)), -- Worm Cult Armchair, Padded
+    [223744] = strPack("toymaker"), -- Toymaker's Diorama, Racing
     [223745] = strPack("toymaker"), -- Toymaker's Mobile, Animals
     [223746] = strPack("toymaker"), -- Mudcrab Moppet, Tan
     [223747] = strPack("toymaker"), -- Jerboa Moppet, Tan
     [223748] = strPack("toymaker"), -- Lion Cub Moppet, Tan
     [223749] = strPack("toymaker"), -- Guar Moppet, Tan
-	[223750] = strPack("toymaker"), -- Vvardvark Moppet, Tan
+    [223750] = strPack("toymaker"), -- Vvardvark Moppet, Tan
     [223751] = strPack("toymaker"), -- Bantam Guar Moppet, Tan
-	[214337] = strPack("nereid"), -- Statue, Nereid
+    [214337] = strPack("nereid"), -- Statue, Nereid
     [214338] = strPack("nereid"), -- Waterfall, Everlasting
     [214339] = strPack("nereid"), -- Scenic Waterfall, Linear
     [214340] = strPack("nereid"), -- Scenic Waterfall, Branched
     [214341] = strPack("nereid"), -- Everlasting Splashes
     [214342] = strPack("nereid"), -- Geyser, Cone
     [214344] = strPack("nereid"), -- Basin, Grand
-	[223126] = strPack("winter"), -- Stormhaven Potted Plant, Poinsettia
+    [223126] = strPack("winter"), -- Stormhaven Potted Plant, Poinsettia
     [223127] = strPack("winter"), -- New Life Festive Fir, Giant
     [223128] = strPack("winter"), -- New Life Dessert Banquet
     [223129] = strPack("winter"), -- New Life Feast Banquet
     [223130] = strPack("winter"), -- New Life Garland, Long
-	[223132] = strPack("winter"), -- Indrik Statue, Brass
+    [223132] = strPack("winter"), -- Indrik Statue, Brass
     [223133] = strPack("winter"), -- New Life Candle, Floating
-	
-	[219867] = strCrate(crates.ORSINIUM), -- Paper Lantern, Blue
-	[219868] = strCrate(crates.ORSINIUM), -- Paper Lantern, Gold
+
+    [219867] = strCrate(crates.ORSINIUM), -- Paper Lantern, Blue
+    [219868] = strCrate(crates.ORSINIUM), -- Paper Lantern, Gold
     [219869] = strCrate(crates.ORSINIUM), -- Paper Lantern, Green
-	[223123] = strCrate(crates.ORSINIUM), -- Paper Lantern, Purple
+    [223123] = strCrate(crates.ORSINIUM), -- Paper Lantern, Purple
     [223124] = strCrate(crates.ORSINIUM), -- Paper Lantern, Red
-	[219863] = strCrate(crates.ORSINIUM), -- Forgemaster's Throne
-	[219864] = strCrate(crates.ORSINIUM), -- Bazaar Chandelier, Paper Lantern
-	[219866] = strCrate(crates.ORSINIUM), -- Honorfeather Dove Flock
-	[219865] = strCrate(crates.ORSINIUM), -- Sphere of Kynareth's Lightning
-	[223738] = strCrate(crates.WAVE), -- Warrior Wave Platform, Yathian Turquoise
-	[223739] = strCrate(crates.WAVE), -- Warrior Wave Illustrated Tome
-	[223736] = strCrate(crates.WAVE), -- Warrior Wave Door, Glinting Talon
-	[223737] = strCrate(crates.WAVE), -- Warrior Wave Bed, Winged
+    [219863] = strCrate(crates.ORSINIUM), -- Forgemaster's Throne
+    [219864] = strCrate(crates.ORSINIUM), -- Bazaar Chandelier, Paper Lantern
+    [219866] = strCrate(crates.ORSINIUM), -- Honorfeather Dove Flock
+    [219865] = strCrate(crates.ORSINIUM), -- Sphere of Kynareth's Lightning
+    [223738] = strCrate(crates.WAVE), -- Warrior Wave Platform, Yathian Turquoise
+    [223739] = strCrate(crates.WAVE), -- Warrior Wave Illustrated Tome
+    [223736] = strCrate(crates.WAVE), -- Warrior Wave Door, Glinting Talon
+    [223737] = strCrate(crates.WAVE), -- Warrior Wave Bed, Winged
     [223740] = strCrate(crates.WAVE), -- Warrior Wave Lamp, Small
     [223741] = strCrate(crates.WAVE), -- Warrior Wave Lamp, Medium
     [223742] = strCrate(crates.WAVE), -- Warrior Wave Lamp, Large
-	
-	[223732] = getHouseString(13881), -- Target Worm Colossus
-	[223942] = getHouseString(13882), -- Druidspring Gazebo, Round
+
+    [223732] = getHouseString(13881), -- Target Worm Colossus
+    [223942] = getHouseString(13882), -- Druidspring Gazebo, Round
   },
-  
+
   [src.DROP] = {
-    
+
     -- Scrying
     [223147] = strScry(loc.SOLSTICE), -- Stone-Nest Pillar, Temple
     [223148] = strScry(loc.SOLSTICE), -- Stone-Nest Gazebo
     [223149] = strScry(loc.SOLSTICE), -- Stone-Nest Counterweight
-	[223150] = strScry(loc.SOLSTICE), -- Stone-Nest Pendulum
-	[223151] = strScry(loc.SOLSTICE), -- Vitrified Soul Crystal
-	[223152] = strScry(loc.SOLSTICE), -- Molag Bal Statue, Fractured Arm
-	[223153] = strScry(loc.SOLSTICE), -- Molag Bal Statue, Fractured Head
-	[223154] = strScry(loc.SOLSTICE), -- Coldharbour Soul Furnace
-	[223155] = strScry(loc.SOLSTICE), -- Daedric Gate, Coldharbour
-	[223156] = strScry(loc.SOLSTICE), -- Reaper, Pattern Template
-	[219870] = strScry(loc.SOLSTICE), -- Antique Map of Solstice
-	
+    [223150] = strScry(loc.SOLSTICE), -- Stone-Nest Pendulum
+    [223151] = strScry(loc.SOLSTICE), -- Vitrified Soul Crystal
+    [223152] = strScry(loc.SOLSTICE), -- Molag Bal Statue, Fractured Arm
+    [223153] = strScry(loc.SOLSTICE), -- Molag Bal Statue, Fractured Head
+    [223154] = strScry(loc.SOLSTICE), -- Coldharbour Soul Furnace
+    [223155] = strScry(loc.SOLSTICE), -- Daedric Gate, Coldharbour
+    [223156] = strScry(loc.SOLSTICE), -- Reaper, Pattern Template
+    [219870] = strScry(loc.SOLSTICE), -- Antique Map of Solstice
+
     [223161] = strGeneric(srcDrop, "mobs in public dungeons and delves", nil, loc.SOLSTICE), -- Worm Cult Tongs, Metal
-	[223160] = strGeneric(srcDrop, "mobs in public dungeons and delves", nil, loc.SOLSTICE), -- Worm Cult Carving, Eye
-	[223159] = strGeneric(srcDrop, "mobs in public dungeons and delves", nil, loc.SOLSTICE), -- Worm Cult Pickaxe, Mining
-	[223158] = strGeneric(srcDrop, "mobs in public dungeons and delves", nil, loc.SOLSTICE), -- Worm Cult Hammer, Mining
-	[223157] = strGeneric(srcDrop, "mobs in public dungeons and delves", nil, loc.SOLSTICE), -- Worm Cult Bucket, Bismuth Samples
-	[223176] = strGeneric(srcDrop, "mobs in public dungeons and delves", nil, loc.SOLSTICE), -- Leg Armor, Arrow-Damaged
-	[223177] = strGeneric(srcDrop, "mobs in public dungeons and delves", nil, loc.SOLSTICE), -- Skull, Extinct Seabeast
-	
-	-- Harvesting
-	[223173] = strGeneric(srcHarvest, strSrc("src", "Woodworking"), nil, loc.SOLSTICE), -- Leaf Pile, Royal Palm
-	[223172] = strGeneric(srcHarvest, strSrc("src", "Woodworking"), nil, loc.SOLSTICE), -- Leaf Pile, Thatch Palm
-	[223171] = strGeneric(srcHarvest, strSrc("src", "Clothing"), nil, loc.SOLSTICE), -- Plant, Corrupted Fanik Goc
+    [223160] = strGeneric(srcDrop, "mobs in public dungeons and delves", nil, loc.SOLSTICE), -- Worm Cult Carving, Eye
+    [223159] = strGeneric(srcDrop, "mobs in public dungeons and delves", nil, loc.SOLSTICE), -- Worm Cult Pickaxe, Mining
+    [223158] = strGeneric(srcDrop, "mobs in public dungeons and delves", nil, loc.SOLSTICE), -- Worm Cult Hammer, Mining
+    [223157] = strGeneric(srcDrop, "mobs in public dungeons and delves", nil, loc.SOLSTICE), -- Worm Cult Bucket, Bismuth Samples
+    [223176] = strGeneric(srcDrop, "mobs in public dungeons and delves", nil, loc.SOLSTICE), -- Leg Armor, Arrow-Damaged
+    [223177] = strGeneric(srcDrop, "mobs in public dungeons and delves", nil, loc.SOLSTICE), -- Skull, Extinct Seabeast
+
+    -- Harvesting
+    [223173] = strGeneric(srcHarvest, strSrc("src", "Woodworking"), nil, loc.SOLSTICE), -- Leaf Pile, Royal Palm
+    [223172] = strGeneric(srcHarvest, strSrc("src", "Woodworking"), nil, loc.SOLSTICE), -- Leaf Pile, Thatch Palm
+    [223171] = strGeneric(srcHarvest, strSrc("src", "Clothing"), nil, loc.SOLSTICE), -- Plant, Corrupted Fanik Goc
     [223170] = strGeneric(srcHarvest, strSrc("src", "Clothing"), nil, loc.SOLSTICE), -- Plant, Corrupted Flowering Fanik Goc
-	[223169] = strGeneric(srcHarvest, strSrc("src", "Blacksmithing"), nil, loc.SOLSTICE), -- Stones, Jagged Granite Cluster
-	[223168] = strGeneric(srcHarvest, strSrc("src", "Blacksmithing"), nil, loc.SOLSTICE), -- Stone, Smooth Limestone
-	
-	[223174] = strChests(loc.SOLSTICE), -- Cook's Still Life Painting, Unfinished
+    [223169] = strGeneric(srcHarvest, strSrc("src", "Blacksmithing"), nil, loc.SOLSTICE), -- Stones, Jagged Granite Cluster
+    [223168] = strGeneric(srcHarvest, strSrc("src", "Blacksmithing"), nil, loc.SOLSTICE), -- Stone, Smooth Limestone
+
+    [223174] = strChests(loc.SOLSTICE), -- Cook's Still Life Painting, Unfinished
   },
-  
+
   [src.FISHING] = {
     -- fishing
     [223162] = fishing, -- Kelp Shelf, Small Brown
-	[223163] = fishing, -- Kelp Shelf, Medium Brown
-	[223164] = fishing, -- Kelp, Small Brown Pile
+    [223163] = fishing, -- Kelp Shelf, Medium Brown
+    [223164] = fishing, -- Kelp, Small Brown Pile
     [223165] = fishing, -- Kelp, Long Brown Pile
-	[223167] = fishing, -- Argonian Paddle, Wooden
-	[223166] = fishing, -- Knife, Fishing
+    [223167] = fishing, -- Argonian Paddle, Wooden
+    [223166] = fishing, -- Knife, Fishing
   },
-  
-  
-  
 }
 
 -- Feast of Shadows
@@ -451,14 +445,13 @@ FurC.MiscItemSources[ver.SHADOWS] = {
     [217690] = strPack("moonpath"), -- Moonlight Path Bridge, Curved
     [217692] = strPack("moonpath"), -- Moonlight Path Sparkles, Trail
     [217693] = strPack("moonpath"), -- Moonlight Path Sparkles, Stationary
-	
-	[217687] = strCrate(crates.KINDRED), -- Ceremonial Peryite Skeever Altar
-	[217686] = strCrate(crates.KINDRED), -- Ceremonial Peryite Skeever Stake
-	[217684] = strCrate(crates.KINDRED), -- Vaermina Dreamtrapper Pillar
-    [217683] = strCrate(crates.KINDRED), -- Vaermina Nightmare Sconce
-	[217685] = strCrate(crates.KINDRED), -- Mara's Blessed Garland
-  },
 
+    [217687] = strCrate(crates.KINDRED), -- Ceremonial Peryite Skeever Altar
+    [217686] = strCrate(crates.KINDRED), -- Ceremonial Peryite Skeever Stake
+    [217684] = strCrate(crates.KINDRED), -- Vaermina Dreamtrapper Pillar
+    [217683] = strCrate(crates.KINDRED), -- Vaermina Nightmare Sconce
+    [217685] = strCrate(crates.KINDRED), -- Mara's Blessed Garland
+  },
 }
 
 -- Seasons of the Worm Cult // Solstice
@@ -472,39 +465,39 @@ FurC.MiscItemSources[ver.WORMS] = {
     [210894] = getHouseString(12732), -- 10-Year Anniversary Rug, Rectangular
     [210895] = getHouseString(12732), -- 10-Year Anniversary Rug, Runner
     [210896] = getHouseString(12732), -- 10-Year Anniversary Drape, Wall
-	[214454] = getHouseString(13558), -- Solstice Shell, Fossilized Echinoid
-	[214520] = strMultiple(strCrown(45), getHouseString(13560)), -- Elkhorn Coral, Sturdy Branching
-	[214518] = strMultiple(strCrown(20), getHouseString(13560)), -- Coral Formation, Tiered Shelves
-	[214521] = strMultiple(strCrown(20), getHouseString(13560)), -- Elkhorn Coral, Cluster
-	[214519] = strMultiple(strCrown(90), getHouseString(13560)), -- Elkhorn Coral, Verdant Branching
-	[214516] = strMultiple(strCrown(350), getHouseString(13560)), -- Antler Coral, Glowing Branched Crimson
-	[214515] = strMultiple(strCrown(350), getHouseString(13560)), -- Antler Coral, Glowing Broad Crimson
-	[118152] = strMultiple(strCrown(180), getHouseString(13560)), -- Carpet Roll, Sunrise
-	[118153] = strMultiple(strCrown(180), getHouseString(13560)), -- Carpet Roll, Floral
-	[118154] = strMultiple(strCrown(180), getHouseString(13560)), -- Carpet Roll, Oasis
-	[118155] = strMultiple(strCrown(180), getHouseString(13560)), -- Carpet Roll, Desert
-	[214514] = strCrown(350), -- Antler Coral, Glowing Short Crimson
-	
-	[214332] = strCrate(crates.AKA_ALDU), -- Dragonclash Firepit
-	[214333] = strCrate(crates.AKA_ALDU), -- Stone-Nest Spellmote
-	[214331] = strCrate(crates.AKA_ALDU), -- World-Eater Effigy
-	[214334] = strCrate(crates.AKA_ALDU), -- Illusory Dragon God Ornamentation
-	
-	[214335] = strPack("theater"), -- Clockwork Spotlight Cycler
-	[214336] = strPack("theater"), -- Scrolling Theater Backdrop
+    [214454] = getHouseString(13558), -- Solstice Shell, Fossilized Echinoid
+    [214520] = strMultiple(strCrown(45), getHouseString(13560)), -- Elkhorn Coral, Sturdy Branching
+    [214518] = strMultiple(strCrown(20), getHouseString(13560)), -- Coral Formation, Tiered Shelves
+    [214521] = strMultiple(strCrown(20), getHouseString(13560)), -- Elkhorn Coral, Cluster
+    [214519] = strMultiple(strCrown(90), getHouseString(13560)), -- Elkhorn Coral, Verdant Branching
+    [214516] = strMultiple(strCrown(350), getHouseString(13560)), -- Antler Coral, Glowing Branched Crimson
+    [214515] = strMultiple(strCrown(350), getHouseString(13560)), -- Antler Coral, Glowing Broad Crimson
+    [118152] = strMultiple(strCrown(180), getHouseString(13560)), -- Carpet Roll, Sunrise
+    [118153] = strMultiple(strCrown(180), getHouseString(13560)), -- Carpet Roll, Floral
+    [118154] = strMultiple(strCrown(180), getHouseString(13560)), -- Carpet Roll, Oasis
+    [118155] = strMultiple(strCrown(180), getHouseString(13560)), -- Carpet Roll, Desert
+    [214514] = strCrown(350), -- Antler Coral, Glowing Short Crimson
+
+    [214332] = strCrate(crates.AKA_ALDU), -- Dragonclash Firepit
+    [214333] = strCrate(crates.AKA_ALDU), -- Stone-Nest Spellmote
+    [214331] = strCrate(crates.AKA_ALDU), -- World-Eater Effigy
+    [214334] = strCrate(crates.AKA_ALDU), -- Illusory Dragon God Ornamentation
+
+    [214335] = strPack("theater"), -- Clockwork Spotlight Cycler
+    [214336] = strPack("theater"), -- Scrolling Theater Backdrop
   },
-  
+
   [src.FISHING] = {
     -- fishing
     [214461] = fishing, -- Shrimp, Display
-	[214460] = fishing, -- Seahorse, Display
-	[214459] = fishing, -- Oyster, Display
-	[214458] = fishing, -- Mussel, Display
-	[214457] = fishing, -- Lobster Claw, Display
-	[214456] = fishing, -- Conch Flute, Ceremonial
-	[214463] = fishing, -- Crab, Display
-	[214462] = fishing, -- Snail, Display
-	[214452] = strMultiple(fishing, getHouseString(13558)), -- Solstice Shell, Fossilized Nautilus
+    [214460] = fishing, -- Seahorse, Display
+    [214459] = fishing, -- Oyster, Display
+    [214458] = fishing, -- Mussel, Display
+    [214457] = fishing, -- Lobster Claw, Display
+    [214456] = fishing, -- Conch Flute, Ceremonial
+    [214463] = fishing, -- Crab, Display
+    [214462] = fishing, -- Snail, Display
+    [214452] = strMultiple(fishing, getHouseString(13558)), -- Solstice Shell, Fossilized Nautilus
     [214453] = strMultiple(fishing, getHouseString(13558)), -- Solstice Shell, Fossilized Turritella
     [214455] = strMultiple(fishing, getHouseString(13558)), -- Solstice Shell, Fossilized Conch
   },
@@ -560,10 +553,8 @@ FurC.MiscItemSources[ver.WORMS] = {
     [214369] = strChests(loc.SOLSTICE), -- Tide-Born Tapestry, Sap
     [214370] = strChests(loc.SOLSTICE), -- Tide-Born Tapestry, Snake
     [214371] = strChests(loc.SOLSTICE), -- Tide-Born Reed Art, Turtle
-	[214373] = strChests(loc.SOLSTICE), -- Meadow Study Painting, Unfinished
-	[214372] = strChests(loc.SOLSTICE), -- Forest Study Painting, Unfinished
-	
-	
+    [214373] = strChests(loc.SOLSTICE), -- Meadow Study Painting, Unfinished
+    [214372] = strChests(loc.SOLSTICE), -- Forest Study Painting, Unfinished
 
     -- Harvesting
     [214479] = strGeneric(srcHarvest, strSrc("src", "Blacksmithing and Jewelry"), nil, loc.SOLSTICE), -- Solstice Bismuth, Deposit II
@@ -583,10 +574,10 @@ FurC.MiscItemSources[ver.WORMS] = {
     [214355] = strScry(loc.SOLSTICE), -- Solstice Giant Crocodile Skull
     [214356] = strScry(loc.SOLSTICE), -- Solstice Giant Crocodile Ribs
     [214357] = strScry(loc.SOLSTICE), -- Solstice Giant Crocodile Tail
-	[214359] = strScry(loc.SOLSTICE), -- Stone-Nest Totem, Geometric
-	[214360] = strScry(loc.SOLSTICE), -- Stone-Nest Totem, Iguana
-	[214361] = strScry(loc.SOLSTICE), -- Stone-Nest Totem, Behemoth
-	[214362] = strScry(loc.SOLSTICE), -- Stone-Nest Totem, Massive Skull
+    [214359] = strScry(loc.SOLSTICE), -- Stone-Nest Totem, Geometric
+    [214360] = strScry(loc.SOLSTICE), -- Stone-Nest Totem, Iguana
+    [214361] = strScry(loc.SOLSTICE), -- Stone-Nest Totem, Behemoth
+    [214362] = strScry(loc.SOLSTICE), -- Stone-Nest Totem, Massive Skull
   },
 }
 
@@ -597,20 +588,20 @@ FurC.MiscItemSources[ver.FALLBAN] = {
     [212418] = strCrate(crates.CARNAVAL), -- Sanguine's Wall
     [212417] = strCrate(crates.CARNAVAL), -- Carnaval Stage
     [212416] = strCrate(crates.CARNAVAL), -- Lightning Wall
-	
-	[214250] = strPack("combat"), -- Dueling Mat
-	[214254] = strPack("combat"), -- Battleground Powerup, Speed
+
+    [214250] = strPack("combat"), -- Dueling Mat
+    [214254] = strPack("combat"), -- Battleground Powerup, Speed
     [214253] = strPack("combat"), -- Battleground Powerup, Ultimate
     [214252] = strPack("combat"), -- Battleground Powerup, Defense
     [214251] = strPack("combat"), -- Battleground Powerup, Damage
-	[212423] = strPack("loom"), -- Replica Mirrormoor Loom, Altar
+    [212423] = strPack("loom"), -- Replica Mirrormoor Loom, Altar
     [212422] = strPack("loom"), -- Replica Mirrormoor Loom, Backing
     [212421] = strPack("loom"), -- Replica Mirrormoor Loom, Spindle
-	
-	[212213] = getHouseString(13078, 13759), -- Colovian Gazebo
-	[212214] = getHouseString(13078), -- Skingrad Banner
-	
-	[212420] = strCrown(1200), -- Music Box, Jester's Caprice
+
+    [212213] = getHouseString(13078, 13759), -- Colovian Gazebo
+    [212214] = getHouseString(13078), -- Skingrad Banner
+
+    [212420] = strCrown(1200), -- Music Box, Jester's Caprice
   },
 }
 
@@ -621,33 +612,32 @@ FurC.MiscItemSources[ver.BASE44] = {
     [211301] = strCrate(crates.MIRROR), -- Replica Fate-Thread Fracture
     [211300] = strCrate(crates.MIRROR), -- Target Tho'at Replicanum, Robust
     [211299] = strCrate(crates.MIRROR), -- Fargrave Miasma Censer
-	
-	[125561] = getHouseString(12732), -- Mushrooms, Mucksponge Podlet
-	[115271] = getHouseString(12732), -- Breton Statue, Druid
-	[115270] = getHouseString(12732), -- Breton Statue, Guard
-	
-	[211502] = strPack("dwarven"), -- Dwarven Furnace
-	[211501] = strPack("dwarven"), -- Dwarven Dais, Stone
+
+    [125561] = getHouseString(12732), -- Mushrooms, Mucksponge Podlet
+    [115271] = getHouseString(12732), -- Breton Statue, Druid
+    [115270] = getHouseString(12732), -- Breton Statue, Guard
+
+    [211502] = strPack("dwarven"), -- Dwarven Furnace
+    [211501] = strPack("dwarven"), -- Dwarven Dais, Stone
     [211500] = strPack("dwarven"), -- Dwarven Archway
     [211499] = strPack("dwarven"), -- Target Dwarf-light the Destroyer, Robust
-	[203880] = strPack("dwarven"), -- Dwarven Red Lamp, Cylinder Cage
-	
-	[199113] = strCrown(1100), -- Music Box, New Life Snow Symphony
-	[211498] = strCrown(1200), -- Music Box, Merry Mudcrab Melody
+    [203880] = strPack("dwarven"), -- Dwarven Red Lamp, Cylinder Cage
+
+    [199113] = strCrown(1100), -- Music Box, New Life Snow Symphony
+    [211498] = strCrown(1200), -- Music Box, Merry Mudcrab Melody
   },
-  
+
   [src.BAZAAR] = {
     [212186] = strBazaar(2000), -- Statue, Breton Hero
-	[212187] = strBazaar(2000), -- Statue, Nord Hero
-	[212188] = strBazaar(2000), -- Statue, High Elf Hero
-	[211303] = strBazaar(2000), -- Statue of Molag Bal, Harvester
+    [212187] = strBazaar(2000), -- Statue, Nord Hero
+    [212188] = strBazaar(2000), -- Statue, High Elf Hero
+    [211303] = strBazaar(2000), -- Statue of Molag Bal, Harvester
   },
 
   [src.DROP] = {
     [211505] = strQuest(nil, "Tanlorin rapport"), -- Letter from Tanlorin
     [211503] = strQuest(nil, "Zerith-Var rapport"), -- Letter from Zerith-var
   },
-
 }
 
 -- 31 Home Tours Update 43
@@ -657,25 +647,25 @@ FurC.MiscItemSources[ver.BASE43] = {
     [208124] = strCrate(crates.DB), -- Ardor's Cascade
     [208123] = strCrate(crates.DB), -- Bloodfont of Sithis
     [208122] = strCrate(crates.DB), -- Vision of the Bloodmoon
-	
-	[208358] = getHouseString(12655), -- Handbook for New Homeowners
-	[204792] = getHouseString(12656), -- Table, Visions of the Five Companions
-	[115052] = getHouseString(12656), -- Imperial Simple Lamppost
-	[208159] = getHouseString(12656), -- Imperial Banner, Emperor's
-	[207974] = strMultiple(strCrown(90), getHouseString(12656)), -- Tree, Large Green Beech
-	[207978] = strMultiple(strCrown(90), getHouseString(12656)), -- Tree, Large Yellow Beech
-	[207979] = strMultiple(strCrown(90), getHouseString(12656)), -- Tree, Small Yellow Beech Cluster
-	[207975] = strMultiple(strCrown(60), getHouseString(12656)), -- Tree, Small Green Beech
-	[207977] = strMultiple(strCrown(60), getHouseString(12656)), -- Tree, Small Red Beech
-	[207976] = strMultiple(strCrown(430), getHouseString(12656)), -- Tree, Large Red Beech
-	
-	[208126] = strCrown(3500), -- Statue, Mistress of Nightmares
-	
-	[203608] = strPack("haunted"), -- Spooky Fog, Glowing
+
+    [208358] = getHouseString(12655), -- Handbook for New Homeowners
+    [204792] = getHouseString(12656), -- Table, Visions of the Five Companions
+    [115052] = getHouseString(12656), -- Imperial Simple Lamppost
+    [208159] = getHouseString(12656), -- Imperial Banner, Emperor's
+    [207974] = strMultiple(strCrown(90), getHouseString(12656)), -- Tree, Large Green Beech
+    [207978] = strMultiple(strCrown(90), getHouseString(12656)), -- Tree, Large Yellow Beech
+    [207979] = strMultiple(strCrown(90), getHouseString(12656)), -- Tree, Small Yellow Beech Cluster
+    [207975] = strMultiple(strCrown(60), getHouseString(12656)), -- Tree, Small Green Beech
+    [207977] = strMultiple(strCrown(60), getHouseString(12656)), -- Tree, Small Red Beech
+    [207976] = strMultiple(strCrown(430), getHouseString(12656)), -- Tree, Large Red Beech
+
+    [208126] = strCrown(3500), -- Statue, Mistress of Nightmares
+
+    [203608] = strPack("haunted"), -- Spooky Fog, Glowing
     [203607] = strPack("haunted"), -- Haunted Chair
     [203606] = strPack("haunted"), -- Haunted Skull
     [203605] = strPack("haunted"), -- Haunted Broom
-	[208127] = strPack("haunted"), -- Haunted Table
+    [208127] = strPack("haunted"), -- Haunted Table
     [203604] = strPack("haunted"), -- Haunted Bookcase, Whispering
     [203603] = strPack("haunted"), -- Haunted Still Life Painting
     [203602] = strPack("haunted"), -- Haunted Door, Clattering
@@ -687,13 +677,13 @@ FurC.MiscItemSources[ver.BASE43] = {
 FurC.MiscItemSources[ver.WEALD] = {
   [src.CROWN] = {
     [204422] = strCrown(1100), -- Music Box, Ascension to the Ruby Throne
-	[204407] = strCrown(3000), -- Daedric Statue, Sanguine
-	[204408] = strCrown(6000), -- Target Serpent's Image, Trial
-	
-	[204409] = strCrate(crates.DIAMOND), -- Dark Anchor Gateway
-	[204411] = strCrate(crates.DIAMOND), -- Coldharbour Sentinel
-	[204412] = strCrate(crates.DIAMOND), -- Revelry Sparkles
-	[204410] = strCrate(crates.DIAMOND), -- Five Companions Tome
+    [204407] = strCrown(3000), -- Daedric Statue, Sanguine
+    [204408] = strCrown(6000), -- Target Serpent's Image, Trial
+
+    [204409] = strCrate(crates.DIAMOND), -- Dark Anchor Gateway
+    [204411] = strCrate(crates.DIAMOND), -- Coldharbour Sentinel
+    [204412] = strCrate(crates.DIAMOND), -- Revelry Sparkles
+    [204410] = strCrate(crates.DIAMOND), -- Five Companions Tome
   },
 
   [src.DROP] = {
@@ -760,10 +750,10 @@ FurC.MiscItemSources[ver.SCIONS] = {
     [203266] = strCrate(crates.LAMP), -- Twinkling Lights, Blue
     [203265] = strCrate(crates.LAMP), -- Prismatic Cherry Tree
     [203264] = strCrate(crates.LAMP), -- Cursed Curio Aether
-	
-	[117914] = getHouseString(14078, 11456), -- Redguard Canopy, Florid
+
+    [117914] = getHouseString(14078, 11456), -- Redguard Canopy, Florid
     [117912] = getHouseString(14078, 11456), -- Redguard Awning, Florid
-	[204455] = getHouseString(11456), -- Redguard Tent, Squared Blue
+    [204455] = getHouseString(11456), -- Redguard Tent, Squared Blue
     [203899] = getHouseString(11456), -- Redguard Tent, Rectangular Silk
     [203897] = getHouseString(11456), -- Redguard Tent, Blue Lean-To
     [203896] = getHouseString(11456), -- Bush, Cave Lichen Patch
@@ -771,33 +761,33 @@ FurC.MiscItemSources[ver.SCIONS] = {
     [203894] = getHouseString(11456), -- Bush, Cave Lichen
     [203599] = getHouseString(11456), -- Redguard Fountain, Lion
     [203598] = getHouseString(11456), -- Flowers, Desert Blush
-	[203597] = getHouseString(11456), -- Shrubs, Speckled Forest Cluster
-	[203596] = getHouseString(11456), -- Ferns, Desert Cluster
-	[117873] = getHouseString(11456), -- Redguard Rugs, Rolled
-	[117867] = getHouseString(11456), -- Statue, Redguard's Respect
-	[117862] = getHouseString(11456), -- Redguard Cart, Merchant
-	
-	[204434] = strMultiple(strCrown(320), getHouseString(14078, 12270)), -- Breton Rowboat
-	[204433] = strMultiple(strCrown(45), getHouseString(12270)), -- Lily Pads, Flowering Patch
-	[204432] = strMultiple(strCrown(20), getHouseString(12270)), -- Lily Pads, Flowering Cluster
-	[204431] = strMultiple(strCrown(60), getHouseString(12270)), -- Tree, Young Gentle Weeping Willow
-	[204430] = strMultiple(strCrown(100), getHouseString(12270)), -- Tree, Tall Gentle Weeping Willow
-	[204429] = strMultiple(strCrown(230), getHouseString(12270)), -- Tree, Giant Gentle Weeping Willow
-	[204428] = strMultiple(strCrown(40), getHouseString(12270)), -- Stumps, Swampshadow Cluster
-	[204427] = strMultiple(strCrown(40), getHouseString(12270)), -- Tree, Young Swampshadow
-	[204426] = strMultiple(strCrown(100), getHouseString(12270)), -- Tree, Swampshadow
-	[204425] = strMultiple(strCrown(230), getHouseString(12270)), -- Tree, Giant Swampshadow
-	
-	[203270] = strPack("jester"), -- Target King Boar, Robust
+    [203597] = getHouseString(11456), -- Shrubs, Speckled Forest Cluster
+    [203596] = getHouseString(11456), -- Ferns, Desert Cluster
+    [117873] = getHouseString(11456), -- Redguard Rugs, Rolled
+    [117867] = getHouseString(11456), -- Statue, Redguard's Respect
+    [117862] = getHouseString(11456), -- Redguard Cart, Merchant
+
+    [204434] = strMultiple(strCrown(320), getHouseString(14078, 12270)), -- Breton Rowboat
+    [204433] = strMultiple(strCrown(45), getHouseString(12270)), -- Lily Pads, Flowering Patch
+    [204432] = strMultiple(strCrown(20), getHouseString(12270)), -- Lily Pads, Flowering Cluster
+    [204431] = strMultiple(strCrown(60), getHouseString(12270)), -- Tree, Young Gentle Weeping Willow
+    [204430] = strMultiple(strCrown(100), getHouseString(12270)), -- Tree, Tall Gentle Weeping Willow
+    [204429] = strMultiple(strCrown(230), getHouseString(12270)), -- Tree, Giant Gentle Weeping Willow
+    [204428] = strMultiple(strCrown(40), getHouseString(12270)), -- Stumps, Swampshadow Cluster
+    [204427] = strMultiple(strCrown(40), getHouseString(12270)), -- Tree, Young Swampshadow
+    [204426] = strMultiple(strCrown(100), getHouseString(12270)), -- Tree, Swampshadow
+    [204425] = strMultiple(strCrown(230), getHouseString(12270)), -- Tree, Giant Swampshadow
+
+    [203270] = strPack("jester"), -- Target King Boar, Robust
     [203269] = strPack("jester"), -- Chamber Pot Throne
     [203268] = strPack("jester"), -- Jester's Festival Stage
     [203165] = strPack("jester"), -- Dazzler Dispenser
     [203271] = strPack("jester"), -- Banner, Jester's Festival
-	[203274] = strMultiple(strCrown(10), strPack("jester")), -- Box of Tomatoes
-	[203275] = strMultiple(strCrown(25), strPack("jester")), -- Fish, Silver Trout
-	[203272] = strMultiple(strCrown(60), strPack("jester")), -- Rough Bench
-	[203273] = strMultiple(strCrown(40), strPack("jester")), -- Rough Chair
-	[203276] = strMultiple(strCrown(50), strPack("jester")), -- Rough Dresser
+    [203274] = strMultiple(strCrown(10), strPack("jester")), -- Box of Tomatoes
+    [203275] = strMultiple(strCrown(25), strPack("jester")), -- Fish, Silver Trout
+    [203272] = strMultiple(strCrown(60), strPack("jester")), -- Rough Bench
+    [203273] = strMultiple(strCrown(40), strPack("jester")), -- Rough Chair
+    [203276] = strMultiple(strCrown(50), strPack("jester")), -- Rough Dresser
   },
 }
 
@@ -808,7 +798,7 @@ FurC.MiscItemSources[ver.ENDLESS] = {
     [199111] = strCrate(crates.ALLMAKER), -- Fountain, Kyne's Radiance
     [199110] = strCrate(crates.ALLMAKER), -- Snowfall, Gentle
     [199109] = strCrate(crates.ALLMAKER), -- Boulder, Clear Ice
-	[197823] = strCrate(crates.ARMIGER), -- Necrom Podium, Buoyant Armiger
+    [197823] = strCrate(crates.ARMIGER), -- Necrom Podium, Buoyant Armiger
     [197824] = strCrate(crates.ARMIGER), -- Harrowstorm Mists
     [197822] = strCrate(crates.ARMIGER), -- Redoran Sconce, Beetle
     [197821] = strCrate(crates.ARMIGER), -- Spellscar Bridge
@@ -817,58 +807,56 @@ FurC.MiscItemSources[ver.ENDLESS] = {
     [203166] = strCrown(2800), -- Sai Sahan Statue
     [203132] = strCrown(50), -- Mushroom, Apocrypha Fossilized
     [203202] = strCrown(770), -- Hermaeus Mora Banner, Large
-	[197826] = strCrown(1200), -- Music Box, Witchmother's Bubbling Brew
-	[198651] = strCrown(55), -- Druidic Brazier, Standing
-	[197825] = strCrown(3000), -- Statue, The Thirty-Fourth Sermon
-	
+    [197826] = strCrown(1200), -- Music Box, Witchmother's Bubbling Brew
+    [198651] = strCrown(55), -- Druidic Brazier, Standing
+    [197825] = strCrown(3000), -- Statue, The Thirty-Fourth Sermon
 
     [203178] = strMultiple(strCrown(140), strPack("curio")), -- Apocrypha Coral, Large Teal Tube
     [203177] = strMultiple(strCrown(140), strPack("curio")), -- Apocrypha Coral, Pink Tube
     [203176] = strMultiple(strCrown(770), strPack("curio")), -- Apocrypha Geyser, Ink
     [199136] = strMultiple(strCrown(130), strPack("curio")), -- Apocrypha Stalks, Scryeball Patch
-	[203133] = strMultiple(strCrown(20), strPack("curio")), -- Apocrypha Coral, Spiky
-	[198747] = strMultiple(strCrown(430), strPack("druidic")), -- Druidic Statue, Ancient Augur
-	[198674] = strMultiple(strCrown(110), strPack("druidic")), -- Galen Dogwood, Tall
-	[198671] = strMultiple(strCrown(780), strPack("druidic")), -- Druid King's Sentinel
-	[198670] = strMultiple(strCrown(510), strPack("druidic")), -- Druidic Hut, Conical Stone
-	[197839] = strMultiple(strCrown(370), strPack("necrom")), -- Mushrooms, Ambershine Ring
-	[197838] = strMultiple(strCrown(370), strPack("necrom")), -- Mushrooms, Ambershine Patch
-	[197837] = strMultiple(strCrown(70), strPack("necrom")), -- Mushrooms, Tall Green Morel Cluster
-	[197836] = strMultiple(strCrown(70), strPack("necrom")), -- Mushroom, Tall Green Morel
-	[197835] = strMultiple(strCrown(30), strPack("necrom")), -- Mushrooms, Tall Chanterelle Cluster
-	
-	[198664] = strMultiple(strCrown(140), strPack("druidic"), getHouseString(11655)), -- Galen Dogwood, Small
-	[198666] = strMultiple(strCrown(170), strPack("druidic"), getHouseString(11655)), -- Galen Dogwood, Twisted
-	[198663] = strMultiple(strCrown(10), strPack("druidic"), getHouseString(11655, 13759)), -- Fern Plant, Low Lush
-	[198662] = strMultiple(strCrown(10), strPack("druidic"), getHouseString(11655, 13759)), -- Flowers, Orange Daylily Cluster
-	[197840] = strMultiple(strCrown(260), strPack("necrom"), getHouseString(11525)), -- Necrom Brazier, Elegant Stone
-	[198667] = strMultiple(strCrown(170), getHouseString(11655)), -- Galen Dogwood, Curved
-	[198665] = strMultiple(strCrown(10), getHouseString(11655, 13759)), -- Plant, Emerald Heart Begonia
-	[198661] = strMultiple(strCrown(65), getHouseString(11655)), -- Druidic Pot, Stout Clay
-	[198660] = strMultiple(strCrown(20), getHouseString(11655)), -- Druidic Pitcher, Clay
-	[198659] = strMultiple(strCrown(80), getHouseString(11655)), -- Druidic Kettle, Clay
-	[198658] = strMultiple(strCrown(65), getHouseString(11655)), -- Druidic Pot, Wide Clay
-	[198657] = strMultiple(strCrown(10), getHouseString(11655)), -- Druidic Plate, Clay
-	[198656] = strMultiple(strCrown(15), getHouseString(11655)), -- Druidic Plates, Clay Stack
-	[198655] = strMultiple(strCrown(30), getHouseString(11655)), -- Druidic Covered Dish, Stone
-	[198654] = strMultiple(strCrown(5), getHouseString(11655)), -- Druidic Plate, Stone
-	[198653] = strMultiple(strCrown(5), getHouseString(11655)), -- Druidic Goblet, Stone
-	[198652] = strMultiple(strCrown(5), getHouseString(11655)), -- Druidic Bowl, Stone
-	[198650] = strMultiple(strCrown(55), getHouseString(11655)), -- Druidic Brazier, Leaning
-	[198649] = strMultiple(strCrown(10), getHouseString(11655)), -- Druidic Smoking Rack, Fish
-	[198648] = strMultiple(strCrown(10), getHouseString(11655)), -- Druidic Rack, Hide Stretcher
-	[198647] = strMultiple(strCrown(30), getHouseString(11655)), -- Druidic Drying Rack, Tall
-	[198646] = strMultiple(strCrown(30), getHouseString(11655)), -- Druidic Drying Rack, Wide
-	
-	[197833] = strPack("necrom"), -- Statue, Telvanni Spellwright
-	[197834] = strPack("necrom"), -- Statue, Telvanni Magister
-	[197832] = strPack("necrom"), -- Necrom Gazebo
-	[199135] = strPack("curio"), -- Apocrypha Pool, Inky
+    [203133] = strMultiple(strCrown(20), strPack("curio")), -- Apocrypha Coral, Spiky
+    [198747] = strMultiple(strCrown(430), strPack("druidic")), -- Druidic Statue, Ancient Augur
+    [198674] = strMultiple(strCrown(110), strPack("druidic")), -- Galen Dogwood, Tall
+    [198671] = strMultiple(strCrown(780), strPack("druidic")), -- Druid King's Sentinel
+    [198670] = strMultiple(strCrown(510), strPack("druidic")), -- Druidic Hut, Conical Stone
+    [197839] = strMultiple(strCrown(370), strPack("necrom")), -- Mushrooms, Ambershine Ring
+    [197838] = strMultiple(strCrown(370), strPack("necrom")), -- Mushrooms, Ambershine Patch
+    [197837] = strMultiple(strCrown(70), strPack("necrom")), -- Mushrooms, Tall Green Morel Cluster
+    [197836] = strMultiple(strCrown(70), strPack("necrom")), -- Mushroom, Tall Green Morel
+    [197835] = strMultiple(strCrown(30), strPack("necrom")), -- Mushrooms, Tall Chanterelle Cluster
+
+    [198664] = strMultiple(strCrown(140), strPack("druidic"), getHouseString(11655)), -- Galen Dogwood, Small
+    [198666] = strMultiple(strCrown(170), strPack("druidic"), getHouseString(11655)), -- Galen Dogwood, Twisted
+    [198663] = strMultiple(strCrown(10), strPack("druidic"), getHouseString(11655, 13759)), -- Fern Plant, Low Lush
+    [198662] = strMultiple(strCrown(10), strPack("druidic"), getHouseString(11655, 13759)), -- Flowers, Orange Daylily Cluster
+    [197840] = strMultiple(strCrown(260), strPack("necrom"), getHouseString(11525)), -- Necrom Brazier, Elegant Stone
+    [198667] = strMultiple(strCrown(170), getHouseString(11655)), -- Galen Dogwood, Curved
+    [198665] = strMultiple(strCrown(10), getHouseString(11655, 13759)), -- Plant, Emerald Heart Begonia
+    [198661] = strMultiple(strCrown(65), getHouseString(11655)), -- Druidic Pot, Stout Clay
+    [198660] = strMultiple(strCrown(20), getHouseString(11655)), -- Druidic Pitcher, Clay
+    [198659] = strMultiple(strCrown(80), getHouseString(11655)), -- Druidic Kettle, Clay
+    [198658] = strMultiple(strCrown(65), getHouseString(11655)), -- Druidic Pot, Wide Clay
+    [198657] = strMultiple(strCrown(10), getHouseString(11655)), -- Druidic Plate, Clay
+    [198656] = strMultiple(strCrown(15), getHouseString(11655)), -- Druidic Plates, Clay Stack
+    [198655] = strMultiple(strCrown(30), getHouseString(11655)), -- Druidic Covered Dish, Stone
+    [198654] = strMultiple(strCrown(5), getHouseString(11655)), -- Druidic Plate, Stone
+    [198653] = strMultiple(strCrown(5), getHouseString(11655)), -- Druidic Goblet, Stone
+    [198652] = strMultiple(strCrown(5), getHouseString(11655)), -- Druidic Bowl, Stone
+    [198650] = strMultiple(strCrown(55), getHouseString(11655)), -- Druidic Brazier, Leaning
+    [198649] = strMultiple(strCrown(10), getHouseString(11655)), -- Druidic Smoking Rack, Fish
+    [198648] = strMultiple(strCrown(10), getHouseString(11655)), -- Druidic Rack, Hide Stretcher
+    [198647] = strMultiple(strCrown(30), getHouseString(11655)), -- Druidic Drying Rack, Tall
+    [198646] = strMultiple(strCrown(30), getHouseString(11655)), -- Druidic Drying Rack, Wide
+
+    [197833] = strPack("necrom"), -- Statue, Telvanni Spellwright
+    [197834] = strPack("necrom"), -- Statue, Telvanni Magister
+    [197832] = strPack("necrom"), -- Necrom Gazebo
+    [199135] = strPack("curio"), -- Apocrypha Pool, Inky
     [199134] = strPack("curio"), -- Apocrypha Waterfall, Inky
     [199133] = strPack("curio"), -- Target Daedra, Seeker
-	[198672] = strPack("druidic"), -- Vines, Verdant Ivy Runner
-	[198669] = strPack("druidic"), -- Breton Statue, Chimera
-	
+    [198672] = strPack("druidic"), -- Vines, Verdant Ivy Runner
+    [198669] = strPack("druidic"), -- Breton Statue, Chimera
   },
 
   [src.DROP] = {
@@ -998,7 +986,7 @@ FurC.MiscItemSources[ver.ENDLESS] = {
     [199118] = strScry(5, loc.TELVANNI, loc.APOCRYPHA), -- Apocrypha Clothing Station
     [198576] = strScry(loc.DEADLANDS), -- Shelf, Black Soul Gems
     [198575] = strScry(loc.SELSWEYR), -- Khajiiti Well
-	[198574] = strScry(loc.NELSWEYR), -- Khajiiti Water Vessel, Large
+    [198574] = strScry(loc.NELSWEYR), -- Khajiiti Water Vessel, Large
     [198573] = strScry(loc.SUMMERSET), -- High Elf Altar, Crystal
     [198572] = strScry(loc.CWC), -- Clockwork Wall Gears
     [198571] = strScry(loc.GOLDCOAST), -- Shrine to Dibella
@@ -1016,25 +1004,24 @@ FurC.MiscItemSources[ver.ENDLESS] = {
 FurC.MiscItemSources[ver.BASED] = {
   [src.CROWN] = {
     [198561] = strMultiple(strCrown(25), getHouseString(11260)), -- Vine, Wide Moonlit Ivy Drape
-	[198560] = strMultiple(strCrown(25), getHouseString(11260)), -- Vine, Large Moonlit Ivy Swath
-	[198559] = strMultiple(strCrown(25), getHouseString(11260)), -- Vine, Large Moonlit Ivy Drape
-	[198558] = strMultiple(strCrown(25), getHouseString(11260)), -- Vine, Medium Moonlit Ivy Swath
-	[198557] = strMultiple(strCrown(25), getHouseString(11260)), -- Vine, Small Moonlit Ivy Drape
-	[198555] = strMultiple(strCrown(70), getHouseString(11260)), -- Shrub, Moonlit Ivy
-	[198109] = strMultiple(strCrown(40), getHouseString(11260)), -- Trees, Dead Oak Sapling Duo
-	[198108] = strMultiple(strCrown(40), getHouseString(11260)), -- Tree, Twisted Dead Oak Sapling
-	[198107] = strMultiple(strCrown(40), getHouseString(11260)), -- Trees, Dead Oak Sapling Cluster
-	[198106] = strMultiple(strCrown(40), getHouseString(11260)), -- Tree, Dead Oak Sapling
-	[198105] = strMultiple(strCrown(150), getHouseString(11260)), -- Tree, Large Ancient Dead Oak
-	[198104] = strMultiple(strCrown(150), getHouseString(11260)), -- Tree, Old Dead Oak
-	[198103] = strMultiple(strCrown(150), getHouseString(11260)), -- Tree, Ancient Dead Oak
-	[198005] = strMultiple(strCrown(45), getHouseString(11260)), -- Hedge, Dense Low Angled Wall
-	[198004] = strMultiple(strCrown(45), getHouseString(11260)), -- Hedge, Dense Low Extensive Wall
-	[198003] = strMultiple(strCrown(45), getHouseString(11260)), -- Hedge, Dense Low Corner Wall
-	[198002] = strMultiple(strCrown(45), getHouseString(11260)), -- Hedge, Dense Low Long Wall
+    [198560] = strMultiple(strCrown(25), getHouseString(11260)), -- Vine, Large Moonlit Ivy Swath
+    [198559] = strMultiple(strCrown(25), getHouseString(11260)), -- Vine, Large Moonlit Ivy Drape
+    [198558] = strMultiple(strCrown(25), getHouseString(11260)), -- Vine, Medium Moonlit Ivy Swath
+    [198557] = strMultiple(strCrown(25), getHouseString(11260)), -- Vine, Small Moonlit Ivy Drape
+    [198555] = strMultiple(strCrown(70), getHouseString(11260)), -- Shrub, Moonlit Ivy
+    [198109] = strMultiple(strCrown(40), getHouseString(11260)), -- Trees, Dead Oak Sapling Duo
+    [198108] = strMultiple(strCrown(40), getHouseString(11260)), -- Tree, Twisted Dead Oak Sapling
+    [198107] = strMultiple(strCrown(40), getHouseString(11260)), -- Trees, Dead Oak Sapling Cluster
+    [198106] = strMultiple(strCrown(40), getHouseString(11260)), -- Tree, Dead Oak Sapling
+    [198105] = strMultiple(strCrown(150), getHouseString(11260)), -- Tree, Large Ancient Dead Oak
+    [198104] = strMultiple(strCrown(150), getHouseString(11260)), -- Tree, Old Dead Oak
+    [198103] = strMultiple(strCrown(150), getHouseString(11260)), -- Tree, Ancient Dead Oak
+    [198005] = strMultiple(strCrown(45), getHouseString(11260)), -- Hedge, Dense Low Angled Wall
+    [198004] = strMultiple(strCrown(45), getHouseString(11260)), -- Hedge, Dense Low Extensive Wall
+    [198003] = strMultiple(strCrown(45), getHouseString(11260)), -- Hedge, Dense Low Corner Wall
+    [198002] = strMultiple(strCrown(45), getHouseString(11260)), -- Hedge, Dense Low Long Wall
   },
-  
- }
+}
 
 -- 26 Necrom
 FurC.MiscItemSources[ver.NECROM] = {
@@ -1042,10 +1029,10 @@ FurC.MiscItemSources[ver.NECROM] = {
     [197624] = strCrown(1200), -- Apocryphal Shifting Sculpture
     [197623] = strCrown(3000), -- Statue, Hermaeus Mora
     [190942] = strCrown(1000), -- Music Box, Sheogorath Butterfly Garden
-	[194538] = strMultiple(strCrown(110), getHouseString(11216, 14078)), -- Cargo Netting, Large
-	[194539] = strMultiple(strCrown(110), getHouseString(11216)), -- Rough Hammock, Pole-Strung
-	[194534] = strMultiple(strCrown(260), getHouseString(11216)), -- Dock Bell, Mounted
-	[194536] = strMultiple(strCrown(40), getHouseString(11216, 14078)), -- Dock Buoys, Mounted
+    [194538] = strMultiple(strCrown(110), getHouseString(11216, 14078)), -- Cargo Netting, Large
+    [194539] = strMultiple(strCrown(110), getHouseString(11216)), -- Rough Hammock, Pole-Strung
+    [194534] = strMultiple(strCrown(260), getHouseString(11216)), -- Dock Bell, Mounted
+    [194536] = strMultiple(strCrown(40), getHouseString(11216, 14078)), -- Dock Buoys, Mounted
 
     [197622] = strMultiple(strGem(400), strCrate(crates.FEATHER)), -- Constellation Projection Apparatus
     [197621] = strMultiple(strGem(40), strCrate(crates.FEATHER)), -- Household Shrine, Meridian
@@ -1419,7 +1406,7 @@ FurC.MiscItemSources[ver.DEADL] = {
     [134276] = strCrown(4500), --Clockwork Dye Station
     [134280] = strCrown(3500), --Clockwork Enchanting Station
     [139064] = strMultiple(strCrown(20), mischouse), -- Flowers, Hummingbird Mint
-	[182921] = strMultiple(strCrown(490), getHouseString(10051)), -- Fargrave Canopy, Large
+    [182921] = strMultiple(strCrown(490), getHouseString(10051)), -- Fargrave Canopy, Large
     [118175] = strCrown(170), --Shutters, Hinged Lattice
     [118174] = strCrown(170), --Shutters, Blue Lattice
     [118173] = strCrown(170), --Shutters, Blue Hinged
@@ -1445,8 +1432,8 @@ FurC.MiscItemSources[ver.DEADL] = {
     [182930] = strCrown(110), -- Plant, Pixas
     [182929] = strCrown(110), -- Plant, Hynvik
     [125581] = strCrown(25), -- Mushroom, Buttercake
-	[182922] = strCrown(40), -- Vines, Thornpinch
-	[182925] = strCrown(160), -- Rocks, Deadlands Cluster
+    [182922] = strCrown(40), -- Vines, Thornpinch
+    [182925] = strCrown(160), -- Rocks, Deadlands Cluster
 
     --======================= Limited Time Crown Store Items ==========================
     [156645] = strCrown(4000), -- Statue, Kaalgrontiid's Ascent
@@ -1715,16 +1702,15 @@ FurC.MiscItemSources[ver.DEADL] = {
 FurC.MiscItemSources[ver.WAKE] = {
   [src.CROWN] = {
     [181600] = strCrown(20), -- Rock, Gabbro Boulder
-	[181606] = strCrown(50), -- Rock, Gabbro Boulder Cluster
-	[181605] = strCrown(5), -- Rock, Gabbro Set
-	[181601] = strCrown(50), -- Rock, Wide Gabbro Slab
-	[181603] = strCrown(70), -- Plant, White Flowered Lily Pads
-	[181607] = strCrown(90), -- Tree, Elder Blackwood Beech
-	[181608] = strCrown(20), -- Tree, Blackwood Beech
-	[181609] = strCrown(20), -- Tree, Blackwood Beech Cluster
-	[181610] = strCrown(25), -- Vines, Snow Lillies Swath
-	[181611] = strCrown(10), -- Vines, Snow Lillies Climber
-	
+    [181606] = strCrown(50), -- Rock, Gabbro Boulder Cluster
+    [181605] = strCrown(5), -- Rock, Gabbro Set
+    [181601] = strCrown(50), -- Rock, Wide Gabbro Slab
+    [181603] = strCrown(70), -- Plant, White Flowered Lily Pads
+    [181607] = strCrown(90), -- Tree, Elder Blackwood Beech
+    [181608] = strCrown(20), -- Tree, Blackwood Beech
+    [181609] = strCrown(20), -- Tree, Blackwood Beech Cluster
+    [181610] = strCrown(25), -- Vines, Snow Lillies Swath
+    [181611] = strCrown(10), -- Vines, Snow Lillies Climber
   },
 }
 
@@ -1742,14 +1728,13 @@ FurC.MiscItemSources[ver.FLAMES] = {
     [171933] = strCrown(80), -- Daedric Candles, Tall Stand
     [171934] = strCrown(360), -- Daedric Brazier, Plinth
     [118482] = strCrown(25), -- Book Stack, Tall
-	[171818] = strCrown(310), -- Tree, Giant Cork Oak
-	[171819] = strCrown(310), -- Tree, Towering Cork Oak
-	[171834] = strCrown(40), -- Tree, Charred Vvardenfell Pine
-	[171835] = strCrown(40), -- Tree, Charred Leaning Vvardenfell Pine
-	[171836] = strCrown(40), -- Tree, Charred Slim Vvardenfell Pine
-	[171875] = strCrown(6000), -- Target Harrowing Reaper, Trial
-	[171940] = strCrown(280), -- Statue of Sheogorath, Shivering Isles Sovereign
-	
+    [171818] = strCrown(310), -- Tree, Giant Cork Oak
+    [171819] = strCrown(310), -- Tree, Towering Cork Oak
+    [171834] = strCrown(40), -- Tree, Charred Vvardenfell Pine
+    [171835] = strCrown(40), -- Tree, Charred Leaning Vvardenfell Pine
+    [171836] = strCrown(40), -- Tree, Charred Slim Vvardenfell Pine
+    [171875] = strCrown(6000), -- Target Harrowing Reaper, Trial
+    [171940] = strCrown(280), -- Statue of Sheogorath, Shivering Isles Sovereign
   },
 
   [src.DROP] = {
@@ -1781,7 +1766,7 @@ FurC.MiscItemSources[ver.MARKAT] = {
     [167301] = strCrown(560), -- Dwarven Lamppost, Polished Powered
     [167300] = strCrown(160), -- Dwarven Lantern, Polished Wall
     [167298] = strCrown(310), -- Dwarven Sconce, Polished Barred
-	[171382] = strMultiple(strCrown(180), getHouseString(8697)), -- Reachmen Pergola, Ivy Overhang
+    [171382] = strMultiple(strCrown(180), getHouseString(8697)), -- Reachmen Pergola, Ivy Overhang
   },
 }
 
@@ -1803,14 +1788,14 @@ FurC.MiscItemSources[ver.STONET] = {
     [118261] = strCrown(25), -- Cushion, Faded Yellow
     [118260] = strCrown(25), -- Cushion, Faded Blue
     [118259] = strCrown(25), -- Cushion, Faded Red
-	[167289] = strCrown(20), -- Tree, Lowland White Pine
-	[167290] = strCrown(20), -- Tree, Great Lowland White Pine
-	[167291] = strCrown(150), -- Tree, Towering Royal Pine
-	[167306] = strCrown(70), -- Tree, Towering Snowy White Pine
-	[167292] = strCrown(5), -- Rocks, Large Jagged Set
-	[167293] = strCrown(30), -- Shrub, Long Amber Bayberry
-	[167297] = strCrown(30), -- Trees, Young Snowy White Pine Cluster
-	[167296] = strCrown(20), -- Tree, Giant Snowy White Pine
+    [167289] = strCrown(20), -- Tree, Lowland White Pine
+    [167290] = strCrown(20), -- Tree, Great Lowland White Pine
+    [167291] = strCrown(150), -- Tree, Towering Royal Pine
+    [167306] = strCrown(70), -- Tree, Towering Snowy White Pine
+    [167292] = strCrown(5), -- Rocks, Large Jagged Set
+    [167293] = strCrown(30), -- Shrub, Long Amber Bayberry
+    [167297] = strCrown(30), -- Trees, Young Snowy White Pine Cluster
+    [167296] = strCrown(20), -- Tree, Giant Snowy White Pine
     [94091] = strCrown(95), -- Imperial Carpet, Akatosh
     [94092] = strCrown(95), -- Imperial Carpet, Kyne
     [94093] = strCrown(95), -- Imperial Carpet, Stendarr
@@ -1919,7 +1904,7 @@ FurC.MiscItemSources[ver.STONET] = {
     [118107] = strCrown(40), -- Pie, Display
 
     [167295] = getHouseString(13882, 8323), -- Tree, Great Snowy White Pine
-	[167302] = getHouseString(8652, 8323), -- Solitude Brazier, Metal
+    [167302] = getHouseString(8652, 8323), -- Solitude Brazier, Metal
 
     [119685] = strCrate(crates.WILD_HUNT), -- Tapestry of Hircine
     [119684] = strCrate(crates.WILD_HUNT), -- Statue of Hircine
@@ -2078,7 +2063,6 @@ FurC.MiscItemSources[ver.SKYRIM] = {
 FurC.MiscItemSources[ver.HARROW] = {
   [src.CROWN] = {
     [118277] = strMultiple(strCrown(140), strPack("hollowjack")), -- Ram Horns, Mounted
-	
   },
 }
 
@@ -2089,9 +2073,8 @@ FurC.MiscItemSources[ver.DRAGON2] = {}
 FurC.MiscItemSources[ver.SCALES] = {
   [src.CROWN] = {
     [152257] = strPack("ebony"), -- Banner of Mephala
-	[152259] = strPack("razor"), -- Banner of Mehrunes Dagon
+    [152259] = strPack("razor"), -- Banner of Mehrunes Dagon
   },
-  
 }
 
 -- 11 Elsweyr
@@ -2147,7 +2130,7 @@ FurC.MiscItemSources[ver.KITTY] = {
     [151826] = strPack("moonbishop"), -- Lunar Tapestry, The Dance
     [151827] = strPack("moonbishop"), -- Lunar Tapestry, The Gate
     [151828] = strPack("moonbishop"), -- Lunar Tapestry, The Demon
-	[150775] = strPack("jyggalag"), -- Banner of Jyggalag
+    [150775] = strPack("jyggalag"), -- Banner of Jyggalag
     [151830] = strMultiple(strCrown(190), strPack("moonbishop")), -- Elsweyr Divider, Elegant Wooden
     [151832] = strMultiple(strCrown(100), strPack("moonbishop")), -- Elsweyr Ceremonial Lantern, Jone
     [151833] = strMultiple(strCrown(100), strPack("moonbishop")), -- Elsweyr Ceremonial Lantern, Jode
@@ -2209,7 +2192,7 @@ FurC.MiscItemSources[ver.KITTY] = {
   },
 
   [src.FISHING] = {},
-  
+
   [src.BAZAAR] = {
     [153814] = strBazaar(2550), -- Dragon's Treasure Trove
   },
@@ -2347,8 +2330,8 @@ FurC.MiscItemSources[ver.WEREWOLF] = {
     [139239] = strCrown(190), -- Alinor Wall Mirror, Verdant
     [139389] = strCrown(200), -- Crystal, Crimson Cluster
     [139184] = strCrown(200), -- Alinor Plinth, Sarcophagus
-	[147572] = strCrown(120), -- Barricade, Bladed Fence
-	[147573] = strCrown(120), -- Barricade, Bladed Hurdle
+    [147572] = strCrown(120), -- Barricade, Bladed Fence
+    [147573] = strCrown(120), -- Barricade, Bladed Hurdle
 
     [130093] = strPack("molag"), -- Coldharbour Compact
     [130071] = strMultiple(strCrown(300), strPack("molag")), -- Daedric Torch, Coldharbour
@@ -2360,8 +2343,8 @@ FurC.MiscItemSources[ver.WEREWOLF] = {
     [130095] = strMultiple(strCrown(640), strPack("molag")), -- Daedric Torture Device, Chained
     [130069] = strMultiple(strCrown(2000), strPack("molag")), -- Daedric Spout, Block
     [130070] = strMultiple(strCrown(2000), strPack("molag"), getHouseString(13881)), -- Daedric Spout, Arched
-	[140297] = strMultiple(strCrown(1700), strPack("nobleparlour")), -- Replica Throne of Alinor
-	[139367] = strMultiple(strCrown(1000), strPack("noblebath")), -- Regal Sauna Pool, Two Person
+    [140297] = strMultiple(strCrown(1700), strPack("nobleparlour")), -- Replica Throne of Alinor
+    [139367] = strMultiple(strCrown(1000), strPack("noblebath")), -- Regal Sauna Pool, Two Person
     [130080] = strPack("molag"), -- Soul Gems, Scattered
     [130081] = strPack("molag"), -- Soul-Shriven, Armored
     [130083] = strPack("molag"), -- Daedric Block, Seat
@@ -2374,7 +2357,7 @@ FurC.MiscItemSources[ver.WEREWOLF] = {
     [130090] = strMultiple(strCrown(310), strPack("molag")), -- Daedric Sconce, Molag Bal
     [130088] = strPack("molag"), -- Daedric Fragment, Coldharbour
     [130092] = strPack("molag"), -- Seal of Molag Bal, Grand
-	[147636] = strPack("firstblade"), -- Banner of Hermaeus Mora
+    [147636] = strPack("firstblade"), -- Banner of Hermaeus Mora
     [126138] = strPack("dwemer"), -- A Guide to Dwemer Mega-Structures
     [125516] = strPack("dwemer"), -- Dwarven Gear Assembly, Grinding
 
@@ -2457,8 +2440,8 @@ FurC.MiscItemSources[ver.SLAVES] = {
     [141853] = strCrown(2500), -- Statue of Hircine's Bitter Mercy
     [134326] = strCrown(260), -- Clockwork Pump, Horizontal
     [134250] = strCrown(750), -- Fabrication Sphere, Inactive
-	[145457] = strCrown(70), -- Tree, Banyan
-	[145458] = strCrown(220), -- Tree, Huge Ancient Banyan
+    [145457] = strCrown(70), -- Tree, Banyan
+    [145458] = strCrown(220), -- Tree, Huge Ancient Banyan
 
     [146062] = strPack("newlife2018"), -- Winter Ouroboros Wreath
     [146061] = strPack("newlife2018"), -- New Life Triptych Banner
@@ -2476,18 +2459,18 @@ FurC.MiscItemSources[ver.SLAVES] = {
     [146049] = strPack("newlife2018"), -- Winter Festival Hearth
     [146048] = strPack("newlife2018"), -- New Life Festive Fir
     [146047] = strPack("newlife2018"), -- From Old Life To New
-	
-	[145556] = strMultiple(strCrown(60), getHouseString(5756)), -- Tree, Tall Snowy Fir
-	[145555] = strMultiple(strCrown(40), getHouseString(5756)), -- Tree, Snowy Fir
-	[145554] = strMultiple(strCrown(210), getHouseString(5756)), -- Tree, Towering Snowy Fir
-	[145454] = strMultiple(strCrown(30), strPack("swamp"), getHouseString(13882)), -- Plant, Marsh Aloe Pod
+
+    [145556] = strMultiple(strCrown(60), getHouseString(5756)), -- Tree, Tall Snowy Fir
+    [145555] = strMultiple(strCrown(40), getHouseString(5756)), -- Tree, Snowy Fir
+    [145554] = strMultiple(strCrown(210), getHouseString(5756)), -- Tree, Towering Snowy Fir
+    [145454] = strMultiple(strCrown(30), strPack("swamp"), getHouseString(13882)), -- Plant, Marsh Aloe Pod
     [145453] = strMultiple(strCrown(30), strPack("swamp")), -- Plant, Marsh Aloe
-	[145456] = strMultiple(strCrown(260), strPack("swamp")), -- Plant, Hist Bulb
-	[145455] = strMultiple(strCrown(290), strPack("swamp")), -- Plant, Dendritic Hist Bulb
-	[145452] = strMultiple(strCrown(170), strPack("swamp")), -- Shrine, Sithis Looming Anointed
+    [145456] = strMultiple(strCrown(260), strPack("swamp")), -- Plant, Hist Bulb
+    [145455] = strMultiple(strCrown(290), strPack("swamp")), -- Plant, Dendritic Hist Bulb
+    [145452] = strMultiple(strCrown(170), strPack("swamp")), -- Shrine, Sithis Looming Anointed
     [145451] = strMultiple(strCrown(140), strPack("swamp")), -- Shrine, Sithis Figure Anointed
-	[145449] = strMultiple(strCrown(450), strPack("swamp")), -- Stele, Hist Guardians
-	[145450] = strMultiple(strCrown(450), strPack("swamp")), -- Stele, Hist Cultivation
+    [145449] = strMultiple(strCrown(450), strPack("swamp")), -- Stele, Hist Guardians
+    [145450] = strMultiple(strCrown(450), strPack("swamp")), -- Stele, Hist Cultivation
     [146073] = strMultiple(strCrown(70), strPack("deepmire")), -- Plant Cluster, Marsh Nigella,
     [145461] = strMultiple(strCrown(30), strPack("deepmire")), -- Plant Cluster, Cardinal Flower
     [145447] = strMultiple(strCrown(260), strPack("swamp")), -- Murkmire Dais, Engraved
@@ -2513,9 +2496,9 @@ FurC.MiscItemSources[ver.SLAVES] = {
     [134249] = strPack("sotha"), -- Sotha Sil, The Clockwork God
     [134248] = strPack("sotha"), -- Grand Mnemograph
     [134246] = strPack("sotha"), -- The Law of Gears
-	[145446] = strPack("swamp"), -- Sithis, the Hungering Dark
-	[145467] = strPack("swamp"), -- The Way of Shadow
-	[146069] = strPack("swamp"), -- Target Voriplasm
+    [145446] = strPack("swamp"), -- Sithis, the Hungering Dark
+    [145467] = strPack("swamp"), -- The Way of Shadow
+    [146069] = strPack("swamp"), -- Target Voriplasm
 
     [145493] = strCrate(crates.XANMEER), -- Lantern Mantis
     [145492] = strCrate(crates.XANMEER), -- Gas Blossom
@@ -2710,7 +2693,7 @@ FurC.MiscItemSources[ver.DRAGONS] = {
     [94100] = strCrown(50), -- Imperial BookCase, Swirled
     [130211] = strCrown(50), -- Books, Ordered Row
     [130210] = strCrown(50), -- Books, Scattered Row
-	[134686] = strCrown(2800), -- Sithis, The Dread Father
+    [134686] = strCrown(2800), -- Sithis, The Dread Father
   },
 }
 
@@ -2765,7 +2748,7 @@ FurC.MiscItemSources[ver.CLOCKWORK] = {
     [134396] = strCrown(410), -- Clockwork Wall Machinery, Tall
     [134397] = strCrown(410), -- Clockwork Wall Machinery, Ovoid
     [134398] = strCrown(1300), -- Clockwork Gazebo, Copper and Basalt
-	[134473] = strCrate(crates.FIREATRO), -- Tapestry,  Malacath
+    [134473] = strCrate(crates.FIREATRO), -- Tapestry,  Malacath
   },
 }
 
@@ -2790,11 +2773,10 @@ FurC.MiscItemSources[ver.REACH] = {
   [src.CROWN] = {
     [132204] = getHouseString(1309), -- Imperial Statue, Truth
     [132200] = getHouseString(1309), -- Imperial Well, Akatosh
-	[132202] = getHouseString(1309), -- Rock, Anvil Limestone
-	[132203] = getHouseString(1309), -- Stone, Anvil Limestone
-	[132201] = getHouseString(1309, 13758), -- Tree, Kvatch Nut
-	[130070] = strMultiple(strCrown(2000), strPack("molag")), -- Daedric Spout, Arched
-	
+    [132202] = getHouseString(1309), -- Rock, Anvil Limestone
+    [132203] = getHouseString(1309), -- Stone, Anvil Limestone
+    [132201] = getHouseString(1309, 13758), -- Tree, Kvatch Nut
+    [130070] = strMultiple(strCrown(2000), strPack("molag")), -- Daedric Spout, Arched
   },
 }
 
@@ -2888,8 +2870,8 @@ FurC.MiscItemSources[ver.MORROWIND] = {
     [125670] = plants_vvardenfell, -- Toadstool, Bloodtooth
     [125671] = plants_vvardenfell, -- Toadstool, Bloodtooth Cap
     [125672] = plants_vvardenfell, -- Toadstool, Bloodtooth Cluster
-	
-	[125597] = strGeneric(srcDrop, strSrc("src", "shroom beetles"), nil, loc.VVARDENFELL), -- Mushroom, Polyp Stinkhorn
+
+    [125597] = strGeneric(srcDrop, strSrc("src", "shroom beetles"), nil, loc.VVARDENFELL), -- Mushroom, Polyp Stinkhorn
 
     [126759] = strQuest(5864, nil, loc.VVARDENFELL, loc.VVARDENFELL_SURAN), -- Sir Sock's Ball of Yarn ; Quest: 'Nothing to Sneeze At'
   },
@@ -2897,8 +2879,8 @@ FurC.MiscItemSources[ver.MORROWIND] = {
   [src.CROWN] = {
     [130213] = strMultiple(strCrown(430), strPack("ayleid")), -- Ayleid Cage, Hanging
     [130212] = strPack("ayleid"), -- Daedra Worship: The Ayleids
-	[125532] = strPack("pipes"), -- Dwarven Pipeline, Fan
-	[125537] = strPack("pipes"), -- Dwarven Piston Cylinder
+    [125532] = strPack("pipes"), -- Dwarven Pipeline, Fan
+    [125537] = strPack("pipes"), -- Dwarven Piston Cylinder
     [130207] = strMultiple(strCrown(270), strPack("ayleid")), -- Ayleid Plinth, Engraved
     [130206] = strMultiple(strCrown(370), strPack("ayleid")), -- Ayleid Apparatus, Welkynd
     [130205] = strMultiple(strCrown(680), strPack("ayleid")), -- Ayleid Statue, Pious Priest
@@ -3121,84 +3103,88 @@ FurC.MiscItemSources[ver.HOMESTEAD] = {
     [117952] = strCrown(35), -- Rough Torch, Wall
     [115698] = strCrown(1100), -- Khajiit Statue, Guardian
     [115395] = strCrown(40), -- Nord Drinking Horn, Display
-	[117881] = strCrown(70), -- Redguard Pillow, Lattice Sands
-	[117882] = strCrown(70), -- Redguard Pillow, Florid Sands
-	[117885] = strMultiple(strCrown(70), strPack("cragbed")), -- Redguard Pillow Roll, Sands
-	[117886] = strCrown(70), -- Redguard Throw Pillow, Sands
-	[117899] = strCrown(190), -- Redguard Chest, Crested
-	[117887] = getHouseString(10051), -- Redguard Tuffet, Sands
-	[117941] = strCrown(15), -- Rough Broom, Practical
-	[121004] = getHouseString(1309), -- Hedge, Solid Arc
-	[117897] = strMultiple(strCrown(480), strPack("cragparlour")), -- Redguard Mat, Sun
-	[117893] = strMultiple(strCrown(190), strPack("cragbed")), -- Redguard Footlocker, Bolted
-	[117896] = strMultiple(strCrown(290), strPack("cragknicks")), -- Redguard Wine Rack, Bolted
-	[119970] = strMultiple(strCrown(1400), strPack("cragkitchen")), -- Redguard Round Table
-	[117891] = strMultiple(strCrown(250), strPack("cragkitchen"), getHouseString(14077, 1100, 1094, 1095, 4795, 7601)), -- Redguard Armchair, Lattice
-	[117892] = strMultiple(strCrown(230), strPack("cragbed"), getHouseString(14077, 14078, 1100, 1094, 1095, 4795, 7601)), -- Redguard Chair, Lattice
-	[118264] = strMultiple(strCrown(65), getHouseString(11456)), -- Tuffet, Faded Yellow
-	[118252] = strCrown(25), -- Pillow, Faded Yellow Floral
-	[118248] = strCrown(25), -- Pillow, Faded Yellow
-	[118258] = strCrown(25), -- Pillow Roll, Faded Yellow
-	[118263] = strCrown(65), -- Tuffet, Faded Blue
+    [117881] = strCrown(70), -- Redguard Pillow, Lattice Sands
+    [117882] = strCrown(70), -- Redguard Pillow, Florid Sands
+    [117885] = strMultiple(strCrown(70), strPack("cragbed")), -- Redguard Pillow Roll, Sands
+    [117886] = strCrown(70), -- Redguard Throw Pillow, Sands
+    [117899] = strCrown(190), -- Redguard Chest, Crested
+    [117887] = getHouseString(10051), -- Redguard Tuffet, Sands
+    [117941] = strCrown(15), -- Rough Broom, Practical
+    [121004] = getHouseString(1309), -- Hedge, Solid Arc
+    [117897] = strMultiple(strCrown(480), strPack("cragparlour")), -- Redguard Mat, Sun
+    [117893] = strMultiple(strCrown(190), strPack("cragbed")), -- Redguard Footlocker, Bolted
+    [117896] = strMultiple(strCrown(290), strPack("cragknicks")), -- Redguard Wine Rack, Bolted
+    [119970] = strMultiple(strCrown(1400), strPack("cragkitchen")), -- Redguard Round Table
+    [117891] = strMultiple(strCrown(250), strPack("cragkitchen"), getHouseString(14077, 1100, 1094, 1095, 4795, 7601)), -- Redguard Armchair, Lattice
+    [117892] = strMultiple(
+      strCrown(230),
+      strPack("cragbed"),
+      getHouseString(14077, 14078, 1100, 1094, 1095, 4795, 7601)
+    ), -- Redguard Chair, Lattice
+    [118264] = strMultiple(strCrown(65), getHouseString(11456)), -- Tuffet, Faded Yellow
+    [118252] = strCrown(25), -- Pillow, Faded Yellow Floral
+    [118248] = strCrown(25), -- Pillow, Faded Yellow
+    [118258] = strCrown(25), -- Pillow Roll, Faded Yellow
+    [118263] = strCrown(65), -- Tuffet, Faded Blue
     [118262] = strMultiple(strCrown(65), getHouseString(11456)), -- Tuffet, Faded Red
-	[118127] = strMultiple(strCrown(95), getHouseString(1098)), -- Plaque, Small
+    [118127] = strMultiple(strCrown(95), getHouseString(1098)), -- Plaque, Small
     [118257] = strCrown(25), -- Pillow Roll, Faded Blue
     [118256] = strCrown(25), -- Pillow Roll, Faded Red
-	[118255] = strCrown(25), -- Pillow, Faded Blue Floral
+    [118255] = strCrown(25), -- Pillow, Faded Blue Floral
     [118254] = strCrown(25), -- Pillow, Faded Purple Floral
     [118253] = strCrown(25), -- Pillow, Faded Red Floral
     [118251] = strMultiple(strCrown(25), getHouseString(7601)), -- Pillow, Faded Blue
     [118250] = strCrown(25), -- Pillow, Faded Purple
     [118249] = strCrown(25), -- Pillow, Faded Red
-	[118174] = strCrown(170), -- Shutters, Blue Lattice
-	[121007] = strPack("trees"), -- Tree, Strong Maple
-	[121008] = strPack("trees"), -- Tree, Autumn Maple
-	[121010] = strMultiple(strPack("trees"), getHouseString(1087, 1097, 1089)), -- Tree, Young Green Birch
-	[121013] = strPack("trees"), -- Saplings, Fragile Autumn Birch
-	[121015] = strMultiple(strPack("trees"), getHouseString(14586)), -- Shrub, Sparse Green
-	[121016] = strPack("trees"), -- Bush, Red Berry
-	[121022] = strPack("trees"), -- Bush, Green Forest
-	[121023] = strMultiple(strPack("trees"), getHouseString(1309)), -- Tree, Strong Olive
-	[94181] = getHouseString(6752), -- Imperial Throne of the Bay
+    [118174] = strCrown(170), -- Shutters, Blue Lattice
+    [121007] = strPack("trees"), -- Tree, Strong Maple
+    [121008] = strPack("trees"), -- Tree, Autumn Maple
+    [121010] = strMultiple(strPack("trees"), getHouseString(1087, 1097, 1089)), -- Tree, Young Green Birch
+    [121013] = strPack("trees"), -- Saplings, Fragile Autumn Birch
+    [121015] = strMultiple(strPack("trees"), getHouseString(14586)), -- Shrub, Sparse Green
+    [121016] = strPack("trees"), -- Bush, Red Berry
+    [121022] = strPack("trees"), -- Bush, Green Forest
+    [121023] = strMultiple(strPack("trees"), getHouseString(1309)), -- Tree, Strong Olive
+    [94181] = getHouseString(6752), -- Imperial Throne of the Bay
     [116420] = strCrown(1200), -- Orcish Throne, Pedestal
-	[117843] = getHouseString(1094), -- Redguard Bed, Wide Lattice
-	[117902] = getHouseString(14077), -- Redguard Pot, Gilded
-	[117903] = strMultiple(strPack("cragparlour"), strCrown(140)), -- Redguard Vessel, Gilded
-	[117908] = getHouseString(1100), -- Redguard Candlestick, Twisted
-	[118117] = strCrown(340), -- Table, Carved
-	[118156] = strCrown(340), -- Runner of the Oasis, Faded
-	[118157] = strMultiple(strCrown(340), getHouseString(13060)), -- Runner of the Sun, Faded
-	[118075] = strCrown(270), -- Banner, War
-	[118076] = strCrown(270), -- Banner, Forge
-	[118077] = strMultiple(strCrown(270), getHouseString(1445)), -- Banner, Forceful
-	[118078] = strCrown(270), -- Banner, Mighty
-	[118079] = strMultiple(strCrown(270), getHouseString(1445)), -- Banner, Crafting
-	[118128] = getHouseString(1445), -- Pelt, Hanging
-	[119576] = getHouseString(4795), -- Palm Tree Cluster
-	[118350] = strCrown(25), -- Box of Tangerines
-	[118352] = strCrown(25), -- Box of Oranges
-	[118353] = strCrown(25), -- Box of Grapes
-	[118354] = strCrown(25), -- Box of Fruit
-	[118482] = strCrown(25), -- Book Stack, Tall	
-	[118125] = strCrown(95), -- Plaque, Large
-	[118137] = strCrown(70), -- Podium, Engraved
-	[118111] = strCrown(50), -- Steak, Display
-	[118112] = strCrown(50), -- Teapot, Common
-	[117925] = strCrown(30), -- Rough Cot, Military
-	[117962] = strCrown(30), -- Rough Bedroll, Rolled
-	[117927] = strCrown(15), -- Rough Barrel, Sturdy
-	[117932] = strCrown(15), -- Rough Tray, Sturdy
-	[117933] = strCrown(15), -- Rough Bin, Sturdy
-	[117934] = strCrown(15), -- Rough Carton, Sturdy
-	[117935] = strCrown(10), -- Rough Pouch, Burlap
-	[117938] = strCrown(10), -- Rough Sack, Burlap
-	[117936] = strCrown(10), -- Rough Pouch, Coarse Cloth
-	[117948] = strCrown(10), -- Rough Candle, Tealight
-	[117949] = strCrown(10), -- Rough Candle, Pillar
-	[120997] = strCrown(120), -- Banner, Tattered Blue
-	[117944] = strCrown(5), -- Rough Fork, Common
-	[117946] = strCrown(5), -- Rough Knife, Butter
-	[117947] = strCrown(5), -- Rough Spoon, Common
-	[117951] = strCrown(35), -- Rough Torch, Basic
+    [117843] = getHouseString(1094), -- Redguard Bed, Wide Lattice
+    [117902] = getHouseString(14077), -- Redguard Pot, Gilded
+    [117903] = strMultiple(strPack("cragparlour"), strCrown(140)), -- Redguard Vessel, Gilded
+    [117908] = getHouseString(1100), -- Redguard Candlestick, Twisted
+    [118117] = strCrown(340), -- Table, Carved
+    [118156] = strCrown(340), -- Runner of the Oasis, Faded
+    [118157] = strMultiple(strCrown(340), getHouseString(13060)), -- Runner of the Sun, Faded
+    [118075] = strCrown(270), -- Banner, War
+    [118076] = strCrown(270), -- Banner, Forge
+    [118077] = strMultiple(strCrown(270), getHouseString(1445)), -- Banner, Forceful
+    [118078] = strCrown(270), -- Banner, Mighty
+    [118079] = strMultiple(strCrown(270), getHouseString(1445)), -- Banner, Crafting
+    [118128] = getHouseString(1445), -- Pelt, Hanging
+    [119576] = getHouseString(4795), -- Palm Tree Cluster
+    [118350] = strCrown(25), -- Box of Tangerines
+    [118352] = strCrown(25), -- Box of Oranges
+    [118353] = strCrown(25), -- Box of Grapes
+    [118354] = strCrown(25), -- Box of Fruit
+    [118482] = strCrown(25), -- Book Stack, Tall
+    [118125] = strCrown(95), -- Plaque, Large
+    [118137] = strCrown(70), -- Podium, Engraved
+    [118111] = strCrown(50), -- Steak, Display
+    [118112] = strCrown(50), -- Teapot, Common
+    [117925] = strCrown(30), -- Rough Cot, Military
+    [117962] = strCrown(30), -- Rough Bedroll, Rolled
+    [117927] = strCrown(15), -- Rough Barrel, Sturdy
+    [117932] = strCrown(15), -- Rough Tray, Sturdy
+    [117933] = strCrown(15), -- Rough Bin, Sturdy
+    [117934] = strCrown(15), -- Rough Carton, Sturdy
+    [117935] = strCrown(10), -- Rough Pouch, Burlap
+    [117938] = strCrown(10), -- Rough Sack, Burlap
+    [117936] = strCrown(10), -- Rough Pouch, Coarse Cloth
+    [117948] = strCrown(10), -- Rough Candle, Tealight
+    [117949] = strCrown(10), -- Rough Candle, Pillar
+    [120997] = strCrown(120), -- Banner, Tattered Blue
+    [117944] = strCrown(5), -- Rough Fork, Common
+    [117946] = strCrown(5), -- Rough Knife, Butter
+    [117947] = strCrown(5), -- Rough Spoon, Common
+    [117951] = strCrown(35), -- Rough Torch, Basic
   },
 }
