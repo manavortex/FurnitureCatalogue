@@ -26,6 +26,7 @@ this.EventItems = {}
 this.PVP = {}
 this.MiscItemSources = {}
 this.RumourRecipes = {}
+this.FurnishingFolios = {}
 
 local defaults = {
   hideMats = true,
@@ -85,6 +86,7 @@ local function getSourceIndicesKeys()
   sourceIndicesKeys[src.VENDOR] = "purch_gold"
   sourceIndicesKeys[src.PVP] = "purch_ap"
   sourceIndicesKeys[src.BAZAAR] = "purch_tbars"
+  sourceIndicesKeys[src.TELVAR] = "purch_telvar"
  -- sourceIndicesKeys[src.TOMES] = "purch_tomepoints"
   sourceIndicesKeys[src.WRIT_VENDOR] = "writ_vendor"
   sourceIndicesKeys[src.CROWN] = "crownstore"
@@ -111,6 +113,7 @@ local function getChoicesSource()
   choicesSource[src.CRAFTING_UNKNOWN] = GetString(SI_FURC_FILTER_SRC_CRAFTING_UNKNOWN)
   choicesSource[src.VENDOR] = GetString(SI_FURC_FILTER_SRC_SOLD_GOLD)
   choicesSource[src.PVP] = GetString(SI_FURC_FILTER_SRC_SOLD_AP)
+  choicesSource[src.TELVAR] = GetString(SI_FURC_FILTER_SRC_SOLD_TELVAR)
   choicesSource[src.BAZAAR] = GetString(SI_FURC_FILTER_SRC_SOLD_TBARS)
  -- choicesSource[src.TOMES] = GetString(SI_FURC_FILTER_SRC_SOLD_TOMEPOINTS)
   choicesSource[src.WRIT_VENDOR] = GetString(SI_FURC_FILTER_SRC_SOLD_WRIT)
@@ -138,6 +141,7 @@ local function getTooltipsSource()
   tooltipsSource[src.CRAFTING_UNKNOWN] = GetString(SI_FURC_FILTER_SRC_CRAFTING_UNKNOWN_TT)
   tooltipsSource[src.VENDOR] = GetString(SI_FURC_FILTER_SRC_SOLD_GOLD_TT)
   tooltipsSource[src.PVP] = GetString(SI_FURC_FILTER_SRC_SOLD_AP_TT)
+  tooltipsSource[src.TELVAR] = GetString(SI_FURC_FILTER_SRC_SOLD_TELVAR_TT)
   tooltipsSource[src.BAZAAR] = GetString(SI_FURC_FILTER_SRC_SOLD_TBARS_TT)
  -- tooltipsSource[src.TOMES] = GetString(SI_FURC_FILTER_SRC_SOLD_TOMEPOINTS_TT)
   tooltipsSource[src.CROWN] = GetString(SI_FURC_FILTER_SRC_CROWN_TT)
@@ -180,6 +184,7 @@ this.DropdownData = {
     [ver.MARKAT] = GetString(SI_FURC_FILTER_VERSION_MARKAT),
     [ver.FLAMES] = GetString(SI_FURC_FILTER_VERSION_FLAMES),
     [ver.BLACKW] = GetString(SI_FURC_FILTER_VERSION_BLACKW),
+	[ver.WAKE] = GetString(SI_FURC_FILTER_VERSION_WAKE),
     [ver.DEADL] = GetString(SI_FURC_FILTER_VERSION_DEADL),
     [ver.TIDES] = GetString(SI_FURC_FILTER_VERSION_TIDES),
     [ver.BRETON] = GetString(SI_FURC_FILTER_VERSION_BRETON),
