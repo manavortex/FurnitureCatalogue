@@ -1293,6 +1293,90 @@ local bookList = {
 
 local miscVendor = merge(merge(merge(structures, boxes), laundry), fishing_trip)
 
+FurC.AchievementVendors[ver.ZERO2] = {
+  [loc.GLENUMBRA] = {
+    [npc.AF] = {
+	  [225179] = { -- Koldane Cartel Banner
+	    itemPrice = 900,
+		achievement = 4589,
+	  },
+	  [225180] = { -- Nowhere Key, Replica
+	    itemPrice = 9000,
+		achievement = 4591,
+	  },
+	  [225181] = { -- Thieves Moon, Replica
+	    itemPrice = 31500,
+		achievement = 4594,
+	  },
+	  [225182] = { -- Cheese Stack, Giant
+	    itemPrice = 18000,
+		achievement = 4597,
+	  },
+	  [225195] = { -- Aspect of the Mad God, Anger
+	    itemPrice = 45000,
+		achievement = 4599,
+	  },
+	  [225196] = { -- Aspect of the Mad God, Amusement
+	    itemPrice = 45000,
+		achievement = 4599,
+	  },
+	  [225197] = { -- Aspect of the Mad God, Laughter
+	    itemPrice = 45000,
+		achievement = 4599,
+	  },
+	},
+	
+    [npc.HGF] = {
+	  [225029] = { -- Boulders, Mossy Cluster
+	    itemPrice = 225,
+	  },
+	  [225030] = { -- Boulder, Round Mossy Striated
+	    itemPrice = 450,
+	  },
+	  [225031] = { -- Boulder, Angular Mossy Striated
+	    itemPrice = 450,
+	  },
+	  [225038] = { -- Stones, Loose Rubble
+	    itemPrice = 270,
+	  },
+	  [225037] = { -- Rough Crates, Stack
+	    itemPrice = 270,
+	  },
+	  [225036] = { -- Rough Crates, Cargo Shipment
+	    itemPrice = 405,
+	  },
+	  [225035] = { -- Ruined Floor, Stonework
+	    itemPrice = 1800,
+	  },
+	  [225034] = { -- Cave Doorway, Mossy Vine-Covered
+	    itemPrice = 18000,
+	  },
+	  [225033] = { -- Tree, Giant Climbing Wyrdbloom
+	    itemPrice = 22500,
+	  },
+	  [225032] = { -- Logs, Unprocessed
+	    itemPrice = 225,
+	  },
+	  [224922] = { -- Breton Panel, Wood
+	    itemPrice = 90,
+	  },
+	  [224921] = { -- Breton Support Beam, Wood
+	    itemPrice = 90,
+	  },
+	  [224882] = { -- Rope, Thin Knotted
+	    itemPrice = 45,
+	  },
+	  [224880] = { -- Rope, Short Twisted
+	    itemPrice = 45,
+	  },
+	  [224879] = { -- Rope, Twisted
+	    itemPrice = 45,
+	  },
+	},
+  },
+
+}
+
 FurC.AchievementVendors[ver.ZERO] = {
   [loc.NMARKET] = {
     [npc.NM] = {
@@ -1459,6 +1543,9 @@ FurC.AchievementVendors[ver.SHADOWS] = {
 	  [217970] = { -- Tree, Giant Dawnwood Canopy
 	    itemPrice = 24000,
 	  },
+	  [217665] = { -- Solitude Fence, Stick Curved
+	    itemPrice = 100,
+	  },
 
 	},
   
@@ -1497,6 +1584,7 @@ FurC.AchievementVendors[ver.WORMS] = {
       },
       [217596] = { -- Subclassing Banner
         itemPrice = 12000,
+		achievement = 4402,
       },
       [217599] = { -- Sunport Banner
         itemPrice = 12000,
@@ -1510,6 +1598,14 @@ FurC.AchievementVendors[ver.WORMS] = {
         itemPrice = 12000,
         achievement = 4414, -- Archmage Whisperer
       },
+	  [217594] = { -- Tide-Born Pool, Ceremonial
+	    itemPrice = 50000,
+		achievement = 4408,
+	  },
+	  [217597] = { -- Meridian Cynosure, Inert
+	    itemPrice = 5000,
+		achievement = 4461,
+	  },
     },
     [npc.HGF] = {
       [214496] = { -- Boulder, Horizontal Sandstone
@@ -1588,13 +1684,40 @@ FurC.AchievementVendors[ver.WORMS] = {
   },
 }
 
+-- Fallen Banners
+FurC.AchievementVendors[ver.FALLBAN] = {
+  [loc.UNDAUNTED] = {
+    [npc.UNDAUNTED_QM] = {
+	  [212586] = { -- Redguard Boat, Sailing
+	    itemPrice = 50000,
+		achievement = 4128,
+	  },
+	  [212587] = { -- Exiled Redoubt Banner
+	    itemPrice = 4500,
+		achievement = 4109,
+	  },
+	  [214249] = { -- Replica Soul Reaper
+	    itemPrice = 50000,
+		achievement = 4306,
+	  },
+	},
+  },
+  [loc.ALIKR] = {
+    [npc.HGF] = {
+	  [118168] = rumourSource, -- Block, Carved Stone
+	    itemPrice = 500,
+	  },
+  },
+
+}
+
 -- Golden Pursuits Update 44
 FurC.AchievementVendors[ver.BASE44] = {
   [loc.REAPER] = {
     [npc.AF] = {
       [211504] = { -- Sky Spirits Reflection Pool
         itemPrice = 25000,
-        achievement = 4248
+        achievement = 4248,
       },
 	  [211506] = { -- Empathic Portal Remnant
 	    itemPrice = 25000,
