@@ -6,6 +6,7 @@ local skillLine = FurC.Constants.SkillLines
 local sFormat = zo_strformat
 
 local strGeneric = FurC.Utils.FmtGeneric
+local strPartOf = FurC.Utils.FormatPartOf
 
 local strRank = FurC.Utils.FmtRank
 local strFurnisher = FurC.Utils.FormatFurnisher
@@ -51,5 +52,16 @@ for versionNo, faustinaRecipes in pairs(FurC.FaustinaRecipes) do
     FurC.RecipeSources[recipeId] = strFurnisher(npc.FAUSTINA, loc.ANY_CAPITAL, itemPrice, CURT_WRIT_VOUCHERS, 1801)
     -- Workaround to show blueprints in list
     FurC.Faustina[versionNo][recipeId] = itemPrice
+  end
+end
+
+for folioId, folioData in pairs(FurC.FurnishingFolios) do
+  if folioData.contents then
+    FurC.Faustina[folioData.version] = FurC.Faustina[folioData.version] or {}
+    for _, recipeId in ipairs(folioData.contents) do
+      FurC.RecipeSources[recipeId] = strFurnisher(npc.FAUSTINA, loc.ANY_CAPITAL, folioData.price, CURT_WRIT_VOUCHERS, strPartOf(folioId))
+      -- Store as table so getRolisSource can access both price and folio info
+      FurC.Faustina[folioData.version][recipeId] = { itemPrice = folioData.price, info = strPartOf(folioId) }
+    end
   end
 end
