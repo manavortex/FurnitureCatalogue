@@ -12,6 +12,7 @@ local strFurnisher = FurC.Utils.FormatFurnisher
 local strGeneric = FurC.Utils.FmtGeneric
 local stripText = FurC.Utils.stripTxt
 local strSrc = FurC.Utils.FmtSources
+local strPartOf = FurC.Utils.FormatPartOf
 
 local srcEvent = GetString(SI_FURC_EVENT)
 
@@ -29,18 +30,47 @@ local function getRolisSource(recipeKey, recipeArray)
   end
 
   local versionData = FurC.Rolis[recipeArray.version]
-
   if nil ~= versionData and nil ~= versionData[recipeKey] then
-    return strFurnisher(npc.ROLIS, loc.ANY_CAPITAL, versionData[recipeKey], CURT_WRIT_VOUCHERS)
+    local entry = versionData[recipeKey]
+    local price = type(entry) == "table" and entry.itemPrice or entry
+    local info = type(entry) == "table" and entry.info or nil
+    return strFurnisher(npc.ROLIS, loc.ANY_CAPITAL, price, CURT_WRIT_VOUCHERS, info)
   end
 
   versionData = FurC.Faustina[recipeArray.version]
   if nil ~= versionData and nil ~= versionData[recipeKey] then
-    return strFurnisher(npc.FAUSTINA, loc.ANY_CAPITAL, versionData[recipeKey], CURT_WRIT_VOUCHERS)
+    local entry = versionData[recipeKey]
+    local price = type(entry) == "table" and entry.itemPrice or entry
+    local info = type(entry) == "table" and entry.info or nil
+    return strFurnisher(npc.FAUSTINA, loc.ANY_CAPITAL, price, CURT_WRIT_VOUCHERS, info)
+  end
+
+  -- check FaustinaRecipes
+  versionData = FurC.FaustinaRecipes[recipeArray.version]
+  if nil ~= versionData and nil ~= versionData[recipeKey] then
+    local entry = versionData[recipeKey]
+    local price = type(entry) == "table" and entry.itemPrice or entry
+    local info = type(entry) == "table" and entry.info or nil
+    return strFurnisher(npc.FAUSTINA, loc.ANY_CAPITAL, price, CURT_WRIT_VOUCHERS, info)
+  end
+
+  -- check if this recipe is part of a furnishing folio
+  if FurC.FurnishingFolios then
+    for folioId, folioData in pairs(FurC.FurnishingFolios) do
+      if folioData.contents then
+        for _, contentId in ipairs(folioData.contents) do
+          if contentId == recipeKey then
+            local partOfStr = strPartOf(folioId)
+            return strFurnisher(npc.FAUSTINA, loc.ANY_CAPITAL, folioData.price, CURT_WRIT_VOUCHERS, partOfStr)
+          end
+        end
+      end
+    end
   end
 
   return strVoucherVendor -- fallback
 end
+
 FurC.getRolisSource = getRolisSource
 
 local strAroundDate = GetString(SI_FURC_STRING_WEEKEND_AROUND)
@@ -97,7 +127,8 @@ local function getPvpSource(recipeKey, recipeArray, stripColor)
     for locationName, locationData in pairs(vendorData) do
       if nil ~= locationData[recipeKey] then
         local item = locationData[recipeKey]
-        local result = strFurnisher(vendorName, locationName, item.itemPrice, CURT_ALLIANCE_POINTS, item.achievement)
+        local currency = item.currency or CURT_ALLIANCE_POINTS
+		local result = strFurnisher(vendorName, locationName, item.itemPrice, currency, item.achievement)
         if stripColor then
           result = string.format("%s %s", getItemLink(recipeKey), stripText(result))
         end
@@ -189,7 +220,7 @@ local function getEventDropSource(recipeKey, recipeArray)
           end
 
           if itemType == "table" then -- must have price
-            return strFurnisher(srcName, eventName, item.itemPrice, CURT_EVENT_TICKETS)
+            return strFurnisher(srcName, eventName, item.itemPrice, CURT_TRADE_BARS)
           end
         end
       end
