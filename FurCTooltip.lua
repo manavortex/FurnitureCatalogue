@@ -17,6 +17,30 @@ local function add(t, arg)
   return t
 end
 
+local function addFolioTooltipData(control, itemId, folioData)
+  local strPrice = FurC.Utils.FormatPrice(folioData.price, folioData.currency)
+  local strVendor = FurC.Utils.Colourise(folioData.vendor, FurC.Constants.Colours.Vendor)
+  local strLoc   = FurC.Utils.Colourise(folioData.location, FurC.Constants.Colours.Location)
+  local header   = zo_strformat("<<1>> : <<2>> (<<3>>)", strVendor, strLoc, strPrice)
+
+  local lines = { header }
+
+  if folioData.contents then
+    for _, contentId in ipairs(folioData.contents) do
+      local link = FurC.Utils.GetItemLink(contentId)
+      if link and link ~= "" then
+        lines[#lines + 1] = GetItemLinkName(link)
+      end
+    end
+  end
+
+  control:AddVerticalPadding(8)
+  ZO_Tooltip_AddDivider(control)
+  for i = 1, #lines do
+    control:AddLine(zo_strformat("<<C:1>>", lines[i]))
+  end
+end
+
 local function addTooltipData(control, itemLink)
   if FurC.GetDisableTooltips() then
     return
@@ -27,6 +51,14 @@ local function addTooltipData(control, itemLink)
   local isRecipe = IsItemLinkFurnitureRecipe(itemLink)
 
   itemLink = (isRecipe and GetItemLinkRecipeResultItemLink(itemLink)) or itemLink
+
+  -- Check if this is a furnishing folio container
+  local itemId = GetItemLinkItemId(itemLink)
+  local folioData = FurC.FurnishingFolios and FurC.FurnishingFolios[itemId]
+  if folioData then
+    addFolioTooltipData(control, itemId, folioData)
+    return
+  end
 
   if not (isRecipe or IsItemLinkPlaceableFurniture(itemLink)) then
     return
