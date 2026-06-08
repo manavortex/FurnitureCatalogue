@@ -32,6 +32,18 @@ FurC.LuxuryFurnisher[ver.ZERO] = {
     itemPrice = 100000,
 	itemDate = "2026-05-15",
   },
+  [223877] = { -- Colovian Medallion, Winery
+    itemPrice = 4900,
+	itemDate = "2026-05-22",
+  },
+  [223878] = { -- Blank Wood Sign, Post
+    itemPrice = 2500,
+	itemDate = "2026-05-29",
+  },
+  [223879] = { -- Fabric Line
+    itemPrice = 4000,
+	itemDate = "2026-06-05",
+  },
 }
 
  -- Seasons of the Worm Cult
@@ -210,15 +222,15 @@ FurC.LuxuryFurnisher[ver.FALLBAN] = {
   },
   [211562] = { -- Fabric Wall
     itemPrice = 4000,
-    itemDate = "2025-05-09",
+    itemDate = "2026-06-05",
   },
   [211567] = { -- Colovian Medallion, Diamond
     itemPrice = 4900,
-    itemDate = "2025-05-02",
+    itemDate = "2026-05-29",
   },
   [211568] = { -- Colovian Medallion, Grape
     itemPrice = 4900,
-    itemDate = "2025-04-25",
+    itemDate = "2026-05-22",
   },
   [211564] = { -- Clockwork Archway, Fan
     itemPrice = 15000,
@@ -323,6 +335,10 @@ FurC.LuxuryFurnisher[ver.FALLBAN] = {
   [212580] = { -- Apocrypha Brazier, Stone Marker
     itemPrice = 18000,
 	itemDate = "2025-08-29",
+  },
+  [212581] = { -- Colovian Path Marker
+    itemPrice = 15000,
+	itemDate = "2025-09-05",
   },
 }
 
@@ -473,16 +489,16 @@ FurC.LuxuryFurnisher[ver.ENDLESS] = {
     itemDate = "2025-05-23",
   },
   [203147] = { -- Shelf, Folded Laundry
-    itemDate = "2025-05-09",
+    itemDate = "2026-06-05",
     itemPrice = 300,
   },
   [203146] = { -- Wood Elf Banner, Mages Guild
     itemPrice = 12000,
-    itemDate = "2025-05-02",
+    itemDate = "2026-05-29",
   },
   [203145] = { -- Banner, Foodhall
     itemPrice = 450,
-    itemDate = "2025-04-25",
+    itemDate = "2026-05-22",
   },
   [203144] = { -- Clockwork Illuminator Holder
     itemPrice = 65000,
@@ -710,15 +726,15 @@ FurC.LuxuryFurnisher[ver.SCRIBE] = {
   },
   [192579] = { -- Common Crate, Fabric Bolts
     itemPrice = 4000,
-    itemDate = "2025-05-09",
+    itemDate = "2026-06-05",
   },
   [192572] = { -- Inn Sign, Hanging
     itemPrice = 4000,
-    itemDate = "2025-04-25",
+    itemDate = "2026-05-22",
   },
   [192571] = { -- Grahtwood Banner, Hanging Inn
     itemPrice = 4000,
-    itemDate = "2025-05-02",
+    itemDate = "2026-05-29",
   },
   [192569] = { -- Alchemy Shelves, Filled
     itemPrice = 4000,
@@ -974,11 +990,11 @@ FurC.LuxuryFurnisher[ver.DEADL] = {
   },
   [182622] = { -- Grahtwood Fighters Guild Sign
     itemPrice = 12000,
-    itemDate = "2025-05-02",
+    itemDate = "2026-05-29",
   },
   [182621] = { -- Mystic's Banner
     itemPrice = 4000,
-    itemDate = "2025-04-25",
+    itemDate = "2026-05-22",
   },
   [182620] = { -- Clockwork Door, Arched
     itemPrice = 25000,
@@ -2230,15 +2246,15 @@ FurC.LuxuryFurnisher[ver.MARKAT] = {
   },
   [171415] = { -- Changing Room, Curtained
     itemPrice = 3000,
-    itemDate = "2025-05-09",
+    itemDate = "2026-06-05",
   },
   [171414] = { -- Fighters Guild Sign, Large
     itemPrice = 12000,
-    itemDate = "2025-05-02",
+    itemDate = "2026-05-29",
   },
   [171413] = { -- Mages Guild Sign, Large
     itemPrice = 12000,
-    itemDate = "2025-04-25",
+    itemDate = "2026-05-22",
   },
   [171412] = { -- Clockwork Switch, Rotary
     itemPrice = 8000,
@@ -2290,15 +2306,15 @@ FurC.LuxuryFurnisher[ver.MARKAT] = {
   },
   [153701] = { -- Clockwork Changing Room, Curtained
     itemPrice = 20000,
-    itemDate = "2025-05-09",
+    itemDate = "2026-06-05",
   },
   [153700] = { -- Banner, Packs
     itemPrice = 4000,
-    itemDate = "2025-05-02",
+    itemDate = "2026-05-29",
   },
   [153699] = { -- Banner, Furnishings
     itemPrice = 25000,
-    itemDate = "2025-04-25",
+    itemDate = "2026-05-22",
   },
   [153698] = { -- Clockwork Orrery, Simple
     itemPrice = 35000,
@@ -2330,19 +2346,19 @@ FurC.LuxuryFurnisher[ver.MARKAT] = {
   },
   [141766] = { -- Banner, Transmute Small
     itemPrice = 5000,
-    itemDate = "2025-05-02",
+    itemDate = "2026-05-29",
   },
   [141765] = { -- Banner, Transmute
     itemPrice = 12000,
-    itemDate = "2025-05-02",
+    itemDate = "2026-05-29",
   },
   [141764] = { -- Banner, Outfit Small
     itemPrice = 5000,
-    itemDate = "2025-04-25",
+    itemDate = "2026-05-22",
   },
   [141763] = { -- Banner, Outfit
     itemPrice = 12000,
-    itemDate = "2025-04-25",
+    itemDate = "2026-05-22",
   },
   [134824] = { -- Redguard Tent, Rounded Silk
     itemPrice = 100000,
@@ -2418,23 +2434,23 @@ FurC.LuxuryFurnisher[ver.MARKAT] = {
   },
   [134432] = { -- Banker's Sign, Small
     itemPrice = 3000,
-    itemDate = "2025-05-02",
+    itemDate = "2026-05-29",
   },
   [134431] = { -- Merchant's Sign, Small
     itemPrice = 3000,
-    itemDate = "2025-05-02",
+    itemDate = "2026-05-29",
   },
   [134430] = { -- Stablemaster's Sign, Large
     itemPrice = 12000,
-    itemDate = "2025-04-25",
+    itemDate = "2026-05-22",
   },
   [134429] = { -- Merchant's Sign, Large
     itemPrice = 12000,
-    itemDate = "2025-04-25",
+    itemDate = "2026-05-22",
   },
   [134428] = { -- Banker's Sign, Large
     itemPrice = 12000,
-    itemDate = "2025-04-25",
+    itemDate = "2026-05-22",
   },
   [121267] = { -- Hew’s Bane Merchant’s Basket
     itemPrice = 2500,
@@ -2578,19 +2594,19 @@ FurC.LuxuryFurnisher[ver.SLAVES] = {
   },
   [134437] = { -- Clockwork Spinning Wheel, Sturdy
     itemPrice = 12000,
-    itemDate = "2025-05-09",
+    itemDate = "2026-06-05",
   },
   [134436] = { -- Spool, Blue Thread
     itemPrice = 450,
-    itemDate = "2025-05-09",
+    itemDate = "2026-06-05",
   },
   [134435] = { -- Clockwork Loom, Sturdy
     itemPrice = 20000,
-    itemDate = "2025-05-09",
+    itemDate = "2026-06-05",
   },
   [134434] = { -- Quality Fabric, Stacked
     itemPrice = 450,
-    itemDate = "2025-05-09",
+    itemDate = "2026-06-05",
   },
   [134427] = { -- Clockwork Orrery, Intricate
     itemPrice = 100000,
