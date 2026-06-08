@@ -2,6 +2,55 @@ FurC.Recipes = FurC.Recipes or {}
 
 local ver = FurC.Constants.Versioning
 
+-- Season Zero Part 2
+FurC.Recipes[ver.ZERO2] = {
+225089, -- Pattern: Breton Drapes, Maroon
+225090, -- Pattern: Breton Drapes, Sage
+225091, -- Blueprint: Breton Trellis, Wooden
+225092, -- Blueprint: Breton Fireplace, Wooden
+225093, -- Blueprint: Chicken Coop, Rustic
+225094, -- Diagram: Spiked Chain, Long
+225095, -- Diagram: Brass Chain, Fine
+225096, -- Blueprint: Breton Armoire, Mirrored Knotwork
+225097, -- Blueprint: Breton Hutch, Large Knotwork
+225098, -- Blueprint: Breton Hutch, Tall Knotwork
+225099, -- Blueprint: Breton Hutch, Narrow Knotwork
+225100, -- Blueprint: Breton Wardobe, Knotwork
+225101, -- Blueprint: Breton Sideboard, Wide Knotwork
+225102, -- Blueprint: Breton Trunk, Knotwork
+225104, -- Blueprint: Breton Writing Desk, Knotwork
+225105, -- Blueprint: Beehive, Thatched Yurt
+225106, -- Praxis: Breton Vase, Snake Tails
+225107, -- Praxis: Breton Amphora, Marble
+225108, -- Praxis: Breton Vase, Marble
+225109, -- Praxis: Breton Planter, Blue Ivy
+225111, -- Blueprint: Birdhouse, Large Cylindrical Mounted
+225112, -- Blueprint: Birdhouse, Small Red
+225113, -- Blueprint: Birdhouse, Small Green
+225114, -- Design: Apple Pie, Lattice Crust
+225115, -- Formula: Mushroom Planter, Half Barrel
+225116, -- Formula: Mushroom Planter, Tiered Rack
+225117, -- Formula: Mushroom Planter, Barrel Stand
+225132, -- Blueprint: Secret Door, Bookcase
+225161, -- Praxis: High Elf Wall, Ancient Ornate
+225162, -- Praxis: High Elf Doorway, Ancient Ornate
+225163, -- Praxis: High Elf Wall, Windowed Ancient Ornate
+225164, -- Praxis: High Elf Wall, Grated Ancient Ornate
+225165, -- Praxis: High Elf Trim, Ancient Ornate
+225166, -- Praxis: High Elf Column, Tall Ancient Ornate
+225167, -- Praxis: High Elf Walkway, Curved Ancient Ornate
+225168, -- Praxis: High Elf Walkway, Square Ancient Ornate
+225169, -- Praxis: High Elf Walkway, Long Ancient Ornate
+225170, -- Praxis: High Elf Walkway, Broad Ancient Ornate
+225171, -- Praxis: High Elf Staircase, Right Ancient Ornate
+225189, -- Praxis: High Elf Platform, Thick Ancient Ornate
+225190, -- Praxis: High Elf Platform, Thin Ancient Ornate
+225191, -- Praxis: High Elf Staircase, Left Ancient Ornate
+225192, -- Praxis: High Elf Column, Thin Ancient Ornate
+225198, -- Praxis: High Elf Planter, Empty Ancient Ornate
+225199, -- Praxis: High Elf Pillar, Thick Ancient Ornate
+}
+
 -- Season Zero
 FurC.Recipes[ver.ZERO] = {
 223872,
@@ -271,6 +320,7 @@ FurC.Recipes[ver.WORMS] = {
   217581,
 }
 
+-- 34 Fallen Banners
 FurC.Recipes[ver.FALLBAN] = {
   -- mirrormoor
   212206,
@@ -337,6 +387,7 @@ FurC.Recipes[ver.FALLBAN] = {
   211005, -- Blueprint: Colovian Staircase, Western Landing
 }
 
+-- 33 Golden Pursuits
 FurC.Recipes[ver.BASE44] = {
   -- lucent
   211399,
@@ -408,6 +459,18 @@ FurC.Recipes[ver.BASE44] = {
   212379,
 }
 
+-- 32 Home Tours
+FurC.Recipes[ver.BASE43] = {
+  211039, -- Blueprint: Colovian Keg, Gigantic Wine
+  211038, -- Design: Dawnwood Platter, Feast
+  211034, -- Diagram: Colovian Chandelier, Grapes
+  211033, -- Formula: Colovian Alembic Set, Colorful 
+  211035, -- Pattern: Colovian Tapestry, Red Diamond
+  211036, -- Praxis: Colovian Glassblower's Furnace 
+  211037, -- Sketch: Colovian Mirror, Standing
+}
+
+-- 31 Gold Road
 FurC.Recipes[ver.WEALD] = {
   207872, -- Formula: Dawnwood Lantern, Hanging",
   207873, -- Formula: Dawnwood Sconce, Wall",
@@ -519,6 +582,7 @@ FurC.Recipes[ver.WEALD] = {
   207871, -- Formula: Dawnwood Lantern String, Short",
 }
 
+-- 30 Scions of Ithelia
 FurC.Recipes[ver.SCIONS] = {
   203353, -- Praxis: Apocrypha Fence, Stone
   203352, -- Praxis: Apocrypha Post, Small Stone
@@ -557,7 +621,7 @@ FurC.Recipes[ver.SCIONS] = {
   203319, -- Blueprint: Pergola, Reclaimed Wood
 }
 
--- 28 Secrets of the Telvanni Peninsula
+-- 29 Secrets of the Telvanni Peninsula
 FurC.Recipes[ver.ENDLESS] = {
   198528, -- Blueprint: Necrom Cart, Merchant
   198529, -- Praxis: Necrom Wind Chimes, Stone
@@ -633,47 +697,47 @@ FurC.Recipes[ver.ENDLESS] = {
   198527, -- Pattern: Apocrypha Book Piles, Floating
 }
 
--- 27 Base Game Patch
+-- 28 Base Game Patch
 FurC.Recipes[ver.BASED] = {
-  198093, -- Praxis: Telvanni Doorframe, Round
-  198092, -- Blueprint: Telvanni Door, Round
-  198091, -- Diagram: Necrom Roof, Domed
-  198090, -- Praxis: Necrom Wall, Corner Stone
-  198089, -- Praxis: Necrom Wall, Stone
-  198088, -- Praxis: Necrom Archway, Stone
-  198087, -- Diagram: Necrom Window, Unframed Exterior
-  198086, -- Praxis: Necrom Window, Framed Exterior
-  198085, -- Praxis: Necrom Funerary Recess, Stone
-  198084, -- Praxis: Necrom Monolith, Stone
-  198083, -- Diagram: Necrom Roof, Tiled
-  198082, -- Diagram: Necrom Door, Large Metal
-  198081, -- Blueprint: Necrom Ramp, Wood
-  198080, -- Praxis: Necrom Stairs, Inner Corner Stone
-  198079, -- Praxis: Necrom Stairs, Outer Corner Stone
-  198078, -- Praxis: Necrom Stairway, Stone
-  198077, -- Praxis: Necrom Column, Stone
-  198076, -- Praxis: Necrom Platform, Stone
-  198075, -- Praxis: Necrom Roof, Gable
-  198074, -- Praxis: Necrom Railing
-  198073, -- Praxis: Necrom Wall, Tall Simple
-  198072, -- Praxis: Necrom Wall, Tall Ornate
-  198071, -- Blueprint: Necrom Door, Tall
-  198070, -- Praxis: Necrom Doorway, Tall
-  198069, -- Praxis: Necrom Ceiling, Domed
-  198068, -- Diagram: Necrom Window, Leaded Interior
-  198067, -- Praxis: Necrom Floor, Trimmed
-  198066, -- Praxis: Necrom Floor, Patterned
-  198065, -- Praxis: Necrom Column, Tall Elegant
-  198064, -- Design: Indoril Chandelier, Vine-Covered
-  198063, -- Formula: Telvanni Lantern, Luminous Mushroom
-  198062, -- Praxis: Necrom Crematory, Furnace
-  198061, -- Blueprint: Necrom Cart, Funerary
-  198060, -- Diagram: Dwarven Door, Bronze
-  198059, -- Pattern: Dark Elf Tent, Multiroom
-  198058, -- Sketch: Daedric Mirror, Nightmarish
+  198094, -- Praxis: Telvanni Doorframe, Round
+  198093, -- Blueprint: Telvanni Door, Round
+  198092, -- Diagram: Necrom Roof, Domed
+  198091, -- Praxis: Necrom Wall, Corner Stone
+  198090, -- Praxis: Necrom Wall, Stone
+  198089, -- Praxis: Necrom Archway, Stone
+  198088, -- Diagram: Necrom Window, Unframed Exterior
+  198087, -- Praxis: Necrom Window, Framed Exterior
+  198086, -- Praxis: Necrom Funerary Recess, Stone
+  198085, -- Praxis: Necrom Monolith, Stone
+  198084, -- Diagram: Necrom Roof, Tiled
+  198083, -- Diagram: Necrom Door, Large Metal
+  198082, -- Blueprint: Necrom Ramp, Wood
+  198081, -- Praxis: Necrom Stairs, Inner Corner Stone
+  198080, -- Praxis: Necrom Stairs, Outer Corner Stone
+  198079, -- Praxis: Necrom Stairway, Stone
+  198078, -- Praxis: Necrom Column, Stone
+  198077, -- Praxis: Necrom Platform, Stone
+  198076, -- Praxis: Necrom Roof, Gable
+  198075, -- Praxis: Necrom Railing
+  198074, -- Praxis: Necrom Wall, Tall Simple
+  198073, -- Praxis: Necrom Wall, Tall Ornate
+  198072, -- Blueprint: Necrom Door, Tall
+  198071, -- Praxis: Necrom Doorway, Tall
+  198070, -- Praxis: Necrom Ceiling, Domed
+  198069, -- Diagram: Necrom Window, Leaded Interior
+  198068, -- Praxis: Necrom Floor, Trimmed
+  198067, -- Praxis: Necrom Floor, Patterned
+  198066, -- Praxis: Necrom Column, Tall Elegant
+  198065, -- Design: Indoril Chandelier, Vine-Covered
+  198064, -- Formula: Telvanni Lantern, Luminous Mushroom
+  198063, -- Praxis: Necrom Crematory, Furnace
+  198062, -- Blueprint: Necrom Cart, Funerary
+  198061, -- Diagram: Dwarven Door, Bronze
+  198060, -- Pattern: Dark Elf Tent, Multiroom
+  198059, -- Sketch: Daedric Mirror, Nightmarish
 }
 
--- 26 Necrom
+-- 27 Necrom
 FurC.Recipes[ver.NECROM] = {
   197760, -- Design: Necrom Candle, Large Square
   197761, -- Design: Necrom Candle, Small Square
@@ -778,7 +842,7 @@ FurC.Recipes[ver.NECROM] = {
   197759, -- Pattern: Necrom Banner, Medium Sage-Stitched
 }
 
--- 25 Scribes of Fate
+-- 26 Scribes of Fate
 FurC.Recipes[ver.SCRIBE] = {
   194368, -- Praxis: Druidic Pillar, Stone,
   194369, -- Praxis: Druidic Doorway, Stone,
@@ -816,7 +880,7 @@ FurC.Recipes[ver.SCRIBE] = {
   194367, -- Praxis: Druidic Chimney, Stone,
 }
 
--- 24 Firesong
+-- 25 Firesong
 FurC.Recipes[ver.DRUID] = {
   192514, -- Praxis: Druidic Statue, Planter,
   192515, -- Praxis: Druidic Sculpture, Sphere,
@@ -871,7 +935,7 @@ FurC.Recipes[ver.DRUID] = {
   190096, -- Blueprint: High Isle Trapdoor, Common,
 }
 
--- 23 Lost Depths
+-- 24 Lost Depths
 FurC.Recipes[ver.DEPTHS] = {
   190080, -- Blueprint: High Isle Caravel, Miniature,
   190081, -- Praxis: High Isle Stairway, Large Castle,
@@ -886,23 +950,23 @@ FurC.Recipes[ver.DEPTHS] = {
   190090, -- Praxis: High Isle Doorway, Plaster,
   190091, -- Blueprint: High Isle Archway, Carved,
   190092, -- Blueprint: High Isle Railing, Carved,
-  190093, -- Blueprint: High Isle Railing Post, Carved,
-  190094, -- Blueprint: High Isle Door, Turquoise,
-  190095, -- Blueprint: High Isle Door, Sturdy,
-  190097, -- Formula: High Isle Window, Turquoise,
-  190098, -- Blueprint: High Isle Walkway, Balcony,
-  190099, -- Blueprint: High Isle Platform, Wooden Rectangle,
-  190100, -- Praxis: High Isle Platform, Tilework,
-  190101, -- Blueprint: High Isle Platform, Wooden Square,
-  190075, -- Diagram: High Isle Beacon, Unlit,
-  190074, -- Formula: Potted Trees, Stonelore Dogwood,
-  190076, -- Pattern: High Isle Tapestry, Seaside Tourney,
-  190077, -- Praxis: High Isle Hearth, Tilework,
-  190078, -- Sketch: High Isle Hourglass, Gold,
-  190079, -- Design: Shark Jaw, Massive,
+  190093, -- Blueprint: High Isle Railing Post, Carved
+  190094, -- Blueprint: High Isle Door, Turquoise
+  190095, -- Blueprint: High Isle Door, Sturdy
+  190097, -- Formula: High Isle Window, Turquoise
+  190098, -- Blueprint: High Isle Walkway, Balcony
+  190099, -- Blueprint: High Isle Platform, Wooden Rectangle
+  190100, -- Praxis: High Isle Platform, Tilework
+  190101, -- Blueprint: High Isle Platform, Wooden Square
+  190075, -- Diagram: High Isle Beacon, Unlit
+  190074, -- Formula: Potted Trees, Stonelore Dogwood
+  190076, -- Pattern: High Isle Tapestry, Seaside Tourney
+  190077, -- Praxis: High Isle Hearth, Tilework
+  190078, -- Sketch: High Isle Hourglass, Gold
+  190079, -- Design: Shark Jaw, Massive
 }
 
--- 22 High Isle
+-- 23 High Isle
 FurC.Recipes[ver.BRETON] = {
   188160, -- Blueprint: High Isle Stool, Cushioned
   188161, -- Blueprint: High Isle Stool, Rustic
@@ -953,7 +1017,7 @@ FurC.Recipes[ver.BRETON] = {
   188159, -- Blueprint: High Isle Bench, Sturdy
 }
 
--- 21 Ascending Tide
+-- 22 Ascending Tide
 FurC.Recipes[ver.TIDES] = {
   184150, -- Diagram: Deadlands Throne,
   184152, -- Formula: Fargrave Water Globules, Static,
@@ -984,7 +1048,7 @@ FurC.Recipes[ver.TIDES] = {
   184147, -- Praxis: Fargrave Post, Garden Wall,
 }
 
--- 20 Deadlands
+-- 21 Deadlands
 FurC.Recipes[ver.DEADL] = {
   175959, -- Blueprint: Leyawiin Bench, Formal Wide,
   182937, -- Praxis: Fargrave Bench, Stone,
@@ -1071,13 +1135,7 @@ FurC.Recipes[ver.DEADL] = {
   181553, -- Formula: Vampiric Lab Jar, Large,
   181554, -- Formula: Vampiric Lab Jar, Small,
   181555, -- Formula: Vampiric Lab Jar, Red Gelatinous,
-  181556, -- Diagram: Deadlands Torture Rack,
-  181557, -- Blueprint: Leyawiin Divider, Carved Starfish,
-  181558, -- Pattern: Leyawiin Tapestry, Hunting Party,
-  181559, -- Praxis: Leyawiin Hearth, Carved Wood,
-  181560, -- Design: Leyawiin Bowl, Squid Special,
-  181561, -- Formula: Blackwood Cottage Painting, Unframed,
-  181562, -- Sketch: Leyawiin Lightpost, Ornate,
+  
   175932, -- Pattern: Leyawiin Bed, Sturdy Single,
   181565, -- Blueprint: Leyawiin Turret, Castle,
   181566, -- Praxis: Leyawiin Wall, Castle Door Arch,
@@ -1193,6 +1251,17 @@ FurC.Recipes[ver.DEADL] = {
   176014, -- Design: Leyawiin Gravy Boat, Silver,
 }
 
+-- 20 Waking Flame
+FurC.Recipes[ver.WAKE] = {
+  181556, -- Diagram: Deadlands Torture Rack,
+  181557, -- Blueprint: Leyawiin Divider, Carved Starfish,
+  181558, -- Pattern: Leyawiin Tapestry, Hunting Party,
+  181559, -- Praxis: Leyawiin Hearth, Carved Wood,
+  181560, -- Design: Leyawiin Bowl, Squid Special,
+  181561, -- Formula: Blackwood Cottage Painting, Unframed,
+  181562, -- Sketch: Leyawiin Lightpost, Ornate,
+}
+
 -- 19 Blackwood
 FurC.Recipes[ver.BLACKW] = {
   176001, -- Sketch: Leyawiin Hand Mirror, Silver,
@@ -1241,7 +1310,15 @@ FurC.Recipes[ver.BLACKW] = {
 }
 
 -- 18 Flames of Ambition
-FurC.Recipes[ver.FLAMES] = {}
+FurC.Recipes[ver.FLAMES] = {
+    171803, -- Blueprint: Solitude Well, Noble
+    171806, -- Design: Provisioning Station, Solitude Grill
+    171801, -- Diagram: Dwarven Minecart, Ornate
+    171805, -- Formula: Vampiric Cauldron, Distilled Coagulant
+    171802, -- Pattern: Solitude Yarn Rack, Colorful
+    171804, -- Praxis: Solitude Hearth, Rounded Tall
+    171807, -- Sketch: Dwarven Crystal Sconce, Mirror
+}
 
 -- 17 Markarth
 FurC.Recipes[ver.MARKAT] = {
@@ -1294,19 +1371,20 @@ FurC.Recipes[ver.MARKAT] = {
   171483, -- Diagram: Dwarven Lamp, Conal Frustum Cage
   171482, -- Diagram: Dwarven Lamp, Cylinder Cage
   171481, -- Diagram: Dwarven Potted Plant, Polished Vase
-
-  119408, -- Pattern: Simple Blue Banner
-  141905, -- Praxis: Alinor Gaming Table, Punctilious Conflict
-  141906, -- Formula: Artist's Palette, Pigment
-  141907, -- Design: Alinor Grape Stomping Tub
-  141904, -- Blueprint: Alinor Bookshelf, Grand Full
   141901, -- Pattern: Psijic Banner, Long
-  141902, -- Diagram: Relic Vault, Impenetrable
-  141903, -- Pattern: Alinor Bed, Levitating
+  119408, -- Pattern: Simple Blue Banner
 }
 
 -- 16 Stonethorn
-FurC.Recipes[ver.STONET] = {}
+FurC.Recipes[ver.STONET] = {
+  167378, -- Diagram: Vampiric Chandelier, Azure Wrought-Iron
+  167379, -- Pattern: Solitude Loom, Warp-Weighted
+  167380, -- Blueprint: Solitude Game, Blood-on-the-Snow
+  167381, -- Praxis: Ancient Nord Monolith, Head
+  167382, -- Formula: Winter Cardinal Painting, In Progress
+  167383, -- Design: Solitude Smoking Rack, Fish
+  167384, -- Sketch: Blackreach Geode, Iridescent
+}
 
 -- 15 Greymoor
 FurC.Recipes[ver.SKYRIM] = {
@@ -1314,39 +1392,37 @@ FurC.Recipes[ver.SKYRIM] = {
 
   152237, -- Praxis: Elsweyr Sarcophagus, Ancient
   152238, -- Praxis: Elsweyr Sarcophagus Lid, Ancient
-  153723, -- Elsweyr Platform, Ancient Square,
-  153724, -- Elsweyr Shrine, Ancient Small,
-  153725, -- Elsweyr Shrine, Ancient Multilevel,
-  153726, -- Elsweyr Platform, Ancient Rectangular,
-  153727, -- Elsweyr Shrine, Ancient Large,
-  153728, -- Elsweyr Tower, Ancient Huge,
-  153731, -- Elsweyr Cart, Masterwork,
-  159504, -- Elsweyr Game, Swan Stones,
+  153723, -- Elsweyr Platform, Ancient Square
+  153724, -- Elsweyr Shrine, Ancient Small
+  153725, -- Elsweyr Shrine, Ancient Multilevel
+  153726, -- Elsweyr Platform, Ancient Rectangular
+  153727, -- Elsweyr Shrine, Ancient Large
+  153728, -- Elsweyr Tower, Ancient Huge
 
   166727, -- Pattern: Vampiric Carpet, Grand Sigil
-  166727, -- Vampiric Carpet, Grand Sigil,
+  166727, -- Vampiric Carpet, Grand Sigil
   166728, -- Pattern: Vampiric Runner, Grand
-  166728, -- Vampiric Runner, Grand,
+  166728, -- Vampiric Runner, Grand
   166729, -- Pattern: Vampiric Carpet, Large
-  166729, -- Vampiric Carpet, Large,
+  166729, -- Vampiric Carpet, Large
   166730, -- Pattern: Vampiric Carpet, Sigil
-  166730, -- Vampiric Carpet, Sigil,
+  166730, -- Vampiric Carpet, Sigil
   166731, -- Pattern: Vampiric Rug, Circular Sigil
-  166731, -- Vampiric Rug, Circular Sigil,
+  166731, -- Vampiric Rug, Circular Sigil
   166732, -- Pattern: Vampiric Carpet, Standard
-  166732, -- Vampiric Carpet, Standard,
+  166732, -- Vampiric Carpet, Standard
   166733, -- Blueprint: Vampiric Sideboard, Racks
-  166733, -- Vampiric Sideboard, Racks,
+  166733, -- Vampiric Sideboard, Racks
   166734, -- Blueprint: Vampiric Sideboard, Shelves
-  166734, -- Vampiric Sideboard, Shelves,
+  166734, -- Vampiric Sideboard, Shelves
   166735, -- Blueprint: Vampiric Bookcase, Short
-  166735, -- Vampiric Bookcase, Short,
+  166735, -- Vampiric Bookcase, Short
   166736, -- Blueprint: Vampiric Bookcase, Short Filled
-  166736, -- Vampiric Bookcase, Short Filled,
+  166736, -- Vampiric Bookcase, Short Filled
   166737, -- Blueprint: Vampiric Bookcase, Arched
-  166737, -- Vampiric Bookcase, Arched,
+  166737, -- Vampiric Bookcase, Arched
   166738, -- Blueprint: Vampiric Bookcase, Arched Filled
-  166738, -- Vampiric Bookcase, Arched Filled,
+  166738, -- Vampiric Bookcase, Arched Filled
   166739, -- Blueprint: Vampiric Bookcase, Tall
   166739, -- Vampiric Bookcase, Tall,
   166740, -- Blueprint: Vampiric Bookcase, Tall Filled
@@ -1813,23 +1889,33 @@ FurC.Recipes[ver.SKYRIM] = {
   167375, -- Pattern: Solitude Tent, Open
   167376, -- Pattern: Solitude Tent, Enclosed
   167377, -- Blueprint: Solitude Door, Arched Wooden
-  167378, -- Diagram: Vampiric Chandelier, Azure Wrought-Iron
-  167379, -- Pattern: Solitude Loom, Warp-Weighted
-  167380, -- Blueprint: Solitude Game, Blood-on-the-Snow
-  167381, -- Praxis: Ancient Nord Monolith, Head
-  167382, -- Formula: Winter Cardinal Painting, In Progress
-  167383, -- Design: Solitude Smoking Rack, Fish
-  167384, -- Sketch: Blackreach Geode, Iridescent
+ 
 }
 
 -- 14 Harrowstorm
-FurC.Recipes[ver.HARROW] = {}
+FurC.Recipes[ver.HARROW] = {
+  159498, -- Diagram: Elsweyr Gong, Ornate
+  159499, -- Pattern: Elsweyr Bed, Senche-Raht
+  159500, -- Blueprint: Elsweyr Well, Covered
+  159501, -- Praxis: Khajiit Sigil, Moon Cycle
+  159502, -- Formula: Elsweyr Mortar and Pestle, Engraved
+  159503, -- Design: Elsweyr Bread Basket, Feast-Day
+  159504, -- Sketch: Elsweyr Game, Swan Stones
+}
 
 -- 13 Dragonhold
 FurC.Recipes[ver.DRAGON2] = {}
 
 -- 12 Scalebreaker
-FurC.Recipes[ver.SCALES] = {}
+FurC.Recipes[ver.SCALES] = {
+  153731, -- Blueprint: Elsweyr Cart, Masterwork
+  153729, -- Diagram: Elsweyr Gate, Masterwork
+  153730, -- Pattern: Elsweyr Chaise Lounge, Upholstered
+  153732, -- Praxis: Elsweyr Statue, Shrine Lion
+  153733, -- Formula: Elsweyr Incense, Fragrant
+  153734, -- Design: Provisioning Station, Elsweyr Grill
+  153735, -- Sketch: Elsweyr Cage, Filigree
+}
 
 -- 11 Elsweyr
 FurC.Recipes[ver.KITTY] = {
@@ -2101,75 +2187,53 @@ FurC.Recipes[ver.KITTY] = {
   152102, -- Pattern: Elsweyr Tapestry, Water Flowers
   152103, -- Elsweyr Tapestry, Amber Vines
   152103, -- Pattern: Elsweyr Tapestry, Amber Vines
-  152104, -- Elsweyr Tapestry, Verdant Blossom
   152104, -- Pattern: Elsweyr Tapestry, Verdant Blossom
-  152105, -- Elsweyr Tapestry, Ruby-Maroon
   152105, -- Pattern: Elsweyr Tapestry, Ruby-Maroon
   152106, -- Diagram: Hakoshae Hook, Block
-  152106, -- Hakoshae Hook, Block
   152107, -- Diagram: Hakoshae Pillar, Wooden Hooked
-  152107, -- Hakoshae Pillar, Wooden Hooked
-  152108, -- Elsweyr Post, Masonry Wall
   152108, -- Praxis: Elsweyr Post, Masonry Wall
-  152109, -- Elsweyr Wall, Curved Masonry
   152109, -- Praxis: Elsweyr Wall, Curved Masonry
-  152110, -- Elsweyr Wall, Short Masonry
   152110, -- Praxis: Elsweyr Wall, Short Masonry
-  152111, -- Elsweyr Wall, Wide Masonry
   152111, -- Praxis: Elsweyr Wall, Wide Masonry
-  152112, -- Elsweyr Fountain, Four Lions
   152112, -- Praxis: Elsweyr Fountain, Four Lions
-  152113, -- Elsweyr Platform, Stepped
   152113, -- Praxis: Elsweyr Platform, Stepped
-  152114, -- Elsweyr Floor, Masonry
   152114, -- Praxis: Elsweyr Floor, Masonry
-  152115, -- Elsweyr Stairs, Masonry
   152115, -- Praxis: Elsweyr Stairs, Masonry
-  152116, -- Elsweyr Foot Bridge, Masonry
   152116, -- Praxis: Elsweyr Foot Bridge, Masonry
   152117, -- Blueprint: Elsweyr Platform, Wooden Large
-  152117, -- Elsweyr Platform, Wooden Large
   152118, -- Blueprint: Elsweyr Platform, Wooden Small
-  152118, -- Elsweyr Platform, Wooden Small
   152119, -- Blueprint: Elsweyr Wall, Rough Wooden
-  152119, -- Elsweyr Wall, Rough Wooden
   152120, -- Blueprint: Elsweyr Couch, Elegant Wooden
-  152120, -- Elsweyr Couch, Elegant Wooden
-  152237, -- Elsweyr Sarcophagus, Ancient,
-  152238, -- Elsweyr Sarcophagus Lid, Ancient,
+  152237, -- Elsweyr Sarcophagus, Ancient
   153723, -- Praxis: Elsweyr Platform, Ancient Square
   153724, -- Praxis: Elsweyr Shrine, Ancient Small
   153725, -- Praxis: Elsweyr Shrine, Ancient Multilevel
   153726, -- Praxis: Elsweyr Platform, Ancient Rectangular
   153727, -- Praxis: Elsweyr Shrine, Ancient Large
   153728, -- Praxis: Elsweyr Tower, Ancient Huge
-  153729, -- Diagram: Elsweyr Gate, Masterwork
-  153729, -- Elsweyr Gate, Masterwork
-  153730, -- Elsweyr Chaise Lounge, Upholstered
-  153730, -- Pattern: Elsweyr Chaise Lounge, Upholstered
-  153731, -- Blueprint: Elsweyr Cart, Masterwork
-  153732, -- Elsweyr Statue, Shrine Lion
-  153732, -- Praxis: Elsweyr Statue, Shrine Lion
-  153733, -- Elsweyr Incense, Fragrant
-  153733, -- Formula: Elsweyr Incense, Fragrant
-  153734, -- Design: Provisioning Station, Elsweyr Grill
-  153735, -- Elsweyr Cage, Filigree
-  153735, -- Sketch: Elsweyr Cage, Filigree
-  159498, -- Diagram: Elsweyr Gong, Ornate
-  159499, -- Pattern: Elsweyr Bed, Senche-Raht
-  159500, -- Blueprint: Elsweyr Well, Covered
-  159501, -- Praxis: Khajiit Sigil, Moon Cycle
-  159502, -- Formula: Elsweyr Mortar and Pestle, Engraved
-  159503, -- Design: Elsweyr Bread Basket, Feast-Day
-  159504, -- Sketch: Elsweyr Game, Swan Stones
 }
 
 -- 10 Wrathstone
-FurC.Recipes[ver.WOTL] = {}
+FurC.Recipes[ver.WOTL] = {
+  147656, -- Dark Elf Tent, Canopy
+  147657, -- Hlaalu Stove, Chiminea
+  147651, -- Silver Kettle, Masterworked
+  147652, -- Frog-Caller, Untuned
+  147653, -- Pottery Wheel, Ever-Turning
+  147654, -- Alchemical Apparatus, Condenser
+  147655, -- Hlaalu Salt Lamp, Enchanted
+}
 
 -- 9 Wolfhunter
 FurC.Recipes[ver.WEREWOLF] = {
   141896, -- Sketch: Figurine, The Dragon's Glare
+  139486, -- Sketch: Alinor Ancestor Clock, Celestial
+  141905, -- Praxis: Alinor Gaming Table, Punctilious Conflict
+  141906, -- Formula: Artist's Palette, Pigment
+  141907, -- Design: Alinor Grape Stomping Tub
+  141904, -- Blueprint: Alinor Bookshelf, Grand Full
+  141902, -- Diagram: Relic Vault, Impenetrable
+  141903, -- Pattern: Alinor Bed, Levitating
   141897, -- Praxis: Obelisk, Lord Hircine Ritual
   141898, -- Praxis: Ritual Stone, Hircine
   141899, -- Praxis: Sacrificial Altar, Hircine
@@ -2444,11 +2508,17 @@ FurC.Recipes[ver.ALTMER] = {
 
 -- 6 Dragon Bones
 FurC.Recipes[ver.DRAGONS] = {
-  127101, -- Velothi Brazier, Temple - talked to a Russian who sold it
-  127102, -- Praxis: Tribunal Tablet of Almalexia, comfirmed by Almariel
-  134999, -- Praxis: Table, Blackmarrow Slab, drops in Fang Lair
+  127101, -- Velothi Brazier, Temple
+  127102, -- Praxis: Tribunal Tablet of Almalexia
+  134999, -- Praxis: Table, Blackmarrow Slab
   127054, -- Pattern: Redoran Table Runner, Gilded Ochre
   134998, -- Pattern: Jester's Pavillon, Open
+  134987, -- Blueprint: Hlaalu Gaming Table, Foxes & Felines
+    134986, -- Design: Miniature Garden, Bottled
+    134985, -- Praxis: Hlaalu Trinket Box, Curious Turtle
+    134984, -- Pattern: Clothier's Form, Brass
+    134983, -- Diagram: Hlaalu Gong
+    134982, -- Formula: Alchemical Apparatus, Master
 }
 
 -- 5 Clockwork City
@@ -2836,6 +2906,17 @@ FurC.Recipes[ver.MORROWIND] = {
 
 -- 2 Homestead
 FurC.Recipes[ver.HOMESTEAD] = {
+  121200, -- Blueprint: Cabinet, Poisonmaker's
+    121199, -- Design: Mortar and Pestle
+    121197, -- Formula: Bottle, Poison Elixir
+	121214, -- Design: Orcish Skull Goblet, Full
+    121209, -- Pattern: Orcish Tapestry, Spear
+    121207, -- Praxis: Orcish Table with Fur
+    121168, -- Blueprint: Tools, Case
+    121166, -- Blueprint: Podium, Skinning
+    121165, -- Diagram: Apparatus, Gem Calipers
+    121164, -- Formula: Case of Vials
+    121163, -- Diagram: Apparatus, Boiler
   115721, -- Argonian Chimney Stack
   115722, -- Argonian Rack, Sturdy
   115723, -- Argonian Shelves, Half
