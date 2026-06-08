@@ -42,6 +42,8 @@ FurC.Constants.ItemSources = {
   FESTIVAL_DROP = getNextIdFor("ITEM_SOURCES"), -- 18
   BAZAAR = getNextIdFor("ITEM_SOURCES"), -- 19
   TOMES = getNextIdFor("ITEM_SOURCES"),  -- 20
+  TELVAR = getNextIdFor("ITEM_SOURCES"),  -- 21
+  COLL_MERCH = getNextIdFor("ITEM_SOURCES"), -- 22
 }
 
 -- TODO #REFACTOR Switch version numbering to the same as game update numbers
@@ -66,29 +68,30 @@ FurC.Constants.Versioning = {
   STONET = getNextIdFor("VERSIONING"), -- 16 Stonethorn
   MARKAT = getNextIdFor("VERSIONING"), -- 17 Markarth
   FLAMES = getNextIdFor("VERSIONING"), -- 18 Flames of Ambition
-  BLACKW = getNextIdFor("VERSIONING"), -- 19 Blackwood
-  DEADL = getNextIdFor("VERSIONING"), -- 20 Deadlands
-  TIDES = getNextIdFor("VERSIONING"), -- 21 Ascending Tide
-  BRETON = getNextIdFor("VERSIONING"), -- 22 High Isle
-  DEPTHS = getNextIdFor("VERSIONING"), -- 23 Lost Depths
-  DRUID = getNextIdFor("VERSIONING"), -- 24 Firesong
-  SCRIBE = getNextIdFor("VERSIONING"), -- 25 Scribes of Fate
-  NECROM = getNextIdFor("VERSIONING"), -- 26 Necrom
-  BASED = getNextIdFor("VERSIONING"), -- 27 Base Game Patch
-  ENDLESS = getNextIdFor("VERSIONING"), -- 28 Secrets of the Telvanni U40
-  SCIONS = getNextIdFor("VERSIONING"), -- 29 Scions of Ithelia U41
-  WEALD = getNextIdFor("VERSIONING"), -- 30 Gold Road U42
-  BASE43 = getNextIdFor("VERSIONING"), -- 31 Home Tours U43
-  BASE44 = getNextIdFor("VERSIONING"), -- 32 Golden Pursuits Update 44
-  FALLBAN = getNextIdFor("VERSIONING"), -- 33 Fallen Banners (U45)
-  WORMS = getNextIdFor("VERSIONING"), -- 34 Seasons of the Worm Cult (U46)
-  SHADOWS = getNextIdFor("VERSIONING"), -- 35 Feast of Shadows (U47)
-  WORMS2 = getNextIdFor("VERSIONING"), -- 36 Seasons of the Worm Cult Part 2 (U48)
-  ZERO = getNextIdFor("VERSIONING"), -- 37 Season Zero (U49)
-  ZERO2 = getNextIdFor("VERSIONING"), -- 38 Season Zero Part 2(U50)
+  BLACKW = getNextIdFor("VERSIONING"), -- 19 Blackwood U30
+  WAKE = getNextIdFor("VERSIONING"), -- 20 Waking Flame U31
+  DEADL = getNextIdFor("VERSIONING"), -- 21 Deadlands U32
+  TIDES = getNextIdFor("VERSIONING"), -- 22 Ascending Tide U33
+  BRETON = getNextIdFor("VERSIONING"), -- 23 High Isle
+  DEPTHS = getNextIdFor("VERSIONING"), -- 24 Lost Depths
+  DRUID = getNextIdFor("VERSIONING"), -- 25 Firesong
+  SCRIBE = getNextIdFor("VERSIONING"), -- 26 Scribes of Fate U37
+  NECROM = getNextIdFor("VERSIONING"), -- 27 Necrom
+  BASED = getNextIdFor("VERSIONING"), -- 28 Base Game Patch U39
+  ENDLESS = getNextIdFor("VERSIONING"), -- 29 Secrets of the Telvanni U40
+  SCIONS = getNextIdFor("VERSIONING"), -- 30 Scions of Ithelia U41
+  WEALD = getNextIdFor("VERSIONING"), -- 31 Gold Road U42
+  BASE43 = getNextIdFor("VERSIONING"), -- 32 Home Tours U43
+  BASE44 = getNextIdFor("VERSIONING"), -- 33 Golden Pursuits Update 44
+  FALLBAN = getNextIdFor("VERSIONING"), -- 34 Fallen Banners (U45)
+  WORMS = getNextIdFor("VERSIONING"), -- 35 Seasons of the Worm Cult (U46)
+  SHADOWS = getNextIdFor("VERSIONING"), -- 36 Feast of Shadows (U47)
+  WORMS2 = getNextIdFor("VERSIONING"), -- 37 Seasons of the Worm Cult Part 2 (U48)
+  ZERO = getNextIdFor("VERSIONING"), -- 38 Season Zero (U49)
+  ZERO2 = getNextIdFor("VERSIONING"), -- 39 Season Zero Part 2(U50)
 }
 
-FurC.Constants.Versioning.LATEST = FurC.Constants.Versioning.ZERO
+FurC.Constants.Versioning.LATEST = FurC.Constants.Versioning.ZERO2
 
 -- Location Ids, mix of ingame strings and translations, more control over translations
 FurC.Constants.Locations = {
@@ -204,6 +207,7 @@ FurC.Constants.NPC = {
   HOLIDAY = GetString(SI_FURC_TRADERS_HOLIDAY), -- Heralda, Tildannire, ...
   LUXF = GetString(SI_FURC_TRADERS_LUXF), -- Luxury Furnisher: Zanil
   NM = GetString(SI_FURC_TRADERS_NM), -- Night Market Vendors: Nymisasha, Fennel, Najirra
+  COLL_MERCH = GetString(SI_FURC_TRADERS_COLL_MERCH),     -- Tel Var Collectibles Merchant: Enruvie, Skoref Bearblood, Bernamund Bertault
 
   -- Guild Traders
   FIGHTERS_STEWARD = GetString(SI_FURC_GUILD_FIGHTERS_STEWARD), -- stewards in Fighters Guild locations
@@ -351,6 +355,23 @@ FurC.Constants.Containers = {
   UNDAUNTEDBOX = "|H0:item:171267:1:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h", -- during Undaunted Celebration
   ZENITHARPARCEL = "|H0:item:187701:1:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h", -- during Zenithar's Zeal
   POUCH = "|H0:item:214263:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h", -- during Crime Wave
+  SUMMERSET_FOLIO = "|H1:item:171572:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h",
+  SKYRIM_FOLIO = "|H1:item:171808:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h",
+  DRAGONHOLD_FOLIO = "|H1:item:171778:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h",
+  TOMEHOLD_FOLIO = "|H1:item:214255:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h",
+  ELSWEYR_FOLIO = "|H1:item:171574:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h",
+  NECROM_FOLIO = "|H1:item:211090:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h",
+  WEALD_FOLIO = "|H1:item:223978:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h",
+  WEALD2_FOLIO = "|H1:item:219721:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h",
+  MORROWIND_FOLIO = "|H1:item:171569:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h",
+  MARKARTH_FOLIO = "|H1:item:184192:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h",
+  HIGHISLE_FOLIO = "|H1:item:198597:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h",
+  GALEN_FOLIO = "|H0:item:204499:1:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h",
+  BLACKWOOD_FOLIO = "|H1:item:190121:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h",
+  DEADLANDS_FOLIO = "|H1:item:194429:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h",
+  EBONHEART_FOLIO = "|H1:item:171573:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h",
+  CRAFTER_FOLIO = "|H1:item:171568:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h",
+  DARKELF_FOLIO = "|H1:item:171571:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h",
 }
 
 -- TODO: allow customisable colours, getting from options
