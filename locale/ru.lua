@@ -15,7 +15,7 @@ local strings = {
   SI_FURC_FILTER_VERSION_ZERO = "Нулевой сезон",
   SI_FURC_FILTER_VERSION_ZERO_TT = "Потому что зачем начинать с единицы?",
   SI_FURC_HOUSE = "From a furnished purchase of <<1>>",
-  SI_FURC_SRC_EMPTY = "Item source unknown.\nTry to re-scan files (refresh button right click).\nIf the item is still unknown - and not part of the weekend furnisher's current inventory - please send a mail with the item link and -source to @berylbones.",
+  SI_FURC_SRC_EMPTY = "Item source unknown.\nTry to re-scan files (refresh button right click).\nIf the item is still unknown - and not part of the weekend furnisher's current inventory - please send a mail with the item link and -source to @WolfStar07.",
   SI_FURC_STRING_MENU_LUXURY_N = "Treat luxury items as purchaseables?",
   SI_FURC_STRING_MENU_LUXURY_TT = "This will show everything that was sold by Zanil Theran under 'purchaseable' and deactvates the custom filter",
   -- 387 ENTRIES UNTRANSLATED/IDENTICAL
