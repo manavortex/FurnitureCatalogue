@@ -13,8 +13,10 @@ name: PrepareRelease
 # - formats with StyLUA
 # - updates CHANGELOG
 # - opens `release/<version>` PR against master
-# Merging that PR triggers FinalizeRelease, which tags version and attaches packaged addon to a GitHub release.
-# ESOUI upload is separate step with PublishToESOUI (3). Use it after FinalizeRelease (2) is done
+# Merging that PR triggers FinalizeRelease, which:
+# - tags version
+# - attaches packaged addon to a GitHub release
+# - starts PublishToESOUI (3) automatically
 
 permissions:
   contents: write
@@ -346,7 +348,7 @@ jobs:
             fi
             echo ""
             echo "---"
-            echo "Merging this PR will trigger **FinalizeRelease**, which tags \`$VERSION\` and creates the GitHub release. ESOUI upload is a separate manual step (PublishToESOUI)."
+            echo "Merging this PR will trigger **FinalizeRelease**, which tags \`$VERSION\`, creates GitHub release, and auto-publishes to ESOUI. If upload fails, existing zip can be used for manual re-run or just hand-upload it"
           } > "$BODY_FILE"
 
           gh pr create \

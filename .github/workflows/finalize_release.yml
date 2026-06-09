@@ -8,7 +8,7 @@ name: FinalizeRelease
 
 # Triggered when release/<version> PR is merged into master.
 # Packages AddOn, creates version tag, creates a GitHub release with the zip attached.
-# Does NOT upload to ESOUI, that's an extra step via PublishToESOUI
+# Starts PublishToESOUI to upload that release to ESOUI
 
 permissions:
   contents: write
@@ -24,6 +24,10 @@ jobs:
     if: github.event.pull_request.merged == true && startsWith(github.event.pull_request.head.ref, 'release/')
 
     runs-on: ubuntu-latest
+    # 'published' false when release already existed
+    # then publish won't fire on duplicate event
+    outputs:
+      published: ${{ steps.gate.outputs.SKIP != 'true' }}
     steps:
       - name: Checkout master (post-merge)
         uses: actions/checkout@v6
@@ -107,7 +111,7 @@ jobs:
             echo ""
             echo "- Tag: \`$NEXT\` (forced to current master HEAD)"
             echo "- Asset: \`$ARCHIVE\`"
-            echo "- Next step: trigger **PublishToESOUI** when ready (or upload \`$ARCHIVE\` to ESOUI manually)."
+            echo "- Next: **PublishToESOUI** auto-runs. If it fails: re-run it or upload \`$ARCHIVE\` (attached to this release) to ESOUI by hand"
           } >> "$GITHUB_STEP_SUMMARY"
 
       # Attempt cleanup, but don't fail workflow on error
@@ -118,3 +122,10 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: ${{ github.event.pull_request.head.ref }}
         run: git push origin --delete "$BRANCH"
+
+  # Auto-upload release to ESOUI
+  publish:
+    needs: finalize
+    if: needs.finalize.outputs.published == 'true'
+    uses: ./.github/workflows/publish_to_esoui.yml
+    secrets: inherit

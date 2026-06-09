@@ -93,7 +93,7 @@ How the 5 workflows relate. Detail diagrams below zoom into each workflow's imme
 ```mermaid
 flowchart LR
     B(["🚀 PrepareRelease"]) -- opens --> D(["🤖 FinalizeRelease"])
-    D -- creates release for --> F(["📤 PublishToESOUI"])
+    D -- auto-starts --> F(["📤 PublishToESOUI"])
 
     C(["🛡️ PRChecks"]):::aux
     S(["🔄 SyncDevWithMaster"]):::aux
@@ -109,8 +109,8 @@ Five workflows. Each is triggered from the **Actions** tab in GitHub - no label 
 | Workflow | When | What it does |
 |---|---|---|
 | [**🚀PrepareRelease**](../.github/workflows/prepare_release.yml) | manual | Pre-flight CI + version bump + regen autocomplete/translations + StyLUA + CHANGELOG + open `release/<version>` PR against master |
-| [**🤖FinalizeRelease**](../.github/workflows/finalize_release.yml) | auto, on merge of `release/*` PR | Tag the version, package the zip, create a GitHub release with the zip attached |
-| [**📤PublishToESOUI**](../.github/workflows/publish_to_esoui.yml) | manual | Upload the GitHub-release zip to ESOUI. Standalone so a failed upload never forces a re-package |
+| [**🤖FinalizeRelease**](../.github/workflows/finalize_release.yml) | auto, on merge of `release/*` PR | Tags the version, packages the zip, creates a GitHub release, then starts PublishToESOUI |
+| [**📤PublishToESOUI**](../.github/workflows/publish_to_esoui.yml) | auto, started by FinalizeRelease (can be manual) | Uploads release zip to ESOUI. Runs after release exists, so a failed upload never forces a re-package |
 | [**🛡️PRChecks**](../.github/workflows/pr_ci.yml) | auto, on PR to `dev` or `master` | StyLUA `--check`, manifest validate, package dry-run. Non-blocking by default |
 | [**🔄SyncDevWithMaster**](../.github/workflows/sync_dev_with_master.yml) | manual | Fast-forward `dev` to `master`. Refuses if `dev` has commits `master` does not |
 
@@ -119,16 +119,15 @@ Five workflows. Each is triggered from the **Actions** tab in GitHub - no label 
 1. 📬 Merge the contributor PRs you want to ship into **master**
 2. 🚀 Go to **Actions → PrepareRelease → Run workflow**
    - **Impact:** `patch`, `minor` (default), or `major`. Bump is derived from current ESOUI live version
-   - **Notes:** Plain text only release notes (for CHANGELOG and ESOUI). Empty = no CHANGELOG entry this release
+   - **Changelog lines:** `notes1` to `notes7`, one line per field (GitHub actions has no multi-line input 🤷‍♂️). Empty lines ignored; all empty = no CHANGELOG entry this release. Need more than 7 lines? Edit `CHANGELOG` in release PR
    - **Dry run:** Default `true`. The job computes everything, uploads a diff artifact and a summary, but does **not** commit or open a PR. Re-run with `dry_run=false` to actually open release PR
 3. 🔎 Review the `release/<version>` PR. Last sanity check
-4. 🤝 Merge the PR. **FinalizeRelease** auto-triggers from the merge and creates the GitHub release with the zip attached
-5. 📤 Go to **Actions → PublishToESOUI → Run workflow** when ready. Default = latest release. Job refuses to upload if manifest version is not higher than the current ESOUI version
-6. 🌀 Once ESOUI clears the upload it shows up in Minion. ESOUI may take a moment
+4. 🤝 Merge PR. **FinalizeRelease** auto-triggers from merge, creates GitHub release, then auto-runs **PublishToESOUI**
+5. 🌀 When ESOUI clears the upload it shows up in Minion. May take a moment. If upload failed, see PublishToESOUI recovery below (re-run, or hand-upload zip from release)
 
 ### 🚀 PrepareRelease
 
-Inputs from the dispatch UI: `impact` (patch/minor/major), `notes` (plain text), `dry_run`. Internally: pre-flight CI → resolve LIVE version from ESOUI → bump → regen → StyLUA → either upload a preview artifact (dry-run) or commit + open the PR.
+Inputs from dispatch UI: `impact` (patch/minor/major), `notes1` to `notes7` (one changelog line each), `dry_run`. Internally: gets LIVE version from ESOUI -> bump -> regen -> StyLUA -> upload preview artifact (dry-run) or commit + open PR.
 
 ```mermaid
 flowchart LR
@@ -147,14 +146,16 @@ flowchart LR
 
 ### 🤖 FinalizeRelease
 
-Auto-triggers from the PR merge - no manual dispatch. If a release for the tag already exists, the workflow skips cleanly. Cross-checks the branch name against the manifest version to catch manual edits.
+Auto-triggers from PR merge - no manual dispatch. If release for tag already exists, the workflow skips cleanly. Checks release branch name against manifest version. When it actually creates release, it starts **PublishToESOUI** afterwards.
 
 ```mermaid
 flowchart LR
     C[release/&lt;version&gt; PR] -- merged into master --> D(["🤖 FinalizeRelease"])
     D --> E[GitHub release<br/>+ zip + tag]
+    E -- auto-starts --> F(["📤 PublishToESOUI"])
 
     style D fill:#d8f5d3,stroke:#3aa14d
+    style F fill:#ffe0b3,stroke:#cc7a00
 ```
 
 **🚑 Recovery - failed mid-way:**
@@ -164,14 +165,16 @@ flowchart LR
 
 ### 📤 PublishToESOUI
 
-Manual dispatch, standalone on purpose. Defaults to the latest GitHub release. Aborts if you type a release_tag that is not latest, if the manifest version does not match the tag, or - via `publish.py` - if the live ESOUI version is not strictly lower than the manifest version.
+Runs automatically after FinalizeRelease; can also be run manually from Actions tab, if upload failed. Defaults to latest GitHub release. Aborts if manifest version does not match tag, or if live ESOUI version is not lower than manifest version (don't want to re-publish old stuff).
 
 ```mermaid
 flowchart LR
-    E[GitHub release<br/>+ zip] --> F(["📤 PublishToESOUI"])
+    D(["🤖 FinalizeRelease"]) -- auto-chains --> F(["📤 PublishToESOUI"])
+    E[GitHub release<br/>+ zip] --> F
     F --> G[Live on ESOUI<br/>after ESOUI clears]
-    E -. upload by hand<br/>if upload fails .-> G
+    E -. re-run or upload by hand<br/>if upload fails .-> G
 
+    style D fill:#d8f5d3,stroke:#3aa14d
     style F fill:#ffe0b3,stroke:#cc7a00
 ```
 

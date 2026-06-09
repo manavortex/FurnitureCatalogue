@@ -6,7 +6,11 @@ name: PublishToESOUI
 # 3. 📍PublishToESOUI    - publish_to_esoui.yml
 # Refer to CONTRIBUTING.md for more info.
 
-# Standalone manual upload. Publishes release zip to ESOUI. If upload fails, GitHub release still exists and you can re-run this workflow or upload the zip by hand. No re-packaging needed.
+# Publishes latest GitHub release zip to ESOUI.
+# 2 modes:
+#   - automatically, called by FinalizeRelease
+#   - manually from Actions tab (for re-run)
+# If upload fails, GitHub release (with the zip attached) still exists, so you can just re-run oder download that zip and upload it manually to ESOUI
 
 permissions:
   contents: read
@@ -16,6 +20,11 @@ on:
     inputs:
       print_response:
         description: 'Full ESOUI response 4 debug.'
+        type: boolean
+        default: false
+  workflow_call:
+    inputs:
+      print_response:
         type: boolean
         default: false
 
