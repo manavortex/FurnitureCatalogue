@@ -25,6 +25,27 @@ local function printItemLink(itemId)
 end
 FurC.PrintItemLink = printItemLink
 
+-- Looks up the ESO furniture category and subcategory for an item link
+-- and caches the integer IDs onto the recipeArray. Safe to call multiple
+-- times; skips the API call if already cached.
+local function cacheFurnishingCategory(itemLink, recipeArray)
+  if not recipeArray then return end
+  -- Skip if already cached (0 is a valid "uncategorised" result from the API)
+  if recipeArray.furnCategory ~= nil then return end
+
+  local dataId = GetItemLinkFurnitureDataId(itemLink)
+  if not dataId or dataId == 0 then
+    recipeArray.furnCategory = 0
+    recipeArray.furnSubcategory = 0
+    return
+  end
+
+  local categoryId, subcategoryId = GetFurnitureDataCategoryInfo(dataId)
+  recipeArray.furnCategory    = categoryId    or 0
+  recipeArray.furnSubcategory = subcategoryId or 0
+end
+FurC.CacheFurnishingCategory = cacheFurnishingCategory
+
 local function addDatabaseEntry(recipeKey, recipeArray)
   if recipeKey and recipeArray and {} ~= recipeArray then
     if FurC.settings.data[recipeKey] ~= nil then
@@ -33,6 +54,12 @@ local function addDatabaseEntry(recipeKey, recipeArray)
       end
     else
       FurC.settings.data[recipeKey] = recipeArray
+    end
+    -- Cache furnishing category IDs onto the stored entry
+    local storedEntry = FurC.settings.data[recipeKey]
+    local itemLink = getItemLink(recipeKey)
+    if itemLink then
+      cacheFurnishingCategory(itemLink, storedEntry)
     end
   end
 end
@@ -536,6 +563,27 @@ local function getScanCharacter()
   if nil == FurC.settings.accountCharacters[FurC.CharacterName] then
     FurC.settings.accountCharacters[FurC.CharacterName] = false
     return true
+  end
+end
+
+-- Backfills furnishing category cache for any entries that pre-date this
+-- feature. Called once during initialisation after the database is loaded.
+function FurC.BackfillFurnishingCategories()
+  local function doBackfill()
+    for itemId, recipeArray in pairs(FurC.settings.data) do
+      if recipeArray.furnCategory == nil then
+        local itemLink = getItemLink(itemId)
+        if itemLink then
+          cacheFurnishingCategory(itemLink, recipeArray)
+        end
+      end
+    end
+  end
+
+  if task then
+    task:Call(doBackfill)
+  else
+    doBackfill()
   end
 end
 
