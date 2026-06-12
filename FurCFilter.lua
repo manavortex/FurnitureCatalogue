@@ -7,6 +7,8 @@ local dropdownChoiceCharacter = 1
 local ddTextCharacter = "Accountwide"
 local qualityFilter = {}
 local craftingTypeFilter = {}
+local furnCategoryFilter = {}
+local furnSubcategoryFilter = {}
 
 local hideBooks = false
 local hideRumours = false
@@ -47,6 +49,8 @@ function FurC.SetFilter(useDefaults, skipRefresh)
 
   qualityFilter = FurC.GetFilterQuality()
   craftingTypeFilter = FurC.GetFilterCraftingType()
+  furnCategoryFilter    = FurC.GetFilterFurnCategory()
+  furnSubcategoryFilter = FurC.GetFilterFurnSubcategory()
   hideBooks = FurC.GetHideBooks()
   hideRumours = not FurC.GetShowRumours() and ddSource ~= src.RUMOUR and (FurC.GetHideRumourRecipes())
   hideCrownStore = not FurC.GetShowCrownstore() and ddSource ~= src.CROWN and (FurC.GetHideCrownStoreItems())
@@ -73,6 +77,8 @@ function FurC.InitFilters()
   FurC.Logger:Debug("Init Filters")
   FurC.SetFilterCraftingType(0)
   FurC.SetFilterQuality(0)
+  FurC.SetFilterFurnCategory(0)
+  FurC.SetFilterFurnSubcategory(0)
   FurC.SetDropdownChoice("Source", FurC.GetDefaultDropdownChoiceText("Source"), FurC.GetDefaultDropdownChoice("Source"))
   FurC.SetDropdownChoice(
     "Character",
@@ -145,9 +151,7 @@ local function matchSourceDropdown()
     end
     -- look up the item in PVP data to check its currency
     local versionData = FurC.PVP[recipeArray.version]
-    if not versionData then
-      return false
-    end
+    if not versionData then return false end
     for vendorName, vendorData in pairs(versionData) do
       for locationName, locationData in pairs(vendorData) do
         local item = locationData[itemId]
@@ -164,9 +168,7 @@ local function matchSourceDropdown()
     end
     -- exclude TelVar items from the AP filter
     local versionData = FurC.PVP[recipeArray.version]
-    if not versionData then
-      return true
-    end
+    if not versionData then return true end
     for vendorName, vendorData in pairs(versionData) do
       for locationName, locationData in pairs(vendorData) do
         local item = locationData[itemId]
@@ -241,6 +243,33 @@ local function filterBooks(itemId, recipeArray)
   return nil ~= versionData[itemId]
 end
 
+local function matchFurnCategoryFilter()
+  -- If all-off (no category selected), pass everything through
+  if FurC.settings.filterFurnCategoryAll then
+    return true
+  end
+
+  local itemCat    = recipeArray.furnCategory    or 0
+  local itemSubcat = recipeArray.furnSubcategory or 0
+
+  -- Check if the item's top-level category is selected
+  if furnCategoryFilter[itemCat] then
+    -- If a subcategory filter is also active, require subcategory match too
+    if not FurC.settings.filterFurnSubcategoryAll then
+      return furnSubcategoryFilter[itemSubcat] == true
+    end
+    return true
+  end
+
+  -- Even if the top-level category isn't selected, check subcategory directly
+  -- (allows "show all Lighting regardless of source" use case)
+  if not FurC.settings.filterFurnSubcategoryAll then
+    return furnSubcategoryFilter[itemSubcat] == true
+  end
+
+  return false
+end
+
 function FurC.MatchFilter(currentItemId, currentRecipeArray)
   itemId = currentItemId
   itemLink = getItemLink(currentItemId)
@@ -284,8 +313,15 @@ function FurC.MatchFilter(currentItemId, currentRecipeArray)
   if not (FurC.settings.filterCraftingTypeAll or matchCraftingTypeFilter()) then
     return false
   end
+
   if not (FurC.settings.filterQualityAll or matchQualityFilter()) then
     return false
+  end
+
+  if not (FurC.settings.filterFurnCategoryAll and FurC.settings.filterFurnSubcategoryAll) then
+    if not matchFurnCategoryFilter() then
+      return false
+    end
   end
 
   return true
