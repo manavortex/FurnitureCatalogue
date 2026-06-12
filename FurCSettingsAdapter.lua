@@ -518,6 +518,77 @@ function FurC.SetSkipInitialScan(value)
   FurC.settings["skipInitialScan"] = value
 end
 
+---------------------------------
+--- Furnishing Category Filter ---
+---------------------------------
+
+local function containsTrue_fc(ary)
+  for _, v in pairs(ary) do
+    if v then return true end
+  end
+end
+
+function FurC.GetFilterFurnCategory()
+  return FurC.settings.filterFurnCategory
+end
+
+-- categoryId: integer ESO furnitureCategoryId, or 0 to clear/reset
+function FurC.SetFilterFurnCategory(categoryId)
+  local filterArray = FurC.settings.filterFurnCategory
+
+  if categoryId == 0 then
+    for k in pairs(filterArray) do
+      filterArray[k] = false
+    end
+    -- Also clear subcategory when resetting the category
+    for k in pairs(FurC.settings.filterFurnSubcategory) do
+      FurC.settings.filterFurnSubcategory[k] = false
+    end
+    FurC.settings.filterFurnCategoryAll = true
+    FurC.settings.filterFurnSubcategoryAll = true
+  else
+    filterArray[categoryId] = not filterArray[categoryId]
+    FurC.settings.filterFurnCategoryAll = not containsTrue_fc(filterArray)
+  end
+  
+  local controls = FurC.GuiElements.categoryFilters
+  if controls then
+    for key, control in pairs(controls) do
+      local isPressed = (key == 0)
+        and FurC.settings.filterFurnCategoryAll
+        or (filterArray[key] == true)
+      control:SetState(isPressed and BSTATE_PRESSED or BSTATE_NORMAL)
+    end
+  end
+
+  FurC.GuiOnScroll(FurCGui_ListHolder_Slider, 0)
+  FurC.SetFilter()
+  FurC.UpdateGui()
+end
+
+function FurC.GetFilterFurnSubcategory()
+  return FurC.settings.filterFurnSubcategory
+end
+
+-- subcategoryId: integer ESO furnitureCategoryId (subcategories share the same ID space), or 0 to clear/reset
+function FurC.SetFilterFurnSubcategory(subcategoryId)
+  local filterArray = FurC.settings.filterFurnSubcategory
+
+  if subcategoryId == 0 then
+    for k in pairs(filterArray) do
+      filterArray[k] = false
+    end
+    FurC.settings.filterFurnSubcategoryAll = true
+  else
+    filterArray[subcategoryId] = not filterArray[subcategoryId]
+    FurC.settings.filterFurnSubcategoryAll = not containsTrue_fc(filterArray)
+  end
+
+  FurC.GuiOnScroll(FurCGui_ListHolder_Slider, 0)
+  FurC.SetFilter()
+  FurC.UpdateGui()
+end
+
 ---------------------------
 -------- /Dropdown --------
 -------- /Filters  --------
