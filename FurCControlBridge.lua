@@ -13,6 +13,7 @@ function FurC.LoadFrameInfo(calledFrom)
 
   zo_callLater(function()
     FurC.UpdateInventoryScroll()
+    FurC.CenterFilterBars()
   end, 100)
 end
 
@@ -25,6 +26,7 @@ function FurC.SaveFrameInfo(calledFrom)
   settings.height = FurCGui:GetHeight()
 
   FurC.UpdateInventoryScroll()
+  FurC.CenterFilterBars()
 end
 
 function FurC.OnResizeStop()
@@ -204,6 +206,10 @@ end
 
 function FurC.GuiCraftingTypeMouseUp(control)
   FurC.SetFilterCraftingType(control.craftingType)
+end
+
+function FurC.GuiCategoryMouseUp(control)
+  FurC.SetFilterFurnCategory(control.categoryId)
 end
 
 local sortBy = nil
