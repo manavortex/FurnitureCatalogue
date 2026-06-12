@@ -246,6 +246,7 @@ local capitalVendor = {
   },
   [217601] = { -- Molag Bal Plaque
     itemPrice = 14000,
+    achievement = 1003,
   },
 }
 
