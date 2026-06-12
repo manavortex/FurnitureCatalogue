@@ -36,6 +36,8 @@ local defaults = {
   data = {},
   filterCraftingType = {},
   filterQuality = {},
+  filterFurnCategory = {},
+  filterFurnSubcategory = {},
 
   resetDropdownChoice = false,
   useTinyUi = true,
@@ -354,7 +356,7 @@ local function initialise(eventCode, addOnName)
   this.ScanRecipes(scanFiles, not this.GetSkipInitialScan())
   this.settings.databaseVersion = this.version
   SLASH_COMMANDS["/fur"] = FurnitureCatalogue_Toggle
-
+  this.BackfillFurnishingCategories()
   this.SetFilter(true)
 
   EVENT_MANAGER:UnregisterForEvent(this.name, EVENT_ADD_ON_LOADED)
