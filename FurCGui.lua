@@ -24,6 +24,42 @@ function FurC.CalculateMaxLines()
   return FurCGui_ListHolder.maxLines
 end
 
+function FurC.CenterFilterBars()
+  local bar2 = FurCGui_Header_Bar2
+  if bar2 and FurC_QualityFilter and FurC_DropdownSource and FurC_DropdownVersion then
+    local barW      = bar2:GetWidth()
+    local leftEdge  = FurC_DropdownSource:GetRight() - bar2:GetLeft()
+    local rightEdge = FurC_DropdownVersion:GetLeft() - bar2:GetLeft()
+    local filterW   = FurC_QualityFilter:GetWidth()
+    if filterW == 0 then
+      -- resizeToFitDescendents hasn't resolved yet; measure children directly
+      local numChildren = FurC_QualityFilter:GetNumChildren()
+      for i = 1, numChildren do
+        filterW = filterW + FurC_QualityFilter:GetChild(i):GetWidth() + 4
+      end
+    end
+    local centerX = leftEdge + (rightEdge - leftEdge - filterW) / 2
+    FurC_QualityFilter:ClearAnchors()
+    FurC_QualityFilter:SetAnchor(LEFT, bar2, LEFT, centerX)
+  end
+
+  local bar3 = FurCGui_Header_Bar3
+  if bar3 and FurC_TypeFilter and FurC_DropdownCharacter and FurC_SearchBox and FurC_ShowRumours then
+    local leftEdge  = FurC_DropdownCharacter:GetRight() - bar3:GetLeft()
+    local rightEdge = FurC_SearchBox:GetLeft() - bar3:GetLeft()
+    local filterW   = FurC_TypeFilter:GetWidth()
+    if filterW == 0 then
+      local numChildren = FurC_TypeFilter:GetNumChildren()
+      for i = 1, numChildren do
+        filterW = filterW + FurC_TypeFilter:GetChild(i):GetWidth() + 4
+      end
+    end
+    local centerX = leftEdge + (rightEdge - leftEdge - filterW) / 2
+    FurC_TypeFilter:ClearAnchors()
+    FurC_TypeFilter:SetAnchor(LEFT, bar3, LEFT, centerX)
+  end
+end
+
 local function updateLineVisibility()
   local function fillLine(curLine, curData, lineIndex)
     if nil == curLine then
@@ -222,23 +258,27 @@ function FurC.ApplyLineTemplate()
     for _, control in pairs(contRolist) do
       control:SetWidth(controlSize)
     end
-    FurC_Search:SetWidth(controlSize - 40)
   end
+
   if FurC.GetTinyUi() then
     FurC.SlotTemplate = "FurC_SlotTemplateTiny"
-    resizeDropdowns(230) -- first column width: 230
+    resizeDropdowns(230)
     FurCGui_Header_SortBar_Quality:ClearAnchors()
     FurCGui_Header_SortBar_Quality:SetAnchor(TOPLEFT, FurCGui_Header_SortBar_Name, TOPRIGHT, -82)
   else
     FurC.SlotTemplate = "FurC_SlotTemplate"
-    resizeDropdowns(300) -- first column width: 280
+    resizeDropdowns(300)
     FurCGui_Header_SortBar_Quality:ClearAnchors()
     FurCGui_Header_SortBar_Quality:SetAnchor(TOPLEFT, FurCGui_Header_SortBar_Name, TOPRIGHT, 0)
   end
 
   FurC.SetLineHeight(true)
 
-  local minWidth = 2 * (FurC_DropdownCharacter:GetWidth()) + FurC_TypeFilter:GetWidth() + 40
+  local categoryBarWidth = FurC_CategoryFilter:GetWidth()
+  local minWidth = math.max(
+    2 * (FurC_DropdownCharacter:GetWidth()) + FurC_TypeFilter:GetWidth() + 40,
+    categoryBarWidth + 60
+  )
   local minHeight = 2 * FurCGui_Header:GetHeight()
   FurCGui:SetDimensionConstraints(minWidth, minHeight)
 
@@ -379,6 +419,56 @@ local function createGui()
 
     FurC.GuiElements.craftingTypeFilters = buttons
   end
+  
+	local function createCategoryFilters()
+    local buttons = {}
+    local ordered = {}  -- sequential list purely for left-to-right anchoring
+
+    local function createCategoryFilter(categoryId, textureName, tooltipText)
+      local parent = FurC_CategoryFilter
+      local predecessor = ordered[#ordered] or parent
+
+      local name = parent:GetName() .. "Button" .. tostring(categoryId)
+      local button = WINDOW_MANAGER:CreateControlFromVirtual(name, parent, "FurC_CategoryFilterButton")
+
+      button:SetNormalTexture(string.format("%s_up.dds", textureName))
+      button:SetMouseOverTexture(string.format("%s_over.dds", textureName))
+      button:SetPressedTexture(string.format("%s_down.dds", textureName))
+      button.categoryId = categoryId
+      button.tooltip = tooltipText
+
+      local otherAnchor = ((predecessor == parent) and TOPLEFT) or TOPRIGHT
+      button:SetAnchor(TOPLEFT, predecessor, otherAnchor, 4)
+
+      buttons[categoryId] = button
+      ordered[#ordered + 1] = button
+      return button
+    end
+
+    local iconBase = "/esoui/art/treeicons/housing_indexicon_"
+
+    -- categoryId 0 = "All" sentinel, must be first
+    createCategoryFilter(0,
+      "esoui/art/inventory/inventory_tabicon_all",
+      GetString("SI_ITEMFILTERTYPE", ITEMFILTERTYPE_ALL))
+
+    createCategoryFilter(25, "/esoui/art/treeicons/collection_indexicon_assistants", "Services")
+    createCategoryFilter(12, iconBase .. "conservatory", "Conservatory")
+    createCategoryFilter(6,  iconBase .. "courtyard",    "Courtyard")
+    createCategoryFilter(5,  iconBase .. "dining",       "Dining")
+    createCategoryFilter(9,  iconBase .. "gallery",      "Gallery")
+    createCategoryFilter(8,  iconBase .. "hearth",       "Hearth")
+    createCategoryFilter(4,  iconBase .. "library",      "Library")
+    createCategoryFilter(11, iconBase .. "shrine",       "Lighting")
+    createCategoryFilter(14, iconBase .. "misc",         "Miscellaneous")
+    createCategoryFilter(3,  iconBase .. "parlor",       "Parlor")
+    createCategoryFilter(13, iconBase .. "structures",   "Structures")
+    createCategoryFilter(2,  iconBase .. "suite",        "Suite")
+    createCategoryFilter(7,  iconBase .. "undercroft",   "Undercroft")
+    createCategoryFilter(10, iconBase .. "workshop",     "Workshop")
+
+    FurC.GuiElements.categoryFilters = buttons
+  end
 
   local function createInventoryDropdown(dropdownName)
     local controlName = string.format("%s%s", "FurC_Dropdown", dropdownName)
@@ -468,6 +558,7 @@ local function createGui()
   createInventoryScroll()
   createQualityFilters()
   createCraftingTypeFilters()
+  createCategoryFilters()
   createInventoryDropdown("Source")
   createInventoryDropdown("Version")
   createInventoryDropdown("Character")
