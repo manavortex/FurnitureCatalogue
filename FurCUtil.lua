@@ -559,6 +559,11 @@ local function getItemLink(item)
 end
 this.GetItemLink = getItemLink
 
+-- Alias for LibPrice
+--- @deprecated will be replaced by API function in the future
+--- @see FurC.Utils.GetItemLink
+FurC.GetItemLink = this.GetItemLink
+
 ---Return the formatted item name
 ---@param itemId number
 ---@param fmt? string optional format, default is stripped of gender control characters
