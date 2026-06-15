@@ -50,7 +50,12 @@ function Test.dataset()
   local db = FurC.settings.data
 
   local DS = {}
-  DS.dbItem = next(db or {})
+  for id in pairs(db or {}) do
+    if type(id) == "number" and id > 9999 then
+      DS.dbItem = id
+      break
+    end
+  end
 
   for id, arr in pairs(db or {}) do
     if type(arr) == "table" and arr.origin == FURC_CRAFTING and arr.blueprint then

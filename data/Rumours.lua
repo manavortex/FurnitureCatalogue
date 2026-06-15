@@ -124,7 +124,6 @@ FurC.Rumours[ver.DEADL] = {
   [126588] = rumourSource, -- Vvardenfell Pitcher Plants, Hanging Bunch
   [126136] = rumourSource, -- Dwarven Lantern, Powered
   [120984] = rumourSource, -- Plant, Goldenrod Cluster
-  [120851] = rumourSource, -- Gallows
 }
 
 -- 17 Markarth
@@ -234,10 +233,6 @@ FurC.Rumours[ver.STONET] = {
   [118150] = rumourSource, -- Carpet Roll, Colorful
   [118124] = rumourSource, -- Pelt, Wolf
   [118123] = rumourSource, -- Pelt, Ice Wolf
-  [118106] = rumourSource, -- Painting Palette
-  [118105] = rumourSource, -- Painting Brush, Angled
-  [118104] = rumourSource, -- Painting Brush, Detail
-  [118103] = rumourSource, -- Painting Brush, Wide
   [118100] = rumourSource, -- Horn, Carved
   [117898] = rumourSource, -- Redguard Carpet, Dawn
   [116490] = rumourSource, -- Orcish Head, Stone

@@ -29,4 +29,4 @@ Override with `ESOLUA`, `ESOUI_SRC`, `TANETH_DIR` env vars or in `.scripts/.env`
 Headless path needs `.scripts/test_stubs.lua`, because
 of some missing library dependencies (LibAddonMenu, LibAsync, etc). It's not loaded when run in-game.
 
-Some headless tests fail if they need GUI and other stuff. It's OK, not an error.
+Some headless tests may show errors if they need GUI and other stuff. It's OK, not a test fail. Try again in-game to be sure.

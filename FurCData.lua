@@ -88,7 +88,10 @@ FurC.GetMats = makeMaterial
 function FurC.GetIngredients(itemLink, recipeArray)
   recipeArray = recipeArray or FurC.Find(itemLink)
   local ingredients = {}
-  if {} ~= recipeArray and recipeArray.blueprint then
+  if not recipeArray or next(recipeArray) == nil then
+    return ingredients
+  end
+  if recipeArray.blueprint then
     local blueprintLink = getItemLink(recipeArray.blueprint)
     local numIngredients = GetItemLinkRecipeNumIngredients(blueprintLink)
     for ingredientIndex = 1, numIngredients do

@@ -5,8 +5,7 @@
 ## AddonVersion: 2002000
 ## APIVersion: 101050 101051
 ## DependsOn: FurnitureCatalogue
-## OptionalDependsOn: sidTools LibDebugLogger DebugLogViewer
-## OptionalDependsOn: Taneth>=31
+## OptionalDependsOn: sidTools LibDebugLogger DebugLogViewer Taneth>=31
 
 Bindings.xml
 xml.xml
