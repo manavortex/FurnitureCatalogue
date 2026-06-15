@@ -141,6 +141,14 @@ do
   end
 end
 
+-- furnishing category lookup
+_G.GetItemLinkFurnitureDataId = _G.GetItemLinkFurnitureDataId or function()
+  return 0
+end
+_G.GetFurnitureDataCategoryInfo = _G.GetFurnitureDataCategoryInfo or function()
+  return 0, 0
+end
+
 -- recipe/count (no recipe DB)
 for _, name in ipairs({
   "GetNumRecipeLists",
