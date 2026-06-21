@@ -265,6 +265,7 @@ function FurC.ApplyLineTemplate()
       [1] = FurC_DropdownSource,
       [2] = FurC_DropdownCharacter,
       [3] = FurC_DropdownVersion,
+      [4] = FurC_Search,
     }
     for _, control in pairs(contRolist) do
       control:SetWidth(controlSize)

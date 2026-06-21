@@ -172,12 +172,13 @@
                 <Control name="FurC_Search" mouseEnabled="true">
                   <Anchor point="TOPRIGHT" relativeTo="$(parent)" relativePoint="TOPRIGHT"
                     offsetX="-9" offsetY="10" />
-                  <Dimensions x="135" y="28" />
+                  <!-- width matches FurC_DropdownVersion -->
+                  <Dimensions x="300" y="28" />
                   <Controls>
-                    <!-- FurC_Search controls -->
+                    <!-- FurC_Search controls (now resized by FurCGui:ApplyLineTemplate) -->
                     <EditBox name="FurC_SearchBox" inherits="ZO_DefaultEditForBackdrop">
                       <Anchor point="TOPLEFT" relativeTo="$(parent)" relativePoint="TOPLEFT"
-                        offsetX="-40" offsetY="-10" />
+                        offsetX="0" offsetY="-10" />
                       <Anchor point="TOPRIGHT" relativeTo="$(parent)" relativePoint="TOPRIGHT"
                         offsetX="0" offsetY="2" />
                       <OnTextChanged>FurC.GuiSetSearchboxTextFrom(self)</OnTextChanged>
@@ -231,9 +232,8 @@
               <Anchor point="TOPRIGHT" relativeTo="$(parent)_Bar3" relativePoint="BOTTOMRIGHT" />
               <Dimensions y="40" />
               <Controls>
-                <!-- resizeToFitDescendents so the container hugs the icon row at whatever
-                     button size is set; TOP anchor then keeps it centred on the bar midpoint,
-                     aligned with the quality/crafting rows above. -->
+                <!-- resizeToFitDescendents so it hugs icon row at whatever
+                     size, TOP aligns it with the quality/crafting rows above -->
                 <Control name="FurC_CategoryFilter" mouseEnabled="true" resizeToFitDescendents="true">
                   <Anchor point="TOP" relativeTo="$(parent)" relativePoint="TOP" />
                 </Control>
