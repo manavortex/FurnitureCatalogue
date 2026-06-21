@@ -29,9 +29,13 @@ FurC.PrintItemLink = printItemLink
 -- and caches the integer IDs onto the recipeArray. Safe to call multiple
 -- times; skips the API call if already cached.
 local function cacheFurnishingCategory(itemLink, recipeArray)
-  if not recipeArray then return end
+  if not recipeArray then
+    return
+  end
   -- Skip if already cached (0 is a valid "uncategorised" result from the API)
-  if recipeArray.furnCategory ~= nil then return end
+  if recipeArray.furnCategory ~= nil then
+    return
+  end
 
   local dataId = GetItemLinkFurnitureDataId(itemLink)
   if not dataId or dataId == 0 then
@@ -41,13 +45,13 @@ local function cacheFurnishingCategory(itemLink, recipeArray)
   end
 
   local categoryId, subcategoryId = GetFurnitureDataCategoryInfo(dataId)
-  recipeArray.furnCategory    = categoryId    or 0
+  recipeArray.furnCategory = categoryId or 0
   recipeArray.furnSubcategory = subcategoryId or 0
 end
 FurC.CacheFurnishingCategory = cacheFurnishingCategory
 
 local function addDatabaseEntry(recipeKey, recipeArray)
-  if recipeKey and recipeArray and {} ~= recipeArray then
+  if recipeKey and recipeArray and next(recipeArray) ~= nil then
     if FurC.settings.data[recipeKey] ~= nil then
       for k, v in pairs(recipeArray) do
         FurC.settings.data[recipeKey][k] = v

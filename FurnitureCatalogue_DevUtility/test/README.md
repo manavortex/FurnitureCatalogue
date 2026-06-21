@@ -5,12 +5,17 @@
 
 Runs two ways:
 
-- **In-game** - install Taneth AddIn, then `/taneth FurnitureCatalogue`
+- **In-game** — install Taneth, then use the `/furcdev` wrapper:
+  - `/furcdev tests` - list the FurC suites
+  - `/furcdev test` - run all FurC suites
+  - `/furcdev test unit` - run one suite (`FurC:` prefix is optional)
 - **Headless** — `.scripts/run_tests.sh` uses [ESOLua](https://github.com/sirinsidiator/esolua), no game client
+
+Prefer `/furcdev test` over `/taneth`: in `/taneth` it's easy to run every test of all AddOns at the same time by mistake. `/furcdev` only runs FurC suites.
 
 Just optional dependency, so nothing happens if not available. Not part of main AddOn, so it does not load unnecessary stuff.
 
-Test suite ids:
+Test suite ids (look at `../startup.lua` for most up to date list):
 
 - `FurC:Regression`
 - `FurC:Unit`
