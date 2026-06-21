@@ -38,7 +38,13 @@ function FurC.CenterFilterBars()
         filterW = filterW + FurC_QualityFilter:GetChild(i):GetWidth() + 4
       end
     end
-    local centerX = leftEdge + (rightEdge - leftEdge - filterW) / 2
+    -- centre sandwiched between left+rigth ctrls
+    local minX = leftEdge + 8
+    local maxX = rightEdge - filterW - 8
+    if maxX < minX then
+      maxX = minX
+    end
+    local centerX = math.max(minX, math.min((barW - filterW) / 2, maxX))
     FurC_QualityFilter:ClearAnchors()
     FurC_QualityFilter:SetAnchor(LEFT, bar2, LEFT, centerX)
   end
@@ -54,7 +60,12 @@ function FurC.CenterFilterBars()
         filterW = filterW + FurC_TypeFilter:GetChild(i):GetWidth() + 4
       end
     end
-    local centerX = leftEdge + (rightEdge - leftEdge - filterW) / 2
+    local minX = leftEdge + 8
+    local maxX = rightEdge - filterW - 8
+    if maxX < minX then
+      maxX = minX
+    end
+    local centerX = math.max(minX, math.min((bar3:GetWidth() - filterW) / 2, maxX))
     FurC_TypeFilter:ClearAnchors()
     FurC_TypeFilter:SetAnchor(LEFT, bar3, LEFT, centerX)
   end
