@@ -133,8 +133,8 @@
                     relativePoint="BOTTOMRIGHT" offsetX="320" />
                 </Control>
                 <Control name="FurC_DropdownVersion" inherits="ZO_ComboBox" mouseEnabled="true">
-                  <Anchor point="TOPLEFT" relativeTo="FurC_QualityFilter" relativePoint="TOPRIGHT"
-                    offsetX="30" />
+                  <Anchor point="TOPRIGHT" relativeTo="$(parent)" relativePoint="TOPRIGHT"
+                    offsetX="-9" offsetY="10" />
                   <Dimensions x="235" y="28" />
                   <OnShow>FurC.GuiSetupDropdown(self)</OnShow>
                   <OnMouseEnter>FurC.GuiShowTooltip(self, "Filter: game version", true)</OnMouseEnter>
@@ -170,11 +170,9 @@
                 </Control>
                 <!-- control above: FurC_DropdownVersion -->
                 <Control name="FurC_Search" mouseEnabled="true">
-                  <Anchor point="TOPLEFT" relativeTo="FurC_TypeFilter" relativePoint="TOPRIGHT"
-                    offsetX="9" offsetY="10" />
-                  <Anchor point="BOTTOMLEFT" relativeTo="FurC_TypeFilter"
-                    relativePoint="BOTTOMRIGHT" offsetX="9" />
-                  <Dimensions x="135" />
+                  <Anchor point="TOPRIGHT" relativeTo="$(parent)" relativePoint="TOPRIGHT"
+                    offsetX="-9" offsetY="10" />
+                  <Dimensions x="135" y="28" />
                   <Controls>
                     <!-- FurC_Search controls -->
                     <EditBox name="FurC_SearchBox" inherits="ZO_DefaultEditForBackdrop">
@@ -226,11 +224,26 @@
                 </Texture>
               </Controls>
             </Control>
+            <!-- Category filter bar -->
+            <Control name="$(parent)_CategoryBar" mouseEnabled="true">
+              <Anchor point="TOPLEFT" relativeTo="$(parent)_Bar3" relativePoint="BOTTOMLEFT"
+                offsetY="10" />
+              <Anchor point="TOPRIGHT" relativeTo="$(parent)_Bar3" relativePoint="BOTTOMRIGHT" />
+              <Dimensions y="40" />
+              <Controls>
+                <!-- resizeToFitDescendents so the container hugs the icon row at whatever
+                     button size is set; TOP anchor then keeps it centred on the bar midpoint,
+                     aligned with the quality/crafting rows above. -->
+                <Control name="FurC_CategoryFilter" mouseEnabled="true" resizeToFitDescendents="true">
+                  <Anchor point="TOP" relativeTo="$(parent)" relativePoint="TOP" />
+                </Control>
+              </Controls>
+            </Control>
             <!-- #4, sorts the list holder -->
             <Control name="$(parent)_SortBar" mouseEnabled="true">
-              <Anchor point="TOPLEFT" relativeTo="$(parent)_Bar3" relativePoint="BOTTOMLEFT"
+              <Anchor point="TOPLEFT" relativeTo="$(parent)_CategoryBar" relativePoint="BOTTOMLEFT"
                 offsetX="25" offsetY="20" />
-              <Anchor point="BOTTOMRIGHT" relativeTo="$(parent)_Bar3" relativePoint="BOTTOMRIGHT"
+              <Anchor point="BOTTOMRIGHT" relativeTo="$(parent)_CategoryBar" relativePoint="BOTTOMRIGHT"
                 offsetY="40" />
               <Dimensions y="20" />
               <!-- FurC_SortBar's children -->
@@ -311,6 +324,12 @@
       <OnMouseEnter>FurC.GuiVirtualMouseOver(self)  </OnMouseEnter>
       <OnMouseExit>FurC.GuiVirtualMouseOut(self)  </OnMouseExit>
       <OnMouseUp>FurC.GuiCraftingTypeMouseUp(self)  </OnMouseUp>
+    </Button>
+    <Button name="FurC_CategoryFilterButton" virtual="true">
+      <Dimensions x="32" y="32" />
+      <OnMouseEnter>FurC.GuiVirtualMouseOver(self)  </OnMouseEnter>
+      <OnMouseExit>FurC.GuiVirtualMouseOut(self)  </OnMouseExit>
+      <OnMouseUp>FurC.GuiCategoryMouseUp(self)  </OnMouseUp>
     </Button>
     <Control name="FurC_SlotTemplate" inherits="ZO_ListInventorySlotBehavior" virtual="true"
       mouseEnabled="true">

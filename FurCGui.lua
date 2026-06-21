@@ -27,10 +27,10 @@ end
 function FurC.CenterFilterBars()
   local bar2 = FurCGui_Header_Bar2
   if bar2 and FurC_QualityFilter and FurC_DropdownSource and FurC_DropdownVersion then
-    local barW      = bar2:GetWidth()
-    local leftEdge  = FurC_DropdownSource:GetRight() - bar2:GetLeft()
+    local barW = bar2:GetWidth()
+    local leftEdge = FurC_DropdownSource:GetRight() - bar2:GetLeft()
     local rightEdge = FurC_DropdownVersion:GetLeft() - bar2:GetLeft()
-    local filterW   = FurC_QualityFilter:GetWidth()
+    local filterW = FurC_QualityFilter:GetWidth()
     if filterW == 0 then
       -- resizeToFitDescendents hasn't resolved yet; measure children directly
       local numChildren = FurC_QualityFilter:GetNumChildren()
@@ -45,9 +45,9 @@ function FurC.CenterFilterBars()
 
   local bar3 = FurCGui_Header_Bar3
   if bar3 and FurC_TypeFilter and FurC_DropdownCharacter and FurC_SearchBox and FurC_ShowRumours then
-    local leftEdge  = FurC_DropdownCharacter:GetRight() - bar3:GetLeft()
+    local leftEdge = FurC_DropdownCharacter:GetRight() - bar3:GetLeft()
     local rightEdge = FurC_SearchBox:GetLeft() - bar3:GetLeft()
-    local filterW   = FurC_TypeFilter:GetWidth()
+    local filterW = FurC_TypeFilter:GetWidth()
     if filterW == 0 then
       local numChildren = FurC_TypeFilter:GetNumChildren()
       for i = 1, numChildren do
@@ -275,10 +275,8 @@ function FurC.ApplyLineTemplate()
   FurC.SetLineHeight(true)
 
   local categoryBarWidth = FurC_CategoryFilter:GetWidth()
-  local minWidth = math.max(
-    2 * (FurC_DropdownCharacter:GetWidth()) + FurC_TypeFilter:GetWidth() + 40,
-    categoryBarWidth + 60
-  )
+  local minWidth =
+    math.max(2 * (FurC_DropdownCharacter:GetWidth()) + FurC_TypeFilter:GetWidth() + 40, categoryBarWidth + 60)
   local minHeight = 2 * FurCGui_Header:GetHeight()
   FurCGui:SetDimensionConstraints(minWidth, minHeight)
 
@@ -419,10 +417,10 @@ local function createGui()
 
     FurC.GuiElements.craftingTypeFilters = buttons
   end
-  
-	local function createCategoryFilters()
+
+  local function createCategoryFilters()
     local buttons = {}
-    local ordered = {}  -- sequential list purely for left-to-right anchoring
+    local ordered = {} -- sequential list purely for left-to-right anchoring
 
     local function createCategoryFilter(categoryId, textureName, tooltipText)
       local parent = FurC_CategoryFilter
@@ -448,24 +446,26 @@ local function createGui()
     local iconBase = "/esoui/art/treeicons/housing_indexicon_"
 
     -- categoryId 0 = "All" sentinel, must be first
-    createCategoryFilter(0,
+    createCategoryFilter(
+      0,
       "esoui/art/inventory/inventory_tabicon_all",
-      GetString("SI_ITEMFILTERTYPE", ITEMFILTERTYPE_ALL))
+      GetString("SI_ITEMFILTERTYPE", ITEMFILTERTYPE_ALL)
+    )
 
     createCategoryFilter(25, "/esoui/art/treeicons/collection_indexicon_assistants", "Services")
     createCategoryFilter(12, iconBase .. "conservatory", "Conservatory")
-    createCategoryFilter(6,  iconBase .. "courtyard",    "Courtyard")
-    createCategoryFilter(5,  iconBase .. "dining",       "Dining")
-    createCategoryFilter(9,  iconBase .. "gallery",      "Gallery")
-    createCategoryFilter(8,  iconBase .. "hearth",       "Hearth")
-    createCategoryFilter(4,  iconBase .. "library",      "Library")
-    createCategoryFilter(11, iconBase .. "shrine",       "Lighting")
-    createCategoryFilter(14, iconBase .. "misc",         "Miscellaneous")
-    createCategoryFilter(3,  iconBase .. "parlor",       "Parlor")
-    createCategoryFilter(13, iconBase .. "structures",   "Structures")
-    createCategoryFilter(2,  iconBase .. "suite",        "Suite")
-    createCategoryFilter(7,  iconBase .. "undercroft",   "Undercroft")
-    createCategoryFilter(10, iconBase .. "workshop",     "Workshop")
+    createCategoryFilter(6, iconBase .. "courtyard", "Courtyard")
+    createCategoryFilter(5, iconBase .. "dining", "Dining")
+    createCategoryFilter(9, iconBase .. "gallery", "Gallery")
+    createCategoryFilter(8, iconBase .. "hearth", "Hearth")
+    createCategoryFilter(4, iconBase .. "library", "Library")
+    createCategoryFilter(11, iconBase .. "shrine", "Lighting")
+    createCategoryFilter(14, iconBase .. "misc", "Miscellaneous")
+    createCategoryFilter(3, iconBase .. "parlor", "Parlor")
+    createCategoryFilter(13, iconBase .. "structures", "Structures")
+    createCategoryFilter(2, iconBase .. "suite", "Suite")
+    createCategoryFilter(7, iconBase .. "undercroft", "Undercroft")
+    createCategoryFilter(10, iconBase .. "workshop", "Workshop")
 
     FurC.GuiElements.categoryFilters = buttons
   end
