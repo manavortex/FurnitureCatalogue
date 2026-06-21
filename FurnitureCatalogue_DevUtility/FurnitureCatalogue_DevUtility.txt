@@ -11,6 +11,7 @@ Bindings.xml
 xml.xml
 
 startup.lua
+Benchmark.lua
 ContextMenu.lua
 
 DumpFurniture_sidTools.lua
