@@ -7,8 +7,8 @@ if not FurCDev then
 end
 local this = FurCDev
 
--- need big delay because of async and main thread walls
-local DELAY = 2500 -- ms between steps
+-- initial settle before each step
+local DELAY = 1000 -- ms
 
 -- should work in all locales (only tested EN and DE):
 local SEARCH_ITEM_ID = 211366 -- Ayleid Lamp, Ornate Stone
@@ -30,18 +30,33 @@ local function utf8prefix(s, n)
   return string.sub(s, 1, i - 1)
 end
 
+-- poll until FurC is done (abuses the "please wait" label)
+local function whenIdle(cb, waited)
+  waited = waited or 0
+  if FurCGui_Wait and not FurCGui_Wait:IsControlHidden() and waited < 6000 then
+    zo_callLater(function()
+      whenIdle(cb, waited + 200)
+    end, 200)
+  else
+    cb()
+  end
+end
+
 local function runSteps(steps, onDone)
   local i = 0
-  local function step()
+  local function nextStep()
     i = i + 1
     local s = steps[i]
     if not s then
       return onDone and onDone()
     end
     s.fn()
-    zo_callLater(step, s.delay or DELAY)
+    -- wait for idle before next step
+    zo_callLater(function()
+      whenIdle(nextStep)
+    end, s.delay or DELAY)
   end
-  step()
+  nextStep()
 end
 
 -- FurC GUI must be open already, otherwise load delay
@@ -65,7 +80,7 @@ local function mark(label)
   end
 end
 
--- clear all filters without triggering cascading reloads
+-- clear all filters and debounce rebuild stuff, so we don't keep reloading
 local function resetState()
   local realUpdate = FurC.UpdateGui
   FurC.UpdateGui = function() end
@@ -73,24 +88,22 @@ local function resetState()
   if box() then
     box():SetText("")
   end
-  FurC.UpdateGui = realUpdate
-  FurC.SetFilter(true)
-  FurC.UpdateGui()
+  zo_callLater(function()
+    FurC.UpdateGui = realUpdate
+    FurC.SetFilter(true)
+    FurC.UpdateGui()
+  end, 700)
 end
 
 local function setSource(value)
   return function()
     FurC.SetDropdownChoice("Source", FurC.DropdownData.ChoicesSource[value], value)
-    FurC.SetFilter()
-    FurC.UpdateGui()
   end
 end
 
 local function setVersion(value)
   return function()
     FurC.SetDropdownChoice("Version", FurC.DropdownData.ChoicesVersion[value], value)
-    FurC.SetFilter()
-    FurC.UpdateGui()
   end
 end
 
@@ -206,9 +219,10 @@ end
 
 local REMINDER = "Before running:\n"
   .. "- best run after a fresh reloadui\n"
-  .. "- rebuild DB first (in case of leftover broken items)\n"
+  .. "- wait until addons have settled and run only necessary ones\n"
   .. "- be inside player house (stable fps and nothing else happening)\n"
-  .. "- don't interact with game and keep game window focused until done\n\n"
+  .. "- can't hurt to rebuild DB first (in case of leftover broken items)\n"
+  .. "- don't interact with game and keep game window focused until done (~30s per scenario)\n\n"
 
 -- confirmation popup with Cancel
 local function confirm(body, run)
@@ -239,6 +253,11 @@ local function runSequence(ns)
   local label = (#ns == 1) and tostring(ns[1]) or "ALL"
   d(string.format("|cFF3333FurCDev|r: benchmark %s%s ...", label, autoProfile and " [profiling]" or ""))
 
+  -- clear the default-shown "please wait" label
+  if FurCGui_Wait then
+    FurCGui_Wait:SetHidden(true)
+  end
+
   local all = {}
   for idx, n in ipairs(ns) do
     local setup = sc[n].setup and sc[n].setup() or { { fn = ensureOpen, delay = 700 }, { fn = resetState } }
@@ -250,6 +269,7 @@ local function runSequence(ns)
     end
     all[#all + 1] = {
       fn = function()
+        d(string.format("|cFF3333FurCDev|r: [%d/%d] %s", idx, #ns, sc[n].label))
         mark(n .. " " .. sc[n].label)
       end,
     }
@@ -262,6 +282,9 @@ local function runSequence(ns)
     if autoProfile then
       StopScriptProfiler()
     end
+    -- cleanup
+    ensureClosed()
+    resetState()
     d("|cFF3333FurCDev|r: benchmark " .. label .. " done" .. exportHint(autoProfile, loaded))
     PlaySound(SOUNDS.JUSTICE_PICKPOCKET_BONUS)
   end)
