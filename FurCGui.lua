@@ -181,12 +181,8 @@ local function updateScrollDataLinesData()
     FurC_RecipeCount:SetText(tostring(#dataLines))
   end
 
-  if nil ~= task then
-    task:Call(filterData):Then(sortAndCountData)
-  else
-    filterData()
-    sortAndCountData()
-  end
+  filterData()
+  sortAndCountData()
 end
 
 local cachedDefaults
@@ -200,9 +196,6 @@ local function stopLoading()
   FurC.IsLoading(false)
   updateLineVisibility()
 end
-local function stopLoadingWithDelay()
-  zo_callLater(stopLoading, 500)
-end
 
 function FurC.UpdateGui(useDefaults)
   if FurCGui:IsHidden() then
@@ -211,11 +204,11 @@ function FurC.UpdateGui(useDefaults)
   cachedDefaults = useDefaults
 
   if nil ~= otherTask then
-    otherTask:Call(startLoading):Then(updateScrollDataLinesData):Then(stopLoadingWithDelay)
+    otherTask:Call(startLoading):Then(updateScrollDataLinesData):Then(stopLoading)
   else
     startLoading()
     updateScrollDataLinesData()
-    stopLoadingWithDelay()
+    stopLoading()
   end
 end
 
