@@ -204,7 +204,7 @@ local function updateScrollDataLinesData()
     if recipeArray and FurC.MatchFilter(itemId, recipeArray) then
       local itemLink = FurC.Utils.GetItemLink(itemId)
       if itemLink then
-        local tempDataLine = ZO_DeepTableCopy({}, recipeArray)
+        local tempDataLine = ZO_ShallowTableCopy(recipeArray)
         tempDataLine.itemId = itemId
         tempDataLine.itemLink = itemLink
         tempDataLine.blueprint = recipeArray.blueprint
@@ -219,8 +219,6 @@ end
 
 local cachedDefaults
 local function startLoading()
-  FurC.IsLoading(true)
-  local text = FurC_SearchBox:GetText()
   FurC.LastFilter = cachedDefaults
   FurC.SetFilter(cachedDefaults, true)
 end

@@ -1,4 +1,5 @@
 local searchString = ""
+local searchPattern = ""
 local dropdownChoiceVersion = 1
 local dropdownTextVersion = "All"
 local ddSource = 1
@@ -53,9 +54,21 @@ local function isValidItemType()
   return valid
 end
 
+-- cached lowercased item name
+local searchNameCache = {}
+local function getSearchName()
+  local n = searchNameCache[itemId]
+  if nil == n then
+    n = LocaleAwareToLower(GetItemLinkName(ensureItemLink()))
+    searchNameCache[itemId] = n
+  end
+  return n
+end
+
 function FurC.SetFilter(useDefaults, skipRefresh)
   ClearTooltip(InformationTooltip)
   searchString = FurC.GetSearchFilter()
+  searchPattern = gsub(LocaleAwareToLower(searchString), "-", "%%-")
 
   if useDefaults then
     dropdownChoiceVersion = FurC.GetDefaultDropdownChoice("Version")
@@ -245,10 +258,7 @@ local function matchSearchString()
   if #searchString == 0 then
     return true
   end
-  local itemName = LocaleAwareToLower(GetItemLinkName(ensureItemLink()))
-  local escapedStr = LocaleAwareToLower(searchString)
-  escapedStr = gsub(escapedStr, "-", "%%-")
-  if match(itemName, escapedStr) then
+  if match(getSearchName(), searchPattern) then
     return true
   end
 
@@ -256,7 +266,7 @@ local function matchSearchString()
   local folioNames = getFolioNames(itemId)
   if folioNames then
     for i = 1, #folioNames do
-      if match(folioNames[i], escapedStr) then
+      if match(folioNames[i], searchPattern) then
         return true
       end
     end
