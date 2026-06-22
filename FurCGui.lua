@@ -5,15 +5,7 @@ FurC.ScrollSortUp = true
 local task = LibAsync:Create("FurnitureCatalogue_updateLineVisibility")
 local otherTask = LibAsync:Create("FurnitureCatalogue_ToggleGui")
 
-local sortTable = FurC.Utils.SortTable
 local src = FurC.Constants.ItemSources
-
-local function sort(myTable)
-  local sortName, sortDirection = FurC.GetSortParams()
-  sortName = sortName or "itemName"
-  local sortUp = ((ZO_SORT_ORDER_UP and sortDirection == "up") or ZO_SORT_ORDER_DOWN)
-  return sortTable(myTable, sortName, sortUp)
-end
 
 function FurC.CalculateMaxLines()
   if not FurCGui_Header then
@@ -156,33 +148,73 @@ function FurC.IsLoading(isBuffering)
   FurCGui_Empty:SetHidden(isBuffering or not isEmpty)
 end
 
--- fill the shown item list with items that match current filter(s)
+-- Sort index only once (not for each filter)
+-- need to rebuild only when sort order changes or DB has itemchanges
+local sortedIndex
+local sortedIndexKey
+FurC.sortIndexDirty = true
+
+local function buildSortedIndex(sortName, sortUp)
+  local data = FurC.settings.data
+  local ids, vals = {}, {}
+  for itemId, recipeArray in pairs(data) do
+    ids[#ids + 1] = itemId
+    if sortName == "itemName" then
+      vals[itemId] = GetItemLinkName(FurC.Utils.GetItemLink(itemId))
+    else
+      vals[itemId] = recipeArray[sortName]
+    end
+  end
+  table.sort(ids, function(a, b)
+    local va, vb = vals[a], vals[b]
+    if nil == va then
+      return false
+    elseif nil == vb then
+      return true
+    elseif sortUp then
+      return va > vb
+    else
+      return va < vb
+    end
+  end)
+  return ids
+end
+
+local function ensureSortedIndex()
+  local sortName, sortDirection = FurC.GetSortParams()
+  sortName = sortName or "itemName"
+  local sortUp = ((ZO_SORT_ORDER_UP and sortDirection == "up") or ZO_SORT_ORDER_DOWN)
+  local key = tostring(sortName) .. "|" .. tostring(sortUp)
+  if sortedIndex and key == sortedIndexKey and not FurC.sortIndexDirty then
+    return sortedIndex
+  end
+  sortedIndex = buildSortedIndex(sortName, sortUp)
+  sortedIndexKey = key
+  FurC.sortIndexDirty = false
+  return sortedIndex
+end
+
 local function updateScrollDataLinesData()
   local dataLines = {}
-  local function filterData()
-    for itemId, recipeArray in pairs(FurC.settings.data) do
-      if FurC.MatchFilter(itemId, recipeArray) then
-        local itemLink = FurC.Utils.GetItemLink(itemId)
-        if itemLink then
-          local tempDataLine = ZO_DeepTableCopy({}, recipeArray)
-          tempDataLine.itemId = itemId
-          tempDataLine.itemLink = itemLink
-          tempDataLine.blueprint = recipeArray.blueprint
-          tempDataLine.itemName = GetItemLinkName(itemLink)
-          table.insert(dataLines, tempDataLine)
-        end
+  local data = FurC.settings.data
+  local order = ensureSortedIndex()
+  for i = 1, #order do
+    local itemId = order[i]
+    local recipeArray = data[itemId]
+    if recipeArray and FurC.MatchFilter(itemId, recipeArray) then
+      local itemLink = FurC.Utils.GetItemLink(itemId)
+      if itemLink then
+        local tempDataLine = ZO_DeepTableCopy({}, recipeArray)
+        tempDataLine.itemId = itemId
+        tempDataLine.itemLink = itemLink
+        tempDataLine.blueprint = recipeArray.blueprint
+        tempDataLine.itemName = GetItemLinkName(itemLink)
+        dataLines[#dataLines + 1] = tempDataLine
       end
     end
   end
-
-  local function sortAndCountData()
-    dataLines = sort(dataLines)
-    FurCGui_ListHolder.dataLines = dataLines
-    FurC_RecipeCount:SetText(tostring(#dataLines))
-  end
-
-  filterData()
-  sortAndCountData()
+  FurCGui_ListHolder.dataLines = dataLines
+  FurC_RecipeCount:SetText(tostring(#dataLines))
 end
 
 local cachedDefaults

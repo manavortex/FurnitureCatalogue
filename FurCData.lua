@@ -58,6 +58,7 @@ local function addDatabaseEntry(recipeKey, recipeArray)
       end
     else
       FurC.settings.data[recipeKey] = recipeArray
+      FurC.sortIndexDirty = true -- new id? -> rebuild cache in GUI
     end
     -- Cache furnishing category IDs onto the stored entry
     local storedEntry = FurC.settings.data[recipeKey]
@@ -210,6 +211,7 @@ function FurC.Delete(itemOrBlueprintLink) -- sets recipeArray, returns it - call
   end
   if nil ~= recipeArray.itemId then
     FurC.settings.data[recipeArray.itemId] = nil
+    FurC.sortIndexDirty = true
   end
 end
 
