@@ -33,7 +33,7 @@ FurC.FaustinaRecipes[ver.ZERO] = {
 }
 
 -- 34 Fallen Banners
-FurC.FurnishingFolios[219721] = { -- West Weald 2
+FurC.FurnishingFolios[223978] = { -- West Weald 2
   vendor = npc.FAUSTINA,
   location = loc.ANY_CAPITAL,
   price = 700,
@@ -51,7 +51,7 @@ FurC.FurnishingFolios[219721] = { -- West Weald 2
 }
 
 -- 32 Home Tours
-FurC.FurnishingFolios[223978] = { -- West Weald 1
+FurC.FurnishingFolios[219721] = { -- West Weald 1
   vendor = npc.FAUSTINA,
   location = loc.ANY_CAPITAL,
   price = 700,

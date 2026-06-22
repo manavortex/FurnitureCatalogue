@@ -459,17 +459,6 @@ FurC.Recipes[ver.BASE44] = {
   212379,
 }
 
--- 32 Home Tours
-FurC.Recipes[ver.BASE43] = {
-  211039, -- Blueprint: Colovian Keg, Gigantic Wine
-  211038, -- Design: Dawnwood Platter, Feast
-  211034, -- Diagram: Colovian Chandelier, Grapes
-  211033, -- Formula: Colovian Alembic Set, Colorful
-  211035, -- Pattern: Colovian Tapestry, Red Diamond
-  211036, -- Praxis: Colovian Glassblower's Furnace
-  211037, -- Sketch: Colovian Mirror, Standing
-}
-
 -- 31 Gold Road
 FurC.Recipes[ver.WEALD] = {
   207872, -- Formula: Dawnwood Lantern, Hanging",
