@@ -539,13 +539,21 @@ FurC.GetItemId = this.GetItemId
 --- Get item link from itemId (or itemLink)
 --- @param item number|string ID or itemlink
 --- @return string link or empty string
+local linkCache = {}
 local function getItemLink(item)
   if not item or (type(item) ~= "number" and type(item) ~= "string") then
     return ""
   end
 
   if type(item) == "number" then
-    return sFormat("|H1:item:<<1>>:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h", item)
+    local cached = linkCache[item]
+    if cached then
+      return cached
+    end
+    -- string.format instead of zo_strformat so we skip localization
+    local link = string.format("|H1:item:%d:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h", item)
+    linkCache[item] = link
+    return link
   end
 
   local itemId = GetItemLinkItemId(item)
