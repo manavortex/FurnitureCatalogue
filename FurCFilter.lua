@@ -217,6 +217,30 @@ local function matchDropdownFilter()
   return matchVersionDropdown() and matchSourceDropdown()
 end
 
+-- build folio stuff lazily for better search performance
+local folioNamesByContent
+local function getFolioNames(contentId)
+  if nil == folioNamesByContent then
+    folioNamesByContent = {}
+    if FurC.FurnishingFolios then
+      for folioId, folioData in pairs(FurC.FurnishingFolios) do
+        if folioData.contents then
+          local folioName = LocaleAwareToLower(GetItemLinkName(getItemLink(folioId)))
+          for _, cId in ipairs(folioData.contents) do
+            local names = folioNamesByContent[cId]
+            if names then
+              names[#names + 1] = folioName
+            else
+              folioNamesByContent[cId] = { folioName }
+            end
+          end
+        end
+      end
+    end
+  end
+  return folioNamesByContent[contentId]
+end
+
 local function matchSearchString()
   if #searchString == 0 then
     return true
@@ -229,18 +253,11 @@ local function matchSearchString()
   end
 
   -- Also match if the item belongs to a folio whose name matches
-  if FurC.FurnishingFolios then
-    for folioId, folioData in pairs(FurC.FurnishingFolios) do
-      if folioData.contents then
-        for _, contentId in ipairs(folioData.contents) do
-          if contentId == itemId then
-            local folioLink = FurC.Utils.GetItemLink(folioId)
-            local folioName = LocaleAwareToLower(GetItemLinkName(folioLink))
-            if match(folioName, escapedStr) then
-              return true
-            end
-          end
-        end
+  local folioNames = getFolioNames(itemId)
+  if folioNames then
+    for i = 1, #folioNames do
+      if match(folioNames[i], escapedStr) then
+        return true
       end
     end
   end
