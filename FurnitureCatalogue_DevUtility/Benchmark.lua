@@ -1,13 +1,14 @@
 -- Deterministic profiling scenarios
---   /furcdev bench            list scenarios
---   /furcdev bench <n>        run scenario n (starts ESOProfiler if enabled)
+--   /furcdev bench     run all scenarios in order (asks for confirmation first)
+--   /furcdev bench <n> run one scenario
 
 if not FurCDev then
   return
 end
 local this = FurCDev
 
-local DELAY = 1000 -- ms between steps
+-- need big delay because of async and main thread walls
+local DELAY = 2500 -- ms between steps
 
 -- should work in all locales (only tested EN and DE):
 local SEARCH_ITEM_ID = 211366 -- Ayleid Lamp, Ornate Stone
@@ -43,11 +44,36 @@ local function runSteps(steps, onDone)
   step()
 end
 
+-- FurC GUI must be open already, otherwise load delay
+local function ensureOpen()
+  if FurCGui and FurCGui:IsControlHidden() then
+    FurnitureCatalogue_Toggle()
+  end
+end
+
+-- hide FurC GUI
+local function ensureClosed()
+  if FurCGui and not FurCGui:IsControlHidden() then
+    FurnitureCatalogue_Toggle()
+  end
+end
+
+-- profiler timeline marker
+local function mark(label)
+  if RecordScriptProfilerUserEvent then
+    RecordScriptProfilerUserEvent("furcbench|" .. label)
+  end
+end
+
+-- clear all filters without triggering cascading reloads
 local function resetState()
+  local realUpdate = FurC.UpdateGui
+  FurC.UpdateGui = function() end
   FurC.InitFilters()
   if box() then
     box():SetText("")
   end
+  FurC.UpdateGui = realUpdate
   FurC.SetFilter(true)
   FurC.UpdateGui()
 end
@@ -94,116 +120,174 @@ local function searchSteps()
           FurC.GuiSetSearchboxTextFrom(box())
         end
       end,
-      delay = 700,
+      delay = DELAY,
     }
   end
   return steps
 end
 
--- scenario id -> { label, steps() }
+-- structure:
+-- scenario id -> { label, steps(), setup?() }
+-- (run all runs them in order)
 local function scenarios()
   local src = FurC.Constants.ItemSources
   return {
     [1] = {
-      label = "search keystrokes",
-      steps = searchSteps,
+      label = "window load (cold start + reopen)",
+      -- start closed so first open runs cache stuff etc
+      -- best after a reloadui (or else it might be cached already)
+      setup = function()
+        return {
+          { fn = ensureClosed, delay = 600 },
+          { fn = resetState },
+        }
+      end,
+      steps = function()
+        local function open(tag)
+          return {
+            fn = function()
+              mark(tag)
+              FurCGui:SetHidden(false)
+              FurC.UpdateGui()
+            end,
+            delay = DELAY,
+          }
+        end
+        local function close()
+          return {
+            fn = function()
+              FurCGui:SetHidden(true)
+            end,
+            delay = 1200,
+          }
+        end
+        return { open("open1-cold"), close(), open("open2-warm"), close(), open("open3-warm") }
+      end,
     },
     [2] = {
-      label = "source = PVP",
+      label = "source = Crafting",
       steps = function()
-        return {
-          { fn = setSource(src.PVP) },
-        }
+        return { { fn = setSource(src.CRAFTING) } }
       end,
     },
     [3] = {
-      label = "source = TelVar",
+      label = "source = PVP",
       steps = function()
-        return {
-          { fn = setSource(src.TELVAR) },
-        }
+        return { { fn = setSource(src.PVP) } }
       end,
     },
     [4] = {
-      label = "source = Crafting",
+      label = "source = TelVar",
       steps = function()
-        return {
-          { fn = setSource(src.CRAFTING) },
-        }
+        return { { fn = setSource(src.TELVAR) } }
       end,
     },
     [5] = {
       label = "version = latest",
       steps = function()
-        return {
-          { fn = setVersion(maxVersion()) },
-        }
+        return { { fn = setVersion(maxVersion()) } }
       end,
     },
     [6] = {
-      label = "open window",
-      steps = function()
-        return {
-          {
-            fn = function()
-              FurCGui:SetHidden(true)
-            end,
-            delay = 600,
-          },
-          {
-            fn = function()
-              FurCGui:SetHidden(false)
-              FurC.UpdateGui()
-            end,
-          },
-        }
-      end,
+      label = "search keystrokes",
+      steps = searchSteps,
     },
   }
 end
 
-local function listScenarios()
-  d("|cFF3333FurCDev|r benchmark scenarios:")
+local function scenarioListText()
   local sc = scenarios()
+  local lines = {}
   for i = 1, #sc do
-    d(string.format(" %d - %s", i, sc[i].label))
+    lines[i] = string.format("%d - %s", i, sc[i].label)
   end
-  d("Run: |cAACCFF/furcdev bench <n>|r")
-  d("Rebuild DB first for comparable results")
+  return table.concat(lines, "\n")
 end
-this.ListBenchmarks = listScenarios
+
+local REMINDER = "Before running:\n"
+  .. "- best run after a fresh reloadui\n"
+  .. "- rebuild DB first (in case of leftover broken items)\n"
+  .. "- be inside player house (stable fps and nothing else happening)\n"
+  .. "- don't interact with game and keep game window focused until done\n\n"
+
+-- confirmation popup with Cancel
+local function confirm(body, run)
+  local LAM = LibAddonMenu2
+  if LAM and LAM.util and LAM.util.ShowConfirmationDialog then
+    LAM.util.ShowConfirmationDialog("FurCDev benchmark", REMINDER .. body, run)
+  else
+    run()
+  end
+end
+
+local function exportHint(autoProfile, profilerLoaded)
+  return (autoProfile and " - Journal > ESO Profiler > Export (reloads UI)")
+    or (profilerLoaded and " - stop profiler, then Export (reloads UI)")
+    or " (no profiler addon loaded)"
+end
+
+local function profilerState()
+  local loaded = ESO_PROFILER ~= nil and StartScriptProfiler and StopScriptProfiler
+  return loaded, loaded and not ESO_PROFILER.profiling
+end
+
+-- run scenario ids in sequence under one profiler run
+-- (each scenario sets a marker, so you can identify it in the dump)
+local function runSequence(ns)
+  local sc = scenarios()
+  local loaded, autoProfile = profilerState()
+  local label = (#ns == 1) and tostring(ns[1]) or "ALL"
+  d(string.format("|cFF3333FurCDev|r: benchmark %s%s ...", label, autoProfile and " [profiling]" or ""))
+
+  local all = {}
+  for idx, n in ipairs(ns) do
+    local setup = sc[n].setup and sc[n].setup() or { { fn = ensureOpen, delay = 700 }, { fn = resetState } }
+    for _, s in ipairs(setup) do
+      all[#all + 1] = s
+    end
+    if idx == 1 and autoProfile then
+      all[#all + 1] = { fn = StartScriptProfiler }
+    end
+    all[#all + 1] = {
+      fn = function()
+        mark(n .. " " .. sc[n].label)
+      end,
+    }
+    for _, s in ipairs(sc[n].steps()) do
+      all[#all + 1] = s
+    end
+  end
+
+  runSteps(all, function()
+    if autoProfile then
+      StopScriptProfiler()
+    end
+    d("|cFF3333FurCDev|r: benchmark " .. label .. " done" .. exportHint(autoProfile, loaded))
+    PlaySound(SOUNDS.JUSTICE_PICKPOCKET_BONUS)
+  end)
+end
 
 local function runBenchmark(token)
-  local n = tonumber(token)
   local sc = scenarios()
+  local n = tonumber(token)
   if not n or not sc[n] then
-    d("|cFF3333FurCDev|r: unknown scenario '" .. tostring(token) .. "'.")
-    return listScenarios()
+    d("|cFF3333FurCDev|r: unknown scenario '" .. tostring(token) .. "'. Scenarios:\n" .. scenarioListText())
+    return
   end
-  if not FurCGui or (FurCGui:IsControlHidden() and n ~= 6) then
-    d("|cFF3333FurCDev|r: open the FurC window first")
-  end
-
-  -- use ESO Profiler automatically, if loaded
-  local profilerLoaded = ESO_PROFILER ~= nil and StartScriptProfiler and StopScriptProfiler
-  local autoBracket = profilerLoaded and not ESO_PROFILER.profiling
-  d(string.format("|cFF3333FurCDev|r: benchmark %d (%s)%s ...", n, sc[n].label, autoBracket and " [profiling]" or ""))
-
-  -- reset OUTSIDE profiler logging, then run scenario
-  runSteps({ { fn = resetState } }, function()
-    if autoBracket then
-      StartScriptProfiler()
-    end
-    runSteps(sc[n].steps(), function()
-      if autoBracket then
-        StopScriptProfiler()
-      end
-      local tail = (autoBracket and " - open Journal > ESO Profiler > Export")
-        or (profilerLoaded and " - stop profiler & export")
-        or " (no profiler addon loaded)"
-      d("|cFF3333FurCDev|r: benchmark " .. n .. " done" .. tail)
-      PlaySound(SOUNDS.JUSTICE_PICKPOCKET_BONUS)
-    end)
+  confirm("Run: " .. sc[n].label, function()
+    runSequence({ n })
   end)
 end
 this.RunBenchmark = runBenchmark
+
+local function runAll()
+  local sc = scenarios()
+  local ns = {}
+  for i = 1, #sc do
+    ns[i] = i
+  end
+  confirm("Run ALL in order:\n" .. scenarioListText(), function()
+    runSequence(ns)
+  end)
+end
+this.RunAllBenchmarks = runAll

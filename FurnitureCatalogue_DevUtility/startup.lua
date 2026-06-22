@@ -83,11 +83,13 @@ local function handleSlash(args)
   -- run tests
   elseif cmd == "test" then
     runTests(rest or "")
-  -- profiling benchmarks
+  -- profiling benchmarks (runs all if no id)
   elseif cmd == "bench" then
     local bn = tostring(rest or ""):match("^(%S*)")
     if bn == "" then
-      (this.ListBenchmarks or function() end)()
+      if this.RunAllBenchmarks then
+        this.RunAllBenchmarks()
+      end
     elseif this.RunBenchmark then
       this.RunBenchmark(bn)
     end
@@ -96,7 +98,7 @@ local function handleSlash(args)
     d("Cmds: |cAACCFF/furcdev|r            toggle trader box")
     d("      |cAACCFF/furcdev tests|r      list tests")
     d("      |cAACCFF/furcdev test [id]|r  run test")
-    d("      |cAACCFF/furcdev bench [n]|r  run profiling scenario")
+    d("      |cAACCFF/furcdev bench [n]|r  run profiler scenario (leave empty for all)")
   end
 end
 this.HandleSlash = handleSlash
