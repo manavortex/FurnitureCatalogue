@@ -30,6 +30,29 @@ local gsub = string.gsub
 local match = string.match
 local getItemLink = FurC.Utils.GetItemLink
 
+-- Build item link lazily (only if required and not already cached)
+local function ensureItemLink()
+  if nil == itemLink then
+    itemLink = getItemLink(itemId)
+  end
+  return itemLink
+end
+
+-- itemType for id doesn't change, so we can cache it
+local validTypeCache = {}
+local function isValidItemType()
+  local valid = validTypeCache[itemId]
+  if nil == valid then
+    local itemType, sItemType = GetItemLinkItemType(ensureItemLink())
+    valid = not (0 == itemType and 0 == sItemType)
+    validTypeCache[itemId] = valid
+    if not valid then
+      FurC.Logger:Debug("invalid itemtype for %s", itemId)
+    end
+  end
+  return valid
+end
+
 function FurC.SetFilter(useDefaults, skipRefresh)
   ClearTooltip(InformationTooltip)
   searchString = FurC.GetSearchFilter()
@@ -49,7 +72,7 @@ function FurC.SetFilter(useDefaults, skipRefresh)
 
   qualityFilter = FurC.GetFilterQuality()
   craftingTypeFilter = FurC.GetFilterCraftingType()
-  furnCategoryFilter    = FurC.GetFilterFurnCategory()
+  furnCategoryFilter = FurC.GetFilterFurnCategory()
   furnSubcategoryFilter = FurC.GetFilterFurnSubcategory()
   hideBooks = FurC.GetHideBooks()
   hideRumours = not FurC.GetShowRumours() and ddSource ~= src.RUMOUR and (FurC.GetHideRumourRecipes())
@@ -151,7 +174,9 @@ local function matchSourceDropdown()
     end
     -- look up the item in PVP data to check its currency
     local versionData = FurC.PVP[recipeArray.version]
-    if not versionData then return false end
+    if not versionData then
+      return false
+    end
     for vendorName, vendorData in pairs(versionData) do
       for locationName, locationData in pairs(vendorData) do
         local item = locationData[itemId]
@@ -168,7 +193,9 @@ local function matchSourceDropdown()
     end
     -- exclude TelVar items from the AP filter
     local versionData = FurC.PVP[recipeArray.version]
-    if not versionData then return true end
+    if not versionData then
+      return true
+    end
     for vendorName, vendorData in pairs(versionData) do
       for locationName, locationData in pairs(vendorData) do
         local item = locationData[itemId]
@@ -194,7 +221,7 @@ local function matchSearchString()
   if #searchString == 0 then
     return true
   end
-  local itemName = LocaleAwareToLower(GetItemLinkName(itemLink))
+  local itemName = LocaleAwareToLower(GetItemLinkName(ensureItemLink()))
   local escapedStr = LocaleAwareToLower(searchString)
   escapedStr = gsub(escapedStr, "-", "%%-")
   if match(itemName, escapedStr) then
@@ -229,7 +256,7 @@ local function matchCraftingTypeFilter()
   return filterType and filterType > 0 and craftingTypeFilter[filterType]
 end
 local function matchQualityFilter()
-  return qualityFilter[GetItemLinkQuality(itemLink)]
+  return qualityFilter[GetItemLinkQuality(ensureItemLink())]
 end
 
 local function filterBooks(itemId, recipeArray)
@@ -249,7 +276,7 @@ local function matchFurnCategoryFilter()
     return true
   end
 
-  local itemCat    = recipeArray.furnCategory    or 0
+  local itemCat = recipeArray.furnCategory or 0
   local itemSubcat = recipeArray.furnSubcategory or 0
 
   -- Check if the item's top-level category is selected
@@ -272,56 +299,51 @@ end
 
 function FurC.MatchFilter(currentItemId, currentRecipeArray)
   itemId = currentItemId
-  itemLink = getItemLink(currentItemId)
-  recipeArray = currentRecipeArray or FurC.Find(itemLink)
-  itemType, sItemType = GetItemLinkItemType(itemLink)
-  if 0 == itemType and 0 == sItemType then
-    if currentRecipeArray.recipeId then
-      FurC.Logger:Debug("invalid item type for %s (recipe ID %s)", currentItemId, currentRecipeArray.recipeId)
-    else
-      FurC.Logger:Debug("invalid item type for %s", currentItemId)
-    end
+  itemLink = nil -- built on demand
+  recipeArray = currentRecipeArray or FurC.Find(ensureItemLink())
+  if nil == recipeArray then
     return false
   end
 
-  if filterBooks(currentItemId, recipeArray) then
-    return false
-  end
+  local origin = recipeArray.origin
 
-  if not matchSearchString() then
-    return false
-  end
-
-  if recipeArray.origin == src.RUMOUR and hideRumours then
-    if not showAllRumourOnTextSearch and matchSearchString() then
+  -- Hidden rumours / crown-store bypass filter and only show up through text search override
+  if origin == src.RUMOUR and hideRumours then
+    if filterBooks(itemId, recipeArray) then
       return false
     end
-    return true
+    return showAllRumourOnTextSearch and matchSearchString() and isValidItemType()
   end
-
-  if recipeArray.origin == src.CROWN and hideCrownStore then
-    if not showAllCrownOnTextSearch then
+  if origin == src.CROWN and hideCrownStore then
+    if filterBooks(itemId, recipeArray) then
       return false
     end
-    return true
+    return showAllCrownOnTextSearch and matchSearchString() and isValidItemType()
   end
 
+  -- Filter stuff out first before expensive operations
+  if filterBooks(itemId, recipeArray) then
+    return false
+  end
   if not (matchVersionDropdown() and matchSourceDropdown()) then
     return false
   end
-
-  if not (FurC.settings.filterCraftingTypeAll or matchCraftingTypeFilter()) then
-    return false
-  end
-
-  if not (FurC.settings.filterQualityAll or matchQualityFilter()) then
-    return false
-  end
-
   if not (FurC.settings.filterFurnCategoryAll and FurC.settings.filterFurnSubcategoryAll) then
     if not matchFurnCategoryFilter() then
       return false
     end
+  end
+  if not (FurC.settings.filterCraftingTypeAll or matchCraftingTypeFilter()) then
+    return false
+  end
+  if not (FurC.settings.filterQualityAll or matchQualityFilter()) then
+    return false
+  end
+  if not matchSearchString() then
+    return false
+  end
+  if not isValidItemType() then
+    return false
   end
 
   return true
