@@ -46,6 +46,39 @@ FurC.Constants.ItemSources = {
   COLL_MERCH = getNextIdFor("ITEM_SOURCES"), -- 22
 }
 
+FurC.DB = FurC.DB or {}
+
+-- Ranking for multi-source
+do
+  local src = FurC.Constants.ItemSources
+  FurC.DB.SOURCE_PRIORITY = {
+    [src.CRAFTING] = 10,
+    -- purchased (in-game currencies)
+    [src.VENDOR] = 20,
+    [src.WRIT_VENDOR] = 21,
+    [src.ROLIS] = 22,
+    [src.TOMES] = 23,
+    [src.PVP] = 30,
+    [src.TELVAR] = 31,
+    [src.COLL_MERCH] = 32,
+    -- drop / harvest / steal
+    [src.DROP] = 40,
+    [src.JUSTICE] = 41,
+    [src.FISHING] = 42,
+    -- time-limited / rotating stock
+    [src.LUXURY] = 50,
+    [src.FESTIVAL_DROP] = 51,
+    -- real money
+    -- [src.HOUSING]    = 60, -- maybe?
+    [src.BAZAAR] = 61,
+    [src.CROWN] = 62,
+    -- other
+    [src.OTHER] = 70,
+    [src.GUILDSTORE] = 98, -- do we even use this?
+    [src.RUMOUR] = 99,
+  }
+end
+
 -- TODO #REFACTOR Switch version numbering to the same as game update numbers
 
 -- versioning
