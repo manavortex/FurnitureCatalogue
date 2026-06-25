@@ -59,10 +59,8 @@ end
 
 function FurC.GUIButtonRefreshOnMouseUp(control, mouseButton)
   if mouseButton == 1 then
-    FurC.ScanRecipes(false, true)
-  elseif mouseButton == 2 then
-    FurC.ScanRecipes(true, false)
-  elseif mouseButton == 3 then
+    FurC.ScanRecipes(true, true)
+  else
     if LAM and LAM.util then
       LAM.util.ShowConfirmationDialog(
         GetString(SI_FURC_DIALOGUE_RESET_DB_HEADER),
