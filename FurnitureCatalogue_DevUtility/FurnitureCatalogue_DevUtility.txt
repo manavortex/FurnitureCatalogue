@@ -22,3 +22,4 @@ test/setup.lua
 test/contract_libprice.lua
 test/contract_furnitureshoppinglist.lua
 test/unit_utils.lua
+test/unit_db_upsert.lua

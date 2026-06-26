@@ -50,24 +50,58 @@ local function cacheFurnishingCategory(itemLink, recipeArray)
 end
 FurC.CacheFurnishingCategory = cacheFurnishingCategory
 
-local function addDatabaseEntry(recipeKey, recipeArray)
-  if recipeKey and recipeArray and next(recipeArray) ~= nil then
-    if FurC.settings.data[recipeKey] ~= nil then
-      for k, v in pairs(recipeArray) do
-        FurC.settings.data[recipeKey][k] = v
-      end
-    else
-      FurC.settings.data[recipeKey] = recipeArray
-      FurC.sortIndexDirty = true -- new id? -> rebuild cache in GUI
-    end
-    -- Cache furnishing category IDs onto the stored entry
-    local storedEntry = FurC.settings.data[recipeKey]
-    local itemLink = getItemLink(recipeKey)
-    if itemLink then
-      cacheFurnishingCategory(itemLink, storedEntry)
+local SOURCE_PRIORITY = FurC.DB.SOURCE_PRIORITY
+local function primarySource(sources)
+  local best, bestRank
+  for s in pairs(sources) do
+    local rank = SOURCE_PRIORITY[s] or math.huge
+    if not bestRank or rank < bestRank or (rank == bestRank and s < best) then
+      best, bestRank = s, rank
     end
   end
+  return best
 end
+
+-- partial update or full overwrite
+local function addDatabaseEntry(recipeKey, partial)
+  if not (recipeKey and partial and next(partial) ~= nil) then
+    return
+  end
+
+  local stored = FurC.settings.data[recipeKey]
+  if stored == nil then
+    stored = partial
+    FurC.settings.data[recipeKey] = stored
+    FurC.sortIndexDirty = true -- marker for GUI rebuild
+  else
+    for k, v in pairs(partial) do
+      if k ~= "origin" and k ~= "sources" then
+        stored[k] = v -- last writer wins
+      end
+    end
+  end
+
+  local sources = stored.sources or {}
+  stored.sources = sources
+  if partial.sources then
+    for s in pairs(partial.sources) do
+      sources[s] = true
+    end
+  end
+  if partial.origin ~= nil then
+    sources[partial.origin] = true
+  end
+  if next(sources) ~= nil then
+    stored.origin = primarySource(sources)
+  end
+
+  -- Cache furnishing category IDs onto the stored entry
+  local itemLink = getItemLink(recipeKey)
+  if itemLink then
+    cacheFurnishingCategory(itemLink, stored)
+  end
+end
+FurC.DB.Upsert = addDatabaseEntry
 
 local function makeMaterial(recipeKey, recipeArray, tryPlaintext, forcePlaintext)
   if
