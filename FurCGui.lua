@@ -569,15 +569,20 @@ local function createGui()
     comboBox:SetSortsItems(false)
 
     if dropdownName == "Character" then
-      for _, characterName in ipairs(FurC.GetAccountCrafters()) do
+      validChoices = { GetString(SI_FURC_FILTER_CHAR_OFF) }
+      dropdownData.ChoicesCharacter = validChoices
+      dropdownData.TooltipsCharacter = { GetString(SI_FURC_FILTER_CHAR_OFF_TT) }
+      local names = (FurC.Lib.LCKAvailable() and FurC.Lib.GetCharacterNames()) or {}
+      for _, characterName in ipairs(names) do
         table.insert(validChoices, characterName)
         table.insert(
-          dropdownData["Tooltips" .. dropdownName],
+          dropdownData.TooltipsCharacter,
           zo_strformat(GetString(SI_FURC_STRING_RECIPESFORCHAR), characterName)
         )
       end
     end
 
+    comboBox:ClearItems()
     for _, val in pairs(validChoices) do
       comboBox:AddItem(comboBox:CreateItemEntry(val, OnItemSelect))
       if val == FurC.GetDropdownChoiceTextual(dropdownName) then
@@ -586,6 +591,21 @@ local function createGui()
     end
 
     SetupTooltips(comboBox, dropdownData["Tooltips" .. dropdownName])
+
+    if dropdownName == "Character" then
+      local available = FurC.Lib.LCKAvailable()
+      comboBox:SetEnabled(available)
+      if not available then
+        control:SetMouseEnabled(true)
+        control:SetHandler("OnMouseEnter", function(self)
+          InitializeTooltip(InformationTooltip, self, TOPRIGHT, -10, 0, TOPLEFT)
+          SetTooltipText(InformationTooltip, GetString(SI_FURC_STRING_CHARACTER_NEEDS_LCK))
+        end)
+        control:SetHandler("OnMouseExit", function()
+          ClearTooltip(InformationTooltip)
+        end)
+      end
+    end
 
     return control
   end
@@ -597,6 +617,9 @@ local function createGui()
   createInventoryDropdown("Source")
   createInventoryDropdown("Version")
   createInventoryDropdown("Character")
+  FurC.RefreshCharacterDropdown = function()
+    createInventoryDropdown("Character")
+  end
   FurC.ChangeTemplateFromButton(FurC.GetTinyUi())
   FurC.SetFontSize(FurC.GetFontSize())
   FurC.LoadFrameInfo()

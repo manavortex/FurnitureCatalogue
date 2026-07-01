@@ -284,6 +284,7 @@ local strings = {
   SI_FURC_SRC_STEAL = "stealing^N,from",
   SI_FURC_SRC_TOT = "Tales of Tribute^P,from",
   SI_FURC_STRING_CANNOT_CRAFT = "You cannot craft this yet",
+  SI_FURC_STRING_CHARACTER_NEEDS_LCK = "Install LibCharacterKnowledge to filter by character",
   SI_FURC_STRING_CONTEXTMENU_DIVIDER = "Don't use divider in context menu?",
   SI_FURC_STRING_CONTEXTMENU_DIVIDER_TT = "Adds a divider to the context menu above the - Furniture entry. Check to disable",
   SI_FURC_STRING_CONTEXTMENU_INVENTORY = "Disable context menu in inventory?",

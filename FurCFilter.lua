@@ -129,11 +129,20 @@ function FurC.InitFilters()
 end
 
 local function isRecipeArrayKnown()
+  if FurC.Lib.LCKAvailable() then
+    -- LCK tracks recipe, not furnishing result
+    local recipeItem = recipeArray and recipeArray.blueprint and getItemLink(recipeArray.blueprint)
+    if not recipeItem then
+      return
+    end
+    local name = (dropdownChoiceCharacter ~= 1) and ddTextCharacter or nil
+    return FurC.Lib.IsKnownByName(recipeItem, name)
+  end
   if nil == recipeArray or nil == recipeArray.characters then
     return
   end
   if dropdownChoiceCharacter == 1 then
-    for name, value in pairs(recipeArray.characters) do
+    for _, value in pairs(recipeArray.characters) do
       if value then
         return true
       end

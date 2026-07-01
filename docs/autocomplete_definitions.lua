@@ -946,6 +946,7 @@ Logger = nil
 ---@field KNOWLEDGE_UNKNOWN integer
 ---@field KNOWLEDGE_NODATA integer  # 0, character never scanned
 ---@field KNOWLEDGE_INVALID integer # -1, not learnable
+---@field EVENT_INITIALIZED integer
 ---@field EVENT_UPDATE_REFRESH integer
 ---@field GetServerList fun(): table
 ---@field GetCharacterList fun(server: any): table
@@ -953,7 +954,7 @@ Logger = nil
 ---@field GetItemName fun(item: any): string
 ---@field GetItemCategory fun(item: any): number
 ---@field GetItemKnowledgeForCharacter fun(item: string|integer, server?: string, charId?: integer): integer
----@field GetItemKnowledgeList fun(item: string|integer, server?: string, includedCharIds?: table<integer, boolean>): { knowledge: integer }[]
+---@field GetItemKnowledgeList fun(item: string|integer, server?: string, includedCharIds?: table<integer, boolean>): { id: integer, account: string, name: string, knowledge: integer }[]
 ---@field IsKnowledgeUsable fun(knowledge: any): boolean
 ---@field GetItemIdsForCategory fun(category: any): table
 ---@field GetMotifStyles fun(): any

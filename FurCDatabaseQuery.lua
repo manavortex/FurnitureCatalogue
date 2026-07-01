@@ -297,11 +297,20 @@ function FurC.GetCrafterList(itemLink, recipeArray)
     return zo_strformat("FurC.GetCrafterList called for a non-craftable")
   end
 
+  if FurC.Lib.LCKAvailable() then
+    local recipeItem = recipeArray.blueprint and FurC.Utils.GetItemLink(recipeArray.blueprint)
+    local names = recipeItem and FurC.Lib.GetCrafterNames(recipeItem)
+    if not names or #names == 0 then
+      return strCantCraft
+    end
+    return strCraftedBy .. table.concat(names, ", ")
+  end
+
   if nil == recipeArray.characters or NonContiguousCount(recipeArray.characters) == 0 then
     return strCantCraft
   end
   local ret = strCraftedBy
-  for characterName, characterKnowledge in pairs(recipeArray.characters) do
+  for characterName in pairs(recipeArray.characters) do
     ret = string.format("%s %s, ", ret, characterName)
   end
   return ret:sub(0, -3)
