@@ -53,18 +53,7 @@ function FurC.CreateSettings(savedVars, defaults)
       tooltip = GetString(SI_FURC_STRING_MENU_SCAN_FILES_TT),
       width = "half",
       func = function()
-        FurC.ScanRecipes(true, false)
-        FurC.UpdateGui()
-      end,
-    },
-    { -- button: Re-scan data
-      type = "button",
-      name = GetString(SI_FURC_STRING_MENU_SCAN_CHAR_NAME),
-      tooltip = GetString(SI_FURC_STRING_MENU_SCAN_CHAR_TT),
-      width = "half",
-      func = function()
-        FurC.ScanRecipes(false, true)
-        FurC.UpdateGui()
+        FurC.RescanFiles()
       end,
     },
     -- =======================================================================================

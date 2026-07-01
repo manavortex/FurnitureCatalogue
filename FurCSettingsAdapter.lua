@@ -620,11 +620,7 @@ end
 
 function FurC.WipeDatabase()
   d("resetting Furniture Catalogue data...")
-  FurC.settings.data = {}
-  FurC.settings.accountCharacters = {}
-  FurC.settings.excelExport = {}
-  FurC.ScanRecipes(true, true)
-  -- d("FurnitureCatalogue: Scan complete")
+  FurC.RebuildDB()
 end
 
 function FurC.GetCurrentCharacterName()

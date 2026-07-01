@@ -4,7 +4,6 @@ local function onRecipeLearned(eventCode, recipeListIndex, recipeIndex)
   local itemlink = GetRecipeResultItemLink(recipeListIndex, recipeIndex, LINK_STYLE_BRACKETS)
   local info = zo_strformat(GetString(SI_FURC_STRING_RECIPELEARNED), itemlink, recipeListIndex, recipeIndex)
   FurC.Logger:Debug(info)
-  FurC.TryCreateRecipeEntry(recipeListIndex, recipeIndex)
   FurC.UpdateGui()
 end
 

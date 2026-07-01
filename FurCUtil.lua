@@ -504,8 +504,11 @@ function this.GetBlueprintForItem(itemLink)
   if IsItemLinkFurnitureRecipe(itemLink) then
     return itemLink
   end
-  local blueprintId = FurC.DB[GetItemLinkItemId(itemLink)].blueprint
-  return this.GetItemLink(blueprintId)
+  local entry = FurC.DB[GetItemLinkItemId(itemLink)]
+  if not entry or not entry.blueprint then
+    return ""
+  end
+  return this.GetItemLink(entry.blueprint)
 end
 
 ---Example: FurC.Utils.GetBlueprintForItem("|H1:item:166781:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h") -> "|H1:item:165634:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"

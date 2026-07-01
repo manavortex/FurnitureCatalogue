@@ -46,12 +46,13 @@ FurC.Constants.ItemSources = {
   COLL_MERCH = getNextIdFor("ITEM_SOURCES"), -- 22
 }
 
+-- Runtime furniture database: FurC.DB[itemId] = recipeArray
 FurC.DB = FurC.DB or {}
 
 -- Ranking for multi-source
 do
   local src = FurC.Constants.ItemSources
-  FurC.DB.SOURCE_PRIORITY = {
+  FurC.Constants.SOURCE_PRIORITY = {
     [src.CRAFTING] = 10,
     -- purchased (in-game currencies)
     [src.VENDOR] = 20,

@@ -1,4 +1,3 @@
-local currentChar = FurC.CharacterName
 local task = LibAsync:Create("FurnitureCatalogue_ScanDataFiles")
 
 local lastLink = nil
@@ -49,7 +48,7 @@ local function cacheFurnishingCategory(itemLink, recipeArray)
 end
 FurC.CacheFurnishingCategory = cacheFurnishingCategory
 
-local SOURCE_PRIORITY = FurC.DB.SOURCE_PRIORITY
+local SOURCE_PRIORITY = FurC.Constants.SOURCE_PRIORITY
 local function primarySource(sources)
   local best, bestRank
   for s in pairs(sources) do
@@ -67,10 +66,10 @@ local function addDatabaseEntry(recipeKey, partial)
     return
   end
 
-  local stored = FurC.settings.data[recipeKey]
+  local stored = FurC.DB[recipeKey]
   if stored == nil then
     stored = partial
-    FurC.settings.data[recipeKey] = stored
+    FurC.DB[recipeKey] = stored
     FurC.sortIndexDirty = true -- marker for GUI rebuild
   else
     for k, v in pairs(partial) do
@@ -100,7 +99,7 @@ local function addDatabaseEntry(recipeKey, partial)
     cacheFurnishingCategory(itemLink, stored)
   end
 end
-FurC.DB.Upsert = addDatabaseEntry
+FurC.Upsert = addDatabaseEntry
 
 local function makeMaterial(recipeKey, recipeArray, tryPlaintext, forcePlaintext)
   if
@@ -162,7 +161,7 @@ local function parseFurnitureItem(itemLink, override) -- saves to DB, returns re
   end
 
   local recipeKey = GetItemLinkItemId(itemLink)
-  local recipeArray = FurC.settings.data[recipeKey]
+  local recipeArray = FurC.DB[recipeKey]
   if nil ~= recipeArray then
     return recipeArray
   end
@@ -186,7 +185,7 @@ local function parseBlueprint(blueprintLink) -- saves to DB, returns recipeArray
     return
   end
 
-  local recipeArray = FurC.settings.data[recipeKey] or {}
+  local recipeArray = FurC.DB[recipeKey] or {}
   recipeArray.origin = recipeArray.origin or src.CRAFTING
   recipeArray.craftingSkill = recipeArray.craftingSkill or GetItemLinkCraftingSkillType(blueprintLink)
   recipeArray.blueprint = recipeArray.blueprint or getItemId(blueprintLink)
@@ -199,6 +198,7 @@ end
 ---@param itemOrBlueprintLink any
 ---@return table
 function FurC.Find(itemOrBlueprintLink)
+  FurC.EnsureDB()
   if tonumber(itemOrBlueprintLink) == itemOrBlueprintLink then
     itemOrBlueprintLink = getItemLink(itemOrBlueprintLink)
   end
@@ -220,8 +220,8 @@ function FurC.Find(itemOrBlueprintLink)
     recipeArray = parseFurnitureItem(itemOrBlueprintLink)
   else
     itemId = getItemId(itemOrBlueprintLink)
-    if itemId ~= nil and tonumber(itemId) > 0 and FurC.settings.data ~= nil then
-      recipeArray = FurC.settings.data[itemId]
+    if itemId ~= nil and tonumber(itemId) > 0 then
+      recipeArray = FurC.DB[itemId]
     end
   end
 
@@ -234,7 +234,7 @@ function FurC.Delete(itemOrBlueprintLink) -- sets recipeArray, returns it - call
     return
   end
   if nil ~= recipeArray.itemId then
-    FurC.settings.data[recipeArray.itemId] = nil
+    FurC.DB[recipeArray.itemId] = nil
     FurC.sortIndexDirty = true
   end
 end
@@ -301,38 +301,12 @@ function FurC.MigrateFavorites()
   end
 end
 
+-- Cleanup of legacy SavedVars
 -- TODO: rm after 2-3 major updates
-function FurC.MigrateCharacterKnowledge()
-  if not FurC.settings.data then
-    return
-  end
-  for _, entry in pairs(FurC.settings.data) do
-    if type(entry) == "table" then
-      entry.characters = nil
-    end
-  end
-end
-
-local function scanRecipeIndices(recipeListIndex, recipeIndex) -- returns recipeArray or nil, initialises
-  local itemLink = GetRecipeResultItemLink(recipeListIndex, recipeIndex, LINK_STYLE_BRACKETS)
-  if nil == itemLink or #itemLink == 0 or not IsItemLinkPlaceableFurniture(itemLink) then
-    return
-  end
-
-  local recipeKey = getItemId(itemLink)
-
-  local recipeArray = FurC.settings.data[recipeKey] or {}
-  recipeArray.origin = src.CRAFTING
-  recipeArray.version = recipeArray.version or 2
-  recipeArray.recipeListIndex = recipeArray.recipeListIndex or recipeListIndex
-  recipeArray.recipeIndex = recipeArray.recipeIndex or recipeIndex
-
-  addDatabaseEntry(recipeKey, recipeArray)
-  return recipeArray
-end
-
-function FurC.TryCreateRecipeEntry(recipeListIndex, recipeIndex) -- returns scanRecipeIndices, called from Events.lua
-  return scanRecipeIndices(recipeListIndex, recipeIndex)
+function FurC.PurgeLegacySavedVars()
+  FurC.settings.data = nil
+  FurC.settings.accountCharacters = nil
+  FurC.settings.excelExport = nil
 end
 
 -- Current character: live game data, no persistence needed.
@@ -340,7 +314,10 @@ function FurC.CanCraft(recipeKey, recipeArray)
   if recipeKey == nil and recipeArray == nil then
     return false
   end
-  recipeArray = recipeArray or FurC.settings.data[recipeKey]
+  if recipeArray == nil then
+    FurC.EnsureDB()
+    recipeArray = FurC.DB[recipeKey]
+  end
   if nil == recipeArray or nil == recipeArray.blueprint then
     return false
   end
@@ -352,7 +329,10 @@ function FurC.IsAccountKnown(recipeKey, recipeArray)
   if recipeKey == nil and recipeArray == nil then
     return false
   end
-  recipeArray = recipeArray or FurC.settings.data[recipeKey]
+  if recipeArray == nil then
+    FurC.EnsureDB()
+    recipeArray = FurC.DB[recipeKey]
+  end
   if nil == recipeArray then
     return false
   end
@@ -375,21 +355,9 @@ function FurC.GetCraftingSkillType(recipeKey, recipeArray)
   return craftingSkillType
 end
 
-local function scanCharacter()
-  local listName, numRecipes
-  for recipeListIndex = 1, GetNumRecipeLists() do
-    listName, numRecipes = GetRecipeListInfo(recipeListIndex)
-    for recipeIndex = 1, numRecipes do
-      scanRecipeIndices(recipeListIndex, recipeIndex) --  returns true on success
-    end
-  end
-  FurC.Logger:Debug(GetString(SI_FURC_DEBUG_CHARSCANCOMPLETE))
-end
-FurC.ScanCharacter = scanCharacter
-
 function FurC.RescanRumourRecipes()
   local function rescan()
-    for itemId, recipeArray in pairs(FurC.settings.data) do
+    for itemId, recipeArray in pairs(FurC.DB) do
       if recipeArray.source == src.RUMOUR then
         local itemLink = recipeArray[itemLink]
         if not FurC.RumourRecipes[itemLink] then
@@ -409,7 +377,8 @@ function FurC.RescanRumourRecipes()
 end
 
 local recipeArray
-local function scanFromFiles(shouldScanCharacter)
+local isBuilding = false
+local function scanFromFiles()
   local function parseZoneData(zoneName, zoneData, versionNumber, origin)
     for vendorName, vendorData in pairs(zoneData) do
       for itemId, itemData in pairs(vendorData) do
@@ -595,12 +564,12 @@ local function scanFromFiles(shouldScanCharacter)
     end
   end
 
-  local function scanCharacterOrMaybeNot()
-    if shouldScanCharacter then
-      scanCharacter()
-    end
+  local function finish()
+    isBuilding = false
+    FurC.UpdateGui()
   end
 
+  isBuilding = true
   FurC.IsLoading(true)
 
   if nil ~= task then
@@ -610,69 +579,48 @@ local function scanFromFiles(shouldScanCharacter)
       :Then(scanVendorFiles)
       :Then(scanRolis)
       :Then(scanFestivalFiles)
-      :Then(scanCharacterOrMaybeNot)
       :Then(scanRumours)
-      :Then(FurC.UpdateGui)
+      :Then(finish)
   else
     scanRecipeFile()
     scanMiscItemFile()
     scanVendorFiles()
     scanRolis()
     scanFestivalFiles()
-    scanCharacterOrMaybeNot()
     scanRumours()
-    FurC.UpdateGui()
-  end
-end
-FurC.ScanFromFiles = scanFromFiles
-
-local function getScanFromFiles()
-  if FurC.settings.version < FurC.version then
-    FurC.settings.version = FurC.version
-    return true
-  end
-
-  return FurC.settings.data == {}
-end
-
-local function getScanCharacter()
-  if nil == FurC.settings.accountCharacters[FurC.CharacterName] then
-    FurC.settings.accountCharacters[FurC.CharacterName] = false
-    return true
+    finish()
   end
 end
 
--- Backfills furnishing category cache for any entries that pre-date this
--- feature. Called once during initialisation after the database is loaded.
-function FurC.BackfillFurnishingCategories()
-  local function doBackfill()
-    for itemId, recipeArray in pairs(FurC.settings.data) do
-      if recipeArray.furnCategory == nil then
-        local itemLink = getItemLink(itemId)
-        if itemLink then
-          cacheFurnishingCategory(itemLink, recipeArray)
-        end
-      end
-    end
+--- Builds runtime DB from bundled data files if empty
+function FurC.EnsureDB()
+  if isBuilding or next(FurC.DB) ~= nil then
+    return
   end
-
-  if task then
-    task:Call(doBackfill)
-  else
-    doBackfill()
-  end
+  FurC.Logger:Debug(GetString(SI_FURC_VERBOSE_SCANNING_DATA_FILE))
+  scanFromFiles()
 end
 
-function FurC.ScanRecipes(shouldScanFiles, shouldScanCharacter) -- returns database
-  shouldScanFiles = shouldScanFiles or getScanFromFiles()
-  shouldScanCharacter = (shouldScanCharacter or getScanCharacter())
-  if shouldScanFiles then
-    FurC.Logger:Debug(GetString(SI_FURC_VERBOSE_SCANNING_DATA_FILE))
-    scanFromFiles(shouldScanCharacter)
-  elseif shouldScanCharacter then
-    FurC.Logger:Debug(GetString(SI_FURC_VERBOSE_SCANNING_CHARS))
-    scanCharacter()
+--- Applies bundled data files over current DB again
+function FurC.RescanFiles()
+  if isBuilding then
+    return
   end
+  FurC.Logger:Debug(GetString(SI_FURC_VERBOSE_SCANNING_DATA_FILE))
+  scanFromFiles()
+end
+
+--- Wipes runtime DB and rebuilds it from bundled data
+function FurC.RebuildDB()
+  if isBuilding then
+    return
+  end
+  for itemId in pairs(FurC.DB) do
+    FurC.DB[itemId] = nil
+  end
+  FurC.sortIndexDirty = true
+  FurC.Logger:Debug(GetString(SI_FURC_VERBOSE_SCANNING_DATA_FILE))
+  scanFromFiles()
 end
 
 function FurC.GetItemDescription(recipeKey, recipeArray, stripColor)
@@ -716,9 +664,10 @@ function FurC.ShouldBeInFurC(link)
   if not link then
     return false
   end
+  FurC.EnsureDB()
 
   if IsItemLinkPlaceableFurniture(link) then
-    return nil == FurC.settings.data[getItemId(link)]
+    return nil == FurC.DB[getItemId(link)]
   end
 
   -- if not IsItemLinkFurnitureRecipe(link) then	return false end
@@ -753,5 +702,5 @@ function FurC.ShouldBeInFurC(link)
   end
 
   -- yeah okay, it should actually return false, but this is a util function for datamining
-  return nil == FurC.settings.data[resultId]
+  return nil == FurC.DB[resultId]
 end

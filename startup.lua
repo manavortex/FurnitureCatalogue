@@ -32,8 +32,8 @@ local defaults = {
   hideMats = true,
   dontScanTradingHouse = false,
   enableDebug = false,
+  skipInitialScan = true,
 
-  data = {},
   favorites = {},
   filterCraftingType = {},
   filterQuality = {},
@@ -57,8 +57,6 @@ local defaults = {
     Character = 1,
     Version = 1,
   },
-
-  accountCharacters = {},
 
   -- tooltips
   disableTooltips = false,
@@ -350,18 +348,19 @@ local function initialise(eventCode, addOnName)
 
   this.SetupInventoryRecipeIcons()
 
-  local scanFiles = false
   if this.settings.version < this.version then
     this.settings.version = this.version
-    scanFiles = true
   end
-
-  this.ScanRecipes(scanFiles, not this.GetSkipInitialScan())
   this.settings.databaseVersion = this.version
   SLASH_COMMANDS["/fur"] = FurnitureCatalogue_Toggle
-  this.BackfillFurnishingCategories()
+
   this.MigrateFavorites()
-  this.MigrateCharacterKnowledge()
+  this.PurgeLegacySavedVars()
+
+  -- DB is built lazily on first use
+  if not this.GetSkipInitialScan() then
+    this.EnsureDB()
+  end
   this.SetFilter(true)
 
   EVENT_MANAGER:UnregisterForEvent(this.name, EVENT_ADD_ON_LOADED)

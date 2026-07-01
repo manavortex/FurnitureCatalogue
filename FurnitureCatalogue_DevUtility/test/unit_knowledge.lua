@@ -158,15 +158,18 @@ Taneth("FurC:Unit", function()
 
   describe("FurC knowledge readers (live game API + LCK)", function()
     -- TODO: drop this after 2-3 major updates
-    it("MigrateCharacterKnowledge cleans up SavedVars", function()
-      local id = 118306
-      local saved = FurC.settings.data[id]
-      FurC.settings.data[id] = { origin = 1, characters = { Someone = true } }
+    it("PurgeLegacySavedVars drops the persisted DB and char-scan flags", function()
+      local savedData = FurC.settings.data
+      local savedChars = FurC.settings.accountCharacters
+      FurC.settings.data = { [118306] = { origin = 1, characters = { Someone = true } } }
+      FurC.settings.accountCharacters = { Someone = true }
 
-      FurC.MigrateCharacterKnowledge()
-      assert.is_nil(FurC.settings.data[id].characters)
+      FurC.PurgeLegacySavedVars()
+      assert.is_nil(FurC.settings.data)
+      assert.is_nil(FurC.settings.accountCharacters)
 
-      FurC.settings.data[id] = saved
+      FurC.settings.data = savedData
+      FurC.settings.accountCharacters = savedChars
     end)
 
     it("CanCraft reflects the current character's knowledge", function()

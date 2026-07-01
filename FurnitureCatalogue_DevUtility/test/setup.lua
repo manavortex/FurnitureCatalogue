@@ -11,11 +11,10 @@ FurCDev.Test = Test
 if not FurC.settings then
   FurC.settings = {}
 end
-FurC.settings.data = FurC.settings.data or {}
+
 FurC.settings.version = FurC.settings.version or 0
-FurC.settings.accountCharacters = FurC.settings.accountCharacters or {}
 FurC.settings.emptyItemSources = FurC.settings.emptyItemSources or {}
-FurC.CharacterName = FurC.CharacterName or "@EatsYourBugs"
+FurC.CharacterName = FurC.CharacterName or "Eats-Your-Bugs"
 
 local function count(t)
   local n = 0
@@ -43,11 +42,8 @@ function Test.dataset()
     return dataset
   end
 
-  if next(FurC.settings.data) == nil then
-    FurC.ScanRecipes(true, false)
-  end
-
-  local db = FurC.settings.data
+  FurC.EnsureDB()
+  local db = FurC.DB
 
   local DS = {}
   for id in pairs(db or {}) do
@@ -79,7 +75,7 @@ function Test.link(id)
   return string.format("|H1:item:%d:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h", id)
 end
 
---- Count FurC.settings.data to check if scan ran at all
+--- Count FurC.DB to check if scan ran at all
 function Test.dbSize()
-  return count(FurC.settings.data)
+  return count(FurC.DB)
 end

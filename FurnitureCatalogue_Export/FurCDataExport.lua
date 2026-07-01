@@ -19,8 +19,13 @@ local function getSortTable(tbl)
 end
 
 function this.Export()
+  if next(FurC.DB) == nil then
+    FurC.EnsureDB()
+    d("FurnitureCatalogue DB is still building, run /furcexport again in a moment")
+    return
+  end
   local itemNames = {}
-  for itemId, recipeArray in pairs(FurC.settings.data) do
+  for itemId, recipeArray in pairs(FurC.DB) do
     if recipeArray.origin == src.CRAFTING then
       itemNames[GetItemLinkName(FurC.Utils.GetItemLink(itemId))] = FurC.Utils.GetItemLink(itemId)
     end

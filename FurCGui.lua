@@ -155,7 +155,7 @@ local sortedIndexKey
 FurC.sortIndexDirty = true
 
 local function buildSortedIndex(sortName, sortUp)
-  local data = FurC.settings.data
+  local data = FurC.DB
   local ids, vals = {}, {}
   for itemId, recipeArray in pairs(data) do
     ids[#ids + 1] = itemId
@@ -196,7 +196,7 @@ end
 
 local function updateScrollDataLinesData()
   local dataLines = {}
-  local data = FurC.settings.data
+  local data = FurC.DB
   local order = ensureSortedIndex()
   for i = 1, #order do
     local itemId = order[i]
@@ -658,6 +658,7 @@ function FurnitureCatalogue_Toggle()
     return
   end
 
+  FurC.EnsureDB()
   FurCGui_Empty:SetHidden(true)
   zo_callLater(function()
     FurC.UpdateGui(FurC.GetResetDropdownChoice())

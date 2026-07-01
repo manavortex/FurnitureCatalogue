@@ -59,7 +59,7 @@ end
 
 function FurC.GUIButtonRefreshOnMouseUp(control, mouseButton)
   if mouseButton == 1 then
-    FurC.ScanRecipes(true, true)
+    FurC.RescanFiles()
   else
     if LAM and LAM.util then
       LAM.util.ShowConfirmationDialog(

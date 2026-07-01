@@ -11,23 +11,18 @@ Taneth("FurC:Unit", function()
   local Test = FurCDev.Test
 
   -- Store SavedVars, so we don't wipe the real ones
-  local function protectSavedVars(dataKeys, fn)
+  local function protectSavedVars(fn)
     local savedFavorites = FurC.settings.favorites
+    local savedData = FurC.settings.data
     local savedUpdateGui = FurC.UpdateGui
-    local savedData = {}
-    for _, k in ipairs(dataKeys) do
-      savedData[k] = FurC.settings.data and FurC.settings.data[k]
-    end
     FurC.settings.favorites = {}
     FurC.UpdateGui = function() end
 
     local ok, err = pcall(fn)
 
     FurC.settings.favorites = savedFavorites
+    FurC.settings.data = savedData
     FurC.UpdateGui = savedUpdateGui
-    for _, k in ipairs(dataKeys) do
-      FurC.settings.data[k] = savedData[k]
-    end
     if not ok then
       error(err, 0)
     end
@@ -35,7 +30,7 @@ Taneth("FurC:Unit", function()
 
   describe("favourites (id set in SavedVars)", function()
     it("Toggles Faves and can read them", function()
-      protectSavedVars({}, function()
+      protectSavedVars(function()
         local id = 204688 -- Dawnwood Lantern, Hanging
         local link = Test.link(id)
 
@@ -62,7 +57,7 @@ Taneth("FurC:Unit", function()
       end
 
       local ok, err = pcall(function()
-        protectSavedVars({}, function()
+        protectSavedVars(function()
           FurC.Fave(recipeLink)
           assert.is_true(FurC.IsFavoriteById(resultId))
           assert.is_false(FurC.IsFavoriteById(recipeId))
@@ -78,10 +73,10 @@ Taneth("FurC:Unit", function()
     end)
 
     -- TODO: rm this test when we drop migration
-    it("migrates legacy faves (mv from data to favorites)", function()
+    it("migrates legacy faves (mv from legacy SV data to favorites)", function()
       local id = 118306 -- Mortar and Pestle
-      protectSavedVars({ id }, function()
-        FurC.settings.data[id] = { origin = 1, favorite = true }
+      protectSavedVars(function()
+        FurC.settings.data = { [id] = { origin = 1, favorite = true } }
 
         FurC.MigrateFavorites()
 
