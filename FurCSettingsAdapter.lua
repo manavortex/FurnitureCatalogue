@@ -492,24 +492,6 @@ function FurC.GetDropdownChoiceTextual(dropdownName)
   return FurC.DropdownData["Choices" .. dropdownName][value]
 end
 
-function FurC.GetAccountCrafters()
-  local ret = {}
-  for characterName, isCrafter in pairs(FurC.settings.accountCharacters) do
-    if isCrafter then
-      table.insert(ret, characterName)
-    end
-  end
-  return ret
-end
-
-function FurC.GetAccountCharacters()
-  local ret = {}
-  for characterName, isCrafter in pairs(FurC.settings.accountCharacters) do
-    table.insert(ret, characterName)
-  end
-  return ret
-end
-
 function FurC.GetSkipInitialScan()
   return FurC.settings["skipInitialScan"]
 end
@@ -524,7 +506,9 @@ end
 
 local function containsTrue_fc(ary)
   for _, v in pairs(ary) do
-    if v then return true end
+    if v then
+      return true
+    end
   end
 end
 
@@ -550,13 +534,11 @@ function FurC.SetFilterFurnCategory(categoryId)
     filterArray[categoryId] = not filterArray[categoryId]
     FurC.settings.filterFurnCategoryAll = not containsTrue_fc(filterArray)
   end
-  
+
   local controls = FurC.GuiElements.categoryFilters
   if controls then
     for key, control in pairs(controls) do
-      local isPressed = (key == 0)
-        and FurC.settings.filterFurnCategoryAll
-        or (filterArray[key] == true)
+      local isPressed = (key == 0) and FurC.settings.filterFurnCategoryAll or (filterArray[key] == true)
       control:SetState(isPressed and BSTATE_PRESSED or BSTATE_NORMAL)
     end
   end
@@ -643,37 +625,6 @@ function FurC.WipeDatabase()
   FurC.settings.excelExport = {}
   FurC.ScanRecipes(true, true)
   -- d("FurnitureCatalogue: Scan complete")
-end
-
-function FurC.DeleteCharacter(characterName)
-  FurC.Logger:Info("Now deleting recipe knowledge for %s", characterName)
-
-  for key, value in pairs(FurC.settings.accountCharacters) do
-    if value == characterName then
-      FurC.settings.accountCharacters[key] = false
-    end
-  end
-
-  for recipeKey, recipeArray in pairs(FurC.settings.data) do
-    if recipeArray.craftable then
-      recipeArray.characters[characterName] = nil
-    end
-  end
-
-  local guiDropdownEntries = FurC_Dropdown.comboBox.m_sortedItems
-  if nil == guiDropdownEntries then
-    return
-  end
-  for index, data in pairs(guiDropdownEntries) do
-    if data.name == characterName then
-      guiDropdownEntries[index] = nil
-      return
-    end
-  end
-  FurC.Logger:Info(
-    "%s deleted from |c2266ffFurniture Catalogue|r database. Entry will disappear from settings dropdown after the next reloadui.",
-    characterName
-  )
 end
 
 function FurC.GetCurrentCharacterName()

@@ -361,6 +361,7 @@ local function initialise(eventCode, addOnName)
   SLASH_COMMANDS["/fur"] = FurnitureCatalogue_Toggle
   this.BackfillFurnishingCategories()
   this.MigrateFavorites()
+  this.MigrateCharacterKnowledge()
   this.SetFilter(true)
 
   EVENT_MANAGER:UnregisterForEvent(this.name, EVENT_ADD_ON_LOADED)

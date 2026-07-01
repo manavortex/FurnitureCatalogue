@@ -1,10 +1,16 @@
--- FurC.Lib LCK
+-- Recipe knowledge + LCK
 
 if not Taneth then
   return
 end
 
+-- Real global table, to override game stubs
+local G = _G
+
 Taneth("FurC:Unit", function()
+  local blueprintId = 207872 -- Formula: Dawnwood Lantern, Hanging (resultItem: 204688)
+  local blueprintLink = FurC.Utils.GetItemLink(blueprintId)
+
   local function makeFakeLCK(cfg)
     cfg = cfg or {}
     local callbacks = {}
@@ -44,7 +50,7 @@ Taneth("FurC:Unit", function()
   end
 
   describe("FurC.Lib LCK seam", function()
-    it("passes everything when LCK is absent", function()
+    it("waves everything through when no LCK", function()
       FurC.Lib.InitLCK(nil)
       assert.is_false(FurC.Lib.LCKAvailable())
       assert.is_true(FurC.Lib.CharKnows(12345))
@@ -54,7 +60,7 @@ Taneth("FurC:Unit", function()
       assert.same({}, FurC.Lib.GetCharacterNames())
     end)
 
-    it("respects current-character knowledge when LCK is present", function()
+    it("respects character knowledge when LCK", function()
       FurC.Lib.InitLCK(makeFakeLCK({
         knowledge = {
           [111] = 1, -- KNOWN
@@ -69,7 +75,7 @@ Taneth("FurC:Unit", function()
       FurC.Lib.InitLCK(nil)
     end)
 
-    it("AccountKnows true if any tracked character knows it", function()
+    it("AccountKnows true if any tracked character know", function()
       FurC.Lib.InitLCK(makeFakeLCK({
         list = {
           [111] = { { knowledge = 2 }, { knowledge = 1 } }, -- one char knows
@@ -147,6 +153,72 @@ Taneth("FurC:Unit", function()
       assert.same({ "Licks-Frogs" }, FurC.Lib.GetCrafterNames(777))
       assert.same({}, FurC.Lib.GetCrafterNames(999))
       FurC.Lib.InitLCK(nil)
+    end)
+  end)
+
+  describe("FurC knowledge readers (live game API + LCK)", function()
+    -- TODO: drop this after 2-3 major updates
+    it("MigrateCharacterKnowledge cleans up SavedVars", function()
+      local id = 118306
+      local saved = FurC.settings.data[id]
+      FurC.settings.data[id] = { origin = 1, characters = { Someone = true } }
+
+      FurC.MigrateCharacterKnowledge()
+      assert.is_nil(FurC.settings.data[id].characters)
+
+      FurC.settings.data[id] = saved
+    end)
+
+    it("CanCraft reflects the current character's knowledge", function()
+      local savedKnown = G.IsItemLinkRecipeKnown
+      G.IsItemLinkRecipeKnown = function(link)
+        return link == blueprintLink
+      end
+      local ok, err = pcall(function()
+        assert.is_true(FurC.CanCraft(nil, { blueprint = blueprintId }))
+        assert.is_false(FurC.CanCraft(nil, { blueprint = 999999 })) -- different link
+        assert.is_false(FurC.CanCraft(nil, { origin = 1 })) -- no blueprint
+      end)
+      G.IsItemLinkRecipeKnown = savedKnown
+      if not ok then
+        error(err, 0)
+      end
+    end)
+
+    it("IsAccountKnown falls back to current char without LCK", function()
+      FurC.Lib.InitLCK(nil)
+      local savedKnown = G.IsItemLinkRecipeKnown
+      G.IsItemLinkRecipeKnown = function(link)
+        return link == blueprintLink
+      end
+      local ok, err = pcall(function()
+        assert.is_true(FurC.IsAccountKnown(nil, { blueprint = blueprintId }))
+        assert.is_false(FurC.IsAccountKnown(nil, { blueprint = 999999 }))
+      end)
+      G.IsItemLinkRecipeKnown = savedKnown
+      if not ok then
+        error(err, 0)
+      end
+    end)
+
+    it("IsAccountKnown uses LCK (any character) when present", function()
+      -- current char does NOT know, but another  char does
+      local savedKnown = G.IsItemLinkRecipeKnown
+      G.IsItemLinkRecipeKnown = function()
+        return false
+      end
+      FurC.Lib.InitLCK(makeFakeLCK({
+        list = { [blueprintLink] = { { knowledge = 2 }, { knowledge = 1 } } },
+      }))
+      local ok, err = pcall(function()
+        assert.is_true(FurC.IsAccountKnown(nil, { blueprint = blueprintId }))
+        assert.is_false(FurC.IsAccountKnown(nil, { blueprint = 999999 }))
+      end)
+      G.IsItemLinkRecipeKnown = savedKnown
+      FurC.Lib.InitLCK(nil)
+      if not ok then
+        error(err, 0)
+      end
     end)
   end)
 end)

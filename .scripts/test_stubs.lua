@@ -103,6 +103,7 @@ end
 -- Just in case those are not available in ESOLUA
 for _, name in ipairs({
   "IsItemLinkFurnitureRecipe",
+  "IsItemLinkRecipeKnown",
   "IsFurniture",
   "IsAccountKnown",
   "IsCharKnown",

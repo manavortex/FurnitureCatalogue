@@ -9,7 +9,6 @@ local src = FurC.Constants.ItemSources
 
 local getItemId = FurC.Utils.GetItemId
 local getItemLink = FurC.Utils.GetItemLink
-local getCurrentChar = FurC.Utils.GetCurrentChar
 
 local function printItemLink(itemId)
   if nil == itemId then
@@ -192,15 +191,6 @@ local function parseBlueprint(blueprintLink) -- saves to DB, returns recipeArray
   recipeArray.craftingSkill = recipeArray.craftingSkill or GetItemLinkCraftingSkillType(blueprintLink)
   recipeArray.blueprint = recipeArray.blueprint or getItemId(blueprintLink)
 
-  if IsItemLinkRecipeKnown(blueprintLink) then
-    local recipeChars = recipeArray.characters
-    if nil ~= recipeChars then
-      recipeChars[FurC.CharacterName] = true
-    else
-      recipeArray.characters = {}
-      recipeArray.characters[FurC.CharacterName] = true
-    end
-  end
   addDatabaseEntry(recipeKey, recipeArray)
   return recipeArray
 end
@@ -297,7 +287,7 @@ function FurC.Fave(itemLink, recipeArray)
   FurC.UpdateGui()
 end
 
--- Legacy migration (entries from before LCK)
+-- TODO: rm after 2-3 major updates
 function FurC.MigrateFavorites()
   FurC.settings.favorites = FurC.settings.favorites or {}
   if not FurC.settings.data then
@@ -307,6 +297,18 @@ function FurC.MigrateFavorites()
     if type(entry) == "table" and entry.favorite then
       FurC.settings.favorites[id] = true
       entry.favorite = nil
+    end
+  end
+end
+
+-- TODO: rm after 2-3 major updates
+function FurC.MigrateCharacterKnowledge()
+  if not FurC.settings.data then
+    return
+  end
+  for _, entry in pairs(FurC.settings.data) do
+    if type(entry) == "table" then
+      entry.characters = nil
     end
   end
 end
@@ -325,14 +327,6 @@ local function scanRecipeIndices(recipeListIndex, recipeIndex) -- returns recipe
   recipeArray.recipeListIndex = recipeArray.recipeListIndex or recipeListIndex
   recipeArray.recipeIndex = recipeArray.recipeIndex or recipeIndex
 
-  recipeArray.characters = recipeArray.characters or {}
-
-  if GetRecipeInfo(recipeListIndex, recipeIndex) then
-    recipeArray.characters[getCurrentChar()] = true
-    FurC.settings.accountCharacters = FurC.settings.accountCharacters or {}
-    FurC.settings.accountCharacters[getCurrentChar()] = FurC.settings.accountCharacters[getCurrentChar()] or true
-  end
-
   addDatabaseEntry(recipeKey, recipeArray)
   return recipeArray
 end
@@ -341,23 +335,31 @@ function FurC.TryCreateRecipeEntry(recipeListIndex, recipeIndex) -- returns scan
   return scanRecipeIndices(recipeListIndex, recipeIndex)
 end
 
-function FurC.IsAccountKnown(recipeKey, recipeArray)
-  if recipeKey == nil and recipeArray == nil then
-    return false
-  end
-  recipeArray = recipeArray or FurC.settings.data[recipeKey]
-  return not (nil == recipeArray or nil == recipeArray.characters or NonContiguousCount(recipeArray.characters) == 0)
-end
-
+-- Current character: live game data, no persistence needed.
 function FurC.CanCraft(recipeKey, recipeArray)
   if recipeKey == nil and recipeArray == nil then
     return false
   end
   recipeArray = recipeArray or FurC.settings.data[recipeKey]
-  if FurC.IsAccountKnown(recipeKey, recipeArray) then
-    return recipeArray.characters[getCurrentChar()]
+  if nil == recipeArray or nil == recipeArray.blueprint then
+    return false
   end
-  return false
+  return IsItemLinkRecipeKnown(getItemLink(recipeArray.blueprint)) == true
+end
+
+-- Any character on the account: LCK when present, else the current character.
+function FurC.IsAccountKnown(recipeKey, recipeArray)
+  if recipeKey == nil and recipeArray == nil then
+    return false
+  end
+  recipeArray = recipeArray or FurC.settings.data[recipeKey]
+  if nil == recipeArray then
+    return false
+  end
+  if FurC.Lib.LCKAvailable() and recipeArray.blueprint then
+    return FurC.Lib.IsKnownByName(getItemLink(recipeArray.blueprint), nil) == true
+  end
+  return FurC.CanCraft(recipeKey, recipeArray)
 end
 
 function FurC.GetCraftingSkillType(recipeKey, recipeArray)

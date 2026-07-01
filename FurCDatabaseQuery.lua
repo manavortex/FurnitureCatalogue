@@ -306,12 +306,10 @@ function FurC.GetCrafterList(itemLink, recipeArray)
     return strCraftedBy .. table.concat(names, ", ")
   end
 
-  if nil == recipeArray.characters or NonContiguousCount(recipeArray.characters) == 0 then
-    return strCantCraft
+  -- TODO: force display LCK tooltip instead somehow
+  -- (could hook into recipe variant of hovered item)
+  if FurC.CanCraft(nil, recipeArray) then
+    return strCraftedBy .. FurC.CharacterName
   end
-  local ret = strCraftedBy
-  for characterName in pairs(recipeArray.characters) do
-    ret = string.format("%s %s, ", ret, characterName)
-  end
-  return ret:sub(0, -3)
+  return strCantCraft
 end
