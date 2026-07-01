@@ -264,20 +264,51 @@ function FurC.GetEntry(itemOrBlueprintLink)
   return itemId, recipeArray
 end
 
-function FurC.IsFavorite(itemLink, recipeArray)
-  recipeArray = recipeArray or FurC.Find(itemLink)
-  return recipeArray.favorite
+-- treat favourite furniture and recipe as the same item
+local function faveKey(itemLink)
+  if itemLink and IsItemLinkFurnitureRecipe(itemLink) then
+    local resultLink = GetItemLinkRecipeResultItemLink(itemLink)
+    if resultLink and #resultLink > 0 then
+      itemLink = resultLink
+    end
+  end
+  return getItemId(itemLink)
 end
 
--- ToDo: move to fave reference table?
-function FurC.Fave(itemLink, recipeArray)
-  recipeArray = recipeArray or FurC.Find(itemLink)
-  recipeArray.favorite = not recipeArray.favorite
-  if not recipeArray.favorite then
-    recipeArray.favorite = nil
-  end
+function FurC.IsFavoriteById(itemId)
+  return itemId ~= nil and FurC.settings.favorites[itemId] == true
+end
 
+function FurC.IsFavorite(itemLink, recipeArray)
+  return FurC.IsFavoriteById(faveKey(itemLink))
+end
+
+-- fav toggle
+function FurC.Fave(itemLink, recipeArray)
+  local itemId = faveKey(itemLink)
+  if itemId == nil then
+    return
+  end
+  if FurC.settings.favorites[itemId] then
+    FurC.settings.favorites[itemId] = nil
+  else
+    FurC.settings.favorites[itemId] = true
+  end
   FurC.UpdateGui()
+end
+
+-- Legacy migration (entries from before LCK)
+function FurC.MigrateFavorites()
+  FurC.settings.favorites = FurC.settings.favorites or {}
+  if not FurC.settings.data then
+    return
+  end
+  for id, entry in pairs(FurC.settings.data) do
+    if type(entry) == "table" and entry.favorite then
+      FurC.settings.favorites[id] = true
+      entry.favorite = nil
+    end
+  end
 end
 
 local function scanRecipeIndices(recipeListIndex, recipeIndex) -- returns recipeArray or nil, initialises

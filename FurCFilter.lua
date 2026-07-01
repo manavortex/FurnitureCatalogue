@@ -165,8 +165,7 @@ local function matchSourceDropdown()
     return true
   end
   if src.FAVE == ddSource then
-    -- ToDo: store in favourites table for SV, not in database
-    return recipeArray.favorite
+    return FurC.IsFavoriteById(itemId)
   end
   if recipeArray.origin == src.CRAFTING then
     if ddSource == src.CRAFTING then

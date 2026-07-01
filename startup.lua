@@ -34,6 +34,7 @@ local defaults = {
   enableDebug = false,
 
   data = {},
+  favorites = {},
   filterCraftingType = {},
   filterQuality = {},
   filterFurnCategory = {},
@@ -340,6 +341,8 @@ local function initialise(eventCode, addOnName)
 
   this.CharacterName = zo_strformat(GetUnitName("player"))
 
+  this.Lib.InitLCK()
+
   this.InitGui()
 
   this.CreateTooltips()
@@ -357,6 +360,7 @@ local function initialise(eventCode, addOnName)
   this.settings.databaseVersion = this.version
   SLASH_COMMANDS["/fur"] = FurnitureCatalogue_Toggle
   this.BackfillFurnishingCategories()
+  this.MigrateFavorites()
   this.SetFilter(true)
 
   EVENT_MANAGER:UnregisterForEvent(this.name, EVENT_ADD_ON_LOADED)
