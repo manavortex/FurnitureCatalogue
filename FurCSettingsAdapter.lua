@@ -446,9 +446,10 @@ function FurC.SetDropdownChoice(dropdownName, textValue, dropdownIndex)
       FurC_DropdownCharacter:GetNamedChild("SelectedItemText"):SetText(FurC.DropdownData.ChoicesCharacter[1])
     end
   end
-  -- if we're setting the characters array to something other than 1, we can't use source 1 or 5
+
   if dropdownName == "Character" and (dropdownIndex > 1) then
-    if FurC.DropdownChoices["Source"] > src.CRAFTING_UNKNOWN or FurC.DropdownChoices["Source"] < src.CRAFTING then
+    local source = FurC.DropdownChoices["Source"]
+    if source ~= src.CRAFTING_KNOWN and source ~= src.CRAFTING_UNKNOWN then
       local knownIndex = src.CRAFTING_KNOWN
       FurC.DropdownChoices["Source"] = knownIndex
       FurC_DropdownSource:GetNamedChild("SelectedItemText"):SetText(FurC.DropdownData.ChoicesSource[knownIndex])

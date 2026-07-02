@@ -596,16 +596,15 @@ local function createGui()
     if dropdownName == "Character" then
       local available = FurC.Lib.LCKAvailable()
       comboBox:SetEnabled(available)
-      if not available then
-        control:SetMouseEnabled(true)
-        control:SetHandler("OnMouseEnter", function(self)
-          InitializeTooltip(InformationTooltip, self, TOPRIGHT, -10, 0, TOPLEFT)
-          SetTooltipText(InformationTooltip, GetString(SI_FURC_STRING_CHARACTER_NEEDS_LCK))
-        end)
-        control:SetHandler("OnMouseExit", function()
-          ClearTooltip(InformationTooltip)
-        end)
-      end
+      local hint = (available and SI_FURC_STRING_CHARACTER_USES_LCK) or SI_FURC_STRING_CHARACTER_NEEDS_LCK
+      control:SetMouseEnabled(true)
+      control:SetHandler("OnMouseEnter", function(self)
+        InitializeTooltip(InformationTooltip, self, TOPRIGHT, -10, 0, TOPLEFT)
+        SetTooltipText(InformationTooltip, GetString(hint))
+      end)
+      control:SetHandler("OnMouseExit", function()
+        ClearTooltip(InformationTooltip)
+      end)
     end
 
     return control

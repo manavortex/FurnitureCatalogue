@@ -11,6 +11,10 @@ Taneth("FurC:Unit", function()
   local blueprintId = 207872 -- Formula: Dawnwood Lantern, Hanging (resultItem: 204688)
   local blueprintLink = FurC.Utils.GetItemLink(blueprintId)
 
+  -- LCK tracks other accounts on the same server, we currently ignore those
+  local ACCOUNT = GetDisplayName()
+  local OTHER_ACCOUNT = "@SomeoneElse"
+
   local function makeFakeLCK(cfg)
     cfg = cfg or {}
     local callbacks = {}
@@ -78,20 +82,23 @@ Taneth("FurC:Unit", function()
     it("AccountKnows true if any tracked character know", function()
       FurC.Lib.InitLCK(makeFakeLCK({
         list = {
-          [111] = { { knowledge = 2 }, { knowledge = 1 } }, -- one char knows
-          [222] = { { knowledge = 2 }, { knowledge = 2 } }, -- nobody knows
+          [111] = { { account = ACCOUNT, knowledge = 2 }, { account = ACCOUNT, knowledge = 1 } }, -- one char knows
+          [222] = { { account = ACCOUNT, knowledge = 2 }, { account = ACCOUNT, knowledge = 2 } }, -- nobody knows
+          [333] = { { account = OTHER_ACCOUNT, knowledge = 1 } }, -- only foreign account knows
         },
       }))
       assert.is_true(FurC.Lib.AccountKnows(111))
       assert.is_false(FurC.Lib.AccountKnows(222))
+      assert.is_false(FurC.Lib.AccountKnows(333))
       FurC.Lib.InitLCK(nil)
     end)
 
     it("GetCharacterNames lists the roster", function()
       FurC.Lib.InitLCK(makeFakeLCK({
         roster = {
-          { id = 1, name = "Licks-Frogs", account = "@FAKE" },
-          { id = 2, name = "Eats-Pants", account = "@FAKE" },
+          { id = 1, name = "Licks-Frogs", account = ACCOUNT },
+          { id = 3, name = "Nose-Stealer", account = OTHER_ACCOUNT },
+          { id = 2, name = "Eats-Pants", account = ACCOUNT },
         },
       }))
       assert.same({ "Licks-Frogs", "Eats-Pants" }, FurC.Lib.GetCharacterNames())
@@ -101,16 +108,16 @@ Taneth("FurC:Unit", function()
     it("IsKnownByName resolves the character by name", function()
       FurC.Lib.InitLCK(makeFakeLCK({
         roster = {
-          { id = 1, name = "Licks-Frogs", account = "@FAKE" },
-          { id = 2, name = "Eats-Pants", account = "@FAKE" },
+          { id = 1, name = "Licks-Frogs", account = ACCOUNT },
+          { id = 2, name = "Eats-Pants", account = ACCOUNT },
         },
         byChar = {
           [1] = { [777] = 1 }, -- Licks-Frogs KNOWS 777
           [2] = { [777] = 2 }, -- Eats-Pants doesn't
         },
         list = {
-          [777] = { { knowledge = 1 }, { knowledge = 2 } }, -- account: one knows
-          [888] = { { knowledge = 0 }, { knowledge = 2 } }, -- account: nobody knows
+          [777] = { { account = ACCOUNT, knowledge = 1 }, { account = ACCOUNT, knowledge = 2 } }, -- account: one knows
+          [888] = { { account = ACCOUNT, knowledge = 0 }, { account = ACCOUNT, knowledge = 2 } }, -- account: nobody knows
         },
       }))
       -- acc-wide: KNOWN across characters
@@ -133,7 +140,7 @@ Taneth("FurC:Unit", function()
       FurC.Lib.InitLCK(fake)
       assert.same({}, FurC.Lib.GetCharacterNames()) -- caches empty roster
 
-      cfg.roster = { { id = 1, name = "Licks-Frogs", account = "@FAKE" } }
+      cfg.roster = { { id = 1, name = "Licks-Frogs", account = ACCOUNT } }
       fake.fire(fake.EVENT_INITIALIZED) -- must drop stale cache
       assert.same({ "Licks-Frogs" }, FurC.Lib.GetCharacterNames())
 
@@ -145,8 +152,9 @@ Taneth("FurC:Unit", function()
       FurC.Lib.InitLCK(makeFakeLCK({
         list = {
           [777] = {
-            { name = "Licks-Frogs", knowledge = 1 }, -- KNOWN
-            { name = "Eats-Pants", knowledge = 2 }, -- UNKNOWN
+            { account = ACCOUNT, name = "Licks-Frogs", knowledge = 1 }, -- KNOWN
+            { account = ACCOUNT, name = "Eats-Pants", knowledge = 2 }, -- UNKNOWN
+            { account = OTHER_ACCOUNT, name = "Nose-Stealer", knowledge = 1 }, -- KNOWN, foreign account
           },
         },
       }))
@@ -211,7 +219,7 @@ Taneth("FurC:Unit", function()
         return false
       end
       FurC.Lib.InitLCK(makeFakeLCK({
-        list = { [blueprintLink] = { { knowledge = 2 }, { knowledge = 1 } } },
+        list = { [blueprintLink] = { { account = ACCOUNT, knowledge = 2 }, { account = ACCOUNT, knowledge = 1 } } },
       }))
       local ok, err = pcall(function()
         assert.is_true(FurC.IsAccountKnown(nil, { blueprint = blueprintId }))

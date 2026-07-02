@@ -53,8 +53,9 @@ function FurC.Lib.AccountKnows(item)
   if not _lck then
     return true
   end
+  local account = GetDisplayName()
   for _, entry in ipairs(_lck.GetItemKnowledgeList(item)) do
-    if entry.knowledge == _lck.KNOWLEDGE_KNOWN then
+    if entry.account == account and entry.knowledge == _lck.KNOWLEDGE_KNOWN then
       return true
     end
   end
@@ -69,10 +70,13 @@ local function ensureCharCache()
     return nil
   end
   local server = _lck.GetServerList()[1] -- current server is always first
+  local account = GetDisplayName() -- LCK tracks other accounts too, so we filter those out
   local names, idByName = {}, {}
   for _, char in ipairs(_lck.GetCharacterList(server)) do
-    names[#names + 1] = char.name
-    idByName[char.name] = char.id
+    if char.account == account then
+      names[#names + 1] = char.name
+      idByName[char.name] = char.id
+    end
   end
   _charCache = { server = server, names = names, idByName = idByName }
   return _charCache
@@ -103,9 +107,10 @@ function FurC.Lib.GetCrafterNames(item)
   if not _lck then
     return nil
   end
+  local account = GetDisplayName()
   local names = {}
   for _, entry in ipairs(_lck.GetItemKnowledgeList(item)) do
-    if entry.knowledge == _lck.KNOWLEDGE_KNOWN then
+    if entry.account == account and entry.knowledge == _lck.KNOWLEDGE_KNOWN then
       names[#names + 1] = entry.name
     end
   end
