@@ -622,10 +622,3 @@ function FurC.WipeDatabase()
   d("resetting Furniture Catalogue data...")
   FurC.RebuildDB()
 end
-
-function FurC.GetCurrentCharacterName()
-  if nil == FurC.CharacterName then
-    FurC.CharacterName = zo_strformat(GetUnitName("player"))
-  end
-  return FurC.CharacterName
-end

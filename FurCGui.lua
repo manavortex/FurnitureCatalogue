@@ -231,6 +231,7 @@ function FurC.UpdateGui(useDefaults)
   if FurCGui:IsHidden() then
     return
   end
+  FurC.EnsureDB() -- covers windows shown without FurnitureCatalogue_Toggle (benchmarks and stuff)
   cachedDefaults = useDefaults
 
   if nil ~= otherTask then

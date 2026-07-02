@@ -564,8 +564,14 @@ local function scanFromFiles()
     end
   end
 
+  local buildStarted = GetGameTimeMilliseconds()
   local function finish()
     isBuilding = false
+    FurC.Logger:Debug(
+      "DB build finished: %d entries in %d ms",
+      NonContiguousCount(FurC.DB),
+      GetGameTimeMilliseconds() - buildStarted
+    )
     FurC.UpdateGui()
   end
 
