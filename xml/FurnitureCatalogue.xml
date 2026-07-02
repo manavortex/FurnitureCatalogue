@@ -74,10 +74,10 @@
                     pressed="/esoui/art/buttons/decline_down.dds"
                     mouseOver="/esoui/art/buttons/decline_over.dds" />
                 </Button>
-                <Button name="$(parent)_Reload">
+                                <Button name="$(parent)_Reload">
                   <Anchor point="TOPRIGHT" relativeTo="$(parent)_Hide" relativePoint="TOPLEFT"
                     offsetX="-25" offsetY="-5" />
-                  <OnMouseEnter>FurC.GuiShowTooltip(self, "Click: Scan character knowledge to database\n\nRight-click: Re-scans data files\n\nMiddle-click: Re-create database (will ask you first)")</OnMouseEnter>
+                  <OnMouseEnter>FurC.GuiShowTooltip(self, "Click:  Re-scans data files and character knowledge\n\nRight-/Middle-click: Re-create database\n(will ask you first)")</OnMouseEnter>
                   <OnMouseExit>FurC.GuiHideTooltip(self)</OnMouseExit>
                   <OnMouseUp>FurC.GUIButtonRefreshOnMouseUp(self, button)</OnMouseUp>
                   <Dimensions x="35" y="35" />
