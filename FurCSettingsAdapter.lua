@@ -437,11 +437,11 @@ function FurC.SetDropdownChoice(dropdownName, textValue, dropdownIndex)
 
   FurC.Logger:Verbose("SetDropdownChoice(%s, %s (Index: %s))", dropdownName, textValue, dropdownIndex)
 
-  -- if we're setting the dropdown menu "source" to "purchaseable", set "character" to "All"
   FurC.DropdownChoices[dropdownName] = dropdownIndex
 
+  -- selected character only means something for Known/Unknown, reset it otherwise
   if dropdownName == "Source" then
-    if dropdownIndex > src.CRAFTING_UNKNOWN or dropdownIndex < src.CRAFTING then
+    if dropdownIndex ~= src.CRAFTING_KNOWN and dropdownIndex ~= src.CRAFTING_UNKNOWN then
       FurC.DropdownChoices["Character"] = 1
       FurC_DropdownCharacter:GetNamedChild("SelectedItemText"):SetText(FurC.DropdownData.ChoicesCharacter[1])
     end
