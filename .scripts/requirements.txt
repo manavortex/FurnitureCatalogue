@@ -1,2 +1,2 @@
 # publish.py
-requests==2.32.2
+requests==2.33.0
