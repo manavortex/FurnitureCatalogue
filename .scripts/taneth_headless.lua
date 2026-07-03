@@ -60,6 +60,8 @@ loadAddon(join(tanethDir, "Taneth.txt"))
 loadAddon(join(repoRoot, "FurnitureCatalogue.txt"))
 loadAddon(join(repoRoot, "FurnitureCatalogue_DevUtility", "FurnitureCatalogue_DevUtility.txt"))
 
+FurCDev.repoRoot = repoRoot
+
 -- fire EVENT_ADD_ON_LOADED foreach AddOn
 for _, name in ipairs({ "FurnitureCatalogue", "FurnitureCatalogue_DevUtility" }) do
   eso.TriggerEvent(EVENT_ADD_ON_LOADED, name)

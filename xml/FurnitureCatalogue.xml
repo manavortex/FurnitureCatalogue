@@ -77,7 +77,7 @@
                 <Button name="$(parent)_Reload">
                   <Anchor point="TOPRIGHT" relativeTo="$(parent)_Hide" relativePoint="TOPLEFT"
                     offsetX="-25" offsetY="-5" />
-                  <OnMouseEnter>FurC.GuiShowTooltip(self, "Click:  Re-scans data files and character knowledge\n\nRight-/Middle-click: Re-create database\n(will ask you first)")</OnMouseEnter>
+                  <OnMouseEnter>FurC.GuiShowTooltip(self, "Click: Re-scan data files\n\nRight-/Middle-click: Re-create database\n(will ask you first)")</OnMouseEnter>
                   <OnMouseExit>FurC.GuiHideTooltip(self)</OnMouseExit>
                   <OnMouseUp>FurC.GUIButtonRefreshOnMouseUp(self, button)</OnMouseUp>
                   <Dimensions x="35" y="35" />
