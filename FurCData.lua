@@ -70,7 +70,6 @@ local function addDatabaseEntry(recipeKey, partial)
   if stored == nil then
     stored = partial
     FurC.DB[recipeKey] = stored
-    FurC.sortIndexDirty = true -- marker for GUI rebuild
   else
     for k, v in pairs(partial) do
       if k ~= "origin" and k ~= "sources" then
@@ -78,6 +77,7 @@ local function addDatabaseEntry(recipeKey, partial)
       end
     end
   end
+  FurC.sortIndexDirty = true
 
   local sources = stored.sources or {}
   stored.sources = sources
@@ -353,27 +353,6 @@ function FurC.GetCraftingSkillType(recipeKey, recipeArray)
   end
 
   return craftingSkillType
-end
-
-function FurC.RescanRumourRecipes()
-  local function rescan()
-    for itemId, recipeArray in pairs(FurC.DB) do
-      if recipeArray.source == src.RUMOUR then
-        local itemLink = recipeArray[itemLink]
-        if not FurC.RumourRecipes[itemLink] then
-          recipeArray.source = src.CRAFTING
-          recipeArray.origin = nil
-        end
-      end
-    end
-  end
-
-  if nil ~= task then
-    task:Call(rescan):Then(FurC.UpdateGui)
-  else
-    rescan()
-    FurC.UpdateGui()
-  end
 end
 
 local recipeArray

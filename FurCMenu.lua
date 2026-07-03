@@ -38,20 +38,10 @@ function FurC.CreateSettings(savedVars, defaults)
         FurC.WipeDatabase()
       end,
     },
-    { -- button: Reset database
-      type = "button",
-      name = GetString(SI_FURC_STRING_MENU_RESCAN_RUMOUR_NAME),
-      width = "half",
-      tooltip = GetString(SI_FURC_STRING_MENU_RESCAN_RUMOUR_TT),
-      func = function()
-        FurC.RescanRumourRecipes()
-      end,
-    },
     { -- button: Re-scan data
       type = "button",
       name = GetString(SI_FURC_STRING_MENU_SCAN_FILES_NAME),
       tooltip = GetString(SI_FURC_STRING_MENU_SCAN_FILES_TT),
-      width = "half",
       func = function()
         FurC.RescanFiles()
       end,
