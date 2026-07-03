@@ -115,9 +115,5 @@ local function init(_, addonName)
   EVENT_MANAGER:UnregisterForEvent(FurCDev.name, EVENT_ADD_ON_LOADED)
 end
 
-function FurnitureCatalogueDevUtility_AddToTextbox()
-  FurCDevControl_HandleInventoryContextMenu(moc())
-end
-
-ZO_CreateStringId("SI_BINDING_NAME_FURC_CONCAT_TO_TEXTBOX", "Add to |cFF3333FurCDev|r text box")
+ZO_CreateStringId("SI_BINDING_NAME_FURCDEV_TOGGLE_TEXTBOX", "Toggle |cFF3333FurCDev|r text box")
 EVENT_MANAGER:RegisterForEvent(this.name, EVENT_ADD_ON_LOADED, init)

@@ -2,8 +2,8 @@
   xsi:noNamespaceSchemaLocation="http://sir.insidi.at/or/schema/esobindings.xsd">
   <Layer name="SI_KEYBINDINGS_CATEGORY_GENERAL">
     <Category name="Furniture Catalogue">
-      <Action name="FURC_CONCAT_TO_TEXTBOX">
-        <Down>FurnitureCatalogueDevUtility_AddToTextbox()</Down>
+      <Action name="FURCDEV_TOGGLE_TEXTBOX">
+        <Down>FurCDev.ToggleEditBox()</Down>
       </Action>
     </Category>
   </Layer>

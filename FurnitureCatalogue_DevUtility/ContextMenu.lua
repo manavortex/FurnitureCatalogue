@@ -27,8 +27,7 @@ function this.selectEntireTextbox()
     return
   end
 
-  local text = textbox:GetText() or ""
-  textbox:SetSelection(0, #text)
+  textbox:SelectAll()
 end
 
 function this.onTextboxTextChanged()
@@ -201,27 +200,12 @@ FurCDev.FindZone = findZone
 --buildQuestTable()
 --buildZoneTable()
 
-local s2 = "\t"
-local s4 = "\t\t"
--- local s_default            = (s2 .. "[%d] = GetString(SI_FURC_EXISITING_ITEMSOURCE_UNKNOWN_YET)," .. s2 .. "-- %s\n")
-local s_default = (s2 .. "[%d] = strCrown(99)," .. s4 .. "   " .. "-- %s")
-local s_letter = (s2 .. "[%d] = rumourSource," .. s4 .. "   " .. "-- %s")
-local s_withPrice = (s2 .. "[%d] = {" .. s4 .. "-- %s\n" .. s4 .. "itemPrice   = %d,\n" .. s2 .. "},")
-local s_withAchievement = (
-  s2
-  .. "[%d] = {"
-  .. s4
-  .. "--%s\n"
-  .. s4
-  .. "itemPrice   = %d,\n"
-  .. s4
-  .. "achievement = %d,"
-  .. s4
-  .. "-- %s\n"
-  .. s2
-  .. "},"
-)
-local s_forRecipe = (s2 .. "%d, -- %s")
+local indent = "  "
+local s_default = "[%d] = strCrown(99), -- %s"
+local s_letter = "[%d] = rumourSource, -- %s"
+local s_withPrice = "[%d] = { -- %s\n" .. indent .. "itemPrice = %d,\n},"
+local s_withAchievement = "[%d] = { -- %s\n" .. indent .. "itemPrice = %d,\n" .. indent .. "achievement = %d, -- %s\n},"
+local s_forRecipe = "%d, -- %s"
 
 local function makeOutput()
   if not cachedItemLink then
@@ -245,9 +229,6 @@ local function makeOutput()
 
   if cachedIsLetter then
     debugString = s_letter
-  end
-  if #(textbox:GetText() or "") == 0 then
-    debugString = debugString:sub(#s2 + 1, #debugString)
   end
 
   return string.format(
@@ -292,6 +273,49 @@ function this.concatToTextbox(itemId)
   end
 end
 
+-- Returns true if a new line was added
+local function addStoreEntry(storeIndex)
+  local itemLink = GetStoreItemLink(storeIndex, LINK_STYLE_DEFAULT)
+  if not itemLink or #itemLink == 0 or not FurC.Utils.IsFurniture(itemLink) then
+    return false
+  end
+
+  local _, name, _, price, _, _, _, _, _, currencyType1, currencyQuantity1, _, _, _, _, buyErrorStringId =
+    GetStoreEntryInfo(storeIndex)
+
+  local success, errorMsg = pcall(GetErrorString, buyErrorStringId)
+  cachedAchName = (success and errorMsg) or ""
+  local matchWithoutQuotes = string.match(cachedAchName, "Requires (.+) Achievement to purchase%.")
+  cachedAchName = matchWithoutQuotes or string.match(cachedAchName, ".+ %„(.+)%“.+")
+
+  cachedItemLink = itemLink
+  cachedName = zo_strformat("<<1>>", name)
+  cachedPrice = (price and price > 0 and price) or currencyQuantity1 or 0
+  cachedIsLetter = false
+
+  local before = #(this.textbox:GetText() or "")
+  concatToTextbox()
+  return #(this.textbox:GetText() or "") > before
+end
+
+-- Dump every furnishing/recipe from currently open trader into box
+function this.AddAllFromTrader()
+  if IsStoreEmpty() then
+    FurC.Logger:Info("|cFF3333FurCDev|r: no store open, or trader has no items.")
+    return
+  end
+
+  local numItems = GetNumStoreItems()
+  local added = 0
+  for i = 1, numItems do
+    if addStoreEntry(i) then
+      added = added + 1
+    end
+  end
+  showTextbox()
+  FurC.Logger:Info("|cFF3333FurCDev|r: added %d of %d store items.", added, numItems)
+end
+
 local function doNothing() end
 
 local S_ADD_TO_BOX = "Add data to textbox"
@@ -329,6 +353,9 @@ end
 -- thanks Randactyl for helping me with the handler :)
 function FurCDevControl_HandleInventoryContextMenu(control)
   control = control or moc()
+  if not control then
+    return
+  end
 
   local icon, name, stack, price, sellPrice, meetsRequirementsToBuy, meetsRequirementsToEquip, quality, questNameColor, currencyType1, currencyQuantity1, currencyType2, currencyQuantity2, entryType, buyStoreFailure, buyErrorStringId
 
