@@ -459,6 +459,17 @@ FurC.Recipes[ver.BASE44] = {
   212379,
 }
 
+-- 32 Home Tours
+FurC.Recipes[ver.BASE43] = {
+  211039, -- Blueprint: Colovian Keg, Gigantic Wine
+  211038, -- Design: Dawnwood Platter, Feast
+  211034, -- Diagram: Colovian Chandelier, Grapes
+  211033, -- Formula: Colovian Alembic Set, Colorful 
+  211035, -- Pattern: Colovian Tapestry, Red Diamond
+  211036, -- Praxis: Colovian Glassblower's Furnace 
+  211037, -- Sketch: Colovian Mirror, Standing
+}
+
 -- 31 Gold Road
 FurC.Recipes[ver.WEALD] = {
   207872, -- Formula: Dawnwood Lantern, Hanging",
@@ -1124,7 +1135,7 @@ FurC.Recipes[ver.DEADL] = {
   181553, -- Formula: Vampiric Lab Jar, Large,
   181554, -- Formula: Vampiric Lab Jar, Small,
   181555, -- Formula: Vampiric Lab Jar, Red Gelatinous,
-
+  
   175932, -- Pattern: Leyawiin Bed, Sturdy Single,
   181565, -- Blueprint: Leyawiin Turret, Castle,
   181566, -- Praxis: Leyawiin Wall, Castle Door Arch,
@@ -2316,6 +2327,7 @@ FurC.Recipes[ver.SLAVES] = {
 -- 7 Summerset
 FurC.Recipes[ver.ALTMER] = {
 
+  139184, -- Praxis: Alinor Plinth, Sarcophagus
   139526, -- Diagram: Alinor Brazier, Standing Coals
   139573, -- Sketch: Figurine, The Fish and the Unicorn
   139571, -- Sketch: Figurine, The Sea-Monster's Surprise
