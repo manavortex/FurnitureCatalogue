@@ -323,6 +323,8 @@ function this.getOrCreateLogger()
   return logger
 end
 
+this.Logger = this.getOrCreateLogger()
+
 -- initialization stuff
 local function initialise(eventCode, addOnName)
   if addOnName ~= this.name then
