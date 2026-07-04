@@ -140,6 +140,9 @@ end
 FurC.UpdateLineVisibility = updateLineVisibility
 
 function FurC.IsLoading(isBuffering)
+  if not FurCGui_Wait then
+    return -- GUI not built yet
+  end
   FurCGui_Wait:SetHidden(not isBuffering)
 
   local isEmpty = #FurCGui_ListHolder.dataLines == 0
@@ -228,8 +231,8 @@ local function stopLoading()
 end
 
 function FurC.UpdateGui(useDefaults)
-  if FurCGui:IsHidden() then
-    return
+  if not FurCGui or FurCGui:IsHidden() then
+    return -- GUI not built yet, or hidden
   end
   FurC.EnsureDB() -- covers windows shown without FurnitureCatalogue_Toggle (benchmarks and stuff)
   cachedDefaults = useDefaults
