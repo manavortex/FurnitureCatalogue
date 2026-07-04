@@ -140,7 +140,7 @@ end
 FurC.UpdateLineVisibility = updateLineVisibility
 
 function FurC.IsLoading(isBuffering)
-  if not FurCGui_Wait then
+  if not FurC.guiInitialized then
     return -- GUI not built yet
   end
   FurCGui_Wait:SetHidden(not isBuffering)
@@ -231,7 +231,7 @@ local function stopLoading()
 end
 
 function FurC.UpdateGui(useDefaults)
-  if not FurCGui or FurCGui:IsHidden() then
+  if not FurC.guiInitialized or FurCGui:IsHidden() then
     return -- GUI not built yet, or hidden
   end
   FurC.EnsureDB() -- covers windows shown without FurnitureCatalogue_Toggle (benchmarks and stuff)
@@ -689,6 +689,7 @@ function FurC.InitGui()
   end
 
   createGui()
+  FurC.guiInitialized = true -- NOW it exists
 
   local slider = FurCGui_ListHolder_Slider
   slider:SetMinMax(1, #FurCGui_ListHolder.dataLines)
