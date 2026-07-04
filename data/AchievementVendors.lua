@@ -44,10 +44,6 @@ local b2 = {
 }
 
 local holidayVendor = {
-  [134433] = { --Stablemaster's Sign, Small
-    itemPrice = 10000,
-    achievement = 1542, -- Plunder Skull Fanatic
-  },
   [120994] = { -- tree, Jester's Large
     itemPrice = 15000,
     achievement = 1723,
@@ -127,24 +123,25 @@ local holidayVendor = {
   },
   [214490] = { -- Jester's Garland, Short
     itemPrice = 10000,
-    achievement = 1720,
+	achievement = 1720,
   },
   [214489] = { -- Jester's Garland, Long
     itemPrice = 10000,
-    achievement = 1720,
+	achievement = 1720,
   },
   [214488] = { -- Jester's Mask, Happy
     itemPrice = 5000,
-    achievement = 1719,
+	achievement = 1719,
   },
   [214491] = { -- Jester's Mask, Sad
     itemPrice = 5000,
-    achievement = 1719,
+	achievement = 1719,
   },
   [214492] = { -- Jester's Festival Flyer
     itemPrice = 5000,
-    achievement = 1719,
+	achievement = 1719,
   },
+  
 }
 
 local capitalVendor = {
@@ -246,7 +243,7 @@ local capitalVendor = {
   },
   [217601] = { -- Molag Bal Plaque
     itemPrice = 14000,
-    achievement = 1003,
+	achievement = 1003,
   },
 }
 
@@ -1296,84 +1293,85 @@ local miscVendor = merge(merge(merge(structures, boxes), laundry), fishing_trip)
 FurC.AchievementVendors[ver.ZERO2] = {
   [loc.GLENUMBRA] = {
     [npc.AF] = {
-      [225179] = { -- Koldane Cartel Banner
-        itemPrice = 900,
-        achievement = 4589,
-      },
-      [225180] = { -- Nowhere Key, Replica
-        itemPrice = 9000,
-        achievement = 4591,
-      },
-      [225181] = { -- Thieves Moon, Replica
-        itemPrice = 31500,
-        achievement = 4594,
-      },
-      [225182] = { -- Cheese Stack, Giant
-        itemPrice = 18000,
-        achievement = 4597,
-      },
-      [225195] = { -- Aspect of the Mad God, Anger
-        itemPrice = 45000,
-        achievement = 4599,
-      },
-      [225196] = { -- Aspect of the Mad God, Amusement
-        itemPrice = 45000,
-        achievement = 4599,
-      },
-      [225197] = { -- Aspect of the Mad God, Laughter
-        itemPrice = 45000,
-        achievement = 4599,
-      },
-    },
-
+	  [225179] = { -- Koldane Cartel Banner
+	    itemPrice = 900,
+		achievement = 4589,
+	  },
+	  [225180] = { -- Nowhere Key, Replica
+	    itemPrice = 9000,
+		achievement = 4591,
+	  },
+	  [225181] = { -- Thieves Moon, Replica
+	    itemPrice = 31500,
+		achievement = 4594,
+	  },
+	  [225182] = { -- Cheese Stack, Giant
+	    itemPrice = 18000,
+		achievement = 4597,
+	  },
+	  [225195] = { -- Aspect of the Mad God, Anger
+	    itemPrice = 45000,
+		achievement = 4599,
+	  },
+	  [225196] = { -- Aspect of the Mad God, Amusement
+	    itemPrice = 45000,
+		achievement = 4599,
+	  },
+	  [225197] = { -- Aspect of the Mad God, Laughter
+	    itemPrice = 45000,
+		achievement = 4599,
+	  },
+	},
+	
     [npc.HGF] = {
-      [225029] = { -- Boulders, Mossy Cluster
-        itemPrice = 225,
-      },
-      [225030] = { -- Boulder, Round Mossy Striated
-        itemPrice = 450,
-      },
-      [225031] = { -- Boulder, Angular Mossy Striated
-        itemPrice = 450,
-      },
-      [225038] = { -- Stones, Loose Rubble
-        itemPrice = 270,
-      },
-      [225037] = { -- Rough Crates, Stack
-        itemPrice = 270,
-      },
-      [225036] = { -- Rough Crates, Cargo Shipment
-        itemPrice = 405,
-      },
-      [225035] = { -- Ruined Floor, Stonework
-        itemPrice = 1800,
-      },
-      [225034] = { -- Cave Doorway, Mossy Vine-Covered
-        itemPrice = 18000,
-      },
-      [225033] = { -- Tree, Giant Climbing Wyrdbloom
-        itemPrice = 22500,
-      },
-      [225032] = { -- Logs, Unprocessed
-        itemPrice = 225,
-      },
-      [224922] = { -- Breton Panel, Wood
-        itemPrice = 90,
-      },
-      [224921] = { -- Breton Support Beam, Wood
-        itemPrice = 90,
-      },
-      [224882] = { -- Rope, Thin Knotted
-        itemPrice = 45,
-      },
-      [224880] = { -- Rope, Short Twisted
-        itemPrice = 45,
-      },
-      [224879] = { -- Rope, Twisted
-        itemPrice = 45,
-      },
-    },
+	  [225029] = { -- Boulders, Mossy Cluster
+	    itemPrice = 225,
+	  },
+	  [225030] = { -- Boulder, Round Mossy Striated
+	    itemPrice = 450,
+	  },
+	  [225031] = { -- Boulder, Angular Mossy Striated
+	    itemPrice = 450,
+	  },
+	  [225038] = { -- Stones, Loose Rubble
+	    itemPrice = 270,
+	  },
+	  [225037] = { -- Rough Crates, Stack
+	    itemPrice = 270,
+	  },
+	  [225036] = { -- Rough Crates, Cargo Shipment
+	    itemPrice = 405,
+	  },
+	  [225035] = { -- Ruined Floor, Stonework
+	    itemPrice = 1800,
+	  },
+	  [225034] = { -- Cave Doorway, Mossy Vine-Covered
+	    itemPrice = 18000,
+	  },
+	  [225033] = { -- Tree, Giant Climbing Wyrdbloom
+	    itemPrice = 22500,
+	  },
+	  [225032] = { -- Logs, Unprocessed
+	    itemPrice = 225,
+	  },
+	  [224922] = { -- Breton Panel, Wood
+	    itemPrice = 90,
+	  },
+	  [224921] = { -- Breton Support Beam, Wood
+	    itemPrice = 90,
+	  },
+	  [224882] = { -- Rope, Thin Knotted
+	    itemPrice = 45,
+	  },
+	  [224880] = { -- Rope, Short Twisted
+	    itemPrice = 45,
+	  },
+	  [224879] = { -- Rope, Twisted
+	    itemPrice = 45,
+	  },
+	},
   },
+
 }
 
 FurC.AchievementVendors[ver.ZERO] = {
@@ -1383,180 +1381,188 @@ FurC.AchievementVendors[ver.ZERO] = {
         itemPrice = 5000,
         achievement = getQuestString(7363), -- Those Who Would Rule
       },
-      [224089] = { -- Thousand Eyes Banner, Large Hanging
-        itemPrice = 5000,
+	  [224089] = { -- Thousand Eyes Banner, Large Hanging
+	    itemPrice = 5000,
         achievement = getQuestString(7363), -- Those Who Would Rule
-      },
-      [224090] = { -- Glittering Goad Banner, Small Hanging
-        itemPrice = 5000,
+	  },
+	  [224090] = { -- Glittering Goad Banner, Small Hanging
+	    itemPrice = 5000,
         achievement = getQuestString(7363), -- Those Who Would Rule
-      },
-      [224087] = { -- Glittering Goad Banner, Large Hanging
-        itemPrice = 5000,
+	  },
+	  [224087] = { -- Glittering Goad Banner, Large Hanging
+	    itemPrice = 5000,
         achievement = getQuestString(7363), -- Those Who Would Rule
-      },
-      [224091] = { -- Ruckus Banner, Small Hanging
-        itemPrice = 5000,
+	  },
+	  [224091] = { -- Ruckus Banner, Small Hanging
+	    itemPrice = 5000,
         achievement = getQuestString(7363), -- Those Who Would Rule
-      },
-      [224088] = { -- Ruckus Banner, Large Hanging
-        itemPrice = 5000,
+	  },
+	  [224088] = { -- Ruckus Banner, Large Hanging
+	    itemPrice = 5000,
         achievement = getQuestString(7363), -- Those Who Would Rule
-      },
-      [224095] = { -- Antiweather Pylon
-        itemPrice = 20000,
-      },
-      [224096] = { -- Incandescent Pod, Small
-        itemPrice = 5000,
-      },
-      [224093] = { -- Incandescent Pod, Large
-        itemPrice = 25000,
-      },
-      [224094] = { -- Flamepitcher
-        itemPrice = 20000,
-      },
-      [224097] = { -- Duneripper Viscera
-        itemPrice = 3000,
-      },
-      [224098] = { -- Jump Pad, Decommissioned
-        itemPrice = 2000,
-      },
-      [224099] = { -- Essence Crucible
-        itemPrice = 20000,
-        achievement = 4522,
-      },
-      [224100] = { -- Hourglass of Akatosh, Shattered
-        itemPrice = 20000,
-        achievement = 4521,
-      },
-    },
+	  },
+	  [224095] = { -- Antiweather Pylon
+	    itemPrice = 20000,
+	  },
+	  [224096] = { -- Incandescent Pod, Small
+	    itemPrice = 5000,
+	  },
+	  [224093] = { -- Incandescent Pod, Large
+	    itemPrice = 25000,
+	  },
+	  [224094] = { -- Flamepitcher
+	    itemPrice = 20000,
+	  },
+	  [224097] = { -- Duneripper Viscera
+	    itemPrice = 3000,
+	  },
+	  [224098] = { -- Jump Pad, Decommissioned
+	    itemPrice = 2000,
+	  },
+	  [224099] = { -- Essence Crucible
+	    itemPrice = 20000,
+		achievement = 4522,
+	  },
+	  [224100] = { -- Hourglass of Akatosh, Shattered
+	    itemPrice = 20000,
+		achievement = 4521,
+	  },
+	  
+	 },
   },
 }
 
 FurC.AchievementVendors[ver.WORMS2] = {
   [loc.SOLSTICE] = {
     [npc.AF] = {
-      [223664] = { -- Worm Cult Tent, Cultist's
-        itemPrice = 75000,
-        achievement = 4460,
-      },
-      [223663] = { -- Worm Cult Banner, Hanging Red
-        itemPrice = 10000,
-        achievement = 4473,
-      },
-      [223661] = { -- Worm King's Sarcophagus, Necropolis Replica
-        itemPrice = 150000,
-        achievement = 4475, -- Hero of Solstice
-      },
-      [223662] = { -- Ashbound Hall Aspect Lock, Replica
-        itemPrice = 75000,
-        achievement = 4407,
-      },
-    },
-
-    [npc.HGF] = {
-      [220354] = { -- Tree, Flowering Red Poinsettia
-        itemPrice = 5000,
-      },
-      [220353] = { -- Driftwood, Spindly
-        itemPrice = 450,
-      },
-      [220352] = { -- Platform, Cut Stone
-        itemPrice = 500,
-      },
-      [220355] = { -- Tree, Sturdy Tamanu
-        itemPrice = 4500,
-      },
-      [220356] = { -- Plant Cluster, Tamanu
-        itemPrice = 25000,
-      },
-      [220357] = { -- Mammoth Grass, Patch
-        itemPrice = 400,
-      },
-      [220350] = { -- Stones, Limestone Cluster
-        itemPrice = 300,
-      },
-      [220351] = { -- Southern Sea Trilobite Shell, Large
-        itemPrice = 1000,
-      },
-      [220358] = { -- Sapling, Magenta Summertide
-        itemPrice = 3000,
-      },
-      [220359] = { -- Saplings, Magenta Summertide Cluster
-        itemPrice = 3500,
-      },
-      [220360] = { -- Sapling, Violet Branched Summertide
-        itemPrice = 4000,
-      },
-      [220361] = { -- Sapling, Violet Leaning Summertide
-        itemPrice = 3500,
-      },
-      [220362] = { -- Debris Pile, Sea-Tossed Flotsam
-        itemPrice = 250,
-      },
-      [220348] = { -- Amethyst Crystals, Small Teal Patch
-        itemPrice = 20000,
-      },
-      [220347] = { -- Amethyst Crystals, Purple Patch
-        itemPrice = 20000,
-      },
-      [220349] = { -- Amethyst Crystals, Teal Cluster
-        itemPrice = 5000,
-      },
-      [220346] = { -- Amethyst Crystals, Small Purple Patch
-        itemPrice = 5000,
-      },
-    },
+	  [223664] = { -- Worm Cult Tent, Cultist's
+	    itemPrice = 75000,
+		achievement = 4460,
+	  },
+	  [223663] = { -- Worm Cult Banner, Hanging Red
+	    itemPrice = 10000,
+		achievement = 4473, 
+	  },
+	  [223661] = { -- Worm King's Sarcophagus, Necropolis Replica
+	    itemPrice = 150000,
+		achievement = 4475, -- Hero of Solstice
+	  },
+	  [223662] = { -- Ashbound Hall Aspect Lock, Replica
+	    itemPrice = 75000,
+		achievement = 4407,
+	  },
+	},
+	
+	[npc.HGF] = {
+	  [220354] = { -- Tree, Flowering Red Poinsettia
+	    itemPrice = 5000,
+	  },
+	  [220353] = { -- Driftwood, Spindly
+	    itemPrice = 450,
+	  },
+	  [220352] = { -- Platform, Cut Stone
+	    itemPrice = 500,
+	  },
+	  [220355] = { -- Tree, Sturdy Tamanu
+	    itemPrice = 4500,
+	  },
+	  [220356] = { -- Plant Cluster, Tamanu
+	    itemPrice = 25000,
+	  },
+	  [220357] = { -- Mammoth Grass, Patch
+	    itemPrice = 400,
+	  },
+	  [220350] = { -- Stones, Limestone Cluster
+	    itemPrice = 300,
+	  },
+	  [220351] = { -- Southern Sea Trilobite Shell, Large
+	    itemPrice = 1000,
+	  },
+	  [220358] = { -- Sapling, Magenta Summertide
+	    itemPrice = 3000,
+	  },
+	  [220359] = { -- Saplings, Magenta Summertide Cluster
+	    itemPrice = 3500,
+	  },
+	  [220360] = { -- Sapling, Violet Branched Summertide
+	    itemPrice = 4000,
+	  },
+	  [220361] = { -- Sapling, Violet Leaning Summertide
+	    itemPrice = 3500,
+	  },
+	  [220362] = { -- Debris Pile, Sea-Tossed Flotsam
+	    itemPrice = 250,
+	  },
+	  [220348] = { -- Amethyst Crystals, Small Teal Patch
+	    itemPrice = 20000,
+	  },
+	  [220347] = { -- Amethyst Crystals, Purple Patch
+	    itemPrice = 20000,
+	  },
+	  [220349] = { -- Amethyst Crystals, Teal Cluster
+	    itemPrice = 5000,
+	  },
+	  [220346] = { -- Amethyst Crystals, Small Purple Patch
+	    itemPrice = 5000,
+	  },
+	},
+	
   },
-}
+  
+ }
 
 FurC.AchievementVendors[ver.SHADOWS] = {
   [loc.SOLSTICE] = {
     [npc.AF] = {
-      [219726] = { -- Worm Cult Crystal Pylon
-        itemPrice = 50000,
-        achievement = 4449, -- Barrier Buster
-      },
-      [219725] = { -- Stirk Fellowship Command Tent
-        itemPrice = 100000,
-        achievement = 4425, -- Siege Camp Guardian
-      },
-    },
-    [npc.HGF] = {
-      [217938] = { -- Tree, Hooked Dawnwood
-        itemPrice = 3000,
-      },
-      [217939] = { -- Tree, Braided Dawnwood
-        itemPrice = 4500,
-      },
-      [217940] = { -- Colovian Well, Overgrown Dawnwood
-        itemPrice = 4500,
-      },
-      [217941] = { -- Colovian Well, Destroyed Dawnwood
-        itemPrice = 450,
-      },
-      [217970] = { -- Tree, Giant Dawnwood Canopy
-        itemPrice = 24000,
-      },
-      [217665] = { -- Solitude Fence, Stick Curved
-        itemPrice = 100,
-      },
-    },
-  },
+	  [219726] = { -- Worm Cult Crystal Pylon
+	    itemPrice = 50000,
+		achievement = 4449, -- Barrier Buster
+	  },
+	  [219725] = { -- Stirk Fellowship Command Tent
+	    itemPrice = 100000,
+		achievement = 4425, -- Siege Camp Guardian
+	  },
+	  
+	},
+	[npc.HGF] = {
+	  [217938] = { -- Tree, Hooked Dawnwood
+	    itemPrice = 3000,
+	  },
+	  [217939] = { -- Tree, Braided Dawnwood
+	    itemPrice = 4500,
+	  },
+	  [217940] = { -- Colovian Well, Overgrown Dawnwood
+	    itemPrice = 4500,
+	  },
+	  [217941] = { -- Colovian Well, Destroyed Dawnwood
+	    itemPrice = 450,
+	  },
+	  [217970] = { -- Tree, Giant Dawnwood Canopy
+	    itemPrice = 24000,
+	  },
+	  [217665] = { -- Solitude Fence, Stick Curved
+	    itemPrice = 100,
+	  },
 
+	},
+  
+  },
+  
   [loc.UNDAUNTED] = {
     [npc.UNDAUNTED_QM] = {
-      [167310] = { -- Naj-Caldeesh Drawbridge, Stone
+      [217972] = { -- Naj-Caldeesh Drawbridge, Stone
         itemPrice = 40000,
         achievement = 4311, -- Naj-Caldeesh Vanquisher
       },
-      [217971] = { -- Coldharbour Archway, Grand
-        itemPrice = 25000,
-        achievement = 4334, -- Black Gem Foundry Vanquisher
+	  [217971] = { -- Coldharbour Archway, Grand
+	    itemPrice = 25000,
+		achievement = 4334, -- Black Gem Foundry Vanquisher
+	  },
+      
       },
     },
-  },
-}
+	
+ }
 
 FurC.AchievementVendors[ver.WORMS] = {
   [loc.SOLSTICE] = {
@@ -1575,7 +1581,7 @@ FurC.AchievementVendors[ver.WORMS] = {
       },
       [217596] = { -- Subclassing Banner
         itemPrice = 12000,
-        achievement = 4402,
+		achievement = 4402,
       },
       [217599] = { -- Sunport Banner
         itemPrice = 12000,
@@ -1589,14 +1595,14 @@ FurC.AchievementVendors[ver.WORMS] = {
         itemPrice = 12000,
         achievement = 4414, -- Archmage Whisperer
       },
-      [217594] = { -- Tide-Born Pool, Ceremonial
-        itemPrice = 50000,
-        achievement = 4408,
-      },
-      [217597] = { -- Meridian Cynosure, Inert
-        itemPrice = 5000,
-        achievement = 4461,
-      },
+	  [217594] = { -- Tide-Born Pool, Ceremonial
+	    itemPrice = 50000,
+		achievement = 4408,
+	  },
+	  [217597] = { -- Meridian Cynosure, Inert
+	    itemPrice = 5000,
+		achievement = 4461,
+	  },
     },
     [npc.HGF] = {
       [214496] = { -- Boulder, Horizontal Sandstone
@@ -1679,27 +1685,27 @@ FurC.AchievementVendors[ver.WORMS] = {
 FurC.AchievementVendors[ver.FALLBAN] = {
   [loc.UNDAUNTED] = {
     [npc.UNDAUNTED_QM] = {
-      [212586] = { -- Redguard Boat, Sailing
-        itemPrice = 50000,
-        achievement = 4128,
-      },
-      [212587] = { -- Exiled Redoubt Banner
-        itemPrice = 4500,
-        achievement = 4109,
-      },
-      [214249] = { -- Replica Soul Reaper
-        itemPrice = 50000,
-        achievement = 4306,
-      },
-    },
+	  [212586] = { -- Redguard Boat, Sailing
+	    itemPrice = 50000,
+		achievement = 4128,
+	  },
+	  [212587] = { -- Exiled Redoubt Banner
+	    itemPrice = 4500,
+		achievement = 4109,
+	  },
+	  [214249] = { -- Replica Soul Reaper
+	    itemPrice = 50000,
+		achievement = 4306,
+	  },
+	},
   },
   [loc.ALIKR] = {
     [npc.HGF] = {
-      [118168] = { -- Block, Carved Stone
-        itemPrice = 500,
-      },
-    },
+	  [118168] = rumourSource, -- Block, Carved Stone
+	    itemPrice = 500,
+	  },
   },
+
 }
 
 -- Golden Pursuits Update 44
@@ -1710,10 +1716,10 @@ FurC.AchievementVendors[ver.BASE44] = {
         itemPrice = 25000,
         achievement = 4248,
       },
-      [211506] = { -- Empathic Portal Remnant
-        itemPrice = 25000,
-        achievement = 4245,
-      },
+	  [211506] = { -- Empathic Portal Remnant
+	    itemPrice = 25000,
+		achievement = 4245,
+	  },
     },
   },
 }
@@ -2351,9 +2357,6 @@ FurC.AchievementVendors[ver.DEADL] = {
       },
       [181597] = { -- Bush, Sharp Underbrush
         itemPrice = 300,
-      },
-      [134942] = { -- Bushes, Withered Cluster
-        itemPrice = 100,
       },
       [182213] = { -- Fargrave Canopy
         itemPrice = 250,
@@ -3490,6 +3493,13 @@ FurC.AchievementVendors[ver.DRAGONS] = {
         achievement = 1975,
       },
     },
+  },
+  [loc.FARGRAVE] = {
+    [npc.HGF] = {
+	  [134942] = { -- Bushes, Withered Cluster
+        itemPrice = 100,
+      },
+	},
   },
 }
 
