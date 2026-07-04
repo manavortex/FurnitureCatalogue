@@ -7,21 +7,13 @@ local dataminedUnclear = GetString(SI_FURC_DATAMINED_UNCLEAR)
 
 -- Season Zero Part 2
 FurC.Rumours[ver.ZERO2] = {
-  [224843] = rumourSource, -- Starsong Staircase, Spiral
-  [224844] = rumourSource, -- Sigil Trim, Anu Pattern
-  [224847] = rumourSource, -- Marble Platform, Padomay Pattern Square
-  [224848] = rumourSource, -- Marble Pillar, Anu Pattern
-  [224849] = rumourSource, -- Marble Pillar, Padomay Pattern
-  [224876] = rumourSource, -- Music Box, A Wish for Fish
-  [225088] = rumourSource, -- Cheers to the Hero Painting, Gold
-  [225184] = rumourSource, -- Pipe, Stately
+    
+	[224876] = rumourSource, -- Music Box, A Wish for Fish
+    [225184] = rumourSource, -- Pipe, Stately
   [223844] = rumourSource, -- Hearts Week Decor, Red Bow
-  [224739] = rumourSource, -- Aetherean Rupture, Liminal
-  [224853] = rumourSource, -- A Hero Strides Forth Painting, Gold
-  [224852] = rumourSource, -- An Evening with Darien Painting, Gold
-  [224851] = rumourSource, -- Statue, Meridia's Champion
-  [224846] = rumourSource, -- Marble Platform, Anu Pattern Square
-  [224845] = rumourSource, -- Sigil Trim, Padomay Pattern
+    
+    
+    
 }
 
 -- Season Zero
@@ -43,12 +35,8 @@ FurC.Rumours[ver.ZERO] = {
   [223884] = rumourSource, -- Rock Altar, Spiked
   [223844] = rumourSource, -- Hearts Week Decor, Red Bow
   [223845] = rumourSource, -- Hearts Week Garland, Curved Ribbon
-  [223881] = rumourSource, -- Argonian Tile, Trap Trigger Display
   [223846] = rumourSource, -- Hearts Week Garland, Curved Long Ribbon
   [223847] = rumourSource, -- Hearts Week Garland, Curved Floral Dangles
-  [223880] = rumourSource, -- Vampiric Scales, Laboratory
-  [223882] = rumourSource, -- Nord Tile, Trap Trigger Display
-  [223883] = rumourSource, -- Goblin Bedding, Leather
   [223885] = rumourSource, -- Ayleid Staircase, Split
   [223886] = rumourSource, -- Ayleid Apparatus, Lamp
   [223887] = rumourSource, -- Alinor Colonnade, Summerset
@@ -92,6 +80,7 @@ FurC.Rumours[ver.ENDLESS] = {
   [199120] = rumourSource, -- Framed Vision
 }
 
+
 -- 26 Necrom
 FurC.Rumours[ver.NECROM] = {
   [120485] = rumourSource, -- Cactus, Columnar
@@ -103,6 +92,7 @@ FurC.Rumours[ver.NECROM] = {
   [115706] = rumourSource, -- Khajiit Tile, Full Moons
   [115705] = rumourSource, -- Khajiit Tile, New Moons
 }
+
 
 -- 20 Deadlands
 FurC.Rumours[ver.DEADL] = {
@@ -124,6 +114,7 @@ FurC.Rumours[ver.DEADL] = {
   [126588] = rumourSource, -- Vvardenfell Pitcher Plants, Hanging Bunch
   [126136] = rumourSource, -- Dwarven Lantern, Powered
   [120984] = rumourSource, -- Plant, Goldenrod Cluster
+  [120851] = rumourSource, -- Gallows
 }
 
 -- 17 Markarth
@@ -233,8 +224,12 @@ FurC.Rumours[ver.STONET] = {
   [118150] = rumourSource, -- Carpet Roll, Colorful
   [118124] = rumourSource, -- Pelt, Wolf
   [118123] = rumourSource, -- Pelt, Ice Wolf
+  [118106] = rumourSource, -- Painting Palette
+  [118105] = rumourSource, -- Painting Brush, Angled
+  [118104] = rumourSource, -- Painting Brush, Detail
+  [118103] = rumourSource, -- Painting Brush, Wide
   [118100] = rumourSource, -- Horn, Carved
-  [117898] = rumourSource, -- Redguard Carpet, Dawn
+    [117898] = rumourSource, -- Redguard Carpet, Dawn
   [116490] = rumourSource, -- Orcish Head, Stone
   [116489] = rumourSource, -- Orcish Mask, Shield
   [116488] = rumourSource, -- Orcish Mask, Decorative
@@ -383,4 +378,5 @@ FurC.Rumours[ver.HOMESTEAD] = {
   [118284] = rumourSource, -- Horn, Display, Cracked
   [118283] = rumourSource, -- Horn, Display, Huge
   [116433] = rumourSource, -- Orcish Desk with Furs
+  [120853] = rumourSource, -- Stockade
 }
