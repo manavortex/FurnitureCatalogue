@@ -7,6 +7,26 @@ local otherTask = LibAsync:Create("FurnitureCatalogue_ToggleGui")
 
 local src = FurC.Constants.ItemSources
 
+-- LCK char list can change, we might have to manually update list if they don't show up
+function FurC.RefreshCharacterChoices()
+  local dd = FurC.DropdownData
+  local choices, tooltips = dd.ChoicesCharacter, dd.TooltipsCharacter
+  for i = #choices, 1, -1 do
+    choices[i] = nil
+  end
+  for i = #tooltips, 1, -1 do
+    tooltips[i] = nil
+  end
+  choices[1] = GetString(SI_FURC_FILTER_CHAR_OFF)
+  tooltips[1] = GetString(SI_FURC_FILTER_CHAR_OFF_TT)
+  local names = (FurC.Lib.LCKAvailable() and FurC.Lib.GetCharacterNames()) or {}
+  for _, name in ipairs(names) do
+    choices[#choices + 1] = name
+    tooltips[#tooltips + 1] = zo_strformat(GetString(SI_FURC_STRING_RECIPESFORCHAR), name)
+  end
+  return choices, tooltips
+end
+
 function FurC.CalculateMaxLines()
   if not FurCGui_Header then
     return
@@ -573,17 +593,7 @@ local function createGui()
     comboBox:SetSortsItems(false)
 
     if dropdownName == "Character" then
-      validChoices = { GetString(SI_FURC_FILTER_CHAR_OFF) }
-      dropdownData.ChoicesCharacter = validChoices
-      dropdownData.TooltipsCharacter = { GetString(SI_FURC_FILTER_CHAR_OFF_TT) }
-      local names = (FurC.Lib.LCKAvailable() and FurC.Lib.GetCharacterNames()) or {}
-      for _, characterName in ipairs(names) do
-        table.insert(validChoices, characterName)
-        table.insert(
-          dropdownData.TooltipsCharacter,
-          zo_strformat(GetString(SI_FURC_STRING_RECIPESFORCHAR), characterName)
-        )
-      end
+      validChoices = FurC.RefreshCharacterChoices()
     end
 
     comboBox:ClearItems()
@@ -622,6 +632,14 @@ local function createGui()
   createInventoryDropdown("Character")
   FurC.RefreshCharacterDropdown = function()
     createInventoryDropdown("Character")
+    -- keep the settings default char dropdown in sync
+    if FurC_DefaultCharDropdown then
+      FurC_DefaultCharDropdown:UpdateChoices(
+        FurC.DropdownData.ChoicesCharacter,
+        nil,
+        FurC.DropdownData.TooltipsCharacter
+      )
+    end
   end
   FurC.ChangeTemplateFromButton(FurC.GetTinyUi())
   FurC.SetFontSize(FurC.GetFontSize())

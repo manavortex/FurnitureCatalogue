@@ -225,8 +225,10 @@ function FurC.CreateSettings(savedVars, defaults)
         },
         { -- dropdown: default character
           type = "dropdown",
+          reference = "FurC_DefaultCharDropdown",
           name = GetString(SI_FURC_STRING_MENU_DEFAULT_DD_CHAR),
           choices = FurC.DropdownData.ChoicesCharacter,
+          choicesTooltips = FurC.DropdownData.TooltipsCharacter,
           tooltip = function()
             return GetString(
               (FurC.Lib.LCKAvailable() and SI_FURC_STRING_CHARACTER_USES_LCK) or SI_FURC_STRING_CHARACTER_NEEDS_LCK
@@ -240,6 +242,29 @@ function FurC.CreateSettings(savedVars, defaults)
           end,
           setFunc = function(value)
             FurC.SetDefaultDropdownChoice("Character", value)
+          end,
+        },
+        { -- button: refresh character list from LCK
+          type = "button",
+          name = GetString(SI_FURC_STRING_MENU_REFRESH_CHARS),
+          tooltip = GetString(SI_FURC_STRING_MENU_REFRESH_CHARS_TT),
+          width = "half",
+          disabled = function()
+            return not FurC.Lib.LCKAvailable()
+          end,
+          func = function()
+            FurC.Lib.InvalidateCharacters()
+            FurC.RefreshCharacterChoices()
+            if FurC_DefaultCharDropdown then
+              FurC_DefaultCharDropdown:UpdateChoices(
+                FurC.DropdownData.ChoicesCharacter,
+                nil,
+                FurC.DropdownData.TooltipsCharacter
+              )
+            end
+            if FurC.RefreshCharacterDropdown then
+              FurC.RefreshCharacterDropdown()
+            end
           end,
         },
         { -- dropdown: default version

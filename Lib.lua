@@ -140,6 +140,11 @@ function FurC.Lib.GetCharacterNames()
   return (cache and cache.names) or {}
 end
 
+-- Drop cached char list so we query LCK again
+function FurC.Lib.InvalidateCharacters()
+  _charCache = nil
+end
+
 function FurC.Lib.IsKnownByName(item, name)
   if not _lck then
     return nil
