@@ -7,13 +7,10 @@ local dataminedUnclear = GetString(SI_FURC_DATAMINED_UNCLEAR)
 
 -- Season Zero Part 2
 FurC.Rumours[ver.ZERO2] = {
-    
-	[224876] = rumourSource, -- Music Box, A Wish for Fish
-    [225184] = rumourSource, -- Pipe, Stately
+
+  [224876] = rumourSource, -- Music Box, A Wish for Fish
+  [225184] = rumourSource, -- Pipe, Stately
   [223844] = rumourSource, -- Hearts Week Decor, Red Bow
-    
-    
-    
 }
 
 -- Season Zero
@@ -80,7 +77,6 @@ FurC.Rumours[ver.ENDLESS] = {
   [199120] = rumourSource, -- Framed Vision
 }
 
-
 -- 26 Necrom
 FurC.Rumours[ver.NECROM] = {
   [120485] = rumourSource, -- Cactus, Columnar
@@ -92,7 +88,6 @@ FurC.Rumours[ver.NECROM] = {
   [115706] = rumourSource, -- Khajiit Tile, Full Moons
   [115705] = rumourSource, -- Khajiit Tile, New Moons
 }
-
 
 -- 20 Deadlands
 FurC.Rumours[ver.DEADL] = {
@@ -229,7 +224,7 @@ FurC.Rumours[ver.STONET] = {
   [118104] = rumourSource, -- Painting Brush, Detail
   [118103] = rumourSource, -- Painting Brush, Wide
   [118100] = rumourSource, -- Horn, Carved
-    [117898] = rumourSource, -- Redguard Carpet, Dawn
+  [117898] = rumourSource, -- Redguard Carpet, Dawn
   [116490] = rumourSource, -- Orcish Head, Stone
   [116489] = rumourSource, -- Orcish Mask, Shield
   [116488] = rumourSource, -- Orcish Mask, Decorative
