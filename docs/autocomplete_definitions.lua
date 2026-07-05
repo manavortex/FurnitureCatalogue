@@ -30,6 +30,7 @@ It should not include:
 FurCGui = Control
 FurC_QualityFilterButton = ButtonControl
 FurC_CraftingTypeFilterButton = ButtonControl
+FurC_CategoryFilterButton = ButtonControl
 FurC_SlotTemplate = Control
 FurC_SlotTemplateTiny = Control
 FurC_SlotIconKnownNo = TextureControl
@@ -54,6 +55,7 @@ FurC_SlotTemplateTinyMats = LabelControl
 FurCGui_Header_Bar1 = Control
 FurCGui_Header_Bar2 = Control
 FurCGui_Header_Bar3 = Control
+FurCGui_Header_CategoryBar = Control
 FurCGui_Header_SortBar = Control
 FurCGui_ListHolder_Slider = SliderControl
 ---------- LVL: 07 ----------
@@ -73,6 +75,7 @@ FurC_Search = Control
 FurC_ShowRumours = ButtonControl
 FurC_ShowCrowns = ButtonControl
 FurC_ShowRumoursGlow = TextureControl
+FurC_CategoryFilter = Control
 FurCGui_Header_SortBar_Name = LabelControl
 FurCGui_Header_SortBar_Quality = LabelControl
 ---------- LVL: 09 ----------
@@ -98,6 +101,7 @@ FurCDevControl = Control
 FurCDevControl_BG = BackdropControl
 FurCDevControl_hide = ButtonControl
 FurCDevControl_clear = ButtonControl
+FurCDevControl_fromTrader = ButtonControl
 FurCDevControlBox = EditControl
 ---------- LVL: 05 ----------
 -- ////// END   : GENERATED FROM FurnitureCatalogue_DevUtility/xml.xml
@@ -260,6 +264,7 @@ SI_FURC_ITEMPACK_CRAGKITCHEN = "Craglorn Multicultural Kitchen"
 SI_FURC_ITEMPACK_CRAGKNICKS = "Craglorn Multicultural Knick-Knacks"
 SI_FURC_ITEMPACK_CRAGPARLOUR = "Craglorn Multicultural Parlour"
 SI_FURC_ITEMPACK_CURIOSITIES = "Apocryphal Curiosities"
+SI_FURC_ITEMPACK_DARIEN = "Darien's Delights"
 SI_FURC_ITEMPACK_DEEPMIRE = "Deepmire Expedition"
 SI_FURC_ITEMPACK_DIBELLA = "Dibella's Garden"
 SI_FURC_ITEMPACK_DRUIDIC = "Druidic Gatherings"
@@ -288,11 +293,13 @@ SI_FURC_ITEMPACK_NECROM = "Necrom Garden"
 SI_FURC_ITEMPACK_NEREID = "Water Dancer Nereid"
 SI_FURC_ITEMPACK_NEWLIFE2018 = "New Life Festival"
 SI_FURC_ITEMPACK_NOBLEBATH = "Summerset Noble's Bathing"
+SI_FURC_ITEMPACK_NOBLEKIT = "Summerset Noble's Kitchen"
 SI_FURC_ITEMPACK_NOBLEPAR = "Summerset Noble's Parlour"
 SI_FURC_ITEMPACK_OASIS = "Moons-Blessed Oasis"
 SI_FURC_ITEMPACK_RAZOR = "Mehrunes' Razor"
 SI_FURC_ITEMPACK_SANGUINE = "Sanguine's Festival"
 SI_FURC_ITEMPACK_SOTHA = "The Clockwork God's Domain"
+SI_FURC_ITEMPACK_STABLE = "Steadfast Stablemaster Bundle"
 SI_FURC_ITEMPACK_SWAMP = "Shadow and Stone"
 SI_FURC_ITEMPACK_THEATER = "Community Theater"
 SI_FURC_ITEMPACK_TOYMAKER = "Toymaker's Trove"
@@ -380,6 +387,9 @@ SI_FURC_SRC_STEAL = "stealing^N,from"
 SI_FURC_SRC_TOMESPACK = "Part of the Tamriel Tomes item pack [<<1>>] "
 SI_FURC_SRC_TOT = "Tales of Tribute^P,from"
 SI_FURC_STRING_CANNOT_CRAFT = "You cannot craft this yet"
+SI_FURC_STRING_CHARACTER_NEEDS_LCK = "Install LibCharacterKnowledge to filter by character"
+SI_FURC_STRING_CHARACTER_USES_LCK =
+  "Uses LibCharacterKnowledge (current account only). To hide characters from this list, disable them in the LCK settings."
 SI_FURC_STRING_CONTEXTMENU_DIVIDER = "Don't use divider in context menu?"
 SI_FURC_STRING_CONTEXTMENU_DIVIDER_TT =
   "Adds a divider to the context menu above the - Furniture entry. Check to disable"
