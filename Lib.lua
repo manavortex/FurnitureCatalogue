@@ -16,6 +16,11 @@ end
 
 function FurC.Lib.InitLCK(lck)
   _charCache = nil
+  -- prevent duplicate callback registrations
+  if _lck and _lck.UnregisterForCallback then
+    _lck.UnregisterForCallback("FurnitureCatalogue", _lck.EVENT_INITIALIZED)
+    _lck.UnregisterForCallback("FurnitureCatalogue", _lck.EVENT_UPDATE_REFRESH)
+  end
   _lck = lck or LibCharacterKnowledge
   if not _lck then
     return
