@@ -470,7 +470,13 @@ end
 ---@param dropdownName string
 ---@return integer
 function FurC.GetDefaultDropdownChoice(dropdownName)
-  return FurC.settings.dropdownDefaults[dropdownName]
+  local index = FurC.settings.dropdownDefaults[dropdownName]
+  -- Character choices are built from LCK (char list can change between sessions)
+  local choices = FurC.DropdownData["Choices" .. dropdownName]
+  if not (index and choices and choices[index]) then
+    return 1
+  end
+  return index
 end
 
 function FurC.SetDefaultDropdownChoice(dropdownName, value)
@@ -488,9 +494,8 @@ function FurC.SetResetDropdownChoice(value)
 end
 
 function FurC.GetDropdownChoiceTextual(dropdownName)
-  local value = FurC.GetDropdownChoice(dropdownName)
-  local dropdown = FurC.DropdownData["Choices" .. dropdownName]
-  return FurC.DropdownData["Choices" .. dropdownName][value]
+  local choices = FurC.DropdownData["Choices" .. dropdownName]
+  return choices[FurC.GetDropdownChoice(dropdownName)] or choices[1]
 end
 
 function FurC.GetSkipInitialScan()

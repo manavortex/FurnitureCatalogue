@@ -227,6 +227,14 @@ function FurC.CreateSettings(savedVars, defaults)
           type = "dropdown",
           name = GetString(SI_FURC_STRING_MENU_DEFAULT_DD_CHAR),
           choices = FurC.DropdownData.ChoicesCharacter,
+          tooltip = function()
+            return GetString(
+              (FurC.Lib.LCKAvailable() and SI_FURC_STRING_CHARACTER_USES_LCK) or SI_FURC_STRING_CHARACTER_NEEDS_LCK
+            )
+          end,
+          disabled = function()
+            return not FurC.Lib.LCKAvailable()
+          end,
           getFunc = function()
             return FurC.GetDefaultDropdownChoiceText("Character")
           end,
