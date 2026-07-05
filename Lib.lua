@@ -53,6 +53,10 @@ function FurC.Lib.InitLCK(lck)
   -- chars + knowledge empty until LCK has the info
   _lck.RegisterForCallback("FurnitureCatalogue", _lck.EVENT_INITIALIZED, function()
     _charCache = nil
+    -- LCK data is now available: default char can finally be applied
+    if FurC.ApplyDefaultCharacter then
+      FurC.ApplyDefaultCharacter()
+    end
     if FurC.RefreshCharacterDropdown then
       FurC.RefreshCharacterDropdown()
     end

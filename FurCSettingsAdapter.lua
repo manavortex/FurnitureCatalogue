@@ -439,21 +439,12 @@ function FurC.SetDropdownChoice(dropdownName, textValue, dropdownIndex)
 
   FurC.DropdownChoices[dropdownName] = dropdownIndex
 
-  -- selected character only means something for Known/Unknown, reset it otherwise
-  if dropdownName == "Source" then
-    if dropdownIndex ~= src.CRAFTING_KNOWN and dropdownIndex ~= src.CRAFTING_UNKNOWN then
-      FurC.DropdownChoices["Character"] = 1
-      FurC_DropdownCharacter:GetNamedChild("SelectedItemText"):SetText(FurC.DropdownData.ChoicesCharacter[1])
-    end
-  end
-
-  if dropdownName == "Character" and (dropdownIndex > 1) then
-    local source = FurC.DropdownChoices["Source"]
-    if source ~= src.CRAFTING_KNOWN and source ~= src.CRAFTING_UNKNOWN then
-      local knownIndex = src.CRAFTING_KNOWN
-      FurC.DropdownChoices["Source"] = knownIndex
-      FurC_DropdownSource:GetNamedChild("SelectedItemText"):SetText(FurC.DropdownData.ChoicesSource[knownIndex])
-    end
+  if
+    dropdownName == "Source"
+    and (dropdownIndex == src.CRAFTING or dropdownIndex == src.CRAFTING_KNOWN or dropdownIndex == src.CRAFTING_UNKNOWN)
+  then
+    FurC.DropdownChoices["Character"] = FurC.GetDefaultDropdownChoice("Character")
+    FurC_DropdownCharacter:GetNamedChild("SelectedItemText"):SetText(FurC.GetDropdownChoiceTextual("Character"))
   end
 
   FurC.DropdownChoices[dropdownName] = dropdownIndex
@@ -461,6 +452,24 @@ function FurC.SetDropdownChoice(dropdownName, textValue, dropdownIndex)
   zo_callLater(function()
     FurC.UpdateGui()
   end, 500)
+end
+
+-- Re-apply default dropdown char once LCK is ready
+function FurC.ApplyDefaultCharacter()
+  if FurC.RefreshCharacterChoices then
+    FurC.RefreshCharacterChoices() -- ensure the list reflects current LCK state
+  end
+  local source = FurC.GetDropdownChoice("Source")
+  if source ~= src.CRAFTING and source ~= src.CRAFTING_KNOWN and source ~= src.CRAFTING_UNKNOWN then
+    return
+  end
+  if FurC.GetDropdownChoice("Character") ~= 1 then
+    return -- don't override if specific char is already selected
+  end
+  local default = FurC.GetDefaultDropdownChoice("Character")
+  if default ~= 1 then
+    FurC.DropdownChoices["Character"] = default
+  end
 end
 
 function FurC.GetDefaultDropdownChoiceText(dropdownName)
