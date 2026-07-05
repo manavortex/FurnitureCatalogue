@@ -464,9 +464,9 @@ FurC.Recipes[ver.BASE43] = {
   211039, -- Blueprint: Colovian Keg, Gigantic Wine
   211038, -- Design: Dawnwood Platter, Feast
   211034, -- Diagram: Colovian Chandelier, Grapes
-  211033, -- Formula: Colovian Alembic Set, Colorful 
+  211033, -- Formula: Colovian Alembic Set, Colorful
   211035, -- Pattern: Colovian Tapestry, Red Diamond
-  211036, -- Praxis: Colovian Glassblower's Furnace 
+  211036, -- Praxis: Colovian Glassblower's Furnace
   211037, -- Sketch: Colovian Mirror, Standing
 }
 
@@ -1135,7 +1135,7 @@ FurC.Recipes[ver.DEADL] = {
   181553, -- Formula: Vampiric Lab Jar, Large,
   181554, -- Formula: Vampiric Lab Jar, Small,
   181555, -- Formula: Vampiric Lab Jar, Red Gelatinous,
-  
+
   175932, -- Pattern: Leyawiin Bed, Sturdy Single,
   181565, -- Blueprint: Leyawiin Turret, Castle,
   181566, -- Praxis: Leyawiin Wall, Castle Door Arch,
