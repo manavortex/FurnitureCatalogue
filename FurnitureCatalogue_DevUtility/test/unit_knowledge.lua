@@ -32,9 +32,9 @@ Taneth("FurC:Unit", function()
       UnregisterForCallback = function(_, eventCode)
         callbacks[eventCode] = nil
       end,
-      fire = function(eventCode)
+      fire = function(eventCode, ...)
         for _, cb in ipairs(callbacks[eventCode] or {}) do
-          cb()
+          cb(...)
         end
       end,
       GetServerList = function()
@@ -52,6 +52,10 @@ Taneth("FurC:Unit", function()
       end,
       GetItemKnowledgeList = function(item)
         return (cfg.list and cfg.list[item]) or {}
+      end,
+      -- per-char furnishing tracking
+      GetRawCharacterSettings = function(server, charId)
+        return { tracking = { plans = cfg.tracking and cfg.tracking[charId] } }
       end,
     }
   end
@@ -156,6 +160,45 @@ Taneth("FurC:Unit", function()
           },
         }))
         assert.same({ "Licks-Frogs", "Eats-Pants" }, FurC.Lib.GetCharacterNames())
+      end)
+    end)
+
+    it("skip characters not tracking furnishing plans", function()
+      guarded(function()
+        FurC.Lib.InitLCK(makeFakeLCK({
+          roster = {
+            { id = 1, name = "Tracks-All", account = ACCOUNT },
+            { id = 2, name = "Ignores-Plans", account = ACCOUNT },
+            { id = 3, name = "Uses-Default", account = ACCOUNT },
+          },
+          tracking = {
+            [1] = 4, -- track all
+            [2] = 1, -- "Do not track"
+            -- [3] nil -- default, treat as tracked
+          },
+        }))
+        assert.same({ "Tracks-All", "Uses-Default" }, FurC.Lib.GetCharacterNames())
+      end)
+    end)
+
+    it("EVENT_UPDATE_REFRESH rebuilds dropdown only when char list changed", function()
+      guarded(function()
+        local refreshed = 0
+        FurC.RefreshCharacterDropdown = function()
+          refreshed = refreshed + 1
+        end
+        local cfg = { roster = { { id = 1, name = "Licks-Frogs", account = ACCOUNT } } }
+        local fake = makeFakeLCK(cfg)
+        FurC.Lib.InitLCK(fake)
+        FurC.Lib.GetCharacterNames()
+
+        fake.fire(fake.EVENT_UPDATE_REFRESH, false) -- knowledge-only: no dropdown rebuild
+        assert.equals(0, refreshed)
+
+        cfg.roster = { { id = 2, name = "Eats-Pants", account = ACCOUNT } }
+        fake.fire(fake.EVENT_UPDATE_REFRESH, true) -- list changed: rebuild
+        assert.equals(1, refreshed)
+        assert.same({ "Eats-Pants" }, FurC.Lib.GetCharacterNames())
       end)
     end)
 

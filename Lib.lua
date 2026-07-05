@@ -35,8 +35,14 @@ function FurC.Lib.InitLCK(lck)
       zo_callLater(FurC.UpdateGui, 50)
     end
   end)
-  -- On recipe update: refilter, charlist unchanged
-  _lck.RegisterForCallback("FurnitureCatalogue", _lck.EVENT_UPDATE_REFRESH, function()
+  -- Regenerate char dropdown when LCK changes char ordering or tracking
+  _lck.RegisterForCallback("FurnitureCatalogue", _lck.EVENT_UPDATE_REFRESH, function(invalidateCharacterList)
+    if invalidateCharacterList then
+      _charCache = nil
+      if FurC.RefreshCharacterDropdown then
+        FurC.RefreshCharacterDropdown()
+      end
+    end
     if FurC.UpdateGui then
       zo_callLater(FurC.UpdateGui, 50)
     end
@@ -67,6 +73,22 @@ function FurC.Lib.AccountKnows(item)
   return false
 end
 
+-- LCK blueprint tracking is "plans" category
+-- 1 == "Do not track"
+-- 2...4 == track by quality
+-- 0 == use default
+local LCK_PLANS_KEY = "plans"
+local LCK_TRACKING_OFF = 1
+
+local function tracksFurnishing(server, charId)
+  if not _lck.GetRawCharacterSettings then
+    return true -- fallback: don't hide any char
+  end
+  local settings = _lck.GetRawCharacterSettings(server, charId)
+  local tracking = settings and settings.tracking and settings.tracking[LCK_PLANS_KEY]
+  return tracking ~= LCK_TRACKING_OFF
+end
+
 local function ensureCharCache()
   if _charCache then
     return _charCache
@@ -78,7 +100,7 @@ local function ensureCharCache()
   local account = GetDisplayName() -- LCK tracks other accounts too, so we filter those out
   local names, idByName = {}, {}
   for _, char in ipairs(_lck.GetCharacterList(server)) do
-    if char.account == account then
+    if char.account == account and tracksFurnishing(server, char.id) then
       names[#names + 1] = char.name
       idByName[char.name] = char.id
     end
