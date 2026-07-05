@@ -105,6 +105,16 @@ Taneth("FurC:Unit", function()
       end)
     end)
 
+    it("ignores an LCK missing core endpoints", function()
+      guarded(function()
+        local incomplete = makeFakeLCK({ knowledge = { [123] = 2 } })
+        incomplete.GetItemKnowledgeList = nil
+        FurC.Lib.InitLCK(incomplete)
+        assert.is_false(FurC.Lib.LCKAvailable())
+        assert.is_true(FurC.Lib.CharKnows(123))
+      end)
+    end)
+
     it("re-init does not add duplicate callbacks", function()
       guarded(function()
         local fires = 0

@@ -14,6 +14,30 @@ function FurC.Lib.LCKAvailable()
   return _lck ~= nil
 end
 
+-- Core LCK API we call unconditionally.
+local LCK_REQUIRED_FUNS = {
+  "RegisterForCallback",
+  "GetServerList",
+  "GetCharacterList",
+  "GetItemKnowledgeForCharacter",
+  "GetItemKnowledgeList",
+}
+
+local function lckIsUsable(lck)
+  if not lck then
+    return false
+  end
+  for _, name in ipairs(LCK_REQUIRED_FUNS) do
+    if type(lck[name]) ~= "function" then
+      return false
+    end
+  end
+  return lck.KNOWLEDGE_KNOWN ~= nil
+    and lck.KNOWLEDGE_UNKNOWN ~= nil
+    and lck.EVENT_INITIALIZED ~= nil
+    and lck.EVENT_UPDATE_REFRESH ~= nil
+end
+
 function FurC.Lib.InitLCK(lck)
   _charCache = nil
   -- prevent duplicate callback registrations
@@ -22,7 +46,8 @@ function FurC.Lib.InitLCK(lck)
     _lck.UnregisterForCallback("FurnitureCatalogue", _lck.EVENT_UPDATE_REFRESH)
   end
   _lck = lck or LibCharacterKnowledge
-  if not _lck then
+  if not lckIsUsable(_lck) then
+    _lck = nil -- incompatible/old LCK, falling back
     return
   end
   -- chars + knowledge empty until LCK has the info
