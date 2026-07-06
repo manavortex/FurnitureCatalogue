@@ -225,6 +225,67 @@ function FurC.SetEnableShoppingList(value)
   FurC.settings["enableShoppingList"] = value
 end
 
+-- Tooltip source blacklist
+do
+  local S = FurC.Constants.ItemSources
+  local CATEGORIES = {
+    { key = "purch_gold", name = SI_FURC_FILTER_SRC_SOLD_GOLD, raw = { S.VENDOR } },
+    { key = "writ_vendor", name = SI_FURC_FILTER_SRC_SOLD_WRIT, raw = { S.ROLIS } },
+    { key = "purch_ap", name = SI_FURC_FILTER_SRC_SOLD_AP, raw = { S.PVP } },
+    { key = "purch_tbars", name = SI_FURC_FILTER_SRC_SOLD_TBARS, raw = { S.BAZAAR } },
+    { key = "luxury", name = SI_FURC_FILTER_SRC_LUX, raw = { S.LUXURY } },
+    { key = "crownstore", name = SI_FURC_FILTER_SRC_CROWN, raw = { S.CROWN } },
+    { key = "rumour", name = SI_FURC_FILTER_SRC_RUMOUR, raw = { S.RUMOUR } },
+    {
+      key = "other",
+      name = SI_FURC_FILTER_SRC_OTHER,
+      raw = { S.FESTIVAL_DROP, S.DROP, S.FISHING, S.JUSTICE, S.GUILDSTORE, S.TOMES, S.OTHER, S.COLL_MERCH },
+    },
+  }
+
+  -- raw stored source -> category key
+  local rawToKey = {}
+  for _, category in ipairs(CATEGORIES) do
+    for _, rawSource in ipairs(category.raw) do
+      rawToKey[rawSource] = category.key
+    end
+  end
+
+  -- True if tooltip should suppress category
+  function FurC.IsTooltipSourceHidden(source)
+    local hidden = FurC.settings.tooltipHiddenSources
+    if not hidden then
+      return false
+    end
+    local key = rawToKey[source]
+    return key ~= nil and hidden[key] == true
+  end
+
+  function FurC.BuildTooltipSourceOptions()
+    local controls = {}
+    for _, category in ipairs(CATEGORIES) do
+      local key = category.key
+      controls[#controls + 1] = {
+        type = "checkbox",
+        name = GetString(category.name),
+        width = "half",
+        disabled = function()
+          return FurC.GetDisableTooltips() or FurC.GetHideSource()
+        end,
+        getFunc = function()
+          local hidden = FurC.settings.tooltipHiddenSources
+          return not (hidden and hidden[key]) -- checked = shown
+        end,
+        setFunc = function(show)
+          FurC.settings.tooltipHiddenSources = FurC.settings.tooltipHiddenSources or {}
+          FurC.settings.tooltipHiddenSources[key] = (not show) or nil
+        end,
+      }
+    end
+    return controls
+  end
+end
+
 ---------------------------
 -------- /Tooltip ---------
 ---------------------------

@@ -63,6 +63,7 @@ local defaults = {
   coloredTooltips = true,
   dateFormat = "YYYY-MM-DD",
   hideKnowledge = false,
+  tooltipHiddenSources = {},
 
   hideBooks = true,
   hideDoubtfuls = true,

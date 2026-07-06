@@ -99,7 +99,7 @@ function FurC.SetFilter(useDefaults, skipRefresh)
     and ver.NONE == dropdownChoiceVersion
     and 1 == dropdownChoiceCharacter
 
-  showAllRumourOnTextSearch = showAllOnTextSearch and not FurC.GetFilterAllOnTextNoCrown()
+  showAllRumourOnTextSearch = showAllOnTextSearch and not FurC.GetFilterAllOnTextNoRumour()
   showAllCrownOnTextSearch = showAllOnTextSearch and not FurC.GetFilterAllOnTextNoCrown()
 
   if skipRefresh then

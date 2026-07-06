@@ -74,9 +74,9 @@ local function addTooltipData(control, itemLink)
 
   local unknown = not FurC.CanCraft(itemId, recipeArray)
   local stringTable = {}
+  local isCraftable = isRecipe or (recipeArray.sources and recipeArray.sources[src.CRAFTING]) or false
 
-  -- if craftable:
-  if isRecipe or recipeArray.origin == src.CRAFTING then
+  if isCraftable then
     if unknown and not FurC.GetHideUnknown() or not FurC.GetHideKnowledge() then
       local crafterList = FurC.GetCrafterList(itemLink, recipeArray)
       if crafterList then
@@ -93,11 +93,19 @@ local function addTooltipData(control, itemLink)
     if not (FurC.GetHideMats() or isRecipe) then
       stringTable = add(stringTable, FurC.GetMats(itemLink, recipeArray, true):gsub(", ", "\n"))
     end
-  else
+  end
+
+  -- other sources: every ranked source except crafting, one line each
+  if not isRecipe then
     if not FurC.GetHideSource() then
-      stringTable = add(stringTable, FurC.GetItemDescription(itemId, recipeArray))
+      local lines = FurC.GetSourceLines(itemId, recipeArray, false)
+      for i = 1, #lines do
+        stringTable = add(stringTable, lines[i])
+      end
     end
-    stringTable = add(stringTable, recipeArray.achievement)
+    if not isCraftable then
+      stringTable = add(stringTable, recipeArray.achievement)
+    end
   end
 
   if #stringTable == 0 then

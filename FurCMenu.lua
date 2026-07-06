@@ -530,6 +530,11 @@ function FurC.CreateSettings(savedVars, defaults)
         FurC.SetHideSource(value)
       end,
     },
+    { -- submenu: tooltip source types
+      type = "submenu",
+      name = "Tooltip source types",
+      controls = FurC.BuildTooltipSourceOptions(),
+    },
     { -- checkbox: Hide item source
       type = "checkbox",
       name = GetString(SI_FURC_STRING_MENU_TOOLTIP_HIDE_STATION),

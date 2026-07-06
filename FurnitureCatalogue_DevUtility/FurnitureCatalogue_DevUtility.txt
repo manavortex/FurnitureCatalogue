@@ -26,3 +26,4 @@ test/unit_db_upsert.lua
 test/unit_favorites.lua
 test/unit_knowledge.lua
 test/unit_xml_handlers.lua
+test/unit_tooltip_sources.lua

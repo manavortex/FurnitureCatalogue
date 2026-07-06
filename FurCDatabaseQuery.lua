@@ -237,17 +237,31 @@ local function registerEmptyItem(recipeKey)
   end
   return emptyString
 end
-local function getMiscItemSource(recipeKey, recipeArray, stripColor)
+local function getMiscItemSource(recipeKey, recipeArray, stripColor, source)
   recipeArray = recipeArray or FurC.Find(recipeKey)
-  if {} == recipeArray or not recipeArray.version or not recipeArray.origin then
+  -- "source" allows asking for specific category
+  -- defaults to primary (top ranked source)
+  source = source or recipeArray.origin
+  if {} == recipeArray or not source then
     return registerEmptyItem(recipeKey)
   end
 
-  local versionFiles = FurC.MiscItemSources[recipeArray.version]
-  if not versionFiles or not versionFiles[recipeArray.origin] then
-    return registerEmptyItem(recipeKey)
+  -- TODO: overwrite version (there can be only one)
+  local function lookup(version)
+    local versionFiles = version and FurC.MiscItemSources[version]
+    local bucket = versionFiles and versionFiles[source]
+    return bucket and bucket[recipeKey]
   end
-  local originData = versionFiles[recipeArray.origin][recipeKey]
+  local originData = lookup(recipeArray.version)
+  if not originData then
+    for version, versionFiles in pairs(FurC.MiscItemSources) do
+      local bucket = versionFiles[source]
+      if bucket and bucket[recipeKey] then
+        originData = bucket[recipeKey]
+        break
+      end
+    end
+  end
   if not originData then
     return registerEmptyItem(recipeKey)
   end

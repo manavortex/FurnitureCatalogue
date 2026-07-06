@@ -562,6 +562,37 @@ function FurC.RebuildDB()
   scanFromFiles()
 end
 
+-- Description string for each source
+local function describeSource(recipeKey, recipeArray, source, stripColor)
+  if source == src.CRAFTING or source == src.WRIT_VENDOR then
+    return FurC.GetMats(recipeKey, recipeArray, stripColor)
+  end
+  if source == src.ROLIS then
+    return FurC.getRolisSource(recipeKey, recipeArray, stripColor)
+  end
+  if source == src.LUXURY then
+    return FurC.getLuxurySource(recipeKey, recipeArray, stripColor)
+  end
+  if source == src.GUILDSTORE then
+    return GetString(SI_FURC_SEEN_IN_GUILDSTORE)
+  end
+  if source == src.VENDOR then
+    return FurC.getAchievementVendorSource(recipeKey, recipeArray, stripColor)
+  end
+  if source == src.FESTIVAL_DROP then
+    return FurC.getEventDropSource(recipeKey, recipeArray, stripColor)
+  end
+  if source == src.PVP then
+    return FurC.getPvpSource(recipeKey, recipeArray, stripColor)
+  end
+  if source == src.RUMOUR then
+    return FurC.getRumourSource(recipeKey, recipeArray, stripColor)
+  end
+  return FurC.getMiscItemSource(recipeKey, recipeArray, stripColor, source)
+end
+FurC.DescribeSource = describeSource
+
+-- Single-string description for primary origin (by ranking)
 function FurC.GetItemDescription(recipeKey, recipeArray, stripColor)
   recipeKey = getItemId(recipeKey)
   FurC.settings.emptyItemSources = FurC.settings.emptyItemSources or {}
@@ -569,33 +600,48 @@ function FurC.GetItemDescription(recipeKey, recipeArray, stripColor)
   if {} == recipeArray then
     return ""
   end
+  return describeSource(recipeKey, recipeArray, recipeArray.origin, stripColor)
+end
 
-  local origin = recipeArray.origin
-  if origin == src.CRAFTING or origin == src.WRIT_VENDOR then
-    return FurC.GetMats(recipeKey, recipeArray, stripColor)
+-- Ranked lines for every item source (except crafting)
+-- Always shows at least one line
+function FurC.GetSourceLines(recipeKey, recipeArray, stripColor)
+  recipeKey = getItemId(recipeKey)
+  FurC.settings.emptyItemSources = FurC.settings.emptyItemSources or {}
+  recipeArray = recipeArray or FurC.Find(recipeKey)
+  local sources = recipeArray and recipeArray.sources
+  if not sources then
+    return {}
   end
-  if origin == src.ROLIS then
-    return FurC.getRolisSource(recipeKey, recipeArray, stripColor)
+
+  local ranked = {}
+  for s in pairs(sources) do
+    if s ~= src.CRAFTING then
+      ranked[#ranked + 1] = s
+    end
   end
-  if origin == src.LUXURY then
-    return FurC.getLuxurySource(recipeKey, recipeArray, stripColor)
+  table.sort(ranked, function(a, b)
+    return (SOURCE_PRIORITY[a] or math.huge) < (SOURCE_PRIORITY[b] or math.huge)
+  end)
+
+  local lines = {}
+  for _, s in ipairs(ranked) do
+    if not (FurC.IsTooltipSourceHidden and FurC.IsTooltipSourceHidden(s)) then
+      local text = describeSource(recipeKey, recipeArray, s, stripColor)
+      if text and #text > 0 then
+        lines[#lines + 1] = text
+      end
+    end
   end
-  if origin == src.GUILDSTORE then
-    return GetString(SI_FURC_SEEN_IN_GUILDSTORE)
+
+  -- even if hiding every source: show at least 1 line
+  if #lines == 0 and recipeArray.origin and recipeArray.origin ~= src.CRAFTING then
+    local text = describeSource(recipeKey, recipeArray, recipeArray.origin, stripColor)
+    if text and #text > 0 then
+      lines[#lines + 1] = text
+    end
   end
-  if origin == src.VENDOR then
-    return FurC.getAchievementVendorSource(recipeKey, recipeArray, stripColor)
-  end
-  if origin == src.FESTIVAL_DROP then
-    return FurC.getEventDropSource(recipeKey, recipeArray, stripColor)
-  end
-  if origin == src.PVP then
-    return FurC.getPvpSource(recipeKey, recipeArray, stripColor)
-  end
-  if origin == src.RUMOUR then
-    return FurC.getRumourSource(recipeKey, recipeArray, stripColor)
-  end
-  return FurC.getMiscItemSource(recipeKey, recipeArray, stripColor)
+  return lines
 end
 
 function FurC.ShouldBeInFurC(link)
