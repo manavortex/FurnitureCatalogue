@@ -310,7 +310,7 @@ function FurC.BuildMigrationControls()
     },
     {
       type = "button",
-      name = "Clean legacy SavedVars (all accounts)",
+      name = "Clean legacy entries",
       tooltip = "Migrates+removes old SavedVars for every account",
       width = "full",
       isDangerous = true,
