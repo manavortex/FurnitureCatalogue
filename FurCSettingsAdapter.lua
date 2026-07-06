@@ -290,6 +290,42 @@ end
 -------- /Tooltip ---------
 ---------------------------
 
+-- Legacy SavedVars cleanup control
+function FurC.BuildMigrationControls()
+  local function statusText()
+    local s = FurC.GetLegacyStats()
+    if s.accounts == 0 then
+      return "SavedVars: no legacy data found."
+    end
+    return string.format(
+      "SavedVars: legacy data in %d account(s), %d DB entries — reload UI after cleaning to save.",
+      s.accounts,
+      s.entries
+    )
+  end
+  return {
+    {
+      type = "description",
+      text = statusText,
+    },
+    {
+      type = "button",
+      name = "Clean legacy SavedVars (all accounts)",
+      tooltip = "Migrates+removes old SavedVars for every account",
+      width = "full",
+      isDangerous = true,
+      disabled = function()
+        return FurC.GetLegacyStats().accounts == 0
+      end,
+      func = function()
+        local n = FurC.Migrate({ allAccounts = true })
+        FurC.Logger:Info("Legacy SavedVars cleaned across %d account(s). Reload UI to write SavedVars.", n)
+      end,
+      requiresReload = true,
+    },
+  }
+end
+
 ---------------------------
 ------- IconDisplay -------
 ---------------------------

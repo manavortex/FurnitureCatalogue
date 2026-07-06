@@ -357,8 +357,7 @@ local function initialise(eventCode, addOnName)
   this.settings.databaseVersion = this.version
   SLASH_COMMANDS["/fur"] = FurnitureCatalogue_Toggle
 
-  this.MigrateFavorites()
-  this.PurgeLegacySavedVars()
+  this.Migrate()
 
   -- DB is built lazily on first use
   if not this.GetSkipInitialScan() then

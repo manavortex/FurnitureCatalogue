@@ -230,20 +230,13 @@ end
 FurC.getEventDropSource = getEventDropSource
 
 local emptyString = GetString(SI_FURC_SRC_EMPTY)
-local function registerEmptyItem(recipeKey)
-  if recipeKey and tonumber(recipeKey) > 0 then
-    FurC.settings.emptyItemSources[recipeKey] =
-      zo_strformat(", -- <<1>>", GetItemLinkName(FurC.Utils.GetItemLink(recipeKey)))
-  end
-  return emptyString
-end
 local function getMiscItemSource(recipeKey, recipeArray, stripColor, source)
   recipeArray = recipeArray or FurC.Find(recipeKey)
   -- "source" allows asking for specific category
   -- defaults to primary (top ranked source)
   source = source or recipeArray.origin
   if {} == recipeArray or not source then
-    return registerEmptyItem(recipeKey)
+    return emptyString
   end
 
   -- TODO: overwrite version (there can be only one)
@@ -263,7 +256,7 @@ local function getMiscItemSource(recipeKey, recipeArray, stripColor, source)
     end
   end
   if not originData then
-    return registerEmptyItem(recipeKey)
+    return emptyString
   end
 
   if stripColor then

@@ -46,6 +46,11 @@ function FurC.CreateSettings(savedVars, defaults)
         FurC.RescanFiles()
       end,
     },
+    { -- submenu: legacy SavedVars cleanup (metric + all-accounts button)
+      type = "submenu",
+      name = "Legacy SavedVars",
+      controls = FurC.BuildMigrationControls(),
+    },
     -- =======================================================================================
     -- header: Furniture Shopping List integration
     -- =======================================================================================

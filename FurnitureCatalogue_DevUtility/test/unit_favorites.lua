@@ -71,18 +71,5 @@ Taneth("FurC:Unit", function()
         error(err, 0)
       end
     end)
-
-    -- TODO: rm this test when we drop migration
-    it("migrates legacy faves (mv from legacy SV data to favorites)", function()
-      local id = 118306 -- Mortar and Pestle
-      protectSavedVars(function()
-        FurC.settings.data = { [id] = { origin = 1, favorite = true } }
-
-        FurC.MigrateFavorites()
-
-        assert.is_true(FurC.settings.favorites[id] == true)
-        assert.is_nil(FurC.settings.data[id].favorite)
-      end)
-    end)
   end)
 end)

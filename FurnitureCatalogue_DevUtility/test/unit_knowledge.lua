@@ -270,21 +270,6 @@ Taneth("FurC:Unit", function()
   end)
 
   describe("FurC knowledge readers (live game API + LCK)", function()
-    -- TODO: drop this after 2-3 major updates
-    it("PurgeLegacySavedVars drops the persisted DB and char-scan flags", function()
-      local savedData = FurC.settings.data
-      local savedChars = FurC.settings.accountCharacters
-      FurC.settings.data = { [118306] = { origin = 1, characters = { Someone = true } } }
-      FurC.settings.accountCharacters = { Someone = true }
-
-      FurC.PurgeLegacySavedVars()
-      assert.is_nil(FurC.settings.data)
-      assert.is_nil(FurC.settings.accountCharacters)
-
-      FurC.settings.data = savedData
-      FurC.settings.accountCharacters = savedChars
-    end)
-
     it("CanCraft reflects the current character's knowledge", function()
       guarded(function()
         G.IsItemLinkRecipeKnown = function(link)
