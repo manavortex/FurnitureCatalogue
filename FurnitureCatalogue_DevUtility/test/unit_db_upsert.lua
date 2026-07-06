@@ -25,11 +25,38 @@ Taneth("FurC:Unit", function()
 
     it("merges additional sources instead of replacing", function()
       clear()
+      FurC.Upsert(TEST_ID, { origin = src.VENDOR })
+      FurC.Upsert(TEST_ID, { origin = src.LUXURY })
+      local e = FurC.DB[TEST_ID]
+      assert.is_true(e.sources[src.VENDOR])
+      assert.is_true(e.sources[src.LUXURY])
+      clear()
+    end)
+
+    it("keeps RUMOUR only as the sole source", function()
+      clear()
+      FurC.Upsert(TEST_ID, { origin = src.RUMOUR })
+      assert.is_true(FurC.DB[TEST_ID].sources[src.RUMOUR])
+      assert.equals(src.RUMOUR, FurC.DB[TEST_ID].origin)
+      clear()
+    end)
+
+    it("drops the RUMOUR fallback once a real source is known (either order)", function()
+      clear()
       FurC.Upsert(TEST_ID, { origin = src.RUMOUR })
       FurC.Upsert(TEST_ID, { origin = src.VENDOR })
       local e = FurC.DB[TEST_ID]
-      assert.is_true(e.sources[src.RUMOUR])
+      assert.is_nil(e.sources[src.RUMOUR])
       assert.is_true(e.sources[src.VENDOR])
+      assert.equals(src.VENDOR, e.origin)
+      clear()
+
+      FurC.Upsert(TEST_ID, { origin = src.VENDOR })
+      FurC.Upsert(TEST_ID, { origin = src.RUMOUR })
+      e = FurC.DB[TEST_ID]
+      assert.is_nil(e.sources[src.RUMOUR])
+      assert.is_true(e.sources[src.VENDOR])
+      assert.equals(src.VENDOR, e.origin)
       clear()
     end)
 

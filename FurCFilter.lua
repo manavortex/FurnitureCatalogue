@@ -157,6 +157,12 @@ local validSourcesForOther = {
   [src.BAZAAR] = true,
 }
 
+-- Multi-source: item matches filter if source is in list
+local function hasSource(s)
+  local sources = recipeArray.sources
+  return sources ~= nil and sources[s] == true
+end
+
 -- Source: All, All (craftable), Craftable (known), craftable (unknown), purchaseable
 local function matchSourceDropdown()
   -- "All", don't care
@@ -166,21 +172,25 @@ local function matchSourceDropdown()
   if src.FAVE == ddSource then
     return FurC.IsFavoriteById(itemId)
   end
-  if recipeArray.origin == src.CRAFTING then
-    if ddSource == src.CRAFTING then
-      return true
+  -- Crafting sub-filters. KNOWN/UNKNOWN from LCK
+  if src.CRAFTING == ddSource then
+    return hasSource(src.CRAFTING)
+  end
+  if src.CRAFTING_KNOWN == ddSource or src.CRAFTING_UNKNOWN == ddSource then
+    if not hasSource(src.CRAFTING) then
+      return false
     end
     local matchingDropdownSource = (isRecipeArrayKnown() and src.CRAFTING_KNOWN) or src.CRAFTING_UNKNOWN
     return matchingDropdownSource == ddSource
   end
   if src.VENDOR == ddSource then
-    return recipeArray.origin == src.VENDOR or (mergeLuxuryAndSales and recipeArray.origin == src.LUXURY)
+    return hasSource(src.VENDOR) or (mergeLuxuryAndSales and hasSource(src.LUXURY))
   end
   if src.WRIT_VENDOR == ddSource then
-    return recipeArray.origin == src.ROLIS
+    return hasSource(src.ROLIS)
   end
   if src.TELVAR == ddSource then
-    if recipeArray.origin ~= src.PVP then
+    if not hasSource(src.PVP) then
       return false
     end
     -- look up the item in PVP data to check its currency
@@ -199,7 +209,7 @@ local function matchSourceDropdown()
     return false
   end
   if src.PVP == ddSource then
-    if recipeArray.origin ~= src.PVP then
+    if not hasSource(src.PVP) then
       return false
     end
     -- exclude TelVar items from the AP filter
@@ -218,10 +228,19 @@ local function matchSourceDropdown()
     return true
   end
   if src.OTHER == ddSource then
-    return validSourcesForOther[recipeArray.origin]
+    -- match if sources are part of OTHER too
+    local sources = recipeArray.sources
+    if sources ~= nil then
+      for s in pairs(sources) do
+        if validSourcesForOther[s] then
+          return true
+        end
+      end
+    end
+    return false
   end
-  -- we're checking character knowledge
-  return recipeArray.origin == ddSource
+  -- direct options: CROWN, RUMOUR, LUXURY, BAZAAR
+  return hasSource(ddSource)
 end
 
 local function matchDropdownFilter()
