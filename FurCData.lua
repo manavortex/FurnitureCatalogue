@@ -205,9 +205,9 @@ local function parseBlueprint(blueprintLink) -- saves to DB, returns recipeArray
   return recipeArray
 end
 
----sets recipeArray, returns it
----@param itemOrBlueprintLink any
----@return table
+---DB entry for an item/blueprint, builds DB on first use
+---@param itemOrBlueprintLink string|integer item link, blueprint link, or itemId
+---@return FurCEntry entry the entry, or `{}` if unknown
 function FurC.Find(itemOrBlueprintLink)
   FurC.EnsureDB()
   if tonumber(itemOrBlueprintLink) == itemOrBlueprintLink then
@@ -593,6 +593,10 @@ end
 FurC.DescribeSource = describeSource
 
 -- Single-string description for primary origin (by ranking)
+---@param recipeKey string|integer item link or id
+---@param recipeArray? FurCEntry looked up via FurC.Find if omitted
+---@param stripColor? boolean strip colour control chars
+---@return string
 function FurC.GetItemDescription(recipeKey, recipeArray, stripColor)
   recipeKey = getItemId(recipeKey)
   FurC.settings.emptyItemSources = FurC.settings.emptyItemSources or {}
@@ -604,7 +608,11 @@ function FurC.GetItemDescription(recipeKey, recipeArray, stripColor)
 end
 
 -- Ranked lines for every item source (except crafting)
--- Always shows at least one line
+-- Always shows at least one line if any sources exist
+---@param recipeKey string|integer item link or id
+---@param recipeArray? FurCEntry
+---@param stripColor? boolean
+---@return string[] lines one per source, ranked (honours tooltip blacklist)
 function FurC.GetSourceLines(recipeKey, recipeArray, stripColor)
   recipeKey = getItemId(recipeKey)
   FurC.settings.emptyItemSources = FurC.settings.emptyItemSources or {}

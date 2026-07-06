@@ -46,7 +46,21 @@ FurC.Constants.ItemSources = {
   COLL_MERCH = getNextIdFor("ITEM_SOURCES"), -- 22
 }
 
--- Runtime furniture database: FurC.DB[itemId] = recipeArray
+---@alias FurCItemSource integer # FurC.Constants.ItemSources values
+
+---Single furniture entry returned by FurC.Find
+---@class FurCEntry
+---@field sources table<FurCItemSource, boolean> every source this item has
+---@field origin FurCItemSource top-ranked source
+---@field version integer game version when the item was added
+---@field blueprint integer|nil blueprint itemId, when craftable
+---@field craftable boolean|nil
+---@field craftingSkill integer|nil crafting skill type, when known
+---@field furnCategory integer cached ESO furniture category id (0 = no category)
+---@field furnSubcategory integer cached ESO furniture subcategory id
+
+-- Runtime furniture database: FurC.DB[itemId] = FurCEntry
+---@type table<integer, FurCEntry>
 FurC.DB = FurC.DB or {}
 
 -- Ranking for multi-source
