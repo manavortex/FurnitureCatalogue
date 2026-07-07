@@ -73,6 +73,8 @@ end
 
 FurC.getRolisSource = getRolisSource
 
+local emptyString = GetString(SI_FURC_SRC_EMPTY)
+
 local strAroundDate = GetString(SI_FURC_STRING_WEEKEND_AROUND)
 local function getLuxurySource(recipeKey, recipeArray, stripColor)
   recipeArray = recipeArray or FurC.Find(recipeKey)
@@ -81,33 +83,37 @@ local function getLuxurySource(recipeKey, recipeArray, stripColor)
   end
 
   local versionData = FurC.LuxuryFurnisher[recipeArray.version]
-  if not versionData then
-    return "SI_FURC_STRING_FETCHER" -- ToDo: placeholder until I know who it is
+  local itemData = versionData and versionData[recipeKey]
+  if not itemData then
+    for _, vData in pairs(FurC.LuxuryFurnisher) do
+      if vData[recipeKey] then
+        itemData = vData[recipeKey]
+        break
+      end
+    end
+  end
+  if not itemData then
+    return emptyString
   end
 
-  local itemData = versionData[recipeKey]
-  if nil ~= itemData then
-    local yyyy, mm, dd = string.match(itemData.itemDate, "(%d+)-(%d+)-(%d+)")
+  local yyyy, mm, dd = string.match(itemData.itemDate, "(%d+)-(%d+)-(%d+)")
 
-    local formattedDate = ""
-    if yyyy and mm and dd then
-      local formatted = FurC.GetDateFormat()
-      formatted = string.gsub(formatted, "YYYY", yyyy)
-      formatted = string.gsub(formatted, "MM", mm)
-      formatted = string.gsub(formatted, "DD", dd)
-      formattedDate = formatted
-    end
-
-    local weekendString = (nil == itemData.itemDate and "")
-      or zo_strformat(strAroundDate, colourise(formattedDate, colour.Gold))
-    local result = strFurnisher(npc.LUXF, loc.COLDH, itemData.itemPrice, nil, weekendString)
-    if stripColor then
-      result = string.format("%s %s", getItemLink(recipeKey), stripText(result))
-    end
-    return result
+  local formattedDate = ""
+  if yyyy and mm and dd then
+    local formatted = FurC.GetDateFormat()
+    formatted = string.gsub(formatted, "YYYY", yyyy)
+    formatted = string.gsub(formatted, "MM", mm)
+    formatted = string.gsub(formatted, "DD", dd)
+    formattedDate = formatted
   end
 
-  return "SI_FURC_STRING_FETCHER" -- ToDo: placeholder until I know who it is
+  local luxuryStr = (nil == itemData.itemDate and "")
+    or zo_strformat(strAroundDate, colourise(formattedDate, colour.Gold))
+  local result = strFurnisher(npc.LUXF, loc.COLDH, itemData.itemPrice, nil, luxuryStr)
+  if stripColor then
+    result = string.format("%s %s", getItemLink(recipeKey), stripText(result))
+  end
+  return result
 end
 FurC.getLuxurySource = getLuxurySource
 
@@ -117,27 +123,38 @@ local function getPvpSource(recipeKey, recipeArray, stripColor)
     return
   end
 
-  local versionData = FurC.PVP[recipeArray.version]
-  if not versionData then
-    return "getPvpSource: nil"
-  end
-
-  -- structure: [2] = {[Furnishing vendor] = {[Cyrodiil] = {[123] = {}}}}
-  for vendorName, vendorData in pairs(versionData) do
-    for locationName, locationData in pairs(vendorData) do
-      if nil ~= locationData[recipeKey] then
-        local item = locationData[recipeKey]
-        local currency = item.currency or CURT_ALLIANCE_POINTS
-        local result = strFurnisher(vendorName, locationName, item.itemPrice, currency, item.achievement)
-        if stripColor then
-          result = string.format("%s %s", getItemLink(recipeKey), stripText(result))
+  local function findIn(versionData)
+    if not versionData then
+      return
+    end
+    for vendorName, vendorData in pairs(versionData) do
+      for locationName, locationData in pairs(vendorData) do
+        if nil ~= locationData[recipeKey] then
+          return vendorName, locationName, locationData[recipeKey]
         end
-        return result
       end
     end
   end
 
-  return "getPvpSource"
+  local vendorName, locationName, item = findIn(FurC.PVP[recipeArray.version])
+  if not item then
+    for _, versionData in pairs(FurC.PVP) do
+      vendorName, locationName, item = findIn(versionData)
+      if item then
+        break
+      end
+    end
+  end
+  if not item then
+    return emptyString
+  end
+
+  local currency = item.currency or CURT_ALLIANCE_POINTS
+  local result = strFurnisher(vendorName, locationName, item.itemPrice, currency, item.achievement)
+  if stripColor then
+    result = string.format("%s %s", getItemLink(recipeKey), stripText(result))
+  end
+  return result
 end
 FurC.getPvpSource = getPvpSource
 
@@ -148,34 +165,42 @@ local function getAchievementVendorSource(recipeKey, recipeArray, stripColor)
     return
   end
 
-  local versionData = FurC.AchievementVendors[recipeArray.version]
-  if not versionData then
-    return zo_strformat(
-      "getAchievementVendorSource: failed version lookup for ID <<1>> [<<2>>]",
-      recipeKey,
-      recipeArray.version
-    )
-  end
-
-  for zoneName, zoneData in pairs(versionData) do
-    for vendorName, vendorData in pairs(zoneData) do
-      local databaseEntry = vendorData[recipeKey]
-      if databaseEntry then
-        local currency = CURT_MONEY
-
-        if databaseEntry.currency then
-          currency = databaseEntry.currency
+  local function findIn(versionData)
+    if not versionData then
+      return
+    end
+    for zoneName, zoneData in pairs(versionData) do
+      for vendorName, vendorData in pairs(zoneData) do
+        if vendorData[recipeKey] then
+          return zoneName, vendorName, vendorData[recipeKey]
         end
-
-        local result = strFurnisher(vendorName, zoneName, databaseEntry.itemPrice, currency, databaseEntry.achievement)
-        if stripColor then
-          result = string.format("%s %s", getItemLink(recipeKey), stripText(result))
-        end
-        return result
       end
     end
   end
-  return zo_strformat("getAchievementVendorSource, found version data but no item data for <<1>> ", recipeKey)
+
+  local zoneName, vendorName, databaseEntry = findIn(FurC.AchievementVendors[recipeArray.version])
+  if not databaseEntry then
+    for _, versionData in pairs(FurC.AchievementVendors) do
+      zoneName, vendorName, databaseEntry = findIn(versionData)
+      if databaseEntry then
+        break
+      end
+    end
+  end
+  if not databaseEntry then
+    return emptyString
+  end
+
+  local currency = CURT_MONEY
+  if databaseEntry.currency then
+    currency = databaseEntry.currency
+  end
+
+  local result = strFurnisher(vendorName, zoneName, databaseEntry.itemPrice, currency, databaseEntry.achievement)
+  if stripColor then
+    result = string.format("%s %s", getItemLink(recipeKey), stripText(result))
+  end
+  return result
 end
 FurC.getAchievementVendorSource = getAchievementVendorSource
 
@@ -229,7 +254,6 @@ local function getEventDropSource(recipeKey, recipeArray)
 end
 FurC.getEventDropSource = getEventDropSource
 
-local emptyString = GetString(SI_FURC_SRC_EMPTY)
 local function getMiscItemSource(recipeKey, recipeArray, stripColor, source)
   recipeArray = recipeArray or FurC.Find(recipeKey)
   -- "source" allows asking for specific category
