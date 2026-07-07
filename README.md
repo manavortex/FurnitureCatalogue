@@ -48,7 +48,7 @@ Feel free to send us a message (here or in game) with the item info for timely u
 >
 > By careful estimate I've spent 30+ hours on FurC since Morrowind hit PTS - the initial release ate a week of vacation turned to pretty much nonstop coding.
 
-**_BerylBones_ has taken over updating since manavortex no longer plays ESO, so if you want to give back, feel free to donate to @berylbones, both on NA and EU!**
+**_WolfStar07_ has taken over updating since manavortex no longer plays ESO, so if you want to give back, feel free to donate to @WolfStar07, both on NA and EU!**
 
 ## Possible issues
 
