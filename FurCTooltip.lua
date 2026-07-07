@@ -86,7 +86,8 @@ local function addTooltipData(control, itemLink)
     if not isRecipe and (not FurC.GetHideCraftingStation()) then
       stringTable = add(stringTable, FurC.PrintCraftingStation(itemId, recipeArray))
     end
-    if isRecipe then
+    -- craftable items show recipe tooltip, if src available
+    if isRecipe or recipeArray.blueprint then
       stringTable = add(stringTable, FurC.getRecipeSource(itemId, recipeArray))
     end
     -- check if we should show mats
