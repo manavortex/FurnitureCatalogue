@@ -160,7 +160,7 @@ end
 
 local srcBazaar = GetString(SI_FURC_SRC_BAZAAR)
 local function strBazaar(price)
-  return strGeneric(srcBazaar, strPrice(price, CURT_TRADE_BARS), "src")
+  return string.format("%s: %s", srcBazaar, strPrice(price, CURT_TRADE_BARS))
 end
 
 local housesource = GetString(SI_FURC_HOUSE)
