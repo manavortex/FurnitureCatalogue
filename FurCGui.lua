@@ -6,7 +6,7 @@ local task = LibAsync:Create("FurnitureCatalogue_updateLineVisibility")
 local otherTask = LibAsync:Create("FurnitureCatalogue_ToggleGui")
 
 local src = FurC.Constants.ItemSources
-local lib = FurC.Lib
+local lib = FurC.Internal
 
 -- LCK char list can change, we might have to manually update list if they don't show up
 function FurC.RefreshCharacterChoices()

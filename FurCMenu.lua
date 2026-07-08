@@ -1,5 +1,5 @@
 local src = FurC.Constants.ItemSources
-local lib = FurC.Lib
+local lib = FurC.Internal
 
 function FurC.CreateSettings(savedVars, defaults)
   local LAM = LibAddonMenu2

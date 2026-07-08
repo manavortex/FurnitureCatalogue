@@ -1,5 +1,5 @@
 local query = FurC.DBQuery
-local lib = FurC.Lib
+local lib = FurC.Internal
 
 local searchString = ""
 local searchPattern = ""

@@ -343,7 +343,7 @@ local function initialise(eventCode, addOnName)
 
   this.CharacterName = zo_strformat(GetUnitName("player"))
 
-  this.Lib.InitLCK()
+  this.Internal.InitLCK()
 
   this.InitGui()
 

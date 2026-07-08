@@ -1,8 +1,8 @@
--- FurC.Lib internal helper namespace. Not an API!
+-- FurC.Internal helper namespace. Not an API, could change at any time.
 
 FurC = FurC or {}
-FurC.Lib = FurC.Lib or {}
-local this = FurC.Lib
+FurC.Internal = FurC.Internal or {}
+local this = FurC.Internal
 
 -- LCK reference, nil when no LCK loaded
 ---@type LibCharacterKnowledge

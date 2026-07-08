@@ -1,7 +1,7 @@
 local FurC = FurC or {}
 FurC.DBQuery = FurC.DBQuery or {}
 local this = FurC.DBQuery
-local lib = FurC.Lib
+local lib = FurC.Internal
 
 local colour = FurC.Constants.Colours
 local loc = FurC.Constants.Locations

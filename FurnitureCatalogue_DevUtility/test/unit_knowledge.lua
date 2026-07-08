@@ -6,7 +6,7 @@ end
 
 -- Real global table, to override game stubs
 local G = _G
-local lib = FurC.Lib
+local lib = FurC.Internal
 
 Taneth("FurC:Unit", function()
   local blueprintId = 207872 -- Formula: Dawnwood Lantern, Hanging (resultItem: 204688)
@@ -82,7 +82,7 @@ Taneth("FurC:Unit", function()
     end
   end
 
-  describe("FurC.Lib LCK seam", function()
+  describe("FurC.Internal LCK seam", function()
     it("waves everything through when no LCK", function()
       guarded(function()
         G.LibCharacterKnowledge = nil -- hide the real global

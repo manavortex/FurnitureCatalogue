@@ -17,7 +17,7 @@ FurCConstants.lua
 
 startup.lua
 FurCUtil.lua
-Lib.lua
+Internal.lua
 
 FurCSettingsAdapter.lua
 FurCMenu.lua

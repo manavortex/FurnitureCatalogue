@@ -12,7 +12,7 @@ local getItemLink = FurC.Utils.GetItemLink
 -- DB-content query table
 FurC.DBQuery = FurC.DBQuery or {}
 local this = FurC.DBQuery
-local lib = FurC.Lib
+local lib = FurC.Internal
 
 local function printItemLink(itemId)
   if nil == itemId then
