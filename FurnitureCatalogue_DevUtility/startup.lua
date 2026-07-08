@@ -8,11 +8,6 @@ this.name = "FurnitureCatalogue_DevUtility"
 this.control = control
 this.textbox = FurCDevControlBox
 
-local function toggleEditBox()
-  control:SetHidden(not control:IsHidden())
-end
-this.ToggleEditBox = toggleEditBox
-
 -- List of TestSuites so we can start them from FurCDev
 this.TestSuites = {
   "FurC:Unit",
@@ -76,7 +71,7 @@ local function handleSlash(args)
 
   -- no arg: trader furniture list
   if cmd == "" then
-    toggleEditBox()
+    this.ToggleEditBox()
   -- list tests
   elseif cmd == "tests" then
     listSuites()

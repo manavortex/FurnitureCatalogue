@@ -1,4 +1,5 @@
-local this = FurCDev or {}
+-- FurCDev GUI (data textbox, context menues etc)
+local this = FurCDev
 
 FurCDevControl_LinkHandlerBackup_OnLinkMouseUp = nil
 this.textbox = this.textbox or FurCDevControlBox
@@ -12,6 +13,10 @@ local cachedCanBuy
 local cachedIsLetter
 
 local cachedItemIds = {}
+
+function this.ToggleEditBox()
+  this.control:SetHidden(not this.control:IsHidden())
+end
 
 local function showTextbox()
   this.control:SetHidden(false)
@@ -42,164 +47,6 @@ function this.onTextboxTextChanged()
   this.clearControl()
 end
 
-local achievementTable = {}
-local questTable = {}
-local zoneTable = {}
-
-FurCDev.Achievements = achievementTable
-FurCDev.Quests = questTable
-FurCDev.Zones = zoneTable
-
--- Inspired by AchievementFinder from Rhyono
-local function buildAchievementTable()
-  for id = 11, MAX_ACHIEVEMENTS + 11 do
-    local achieveName = select(1, GetAchievementInfo(id))
-    if achieveName ~= "" then
-      -- Save gendered and lowercased achievement name
-      achievementTable[id] = LocaleAwareToLower(zo_strformat(achieveName))
-    end
-  end
-end
-
-local function buildQuestTable()
-  local MAX_QUESTS = 10000
-  for id = 1, MAX_QUESTS do
-    local questName = GetQuestName(id)
-    if questName ~= "" then
-      questTable[id] = questName
-    end
-  end
-end
-
-local NUM_ZONES = GetNumZones() -- 982 as of version 101041
-local MAX_INDEX = NUM_ZONES * 100 -- don't iterate higher than that, man
-local STEP_SIZE = NUM_ZONES -- "What are you doing, step size?"
-local zoneLock = false
-local function buildZoneTable(iFrom)
-  if zoneLock then
-    return
-  end
-  zoneLock = true -- protect from call conflicts
-  iFrom = iFrom or 1
-  local iTo = iFrom + STEP_SIZE - 1
-
-  FurC.Logger:Debug("Building Zone Table: %d/%d [%5d...%5d]", NonContiguousCount(FurCDev.Zones), NUM_ZONES, iFrom, iTo)
-  for id = iFrom, iTo do
-    -- do NOT use `GetZoneNameByIndex` as it's a contiguous version of *ById, means the indices change
-    local zoneName = GetZoneNameById(id)
-    if zoneName ~= "" then
-      zoneTable[id] = zoneName
-    end
-    iFrom = id
-  end
-
-  -- If we haven't found all zones yet, slowly iterate through the rest
-  if NonContiguousCount(FurCDev.Zones) < NUM_ZONES and iFrom <= MAX_INDEX then
-    zo_callLater(function()
-      zoneLock = false
-      buildZoneTable(iFrom + 1)
-    end, 2000)
-  else
-    FurC.Logger:Debug("Zones table done: %d/%d [%d]", NonContiguousCount(FurCDev.Zones), NUM_ZONES, iFrom)
-    zoneLock = false
-  end
-end
-
-local function getAchievementId(achievementName)
-  if not achievementName or achievementName == "" then
-    return 0
-  end
-
-  if {} == achievementTable then
-    buildAchievementTable()
-  end
-
-  -- making sure that the achievement name is the same like in the lookup table
-  achievementName = LocaleAwareToLower(zo_strformat(achievementName))
-  for id, name in pairs(achievementTable) do
-    if name == achievementName then
-      return id
-    end
-  end
-
-  return 0
-end
-FurCDev.GetAchievementId = getAchievementId
-
----@param achievementName string part of the achievement name
----@return table results list of achievements that match the given name
-local function findAchievement(achievementName)
-  local results = {}
-  if not achievementName or achievementName == "" then
-    return results
-  end
-
-  if #achievementTable < 1 then
-    buildAchievementTable()
-  end
-
-  achievementName = LocaleAwareToLower(zo_strformat(achievementName))
-  for id, name in pairs(achievementTable) do
-    if string.find(name, achievementName) then
-      table.insert(results, zo_strformat("<<1>>: <<2>>", id, name))
-    end
-  end
-  return results
-end
-FurCDev.FindAchievement = findAchievement
-
----@param questName string part of the quest name
----@return table results list of quests that match the given name
-local function findQuest(questName)
-  local results = {}
-  if not questName or questName == "" then
-    return results
-  end
-
-  if NonContiguousCount(questTable) < 1 then
-    FurC.Logger:Debug("Have to build quest table, search again")
-    buildQuestTable()
-    return results
-  end
-
-  questName = LocaleAwareToLower(zo_strformat(questName))
-  for id, name in pairs(questTable) do
-    if string.find(LocaleAwareToLower(name), questName) then
-      results[id] = name
-    end
-  end
-  return results
-end
-FurCDev.FindQuest = findQuest
-
----@param zoneName string part of the zone name
----@return table results list of zones that match the given name (unformatted)
-local function findZone(zoneName)
-  local results = {}
-  if not zoneName or zoneName == "" then
-    return results
-  end
-
-  if NonContiguousCount(zoneTable) < 1 then
-    FurC.Logger:Debug("Have to build zone table, search again when it's done")
-    buildZoneTable()
-    return results
-  end
-
-  zoneName = LocaleAwareToLower(zo_strformat(zoneName))
-  for id, name in pairs(zoneTable) do
-    if string.find(LocaleAwareToLower(name), zoneName) then
-      results[id] = name
-    end
-  end
-  return results
-end
-FurCDev.FindZone = findZone
-
---buildAchievementTable()
---buildQuestTable()
---buildZoneTable()
-
 local indent = "  "
 local s_default = "[%d] = strCrown(99), -- %s"
 local s_letter = "[%d] = rumourSource, -- %s"
@@ -225,7 +72,7 @@ local function makeOutput()
     debugString = s_withAchievement
   end
 
-  local achievementId = getAchievementId(cachedAchName)
+  local achievementId = this.GetAchievementId(cachedAchName)
 
   if cachedIsLetter then
     debugString = s_letter
