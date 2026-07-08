@@ -1,4 +1,5 @@
 local src = FurC.Constants.ItemSources
+local lib = FurC.Lib
 
 function FurC.CreateSettings(savedVars, defaults)
   local LAM = LibAddonMenu2
@@ -236,11 +237,11 @@ function FurC.CreateSettings(savedVars, defaults)
           choicesTooltips = FurC.DropdownData.TooltipsCharacter,
           tooltip = function()
             return GetString(
-              (FurC.Lib.LCKAvailable() and SI_FURC_STRING_CHARACTER_USES_LCK) or SI_FURC_STRING_CHARACTER_NEEDS_LCK
+              (lib.LCKAvailable() and SI_FURC_STRING_CHARACTER_USES_LCK) or SI_FURC_STRING_CHARACTER_NEEDS_LCK
             )
           end,
           disabled = function()
-            return not FurC.Lib.LCKAvailable()
+            return not lib.LCKAvailable()
           end,
           getFunc = function()
             return FurC.GetDefaultDropdownChoiceText("Character")
@@ -255,10 +256,10 @@ function FurC.CreateSettings(savedVars, defaults)
           tooltip = GetString(SI_FURC_STRING_MENU_REFRESH_CHARS_TT),
           width = "half",
           disabled = function()
-            return not FurC.Lib.LCKAvailable()
+            return not lib.LCKAvailable()
           end,
           func = function()
-            FurC.Lib.InvalidateCharacters()
+            lib.InvalidateCharacters()
             FurC.RefreshCharacterChoices()
             if FurC_DefaultCharDropdown then
               FurC_DefaultCharDropdown:UpdateChoices(

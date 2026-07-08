@@ -6,6 +6,7 @@ local task = LibAsync:Create("FurnitureCatalogue_updateLineVisibility")
 local otherTask = LibAsync:Create("FurnitureCatalogue_ToggleGui")
 
 local src = FurC.Constants.ItemSources
+local lib = FurC.Lib
 
 -- LCK char list can change, we might have to manually update list if they don't show up
 function FurC.RefreshCharacterChoices()
@@ -19,7 +20,7 @@ function FurC.RefreshCharacterChoices()
   end
   choices[1] = GetString(SI_FURC_FILTER_CHAR_OFF)
   tooltips[1] = GetString(SI_FURC_FILTER_CHAR_OFF_TT)
-  local names = (FurC.Lib.LCKAvailable() and FurC.Lib.GetCharacterNames()) or {}
+  local names = (lib.LCKAvailable() and lib.GetCharacterNames()) or {}
   for _, name in ipairs(names) do
     choices[#choices + 1] = name
     tooltips[#tooltips + 1] = zo_strformat(GetString(SI_FURC_STRING_RECIPESFORCHAR), name)
@@ -607,7 +608,7 @@ local function createGui()
     SetupTooltips(comboBox, dropdownData["Tooltips" .. dropdownName])
 
     if dropdownName == "Character" then
-      local available = FurC.Lib.LCKAvailable()
+      local available = lib.LCKAvailable()
       comboBox:SetEnabled(available)
       local hint = (available and SI_FURC_STRING_CHARACTER_USES_LCK) or SI_FURC_STRING_CHARACTER_NEEDS_LCK
       control:SetMouseEnabled(true)

@@ -1,3 +1,6 @@
+local query = FurC.DBQuery
+local lib = FurC.Lib
+
 local searchString = ""
 local searchPattern = ""
 local dropdownChoiceVersion = 1
@@ -130,7 +133,7 @@ end
 
 local function isRecipeArrayKnown()
   -- Knowledge is LCK-only (grayed out if not available)
-  if not FurC.Lib.LCKAvailable() then
+  if not lib.LCKAvailable() then
     return
   end
   -- LCK tracks the recipe, not the furnishing result
@@ -139,7 +142,7 @@ local function isRecipeArrayKnown()
     return
   end
   local name = (dropdownChoiceCharacter ~= 1) and ddTextCharacter or nil
-  return FurC.Lib.IsKnownByName(recipeItem, name)
+  return lib.IsKnownByName(recipeItem, name)
 end
 
 -- Version: All, Homestead, Morrowind
@@ -296,7 +299,7 @@ local function matchCraftingTypeFilter()
   if not recipeArray.origin == src.CRAFTING then
     return false
   end
-  local filterType = FurC.GetCraftingSkillType(itemId, recipeArray)
+  local filterType = query.GetCraftingSkillType(itemId, recipeArray)
   return filterType and filterType > 0 and craftingTypeFilter[filterType]
 end
 local function matchQualityFilter()

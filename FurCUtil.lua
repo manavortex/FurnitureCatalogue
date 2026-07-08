@@ -2,7 +2,8 @@
 
 FurC = FurC or {}
 
-local this = {}
+FurC.Utils = FurC.Utils or {}
+local this = FurC.Utils
 
 local sJoin = zo_strjoin
 local sFormat = zo_strformat
@@ -592,6 +593,3 @@ end
     |                     |
     |     OTHER UTILS     |
     |_____________________|]]
-
--- make available for use and autocompletion
-FurC.Utils = this

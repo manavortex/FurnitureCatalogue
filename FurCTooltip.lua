@@ -1,6 +1,7 @@
 local async = LibAsync
 local task = async:Create("FurnitureCatalogue_Tooltip")
 local src = FurC.Constants.ItemSources
+local query = FurC.DBQuery
 
 local function tryColorize(text)
   if not (text and FurC.GetColouredTooltips()) then
@@ -88,7 +89,7 @@ local function addTooltipData(control, itemLink)
     end
     -- craftable items show recipe tooltip, if src available
     if isRecipe or recipeArray.blueprint then
-      stringTable = add(stringTable, FurC.getRecipeSource(itemId, recipeArray))
+      stringTable = add(stringTable, query.GetRecipeSource(itemId, recipeArray))
     end
     -- check if we should show mats
     if not (FurC.GetHideMats() or isRecipe) then
@@ -99,7 +100,7 @@ local function addTooltipData(control, itemLink)
   -- other sources: every ranked source except crafting, one line each
   if not isRecipe then
     if not FurC.GetHideSource() then
-      local lines = FurC.GetSourceLines(itemId, recipeArray, false)
+      local lines = query.GetSourceLines(itemId, recipeArray, false)
       for i = 1, #lines do
         stringTable = add(stringTable, lines[i])
       end

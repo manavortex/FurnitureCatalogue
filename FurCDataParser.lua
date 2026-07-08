@@ -4,9 +4,10 @@ local sFormat = zo_strformat
 
 local stripTxt = FurC.Utils.stripTxt
 local getItemId = FurC.Utils.GetItemId
+local query = FurC.DBQuery
 
 function FurC.PrintCraftingStation(itemId, recipeArray)
-  local craftingType = FurC.GetCraftingSkillType(itemId, recipeArray)
+  local craftingType = query.GetCraftingSkillType(itemId, recipeArray)
   if not craftingType or not GetCraftingSkillName(craftingType) then
     return ""
   end

@@ -9,6 +9,11 @@ local src = FurC.Constants.ItemSources
 local getItemId = FurC.Utils.GetItemId
 local getItemLink = FurC.Utils.GetItemLink
 
+-- DB-content query table
+FurC.DBQuery = FurC.DBQuery or {}
+local this = FurC.DBQuery
+local lib = FurC.Lib
+
 local function printItemLink(itemId)
   if nil == itemId then
     return
@@ -131,9 +136,12 @@ local function makeMaterial(recipeKey, recipeArray, tryPlaintext, forcePlaintext
   end
   return ret:sub(0, -3)
 end
+this.GetMats = makeMaterial
+
+---@deprecated alias for DBQuery.GetMats
 FurC.GetMats = makeMaterial
 
-function FurC.GetIngredients(itemLink, recipeArray)
+local function getIngredients(itemLink, recipeArray)
   recipeArray = recipeArray or FurC.Find(itemLink)
   local ingredients = {}
   if not recipeArray or next(recipeArray) == nil then
@@ -163,6 +171,10 @@ function FurC.GetIngredients(itemLink, recipeArray)
   end
   return ingredients
 end
+this.GetIngredients = getIngredients
+
+---@deprecated alias for DBQuery.GetIngredients
+FurC.GetIngredients = getIngredients
 
 local function parseFurnitureItem(itemLink, override) -- saves to DB, returns recipeArray
   if
@@ -208,7 +220,7 @@ end
 ---DB entry for an item/blueprint, builds DB on first use
 ---@param itemOrBlueprintLink string|integer item link, blueprint link, or itemId
 ---@return FurCEntry entry the entry, or `{}` if unknown
-function FurC.Find(itemOrBlueprintLink)
+local function find(itemOrBlueprintLink)
   FurC.EnsureDB()
   if tonumber(itemOrBlueprintLink) == itemOrBlueprintLink then
     itemOrBlueprintLink = getItemLink(itemOrBlueprintLink)
@@ -238,6 +250,10 @@ function FurC.Find(itemOrBlueprintLink)
 
   return recipeArray or {}
 end
+this.Find = find
+
+---@deprecated alias for DBQuery.Find
+FurC.Find = find
 
 function FurC.GetEntry(itemOrBlueprintLink)
   local itemLink = (IsItemLinkFurnitureRecipe(itemOrBlueprintLink) and GetRecipeResultItemLink(itemOrBlueprintLink))
@@ -428,13 +444,13 @@ function FurC.IsAccountKnown(recipeKey, recipeArray)
   if nil == recipeArray then
     return false
   end
-  if FurC.Lib.LCKAvailable() and recipeArray.blueprint then
-    return FurC.Lib.IsKnownByName(getItemLink(recipeArray.blueprint), nil) == true
+  if lib.LCKAvailable() and recipeArray.blueprint then
+    return lib.IsKnownByName(getItemLink(recipeArray.blueprint), nil) == true
   end
   return FurC.CanCraft(recipeKey, recipeArray)
 end
 
-function FurC.GetCraftingSkillType(recipeKey, recipeArray)
+local function getCraftingSkillType(recipeKey, recipeArray)
   local itemLink = getItemLink(recipeKey)
   local craftingSkillType = GetItemLinkCraftingSkillType(itemLink)
 
@@ -446,6 +462,7 @@ function FurC.GetCraftingSkillType(recipeKey, recipeArray)
 
   return craftingSkillType
 end
+this.GetCraftingSkillType = getCraftingSkillType
 
 local recipeArray
 local isBuilding = false
@@ -660,36 +677,36 @@ local function describeSource(recipeKey, recipeArray, source, stripColor)
     return FurC.GetMats(recipeKey, recipeArray, stripColor)
   end
   if source == src.ROLIS then
-    return FurC.getRolisSource(recipeKey, recipeArray, stripColor)
+    return this.GetRolisSource(recipeKey, recipeArray, stripColor)
   end
   if source == src.LUXURY then
-    return FurC.getLuxurySource(recipeKey, recipeArray, stripColor)
+    return this.GetLuxurySource(recipeKey, recipeArray, stripColor)
   end
   if source == src.GUILDSTORE then
     return GetString(SI_FURC_SEEN_IN_GUILDSTORE)
   end
   if source == src.VENDOR then
-    return FurC.getAchievementVendorSource(recipeKey, recipeArray, stripColor)
+    return this.GetAchievementVendorSource(recipeKey, recipeArray, stripColor)
   end
   if source == src.FESTIVAL_DROP then
-    return FurC.getEventDropSource(recipeKey, recipeArray, stripColor)
+    return this.GetEventDropSource(recipeKey, recipeArray, stripColor)
   end
   if source == src.PVP then
-    return FurC.getPvpSource(recipeKey, recipeArray, stripColor)
+    return this.GetPvpSource(recipeKey, recipeArray, stripColor)
   end
   if source == src.RUMOUR then
-    return FurC.getRumourSource(recipeKey, recipeArray, stripColor)
+    return this.GetRumourSource(recipeKey, recipeArray, stripColor)
   end
-  return FurC.getMiscItemSource(recipeKey, recipeArray, stripColor, source)
+  return this.GetMiscItemSource(recipeKey, recipeArray, stripColor, source)
 end
-FurC.DescribeSource = describeSource
+this.DescribeSource = describeSource
 
 -- Single-string description for primary origin (by ranking)
 ---@param recipeKey string|integer item link or id
 ---@param recipeArray? FurCEntry looked up via FurC.Find if omitted
 ---@param stripColor? boolean strip colour control chars
 ---@return string
-function FurC.GetItemDescription(recipeKey, recipeArray, stripColor)
+local function getItemDescription(recipeKey, recipeArray, stripColor)
   recipeKey = getItemId(recipeKey)
   recipeArray = recipeArray or FurC.Find(recipeKey)
   if {} == recipeArray then
@@ -697,6 +714,10 @@ function FurC.GetItemDescription(recipeKey, recipeArray, stripColor)
   end
   return describeSource(recipeKey, recipeArray, recipeArray.origin, stripColor)
 end
+this.GetItemDescription = getItemDescription
+
+---@deprecated alias for DBQuery.GetItemDescription
+FurC.GetItemDescription = getItemDescription
 
 -- Ranked lines for every item source (except crafting)
 -- Always shows at least one line if any sources exist
@@ -704,7 +725,7 @@ end
 ---@param recipeArray? FurCEntry
 ---@param stripColor? boolean
 ---@return string[] lines one per source, ranked (honours tooltip blacklist)
-function FurC.GetSourceLines(recipeKey, recipeArray, stripColor)
+local function getSourceLines(recipeKey, recipeArray, stripColor)
   recipeKey = getItemId(recipeKey)
   recipeArray = recipeArray or FurC.Find(recipeKey)
   local sources = recipeArray and recipeArray.sources
@@ -741,6 +762,7 @@ function FurC.GetSourceLines(recipeKey, recipeArray, stripColor)
   end
   return lines
 end
+this.GetSourceLines = getSourceLines
 
 function FurC.ShouldBeInFurC(link)
   link = getItemLink(link)

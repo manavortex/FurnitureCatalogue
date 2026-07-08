@@ -2,6 +2,7 @@
 
 FurC = FurC or {}
 FurC.Lib = FurC.Lib or {}
+local this = FurC.Lib
 
 -- LCK reference, nil when no LCK loaded
 ---@type LibCharacterKnowledge
@@ -10,9 +11,10 @@ local _lck = nil
 -- character names for filter
 local _charCache = nil
 
-function FurC.Lib.LCKAvailable()
+local function lckAvailable()
   return _lck ~= nil
 end
+this.LCKAvailable = lckAvailable
 
 -- Core LCK API we call unconditionally.
 local LCK_REQUIRED_FUNS = {
@@ -38,7 +40,7 @@ local function lckIsUsable(lck)
     and lck.EVENT_UPDATE_REFRESH ~= nil
 end
 
-function FurC.Lib.InitLCK(lck)
+local function initLCK(lck)
   _charCache = nil
   -- prevent duplicate callback registrations
   if _lck and _lck.UnregisterForCallback then
@@ -77,19 +79,21 @@ function FurC.Lib.InitLCK(lck)
     end
   end)
 end
+this.InitLCK = initLCK
 
 -- Only explicit UNKNOWN hides item
 -- Deliberately shown: never scanned, not learnable, LCK absent
 -- item: itemId (number) or itemLink (string)
-function FurC.Lib.CharKnows(item)
+local function charKnows(item)
   if not _lck then
     return true
   end
   return _lck.GetItemKnowledgeForCharacter(item) ~= _lck.KNOWLEDGE_UNKNOWN
 end
+this.CharKnows = charKnows
 
 -- Account-wide: true if any tracked character knows it
-function FurC.Lib.AccountKnows(item)
+local function accountKnows(item)
   if not _lck then
     return true
   end
@@ -101,6 +105,7 @@ function FurC.Lib.AccountKnows(item)
   end
   return false
 end
+this.AccountKnows = accountKnows
 
 -- LCK blueprint tracking is "plans" category
 -- 1 == "Do not track"
@@ -139,32 +144,35 @@ local function ensureCharCache()
 end
 
 -- Char names for filter dropdown, empty when no LCK
-function FurC.Lib.GetCharacterNames()
+local function getCharacterNames()
   local cache = ensureCharCache()
   return (cache and cache.names) or {}
 end
+this.GetCharacterNames = getCharacterNames
 
 -- Drop cached char list so we query LCK again
-function FurC.Lib.InvalidateCharacters()
+local function invalidateCharacters()
   _charCache = nil
 end
+this.InvalidateCharacters = invalidateCharacters
 
-function FurC.Lib.IsKnownByName(item, name)
+local function isKnownByName(item, name)
   if not _lck then
     return nil
   end
   if not name then
-    return FurC.Lib.AccountKnows(item)
+    return accountKnows(item)
   end
   local cache = ensureCharCache()
   local charId = cache and cache.idByName[name]
   if not charId then
-    return FurC.Lib.AccountKnows(item)
+    return accountKnows(item)
   end
   return _lck.GetItemKnowledgeForCharacter(item, cache.server, charId) == _lck.KNOWLEDGE_KNOWN
 end
+this.IsKnownByName = isKnownByName
 
-function FurC.Lib.GetCrafterNames(item)
+local function getCrafterNames(item)
   if not _lck then
     return nil
   end
@@ -177,3 +185,4 @@ function FurC.Lib.GetCrafterNames(item)
   end
   return names
 end
+this.GetCrafterNames = getCrafterNames

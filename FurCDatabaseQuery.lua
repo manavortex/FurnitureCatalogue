@@ -1,4 +1,7 @@
 local FurC = FurC or {}
+FurC.DBQuery = FurC.DBQuery or {}
+local this = FurC.DBQuery
+local lib = FurC.Lib
 
 local colour = FurC.Constants.Colours
 local loc = FurC.Constants.Locations
@@ -71,7 +74,7 @@ local function getRolisSource(recipeKey, recipeArray)
   return strVoucherVendor -- fallback
 end
 
-FurC.getRolisSource = getRolisSource
+this.GetRolisSource = getRolisSource
 
 local emptyString = GetString(SI_FURC_SRC_EMPTY)
 
@@ -115,7 +118,7 @@ local function getLuxurySource(recipeKey, recipeArray, stripColor)
   end
   return result
 end
-FurC.getLuxurySource = getLuxurySource
+this.GetLuxurySource = getLuxurySource
 
 local function getPvpSource(recipeKey, recipeArray, stripColor)
   recipeArray = recipeArray or FurC.Find(recipeKey)
@@ -156,7 +159,7 @@ local function getPvpSource(recipeKey, recipeArray, stripColor)
   end
   return result
 end
-FurC.getPvpSource = getPvpSource
+this.GetPvpSource = getPvpSource
 
 -- TODO #REFACTOR: add info to item in DB and generate str from that. then use lookup by id
 local function getAchievementVendorSource(recipeKey, recipeArray, stripColor)
@@ -202,7 +205,7 @@ local function getAchievementVendorSource(recipeKey, recipeArray, stripColor)
   end
   return result
 end
-FurC.getAchievementVendorSource = getAchievementVendorSource
+this.GetAchievementVendorSource = getAchievementVendorSource
 
 local validEventItemTypes = {
   ["boolean"] = true,
@@ -252,7 +255,7 @@ local function getEventDropSource(recipeKey, recipeArray)
     end
   end
 end
-FurC.getEventDropSource = getEventDropSource
+this.GetEventDropSource = getEventDropSource
 
 local function getMiscItemSource(recipeKey, recipeArray, stripColor, source)
   recipeArray = recipeArray or FurC.Find(recipeKey)
@@ -289,7 +292,7 @@ local function getMiscItemSource(recipeKey, recipeArray, stripColor, source)
 
   return originData
 end
-FurC.getMiscItemSource = getMiscItemSource
+this.GetMiscItemSource = getMiscItemSource
 
 local function getRecipeSource(recipeKey, recipeArray)
   if nil == recipeKey and nil == recipeArray then
@@ -306,19 +309,21 @@ local function getRecipeSource(recipeKey, recipeArray)
 
   recipeKey = recipeArray.blueprint or recipeKey
 
-  return (recipeArray.origin == src.RUMOUR and FurC.getRumourSource(recipeKey, recipeArray))
+  return (recipeArray.origin == src.RUMOUR and this.GetRumourSource(recipeKey, recipeArray))
     or FurC.RecipeSources[recipeKey]
 end
-FurC.getRecipeSource = getRecipeSource
+this.GetRecipeSource = getRecipeSource
 
 local strRItem = GetString(SI_FURC_SRC_RUMOUR_ITEM)
 local strRRecipe = GetString(SI_FURC_SRC_RUMOUR_RECIPE)
-function FurC.getRumourSource(recipeKey, recipeArray)
+local function getRumourSource(recipeKey, recipeArray)
   return (recipeArray.blueprint and strRRecipe) or strRItem
 end
+this.GetRumourSource = getRumourSource
 
 local strCantCraft = GetString(SI_FURC_STRING_CANNOT_CRAFT)
 local strCraftedBy = GetString(SI_FURC_STRING_CRAFTABLE_BY)
+-- ToDo: move to API later
 function FurC.GetCrafterList(itemLink, recipeArray)
   if nil == recipeArray and nil == itemLink then
     return
@@ -328,9 +333,9 @@ function FurC.GetCrafterList(itemLink, recipeArray)
     return zo_strformat("FurC.GetCrafterList called for a non-craftable")
   end
 
-  if FurC.Lib.LCKAvailable() then
+  if lib.LCKAvailable() then
     local recipeItem = recipeArray.blueprint and FurC.Utils.GetItemLink(recipeArray.blueprint)
-    local names = recipeItem and FurC.Lib.GetCrafterNames(recipeItem)
+    local names = recipeItem and lib.GetCrafterNames(recipeItem)
     if not names or #names == 0 then
       return strCantCraft
     end
