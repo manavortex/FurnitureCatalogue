@@ -59,9 +59,9 @@
           <Anchor point="BOTTOMRIGHT" relativeTo="$(parent)" relativePoint="BOTTOMRIGHT"
             offsetX="-14" offsetY="-14" />
           <Controls>
-            <!-- Right pane: Output scratchpad, always visible -->
+            <!-- Right pane: Scratchpad, always visible -->
             <Control name="$(parent)_Right">
-              <Dimensions x="340" />
+              <Dimensions x="500" />
               <Anchor point="TOPRIGHT" relativeTo="$(parent)" relativePoint="TOPRIGHT" offsetX="0"
                 offsetY="0" />
               <Anchor point="BOTTOMRIGHT" relativeTo="$(parent)" relativePoint="BOTTOMRIGHT"
@@ -99,7 +99,23 @@
                     mouseOver="/esoui/art/buttons/plus_over.dds"
                   />
                 </Button>
-                <!-- Backdrop with padding. -->
+                <Button name="$(parent)_selectAll" inherits="ZO_ButtonBehaviorClickSound">
+                  <OnClicked>FurCDev.selectAllOutput()</OnClicked>
+                  <OnMouseEnter>
+                    InitializeTooltip(InformationTooltip, self, TOP, 0, 5, BOTTOM)
+                    SetTooltipText(InformationTooltip, "Select all text")
+                  </OnMouseEnter>
+                  <OnMouseExit>ClearTooltip(InformationTooltip)</OnMouseExit>
+                  <Dimensions x="36" y="36" />
+                  <Anchor point="RIGHT" relativeTo="$(parent)_fromTrader" relativePoint="LEFT"
+                    offsetX="-8" offsetY="0" />
+                  <Textures
+                    normal="/esoui/art/buttons/edit_up.dds"
+                    pressed="/esoui/art/buttons/edit_down.dds"
+                    mouseOver="/esoui/art/buttons/edit_over.dds"
+                  />
+                </Button>
+                <!-- Background for scratchpad -->
                 <Backdrop name="$(parent)_BoxBg" inherits="ZO_DefaultBackdrop">
                   <Anchor point="TOPLEFT" relativeTo="$(parent)" relativePoint="TOPLEFT" offsetX="0"
                     offsetY="44" />
@@ -107,7 +123,6 @@
                     offsetX="0" offsetY="0" />
                   <Controls>
                     <EditBox name="FurCDevControlBox" inherits="ZO_DefaultEditMultiLineForBackdrop">
-                      <OnFocusGained>FurCDev.selectEntireTextbox()</OnFocusGained>
                       <OnTextChanged>FurCDev.onTextboxTextChanged()</OnTextChanged>
                     </EditBox>
                   </Controls>
@@ -117,10 +132,11 @@
 
             <!-- Left pane: active tab's panel -->
             <Control name="$(parent)_Left">
+              <Dimensions x="300" />
               <Anchor point="TOPLEFT" relativeTo="$(parent)" relativePoint="TOPLEFT" offsetX="0"
                 offsetY="0" />
-              <Anchor point="BOTTOMRIGHT" relativeTo="$(parent)_Right" relativePoint="BOTTOMLEFT"
-                offsetX="-12" offsetY="0" />
+              <Anchor point="BOTTOMLEFT" relativeTo="$(parent)" relativePoint="BOTTOMLEFT"
+                offsetX="0" offsetY="0" />
               <Controls>
                 <!-- Achievements tab: search by name, click to append to scratchpad -->
                 <Control name="FurCDevControl_Achievements" hidden="true">

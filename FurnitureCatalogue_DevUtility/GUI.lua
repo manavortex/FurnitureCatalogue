@@ -18,6 +18,9 @@ function this.ToggleEditBox()
   local show = this.control:IsHidden()
   this.control:SetHidden(not show)
   if show then
+    if this.ApplyPaneSplit then
+      this.ApplyPaneSplit()
+    end
     if this.RefreshHeader then
       this.RefreshHeader()
     end
@@ -40,12 +43,13 @@ function this.clearControl()
   cachedItemIds = {}
 end
 
-function this.selectEntireTextbox()
-  if this.control:IsHidden() then
+function this.selectAllOutput()
+  local box = this.textbox
+  if not box or this.control:IsHidden() then
     return
   end
-
-  textbox:SelectAll()
+  box:TakeFocus()
+  box:SelectAll()
 end
 
 function this.onTextboxTextChanged()
@@ -436,12 +440,12 @@ local searchTabs = {
   },
 }
 
+-- Row clicks and dumps append to the scratchpad
 local function appendToOutput(text)
   local box = this.textbox
-  if not box then
-    return
+  if box then
+    box:SetText((box:GetText() or "") .. text)
   end
-  box:SetText((box:GetText() or "") .. text)
 end
 
 -- Reused row btn
@@ -590,12 +594,44 @@ local function buildPager(tabId)
   cfg.prevBtn, cfg.nextBtn, cfg.pageLabel = prevBtn, nextBtn, label
 end
 
+-- Responsive: left pane ~33%, scratchpad takes rest
+local LEFT_FRACTION = 0.33
+local LEFT_MIN = 300
+local PANE_GAP = 12
+function this.ApplyPaneSplit()
+  local content = FurCDevControl_Content
+  if not content then
+    return
+  end
+  local left = content:GetNamedChild("_Left")
+  local right = content:GetNamedChild("_Right")
+  if not left or not right then
+    return
+  end
+  local w = content:GetWidth() or 0
+  if w <= 0 then
+    return
+  end
+  local leftW = math.max(LEFT_MIN, math.floor(w * LEFT_FRACTION))
+  leftW = math.min(leftW, w - 220) -- leave room for scratchpad
+  left:SetWidth(leftW)
+  right:SetWidth(w - leftW - PANE_GAP)
+end
+
 local MAX_OUTPUT_CHARS = 200000
 function this.InitDashboard()
   this.textbox = this.textbox or FurCDevControlBox
   if this.textbox then
     this.textbox:SetMaxInputChars(MAX_OUTPUT_CHARS)
   end
+
+  local content = FurCDevControl_Content
+  if content then
+    content:SetHandler("OnResize", function()
+      this.ApplyPaneSplit()
+    end)
+  end
+  this.ApplyPaneSplit()
 
   -- Output is a permanent right pane (Scratchpad)
   this.RegisterTab("achievements", "Achievements", FurCDevControl_Achievements, refreshSearchTab("achievements"))
