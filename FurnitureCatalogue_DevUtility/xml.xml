@@ -60,6 +60,22 @@
             mouseOver="/esoui/art/buttons/plus_over.dds"
           />
         </Button>
+        <Button name="$(parent)_dump" inherits="ZO_ButtonBehaviorClickSound">
+          <OnClicked>FurCDev.DumpMeta()</OnClicked>
+          <OnMouseEnter>
+            InitializeTooltip(InformationTooltip, self, TOP, 0, 5, BOTTOM)
+            SetTooltipText(InformationTooltip, "Dump DB + ingame metadata to SavedVars")
+          </OnMouseEnter>
+          <OnMouseExit>ClearTooltip(InformationTooltip)</OnMouseExit>
+          <Dimensions x="40" y="40" />
+          <Anchor point="RIGHT" relativeTo="$(parent)_fromTrader" relativePoint="LEFT" offsetX="-10"
+            offsetY="0" />
+          <Textures
+            normal="/esoui/art/buttons/edit_up.dds"
+            pressed="/esoui/art/buttons/edit_down.dds"
+            mouseOver="/esoui/art/buttons/edit_over.dds"
+          />
+        </Button>
         <EditBox name="$(parent)Box"
           inherits="ZO_DefaultEditMultiLine ZO_DefaultEditForDarkBackdrop">
           <Anchor point="TOPLEFT" relativeTo="$(parent)" relativePoint="TOPLEFT" offsetX="50"

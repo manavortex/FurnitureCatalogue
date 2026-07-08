@@ -17,11 +17,7 @@ FurC.settings.emptyItemSources = FurC.settings.emptyItemSources or {}
 FurC.CharacterName = FurC.CharacterName or "Eats-Your-Bugs"
 
 local function count(t)
-  local n = 0
-  for _ in pairs(t or {}) do
-    n = n + 1
-  end
-  return n
+  return NonContiguousCount(t or {})
 end
 
 -- version table as: version, itemsTable

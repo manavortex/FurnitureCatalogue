@@ -83,6 +83,11 @@ local function handleSlash(args)
   -- run tests
   elseif cmd == "test" then
     runTests(rest or "")
+  -- DB dump with metadata (for full export)
+  elseif cmd == "dump" then
+    if this.DumpMeta then
+      this.DumpMeta()
+    end
   -- profiling benchmarks (runs all if no id)
   elseif cmd == "bench" then
     local bn = tostring(rest or ""):match("^(%S*)")
@@ -98,6 +103,7 @@ local function handleSlash(args)
     d("Cmds: |cAACCFF/furcdev|r            toggle trader box")
     d("      |cAACCFF/furcdev tests|r      list tests")
     d("      |cAACCFF/furcdev test [id]|r  run test")
+    d("      |cAACCFF/furcdev dump|r       dump DB including metadata to SavedVars")
     d("      |cAACCFF/furcdev bench [n]|r  run profiler scenario (leave empty for all)")
   end
 end

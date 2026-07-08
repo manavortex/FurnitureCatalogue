@@ -36,16 +36,9 @@ Taneth("FurC:Regression", function()
 
     it("Find:GetIngredients always returns same values", function()
       local link = Test.link(DS.craftable)
-      local function size(t)
-        local n = 0
-        for _ in pairs(t) do
-          n = n + 1
-        end
-        return n
-      end
       local a1 = FurC.GetIngredients(link, FurC.Find(link))
       local a2 = FurC.GetIngredients(link, FurC.Find(link))
-      assert.equals(size(a1), size(a2))
+      assert.equals(NonContiguousCount(a1), NonContiguousCount(a2))
     end)
   end)
 end)

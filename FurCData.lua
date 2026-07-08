@@ -408,9 +408,7 @@ function FurC.GetLegacyStats(test)
     if aw.data ~= nil or aw.accountCharacters ~= nil or aw.excelExport ~= nil then
       accounts = accounts + 1
       if type(aw.data) == "table" then
-        for _ in pairs(aw.data) do
-          entries = entries + 1
-        end
+        entries = entries + NonContiguousCount(aw.data)
       end
     end
   end
