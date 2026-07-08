@@ -15,7 +15,11 @@ local cachedIsLetter
 local cachedItemIds = {}
 
 function this.ToggleEditBox()
-  this.control:SetHidden(not this.control:IsHidden())
+  local show = this.control:IsHidden()
+  this.control:SetHidden(not show)
+  if show and this.RefreshHeader then
+    this.RefreshHeader()
+  end
 end
 
 local function showTextbox()
@@ -279,4 +283,102 @@ function this.InitRightclickMenu()
   ZO_PreHook("ZO_InventorySlot_ShowContextMenu", function(rowControl)
     FurCDevControl_HandleInventoryContextMenu(rowControl)
   end)
+end
+
+-------------------------
+-- Dashboard controller
+-------------------------
+
+local dashboard = { order = {}, panels = {}, buttons = {}, current = nil }
+this.Dashboard = dashboard
+
+-- Register tab. Panels render in registration order in tab bar
+---@param id string unique tab id
+---@param label string button caption
+---@param panel table content control shown when tab is active
+function this.RegisterTab(id, label, panel)
+  if not dashboard.panels[id] then
+    dashboard.order[#dashboard.order + 1] = id
+  end
+  dashboard.panels[id] = { label = label, control = panel }
+end
+
+-- Show one panel, hide rest, mark active btn
+function this.SelectTab(id)
+  if not dashboard.panels[id] then
+    return
+  end
+  for tabId, entry in pairs(dashboard.panels) do
+    if entry.control then
+      entry.control:SetHidden(tabId ~= id)
+    end
+  end
+  for tabId, btn in pairs(dashboard.buttons) do
+    btn:SetState((tabId == id) and BSTATE_PRESSED or BSTATE_NORMAL, tabId == id)
+  end
+  dashboard.current = id
+end
+
+local TAB_WIDTH = 96
+local TAB_HEIGHT = 26
+local TAB_GAP = 4
+local function buildTabButtons()
+  local bar = FurCDevControl_TabBar
+  if not bar then
+    return
+  end
+  local predecessor
+  for _, id in ipairs(dashboard.order) do
+    local entry = dashboard.panels[id]
+    local btn = dashboard.buttons[id]
+      or WINDOW_MANAGER:CreateControlFromVirtual("FurCDevControl_Tab_" .. id, bar, "ZO_DefaultButton")
+    btn:SetDimensions(TAB_WIDTH, TAB_HEIGHT)
+    btn:SetText(entry.label)
+    btn:ClearAnchors()
+    if predecessor then
+      btn:SetAnchor(LEFT, predecessor, RIGHT, TAB_GAP, 0)
+    else
+      btn:SetAnchor(TOPLEFT, bar, TOPLEFT, 0, 0)
+    end
+    btn:SetHandler("OnClicked", function()
+      this.SelectTab(id)
+    end)
+    dashboard.buttons[id] = btn
+    predecessor = btn
+  end
+end
+
+-- Last scanner summary, shown in the header
+function this.SetScanSummary(text)
+  dashboard.lastScan = text
+  this.RefreshHeader()
+end
+
+-- Fill header bar from game state
+function this.RefreshHeader()
+  local label = FurCDevControl_Header
+  if not label then
+    return
+  end
+  local api = (GetAPIVersion and GetAPIVersion()) or 0
+  local locale = (GetCVar and GetCVar("Language.2")) or "?"
+  local dbCount = (FurC and FurC.DB and NonContiguousCount(FurC.DB)) or 0
+  local catCount = (GetNumFurnitureCategories and GetNumFurnitureCategories()) or 0
+  local scan = dashboard.lastScan or "no scan yet"
+  label:SetText(
+    string.format("API %d  |  %s  |  DB %d items  |  %d categories  |  scan: %s", api, locale, dbCount, catCount, scan)
+  )
+end
+
+local MAX_OUTPUT_CHARS = 200000
+function this.InitDashboard()
+  this.textbox = this.textbox or FurCDevControlBox
+  if this.textbox then
+    this.textbox:SetMaxInputChars(MAX_OUTPUT_CHARS)
+  end
+
+  this.RegisterTab("output", "Output", FurCDevControl_Output)
+  buildTabButtons()
+  this.SelectTab("output")
+  this.RefreshHeader()
 end

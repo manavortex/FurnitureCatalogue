@@ -110,8 +110,8 @@ local function init(_, addonName)
     return
   end
   this.textbox = FurCDevControlBox
-  this.textbox:SetMaxInputChars(3000)
   this.InitRightclickMenu()
+  this.InitDashboard()
 
   EVENT_MANAGER:UnregisterForEvent(FurCDev.name, EVENT_ADD_ON_LOADED)
 end

@@ -2,89 +2,111 @@
 <GuiXml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:noNamespaceSchemaLocation="http://sir.insidi.at/or/schema/esoui.xsd">
   <Controls>
+    <!-- Dev dashboard container -->
     <TopLevelControl name="FurCDevControl" clampedToScreen="true" movable="true" mouseEnabled="true"
       hidden="true" resizeHandleSize="15">
       <Dimensions x="600" y="500" />
-      <DimensionConstraints minX="300" minY="300" />
+      <DimensionConstraints minX="360" minY="300" />
       <Anchor point="CENTER" relativeTo="GUI_ROOT" relativePoint="CENTER" offsetX="-125"
         offsetY="-140" />
       <Controls>
         <Backdrop name="$(parent)_BG" inherits="ZO_DefaultBackdrop">
           <AnchorFill />
         </Backdrop>
-        <Button name="$(parent)_hide" inherits="ZO_ButtonBehaviorClickSound">
+
+        <!-- close -->
+        <Button name="$(parent)_Close" inherits="ZO_ButtonBehaviorClickSound">
           <OnClicked>FurCDev.ToggleEditBox()</OnClicked>
           <OnMouseEnter>
             InitializeTooltip(InformationTooltip, self, TOP, 0, 5, BOTTOM)
-            SetTooltipText(InformationTooltip, "Toggle window")
+            SetTooltipText(InformationTooltip, "Close")
           </OnMouseEnter>
           <OnMouseExit>ClearTooltip(InformationTooltip)</OnMouseExit>
-          <Dimensions x="30" y="30" />
-          <Anchor point="TOPLEFT" relativeTo="$(parent)" relativePoint="TOPLEFT" offsetX="10"
-            offsetY="10" />
+          <Dimensions x="28" y="28" />
+          <Anchor point="TOPRIGHT" relativeTo="$(parent)" relativePoint="TOPRIGHT" offsetX="-8"
+            offsetY="8" />
           <Textures
             normal="/esoui/art/buttons/decline_up.dds"
             pressed="/esoui/art/buttons/decline_down.dds"
             mouseOver="/esoui/art/buttons/decline_over.dds"
           />
         </Button>
-        <Button name="$(parent)_clear" inherits="ZO_ButtonBehaviorClickSound">
-          <OnClicked>FurCDev.clearControl()</OnClicked>
-          <OnMouseEnter>
-            InitializeTooltip(InformationTooltip, self, TOP, 0, 5, BOTTOM)
-            SetTooltipText(InformationTooltip, "Clear textbox")
-          </OnMouseEnter>
-          <OnMouseExit>ClearTooltip(InformationTooltip)</OnMouseExit>
-          <Dimensions x="40" y="40" />
-          <Anchor point="TOPRIGHT" relativeTo="$(parent)" relativePoint="TOPRIGHT" offsetX="-10"
-            offsetY="10" />
-          <Textures
-            normal="/esoui/art/dye/dyes_toolicon_erase_up.dds"
-            pressed="/esoui/art/dye/dyes_toolicon_erase_down.dds"
-            mouseOver="/esoui/art/dye/dyes_toolicon_erase_over.dds"
-          />
-        </Button>
-        <Button name="$(parent)_fromTrader" inherits="ZO_ButtonBehaviorClickSound">
-          <OnClicked>FurCDev.AddAllFromTrader()</OnClicked>
-          <OnMouseEnter>
-            InitializeTooltip(InformationTooltip, self, TOP, 0, 5, BOTTOM)
-            SetTooltipText(InformationTooltip, "Add all furnishings from the open trader")
-          </OnMouseEnter>
-          <OnMouseExit>ClearTooltip(InformationTooltip)</OnMouseExit>
-          <Dimensions x="40" y="40" />
-          <Anchor point="RIGHT" relativeTo="$(parent)_clear" relativePoint="LEFT" offsetX="-10"
+
+        <!-- header bar: API, locale, DB counts, last scan -->
+        <Label name="$(parent)_Header" font="ZoFontGame" wrapMode="ELLIPSIS"
+          verticalAlignment="CENTER">
+          <Dimensions y="24" />
+          <Anchor point="TOPLEFT" relativeTo="$(parent)" relativePoint="TOPLEFT" offsetX="14"
+            offsetY="12" />
+          <Anchor point="TOPRIGHT" relativeTo="$(parent)_Close" relativePoint="TOPLEFT" offsetX="-8"
             offsetY="0" />
-          <Textures
-            normal="/esoui/art/buttons/plus_up.dds"
-            pressed="/esoui/art/buttons/plus_down.dds"
-            mouseOver="/esoui/art/buttons/plus_over.dds"
-          />
-        </Button>
-        <Button name="$(parent)_dump" inherits="ZO_ButtonBehaviorClickSound">
-          <OnClicked>FurCDev.DumpMeta()</OnClicked>
-          <OnMouseEnter>
-            InitializeTooltip(InformationTooltip, self, TOP, 0, 5, BOTTOM)
-            SetTooltipText(InformationTooltip, "Dump DB + ingame metadata to SavedVars")
-          </OnMouseEnter>
-          <OnMouseExit>ClearTooltip(InformationTooltip)</OnMouseExit>
-          <Dimensions x="40" y="40" />
-          <Anchor point="RIGHT" relativeTo="$(parent)_fromTrader" relativePoint="LEFT" offsetX="-10"
-            offsetY="0" />
-          <Textures
-            normal="/esoui/art/buttons/edit_up.dds"
-            pressed="/esoui/art/buttons/edit_down.dds"
-            mouseOver="/esoui/art/buttons/edit_over.dds"
-          />
-        </Button>
-        <EditBox name="$(parent)Box"
-          inherits="ZO_DefaultEditMultiLine ZO_DefaultEditForDarkBackdrop">
-          <Anchor point="TOPLEFT" relativeTo="$(parent)" relativePoint="TOPLEFT" offsetX="50"
-            offsetY="50" />
+        </Label>
+
+        <!-- tab bar: buttons created programmatically -->
+        <Control name="$(parent)_TabBar">
+          <Dimensions y="28" />
+          <Anchor point="TOPLEFT" relativeTo="$(parent)" relativePoint="TOPLEFT" offsetX="14"
+            offsetY="48" />
+          <Anchor point="TOPRIGHT" relativeTo="$(parent)" relativePoint="TOPRIGHT" offsetX="-14"
+            offsetY="48" />
+        </Control>
+
+        <!-- content: 1 panel per tab, only active is shown -->
+        <Control name="$(parent)_Content">
+          <Anchor point="TOPLEFT" relativeTo="$(parent)" relativePoint="TOPLEFT" offsetX="14"
+            offsetY="84" />
           <Anchor point="BOTTOMRIGHT" relativeTo="$(parent)" relativePoint="BOTTOMRIGHT"
-            offsetX="-50" offsetY="-50" />
-          <OnFocusGained>FurCDev.selectEntireTextbox()</OnFocusGained>
-          <OnTextChanged>FurCDev.onTextboxTextChanged()</OnTextChanged>
-        </EditBox>
+            offsetX="-14" offsetY="-14" />
+          <Controls>
+            <!-- Output tab: copy-paste data box -->
+            <Control name="$(parent)_Output">
+              <AnchorFill />
+              <Controls>
+                <Button name="$(parent)_clear" inherits="ZO_ButtonBehaviorClickSound">
+                  <OnClicked>FurCDev.clearControl()</OnClicked>
+                  <OnMouseEnter>
+                    InitializeTooltip(InformationTooltip, self, TOP, 0, 5, BOTTOM)
+                    SetTooltipText(InformationTooltip, "Clear textbox")
+                  </OnMouseEnter>
+                  <OnMouseExit>ClearTooltip(InformationTooltip)</OnMouseExit>
+                  <Dimensions x="36" y="36" />
+                  <Anchor point="TOPRIGHT" relativeTo="$(parent)" relativePoint="TOPRIGHT"
+                    offsetX="0" offsetY="0" />
+                  <Textures
+                    normal="/esoui/art/dye/dyes_toolicon_erase_up.dds"
+                    pressed="/esoui/art/dye/dyes_toolicon_erase_down.dds"
+                    mouseOver="/esoui/art/dye/dyes_toolicon_erase_over.dds"
+                  />
+                </Button>
+                <Button name="$(parent)_fromTrader" inherits="ZO_ButtonBehaviorClickSound">
+                  <OnClicked>FurCDev.AddAllFromTrader()</OnClicked>
+                  <OnMouseEnter>
+                    InitializeTooltip(InformationTooltip, self, TOP, 0, 5, BOTTOM)
+                    SetTooltipText(InformationTooltip, "Add all furnishings from the open trader")
+                  </OnMouseEnter>
+                  <OnMouseExit>ClearTooltip(InformationTooltip)</OnMouseExit>
+                  <Dimensions x="36" y="36" />
+                  <Anchor point="RIGHT" relativeTo="$(parent)_clear" relativePoint="LEFT"
+                    offsetX="-8" offsetY="0" />
+                  <Textures
+                    normal="/esoui/art/buttons/plus_up.dds"
+                    pressed="/esoui/art/buttons/plus_down.dds"
+                    mouseOver="/esoui/art/buttons/plus_over.dds"
+                  />
+                </Button>
+                <EditBox name="FurCDevControlBox"
+                  inherits="ZO_DefaultEditMultiLine ZO_DefaultEditForDarkBackdrop">
+                  <Anchor point="TOPLEFT" relativeTo="$(parent)" relativePoint="TOPLEFT" offsetX="0"
+                    offsetY="44" />
+                  <Anchor point="BOTTOMRIGHT" relativeTo="$(parent)" relativePoint="BOTTOMRIGHT"
+                    offsetX="0" offsetY="0" />
+                  <OnFocusGained>FurCDev.selectEntireTextbox()</OnFocusGained>
+                  <OnTextChanged>FurCDev.onTextboxTextChanged()</OnTextChanged>
+                </EditBox>
+              </Controls>
+            </Control>
+          </Controls>
+        </Control>
       </Controls>
     </TopLevelControl>
   </Controls>
