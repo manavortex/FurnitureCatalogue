@@ -8,7 +8,8 @@ local function getAchievementId(achievementName)
     return 0
   end
 
-  if {} == this.Achievements then
+  -- build lazily
+  if NonContiguousCount(this.Achievements) < 1 then
     internal.BuildAchievementTable()
   end
 

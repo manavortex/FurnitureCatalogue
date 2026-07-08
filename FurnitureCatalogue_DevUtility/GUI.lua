@@ -17,8 +17,17 @@ local cachedItemIds = {}
 function this.ToggleEditBox()
   local show = this.control:IsHidden()
   this.control:SetHidden(not show)
-  if show and this.RefreshHeader then
-    this.RefreshHeader()
+  if show then
+    if this.RefreshHeader then
+      this.RefreshHeader()
+    end
+    -- start building zones on open so it's ready by the time we use the search
+    if this.Internal and NonContiguousCount(this.Zones or {}) < 1 then
+      this.Internal.BuildZoneTable()
+    end
+    if this.RefreshCurrentTab then
+      this.RefreshCurrentTab()
+    end
   end
 end
 
@@ -296,16 +305,18 @@ this.Dashboard = dashboard
 ---@param id string unique tab id
 ---@param label string button caption
 ---@param panel table content control shown when tab is active
-function this.RegisterTab(id, label, panel)
+---@param onShow function|nil called each time the tab becomes active
+function this.RegisterTab(id, label, panel, onShow)
   if not dashboard.panels[id] then
     dashboard.order[#dashboard.order + 1] = id
   end
-  dashboard.panels[id] = { label = label, control = panel }
+  dashboard.panels[id] = { label = label, control = panel, onShow = onShow }
 end
 
 -- Show one panel, hide rest, mark active btn
-function this.SelectTab(id)
-  if not dashboard.panels[id] then
+function this.SelectTab(id, skipOnShow)
+  local active = dashboard.panels[id]
+  if not active then
     return
   end
   for tabId, entry in pairs(dashboard.panels) do
@@ -317,9 +328,20 @@ function this.SelectTab(id)
     btn:SetState((tabId == id) and BSTATE_PRESSED or BSTATE_NORMAL, tabId == id)
   end
   dashboard.current = id
+  if active.onShow and not skipOnShow then
+    active.onShow()
+  end
 end
 
-local TAB_WIDTH = 96
+-- Re-run the active tab's onShow (when dashboard opened)
+function this.RefreshCurrentTab()
+  local entry = dashboard.current and dashboard.panels[dashboard.current]
+  if entry and entry.onShow then
+    entry.onShow()
+  end
+end
+
+local TAB_WIDTH = 112
 local TAB_HEIGHT = 26
 local TAB_GAP = 4
 local function buildTabButtons()
@@ -370,6 +392,204 @@ function this.RefreshHeader()
   )
 end
 
+-------------------------
+-- Search tabs (Achievements, Zones)
+-------------------------
+
+local ROW_HEIGHT = 24
+local PAGE_SIZE = 100
+
+local searchTabs = {
+  achievements = {
+    list = "FurCDevControl_AchievementsList",
+    pager = "FurCDevControl_AchievementsPager",
+    search = "FurCDevControl_AchievementsSearch",
+    source = function()
+      return this.Achievements
+    end,
+    -- lazy build achievements
+    ensure = function()
+      if NonContiguousCount(this.Achievements) < 1 then
+        this.Internal.BuildAchievementTable()
+      end
+    end,
+    rows = {},
+    matches = {},
+    page = 1,
+  },
+  zones = {
+    list = "FurCDevControl_ZonesList",
+    pager = "FurCDevControl_ZonesPager",
+    search = "FurCDevControl_ZonesSearch",
+    source = function()
+      return this.Zones
+    end,
+    -- lazy build zones
+    ensure = function()
+      if NonContiguousCount(this.Zones) < 1 then
+        this.Internal.BuildZoneTable()
+      end
+    end,
+    rows = {},
+    matches = {},
+    page = 1,
+  },
+}
+
+local function appendToOutput(text)
+  local box = this.textbox
+  if not box then
+    return
+  end
+  box:SetText((box:GetText() or "") .. text)
+end
+
+-- Reused row btn
+local function acquireRow(cfg, index, parent)
+  local row = cfg.rows[index]
+  if not row then
+    row = WINDOW_MANAGER:CreateControlFromVirtual(parent:GetName() .. "_Row" .. index, parent, "ZO_DefaultButton")
+    row:SetHeight(ROW_HEIGHT)
+    row:SetHorizontalAlignment(TEXT_ALIGN_LEFT)
+    cfg.rows[index] = row
+  end
+  return row
+end
+
+-- Render current page
+local function renderPage(cfg)
+  local list = _G[cfg.list]
+  local child = list and list:GetNamedChild("ScrollChild")
+  if not child then
+    return
+  end
+
+  for _, row in ipairs(cfg.rows) do
+    row:SetHidden(true)
+    row:ClearAnchors()
+  end
+
+  local total = #cfg.matches
+  local pages = math.max(1, math.ceil(total / PAGE_SIZE))
+  cfg.page = math.max(1, math.min(cfg.page, pages))
+
+  local rowWidth = math.max(200, (list:GetWidth() or 0) - 24)
+  local first = (cfg.page - 1) * PAGE_SIZE + 1
+  local last = math.min(first + PAGE_SIZE - 1, total)
+
+  local predecessor
+  for i = first, last do
+    local m = cfg.matches[i]
+    local index = i - first + 1
+    local row = acquireRow(cfg, index, child)
+    row:SetWidth(rowWidth)
+    row:SetText(string.format("%d   %s", m.id, m.name))
+    row:ClearAnchors()
+    if predecessor then
+      row:SetAnchor(TOPLEFT, predecessor, BOTTOMLEFT, 0, 0)
+    else
+      row:SetAnchor(TOPLEFT, child, TOPLEFT, 0, 0)
+    end
+    row:SetHandler("OnClicked", function()
+      appendToOutput(string.format("%d, -- %s\n", m.id, m.name))
+    end)
+    row:SetHidden(false)
+    predecessor = row
+  end
+
+  if ZO_Scroll_ResetToTop then
+    ZO_Scroll_ResetToTop(list)
+  end
+  if ZO_Scroll_UpdateScrollBar then
+    ZO_Scroll_UpdateScrollBar(list)
+  end
+
+  if cfg.pageLabel then
+    cfg.pageLabel:SetText(string.format("page %d / %d   (%d)", cfg.page, pages, total))
+  end
+  if cfg.prevBtn then
+    cfg.prevBtn:SetEnabled(cfg.page > 1)
+  end
+  if cfg.nextBtn then
+    cfg.nextBtn:SetEnabled(cfg.page < pages)
+  end
+end
+
+-- Filter source table (empty query = full list)
+function this.OnSearch(editControl, tabId)
+  local cfg = searchTabs[tabId]
+  if not cfg then
+    return
+  end
+  cfg.ensure()
+  local query = LocaleAwareToLower((editControl and editControl:GetText()) or "")
+
+  local matches = {}
+  for id, name in pairs(cfg.source()) do
+    if type(name) == "string" and (query == "" or string.find(LocaleAwareToLower(name), query, 1, true)) then
+      matches[#matches + 1] = { id = id, name = name }
+    end
+  end
+  table.sort(matches, function(a, b)
+    return a.id < b.id
+  end)
+  cfg.matches = matches
+  cfg.page = 1
+  renderPage(cfg)
+end
+
+function this.Page(tabId, delta)
+  local cfg = searchTabs[tabId]
+  if not cfg then
+    return
+  end
+  cfg.page = cfg.page + delta
+  renderPage(cfg)
+end
+
+-- Re-run search tab's filter
+local function refreshSearchTab(tabId)
+  local cfg = searchTabs[tabId]
+  return function()
+    this.OnSearch(_G[cfg.search], tabId)
+  end
+end
+
+-- Build pager bar (prev / page label / next) for a search tab
+local PAGER_BTN_WIDTH = 30
+local function buildPager(tabId)
+  local cfg = searchTabs[tabId]
+  local bar = _G[cfg.pager]
+  if not bar then
+    return
+  end
+
+  local prevBtn = WINDOW_MANAGER:CreateControlFromVirtual(bar:GetName() .. "_Prev", bar, "ZO_DefaultButton")
+  prevBtn:SetDimensions(PAGER_BTN_WIDTH, 24)
+  prevBtn:SetText("<")
+  prevBtn:SetAnchor(LEFT, bar, LEFT, 0, 0)
+  prevBtn:SetHandler("OnClicked", function()
+    this.Page(tabId, -1)
+  end)
+
+  local nextBtn = WINDOW_MANAGER:CreateControlFromVirtual(bar:GetName() .. "_Next", bar, "ZO_DefaultButton")
+  nextBtn:SetDimensions(PAGER_BTN_WIDTH, 24)
+  nextBtn:SetText(">")
+  nextBtn:SetAnchor(RIGHT, bar, RIGHT, 0, 0)
+  nextBtn:SetHandler("OnClicked", function()
+    this.Page(tabId, 1)
+  end)
+
+  local label = WINDOW_MANAGER:CreateControl(bar:GetName() .. "_Label", bar, CT_LABEL)
+  label:SetFont("ZoFontGame")
+  label:SetHorizontalAlignment(TEXT_ALIGN_CENTER)
+  label:SetVerticalAlignment(TEXT_ALIGN_CENTER)
+  label:SetAnchor(LEFT, prevBtn, RIGHT, 4, 0)
+  label:SetAnchor(RIGHT, nextBtn, LEFT, -4, 0)
+
+  cfg.prevBtn, cfg.nextBtn, cfg.pageLabel = prevBtn, nextBtn, label
+end
+
 local MAX_OUTPUT_CHARS = 200000
 function this.InitDashboard()
   this.textbox = this.textbox or FurCDevControlBox
@@ -377,8 +597,12 @@ function this.InitDashboard()
     this.textbox:SetMaxInputChars(MAX_OUTPUT_CHARS)
   end
 
-  this.RegisterTab("output", "Output", FurCDevControl_Output)
+  -- Output is a permanent right pane (Scratchpad)
+  this.RegisterTab("achievements", "Achievements", FurCDevControl_Achievements, refreshSearchTab("achievements"))
+  this.RegisterTab("zones", "Zones", FurCDevControl_Zones, refreshSearchTab("zones"))
   buildTabButtons()
-  this.SelectTab("output")
+  buildPager("achievements")
+  buildPager("zones")
+  this.SelectTab("achievements", true)
   this.RefreshHeader()
 end

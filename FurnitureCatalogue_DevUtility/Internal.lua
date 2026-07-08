@@ -12,13 +12,30 @@ this.Achievements = achievementTable
 this.Quests = questTable
 this.Zones = zoneTable
 
--- Inspired by AchievementFinder from Rhyono
+local function addAchievement(id)
+  if not id or id == 0 then
+    return
+  end
+  local achieveName = GetAchievementInfo(id)
+  if achieveName ~= "" then
+    -- Save gendered and lowercased achievement name
+    achievementTable[id] = LocaleAwareToLower(zo_strformat(achieveName))
+  end
+end
+
+-- Use achievement category tree
+-- MAX_ACHIEVEMENTS and guessing ID range was not enough anymore
 local function buildAchievementTable()
-  for id = 11, MAX_ACHIEVEMENTS + 11 do
-    local achieveName = select(1, GetAchievementInfo(id))
-    if achieveName ~= "" then
-      -- Save gendered and lowercased achievement name
-      achievementTable[id] = LocaleAwareToLower(zo_strformat(achieveName))
+  for ci = 1, GetNumAchievementCategories() do
+    local _, numSubCategories, numAchievements = GetAchievementCategoryInfo(ci)
+    for ai = 1, (numAchievements or 0) do
+      addAchievement(GetAchievementId(ci, nil, ai))
+    end
+    for si = 1, (numSubCategories or 0) do
+      local _, subNumAchievements = GetAchievementSubCategoryInfo(ci, si)
+      for ai = 1, (subNumAchievements or 0) do
+        addAchievement(GetAchievementId(ci, si, ai))
+      end
     end
   end
 end

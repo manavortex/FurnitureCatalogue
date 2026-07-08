@@ -2,13 +2,15 @@
 <GuiXml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:noNamespaceSchemaLocation="http://sir.insidi.at/or/schema/esoui.xsd">
   <Controls>
-    <!-- Dev dashboard container -->
+    <!-- Dev dashboard container
+    Left pane: tab panels
+    Right pane: Output/scratchpad -->
     <TopLevelControl name="FurCDevControl" clampedToScreen="true" movable="true" mouseEnabled="true"
       hidden="true" resizeHandleSize="15">
-      <Dimensions x="600" y="500" />
-      <DimensionConstraints minX="360" minY="300" />
-      <Anchor point="CENTER" relativeTo="GUI_ROOT" relativePoint="CENTER" offsetX="-125"
-        offsetY="-140" />
+      <Dimensions x="860" y="520" />
+      <DimensionConstraints minX="560" minY="320" />
+      <Anchor point="CENTER" relativeTo="GUI_ROOT" relativePoint="CENTER" offsetX="0"
+        offsetY="-120" />
       <Controls>
         <Backdrop name="$(parent)_BG" inherits="ZO_DefaultBackdrop">
           <AnchorFill />
@@ -51,16 +53,19 @@
             offsetY="48" />
         </Control>
 
-        <!-- content: 1 panel per tab, only active is shown -->
         <Control name="$(parent)_Content">
           <Anchor point="TOPLEFT" relativeTo="$(parent)" relativePoint="TOPLEFT" offsetX="14"
             offsetY="84" />
           <Anchor point="BOTTOMRIGHT" relativeTo="$(parent)" relativePoint="BOTTOMRIGHT"
             offsetX="-14" offsetY="-14" />
           <Controls>
-            <!-- Output tab: copy-paste data box -->
-            <Control name="$(parent)_Output">
-              <AnchorFill />
+            <!-- Right pane: Output scratchpad, always visible -->
+            <Control name="$(parent)_Right">
+              <Dimensions x="340" />
+              <Anchor point="TOPRIGHT" relativeTo="$(parent)" relativePoint="TOPRIGHT" offsetX="0"
+                offsetY="0" />
+              <Anchor point="BOTTOMRIGHT" relativeTo="$(parent)" relativePoint="BOTTOMRIGHT"
+                offsetX="0" offsetY="0" />
               <Controls>
                 <Button name="$(parent)_clear" inherits="ZO_ButtonBehaviorClickSound">
                   <OnClicked>FurCDev.clearControl()</OnClicked>
@@ -94,15 +99,94 @@
                     mouseOver="/esoui/art/buttons/plus_over.dds"
                   />
                 </Button>
-                <EditBox name="FurCDevControlBox"
-                  inherits="ZO_DefaultEditMultiLine ZO_DefaultEditForDarkBackdrop">
+                <!-- Backdrop with padding. -->
+                <Backdrop name="$(parent)_BoxBg" inherits="ZO_DefaultBackdrop">
                   <Anchor point="TOPLEFT" relativeTo="$(parent)" relativePoint="TOPLEFT" offsetX="0"
                     offsetY="44" />
                   <Anchor point="BOTTOMRIGHT" relativeTo="$(parent)" relativePoint="BOTTOMRIGHT"
                     offsetX="0" offsetY="0" />
-                  <OnFocusGained>FurCDev.selectEntireTextbox()</OnFocusGained>
-                  <OnTextChanged>FurCDev.onTextboxTextChanged()</OnTextChanged>
-                </EditBox>
+                  <Controls>
+                    <EditBox name="FurCDevControlBox" inherits="ZO_DefaultEditMultiLineForBackdrop">
+                      <OnFocusGained>FurCDev.selectEntireTextbox()</OnFocusGained>
+                      <OnTextChanged>FurCDev.onTextboxTextChanged()</OnTextChanged>
+                    </EditBox>
+                  </Controls>
+                </Backdrop>
+              </Controls>
+            </Control>
+
+            <!-- Left pane: active tab's panel -->
+            <Control name="$(parent)_Left">
+              <Anchor point="TOPLEFT" relativeTo="$(parent)" relativePoint="TOPLEFT" offsetX="0"
+                offsetY="0" />
+              <Anchor point="BOTTOMRIGHT" relativeTo="$(parent)_Right" relativePoint="BOTTOMLEFT"
+                offsetX="-12" offsetY="0" />
+              <Controls>
+                <!-- Achievements tab: search by name, click to append to scratchpad -->
+                <Control name="FurCDevControl_Achievements" hidden="true">
+                  <AnchorFill />
+                  <Controls>
+                    <Backdrop name="$(parent)_SearchBg" inherits="ZO_DefaultBackdrop">
+                      <Dimensions y="30" />
+                      <Anchor point="TOPLEFT" relativeTo="$(parent)" relativePoint="TOPLEFT"
+                        offsetX="0" offsetY="0" />
+                      <Anchor point="TOPRIGHT" relativeTo="$(parent)" relativePoint="TOPRIGHT"
+                        offsetX="0" offsetY="0" />
+                      <Controls>
+                        <EditBox name="FurCDevControl_AchievementsSearch"
+                          inherits="ZO_DefaultEditForBackdrop">
+                          <OnTextChanged>FurCDev.OnSearch(self, "achievements")</OnTextChanged>
+                        </EditBox>
+                      </Controls>
+                    </Backdrop>
+                    <Control name="FurCDevControl_AchievementsPager">
+                      <Dimensions y="26" />
+                      <Anchor point="BOTTOMLEFT" relativeTo="$(parent)" relativePoint="BOTTOMLEFT"
+                        offsetX="0" offsetY="0" />
+                      <Anchor point="BOTTOMRIGHT" relativeTo="$(parent)" relativePoint="BOTTOMRIGHT"
+                        offsetX="0" offsetY="0" />
+                    </Control>
+                    <Control name="FurCDevControl_AchievementsList" inherits="ZO_ScrollContainer">
+                      <Anchor point="TOPLEFT" relativeTo="$(parent)_SearchBg"
+                        relativePoint="BOTTOMLEFT" offsetX="0" offsetY="6" />
+                      <Anchor point="BOTTOMRIGHT" relativeTo="FurCDevControl_AchievementsPager"
+                        relativePoint="TOPRIGHT" offsetX="0" offsetY="-4" />
+                    </Control>
+                  </Controls>
+                </Control>
+
+                <!-- Zones tab: search by name, click to append to scratchpad -->
+                <Control name="FurCDevControl_Zones" hidden="true">
+                  <AnchorFill />
+                  <Controls>
+                    <Backdrop name="$(parent)_SearchBg" inherits="ZO_DefaultBackdrop">
+                      <Dimensions y="30" />
+                      <Anchor point="TOPLEFT" relativeTo="$(parent)" relativePoint="TOPLEFT"
+                        offsetX="0" offsetY="0" />
+                      <Anchor point="TOPRIGHT" relativeTo="$(parent)" relativePoint="TOPRIGHT"
+                        offsetX="0" offsetY="0" />
+                      <Controls>
+                        <EditBox name="FurCDevControl_ZonesSearch"
+                          inherits="ZO_DefaultEditForBackdrop">
+                          <OnTextChanged>FurCDev.OnSearch(self, "zones")</OnTextChanged>
+                        </EditBox>
+                      </Controls>
+                    </Backdrop>
+                    <Control name="FurCDevControl_ZonesPager">
+                      <Dimensions y="26" />
+                      <Anchor point="BOTTOMLEFT" relativeTo="$(parent)" relativePoint="BOTTOMLEFT"
+                        offsetX="0" offsetY="0" />
+                      <Anchor point="BOTTOMRIGHT" relativeTo="$(parent)" relativePoint="BOTTOMRIGHT"
+                        offsetX="0" offsetY="0" />
+                    </Control>
+                    <Control name="FurCDevControl_ZonesList" inherits="ZO_ScrollContainer">
+                      <Anchor point="TOPLEFT" relativeTo="$(parent)_SearchBg"
+                        relativePoint="BOTTOMLEFT" offsetX="0" offsetY="6" />
+                      <Anchor point="BOTTOMRIGHT" relativeTo="FurCDevControl_ZonesPager"
+                        relativePoint="TOPRIGHT" offsetX="0" offsetY="-4" />
+                    </Control>
+                  </Controls>
+                </Control>
               </Controls>
             </Control>
           </Controls>
