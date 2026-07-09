@@ -234,7 +234,6 @@ function FurC.GuiOnSort(key)
   end
 
   FurCGui_Header_SortBar_Name_Button:SetNormalTexture(getButtonTex("itemName"))
-  FurCGui_Header_SortBar_Quality_Button:SetNormalTexture(getButtonTex("itemQuality"))
 
   FurC.UpdateGui()
 end

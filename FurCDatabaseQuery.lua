@@ -26,35 +26,37 @@ local function strMultiple(...)
   return join(" + ", ...)
 end
 
+-- Writ Voucher recipes referenced by blueprint id, so every lookup has to try blueprint as well as id
+local function voucherEntry(versionData, recipeKey, blueprintId)
+  if nil == versionData then
+    return
+  end
+  return versionData[recipeKey] or (blueprintId and versionData[blueprintId])
+end
+
+local function strVoucher(vendor, entry)
+  local price = type(entry) == "table" and entry.itemPrice or entry
+  local info = type(entry) == "table" and entry.info or nil
+  return strFurnisher(vendor, loc.ANY_CAPITAL, price, CURT_WRIT_VOUCHERS, info)
+end
+
 local function getRolisSource(recipeKey, recipeArray)
   recipeArray = recipeArray or FurC.Find(recipeKey)
   if {} == recipeArray then
     return
   end
+  local version = recipeArray.version
+  local blueprintId = recipeArray.blueprint
 
-  local versionData = FurC.Rolis[recipeArray.version]
-  if nil ~= versionData and nil ~= versionData[recipeKey] then
-    local entry = versionData[recipeKey]
-    local price = type(entry) == "table" and entry.itemPrice or entry
-    local info = type(entry) == "table" and entry.info or nil
-    return strFurnisher(npc.ROLIS, loc.ANY_CAPITAL, price, CURT_WRIT_VOUCHERS, info)
+  local entry = voucherEntry(FurC.Rolis[version], recipeKey, blueprintId)
+  if nil ~= entry then
+    return strVoucher(npc.ROLIS, entry)
   end
 
-  versionData = FurC.Faustina[recipeArray.version]
-  if nil ~= versionData and nil ~= versionData[recipeKey] then
-    local entry = versionData[recipeKey]
-    local price = type(entry) == "table" and entry.itemPrice or entry
-    local info = type(entry) == "table" and entry.info or nil
-    return strFurnisher(npc.FAUSTINA, loc.ANY_CAPITAL, price, CURT_WRIT_VOUCHERS, info)
-  end
-
-  -- check FaustinaRecipes
-  versionData = FurC.FaustinaRecipes[recipeArray.version]
-  if nil ~= versionData and nil ~= versionData[recipeKey] then
-    local entry = versionData[recipeKey]
-    local price = type(entry) == "table" and entry.itemPrice or entry
-    local info = type(entry) == "table" and entry.info or nil
-    return strFurnisher(npc.FAUSTINA, loc.ANY_CAPITAL, price, CURT_WRIT_VOUCHERS, info)
+  entry = voucherEntry(FurC.Faustina[version], recipeKey, blueprintId)
+    or voucherEntry(FurC.FaustinaRecipes[version], recipeKey, blueprintId)
+  if nil ~= entry then
+    return strVoucher(npc.FAUSTINA, entry)
   end
 
   -- check if this recipe is part of a furnishing folio
@@ -62,7 +64,7 @@ local function getRolisSource(recipeKey, recipeArray)
     for folioId, folioData in pairs(FurC.FurnishingFolios) do
       if folioData.contents then
         for _, contentId in ipairs(folioData.contents) do
-          if contentId == recipeKey then
+          if contentId == recipeKey or contentId == blueprintId then
             local partOfStr = strPartOf(folioId)
             return strFurnisher(npc.FAUSTINA, loc.ANY_CAPITAL, folioData.price, CURT_WRIT_VOUCHERS, partOfStr)
           end

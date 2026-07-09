@@ -323,13 +323,13 @@ function FurC.ApplyLineTemplate()
   if FurC.GetTinyUi() then
     FurC.SlotTemplate = "FurC_SlotTemplateTiny"
     resizeDropdowns(230)
-    FurCGui_Header_SortBar_Quality:ClearAnchors()
-    FurCGui_Header_SortBar_Quality:SetAnchor(TOPLEFT, FurCGui_Header_SortBar_Name, TOPRIGHT, -82)
+    FurCGui_Header_SortBar_Description:ClearAnchors()
+    FurCGui_Header_SortBar_Description:SetAnchor(TOPLEFT, FurCGui_Header_SortBar_Name, TOPRIGHT, -82)
   else
     FurC.SlotTemplate = "FurC_SlotTemplate"
     resizeDropdowns(300)
-    FurCGui_Header_SortBar_Quality:ClearAnchors()
-    FurCGui_Header_SortBar_Quality:SetAnchor(TOPLEFT, FurCGui_Header_SortBar_Name, TOPRIGHT, 0)
+    FurCGui_Header_SortBar_Description:ClearAnchors()
+    FurCGui_Header_SortBar_Description:SetAnchor(TOPLEFT, FurCGui_Header_SortBar_Name, TOPRIGHT, 0)
   end
 
   FurC.SetLineHeight(true)
@@ -380,8 +380,6 @@ local function createGui()
     FurCGui_ListHolder.lines = {}
     FurCGui_ListHolder.NameSort = FurCGui_Header_SortBar:GetNamedChild("_Name")
     FurCGui_ListHolder.NameSort.icon = FurCGui_ListHolder.NameSort:GetNamedChild("_Button")
-    FurCGui_ListHolder.QualitySort = FurCGui_Header_SortBar:GetNamedChild("_Quality")
-    FurCGui_ListHolder.QualitySort.icon = FurCGui_ListHolder.QualitySort:GetNamedChild("_Button")
 
     local predecessor
     for i = 1, FurCGui_ListHolder.maxLines do

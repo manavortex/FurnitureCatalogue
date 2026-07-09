@@ -117,16 +117,21 @@ for _, name in ipairs({
 end
 
 -- need link parser so headless can build DB
-do
-  local function link_id(link)
-    if type(link) == "number" then
-      return link
-    end
-    if type(link) ~= "string" then
-      return nil
-    end
-    return tonumber(link:match(":item:(%d+)"))
+local function link_id(link)
+  if type(link) == "number" then
+    return link
   end
+  if type(link) ~= "string" then
+    return nil
+  end
+  return tonumber(link:match(":item:(%d+)"))
+end
+
+local function make_link(itemId)
+  return string.format("|H1:item:%d:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h", itemId)
+end
+
+do
   _G.GetItemLinkItemId = function(link)
     return link_id(link) or 0
   end
@@ -186,8 +191,56 @@ end
 _G.ClearTooltip = _G.ClearTooltip or function() end
 _G.SLASH_COMMANDS = _G.SLASH_COMMANDS or {}
 
-_G.GetItemLinkRecipeResultItemLink = _G.GetItemLinkRecipeResultItemLink or function(link)
-  return link
+-- Furniture recipes craft a *different* item, so fake should be different too
+-- recipeId + FURC_TEST_RESULT_OFFSET.
+FURC_TEST_RESULT_OFFSET = 500000
+
+local recipeIds
+local function isRecipeId(itemId)
+  if nil == itemId then
+    return false
+  end
+  if nil == recipeIds then
+    -- data files are loaded after the stubs, so populate on first use
+    if nil == FurC or nil == FurC.Recipes then
+      return false
+    end
+    recipeIds = {}
+    for _, versionData in pairs(FurC.Recipes) do
+      for _, id in ipairs(versionData) do
+        recipeIds[id] = true
+      end
+    end
+    for _, tbl in ipairs({ FurC.RolisRecipes or {}, FurC.FaustinaRecipes or {} }) do
+      for _, versionData in pairs(tbl) do
+        for id in pairs(versionData) do
+          recipeIds[id] = true
+        end
+      end
+    end
+    for _, folioData in pairs(FurC.FurnishingFolios or {}) do
+      for _, id in ipairs(folioData.contents or {}) do
+        recipeIds[id] = true
+      end
+    end
+    for _, id in pairs(FurC.RumourRecipes or {}) do
+      recipeIds[id] = true
+    end
+  end
+  return recipeIds[itemId] == true
+end
+_G.FurCTest_IsRecipeId = isRecipeId
+
+_G.IsItemLinkFurnitureRecipe = function(link)
+  return isRecipeId(link_id(link))
+end
+
+_G.GetItemLinkRecipeResultItemLink = function(link)
+  local itemId = link_id(link)
+  if not isRecipeId(itemId) then
+    return ""
+  end
+  return make_link(itemId + FURC_TEST_RESULT_OFFSET)
 end
 
 _G.SafeAddVersion = _G.SafeAddVersion or function() end
@@ -312,8 +365,7 @@ do
     "FurCGui_Header_SortBar",
     "FurCGui_Header_SortBar_Name",
     "FurCGui_Header_SortBar_Name_Button",
-    "FurCGui_Header_SortBar_Quality",
-    "FurCGui_Header_SortBar_Quality_Button",
+    "FurCGui_Header_SortBar_Description",
     "FurCGui_ListHolder",
     "FurCGui_ListHolder_Slider",
     "FurCGui_Wait",

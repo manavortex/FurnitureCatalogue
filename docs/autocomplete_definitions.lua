@@ -77,7 +77,7 @@ FurC_ShowCrowns = ButtonControl
 FurC_ShowRumoursGlow = TextureControl
 FurC_CategoryFilter = Control
 FurCGui_Header_SortBar_Name = LabelControl
-FurCGui_Header_SortBar_Quality = LabelControl
+FurCGui_Header_SortBar_Description = LabelControl
 ---------- LVL: 09 ----------
 ---------- LVL: 10 ----------
 FurC_Label_1 = LabelControl
@@ -85,7 +85,6 @@ FurC_RecipeCount = LabelControl
 FurC_Label_2 = LabelControl
 FurC_SearchBox = EditControl
 FurCGui_Header_SortBar_Name_Button = ButtonControl
-FurCGui_Header_SortBar_Quality_Button = ButtonControl
 ---------- LVL: 11 ----------
 ---------- LVL: 12 ----------
 FurC_SearchBoxBackdrop = BackdropControl

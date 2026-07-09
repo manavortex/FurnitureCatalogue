@@ -264,20 +264,10 @@
                     </Button>
                   </Controls>
                 </Label>
-                <Label name="$(parent)_Quality" mouseEnabled="true" font="ZoFontGameSmall"
-                  text="Quality">
+                <!-- not sortable source description -->
+                <Label name="$(parent)_Description" font="ZoFontGameSmall" text="Description">
                   <Anchor point="TOPLEFT" relativeTo="$(parent)_Name" relativePoint="TOPRIGHT" />
                   <Anchor point="BOTTOMRIGHT" relativeTo="$(parent)" relativePoint="BOTTOMRIGHT" />
-                  <OnMouseUp>FurC.GuiOnSort("itemQuality")</OnMouseUp>
-                  <Controls>
-                    <Button name="$(parent)_Button" verticalAlignment="LEFT" mouseEnabled="true">
-                      <Dimensions y="20" x="20" />
-                      <Anchor point="TOPLEFT" relativeTo="$(parent)" relativePoint="TOPLEFT"
-                        offsetX="-25" />
-                      <Textures normal="esoui/art/miscellaneous/list_sortheader_icon_neutral.dds"
-                        mouseOver="esoui/art/miscellaneous/list_sortheader_icon_over.dds" />
-                    </Button>
-                  </Controls>
                 </Label>
               </Controls>
             </Control>

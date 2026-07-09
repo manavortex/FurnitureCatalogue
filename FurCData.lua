@@ -8,11 +8,35 @@ local src = FurC.Constants.ItemSources
 
 local getItemId = FurC.Utils.GetItemId
 local getItemLink = FurC.Utils.GetItemLink
+local stripTxt = FurC.Utils.stripTxt
 
 -- DB-content query table
 FurC.DBQuery = FurC.DBQuery or {}
 local this = FurC.DBQuery
 local lib = FurC.Internal
+
+--- Maps a recipe id onto the furnishing it crafts
+--- Plain furnishings pass through unchanged
+---@param recipeId integer
+---@return integer? itemId to store under, nil to skip
+---@return integer? blueprintId set only when recipeId was a resolved recipe
+local function resolveRecipe(recipeId)
+  local recipeLink = getItemLink(recipeId)
+  if nil == recipeLink or not IsItemLinkFurnitureRecipe(recipeLink) then
+    return recipeId, nil
+  end
+  -- game returns "" when recipe has no result
+  local resultLink = GetItemLinkRecipeResultItemLink(recipeLink, LINK_STYLE_BRACKETS)
+  if nil == resultLink or #resultLink == 0 then
+    return nil, nil
+  end
+  local resultId = getItemId(resultLink)
+  if nil == resultId or resultId == recipeId then
+    return nil, nil
+  end
+  return resultId, recipeId
+end
+this.ResolveRecipe = resolveRecipe
 
 local function printItemLink(itemId)
   if nil == itemId then
@@ -490,13 +514,18 @@ local function scanFromFiles()
       end
 
       for _, recipeId in ipairs(ary) do
-        local recipeLink = getItemLink(recipeId)
-        local itemLink = GetItemLinkRecipeResultItemLink(recipeLink) or getItemLink(recipeId)
-        recipeArray = FurC.Find(itemLink) or parseBlueprint(recipeLink) or parseFurnitureItem(itemLink)
-        if nil == recipeArray then
-          FurC.Logger:Debug("scanRecipeFile: error for ID %s - %s", recipeId, itemLink)
+        -- No blueprint means id is not a recipe this client can resolve (PTS vs Live, or invalid/datamine)
+        local itemId, blueprintId = resolveRecipe(recipeId)
+        if nil == blueprintId then
+          FurC.Logger:Debug("scanRecipeFile: %s is not a resolvable furniture recipe", recipeId)
         else
-          addDatabaseEntry(getItemId(itemLink), { origin = origin, version = versionNumber, blueprint = recipeId })
+          local itemLink = getItemLink(itemId)
+          recipeArray = FurC.Find(itemLink) or parseBlueprint(getItemLink(blueprintId)) or parseFurnitureItem(itemLink)
+          if nil == recipeArray then
+            FurC.Logger:Debug("scanRecipeFile: error for ID %s - %s", recipeId, itemLink)
+          else
+            addDatabaseEntry(itemId, { origin = origin, version = versionNumber, blueprint = blueprintId })
+          end
         end
       end
     end
@@ -515,15 +544,22 @@ local function scanFromFiles()
   end
 
   local function scanRolis()
-    for versionNumber, versionData in pairs(FurC.Rolis) do
-      for itemId in pairs(versionData) do
-        addDatabaseEntry(itemId, { origin = src.ROLIS, version = versionNumber })
+    -- Both tables mix furnishings with Master Writ recipes
+    -- We resolve first, otherwise we get item+blueprint (duplicate)
+    local function scanVendorTable(versionData, versionNumber)
+      for id in pairs(versionData) do
+        local itemId, blueprintId = resolveRecipe(id)
+        if nil ~= itemId then
+          addDatabaseEntry(itemId, { origin = src.ROLIS, version = versionNumber, blueprint = blueprintId })
+        end
       end
     end
+
+    for versionNumber, versionData in pairs(FurC.Rolis) do
+      scanVendorTable(versionData, versionNumber)
+    end
     for versionNumber, versionData in pairs(FurC.Faustina) do
-      for itemId in pairs(versionData) do
-        addDatabaseEntry(itemId, { origin = src.ROLIS, version = versionNumber })
-      end
+      scanVendorTable(versionData, versionNumber)
     end
   end
 
@@ -672,6 +708,11 @@ end
 -- Description string for each source
 local function describeSource(recipeKey, recipeArray, source, stripColor)
   if source == src.CRAFTING or source == src.WRIT_VENDOR then
+    -- where blueprint is bought, if we know (otherwise just material list)
+    local recipeSource = this.GetRecipeSource(recipeKey, recipeArray)
+    if recipeSource and #recipeSource > 0 then
+      return (stripColor and stripTxt(recipeSource)) or recipeSource
+    end
     return FurC.GetMats(recipeKey, recipeArray, stripColor)
   end
   if source == src.ROLIS then
@@ -712,6 +753,7 @@ local function getItemDescription(recipeKey, recipeArray, stripColor)
   end
   return describeSource(recipeKey, recipeArray, recipeArray.origin, stripColor)
 end
+
 this.GetItemDescription = getItemDescription
 
 ---@deprecated alias for DBQuery.GetItemDescription
