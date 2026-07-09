@@ -488,7 +488,8 @@ this.GetCraftingSkillType = getCraftingSkillType
 
 local recipeArray
 local isBuilding = false
-local function scanFromFiles()
+---@param blocking? boolean scan inline instead of yielding through LibAsync
+local function scanFromFiles(blocking)
   local function parseZoneData(zoneName, zoneData, versionNumber, origin)
     for vendorName, vendorData in pairs(zoneData) do
       for itemId in pairs(vendorData) do
@@ -654,7 +655,7 @@ local function scanFromFiles()
   isBuilding = true
   FurC.IsLoading(true)
 
-  if nil ~= task then
+  if nil ~= task and not blocking then
     task
       :Call(scanRecipeFile)
       :Then(scanMiscItemFile)
@@ -675,12 +676,13 @@ local function scanFromFiles()
 end
 
 --- Builds runtime DB from bundled data files if empty
-function FurC.EnsureDB()
+---@param blocking? boolean build inline, so FurC.DB is populated on return
+function FurC.EnsureDB(blocking)
   if isBuilding or next(FurC.DB) ~= nil then
     return
   end
   FurC.Logger:Debug(GetString(SI_FURC_VERBOSE_SCANNING_DATA_FILE))
-  scanFromFiles()
+  scanFromFiles(blocking)
 end
 
 --- Applies bundled data files over current DB again

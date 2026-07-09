@@ -47,7 +47,7 @@ local function buildTaxonomy()
 end
 
 local function buildMeta()
-  FurC.EnsureDB()
+  FurC.EnsureDB(true) -- we need FurC.DB ready, so no LibAsync here
   local getLink = FurC.Utils.GetItemLink
   local getName = FurC.Utils.GetItemName
 

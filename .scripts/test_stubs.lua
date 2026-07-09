@@ -258,12 +258,14 @@ end
 -- ---------------------------
 -- Libraries
 -- ---------------------------
-do -- LibAsync: just fake async (nobody needs to know)
+-- LibAsync: queue, don't run
+do
   local Task = {}
   Task.__index = Task
   function Task:Call(fn, ...)
     if fn then
-      fn(...)
+      self._queue = self._queue or {}
+      self._queue[#self._queue + 1] = fn
     end
     return self
   end

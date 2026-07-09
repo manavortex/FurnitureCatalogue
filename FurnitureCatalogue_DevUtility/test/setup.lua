@@ -29,17 +29,23 @@ local function firstPopulatedVersion(versioned)
   end
 end
 
+function Test.ensureDB()
+  FurC.EnsureDB(true)
+end
+
+Test.ensureDB()
+
 local dataset
 
 --- Build once and return data set
---- (if headless it builds, in-game addon already does it)
 function Test.dataset()
   if dataset then
     return dataset
   end
 
-  FurC.EnsureDB()
+  Test.ensureDB()
   local db = FurC.DB
+  assert(next(db) ~= nil, "FurC.DB is empty, scan did not run")
 
   local DS = {}
   for id in pairs(db or {}) do
@@ -68,6 +74,7 @@ end
 
 --- itemlink for integer id in expected FurC format
 function Test.link(id)
+  assert(type(id) == "number", "Test.link needs an item id, got " .. tostring(id))
   return string.format("|H1:item:%d:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h", id)
 end
 
