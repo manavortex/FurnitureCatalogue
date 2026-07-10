@@ -249,7 +249,7 @@ this.DropdownData = {
     [ver.WORMS2] = GetString(SI_FURC_FILTER_VERSION_WORMS2_TT),
     [ver.ZERO] = GetString(SI_FURC_FILTER_VERSION_ZERO_TT),
     [ver.ZERO2] = GetString(SI_FURC_FILTER_VERSION_ZERO2_TT),
-    [ver.THIEVES] = GetString(SI_FURC_FILTER_VERSION_THIEVES),
+    [ver.THIEVES] = GetString(SI_FURC_FILTER_VERSION_THIEVES_TT),
   },
 
   ChoicesCharacter = {

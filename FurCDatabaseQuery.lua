@@ -268,18 +268,31 @@ local function getMiscItemSource(recipeKey, recipeArray, stripColor, source)
     return emptyString
   end
 
+  -- same [version][source][itemId] shape in both files
+  local dataFiles = { FurC.MiscItemSources, FurC.CrownStore }
+
   -- TODO: overwrite version (there can be only one)
   local function lookup(version)
-    local versionFiles = version and FurC.MiscItemSources[version]
-    local bucket = versionFiles and versionFiles[source]
-    return bucket and bucket[recipeKey]
+    for _, dataFile in ipairs(dataFiles) do
+      local versionFiles = version and dataFile[version]
+      local bucket = versionFiles and versionFiles[source]
+      local originData = bucket and bucket[recipeKey]
+      if originData then
+        return originData
+      end
+    end
   end
   local originData = lookup(recipeArray.version)
   if not originData then
-    for version, versionFiles in pairs(FurC.MiscItemSources) do
-      local bucket = versionFiles[source]
-      if bucket and bucket[recipeKey] then
-        originData = bucket[recipeKey]
+    for _, dataFile in ipairs(dataFiles) do
+      for version, versionFiles in pairs(dataFile) do
+        local bucket = versionFiles[source]
+        if bucket and bucket[recipeKey] then
+          originData = bucket[recipeKey]
+          break
+        end
+      end
+      if originData then
         break
       end
     end

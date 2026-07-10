@@ -141,7 +141,7 @@ FurC.Constants.Versioning = {
   THIEVES = getNextIdFor("VERSIONING"), -- 40 Season One (U50)
 }
 
-FurC.Constants.Versioning.LATEST = FurC.Constants.Versioning.ZERO2
+FurC.Constants.Versioning.LATEST = FurC.Constants.Versioning.THIEVES
 
 -- Location Ids, mix of ingame strings and translations, more control over translations
 FurC.Constants.Locations = {

@@ -545,43 +545,11 @@ local function createGui()
       ClearTooltip(InformationTooltip)
     end
 
-    -- ruthlessly stolen from LAM
-    local function SetupTooltips(comboBox, choicesTooltips)
-      local function ShowTooltip(control)
-        InitializeTooltip(InformationTooltip, control, TOPRIGHT, -10, 0, TOPLEFT)
-        SetTooltipText(InformationTooltip, control.tooltip)
-        InformationTooltipTopLevel:BringWindowToTop()
-      end
-
-      -- allow for tooltips on the drop down entries
-      local originalShow = comboBox.ShowDropdownInternal
-      comboBox.ShowDropdownInternal = function(comboBox)
-        originalShow(comboBox)
-        local entries = ZO_Menu.items
-        for key, entry in pairs(entries) do
-          local control = entry.item
-          control.tooltip = choicesTooltips[key]
-          if control.tooltip then
-            entry.onMouseEnter = control:GetHandler("OnMouseEnter")
-            entry.onMouseExit = control:GetHandler("OnMouseExit")
-            ZO_PreHookHandler(control, "OnMouseEnter", ShowTooltip)
-            ZO_PreHookHandler(control, "OnMouseExit", HideTooltip)
-          end
-        end
-      end
-
-      local originalHide = comboBox.HideDropdownInternal
-      comboBox.HideDropdownInternal = function(self)
-        local entries = ZO_Menu.items
-        for key, entry in pairs(entries) do
-          local control = entry.item
-          control:SetHandler("OnMouseEnter", entry.onMouseEnter)
-          control:SetHandler("OnMouseExit", entry.onMouseExit)
-          control.tooltip = nil
-        end
-        HideTooltip()
-        originalHide(self)
-      end
+    -- ZO_ComboBoxDropdown_Keyboard:OnMouseEnterEntry
+    local function showEntryTooltip(entryControl, tooltipText)
+      InitializeTooltip(InformationTooltip, entryControl, TOPRIGHT, -10, 0, TOPLEFT)
+      SetTooltipText(InformationTooltip, tooltipText)
+      InformationTooltipTopLevel:BringWindowToTop()
     end
 
     function OnItemSelect(control, choiceText, somethingElse)
@@ -598,14 +566,20 @@ local function createGui()
     end
 
     comboBox:ClearItems()
-    for _, val in pairs(validChoices) do
-      comboBox:AddItem(comboBox:CreateItemEntry(val, OnItemSelect))
+    for key, val in pairs(validChoices) do
+      local entry = comboBox:CreateItemEntry(val, OnItemSelect)
+      local tooltipText = choicesTooltips and choicesTooltips[key]
+      if tooltipText then
+        comboBox:SetItemOnEnter(entry, function(entryControl)
+          showEntryTooltip(entryControl, tooltipText)
+        end)
+        comboBox:SetItemOnExit(entry, HideTooltip)
+      end
+      comboBox:AddItem(entry)
       if val == FurC.GetDropdownChoiceTextual(dropdownName) then
         comboBox:SetSelectedItem(val)
       end
     end
-
-    SetupTooltips(comboBox, dropdownData["Tooltips" .. dropdownName])
 
     if dropdownName == "Character" then
       local available = lib.LCKAvailable()
