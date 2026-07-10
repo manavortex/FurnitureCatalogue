@@ -313,7 +313,7 @@ function FurC.IsFavorite(itemLink, recipeArray)
   return FurC.IsFavoriteById(faveKey(itemLink))
 end
 
--- fav toggle
+-- fave toggle
 function FurC.Fave(itemLink, recipeArray)
   local itemId = faveKey(itemLink)
   if itemId == nil then
@@ -593,6 +593,21 @@ local function scanFromFiles(blocking)
     end
   end
 
+  local function scanCrownStore()
+    for versionNumber, versionData in pairs(FurC.CrownStore) do
+      for origin, originData in pairs(versionData) do
+        for itemId in pairs(originData) do
+          local itemLink = getItemLink(itemId)
+          if IsItemLinkPlaceableFurniture(itemLink) or GetItemLinkItemType(itemLink) == ITEMTYPE_FURNISHING then
+            addDatabaseEntry(itemId, { origin = origin, version = versionNumber })
+          else
+            FurC.Logger:Debug("scanCrownStore: Error when scanning item ID %s (origin %s)", itemId, origin)
+          end
+        end
+      end
+    end
+  end
+
   local function scanVendorFiles()
     FurC.InitAchievementVendorList()
 
@@ -662,6 +677,7 @@ local function scanFromFiles(blocking)
     task
       :Call(scanRecipeFile)
       :Then(scanMiscItemFile)
+      :Then(scanCrownStore)
       :Then(scanVendorFiles)
       :Then(scanRolis)
       :Then(scanFestivalFiles)
@@ -670,6 +686,7 @@ local function scanFromFiles(blocking)
   else
     scanRecipeFile()
     scanMiscItemFile()
+    scanCrownStore()
     scanVendorFiles()
     scanRolis()
     scanFestivalFiles()

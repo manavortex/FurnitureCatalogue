@@ -44,6 +44,7 @@ FurC.Constants.ItemSources = {
   TOMES = getNextIdFor("ITEM_SOURCES"), -- 20
   TELVAR = getNextIdFor("ITEM_SOURCES"), -- 21
   COLL_MERCH = getNextIdFor("ITEM_SOURCES"), -- 22
+  EDITOR = getNextIdFor("ITEM_SOURCES"), -- 23
 }
 
 ---@alias FurCItemSource integer # FurC.Constants.ItemSources values
@@ -84,7 +85,7 @@ do
     [src.LUXURY] = 50,
     [src.FESTIVAL_DROP] = 51,
     -- real money
-    -- [src.HOUSING]    = 60, -- maybe?
+    [src.EDITOR] = 60,
     [src.BAZAAR] = 61,
     [src.CROWN] = 62,
     -- other
@@ -99,44 +100,45 @@ end
 -- versioning
 FurC.Constants.Versioning = {
   NONE = getNextIdFor("VERSIONING"), -- 1 off
-  HOMESTEAD = getNextIdFor("VERSIONING"), -- 2 Homestead
-  MORROWIND = getNextIdFor("VERSIONING"), -- 3 Morrowind
-  REACH = getNextIdFor("VERSIONING"), -- 4 Horns of the Reach
-  CLOCKWORK = getNextIdFor("VERSIONING"), -- 5 Clockwork City
-  DRAGONS = getNextIdFor("VERSIONING"), -- 6 Dragon Bones
-  ALTMER = getNextIdFor("VERSIONING"), -- 7 Summerset
-  SLAVES = getNextIdFor("VERSIONING"), -- 8 Murkmire
-  WEREWOLF = getNextIdFor("VERSIONING"), -- 9 Wolfhunter
-  WOTL = getNextIdFor("VERSIONING"), -- 10 Wrathstone
-  KITTY = getNextIdFor("VERSIONING"), -- 11 Elsweyr
-  SCALES = getNextIdFor("VERSIONING"), -- 12 Scalebreaker
-  DRAGON2 = getNextIdFor("VERSIONING"), -- 13 Dragonhold
-  HARROW = getNextIdFor("VERSIONING"), -- 14 Harrowstorm
-  SKYRIM = getNextIdFor("VERSIONING"), -- 15 Greymoor
-  STONET = getNextIdFor("VERSIONING"), -- 16 Stonethorn
-  MARKAT = getNextIdFor("VERSIONING"), -- 17 Markarth
-  FLAMES = getNextIdFor("VERSIONING"), -- 18 Flames of Ambition
+  HOMESTEAD = getNextIdFor("VERSIONING"), -- 2 Homestead U13
+  MORROWIND = getNextIdFor("VERSIONING"), -- 3 Morrowind U14
+  REACH = getNextIdFor("VERSIONING"), -- 4 Horns of the Reach U15
+  CLOCKWORK = getNextIdFor("VERSIONING"), -- 5 Clockwork City U16
+  DRAGONS = getNextIdFor("VERSIONING"), -- 6 Dragon Bones U17
+  ALTMER = getNextIdFor("VERSIONING"), -- 7 Summerset U18
+  SLAVES = getNextIdFor("VERSIONING"), -- 8 Murkmire U19
+  WEREWOLF = getNextIdFor("VERSIONING"), -- 9 Wolfhunter U20
+  WOTL = getNextIdFor("VERSIONING"), -- 10 Wrathstone U21
+  KITTY = getNextIdFor("VERSIONING"), -- 11 Elsweyr U22
+  SCALES = getNextIdFor("VERSIONING"), -- 12 Scalebreaker U23
+  DRAGON2 = getNextIdFor("VERSIONING"), -- 13 Dragonhold U24
+  HARROW = getNextIdFor("VERSIONING"), -- 14 Harrowstorm U25
+  SKYRIM = getNextIdFor("VERSIONING"), -- 15 Greymoor U26
+  STONET = getNextIdFor("VERSIONING"), -- 16 Stonethorn U27
+  MARKAT = getNextIdFor("VERSIONING"), -- 17 Markarth U28
+  FLAMES = getNextIdFor("VERSIONING"), -- 18 Flames of Ambition U29
   BLACKW = getNextIdFor("VERSIONING"), -- 19 Blackwood U30
   WAKE = getNextIdFor("VERSIONING"), -- 20 Waking Flame U31
   DEADL = getNextIdFor("VERSIONING"), -- 21 Deadlands U32
   TIDES = getNextIdFor("VERSIONING"), -- 22 Ascending Tide U33
-  BRETON = getNextIdFor("VERSIONING"), -- 23 High Isle
-  DEPTHS = getNextIdFor("VERSIONING"), -- 24 Lost Depths
-  DRUID = getNextIdFor("VERSIONING"), -- 25 Firesong
+  BRETON = getNextIdFor("VERSIONING"), -- 23 High Isle U34
+  DEPTHS = getNextIdFor("VERSIONING"), -- 24 Lost Depths U35
+  DRUID = getNextIdFor("VERSIONING"), -- 25 Firesong U36
   SCRIBE = getNextIdFor("VERSIONING"), -- 26 Scribes of Fate U37
-  NECROM = getNextIdFor("VERSIONING"), -- 27 Necrom
+  NECROM = getNextIdFor("VERSIONING"), -- 27 Necrom U38
   BASED = getNextIdFor("VERSIONING"), -- 28 Base Game Patch U39
   ENDLESS = getNextIdFor("VERSIONING"), -- 29 Secrets of the Telvanni U40
   SCIONS = getNextIdFor("VERSIONING"), -- 30 Scions of Ithelia U41
   WEALD = getNextIdFor("VERSIONING"), -- 31 Gold Road U42
   BASE43 = getNextIdFor("VERSIONING"), -- 32 Home Tours U43
-  BASE44 = getNextIdFor("VERSIONING"), -- 33 Golden Pursuits Update 44
+  BASE44 = getNextIdFor("VERSIONING"), -- 33 Golden Pursuits U44
   FALLBAN = getNextIdFor("VERSIONING"), -- 34 Fallen Banners (U45)
   WORMS = getNextIdFor("VERSIONING"), -- 35 Seasons of the Worm Cult (U46)
   SHADOWS = getNextIdFor("VERSIONING"), -- 36 Feast of Shadows (U47)
   WORMS2 = getNextIdFor("VERSIONING"), -- 37 Seasons of the Worm Cult Part 2 (U48)
   ZERO = getNextIdFor("VERSIONING"), -- 38 Season Zero (U49)
-  ZERO2 = getNextIdFor("VERSIONING"), -- 39 Season Zero Part 2(U50)
+  ZERO2 = getNextIdFor("VERSIONING"), -- 39 Season Zero Part 2 (U50)
+  THIEVES = getNextIdFor("VERSIONING"), -- 40 Season One (U50)
 }
 
 FurC.Constants.Versioning.LATEST = FurC.Constants.Versioning.ZERO2
@@ -326,9 +328,9 @@ FurC.Constants.CrownCrates = {
   -- ids not confirmed ingame yet
 
   KINDRED = GetCrownCrateName(64), -- 2025-12, Hidden Kindred
-  ANU_PAD = GetCrownCrateName(67), -- 2026-07, Anu vs. Padomay
 
   -- confirmed ids
+  ANU_PAD = GetCrownCrateName(67), -- 2026-06, Anu vs. Padomay
   DB = GetCrownCrateName(60), -- 2024-12, Dark Brotherhood
   MIRROR = GetCrownCrateName(61), -- 2025-03, Mirrormoor
   WAVE = GetCrownCrateName(66), -- 2026-06, Warrior Wave

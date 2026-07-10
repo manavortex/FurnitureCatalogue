@@ -6,8 +6,8 @@ local containers = FurC.Constants.Containers
 FurC.EventItems[ver.ZERO] = {
   [events.ANNIVERSARY] = {
     [npc.EVENT] = {
-      [223759] = { itemPrice = 1 }, -- Replica Jubilee Cake Slice 2026
-      [224081] = { itemPrice = 3 }, -- Replica Jubilee Cake 2026
+      [223759] = { itemPrice = 100 }, -- Replica Jubilee Cake Slice 2026
+      [224081] = { itemPrice = 300 }, -- Replica Jubilee Cake 2026
     },
   },
 }
@@ -25,8 +25,8 @@ FurC.EventItems[ver.FALLBAN] = {
 
   [events.ANNIVERSARY] = {
     [npc.EVENT] = {
-      [214243] = { itemPrice = 1 }, -- Replica Jubilee Cake Slice 2025
-      [214242] = { itemPrice = 3 }, -- Replica Jubilee Cake 2025
+      [214243] = { itemPrice = 100 }, -- Replica Jubilee Cake Slice 2025
+      [214242] = { itemPrice = 300 }, -- Replica Jubilee Cake 2025
     },
   },
 }
@@ -84,14 +84,14 @@ FurC.EventItems[ver.BASE43] = {
 FurC.EventItems[ver.SCIONS] = {
   [events.ANNIVERSARY] = {
     [npc.EVENT] = {
-      [203888] = { itemPrice = 1 }, -- Replica Jubilee Cake Slice 2024
-      [203887] = { itemPrice = 1 }, -- Replica Jubilee Cake Slice 2023
-      [203886] = { itemPrice = 1 }, -- Replica Jubilee Cake Slice 2022
-      [203885] = { itemPrice = 1 }, -- Replica Jubilee Cake Slice 2021
-      [203884] = { itemPrice = 1 }, -- Replica Jubilee Cake Slice 2020
-      [203883] = { itemPrice = 1 }, -- Replica Jubilee Cake Slice 2019
-      [203882] = { itemPrice = 1 }, -- Replica Jubilee Cake Slice 2016-2018
-      [203829] = { itemPrice = 3 }, -- Replica Jubilee Cake 2024
+      [203888] = { itemPrice = 100 }, -- Replica Jubilee Cake Slice 2024
+      [203887] = { itemPrice = 100 }, -- Replica Jubilee Cake Slice 2023
+      [203886] = { itemPrice = 100 }, -- Replica Jubilee Cake Slice 2022
+      [203885] = { itemPrice = 100 }, -- Replica Jubilee Cake Slice 2021
+      [203884] = { itemPrice = 100 }, -- Replica Jubilee Cake Slice 2020
+      [203883] = { itemPrice = 100 }, -- Replica Jubilee Cake Slice 2019
+      [203882] = { itemPrice = 100 }, -- Replica Jubilee Cake Slice 2016-2018
+      [203829] = { itemPrice = 300 }, -- Replica Jubilee Cake 2024
     },
   },
 }
@@ -127,7 +127,7 @@ FurC.EventItems[ver.BASED] = {
 FurC.EventItems[ver.SCRIBE] = {
   [events.ANNIVERSARY] = {
     [npc.EVENT] = {
-      [194359] = { itemPrice = 3 }, -- Replica Jubilee Cake 2023,
+      [194359] = { itemPrice = 300 }, -- Replica Jubilee Cake 2023,
     },
   },
 }
@@ -136,7 +136,7 @@ FurC.EventItems[ver.SCRIBE] = {
 FurC.EventItems[ver.TIDES] = {
   [events.ANNIVERSARY] = {
     [npc.EVENT] = {
-      [183902] = { itemPrice = 3 }, -- Replica Jubilee Cake 2022,
+      [183902] = { itemPrice = 300 }, -- Replica Jubilee Cake 2022,
     },
   },
 }
@@ -145,7 +145,7 @@ FurC.EventItems[ver.TIDES] = {
 FurC.EventItems[ver.DEADL] = {
   [events.BLACKWOOD] = { -- 2021-9-30 - 2021-10-12
     [npc.EVENT] = {
-      [181488] = { itemPrice = 5 }, -- Statue, Saint Kaladas
+      [181488] = { itemPrice = 500 }, -- Statue, Saint Kaladas
     },
   },
 
@@ -182,12 +182,12 @@ FurC.EventItems[ver.DEADL] = {
 FurC.EventItems[ver.HARROW] = {
   [events.ANNIVERSARY] = { -- 2020-04-02 till 2020-04-14; 2021-04-01 till 2021-04-15
     [npc.EVENT] = {
-      [171601] = { itemPrice = 3 }, -- Replica Jubilee Cake 2021
-      [159470] = { itemPrice = 3 }, -- Replica Jubilee Cake 2020
-      [159467] = { itemPrice = 3 }, -- Replica Jubilee Cake 2019
-      [159466] = { itemPrice = 3 }, -- Replica Jubilee Cake 2018
-      [159465] = { itemPrice = 3 }, -- Replica Jubilee Cake 2017
-      [159464] = { itemPrice = 3 }, -- Replica Jubilee Cake 2016
+      [171601] = { itemPrice = 300 }, -- Replica Jubilee Cake 2021
+      [159470] = { itemPrice = 300 }, -- Replica Jubilee Cake 2020
+      [159467] = { itemPrice = 300 }, -- Replica Jubilee Cake 2019
+      [159466] = { itemPrice = 300 }, -- Replica Jubilee Cake 2018
+      [159465] = { itemPrice = 300 }, -- Replica Jubilee Cake 2017
+      [159464] = { itemPrice = 300 }, -- Replica Jubilee Cake 2016
     },
   },
 }

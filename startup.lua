@@ -206,6 +206,7 @@ this.DropdownData = {
     [ver.WORMS2] = GetString(SI_FURC_FILTER_VERSION_WORMS2),
     [ver.ZERO] = GetString(SI_FURC_FILTER_VERSION_ZERO),
     [ver.ZERO2] = GetString(SI_FURC_FILTER_VERSION_ZERO2),
+    [ver.THIEVES] = GetString(SI_FURC_FILTER_VERSION_THIEVES),
   },
 
   TooltipsVersion = {
@@ -248,6 +249,7 @@ this.DropdownData = {
     [ver.WORMS2] = GetString(SI_FURC_FILTER_VERSION_WORMS2_TT),
     [ver.ZERO] = GetString(SI_FURC_FILTER_VERSION_ZERO_TT),
     [ver.ZERO2] = GetString(SI_FURC_FILTER_VERSION_ZERO2_TT),
+    [ver.THIEVES] = GetString(SI_FURC_FILTER_VERSION_THIEVES),
   },
 
   ChoicesCharacter = {
@@ -326,7 +328,6 @@ function this.getOrCreateLogger()
 end
 
 this.Logger = this.getOrCreateLogger()
-
 -- initialization stuff
 local function initialise(eventCode, addOnName)
   if addOnName ~= this.name then
@@ -355,6 +356,7 @@ local function initialise(eventCode, addOnName)
   if this.settings.version < this.version then
     this.settings.version = this.version
   end
+
   this.settings.databaseVersion = this.version
   SLASH_COMMANDS["/fur"] = FurnitureCatalogue_Toggle
 
