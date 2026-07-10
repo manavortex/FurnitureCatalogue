@@ -18,6 +18,7 @@ local strings = {
   SI_FURC_EVENT_BLACKWOOD = "Bounties of Blackwood",
   SI_FURC_EVENT_CRIME = "Crime Wave",
   SI_FURC_EVENT_ELSWEYR = "Season of the Dragon",
+  SI_FURC_EVENT_HEARTS = "Hearts Week",
   SI_FURC_EVENT_HOLLOWJACK = "Sinister Hollowjack",
   SI_FURC_EVENT_IC = "Imperial City Celebration",
   SI_FURC_EVENT_JESTER = "Jester's Festival",
