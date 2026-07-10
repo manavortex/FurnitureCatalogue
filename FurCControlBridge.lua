@@ -72,20 +72,16 @@ function FurC.GUIButtonRefreshOnMouseUp(control, mouseButton)
 end
 
 function FurC.GuiShowTooltip(control, tooltiptext, reAnchor)
-  InitializeTooltip(InformationTooltip, control, BOTTOM, 0, 0, 0)
-  InformationTooltip:SetHidden(false)
-  InformationTooltip:ClearLines()
-  InformationTooltip:AddLine(tooltiptext)
-
   if reAnchor then
-    InformationTooltip:ClearAnchors()
-    InformationTooltip:SetAnchor(TOPRIGHT, control, TOPLEFT, -10, 0)
+    InitializeTooltip(InformationTooltip, control, TOPRIGHT, -10, 0, TOPLEFT)
+  else
+    InitializeTooltip(InformationTooltip, control, BOTTOM, 0, 0, 0)
   end
+  SetTooltipText(InformationTooltip, tooltiptext)
 end
 
 function FurC.GuiHideTooltip(control)
-  InformationTooltip:ClearLines()
-  InformationTooltip:SetHidden(true)
+  ClearTooltip(InformationTooltip)
 end
 
 function FurC.GetRumourTooltip()
@@ -163,7 +159,7 @@ function FurC.GuiLineOnMouseEnter(lineControl)
 end
 
 function FurC.GuiLineOnMouseExit(lineControl)
-  ItemTooltip:SetHidden(true)
+  ClearTooltip(ItemTooltip)
 end
 
 function FurC.Donate(control, mouseButton)
@@ -245,7 +241,7 @@ function FurC.UpdateDropdownChoice(dropdownName, value)
     FurC.UpdateDropdownChoice("Source", value)
     return
   end
-  InformationTooltip:SetHidden(true)
+  ClearTooltip(InformationTooltip)
   value = value or FurC.GetDropdownChoiceTextual(dropdownName)
 
   local controlName = "FurC_Dropdown" .. dropdownName
