@@ -96,6 +96,7 @@ local STRIP_PATTERNS = {
 local STRIP_CONTROL = {
   "%^.+",
 }
+this.STRIP_CONTROL = STRIP_CONTROL
 
 ---Strips patterns from string
 ---@param txt string Text containing `|` tags
@@ -570,6 +571,12 @@ local function getItemLink(item)
   return item
 end
 this.GetItemLink = getItemLink
+
+--- Drops the id→link memo. An id's link never changes, so this is never needed
+--- for correctness — only to make a benchmark start from a cold cache.
+function this.ClearLinkCache()
+  linkCache = {}
+end
 
 -- Alias for LibPrice
 --- @deprecated will be replaced by API function in the future

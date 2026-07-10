@@ -83,15 +83,10 @@ local function handleSlash(args)
     if this.DumpMeta then
       this.DumpMeta()
     end
-  -- profiling benchmarks (runs all if no id)
+  -- profiling benchmarks: run all, sequence important
   elseif cmd == "bench" then
-    local bn = tostring(rest or ""):match("^(%S*)")
-    if bn == "" then
-      if this.RunAllBenchmarks then
-        this.RunAllBenchmarks()
-      end
-    elseif this.RunBenchmark then
-      this.RunBenchmark(bn)
+    if this.RunAllBenchmarks then
+      this.RunAllBenchmarks()
     end
   else
     d("|cFF3333FurCDev|r: unknown cmd '" .. cmd .. "'.")
@@ -99,7 +94,7 @@ local function handleSlash(args)
     d("      |cAACCFF/furcdev tests|r      list tests")
     d("      |cAACCFF/furcdev test [id]|r  run test")
     d("      |cAACCFF/furcdev dump|r       dump DB including metadata to SavedVars")
-    d("      |cAACCFF/furcdev bench [n]|r  run profiler scenario (leave empty for all)")
+    d("      |cAACCFF/furcdev bench|r      run all profiler scenarios in order")
   end
 end
 this.HandleSlash = handleSlash

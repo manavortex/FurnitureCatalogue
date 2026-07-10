@@ -1,4 +1,5 @@
 local query = FurC.DBQuery
+local searchIndex = FurC.SearchIndex
 local lib = FurC.Internal
 
 local searchString = ""
@@ -66,6 +67,12 @@ local function getSearchName()
     searchNameCache[itemId] = n
   end
   return n
+end
+
+--- Drop name and itemType memos (both are derived from id)
+function FurC.ClearFilterCaches()
+  searchNameCache = {}
+  validTypeCache = {}
 end
 
 function FurC.SetFilter(useDefaults, skipRefresh)
@@ -250,49 +257,17 @@ local function matchDropdownFilter()
   return matchVersionDropdown() and matchSourceDropdown()
 end
 
--- build folio stuff lazily for better search performance
-local folioNamesByContent
-local function getFolioNames(contentId)
-  if nil == folioNamesByContent then
-    folioNamesByContent = {}
-    if FurC.FurnishingFolios then
-      for folioId, folioData in pairs(FurC.FurnishingFolios) do
-        if folioData.contents then
-          local folioName = LocaleAwareToLower(GetItemLinkName(getItemLink(folioId)))
-          for _, cId in ipairs(folioData.contents) do
-            local names = folioNamesByContent[cId]
-            if names then
-              names[#names + 1] = folioName
-            else
-              folioNamesByContent[cId] = { folioName }
-            end
-          end
-        end
-      end
-    end
-  end
-  return folioNamesByContent[contentId]
-end
-
 local function matchSearchString()
   if #searchString == 0 then
     return true
   end
-  if match(getSearchName(), searchPattern) then
+  if match(getSearchName(), searchPattern) then -- name first
     return true
   end
 
-  -- Also match if the item belongs to a folio whose name matches
-  local folioNames = getFolioNames(itemId)
-  if folioNames then
-    for i = 1, #folioNames do
-      if match(folioNames[i], searchPattern) then
-        return true
-      end
-    end
-  end
-
-  return false
+  -- vendor, zone, event, container, folio and achievement names second
+  local terms = searchIndex.GetTerms(itemId)
+  return nil ~= terms and nil ~= match(terms, searchPattern)
 end
 
 local function matchCraftingTypeFilter()

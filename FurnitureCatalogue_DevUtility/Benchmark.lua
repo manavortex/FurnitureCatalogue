@@ -1,6 +1,5 @@
 -- Deterministic profiling scenarios
---   /furcdev bench     run all scenarios in order (asks for confirmation first)
---   /furcdev bench <n> run one scenario
+--   /furcdev bench   run all scenarios in order (asks for confirmation first)
 
 if not FurCDev then
   return
@@ -95,6 +94,44 @@ local function resetState()
   end, 700)
 end
 
+-- Always same preconditions for every benchmark
+local function clearCaches()
+  FurC.Utils.ClearLinkCache()
+  FurC.ClearFilterCaches()
+  FurC.SearchIndex.Invalidate()
+  FurC.sortIndexDirty = true
+end
+
+local function warmCaches()
+  FurC.UpdateGui()
+  if box() then
+    box():SetText(SEARCH_FALLBACK)
+    FurC.GuiSetSearchboxTextFrom(box())
+  end
+end
+
+-- Runs before the profiler starts, so none of it is profiled
+local function prepareSteps(cold)
+  local steps = {
+    { fn = ensureClosed, delay = 600 },
+    {
+      fn = function()
+        mark("prepare")
+        FurC.RebuildDB(true) -- blocking: identical data, and no scan inside the capture
+        clearCaches()
+      end,
+      delay = DELAY,
+    },
+    { fn = resetState },
+  }
+  if not cold then
+    steps[#steps + 1] = { fn = ensureOpen, delay = 700 }
+    steps[#steps + 1] = { fn = warmCaches, delay = DELAY }
+    steps[#steps + 1] = { fn = resetState }
+  end
+  return steps
+end
+
 local function setSource(value)
   return function()
     FurC.SetDropdownChoice("Source", FurC.DropdownData.ChoicesSource[value], value)
@@ -140,21 +177,15 @@ local function searchSteps()
 end
 
 -- structure:
--- scenario id -> { label, steps(), setup?() }
+-- scenario id -> { label, steps(), coldCaches? }
 -- (run all runs them in order)
 local function scenarios()
   local src = FurC.Constants.ItemSources
   return {
     [1] = {
       label = "window load (cold start + reopen)",
-      -- start closed so first open runs cache stuff etc
-      -- best after a reloadui (or else it might be cached already)
-      setup = function()
-        return {
-          { fn = ensureClosed, delay = 600 },
-          { fn = resetState },
-        }
-      end,
+      -- measures the first refresh
+      coldCaches = true,
       steps = function()
         local function open(tag)
           return {
@@ -205,6 +236,33 @@ local function scenarios()
       label = "search keystrokes",
       steps = searchSteps,
     },
+    -- Must run last
+    [7] = {
+      label = "rebuild DB + caches",
+      steps = function()
+        return {
+          {
+            fn = function()
+              clearCaches()
+              FurC.RebuildDB() -- async, exactly as normal use
+            end,
+            delay = DELAY,
+          },
+          -- first refresh rebuilds sorted index
+          { fn = FurC.UpdateGui, delay = DELAY },
+          -- first search rebuilds search-term index
+          {
+            fn = function()
+              if box() then
+                box():SetText(SEARCH_FALLBACK)
+                FurC.GuiSetSearchboxTextFrom(box())
+              end
+            end,
+            delay = DELAY,
+          },
+        }
+      end,
+    },
   }
 end
 
@@ -218,11 +276,10 @@ local function scenarioListText()
 end
 
 local REMINDER = "Before running:\n"
-  .. "- best run after a fresh reloadui\n"
   .. "- wait until addons have settled and run only necessary ones\n"
   .. "- be inside player house (stable fps and nothing else happening)\n"
-  .. "- can't hurt to rebuild DB first (in case of leftover broken items)\n"
   .. "- don't interact with game and keep game window focused until done (~30s per scenario)\n\n"
+  .. "It might take up to 45 seconds before you see the first test pop up, just be patient.\n\n"
 
 -- confirmation popup with Cancel
 local function confirm(body, run)
@@ -250,8 +307,7 @@ end
 local function runSequence(ns)
   local sc = scenarios()
   local loaded, autoProfile = profilerState()
-  local label = (#ns == 1) and tostring(ns[1]) or "ALL"
-  d(string.format("|cFF3333FurCDev|r: benchmark %s%s ...", label, autoProfile and " [profiling]" or ""))
+  d(string.format("|cFF3333FurCDev|r: benchmark ALL%s ...", autoProfile and " [profiling]" or ""))
 
   -- clear the default-shown "please wait" label
   if FurCGui_Wait then
@@ -260,7 +316,9 @@ local function runSequence(ns)
 
   local all = {}
   for idx, n in ipairs(ns) do
-    local setup = sc[n].setup and sc[n].setup() or { { fn = ensureOpen, delay = 700 }, { fn = resetState } }
+    -- preconditions for the whole capture
+    local setup = (idx == 1 and prepareSteps(sc[n].coldCaches))
+      or { { fn = ensureOpen, delay = 700 }, { fn = resetState } }
     for _, s in ipairs(setup) do
       all[#all + 1] = s
     end
@@ -285,23 +343,10 @@ local function runSequence(ns)
     -- cleanup
     ensureClosed()
     resetState()
-    d("|cFF3333FurCDev|r: benchmark " .. label .. " done" .. exportHint(autoProfile, loaded))
+    d("|cFF3333FurCDev|r: benchmark ALL done" .. exportHint(autoProfile, loaded))
     PlaySound(SOUNDS.JUSTICE_PICKPOCKET_BONUS)
   end)
 end
-
-local function runBenchmark(token)
-  local sc = scenarios()
-  local n = tonumber(token)
-  if not n or not sc[n] then
-    d("|cFF3333FurCDev|r: unknown scenario '" .. tostring(token) .. "'. Scenarios:\n" .. scenarioListText())
-    return
-  end
-  confirm("Run: " .. sc[n].label, function()
-    runSequence({ n })
-  end)
-end
-this.RunBenchmark = runBenchmark
 
 local function runAll()
   local sc = scenarios()

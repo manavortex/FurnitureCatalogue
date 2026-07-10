@@ -77,6 +77,25 @@ Taneth("FurC:Unit", function()
       assert.equals(222, FurC.DB[TEST_ID].blueprint)
       clear()
     end)
+
+    it("marks the sort index dirty for a new id", function()
+      clear()
+      FurC.sortIndexDirty = false
+      FurC.Upsert(TEST_ID, { origin = src.VENDOR })
+      assert.is_true(FurC.sortIndexDirty)
+      clear()
+    end)
+
+    -- no need to change order when just updating existing item
+    it("leaves the sort index alone when updating an existing id", function()
+      clear()
+      FurC.Upsert(TEST_ID, { origin = src.VENDOR })
+      FurC.sortIndexDirty = false
+      FurC.Upsert(TEST_ID, { origin = src.LUXURY, blueprint = 333 })
+      assert.is_false(FurC.sortIndexDirty)
+      assert.equals(333, FurC.DB[TEST_ID].blueprint)
+      clear()
+    end)
   end)
 
   describe("runtime DB", function()

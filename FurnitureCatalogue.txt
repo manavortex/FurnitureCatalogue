@@ -39,6 +39,7 @@ data\RecipeSources.lua
 FurCDatabaseQuery.lua
 FurCData.lua
 FurCDataParser.lua
+SearchIndex.lua
 FurCFilter.lua
 FurCGui.lua
 FurCContextMenu.lua

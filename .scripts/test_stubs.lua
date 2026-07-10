@@ -17,6 +17,8 @@ if not string.upper then
 end
 _G.zo_strlower = _G.zo_strlower or string.lower
 _G.zo_strupper = _G.zo_strupper or string.upper
+-- ASCII is close enough for the English test strings
+_G.LocaleAwareToLower = _G.LocaleAwareToLower or _G.zo_strlower
 
 -- ---------------------------
 -- ESO events
@@ -98,6 +100,17 @@ end
 
 _G.ZO_CreateStringId = _G.ZO_CreateStringId or function(id, value)
   _G[id] = value
+end
+
+-- Numeric ID from ZO_CreateStringId ingame,just returns string when headless
+do
+  local realGetString = _G.GetString
+  _G.GetString = function(stringId, ...)
+    if type(stringId) == "string" then
+      return stringId
+    end
+    return (realGetString and realGetString(stringId, ...)) or ""
+  end
 end
 
 -- Just in case those are not available in ESOLUA
@@ -190,6 +203,12 @@ end
 
 _G.ClearTooltip = _G.ClearTooltip or function() end
 _G.SLASH_COMMANDS = _G.SLASH_COMMANDS or {}
+
+-- name is first return, search index resolves achievement ids through it
+_G.GetAchievementInfo = _G.GetAchievementInfo
+  or function(achievementId)
+    return "Achievement#" .. tostring(achievementId), "", 0, "", false
+  end
 
 -- Furniture recipes craft a *different* item, so fake should be different too
 -- recipeId + FURC_TEST_RESULT_OFFSET.

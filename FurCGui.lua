@@ -178,6 +178,8 @@ local sortedIndex
 local sortedIndexKey
 FurC.sortIndexDirty = true
 
+-- Sorting 8.4k names costs ~370 ms, mostly for strcoll
+-- TODO: revisit if performance sucks too much (numeric/hashed was not a good option because of locale byte order)
 local function buildSortedIndex(sortName, sortUp)
   local data = FurC.DB
   local ids, vals = {}, {}

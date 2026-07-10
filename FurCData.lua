@@ -99,6 +99,7 @@ local function addDatabaseEntry(recipeKey, partial)
   if stored == nil then
     stored = partial
     FurC.DB[recipeKey] = stored
+    FurC.sortIndexDirty = true
   else
     for k, v in pairs(partial) do
       if k ~= "origin" and k ~= "sources" then
@@ -106,7 +107,6 @@ local function addDatabaseEntry(recipeKey, partial)
       end
     end
   end
-  FurC.sortIndexDirty = true
 
   local sources = stored.sources or {}
   stored.sources = sources
@@ -644,6 +644,9 @@ local function scanFromFiles(blocking)
   local buildStarted = GetGameTimeMilliseconds()
   local function finish()
     isBuilding = false
+    if FurC.SearchIndex then -- invalidate in case it was partially built already
+      FurC.SearchIndex.Invalidate()
+    end
     FurC.Logger:Debug(
       "DB build finished: %d entries in %d ms",
       NonContiguousCount(FurC.DB),
@@ -695,7 +698,8 @@ function FurC.RescanFiles()
 end
 
 --- Wipes runtime DB and rebuilds it from bundled data
-function FurC.RebuildDB()
+---@param blocking? boolean true=build immediately
+function FurC.RebuildDB(blocking)
   if isBuilding then
     return
   end
@@ -704,7 +708,7 @@ function FurC.RebuildDB()
   end
   FurC.sortIndexDirty = true
   FurC.Logger:Debug(GetString(SI_FURC_VERBOSE_SCANNING_DATA_FILE))
-  scanFromFiles()
+  scanFromFiles(blocking)
 end
 
 -- Description string for each source
