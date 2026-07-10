@@ -353,7 +353,7 @@ FurC.PVP[ver.HOMESTEAD] = {
     },
   },
 
-  [npc.COLL_MERCH] = {
+  [npc.AF] = {
     [loc.IMPCITY] = {
       [119983] = { -- Imperial Banner
         itemPrice = 15000,
