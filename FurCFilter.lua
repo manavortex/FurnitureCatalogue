@@ -89,7 +89,7 @@ function FurC.SetFilter(useDefaults, skipRefresh)
   furnSubcategoryFilter = FurC.GetFilterFurnSubcategory()
   hideBooks = FurC.GetHideBooks()
   hideRumours = not FurC.GetShowRumours() and ddSource ~= src.RUMOUR and (FurC.GetHideRumourRecipes())
-  hideCrownStore = not FurC.GetShowCrownstore() and ddSource ~= src.CROWN and (FurC.GetHideCrownStoreItems())
+  hideCrownStore = not FurC.GetShowCrownstore() and ddSource ~= src.CROWN and ddSource ~= src.EDITOR and (FurC.GetHideCrownStoreItems())
   mergeLuxuryAndSales = FurC.GetMergeLuxuryAndSales()
 
   -- ignore filtered items when no dropdown filter is set and there's a text search?
@@ -162,8 +162,7 @@ local function hasSource(s)
   local sources = recipeArray.sources
   return sources ~= nil and sources[s] == true
 end
-
--- Source: All, All (craftable), Craftable (known), craftable (unknown), purchaseable
+-- Source: All, All (craftable), Craftable (known), craftable (unknown), purchasable
 local function matchSourceDropdown()
   -- "All", don't care
   if src.NONE == ddSource then
@@ -239,6 +238,11 @@ local function matchSourceDropdown()
     end
     return false
   end
+  
+  if src.CROWN == ddSource then
+    return hasSource(src.CROWN) or hasSource(src.EDITOR)
+  end
+
   -- direct options: CROWN, RUMOUR, LUXURY, BAZAAR
   return hasSource(ddSource)
 end
@@ -320,7 +324,7 @@ local function matchFurnCategoryFilter()
     return true
   end
 
-  local itemCat = recipeArray.furnCategory or 0
+  local itemCat    = recipeArray.furnCategory    or 0
   local itemSubcat = recipeArray.furnSubcategory or 0
 
   -- Check if the item's top-level category is selected
@@ -358,7 +362,7 @@ function FurC.MatchFilter(currentItemId, currentRecipeArray)
     end
     return showAllRumourOnTextSearch and matchSearchString() and isValidItemType()
   end
-  if origin == src.CROWN and hideCrownStore then
+  if (origin == src.CROWN or origin == src.EDITOR) and hideCrownStore then
     if filterBooks(itemId, recipeArray) then
       return false
     end
