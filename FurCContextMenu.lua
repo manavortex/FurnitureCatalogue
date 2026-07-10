@@ -23,7 +23,7 @@ function AddFurnitureShoppingListMenuEntry(itemId, calledFromFurC)
   end
 
   local itemLink = FurC.Utils.GetItemLink(itemId)
-  if {} == FurC.Find(itemLink) then
+  if nil == next(FurC.Find(itemLink)) then
     return
   end
   AddCustomMenuItem(FURC_S_SHOPPINGLIST_1, function()
@@ -70,7 +70,7 @@ local S_DIVIDER = "-"
 local function addMenuItems(itemLink, recipeArray, hideSepBar)
   hideSepBar = hideSepBar or false
   recipeArray = recipeArray or FurC.Find(itemLink)
-  if not recipeArray or recipeArray == {} then
+  if not recipeArray or nil == next(recipeArray) then
     return
   end
 
@@ -171,7 +171,7 @@ function FurC_HandleInventoryContextMenu(control)
   end
 
   local recipeArray = FurC.Find(itemLink)
-  if {} == recipeArray then
+  if nil == next(recipeArray) then
     return
   end
 
@@ -199,7 +199,7 @@ function FurC.OnControlMouseUp(control, button)
     return
   end
   local recipeArray = FurC.Find(itemLink)
-  if {} == recipeArray then
+  if nil == next(recipeArray) then
     return
   end
 

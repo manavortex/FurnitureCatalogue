@@ -42,7 +42,7 @@ end
 
 local function getRolisSource(recipeKey, recipeArray)
   recipeArray = recipeArray or FurC.Find(recipeKey)
-  if {} == recipeArray then
+  if nil == next(recipeArray) then
     return
   end
   local version = recipeArray.version
@@ -83,7 +83,7 @@ local emptyString = GetString(SI_FURC_SRC_EMPTY)
 local strAroundDate = GetString(SI_FURC_STRING_WEEKEND_AROUND)
 local function getLuxurySource(recipeKey, recipeArray, stripColor)
   recipeArray = recipeArray or FurC.Find(recipeKey)
-  if {} == recipeArray then
+  if nil == next(recipeArray) then
     return
   end
 
@@ -124,7 +124,7 @@ this.GetLuxurySource = getLuxurySource
 
 local function getPvpSource(recipeKey, recipeArray, stripColor)
   recipeArray = recipeArray or FurC.Find(recipeKey)
-  if {} == recipeArray then
+  if nil == next(recipeArray) then
     return
   end
 
@@ -166,7 +166,7 @@ this.GetPvpSource = getPvpSource
 -- TODO #REFACTOR: add info to item in DB and generate str from that. then use lookup by id
 local function getAchievementVendorSource(recipeKey, recipeArray, stripColor)
   recipeArray = recipeArray or FurC.Find(recipeKey)
-  if {} == recipeArray then
+  if nil == next(recipeArray) then
     return
   end
 
@@ -216,7 +216,7 @@ local validEventItemTypes = {
 }
 local function getEventDropSource(recipeKey, recipeArray)
   recipeArray = recipeArray or FurC.Find(recipeKey)
-  if {} == recipeArray then
+  if nil == next(recipeArray) then
     return
   end
 
@@ -264,7 +264,7 @@ local function getMiscItemSource(recipeKey, recipeArray, stripColor, source)
   -- "source" allows asking for specific category
   -- defaults to primary (top ranked source)
   source = source or recipeArray.origin
-  if {} == recipeArray or not source then
+  if nil == next(recipeArray) or not source then
     return emptyString
   end
 

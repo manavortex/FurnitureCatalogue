@@ -34,3 +34,4 @@ test/unit_knowledge.lua
 test/unit_xml_handlers.lua
 test/unit_tooltip_sources.lua
 test/unit_migration.lua
+test/unit_context_menu.lua

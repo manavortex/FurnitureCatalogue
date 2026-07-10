@@ -771,7 +771,7 @@ this.DescribeSource = describeSource
 local function getItemDescription(recipeKey, recipeArray, stripColor)
   recipeKey = getItemId(recipeKey)
   recipeArray = recipeArray or FurC.Find(recipeKey)
-  if {} == recipeArray then
+  if nil == next(recipeArray) then
     return ""
   end
   return describeSource(recipeKey, recipeArray, recipeArray.origin, stripColor)
