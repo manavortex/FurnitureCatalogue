@@ -186,7 +186,7 @@ this.DropdownData = {
     [ver.MARKAT] = GetString(SI_FURC_FILTER_VERSION_MARKAT),
     [ver.FLAMES] = GetString(SI_FURC_FILTER_VERSION_FLAMES),
     [ver.BLACKW] = GetString(SI_FURC_FILTER_VERSION_BLACKW),
-    [ver.WAKE] = GetString(SI_FURC_FILTER_VERSION_WAKE),
+	[ver.WAKE] = GetString(SI_FURC_FILTER_VERSION_WAKE),
     [ver.DEADL] = GetString(SI_FURC_FILTER_VERSION_DEADL),
     [ver.TIDES] = GetString(SI_FURC_FILTER_VERSION_TIDES),
     [ver.BRETON] = GetString(SI_FURC_FILTER_VERSION_BRETON),
@@ -202,10 +202,11 @@ this.DropdownData = {
     [ver.BASE44] = GetString(SI_FURC_FILTER_VERSION_BASE44),
     [ver.FALLBAN] = GetString(SI_FURC_FILTER_VERSION_FALLBAN),
     [ver.WORMS] = GetString(SI_FURC_FILTER_VERSION_WORMS),
-    [ver.SHADOWS] = GetString(SI_FURC_FILTER_VERSION_SHADOWS),
-    [ver.WORMS2] = GetString(SI_FURC_FILTER_VERSION_WORMS2),
-    [ver.ZERO] = GetString(SI_FURC_FILTER_VERSION_ZERO),
-    [ver.ZERO2] = GetString(SI_FURC_FILTER_VERSION_ZERO2),
+	[ver.SHADOWS] = GetString(SI_FURC_FILTER_VERSION_SHADOWS),
+	[ver.WORMS2] = GetString(SI_FURC_FILTER_VERSION_WORMS2),
+	[ver.ZERO] = GetString(SI_FURC_FILTER_VERSION_ZERO),
+	[ver.ZERO2] = GetString(SI_FURC_FILTER_VERSION_ZERO2),
+	[ver.THIEVES] = GetString(SI_FURC_FILTER_VERSION_THIEVES),
   },
 
   TooltipsVersion = {
@@ -243,10 +244,12 @@ this.DropdownData = {
     [ver.BASE44] = GetString(SI_FURC_FILTER_VERSION_BASE44_TT),
     [ver.FALLBAN] = GetString(SI_FURC_FILTER_VERSION_FALLBAN_TT),
     [ver.WORMS] = GetString(SI_FURC_FILTER_VERSION_WORMS_TT),
-    [ver.SHADOWS] = GetString(SI_FURC_FILTER_VERSION_SHADOWS_TT),
-    [ver.WORMS2] = GetString(SI_FURC_FILTER_VERSION_WORMS2_TT),
-    [ver.ZERO] = GetString(SI_FURC_FILTER_VERSION_ZERO_TT),
-    [ver.ZERO2] = GetString(SI_FURC_FILTER_VERSION_ZERO2_TT),
+	[ver.SHADOWS] = GetString(SI_FURC_FILTER_VERSION_SHADOWS_TT),
+	[ver.WORMS2] = GetString(SI_FURC_FILTER_VERSION_WORMS2_TT),
+	[ver.ZERO] = GetString(SI_FURC_FILTER_VERSION_ZERO_TT),
+	[ver.ZERO2] = GetString(SI_FURC_FILTER_VERSION_ZERO2_TT),
+	[ver.THIEVES] = GetString(SI_FURC_FILTER_VERSION_THIEVES),
+	
   },
 
   ChoicesCharacter = {
@@ -325,7 +328,6 @@ function this.getOrCreateLogger()
 end
 
 this.Logger = this.getOrCreateLogger()
-
 -- initialization stuff
 local function initialise(eventCode, addOnName)
   if addOnName ~= this.name then
@@ -343,7 +345,7 @@ local function initialise(eventCode, addOnName)
   this.CharacterName = zo_strformat(GetUnitName("player"))
 
   this.Lib.InitLCK()
-
+  
   this.InitGui()
 
   this.CreateTooltips()
@@ -354,6 +356,7 @@ local function initialise(eventCode, addOnName)
   if this.settings.version < this.version then
     this.settings.version = this.version
   end
+
   this.settings.databaseVersion = this.version
   SLASH_COMMANDS["/fur"] = FurnitureCatalogue_Toggle
 
