@@ -18,6 +18,8 @@ local strSrc = FurC.Utils.FmtSources
 local strPartOf = FurC.Utils.FormatPartOf
 
 local srcEvent = GetString(SI_FURC_EVENT)
+local srcEditor = GetString(SI_FURC_SRC_EDITOR)
+local strEditorTag = GetString(SI_FURC_SRC_EDITOR_TAG)
 
 local strVoucherVendor = strSrc("src", npc.ROLIS, npc.FAUSTINA)
 
@@ -299,6 +301,10 @@ local function getMiscItemSource(recipeKey, recipeArray, stripColor, source)
   end
   if not originData then
     return emptyString
+  end
+  
+  if source == src.EDITOR then
+    originData = zo_strformat(strEditorTag, originData, srcEditor)
   end
 
   if stripColor then
