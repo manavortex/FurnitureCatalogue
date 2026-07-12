@@ -1135,7 +1135,7 @@ FurC.Recipes[ver.DEADL] = {
   181553, -- Formula: Vampiric Lab Jar, Large,
   181554, -- Formula: Vampiric Lab Jar, Small,
   181555, -- Formula: Vampiric Lab Jar, Red Gelatinous,
-
+  
   175932, -- Pattern: Leyawiin Bed, Sturdy Single,
   181565, -- Blueprint: Leyawiin Turret, Castle,
   181566, -- Praxis: Leyawiin Wall, Castle Door Arch,
@@ -2612,17 +2612,9 @@ FurC.Recipes[ver.REACH] = {
   132187, -- Praxis: Ayleid Bookcase, Cluttered
   132184, -- Praxis: Daedric Doorway, Spiked
   132185, -- Diagram: Daedric Brazier, Coldharbour
-  132173, -- Blueprint: Witches Brazier, Primitive Log
   132342, -- Praxis: Ayleid Table, Carved
   132343, -- Praxis: Ayleid Bench, Carved
   132344, -- Diagram: Ayleid Brazier, Welkynd Holder
-  132187, -- Praxis: Ayleid Bookcase, Cluttered
-  132188, -- Praxis: Ayleid Bookshelf, Cluttered
-  132189, -- Diagram: Ayleid Brazier, Fiery
-  132167, -- Praxis: Hagraven Cauldron, Rough Stone
-  132196, -- Pattern: Witches Corpse, Wrapped
-  132173, -- Blueprint: Witches Brazier, Primitive Log
-  132179, -- Blueprint: Witches Totem, Antler Charms
 }
 
 -- 3 Morrowind
