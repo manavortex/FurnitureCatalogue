@@ -7,10 +7,16 @@ local internal = FurCDev.Internal
 local achievementTable = {}
 local questTable = {}
 local zoneTable = {}
+local houseTable = {}
+local houseMeta = {}
 
 this.Achievements = achievementTable
 this.Quests = questTable
 this.Zones = zoneTable
+--- [collectibleId] -> house name
+this.Houses = houseTable
+--- [collectibleId] -> { houseId, zone } (for travel Link)
+this.HouseMeta = houseMeta
 
 local function addAchievement(id)
   if not id or id == 0 then
@@ -51,6 +57,25 @@ local function buildQuestTable()
   end
 end
 internal.BuildQuestTable = buildQuestTable
+
+-- houseId is derived, no need to store
+local function buildHouseTable()
+  for i = 1, GetTotalCollectiblesByCategoryType(COLLECTIBLE_CATEGORY_TYPE_HOUSE) do
+    local collectibleId = GetCollectibleIdFromType(COLLECTIBLE_CATEGORY_TYPE_HOUSE, i)
+    local name = GetCollectibleName(collectibleId)
+    if name ~= "" then
+      local houseId = GetCollectibleReferenceId(collectibleId)
+      local zoneId = GetHouseZoneId(houseId) -- 0 = invalid
+      houseTable[collectibleId] = name
+      houseMeta[collectibleId] = {
+        houseId = houseId,
+        zone = (zoneId > 0 and GetZoneNameById(zoneId)) or "",
+      }
+    end
+  end
+  FurC.Logger:Debug("Houses table done: %d", NonContiguousCount(houseTable))
+end
+internal.BuildHouseTable = buildHouseTable
 
 local NUM_ZONES = GetNumZones() -- 1096 as of version 101050
 local MAX_INDEX = NUM_ZONES * 100 -- don't iterate higher than that, man

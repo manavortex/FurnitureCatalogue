@@ -14,28 +14,36 @@ local cachedIsLetter
 
 local cachedItemIds = {}
 
+local function onOpened()
+  if this.ApplyPaneSplit then
+    this.ApplyPaneSplit()
+  end
+  if this.RefreshHeader then
+    this.RefreshHeader()
+  end
+  -- start building zones on open so it's ready by the time we use the search
+  if this.Internal and NonContiguousCount(this.Zones or {}) < 1 then
+    this.Internal.BuildZoneTable()
+  end
+  if this.RefreshCurrentTab then
+    this.RefreshCurrentTab()
+  end
+end
+
 function this.ToggleEditBox()
   local show = this.control:IsHidden()
   this.control:SetHidden(not show)
   if show then
-    if this.ApplyPaneSplit then
-      this.ApplyPaneSplit()
-    end
-    if this.RefreshHeader then
-      this.RefreshHeader()
-    end
-    -- start building zones on open so it's ready by the time we use the search
-    if this.Internal and NonContiguousCount(this.Zones or {}) < 1 then
-      this.Internal.BuildZoneTable()
-    end
-    if this.RefreshCurrentTab then
-      this.RefreshCurrentTab()
-    end
+    onOpened()
   end
 end
 
 local function showTextbox()
+  if not this.control:IsHidden() then
+    return
+  end
   this.control:SetHidden(false)
+  onOpened()
 end
 
 function this.clearControl()
@@ -337,6 +345,19 @@ function this.SelectTab(id, skipOnShow)
   end
 end
 
+-- Neutral view: no panel shown, no button active, nothing built
+function this.ClearTabs()
+  for _, entry in pairs(dashboard.panels) do
+    if entry.control then
+      entry.control:SetHidden(true)
+    end
+  end
+  for _, btn in pairs(dashboard.buttons) do
+    btn:SetState(BSTATE_NORMAL, false)
+  end
+  dashboard.current = nil
+end
+
 -- Re-run the active tab's onShow (when dashboard opened)
 function this.RefreshCurrentTab()
   local entry = dashboard.current and dashboard.panels[dashboard.current]
@@ -397,11 +418,22 @@ function this.RefreshHeader()
 end
 
 -------------------------
--- Search tabs (Achievements, Zones)
+-- Search tabs (Achievements, Zones, Houses)
 -------------------------
 
 local ROW_HEIGHT = 24
 local PAGE_SIZE = 100
+
+local function houseChatText(m)
+  local meta = this.HouseMeta[m.id] or {}
+  local parts = { GetCollectibleLink(m.id, LINK_STYLE_BRACKETS) }
+  local houseLink = meta.houseId and GetHousingLink(meta.houseId, nil, LINK_STYLE_BRACKETS)
+  if houseLink and houseLink ~= "" then
+    parts[#parts + 1] = houseLink
+  end
+  parts[#parts + 1] = "- " .. m.name
+  return table.concat(parts, " ")
+end
 
 local searchTabs = {
   achievements = {
@@ -416,6 +448,9 @@ local searchTabs = {
       if NonContiguousCount(this.Achievements) < 1 then
         this.Internal.BuildAchievementTable()
       end
+    end,
+    link = function(m)
+      return GetAchievementLink(m.id, LINK_STYLE_BRACKETS)
     end,
     rows = {},
     matches = {},
@@ -438,7 +473,94 @@ local searchTabs = {
     matches = {},
     page = 1,
   },
+  houses = {
+    list = "FurCDevControl_HousesList",
+    pager = "FurCDevControl_HousesPager",
+    search = "FurCDevControl_HousesSearch",
+    source = function()
+      return this.Houses
+    end,
+    -- lazy build houses
+    ensure = function()
+      if NonContiguousCount(this.Houses) < 1 then
+        this.Internal.BuildHouseTable()
+      end
+    end,
+    -- also match on the zone, so "Grahtwood" finds every house in it
+    terms = function(m)
+      local meta = this.HouseMeta[m.id]
+      return (meta and meta.zone ~= "" and m.name .. " " .. meta.zone) or m.name
+    end,
+    -- houseId for travel link, zone just needed to tell dupes apart
+    -- Most houses are their own zone, so only print zone when it says something new
+    label = function(m)
+      local meta = this.HouseMeta[m.id] or {}
+      local zone = meta.zone or ""
+      if zone == "" or zone == m.name then
+        return string.format("%d   %s   (house %d)", m.id, m.name, meta.houseId or 0)
+      end
+      return string.format("%d   %s   (house %d · %s)", m.id, m.name, meta.houseId or 0, zone)
+    end,
+    -- collectible for tooltip
+    link = function(m)
+      return GetCollectibleLink(m.id, LINK_STYLE_BRACKETS)
+    end,
+    chat = houseChatText,
+    rows = {},
+    matches = {},
+    page = 1,
+  },
 }
+
+-- A tab may override these: output to textbox, label for tooltip
+local function defaultOutput(m)
+  return string.format("%d, -- %s\n", m.id, m.name)
+end
+
+local function defaultLabel(m)
+  return string.format("%d   %s", m.id, m.name)
+end
+
+local function onRowRightClick(cfg, m)
+  local link = cfg.link and cfg.link(m)
+  if not link or link == "" then
+    ZO_LinkHandler_InsertLink(m.name)
+    return
+  end
+  ZO_LinkHandler_InsertLink((cfg.chat and cfg.chat(m)) or link)
+end
+
+local NO_GRAMMAR, INHERIT_COLOUR = true, true
+-- The icons ship at 64px, which overruns the line and collides with the one above.
+-- Scale to roughly the text height instead, keeping the aspect: mouse icons are
+-- square but key icons are not, and those go through here too.
+local HINT_ICON_HEIGHT = 26
+--- Mouse-button hint
+local function mouseHint(keyCode, text)
+  local path, width, height = GetMouseIconPathForKeyCode(keyCode)
+  if not path then
+    return text
+  end
+  local iconWidth = HINT_ICON_HEIGHT
+  if width and height and height > 0 then
+    iconWidth = zo_round(width * (HINT_ICON_HEIGHT / height))
+  end
+  return zo_iconTextFormat(path, iconWidth, HINT_ICON_HEIGHT, text, INHERIT_COLOUR, NO_GRAMMAR)
+end
+
+local hintPaste, hintChat
+local function getHints()
+  if not hintPaste then
+    hintPaste = mouseHint(KEY_MOUSE_LEFT, "paste into the box")
+    hintChat = mouseHint(KEY_MOUSE_RIGHT, "paste into chat")
+  end
+  return hintPaste, hintChat
+end
+
+local function onRowMouseEnter(cfg, m, row)
+  local paste, chat = getHints()
+  ZO_Tooltips_ShowTextTooltip(row, RIGHT, (cfg.label or defaultLabel)(m), paste, chat)
+end
 
 -- Row clicks and dumps append to the scratchpad
 local function appendToOutput(text)
@@ -487,7 +609,7 @@ local function renderPage(cfg)
     local index = i - first + 1
     local row = acquireRow(cfg, index, child)
     row:SetWidth(rowWidth)
-    row:SetText(string.format("%d   %s", m.id, m.name))
+    row:SetText((cfg.label or defaultLabel)(m))
     row:ClearAnchors()
     if predecessor then
       row:SetAnchor(TOPLEFT, predecessor, BOTTOMLEFT, 0, 0)
@@ -495,8 +617,17 @@ local function renderPage(cfg)
       row:SetAnchor(TOPLEFT, child, TOPLEFT, 0, 0)
     end
     row:SetHandler("OnClicked", function()
-      appendToOutput(string.format("%d, -- %s\n", m.id, m.name))
+      appendToOutput((cfg.output or defaultOutput)(m))
     end)
+    row:SetHandler("OnMouseUp", function(_, mouseButton, upInside)
+      if upInside and mouseButton == MOUSE_BUTTON_INDEX_RIGHT then
+        onRowRightClick(cfg, m)
+      end
+    end)
+    row:SetHandler("OnMouseEnter", function(self)
+      onRowMouseEnter(cfg, m, self)
+    end)
+    row:SetHandler("OnMouseExit", ZO_Tooltips_HideTextTooltip)
     row:SetHidden(false)
     predecessor = row
   end
@@ -519,6 +650,14 @@ local function renderPage(cfg)
   end
 end
 
+-- Row widths are computed in renderPage, so we need a relayout on resize
+function this.RelayoutCurrentTab()
+  local cfg = dashboard.current and searchTabs[dashboard.current]
+  if cfg then
+    renderPage(cfg)
+  end
+end
+
 -- Filter source table (empty query = full list)
 function this.OnSearch(editControl, tabId)
   local cfg = searchTabs[tabId]
@@ -530,8 +669,12 @@ function this.OnSearch(editControl, tabId)
 
   local matches = {}
   for id, name in pairs(cfg.source()) do
-    if type(name) == "string" and (query == "" or string.find(LocaleAwareToLower(name), query, 1, true)) then
-      matches[#matches + 1] = { id = id, name = name }
+    if type(name) == "string" then
+      local entry = { id = id, name = name }
+      local haystack = (cfg.terms and cfg.terms(entry)) or name
+      if query == "" or string.find(LocaleAwareToLower(haystack), query, 1, true) then
+        matches[#matches + 1] = entry
+      end
     end
   end
   table.sort(matches, function(a, b)
@@ -618,6 +761,11 @@ function this.ApplyPaneSplit()
   right:SetWidth(w - leftW - PANE_GAP)
 end
 
+function this.OnResized()
+  this.ApplyPaneSplit()
+  this.RelayoutCurrentTab()
+end
+
 local MAX_OUTPUT_CHARS = 200000
 function this.InitDashboard()
   this.textbox = this.textbox or FurCDevControlBox
@@ -627,18 +775,18 @@ function this.InitDashboard()
 
   local content = FurCDevControl_Content
   if content then
-    content:SetHandler("OnResize", function()
-      this.ApplyPaneSplit()
-    end)
+    content:SetHandler("OnRectWidthChanged", this.OnResized)
   end
   this.ApplyPaneSplit()
 
   -- Output is a permanent right pane (Scratchpad)
   this.RegisterTab("achievements", "Achievements", FurCDevControl_Achievements, refreshSearchTab("achievements"))
   this.RegisterTab("zones", "Zones", FurCDevControl_Zones, refreshSearchTab("zones"))
+  this.RegisterTab("houses", "Houses", FurCDevControl_Houses, refreshSearchTab("houses"))
   buildTabButtons()
   buildPager("achievements")
   buildPager("zones")
-  this.SelectTab("achievements", true)
+  buildPager("houses")
+  this.ClearTabs() -- Start neutral: no tab active
   this.RefreshHeader()
 end
