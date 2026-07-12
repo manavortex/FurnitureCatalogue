@@ -6,10 +6,9 @@ local rumourSource = GetString(SI_FURC_SRC_RUMOUR_ITEM)
 local dataminedUnclear = GetString(SI_FURC_DATAMINED_UNCLEAR)
 
 -- Season Zero Part 2
-FurC.Rumours[ver.ZERO2] = {
-
-  [224876] = rumourSource, -- Music Box, A Wish for Fish
-  [225184] = rumourSource, -- Pipe, Stately
+FurC.Rumours[ver.ZERO2] = {  
+	[224876] = rumourSource, -- Music Box, A Wish for Fish
+    [225184] = rumourSource, -- Pipe, Stately
   [223844] = rumourSource, -- Hearts Week Decor, Red Bow
 }
 
@@ -29,7 +28,6 @@ FurC.Rumours[ver.ZERO] = {
   [223841] = rumourSource, -- Hearts Week Banner, Standing
   [223842] = rumourSource, -- Hearts Week Banner, Hanging
   [223843] = rumourSource, -- Hearts Week Banner, Small Standing
-  [223884] = rumourSource, -- Rock Altar, Spiked
   [223844] = rumourSource, -- Hearts Week Decor, Red Bow
   [223845] = rumourSource, -- Hearts Week Garland, Curved Ribbon
   [223846] = rumourSource, -- Hearts Week Garland, Curved Long Ribbon
@@ -49,7 +47,6 @@ FurC.Rumours[ver.ZERO] = {
 
 -- 33 Fallen Banners (U45)
 FurC.Rumours[ver.FALLBAN] = {
-
   [212553] = rumourSource, -- Zeal Decorations, Hanging Lamp
   [212552] = rumourSource, -- Zeal Decorations, Coins
   [212551] = rumourSource, -- Zeal Decorations, Banners Long
@@ -125,7 +122,6 @@ FurC.Rumours[ver.STONET] = {
   [119688] = rumourSource, -- Basin of the Wild Hunt
   [119687] = rumourSource, -- Statue of the Wild Hunt
   [119686] = rumourSource, -- Totem of the Wild Hunt
-
   [119663] = rumourSource, -- Decommissioned Covenant Flaming Oil
   [119640] = rumourSource, -- Decommissioned Pact Flaming Oil
   [119589] = rumourSource, -- Mushrooms, Auridon Group
@@ -224,7 +220,7 @@ FurC.Rumours[ver.STONET] = {
   [118104] = rumourSource, -- Painting Brush, Detail
   [118103] = rumourSource, -- Painting Brush, Wide
   [118100] = rumourSource, -- Horn, Carved
-  [117898] = rumourSource, -- Redguard Carpet, Dawn
+    [117898] = rumourSource, -- Redguard Carpet, Dawn
   [116490] = rumourSource, -- Orcish Head, Stone
   [116489] = rumourSource, -- Orcish Mask, Shield
   [116488] = rumourSource, -- Orcish Mask, Decorative
