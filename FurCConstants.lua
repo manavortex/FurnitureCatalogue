@@ -370,6 +370,77 @@ FurC.Constants.CrownCrates = {
   --STORM_ATRO = GetCrownCrateName(1), -- 2016-12, Storm Atronach, no exclusive furnishings
 }
 
+FurC.Constants.ItemPacks = {
+  -- Source: PTS + UESP dump
+
+  ALCHEMIST = 197984, -- Furnishing Pack: Mad Alchemist
+  AMBITIONS = 197988, -- Furnishing Pack: Daedric Ambitions
+  AQUATIC = 197990, -- Furnishing Pack: Aquatic Splendor
+  ASTULA = 197994, -- Furnishing Pack: Shad Astula Scholars
+  AYLEID = 197959, -- Furniture Pack: Ayleid
+  AZURA = 197956, -- Furnishing Pack: Azura
+  COLDHARBOUR = 197964, -- Furnishing Pack: Coldharbour Arcanaeum
+  COMBAT = 214259, -- Furnishing Pack: Combat Training
+  COVEN = 197960, -- Furnishing Pack: Witches' Coven
+  CRAGBED = 197941, -- Craglorn Multicultural Bedroom Pack
+  CRAGKITCHEN = 197940, -- Craglorn Multicultural Kitchen Pack
+  CRAGKNICKS = 197943, -- Craglorn Multicultural Knick-Knacks Pack
+  CRAGPARLOUR = 197942, -- Craglorn Multicultural Parlor Pack
+  CURIO = 203179, -- Furnishing Pack: Apocryphal Curiosities
+  DARIEN = 225202, -- Furnishing Pack: Darien's Delights
+  DEEPMIRE = 197976, -- Furnishing Pack: Deepmire Expedition
+  DIBELLA = 197966, -- Furnishing Pack: Dibella's Garden
+  DRUIDIC = 198668, -- Furnishing Pack: Druidic Gatherings
+  DWARVEN = 212354, -- Furnishing Pack: Dwarven Training Dummies
+  FARGRAVE = 197989, -- Furnishing Pack: Fargrave Bazaar
+  FORGE = 197977, -- Furnishing Pack: Forge-Lord's Great Works
+  HAUNTED = 211094, -- Furnishing Pack: Haunted Housewares
+  HEART = 197982, -- Furnishing Pack: Heart's Day Retreat
+  HOLLOWJACK = 197973, -- Furnishing Pack: Sinister Hollowjack Items
+  HUBTREASURE = 197965, -- Furnishing Pack: Hubalajad's Final Treasure
+  JESTER = 204435, -- Furnishing Pack: Jester's Festival Stagecraft
+  KHAJIIT = 197981, -- Furnishing Pack: Khajiiti Life
+  LOOM = 214260, -- Furnishing Pack: Heart of the Loom
+  MALACATH = 197963, -- Furnishing Pack: Malacath's Chosen
+  MAORMER = 197993, -- Furnishing Pack: Maormer Boarding Party
+  MEPHALA = 197968, -- Furnishing Pack: Trappings of Mephala Worship
+  MERMAID = 197987, -- Furnishing Pack: Steam Bath Serenity
+  MOLAG = 197961, -- Furnishing Pack: Molag Bal
+  MOONBISHOP = 197979, -- Furnishing Pack: Moon-Bishop's Sanctuary
+  MOONPATH = 219746, -- Furnishing Pack: Moonlit Pathways
+  NECROM = 198324, -- Furnishing Pack: Necrom Garden
+  NEREID = 217656, -- Furnishing Pack: Water Dancer Nereid
+  NEWLIFE2018 = 197974, -- Furnishing Pack: New Life Festival
+  NOBLEBATH = 197972, -- Summerset Noble's Bathing Pack
+  NOBLEKIT = 197970, -- Summerset Noble's Kitchen Pack
+  NOBLEPARLOUR = 197971, -- Summerset Noble's Parlor Pack
+  OASIS = 197980, -- Furnishing Pack: Moons-Blessed Oasis
+  PIPES = 197957, -- Furnishing Pack: Dwarven Pipes
+  SANGUINE = 219745, -- Furnishing Pack: Sanguine's Festival
+  SOTHA = 197962, -- Furnishing Pack: The Clockwork God's Domain
+  SWAMP = 197975, -- Furnishing Pack: Shadow and Stone
+  THEATER = 217655, -- Furnishing Pack: Community Theater
+  TOYMAKER = 224366, -- Furnishing Pack: Toymaker's Trove
+  TREES = 197954, -- Trees of Tamriel Garden Pack
+  TYRANTS = 197967, -- Furnishing Pack: Tyrants of the Merethic Era
+  VAMPIRE = 197983, -- Furnishing Pack: Vampiric Libations
+  VIVEC = 197958, -- Furnishing Pack: Lord Vivec
+  WINDOWS = 197986, -- Furnishing Pack: Windows of the Divines
+  WINTER = 223659, -- Furnishing Pack: Winter's Feast
+  WRITHING = 223665, -- Furnishing Pack: Writhing Fortress
+  ZENI = 197985, -- Furnishing Pack: Chapel of Zenithar
+}
+
+--- Crown Store bundles without itemlink, mv to ItemPacks when you get an ID
+FurC.Constants.ItemBundles = {
+  DWEMER = SI_FURC_ITEMPACK_DWEMER,
+  EBONY = SI_FURC_ITEMPACK_EBONY,
+  FIRSTBLADE = SI_FURC_ITEMPACK_FIRSTBLADE,
+  JYGGALAG = SI_FURC_ITEMPACK_JYGGALAG,
+  RAZOR = SI_FURC_ITEMPACK_RAZOR,
+  STABLE = SI_FURC_ITEMPACK_STABLE,
+}
+
 FurC.Constants.SkillLines = {
   -- manual lookup for now:
   -- /script for i=1, 1000 do if (string.find(LocaleAwareToLower(GetSkillLineNameById(i)), "psijic")) then d(string.format("%d: %s", i, GetSkillLineNameById(i))) end end
