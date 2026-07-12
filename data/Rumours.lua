@@ -6,9 +6,9 @@ local rumourSource = GetString(SI_FURC_SRC_RUMOUR_ITEM)
 local dataminedUnclear = GetString(SI_FURC_DATAMINED_UNCLEAR)
 
 -- Season Zero Part 2
-FurC.Rumours[ver.ZERO2] = {  
-	[224876] = rumourSource, -- Music Box, A Wish for Fish
-    [225184] = rumourSource, -- Pipe, Stately
+FurC.Rumours[ver.ZERO2] = {
+  [224876] = rumourSource, -- Music Box, A Wish for Fish
+  [225184] = rumourSource, -- Pipe, Stately
   [223844] = rumourSource, -- Hearts Week Decor, Red Bow
 }
 
@@ -220,7 +220,7 @@ FurC.Rumours[ver.STONET] = {
   [118104] = rumourSource, -- Painting Brush, Detail
   [118103] = rumourSource, -- Painting Brush, Wide
   [118100] = rumourSource, -- Horn, Carved
-    [117898] = rumourSource, -- Redguard Carpet, Dawn
+  [117898] = rumourSource, -- Redguard Carpet, Dawn
   [116490] = rumourSource, -- Orcish Head, Stone
   [116489] = rumourSource, -- Orcish Mask, Shield
   [116488] = rumourSource, -- Orcish Mask, Decorative
