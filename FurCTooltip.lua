@@ -10,11 +10,17 @@ local function tryColorize(text)
   return text:gsub("cannot craft", "|cFF0000cannot craft"):gsub("Can be crafted", "|c00FF00Can be crafted")
 end
 
-local TYPE_STRING = "string"
+--- Populate item tool tip table as set (no dupes)
 local function add(t, arg)
-  if nil ~= arg and (TYPE_STRING ~= type(t) or #t > 0) then
-    t[#t + 1] = arg
+  if nil == arg then
+    return t
   end
+  for i = 1, #t do
+    if t[i] == arg then
+      return t
+    end
+  end
+  t[#t + 1] = arg
   return t
 end
 
