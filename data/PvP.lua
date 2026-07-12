@@ -351,9 +351,7 @@ FurC.PVP[ver.HOMESTEAD] = {
         achievement = 104, -- Tribune
       },
     },
-  },
 
-  [npc.AF] = {
     [loc.IMPCITY] = {
       [119983] = { -- Imperial Banner
         itemPrice = 15000,
