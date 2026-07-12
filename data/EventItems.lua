@@ -22,7 +22,7 @@ FurC.EventItems[ver.FALLBAN] = {
       [214248] = true, -- Coin Pile, Tall
     },
   },
-
+  
   [events.ANNIVERSARY] = {
     [npc.EVENT] = {
       [214243] = { itemPrice = 100 }, -- Replica Jubilee Cake Slice 2025
@@ -72,10 +72,10 @@ FurC.EventItems[ver.BASE43] = {
       [208108] = true, -- Tankard of Undaunted Victory, Green
       [208107] = true, -- Wind Chimes, Undaunted Glory
       [208106] = true, -- Stuffed Troll Head, Ivy-Adorned
-      [208114] = true, -- Garland of Undaunted Trophies
-      [208113] = true, -- Rug of the Undaunted, Octagram
-      [208111] = true, -- Keg of Triumph, Jeering Clannfear Beer
-      [208109] = true, -- Tankard of Undaunted Victory, Bone
+	  [208114] = true, -- Garland of Undaunted Trophies
+	  [208113] = true, -- Rug of the Undaunted, Octagram
+	  [208111] = true, -- Keg of Triumph, Jeering Clannfear Beer
+	  [208109] = true, -- Tankard of Undaunted Victory, Bone
     },
   },
 }
@@ -158,12 +158,6 @@ FurC.EventItems[ver.DEADL] = {
       [181490] = true, -- Vampiric Lightpost, Azure Single
       [181489] = true, -- Vampiric Lamp, Azure Tall
       [178799] = true, -- Ruby Candlefly Gathering
-      [130326] = true, -- Witches Brazier, Primitive Log
-      [130322] = true, -- Tool, Harvest Scythe
-      [130319] = true, -- Crop, Wheat Stack
-      [130318] = true, -- Crop, Wheat Pile
-      [130317] = true, -- Pumpkin, Sickly
-      [130316] = true, -- Pumpkin, Frail
       [125672] = true, -- Toadstool, Bloodtooth Cluster
       [125671] = true, -- Toadstool, Bloodtooth Cap
       [125670] = true, -- Toadstool, Bloodtooth
@@ -192,13 +186,16 @@ FurC.EventItems[ver.HARROW] = {
   },
 }
 
--- 11 Elsweyr
-FurC.EventItems[ver.KITTY] = {
+-- 9 Wolfhunter
+FurC.EventItems[ver.WEREWOLF] = {
   [events.WITCHES] = {
     [containers.PLUNDERSKULL] = {
       [145317] = true, -- Gravestone, Broken
-      [118149] = true, -- Block and Axe, Chopping
+	  [120877] = true, -- Gravestone, Cracked
     },
+    [npc.EVENT] = {
+	  [142004] = { itemPrice = 200 }, -- Specimen Jar, Spare Brain
+	},
   },
 }
 
@@ -209,6 +206,11 @@ FurC.EventItems[ver.DRAGONS] = {
       [134680] = true, -- Jester Box
     },
   },
+  [events.WITCHES] = {
+    [containers.PLUNDERSKULL] = {
+      [139162] = true, -- Webs, Cone
+    },
+  },
 }
 
 -- 4 Horns of the Reach
@@ -216,14 +218,21 @@ FurC.EventItems[ver.REACH] = {
   [events.WITCHES] = {
     [containers.PLUNDERSKULL] = {
       [145318] = true, -- Small Gravestone
-      [130340] = true, -- Witches Totem, Gnarled Vines and Skull,
+      [130340] = true, -- Witches Totem, Gnarled Vines and Skull
       [130339] = true, -- Witches Totem, Twisted Vines and Skull
-      [130338] = true, -- Witches Bones, Offering,
-      [130337] = true, -- Witches Corpse, Wrapped,
-      [130332] = true, -- Witches Totem, Bone Charms,
-      [130328] = true, -- Witches Skull, Horned Ram,
-      [130327] = true, -- Witches Totem, Wooden Rack,
-      [130325] = true, -- Witches Totem, Emphatic Warning,
+	  [130326] = true, -- Witches Brazier, Primitive Log
+      [130338] = true, -- Witches Bones, Offering
+      [130337] = true, -- Witches Corpse, Wrapped
+      [130332] = true, -- Witches Totem, Bone Charms
+      [130328] = true, -- Witches Skull, Horned Ram
+      [130327] = true, -- Witches Totem, Wooden Rack
+      [130325] = true, -- Witches Totem, Emphatic Warning
+	  [130322] = true, -- Tool, Harvest Scythe
+      [130319] = true, -- Crop, Wheat Stack
+      [130318] = true, -- Crop, Wheat Pile
+      [130317] = true, -- Pumpkin, Sickly
+      [130316] = true, -- Pumpkin, Frail
+	  
       [130302] = GetString(SI_FURC_LOOT_HARVEST_WOOD), -- Shrub, Burnt Brush
       [130301] = GetString(SI_FURC_LOOT_HARVEST_WOOD), -- Saplings, Burnt Sparse
       [130300] = GetString(SI_FURC_LOOT_HARVEST_WOOD), -- Saplings, Burnt Tall
@@ -267,6 +276,11 @@ FurC.EventItems[ver.HOMESTEAD] = {
     [containers.JESTERBOX] = {
       [134680] = true, -- Banner, Jester's Standard
       [120995] = true, -- Banner, Jester's Standard
+    },
+  },
+  [events.WITCHES] = {
+    [containers.PLUNDERSKULL] = {
+      [118149] = true, -- Block and Axe, Chopping
     },
   },
 }
