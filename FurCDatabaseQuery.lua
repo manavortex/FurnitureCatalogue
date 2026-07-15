@@ -271,7 +271,7 @@ local function getMiscItemSource(recipeKey, recipeArray, stripColor, source)
   end
 
   -- same [version][source][itemId] shape in both files
-  local dataFiles = { FurC.MiscItemSources, FurC.CrownStore }
+  local dataFiles = { FurC.MiscItemSources, FurC.CrownStore, FurC.Antiquities, FurC.Justice, FurC.Fishing }
 
   -- TODO: overwrite version (there can be only one)
   local function lookup(version)
@@ -302,7 +302,7 @@ local function getMiscItemSource(recipeKey, recipeArray, stripColor, source)
   if not originData then
     return emptyString
   end
-
+  
   if source == src.EDITOR then
     originData = zo_strformat(strEditorTag, originData, srcEditor)
   end
