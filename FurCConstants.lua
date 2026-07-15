@@ -45,6 +45,7 @@ FurC.Constants.ItemSources = {
   TELVAR = getNextIdFor("ITEM_SOURCES"), -- 21
   COLL_MERCH = getNextIdFor("ITEM_SOURCES"), -- 22
   EDITOR = getNextIdFor("ITEM_SOURCES"), -- 23
+  ANTIQUITY = getNextIdFor("ITEM_SOURCES"), -- 24
 }
 
 ---@alias FurCItemSource integer # FurC.Constants.ItemSources values
@@ -77,16 +78,18 @@ do
     [src.PVP] = 30,
     [src.TELVAR] = 31,
     [src.COLL_MERCH] = 32,
+	[src.BAZAAR] = 61,
     -- drop / harvest / steal
     [src.DROP] = 40,
     [src.JUSTICE] = 41,
     [src.FISHING] = 42,
+	-- excavation / scrying
+    [src.ANTIQUITY] = 45,
     -- time-limited / rotating stock
     [src.LUXURY] = 50,
     [src.FESTIVAL_DROP] = 51,
     -- real money
     [src.EDITOR] = 60,
-    [src.BAZAAR] = 61,
     [src.CROWN] = 62,
     -- other
     [src.OTHER] = 70,
@@ -154,7 +157,7 @@ FurC.Constants.Locations = {
   AURIDON = getZoneStr(381), -- Auridon
   BALFOYEN = getZoneStr(281), -- Bal Foyen
   BANG = getZoneStr(92), -- Bangkorai
-  BETHNIKH = getZoneStr(535), -- Betnikh
+  BETNIKH = getZoneStr(535), -- Betnikh
   BLACKREACH_GMC = getZoneStr(1161), --  Blackreach: Greymoor Caverns
   BLACKWOOD = getZoneStr(1261), -- Blackwood
   BLEAK = getZoneStr(280), -- Bleakrock Isle
@@ -204,10 +207,10 @@ FurC.Constants.Locations = {
   TELVANNI = getZoneStr(1414), -- Telvanni Peninsula
   VVARDENFELL = getZoneStr(849), -- Vvardenfell
   WEALD = getZoneStr(1443), -- West Weald
-
+ 
   WROTHGAR = getZoneStr(684), -- Wrothgar
   WSKYRIM = getZoneStr(1160), -- Western Skyrim
-
+ 
   -- Custom
   ANY = GetString(SI_FURC_LOC_ANY),
   ANY_CAPITAL = GetString(SI_FURC_LOC_ANY_CAPITAL),
@@ -326,8 +329,9 @@ FurC.Constants.CrownCrates = {
   -- Source: https://en.uesp.net/wiki/Online:Crown_Crates
 
   -- ids not confirmed ingame yet
-
+  
   KINDRED = GetCrownCrateName(64), -- 2025-12, Hidden Kindred
+  
 
   -- confirmed ids
   ANU_PAD = GetCrownCrateName(67), -- 2026-06, Anu vs. Padomay
