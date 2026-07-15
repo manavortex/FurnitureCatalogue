@@ -28,6 +28,9 @@ data\Rumours.lua
 
 data\CrownStore.lua
 data\MiscItemSources.lua
+data\Antiquity.lua
+data\Justice.lua
+data\Fishing.lua
 
 data\AchievementVendors.lua
 data\EventItems.lua
