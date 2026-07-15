@@ -168,6 +168,7 @@ local validSourcesForOther = {
   [src.GUILDSTORE] = true,
   [src.TOMES] = true,
   [src.BAZAAR] = true,
+  [src.ANTIQUITY] = true,
 }
 
 -- Multi-source: item matches filter if source is in list
@@ -251,7 +252,7 @@ local function matchSourceDropdown()
     end
     return false
   end
-
+  
   if src.CROWN == ddSource then
     return hasSource(src.CROWN) or hasSource(src.EDITOR)
   end
@@ -305,7 +306,7 @@ local function matchFurnCategoryFilter()
     return true
   end
 
-  local itemCat = recipeArray.furnCategory or 0
+  local itemCat    = recipeArray.furnCategory    or 0
   local itemSubcat = recipeArray.furnSubcategory or 0
 
   -- Check if the item's top-level category is selected
