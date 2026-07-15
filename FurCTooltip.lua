@@ -25,10 +25,10 @@ local function add(t, arg)
 end
 
 local function addFolioTooltipData(control, itemId, folioData)
-  local strPrice = FurC.Utils.FormatPrice(folioData.price, folioData.currency)
+  local strPrice  = FurC.Utils.FormatPrice(folioData.price, folioData.currency)
   local strVendor = FurC.Utils.Colourise(folioData.vendor, FurC.Constants.Colours.Vendor)
-  local strLoc = FurC.Utils.Colourise(folioData.location, FurC.Constants.Colours.Location)
-  local header = zo_strformat("<<1>> : <<2>> (<<3>>)", strVendor, strLoc, strPrice)
+  local strLoc    = FurC.Utils.Colourise(folioData.location, FurC.Constants.Colours.Location)
+  local header    = zo_strformat("<<1>> : <<2>> (<<3>>)", strVendor, strLoc, strPrice)
 
   local lines = { header }
 
