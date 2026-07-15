@@ -72,7 +72,7 @@ local function cacheFurnishingCategory(itemLink, recipeArray)
   end
 
   local categoryId, subcategoryId = GetFurnitureDataCategoryInfo(dataId)
-  recipeArray.furnCategory = categoryId or 0
+  recipeArray.furnCategory    = categoryId    or 0
   recipeArray.furnSubcategory = subcategoryId or 0
 end
 FurC.CacheFurnishingCategory = cacheFurnishingCategory
@@ -278,7 +278,6 @@ this.Find = find
 
 ---@deprecated alias for DBQuery.Find
 FurC.Find = find
-
 function FurC.GetEntry(itemOrBlueprintLink)
   local itemLink = (IsItemLinkFurnitureRecipe(itemOrBlueprintLink) and GetRecipeResultItemLink(itemOrBlueprintLink))
     or itemOrBlueprintLink
@@ -607,7 +606,52 @@ local function scanFromFiles(blocking)
       end
     end
   end
+  
+  local function scanAntiquities()
+    for versionNumber, versionData in pairs(FurC.Antiquities) do
+      for origin, originData in pairs(versionData) do
+        for itemId in pairs(originData) do
+          local itemLink = getItemLink(itemId)
+          if IsItemLinkPlaceableFurniture(itemLink) or GetItemLinkItemType(itemLink) == ITEMTYPE_FURNISHING then
+            addDatabaseEntry(itemId, { origin = origin, version = versionNumber })
+          else
+            FurC.Logger:Debug("scanAntiquities: Error when scanning item ID %s (origin %s)", itemId, origin)
+          end
+        end
+      end
+    end
+  end
+  
+  local function scanJustice()
+    for versionNumber, versionData in pairs(FurC.Justice) do
+      for origin, originData in pairs(versionData) do
+        for itemId in pairs(originData) do
+          local itemLink = getItemLink(itemId)
+          if IsItemLinkPlaceableFurniture(itemLink) or GetItemLinkItemType(itemLink) == ITEMTYPE_FURNISHING then
+            addDatabaseEntry(itemId, { origin = origin, version = versionNumber })
+          else
+            FurC.Logger:Debug("scanJustice: Error when scanning item ID %s (origin %s)", itemId, origin)
+          end
+        end
+      end
+    end
+  end
 
+  local function scanFishing()
+    for versionNumber, versionData in pairs(FurC.Fishing) do
+      for origin, originData in pairs(versionData) do
+        for itemId in pairs(originData) do
+          local itemLink = getItemLink(itemId)
+          if IsItemLinkPlaceableFurniture(itemLink) or GetItemLinkItemType(itemLink) == ITEMTYPE_FURNISHING then
+            addDatabaseEntry(itemId, { origin = origin, version = versionNumber })
+          else
+            FurC.Logger:Debug("scanFishing: Error when scanning item ID %s (origin %s)", itemId, origin)
+          end
+        end
+      end
+    end
+  end
+  
   local function scanVendorFiles()
     FurC.InitAchievementVendorList()
 
@@ -677,7 +721,10 @@ local function scanFromFiles(blocking)
     task
       :Call(scanRecipeFile)
       :Then(scanMiscItemFile)
-      :Then(scanCrownStore)
+	  :Then(scanCrownStore)
+	  :Then(scanAntiquities)
+	  :Then(scanJustice)
+      :Then(scanFishing)
       :Then(scanVendorFiles)
       :Then(scanRolis)
       :Then(scanFestivalFiles)
@@ -686,7 +733,10 @@ local function scanFromFiles(blocking)
   else
     scanRecipeFile()
     scanMiscItemFile()
-    scanCrownStore()
+	scanCrownStore()
+	scanAntiquities()
+	scanJustice()
+    scanFishing()
     scanVendorFiles()
     scanRolis()
     scanFestivalFiles()
