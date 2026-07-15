@@ -27,6 +27,7 @@ this.PVP = {}
 this.MiscItemSources = {}
 this.RumourRecipes = {}
 this.FurnishingFolios = {}
+this.Antiquities = {}
 
 local defaults = {
   hideMats = true,
@@ -92,13 +93,14 @@ local function getSourceIndicesKeys()
   -- sourceIndicesKeys[src.TOMES] = "purch_tomepoints"
   sourceIndicesKeys[src.WRIT_VENDOR] = "writ_vendor"
   sourceIndicesKeys[src.CROWN] = "crownstore"
+  sourceIndicesKeys[src.ANTIQUITY] = "antiquity"
   sourceIndicesKeys[src.RUMOUR] = "rumour"
   sourceIndicesKeys[src.LUXURY] = "luxury"
   sourceIndicesKeys[src.OTHER] = "other"
   --sourceIndicesKeys[src.ROLIS]            = "ROLIS"
   --sourceIndicesKeys[src.DROP]             = "DROP"
-  --sourceIndicesKeys[src.JUSTICE]          = "JUSTICE"
-  --sourceIndicesKeys[src.FISHING]          = "FISHING"
+  sourceIndicesKeys[src.JUSTICE] = "justice"
+  sourceIndicesKeys[src.FISHING] = "fishing"
   --sourceIndicesKeys[src.GUILDSTORE]       = "GUILDSTORE"
   --sourceIndicesKeys[src.FESTIVAL_DROP]    = "FESTIVAL_DROP"
 
@@ -120,13 +122,14 @@ local function getChoicesSource()
   -- choicesSource[src.TOMES] = GetString(SI_FURC_FILTER_SRC_SOLD_TOMEPOINTS)
   choicesSource[src.WRIT_VENDOR] = GetString(SI_FURC_FILTER_SRC_SOLD_WRIT)
   choicesSource[src.CROWN] = GetString(SI_FURC_FILTER_SRC_CROWN)
+  choicesSource[src.ANTIQUITY] = GetString(SI_FURC_FILTER_SRC_ANTIQUITY)
   choicesSource[src.RUMOUR] = GetString(SI_FURC_FILTER_SRC_RUMOUR)
   choicesSource[src.LUXURY] = GetString(SI_FURC_FILTER_SRC_LUX)
   choicesSource[src.OTHER] = GetString(SI_FURC_FILTER_SRC_OTHER)
   --choicesSource[src.ROLIS]            = "ROLIS"
   --choicesSource[src.DROP]             = "DROP"
-  --choicesSource[src.JUSTICE]          = "JUSTICE"
-  --choicesSource[src.FISHING]          = "FISHING"
+  choicesSource[src.JUSTICE] = GetString(SI_FURC_FILTER_SRC_JUSTICE)
+  choicesSource[src.FISHING] = GetString(SI_FURC_FILTER_SRC_FISHING)
   --choicesSource[src.GUILDSTORE]       = "GUILDSTORE"
   --choicesSource[src.FESTIVAL_DROP]    = "FESTIVAL_DROP"
 
@@ -147,14 +150,15 @@ local function getTooltipsSource()
   tooltipsSource[src.BAZAAR] = GetString(SI_FURC_FILTER_SRC_SOLD_TBARS_TT)
   -- tooltipsSource[src.TOMES] = GetString(SI_FURC_FILTER_SRC_SOLD_TOMEPOINTS_TT)
   tooltipsSource[src.CROWN] = GetString(SI_FURC_FILTER_SRC_CROWN_TT)
+  tooltipsSource[src.ANTIQUITY] = GetString(SI_FURC_FILTER_SRC_ANTIQUITY_TT)
   tooltipsSource[src.WRIT_VENDOR] = GetString(SI_FURC_FILTER_SRC_SOLD_WRIT_TT)
   tooltipsSource[src.RUMOUR] = GetString(SI_FURC_FILTER_SRC_RUMOUR_TT)
   tooltipsSource[src.LUXURY] = GetString(SI_FURC_FILTER_SRC_LUX_TT)
   tooltipsSource[src.OTHER] = GetString(SI_FURC_FILTER_SRC_OTHER_TT)
   --tooltipsSource[src.ROLIS]            = "ROLIS"
   --tooltipsSource[src.DROP]             = "DROP"
-  --tooltipsSource[src.JUSTICE]          = "JUSTICE"
-  --tooltipsSource[src.FISHING]          = "FISHING"
+  tooltipsSource[src.JUSTICE] = GetString(SI_FURC_FILTER_SRC_JUSTICE_TT)
+  tooltipsSource[src.FISHING] = GetString(SI_FURC_FILTER_SRC_FISHING_TT)
   --tooltipsSource[src.GUILDSTORE]       = "GUILDSTORE"
   --tooltipsSource[src.FESTIVAL_DROP]    = "FESTIVAL_DROP"
 
@@ -186,7 +190,7 @@ this.DropdownData = {
     [ver.MARKAT] = GetString(SI_FURC_FILTER_VERSION_MARKAT),
     [ver.FLAMES] = GetString(SI_FURC_FILTER_VERSION_FLAMES),
     [ver.BLACKW] = GetString(SI_FURC_FILTER_VERSION_BLACKW),
-    [ver.WAKE] = GetString(SI_FURC_FILTER_VERSION_WAKE),
+	[ver.WAKE] = GetString(SI_FURC_FILTER_VERSION_WAKE),
     [ver.DEADL] = GetString(SI_FURC_FILTER_VERSION_DEADL),
     [ver.TIDES] = GetString(SI_FURC_FILTER_VERSION_TIDES),
     [ver.BRETON] = GetString(SI_FURC_FILTER_VERSION_BRETON),
@@ -202,11 +206,11 @@ this.DropdownData = {
     [ver.BASE44] = GetString(SI_FURC_FILTER_VERSION_BASE44),
     [ver.FALLBAN] = GetString(SI_FURC_FILTER_VERSION_FALLBAN),
     [ver.WORMS] = GetString(SI_FURC_FILTER_VERSION_WORMS),
-    [ver.SHADOWS] = GetString(SI_FURC_FILTER_VERSION_SHADOWS),
-    [ver.WORMS2] = GetString(SI_FURC_FILTER_VERSION_WORMS2),
-    [ver.ZERO] = GetString(SI_FURC_FILTER_VERSION_ZERO),
-    [ver.ZERO2] = GetString(SI_FURC_FILTER_VERSION_ZERO2),
-    [ver.THIEVES] = GetString(SI_FURC_FILTER_VERSION_THIEVES),
+	[ver.SHADOWS] = GetString(SI_FURC_FILTER_VERSION_SHADOWS),
+	[ver.WORMS2] = GetString(SI_FURC_FILTER_VERSION_WORMS2),
+	[ver.ZERO] = GetString(SI_FURC_FILTER_VERSION_ZERO),
+	[ver.ZERO2] = GetString(SI_FURC_FILTER_VERSION_ZERO2),
+	[ver.THIEVES] = GetString(SI_FURC_FILTER_VERSION_THIEVES),
   },
 
   TooltipsVersion = {
@@ -245,11 +249,11 @@ this.DropdownData = {
     [ver.BASE44] = GetString(SI_FURC_FILTER_VERSION_BASE44_TT),
     [ver.FALLBAN] = GetString(SI_FURC_FILTER_VERSION_FALLBAN_TT),
     [ver.WORMS] = GetString(SI_FURC_FILTER_VERSION_WORMS_TT),
-    [ver.SHADOWS] = GetString(SI_FURC_FILTER_VERSION_SHADOWS_TT),
-    [ver.WORMS2] = GetString(SI_FURC_FILTER_VERSION_WORMS2_TT),
-    [ver.ZERO] = GetString(SI_FURC_FILTER_VERSION_ZERO_TT),
-    [ver.ZERO2] = GetString(SI_FURC_FILTER_VERSION_ZERO2_TT),
-    [ver.THIEVES] = GetString(SI_FURC_FILTER_VERSION_THIEVES_TT),
+	[ver.SHADOWS] = GetString(SI_FURC_FILTER_VERSION_SHADOWS_TT),
+	[ver.WORMS2] = GetString(SI_FURC_FILTER_VERSION_WORMS2_TT),
+	[ver.ZERO] = GetString(SI_FURC_FILTER_VERSION_ZERO_TT),
+	[ver.ZERO2] = GetString(SI_FURC_FILTER_VERSION_ZERO2_TT),
+	[ver.THIEVES] = GetString(SI_FURC_FILTER_VERSION_THIEVES_TT),
   },
 
   ChoicesCharacter = {
@@ -345,7 +349,7 @@ local function initialise(eventCode, addOnName)
   this.CharacterName = zo_strformat(GetUnitName("player"))
 
   this.Internal.InitLCK()
-
+  
   this.InitGui()
 
   this.CreateTooltips()
