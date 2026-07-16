@@ -166,6 +166,45 @@ local function getTooltipsSource()
 end
 this.GetTooltipsSource = getTooltipsSource
 
+-- Display order of source filter choices
+local sourceChoiceValues = {
+  src.NONE,
+  src.FAVE,
+  src.CRAFTING,
+  src.CRAFTING_KNOWN,
+  src.CRAFTING_UNKNOWN,
+  src.VENDOR,
+  src.PVP,
+  src.TELVAR,
+  src.BAZAAR,
+  src.WRIT_VENDOR,
+  src.CROWN,
+  src.ANTIQUITY,
+  src.RUMOUR,
+  src.LUXURY,
+  src.JUSTICE,
+  src.FISHING,
+  src.OTHER,
+}
+
+---LAM does not like NonContiguous, so we go gapless
+---@return string[] choices parallel to GetChoicesSourceValues()
+local function getChoicesSourceList()
+  local texts = getChoicesSource()
+  local list = {}
+  for i = 1, #sourceChoiceValues do
+    list[i] = texts[sourceChoiceValues[i]]
+  end
+  return list
+end
+this.GetChoicesSourceList = getChoicesSourceList
+
+---Source ids for LAM choicesValues
+---@return integer[] choicesValues
+function this.GetChoicesSourceValues()
+  return sourceChoiceValues
+end
+
 -- TODO #REFACTOR Just auto generate those from Constants.Versioning ¯\_(ツ)_/¯
 
 -- [UPGRADING GAME VERSIONS, PTS compatibility]
@@ -190,7 +229,7 @@ this.DropdownData = {
     [ver.MARKAT] = GetString(SI_FURC_FILTER_VERSION_MARKAT),
     [ver.FLAMES] = GetString(SI_FURC_FILTER_VERSION_FLAMES),
     [ver.BLACKW] = GetString(SI_FURC_FILTER_VERSION_BLACKW),
-	[ver.WAKE] = GetString(SI_FURC_FILTER_VERSION_WAKE),
+    [ver.WAKE] = GetString(SI_FURC_FILTER_VERSION_WAKE),
     [ver.DEADL] = GetString(SI_FURC_FILTER_VERSION_DEADL),
     [ver.TIDES] = GetString(SI_FURC_FILTER_VERSION_TIDES),
     [ver.BRETON] = GetString(SI_FURC_FILTER_VERSION_BRETON),
@@ -206,11 +245,11 @@ this.DropdownData = {
     [ver.BASE44] = GetString(SI_FURC_FILTER_VERSION_BASE44),
     [ver.FALLBAN] = GetString(SI_FURC_FILTER_VERSION_FALLBAN),
     [ver.WORMS] = GetString(SI_FURC_FILTER_VERSION_WORMS),
-	[ver.SHADOWS] = GetString(SI_FURC_FILTER_VERSION_SHADOWS),
-	[ver.WORMS2] = GetString(SI_FURC_FILTER_VERSION_WORMS2),
-	[ver.ZERO] = GetString(SI_FURC_FILTER_VERSION_ZERO),
-	[ver.ZERO2] = GetString(SI_FURC_FILTER_VERSION_ZERO2),
-	[ver.THIEVES] = GetString(SI_FURC_FILTER_VERSION_THIEVES),
+    [ver.SHADOWS] = GetString(SI_FURC_FILTER_VERSION_SHADOWS),
+    [ver.WORMS2] = GetString(SI_FURC_FILTER_VERSION_WORMS2),
+    [ver.ZERO] = GetString(SI_FURC_FILTER_VERSION_ZERO),
+    [ver.ZERO2] = GetString(SI_FURC_FILTER_VERSION_ZERO2),
+    [ver.THIEVES] = GetString(SI_FURC_FILTER_VERSION_THIEVES),
   },
 
   TooltipsVersion = {
@@ -249,11 +288,11 @@ this.DropdownData = {
     [ver.BASE44] = GetString(SI_FURC_FILTER_VERSION_BASE44_TT),
     [ver.FALLBAN] = GetString(SI_FURC_FILTER_VERSION_FALLBAN_TT),
     [ver.WORMS] = GetString(SI_FURC_FILTER_VERSION_WORMS_TT),
-	[ver.SHADOWS] = GetString(SI_FURC_FILTER_VERSION_SHADOWS_TT),
-	[ver.WORMS2] = GetString(SI_FURC_FILTER_VERSION_WORMS2_TT),
-	[ver.ZERO] = GetString(SI_FURC_FILTER_VERSION_ZERO_TT),
-	[ver.ZERO2] = GetString(SI_FURC_FILTER_VERSION_ZERO2_TT),
-	[ver.THIEVES] = GetString(SI_FURC_FILTER_VERSION_THIEVES_TT),
+    [ver.SHADOWS] = GetString(SI_FURC_FILTER_VERSION_SHADOWS_TT),
+    [ver.WORMS2] = GetString(SI_FURC_FILTER_VERSION_WORMS2_TT),
+    [ver.ZERO] = GetString(SI_FURC_FILTER_VERSION_ZERO_TT),
+    [ver.ZERO2] = GetString(SI_FURC_FILTER_VERSION_ZERO2_TT),
+    [ver.THIEVES] = GetString(SI_FURC_FILTER_VERSION_THIEVES_TT),
   },
 
   ChoicesCharacter = {
@@ -349,7 +388,7 @@ local function initialise(eventCode, addOnName)
   this.CharacterName = zo_strformat(GetUnitName("player"))
 
   this.Internal.InitLCK()
-  
+
   this.InitGui()
 
   this.CreateTooltips()

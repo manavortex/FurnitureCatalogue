@@ -602,6 +602,13 @@ function FurC.SetDefaultDropdownChoice(dropdownName, value)
   FurC.settings.dropdownDefaults[dropdownName] = getDropdownIndex(dropdownName, value)
 end
 
+---Store default dropdown choice by id (not by text)
+---@param dropdownName string
+---@param value integer
+function FurC.SetDefaultDropdownChoiceValue(dropdownName, value)
+  FurC.settings.dropdownDefaults[dropdownName] = value
+end
+
 function FurC.GetResetDropdownChoice()
   return FurC.settings["resetDropdownChoice"]
 end

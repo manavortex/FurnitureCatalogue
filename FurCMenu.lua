@@ -221,12 +221,13 @@ function FurC.CreateSettings(savedVars, defaults)
         { -- dropdown: default source
           type = "dropdown",
           name = GetString(SI_FURC_STRING_MENU_DEFAULT_DD_SOURCE),
-          choices = FurC.GetChoicesSource(),
+          choices = FurC.GetChoicesSourceList(),
+          choicesValues = FurC.GetChoicesSourceValues(),
           getFunc = function()
-            return FurC.GetDefaultDropdownChoiceText("Source")
+            return FurC.GetDefaultDropdownChoice("Source")
           end,
           setFunc = function(value)
-            FurC.SetDefaultDropdownChoice("Source", value)
+            FurC.SetDefaultDropdownChoiceValue("Source", value)
           end,
         },
         { -- dropdown: default character

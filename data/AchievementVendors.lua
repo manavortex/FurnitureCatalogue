@@ -4681,7 +4681,7 @@ FurC.AchievementVendors[ver.HOMESTEAD] = {
     },
   },
 
-  [loc.BETHNIKH] = {
+  [loc.BETNIKH] = {
     [npc.AF] = {
       [119984] = { -- Pirate Banner
         itemPrice = 10000,
