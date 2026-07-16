@@ -78,12 +78,12 @@ do
     [src.PVP] = 30,
     [src.TELVAR] = 31,
     [src.COLL_MERCH] = 32,
-	[src.BAZAAR] = 61,
+    [src.BAZAAR] = 61,
     -- drop / harvest / steal
     [src.DROP] = 40,
     [src.JUSTICE] = 41,
     [src.FISHING] = 42,
-	-- excavation / scrying
+    -- excavation / scrying
     [src.ANTIQUITY] = 45,
     -- time-limited / rotating stock
     [src.LUXURY] = 50,
@@ -207,10 +207,10 @@ FurC.Constants.Locations = {
   TELVANNI = getZoneStr(1414), -- Telvanni Peninsula
   VVARDENFELL = getZoneStr(849), -- Vvardenfell
   WEALD = getZoneStr(1443), -- West Weald
- 
+
   WROTHGAR = getZoneStr(684), -- Wrothgar
   WSKYRIM = getZoneStr(1160), -- Western Skyrim
- 
+
   -- Custom
   ANY = GetString(SI_FURC_LOC_ANY),
   ANY_CAPITAL = GetString(SI_FURC_LOC_ANY_CAPITAL),
@@ -329,9 +329,8 @@ FurC.Constants.CrownCrates = {
   -- Source: https://en.uesp.net/wiki/Online:Crown_Crates
 
   -- ids not confirmed ingame yet
-  
+
   KINDRED = GetCrownCrateName(64), -- 2025-12, Hidden Kindred
-  
 
   -- confirmed ids
   ANU_PAD = GetCrownCrateName(67), -- 2026-06, Anu vs. Padomay
@@ -372,6 +371,46 @@ FurC.Constants.CrownCrates = {
   DWEMER = GetCrownCrateName(4), -- 2017-07, Dwarven
   WILD_HUNT = GetCrownCrateName(2), -- 2017-04, Wild Hunt
   --STORM_ATRO = GetCrownCrateName(1), -- 2016-12, Storm Atronach, no exclusive furnishings
+}
+
+-- Book containers
+-- Source: manual lookup + https://en.uesp.net (minedItemSummary, ITEMTYPE_CONTAINER)
+FurC.Constants.BookContainers = {
+  -- Mages Guild reprints
+  REPRINT_ALIKR = 120381, -- Guild Reprint: Alik'r Desert Lore
+  REPRINT_AURIDON = 120401, -- Guild Reprint: Auridon Lore
+  REPRINT_BANGKORAI = 120380, -- Guild Reprint: Bangkorai Lore
+  REPRINT_BIOGRAPHIES = 120385, -- Guild Reprint: Biographies
+  REPRINT_COLDHARBOUR = 120405, -- Guild Reprint: Coldharbour Lore
+  REPRINT_DAEDRIC_PRINCES = 120384, -- Guild Reprint: Daedric Princes
+  REPRINT_DESHAAN = 120399, -- Guild Reprint: Deshaan Lore
+  REPRINT_DIVINES = 120386, -- Guild Reprint: Divines and Deities
+  REPRINT_DUNGEON_LORE = 120387, -- Guild Reprint: Dungeon Lore
+  REPRINT_DWEMER = 120388, -- Guild Reprint: Dwemer
+  REPRINT_EASTMARCH = 120398, -- Guild Reprint: Eastmarch Lore
+  REPRINT_EYEVEA = 120383, -- Guild Reprint: The Trial of Eyevea
+  REPRINT_GLENUMBRA = 120377, -- Guild Reprint: Glenumbra Lore
+  REPRINT_GRAHTWOOD = 120402, -- Guild Reprint: Grahtwood Lore
+  REPRINT_GREENSHADE = 120403, -- Guild Reprint: Greenshade Lore
+  REPRINT_LEGENDS_OF_NIRN = 120389, -- Guild Reprint: Legends of Nirn
+  REPRINT_LITERATURE = 120390, -- Guild Reprint: Literature
+  REPRINT_MAGIC_MAGICKA = 120391, -- Guild Reprint: Magic and Magicka
+  REPRINT_MALABAL_TOR = 120397, -- Guild Reprint: Malabal Tor Lore
+  REPRINT_MYTHS_MUNDUS = 120392, -- Guild Reprint: Myths of the Mundus
+  REPRINT_OBLIVION_LORE = 120393, -- Guild Reprint: Oblivion Lore
+  REPRINT_POETRY_SONG = 120394, -- Guild Reprint: Poetry and Song
+  REPRINT_REAPERS_MARCH = 120404, -- Guild Reprint: Reaper's March Lore
+  REPRINT_RIFT = 120400, -- Guild Reprint: The Rift Lore
+  REPRINT_RIVENSPIRE = 120379, -- Guild Reprint: Rivenspire Lore
+  REPRINT_SHADOWFEN = 120382, -- Guild Reprint: Shadowfen Lore
+  REPRINT_STONEFALLS = 120396, -- Guild Reprint: Stonefalls Lore
+  REPRINT_STORMHAVEN = 120378, -- Guild Reprint: Stormhaven Lore
+  REPRINT_TAMRIEL_HISTORY = 120395, -- Guild Reprint: Tamriel History
+
+  -- lore collections, sold by achievement furnishers
+  TEMPLE_DOCTRINE = 126792, -- Temple Doctrine: The 36 Lessons (Vvardenfell)
+  TRUTH_IN_SEQUENCE = 134547, -- The Truth in Sequence (Clockwork City)
+  NOTHING_EYES = 145596, -- Look Upon Their Nothing Eyes (Murkmire)
 }
 
 FurC.Constants.ItemPacks = {
