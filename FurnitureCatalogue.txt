@@ -33,6 +33,7 @@ data\Justice.lua
 data\Fishing.lua
 
 data\AchievementVendors.lua
+data\Books.lua
 data\EventItems.lua
 data\LuxuryFurnisher.lua
 data\PvP.lua

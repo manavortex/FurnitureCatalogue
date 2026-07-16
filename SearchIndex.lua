@@ -170,6 +170,15 @@ local function addFolios(add)
   end
 end
 
+local function addBookCollections(add)
+  for containerId, collection in pairs(FurC.BookCollections or {}) do
+    local containerName = getItemName(containerId)
+    for _, bookId in ipairs(collection.contents) do
+      add(bookId, containerName)
+    end
+  end
+end
+
 local function addEvents(add)
   for _, versionData in pairs(FurC.EventItems or {}) do
     for eventName, sources in pairs(versionData) do
@@ -190,6 +199,7 @@ local function build()
   addVendorTables(add)
   addWritVendors(add)
   addFolios(add)
+  addBookCollections(add)
   addEvents(add)
 
   terms = {}

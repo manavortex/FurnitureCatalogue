@@ -71,6 +71,31 @@ Taneth("FurC:Unit", function()
       assert.is_not_nil(string.find(terms, index.GetItemName(folioId), 1, true))
     end)
 
+    it("indexes every book of a collection by its container's name", function()
+      FurCDev.Test.ensureDB()
+      for containerId, collection in pairs(FurC.BookCollections) do
+        local containerName = index.GetItemName(containerId)
+        assert.is_not_nil(containerName)
+        for _, bookId in ipairs(collection.contents) do
+          local terms = index.GetTerms(bookId)
+          assert.is_not_nil(terms, string.format("book %d of container %d has no terms", bookId, containerId))
+          assert.is_not_nil(string.find(terms, containerName, 1, true))
+        end
+      end
+    end)
+
+    it("generates a source string for books from their container", function()
+      FurCDev.Test.ensureDB()
+      local bc = FurC.Constants.BookContainers
+      local collection = FurC.BookCollections[bc.NOTHING_EYES]
+      local misc = FurC.MiscItemSources[collection.version][FurC.Constants.ItemSources.DROP]
+      for _, bookId in ipairs(collection.contents) do
+        local sourceText = misc[bookId]
+        assert.equals("string", type(sourceText))
+        assert.is_not_nil(string.find(sourceText, tostring(bc.NOTHING_EYES), 1, true)) -- itemlink of the container
+      end
+    end)
+
     it("indexes luxury furnishings under the luxury vendor and Coldharbour", function()
       FurCDev.Test.ensureDB()
       local itemId

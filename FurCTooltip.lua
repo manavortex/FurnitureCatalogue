@@ -25,10 +25,10 @@ local function add(t, arg)
 end
 
 local function addFolioTooltipData(control, itemId, folioData)
-  local strPrice  = FurC.Utils.FormatPrice(folioData.price, folioData.currency)
+  local strPrice = FurC.Utils.FormatPrice(folioData.price, folioData.currency)
   local strVendor = FurC.Utils.Colourise(folioData.vendor, FurC.Constants.Colours.Vendor)
-  local strLoc    = FurC.Utils.Colourise(folioData.location, FurC.Constants.Colours.Location)
-  local header    = zo_strformat("<<1>> : <<2>> (<<3>>)", strVendor, strLoc, strPrice)
+  local strLoc = FurC.Utils.Colourise(folioData.location, FurC.Constants.Colours.Location)
+  local header = zo_strformat("<<1>> : <<2>> (<<3>>)", strVendor, strLoc, strPrice)
 
   local lines = { header }
 
@@ -40,6 +40,32 @@ local function addFolioTooltipData(control, itemId, folioData)
       end
     end
   end
+
+  control:AddVerticalPadding(8)
+  ZO_Tooltip_AddDivider(control)
+  for i = 1, #lines do
+    control:AddLine(zo_strformat("<<C:1>>", lines[i]))
+  end
+end
+
+local function addBookCollectionTooltipData(control, itemId, collection)
+  local lines = {}
+
+  local recipeArray = FurC.Find(itemId)
+  if recipeArray and not FurC.GetHideSource() then
+    local sourceLines = query.GetSourceLines(itemId, recipeArray, false)
+    for i = 1, #sourceLines do
+      lines[#lines + 1] = sourceLines[i]
+    end
+  end
+
+  -- book names comma-joined into one block
+  local names = {}
+  for i = 1, #collection.contents do
+    names[#names + 1] = FurC.Utils.GetItemName(collection.contents[i])
+  end
+  lines[#lines + 1] = zo_strformat(GetString(SI_FURC_CONTAINS_BOOKS), #names)
+  lines[#lines + 1] = table.concat(names, ", ")
 
   control:AddVerticalPadding(8)
   ZO_Tooltip_AddDivider(control)
@@ -64,6 +90,13 @@ local function addTooltipData(control, itemLink)
   local folioData = FurC.FurnishingFolios and FurC.FurnishingFolios[itemId]
   if folioData then
     addFolioTooltipData(control, itemId, folioData)
+    return
+  end
+
+  -- book containers are not placeable, handle before the furniture check
+  local collection = FurC.BookCollections and FurC.BookCollections[itemId]
+  if collection then
+    addBookCollectionTooltipData(control, itemId, collection)
     return
   end
 
