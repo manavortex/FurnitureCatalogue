@@ -252,8 +252,9 @@ local function getEventDropSource(recipeKey, recipeArray)
           end
 
           if itemType == "table" then -- must have price
-            return strFurnisher(srcName, eventName, item.itemPrice, CURT_MONEY)
-          end
+		    local currency = item.currency or (srcName == npc.EVENT and CURT_TRADE_BARS or CURT_MONEY)
+		    return strFurnisher(srcName, eventName, item.itemPrice, currency)
+		  end
         end
       end
     end
