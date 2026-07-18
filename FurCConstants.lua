@@ -78,12 +78,12 @@ do
     [src.PVP] = 30,
     [src.TELVAR] = 31,
     [src.COLL_MERCH] = 32,
-    [src.BAZAAR] = 61,
+	[src.BAZAAR] = 61,
     -- drop / harvest / steal
     [src.DROP] = 40,
     [src.JUSTICE] = 41,
     [src.FISHING] = 42,
-    -- excavation / scrying
+	-- excavation / scrying
     [src.ANTIQUITY] = 45,
     -- time-limited / rotating stock
     [src.LUXURY] = 50,
@@ -207,10 +207,10 @@ FurC.Constants.Locations = {
   TELVANNI = getZoneStr(1414), -- Telvanni Peninsula
   VVARDENFELL = getZoneStr(849), -- Vvardenfell
   WEALD = getZoneStr(1443), -- West Weald
-
+ 
   WROTHGAR = getZoneStr(684), -- Wrothgar
   WSKYRIM = getZoneStr(1160), -- Western Skyrim
-
+ 
   -- Custom
   ANY = GetString(SI_FURC_LOC_ANY),
   ANY_CAPITAL = GetString(SI_FURC_LOC_ANY_CAPITAL),
@@ -254,7 +254,7 @@ FurC.Constants.NPC = {
   -- Special Merchants
   AF = GetString(SI_FURC_TRADERS_AF), -- Achievement Vendor: Lozotusk, ...
   BGF = GetString(SI_FURC_TRADERS_BGF), -- Battlegrounds Furnishers
-  CAF = GetString(SI_FURC_TRADERS_CAF), -- Main Achievement Vendor: Nolenowen, ...
+  CAF = GetString(SI_FURC_TRADERS_CAF), -- Global Achievement Vendor: Nolenowen, ...
   EVENT = GetString(SI_FURC_TRADERS_EVENT), -- Event Merchant, any capital city: The Impressario
   HGF = GetString(SI_FURC_TRADERS_HGF), -- Home Goods Furnisher: Maladiq, Rohzika, ...
   HOLIDAY = GetString(SI_FURC_TRADERS_HOLIDAY), -- Heralda, Tildannire, ...
@@ -268,11 +268,6 @@ FurC.Constants.NPC = {
   PSIJIC_NALIRSEWEN = GetString(SI_FURC_GUILD_PSIJIC_NALIRSEWEN), -- Psijic Trader on Artaeum
   THIEVES_MERCH = GetString(SI_FURC_GUILD_THIEVES_MERCH), -- Outlaw Merchant in any refuge
   UNDAUNTED_QM = GetString(SI_FURC_GUILD_UNDAUNTED_QM), -- Undaunted Achievement trader
-
-  -- use suffix (collection) instead of 1 string per trader
-  DROPSNOGLASS_COLL = GetString(SI_FURC_TRADERS_DROPSNOGLASS_COLL), -- TODO: make collections into special sources
-  MAGES_MYSTIC_COLL = GetString(SI_FURC_GUILD_MAGES_MYSTIC_COLL), -- TODO: make collections into special sources
-  RAZOUFA_COLL = GetString(SI_FURC_TRADERS_RAZOUFA_COLL), -- TODO: make collections into special sources
 
   -- enemies (loot) and social classes (pickpocketing)
   ENEMY_AUTOMATON = GetString(SI_FURC_NPC_AUTOMATON),
@@ -329,8 +324,9 @@ FurC.Constants.CrownCrates = {
   -- Source: https://en.uesp.net/wiki/Online:Crown_Crates
 
   -- ids not confirmed ingame yet
-
+  
   KINDRED = GetCrownCrateName(64), -- 2025-12, Hidden Kindred
+  
 
   -- confirmed ids
   ANU_PAD = GetCrownCrateName(67), -- 2026-06, Anu vs. Padomay
@@ -506,6 +502,7 @@ FurC.Constants.Events = {
   WITCHES = GetString(SI_FURC_EVENT_WITCHES), -- Witches Festival
   ZENITHAR = GetString(SI_FURC_EVENT_ZENITHAR), -- Zeal of Zenithar
   HEARTS = GetString(SI_FURC_EVENT_HEARTS), -- Hearts Week
+  NIGHTMARKET = GetString(SI_FURC_EVENT_NIGHTMARKET), -- Night Market
 }
 
 FurC.Constants.Containers = {
