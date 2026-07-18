@@ -219,6 +219,7 @@ local strings = {
   SI_FURC_SRC_BAZAAR = "Gold Coast Bazaar",
   SI_FURC_SRC_CHESTS = "treasure chests^P,from",
   SI_FURC_SRC_CLAM_GIANT = "giant clams^p,from",
+  SI_FURC_SRC_COLLECTIBLE = "Collectible",
   SI_FURC_SRC_CRAFTING = "crafting^N,by",
   SI_FURC_SRC_CROWNSTORE = "Crown Store^n,from",
   SI_FURC_SRC_DOLMEN = "Dolmen^P,from",
