@@ -6,9 +6,9 @@ local rumourSource = GetString(SI_FURC_SRC_RUMOUR_ITEM)
 local dataminedUnclear = GetString(SI_FURC_DATAMINED_UNCLEAR)
 
 -- Season Zero Part 2
-FurC.Rumours[ver.ZERO2] = {
-  [224876] = rumourSource, -- Music Box, A Wish for Fish
-  [225184] = rumourSource, -- Pipe, Stately
+FurC.Rumours[ver.ZERO2] = {  
+	[224876] = rumourSource, -- Music Box, A Wish for Fish
+    [225184] = rumourSource, -- Pipe, Stately
   [223844] = rumourSource, -- Hearts Week Decor, Red Bow
 }
 
@@ -32,7 +32,6 @@ FurC.Rumours[ver.ZERO] = {
   [223845] = rumourSource, -- Hearts Week Garland, Curved Ribbon
   [223846] = rumourSource, -- Hearts Week Garland, Curved Long Ribbon
   [223847] = rumourSource, -- Hearts Week Garland, Curved Floral Dangles
-  [223885] = rumourSource, -- Ayleid Staircase, Split
   [223886] = rumourSource, -- Ayleid Apparatus, Lamp
   [223887] = rumourSource, -- Alinor Colonnade, Summerset
   [223888] = rumourSource, -- Hedge, Camellia Shrub
@@ -253,6 +252,18 @@ FurC.Rumours[ver.STONET] = {
   [114414] = rumourSource, -- High Elf Medallion, Winged
   [94160] = rumourSource, -- Imperial Lantern, Imperial City
   [94116] = rumourSource, -- Imperial Cauldron, Pitch-filled
+  
+  [153554] = rumourSource, -- Imperial Mirror, Standing,       Imperial City Celebration Event
+  [153562] = rumourSource, -- Daedric Brazier, Standing,       Imperial City Celebration Event
+  [153561] = rumourSource, -- Daedric Chandelier, Ritual,      Imperial City Celebration Event
+  [153557] = rumourSource, -- Imperial Footlocker, Scrollwork, Imperial City Celebration Event
+  [153558] = rumourSource, -- Imperial Wardrobe, Scrollwork,   Imperial City Celebration Event
+  [153553] = rumourSource, -- Imperial Dresser, Scrollwork,    Imperial City Celebration Event
+  [153556] = rumourSource, -- Imperial Divider, Folding,       Imperial City Celebration Event
+  [153555] = rumourSource, -- Imperial Nightstand, Scrollwork, Imperial City Celebration Event
+  [153560] = rumourSource, -- Imperial Shrine of the Bay,      Imperial City Celebration Event
+  [153552] = rumourSource, -- Imperial Tapestry, Akatosh,      Imperial City Celebration Event
+  [153559] = rumourSource, -- Imperial Bed, Canopy,            Imperial City Celebration Event
 }
 
 -- 15 Greymoor
