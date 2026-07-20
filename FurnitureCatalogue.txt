@@ -34,6 +34,7 @@ data\Fishing.lua
 
 data\AchievementVendors.lua
 data\Books.lua
+data\HomeGoodsFurnisher.lua
 data\EventItems.lua
 data\LuxuryFurnisher.lua
 data\PvP.lua
