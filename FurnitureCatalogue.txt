@@ -4,7 +4,7 @@
 ## AddOnVersion: 6003000
 ## APIVersion: 101050 101051
 ## SavedVariables: FurnitureCatalogue_Settings
-## DependsOn: LibCustomMenu>=730 LibAddonMenu-2.0>=43 LibAsync>=30103
+## DependsOn: LibCustomMenu>=730 LibAddonMenu-2.0>=43 LibAsync>=30103 LibFurnitureCatalogue>=10000
 ## OptionalDependsOn: LibDebugLogger LibDebugViewer LibCharacterKnowledge
 
 locale\en.lua
