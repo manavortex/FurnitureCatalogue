@@ -915,35 +915,35 @@ local bookList = {
 FurC.AchievementVendors[ver.THIEVES] = {
   [loc.GLENUMBRA] = {
     [npc.AF] = {
-	  [225179] = { -- Koldane Cartel Banner
-	    itemPrice = 900,
-		achievement = 4589,
-	  },
-	  [225180] = { -- Nowhere Key, Replica
-	    itemPrice = 9000,
-		achievement = 4591,
-	  },
-	  [225181] = { -- Thieves Moon, Replica
-	    itemPrice = 31500,
-		achievement = 4594,
-	  },
-	  [225182] = { -- Cheese Stack, Giant
-	    itemPrice = 18000,
-		achievement = 4597,
-	  },
-	  [225195] = { -- Aspect of the Mad God, Anger
-	    itemPrice = 45000,
-		achievement = 4599,
-	  },
-	  [225196] = { -- Aspect of the Mad God, Amusement
-	    itemPrice = 45000,
-		achievement = 4599,
-	  },
-	  [225197] = { -- Aspect of the Mad God, Laughter
-	    itemPrice = 45000,
-		achievement = 4599,
-	  },
-	},
+      [225179] = { -- Koldane Cartel Banner
+        itemPrice = 900,
+        achievement = 4589,
+      },
+      [225180] = { -- Nowhere Key, Replica
+        itemPrice = 9000,
+        achievement = 4591,
+      },
+      [225181] = { -- Thieves Moon, Replica
+        itemPrice = 31500,
+        achievement = 4594,
+      },
+      [225182] = { -- Cheese Stack, Giant
+        itemPrice = 18000,
+        achievement = 4597,
+      },
+      [225195] = { -- Aspect of the Mad God, Anger
+        itemPrice = 45000,
+        achievement = 4599,
+      },
+      [225196] = { -- Aspect of the Mad God, Amusement
+        itemPrice = 45000,
+        achievement = 4599,
+      },
+      [225197] = { -- Aspect of the Mad God, Laughter
+        itemPrice = 45000,
+        achievement = 4599,
+      },
+    },
   },
 }
 
@@ -954,51 +954,50 @@ FurC.AchievementVendors[ver.ZERO] = {}
 FurC.AchievementVendors[ver.WORMS2] = {
   [loc.SOLSTICE] = {
     [npc.AF] = {
-	  [223664] = { -- Worm Cult Tent, Cultist's
-	    itemPrice = 75000,
-		achievement = 4460,
-	  },
-	  [223663] = { -- Worm Cult Banner, Hanging Red
-	    itemPrice = 10000,
-		achievement = 4473, 
-	  },
-	  [223661] = { -- Worm King's Sarcophagus, Necropolis Replica
-	    itemPrice = 150000,
-		achievement = 4475, -- Hero of Solstice
-	  },
-	  [223662] = { -- Ashbound Hall Aspect Lock, Replica
-	    itemPrice = 75000,
-		achievement = 4407,
-	  },
-	},
+      [223664] = { -- Worm Cult Tent, Cultist's
+        itemPrice = 75000,
+        achievement = 4460,
+      },
+      [223663] = { -- Worm Cult Banner, Hanging Red
+        itemPrice = 10000,
+        achievement = 4473,
+      },
+      [223661] = { -- Worm King's Sarcophagus, Necropolis Replica
+        itemPrice = 150000,
+        achievement = 4475, -- Hero of Solstice
+      },
+      [223662] = { -- Ashbound Hall Aspect Lock, Replica
+        itemPrice = 75000,
+        achievement = 4407,
+      },
+    },
   },
-  
- }
+}
 
 -- 36 Feast of Shadows
 FurC.AchievementVendors[ver.SHADOWS] = {
   [loc.SOLSTICE] = {
     [npc.AF] = {
-	  [219726] = { -- Worm Cult Crystal Pylon
-	    itemPrice = 50000,
-		achievement = 4449, -- Barrier Buster
-	  },
-	  [219725] = { -- Stirk Fellowship Command Tent
-	    itemPrice = 100000,
-		achievement = 4425, -- Siege Camp Guardian
-	  },
-	},
+      [219726] = { -- Worm Cult Crystal Pylon
+        itemPrice = 50000,
+        achievement = 4449, -- Barrier Buster
+      },
+      [219725] = { -- Stirk Fellowship Command Tent
+        itemPrice = 100000,
+        achievement = 4425, -- Siege Camp Guardian
+      },
+    },
   },
-  
+
   [loc.UNDAUNTED] = {
     [npc.UNDAUNTED_QM] = {
       [217972] = { -- Naj-Caldeesh Drawbridge, Stone
         itemPrice = 40000,
         achievement = 4311, -- Naj-Caldeesh Vanquisher
       },
-	  [217971] = { -- Coldharbour Archway, Grand
-	    itemPrice = 25000,
-		achievement = 4334, -- Black Gem Foundry Vanquisher
+      [217971] = { -- Coldharbour Archway, Grand
+        itemPrice = 25000,
+        achievement = 4334, -- Black Gem Foundry Vanquisher
       },
     },
   },
@@ -1007,14 +1006,14 @@ FurC.AchievementVendors[ver.SHADOWS] = {
 -- 35 Seasons of the Worm Cult
 FurC.AchievementVendors[ver.WORMS] = {
   [npc.CAF] = {
-	[217650] = { -- Argonian Houseboat
-	  itemPrice = 50000,
-	  achievement = 4426, -- Commemorative Master Angler
-	},
-	[217601] = { -- Molag Bal Plaque
-	  itemPrice = 14000,
-	  achievement = 1003,
-	},
+    [217650] = { -- Argonian Houseboat
+      itemPrice = 50000,
+      achievement = 4426, -- Commemorative Master Angler
+    },
+    [217601] = { -- Molag Bal Plaque
+      itemPrice = 14000,
+      achievement = 1003,
+    },
   },
   [loc.SOLSTICE] = {
     [npc.AF] = {
@@ -1032,7 +1031,7 @@ FurC.AchievementVendors[ver.WORMS] = {
       },
       [217596] = { -- Subclassing Banner
         itemPrice = 12000,
-		achievement = 4402,
+        achievement = 4402,
       },
       [217599] = { -- Sunport Banner
         itemPrice = 12000,
@@ -1046,14 +1045,14 @@ FurC.AchievementVendors[ver.WORMS] = {
         itemPrice = 12000,
         achievement = 4414, -- Archmage Whisperer
       },
-	  [217594] = { -- Tide-Born Pool, Ceremonial
-	    itemPrice = 50000,
-		achievement = 4408,
-	  },
-	  [217597] = { -- Meridian Cynosure, Inert
-	    itemPrice = 5000,
-		achievement = 4461,
-	  },
+      [217594] = { -- Tide-Born Pool, Ceremonial
+        itemPrice = 50000,
+        achievement = 4408,
+      },
+      [217597] = { -- Meridian Cynosure, Inert
+        itemPrice = 5000,
+        achievement = 4461,
+      },
     },
   },
 }
@@ -1062,19 +1061,19 @@ FurC.AchievementVendors[ver.WORMS] = {
 FurC.AchievementVendors[ver.FALLBAN] = {
   [loc.UNDAUNTED] = {
     [npc.UNDAUNTED_QM] = {
-	  [212586] = { -- Redguard Boat, Sailing
-	    itemPrice = 50000,
-		achievement = 4128,
-	  },
-	  [212587] = { -- Exiled Redoubt Banner
-	    itemPrice = 4500,
-		achievement = 4109,
-	  },
-	  [214249] = { -- Replica Soul Reaper
-	    itemPrice = 50000,
-		achievement = 4306,
-	  },
-	},
+      [212586] = { -- Redguard Boat, Sailing
+        itemPrice = 50000,
+        achievement = 4128,
+      },
+      [212587] = { -- Exiled Redoubt Banner
+        itemPrice = 4500,
+        achievement = 4109,
+      },
+      [214249] = { -- Replica Soul Reaper
+        itemPrice = 50000,
+        achievement = 4306,
+      },
+    },
   },
 }
 
@@ -1086,10 +1085,10 @@ FurC.AchievementVendors[ver.BASE44] = {
         itemPrice = 25000,
         achievement = 4248,
       },
-	  [211506] = { -- Empathic Portal Remnant
-	    itemPrice = 25000,
-		achievement = 4245,
-	  },
+      [211506] = { -- Empathic Portal Remnant
+        itemPrice = 25000,
+        achievement = 4245,
+      },
     },
   },
 }
@@ -1100,7 +1099,7 @@ FurC.AchievementVendors[ver.BASE43] = {
     [npc.AF] = {
       [203600] = { -- Scribing Altar
         itemPrice = 30000,
-        currency = CURT_ENDLESS_DUNGEON,
+        currency = CURT_ARCHIVAL_FORTUNES,
         achievement = 3985, -- Inheritor of the Scholarium
       },
     },
@@ -1226,47 +1225,47 @@ FurC.AchievementVendors[ver.ENDLESS] = {
     [npc.AF] = {
       [203155] = { -- Apocrypha Drying Rack, Paper
         itemPrice = 1000,
-        currency = CURT_ENDLESS_DUNGEON,
+        currency = CURT_ARCHIVAL_FORTUNES,
         achievement = 3765, -- A Little Help Never Hurt
       },
       [203153] = { -- Apocrypha Pedestal
         itemPrice = 5500,
-        currency = CURT_ENDLESS_DUNGEON,
+        currency = CURT_ARCHIVAL_FORTUNES,
         achievement = 3799, -- Mora's Onslaught (There is an error in game with this achievement. The item states the achievement required is called "Gathering Arms" though no such achievement is found. It may be any stage of the achievement listed above.)
       },
       [203158] = { -- Apocrypha Plant, Languid Tentacles
         itemPrice = 20000,
-        currency = CURT_ENDLESS_DUNGEON,
+        currency = CURT_ARCHIVAL_FORTUNES,
         achievement = 3798, -- Archive's Most Adored
       },
       [203152] = { -- Apocrypha Window, Eye
         itemPrice = 6800,
-        currency = CURT_ENDLESS_DUNGEON,
+        currency = CURT_ARCHIVAL_FORTUNES,
         achievement = 3762, -- Fortune's Soldier
       },
       [203157] = { -- Apocryphal Obelisk
         itemPrice = 7500,
-        currency = CURT_ENDLESS_DUNGEON,
+        currency = CURT_ARCHIVAL_FORTUNES,
         achievement = 3769, -- First Splurge!
       },
       [203154] = { -- Choral Altar
         itemPrice = 7500,
-        currency = CURT_ENDLESS_DUNGEON,
+        currency = CURT_ARCHIVAL_FORTUNES,
         achievement = 3805, -- Studying Up
       },
       [203159] = { -- Daedric Arch, Glass
         itemPrice = 6500,
-        currency = CURT_ENDLESS_DUNGEON,
+        currency = CURT_ARCHIVAL_FORTUNES,
         achievement = 3760, -- Heavy Hitter
       },
       [203160] = { -- Infinite Archive Access, Replica
         itemPrice = 6000,
-        currency = CURT_ENDLESS_DUNGEON,
+        currency = CURT_ARCHIVAL_FORTUNES,
         achievement = 3802, -- A Sturdy Shield
       },
       [203156] = { -- Infinite Archive Index, Replica
         itemPrice = 25000,
-        currency = CURT_ENDLESS_DUNGEON,
+        currency = CURT_ARCHIVAL_FORTUNES,
         achievement = 3772, -- Running the Gauntlet
       },
     },
@@ -1487,11 +1486,11 @@ FurC.AchievementVendors[ver.DEADL] = {
       },
       [182310] = { -- Deadlands Buttress
         itemPrice = 2500,
-		achievement = 3141,
+        achievement = 3141,
       },
       [182309] = { -- Deadlands Buttress, Large
         itemPrice = 4000,
-		achievement = 3138,
+        achievement = 3138,
       },
       [182312] = { -- Deadlands Displacer, Inactive
         itemPrice = 4000,
@@ -1555,11 +1554,11 @@ FurC.AchievementVendors[ver.BLACKW] = {
       },
       [175703] = { -- Banner, Tattered Mehrunes Dagon
         itemPrice = 12000,
-		achievement = 2985,
+        achievement = 2985,
       },
       [175700] = { -- Deadlands Chandelier, Caged
         itemPrice = 10000,
-		achievement = 2971,
+        achievement = 2971,
       },
       [175705] = { -- Deadlands Pillar, Tall Inscribed
         itemPrice = 20000,
@@ -1575,7 +1574,7 @@ FurC.AchievementVendors[ver.BLACKW] = {
       },
       [175702] = { -- Entwined Snakes, Crystal Holder
         itemPrice = 12000,
-		achievement = 2980,
+        achievement = 2980,
       },
       [175704] = { -- Inert Oblivion Gate
         itemPrice = 50000,
@@ -1587,7 +1586,7 @@ FurC.AchievementVendors[ver.BLACKW] = {
       },
       [175701] = { -- Xi-Tsei Stone Idol
         itemPrice = 4000,
-		achievement = 2973,
+        achievement = 2973,
       },
     },
   },
@@ -1979,13 +1978,12 @@ FurC.AchievementVendors[ver.WEREWOLF] = {
 
 -- 8 Murkmire
 FurC.AchievementVendors[ver.SLAVES] = {
-	[npc.CAF] = {
-	  [145488] = { -- Banner, Jewelry Crafting
-		itemPrice = 5000,
-		achievement = 2215,
-	  },
-	  
-	},
+  [npc.CAF] = {
+    [145488] = { -- Banner, Jewelry Crafting
+      itemPrice = 5000,
+      achievement = 2215,
+    },
+  },
   [loc.MURKMIRE] = {
     [npc.AF] = {
       [145408] = { -- Argon Pedestal, Replica
@@ -2190,23 +2188,23 @@ FurC.AchievementVendors[ver.REACH] = {
     [npc.UNDAUNTED_QM] = {
       [131428] = { -- Horn of the Reachclans
         itemPrice = 50000,
-		achievement = 1698,
+        achievement = 1698,
       },
       [131429] = { -- Vine, Bloodroot Wriggler
         itemPrice = 5000,
-		achievement = 1690,
+        achievement = 1690,
       },
       [131432] = { -- Vine, Bloodroot Stem
         itemPrice = 5000,
-		achievement = 1690,
+        achievement = 1690,
       },
       [131430] = { -- Vine, Bloodroot Mangler
         itemPrice = 5000,
-		achievement = 1690,
+        achievement = 1690,
       },
       [131431] = { -- Vine, Bloodroot Grasper
         itemPrice = 5000,
-		achievement = 1690,
+        achievement = 1690,
       },
     },
   },
@@ -2417,96 +2415,96 @@ FurC.AchievementVendors[ver.MORROWIND] = {
 FurC.Books[ver.HOMESTEAD] = bookList
 
 FurC.AchievementVendors[ver.HOMESTEAD] = {
-	[npc.CAF] = {
-	  [119987] = { -- Coldharbour Urn
-        itemPrice = 5000,
-        achievement = 993,
-      },
-	  [120064] = { -- Covenant Hero Shield
-		itemPrice = 10000,
-		achievement = 61,
-	  },
-	  [120037] = { -- Decorative Skyshard
-		itemPrice = 25000,
-		achievement = 989,
-	  },
-	  [120001] = { -- Decorative Treasure Chest
-		itemPrice = 10000,
-		achievement = 22,
-	  },
-	  [119994] = { -- Depleted Sigil Stone
-		itemPrice = 5000,
-		achievement = 1000,
-	  },
-	  [120066] = { -- Display Craft Bag
-		itemPrice = 5000,
-		achievement = "ESO+",
-	  },
-	  [120063] = { -- Dominion Hero Shield
-		itemPrice = 10000,
-		achievement = 618,
-	  },
-	  [120043] = { -- Fishing Vessel
-		itemPrice = 25000,
-		achievement = 494,
-	  },
-	  [120056] = { -- Hanging Map of Tamriel
-		itemPrice = 10000,
-		achievement = 867,
-	  },
-	  [119993] = { -- Lantern of Anguish
-		itemPrice = 5000,
-		achievement = 999,
-	  },
-	  [120065] = { -- Pact Hero Shield
-		itemPrice = 10000,
-		achievement = 617,
-	  },
-	  [120039] = { -- Primal Altar to Hircine
-		itemPrice = 50000,
-		achievement = 1009,
-	  },
-	  [119989] = { -- Replica Black Soul Gem
-		itemPrice = 2500,
-		achievement = 995,
-	  },
-	  [119988] = { -- Replica Soul Gem
-		itemPrice = 500,
-		achievement = 994,
-	  },
-	  [119995] = { -- Silent Sentinel
-		itemPrice = 20000,
-		achievement = 1001,
-	  },
-	  [119990] = { -- Soul Gem Case
-		itemPrice = 4000,
-		achievement = 996,
-	  },
-	  [119992] = { -- Soul Gem Crate
-		itemPrice = 5000,
-		achievement = 998,
-	  },
-	  [119996] = { -- Soul Gem Stand
-		itemPrice = 4000,
-		achievement = 1002,
-	  },
-	  [119991] = { -- Spare Flesh Atronach Parts
-		itemPrice = 10000,
-		achievement = 997,
-	  },
-	  [119873] = { -- Tamrith Coffin
-		itemPrice = 20000,
-		achievement = 1010,
-	  },
-	  [119872] = { -- Tamrith Coffin Lid
-		itemPrice = 5000,
-		achievement = 1010,
-	  },
-	  [119997] = { -- The Final Threat
-		itemPrice = 100000,
-		achievement = 1003,
-	  },
-	},
+  [npc.CAF] = {
+    [119987] = { -- Coldharbour Urn
+      itemPrice = 5000,
+      achievement = 993,
+    },
+    [120064] = { -- Covenant Hero Shield
+      itemPrice = 10000,
+      achievement = 61,
+    },
+    [120037] = { -- Decorative Skyshard
+      itemPrice = 25000,
+      achievement = 989,
+    },
+    [120001] = { -- Decorative Treasure Chest
+      itemPrice = 10000,
+      achievement = 22,
+    },
+    [119994] = { -- Depleted Sigil Stone
+      itemPrice = 5000,
+      achievement = 1000,
+    },
+    [120066] = { -- Display Craft Bag
+      itemPrice = 5000,
+      achievement = "ESO+",
+    },
+    [120063] = { -- Dominion Hero Shield
+      itemPrice = 10000,
+      achievement = 618,
+    },
+    [120043] = { -- Fishing Vessel
+      itemPrice = 25000,
+      achievement = 494,
+    },
+    [120056] = { -- Hanging Map of Tamriel
+      itemPrice = 10000,
+      achievement = 867,
+    },
+    [119993] = { -- Lantern of Anguish
+      itemPrice = 5000,
+      achievement = 999,
+    },
+    [120065] = { -- Pact Hero Shield
+      itemPrice = 10000,
+      achievement = 617,
+    },
+    [120039] = { -- Primal Altar to Hircine
+      itemPrice = 50000,
+      achievement = 1009,
+    },
+    [119989] = { -- Replica Black Soul Gem
+      itemPrice = 2500,
+      achievement = 995,
+    },
+    [119988] = { -- Replica Soul Gem
+      itemPrice = 500,
+      achievement = 994,
+    },
+    [119995] = { -- Silent Sentinel
+      itemPrice = 20000,
+      achievement = 1001,
+    },
+    [119990] = { -- Soul Gem Case
+      itemPrice = 4000,
+      achievement = 996,
+    },
+    [119992] = { -- Soul Gem Crate
+      itemPrice = 5000,
+      achievement = 998,
+    },
+    [119996] = { -- Soul Gem Stand
+      itemPrice = 4000,
+      achievement = 1002,
+    },
+    [119991] = { -- Spare Flesh Atronach Parts
+      itemPrice = 10000,
+      achievement = 997,
+    },
+    [119873] = { -- Tamrith Coffin
+      itemPrice = 20000,
+      achievement = 1010,
+    },
+    [119872] = { -- Tamrith Coffin Lid
+      itemPrice = 5000,
+      achievement = 1010,
+    },
+    [119997] = { -- The Final Threat
+      itemPrice = 100000,
+      achievement = 1003,
+    },
+  },
   [loc.DESHAAN] = {
     [npc.AF] = {
       [119908] = { -- Swamp Anemone
@@ -2598,7 +2596,7 @@ FurC.AchievementVendors[ver.HOMESTEAD] = {
       },
     },
   },
-  
+
   [loc.SHADOWFEN] = {
     [npc.AF] = {
       [119897] = { -- Argonian Egg
@@ -2648,7 +2646,7 @@ FurC.AchievementVendors[ver.HOMESTEAD] = {
       },
     },
   },
-  
+
   [loc.ALIKR] = {
     [npc.AF] = {
       [119879] = { -- Kneeling Ansei Statue
@@ -2968,7 +2966,7 @@ FurC.AchievementVendors[ver.HOMESTEAD] = {
       },
     },
   },
-  
+
   [loc.COLDH] = {
     [npc.AF] = {
       [119828] = { -- Ayleid Throne
@@ -3089,9 +3087,9 @@ FurC.AchievementVendors[ver.HOMESTEAD] = {
         itemPrice = 15000,
         achievement = 1375,
       },
-	  [119966] = { -- Iron Wheel Banner
+      [119966] = { -- Iron Wheel Banner
         itemPrice = 15000,
-		achievement = 1370,
+        achievement = 1370,
       },
       [120952] = { -- Opulent Dowry Chest
         itemPrice = 50000,

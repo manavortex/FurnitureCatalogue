@@ -25,6 +25,7 @@ local strings = {
   SI_FURC_EVENT_JESTER = "Jester's Festival",
   SI_FURC_EVENT_MAYHEM = "Whitestrake's Mayhem",
   SI_FURC_EVENT_NEWLIFE = "New Life Festival",
+  SI_FURC_EVENT_NIGHTMARKET = "Night Market",
   SI_FURC_EVENT_UNDAUNTED = "Undaunted Celebration",
   SI_FURC_EVENT_WITCHES = "Witches Festival",
   SI_FURC_EVENT_ZENITHAR = "Zeal of Zenithar",
