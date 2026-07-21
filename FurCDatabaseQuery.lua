@@ -251,10 +251,10 @@ local function getEventDropSource(recipeKey, recipeArray)
             return strMultiple(src1, src2)
           end
 
-          if itemType == "table" then -- must have price
-		    local currency = item.currency or (srcName == npc.EVENT and CURT_TRADE_BARS or CURT_MONEY)
-		    return strFurnisher(srcName, eventName, item.itemPrice, currency)
-		  end
+          if itemType == "table" then -- Schema: must have price, may have currency + achievement
+            local currency = item.currency or (srcName == npc.EVENT and CURT_TRADE_BARS or CURT_MONEY)
+            return strFurnisher(srcName, eventName, item.itemPrice, currency, item.achievement)
+          end
         end
       end
     end
@@ -303,7 +303,7 @@ local function getMiscItemSource(recipeKey, recipeArray, stripColor, source)
   if not originData then
     return emptyString
   end
-  
+
   if source == src.EDITOR then
     originData = zo_strformat(strEditorTag, originData, srcEditor)
   end

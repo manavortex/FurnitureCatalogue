@@ -748,7 +748,7 @@ end
 ---| 9 # CURT_EVENT_TICKETS (Event Tickets)
 ---| 10 # CURT_UNDAUNTED_KEYS (Undaunted Keys)
 ---| 11 # CURT_ENDEAVOR_SEALS (Seals of Endeavor)
----| 12 # CURT_ENDLESS_DUNGEON (Infinite Archive)
+---| 12 # CURT_ARCHIVAL_FORTUNES (Infinite Archive)
 
 ---@type CurrencyType
 CURT_NONE = 0
@@ -775,7 +775,10 @@ CURT_UNDAUNTED_KEYS = 10
 ---@type CurrencyType
 CURT_ENDEAVOR_SEALS = 11
 ---@type CurrencyType
+---@deprecated Use CURT_ARCHIVAL_FORTUNES
 CURT_ENDLESS_DUNGEON = 12
+---@type CurrencyType
+CURT_ARCHIVAL_FORTUNES = 12
 
 ---@alias FormatType : number
 ---| 1 # ZO_CURRENCY_FORMAT_AMOUNT_NAME
