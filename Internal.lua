@@ -186,3 +186,115 @@ local function getCrafterNames(item)
   return names
 end
 this.GetCrafterNames = getCrafterNames
+
+--[[_______________________
+    |                     |
+    |    RUNTIME UTILS    |
+    |_____________________|]]
+
+FurC.Utils = FurC.Utils or {}
+local Utils = FurC.Utils
+local sFormat = zo_strformat
+
+-- ruthlessly stolen from TextureIt
+--- Sorts table by given key
+--- @return table sortedTable
+function Utils.SortTable(tTable, sortKey, SortOrderUp)
+  --[[
+    TODO #REFACTOR:
+      - expect function instead of boolean "SortOrderUp"
+      - ZO_TableOrderingFunction
+      - make generic, not itemlink dependant
+  ]]
+
+  local keys = {}
+  for k in pairs(tTable) do
+    table.insert(keys, k)
+  end
+  table.sort(keys, function(a, b)
+    if nil == tTable[a] or nil == tTable[b] then
+    elseif nil == tTable[a][sortKey] then
+      return false
+    elseif nil == tTable[b][sortKey] then
+      return true
+    else
+      if SortOrderUp then
+        return tTable[a][sortKey] > tTable[b][sortKey]
+      else
+        return tTable[a][sortKey] < tTable[b][sortKey]
+      end
+    end
+    return tTable
+  end)
+
+  local ret = {}
+  local scannedLinks = {}
+  for _, k in ipairs(keys) do
+    local entry = tTable[k]
+    local itemLink = entry["itemLink"]
+    local ingredients = entry["ingredients"]
+    local index = scannedLinks[itemLink] or k
+
+    table.insert(ret, entry)
+  end
+
+  return ret
+end
+
+local currentChar
+---Get the current character name in desired format
+---@return string
+function Utils.GetCurrentChar()
+  currentChar = currentChar or sFormat("<<1>>", GetUnitName("player"))
+  return currentChar
+end
+
+---Check if item is a furnishing
+---@param itemLink string
+---@return boolean isFurniture
+function Utils.IsFurniture(itemLink)
+  local isRecipe = IsItemLinkFurnitureRecipe(itemLink)
+  return isRecipe or IsItemLinkPlaceableFurniture(itemLink)
+end
+
+---Example: FurC.Utils.GetBlueprintForItem("|H1:item:165634:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h") -> "|H1:item:166781:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"
+---@param itemLink string
+---@return string blueprintLink or empty string
+function Utils.GetBlueprintForItem(itemLink)
+  if IsItemLinkFurnitureRecipe(itemLink) then
+    return itemLink
+  end
+  local entry = FurC.DB[GetItemLinkItemId(itemLink)]
+  if not entry or not entry.blueprint then
+    return ""
+  end
+  return Utils.GetItemLink(entry.blueprint)
+end
+
+---Example: FurC.Utils.GetBlueprintForItem("|H1:item:166781:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h") -> "|H1:item:165634:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"
+---@param blueprintLink string
+---@return string itemLink or empty string
+function Utils.GetItemFromBlueprint(blueprintLink)
+  if IsItemLinkPlaceableFurniture(blueprintLink) then
+    return blueprintLink
+  end
+  return GetItemLinkRecipeResultItemLink(blueprintLink)
+end
+
+-- GetItemLinkItemId doesn't work the way I need it
+-- TODO #REFACTOR: should only take one type of link (not nil, number, string, links)
+function Utils.GetItemId(itemLink)
+  if nil == itemLink or "" == itemLink then
+    return
+  end
+  if type(itemLink) == "number" and itemLink > 9999 then
+    return itemLink
+  end
+  local _, _, _, itemId = ZO_LinkHandler_ParseLink(itemLink)
+  return tonumber(itemId)
+end
+
+-- Alias for LibPrice
+---@deprecated will be replaced by API function in the future
+---@see FurC.Utils.GetItemId
+FurC.GetItemId = Utils.GetItemId
