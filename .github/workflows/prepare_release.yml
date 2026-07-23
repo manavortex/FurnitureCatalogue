@@ -195,17 +195,21 @@ jobs:
       - name: Regenerate autocomplete defs (XML + strings)
         run: |
           LUADOC_DEFINITIONS="docs/autocomplete_definitions.lua"
-          LANGFILE_EN="locale/en.lua"
-          python .scripts/luaDoc_generateStr.py "$LANGFILE_EN"
+          python .scripts/luaDoc_generateStr.py locale/en.lua
+          python .scripts/luaDoc_generateStr.py LibFurnitureCatalogue/locale/en.lua
           python .scripts/luaDoc_generateGui.py xml/FurnitureCatalogue.xml "$LUADOC_DEFINITIONS"
           python .scripts/luaDoc_generateGui.py FurnitureCatalogue_DevUtility/xml.xml "$LUADOC_DEFINITIONS"
 
       - name: Regenerate translation files
         run: |
-          LANGFILE_EN="locale/en.lua"
           for langfile in locale/*.lua; do
-            if [[ "$langfile" != "$LANGFILE_EN" ]]; then
-              python .scripts/luaDoc_generateStr.py "$LANGFILE_EN" "$langfile" --generate-translation
+            if [[ "$langfile" != "locale/en.lua" ]]; then
+              python .scripts/luaDoc_generateStr.py locale/en.lua "$langfile" --generate-translation
+            fi
+          done
+          for langfile in LibFurnitureCatalogue/locale/*.lua; do
+            if [[ "$langfile" != "LibFurnitureCatalogue/locale/en.lua" ]]; then
+              python .scripts/luaDoc_generateStr.py LibFurnitureCatalogue/locale/en.lua "$langfile" --generate-translation
             fi
           done
 

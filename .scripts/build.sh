@@ -75,6 +75,7 @@ command -v "$PY" >/dev/null || { echo "🔥 python3 not found ($PY). Set PYTHON3
 # ------------------------------------------
 echo "[build] regenerate autocomplete defs"
 "$PY" .scripts/luaDoc_generateStr.py locale/en.lua
+"$PY" .scripts/luaDoc_generateStr.py LibFurnitureCatalogue/locale/en.lua
 "$PY" .scripts/luaDoc_generateGui.py xml/FurnitureCatalogue.xml docs/autocomplete_definitions.lua
 "$PY" .scripts/luaDoc_generateGui.py FurnitureCatalogue_DevUtility/xml.xml docs/autocomplete_definitions.lua
 
@@ -82,6 +83,10 @@ echo "[build] regenerate translation files"
 for langfile in locale/*.lua; do
   [[ "$langfile" == "locale/en.lua" ]] && continue
   "$PY" .scripts/luaDoc_generateStr.py locale/en.lua "$langfile" --generate-translation
+done
+for langfile in LibFurnitureCatalogue/locale/*.lua; do
+  [[ "$langfile" == "LibFurnitureCatalogue/locale/en.lua" ]] && continue
+  "$PY" .scripts/luaDoc_generateStr.py LibFurnitureCatalogue/locale/en.lua "$langfile" --generate-translation
 done
 
 # ------------------------------------------
