@@ -1,9 +1,14 @@
 ## Title: LibFurnitureCatalogue
 ## Author: |c1122FFwookiefriseur|r & others (see description)
-## Description: Furniture Catalogue database library (item sources, prices, data). Based on FurnitureCatalogue from manavortex, extended by many contributors. Data crowdsourced from GitHub contributors and esoui forum users. \|t36:36:esoui/art/icons/heraldrycrests_race_argonian_01.dds|t/ |c2222FF Stay moist! |r
+## Description: Furniture Catalogue database (item sources, prices, data). Based on FurnitureCatalogue from manavortex, extended by many contributors from GitHub and esoui. \|t36:36:esoui/art/icons/heraldrycrests_race_argonian_01.dds|t/ |c2222FF Stay moist! |r
 ## IsLibrary: true
 ## Version: 1.0.0
 ## AddOnVersion: 10000
 ## APIVersion: 101050 101051
 
 LibFurnitureCatalogue.lua
+
+locale\en.lua
+locale\$(language).lua
+
+Constants.lua
