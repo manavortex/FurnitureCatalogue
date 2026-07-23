@@ -1,3 +1,5 @@
+FurC.EventItems = FurC.EventItems or {}
+
 local ver = FurC.Constants.Versioning
 local events = FurC.Constants.Events
 local npc = FurC.Constants.NPC

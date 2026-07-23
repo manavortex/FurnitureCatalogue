@@ -21,20 +21,7 @@ FurCMenu.lua
 FurCEvents.lua
 
 data\RumourRecipes.lua
-data\Rumours.lua
 
-data\CrownStore.lua
-data\MiscItemSources.lua
-data\Antiquity.lua
-data\Justice.lua
-data\Fishing.lua
-
-data\AchievementVendors.lua
-data\Books.lua
-data\HomeGoodsFurnisher.lua
-data\EventItems.lua
-data\LuxuryFurnisher.lua
-data\PvP.lua
 data\Recipes.lua
 data\Rolis.lua
 data\RecipeSources.lua

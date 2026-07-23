@@ -14,20 +14,21 @@ this.settings = {}
 local src = this.Constants.ItemSources
 local ver = this.Constants.Versioning
 
-this.AchievementVendors = {}
-this.LuxuryFurnisher = {}
-this.Recipes = {}
-this.Rolis = {}
-this.Faustina = {}
-this.RolisRecipes = {}
-this.FaustinaRecipes = {}
-this.Books = {}
-this.EventItems = {}
-this.PVP = {}
-this.MiscItemSources = {}
-this.RumourRecipes = {}
-this.FurnishingFolios = {}
-this.Antiquities = {}
+-- data from LibFurnitureCatalogue
+this.AchievementVendors = this.AchievementVendors or {}
+this.LuxuryFurnisher = this.LuxuryFurnisher or {}
+this.Recipes = this.Recipes or {}
+this.Rolis = this.Rolis or {}
+this.Faustina = this.Faustina or {}
+this.RolisRecipes = this.RolisRecipes or {}
+this.FaustinaRecipes = this.FaustinaRecipes or {}
+this.Books = this.Books or {}
+this.EventItems = this.EventItems or {}
+this.PVP = this.PVP or {}
+this.MiscItemSources = this.MiscItemSources or {}
+this.RumourRecipes = this.RumourRecipes or {}
+this.FurnishingFolios = this.FurnishingFolios or {}
+this.Antiquities = this.Antiquities or {}
 
 local defaults = {
   hideMats = true,
