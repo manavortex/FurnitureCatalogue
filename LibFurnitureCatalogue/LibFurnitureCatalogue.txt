@@ -12,3 +12,4 @@ locale\en.lua
 locale\$(language).lua
 
 Constants.lua
+Format.lua

@@ -57,6 +57,7 @@ dofile(join(repoRoot, ".scripts", "test_stubs.lua"))
 
 -- AddOn load order matters
 loadAddon(join(tanethDir, "Taneth.txt"))
+loadAddon(join(repoRoot, "LibFurnitureCatalogue", "LibFurnitureCatalogue.txt"))
 loadAddon(join(repoRoot, "FurnitureCatalogue.txt"))
 loadAddon(join(repoRoot, "FurnitureCatalogue_DevUtility", "FurnitureCatalogue_DevUtility.txt"))
 

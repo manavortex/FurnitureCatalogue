@@ -1,11 +1,11 @@
--- Utilities and often used functions
+-- Formatting and string/link utilities
 
+-- TODO: change namespace
 FurC = FurC or {}
 
 FurC.Utils = FurC.Utils or {}
 local this = FurC.Utils
 
-local sJoin = zo_strjoin
 local sFormat = zo_strformat
 
 local colours = FurC.Constants.Colours
@@ -33,51 +33,6 @@ function this.MergeTable(t1, t2)
     t1[k] = v
   end
   return t1
-end
-
--- ruthlessly stolen from TextureIt
---- Sorts table by given key
---- @return table sortedTable
-function this.SortTable(tTable, sortKey, SortOrderUp)
-  --[[
-    TODO #REFACTOR:
-      - expect function instead of boolean "SortOrderUp"
-      - ZO_TableOrderingFunction
-      - make generic, not itemlink dependant
-  ]]
-
-  local keys = {}
-  for k in pairs(tTable) do
-    table.insert(keys, k)
-  end
-  table.sort(keys, function(a, b)
-    if nil == tTable[a] or nil == tTable[b] then
-    elseif nil == tTable[a][sortKey] then
-      return false
-    elseif nil == tTable[b][sortKey] then
-      return true
-    else
-      if SortOrderUp then
-        return tTable[a][sortKey] > tTable[b][sortKey]
-      else
-        return tTable[a][sortKey] < tTable[b][sortKey]
-      end
-    end
-    return tTable
-  end)
-
-  local ret = {}
-  local scannedLinks = {}
-  for _, k in ipairs(keys) do
-    local entry = tTable[k]
-    local itemLink = entry["itemLink"]
-    local ingredients = entry["ingredients"]
-    local index = scannedLinks[itemLink] or k
-
-    table.insert(ret, entry)
-  end
-
-  return ret
 end
 
 --[[_______________________
@@ -133,16 +88,8 @@ this.Colourise = colourise
 
 --[[_______________________
     |                     |
-    |     GAME UTILS      |
+    |    FORMATTERS       |
     |_____________________|]]
-
-local currentChar
----Get the current character name in desired format
----@return string
-function this.GetCurrentChar()
-  currentChar = currentChar or sFormat("<<1>>", GetUnitName("player"))
-  return currentChar
-end
 
 -- TODO #REFACTOR: collecting those in 1 place for now, move later, make some available in API
 -- TODO #REFACTOR maybe: for now separate formatters for each use case for more flexibility, later merge into one
@@ -488,58 +435,8 @@ end
 
 --[[_______________________
     |                     |
-    |   FURNITURE UTILS   |
+    |     LINK/NAME       |
     |_____________________|]]
-
----Check if item is a furnishing
----@param itemLink string
----@return boolean isFurniture
-function this.IsFurniture(itemLink)
-  local isRecipe = IsItemLinkFurnitureRecipe(itemLink)
-  return isRecipe or IsItemLinkPlaceableFurniture(itemLink)
-end
-
----Example: FurC.Utils.GetBlueprintForItem("|H1:item:165634:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h") -> "|H1:item:166781:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"
----@param itemLink string
----@return string blueprintLink or empty string
-function this.GetBlueprintForItem(itemLink)
-  if IsItemLinkFurnitureRecipe(itemLink) then
-    return itemLink
-  end
-  local entry = FurC.DB[GetItemLinkItemId(itemLink)]
-  if not entry or not entry.blueprint then
-    return ""
-  end
-  return this.GetItemLink(entry.blueprint)
-end
-
----Example: FurC.Utils.GetBlueprintForItem("|H1:item:166781:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h") -> "|H1:item:165634:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"
----@param blueprintLink string
----@return string itemLink or empty string
-function this.GetItemFromBlueprint(blueprintLink)
-  if IsItemLinkPlaceableFurniture(blueprintLink) then
-    return blueprintLink
-  end
-  return GetItemLinkRecipeResultItemLink(blueprintLink)
-end
-
--- GetItemLinkItemId doesn't work the way I need it
--- TODO #REFACTOR: should only take one type of link (not nil, number, string, links)
-function this.GetItemId(itemLink)
-  if nil == itemLink or "" == itemLink then
-    return
-  end
-  if type(itemLink) == "number" and itemLink > 9999 then
-    return itemLink
-  end
-  local _, _, _, itemId = ZO_LinkHandler_ParseLink(itemLink)
-  return tonumber(itemId)
-end
-
--- Alias for LibPrice
----@deprecated will be replaced by API function in the future
----@see FurC.Utils.GetItemId
-FurC.GetItemId = this.GetItemId
 
 --- Get item link from itemId (or itemLink)
 --- @param item number|string ID or itemlink
@@ -572,8 +469,7 @@ local function getItemLink(item)
 end
 this.GetItemLink = getItemLink
 
---- Drops the id→link memo. An id's link never changes, so this is never needed
---- for correctness — only to make a benchmark start from a cold cache.
+--- Drops id→link just for benchmarks
 function this.ClearLinkCache()
   linkCache = {}
 end
@@ -595,8 +491,3 @@ function this.GetItemName(itemId, fmt)
 
   return stripTxt(name, STRIP_CONTROL)
 end
-
---[[_______________________
-    |                     |
-    |     OTHER UTILS     |
-    |_____________________|]]
