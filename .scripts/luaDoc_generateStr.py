@@ -113,7 +113,6 @@ def write_translation_file(out_path: str, merged: tuple[dict,dict,dict]):
   current_langfile = get_file_content(out_path)
   if not current_langfile:
     current_langfile.extend(f"""
-  local filterDisabled = "disables this filter"
   local strings = {{
     {TRANSL_START_MARKER}
     {TRANSL_END_MARKER}

@@ -13,8 +13,6 @@ locale\$(language).lua
 xml\Bindings.xml
 xml\FurnitureCatalogue.xml
 
-FurCConstants.lua
-
 startup.lua
 FurCUtil.lua
 Internal.lua
