@@ -28,3 +28,10 @@ data\HomeGoodsFurnisher.lua
 data\EventItems.lua
 data\LuxuryFurnisher.lua
 data\PvP.lua
+
+data\Recipes.lua
+data\Rolis.lua
+data\RumourRecipes.lua
+data\RecipeSources.lua
+
+Query.lua

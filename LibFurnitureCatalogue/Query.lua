@@ -1,7 +1,6 @@
 local FurC = FurC or {}
 FurC.DBQuery = FurC.DBQuery or {}
 local this = FurC.DBQuery
-local lib = FurC.Internal
 
 local colour = FurC.Constants.Colours
 local loc = FurC.Constants.Locations
@@ -355,9 +354,9 @@ function FurC.GetCrafterList(itemLink, recipeArray)
     return zo_strformat("FurC.GetCrafterList called for a non-craftable")
   end
 
-  if lib.LCKAvailable() then
+  if FurC.Internal.LCKAvailable() then
     local recipeItem = recipeArray.blueprint and FurC.Utils.GetItemLink(recipeArray.blueprint)
-    local names = recipeItem and lib.GetCrafterNames(recipeItem)
+    local names = recipeItem and FurC.Internal.GetCrafterNames(recipeItem)
     if not names or #names == 0 then
       return strCantCraft
     end

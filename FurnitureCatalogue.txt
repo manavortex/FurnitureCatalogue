@@ -20,13 +20,6 @@ FurCSettingsAdapter.lua
 FurCMenu.lua
 FurCEvents.lua
 
-data\RumourRecipes.lua
-
-data\Recipes.lua
-data\Rolis.lua
-data\RecipeSources.lua
-
-FurCDatabaseQuery.lua
 FurCData.lua
 FurCDataParser.lua
 SearchIndex.lua
