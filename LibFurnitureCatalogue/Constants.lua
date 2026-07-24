@@ -1,7 +1,8 @@
 FurC = FurC or {}
 
 --- Collection of some variables for easier access. Not intended as an API. Some values are constants, while others are generated from string localisation and may change between play sessions or game patches.
-FurC.Constants = {}
+local this = {}
+FurC.Constants = this
 
 local getZoneStr = GetZoneNameById
 local sFormat = zo_strformat
@@ -21,7 +22,7 @@ end
 -- constants for filtering
 
 -- item sources
-FurC.Constants.ItemSources = {
+this.ItemSources = {
   NONE = getNextIdFor("ITEM_SOURCES"), -- 1
   FAVE = getNextIdFor("ITEM_SOURCES"), -- 2
   CRAFTING = getNextIdFor("ITEM_SOURCES"), -- 3
@@ -67,8 +68,8 @@ FurC.DB = FurC.DB or {}
 
 -- Ranking for multi-source
 do
-  local src = FurC.Constants.ItemSources
-  FurC.Constants.SOURCE_PRIORITY = {
+  local src = this.ItemSources
+  this.SOURCE_PRIORITY = {
     [src.CRAFTING] = 10,
     -- purchased (in-game currencies)
     [src.VENDOR] = 20,
@@ -78,12 +79,12 @@ do
     [src.PVP] = 30,
     [src.TELVAR] = 31,
     [src.COLL_MERCH] = 32,
-	[src.BAZAAR] = 61,
+    [src.BAZAAR] = 61,
     -- drop / harvest / steal
     [src.DROP] = 40,
     [src.JUSTICE] = 41,
     [src.FISHING] = 42,
-	-- excavation / scrying
+    -- excavation / scrying
     [src.ANTIQUITY] = 45,
     -- time-limited / rotating stock
     [src.LUXURY] = 50,
@@ -101,7 +102,7 @@ end
 -- TODO #REFACTOR Switch version numbering to the same as game update numbers
 
 -- versioning
-FurC.Constants.Versioning = {
+this.Versioning = {
   NONE = getNextIdFor("VERSIONING"), -- 1 off
   HOMESTEAD = getNextIdFor("VERSIONING"), -- 2 Homestead U13
   MORROWIND = getNextIdFor("VERSIONING"), -- 3 Morrowind U14
@@ -144,10 +145,10 @@ FurC.Constants.Versioning = {
   THIEVES = getNextIdFor("VERSIONING"), -- 40 Season One (U50)
 }
 
-FurC.Constants.Versioning.LATEST = FurC.Constants.Versioning.THIEVES
+this.Versioning.LATEST = this.Versioning.THIEVES
 
 -- Location Ids, mix of ingame strings and translations, more control over translations
-FurC.Constants.Locations = {
+this.Locations = {
   -- Translations exist ingame
   --  Careful: the ids may change with expansions, use FurCDev.FindZone to fix any broken ones
   -- TODO: if the id change happens often, write autofixer for it
@@ -207,10 +208,10 @@ FurC.Constants.Locations = {
   TELVANNI = getZoneStr(1414), -- Telvanni Peninsula
   VVARDENFELL = getZoneStr(849), -- Vvardenfell
   WEALD = getZoneStr(1443), -- West Weald
- 
+
   WROTHGAR = getZoneStr(684), -- Wrothgar
   WSKYRIM = getZoneStr(1160), -- Western Skyrim
- 
+
   -- Custom
   ANY = GetString(SI_FURC_LOC_ANY),
   ANY_CAPITAL = GetString(SI_FURC_LOC_ANY_CAPITAL),
@@ -238,7 +239,7 @@ FurC.Constants.Locations = {
 }
 
 -- NPC ids, for better readability and more control of the string sources
-FurC.Constants.NPC = {
+this.NPC = {
   -- Writ Furnishers
   ROLIS = GetString(SI_FURC_TRADERS_ROLIS), -- Rolis Hlaalu, Mastercraft Mediator
   FAUSTINA = GetString(SI_FURC_TRADERS_FAUSTINA), -- Faustina Curio, Achievement Mediator
@@ -320,13 +321,12 @@ FurC.Constants.NPC = {
   CLASS_WOODWORKER = sFormat("<<1>>", GetString(SI_MONSTERSOCIALCLASS46)),
 }
 
-FurC.Constants.CrownCrates = {
+this.CrownCrates = {
   -- Source: https://en.uesp.net/wiki/Online:Crown_Crates
 
   -- ids not confirmed ingame yet
-  
+
   KINDRED = GetCrownCrateName(64), -- 2025-12, Hidden Kindred
-  
 
   -- confirmed ids
   ANU_PAD = GetCrownCrateName(67), -- 2026-06, Anu vs. Padomay
@@ -371,7 +371,7 @@ FurC.Constants.CrownCrates = {
 
 -- Book containers
 -- Source: manual lookup + https://en.uesp.net (minedItemSummary, ITEMTYPE_CONTAINER)
-FurC.Constants.BookContainers = {
+this.BookContainers = {
   -- Mages Guild reprints
   REPRINT_ALIKR = 120381, -- Guild Reprint: Alik'r Desert Lore
   REPRINT_AURIDON = 120401, -- Guild Reprint: Auridon Lore
@@ -409,7 +409,7 @@ FurC.Constants.BookContainers = {
   NOTHING_EYES = 145596, -- Look Upon Their Nothing Eyes (Murkmire)
 }
 
-FurC.Constants.ItemPacks = {
+this.ItemPacks = {
   -- Source: PTS + UESP dump
 
   ALCHEMIST = 197984, -- Furnishing Pack: Mad Alchemist
@@ -471,7 +471,7 @@ FurC.Constants.ItemPacks = {
 }
 
 --- Crown Store bundles without itemlink, mv to ItemPacks when you get an ID
-FurC.Constants.ItemBundles = {
+this.ItemBundles = {
   DWEMER = SI_FURC_ITEMPACK_DWEMER,
   EBONY = SI_FURC_ITEMPACK_EBONY,
   FIRSTBLADE = SI_FURC_ITEMPACK_FIRSTBLADE,
@@ -480,7 +480,7 @@ FurC.Constants.ItemBundles = {
   STABLE = SI_FURC_ITEMPACK_STABLE,
 }
 
-FurC.Constants.SkillLines = {
+this.SkillLines = {
   -- manual lookup for now:
   -- /script for i=1, 1000 do if (string.find(LocaleAwareToLower(GetSkillLineNameById(i)), "psijic")) then d(string.format("%d: %s", i, GetSkillLineNameById(i))) end end
 
@@ -488,7 +488,7 @@ FurC.Constants.SkillLines = {
   PSIJIC = GetSkillLineNameById(130),
 }
 
-FurC.Constants.Events = {
+this.Events = {
   ANNIVERSARY = GetString(SI_FURC_EVENT_ANNIVERSARY), -- Anniversary Jubilee
   BLACKWOOD = GetString(SI_FURC_EVENT_BLACKWOOD), -- Bounties of Blackwood
   CRIME = GetString(SI_FURC_EVENT_CRIME), -- Crime Wave
@@ -505,7 +505,7 @@ FurC.Constants.Events = {
   NIGHTMARKET = GetString(SI_FURC_EVENT_NIGHTMARKET), -- Night Market
 }
 
-FurC.Constants.Containers = {
+this.Containers = {
   BOONBOX = "|H0:item:121526:1:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h", -- during Whitestrake's Mayhem
   ELSWEYRCOFFER = "|H0:item:175580:1:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h", -- during Season of the Dragon
   JESTERBOX = "|H0:item:194414:1:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h", -- during Jester's Festival
@@ -545,7 +545,7 @@ local colours = {
   Vendor = "72DB00",
   Voucher = "25C31E",
 }
-FurC.Constants.Colours = colours
+this.Colours = colours
 
 -- Old Constants as a fallback for other AddOns that use them
 -- ToDo: required functionality will be moved to an API in the future
@@ -553,153 +553,153 @@ FurC.Constants.Colours = colours
 -- fallback item sources
 
 -- @warning deprecated
-FURC_NONE = FurC.Constants.ItemSources.NONE -- 1
+FURC_NONE = this.ItemSources.NONE -- 1
 
 -- @warning deprecated
-FURC_FAVE = FurC.Constants.ItemSources.FAVE -- 2
+FURC_FAVE = this.ItemSources.FAVE -- 2
 
 -- @warning deprecated
-FURC_CRAFTING = FurC.Constants.ItemSources.CRAFTING -- 3
+FURC_CRAFTING = this.ItemSources.CRAFTING -- 3
 
 -- @warning deprecated
-FURC_CRAFTING_KNOWN = FurC.Constants.ItemSources.CRAFTING_KNOWN -- 4
+FURC_CRAFTING_KNOWN = this.ItemSources.CRAFTING_KNOWN -- 4
 
 -- @warning deprecated
-FURC_CRAFTING_UNKNOWN = FurC.Constants.ItemSources.CRAFTING_UNKNOWN -- 5
+FURC_CRAFTING_UNKNOWN = this.ItemSources.CRAFTING_UNKNOWN -- 5
 
 -- @warning deprecated
-FURC_VENDOR = FurC.Constants.ItemSources.VENDOR -- 6
+FURC_VENDOR = this.ItemSources.VENDOR -- 6
 
 -- @warning deprecated
-FURC_PVP = FurC.Constants.ItemSources.PVP -- 7
+FURC_PVP = this.ItemSources.PVP -- 7
 
 -- @warning deprecated
-FURC_WRIT_VENDOR = FurC.Constants.ItemSources.WRIT_VENDOR -- 8
+FURC_WRIT_VENDOR = this.ItemSources.WRIT_VENDOR -- 8
 
 -- @warning deprecated
-FURC_CROWN = FurC.Constants.ItemSources.CROWN -- 9
+FURC_CROWN = this.ItemSources.CROWN -- 9
 
 -- @warning deprecated
-FURC_RUMOUR = FurC.Constants.ItemSources.RUMOUR -- 10
+FURC_RUMOUR = this.ItemSources.RUMOUR -- 10
 
 -- @warning deprecated
-FURC_LUXURY = FurC.Constants.ItemSources.LUXURY -- 11
+FURC_LUXURY = this.ItemSources.LUXURY -- 11
 
 -- @warning deprecated
-FURC_OTHER = FurC.Constants.ItemSources.OTHER -- 12
+FURC_OTHER = this.ItemSources.OTHER -- 12
 
 -- @warning deprecated
-FURC_ROLIS = FurC.Constants.ItemSources.ROLIS -- 13
+FURC_ROLIS = this.ItemSources.ROLIS -- 13
 
 -- @warning deprecated
-FURC_DROP = FurC.Constants.ItemSources.DROP -- 14
+FURC_DROP = this.ItemSources.DROP -- 14
 
 -- @warning deprecated
-FURC_JUSTICE = FurC.Constants.ItemSources.JUSTICE -- 15
+FURC_JUSTICE = this.ItemSources.JUSTICE -- 15
 
 -- @warning deprecated
-FURC_FISHING = FurC.Constants.ItemSources.FISHING -- 16
+FURC_FISHING = this.ItemSources.FISHING -- 16
 
 -- @warning deprecated
-FURC_GUILDSTORE = FurC.Constants.ItemSources.GUILDSTORE -- 17
+FURC_GUILDSTORE = this.ItemSources.GUILDSTORE -- 17
 
 -- @warning deprecated
-FURC_FESTIVAL_DROP = FurC.Constants.ItemSources.FESTIVAL_DROP -- 18
+FURC_FESTIVAL_DROP = this.ItemSources.FESTIVAL_DROP -- 18
 
 -- fallback versions
 
 -- @warning deprecated
-FURC_HOMESTEAD = FurC.Constants.Versioning.HOMESTEAD -- 2 Homestead
+FURC_HOMESTEAD = this.Versioning.HOMESTEAD -- 2 Homestead
 
 -- @warning deprecated
-FURC_MORROWIND = FurC.Constants.Versioning.MORROWIND -- 3 Morrowind
+FURC_MORROWIND = this.Versioning.MORROWIND -- 3 Morrowind
 
 -- @warning deprecated
-FURC_REACH = FurC.Constants.Versioning.REACH -- 4 Horns of the Reach
+FURC_REACH = this.Versioning.REACH -- 4 Horns of the Reach
 
 -- @warning deprecated
-FURC_CLOCKWORK = FurC.Constants.Versioning.CLOCKWORK -- 5 Clockwork City
+FURC_CLOCKWORK = this.Versioning.CLOCKWORK -- 5 Clockwork City
 
 -- @warning deprecated
-FURC_DRAGONS = FurC.Constants.Versioning.DRAGONS -- 6 Dragon Bones
+FURC_DRAGONS = this.Versioning.DRAGONS -- 6 Dragon Bones
 
 -- @warning deprecated
-FURC_ALTMER = FurC.Constants.Versioning.ALTMER -- 7 Summerset
+FURC_ALTMER = this.Versioning.ALTMER -- 7 Summerset
 
 -- @warning deprecated
-FURC_SLAVES = FurC.Constants.Versioning.SLAVES -- 8 Murkmire
+FURC_SLAVES = this.Versioning.SLAVES -- 8 Murkmire
 
 -- @warning deprecated
-FURC_WEREWOLF = FurC.Constants.Versioning.WEREWOLF -- 9 Wolfhunter
+FURC_WEREWOLF = this.Versioning.WEREWOLF -- 9 Wolfhunter
 
 -- @warning deprecated
-FURC_WOTL = FurC.Constants.Versioning.WOTL -- 10 Wrathstone
+FURC_WOTL = this.Versioning.WOTL -- 10 Wrathstone
 
 -- @warning deprecated
-FURC_KITTY = FurC.Constants.Versioning.KITTY -- 11 Elsweyr
+FURC_KITTY = this.Versioning.KITTY -- 11 Elsweyr
 
 -- @warning deprecated
-FURC_SCALES = FurC.Constants.Versioning.SCALES -- 12 Scalebreaker
+FURC_SCALES = this.Versioning.SCALES -- 12 Scalebreaker
 
 -- @warning deprecated
-FURC_DRAGON2 = FurC.Constants.Versioning.DRAGON2 -- 13 Dragonhold
+FURC_DRAGON2 = this.Versioning.DRAGON2 -- 13 Dragonhold
 
 -- @warning deprecated
-FURC_HARROW = FurC.Constants.Versioning.HARROW -- 14 Harrowstorm
+FURC_HARROW = this.Versioning.HARROW -- 14 Harrowstorm
 
 -- @warning deprecated
-FURC_SKYRIM = FurC.Constants.Versioning.SKYRIM -- 15 Greymoor
+FURC_SKYRIM = this.Versioning.SKYRIM -- 15 Greymoor
 
 -- @warning deprecated
-FURC_STONET = FurC.Constants.Versioning.STONET -- 16 Stonethorn
+FURC_STONET = this.Versioning.STONET -- 16 Stonethorn
 
 -- @warning deprecated
-FURC_MARKAT = FurC.Constants.Versioning.MARKAT -- 17 Markarth
+FURC_MARKAT = this.Versioning.MARKAT -- 17 Markarth
 
 -- @warning deprecated
-FURC_FLAMES = FurC.Constants.Versioning.FLAMES -- 18 Flames of Ambition
+FURC_FLAMES = this.Versioning.FLAMES -- 18 Flames of Ambition
 
 -- @warning deprecated
-FURC_BLACKW = FurC.Constants.Versioning.BLACKW -- 19 Blackwood
+FURC_BLACKW = this.Versioning.BLACKW -- 19 Blackwood
 
 -- @warning deprecated
-FURC_DEADL = FurC.Constants.Versioning.DEADL -- 20 Deadlands
+FURC_DEADL = this.Versioning.DEADL -- 20 Deadlands
 
 -- @warning deprecated
-FURC_TIDES = FurC.Constants.Versioning.TIDES -- 21 Ascending Tide
+FURC_TIDES = this.Versioning.TIDES -- 21 Ascending Tide
 
 -- @warning deprecated
-FURC_BRETON = FurC.Constants.Versioning.BRETON -- 22 High Isle
+FURC_BRETON = this.Versioning.BRETON -- 22 High Isle
 
 -- @warning deprecated
-FURC_DEPTHS = FurC.Constants.Versioning.DEPTHS -- 23 Lost Depths
+FURC_DEPTHS = this.Versioning.DEPTHS -- 23 Lost Depths
 
 -- @warning deprecated
-FURC_DRUID = FurC.Constants.Versioning.DRUID -- 24 Firesong
+FURC_DRUID = this.Versioning.DRUID -- 24 Firesong
 
 -- @warning deprecated
-FURC_SCRIBE = FurC.Constants.Versioning.SCRIBE -- 25 Scribes of Fate
+FURC_SCRIBE = this.Versioning.SCRIBE -- 25 Scribes of Fate
 
 -- @warning deprecated
-FURC_NECROM = FurC.Constants.Versioning.NECROM -- 26 Necrom
+FURC_NECROM = this.Versioning.NECROM -- 26 Necrom
 
 -- @warning deprecated
-FURC_BASED = FurC.Constants.Versioning.BASED -- 27 Base Game Patch
+FURC_BASED = this.Versioning.BASED -- 27 Base Game Patch
 
 -- @warning deprecated
-FURC_ENDLESS = FurC.Constants.Versioning.ENDLESS -- 28 Secrets of the Telvanni
+FURC_ENDLESS = this.Versioning.ENDLESS -- 28 Secrets of the Telvanni
 
 -- @warning deprecated
-FURC_SCIONS = FurC.Constants.Versioning.SCIONS -- 29 Scions of Ithelia
+FURC_SCIONS = this.Versioning.SCIONS -- 29 Scions of Ithelia
 
 -- @warning deprecated
-FURC_WEALD = FurC.Constants.Versioning.WEALD -- 30 Gold Road
+FURC_WEALD = this.Versioning.WEALD -- 30 Gold Road
 
 -- @warning deprecated
-FURC_BASE43 = FurC.Constants.Versioning.BASE43 -- 31 Update 43 Base Game Patch
+FURC_BASE43 = this.Versioning.BASE43 -- 31 Update 43 Base Game Patch
 
 -- @warning deprecated
-FURC_BASE44 = FurC.Constants.Versioning.BASE44 -- 32 Update 44 Base Game Patch
+FURC_BASE44 = this.Versioning.BASE44 -- 32 Update 44 Base Game Patch
 
 -- @warning deprecated
-FURC_LATEST = FurC.Constants.Versioning.LATEST
+FURC_LATEST = this.Versioning.LATEST
