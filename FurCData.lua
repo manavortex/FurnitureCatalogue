@@ -7,7 +7,7 @@ local LFC = LibFurnitureCatalogue
 local ver = LFC.Internal.Constants.Versioning
 local src = LFC.Internal.Constants.ItemSources
 
-local getItemId = FurC.Internal.GetItemId
+local getItemId = LFC.Internal.Format.GetItemId
 local getItemLink = LFC.Internal.Format.GetItemLink
 local stripTxt = LFC.Internal.Format.stripTxt
 

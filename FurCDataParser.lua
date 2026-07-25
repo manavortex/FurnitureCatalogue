@@ -4,7 +4,7 @@ local sFormat = zo_strformat
 
 local LFC = LibFurnitureCatalogue
 local stripTxt = LFC.Internal.Format.stripTxt
-local getItemId = FurC.Internal.GetItemId
+local getItemId = LFC.Internal.Format.GetItemId
 local query = FurC.DBQuery
 
 function FurC.PrintCraftingStation(itemId, recipeArray)

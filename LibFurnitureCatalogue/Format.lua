@@ -478,6 +478,24 @@ end
 --- @see FurC.Utils.GetItemLink
 FurC.GetItemLink = this.GetItemLink
 
+-- GetItemLinkItemId doesn't work the way I need it
+-- TODO #REFACTOR: should only take one type of link (not nil, number, string, links)
+function this.GetItemId(itemLink)
+  if nil == itemLink or "" == itemLink then
+    return
+  end
+  if type(itemLink) == "number" and itemLink > 9999 then
+    return itemLink
+  end
+  local _, _, _, itemId = ZO_LinkHandler_ParseLink(itemLink)
+  return tonumber(itemId)
+end
+
+-- Alias for LibPrice
+--- @deprecated will be replaced by API function in the future
+--- @see FurC.Utils.GetItemId
+FurC.GetItemId = this.GetItemId
+
 ---Return the formatted item name
 ---@param itemId number
 ---@param fmt? string optional format, default is stripped of gender control characters

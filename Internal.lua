@@ -281,20 +281,11 @@ function Utils.GetItemFromBlueprint(blueprintLink)
   return GetItemLinkRecipeResultItemLink(blueprintLink)
 end
 
--- GetItemLinkItemId doesn't work the way I need it
--- TODO #REFACTOR: should only take one type of link (not nil, number, string, links)
-function Utils.GetItemId(itemLink)
-  if nil == itemLink or "" == itemLink then
-    return
-  end
-  if type(itemLink) == "number" and itemLink > 9999 then
-    return itemLink
-  end
-  local _, _, _, itemId = ZO_LinkHandler_ParseLink(itemLink)
-  return tonumber(itemId)
-end
+---@deprecated will be replaced by API function in the future
+---@see FurC.Internal.GetItemId
+this.GetItemId = LFC.Internal.Format.GetItemId
 
--- Legacy aggregate alias: expose the runtime utils on FurC.Utils (lib formatters already there).
+-- Legacy alias
 FurC.Utils = FurC.Utils or {}
 FurC.Utils.SortTable = this.SortTable
 FurC.Utils.GetCurrentChar = this.GetCurrentChar
@@ -302,11 +293,6 @@ FurC.Utils.IsFurniture = this.IsFurniture
 FurC.Utils.GetBlueprintForItem = this.GetBlueprintForItem
 FurC.Utils.GetItemFromBlueprint = this.GetItemFromBlueprint
 FurC.Utils.GetItemId = this.GetItemId
-
--- Alias for LibPrice
----@deprecated will be replaced by API function in the future
----@see FurC.Internal.GetItemId
-FurC.GetItemId = this.GetItemId
 
 --[[_______________________
     |                     |
