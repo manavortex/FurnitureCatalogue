@@ -107,7 +107,7 @@ local function updateLineVisibility()
     else
       local recipeArray = FurC.Find(curData.itemLink)
       if FurC.showBlueprints and recipeArray and recipeArray.blueprint then
-        curLine.itemLink = FurC.Utils.GetItemLink(recipeArray.blueprint)
+        curLine.itemLink = LFC.Internal.Format.GetItemLink(recipeArray.blueprint)
       else
         curLine.itemLink = curData.itemLink
       end
@@ -187,7 +187,7 @@ local function buildSortedIndex(sortName, sortUp)
   for itemId, recipeArray in pairs(data) do
     ids[#ids + 1] = itemId
     if sortName == "itemName" then
-      vals[itemId] = GetItemLinkName(FurC.Utils.GetItemLink(itemId))
+      vals[itemId] = GetItemLinkName(LFC.Internal.Format.GetItemLink(itemId))
     else
       vals[itemId] = recipeArray[sortName]
     end
@@ -229,7 +229,7 @@ local function updateScrollDataLinesData()
     local itemId = order[i]
     local recipeArray = data[itemId]
     if recipeArray and FurC.MatchFilter(itemId, recipeArray) then
-      local itemLink = FurC.Utils.GetItemLink(itemId)
+      local itemLink = LFC.Internal.Format.GetItemLink(itemId)
       if itemLink then
         local tempDataLine = ZO_ShallowTableCopy(recipeArray)
         tempDataLine.itemId = itemId

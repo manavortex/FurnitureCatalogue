@@ -34,7 +34,7 @@ local GetItemLinkName = GetItemLinkName
 local LocaleAwareToLower = LocaleAwareToLower
 local gsub = string.gsub
 local match = string.match
-local getItemLink = FurC.Utils.GetItemLink
+local getItemLink = LFC.Internal.Format.GetItemLink
 
 -- Build item link lazily (only if required and not already cached)
 local function ensureItemLink()

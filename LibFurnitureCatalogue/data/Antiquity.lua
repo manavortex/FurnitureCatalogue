@@ -6,7 +6,7 @@ local src = LFC.Internal.Constants.ItemSources
 local loc = LFC.Internal.Constants.Locations
 
 -- Furnishings recovered via Scrying/Excavation (Antiquities system)
-local _strScry = FurC.Utils.FmtScrying
+local _strScry = LFC.Internal.Format.FmtScrying
 local function strScry(pieces, ...)
   if type(pieces) == "number" then
     return _strScry(pieces, nil, ...)

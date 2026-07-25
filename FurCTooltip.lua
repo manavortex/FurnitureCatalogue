@@ -26,16 +26,16 @@ local function add(t, arg)
 end
 
 local function addFolioTooltipData(control, itemId, folioData)
-  local strPrice = FurC.Utils.FormatPrice(folioData.price, folioData.currency)
-  local strVendor = FurC.Utils.Colourise(folioData.vendor, LFC.Internal.Constants.Colours.Vendor)
-  local strLoc = FurC.Utils.Colourise(folioData.location, LFC.Internal.Constants.Colours.Location)
+  local strPrice = LFC.Internal.Format.FormatPrice(folioData.price, folioData.currency)
+  local strVendor = LFC.Internal.Format.Colourise(folioData.vendor, LFC.Internal.Constants.Colours.Vendor)
+  local strLoc = LFC.Internal.Format.Colourise(folioData.location, LFC.Internal.Constants.Colours.Location)
   local header = zo_strformat("<<1>> : <<2>> (<<3>>)", strVendor, strLoc, strPrice)
 
   local lines = { header }
 
   if folioData.contents then
     for _, contentId in ipairs(folioData.contents) do
-      local link = FurC.Utils.GetItemLink(contentId)
+      local link = LFC.Internal.Format.GetItemLink(contentId)
       if link and link ~= "" then
         lines[#lines + 1] = GetItemLinkName(link)
       end
@@ -63,7 +63,7 @@ local function addBookCollectionTooltipData(control, itemId, collection)
   -- book names comma-joined into one block
   local names = {}
   for i = 1, #collection.contents do
-    names[#names + 1] = FurC.Utils.GetItemName(collection.contents[i])
+    names[#names + 1] = LFC.Internal.Format.GetItemName(collection.contents[i])
   end
   lines[#lines + 1] = zo_strformat(GetString(SI_FURC_CONTAINS_BOOKS), #names)
   lines[#lines + 1] = table.concat(names, ", ")
@@ -175,10 +175,10 @@ local function ReturnItemLink(itemLink)
   if FurC.showBlueprints then
     local recipeArray = FurC.Find(itemLink)
     if recipeArray and recipeArray.blueprint then
-      return FurC.Utils.GetItemLink(recipeArray.blueprint)
+      return LFC.Internal.Format.GetItemLink(recipeArray.blueprint)
     end
   end
-  return FurC.Utils.GetItemLink(itemLink)
+  return LFC.Internal.Format.GetItemLink(itemLink)
 end
 
 do

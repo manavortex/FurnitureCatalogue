@@ -6,14 +6,14 @@
 FurC.SearchIndex = FurC.SearchIndex or {}
 local this = FurC.SearchIndex
 
-local getItemLink = FurC.Utils.GetItemLink
 local LFC = LibFurnitureCatalogue
+local getItemLink = LFC.Internal.Format.GetItemLink
 local loc = LFC.Internal.Constants.Locations
 local npc = LFC.Internal.Constants.NPC
 
 local lower = LocaleAwareToLower
-local stripTxt = FurC.Utils.stripTxt
-local STRIP_CONTROL = FurC.Utils.STRIP_CONTROL
+local stripTxt = LFC.Internal.Format.stripTxt
+local STRIP_CONTROL = LFC.Internal.Format.STRIP_CONTROL
 local concat = table.concat
 local find = string.find
 

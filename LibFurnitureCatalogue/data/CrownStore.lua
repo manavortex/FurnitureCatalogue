@@ -8,16 +8,16 @@ local crates = LFC.Internal.Constants.CrownCrates
 local packs = LFC.Internal.Constants.ItemPacks
 local bundles = LFC.Internal.Constants.ItemBundles
 
-local strCrate = FurC.Utils.FmtCrownCrate
-local strGeneric = FurC.Utils.FmtGeneric
-local strPrice = FurC.Utils.FormatPrice
-local getItemLink = FurC.Utils.GetItemLink
+local strCrate = LFC.Internal.Format.FmtCrownCrate
+local strGeneric = LFC.Internal.Format.FmtGeneric
+local strPrice = LFC.Internal.Format.FormatPrice
+local getItemLink = LFC.Internal.Format.GetItemLink
 
 local srcCraft = GetString(SI_FURC_SRC_CRAFTING)
 local srcHarvest = GetString(SI_FURC_SRC_HARVEST)
 
 local events = LFC.Internal.Constants.Events
-local strEvent = FurC.Utils.FormatEvent
+local strEvent = LFC.Internal.Format.FormatEvent
 local ev_elsweyr = strEvent(events.ELSWEYR)
 local srcLvlup = GetString(SI_FURC_SRC_LVLUP)
 

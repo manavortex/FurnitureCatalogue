@@ -7,8 +7,8 @@ local loc = LFC.Internal.Constants.Locations
 local src = LFC.Internal.Constants.ItemSources
 local ver = LFC.Internal.Constants.Versioning
 
-local strPartOf = FurC.Utils.FormatPartOf
-local strPrice = FurC.Utils.FormatPrice
+local strPartOf = LFC.Internal.Format.FormatPartOf
+local strPrice = LFC.Internal.Format.FormatPrice
 
 FurC.BookCollections[bc.TEMPLE_DOCTRINE] = { -- Temple Doctrine: The 36 Lessons
   version = ver.MORROWIND,

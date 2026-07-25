@@ -7,9 +7,9 @@ local LFC = LibFurnitureCatalogue
 local ver = LFC.Internal.Constants.Versioning
 local src = LFC.Internal.Constants.ItemSources
 
-local getItemId = FurC.Utils.GetItemId
-local getItemLink = FurC.Utils.GetItemLink
-local stripTxt = FurC.Utils.stripTxt
+local getItemId = FurC.Internal.GetItemId
+local getItemLink = LFC.Internal.Format.GetItemLink
+local stripTxt = LFC.Internal.Format.stripTxt
 
 -- DB-content query table
 FurC.DBQuery = FurC.DBQuery or {}

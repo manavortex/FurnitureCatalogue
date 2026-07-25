@@ -8,19 +8,19 @@ local npc = LFC.Internal.Constants.NPC
 local crates = LFC.Internal.Constants.CrownCrates
 local events = LFC.Internal.Constants.Events
 
-local formatAchievement = FurC.Utils.FormatAchievement
+local formatAchievement = LFC.Internal.Format.FormatAchievement
 
-local getItemName = FurC.Utils.GetItemName
-local getItemLink = FurC.Utils.GetItemLink
+local getItemName = LFC.Internal.Format.GetItemName
+local getItemLink = LFC.Internal.Format.GetItemLink
 
-local strCrate = FurC.Utils.FmtCrownCrate
-local strDungeon = FurC.Utils.FmtDungeon
-local strEvent = FurC.Utils.FormatEvent
-local strGeneric = FurC.Utils.FmtGeneric
-local strPrice = FurC.Utils.FormatPrice
-local strFurnisher = FurC.Utils.FormatFurnisher
-local strQuest = FurC.Utils.FmtQuest
-local strSrc = FurC.Utils.FmtSources
+local strCrate = LFC.Internal.Format.FmtCrownCrate
+local strDungeon = LFC.Internal.Format.FmtDungeon
+local strEvent = LFC.Internal.Format.FormatEvent
+local strGeneric = LFC.Internal.Format.FmtGeneric
+local strPrice = LFC.Internal.Format.FormatPrice
+local strFurnisher = LFC.Internal.Format.FormatFurnisher
+local strQuest = LFC.Internal.Format.FmtQuest
+local strSrc = LFC.Internal.Format.FmtSources
 
 local srcChest = GetString(SI_FURC_SRC_CHESTS)
 local srcCraft = GetString(SI_FURC_SRC_CRAFTING)

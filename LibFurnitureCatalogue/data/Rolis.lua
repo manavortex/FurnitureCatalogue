@@ -7,7 +7,7 @@ FurC.FaustinaRecipes = FurC.FaustinaRecipes or {}
 local LFC = LibFurnitureCatalogue
 local ver = LFC.Internal.Constants.Versioning
 
-local strPartOf = FurC.Utils.FormatPartOf
+local strPartOf = LFC.Internal.Format.FormatPartOf
 FurC.FurnishingFolios = FurC.FurnishingFolios or {}
 
 local npc = LFC.Internal.Constants.NPC

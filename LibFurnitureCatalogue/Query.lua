@@ -8,14 +8,14 @@ local loc = LFC.Internal.Constants.Locations
 local npc = LFC.Internal.Constants.NPC
 local src = LFC.Internal.Constants.ItemSources
 
-local colourise = FurC.Utils.Colourise
-local getItemLink = FurC.Utils.GetItemLink
-local strEvent = FurC.Utils.FormatEvent
-local strFurnisher = FurC.Utils.FormatFurnisher
-local strGeneric = FurC.Utils.FmtGeneric
-local stripText = FurC.Utils.stripTxt
-local strSrc = FurC.Utils.FmtSources
-local strPartOf = FurC.Utils.FormatPartOf
+local colourise = LFC.Internal.Format.Colourise
+local getItemLink = LFC.Internal.Format.GetItemLink
+local strEvent = LFC.Internal.Format.FormatEvent
+local strFurnisher = LFC.Internal.Format.FormatFurnisher
+local strGeneric = LFC.Internal.Format.FmtGeneric
+local stripText = LFC.Internal.Format.stripTxt
+local strSrc = LFC.Internal.Format.FmtSources
+local strPartOf = LFC.Internal.Format.FormatPartOf
 
 local srcEvent = GetString(SI_FURC_EVENT)
 local srcEditor = GetString(SI_FURC_SRC_EDITOR)
@@ -356,7 +356,7 @@ function FurC.GetCrafterList(itemLink, recipeArray)
   end
 
   if FurC.Internal.LCKAvailable() then
-    local recipeItem = recipeArray.blueprint and FurC.Utils.GetItemLink(recipeArray.blueprint)
+    local recipeItem = recipeArray.blueprint and LFC.Internal.Format.GetItemLink(recipeArray.blueprint)
     local names = recipeItem and FurC.Internal.GetCrafterNames(recipeItem)
     if not names or #names == 0 then
       return strCantCraft

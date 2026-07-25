@@ -23,7 +23,7 @@ function AddFurnitureShoppingListMenuEntry(itemId, calledFromFurC)
     end
   end
 
-  local itemLink = FurC.Utils.GetItemLink(itemId)
+  local itemLink = LFC.Internal.Format.GetItemLink(itemId)
   if nil == next(FurC.Find(itemLink)) then
     return
   end
@@ -54,7 +54,7 @@ local function postItemSource()
   FurC.ToChat(FurC.GetItemDescription(cachedItemLink, cachedRecipeArray, true))
 end
 local function postRecipe()
-  FurC.ToChat(FurC.Utils.GetItemLink(cachedRecipeArray.blueprint))
+  FurC.ToChat(LFC.Internal.Format.GetItemLink(cachedRecipeArray.blueprint))
 end
 local function postRecipeResult()
   FurC.ToChat(GetItemLinkRecipeResultItemLink(cachedItemLink))

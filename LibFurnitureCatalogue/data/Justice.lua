@@ -6,8 +6,8 @@ local src = LFC.Internal.Constants.ItemSources
 local loc = LFC.Internal.Constants.Locations
 local npc = LFC.Internal.Constants.NPC
 
-local strGeneric = FurC.Utils.FmtGeneric
-local strSrc = FurC.Utils.FmtSources
+local strGeneric = LFC.Internal.Format.FmtGeneric
+local strSrc = LFC.Internal.Format.FmtSources
 
 local join = zo_strjoin
 local function strMultiple(...)

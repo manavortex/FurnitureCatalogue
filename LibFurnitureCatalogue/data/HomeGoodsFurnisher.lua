@@ -5,7 +5,7 @@ local loc = LFC.Internal.Constants.Locations
 local npc = LFC.Internal.Constants.NPC
 local ver = LFC.Internal.Constants.Versioning
 
-local merge = FurC.Utils.MergeTable
+local merge = LFC.Internal.Format.MergeTable
 
 local structures = {
   [117984] = { -- Rough Block, Dark Stone

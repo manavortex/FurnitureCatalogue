@@ -1,14 +1,12 @@
 -- Formatting and string/link utilities
 
--- TODO: change namespace
 FurC = FurC or {}
+local LFC = LibFurnitureCatalogue
 
-FurC.Utils = FurC.Utils or {}
-local this = FurC.Utils
+local this = {}
+LFC.Internal.Format = this
 
 local sFormat = zo_strformat
-
-local LFC = LibFurnitureCatalogue
 local colours = LFC.Internal.Constants.Colours
 
 --[[_______________________
@@ -491,4 +489,10 @@ function this.GetItemName(itemId, fmt)
   end
 
   return stripTxt(name, STRIP_CONTROL)
+end
+
+-- Legacy aliasses for Internal.lua
+FurC.Utils = FurC.Utils or {}
+for k, v in pairs(this) do
+  FurC.Utils[k] = v
 end

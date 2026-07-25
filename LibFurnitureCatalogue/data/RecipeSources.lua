@@ -6,11 +6,11 @@ local skillLine = LFC.Internal.Constants.SkillLines
 
 local sFormat = zo_strformat
 
-local strGeneric = FurC.Utils.FmtGeneric
-local strPartOf = FurC.Utils.FormatPartOf
+local strGeneric = LFC.Internal.Format.FmtGeneric
+local strPartOf = LFC.Internal.Format.FormatPartOf
 
-local strRank = FurC.Utils.FmtRank
-local strFurnisher = FurC.Utils.FormatFurnisher
+local strRank = LFC.Internal.Format.FmtRank
+local strFurnisher = LFC.Internal.Format.FormatFurnisher
 
 local srcDaily = GetString(SI_FURC_SRC_QUEST_DAILY)
 

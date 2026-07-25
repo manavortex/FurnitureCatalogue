@@ -8,7 +8,7 @@ local npc = LFC.Internal.Constants.NPC
 local skillLine = LFC.Internal.Constants.SkillLines
 local ver = LFC.Internal.Constants.Versioning
 
-local strRank = FurC.Utils.FmtRank
+local strRank = LFC.Internal.Format.FmtRank
 
 local function getQuestString(questIdOrName)
   local questName = questIdOrName

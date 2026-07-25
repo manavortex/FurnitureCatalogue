@@ -5,7 +5,7 @@ local ver = LFC.Internal.Constants.Versioning
 local src = LFC.Internal.Constants.ItemSources
 local loc = LFC.Internal.Constants.Locations
 
-local strGeneric = FurC.Utils.FmtGeneric
+local strGeneric = LFC.Internal.Format.FmtGeneric
 
 local srcFish = GetString(SI_FURC_SRC_FISH)
 

@@ -3,6 +3,7 @@
 FurC = FurC or {}
 FurC.Internal = FurC.Internal or {}
 local this = FurC.Internal
+local LFC = LibFurnitureCatalogue
 
 -- LCK reference, nil when no LCK loaded
 ---@type LibCharacterKnowledge
@@ -192,8 +193,7 @@ this.GetCrafterNames = getCrafterNames
     |    RUNTIME UTILS    |
     |_____________________|]]
 
-FurC.Utils = FurC.Utils or {}
-local Utils = FurC.Utils
+local Utils = this
 local sFormat = zo_strformat
 
 -- ruthlessly stolen from TextureIt
@@ -268,7 +268,7 @@ function Utils.GetBlueprintForItem(itemLink)
   if not entry or not entry.blueprint then
     return ""
   end
-  return Utils.GetItemLink(entry.blueprint)
+  return LFC.Internal.Format.GetItemLink(entry.blueprint)
 end
 
 ---Example: FurC.Utils.GetBlueprintForItem("|H1:item:166781:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h") -> "|H1:item:165634:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"
@@ -294,7 +294,16 @@ function Utils.GetItemId(itemLink)
   return tonumber(itemId)
 end
 
+-- Legacy aggregate alias: expose the runtime utils on FurC.Utils (lib formatters already there).
+FurC.Utils = FurC.Utils or {}
+FurC.Utils.SortTable = this.SortTable
+FurC.Utils.GetCurrentChar = this.GetCurrentChar
+FurC.Utils.IsFurniture = this.IsFurniture
+FurC.Utils.GetBlueprintForItem = this.GetBlueprintForItem
+FurC.Utils.GetItemFromBlueprint = this.GetItemFromBlueprint
+FurC.Utils.GetItemId = this.GetItemId
+
 -- Alias for LibPrice
 ---@deprecated will be replaced by API function in the future
----@see FurC.Utils.GetItemId
-FurC.GetItemId = Utils.GetItemId
+---@see FurC.Internal.GetItemId
+FurC.GetItemId = this.GetItemId
