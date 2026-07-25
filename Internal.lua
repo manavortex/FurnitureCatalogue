@@ -307,3 +307,36 @@ FurC.Utils.GetItemId = this.GetItemId
 ---@deprecated will be replaced by API function in the future
 ---@see FurC.Internal.GetItemId
 FurC.GetItemId = this.GetItemId
+
+--[[_______________________
+    |                     |
+    |   CRAFTER TOOLTIP   |
+    |_____________________|]]
+
+-- LCK-backed crafter line for tooltips
+-- ToDo: move to API later
+local strCantCraft = GetString(SI_FURC_STRING_CANNOT_CRAFT)
+local strCraftedBy = GetString(SI_FURC_STRING_CRAFTABLE_BY)
+function FurC.GetCrafterList(itemLink, recipeArray)
+  if nil == recipeArray and nil == itemLink then
+    return
+  end
+  recipeArray = recipeArray or FurC.Find(itemLink)
+  if nil == recipeArray then
+    return zo_strformat("FurC.GetCrafterList called for a non-craftable")
+  end
+
+  if this.LCKAvailable() then
+    local recipeItem = recipeArray.blueprint and LFC.Internal.Format.GetItemLink(recipeArray.blueprint)
+    local names = recipeItem and this.GetCrafterNames(recipeItem)
+    if not names or #names == 0 then
+      return strCantCraft
+    end
+    return strCraftedBy .. table.concat(names, ", ")
+  end
+
+  if FurC.CanCraft(nil, recipeArray) then
+    return strCraftedBy .. FurC.CharacterName
+  end
+  return strCantCraft
+end
