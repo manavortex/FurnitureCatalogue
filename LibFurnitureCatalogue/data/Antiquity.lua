@@ -1,8 +1,9 @@
 FurC.Antiquities = FurC.Antiquities or {}
 
-local ver = FurC.Constants.Versioning
-local src = FurC.Constants.ItemSources
-local loc = FurC.Constants.Locations
+local LFC = LibFurnitureCatalogue
+local ver = LFC.Internal.Constants.Versioning
+local src = LFC.Internal.Constants.ItemSources
+local loc = LFC.Internal.Constants.Locations
 
 -- Furnishings recovered via Scrying/Excavation (Antiquities system)
 local _strScry = FurC.Utils.FmtScrying
@@ -27,7 +28,7 @@ FurC.Antiquities[ver.THIEVES] = {
   [src.ANTIQUITY] = {
     [224855] = strScry(loc.GLENUMBRA), -- Fool's Gold Pile
     [224856] = strScry(loc.GLENUMBRA), -- Tapestry of the Prince's Hunt
-	[224854] = strScry(5, loc.HEWSBANE), -- Thieves Guild Armory Station
+    [224854] = strScry(5, loc.HEWSBANE), -- Thieves Guild Armory Station
   },
 }
 
@@ -64,7 +65,7 @@ FurC.Antiquities[ver.WORMS2] = {
     [223155] = strScry(loc.SOLSTICE), -- Daedric Gate, Coldharbour
     [223156] = strScry(loc.SOLSTICE), -- Reaper, Pattern Template
     [219870] = strScry(loc.SOLSTICE), -- Antique Map of Solstice
-	[219871] = strScry(5, loc.SOLSTICE), -- Cult Blacksmithing Station
+    [219871] = strScry(5, loc.SOLSTICE), -- Cult Blacksmithing Station
   },
 }
 
@@ -106,7 +107,7 @@ FurC.Antiquities[ver.WEALD] = {
     [204623] = strScry(loc.WEALD), -- Colovian Tapestry, Worn
     [204624] = strScry(loc.WEALD), -- Colovian Tapestry, Pastoral Farm
     [204625] = strScry(loc.WEALD), -- Colovian Tapestry, Fancy Gate
-	[204420] = strScry(5, loc.WEALD), -- Ayleid Blacksmithing Station
+    [204420] = strScry(5, loc.WEALD), -- Ayleid Blacksmithing Station
   },
 }
 
@@ -185,8 +186,8 @@ FurC.Antiquities[ver.DEADL] = {
     [182302] = strScry(3, loc.DEADLANDS), -- Daedric Enchanting Station
     [183196] = strScry(loc.DEADLANDS), -- Antique Map of the Deadlands
     [182303] = strScry(loc.DEADLANDS), -- Dagon's Scalding Gibbet
-	[197708] = strScry(loc.TELVANNI, loc.APOCRYPHA), -- Cliff Strider Skeleton Stand
-	[187922] = strScry(loc.FARGRAVE), -- Antique Map of Fargrave
+    [197708] = strScry(loc.TELVANNI, loc.APOCRYPHA), -- Cliff Strider Skeleton Stand
+    [187922] = strScry(loc.FARGRAVE), -- Antique Map of Fargrave
   },
 }
 
@@ -194,7 +195,7 @@ FurC.Antiquities[ver.DEADL] = {
 FurC.Antiquities[ver.BLACKW] = {
   [src.ANTIQUITY] = {
     [175729] = strScry(loc.BLACKWOOD), -- Kothringi Tidal Canoe
-	[175728] = strScry(loc.BLACKWOOD), -- Z'en Idol
+    [175728] = strScry(loc.BLACKWOOD), -- Z'en Idol
     [178459] = strScry(loc.BLACKWOOD), -- Antique Map of Blackwood
   },
 }
@@ -203,7 +204,7 @@ FurC.Antiquities[ver.BLACKW] = {
 FurC.Antiquities[ver.MARKAT] = {
   [src.ANTIQUITY] = {
     [171428] = strScryWithInfo("Harrowstorms", loc.REACH), -- Vampiric Stained Glass
-	[171431] = strScry(loc.REACH), -- Antique Map of the Reach
+    [171431] = strScry(loc.REACH), -- Antique Map of the Reach
     [171429] = strScry(loc.REACH), -- Red Eagle Cave Painting
   },
 }
@@ -212,9 +213,9 @@ FurC.Antiquities[ver.MARKAT] = {
 FurC.Antiquities[ver.SKYRIM] = {
   [src.ANTIQUITY] = {
     [165866] = strScry(loc.STONEFALLS), -- Ashen Infernace Gate
-	[165992] = strScry(loc.WSKYRIM), -- Antique Map of Western Skyrim
-	[163431] = strScry(3, loc.ANY), -- Music Box, Dreams and Memories
-	[165863] = strScry(loc.GRAHTWOOD), -- St. Alessia, Paravant
+    [165992] = strScry(loc.WSKYRIM), -- Antique Map of Western Skyrim
+    [163431] = strScry(3, loc.ANY), -- Music Box, Dreams and Memories
+    [165863] = strScry(loc.GRAHTWOOD), -- St. Alessia, Paravant
     [165859] = strScry(loc.BALFOYEN), -- The Dutiful Guar
     [165854] = strScry(loc.MURKMIRE), -- Nisswo's Soul Tender
     [165860] = strScry(loc.GRAHTWOOD), -- Eight-Star Chandelier

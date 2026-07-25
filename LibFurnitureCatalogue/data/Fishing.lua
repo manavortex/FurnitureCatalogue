@@ -1,8 +1,9 @@
 FurC.Fishing = FurC.Fishing or {}
 
-local ver = FurC.Constants.Versioning
-local src = FurC.Constants.ItemSources
-local loc = FurC.Constants.Locations
+local LFC = LibFurnitureCatalogue
+local ver = LFC.Internal.Constants.Versioning
+local src = LFC.Internal.Constants.ItemSources
+local loc = LFC.Internal.Constants.Locations
 
 local strGeneric = FurC.Utils.FmtGeneric
 

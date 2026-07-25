@@ -1,14 +1,15 @@
 FurC.Rumours = FurC.Rumours or {}
 
-local ver = FurC.Constants.Versioning
+local LFC = LibFurnitureCatalogue
+local ver = LFC.Internal.Constants.Versioning
 
 local rumourSource = GetString(SI_FURC_SRC_RUMOUR_ITEM)
 local dataminedUnclear = GetString(SI_FURC_DATAMINED_UNCLEAR)
 
 -- Season Zero Part 2
-FurC.Rumours[ver.ZERO2] = {  
-	[224876] = rumourSource, -- Music Box, A Wish for Fish
-    [225184] = rumourSource, -- Pipe, Stately
+FurC.Rumours[ver.ZERO2] = {
+  [224876] = rumourSource, -- Music Box, A Wish for Fish
+  [225184] = rumourSource, -- Pipe, Stately
   [223844] = rumourSource, -- Hearts Week Decor, Red Bow
 }
 
@@ -250,7 +251,7 @@ FurC.Rumours[ver.STONET] = {
   [114414] = rumourSource, -- High Elf Medallion, Winged
   [94160] = rumourSource, -- Imperial Lantern, Imperial City
   [94116] = rumourSource, -- Imperial Cauldron, Pitch-filled
-  
+
   [153554] = rumourSource, -- Imperial Mirror, Standing,       Imperial City Celebration Event
   [153562] = rumourSource, -- Daedric Brazier, Standing,       Imperial City Celebration Event
   [153561] = rumourSource, -- Daedric Chandelier, Ritual,      Imperial City Celebration Event

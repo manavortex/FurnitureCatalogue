@@ -1,10 +1,11 @@
 -- Book containers: buying container item unpacks into individual book furnishings
 FurC.BookCollections = FurC.BookCollections or {}
 
-local bc = FurC.Constants.BookContainers
-local loc = FurC.Constants.Locations
-local src = FurC.Constants.ItemSources
-local ver = FurC.Constants.Versioning
+local LFC = LibFurnitureCatalogue
+local bc = LFC.Internal.Constants.BookContainers
+local loc = LFC.Internal.Constants.Locations
+local src = LFC.Internal.Constants.ItemSources
+local ver = LFC.Internal.Constants.Versioning
 
 local strPartOf = FurC.Utils.FormatPartOf
 local strPrice = FurC.Utils.FormatPrice

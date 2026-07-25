@@ -1,7 +1,8 @@
-local colours = FurC.Constants.Colours
-local loc = FurC.Constants.Locations
-local npc = FurC.Constants.NPC
-local skillLine = FurC.Constants.SkillLines
+local LFC = LibFurnitureCatalogue
+local colours = LFC.Internal.Constants.Colours
+local loc = LFC.Internal.Constants.Locations
+local npc = LFC.Internal.Constants.NPC
+local skillLine = LFC.Internal.Constants.SkillLines
 
 local sFormat = zo_strformat
 

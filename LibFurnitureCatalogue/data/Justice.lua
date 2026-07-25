@@ -1,9 +1,10 @@
 FurC.Justice = FurC.Justice or {}
 
-local ver = FurC.Constants.Versioning
-local src = FurC.Constants.ItemSources
-local loc = FurC.Constants.Locations
-local npc = FurC.Constants.NPC
+local LFC = LibFurnitureCatalogue
+local ver = LFC.Internal.Constants.Versioning
+local src = LFC.Internal.Constants.ItemSources
+local loc = LFC.Internal.Constants.Locations
+local npc = LFC.Internal.Constants.NPC
 
 local strGeneric = FurC.Utils.FmtGeneric
 local strSrc = FurC.Utils.FmtSources
@@ -175,14 +176,14 @@ FurC.Justice[ver.CLOCKWORK] = {
     [134400] = stealable, -- Soft Leather, Stacked
     [134401] = stealable, -- Soft Leather, Folded
     [134417] = stealable_cc, -- Clockwork Firm-Joint Calipers, Handheld
-    [134399] = stealable, -- Quality Fabric, Folded   
+    [134399] = stealable, -- Quality Fabric, Folded
   },
 }
 
 -- 4 Horns of the Reach
 FurC.Justice[ver.REACH] = {
   [src.JUSTICE] = {
-    [130191] = stealable, -- The Shivering Cheese   
+    [130191] = stealable, -- The Shivering Cheese
   },
 }
 
@@ -198,7 +199,7 @@ FurC.Justice[ver.MORROWIND] = {
 FurC.Justice[ver.HOMESTEAD] = {
   [src.JUSTICE] = {
     [117939] = strGeneric(srcPick, strSrc("src", npc.CLASS_WOODWORKER)), -- Rough Axe, Practical
-	[118206] = stealable_thief, -- Gaming die
+    [118206] = stealable_thief, -- Gaming die
     [118489] = stealable_scholars, -- Papers, Stack
     [118528] = stealable, -- Signed Contract
     [118890] = strGeneric(srcPick, strSrc("src", npc.CLASS_CULTIST, npc.CLASS_ASSASSIN)), -- Skull, Human

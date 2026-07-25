@@ -1,24 +1,25 @@
 FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
-local ver = FurC.Constants.Versioning
+local LFC = LibFurnitureCatalogue
+local ver = LFC.Internal.Constants.Versioning
 
 -- Season One
 FurC.LuxuryFurnisher[ver.THIEVES] = {
   [223884] = { -- Rock Altar, Spiked
     itemPrice = 4000,
-	itemDate = "2026-07-10",
+    itemDate = "2026-07-10",
   },
   [223885] = { -- Ayleid Staircase, Split
     itemPrice = 20000,
-	itemDate = "2026-07-17",
+    itemDate = "2026-07-17",
   },
   [223886] = { -- Ayleid Apparatus, Lamp
     itemPrice = 24000,
-	itemDate = "2026-07-24",
+    itemDate = "2026-07-24",
   },
   [223887] = { -- Alinor Colonnade, Summerset
     itemPrice = 24000,
-	itemDate = "2026-07-31",
+    itemDate = "2026-07-31",
   },
 }
 
@@ -26,19 +27,19 @@ FurC.LuxuryFurnisher[ver.THIEVES] = {
 FurC.LuxuryFurnisher[ver.ZERO2] = {
   [223880] = { -- Vampiric Scales, Laboratory
     itemPrice = 6000,
-	itemDate = "2026-06-12",
+    itemDate = "2026-06-12",
   },
   [223881] = { -- Argonian Tile, Trap Trigger Display
     itemPrice = 4000,
-	itemDate = "2026-06-19",
+    itemDate = "2026-06-19",
   },
   [223882] = { -- Nord Tile, Trap Trigger Display
     itemPrice = 4000,
-	itemDate = "2026-06-26",
+    itemDate = "2026-06-26",
   },
   [223883] = { -- Goblin Bedding, Leather
     itemPrice = 3000,
-	itemDate = "2026-07-03",
+    itemDate = "2026-07-03",
   },
 }
 
@@ -46,59 +47,59 @@ FurC.LuxuryFurnisher[ver.ZERO2] = {
 FurC.LuxuryFurnisher[ver.ZERO] = {
   [220369] = { -- Horse Skeleton, Display
     itemPrice = 100000,
-	itemDate = "2026-04-24",
+    itemDate = "2026-04-24",
   },
   [220366] = { -- Plant Cluster, Jungle Assortment
     itemPrice = 4500,
-	itemDate = "2026-04-03",
+    itemDate = "2026-04-03",
   },
   [220367] = { -- Orcish Floor, Square
     itemPrice = 3000,
-	itemDate = "2026-04-10",
+    itemDate = "2026-04-10",
   },
   [220368] = { -- Orcish Brazier, Short Snowswept Column
     itemPrice = 8000,
-	itemDate = "2026-04-17",
+    itemDate = "2026-04-17",
   },
   [223125] = { -- Skull, Whale
     itemPrice = 20000,
-	itemDate = "2026-05-01",
+    itemDate = "2026-05-01",
   },
   [223875] = { -- Clockwork Grating, Pedestal
     itemPrice = 2000,
-	itemDate = "2026-05-08",
+    itemDate = "2026-05-08",
   },
   [223876] = { -- Clockwork Door, Mechanical
     itemPrice = 100000,
-	itemDate = "2026-05-15",
+    itemDate = "2026-05-15",
   },
   [223877] = { -- Colovian Medallion, Winery
     itemPrice = 4900,
-	itemDate = "2026-05-22",
+    itemDate = "2026-05-22",
   },
   [223878] = { -- Blank Wood Sign, Post
     itemPrice = 2500,
-	itemDate = "2026-05-29",
+    itemDate = "2026-05-29",
   },
   [223879] = { -- Fabric Line
     itemPrice = 4000,
-	itemDate = "2026-06-05",
+    itemDate = "2026-06-05",
   },
 }
 
- -- 37 Seasons of the Worm Cult Pt. 2
+-- 37 Seasons of the Worm Cult Pt. 2
 FurC.LuxuryFurnisher[ver.WORMS2] = {
   [220363] = { -- Dwarven Lamp, Reachfolk Crow Skull
     itemPrice = 40000,
-	itemDate = "2026-03-13",
+    itemDate = "2026-03-13",
   },
   [220364] = { -- Reach Deer Skull, Wall Mount
     itemPrice = 2500,
-	itemDate = "2026-03-20",
+    itemDate = "2026-03-20",
   },
   [220365] = { -- Tree, Dragonblood
     itemPrice = 5000,
-	itemDate = "2026-03-27",
+    itemDate = "2026-03-27",
   },
 }
 
@@ -106,63 +107,63 @@ FurC.LuxuryFurnisher[ver.WORMS2] = {
 FurC.LuxuryFurnisher[ver.SHADOWS] = {
   [218019] = { -- Necrom Urn, Brushed Metal
     itemPrice = 4000,
-	itemDate = "2026-01-23",
+    itemDate = "2026-01-23",
   },
   [218024] = { -- Dibellan Sculpture, Metal Flowers
     itemPrice = 4500,
-	itemDate = "2025-10-10",
+    itemDate = "2025-10-10",
   },
   [218005] = { -- Dibellan Statue, Flowers
     itemPrice = 15000,
-	itemDate = "2025-10-17",
+    itemDate = "2025-10-17",
   },
   [218006] = { -- Colovian Gate, Fortified
     itemPrice = 24000,
-	itemDate = "2025-11-07",
+    itemDate = "2025-11-07",
   },
   [218007] = { -- Colovian Lattice, Wooden
     itemPrice = 4000,
-	itemDate = "2025-11-14",
+    itemDate = "2025-11-14",
   },
   [218008] = { -- Dwarven Device, Deactivated
     itemPrice = 15000,
-	itemDate = "2025-11-21",
+    itemDate = "2025-11-21",
   },
   [218010] = { -- Coldharbour Fountain
     itemPrice = 20000,
-	itemDate = "2025-12-05",
+    itemDate = "2025-12-05",
   },
   [218011] = { -- Mirror of Opposition, Replica
     itemPrice = 24000,
-	itemDate = "2025-12-12",
+    itemDate = "2025-12-12",
   },
   [218012] = { -- Necrom Funerary Offering, Mushroom Planter
     itemPrice = 750,
-	itemDate = "2025-12-19",
+    itemDate = "2025-12-19",
   },
   [218013] = { -- Mushroom, Giant Tanglestalk
     itemPrice = 20000,
-	itemDate = "2025-12-26",
+    itemDate = "2025-12-26",
   },
   [218014] = { -- Elsweyr Chimes, Long String
     itemPrice = 12000,
-	itemDate = "2026-01-02",
+    itemDate = "2026-01-02",
   },
   [218015] = { -- Elsweyr Ritual Archway, Restored
     itemPrice = 50000,
-	itemDate = "2026-01-09",
+    itemDate = "2026-01-09",
   },
   [218016] = { -- Necrom Funerary Offering, Bonsai
     itemPrice = 2000,
-	itemDate = "2026-01-16",
+    itemDate = "2026-01-16",
   },
   [218020] = { -- Aeonstone Formation, Circular
     itemPrice = 10000,
-	itemDate = "2026-01-30",
+    itemDate = "2026-01-30",
   },
   [218017] = { -- Redguard Wedding Planter
     itemPrice = 4500,
-	itemDate = "2026-02-06",
+    itemDate = "2026-02-06",
   },
   [218018] = { -- Alinor Harp, Display
     itemPrice = 15000,
@@ -170,15 +171,15 @@ FurC.LuxuryFurnisher[ver.SHADOWS] = {
   },
   [218021] = { -- Amethyst Crystals, Bed
     itemPrice = 10000,
-	itemDate = "2026-02-20",
+    itemDate = "2026-02-20",
   },
   [218022] = { -- Craglorn Stele, Mantikora
     itemPrice = 15000,
-	itemDate = "2026-02-27",
+    itemDate = "2026-02-27",
   },
   [218023] = { -- Craglorn Tapestry, Deer Skull
     itemPrice = 8000,
-	itemDate = "2026-03-06",
+    itemDate = "2026-03-06",
   },
 }
 
@@ -186,35 +187,35 @@ FurC.LuxuryFurnisher[ver.SHADOWS] = {
 FurC.LuxuryFurnisher[ver.WORMS] = {
   [217589] = { -- Reach Totem, Gathered Staves
     itemPrice = 2000,
-	itemDate = "2025-10-24",
+    itemDate = "2025-10-24",
   },
   [217583] = { -- Cage, Elevated
     itemPrice = 2000,
-	itemDate = "2025-09-12",
+    itemDate = "2025-09-12",
   },
   [217584] = { -- Worm Cult Cage, Closed
     itemPrice = 8000,
-	itemDate = "2025-09-19",
+    itemDate = "2025-09-19",
   },
   [217585] = { -- Tomb Marker, Ra Gada
     itemPrice = 4000,
-	itemDate = "2025-09-26",
+    itemDate = "2025-09-26",
   },
   [217586] = { -- Coffin, Granite
     itemPrice = 300,
-	itemDate = "2025-10-03",
+    itemDate = "2025-10-03",
   },
   [217587] = { -- Coffin Lid, Granite
     itemPrice = 200,
-	itemDate = "2025-10-03",
+    itemDate = "2025-10-03",
   },
   [217588] = { -- Statue, Mephala’s Spider
     itemPrice = 25000,
-	itemDate = "2025-10-10",
+    itemDate = "2025-10-10",
   },
   [217590] = { -- Skeletal Remains, Conversation
     itemPrice = 10000,
-	itemDate = "2025-10-31",
+    itemDate = "2025-10-31",
   },
 }
 
@@ -234,43 +235,43 @@ FurC.LuxuryFurnisher[ver.FALLBAN] = {
   },
   [212573] = { -- Flowers, Sturdy Blue Wisteria
     itemPrice = 2500,
-	itemDate = "2025-07-11",
+    itemDate = "2025-07-11",
   },
   [212577] = { -- Alinor Door, Half
-	itemPrice = 450,
-	itemDate = "2026-07-31",
+    itemPrice = 450,
+    itemDate = "2026-07-31",
   },
   [212584] = { -- Redguard Door, Tall
     itemPrice = 10000,
-	itemDate = "2025-07-18",
+    itemDate = "2025-07-18",
   },
   [212585] = { -- Redguard Fence, Short Brass Capped
     itemPrice = 2500,
-	itemDate = "2025-07-25",
+    itemDate = "2025-07-25",
   },
   [212582] = { -- Dock Shed, Wooden
     itemPrice = 10000,
-	itemDate = "2025-08-01",
+    itemDate = "2025-08-01",
   },
   [212583] = { -- Dock Bollard, Metal
     itemPrice = 450,
-	itemDate = "2025-08-08",
+    itemDate = "2025-08-08",
   },
   [212579] = { -- Flowers, Sunflower Row
     itemPrice = 1000,
-	itemDate = "2025-08-15",
+    itemDate = "2025-08-15",
   },
   [212578] = { -- Grass, Wispy Plume Cluster
     itemPrice = 450,
-	itemDate = "2025-08-22",
+    itemDate = "2025-08-22",
   },
   [212580] = { -- Apocrypha Brazier, Stone Marker
     itemPrice = 18000,
-	itemDate = "2025-08-29",
+    itemDate = "2025-08-29",
   },
   [212581] = { -- Colovian Path Marker
     itemPrice = 15000,
-	itemDate = "2025-09-05",
+    itemDate = "2025-09-05",
   },
 }
 
@@ -329,7 +330,7 @@ FurC.LuxuryFurnisher[ver.BASE44] = {
 FurC.LuxuryFurnisher[ver.BASE43] = {
   [210887] = { -- Alinor Potted Plant, Pink Wisteria
     itemPrice = 7500,
-	itemDate = "2026-02-06",
+    itemDate = "2026-02-06",
   },
   [210886] = { -- Orcish Gateway, City
     itemPrice = 4500,
@@ -438,15 +439,15 @@ FurC.LuxuryFurnisher[ver.WEALD] = {
   },
   [204634] = { -- Reach Totem, Twig Crescent
     itemPrice = 3000,
-	itemDate = "2025-10-24",
+    itemDate = "2025-10-24",
   },
   [204635] = { -- Reach Totem, Twig Archway
     itemPrice = 10000,
-	itemDate = "2025-10-31",
+    itemDate = "2025-10-31",
   },
   [204631] = { -- Order of the Hour Banner, Large
     itemPrice = 15000,
-	itemDate = "2025-11-14",
+    itemDate = "2025-11-14",
   },
 }
 
@@ -585,7 +586,7 @@ FurC.LuxuryFurnisher[ver.ENDLESS] = {
     itemDate = "2026-06-12",
   },
   [203138] = { -- Apocrypha Plant, Feather Fern
-	itemPrice = 1500,
+    itemPrice = 1500,
     itemDate = "2026-04-03",
   },
 }
@@ -594,7 +595,7 @@ FurC.LuxuryFurnisher[ver.ENDLESS] = {
 FurC.LuxuryFurnisher[ver.BASED] = {
   [218009] = { -- Dwarven Puzzle Cube, Thief Ascendant
     itemPrice = 20000,
-	itemDate = "2025-11-28",
+    itemDate = "2025-11-28",
   },
   [198048] = { -- Markarth Barrier, Low
     itemPrice = 18000,
@@ -991,7 +992,7 @@ FurC.LuxuryFurnisher[ver.TIDES] = {
   [184193] = { -- Alinor Trellis, Purple Wisteria
     itemPrice = 15000,
     itemDate = "2026-07-31",
-  }, 
+  },
 }
 
 -- 21 Deadlands
@@ -1073,9 +1074,9 @@ FurC.LuxuryFurnisher[ver.DEADL] = {
     itemDate = "2026-05-15",
   },
 }
-  
- -- 20 Waking Flame
-FurC.LuxuryFurnisher[ver.WAKE] = { 
+
+-- 20 Waking Flame
+FurC.LuxuryFurnisher[ver.WAKE] = {
   [181541] = { -- Reach Standard, Weathered
     itemPrice = 4000,
     itemDate = "2026-03-20",
@@ -1168,7 +1169,7 @@ FurC.LuxuryFurnisher[ver.BLACKW] = {
 
 -- 18 Flames of Ambition
 FurC.LuxuryFurnisher[ver.FLAMES] = {
-   [171833] = { -- Dark Elf Statue, St. Delyn
+  [171833] = { -- Dark Elf Statue, St. Delyn
     itemPrice = 35000,
     itemDate = "2025-10-17",
   },
@@ -1176,7 +1177,7 @@ FurC.LuxuryFurnisher[ver.FLAMES] = {
     itemPrice = 35000,
     itemDate = "2025-10-10",
   },
-   [171830] = { -- Mausoleum Bookcase, Filled
+  [171830] = { -- Mausoleum Bookcase, Filled
     itemPrice = 15000,
     itemDate = "2025-09-26",
   },
@@ -1219,10 +1220,10 @@ FurC.LuxuryFurnisher[ver.FLAMES] = {
   [171820] = { -- Redguard Urn, Wrapped Golden
     itemPrice = 12000,
     itemDate = "2025-07-18",
-  },  
+  },
   [171831] = { -- Mad Architect's Medallion, Diamond
     itemPrice = 2500,
-	itemDate = "2025-10-03",
+    itemDate = "2025-10-03",
   },
 }
 
@@ -1391,7 +1392,7 @@ FurC.LuxuryFurnisher[ver.SKYRIM] = {
   [165998] = { -- Tapestry of a Failed Incarnate, The Fool
     itemPrice = 20000,
     itemDate = "2025-12-05",
-  }, 
+  },
 }
 
 -- 14 Harrowstorm
@@ -1575,7 +1576,7 @@ FurC.LuxuryFurnisher[ver.SCALES] = {
   [153695] = { -- Titan Skull, Colossal
     itemPrice = 4000,
     itemDate = "2026-04-24",
-  },  
+  },
 }
 
 -- 11 Elsweyr
@@ -1815,7 +1816,7 @@ FurC.LuxuryFurnisher[ver.SLAVES] = {
   [145468] = { -- Wedding Lantern, Hanging
     itemPrice = 5000,
     itemDate = "2026-02-06",
-  },  
+  },
   [145482] = { -- Wheelbarrow, Bones
     itemPrice = 1000,
     itemDate = "2025-09-26",
@@ -1867,8 +1868,7 @@ FurC.LuxuryFurnisher[ver.SLAVES] = {
 }
 
 -- 7 Summerset
-FurC.LuxuryFurnisher[ver.ALTMER] = {
-}
+FurC.LuxuryFurnisher[ver.ALTMER] = {}
 
 -- 6 Dragonbones
 FurC.LuxuryFurnisher[ver.DRAGONS] = {
@@ -2027,7 +2027,7 @@ FurC.LuxuryFurnisher[ver.DRAGONS] = {
   [134825] = { -- Redguard Tent, Squared Silk
     itemPrice = 100000,
     itemDate = "2025-07-25",
-  }, 
+  },
 }
 
 -- 5 Clockwork City
@@ -2091,7 +2091,7 @@ FurC.LuxuryFurnisher[ver.CLOCKWORK] = {
   [134441] = { -- Animo Core, Full
     itemPrice = 10000,
     itemDate = "2026-06-12",
-  }, 
+  },
   [134440] = { -- Clockwork Titration Stand
     itemPrice = 3000,
     itemDate = "2026-06-12",
@@ -2123,7 +2123,7 @@ FurC.LuxuryFurnisher[ver.CLOCKWORK] = {
   [134428] = { -- Banker's Sign, Large
     itemPrice = 12000,
     itemDate = "2026-05-22",
-  }, 
+  },
   [134460] = { -- Riekling Lean-To, Boar Pelt
     itemPrice = 4000,
     itemDate = "2026-07-03",
@@ -2210,7 +2210,7 @@ FurC.LuxuryFurnisher[ver.CLOCKWORK] = {
   },
   [134433] = { -- Stablemaster's Sign, Small
     itemPrice = 3000,
-	itemDate = "2026-05-29",
+    itemDate = "2026-05-29",
   },
   [117875] = { -- Wedding Pergola, Bare
     itemPrice = 35000,
@@ -2259,9 +2259,9 @@ FurC.LuxuryFurnisher[ver.CLOCKWORK] = {
   [134423] = { -- Clockwork Gear Display, Tall Jar
     itemPrice = 3000,
     itemDate = "2026-05-15",
-  }, 
+  },
 }
-  
+
 -- 4 Horns of the Reach
 FurC.LuxuryFurnisher[ver.REACH] = {
   [132152] = { -- Orsinium Sarcophagus, Warrior's
@@ -2375,7 +2375,7 @@ FurC.LuxuryFurnisher[ver.REACH] = {
   [132143] = { -- Reach Sapling, Briarheart
     itemPrice = 50000,
     itemDate = "2025-10-31",
-  }, 
+  },
 }
 
 -- 3 Morrowind

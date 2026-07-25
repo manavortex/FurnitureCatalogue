@@ -4,13 +4,14 @@ FurC.RolisRecipes = FurC.RolisRecipes or {}
 FurC.Faustina = FurC.Faustina or {}
 FurC.FaustinaRecipes = FurC.FaustinaRecipes or {}
 
-local ver = FurC.Constants.Versioning
+local LFC = LibFurnitureCatalogue
+local ver = LFC.Internal.Constants.Versioning
 
 local strPartOf = FurC.Utils.FormatPartOf
 FurC.FurnishingFolios = FurC.FurnishingFolios or {}
 
-local npc = FurC.Constants.NPC
-local loc = FurC.Constants.Locations
+local npc = LFC.Internal.Constants.NPC
+local loc = LFC.Internal.Constants.Locations
 
 FurC.RolisRecipes[ver.ZERO] = {
   [223930] = 125, -- Pattern: Worm Cult Tent, Large
@@ -34,13 +35,13 @@ FurC.FaustinaRecipes[ver.ZERO] = {
 
 -- 34 Fallen Banners
 FurC.FurnishingFolios[223978] = { -- West Weald 2
-  vendor   = npc.FAUSTINA,
+  vendor = npc.FAUSTINA,
   location = loc.ANY_CAPITAL,
-  price    = 700,
+  price = 700,
   currency = CURT_WRIT_VOUCHERS,
-  version  = ver.FALLBAN,
+  version = ver.FALLBAN,
   contents = {
-	212567, -- Sketch: Guardian Key, Replica
+    212567, -- Sketch: Guardian Key, Replica
     212566, -- Praxis: Ayleid Sconce, Winged Floor
     212565, -- Diagram: Ayleid Window, Turquoise Glass
     212564, -- Formula: Dawnwood Hut, Partial
@@ -52,18 +53,18 @@ FurC.FurnishingFolios[223978] = { -- West Weald 2
 
 -- 32 Home Tours
 FurC.FurnishingFolios[219721] = { -- West Weald 1
-  vendor   = npc.FAUSTINA,
+  vendor = npc.FAUSTINA,
   location = loc.ANY_CAPITAL,
-  price    = 700,
+  price = 700,
   currency = CURT_WRIT_VOUCHERS,
-  version  = ver.BASE43,
+  version = ver.BASE43,
   contents = {
     211039, -- Blueprint: Colovian Keg, Gigantic Wine
     211038, -- Design: Dawnwood Platter, Feast
     211034, -- Diagram: Colovian Chandelier, Grapes
-    211033, -- Formula: Colovian Alembic Set, Colorful 
+    211033, -- Formula: Colovian Alembic Set, Colorful
     211035, -- Pattern: Colovian Tapestry, Red Diamond
-    211036, -- Praxis: Colovian Glassblower's Furnace 
+    211036, -- Praxis: Colovian Glassblower's Furnace
     211037, -- Sketch: Colovian Mirror, Standing
   },
 }
@@ -74,11 +75,11 @@ FurC.Faustina[ver.BASE43] = {
 
 -- 30 Scions of Ithelia
 FurC.FurnishingFolios[214255] = { -- Tomehold
-  vendor   = npc.FAUSTINA,
+  vendor = npc.FAUSTINA,
   location = loc.ANY_CAPITAL,
-  price    = 700,
+  price = 700,
   currency = CURT_WRIT_VOUCHERS,
-  version  = ver.SCIONS,
+  version = ver.SCIONS,
   contents = {
     203325, -- Praxis: Apocrypha Wall, Eye
     203324, -- Sketch: Apocrypha Mirror, Intricate
@@ -100,11 +101,11 @@ FurC.Faustina[ver.ENDLESS] = {
 
 -- 27 Based
 FurC.FurnishingFolios[211090] = { -- Necrom
-  vendor   = npc.FAUSTINA,
+  vendor = npc.FAUSTINA,
   location = loc.ANY_CAPITAL,
-  price    = 700,
+  price = 700,
   currency = CURT_WRIT_VOUCHERS,
-  version  = ver.BASED,
+  version = ver.BASED,
   contents = {
     198065, -- Design: Indoril Chandelier, Vine-Covered
     198064, -- Formula: Telvanni Lantern, Luminous Mushroom
@@ -118,11 +119,11 @@ FurC.FurnishingFolios[211090] = { -- Necrom
 
 -- 26 Scribes of Fate
 FurC.FurnishingFolios[204499] = { -- Galen
-  vendor   = npc.FAUSTINA,
+  vendor = npc.FAUSTINA,
   location = loc.ANY_CAPITAL,
-  price    = 700,
+  price = 700,
   currency = CURT_WRIT_VOUCHERS,
-  version  = ver.SCRIBE,
+  version = ver.SCRIBE,
   contents = {
     194392, -- Sketch: Resonance Crystal, Cerulean
     194393, -- Forumula: Druidic Throne, Y'ffre's Bloom
@@ -136,35 +137,35 @@ FurC.FurnishingFolios[204499] = { -- Galen
 
 -- 24 Lost Depths
 FurC.FurnishingFolios[198597] = { -- High Isle
-  vendor   = npc.FAUSTINA,
+  vendor = npc.FAUSTINA,
   location = loc.ANY_CAPITAL,
-  price    = 700,
+  price = 700,
   currency = CURT_WRIT_VOUCHERS,
-  version  = ver.DEPTHS,
+  version = ver.DEPTHS,
   contents = {
-	190075, -- Diagram: High Isle Beacon, Unlit
+    190075, -- Diagram: High Isle Beacon, Unlit
     190074, -- Formula: Potted Trees, Stonelore Dogwood
     190076, -- Pattern: High Isle Tapestry, Seaside Tourney
     190077, -- Praxis: High Isle Hearth, Tilework
     190078, -- Sketch: High Isle Hourglass, Gold
     190079, -- Design: Shark Jaw, Massive
-	190080, -- Blueprint: High Isle Caravel, Miniature,
+    190080, -- Blueprint: High Isle Caravel, Miniature,
   },
 }
 
 -- 22 Ascending Tides
 FurC.FurnishingFolios[194429] = { -- Deadlands
-  vendor   = npc.FAUSTINA,
+  vendor = npc.FAUSTINA,
   location = loc.ANY_CAPITAL,
-  price    = 700,
+  price = 700,
   currency = CURT_WRIT_VOUCHERS,
-  version  = ver.TIDES,
+  version = ver.TIDES,
   contents = {
-	184154, -- Blueprint: Alinor Easel, Carved
+    184154, -- Blueprint: Alinor Easel, Carved
     184156, -- Design: Blackwood Provisioning Station
     184151, -- Pattern: Deadlands Tapestry, Mehrunes Dagon
     184149, -- Praxis: Deadlands Puzzle Cube
-	184150, -- Diagram: Deadlands Throne
+    184150, -- Diagram: Deadlands Throne
     184152, -- Formula: Fargrave Water Globules, Static
     184153, -- Sketch: Fargrave Window, Grand Medallion
   },
@@ -172,13 +173,13 @@ FurC.FurnishingFolios[194429] = { -- Deadlands
 
 -- 20 Waking Flame
 FurC.FurnishingFolios[190121] = { -- Blackwood
-  vendor   = npc.FAUSTINA,
+  vendor = npc.FAUSTINA,
   location = loc.ANY_CAPITAL,
-  price    = 700,
+  price = 700,
   currency = CURT_WRIT_VOUCHERS,
-  version  = ver.WAKE,
+  version = ver.WAKE,
   contents = {
-	181556, -- Diagram: Deadlands Torture Rack
+    181556, -- Diagram: Deadlands Torture Rack
     181557, -- Blueprint: Leyawiin Divider, Carved Starfish
     181558, -- Pattern: Leyawiin Tapestry, Hunting Party
     181559, -- Praxis: Leyawiin Hearth, Carved Wood
@@ -190,11 +191,11 @@ FurC.FurnishingFolios[190121] = { -- Blackwood
 
 -- 18 Flames of Ambition
 FurC.FurnishingFolios[184192] = { -- Markarth
-  vendor   = npc.FAUSTINA,
+  vendor = npc.FAUSTINA,
   location = loc.ANY_CAPITAL,
-  price    = 700,
+  price = 700,
   currency = CURT_WRIT_VOUCHERS,
-  version  = ver.FLAMES,
+  version = ver.FLAMES,
   contents = {
     171803, -- Blueprint: Solitude Well, Noble
     171806, -- Design: Provisioning Station, Solitude Grill
@@ -208,11 +209,11 @@ FurC.FurnishingFolios[184192] = { -- Markarth
 
 -- 16 Stonethorn
 FurC.FurnishingFolios[171808] = { -- Western Skyrim
-  vendor   = npc.FAUSTINA,
+  vendor = npc.FAUSTINA,
   location = loc.ANY_CAPITAL,
-  price    = 700,
+  price = 700,
   currency = CURT_WRIT_VOUCHERS,
-  version  = ver.STONET,
+  version = ver.STONET,
   contents = {
     167378, -- Diagram: Vampiric Chandelier, Azure Wrought-Iron
     167379, -- Pattern: Solitude Loom, Warp-Weighted
@@ -226,11 +227,11 @@ FurC.FurnishingFolios[171808] = { -- Western Skyrim
 
 -- 14 Harrowstorm
 FurC.FurnishingFolios[171778] = { -- Dragonhold
-  vendor   = npc.FAUSTINA,
+  vendor = npc.FAUSTINA,
   location = loc.ANY_CAPITAL,
-  price    = 700,
+  price = 700,
   currency = CURT_WRIT_VOUCHERS,
-  version  = ver.HARROW,
+  version = ver.HARROW,
   contents = {
     159501, -- Praxis: Khajiit Sigil, Moon Cycle
     159499, -- Pattern: Elsweyr Bed, Senche-Raht
@@ -244,11 +245,11 @@ FurC.FurnishingFolios[171778] = { -- Dragonhold
 
 -- 13 Scalebreaker
 FurC.FurnishingFolios[171574] = { -- Elsweyr
-  vendor   = npc.FAUSTINA,
+  vendor = npc.FAUSTINA,
   location = loc.ANY_CAPITAL,
-  price    = 700,
+  price = 700,
   currency = CURT_WRIT_VOUCHERS,
-  version  = ver.SCALES,
+  version = ver.SCALES,
   contents = {
     153731, -- Blueprint: Elsweyr Cart, Masterwork
     153729, -- Diagram: Elsweyr Gate, Masterwork
@@ -262,11 +263,11 @@ FurC.FurnishingFolios[171574] = { -- Elsweyr
 
 -- 10 Wrathstone
 FurC.FurnishingFolios[171573] = { -- Ebonheart
-  vendor   = npc.FAUSTINA,
+  vendor = npc.FAUSTINA,
   location = loc.ANY_CAPITAL,
-  price    = 700,
+  price = 700,
   currency = CURT_WRIT_VOUCHERS,
-  version  = ver.WOTL,
+  version = ver.WOTL,
   contents = {
     147656, -- Dark Elf Tent, Canopy
     147657, -- Hlaalu Stove, Chiminea
@@ -280,11 +281,11 @@ FurC.FurnishingFolios[171573] = { -- Ebonheart
 
 -- 9 Wolfhunter
 FurC.FurnishingFolios[171572] = { -- Summerset
-  vendor   = npc.FAUSTINA,
+  vendor = npc.FAUSTINA,
   location = loc.ANY_CAPITAL,
-  price    = 800,
+  price = 800,
   currency = CURT_WRIT_VOUCHERS,
-  version  = ver.WEREWOLF,
+  version = ver.WEREWOLF,
   contents = {
     141896, -- Sketch: Figurine, The Dragon's Glare
     141902, -- Diagram: Relic Vault, Impenetrable
@@ -299,11 +300,11 @@ FurC.FurnishingFolios[171572] = { -- Summerset
 
 -- 6 Dragon Bones
 FurC.FurnishingFolios[171571] = { -- Dark Elf
-  vendor   = npc.FAUSTINA,
+  vendor = npc.FAUSTINA,
   location = loc.ANY_CAPITAL,
-  price    = 600,
+  price = 600,
   currency = CURT_WRIT_VOUCHERS,
-  version  = ver.DRAGONS,
+  version = ver.DRAGONS,
   contents = {
     134987, -- Blueprint: Hlaalu Gaming Table, Foxes & Felines
     134986, -- Design: Miniature Garden, Bottled
@@ -333,13 +334,13 @@ FurC.Rolis[ver.CLOCKWORK] = {
 
 -- 4 Reach
 FurC.FurnishingFolios[171569] = { -- Morrowind
-  vendor   = npc.FAUSTINA,
+  vendor = npc.FAUSTINA,
   location = loc.ANY_CAPITAL,
-  price    = 600,
+  price = 600,
   currency = CURT_WRIT_VOUCHERS,
-  version  = ver.REACH,
+  version = ver.REACH,
   contents = {
-	132195, -- Blueprint: Telvanni Candelabra, Masterwork
+    132195, -- Blueprint: Telvanni Candelabra, Masterwork
     132194, -- Design: Mammoth Cheese, Mastercrafted
     132193, -- Praxis: Hlaalu Bath Tub, Masterwork
     132192, -- Pattern: Dres Sewing Kit, Master's
@@ -350,16 +351,16 @@ FurC.FurnishingFolios[171569] = { -- Morrowind
 
 -- 2 Homestead
 FurC.FurnishingFolios[171568] = { -- Crafter's
-  vendor   = npc.FAUSTINA,
+  vendor = npc.FAUSTINA,
   location = loc.ANY_CAPITAL,
-  price    = 1100,
+  price = 1100,
   currency = CURT_WRIT_VOUCHERS,
-  version  = ver.HOMESTEAD,
+  version = ver.HOMESTEAD,
   contents = {
-	121200, -- Blueprint: Cabinet, Poisonmaker's
+    121200, -- Blueprint: Cabinet, Poisonmaker's
     121199, -- Design: Mortar and Pestle
     121197, -- Formula: Bottle, Poison Elixir
-	121214, -- Design: Orcish Skull Goblet, Full
+    121214, -- Design: Orcish Skull Goblet, Full
     121209, -- Pattern: Orcish Tapestry, Spear
     121207, -- Praxis: Orcish Table with Fur
     121168, -- Blueprint: Tools, Case

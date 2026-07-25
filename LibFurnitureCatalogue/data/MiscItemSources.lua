@@ -1,11 +1,12 @@
 FurC.MiscItemSources = FurC.MiscItemSources or {}
 
-local loc = FurC.Constants.Locations
-local ver = FurC.Constants.Versioning
-local src = FurC.Constants.ItemSources
-local npc = FurC.Constants.NPC
-local crates = FurC.Constants.CrownCrates
-local events = FurC.Constants.Events
+local LFC = LibFurnitureCatalogue
+local loc = LFC.Internal.Constants.Locations
+local ver = LFC.Internal.Constants.Versioning
+local src = LFC.Internal.Constants.ItemSources
+local npc = LFC.Internal.Constants.NPC
+local crates = LFC.Internal.Constants.CrownCrates
+local events = LFC.Internal.Constants.Events
 
 local formatAchievement = FurC.Utils.FormatAchievement
 

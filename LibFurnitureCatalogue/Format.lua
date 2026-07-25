@@ -8,7 +8,8 @@ local this = FurC.Utils
 
 local sFormat = zo_strformat
 
-local colours = FurC.Constants.Colours
+local LFC = LibFurnitureCatalogue
+local colours = LFC.Internal.Constants.Colours
 
 --[[_______________________
     |                     |

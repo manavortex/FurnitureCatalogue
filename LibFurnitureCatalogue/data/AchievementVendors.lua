@@ -1,11 +1,12 @@
 FurC.AchievementVendors = FurC.AchievementVendors or {}
 FurC.Books = FurC.Books or {}
 
-local events = FurC.Constants.Events
-local loc = FurC.Constants.Locations
-local npc = FurC.Constants.NPC
-local skillLine = FurC.Constants.SkillLines
-local ver = FurC.Constants.Versioning
+local LFC = LibFurnitureCatalogue
+local events = LFC.Internal.Constants.Events
+local loc = LFC.Internal.Constants.Locations
+local npc = LFC.Internal.Constants.NPC
+local skillLine = LFC.Internal.Constants.SkillLines
+local ver = LFC.Internal.Constants.Versioning
 
 local strRank = FurC.Utils.FmtRank
 

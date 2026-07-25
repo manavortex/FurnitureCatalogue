@@ -2,10 +2,11 @@ local FurC = FurC or {}
 FurC.DBQuery = FurC.DBQuery or {}
 local this = FurC.DBQuery
 
-local colour = FurC.Constants.Colours
-local loc = FurC.Constants.Locations
-local npc = FurC.Constants.NPC
-local src = FurC.Constants.ItemSources
+local LFC = LibFurnitureCatalogue
+local colour = LFC.Internal.Constants.Colours
+local loc = LFC.Internal.Constants.Locations
+local npc = LFC.Internal.Constants.NPC
+local src = LFC.Internal.Constants.ItemSources
 
 local colourise = FurC.Utils.Colourise
 local getItemLink = FurC.Utils.GetItemLink
