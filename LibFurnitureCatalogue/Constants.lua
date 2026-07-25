@@ -1,8 +1,11 @@
 FurC = FurC or {}
 
+local LFC = LibFurnitureCatalogue
+
 --- Collection of some variables for easier access. Not intended as an API. Some values are constants, while others are generated from string localisation and may change between play sessions or game patches.
 local this = {}
-FurC.Constants = this
+LFC.Internal.Constants = this
+FurC.Constants = this -- TODO: move alias to LFC.Internal
 
 local getZoneStr = GetZoneNameById
 local sFormat = zo_strformat

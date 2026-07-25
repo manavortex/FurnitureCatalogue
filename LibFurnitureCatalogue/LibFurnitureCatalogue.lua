@@ -11,4 +11,5 @@ lib.version = MINOR
 lib.name = MAJOR
 _G[MAJOR] = lib
 
-lib.API = lib.API or {}
+lib.API = lib.API or {} -- public API for DB queries and stuff
+lib.Internal = lib.Internal or {} -- internal use only
