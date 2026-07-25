@@ -1,6 +1,7 @@
 local async = LibAsync
 local task = async:Create("FurnitureCatalogue_Tooltip")
-local src = FurC.Constants.ItemSources
+local LFC = LibFurnitureCatalogue
+local src = LFC.Internal.Constants.ItemSources
 local query = FurC.DBQuery
 
 local function tryColorize(text)
@@ -26,8 +27,8 @@ end
 
 local function addFolioTooltipData(control, itemId, folioData)
   local strPrice = FurC.Utils.FormatPrice(folioData.price, folioData.currency)
-  local strVendor = FurC.Utils.Colourise(folioData.vendor, FurC.Constants.Colours.Vendor)
-  local strLoc = FurC.Utils.Colourise(folioData.location, FurC.Constants.Colours.Location)
+  local strVendor = FurC.Utils.Colourise(folioData.vendor, LFC.Internal.Constants.Colours.Vendor)
+  local strLoc = FurC.Utils.Colourise(folioData.location, LFC.Internal.Constants.Colours.Location)
   local header = zo_strformat("<<1>> : <<2>> (<<3>>)", strVendor, strLoc, strPrice)
 
   local lines = { header }

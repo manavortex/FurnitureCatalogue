@@ -5,7 +5,8 @@ local FURC_S_SHOPPINGLIST_5 = GetString(SI_FURC_PLUGIN_SL_ADD_FIVE)
 local FURC_S_TOGGLE_SL = GetString(SI_FURC_TOGGLE_SHOPPINGLIST)
 
 local linkStyle = LINK_STYLE_DEFAULT
-local src = FurC.Constants.ItemSources
+local LFC = LibFurnitureCatalogue
+local src = LFC.Internal.Constants.ItemSources
 
 local menuEventQueued = false
 

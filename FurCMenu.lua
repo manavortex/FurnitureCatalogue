@@ -1,4 +1,5 @@
-local src = FurC.Constants.ItemSources
+local LFC = LibFurnitureCatalogue
+local src = LFC.Internal.Constants.ItemSources
 local lib = FurC.Internal
 
 function FurC.CreateSettings(savedVars, defaults)

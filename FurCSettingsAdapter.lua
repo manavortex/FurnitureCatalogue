@@ -1,5 +1,6 @@
 local task = LibAsync:Create("FurnitureCatalogue_Settings")
-local src = FurC.Constants.ItemSources
+local LFC = LibFurnitureCatalogue
+local src = LFC.Internal.Constants.ItemSources
 
 function FurC.GetEnableDebug()
   return FurC.settings["enableDebug"]
@@ -227,7 +228,7 @@ end
 
 -- Tooltip source blacklist
 do
-  local S = FurC.Constants.ItemSources
+  local S = LFC.Internal.Constants.ItemSources
   local CATEGORIES = {
     { key = "purch_gold", name = SI_FURC_FILTER_SRC_SOLD_GOLD, raw = { S.VENDOR } },
     { key = "writ_vendor", name = SI_FURC_FILTER_SRC_SOLD_WRIT, raw = { S.ROLIS } },

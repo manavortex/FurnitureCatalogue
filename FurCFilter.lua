@@ -25,8 +25,9 @@ local showAllRumourOnTextSearch = false
 
 local recipeArray, itemId, itemLink, itemType, sItemType, recipeIndex, recipeListIndex
 
-local src = FurC.Constants.ItemSources
-local ver = FurC.Constants.Versioning
+local LFC = LibFurnitureCatalogue
+local src = LFC.Internal.Constants.ItemSources
+local ver = LFC.Internal.Constants.Versioning
 
 -- Local imports for performance
 local GetItemLinkName = GetItemLinkName
@@ -252,7 +253,7 @@ local function matchSourceDropdown()
     end
     return false
   end
-  
+
   if src.CROWN == ddSource then
     return hasSource(src.CROWN) or hasSource(src.EDITOR)
   end
@@ -306,7 +307,7 @@ local function matchFurnCategoryFilter()
     return true
   end
 
-  local itemCat    = recipeArray.furnCategory    or 0
+  local itemCat = recipeArray.furnCategory or 0
   local itemSubcat = recipeArray.furnSubcategory or 0
 
   -- Check if the item's top-level category is selected

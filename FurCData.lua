@@ -3,8 +3,9 @@ local task = LibAsync:Create("FurnitureCatalogue_ScanDataFiles")
 local lastLink = nil
 local recipeArray = nil
 
-local ver = FurC.Constants.Versioning
-local src = FurC.Constants.ItemSources
+local LFC = LibFurnitureCatalogue
+local ver = LFC.Internal.Constants.Versioning
+local src = LFC.Internal.Constants.ItemSources
 
 local getItemId = FurC.Utils.GetItemId
 local getItemLink = FurC.Utils.GetItemLink
@@ -72,12 +73,12 @@ local function cacheFurnishingCategory(itemLink, recipeArray)
   end
 
   local categoryId, subcategoryId = GetFurnitureDataCategoryInfo(dataId)
-  recipeArray.furnCategory    = categoryId    or 0
+  recipeArray.furnCategory = categoryId or 0
   recipeArray.furnSubcategory = subcategoryId or 0
 end
 FurC.CacheFurnishingCategory = cacheFurnishingCategory
 
-local SOURCE_PRIORITY = FurC.Constants.SOURCE_PRIORITY
+local SOURCE_PRIORITY = LFC.Internal.Constants.SOURCE_PRIORITY
 local function primarySource(sources)
   local best, bestRank
   for s in pairs(sources) do
@@ -606,7 +607,7 @@ local function scanFromFiles(blocking)
       end
     end
   end
-  
+
   local function scanAntiquities()
     for versionNumber, versionData in pairs(FurC.Antiquities) do
       for origin, originData in pairs(versionData) do
@@ -621,7 +622,7 @@ local function scanFromFiles(blocking)
       end
     end
   end
-  
+
   local function scanJustice()
     for versionNumber, versionData in pairs(FurC.Justice) do
       for origin, originData in pairs(versionData) do
@@ -651,7 +652,7 @@ local function scanFromFiles(blocking)
       end
     end
   end
-  
+
   local function scanVendorFiles()
     FurC.InitAchievementVendorList()
 
@@ -721,9 +722,9 @@ local function scanFromFiles(blocking)
     task
       :Call(scanRecipeFile)
       :Then(scanMiscItemFile)
-	  :Then(scanCrownStore)
-	  :Then(scanAntiquities)
-	  :Then(scanJustice)
+      :Then(scanCrownStore)
+      :Then(scanAntiquities)
+      :Then(scanJustice)
       :Then(scanFishing)
       :Then(scanVendorFiles)
       :Then(scanRolis)
@@ -733,9 +734,9 @@ local function scanFromFiles(blocking)
   else
     scanRecipeFile()
     scanMiscItemFile()
-	scanCrownStore()
-	scanAntiquities()
-	scanJustice()
+    scanCrownStore()
+    scanAntiquities()
+    scanJustice()
     scanFishing()
     scanVendorFiles()
     scanRolis()

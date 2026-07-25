@@ -7,8 +7,9 @@ FurC.SearchIndex = FurC.SearchIndex or {}
 local this = FurC.SearchIndex
 
 local getItemLink = FurC.Utils.GetItemLink
-local loc = FurC.Constants.Locations
-local npc = FurC.Constants.NPC
+local LFC = LibFurnitureCatalogue
+local loc = LFC.Internal.Constants.Locations
+local npc = LFC.Internal.Constants.NPC
 
 local lower = LocaleAwareToLower
 local stripTxt = FurC.Utils.stripTxt
