@@ -217,7 +217,7 @@ local function scanFromFiles(blocking)
           logDebug("scanRecipeFile: %s is not a resolvable furniture recipe", recipeId)
         else
           local itemLink = getItemLink(itemId)
-          recipeArray = FurC.Find(itemLink) or parseBlueprint(getItemLink(blueprintId)) or parseFurnitureItem(itemLink)
+          recipeArray = parseFurnitureItem(itemLink) or db[itemId] or parseBlueprint(getItemLink(blueprintId))
           if nil == recipeArray then
             logDebug("scanRecipeFile: error for ID %s - %s", recipeId, itemLink)
           else

@@ -9,6 +9,7 @@ local npc = LFC.Internal.Constants.NPC
 local src = LFC.Internal.Constants.ItemSources
 
 local colourise = LFC.Internal.Format.Colourise
+local getItemId = LFC.Internal.Format.GetItemId
 local getItemLink = LFC.Internal.Format.GetItemLink
 local strEvent = LFC.Internal.Format.FormatEvent
 local strFurnisher = LFC.Internal.Format.FormatFurnisher
@@ -16,6 +17,111 @@ local strGeneric = LFC.Internal.Format.FmtGeneric
 local stripText = LFC.Internal.Format.stripTxt
 local strSrc = LFC.Internal.Format.FmtSources
 local strPartOf = LFC.Internal.Format.FormatPartOf
+
+local db = LFC.Internal.DB
+local ensureDB = LFC.Internal.Build.EnsureDB
+local parseFurnitureItem = LFC.Internal.Build.ParseFurnitureItem
+local parseBlueprint = LFC.Internal.Build.ParseBlueprint
+
+-- single-entry memo for find
+local lastLink = nil
+local recipeArray = nil
+
+---DB entry for an item/blueprint, builds DB on first use
+---@param itemOrBlueprintLink string|integer item link, blueprint link, or itemId
+---@return FurCEntry entry the entry, or `{}` if unknown
+local function find(itemOrBlueprintLink)
+  ensureDB()
+  if tonumber(itemOrBlueprintLink) == itemOrBlueprintLink then
+    itemOrBlueprintLink = getItemLink(itemOrBlueprintLink)
+  end
+  if nil == itemOrBlueprintLink or #itemOrBlueprintLink == 0 then
+    return {}
+  end
+
+  if itemOrBlueprintLink == lastLink and nil ~= recipeArray then
+    return recipeArray
+  else
+    recipeArray = nil
+    lastLink = itemOrBlueprintLink
+  end
+
+  if IsItemLinkFurnitureRecipe(itemOrBlueprintLink) then
+    recipeArray = parseBlueprint(itemOrBlueprintLink)
+  elseif IsItemLinkPlaceableFurniture(itemOrBlueprintLink) then
+    recipeArray = parseFurnitureItem(itemOrBlueprintLink)
+  else
+    itemId = getItemId(itemOrBlueprintLink)
+    if itemId ~= nil and tonumber(itemId) > 0 then
+      recipeArray = db[itemId]
+    end
+  end
+
+  return recipeArray or {}
+end
+this.Find = find
+
+---@deprecated alias for DBQuery.Find
+FurC.Find = find
+
+local function getIngredients(itemLink, recipeArray)
+  recipeArray = recipeArray or find(itemLink)
+  local ingredients = {}
+  if not recipeArray or next(recipeArray) == nil then
+    return ingredients
+  end
+  if recipeArray.blueprint then
+    local blueprintLink = getItemLink(recipeArray.blueprint)
+    local numIngredients = GetItemLinkRecipeNumIngredients(blueprintLink)
+    for ingredientIndex = 1, numIngredients do
+      local name, _, qty = GetItemLinkRecipeIngredientInfo(blueprintLink, ingredientIndex)
+      local ingredientLink = GetItemLinkRecipeIngredientItemLink(blueprintLink, ingredientIndex, LINK_STYLE_DEFAULT)
+      ingredients[ingredientLink] = qty
+    end
+  else
+    local _, name, numIngredients = GetRecipeInfo(recipeArray.recipeListIndex, recipeArray.recipeIndex)
+    for ingredientIndex = 1, numIngredients do
+      local name, _, qty =
+        GetRecipeIngredientItemInfo(recipeArray.recipeListIndex, recipeArray.recipeIndex, ingredientIndex)
+      local ingredientLink = GetRecipeIngredientItemLink(
+        recipeArray.recipeListIndex,
+        recipeArray.recipeIndex,
+        ingredientIndex,
+        LINK_STYLE_DEFAULT
+      )
+      ingredients[ingredientLink] = qty
+    end
+  end
+  return ingredients
+end
+this.GetIngredients = getIngredients
+
+---@deprecated alias for DBQuery.GetIngredients
+FurC.GetIngredients = getIngredients
+
+local function makeMaterial(recipeKey, recipeArray, tryPlaintext, forcePlaintext)
+  if
+    nil == recipeArray
+    or (nil == recipeArray.blueprint and nil == recipeArray.recipeIndex and nil == recipeArray.recipeListIndex)
+  then
+    return "couldn't get material list, please re-scan character knowledge"
+  end
+  local ret = ""
+  local ingredients = getIngredients(recipeKey, recipeArray)
+  forcePlaintext = forcePlaintext or tryPlaintext and NonContiguousCount(ingredients) > 4
+  for ingredientLink, qty in pairs(ingredients) do
+    -- auto-capitalize because for some reason the ZOS API doesn't
+    local itemText = (
+      forcePlaintext and string.gsub(" " .. GetItemLinkName(ingredientLink), "%W%l", string.upper):sub(2)
+    ) or ingredientLink
+    ret = zo_strformat("<<1>> <<2>>x <<3>>, ", ret, qty, itemText)
+  end
+  return ret:sub(0, -3)
+end
+this.GetMats = makeMaterial
+
+---@deprecated alias for DBQuery.GetMats
+FurC.GetMats = makeMaterial
 
 local srcEvent = GetString(SI_FURC_EVENT)
 local srcEditor = GetString(SI_FURC_SRC_EDITOR)
@@ -43,7 +149,7 @@ local function strVoucher(vendor, entry)
 end
 
 local function getRolisSource(recipeKey, recipeArray)
-  recipeArray = recipeArray or FurC.Find(recipeKey)
+  recipeArray = recipeArray or find(recipeKey)
   if nil == next(recipeArray) then
     return
   end
@@ -84,7 +190,7 @@ local emptyString = GetString(SI_FURC_SRC_EMPTY)
 
 local strAroundDate = GetString(SI_FURC_STRING_WEEKEND_AROUND)
 local function getLuxurySource(recipeKey, recipeArray, stripColor)
-  recipeArray = recipeArray or FurC.Find(recipeKey)
+  recipeArray = recipeArray or find(recipeKey)
   if nil == next(recipeArray) then
     return
   end
@@ -125,7 +231,7 @@ end
 this.GetLuxurySource = getLuxurySource
 
 local function getPvpSource(recipeKey, recipeArray, stripColor)
-  recipeArray = recipeArray or FurC.Find(recipeKey)
+  recipeArray = recipeArray or find(recipeKey)
   if nil == next(recipeArray) then
     return
   end
@@ -167,7 +273,7 @@ this.GetPvpSource = getPvpSource
 
 -- TODO #REFACTOR: add info to item in DB and generate str from that. then use lookup by id
 local function getAchievementVendorSource(recipeKey, recipeArray, stripColor)
-  recipeArray = recipeArray or FurC.Find(recipeKey)
+  recipeArray = recipeArray or find(recipeKey)
   if nil == next(recipeArray) then
     return
   end
@@ -217,7 +323,7 @@ local validEventItemTypes = {
   ["table"] = true,
 }
 local function getEventDropSource(recipeKey, recipeArray)
-  recipeArray = recipeArray or FurC.Find(recipeKey)
+  recipeArray = recipeArray or find(recipeKey)
   if nil == next(recipeArray) then
     return
   end
@@ -263,7 +369,7 @@ end
 this.GetEventDropSource = getEventDropSource
 
 local function getMiscItemSource(recipeKey, recipeArray, stripColor, source)
-  recipeArray = recipeArray or FurC.Find(recipeKey)
+  recipeArray = recipeArray or find(recipeKey)
   -- "source" allows asking for specific category
   -- defaults to primary (top ranked source)
   source = source or recipeArray.origin
@@ -327,7 +433,7 @@ local function getRecipeSource(recipeKey, recipeArray)
     return FurC.RecipeSources[recipeKey]
   end
 
-  recipeArray = recipeArray or FurC.Find(recipeKey)
+  recipeArray = recipeArray or find(recipeKey)
 
   recipeKey = recipeArray.blueprint or recipeKey
 
@@ -342,3 +448,70 @@ local function getRumourSource(recipeKey, recipeArray)
   return (recipeArray.blueprint and strRRecipe) or strRItem
 end
 this.GetRumourSource = getRumourSource
+
+local function getCraftingSkillType(recipeKey, recipeArray)
+  local itemLink = getItemLink(recipeKey)
+  local craftingSkillType = GetItemLinkCraftingSkillType(itemLink)
+
+  if 0 == craftingSkillType and recipeArray.blueprint then
+    craftingSkillType = GetItemLinkRecipeCraftingSkillType(getItemLink(recipeArray.blueprint))
+  elseif 0 == craftingSkillType and recipeArray.recipeListIndex and recipeArray.recipeIndex then
+    _, _, _, _, _, _, craftingSkillType = GetRecipeInfo(recipeArray.recipeListIndex, recipeArray.recipeIndex)
+  end
+
+  return craftingSkillType
+end
+this.GetCraftingSkillType = getCraftingSkillType
+
+-- Description string for each source
+local function describeSource(recipeKey, recipeArray, source, stripColor)
+  if source == src.CRAFTING or source == src.WRIT_VENDOR then
+    -- where blueprint is bought, if we know (otherwise just material list)
+    local recipeSource = this.GetRecipeSource(recipeKey, recipeArray)
+    if recipeSource and #recipeSource > 0 then
+      return (stripColor and stripText(recipeSource)) or recipeSource
+    end
+    return makeMaterial(recipeKey, recipeArray, stripColor)
+  end
+  if source == src.ROLIS then
+    return this.GetRolisSource(recipeKey, recipeArray, stripColor)
+  end
+  if source == src.LUXURY then
+    return this.GetLuxurySource(recipeKey, recipeArray, stripColor)
+  end
+  if source == src.GUILDSTORE then
+    return GetString(SI_FURC_SEEN_IN_GUILDSTORE)
+  end
+  if source == src.VENDOR then
+    return this.GetAchievementVendorSource(recipeKey, recipeArray, stripColor)
+  end
+  if source == src.FESTIVAL_DROP then
+    return this.GetEventDropSource(recipeKey, recipeArray, stripColor)
+  end
+  if source == src.PVP then
+    return this.GetPvpSource(recipeKey, recipeArray, stripColor)
+  end
+  if source == src.RUMOUR then
+    return this.GetRumourSource(recipeKey, recipeArray, stripColor)
+  end
+  return this.GetMiscItemSource(recipeKey, recipeArray, stripColor, source)
+end
+this.DescribeSource = describeSource
+
+-- Single-string description for primary origin (by ranking)
+---@param recipeKey string|integer item link or id
+---@param recipeArray? FurCEntry looked up via FurC.Find if omitted
+---@param stripColor? boolean strip colour control chars
+---@return string
+local function getItemDescription(recipeKey, recipeArray, stripColor)
+  recipeKey = getItemId(recipeKey)
+  recipeArray = recipeArray or find(recipeKey)
+  if nil == next(recipeArray) then
+    return ""
+  end
+  return describeSource(recipeKey, recipeArray, recipeArray.origin, stripColor)
+end
+this.GetItemDescription = getItemDescription
+
+---@deprecated alias for DBQuery.GetItemDescription
+FurC.GetItemDescription = getItemDescription

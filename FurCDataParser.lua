@@ -1,5 +1,3 @@
-local db = FurC.settings["data"]
-
 local sFormat = zo_strformat
 
 local LFC = LibFurnitureCatalogue
@@ -41,16 +39,6 @@ function FurC.ToChat(output, refresh)
   end
 end
 
-local function getNameFromEntry(recipeArray)
-  if nil == recipeArray then
-    return ""
-  end
-  if nil == recipeArray.itemName and nil ~= recipeArray.itemId then
-    recipeArray.itemName = GetItemLinkName(recipeArray.itemId)
-  end
-  return recipeArray.itemName or ""
-end
-
 function FurC.PrintSource(itemLink, recipeArray)
   if nil == recipeArray then
     recipeArray = FurC.Find(itemLink)
@@ -66,18 +54,4 @@ function FurC.PrintSource(itemLink, recipeArray)
   end
 
   FurC.ToChat(output, true)
-end
-
-function FurC.FindByName(namePart)
-  local ret = {}
-  local itemName = ""
-  FurC.Logger:Debug("Looking for %s... ", namePart)
-  for itemId, recipeArray in pairs(FurC.settings["data"]) do
-    local m = string.match(string.lower(getNameFromEntry(recipeArray)), string.lower(namePart))
-    FurC.Logger:Verbose("%s: %s (%s)", recipeArray.itemId, getNameFromEntry(recipeArray), m, string.lower(namePart))
-    if nil ~= m then
-      table.insert(ret, recipeArray)
-    end
-  end
-  return ret
 end
