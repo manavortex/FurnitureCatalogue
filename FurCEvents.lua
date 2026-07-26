@@ -1,3 +1,5 @@
+-- Event wiring: inventory recipe icons, reactions to lifecycle events
+
 local LFC = LibFurnitureCatalogue
 
 local wm = WINDOW_MANAGER

@@ -1,3 +1,5 @@
+-- Data: fishing stuff
+
 FurC.Fishing = FurC.Fishing or {}
 
 local LFC = LibFurnitureCatalogue

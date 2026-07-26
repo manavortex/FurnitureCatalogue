@@ -1,4 +1,5 @@
--- FurC.Internal helper namespace. Not an API, could change at any time.
+-- FurC.Internal helper namespace: LCK + non-DB runtime utils.
+-- Not an API, could change at any time.
 
 FurC = FurC or {}
 FurC.Internal = FurC.Internal or {}

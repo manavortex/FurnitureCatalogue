@@ -1,3 +1,5 @@
+-- Datamining dump of furniture/recipe ids
+
 local recipeResultIds = {}
 
 -- skip dump functionality without sidTools

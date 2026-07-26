@@ -1,3 +1,5 @@
+-- Main window: scroll-list data, sort index, row setup, loading state
+
 FurC.SlotTemplate = "FurC_SlotTemplate"
 FurC.KnowledgeFilter = "All (Accountwide)"
 FurC.SearchString = ""

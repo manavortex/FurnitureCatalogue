@@ -1,3 +1,5 @@
+-- Export addon: dumps the built DB to SavedVars for offline processing
+
 FurCEx = {}
 
 local this = FurCEx

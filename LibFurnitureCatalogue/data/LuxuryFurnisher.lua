@@ -1,3 +1,5 @@
+-- Data: LuxuryFurnisher (weekly updates)
+
 FurC.LuxuryFurnisher = FurC.LuxuryFurnisher or {}
 
 local LFC = LibFurnitureCatalogue

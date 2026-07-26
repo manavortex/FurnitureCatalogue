@@ -1,3 +1,5 @@
+-- DB constants: item-source/version enums + source ranking, NPC/location/event name tables
+
 FurC = FurC or {}
 
 local LFC = LibFurnitureCatalogue

@@ -1,3 +1,5 @@
+-- Data: non-drop recipes, "where to buy" string rendered at file load
+
 local LFC = LibFurnitureCatalogue
 local colours = LFC.Internal.Constants.Colours
 local loc = LFC.Internal.Constants.Locations

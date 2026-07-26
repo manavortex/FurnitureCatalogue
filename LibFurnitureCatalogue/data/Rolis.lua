@@ -1,3 +1,5 @@
+-- Data: voucher vendors
+
 FurC.Rolis = FurC.Rolis or {}
 FurC.RolisRecipes = FurC.RolisRecipes or {}
 

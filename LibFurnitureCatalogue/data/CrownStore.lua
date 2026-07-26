@@ -1,3 +1,5 @@
+-- Data: CrownStore (bundles, packs, housing editor, scamboxes)
+
 FurC.CrownStore = FurC.CrownStore or {}
 
 local LFC = LibFurnitureCatalogue
@@ -65,7 +67,7 @@ local srcEditor = GetString(SI_FURC_SRC_EDITOR)
 
 --[[ If the item has multiple sources (particularly if it is sold in
 the housing editor as well as a house and/or furnishing pack or crown
-crate), put it in the EDITOR table of the version of its first appearance 
+crate), put it in the EDITOR table of the version of its first appearance
 because this means it's available all the time. List all sources. If even one
 of those sources isn't crowns, IT DOESN'T BELONG IN THIS FILE.]]
 --

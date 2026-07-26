@@ -1,3 +1,6 @@
+-- Data: currently merges into AchievementVendors, must load after AchievementVendors.lua
+-- TODO: add separate table for HGF?
+
 FurC.AchievementVendors = FurC.AchievementVendors or {}
 
 local LFC = LibFurnitureCatalogue

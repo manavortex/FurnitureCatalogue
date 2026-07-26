@@ -1,3 +1,5 @@
+-- Data: array of craftable recipe ids
+
 FurC.Recipes = FurC.Recipes or {}
 
 local LFC = LibFurnitureCatalogue

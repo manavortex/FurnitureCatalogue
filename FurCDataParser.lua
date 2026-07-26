@@ -1,3 +1,5 @@
+-- Chat output: post item sources / crafting stations to chat
+
 local sFormat = zo_strformat
 
 local LFC = LibFurnitureCatalogue

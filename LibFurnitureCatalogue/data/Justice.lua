@@ -1,3 +1,5 @@
+-- Data: items that can be stolen
+
 FurC.Justice = FurC.Justice or {}
 
 local LFC = LibFurnitureCatalogue

@@ -1,3 +1,5 @@
+-- XML-to-Lua bridge: window frame save/restore, GUI button/dropdown/keybind handlers
+
 FurC.Visible = false
 
 local LAM = LibAddonMenu2

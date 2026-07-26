@@ -1,3 +1,5 @@
+-- Data: EventItems
+
 FurC.EventItems = FurC.EventItems or {}
 
 local LFC = LibFurnitureCatalogue

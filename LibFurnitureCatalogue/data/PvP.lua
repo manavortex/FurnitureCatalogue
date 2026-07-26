@@ -1,3 +1,5 @@
+-- Data: If main src is PvP, it goes in here
+
 FurC.PVP = FurC.PVP or {}
 
 local LFC = LibFurnitureCatalogue

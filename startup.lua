@@ -1,3 +1,5 @@
+-- Addon entry: defaults + SavedVars, logger, version dropdown, init on EVENT_ADD_ON_LOADED
+
 FurC = FurC or {}
 
 local this = FurC

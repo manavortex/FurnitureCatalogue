@@ -1,3 +1,5 @@
+-- List filter pipeline: filter state + per-row match for GUI
+
 local query = FurC.DBQuery
 local searchIndex = FurC.SearchIndex
 local lib = FurC.Internal

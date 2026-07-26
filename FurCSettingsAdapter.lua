@@ -1,3 +1,5 @@
+-- Settings SavedVars getters and setters
+
 local task = LibAsync:Create("FurnitureCatalogue_Settings")
 local LFC = LibFurnitureCatalogue
 local src = LFC.Internal.Constants.ItemSources

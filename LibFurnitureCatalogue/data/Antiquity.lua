@@ -1,3 +1,5 @@
+-- Data: Antiquities (many available at trader for gold after first excavation)
+
 FurC.Antiquities = FurC.Antiquities or {}
 
 local LFC = LibFurnitureCatalogue

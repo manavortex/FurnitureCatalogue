@@ -1,3 +1,5 @@
+-- FurCDev entry point: namespace, control references, init
+
 FurCDev = {}
 
 local this = FurCDev

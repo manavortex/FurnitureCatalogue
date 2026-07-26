@@ -1,3 +1,5 @@
+-- Data: MiscItemSources, that don't have their own file (yet)
+
 FurC.MiscItemSources = FurC.MiscItemSources or {}
 
 local LFC = LibFurnitureCatalogue

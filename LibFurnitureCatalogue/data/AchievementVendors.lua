@@ -1,3 +1,5 @@
+-- Data: AchievementVendors, and currently also book lists
+
 FurC.AchievementVendors = FurC.AchievementVendors or {}
 FurC.Books = FurC.Books or {}
 

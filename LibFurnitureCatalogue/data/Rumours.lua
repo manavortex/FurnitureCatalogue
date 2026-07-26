@@ -1,3 +1,6 @@
+-- Data: datamined, but no confirmed src
+-- If a src exists for same id, leftovers in here should be ignored
+
 FurC.Rumours = FurC.Rumours or {}
 
 local LFC = LibFurnitureCatalogue

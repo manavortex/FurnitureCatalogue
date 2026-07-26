@@ -1,3 +1,5 @@
+-- LAM settings panel definition (FurC.CreateSettings)
+
 local LFC = LibFurnitureCatalogue
 local src = LFC.Internal.Constants.ItemSources
 local lib = FurC.Internal

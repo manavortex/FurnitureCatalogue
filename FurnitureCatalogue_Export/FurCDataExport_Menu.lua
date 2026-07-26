@@ -1,3 +1,5 @@
+-- LAM settings panel for the export addon
+
 function FurCEx.makeSettings()
   local LAM = LibAddonMenu2
   local panelData = {

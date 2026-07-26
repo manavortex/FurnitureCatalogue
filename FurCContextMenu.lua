@@ -1,3 +1,5 @@
+-- Right-click context menu on item links: chat/fave/recipe actions (+ FurnitureShoppingList hook)
+
 FurC_LinkHandlerBackup_OnLinkMouseUp = nil
 
 local FURC_S_SHOPPINGLIST_1 = GetString(SI_FURC_PLUGIN_SL_ADD_ONE)
