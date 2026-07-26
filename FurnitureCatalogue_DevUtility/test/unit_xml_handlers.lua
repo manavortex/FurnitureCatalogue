@@ -6,9 +6,7 @@ end
 
 Taneth("FurC:Unit", function()
   describe("XML handler references", function()
-    local KNOWN_DEAD = {
-      GuiSetupDropdown = true,
-    }
+    local KNOWN_DEAD = {}
 
     it("every FurC.* mention in xmls exists", function()
       if not (io and FurCDev.repoRoot) then

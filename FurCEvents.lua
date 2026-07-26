@@ -18,6 +18,7 @@ local function createIcon(control)
 end
 
 local function getItemKnowledge(itemLink)
+  local itemId = LFC.Internal.Format.GetItemId(itemLink)
   local recipeArray = FurC.Find(itemLink)
   if FurC.GetUseInventoryIconsOnChar() then
     return FurC.CanCraft(itemId, recipeArray)

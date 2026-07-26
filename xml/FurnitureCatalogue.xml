@@ -122,7 +122,6 @@
                   <Anchor point="TOPLEFT" relativeTo="$(parent)" relativePoint="TOPLEFT" offsetX="9"
                     offsetY="10" />
                   <Dimensions x="230" y="28" />
-                  <OnShow>FurC.GuiSetupDropdown(self)</OnShow>
                   <OnMouseEnter>FurC.GuiShowTooltip(self, "Filter: Knowledge and source", true)</OnMouseEnter>
                   <OnMouseExit>FurC.GuiHideTooltip(self)</OnMouseExit>
                 </Control>
@@ -136,7 +135,6 @@
                   <Anchor point="TOPRIGHT" relativeTo="$(parent)" relativePoint="TOPRIGHT"
                     offsetX="-9" offsetY="10" />
                   <Dimensions x="235" y="28" />
-                  <OnShow>FurC.GuiSetupDropdown(self)</OnShow>
                   <OnMouseEnter>FurC.GuiShowTooltip(self, "Filter: game version", true)</OnMouseEnter>
                   <OnMouseExit>FurC.GuiHideTooltip(self)</OnMouseExit>
                 </Control>
@@ -157,7 +155,6 @@
                   <Anchor point="TOPLEFT" relativeTo="$(parent)" relativePoint="TOPLEFT" offsetX="9"
                     offsetY="10" />
                   <Dimensions x="230" y="28" />
-                  <OnShow>FurC.GuiSetupDropdown(self)</OnShow>
                   <OnMouseEnter>FurC.GuiShowTooltip(self, "Filter: Character", true)</OnMouseEnter>
                   <OnMouseExit>FurC.GuiHideTooltip(self)</OnMouseExit>
                 </Control>

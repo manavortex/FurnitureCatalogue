@@ -54,7 +54,7 @@ local function find(itemOrBlueprintLink)
   elseif IsItemLinkPlaceableFurniture(itemOrBlueprintLink) then
     recipeArray = parseFurnitureItem(itemOrBlueprintLink)
   else
-    itemId = getItemId(itemOrBlueprintLink)
+    local itemId = getItemId(itemOrBlueprintLink)
     if itemId ~= nil and tonumber(itemId) > 0 then
       recipeArray = db[itemId]
     end
