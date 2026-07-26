@@ -11,33 +11,13 @@ local getItemId = LFC.Internal.Format.GetItemId
 local getItemLink = LFC.Internal.Format.GetItemLink
 local stripTxt = LFC.Internal.Format.stripTxt
 
+local resolveRecipe = LFC.Internal.Build.ResolveRecipe
+local libUpsert = LFC.Internal.Build.Upsert
+
 -- DB-content query table
 FurC.DBQuery = FurC.DBQuery or {}
 local this = FurC.DBQuery
 local lib = FurC.Internal
-
---- Maps a recipe id onto the furnishing it crafts
---- Plain furnishings pass through unchanged
----@param recipeId integer
----@return integer? itemId to store under, nil to skip
----@return integer? blueprintId set only when recipeId was a resolved recipe
-local function resolveRecipe(recipeId)
-  local recipeLink = getItemLink(recipeId)
-  if nil == recipeLink or not IsItemLinkFurnitureRecipe(recipeLink) then
-    return recipeId, nil
-  end
-  -- game returns "" when recipe has no result
-  local resultLink = GetItemLinkRecipeResultItemLink(recipeLink, LINK_STYLE_BRACKETS)
-  if nil == resultLink or #resultLink == 0 then
-    return nil, nil
-  end
-  local resultId = getItemId(resultLink)
-  if nil == resultId or resultId == recipeId then
-    return nil, nil
-  end
-  return resultId, recipeId
-end
-this.ResolveRecipe = resolveRecipe
 
 local function printItemLink(itemId)
   if nil == itemId then
@@ -53,91 +33,15 @@ local function printItemLink(itemId)
 end
 FurC.PrintItemLink = printItemLink
 
--- Looks up the ESO furniture category and subcategory for an item link
--- and caches the integer IDs onto the recipeArray. Safe to call multiple
--- times; skips the API call if already cached.
-local function cacheFurnishingCategory(itemLink, recipeArray)
-  if not recipeArray then
-    return
-  end
-  -- Skip if already cached (0 is a valid "uncategorised" result from the API)
-  if recipeArray.furnCategory ~= nil then
-    return
-  end
-
-  local dataId = GetItemLinkFurnitureDataId(itemLink)
-  if not dataId or dataId == 0 then
-    recipeArray.furnCategory = 0
-    recipeArray.furnSubcategory = 0
-    return
-  end
-
-  local categoryId, subcategoryId = GetFurnitureDataCategoryInfo(dataId)
-  recipeArray.furnCategory = categoryId or 0
-  recipeArray.furnSubcategory = subcategoryId or 0
-end
-FurC.CacheFurnishingCategory = cacheFurnishingCategory
-
 local SOURCE_PRIORITY = LFC.Internal.Constants.SOURCE_PRIORITY
-local function primarySource(sources)
-  local best, bestRank
-  for s in pairs(sources) do
-    local rank = SOURCE_PRIORITY[s] or math.huge
-    if not bestRank or rank < bestRank or (rank == bestRank and s < best) then
-      best, bestRank = s, rank
-    end
-  end
-  return best
-end
 
--- partial update or full overwrite
+-- Temp shim around lib Upsert: mirrors new entries onto the legacy dirty
+-- flag until the GUI compares LFC.Internal.DBRevision instead
 local function addDatabaseEntry(recipeKey, partial)
-  if not (recipeKey and partial and next(partial) ~= nil) then
-    return
-  end
-
-  local stored = FurC.DB[recipeKey]
-  if stored == nil then
-    stored = partial
-    FurC.DB[recipeKey] = stored
+  local isNew = nil == FurC.DB[recipeKey]
+  libUpsert(recipeKey, partial)
+  if isNew and nil ~= FurC.DB[recipeKey] then
     FurC.sortIndexDirty = true
-  else
-    for k, v in pairs(partial) do
-      if k ~= "origin" and k ~= "sources" then
-        stored[k] = v -- last writer wins
-      end
-    end
-  end
-
-  local sources = stored.sources or {}
-  stored.sources = sources
-  if partial.sources then
-    for s in pairs(partial.sources) do
-      sources[s] = true
-    end
-  end
-  if partial.origin ~= nil then
-    sources[partial.origin] = true
-  end
-  -- RUMOUR is fallback: datamined but unknown src
-  -- Sometimes we have leftover rumour items in DB
-  -- We should auto drop rumour category if a src exists
-  if sources[src.RUMOUR] then
-    for s in pairs(sources) do
-      if s ~= src.RUMOUR then
-        sources[src.RUMOUR] = nil
-        break
-      end
-    end
-  end
-  if next(sources) ~= nil then
-    stored.origin = primarySource(sources)
-  end
-
-  -- Cache furnishing category IDs onto the stored entry
-  local itemLink = getItemLink(recipeKey)
-  if itemLink then
-    cacheFurnishingCategory(itemLink, stored)
   end
 end
 FurC.Upsert = addDatabaseEntry

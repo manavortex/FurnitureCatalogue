@@ -34,4 +34,5 @@ data\Rolis.lua
 data\RumourRecipes.lua
 data\RecipeSources.lua
 
+Build.lua
 Query.lua
