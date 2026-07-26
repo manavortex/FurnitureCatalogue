@@ -13,21 +13,21 @@ locale\$(language).lua
 xml\Bindings.xml
 xml\FurnitureCatalogue.xml
 
-startup.lua
+Startup.lua
 Internal.lua
 
-FurCSettingsAdapter.lua
-FurCMenu.lua
-FurCEvents.lua
+SettingsAdapter.lua
+SettingsMenu.lua
+Events.lua
 
 FurCData.lua
-FurCDataParser.lua
+Chat.lua
 SearchIndex.lua
-FurCFilter.lua
-FurCGui.lua
-FurCContextMenu.lua
-FurCControlBridge.lua
-FurCTooltip.lua
+Filter.lua
+Gui.lua
+ContextMenu.lua
+GuiXmlBridge.lua
+Tooltip.lua
 
 ; This Add-on is not created by, affiliated with or sponsored by ZeniMax
 ; Media Inc. or its affiliates. The Elder Scrolls? and related logos are

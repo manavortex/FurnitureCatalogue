@@ -471,7 +471,7 @@ Add `SI_FURC_FILTER_VERSION_FOOBAR_TT` at the end of the block (you can duplicat
 
 ### Add the context menu entries.
 
-In `FurnitureCatalogue\startup.lua`, find `FurC.DropdownData` [around line 131](./startup.lua#L131).
+In `FurnitureCatalogue\Startup.lua`, find `FurC.DropdownData` [around line 131](../Startup.lua#L131).
 At the bottom of each list, add a line with the constant from the previous step.
 
 ### You're done!
