@@ -12,6 +12,12 @@ Taneth("FurC:Unit", function()
     FurC.DB[TEST_ID] = nil
   end
 
+  describe("legacy alias FurC.DB", function()
+    it("resolves to the lib runtime table", function()
+      assert.equals(LibFurnitureCatalogue.Internal.DB, FurC.DB)
+    end)
+  end)
+
   describe("FurC.Upsert", function()
     it("stores a single source and mirrors it onto origin", function()
       clear()
