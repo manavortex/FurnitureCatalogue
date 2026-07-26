@@ -35,3 +35,10 @@ lib.Internal.DBRevision = lib.Internal.DBRevision or 0
 -- Legacy alias, same table — never reassign either side
 FurC = FurC or {}
 FurC.DB = lib.Internal.DB
+
+-- DB lifecycle events
+lib.Internal.Callbacks = lib.Internal.Callbacks or ZO_CallbackObject:New()
+lib.Internal.Events = {
+  SCAN_STARTED = "LFC_SCAN_STARTED",
+  SCAN_COMPLETE = "LFC_SCAN_COMPLETE",
+}

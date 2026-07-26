@@ -122,6 +122,15 @@ local function addDatabaseEntry(recipeKey, partial)
 end
 this.Upsert = addDatabaseEntry
 
+-- Wipes runtime DB in place
+local function clear()
+  for itemId in pairs(db) do
+    db[itemId] = nil
+  end
+  LFC.Internal.DBRevision = LFC.Internal.DBRevision + 1
+end
+this.Clear = clear
+
 -- Legacy alias
 FurC = FurC or {}
 FurC.DBQuery = FurC.DBQuery or {}

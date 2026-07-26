@@ -177,7 +177,7 @@ end
 -- need to rebuild only when sort order changes or DB has itemchanges
 local sortedIndex
 local sortedIndexKey
-FurC.sortIndexDirty = true
+local sortedRevision
 
 -- Sorting 8.4k names costs ~370 ms, mostly for strcoll
 -- TODO: revisit if performance sucks too much (numeric/hashed was not a good option because of locale byte order)
@@ -212,12 +212,12 @@ local function ensureSortedIndex()
   sortName = sortName or "itemName"
   local sortUp = ((ZO_SORT_ORDER_UP and sortDirection == "up") or ZO_SORT_ORDER_DOWN)
   local key = tostring(sortName) .. "|" .. tostring(sortUp)
-  if sortedIndex and key == sortedIndexKey and not FurC.sortIndexDirty then
+  if sortedIndex and key == sortedIndexKey and sortedRevision == LFC.Internal.DBRevision then
     return sortedIndex
   end
   sortedIndex = buildSortedIndex(sortName, sortUp)
   sortedIndexKey = key
-  FurC.sortIndexDirty = false
+  sortedRevision = LFC.Internal.DBRevision
   return sortedIndex
 end
 

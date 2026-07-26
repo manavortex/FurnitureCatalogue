@@ -1,4 +1,5 @@
 local em = EVENT_MANAGER
+local LFC = LibFurnitureCatalogue
 
 local function onRecipeLearned(eventCode, recipeListIndex, recipeIndex)
   local itemlink = GetRecipeResultItemLink(recipeListIndex, recipeIndex, LINK_STYLE_BRACKETS)
@@ -103,3 +104,17 @@ end
 function FurC.RegisterEvents()
   em:RegisterForEvent("FurnitureCatalogue", EVENT_RECIPE_LEARNED, onRecipeLearned)
 end
+
+local function onScanStarted()
+  FurC.IsLoading(true)
+end
+
+local function onScanComplete()
+  if FurC.SearchIndex then -- invalidate in case it was partially built already
+    FurC.SearchIndex.Invalidate()
+  end
+  FurC.UpdateGui()
+end
+
+LFC.Internal.Callbacks:RegisterCallback(LFC.Internal.Events.SCAN_STARTED, onScanStarted)
+LFC.Internal.Callbacks:RegisterCallback(LFC.Internal.Events.SCAN_COMPLETE, onScanComplete)

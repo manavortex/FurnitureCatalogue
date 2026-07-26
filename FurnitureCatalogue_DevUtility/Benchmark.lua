@@ -99,7 +99,8 @@ local function clearCaches()
   FurC.Utils.ClearLinkCache()
   FurC.ClearFilterCaches()
   FurC.SearchIndex.Invalidate()
-  FurC.sortIndexDirty = true
+  -- force sorted-index rebuild
+  LibFurnitureCatalogue.Internal.DBRevision = LibFurnitureCatalogue.Internal.DBRevision + 1
 end
 
 local function warmCaches()

@@ -12,7 +12,7 @@ local getItemLink = LFC.Internal.Format.GetItemLink
 local stripTxt = LFC.Internal.Format.stripTxt
 
 local resolveRecipe = LFC.Internal.Build.ResolveRecipe
-local libUpsert = LFC.Internal.Build.Upsert
+local addDatabaseEntry = LFC.Internal.Build.Upsert
 
 -- DB-content query table
 FurC.DBQuery = FurC.DBQuery or {}
@@ -35,15 +35,6 @@ FurC.PrintItemLink = printItemLink
 
 local SOURCE_PRIORITY = LFC.Internal.Constants.SOURCE_PRIORITY
 
--- Temp shim around lib Upsert: mirrors new entries onto the legacy dirty
--- flag until the GUI compares LFC.Internal.DBRevision instead
-local function addDatabaseEntry(recipeKey, partial)
-  local isNew = nil == FurC.DB[recipeKey]
-  libUpsert(recipeKey, partial)
-  if isNew and nil ~= FurC.DB[recipeKey] then
-    FurC.sortIndexDirty = true
-  end
-end
 FurC.Upsert = addDatabaseEntry
 
 local function makeMaterial(recipeKey, recipeArray, tryPlaintext, forcePlaintext)
@@ -608,19 +599,16 @@ local function scanFromFiles(blocking)
   local buildStarted = GetGameTimeMilliseconds()
   local function finish()
     isBuilding = false
-    if FurC.SearchIndex then -- invalidate in case it was partially built already
-      FurC.SearchIndex.Invalidate()
-    end
     FurC.Logger:Debug(
       "DB build finished: %d entries in %d ms",
       NonContiguousCount(FurC.DB),
       GetGameTimeMilliseconds() - buildStarted
     )
-    FurC.UpdateGui()
+    LFC.Internal.Callbacks:FireCallbacks(LFC.Internal.Events.SCAN_COMPLETE)
   end
 
   isBuilding = true
-  FurC.IsLoading(true)
+  LFC.Internal.Callbacks:FireCallbacks(LFC.Internal.Events.SCAN_STARTED)
 
   if nil ~= task and not blocking then
     task
@@ -675,10 +663,7 @@ function FurC.RebuildDB(blocking)
   if isBuilding then
     return
   end
-  for itemId in pairs(FurC.DB) do
-    FurC.DB[itemId] = nil
-  end
-  FurC.sortIndexDirty = true
+  LFC.Internal.Build.Clear()
   FurC.Logger:Debug(GetString(SI_FURC_VERBOSE_SCANNING_DATA_FILE))
   scanFromFiles(blocking)
 end
