@@ -42,3 +42,18 @@ lib.Internal.Events = {
   SCAN_STARTED = "LFC_SCAN_STARTED",
   SCAN_COMPLETE = "LFC_SCAN_COMPLETE",
 }
+
+-- Optional LibDebugLogger
+local noop = function() end
+local fallbackLogger = setmetatable({}, {
+  __index = function()
+    return noop
+  end,
+})
+local logger
+function lib.Internal.GetLogger()
+  if not logger and LibDebugLogger then
+    logger = LibDebugLogger(MAJOR)
+  end
+  return logger or fallbackLogger
+end

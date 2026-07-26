@@ -1,12 +1,4 @@
-local em = EVENT_MANAGER
 local LFC = LibFurnitureCatalogue
-
-local function onRecipeLearned(eventCode, recipeListIndex, recipeIndex)
-  local itemlink = GetRecipeResultItemLink(recipeListIndex, recipeIndex, LINK_STYLE_BRACKETS)
-  local info = zo_strformat(GetString(SI_FURC_STRING_RECIPELEARNED), itemlink, recipeListIndex, recipeIndex)
-  FurC.Logger:Debug(info)
-  FurC.UpdateGui()
-end
 
 local wm = WINDOW_MANAGER
 
@@ -99,10 +91,6 @@ function FurC.SetupInventoryRecipeIcons(calledRecursively)
       end)
     end
   end
-end
-
-function FurC.RegisterEvents()
-  em:RegisterForEvent("FurnitureCatalogue", EVENT_RECIPE_LEARNED, onRecipeLearned)
 end
 
 local function onScanStarted()
