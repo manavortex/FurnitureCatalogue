@@ -15,6 +15,7 @@ Example calls (use your main language files only):
   python .scripts/luaDoc_generateStr.py locale/en.lua locale/de.lua --generate-translation
 """
 
+import glob
 import re
 import sys
 
@@ -188,12 +189,16 @@ if __name__ == '__main__':
   input_file = "locale/en.lua"
   out_path = "docs/autocomplete_definitions.lua"
 
-  # Default use case: Generate LuaDoc with default paths
+  # Default use case: Generate LuaDoc for all locale masters (main addon + any bundled addon)
   if len(sys.argv) == 1:
-    # use default files if none supplied
-    str_map = extract_strings(get_file_content(input_file))
-    write_lua_doc(input_file, out_path, str_map)
-    print(f"Wrote {input_file} to {out_path}")
+    masters = sorted(p.replace('\\', '/') for p in glob.glob('**/locale/en.lua', recursive=True))
+    if not masters:
+      print("Error: no locale/en.lua found — run from the project root.")
+      exit(EXIT_FAILURE)
+    for master in masters:
+      str_map = extract_strings(get_file_content(master))
+      write_lua_doc(master, out_path, str_map)
+      print(f"Wrote {master} to {out_path}")
 
     exit(EXIT_SUCCESS)
 

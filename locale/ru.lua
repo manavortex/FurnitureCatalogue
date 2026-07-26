@@ -13,6 +13,8 @@ local strings = {
   SI_FURC_FILTER_VERSION_WORMS2_TT = "Долой стену!",
   SI_FURC_FILTER_VERSION_ZERO = "Нулевой сезон",
   SI_FURC_FILTER_VERSION_ZERO_TT = "Потому что зачем начинать с единицы?",
+  SI_FURC_STRING_CANNOT_CRAFT = "You cannot craft this yet",
+  SI_FURC_STRING_CRAFTABLE_BY = "Can be crafted by ",
   SI_FURC_STRING_MENU_LUXURY_N = "Treat luxury items as purchaseables?",
   SI_FURC_STRING_MENU_LUXURY_TT = "This will show everything that was sold by Zanil Theran under 'purchaseable' and deactvates the custom filter",
   -- 393 ENTRIES UNTRANSLATED/IDENTICAL
