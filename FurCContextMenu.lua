@@ -53,7 +53,7 @@ local function fave()
   FurC.Fave(cachedItemLink)
 end
 local function postItemSource()
-  FurC.ToChat(FurC.GetItemDescription(cachedItemLink, cachedRecipeArray, true))
+  FurC.ToChat(FurC.GetItemDescription(cachedItemLink, cachedRecipeArray, true, { dateFormat = FurC.GetDateFormat() }))
 end
 local function postRecipe()
   FurC.ToChat(LFC.Internal.Format.GetItemLink(cachedRecipeArray.blueprint))

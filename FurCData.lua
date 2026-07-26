@@ -210,7 +210,7 @@ end
 ---@return string[] lines one per source, ranked (honours tooltip blacklist)
 local function getSourceLines(recipeKey, recipeArray, stripColor)
   recipeArray = recipeArray or this.Find(recipeKey)
-  local ranked = this.GetRankedSources(recipeKey, recipeArray, stripColor)
+  local ranked = this.GetRankedSources(recipeKey, recipeArray, stripColor, { dateFormat = FurC.GetDateFormat() })
 
   local lines = {}
   for _, entry in ipairs(ranked) do

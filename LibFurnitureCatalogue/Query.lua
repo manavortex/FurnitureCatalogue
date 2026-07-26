@@ -192,7 +192,7 @@ this.GetRolisSource = getRolisSource
 local emptyString = GetString(SI_FURC_SRC_EMPTY)
 
 local strAroundDate = GetString(SI_FURC_STRING_WEEKEND_AROUND)
-local function getLuxurySource(recipeKey, recipeArray, stripColor)
+local function getLuxurySource(recipeKey, recipeArray, stripColor, opts)
   recipeArray = recipeArray or find(recipeKey)
   if nil == next(recipeArray) then
     return
@@ -216,7 +216,7 @@ local function getLuxurySource(recipeKey, recipeArray, stripColor)
 
   local formattedDate = ""
   if yyyy and mm and dd then
-    local formatted = FurC.GetDateFormat()
+    local formatted = (opts and opts.dateFormat) or "YYYY-MM-DD"
     formatted = string.gsub(formatted, "YYYY", yyyy)
     formatted = string.gsub(formatted, "MM", mm)
     formatted = string.gsub(formatted, "DD", dd)
@@ -467,7 +467,7 @@ end
 this.GetCraftingSkillType = getCraftingSkillType
 
 -- Description string for each source
-local function describeSource(recipeKey, recipeArray, source, stripColor)
+local function describeSource(recipeKey, recipeArray, source, stripColor, opts)
   if source == src.CRAFTING or source == src.WRIT_VENDOR then
     -- where blueprint is bought, if we know (otherwise just material list)
     local recipeSource = this.GetRecipeSource(recipeKey, recipeArray)
@@ -480,7 +480,7 @@ local function describeSource(recipeKey, recipeArray, source, stripColor)
     return this.GetRolisSource(recipeKey, recipeArray, stripColor)
   end
   if source == src.LUXURY then
-    return this.GetLuxurySource(recipeKey, recipeArray, stripColor)
+    return this.GetLuxurySource(recipeKey, recipeArray, stripColor, opts)
   end
   if source == src.GUILDSTORE then
     return GetString(SI_FURC_SEEN_IN_GUILDSTORE)
@@ -505,14 +505,15 @@ this.DescribeSource = describeSource
 ---@param recipeKey string|integer item link or id
 ---@param recipeArray? FurCEntry looked up via FurC.Find if omitted
 ---@param stripColor? boolean strip colour control chars
+---@param opts? { dateFormat?: string } render options, e.g. the luxury date format (default "YYYY-MM-DD")
 ---@return string
-local function getItemDescription(recipeKey, recipeArray, stripColor)
+local function getItemDescription(recipeKey, recipeArray, stripColor, opts)
   recipeKey = getItemId(recipeKey)
   recipeArray = recipeArray or find(recipeKey)
   if nil == next(recipeArray) then
     return ""
   end
-  return describeSource(recipeKey, recipeArray, recipeArray.origin, stripColor)
+  return describeSource(recipeKey, recipeArray, recipeArray.origin, stripColor, opts)
 end
 this.GetItemDescription = getItemDescription
 
@@ -523,8 +524,9 @@ FurC.GetItemDescription = getItemDescription
 ---@param recipeKey string|integer item link or id
 ---@param recipeArray? FurCEntry looked up if omitted
 ---@param stripColor? boolean strip colour control chars
+---@param opts? { dateFormat?: string } render options, e.g. the luxury date format (default "YYYY-MM-DD")
 ---@return { source: FurCItemSource, text: string }[] ranked best-first, empty renders omitted
-local function getRankedSources(recipeKey, recipeArray, stripColor)
+local function getRankedSources(recipeKey, recipeArray, stripColor, opts)
   recipeKey = getItemId(recipeKey)
   recipeArray = recipeArray or find(recipeKey)
   local sources = recipeArray and recipeArray.sources
@@ -544,7 +546,7 @@ local function getRankedSources(recipeKey, recipeArray, stripColor)
 
   local lines = {}
   for _, s in ipairs(ranked) do
-    local text = describeSource(recipeKey, recipeArray, s, stripColor)
+    local text = describeSource(recipeKey, recipeArray, s, stripColor, opts)
     if text and #text > 0 then
       lines[#lines + 1] = { source = s, text = text }
     end
