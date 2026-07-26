@@ -1,3 +1,5 @@
+-- DB read path: Find, ingredient/material queries, per-source description renderers
+
 local FurC = FurC or {}
 FurC.DBQuery = FurC.DBQuery or {}
 local this = FurC.DBQuery
@@ -22,6 +24,7 @@ local db = LFC.Internal.DB
 local ensureDB = LFC.Internal.Build.EnsureDB
 local parseFurnitureItem = LFC.Internal.Build.ParseFurnitureItem
 local parseBlueprint = LFC.Internal.Build.ParseBlueprint
+local SOURCE_PRIORITY = LFC.Internal.Constants.SOURCE_PRIORITY
 
 -- single-entry memo for find
 local lastLink = nil
@@ -515,3 +518,37 @@ this.GetItemDescription = getItemDescription
 
 ---@deprecated alias for DBQuery.GetItemDescription
 FurC.GetItemDescription = getItemDescription
+
+-- Every non-crafting source of an item, ranked, unfiltered — hiding sources is the consumer's business
+---@param recipeKey string|integer item link or id
+---@param recipeArray? FurCEntry looked up if omitted
+---@param stripColor? boolean strip colour control chars
+---@return { source: FurCItemSource, text: string }[] ranked best-first, empty renders omitted
+local function getRankedSources(recipeKey, recipeArray, stripColor)
+  recipeKey = getItemId(recipeKey)
+  recipeArray = recipeArray or find(recipeKey)
+  local sources = recipeArray and recipeArray.sources
+  if not sources then
+    return {}
+  end
+
+  local ranked = {}
+  for s in pairs(sources) do
+    if s ~= src.CRAFTING then
+      ranked[#ranked + 1] = s
+    end
+  end
+  table.sort(ranked, function(a, b)
+    return (SOURCE_PRIORITY[a] or math.huge) < (SOURCE_PRIORITY[b] or math.huge)
+  end)
+
+  local lines = {}
+  for _, s in ipairs(ranked) do
+    local text = describeSource(recipeKey, recipeArray, s, stripColor)
+    if text and #text > 0 then
+      lines[#lines + 1] = { source = s, text = text }
+    end
+  end
+  return lines
+end
+this.GetRankedSources = getRankedSources

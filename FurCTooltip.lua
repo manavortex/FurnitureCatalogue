@@ -1,3 +1,5 @@
+-- Tooltip injection: source lines + other infos on item tooltips
+
 local async = LibAsync
 local task = async:Create("FurnitureCatalogue_Tooltip")
 local LFC = LibFurnitureCatalogue
@@ -54,7 +56,7 @@ local function addBookCollectionTooltipData(control, itemId, collection)
 
   local recipeArray = FurC.Find(itemId)
   if recipeArray and not FurC.GetHideSource() then
-    local sourceLines = query.GetSourceLines(itemId, recipeArray, false)
+    local sourceLines = FurC.GetSourceLines(itemId, recipeArray, false)
     for i = 1, #sourceLines do
       lines[#lines + 1] = sourceLines[i]
     end
@@ -140,7 +142,7 @@ local function addTooltipData(control, itemLink)
   -- other sources: every ranked source except crafting, one line each
   if not isRecipe then
     if not FurC.GetHideSource() then
-      local lines = query.GetSourceLines(itemId, recipeArray, false)
+      local lines = FurC.GetSourceLines(itemId, recipeArray, false)
       for i = 1, #lines do
         stringTable = add(stringTable, lines[i])
       end

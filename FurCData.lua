@@ -1,3 +1,5 @@
+-- User/character state: favourites, SavedVars migrations, knowledge checks, tooltip source-line assembly
+
 local LFC = LibFurnitureCatalogue
 local src = LFC.Internal.Constants.ItemSources
 
@@ -21,8 +23,6 @@ local function printItemLink(itemId)
   FurC.Logger:Info("[%s] = '',\t\t-- %s", itemId, GetItemLinkName(itemLink))
 end
 FurC.PrintItemLink = printItemLink
-
-local SOURCE_PRIORITY = LFC.Internal.Constants.SOURCE_PRIORITY
 
 -- treat favourite furniture and recipe as the same item
 local function faveKey(itemLink)
@@ -202,49 +202,37 @@ function FurC.IsAccountKnown(recipeKey, recipeArray)
   return FurC.CanCraft(recipeKey, recipeArray)
 end
 
--- Ranked lines for every item source (except crafting)
--- Always shows at least one line if any sources exist
+-- Tooltip source lines: applies user's source blacklist over lib GetRankedSources
+-- Always shows at least one line if any non-crafting sources exist
 ---@param recipeKey string|integer item link or id
 ---@param recipeArray? FurCEntry
 ---@param stripColor? boolean
 ---@return string[] lines one per source, ranked (honours tooltip blacklist)
 local function getSourceLines(recipeKey, recipeArray, stripColor)
-  recipeKey = getItemId(recipeKey)
   recipeArray = recipeArray or this.Find(recipeKey)
-  local sources = recipeArray and recipeArray.sources
-  if not sources then
-    return {}
-  end
-
-  local ranked = {}
-  for s in pairs(sources) do
-    if s ~= src.CRAFTING then
-      ranked[#ranked + 1] = s
-    end
-  end
-  table.sort(ranked, function(a, b)
-    return (SOURCE_PRIORITY[a] or math.huge) < (SOURCE_PRIORITY[b] or math.huge)
-  end)
+  local ranked = this.GetRankedSources(recipeKey, recipeArray, stripColor)
 
   local lines = {}
-  for _, s in ipairs(ranked) do
-    if not (FurC.IsTooltipSourceHidden and FurC.IsTooltipSourceHidden(s)) then
-      local text = this.DescribeSource(recipeKey, recipeArray, s, stripColor)
-      if text and #text > 0 then
-        lines[#lines + 1] = text
-      end
+  for _, entry in ipairs(ranked) do
+    if not (FurC.IsTooltipSourceHidden and FurC.IsTooltipSourceHidden(entry.source)) then
+      lines[#lines + 1] = entry.text
     end
   end
 
-  -- even if hiding every source: show at least 1 line
-  if #lines == 0 and recipeArray.origin and recipeArray.origin ~= src.CRAFTING then
-    local text = this.DescribeSource(recipeKey, recipeArray, recipeArray.origin, stripColor)
-    if text and #text > 0 then
-      lines[#lines + 1] = text
+  -- even if hiding every source: show at least 1 line (the primary origin)
+  if #lines == 0 and recipeArray and recipeArray.origin and recipeArray.origin ~= src.CRAFTING then
+    for _, entry in ipairs(ranked) do
+      if entry.source == recipeArray.origin then
+        lines[1] = entry.text
+        break
+      end
     end
   end
   return lines
 end
+FurC.GetSourceLines = getSourceLines
+
+---@deprecated alias, use FurC.GetSourceLines (presentation, not a DB query)
 this.GetSourceLines = getSourceLines
 
 function FurC.ShouldBeInFurC(link)
