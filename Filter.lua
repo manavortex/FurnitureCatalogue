@@ -2,7 +2,7 @@
 
 local query = FurC.DBQuery
 local searchIndex = FurC.SearchIndex
-local lib = FurC.Internal
+local internal = FurC.Internal
 
 local searchString = ""
 local searchPattern = ""
@@ -146,7 +146,7 @@ end
 
 local function isRecipeArrayKnown()
   -- Knowledge is LCK-only (grayed out if not available)
-  if not lib.LCKAvailable() then
+  if not internal.LCKAvailable() then
     return
   end
   -- LCK tracks the recipe, not the furnishing result
@@ -155,7 +155,7 @@ local function isRecipeArrayKnown()
     return
   end
   local name = (dropdownChoiceCharacter ~= 1) and ddTextCharacter or nil
-  return lib.IsKnownByName(recipeItem, name)
+  return internal.IsKnownByName(recipeItem, name)
 end
 
 -- Version: All, Homestead, Morrowind

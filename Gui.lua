@@ -9,7 +9,7 @@ local otherTask = LibAsync:Create("FurnitureCatalogue_ToggleGui")
 
 local LFC = LibFurnitureCatalogue
 local src = LFC.Internal.Constants.ItemSources
-local lib = FurC.Internal
+local internal = FurC.Internal
 
 -- LCK char list can change, we might have to manually update list if they don't show up
 function FurC.RefreshCharacterChoices()
@@ -23,7 +23,7 @@ function FurC.RefreshCharacterChoices()
   end
   choices[1] = GetString(SI_FURC_FILTER_CHAR_OFF)
   tooltips[1] = GetString(SI_FURC_FILTER_CHAR_OFF_TT)
-  local names = (lib.LCKAvailable() and lib.GetCharacterNames()) or {}
+  local names = (internal.LCKAvailable() and internal.GetCharacterNames()) or {}
   for _, name in ipairs(names) do
     choices[#choices + 1] = name
     tooltips[#tooltips + 1] = zo_strformat(GetString(SI_FURC_STRING_RECIPESFORCHAR), name)
@@ -585,7 +585,7 @@ local function createGui()
     end
 
     if dropdownName == "Character" then
-      local available = lib.LCKAvailable()
+      local available = internal.LCKAvailable()
       comboBox:SetEnabled(available)
       local hint = (available and SI_FURC_STRING_CHARACTER_USES_LCK) or SI_FURC_STRING_CHARACTER_NEEDS_LCK
       control:SetMouseEnabled(true)

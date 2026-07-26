@@ -6,6 +6,39 @@ local LFC = LibFurnitureCatalogue
 local src = LFC.Internal.Constants.ItemSources
 local query = FurC.DBQuery
 
+-- Tooltip source lines: applies user's source blacklist over lib GetRankedSources
+-- Always shows at least one line if any non-crafting sources exist
+---@param recipeKey string|integer item link or id
+---@param recipeArray? FurCEntry
+---@param stripColor? boolean
+---@return string[] lines one per source, ranked (honours tooltip blacklist)
+local function getSourceLines(recipeKey, recipeArray, stripColor)
+  recipeArray = recipeArray or query.Find(recipeKey)
+  local ranked = query.GetRankedSources(recipeKey, recipeArray, stripColor, { dateFormat = FurC.GetDateFormat() })
+
+  local lines = {}
+  for _, entry in ipairs(ranked) do
+    if not (FurC.IsTooltipSourceHidden and FurC.IsTooltipSourceHidden(entry.source)) then
+      lines[#lines + 1] = entry.text
+    end
+  end
+
+  -- even if hiding every source: show at least 1 line (the primary origin)
+  if #lines == 0 and recipeArray and recipeArray.origin and recipeArray.origin ~= src.CRAFTING then
+    for _, entry in ipairs(ranked) do
+      if entry.source == recipeArray.origin then
+        lines[1] = entry.text
+        break
+      end
+    end
+  end
+  return lines
+end
+FurC.GetSourceLines = getSourceLines
+
+---@deprecated alias, use FurC.GetSourceLines (presentation, not a DB query)
+query.GetSourceLines = getSourceLines
+
 local function tryColorize(text)
   if not (text and FurC.GetColouredTooltips()) then
     return text

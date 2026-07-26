@@ -15,12 +15,15 @@ xml\FurnitureCatalogue.xml
 
 Startup.lua
 Internal.lua
+Knowledge.lua
 
 SettingsAdapter.lua
 SettingsMenu.lua
 Events.lua
+InventoryIcons.lua
 
-FurCData.lua
+Favorites.lua
+Migrations.lua
 Chat.lua
 SearchIndex.lua
 Filter.lua

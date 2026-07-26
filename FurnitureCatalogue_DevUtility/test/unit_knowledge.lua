@@ -6,7 +6,7 @@ end
 
 -- Real global table, to override game stubs
 local G = _G
-local lib = FurC.Internal
+local internal = FurC.Internal
 
 Taneth("FurC:Unit", function()
   local blueprintId = 207872 -- Formula: Dawnwood Lantern, Hanging (resultItem: 204688)
@@ -76,7 +76,7 @@ Taneth("FurC:Unit", function()
     G.IsItemLinkRecipeKnown = saved.known
     FurC.UpdateGui = saved.updateGui
     FurC.RefreshCharacterDropdown = saved.refresh
-    lib.InitLCK(nil)
+    internal.InitLCK(nil)
     if not ok then
       error(err, 0)
     end
@@ -86,23 +86,23 @@ Taneth("FurC:Unit", function()
     it("waves everything through when no LCK", function()
       guarded(function()
         G.LibCharacterKnowledge = nil -- hide the real global
-        lib.InitLCK(nil)
-        assert.is_false(lib.LCKAvailable())
-        assert.is_true(lib.CharKnows(12345))
-        assert.is_true(lib.AccountKnows(12345))
-        assert.is_nil(lib.IsKnownByName(12345, nil))
-        assert.is_nil(lib.GetCrafterNames(12345))
-        assert.same({}, lib.GetCharacterNames())
+        internal.InitLCK(nil)
+        assert.is_false(internal.LCKAvailable())
+        assert.is_true(internal.CharKnows(12345))
+        assert.is_true(internal.AccountKnows(12345))
+        assert.is_nil(internal.IsKnownByName(12345, nil))
+        assert.is_nil(internal.GetCrafterNames(12345))
+        assert.same({}, internal.GetCharacterNames())
       end)
     end)
 
     it("InitLCK(nil) binds the installed LCK", function()
       guarded(function()
         G.LibCharacterKnowledge = makeFakeLCK({ knowledge = { [111] = 1, [222] = 2 } })
-        lib.InitLCK(nil)
-        assert.is_true(lib.LCKAvailable())
-        assert.is_true(lib.CharKnows(111))
-        assert.is_false(lib.CharKnows(222))
+        internal.InitLCK(nil)
+        assert.is_true(internal.LCKAvailable())
+        assert.is_true(internal.CharKnows(111))
+        assert.is_false(internal.CharKnows(222))
       end)
     end)
 
@@ -110,9 +110,9 @@ Taneth("FurC:Unit", function()
       guarded(function()
         local incomplete = makeFakeLCK({ knowledge = { [123] = 2 } })
         incomplete.GetItemKnowledgeList = nil
-        lib.InitLCK(incomplete)
-        assert.is_false(lib.LCKAvailable())
-        assert.is_true(lib.CharKnows(123))
+        internal.InitLCK(incomplete)
+        assert.is_false(internal.LCKAvailable())
+        assert.is_true(internal.CharKnows(123))
       end)
     end)
 
@@ -123,8 +123,8 @@ Taneth("FurC:Unit", function()
         FurC.RefreshCharacterDropdown = function()
           fires = fires + 1
         end
-        lib.InitLCK(fake)
-        lib.InitLCK(fake)
+        internal.InitLCK(fake)
+        internal.InitLCK(fake)
         fake.fire(fake.EVENT_INITIALIZED)
         assert.equals(1, fires)
       end)
@@ -132,51 +132,51 @@ Taneth("FurC:Unit", function()
 
     it("respects character knowledge when LCK", function()
       guarded(function()
-        lib.InitLCK(makeFakeLCK({
+        internal.InitLCK(makeFakeLCK({
           knowledge = {
             [111] = 1, -- KNOWN
             [222] = 2, -- UNKNOWN
             [333] = 0, -- NODATA -> pass
           },
         }))
-        assert.is_true(lib.LCKAvailable())
-        assert.is_true(lib.CharKnows(111))
-        assert.is_false(lib.CharKnows(222))
-        assert.is_true(lib.CharKnows(333))
+        assert.is_true(internal.LCKAvailable())
+        assert.is_true(internal.CharKnows(111))
+        assert.is_false(internal.CharKnows(222))
+        assert.is_true(internal.CharKnows(333))
       end)
     end)
 
     it("AccountKnows true if any tracked character know", function()
       guarded(function()
-        lib.InitLCK(makeFakeLCK({
+        internal.InitLCK(makeFakeLCK({
           list = {
             [111] = { { account = ACCOUNT, knowledge = 2 }, { account = ACCOUNT, knowledge = 1 } }, -- one char knows
             [222] = { { account = ACCOUNT, knowledge = 2 }, { account = ACCOUNT, knowledge = 2 } }, -- nobody knows
             [333] = { { account = OTHER_ACCOUNT, knowledge = 1 } }, -- only foreign account knows
           },
         }))
-        assert.is_true(lib.AccountKnows(111))
-        assert.is_false(lib.AccountKnows(222))
-        assert.is_false(lib.AccountKnows(333))
+        assert.is_true(internal.AccountKnows(111))
+        assert.is_false(internal.AccountKnows(222))
+        assert.is_false(internal.AccountKnows(333))
       end)
     end)
 
     it("GetCharacterNames lists the roster", function()
       guarded(function()
-        lib.InitLCK(makeFakeLCK({
+        internal.InitLCK(makeFakeLCK({
           roster = {
             { id = 1, name = "Licks-Frogs", account = ACCOUNT },
             { id = 3, name = "Nose-Stealer", account = OTHER_ACCOUNT },
             { id = 2, name = "Eats-Pants", account = ACCOUNT },
           },
         }))
-        assert.same({ "Licks-Frogs", "Eats-Pants" }, lib.GetCharacterNames())
+        assert.same({ "Licks-Frogs", "Eats-Pants" }, internal.GetCharacterNames())
       end)
     end)
 
     it("skip characters not tracking furnishing plans", function()
       guarded(function()
-        lib.InitLCK(makeFakeLCK({
+        internal.InitLCK(makeFakeLCK({
           roster = {
             { id = 1, name = "Tracks-All", account = ACCOUNT },
             { id = 2, name = "Ignores-Plans", account = ACCOUNT },
@@ -188,7 +188,7 @@ Taneth("FurC:Unit", function()
             -- [3] nil -- default, treat as tracked
           },
         }))
-        assert.same({ "Tracks-All", "Uses-Default" }, lib.GetCharacterNames())
+        assert.same({ "Tracks-All", "Uses-Default" }, internal.GetCharacterNames())
       end)
     end)
 
@@ -200,8 +200,8 @@ Taneth("FurC:Unit", function()
         end
         local cfg = { roster = { { id = 1, name = "Licks-Frogs", account = ACCOUNT } } }
         local fake = makeFakeLCK(cfg)
-        lib.InitLCK(fake)
-        lib.GetCharacterNames()
+        internal.InitLCK(fake)
+        internal.GetCharacterNames()
 
         fake.fire(fake.EVENT_UPDATE_REFRESH, false) -- knowledge-only: no dropdown rebuild
         assert.equals(0, refreshed)
@@ -209,13 +209,13 @@ Taneth("FurC:Unit", function()
         cfg.roster = { { id = 2, name = "Eats-Pants", account = ACCOUNT } }
         fake.fire(fake.EVENT_UPDATE_REFRESH, true) -- list changed: rebuild
         assert.equals(1, refreshed)
-        assert.same({ "Eats-Pants" }, lib.GetCharacterNames())
+        assert.same({ "Eats-Pants" }, internal.GetCharacterNames())
       end)
     end)
 
     it("IsKnownByName resolves the character by name", function()
       guarded(function()
-        lib.InitLCK(makeFakeLCK({
+        internal.InitLCK(makeFakeLCK({
           roster = {
             { id = 1, name = "Licks-Frogs", account = ACCOUNT },
             { id = 2, name = "Eats-Pants", account = ACCOUNT },
@@ -230,13 +230,13 @@ Taneth("FurC:Unit", function()
           },
         }))
         -- acc-wide: KNOWN across characters
-        assert.is_true(lib.IsKnownByName(777, nil))
-        assert.is_false(lib.IsKnownByName(888, nil))
+        assert.is_true(internal.IsKnownByName(777, nil))
+        assert.is_false(internal.IsKnownByName(888, nil))
         -- char-wide: NODATA/UNKNOWN are not known
-        assert.is_true(lib.IsKnownByName(777, "Licks-Frogs"))
-        assert.is_false(lib.IsKnownByName(777, "Eats-Pants"))
+        assert.is_true(internal.IsKnownByName(777, "Licks-Frogs"))
+        assert.is_false(internal.IsKnownByName(777, "Eats-Pants"))
         -- unknown char falls back to account-wide
-        assert.is_true(lib.IsKnownByName(777, "NoBody"))
+        assert.is_true(internal.IsKnownByName(777, "NoBody"))
       end)
     end)
 
@@ -244,18 +244,18 @@ Taneth("FurC:Unit", function()
       guarded(function()
         local cfg = { roster = {} }
         local fake = makeFakeLCK(cfg)
-        lib.InitLCK(fake)
-        assert.same({}, lib.GetCharacterNames()) -- caches empty roster
+        internal.InitLCK(fake)
+        assert.same({}, internal.GetCharacterNames()) -- caches empty roster
 
         cfg.roster = { { id = 1, name = "Licks-Frogs", account = ACCOUNT } }
         fake.fire(fake.EVENT_INITIALIZED) -- must drop stale cache
-        assert.same({ "Licks-Frogs" }, lib.GetCharacterNames())
+        assert.same({ "Licks-Frogs" }, internal.GetCharacterNames())
       end)
     end)
 
     it("GetCrafterNames returns only chars that know it", function()
       guarded(function()
-        lib.InitLCK(makeFakeLCK({
+        internal.InitLCK(makeFakeLCK({
           list = {
             [777] = {
               { account = ACCOUNT, name = "Licks-Frogs", knowledge = 1 }, -- KNOWN
@@ -264,8 +264,8 @@ Taneth("FurC:Unit", function()
             },
           },
         }))
-        assert.same({ "Licks-Frogs" }, lib.GetCrafterNames(777))
-        assert.same({}, lib.GetCrafterNames(999))
+        assert.same({ "Licks-Frogs" }, internal.GetCrafterNames(777))
+        assert.same({}, internal.GetCrafterNames(999))
       end)
     end)
   end)
@@ -285,7 +285,7 @@ Taneth("FurC:Unit", function()
     it("IsAccountKnown falls back to current char without LCK", function()
       guarded(function()
         G.LibCharacterKnowledge = nil -- hide the real global so the fallback path runs
-        lib.InitLCK(nil)
+        internal.InitLCK(nil)
         G.IsItemLinkRecipeKnown = function(link)
           return link == blueprintLink
         end
@@ -300,7 +300,7 @@ Taneth("FurC:Unit", function()
         G.IsItemLinkRecipeKnown = function()
           return false
         end
-        lib.InitLCK(makeFakeLCK({
+        internal.InitLCK(makeFakeLCK({
           list = { [blueprintLink] = { { account = ACCOUNT, knowledge = 2 }, { account = ACCOUNT, knowledge = 1 } } },
         }))
         assert.is_true(FurC.IsAccountKnown(nil, { blueprint = blueprintId }))
