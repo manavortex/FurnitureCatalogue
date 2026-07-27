@@ -36,3 +36,4 @@ data\RecipeSources.lua
 
 Build.lua
 Query.lua
+Api.lua

@@ -400,6 +400,7 @@ local function scanFromFiles(blocking)
   local buildStarted = GetGameTimeMilliseconds()
   local function finish()
     isBuilding = false
+    LFC.Internal.DBReady = true
     logDebug("DB build finished: %d entries in %d ms", NonContiguousCount(db), GetGameTimeMilliseconds() - buildStarted)
     LFC.Internal.Callbacks:FireCallbacks(LFC.Internal.Events.SCAN_COMPLETE)
   end

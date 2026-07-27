@@ -3,6 +3,7 @@
 local FurC = FurC or {}
 FurC.DBQuery = FurC.DBQuery or {}
 local this = FurC.DBQuery
+LibFurnitureCatalogue.Internal.Query = this
 
 local LFC = LibFurnitureCatalogue
 local colour = LFC.Internal.Constants.Colours
@@ -554,3 +555,201 @@ local function getRankedSources(recipeKey, recipeArray, stripColor, opts)
   return lines
 end
 this.GetRankedSources = getRankedSources
+
+-- Typed per-source records for API
+
+local function achievementVendorRecord(rec, recipeKey, version)
+  local function findIn(versionData)
+    if not versionData then
+      return
+    end
+    for zoneName, zoneData in pairs(versionData) do
+      for vendorName, vendorData in pairs(zoneData) do
+        if vendorData[recipeKey] then
+          return zoneName, vendorName, vendorData[recipeKey]
+        end
+      end
+    end
+  end
+
+  local zone, vendor, entry = findIn(FurC.AchievementVendors[version])
+  if not entry then
+    for _, versionData in pairs(FurC.AchievementVendors) do
+      zone, vendor, entry = findIn(versionData)
+      if entry then
+        break
+      end
+    end
+  end
+  if not entry then
+    return
+  end
+  rec.source.vendor = vendor
+  rec.source.location = zone
+  rec.source.achievement = entry.achievement
+  if entry.itemPrice then
+    rec.cost[1] = { currency = entry.currency or CURT_MONEY, amount = entry.itemPrice }
+  end
+end
+
+local function luxuryRecord(rec, recipeKey, version)
+  local versionData = FurC.LuxuryFurnisher[version]
+  local itemData = versionData and versionData[recipeKey]
+  if not itemData then
+    for _, vData in pairs(FurC.LuxuryFurnisher) do
+      if vData[recipeKey] then
+        itemData = vData[recipeKey]
+        break
+      end
+    end
+  end
+  if not itemData then
+    return
+  end
+  rec.source.vendor = npc.LUXF
+  rec.source.location = loc.COLDH
+  if itemData.itemPrice then
+    rec.cost[1] = { currency = CURT_MONEY, amount = itemData.itemPrice }
+  end
+  rec.availability.lastSeen = itemData.itemDate
+end
+
+local function pvpRecord(rec, recipeKey, version)
+  local function findIn(versionData)
+    if not versionData then
+      return
+    end
+    for vendorName, vendorData in pairs(versionData) do
+      for locationName, locationData in pairs(vendorData) do
+        if locationData[recipeKey] then
+          return vendorName, locationName, locationData[recipeKey]
+        end
+      end
+    end
+  end
+
+  local vendor, location, item = findIn(FurC.PVP[version])
+  if not item then
+    for _, versionData in pairs(FurC.PVP) do
+      vendor, location, item = findIn(versionData)
+      if item then
+        break
+      end
+    end
+  end
+  if not item then
+    return
+  end
+  rec.source.vendor = vendor
+  rec.source.location = location
+  rec.source.achievement = item.achievement
+  if item.itemPrice then
+    rec.cost[1] = { currency = item.currency or CURT_ALLIANCE_POINTS, amount = item.itemPrice }
+  end
+end
+
+local function voucherRecord(rec, recipeKey, blueprintId)
+  local version = rec.availability.version
+  local vendor = npc.ROLIS
+  local entry = voucherEntry(FurC.Rolis[version], recipeKey, blueprintId)
+  if not entry then
+    entry = voucherEntry(FurC.Faustina[version], recipeKey, blueprintId)
+      or voucherEntry(FurC.FaustinaRecipes[version], recipeKey, blueprintId)
+    vendor = npc.FAUSTINA
+  end
+  if not entry then
+    if FurC.FurnishingFolios then
+      for folioId, folioData in pairs(FurC.FurnishingFolios) do
+        if folioData.contents then
+          for _, contentId in ipairs(folioData.contents) do
+            if contentId == recipeKey or contentId == blueprintId then
+              rec.source.vendor = npc.FAUSTINA
+              rec.source.location = loc.ANY_CAPITAL
+              rec.cost[1] = { currency = CURT_WRIT_VOUCHERS, amount = folioData.price }
+              return
+            end
+          end
+        end
+      end
+    end
+    return
+  end
+  rec.source.vendor = vendor
+  rec.source.location = loc.ANY_CAPITAL
+  local price = type(entry) == "table" and entry.itemPrice or entry
+  if type(price) == "number" then
+    rec.cost[1] = { currency = CURT_WRIT_VOUCHERS, amount = price }
+  end
+end
+
+local function eventRecord(rec, recipeKey)
+  for _, events in pairs(FurC.EventItems) do
+    for eventName, sources in pairs(events) do
+      for srcName, items in pairs(sources) do
+        local item = items[recipeKey]
+        if nil ~= item then
+          rec.source.vendor = srcName
+          rec.source.event = eventName
+          if type(item) == "table" and item.itemPrice then
+            rec.source.achievement = item.achievement
+            rec.cost[1] = {
+              currency = item.currency or (srcName == npc.EVENT and CURT_TRADE_BARS or CURT_MONEY),
+              amount = item.itemPrice,
+            }
+          end
+          return
+        end
+      end
+    end
+  end
+end
+
+local RECORD_BUILDERS = {
+  [src.VENDOR] = function(rec, recipeKey, recipeArray)
+    achievementVendorRecord(rec, recipeKey, recipeArray.version)
+  end,
+  [src.LUXURY] = function(rec, recipeKey, recipeArray)
+    luxuryRecord(rec, recipeKey, recipeArray.version)
+  end,
+  [src.PVP] = function(rec, recipeKey, recipeArray)
+    pvpRecord(rec, recipeKey, recipeArray.version)
+  end,
+  [src.ROLIS] = function(rec, recipeKey, recipeArray)
+    voucherRecord(rec, recipeKey, recipeArray.blueprint)
+  end,
+  [src.FESTIVAL_DROP] = function(rec, recipeKey)
+    eventRecord(rec, recipeKey)
+  end,
+}
+
+---Schema-shaped source records, ranked by priority
+---@param itemOrLink string|integer
+---@return { source: table, cost: table[], availability: table }[]
+local function getSourceRecords(itemOrLink)
+  local recipeArray = find(itemOrLink)
+  local sources = recipeArray and recipeArray.sources
+  if nil == next(recipeArray) or not sources then
+    return {}
+  end
+  local recipeKey = getItemId(itemOrLink)
+
+  local ranked = {}
+  for s in pairs(sources) do
+    ranked[#ranked + 1] = s
+  end
+  table.sort(ranked, function(a, b)
+    return (SOURCE_PRIORITY[a] or math.huge) < (SOURCE_PRIORITY[b] or math.huge)
+  end)
+
+  local records = {}
+  for i, s in ipairs(ranked) do
+    local rec = { source = { type = s }, cost = {}, availability = { version = recipeArray.version } }
+    local build = RECORD_BUILDERS[s]
+    if build then
+      build(rec, recipeKey, recipeArray)
+    end
+    records[i] = rec
+  end
+  return records
+end
+this.GetSourceRecords = getSourceRecords
