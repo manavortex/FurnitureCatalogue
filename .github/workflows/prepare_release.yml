@@ -146,7 +146,7 @@ jobs:
       # Everything below writes files in working tree
       # ------------------------------
 
-      - name: Bump version (FurnitureCatalogue.txt + startup.lua)
+      - name: Bump version (FurnitureCatalogue.txt + Startup.lua)
         id: bump
         run: |
           VERSION="${{ steps.version.outputs.NEXT }}"
@@ -301,7 +301,7 @@ jobs:
           # Reset the all-in-one staging done for diff capture; redo in stages.
           git reset
 
-          # 1. Version bumps (manifest + startup.lua)
+          # 1. Version bumps (manifest + Startup.lua)
           while read -r LINE; do
             [[ -n "$LINE" ]] && git add "$LINE"
           done < "$CHANGED_FILES"

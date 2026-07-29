@@ -448,7 +448,7 @@ def replace_versions(new_semver: str, output_file: str=None):
   if replace_once_in_file(mf_values, mfpath): changes.append(mfpath)
 
   # Replace version in main file
-  luapath = 'startup.lua'
+  luapath = 'Startup.lua'
   lua_values = [(RE_MAINLUA_VERSION_LINE, rf"\g<PREFIX>{new_intver} -- will be AUTOREPLACED with AddonVersion",
     f"this.version = {new_intver} -- will be AUTOREPLACED with AddonVersion")]
   if replace_once_in_file(lua_values, luapath): changes.append(luapath)

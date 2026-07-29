@@ -28,7 +28,7 @@ ARCHIVE_MIN_SIZE_IN_BYTES = 1024
         1. FurnitureCatalogue.txt
         2. Main xml files
         3. all locale files
-        4. startup.lua, FurCEvents.lua, FurCUtil.lua
+        4. Startup.lua, FurCEvents.lua, FurCUtil.lua
 
   `Result: 40960 bytes`
 """

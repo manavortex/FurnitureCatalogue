@@ -110,7 +110,7 @@ if [[ -z "$RELEASE_VERSION" ]]; then
   echo "[build] LIVE=$LIVE → NEXT=$RELEASE_VERSION"
 fi
 
-echo "[build] bump manifest + startup.lua to $RELEASE_VERSION"
+echo "[build] bump manifest + Startup.lua to $RELEASE_VERSION"
 CHANGED_TMP="$(mktemp)"
 "$PY" .scripts/furc_utils.py changeversion --new-version "$RELEASE_VERSION" --output-file "$CHANGED_TMP"
 rm -f "$CHANGED_TMP"
