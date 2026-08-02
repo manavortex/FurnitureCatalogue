@@ -4,6 +4,7 @@ local ver = FurC.Constants.Versioning
 
 -- Season Zero Part 2
 FurC.Recipes[ver.ZERO2] = {
+  225103, -- Blueprint: Completed Bounty, Framed Breton Man
   225089, -- Pattern: Breton Drapes, Maroon
   225090, -- Pattern: Breton Drapes, Sage
   225091, -- Blueprint: Breton Trellis, Wooden
@@ -1135,7 +1136,7 @@ FurC.Recipes[ver.DEADL] = {
   181553, -- Formula: Vampiric Lab Jar, Large,
   181554, -- Formula: Vampiric Lab Jar, Small,
   181555, -- Formula: Vampiric Lab Jar, Red Gelatinous,
-
+  
   175932, -- Pattern: Leyawiin Bed, Sturdy Single,
   181565, -- Blueprint: Leyawiin Turret, Castle,
   181566, -- Praxis: Leyawiin Wall, Castle Door Arch,
