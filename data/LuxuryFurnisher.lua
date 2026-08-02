@@ -12,6 +12,14 @@ FurC.LuxuryFurnisher[ver.THIEVES] = {
     itemPrice = 20000,
 	itemDate = "2026-07-17",
   },
+  [223886] = { -- Ayleid Apparatus, Lamp
+    itemPrice = 24000,
+	itemDate = "2026-07-24",
+  },
+  [223887] = { -- Alinor Colonnade, Summerset
+    itemPrice = 24000,
+	itemDate = "2026-07-31",
+  },
 }
 
 -- Season Zero Pt. 2
@@ -214,7 +222,7 @@ FurC.LuxuryFurnisher[ver.WORMS] = {
 FurC.LuxuryFurnisher[ver.FALLBAN] = {
   [212574] = { -- Ayleid Sconce, Tall Floor
     itemPrice = 12000,
-    itemDate = "2025-06-27",
+    itemDate = "2026-07-24",
   },
   [212575] = { -- Ayleid Well, Large
     itemPrice = 24000,
@@ -230,7 +238,7 @@ FurC.LuxuryFurnisher[ver.FALLBAN] = {
   },
   [212577] = { -- Alinor Door, Half
 	itemPrice = 450,
-	itemDate = "2025-07-04",
+	itemDate = "2026-07-31",
   },
   [212584] = { -- Redguard Door, Tall
     itemPrice = 10000,
@@ -490,11 +498,11 @@ FurC.LuxuryFurnisher[ver.SCIONS] = {
   },
   [203584] = { -- Altmer Stable, Summerset
     itemPrice = 60000,
-    itemDate = "2025-07-04",
+    itemDate = "2026-07-31",
   },
   [203583] = { -- Ayleid Panel, Arched
     itemPrice = 10000,
-    itemDate = "2025-06-27",
+    itemDate = "2026-07-24",
   },
   [203582] = { -- Ayleid Doorway, Tall Arched
     itemPrice = 20000,
@@ -742,11 +750,11 @@ FurC.LuxuryFurnisher[ver.SCRIBE] = {
   },
   [193803] = { -- Tree, Large Pink Maple
     itemPrice = 13000,
-    itemDate = "2025-07-04",
+    itemDate = "2026-07-31",
   },
   [193802] = { -- Ayleid Constellation Stele, The Steed
     itemPrice = 20000,
-    itemDate = "2025-06-27",
+    itemDate = "2026-07-24",
   },
   [193801] = { -- Ayleid Partition, Arched
     itemPrice = 20000,
@@ -982,7 +990,7 @@ FurC.LuxuryFurnisher[ver.TIDES] = {
   },
   [184193] = { -- Alinor Trellis, Purple Wisteria
     itemPrice = 15000,
-    itemDate = "2025-07-04",
+    itemDate = "2026-07-31",
   }, 
 }
 
@@ -990,7 +998,7 @@ FurC.LuxuryFurnisher[ver.TIDES] = {
 FurC.LuxuryFurnisher[ver.DEADL] = {
   [182630] = { -- Ayleid Constellation Stele, The Lord
     itemPrice = 20000,
-    itemDate = "2025-06-27",
+    itemDate = "2026-07-24",
   },
   [182629] = { -- Ayleid Brazier, Stone
     itemPrice = 10000,
@@ -1226,7 +1234,7 @@ FurC.LuxuryFurnisher[ver.MARKAT] = {
   },
   [171423] = { -- Alinor Trellis, Blue Wisteria
     itemPrice = 15000,
-    itemDate = "2025-07-04",
+    itemDate = "2026-07-31",
   },
   [171426] = { -- Redguard Brazier, Ritual
     itemPrice = 12000,
@@ -1238,7 +1246,7 @@ FurC.LuxuryFurnisher[ver.MARKAT] = {
   },
   [171422] = { -- Ayleid Constellation Stele, The Apprentice
     itemPrice = 20000,
-    itemDate = "2025-06-27",
+    itemDate = "2026-07-24",
   },
   [171421] = { -- Ayleid Pillar, Large Empty
     itemPrice = 14000,
@@ -1474,7 +1482,7 @@ FurC.LuxuryFurnisher[ver.DRAGON2] = {
   },
   [156665] = { -- Ayleid Constellation Stele, The Serpent
     itemPrice = 20000,
-    itemDate = "2025-06-27",
+    itemDate = "2026-07-24",
   },
   [156664] = { -- Ayleid Pillar, Small Empty
     itemPrice = 5000,
@@ -1614,19 +1622,19 @@ FurC.LuxuryFurnisher[ver.KITTY] = {
   },
   [151862] = { -- Tree, Blue Wisteria
     itemPrice = 7500,
-    itemDate = "2025-07-04",
+    itemDate = "2026-07-31",
   },
   [151861] = { -- Tree, Purple Wisteria
     itemPrice = 9000,
-    itemDate = "2025-07-04",
+    itemDate = "2026-07-31",
   },
   [151860] = { -- Sapling, Blue Wisteria
     itemPrice = 5000,
-    itemDate = "2025-07-04",
+    itemDate = "2026-07-31",
   },
   [151859] = { -- Alinor Greenhouse, Summer
     itemPrice = 100000,
-    itemDate = "2025-07-04",
+    itemDate = "2026-07-31",
   },
   [151946] = { -- Flower, Coda
     itemPrice = 3000,
@@ -1746,15 +1754,15 @@ FurC.LuxuryFurnisher[ver.WEREWOLF] = {
   },
   [141769] = { -- Ayleid Constellation Stele, The Atronach
     itemPrice = 20000,
-    itemDate = "2025-06-27",
+    itemDate = "2026-07-24",
   },
   [141768] = { -- Ayleid Constellation Stele, The Lover
     itemPrice = 20000,
-    itemDate = "2025-06-27",
+    itemDate = "2026-07-24",
   },
   [141767] = { -- Ayleid Constellation Stele, The Lady
     itemPrice = 20000,
-    itemDate = "2025-06-27",
+    itemDate = "2026-07-24",
   },
   [141766] = { -- Banner, Transmute Small
     itemPrice = 5000,
@@ -2030,15 +2038,15 @@ FurC.LuxuryFurnisher[ver.CLOCKWORK] = {
   },
   [134471] = { -- Ayleid Constellation Stele, The Warrior
     itemPrice = 20000,
-    itemDate = "2025-06-27",
+    itemDate = "2026-07-24",
   },
   [134470] = { -- Ayleid Constellation Stele, The Thief
     itemPrice = 20000,
-    itemDate = "2025-06-27",
+    itemDate = "2026-07-24",
   },
   [134469] = { -- Ayleid Constellation Stele, The Mage
     itemPrice = 20000,
-    itemDate = "2025-06-27",
+    itemDate = "2026-07-24",
   },
   [134464] = { -- Riekling Bonfire, Ceremonial
     itemPrice = 4000,
