@@ -145,16 +145,29 @@ Taneth("FurC:Unit", function()
       assert.is_true(calls > 0)
     end)
 
-    it("indexes the vendor stock merged in during the scan", function()
+    it("indexes Home Goods furnishings sold in multiple cities", function()
       FurCDev.Test.ensureDB()
-      local terms = index.GetTerms(120998) -- Block, Wood Cutting (sold by HGF in most cities)
+      local itemId = 120502 -- Flower, Grandmother Hibiscus
+      local terms = index.GetTerms(itemId)
       assert.is_not_nil(terms)
-      local n = 0
-      for _ in terms:gmatch("[^\n]+") do
-        n = n + 1
+
+      -- TODO: change test if we disable search by city name
+      local indexedCities = {}
+      for _, versionData in pairs(FurC.AchievementVendors) do
+        for city, cityData in pairs(versionData) do
+          for _, vendorData in pairs(cityData) do
+            if vendorData[itemId] and string.find(terms, lower(city), 1, true) then
+              indexedCities[city] = true
+            end
+          end
+        end
       end
-      -- Exact count is currently imprecise (islands/DLC/all-capitals varies)
-      assert.is_true(n >= 9)
+
+      local count = 0
+      for _ in pairs(indexedCities) do
+        count = count + 1
+      end
+      assert.is_true(count > 1)
     end)
   end)
 end)
