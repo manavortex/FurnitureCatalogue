@@ -108,8 +108,6 @@ FurC.Recipes[ver.ZERO] = {
 
 -- Seasons of the Worm Cult Part 2
 FurC.Recipes[ver.WORMS2] = {
-  220289,
-  223181,
   223566,
   223567,
   223568,
@@ -227,7 +225,7 @@ FurC.Recipes[ver.SHADOWS] = {
   219697,
   219698,
   219699,
-  219704,
+  219700,
   219766,
   219767,
   219769,
@@ -393,12 +391,6 @@ FurC.Recipes[ver.FALLBAN] = {
 
 -- 33 Golden Pursuits
 FurC.Recipes[ver.BASE44] = {
-  -- lucent
-  211399,
-  211400,
-  211401,
-  211402,
-  211403,
   -- minecart
   211404,
   211405,
@@ -2331,7 +2323,7 @@ FurC.Recipes[ver.SLAVES] = {
 -- 7 Summerset
 FurC.Recipes[ver.ALTMER] = {
 
-  139184, -- Praxis: Alinor Plinth, Sarcophagus
+  139507, -- Praxis: Alinor Plinth, Sarcophagus
   139526, -- Diagram: Alinor Brazier, Standing Coals
   139573, -- Sketch: Figurine, The Fish and the Unicorn
   139571, -- Sketch: Figurine, The Sea-Monster's Surprise
