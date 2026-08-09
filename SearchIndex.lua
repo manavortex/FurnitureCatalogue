@@ -183,11 +183,16 @@ local function addEvents(add)
   for _, versionData in pairs(FurC.EventItems or {}) do
     for eventName, sources in pairs(versionData) do
       for sourceName, items in pairs(sources) do
-        -- we expect NPC name or a container link
-        local sourceTerm = (isItemLink(sourceName) and getItemName(sourceName)) or sourceName
-        for itemId in pairs(items) do
-          add(itemId, eventName)
-          add(itemId, sourceTerm)
+        if type(items) == "table" then
+          -- we expect NPC name or a container link
+          local sourceTerm = (isItemLink(sourceName) and getItemName(sourceName)) or sourceName
+          for itemId in pairs(items) do
+            add(itemId, eventName)
+            add(itemId, sourceTerm)
+          end
+        else
+          -- No container/coffer level: sourceName IS the itemId (e.g. environment drops)
+          add(sourceName, eventName)
         end
       end
     end
