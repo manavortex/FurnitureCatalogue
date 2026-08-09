@@ -503,6 +503,8 @@ FurC.Constants.Events = {
   ZENITHAR = GetString(SI_FURC_EVENT_ZENITHAR), -- Zeal of Zenithar
   HEARTS = GetString(SI_FURC_EVENT_HEARTS), -- Hearts Week
   NIGHTMARKET = GetString(SI_FURC_EVENT_NIGHTMARKET), -- Night Market
+  WRITHING = GetString(SI_FURC_EVENT_WRITHING), -- Writhing Wall
+  ORSINIUM = GetString(SI_FURC_EVENT_ORSINIUM), -- Orsinium Celebration
 }
 
 FurC.Constants.Containers = {
@@ -533,6 +535,7 @@ FurC.Constants.Containers = {
   EBONHEART_FOLIO = "|H1:item:171573:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h",
   CRAFTER_FOLIO = "|H1:item:171568:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h",
   DARKELF_FOLIO = "|H1:item:171571:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h",
+  SOLSTICE_FOLIO = "|H1:item:226916:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h",
 }
 
 -- TODO: allow customisable colours, getting from options
