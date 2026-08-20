@@ -32,6 +32,26 @@ lib.Internal.DB = lib.Internal.DB or {}
 -- Mark DB dirty after write
 lib.Internal.DBRevision = lib.Internal.DBRevision or 0
 
+---@alias LFCDBState "uninitialized"|"building"|"ready"|"failed"
+
+-- DB lifecycle for listeners
+local lifecycle = lib.Internal.Lifecycle or {}
+lib.Internal.Lifecycle = lifecycle
+lifecycle.State = lifecycle.State
+  or {
+    UNINITIALIZED = "uninitialized",
+    BUILDING = "building",
+    READY = "ready",
+    FAILED = "failed",
+  }
+lifecycle.current = lifecycle.current
+  or (lib.Internal.DBReady == true and lifecycle.State.READY or lifecycle.State.UNINITIALIZED)
+lifecycle.everReady = lifecycle.everReady or lifecycle.current == lifecycle.State.READY
+lifecycle.readyWaiters = lifecycle.readyWaiters or {}
+lifecycle.callbacks = lifecycle.callbacks or {}
+lifecycle.notifying = lifecycle.notifying == true
+lib.Internal.DBReady = lifecycle.current == lifecycle.State.READY
+
 -- Legacy alias, same table — never reassign either side
 FurC = FurC or {}
 FurC.DB = lib.Internal.DB
@@ -41,6 +61,7 @@ lib.Internal.Callbacks = lib.Internal.Callbacks or ZO_CallbackObject:New()
 lib.Internal.Events = {
   SCAN_STARTED = "LFC_SCAN_STARTED",
   SCAN_COMPLETE = "LFC_SCAN_COMPLETE",
+  SCAN_FAILED = "LFC_SCAN_FAILED",
 }
 
 -- Optional LibDebugLogger

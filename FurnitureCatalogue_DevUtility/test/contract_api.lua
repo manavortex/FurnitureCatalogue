@@ -10,12 +10,181 @@ Taneth("FurC:Regression", function()
   describe("LibFurnitureCatalogue.API v1 contract", function()
     local UNKNOWN_ID = 99123456
 
-    it("metadata endpoints report sane values", function()
+    it("metadata endpoint shows valid values", function()
       FurC.EnsureDB(true)
       assert.equals("number", type(api.GetVersion()))
       assert.equals("number", type(api.GetDBRevision()))
+      assert.equals("table", type(api.State))
+      assert.equals("table", type(api.Events))
+      assert.equals("string", type(api.Events.CHANGE))
+      assert.equals(api.State.READY, api.GetState())
       assert.is_true(api.IsReady())
       assert.is_true(api.GetEntryCount() > 0)
+    end)
+
+    it("OnReady calls subscribers immediately", function()
+      FurC.EnsureDB(true)
+      local returned = false
+      local observed = {}
+
+      local accepted = api.OnReady(function(readyApi, revision)
+        observed.api = readyApi
+        observed.revision = revision
+        observed.beforeReturn = not returned
+      end)
+      returned = true
+
+      assert.is_true(accepted)
+      assert.equals(api, observed.api)
+      assert.equals(api.GetDBRevision(), observed.revision)
+      assert.is_true(observed.beforeReturn)
+      assert.is_false(api.OnReady(nil))
+    end)
+
+    it("properly runs the full callback lifecycle", function()
+      local internal = LibFurnitureCatalogue.Internal
+      local events = internal.Events
+      local stateDuringBuild
+      local readyCalls, readyCallsDuringBuild = 0, 0
+      local readyApi, readyRevision
+      local accepted, duplicateAccepted
+      local sequence = {}
+
+      local function onReady(observedApi, revision)
+        readyCalls = readyCalls + 1
+        readyApi = observedApi
+        readyRevision = revision
+        sequence[#sequence + 1] = "ready"
+      end
+
+      local function onScanStarted()
+        stateDuringBuild = api.GetState()
+        readyCallsDuringBuild = readyCalls
+        accepted = api.OnReady(onReady)
+        duplicateAccepted = api.OnReady(onReady)
+      end
+
+      local badCalls = 0
+      local function badChangeCallback()
+        badCalls = badCalls + 1
+        sequence[#sequence + 1] = "bad"
+        error("expected public callback failure")
+      end
+
+      local changeArg = {}
+      local changeCalls = 0
+      local changeApi, changeRevision
+      local function onChange(arg, observedApi, revision)
+        changeCalls = changeCalls + 1
+        changeApi = observedApi
+        changeRevision = revision
+        sequence[#sequence + 1] = arg == changeArg and "change" or "wrong-arg"
+      end
+
+      local reentrantCalls = 0
+      local function onReentrantChange()
+        reentrantCalls = reentrantCalls + 1
+        sequence[#sequence + 1] = "reentrant"
+        api.UnregisterCallback(api.Events.CHANGE, onReentrantChange)
+        FurC.RebuildDB(true)
+      end
+
+      internal.Callbacks:RegisterCallback(events.SCAN_STARTED, onScanStarted)
+      local registeredBad = api.RegisterCallback(api.Events.CHANGE, badChangeCallback)
+      local registered = api.RegisterCallback(api.Events.CHANGE, onChange, changeArg)
+      local duplicateRegistered = api.RegisterCallback(api.Events.CHANGE, onChange, changeArg)
+      api.RegisterCallback(api.Events.CHANGE, onReentrantChange)
+      local beforeRevision = api.GetDBRevision()
+      local ok, err = pcall(FurC.RebuildDB, true)
+
+      internal.Callbacks:UnregisterCallback(events.SCAN_STARTED, onScanStarted)
+      local removedBad = api.UnregisterCallback(api.Events.CHANGE, badChangeCallback)
+      local removed = api.UnregisterCallback(api.Events.CHANGE, onChange, changeArg)
+      api.UnregisterCallback(api.Events.CHANGE, onReentrantChange)
+      local removedTwice = api.UnregisterCallback(api.Events.CHANGE, onChange, changeArg)
+
+      assert.is_true(ok, tostring(err))
+      assert.is_true(registeredBad)
+      assert.is_true(registered)
+      assert.is_true(duplicateRegistered)
+      assert.is_true(accepted)
+      assert.is_true(duplicateAccepted)
+      assert.equals(api.State.BUILDING, stateDuringBuild)
+      assert.equals(0, readyCallsDuringBuild)
+      assert.equals(1, readyCalls)
+      assert.equals(1, badCalls)
+      assert.equals(1, changeCalls)
+      assert.equals(1, reentrantCalls)
+      assert.equals(api, readyApi)
+      assert.equals(api, changeApi)
+      assert.equals(api.GetDBRevision(), readyRevision)
+      assert.equals(api.GetDBRevision(), changeRevision)
+      assert.is_true(api.GetDBRevision() > beforeRevision)
+      assert.same({ "ready", "bad", "change", "reentrant" }, sequence)
+      assert.is_true(removedBad)
+      assert.is_true(removed)
+      assert.is_false(removedTwice)
+      assert.equals(api.State.READY, api.GetState())
+      assert.is_true(api.IsReady())
+    end)
+
+    it("reports build failures and recovers only on explicit rebuild", function()
+      local internal = LibFurnitureCatalogue.Internal
+      local originalInit = FurC.InitAchievementVendorList
+      local sentinel = "expected lifecycle build failure"
+      local changeCalls = 0
+      local readyCalls = 0
+      local failedEventCalls = 0
+
+      local function onChange()
+        changeCalls = changeCalls + 1
+      end
+      local function onReady()
+        readyCalls = readyCalls + 1
+      end
+      local function onFailed()
+        failedEventCalls = failedEventCalls + 1
+        FurC.RebuildDB()
+      end
+
+      api.RegisterCallback(api.Events.CHANGE, onChange)
+      internal.Callbacks:RegisterCallback(internal.Events.SCAN_FAILED, onFailed)
+      FurC.InitAchievementVendorList = function()
+        error(sentinel)
+      end
+      local failedOk, failedErr = pcall(FurC.RebuildDB, true)
+      FurC.InitAchievementVendorList = originalInit
+      internal.Callbacks:UnregisterCallback(internal.Events.SCAN_FAILED, onFailed)
+
+      local failedState, buildError = api.GetState()
+      local accepted = api.OnReady(onReady)
+      local stateAfterSubscribe = api.GetState()
+      local readyAfterFailure = api.IsReady()
+      local readyCallsAfterFailure = readyCalls
+      local changeCallsAfterFailure = changeCalls
+      FurC.RescanFiles()
+      local stateAfterRejectedRescan = api.GetState()
+      local recoveredOk, recoveredErr = pcall(FurC.RebuildDB, true)
+      api.UnregisterCallback(api.Events.CHANGE, onChange)
+
+      assert.is_false(failedOk)
+      assert.is_not_nil(string.find(tostring(failedErr), sentinel, 1, true))
+      assert.equals(api.State.FAILED, failedState)
+      assert.is_not_nil(string.find(tostring(buildError), sentinel, 1, true))
+      assert.equals(1, failedEventCalls)
+      assert.is_true(accepted)
+      assert.equals(api.State.FAILED, stateAfterSubscribe)
+      assert.equals(api.State.FAILED, stateAfterRejectedRescan)
+      assert.is_false(readyAfterFailure)
+      assert.equals(0, readyCallsAfterFailure)
+      assert.equals(0, changeCallsAfterFailure)
+      assert.is_true(recoveredOk, tostring(recoveredErr))
+      local recoveredState, recoveredError = api.GetState()
+      assert.equals(api.State.READY, recoveredState)
+      assert.is_nil(recoveredError)
+      assert.is_true(api.IsReady())
+      assert.equals(1, readyCalls)
+      assert.equals(1, changeCalls)
     end)
 
     it("GetEntry returns a snapshot, nil on miss", function()

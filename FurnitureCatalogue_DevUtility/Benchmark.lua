@@ -8,6 +8,7 @@ local this = FurCDev
 
 -- initial settle before each step
 local DELAY = 1000 -- ms
+local IDLE_TIMEOUT = 6000 -- ms
 
 -- should work in all locales (only tested EN and DE):
 local SEARCH_ITEM_ID = 211366 -- Ayleid Lamp, Ornate Stone
@@ -16,6 +17,13 @@ local SEARCH_FALLBACK = "ayl" -- if item name isn't loaded
 
 local function box()
   return FurC_SearchBox
+end
+
+-- profiler timeline marker
+local function mark(label)
+  if RecordScriptProfilerUserEvent then
+    RecordScriptProfilerUserEvent("furcbench|" .. label)
+  end
 end
 
 -- first n characters of UTF-8 string
@@ -32,12 +40,15 @@ end
 -- poll until FurC is done (abuses the "please wait" label)
 local function whenIdle(cb, waited)
   waited = waited or 0
-  if FurCGui_Wait and not FurCGui_Wait:IsControlHidden() and waited < 6000 then
+  -- The wait control can retain its visible state while its parent window is
+  -- hidden. In that case no GUI refresh can be running, so treat it as idle.
+  local busy = FurCGui and not FurCGui:IsControlHidden() and FurCGui_Wait and not FurCGui_Wait:IsControlHidden()
+  if busy and waited < IDLE_TIMEOUT then
     zo_callLater(function()
       whenIdle(cb, waited + 200)
     end, 200)
   else
-    cb()
+    cb(busy, waited)
   end
 end
 
@@ -49,10 +60,23 @@ local function runSteps(steps, onDone)
     if not s then
       return onDone and onDone()
     end
+    local stepNumber = i
     s.fn()
     -- wait for idle before next step
     zo_callLater(function()
-      whenIdle(nextStep)
+      whenIdle(function(timedOut, idleWaited)
+        if timedOut then
+          mark("idle-timeout step=" .. stepNumber)
+          d(
+            string.format(
+              "|cFF3333FurCDev|r: idle timeout after %d ms at benchmark step %d; continuing",
+              idleWaited,
+              stepNumber
+            )
+          )
+        end
+        nextStep()
+      end)
     end, s.delay or DELAY)
   end
   nextStep()
@@ -69,13 +93,6 @@ end
 local function ensureClosed()
   if FurCGui and not FurCGui:IsControlHidden() then
     FurnitureCatalogue_Toggle()
-  end
-end
-
--- profiler timeline marker
-local function mark(label)
-  if RecordScriptProfilerUserEvent then
-    RecordScriptProfilerUserEvent("furcbench|" .. label)
   end
 end
 
@@ -145,16 +162,6 @@ local function setVersion(value)
   end
 end
 
-local function maxVersion()
-  local m = 0
-  for k in pairs(FurC.DropdownData.ChoicesVersion or {}) do
-    if type(k) == "number" and k > m then
-      m = k
-    end
-  end
-  return m
-end
-
 -- one step per keystroke, growing the localized item name from 3 chars up to SEARCH_LEN
 local function searchSteps()
   local name = GetItemLinkName(FurC.Utils.GetItemLink(SEARCH_ITEM_ID))
@@ -181,7 +188,9 @@ end
 -- scenario id -> { label, steps(), coldCaches? }
 -- (run all runs them in order)
 local function scenarios()
-  local src = FurC.Constants.ItemSources
+  local constants = LibFurnitureCatalogue.Internal.Constants
+  local src = constants.ItemSources
+  local ver = constants.Versioning
   return {
     [1] = {
       label = "window load (cold start + reopen)",
@@ -228,9 +237,18 @@ local function scenarios()
       end,
     },
     [5] = {
-      label = "version = latest",
+      label = "version = Homestead",
       steps = function()
-        return { { fn = setVersion(maxVersion()) } }
+        return {
+          { fn = setVersion(ver.HOMESTEAD) },
+          {
+            fn = function()
+              local dataLines = FurCGui_ListHolder and FurCGui_ListHolder.dataLines
+              mark("5 result-count=" .. (dataLines and #dataLines or "unavailable"))
+            end,
+            delay = 0,
+          },
+        }
       end,
     },
     [6] = {
@@ -246,6 +264,10 @@ local function scenarios()
             fn = function()
               clearCaches()
               FurC.RebuildDB() -- async, exactly as normal use
+              mark("7 onready-request")
+              LibFurnitureCatalogue.API.OnReady(function()
+                mark("7 onready-callback")
+              end)
             end,
             delay = DELAY,
           },
@@ -317,35 +339,56 @@ local function runSequence(ns)
 
   local all = {}
   for idx, n in ipairs(ns) do
+    local position = idx
+    local scenarioId = n
+    local scenario = sc[scenarioId]
+    local scenarioTag = scenarioId .. " " .. scenario.label
+
     -- preconditions for the whole capture
-    local setup = (idx == 1 and prepareSteps(sc[n].coldCaches))
+    local setup = (position == 1 and prepareSteps(scenario.coldCaches))
       or { { fn = ensureOpen, delay = 700 }, { fn = resetState } }
     for _, s in ipairs(setup) do
       all[#all + 1] = s
     end
-    if idx == 1 and autoProfile then
+    if position == 1 and autoProfile then
       all[#all + 1] = { fn = StartScriptProfiler }
     end
     all[#all + 1] = {
       fn = function()
-        d(string.format("|cFF3333FurCDev|r: [%d/%d] %s", idx, #ns, sc[n].label))
-        mark(n .. " " .. sc[n].label)
+        d(string.format("|cFF3333FurCDev|r: [%d/%d] %s", position, #ns, scenario.label))
+        mark(scenarioTag)
       end,
     }
-    for _, s in ipairs(sc[n].steps()) do
+    for _, s in ipairs(scenario.steps()) do
       all[#all + 1] = s
     end
+    all[#all + 1] = {
+      fn = function()
+        mark("end " .. scenarioTag)
+      end,
+      delay = 0,
+    }
   end
 
   runSteps(all, function()
-    if autoProfile then
-      StopScriptProfiler()
+    mark("benchmark-end")
+    local function finish()
+      if autoProfile then
+        StopScriptProfiler()
+      end
+      -- cleanup
+      ensureClosed()
+      resetState()
+      d("|cFF3333FurCDev|r: benchmark ALL done" .. exportHint(autoProfile, loaded))
+      PlaySound(SOUNDS.JUSTICE_PICKPOCKET_BONUS)
     end
-    -- cleanup
-    ensureClosed()
-    resetState()
-    d("|cFF3333FurCDev|r: benchmark ALL done" .. exportHint(autoProfile, loaded))
-    PlaySound(SOUNDS.JUSTICE_PICKPOCKET_BONUS)
+    if autoProfile then
+      -- Give the profiler a separate update to record the final marker before
+      -- stopping it.
+      zo_callLater(finish, 100)
+    else
+      finish()
+    end
   end)
 end
 

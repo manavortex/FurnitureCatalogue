@@ -298,6 +298,10 @@ do
     end
     return self
   end
+  function Task:OnError(fn)
+    self.onError = fn
+    return self
+  end
   for _, m in ipairs({ "Cancel", "Suspend", "Resume", "For", "StopTimer" }) do
     Task[m] = function(self)
       return self

@@ -8,6 +8,8 @@ LFC.Internal.Build = this
 local db = LFC.Internal.DB
 local src = LFC.Internal.Constants.ItemSources
 local SOURCE_PRIORITY = LFC.Internal.Constants.SOURCE_PRIORITY
+local lifecycle = LFC.Internal.Lifecycle
+local state = lifecycle.State
 
 local getItemId = LFC.Internal.Format.GetItemId
 local getItemLink = LFC.Internal.Format.GetItemLink
@@ -131,8 +133,42 @@ local function clear()
 end
 this.Clear = clear
 
+local function log(method, ...)
+  local ok, logger = pcall(LFC.Internal.GetLogger)
+  if ok and logger and type(logger[method]) == "function" then
+    pcall(logger[method], logger, ...)
+  end
+end
+
 local function logDebug(...)
-  LFC.Internal.GetLogger():Debug(...)
+  log("Debug", ...)
+end
+
+local function logError(...)
+  log("Error", ...)
+end
+
+local function setState(value, err)
+  lifecycle.current = value
+  lifecycle.error = err ~= nil and tostring(err) or nil
+  LFC.Internal.DBReady = value == state.READY
+end
+
+local function fireInternal(eventName, ...)
+  local ok, err = pcall(LFC.Internal.Callbacks.FireCallbacks, LFC.Internal.Callbacks, eventName, ...)
+  if not ok then
+    logError("Lifecycle callback %s failed: %s", eventName, tostring(err))
+  end
+end
+
+local function notify(callback)
+  local wasNotifying = lifecycle.notifying
+  lifecycle.notifying = true
+  local ok, err = pcall(callback)
+  lifecycle.notifying = wasNotifying
+  if not ok then
+    error(err, 0)
+  end
 end
 
 local function parseFurnitureItem(itemLink, override) -- saves to DB, returns recipeArray
@@ -179,12 +215,11 @@ end
 this.ParseBlueprint = parseBlueprint
 
 local ver = LFC.Internal.Constants.Versioning
-local task -- LibAsync is optional for the lib; resolved lazily at first scan
-local isBuilding = false
-
 ---@param blocking? boolean scan inline instead of yielding through LibAsync
 local function scanFromFiles(blocking)
-  task = task or (LibAsync and LibAsync:Create("LibFurnitureCatalogue_ScanDataFiles"))
+  lifecycle.task = lifecycle.task or (LibAsync and LibAsync:Create("LibFurnitureCatalogue_ScanDataFiles"))
+  local task = lifecycle.task
+  local publishedBefore = lifecycle.everReady
 
   local function parseZoneData(zoneName, zoneData, versionNumber, origin)
     for vendorName, vendorData in pairs(zoneData) do
@@ -399,14 +434,27 @@ local function scanFromFiles(blocking)
 
   local buildStarted = GetGameTimeMilliseconds()
   local function finish()
-    isBuilding = false
-    LFC.Internal.DBReady = true
+    setState(state.READY)
+    lifecycle.everReady = true
     logDebug("DB build finished: %d entries in %d ms", NonContiguousCount(db), GetGameTimeMilliseconds() - buildStarted)
-    LFC.Internal.Callbacks:FireCallbacks(LFC.Internal.Events.SCAN_COMPLETE)
+    notify(function()
+      if LFC.Internal.PublishLifecycleSuccess then
+        LFC.Internal.PublishLifecycleSuccess(publishedBefore, LFC.Internal.DBRevision)
+      end
+      fireInternal(LFC.Internal.Events.SCAN_COMPLETE)
+    end)
   end
 
-  isBuilding = true
-  LFC.Internal.Callbacks:FireCallbacks(LFC.Internal.Events.SCAN_STARTED)
+  local function fail(err)
+    setState(state.FAILED, err)
+    logError("DB build failed: %s", tostring(err))
+    notify(function()
+      fireInternal(LFC.Internal.Events.SCAN_FAILED, lifecycle.error)
+    end)
+  end
+
+  setState(state.BUILDING)
+  fireInternal(LFC.Internal.Events.SCAN_STARTED)
 
   if nil ~= task and not blocking then
     task
@@ -421,25 +469,42 @@ local function scanFromFiles(blocking)
       :Then(scanFestivalFiles)
       :Then(scanRumours)
       :Then(finish)
+      :OnError(function(asyncTask)
+        if lifecycle.current ~= state.READY then
+          fail(asyncTask.Error)
+        else
+          logError("Post-build callback failed: %s", tostring(asyncTask.Error))
+        end
+      end)
   else
-    scanRecipeFile()
-    scanMiscItemFile()
-    scanCrownStore()
-    scanAntiquities()
-    scanJustice()
-    scanFishing()
-    scanVendorFiles()
-    scanRolis()
-    scanFestivalFiles()
-    scanRumours()
-    finish()
+    local ok, err = pcall(function()
+      scanRecipeFile()
+      scanMiscItemFile()
+      scanCrownStore()
+      scanAntiquities()
+      scanJustice()
+      scanFishing()
+      scanVendorFiles()
+      scanRolis()
+      scanFestivalFiles()
+      scanRumours()
+      finish()
+    end)
+    if not ok then
+      if lifecycle.current ~= state.READY then
+        fail(err)
+      else
+        logError("Post-build callback failed: %s", tostring(err))
+      end
+      error(err, 0)
+    end
   end
 end
 
---- Builds runtime DB from bundled data files if empty
+---Starts the initial runtime DB build from bundled data files
 ---@param blocking? boolean build inline, so the DB is populated on return
 local function ensureDB(blocking)
-  if isBuilding or next(db) ~= nil then
+  if lifecycle.current ~= state.UNINITIALIZED then
     return
   end
   logDebug("Scanning data files")
@@ -449,7 +514,7 @@ this.EnsureDB = ensureDB
 
 --- Applies bundled data files over current DB again
 local function rescanFiles()
-  if isBuilding then
+  if lifecycle.current == state.BUILDING or lifecycle.current == state.FAILED or lifecycle.notifying then
     return
   end
   logDebug("Scanning data files")
@@ -460,7 +525,7 @@ this.RescanFiles = rescanFiles
 --- Wipes runtime DB and rebuilds it from bundled data
 ---@param blocking? boolean true=build immediately
 local function rebuildDB(blocking)
-  if isBuilding then
+  if lifecycle.current == state.BUILDING or lifecycle.notifying then
     return
   end
   clear()
