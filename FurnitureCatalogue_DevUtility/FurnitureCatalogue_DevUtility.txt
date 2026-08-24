@@ -18,7 +18,7 @@ GUI.lua
 Benchmark.lua
 
 Datamine.lua
-DumpMeta.lua
+Dump.lua
 DumpFurniture_sidTools.lua
 
 Custom.lua

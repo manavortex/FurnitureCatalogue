@@ -265,10 +265,52 @@ end
 _G.SafeAddVersion = _G.SafeAddVersion or function() end
 
 -- if formatter used during DB build
-_G.ZO_Currency_FormatKeyboard = _G.ZO_Currency_FormatKeyboard or function(_, amount)
-  return tostring(amount or 0)
-end
+-- amount, unit tag and currency icon ZO_CURRENCY_FORMAT_AMOUNT_ICON
+_G.ZO_Currency_FormatKeyboard = _G.ZO_Currency_FormatKeyboard
+  or function(currency, amount)
+    return string.format(
+      "%s|u0:6%%:currency:|u|t80%%:80%%:/esoui/art/currency/currency_%s_mipmap.dds|t",
+      tostring(amount or 0),
+      tostring(currency)
+    )
+  end
 _G.ZO_CURRENCY_FORMAT_AMOUNT_ICON = _G.ZO_CURRENCY_FORMAT_AMOUNT_ICON or 1
+
+-- currencies: ids, names and icon a price is formatted with
+do
+  local nextCurrency = 1
+  for _, key in ipairs({
+    "MONEY",
+    "CROWNS",
+    "CROWN_GEMS",
+    "ALLIANCE_POINTS",
+    "TELVAR_STONES",
+    "WRIT_VOUCHERS",
+    "TRADE_BARS",
+    "UNDAUNTED_KEYS",
+    "SEALS",
+    "STYLE_STONES",
+    "TRANSMUTE_CRYSTALS",
+    "ARCHIVAL_FORTUNES",
+    "IMPERIAL_FRAGMENTS",
+    "TOME_POINTS",
+    "TOME_TOKENS",
+    "TOME_POINT_CACHES",
+    "TOME_CHALLENGE_REROLLS",
+  }) do
+    if not _G["CURT_" .. key] then
+      _G["CURT_" .. key] = nextCurrency
+    end
+    nextCurrency = nextCurrency + 1
+  end
+end
+_G.GetCurrencyName = _G.GetCurrencyName or function(currencyType)
+  return "Currency" .. tostring(currencyType)
+end
+_G.GetCurrencyKeyboardIcon = _G.GetCurrencyKeyboardIcon
+  or function(currencyType)
+    return "/esoui/art/currency/currency_" .. tostring(currencyType) .. "_mipmap.dds"
+  end
 
 _G.GetNumZones = _G.GetNumZones or function()
   return 0

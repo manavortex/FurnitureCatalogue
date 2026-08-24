@@ -80,11 +80,6 @@ local function handleSlash(args)
   -- run tests
   elseif cmd == "test" then
     runTests(rest or "")
-  -- DB dump with metadata (for full export)
-  elseif cmd == "dump" then
-    if this.DumpMeta then
-      this.DumpMeta()
-    end
   -- profiling benchmarks: run all, sequence important
   elseif cmd == "bench" then
     if this.RunAllBenchmarks then
@@ -95,7 +90,6 @@ local function handleSlash(args)
     d("Cmds: |cAACCFF/furcdev|r            toggle trader box")
     d("      |cAACCFF/furcdev tests|r      list tests")
     d("      |cAACCFF/furcdev test [id]|r  run test")
-    d("      |cAACCFF/furcdev dump|r       dump DB including metadata to SavedVars")
     d("      |cAACCFF/furcdev bench|r      run all profiler scenarios in order")
   end
 end

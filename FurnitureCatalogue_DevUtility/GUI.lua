@@ -783,6 +783,9 @@ function this.InitDashboard()
   this.RegisterTab("achievements", "Achievements", FurCDevControl_Achievements, refreshSearchTab("achievements"))
   this.RegisterTab("zones", "Zones", FurCDevControl_Zones, refreshSearchTab("zones"))
   this.RegisterTab("houses", "Houses", FurCDevControl_Houses, refreshSearchTab("houses"))
+  if this.BuildDumpTab then
+    this.BuildDumpTab() -- Export.lua, registers itself last
+  end
   buildTabButtons()
   buildPager("achievements")
   buildPager("zones")
