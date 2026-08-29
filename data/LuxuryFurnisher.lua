@@ -32,6 +32,10 @@ FurC.LuxuryFurnisher[ver.THIEVES] = {
     itemPrice = 4900,
 	itemDate = "2026-08-21",
   },
+  [223891] = { -- Common Cargo, Floating Waterlogged
+    itemPrice = 10000,
+	itemDate = "2026-08-28",
+  },
 }
 
 -- Season Zero Pt. 2
@@ -270,7 +274,7 @@ FurC.LuxuryFurnisher[ver.FALLBAN] = {
   },
   [212582] = { -- Dock Shed, Wooden
     itemPrice = 10000,
-	itemDate = "2025-08-01",
+	itemDate = "2026-08-28",
   },
   [212583] = { -- Dock Bollard, Metal
     itemPrice = 450,
@@ -498,7 +502,7 @@ FurC.LuxuryFurnisher[ver.SCIONS] = {
   },
   [203588] = { -- Alinor Boat, Unfinished
     itemPrice = 4500,
-    itemDate = "2025-08-01",
+    itemDate = "2026-08-28",
   },
   [203587] = { -- Redguard Colonnade, Mosaic
     itemPrice = 80000,
@@ -754,7 +758,7 @@ FurC.LuxuryFurnisher[ver.SCRIBE] = {
   },
   [193789] = { -- Gonfalon Bay Dockside Bell
     itemPrice = 18000,
-    itemDate = "2025-08-01",
+    itemDate = "2026-08-28",
   },
   [193792] = { -- Plant, Galen Palm Cluster
     itemPrice = 2000,
@@ -990,7 +994,7 @@ FurC.LuxuryFurnisher[ver.TIDES] = {
   },
   [184197] = { -- Canopy, Netted
     itemPrice = 4000,
-    itemDate = "2025-08-01",
+    itemDate = "2026-08-28",
   },
   [184196] = { -- Redguard Canopy, Striped
     itemPrice = 5000,
@@ -1226,7 +1230,7 @@ FurC.LuxuryFurnisher[ver.FLAMES] = {
   },
   [171822] = { -- Harbor Winch, Treadwheel
     itemPrice = 7000,
-    itemDate = "2025-08-01",
+    itemDate = "2026-08-28",
   },
   [171821] = { -- Redguard Amphora, Golden
     itemPrice = 15000,
@@ -1482,7 +1486,7 @@ FurC.LuxuryFurnisher[ver.DRAGON2] = {
   },
   [156650] = { -- Platform, Floating Dock
     itemPrice = 3000,
-    itemDate = "2025-08-01",
+    itemDate = "2026-08-28",
   },
   [156649] = { -- Redguard Tent, Rounded Blue
     itemPrice = 100000,
@@ -1874,7 +1878,7 @@ FurC.LuxuryFurnisher[ver.SLAVES] = {
   },
   [145472] = { -- Antler Coral, Crimson
     itemPrice = 50000,
-    itemDate = "2025-08-01",
+    itemDate = "2026-08-28",
   },
   [145471] = { -- Redguard Raincatcher, Golden
     itemPrice = 35000,
@@ -2034,11 +2038,11 @@ FurC.LuxuryFurnisher[ver.DRAGONS] = {
   },
   [134827] = { -- Mooring Line, Coiled
     itemPrice = 7500,
-    itemDate = "2025-08-01",
+    itemDate = "2026-08-28",
   },
   [134826] = { -- Mooring Line, Tidy
     itemPrice = 5000,
-    itemDate = "2025-08-01",
+    itemDate = "2026-08-28",
   },
   [134825] = { -- Redguard Tent, Squared Silk
     itemPrice = 100000,
@@ -2662,7 +2666,7 @@ FurC.LuxuryFurnisher[ver.HOMESTEAD] = {
   },
   [120846] = { -- Dock Rope Wheel
     itemPrice = 3000,
-    itemDate = "2025-08-01",
+    itemDate = "2026-08-28",
   },
   [120839] = { -- Brotherhood Ledger Stand
     itemPrice = 4000,
@@ -2706,7 +2710,7 @@ FurC.LuxuryFurnisher[ver.HOMESTEAD] = {
   },
   [121268] = { -- Fisher's Catch of the Day Rack
     itemPrice = 5000,
-    itemDate = "2025-08-01",
+    itemDate = "2026-08-28",
   },
   [120889] = { -- Glow Bush, Purple
     itemPrice = 20000,
@@ -2738,7 +2742,7 @@ FurC.LuxuryFurnisher[ver.HOMESTEAD] = {
   },
   [120850] = { -- Harbor Floats
     itemPrice = 5000,
-    itemDate = "2025-08-01",
+    itemDate = "2026-08-28",
   },
   [120849] = { -- Anchor
     itemPrice = 10000,
