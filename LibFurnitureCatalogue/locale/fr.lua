@@ -66,7 +66,7 @@ local strings = {
   SI_FURC_TRADERS_HGF = "Fournisseur intérieur^n,de",
   SI_FURC_TRADERS_HOLIDAY = "Fournisseur fêtes^n,from",
   SI_FURC_TRADERS_LUXF = "Zanil Theran",
-  -- 59 ENTRIES UNTRANSLATED/IDENTICAL
+  -- 60 ENTRIES UNTRANSLATED/IDENTICAL
   SI_FURC_DB_EQUIP = "with equipment",
   SI_FURC_EVENT_ANNIVERSARY = "Anniversary Jubilee",
   SI_FURC_EVENT_BLACKWOOD = "Bounties of Blackwood",
@@ -87,6 +87,7 @@ local strings = {
   SI_FURC_GUILD_MAGES = "the Mages' guild",
   SI_FURC_GUILD_MAGES_MYSTIC = "Mystic^n",
   SI_FURC_GUILD_PSIJIC_NALIRSEWEN = "Nalirsewen",
+  SI_FURC_HOUSE_MORE = "<<1>> and <<2>> more",
   SI_FURC_ITEMPACK_DWEMER = "Dwemer",
   SI_FURC_ITEMPACK_EBONY = "Ebony Blade Style",
   SI_FURC_ITEMPACK_FIRSTBLADE = "Firstblade Style",

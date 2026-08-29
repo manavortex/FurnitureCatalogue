@@ -3,8 +3,7 @@
 local strings = {
   -- ////// START : DON'T REMOVE THIS LINE
   SI_FURC_EVENT_IC = "Imperial City Celebration",
-  SI_FURC_HOUSE = "Included in: <<1>>",
-  -- 121 ENTRIES UNTRANSLATED/IDENTICAL
+  -- 123 ENTRIES UNTRANSLATED/IDENTICAL
   SI_FURC_DATAMINED_UNCLEAR = "This item has been seen in-game, but it's not yet known where you can get it.",
   SI_FURC_DB = "The Dark Brotherhood supplies vendor hands these out ",
   SI_FURC_DB_EQUIP = "with equipment",
@@ -36,6 +35,8 @@ local strings = {
   SI_FURC_GUILD_PSIJIC_NALIRSEWEN = "Nalirsewen",
   SI_FURC_GUILD_THIEVES_MERCH = "Outlaw Refuge, Merchant",
   SI_FURC_GUILD_UNDAUNTED_QM = "Quartermaster",
+  SI_FURC_HOUSE = "Included in: <<1>>",
+  SI_FURC_HOUSE_MORE = "<<1>> and <<2>> more",
   SI_FURC_ITEMPACK_DWEMER = "Dwemer",
   SI_FURC_ITEMPACK_EBONY = "Ebony Blade Style",
   SI_FURC_ITEMPACK_FIRSTBLADE = "Firstblade Style",

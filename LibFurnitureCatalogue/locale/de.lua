@@ -94,7 +94,7 @@ local strings = {
   SI_FURC_TRADERS_HGF = "Hausaustatter^n,von",
   SI_FURC_TRADERS_HOLIDAY = "Festtagsausstatter^n,von",
   SI_FURC_TRADERS_LUXF = "Luxusausstatter^n,von",
-  -- 31 ENTRIES UNTRANSLATED/IDENTICAL
+  -- 32 ENTRIES UNTRANSLATED/IDENTICAL
   SI_FURC_EVENT_ANNIVERSARY = "Anniversary Jubilee",
   SI_FURC_EVENT_CRIME = "Crime Wave",
   SI_FURC_EVENT_HEARTS = "Hearts Week",
@@ -103,6 +103,7 @@ local strings = {
   SI_FURC_EVENT_WRITHING = "Writhing Wall",
   SI_FURC_GRAMMAR_PREP_LOC_DEFAULT = "in",
   SI_FURC_GUILD_PSIJIC_NALIRSEWEN = "Nalirsewen",
+  SI_FURC_HOUSE_MORE = "<<1>> and <<2>> more",
   SI_FURC_ITEMPACK_DWEMER = "Dwemer",
   SI_FURC_ITEMPACK_EBONY = "Ebony Blade Style",
   SI_FURC_ITEMPACK_FIRSTBLADE = "Firstblade Style",

@@ -104,13 +104,14 @@ local strings = {
   SI_FURC_TRADERS_HOLIDAY = "ホリデーの実績家具商人^n,from",
   SI_FURC_TRADERS_LUXF = "高級家具商人^Nd,from",
   SI_FURC_TRADERS_ROLIS = "ロリス・フラール",
-  -- 21 ENTRIES UNTRANSLATED/IDENTICAL
+  -- 22 ENTRIES UNTRANSLATED/IDENTICAL
   SI_FURC_EVENT_CRIME = "Crime Wave",
   SI_FURC_EVENT_HEARTS = "Hearts Week",
   SI_FURC_EVENT_NIGHTMARKET = "Night Market",
   SI_FURC_EVENT_ORSINIUM = "Orsinium Celebration 2019",
   SI_FURC_EVENT_WRITHING = "Writhing Wall",
   SI_FURC_HOUSE = "Included in: <<1>>",
+  SI_FURC_HOUSE_MORE = "<<1>> and <<2>> more",
   SI_FURC_ITEMPACK_EBONY = "Ebony Blade Style",
   SI_FURC_ITEMPACK_FIRSTBLADE = "Firstblade Style",
   SI_FURC_ITEMPACK_JYGGALAG = "Sword of Jyggalag Style",
