@@ -29,7 +29,6 @@ local strings = {
   SI_FURC_GUILD_PSIJIC_NALIRSEWEN = "ナリーセウェン",
   SI_FURC_GUILD_THIEVES_MERCH = "無法者の隠れ家の商人",
   SI_FURC_GUILD_UNDAUNTED_QM = "アンドーンテッドの補給係",
-  SI_FURC_HOUSE = "<<1>>を家具付きで購入",
   SI_FURC_ITEMPACK_DWEMER = "ドワーフのパイプ",
   SI_FURC_LOC_ANY = "どこでも^X",
   SI_FURC_LOC_ANY_CAPITAL = "各地の首都",
@@ -105,12 +104,13 @@ local strings = {
   SI_FURC_TRADERS_HOLIDAY = "ホリデーの実績家具商人^n,from",
   SI_FURC_TRADERS_LUXF = "高級家具商人^Nd,from",
   SI_FURC_TRADERS_ROLIS = "ロリス・フラール",
-  -- 20 ENTRIES UNTRANSLATED/IDENTICAL
+  -- 21 ENTRIES UNTRANSLATED/IDENTICAL
   SI_FURC_EVENT_CRIME = "Crime Wave",
   SI_FURC_EVENT_HEARTS = "Hearts Week",
   SI_FURC_EVENT_NIGHTMARKET = "Night Market",
   SI_FURC_EVENT_ORSINIUM = "Orsinium Celebration 2019",
   SI_FURC_EVENT_WRITHING = "Writhing Wall",
+  SI_FURC_HOUSE = "Included in: <<1>>",
   SI_FURC_ITEMPACK_EBONY = "Ebony Blade Style",
   SI_FURC_ITEMPACK_FIRSTBLADE = "Firstblade Style",
   SI_FURC_ITEMPACK_JYGGALAG = "Sword of Jyggalag Style",

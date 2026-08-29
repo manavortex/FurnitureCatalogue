@@ -151,6 +151,35 @@ function this.FormatPartOf(itemid, note)
   return result_str
 end
 
+local fmtHouse = GetString(SI_FURC_HOUSE)
+local fmtHouseMore = GetString(SI_FURC_HOUSE_MORE)
+
+-- An item can come furnished with a whole list of houses
+-- Naming them all makes the source line unreadable
+local HOUSE_LIMIT = 3
+
+---Format houses an item comes furnished with
+---@param ... integer collectible numbers, see https://wiki.esoui.com/Collectibles
+---@return string
+function this.FormatHouses(...)
+  local count = select("#", ...)
+  if count == 0 then
+    return ""
+  end
+
+  local named = {}
+  for i = 1, math.min(count, HOUSE_LIMIT) do
+    named[i] = GetCollectibleName((select(i, ...)))
+  end
+
+  local houses = colourise(table.concat(named, ", "), colours.House)
+  if count > HOUSE_LIMIT then
+    houses = sFormat(fmtHouseMore, houses, count - HOUSE_LIMIT)
+  end
+
+  return sFormat(fmtHouse, houses)
+end
+
 --- Unique locations in the English client mostly come without the `^N` suffix (unique name)
 --- This causes results like "at the Clockwork City" instead of "in Clockwork City"
 --- We fix this by adding the `^N`, if no control char was specified

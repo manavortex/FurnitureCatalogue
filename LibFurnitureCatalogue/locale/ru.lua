@@ -3,7 +3,7 @@
 local strings = {
   -- ////// START : DON'T REMOVE THIS LINE
   SI_FURC_EVENT_IC = "Imperial City Celebration",
-  SI_FURC_HOUSE = "From a furnished purchase of <<1>>",
+  SI_FURC_HOUSE = "Included in: <<1>>",
   -- 121 ENTRIES UNTRANSLATED/IDENTICAL
   SI_FURC_DATAMINED_UNCLEAR = "This item has been seen in-game, but it's not yet known where you can get it.",
   SI_FURC_DB = "The Dark Brotherhood supplies vendor hands these out ",

@@ -532,6 +532,7 @@ this.Containers = {
 local colours = {
   AP = "5EA4FF",
   Gold = "E5DA40",
+  House = "40D0C0",
   Location = "CF6D00",
   Quest = "E5DA40",
   TelVar = "82BCFF",

@@ -30,14 +30,8 @@ local function strCrown(price)
   return strPrice(price, CURT_CROWNS)
 end
 
-local housesource = GetString(SI_FURC_HOUSE)
-local function getHouseString(houseId1, houseId2) -- use collectible number from https://wiki.esoui.com/Collectibles instead of houseIDs.
-  local houseName = GetCollectibleName(houseId1)
-  if houseId2 then
-    houseName = houseName .. ", " .. GetCollectibleName(houseId2)
-  end
-  return zo_strformat(housesource, houseName)
-end
+-- use collectible numbers from https://wiki.esoui.com/Collectibles instead of houseIDs.
+local getHouseString = LFC.Internal.Format.FormatHouses
 local mischouse = GetString(SI_FURC_SRC_MISCHOUSE)
 
 local packSources = {}
@@ -898,14 +892,14 @@ FurC.CrownStore[ver.KITTY] = {
     [151906] = strPack(packs.MOONBISHOP), -- Robust Target Dro-m'Athra
     [151829] = strPack(packs.MOONBISHOP), -- Suthay Statue, Nimble Bishop
     [150775] = strBundle(bundles.JYGGALAG), -- Banner of Jyggalag
-    [152145] = strMultiple(mischouse, srcCraft), -- Orcish Tapestry, War       CRAFTABLE
-    [152149] = strMultiple(mischouse, srcCraft), -- Orcish Brazier, Pillar     CRAFTABLE
-    [152148] = strMultiple(mischouse, srcCraft), -- Orcish Tapestry, Hunt      CRAFTABLE
-    [152146] = strMultiple(mischouse, srcCraft), -- Orcish Chandelier, Spiked  CRAFTABLE
-    [152141] = strMultiple(mischouse, srcCraft), -- Orcish Brazier, Bordered   CRAFTABLE
-    [152144] = strMultiple(mischouse, srcCraft), -- Orcish Mirror, Peaked      CRAFTABLE
-    [152143] = strMultiple(mischouse, srcCraft), -- Orcish Sconce, Scrolled    CRAFTABLE
-    [152142] = strMultiple(mischouse, srcCraft), -- Orcish Sconce, Bordered    CRAFTABLE
+    [152145] = strMultiple(mischouse, strGeneric(srcCraft)), -- Orcish Tapestry, War       CRAFTABLE
+    [152149] = strMultiple(mischouse, strGeneric(srcCraft)), -- Orcish Brazier, Pillar     CRAFTABLE
+    [152148] = strMultiple(mischouse, strGeneric(srcCraft)), -- Orcish Tapestry, Hunt      CRAFTABLE
+    [152146] = strMultiple(mischouse, strGeneric(srcCraft)), -- Orcish Chandelier, Spiked  CRAFTABLE
+    [152141] = strMultiple(mischouse, strGeneric(srcCraft)), -- Orcish Brazier, Bordered   CRAFTABLE
+    [152144] = strMultiple(mischouse, strGeneric(srcCraft)), -- Orcish Mirror, Peaked      CRAFTABLE
+    [152143] = strMultiple(mischouse, strGeneric(srcCraft)), -- Orcish Sconce, Scrolled    CRAFTABLE
+    [152142] = strMultiple(mischouse, strGeneric(srcCraft)), -- Orcish Sconce, Bordered    CRAFTABLE
     [151612] = strCrate(crates.BAANDARI), -- Pile of Dubious Riches
     [151611] = strCrate(crates.BAANDARI), -- The Mane, Moons-Blessed
     [151589] = strCrate(crates.BAANDARI), -- Baandari Lunar Compass
@@ -1587,7 +1581,7 @@ FurC.CrownStore[ver.HOMESTEAD] = {
     [118171] = strCrown(170), -- Shutters, Blue Hatch
     [118170] = strCrown(170), -- Shutters, Blue Double
     [118169] = strCrown(170), -- Shutters, Blue Single
-    [94100] = strMultiple(strCrown(50), strPack(packs.CRAGPARLOUR), srcLvlup, mischouse), -- Imperial BookCase, Swirled
+    [94100] = strMultiple(strCrown(50), strPack(packs.CRAGPARLOUR), strGeneric(srcLvlup), mischouse), -- Imperial BookCase, Swirled
     [117901] = strMultiple(strCrown(140), strPack(packs.HUBTREASURE), getHouseString(7601, 10051)), -- Redguard Amphora, Gilded
     [117894] = strMultiple(strCrown(240), strPack(packs.CRAGBED), strPack(packs.HUBTREASURE), mischouse), -- Redguard Divider, Gilded
     [117904] = strMultiple(strCrown(190), strPack(packs.CRAGBED), strPack(packs.HUBTREASURE)), -- Redguard Trunk, Garish
