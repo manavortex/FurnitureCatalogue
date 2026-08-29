@@ -93,6 +93,29 @@ this.Colourise = colourise
 -- TODO #REFACTOR: collecting those in 1 place for now, move later, make some available in API
 -- TODO #REFACTOR maybe: for now separate formatters for each use case for more flexibility, later merge into one
 
+-- TODO: newline instead of "+"?
+local SOURCE_SEPARATOR = " + "
+this.SourceSeparator = SOURCE_SEPARATOR
+
+---Join independent sources of one item
+---@param ... string
+---@return string
+function this.JoinSources(...)
+  return zo_strjoin(SOURCE_SEPARATOR, ...)
+end
+
+---Split off first source
+---@param sources string joined by this.JoinSources
+---@return string first leading source
+---@return string rest remaining sources including separator, empty if there is only one
+function this.SplitFirstSource(sources)
+  local cut = sources and string.find(sources, SOURCE_SEPARATOR, 1, true)
+  if not cut then
+    return sources, ""
+  end
+  return string.sub(sources, 1, cut - 1), string.sub(sources, cut)
+end
+
 ---Format price string with currency
 ---@param price number
 ---@param currency CurrencyType defaults to CURT_MONEY

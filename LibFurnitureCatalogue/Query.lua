@@ -133,10 +133,8 @@ local strEditorTag = GetString(SI_FURC_SRC_EDITOR_TAG)
 
 local strVoucherVendor = strSrc("src", npc.ROLIS, npc.FAUSTINA)
 
-local join = zo_strjoin
-local function strMultiple(...)
-  return join(" + ", ...)
-end
+local strMultiple = LFC.Internal.Format.JoinSources
+local splitFirstSource = LFC.Internal.Format.SplitFirstSource
 
 -- Writ Voucher recipes referenced by blueprint id, so every lookup has to try blueprint as well as id
 local function voucherEntry(versionData, recipeKey, blueprintId)
@@ -423,7 +421,9 @@ local function getMiscItemSource(recipeKey, recipeArray, stripColor, source)
   end
 
   if source == src.EDITOR then
-    originData = zo_strformat(strEditorTag, originData, srcEditor)
+    -- Housing editor suffix
+    local editorOffer, otherSources = splitFirstSource(originData)
+    originData = zo_strformat(strEditorTag, editorOffer, srcEditor) .. otherSources
   end
 
   if stripColor then

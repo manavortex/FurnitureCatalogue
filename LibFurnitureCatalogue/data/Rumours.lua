@@ -9,7 +9,7 @@ local ver = LFC.Internal.Constants.Versioning
 local rumourSource = GetString(SI_FURC_SRC_RUMOUR_ITEM)
 local dataminedUnclear = GetString(SI_FURC_DATAMINED_UNCLEAR)
 
--- Season Zero Part 2
+-- Return of the Thieves Guild
 FurC.Rumours[ver.THIEVES] = {
   [225408] = rumourSource, -- Tapestry, Sanguine
   [217601] = rumourSource, -- Molag Bal Plaque

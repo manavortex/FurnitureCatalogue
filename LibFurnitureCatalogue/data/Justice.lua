@@ -11,10 +11,7 @@ local npc = LFC.Internal.Constants.NPC
 local strGeneric = LFC.Internal.Format.FmtGeneric
 local strSrc = LFC.Internal.Format.FmtSources
 
-local join = zo_strjoin
-local function strMultiple(...)
-  return join(" + ", ...)
-end
+local strMultiple = LFC.Internal.Format.JoinSources
 
 local srcDrop = GetString(SI_FURC_SRC_DROP)
 local srcPick = GetString(SI_FURC_SRC_PICK)

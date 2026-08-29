@@ -93,10 +93,7 @@ local inf_archive = strDungeon(nil, loc.DUNG_IA)
 local frostvault = strDungeon(rarityRare, loc.DUNG_FV)
 local plants_solstice = strGeneric(srcHarvest, nil, "loc", loc.SOLSTICE)
 
-local join = zo_strjoin
-local function strMultiple(...)
-  return join(" + ", ...)
-end
+local strMultiple = LFC.Internal.Format.JoinSources
 
 -- Trade Bars
 local function strTBars(price)

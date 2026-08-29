@@ -23,10 +23,7 @@ local strEvent = LFC.Internal.Format.FormatEvent
 local ev_elsweyr = strEvent(events.ELSWEYR)
 local srcLvlup = GetString(SI_FURC_SRC_LVLUP)
 
-local join = zo_strjoin
-local function strMultiple(...)
-  return join(" + ", ...)
-end
+local strMultiple = LFC.Internal.Format.JoinSources
 
 -- Crowns
 local function strCrown(price)
@@ -1881,7 +1878,7 @@ FurC.CrownStore[ver.HOMESTEAD] = {
     [116420] = strCrown(1200), -- Orcish Throne, Pedestal
     [117843] = getHouseString(1094), -- Redguard Bed, Wide Lattice
     [117902] = getHouseString(14077), -- Redguard Pot, Gilded
-    [117903] = strMultiple(strPack(packs.CRAGPARLOUR), strCrown(140)), -- Redguard Vessel, Gilded
+    [117903] = strMultiple(strCrown(140), strPack(packs.CRAGPARLOUR)), -- Redguard Vessel, Gilded
     [118117] = strCrown(340), -- Table, Carved
     [118156] = strCrown(340), -- Runner of the Oasis, Faded
     [118157] = strMultiple(strCrown(340), getHouseString(13060, 11456)), -- Runner of the Sun, Faded
