@@ -620,7 +620,7 @@ FurC.CrownStore[ver.DEADL] = {
     [171546] = strCrate(crates.AYLEID), -- Ayleid Relief, Blessed Life-Tree
     [171545] = strCrate(crates.AYLEID), -- Ayleid Gate, Large
     [171544] = strCrate(crates.AYLEID), -- Comet, Aetherial
-    [156644] = strCrate(crates.FROSTY), -- Books, Towering Pile
+    [156644] = strCrate(crates.FROST_ATRO), -- Books, Towering Pile
   },
 
   [src.EDITOR] = {
@@ -767,10 +767,10 @@ FurC.CrownStore[ver.STONET] = {
 
   [src.EDITOR] = {
     [167294] = strMultiple(strCrown(20), mischouse), -- Boulder, Jagged Stone
-    [167299] = strMultiple(strCrown(920), getHouseString(8697, 14069, 8323)), -- Dwarven Chandelier, Polished Braced
-    [167301] = strMultiple(strCrown(560), getHouseString(8697, 14069, 8323)), -- Dwarven Lamppost, Polished Powered
-    [167300] = strMultiple(strCrown(160), getHouseString(8697, 14069, 8323)), -- Dwarven Lantern, Polished Wall
-    [167298] = strMultiple(strCrown(310), getHouseString(8697, 14069, 8323)), -- Dwarven Sconce, Polished Barred
+    [167299] = strMultiple(strCrown(920), getHouseString(8697, 14609, 8323)), -- Dwarven Chandelier, Polished Braced
+    [167301] = strMultiple(strCrown(560), getHouseString(8697, 14609, 8323)), -- Dwarven Lamppost, Polished Powered
+    [167300] = strMultiple(strCrown(160), getHouseString(8697, 14609, 8323)), -- Dwarven Lantern, Polished Wall
+    [167298] = strMultiple(strCrown(310), getHouseString(8697, 14609, 8323)), -- Dwarven Sconce, Polished Barred
     [167289] = strMultiple(strCrown(20), mischouse), -- Tree, Lowland White Pine
     [167290] = strMultiple(strCrown(20), mischouse), -- Tree, Great Lowland White Pine
     [167291] = strMultiple(strCrown(150), mischouse), -- Tree, Towering Royal Pine
@@ -794,7 +794,7 @@ FurC.CrownStore[ver.SKYRIM] = {
     [166030] = strCrate(crates.NIGHTFALL), -- Greymoor Tapestry, Harrowstorm
     [166029] = strCrate(crates.NIGHTFALL), -- Vampiric Fountain, Bat Swarm
     [165568] = strCrate(crates.NIGHTFALL), -- Ancient Nord Gate
-    [156669] = strCrate(crates.FROSTY), -- Target Frost Atronach
+    [156669] = strCrate(crates.FROST_ATRO), -- Target Frost Atronach
     [153650] = strCrate(crates.NEWMOON), -- Crystal Sconce, Green,
     [153631] = strCrate(crates.NEWMOON), -- Emerald Candlefly Gathering
     [165578] = strPack(packs.VAMPIRE), -- Basin of Loss
@@ -1299,9 +1299,9 @@ FurC.CrownStore[ver.DRAGONS] = {
 
 FurC.CrownStore[ver.CLOCKWORK] = {
   [src.CROWN] = {
-    [134473] = strCrate(crates.FIREATRO), -- Tapestry,  Malacath
-    [134475] = strCrate(crates.FIREATRO), -- Statue of Malacath, Orc-Father
-    [134474] = strCrate(crates.FIREATRO), -- Banner, Malacath
+    [134473] = strCrate(crates.FIRE_ATRO), -- Tapestry,  Malacath
+    [134475] = strCrate(crates.FIRE_ATRO), -- Statue of Malacath, Orc-Father
+    [134474] = strCrate(crates.FIRE_ATRO), -- Banner, Malacath
     [134258] = strPack(packs.MALACATH), -- Prayer to the Furious One
     [134259] = strPack(packs.MALACATH), -- Malacath, God of Oaths and Curses
     [134260] = strPack(packs.MALACATH), -- Orcish Bas-Relief, Axe
