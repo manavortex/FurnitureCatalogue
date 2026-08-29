@@ -72,7 +72,7 @@ local function cacheFurnishingCategory(itemLink, recipeArray)
   end
 
   local categoryId, subcategoryId = GetFurnitureDataCategoryInfo(dataId)
-  recipeArray.furnCategory    = categoryId    or 0
+  recipeArray.furnCategory = categoryId or 0
   recipeArray.furnSubcategory = subcategoryId or 0
 end
 FurC.CacheFurnishingCategory = cacheFurnishingCategory
@@ -573,7 +573,10 @@ local function scanFromFiles(blocking)
             end
           else
             -- No container/coffer level: eventItemSource IS the itemId (e.g. environment drops)
-            addDatabaseEntry(eventItemSource, { origin = src.FESTIVAL_DROP, version = versionNumber, craftable = false })
+            addDatabaseEntry(
+              eventItemSource,
+              { origin = src.FESTIVAL_DROP, version = versionNumber, craftable = false }
+            )
           end
         end
       end
@@ -611,7 +614,7 @@ local function scanFromFiles(blocking)
       end
     end
   end
-  
+
   local function scanAntiquities()
     for versionNumber, versionData in pairs(FurC.Antiquities) do
       for origin, originData in pairs(versionData) do
@@ -626,7 +629,7 @@ local function scanFromFiles(blocking)
       end
     end
   end
-  
+
   local function scanJustice()
     for versionNumber, versionData in pairs(FurC.Justice) do
       for origin, originData in pairs(versionData) do
@@ -656,7 +659,7 @@ local function scanFromFiles(blocking)
       end
     end
   end
-  
+
   local function scanVendorFiles()
     FurC.InitAchievementVendorList()
 
@@ -726,9 +729,9 @@ local function scanFromFiles(blocking)
     task
       :Call(scanRecipeFile)
       :Then(scanMiscItemFile)
-	  :Then(scanCrownStore)
-	  :Then(scanAntiquities)
-	  :Then(scanJustice)
+      :Then(scanCrownStore)
+      :Then(scanAntiquities)
+      :Then(scanJustice)
       :Then(scanFishing)
       :Then(scanVendorFiles)
       :Then(scanRolis)
@@ -738,9 +741,9 @@ local function scanFromFiles(blocking)
   else
     scanRecipeFile()
     scanMiscItemFile()
-	scanCrownStore()
-	scanAntiquities()
-	scanJustice()
+    scanCrownStore()
+    scanAntiquities()
+    scanJustice()
     scanFishing()
     scanVendorFiles()
     scanRolis()

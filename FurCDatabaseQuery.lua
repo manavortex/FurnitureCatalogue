@@ -254,9 +254,9 @@ local function getEventDropSource(recipeKey, recipeArray)
           end
 
           if itemType == "table" then -- must have price
-		    local currency = item.currency or (hasSrcName and srcName == npc.EVENT and CURT_TRADE_BARS or CURT_MONEY)
-		    return strFurnisher(hasSrcName and srcName or eventName, eventName, item.itemPrice, currency)
-		  end
+            local currency = item.currency or (hasSrcName and srcName == npc.EVENT and CURT_TRADE_BARS or CURT_MONEY)
+            return strFurnisher(hasSrcName and srcName or eventName, eventName, item.itemPrice, currency)
+          end
         end
       end
     end
@@ -305,7 +305,7 @@ local function getMiscItemSource(recipeKey, recipeArray, stripColor, source)
   if not originData then
     return emptyString
   end
-  
+
   if source == src.EDITOR then
     originData = zo_strformat(strEditorTag, originData, srcEditor)
   end
