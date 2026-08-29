@@ -2,7 +2,7 @@
 
 local query = FurC.DBQuery
 local searchIndex = FurC.SearchIndex
-local internal = FurC.Internal
+local furcInternal = FurC.Internal
 
 local searchString = ""
 local searchPattern = ""
@@ -28,7 +28,7 @@ local showAllRumourOnTextSearch = false
 local recipeArray, itemId, itemLink, itemType, sItemType, recipeIndex, recipeListIndex
 
 local LFC = LibFurnitureCatalogue
-local src = LFC.Internal.Constants.ItemSources
+local src = LFC.API.GetSourceTypes()
 local ver = LFC.Internal.Constants.Versioning
 
 -- Local imports for performance
@@ -36,7 +36,7 @@ local GetItemLinkName = GetItemLinkName
 local LocaleAwareToLower = LocaleAwareToLower
 local gsub = string.gsub
 local match = string.match
-local getItemLink = LFC.Internal.Format.GetItemLink
+local getItemLink = LFC.API.GetItemLink
 
 -- Build item link lazily (only if required and not already cached)
 local function ensureItemLink()
@@ -146,7 +146,7 @@ end
 
 local function isRecipeArrayKnown()
   -- Knowledge is LCK-only (grayed out if not available)
-  if not internal.LCKAvailable() then
+  if not furcInternal.LCKAvailable() then
     return
   end
   -- LCK tracks the recipe, not the furnishing result
@@ -155,7 +155,7 @@ local function isRecipeArrayKnown()
     return
   end
   local name = (dropdownChoiceCharacter ~= 1) and ddTextCharacter or nil
-  return internal.IsKnownByName(recipeItem, name)
+  return furcInternal.IsKnownByName(recipeItem, name)
 end
 
 -- Version: All, Homestead, Morrowind

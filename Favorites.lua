@@ -1,6 +1,6 @@
 -- Favourites: per-account item favourites (SavedVars-backed)
 
-local getItemId = LibFurnitureCatalogue.Internal.Format.GetItemId
+local getItemId = LibFurnitureCatalogue.API.GetItemId
 
 -- treat favourite furniture and recipe as the same item
 local function faveKey(itemLink)

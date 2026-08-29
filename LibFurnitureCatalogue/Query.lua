@@ -30,6 +30,7 @@ local SOURCE_PRIORITY = LFC.Internal.Constants.SOURCE_PRIORITY
 -- single-entry memo for find
 local lastLink = nil
 local recipeArray = nil
+local memoRevision = nil
 
 ---DB entry for an item/blueprint, builds DB on first use
 ---@param itemOrBlueprintLink string|integer item link, blueprint link, or itemId
@@ -43,7 +44,7 @@ local function find(itemOrBlueprintLink)
     return {}
   end
 
-  if itemOrBlueprintLink == lastLink and nil ~= recipeArray then
+  if itemOrBlueprintLink == lastLink and nil ~= recipeArray and memoRevision == LFC.Internal.DBRevision then
     return recipeArray
   else
     recipeArray = nil
@@ -61,12 +62,10 @@ local function find(itemOrBlueprintLink)
     end
   end
 
+  memoRevision = LFC.Internal.DBRevision
   return recipeArray or {}
 end
 this.Find = find
-
----@deprecated alias for DBQuery.Find
-FurC.Find = find
 
 local function getIngredients(itemLink, recipeArray)
   recipeArray = recipeArray or find(itemLink)
@@ -100,9 +99,6 @@ local function getIngredients(itemLink, recipeArray)
 end
 this.GetIngredients = getIngredients
 
----@deprecated alias for DBQuery.GetIngredients
-FurC.GetIngredients = getIngredients
-
 local function makeMaterial(recipeKey, recipeArray, tryPlaintext, forcePlaintext)
   if
     nil == recipeArray
@@ -123,9 +119,6 @@ local function makeMaterial(recipeKey, recipeArray, tryPlaintext, forcePlaintext
   return ret:sub(0, -3)
 end
 this.GetMats = makeMaterial
-
----@deprecated alias for DBQuery.GetMats
-FurC.GetMats = makeMaterial
 
 local srcEvent = GetString(SI_FURC_EVENT)
 local srcEditor = GetString(SI_FURC_SRC_EDITOR)
@@ -526,10 +519,7 @@ local function getItemDescription(recipeKey, recipeArray, stripColor, opts)
 end
 this.GetItemDescription = getItemDescription
 
----@deprecated alias for DBQuery.GetItemDescription
-FurC.GetItemDescription = getItemDescription
-
--- Every non-crafting source of an item, ranked, unfiltered — hiding sources is the consumer's business
+-- Every non-crafting source of an item, ranked, unfiltered
 ---@param recipeKey string|integer item link or id
 ---@param recipeArray? FurCEntry looked up if omitted
 ---@param stripColor? boolean strip colour control chars
@@ -712,6 +702,90 @@ local function eventRecord(rec, recipeKey)
   end
 end
 
+-- Lookup helper for baked-string data files (MiscItemSources, CrownStore, Justice, etc.)
+-- Returns the raw entry from dataFile[version][source][itemId], or nil
+local BAKED_DATA_FILES = nil -- lazy init to avoid load-order issues
+local function lookupBakedData(recipeKey, version, source)
+  local dataFiles = BAKED_DATA_FILES
+  if not dataFiles then
+    dataFiles = {}
+    local expected = 0
+    local function add(dataFile)
+      expected = expected + 1
+      if dataFile then
+        dataFiles[#dataFiles + 1] = dataFile
+      end
+    end
+    add(FurC.MiscItemSources)
+    add(FurC.CrownStore)
+    add(FurC.Antiquities)
+    add(FurC.Justice)
+    add(FurC.Fishing)
+    if #dataFiles == expected then
+      BAKED_DATA_FILES = dataFiles
+    end
+  end
+  for _, dataFile in ipairs(dataFiles) do
+    local versionFiles = dataFile[version]
+    local bucket = versionFiles and versionFiles[source]
+    local entry = bucket and bucket[recipeKey]
+    if entry then
+      return entry
+    end
+  end
+  return nil
+end
+
+local SOURCE_CURRENCY_MAP = {
+  [src.CROWN] = CURT_CROWNS,
+  [src.DROP] = CURT_MONEY,
+  [src.JUSTICE] = CURT_MONEY,
+  [src.FISHING] = CURT_MONEY,
+  [src.ANTIQUITY] = CURT_MONEY,
+  [src.OTHER] = CURT_MONEY,
+  [src.BAZAAR] = CURT_TRADE_BARS,
+  [src.TOMES] = CURT_TOME_POINTS,
+  [src.TELVAR] = CURT_TELVAR_STONES,
+  [src.COLL_MERCH] = CURT_TELVAR_STONES,
+  [src.GUILDSTORE] = CURT_MONEY,
+  [src.EDITOR] = CURT_MONEY,
+}
+-- Markup a price string may carry: colour, control chars, textures, item links
+local PRICE_STRIP_PATTERNS = {
+  "|c%x%x%x%x%x%x",
+  "|r",
+  "|u.-|u",
+  "|t.-|t",
+  "|H.-|h.-|h",
+}
+--- Extract a numeric price from baked strings
+-- TODO: if performance allows it we should get raw values from DB.. no need to "extract"
+local function extractPrice(entry, source)
+  if not entry then
+    return nil, nil
+  end
+  local t = type(entry)
+  if t == "number" then
+    return SOURCE_CURRENCY_MAP[source], entry
+  end
+  if t == "table" and entry.itemPrice then
+    return entry.currency or SOURCE_CURRENCY_MAP[source], entry.itemPrice
+  end
+  if t == "string" then
+    -- Strings come as `|c<hex>...|r|u...:currency:|u` (digit grouping is locale-dependent 1,234; 1 234; 1.234)
+    -- numbers outside that markup are item links, control markers, colour codes or some custom text
+    local amountText = entry:match("|c%x%x%x%x%x%x(.-)|r|u[^|]*:currency:|u")
+    if amountText and not amountText:find("%a") then
+      local digits = amountText:gsub("%D", "")
+      local n = #digits > 0 and tonumber(digits)
+      if n then
+        return SOURCE_CURRENCY_MAP[source], n
+      end
+    end
+  end
+  return nil, nil
+end
+
 local RECORD_BUILDERS = {
   [src.VENDOR] = function(rec, recipeKey, recipeArray)
     achievementVendorRecord(rec, recipeKey, recipeArray.version)
@@ -761,3 +835,15 @@ local function getSourceRecords(itemOrLink)
   return records
 end
 this.GetSourceRecords = getSourceRecords
+
+---Extract a numeric price from baked string
+---@param itemId integer
+---@param version integer
+---@param source integer source type constant
+---@return integer? currency ESO currency constant
+---@return integer? amount
+local function getMiscItemPrice(itemId, version, source)
+  local entry = lookupBakedData(itemId, version, source)
+  return extractPrice(entry, source)
+end
+this.GetMiscItemPrice = getMiscItemPrice

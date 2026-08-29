@@ -6,6 +6,8 @@ end
 
 Taneth("FurC:Regression", function()
   local api = LibFurnitureCatalogue.API
+  local Test = FurCDev.Test
+  local DS = Test.dataset()
 
   describe("LibFurnitureCatalogue.API v1 contract", function()
     local UNKNOWN_ID = 99123456
@@ -20,6 +22,33 @@ Taneth("FurC:Regression", function()
       assert.equals(api.State.READY, api.GetState())
       assert.is_true(api.IsReady())
       assert.is_true(api.GetEntryCount() > 0)
+    end)
+
+    -- Adding or dropping an endpoint could break third party addons, so we have to check only those endpoints are there
+    it("publishes exactly the v1 endpoint and event set", function()
+      assert.same({
+        "Events",
+        "GetDBRevision",
+        "GetEntry",
+        "GetEntryCount",
+        "GetIngredients",
+        "GetItemDescription",
+        "GetItemId",
+        "GetItemIds",
+        "GetItemLink",
+        "GetMiscItemPrice",
+        "GetSourceTypes",
+        "GetSources",
+        "GetState",
+        "GetVersion",
+        "Has",
+        "IsReady",
+        "OnReady",
+        "RegisterCallback",
+        "State",
+        "UnregisterCallback",
+      }, Test.sortedKeys(api))
+      assert.same({ "CHANGE", "READY", "SCAN_COMPLETE", "SCAN_FAILED", "SCAN_STARTED" }, Test.sortedKeys(api.Events))
     end)
 
     it("OnReady calls subscribers immediately", function()
@@ -42,8 +71,6 @@ Taneth("FurC:Regression", function()
     end)
 
     it("properly runs the full callback lifecycle", function()
-      local internal = LibFurnitureCatalogue.Internal
-      local events = internal.Events
       local stateDuringBuild
       local readyCalls, readyCallsDuringBuild = 0, 0
       local readyApi, readyRevision
@@ -89,7 +116,7 @@ Taneth("FurC:Regression", function()
         FurC.RebuildDB(true)
       end
 
-      internal.Callbacks:RegisterCallback(events.SCAN_STARTED, onScanStarted)
+      api.RegisterCallback(api.Events.SCAN_STARTED, onScanStarted)
       local registeredBad = api.RegisterCallback(api.Events.CHANGE, badChangeCallback)
       local registered = api.RegisterCallback(api.Events.CHANGE, onChange, changeArg)
       local duplicateRegistered = api.RegisterCallback(api.Events.CHANGE, onChange, changeArg)
@@ -97,7 +124,7 @@ Taneth("FurC:Regression", function()
       local beforeRevision = api.GetDBRevision()
       local ok, err = pcall(FurC.RebuildDB, true)
 
-      internal.Callbacks:UnregisterCallback(events.SCAN_STARTED, onScanStarted)
+      api.UnregisterCallback(api.Events.SCAN_STARTED, onScanStarted)
       local removedBad = api.UnregisterCallback(api.Events.CHANGE, badChangeCallback)
       local removed = api.UnregisterCallback(api.Events.CHANGE, onChange, changeArg)
       api.UnregisterCallback(api.Events.CHANGE, onReentrantChange)
@@ -129,7 +156,6 @@ Taneth("FurC:Regression", function()
     end)
 
     it("reports build failures and recovers only on explicit rebuild", function()
-      local internal = LibFurnitureCatalogue.Internal
       local originalInit = FurC.InitAchievementVendorList
       local sentinel = "expected lifecycle build failure"
       local changeCalls = 0
@@ -148,13 +174,13 @@ Taneth("FurC:Regression", function()
       end
 
       api.RegisterCallback(api.Events.CHANGE, onChange)
-      internal.Callbacks:RegisterCallback(internal.Events.SCAN_FAILED, onFailed)
+      api.RegisterCallback(api.Events.SCAN_FAILED, onFailed)
       FurC.InitAchievementVendorList = function()
         error(sentinel)
       end
       local failedOk, failedErr = pcall(FurC.RebuildDB, true)
       FurC.InitAchievementVendorList = originalInit
-      internal.Callbacks:UnregisterCallback(internal.Events.SCAN_FAILED, onFailed)
+      api.UnregisterCallback(api.Events.SCAN_FAILED, onFailed)
 
       local failedState, buildError = api.GetState()
       local accepted = api.OnReady(onReady)
@@ -207,21 +233,8 @@ Taneth("FurC:Regression", function()
       local srcEnum = FurC.Constants.ItemSources
 
       -- luxury items produce fully populated records
-      local luxId
-      for _, versionData in pairs(FurC.LuxuryFurnisher) do
-        for itemId in pairs(versionData) do
-          if FurC.DB[itemId] then
-            luxId = itemId
-            break
-          end
-        end
-        if luxId then
-          break
-        end
-      end
-      assert.is_not_nil(luxId)
-
-      local records = api.GetSources(luxId)
+      assert.is_not_nil(DS.luxItemInDB)
+      local records = api.GetSources(DS.luxItemInDB)
       assert.is_true(#records > 0)
       for _, rec in ipairs(records) do
         assert.equals("number", type(rec.source.type))
@@ -243,6 +256,66 @@ Taneth("FurC:Regression", function()
       assert.equals(CURT_MONEY, lux.cost[1].currency)
 
       assert.same({}, api.GetSources(UNKNOWN_ID))
+    end)
+
+    it("endpoints and deprecated aliases keep stable shapes", function()
+      FurC.EnsureDB(true)
+      local itemId = DS.dbItem
+      local itemLink = api.GetItemLink(itemId)
+      assert.equals("string", type(itemLink))
+      assert.is_true(#itemLink > 0)
+      assert.equals(api.GetItemId, FurC.GetItemId)
+      assert.equals(api.GetItemLink, FurC.GetItemLink)
+      assert.equals(api.GetIngredients, FurC.GetIngredients)
+      assert.equals(api.GetItemDescription, FurC.GetItemDescription)
+      assert.equals(itemId, api.GetItemId(itemId))
+      assert.equals(itemId, api.GetItemId(itemLink))
+      assert.equals(itemLink, api.GetItemLink(itemLink))
+
+      local sourceType = api.GetSourceTypes()
+      assert.equals("number", type(sourceType.CROWN))
+      assert.equals(FurC.Constants.ItemSources.CROWN, sourceType.CROWN)
+
+      local entry = api.GetEntry(DS.luxItem)
+      assert.equals("string", type(api.GetItemDescription(DS.luxItem, entry)))
+      assert.equals("table", type(api.GetIngredients(Test.link(DS.craftable), api.GetEntry(DS.craftable))))
+
+      -- an entry with a blueprint renders a list, one without falls back to the re-scan notice
+      local mats = FurC.GetMats(Test.link(DS.craftable), api.GetEntry(DS.craftable))
+      assert.equals("string", type(mats))
+      assert.is_true(mats ~= FurC.GetMats(UNKNOWN_ID))
+
+      local missingCurrency, missingAmount = api.GetMiscItemPrice(UNKNOWN_ID, 1, sourceType.CROWN)
+      assert.is_nil(missingCurrency)
+      assert.is_nil(missingAmount)
+    end)
+
+    it("GetMiscItemPrice reads the whole amount out of baked strings, or nothing", function()
+      FurC.EnsureDB(true)
+      local sourceType = api.GetSourceTypes()
+
+      -- strCrown(2000): colourised and number-grouped
+      local crownCurrency, crownAmount = api.GetMiscItemPrice(134686, 6, sourceType.CROWN) -- Sithis, The Dread Father
+      assert.equals(CURT_CROWNS, crownCurrency)
+      assert.equals(2000, crownAmount)
+
+      -- price first, txt after: strMultiple(strCrown(65),...)
+      local editorCurrency, prefixedAmount = api.GetMiscItemPrice(87709, 2, sourceType.EDITOR) -- Imperial Brazier, Spiked
+      assert.equals(CURT_MONEY, editorCurrency)
+      assert.is_true(editorCurrency ~= crownCurrency)
+      assert.equals(65, prefixedAmount)
+
+      -- strBazaar(2000): txt first, price after
+      -- `<label>: |c<hex><amount>|r|u...:currency:|u<icon>`
+      local bazaarCurrency, bazaarAmount =
+        api.GetMiscItemPrice(212186, FurC.Constants.Versioning.BASE44, sourceType.BAZAAR) -- Statue, Breton Hero
+      assert.equals(CURT_TRADE_BARS, bazaarCurrency)
+      assert.equals(2000, bazaarAmount)
+
+      -- "<<Cal:1>> (Crown Crate^n,from)" carries no price
+      local crateCurrency, crateAmount = api.GetMiscItemPrice(125654, 3, sourceType.CROWN) -- Tapestry, Clavicus Vile
+      assert.is_nil(crateCurrency)
+      assert.is_nil(crateAmount)
     end)
   end)
 end)

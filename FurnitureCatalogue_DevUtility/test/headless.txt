@@ -1,0 +1,5 @@
+## Title: FurnitureCatalogue headless-only tests
+## Description: Tests that need io and full repo, so they never load in game. Read by .scripts/taneth_headless.lua
+
+headless_lib_boundary.lua
+headless_xml_handlers.lua

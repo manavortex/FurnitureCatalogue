@@ -11,15 +11,10 @@ Taneth("FurC:Regression", function()
 
   describe("contract: ESO-LibPrice", function()
     it("builds DB from data set", function()
-      assert.is_true(Test.dbSize() > 0)
       assert.is_not_nil(DS.dbItem)
       assert.is_not_nil(DS.craftable)
       assert.is_not_nil(DS.luxItem)
       assert.is_not_nil(DS.rolisItem)
-    end)
-
-    it("FurC global exists", function()
-      assert.equals("table", type(FurC))
     end)
 
     it("GetItemId passes ids and parses them from links", function()

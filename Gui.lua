@@ -8,8 +8,11 @@ local task = LibAsync:Create("FurnitureCatalogue_updateLineVisibility")
 local otherTask = LibAsync:Create("FurnitureCatalogue_ToggleGui")
 
 local LFC = LibFurnitureCatalogue
-local src = LFC.Internal.Constants.ItemSources
-local internal = FurC.Internal
+local api = LFC.API
+local src = api.GetSourceTypes()
+local getItemLink = api.GetItemLink
+local getDBRevision = api.GetDBRevision
+local furcInternal = FurC.Internal
 
 -- LCK char list can change, we might have to manually update list if they don't show up
 function FurC.RefreshCharacterChoices()
@@ -23,7 +26,7 @@ function FurC.RefreshCharacterChoices()
   end
   choices[1] = GetString(SI_FURC_FILTER_CHAR_OFF)
   tooltips[1] = GetString(SI_FURC_FILTER_CHAR_OFF_TT)
-  local names = (internal.LCKAvailable() and internal.GetCharacterNames()) or {}
+  local names = (furcInternal.LCKAvailable() and furcInternal.GetCharacterNames()) or {}
   for _, name in ipairs(names) do
     choices[#choices + 1] = name
     tooltips[#tooltips + 1] = zo_strformat(GetString(SI_FURC_STRING_RECIPESFORCHAR), name)
@@ -109,7 +112,7 @@ local function updateLineVisibility()
     else
       local recipeArray = FurC.Find(curData.itemLink)
       if FurC.showBlueprints and recipeArray and recipeArray.blueprint then
-        curLine.itemLink = LFC.Internal.Format.GetItemLink(recipeArray.blueprint)
+        curLine.itemLink = getItemLink(recipeArray.blueprint)
       else
         curLine.itemLink = curData.itemLink
       end
@@ -189,7 +192,7 @@ local function buildSortedIndex(sortName, sortUp)
   for itemId, recipeArray in pairs(data) do
     ids[#ids + 1] = itemId
     if sortName == "itemName" then
-      vals[itemId] = GetItemLinkName(LFC.Internal.Format.GetItemLink(itemId))
+      vals[itemId] = GetItemLinkName(getItemLink(itemId))
     else
       vals[itemId] = recipeArray[sortName]
     end
@@ -214,12 +217,13 @@ local function ensureSortedIndex()
   sortName = sortName or "itemName"
   local sortUp = ((ZO_SORT_ORDER_UP and sortDirection == "up") or ZO_SORT_ORDER_DOWN)
   local key = tostring(sortName) .. "|" .. tostring(sortUp)
-  if sortedIndex and key == sortedIndexKey and sortedRevision == LFC.Internal.DBRevision then
+  local revision = getDBRevision()
+  if sortedIndex and key == sortedIndexKey and sortedRevision == revision then
     return sortedIndex
   end
   sortedIndex = buildSortedIndex(sortName, sortUp)
   sortedIndexKey = key
-  sortedRevision = LFC.Internal.DBRevision
+  sortedRevision = revision
   return sortedIndex
 end
 
@@ -231,7 +235,7 @@ local function updateScrollDataLinesData()
     local itemId = order[i]
     local recipeArray = data[itemId]
     if recipeArray and FurC.MatchFilter(itemId, recipeArray) then
-      local itemLink = LFC.Internal.Format.GetItemLink(itemId)
+      local itemLink = getItemLink(itemId)
       if itemLink then
         local tempDataLine = ZO_ShallowTableCopy(recipeArray)
         tempDataLine.itemId = itemId
@@ -585,7 +589,7 @@ local function createGui()
     end
 
     if dropdownName == "Character" then
-      local available = internal.LCKAvailable()
+      local available = furcInternal.LCKAvailable()
       comboBox:SetEnabled(available)
       local hint = (available and SI_FURC_STRING_CHARACTER_USES_LCK) or SI_FURC_STRING_CHARACTER_NEEDS_LCK
       control:SetMouseEnabled(true)

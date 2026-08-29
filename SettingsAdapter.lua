@@ -2,7 +2,7 @@
 
 local task = LibAsync:Create("FurnitureCatalogue_Settings")
 local LFC = LibFurnitureCatalogue
-local src = LFC.Internal.Constants.ItemSources
+local src = LFC.API.GetSourceTypes()
 
 function FurC.GetEnableDebug()
   return FurC.settings["enableDebug"]
@@ -230,19 +230,27 @@ end
 
 -- Tooltip source blacklist
 do
-  local S = LFC.Internal.Constants.ItemSources
   local CATEGORIES = {
-    { key = "purch_gold", name = SI_FURC_FILTER_SRC_SOLD_GOLD, raw = { S.VENDOR } },
-    { key = "writ_vendor", name = SI_FURC_FILTER_SRC_SOLD_WRIT, raw = { S.ROLIS } },
-    { key = "purch_ap", name = SI_FURC_FILTER_SRC_SOLD_AP, raw = { S.PVP } },
-    { key = "purch_tbars", name = SI_FURC_FILTER_SRC_SOLD_TBARS, raw = { S.BAZAAR } },
-    { key = "luxury", name = SI_FURC_FILTER_SRC_LUX, raw = { S.LUXURY } },
-    { key = "crownstore", name = SI_FURC_FILTER_SRC_CROWN, raw = { S.CROWN } },
-    { key = "rumour", name = SI_FURC_FILTER_SRC_RUMOUR, raw = { S.RUMOUR } },
+    { key = "purch_gold", name = SI_FURC_FILTER_SRC_SOLD_GOLD, raw = { src.VENDOR } },
+    { key = "writ_vendor", name = SI_FURC_FILTER_SRC_SOLD_WRIT, raw = { src.ROLIS } },
+    { key = "purch_ap", name = SI_FURC_FILTER_SRC_SOLD_AP, raw = { src.PVP } },
+    { key = "purch_tbars", name = SI_FURC_FILTER_SRC_SOLD_TBARS, raw = { src.BAZAAR } },
+    { key = "luxury", name = SI_FURC_FILTER_SRC_LUX, raw = { src.LUXURY } },
+    { key = "crownstore", name = SI_FURC_FILTER_SRC_CROWN, raw = { src.CROWN } },
+    { key = "rumour", name = SI_FURC_FILTER_SRC_RUMOUR, raw = { src.RUMOUR } },
     {
       key = "other",
       name = SI_FURC_FILTER_SRC_OTHER,
-      raw = { S.FESTIVAL_DROP, S.DROP, S.FISHING, S.JUSTICE, S.GUILDSTORE, S.TOMES, S.OTHER, S.COLL_MERCH },
+      raw = {
+        src.FESTIVAL_DROP,
+        src.DROP,
+        src.FISHING,
+        src.JUSTICE,
+        src.GUILDSTORE,
+        src.TOMES,
+        src.OTHER,
+        src.COLL_MERCH,
+      },
     },
   }
 

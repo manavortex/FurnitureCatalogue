@@ -264,17 +264,63 @@ end
 
 _G.SafeAddVersion = _G.SafeAddVersion or function() end
 
--- if formatter used during DB build
--- amount, unit tag and currency icon ZO_CURRENCY_FORMAT_AMOUNT_ICON
-_G.ZO_Currency_FormatKeyboard = _G.ZO_Currency_FormatKeyboard
-  or function(currency, amount)
-    return string.format(
-      "%s|u0:6%%:currency:|u|t80%%:80%%:/esoui/art/currency/currency_%s_mipmap.dds|t",
-      tostring(amount or 0),
-      tostring(currency)
-    )
+_G.ZO_CURRENCY_FORMAT_AMOUNT_NAME = _G.ZO_CURRENCY_FORMAT_AMOUNT_NAME or 1
+_G.ZO_CURRENCY_FORMAT_WHITE_AMOUNT_WHITE_NAME = _G.ZO_CURRENCY_FORMAT_WHITE_AMOUNT_WHITE_NAME or 2
+_G.ZO_CURRENCY_FORMAT_PARENTHETICAL_AMOUNT = _G.ZO_CURRENCY_FORMAT_PARENTHETICAL_AMOUNT or 3
+_G.ZO_CURRENCY_FORMAT_AMOUNT_ICON = _G.ZO_CURRENCY_FORMAT_AMOUNT_ICON or 4
+_G.ZO_CURRENCY_FORMAT_WHITE_AMOUNT_ICON = _G.ZO_CURRENCY_FORMAT_WHITE_AMOUNT_ICON or 5
+
+do
+  local currencyTypes = {
+    CURT_NONE = 0,
+    CURT_MONEY = 1,
+    CURT_ALLIANCE_POINTS = 2,
+    CURT_TELVAR_STONES = 3,
+    CURT_WRIT_VOUCHERS = 4,
+    CURT_CHAOTIC_CREATIA = 5,
+    CURT_CROWN_GEMS = 6,
+    CURT_CROWNS = 7,
+    CURT_STYLE_STONES = 8,
+    CURT_EVENT_TICKETS = 9,
+    CURT_UNDAUNTED_KEYS = 10,
+    CURT_ENDEAVOR_SEALS = 11,
+    CURT_ARCHIVAL_FORTUNES = 12,
+    CURT_ENDLESS_DUNGEON = 12, -- deprecated alias of CURT_ARCHIVAL_FORTUNES
+    CURT_TRADE_BARS = 13,
+    CURT_TOME_POINTS = 14,
+  }
+  for name, id in pairs(currencyTypes) do
+    _G[name] = _G[name] or id
   end
-_G.ZO_CURRENCY_FORMAT_AMOUNT_ICON = _G.ZO_CURRENCY_FORMAT_AMOUNT_ICON or 1
+end
+
+-- Formatter used while data files bake price strings into DB
+-- |cffd7001,234|r|u0:6%:currency:|u|t16:16:EsoUI/Art/currency/currency_gold.dds|t
+do
+  local COLOUR = "ffd700"
+  local ICON = "|t16:16:EsoUI/Art/currency/currency_gold.dds|t"
+
+  local function groupDigits(amount)
+    local str = string.format("%d", tonumber(amount) or 0)
+    local replaced
+    repeat
+      str, replaced = str:gsub("^(%-?%d+)(%d%d%d)", "%1,%2")
+    until replaced == 0
+    return str
+  end
+
+  _G.ZO_Currency_FormatKeyboard = _G.ZO_Currency_FormatKeyboard
+    or function(_, amount, formatType)
+      local coloured = string.format("|c%s%s|r", COLOUR, groupDigits(amount))
+      if formatType == _G.ZO_CURRENCY_FORMAT_PARENTHETICAL_AMOUNT then
+        return string.format("(%s)", groupDigits(amount))
+      end
+      if formatType == _G.ZO_CURRENCY_FORMAT_AMOUNT_ICON or formatType == _G.ZO_CURRENCY_FORMAT_WHITE_AMOUNT_ICON then
+        return string.format("%s|u0:6%%:currency:|u%s", coloured, ICON)
+      end
+      return coloured
+    end
+end
 
 -- currencies: ids, names and icon a price is formatted with
 do

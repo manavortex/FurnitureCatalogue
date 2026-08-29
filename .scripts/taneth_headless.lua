@@ -21,10 +21,18 @@ local function join(...)
   return table.concat({ ... }, "/")
 end
 
+-- manifest entries that don't have to be loaded
+local optionalEntries = {
+  ["Custom.lua"] = true,
+}
+
+local loadFailures = 0
+
 --- loads each .lua manifest entry except locale\$(language).lua and missing files
 local function loadAddon(manifestPath)
   local fh = io.open(manifestPath, "r")
   if not fh then
+    loadFailures = loadFailures + 1
     print("cannot open manifest: " .. manifestPath)
     return false
   end
@@ -37,12 +45,18 @@ local function loadAddon(manifestPath)
       local path = join(dir, entry)
       local probe = io.open(path, "r")
       if not probe then
-        print("[skip] not present: " .. path)
+        if optionalEntries[entry] then
+          print("[skip] not present: " .. path)
+        else
+          loadFailures = loadFailures + 1
+          print("[missing] " .. path)
+        end
       else
         probe:close()
         local ok, err = pcall(dofile, path)
         if not ok then
-          -- permission issues?
+          loadFailures = loadFailures + 1
+          -- syntax error, permission issues?
           print("[load error] " .. path .. ": " .. tostring(err))
         end
       end
@@ -60,6 +74,8 @@ loadAddon(join(tanethDir, "Taneth.txt"))
 loadAddon(join(repoRoot, "LibFurnitureCatalogue", "LibFurnitureCatalogue.txt"))
 loadAddon(join(repoRoot, "FurnitureCatalogue.txt"))
 loadAddon(join(repoRoot, "FurnitureCatalogue_DevUtility", "FurnitureCatalogue_DevUtility.txt"))
+-- tests that need io and the repo on disk, so the game never loads them
+loadAddon(join(repoRoot, "FurnitureCatalogue_DevUtility", "test", "headless.txt"))
 
 FurCDev.repoRoot = repoRoot
 
@@ -107,4 +123,8 @@ else
   end
 end
 
-os.exit(fails > 0 and 1 or 0)
+if loadFailures > 0 then
+  print(string.format("%d manifest file(s) failed to load", loadFailures))
+end
+
+os.exit((fails + loadFailures) > 0 and 1 or 0)

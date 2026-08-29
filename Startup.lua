@@ -13,8 +13,9 @@ this.CharacterName = nil
 this.website = "https://www.esoui.com/downloads/fileinfo.php?id=1617"
 this.settings = {}
 
-local src = this.Constants.ItemSources
-local ver = this.Constants.Versioning
+local LFC = LibFurnitureCatalogue
+local src = LFC.API.GetSourceTypes()
+local ver = LFC.Internal.Constants.Versioning
 
 -- data from LibFurnitureCatalogue
 this.AchievementVendors = this.AchievementVendors or {}

@@ -147,5 +147,104 @@ Taneth("FurC:Unit", function()
       assert.is_true(checked > 5)
       assert.same({}, violations)
     end)
+
+    local INTERNAL_REACH_BASELINE = {
+      ["Chat.lua"] = true,
+      ["Filter.lua"] = true,
+      ["SearchIndex.lua"] = true,
+      ["Startup.lua"] = true,
+      ["Tooltip.lua"] = true,
+    }
+
+    it("no main source newly reaches into the lib internals", function()
+      if not (io and FurCDev.repoRoot) then
+        return -- run test headless only
+      end
+      local newcomers, checked = {}, 0
+      for _, rel in ipairs(manifestFiles("FurnitureCatalogue.txt", "")) do
+        local src = readFile(rel)
+        if src then
+          checked = checked + 1
+          local code = stripComments(src)
+          local reaches = code:find("%f[%w]LFC%.Internal%f[%W]")
+            or code:find("%f[%w]LibFurnitureCatalogue%.Internal%f[%W]")
+          if reaches and not INTERNAL_REACH_BASELINE[rel] then
+            newcomers[#newcomers + 1] = rel
+          end
+        end
+      end
+      assert.is_true(checked > 5)
+      assert.same({}, newcomers)
+    end)
+
+    local ALIAS_REACH_PATTERNS = {
+      "%f[%w]FurC%.DBQuery%f[%W]",
+      "%f[%w]FurC%.DB%f[%W]",
+      "%f[%w]FurC%.Constants%f[%W]",
+    }
+
+    -- exceptions that are OK to use direct access
+    local SANCTIONED_ALIAS_SITES = {
+      { file = "Gui.lua", code = "local data = FurC.DB", count = 2 },
+    }
+
+    local ALIAS_REACH_BASELINE = {
+      ["Chat.lua"] = true,
+      ["Filter.lua"] = true,
+      ["Internal.lua"] = true,
+      ["Knowledge.lua"] = true,
+      ["SearchIndex.lua"] = true,
+      ["Tooltip.lua"] = true,
+    }
+
+    -- we don't want to fall back to the old patterns again
+    it("no main source newly reaches into the lib internals through a legacy alias", function()
+      if not (io and FurCDev.repoRoot) then
+        return -- run test headless only
+      end
+      local sanctioned, found = {}, {}
+      for _, site in ipairs(SANCTIONED_ALIAS_SITES) do
+        sanctioned[site.file .. ": " .. site.code] = site.count
+        found[site.file .. ": " .. site.code] = 0
+      end
+
+      local newcomers, seen, checked = {}, {}, 0
+      for _, rel in ipairs(manifestFiles("FurnitureCatalogue.txt", "")) do
+        local src = readFile(rel)
+        if src then
+          checked = checked + 1
+          local n = 0
+          for line in (stripComments(src) .. "\n"):gmatch("([^\n]*)\n") do
+            n = n + 1
+            for _, pattern in ipairs(ALIAS_REACH_PATTERNS) do
+              if line:find(pattern) then
+                local code = line:gsub("^%s+", ""):gsub("%s+$", "")
+                local site = rel .. ":" .. n .. ": " .. code
+                local key = rel .. ": " .. code
+                seen[site] = true
+                if sanctioned[key] then
+                  found[key] = found[key] + 1
+                elseif not ALIAS_REACH_BASELINE[rel] then
+                  newcomers[#newcomers + 1] = site
+                end
+                break
+              end
+            end
+          end
+        end
+      end
+
+      local miscounted = {}
+      for key, want in pairs(sanctioned) do
+        if found[key] ~= want then
+          miscounted[#miscounted + 1] = ("%s (sanctioned %d, found %d)"):format(key, want, found[key])
+        end
+      end
+      table.sort(miscounted)
+
+      assert.is_true(checked > 5)
+      assert.same({}, newcomers)
+      assert.same({}, miscounted)
+    end)
   end)
 end)

@@ -55,17 +55,30 @@ Taneth("FurC:Regression", function()
       assert.is_true(checked > 0)
     end)
 
+    -- FormatPrice bakes amount as `|c<hex><digits>|r|u...:currency:|u<icon>`
+    -- generic "sold by Rolis or Faustina" fallback creates nil here and means price lookup failed
+    local function voucherAmount(text)
+      local digits = text and text:match("|c%x%x%x%x%x%x([%d,]+)|r")
+      return digits and tonumber((digits:gsub(",", "")))
+    end
+
     it("still finds the voucher price once the key moved to the furnishing", function()
       FurC.EnsureDB()
+      local priceless, checked = {}, 0
       for recipeId in pairs(voucherRecipeIds()) do
         local itemId, blueprintId = FurC.DBQuery.ResolveRecipe(recipeId)
         if blueprintId then
-          -- the generic "sold by Rolis or Faustina" fallback means the price lookup missed
           local text = FurC.DBQuery.GetRolisSource(itemId, FurC.DB[itemId])
           assert.is_not_nil(text)
-          return
+          local amount = voucherAmount(text)
+          if not amount or amount <= 0 then
+            priceless[#priceless + 1] = itemId
+          end
+          checked = checked + 1
         end
       end
+      assert.is_true(checked > 0)
+      assert.same({}, priceless)
     end)
   end)
 

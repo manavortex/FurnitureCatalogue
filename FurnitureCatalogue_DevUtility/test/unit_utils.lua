@@ -39,10 +39,10 @@ Taneth("FurC:Unit", function()
       "|H0:item:118206:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h",
     }
 
-    for i = 1, #furniture do
-      it("recognises furnishing link #" .. i, function()
+    it("recognises furnishing links", function()
+      for i = 1, #furniture do
         assert.is_true(IsFurniture(furniture[i]))
-      end)
-    end
+      end
+    end)
   end)
 end)

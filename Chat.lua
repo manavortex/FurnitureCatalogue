@@ -4,7 +4,8 @@ local sFormat = zo_strformat
 
 local LFC = LibFurnitureCatalogue
 local stripTxt = LFC.Internal.Format.stripTxt
-local getItemId = LFC.Internal.Format.GetItemId
+local getItemId = LFC.API.GetItemId
+local getItemLink = LFC.API.GetItemLink
 local query = FurC.DBQuery
 
 function FurC.PrintCraftingStation(itemId, recipeArray)
@@ -17,7 +18,7 @@ end
 
 function FurC.ToChat(output, refresh)
   if type(output) == "number" then
-    output = LFC.Internal.Format.GetItemLink(output)
+    output = getItemLink(output)
   end
 
   output = sFormat(output)

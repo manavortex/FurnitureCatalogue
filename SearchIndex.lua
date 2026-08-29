@@ -7,7 +7,7 @@ FurC.SearchIndex = FurC.SearchIndex or {}
 local this = FurC.SearchIndex
 
 local LFC = LibFurnitureCatalogue
-local getItemLink = LFC.Internal.Format.GetItemLink
+local getItemLink = LFC.API.GetItemLink
 local loc = LFC.Internal.Constants.Locations
 local npc = LFC.Internal.Constants.NPC
 

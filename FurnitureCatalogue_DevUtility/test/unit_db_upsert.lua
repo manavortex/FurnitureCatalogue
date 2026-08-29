@@ -107,5 +107,31 @@ Taneth("FurC:Unit", function()
       FurC.EnsureDB()
       assert.equals(before, FurCDev.Test.dbSize())
     end)
+
+    -- a malformed data block can leave a vendor or zone name behind as a key
+    it("is keyed by item id only", function()
+      FurC.EnsureDB()
+      local api = LibFurnitureCatalogue.API
+      local offenders = {}
+      for id in pairs(FurC.DB) do
+        if type(id) ~= "number" then
+          offenders[#offenders + 1] = tostring(id)
+        end
+      end
+      assert.same({}, offenders)
+
+      local ids = api.GetItemIds()
+      table.sort(ids) -- mixed key types raise here
+      assert.equals(api.GetEntryCount(), #ids)
+    end)
+
+    -- find() memoises last lookup, a rebuild clears it
+    it("Find hands out the current row after a rebuild", function()
+      local id = FurCDev.Test.dataset().dbItem
+      assert.equals(LibFurnitureCatalogue.Internal.DB[id], FurC.Find(id))
+      local ok, err = pcall(FurC.RebuildDB, true)
+      assert.is_true(ok, tostring(err))
+      assert.equals(LibFurnitureCatalogue.Internal.DB[id], FurC.Find(id))
+    end)
   end)
 end)

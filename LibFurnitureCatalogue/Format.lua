@@ -499,6 +499,9 @@ local function getItemLink(item)
   end
 
   if type(item) == "number" then
+    if item <= 0 then
+      return ""
+    end
     local cached = linkCache[item]
     if cached then
       return cached
@@ -525,11 +528,6 @@ function this.ClearLinkCache()
   linkCache = {}
 end
 
--- Alias for LibPrice
---- @deprecated will be replaced by API function in the future
---- @see FurC.Utils.GetItemLink
-FurC.GetItemLink = this.GetItemLink
-
 -- GetItemLinkItemId doesn't work the way I need it
 -- TODO #REFACTOR: should only take one type of link (not nil, number, string, links)
 function this.GetItemId(itemLink)
@@ -542,11 +540,6 @@ function this.GetItemId(itemLink)
   local _, _, _, itemId = ZO_LinkHandler_ParseLink(itemLink)
   return tonumber(itemId)
 end
-
--- Alias for LibPrice
---- @deprecated will be replaced by API function in the future
---- @see FurC.Utils.GetItemId
-FurC.GetItemId = this.GetItemId
 
 ---Return the formatted item name
 ---@param itemId number

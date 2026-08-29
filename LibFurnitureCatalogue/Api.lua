@@ -7,6 +7,13 @@ local internal = LFC.Internal
 local lifecycle = internal.Lifecycle
 local state = lifecycle.State
 
+local fmt, query = internal.Format, internal.Query
+local getItemId, getItemLink = fmt.GetItemId, fmt.GetItemLink
+local find, getSourceRecords = query.Find, query.GetSourceRecords
+local getIngredients, getItemDescription = query.GetIngredients, query.GetItemDescription
+local getMiscItemPrice = query.GetMiscItemPrice
+local ensureDB = internal.Build.EnsureDB
+
 api.State = {
   UNINITIALIZED = state.UNINITIALIZED,
   BUILDING = state.BUILDING,
@@ -14,9 +21,13 @@ api.State = {
   FAILED = state.FAILED,
 }
 
-api.Events = {
-  CHANGE = "LFC_DATABASE_CHANGED",
-}
+-- Declared in Constants.lua because of load order
+api.Events = internal.Constants.ApiEvents
+
+local knownEvents = {}
+for _, eventName in pairs(api.Events) do
+  knownEvents[eventName] = true
+end
 
 local function logCallbackError(eventName, err)
   local ok, logger = pcall(internal.GetLogger)
@@ -38,7 +49,7 @@ local function invokeCallback(eventName, callback, callbackArg, ...)
 end
 
 local function callbackRegistry(eventName)
-  if eventName ~= api.Events.CHANGE then
+  if not knownEvents[eventName] then
     return nil
   end
   local registry = lifecycle.callbacks[eventName]
@@ -58,9 +69,13 @@ local function findRegistration(registry, callback, arg)
 end
 
 ---Register a persistent lifecycle callback
+---Every callback receives the api table first, then the event payload:
+---`(api)`: SCAN_STARTED
+---`(api, revision)`: CHANGE, READY, SCAN_COMPLETE
+---`(api, errorString)`: SCAN_FAILED
 ---@param eventName string one of API.Events
----@param callback function receives `(api, revision)`, or `(arg, api, revision)`
----@param arg? any optional first callback argument
+---@param callback function
+---@param arg? any optional first callback argument, callback sees `(arg, api, ...)`
 ---@return boolean registered
 function api.RegisterCallback(eventName, callback, arg)
   local registry = callbackRegistry(eventName)
@@ -91,8 +106,11 @@ function api.UnregisterCallback(eventName, callback, arg)
   return true
 end
 
-local function publishChange(revision)
-  local registry = lifecycle.callbacks[api.Events.CHANGE]
+---Fire one public event
+---@param eventName string
+---@param ... any payload appended after the api table
+function internal.PublishEvent(eventName, ...)
+  local registry = lifecycle.callbacks[eventName]
   if not registry then
     return
   end
@@ -102,30 +120,26 @@ local function publishChange(revision)
     snapshot[index] = registration
   end
   for _, registration in ipairs(snapshot) do
-    invokeCallback(api.Events.CHANGE, registration.callback, registration.arg, api, revision)
+    invokeCallback(eventName, registration.callback, registration.arg, api, ...)
   end
 end
 
-local function publishReady(revision)
+---Drain OnReady queue, then fire READY callbacks
+---@param revision integer
+function internal.PublishReady(revision)
   local waiters = lifecycle.readyWaiters
   lifecycle.readyWaiters = {}
   for callback in pairs(waiters) do
-    invokeCallback("LFC_READY", callback, nil, api, revision)
+    invokeCallback(api.Events.READY, callback, nil, api, revision)
   end
-end
-
-function internal.PublishLifecycleSuccess(publishedBefore, revision)
-  publishReady(revision)
-  if publishedBefore then
-    publishChange(revision)
-  end
+  internal.PublishEvent(api.Events.READY, revision)
 end
 
 ---Snapshot of one DB entry
 ---@param itemOrLink string|integer item link, blueprint link, or itemId
 ---@return FurCEntry? entry copy, nil when unknown
 function api.GetEntry(itemOrLink)
-  local entry = internal.Query.Find(itemOrLink)
+  local entry = find(itemOrLink)
   if nil == next(entry) then
     return nil
   end
@@ -135,14 +149,17 @@ end
 ---@param itemOrLink string|integer
 ---@return boolean
 function api.Has(itemOrLink)
-  return next(internal.Query.Find(itemOrLink)) ~= nil
+  return next(find(itemOrLink)) ~= nil
 end
 
 ---@return integer[] itemIds snapshot of all known item ids
 function api.GetItemIds()
   local ids = {}
   for id in pairs(internal.DB) do
-    ids[#ids + 1] = id
+    -- malformed data files can leave string keys behind; the contract is numeric
+    if type(id) == "number" then
+      ids[#ids + 1] = id
+    end
   end
   return ids
 end
@@ -152,7 +169,7 @@ end
 ---@param itemOrLink string|integer
 ---@return { source: { type: integer, vendor: string?, location: string?, achievement: integer?, event: string? }, cost: { currency: integer, amount: integer }[], availability: { version: integer, lastSeen: string? } }[]
 function api.GetSources(itemOrLink)
-  return internal.Query.GetSourceRecords(itemOrLink)
+  return getSourceRecords(itemOrLink)
 end
 
 ---@return integer libVersion the lib's AddOnVersion
@@ -186,12 +203,12 @@ function api.OnReady(callback)
     return false
   end
   if api.IsReady() then
-    invokeCallback("LFC_READY", callback, nil, api, internal.DBRevision)
+    invokeCallback(api.Events.READY, callback, nil, api, internal.DBRevision)
     return true
   end
   lifecycle.readyWaiters[callback] = true
   if lifecycle.current == state.UNINITIALIZED then
-    internal.Build.EnsureDB()
+    ensureDB()
   end
   return true
 end
@@ -201,7 +218,110 @@ local countRevision, countMemo
 function api.GetEntryCount()
   if countRevision ~= internal.DBRevision then
     countRevision = internal.DBRevision
-    countMemo = NonContiguousCount(internal.DB)
+    local count = 0
+    for id in pairs(internal.DB) do
+      -- keep in step with GetItemIds: only numeric keys are real entries
+      if type(id) == "number" then
+        count = count + 1
+      end
+    end
+    countMemo = count
   end
   return countMemo
 end
+
+-- Utility
+
+---Resolve an item link or numeric id to a numeric item id
+---@param itemLinkOrId string|integer
+---@return integer? id nil on empty/invalid
+function api.GetItemId(itemLinkOrId)
+  return getItemId(itemLinkOrId)
+end
+
+---Build item link from id, or pass through an existing link
+---@param itemOrId string|integer
+---@return string link empty string on invalid
+function api.GetItemLink(itemOrId)
+  return getItemLink(itemOrId)
+end
+
+-- Query helpers
+
+---Ingredient list for a recipe
+---@param itemLink string item or blueprint link
+---@param recipeArray? FurCEntry entry from GetEntry; looked up when omitted
+---@return table<string, integer> ingredients map of ingredient link -> quantity
+function api.GetIngredients(itemLink, recipeArray)
+  return getIngredients(itemLink, recipeArray)
+end
+
+---Human-readable description for a primary source
+---Structured consumers should prefer GetSources
+---@param recipeKey string|integer item link or id
+---@param recipeArray? FurCEntry looked up via GetEntry when omitted
+---@param stripColor? boolean strip colour control characters
+---@param opts? { dateFormat?: string } render options, for instance luxury date format
+---@return string description empty when unknown
+function api.GetItemDescription(recipeKey, recipeArray, stripColor, opts)
+  return getItemDescription(recipeKey, recipeArray, stripColor, opts)
+end
+
+-- Constants
+
+---Source type enum values. Compare against constant, the numbers shift
+---@return table<string, integer> sourceTypes fresh copy, yours to keep
+---```lua
+---local API = LibFurnitureCatalogue.API
+---local src = API.GetSourceTypes()
+---
+---src.CROWN --> 9
+---src.DROP  --> 14
+---
+---for _, record in ipairs(API.GetSources(itemLink)) do
+---  if record.source.type == src.CROWN then
+---    d(record.cost[1].amount) --> 2000
+---  end
+---end
+---```
+function api.GetSourceTypes()
+  return ZO_ShallowTableCopy(internal.Constants.ItemSources)
+end
+
+-- Bridge helpers
+-- These exist so third-party AddOns can migrate off raw FurC.* table access before DB is converted to structured records
+
+---Temporary compatibility bridge for prices hidden in baked strings
+---Stable, multi-source prices in api.GetSources().
+---@deprecated Migrate to GetSources()
+---Returns (currency, amount) or nil. Will be removed
+---@param itemId integer
+---@param version integer
+---@param source integer source type constant, see GetSourceTypes
+---@return integer? currency ESO currency constant
+---@return integer? amount
+function api.GetMiscItemPrice(itemId, version, source)
+  return getMiscItemPrice(itemId, version, source)
+end
+
+-- Legacy flat aliases for third-party AddOns
+
+---@deprecated Use LibFurnitureCatalogue.API.GetItemId
+FurC.GetItemId = api.GetItemId
+
+---@deprecated Use LibFurnitureCatalogue.API.GetItemLink
+FurC.GetItemLink = api.GetItemLink
+
+---@deprecated Use LibFurnitureCatalogue.API.GetIngredients
+FurC.GetIngredients = api.GetIngredients
+
+---@deprecated Use LibFurnitureCatalogue.API.GetItemDescription
+FurC.GetItemDescription = api.GetItemDescription
+
+---@deprecated Use LibFurnitureCatalogue.API.GetEntry. Unlike GetEntry, this
+---returns the mutable internal row and an empty table on a miss.
+FurC.Find = internal.Query.Find
+
+---@deprecated Use LibFurnitureCatalogue.API.GetIngredients and format the
+---ingredient map in the consumer.
+FurC.GetMats = internal.Query.GetMats

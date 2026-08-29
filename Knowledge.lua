@@ -3,7 +3,7 @@
 local this = FurC.Internal
 local LFC = LibFurnitureCatalogue
 
-local getItemLink = LFC.Internal.Format.GetItemLink
+local getItemLink = LFC.API.GetItemLink
 
 -- LCK reference, nil when no LCK loaded
 ---@type LibCharacterKnowledge
@@ -240,7 +240,7 @@ function FurC.GetCrafterList(itemLink, recipeArray)
   end
 
   if lckAvailable() then
-    local recipeItem = recipeArray.blueprint and LFC.Internal.Format.GetItemLink(recipeArray.blueprint)
+    local recipeItem = recipeArray.blueprint and getItemLink(recipeArray.blueprint)
     local names = recipeItem and getCrafterNames(recipeItem)
     if not names or #names == 0 then
       return strCantCraft

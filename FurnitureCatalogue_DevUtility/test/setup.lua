@@ -65,6 +65,19 @@ function Test.dataset()
   local luxVer, luxItems = firstPopulatedVersion(FurC.LuxuryFurnisher)
   DS.luxVersion, DS.luxItem = luxVer, luxItems and next(luxItems)
 
+  -- luxItem comes straight from the data file, this one is also guaranteed to be in the DB
+  for _, versionData in pairs(FurC.LuxuryFurnisher) do
+    for itemId in pairs(versionData) do
+      if db[itemId] then
+        DS.luxItemInDB = itemId
+        break
+      end
+    end
+    if DS.luxItemInDB then
+      break
+    end
+  end
+
   local rolisVer, rolisItems = firstPopulatedVersion(FurC.Rolis)
   DS.rolisVersion, DS.rolisItem = rolisVer, rolisItems and next(rolisItems)
 
@@ -81,4 +94,14 @@ end
 --- Count FurC.DB to check if scan ran at all
 function Test.dbSize()
   return count(FurC.DB)
+end
+
+--- Key list of a table, sorted, for snapshot comparisons
+function Test.sortedKeys(tbl)
+  local keys = {}
+  for key in pairs(tbl) do
+    keys[#keys + 1] = key
+  end
+  table.sort(keys)
+  return keys
 end

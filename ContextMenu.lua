@@ -8,7 +8,9 @@ local FURC_S_TOGGLE_SL = GetString(SI_FURC_TOGGLE_SHOPPINGLIST)
 
 local linkStyle = LINK_STYLE_DEFAULT
 local LFC = LibFurnitureCatalogue
-local src = LFC.Internal.Constants.ItemSources
+local api = LFC.API
+local src = api.GetSourceTypes()
+local getItemLink = api.GetItemLink
 
 local menuEventQueued = false
 
@@ -25,7 +27,7 @@ function AddFurnitureShoppingListMenuEntry(itemId, calledFromFurC)
     end
   end
 
-  local itemLink = LFC.Internal.Format.GetItemLink(itemId)
+  local itemLink = getItemLink(itemId)
   if nil == next(FurC.Find(itemLink)) then
     return
   end
@@ -53,10 +55,10 @@ local function fave()
   FurC.Fave(cachedItemLink)
 end
 local function postItemSource()
-  FurC.ToChat(FurC.GetItemDescription(cachedItemLink, cachedRecipeArray, true, { dateFormat = FurC.GetDateFormat() }))
+  FurC.ToChat(api.GetItemDescription(cachedItemLink, cachedRecipeArray, true, { dateFormat = FurC.GetDateFormat() }))
 end
 local function postRecipe()
-  FurC.ToChat(LFC.Internal.Format.GetItemLink(cachedRecipeArray.blueprint))
+  FurC.ToChat(getItemLink(cachedRecipeArray.blueprint))
 end
 local function postRecipeResult()
   FurC.ToChat(GetItemLinkRecipeResultItemLink(cachedItemLink))

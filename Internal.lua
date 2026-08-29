@@ -5,19 +5,19 @@ FurC = FurC or {}
 FurC.Internal = FurC.Internal or {}
 local this = FurC.Internal
 local LFC = LibFurnitureCatalogue
+local getItemLink = LFC.API.GetItemLink
 
 --[[_______________________
     |                     |
     |    RUNTIME UTILS    |
     |_____________________|]]
 
-local Utils = this
 local sFormat = zo_strformat
 
 -- ruthlessly stolen from TextureIt
 --- Sorts table by given key
 --- @return table sortedTable
-function Utils.SortTable(tTable, sortKey, SortOrderUp)
+function this.SortTable(tTable, sortKey, SortOrderUp)
   --[[
     TODO #REFACTOR:
       - expect function instead of boolean "SortOrderUp"
@@ -62,7 +62,7 @@ end
 local currentChar
 ---Get the current character name in desired format
 ---@return string
-function Utils.GetCurrentChar()
+function this.GetCurrentChar()
   currentChar = currentChar or sFormat("<<1>>", GetUnitName("player"))
   return currentChar
 end
@@ -70,7 +70,7 @@ end
 ---Check if item is a furnishing
 ---@param itemLink string
 ---@return boolean isFurniture
-function Utils.IsFurniture(itemLink)
+function this.IsFurniture(itemLink)
   local isRecipe = IsItemLinkFurnitureRecipe(itemLink)
   return isRecipe or IsItemLinkPlaceableFurniture(itemLink)
 end
@@ -78,7 +78,7 @@ end
 ---Example: FurC.Utils.GetBlueprintForItem("|H1:item:165634:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h") -> "|H1:item:166781:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"
 ---@param itemLink string
 ---@return string blueprintLink or empty string
-function Utils.GetBlueprintForItem(itemLink)
+function this.GetBlueprintForItem(itemLink)
   if IsItemLinkFurnitureRecipe(itemLink) then
     return itemLink
   end
@@ -86,22 +86,22 @@ function Utils.GetBlueprintForItem(itemLink)
   if not entry or not entry.blueprint then
     return ""
   end
-  return LFC.Internal.Format.GetItemLink(entry.blueprint)
+  return getItemLink(entry.blueprint)
 end
 
 ---Example: FurC.Utils.GetBlueprintForItem("|H1:item:166781:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h") -> "|H1:item:165634:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h"
 ---@param blueprintLink string
 ---@return string itemLink or empty string
-function Utils.GetItemFromBlueprint(blueprintLink)
+function this.GetItemFromBlueprint(blueprintLink)
   if IsItemLinkPlaceableFurniture(blueprintLink) then
     return blueprintLink
   end
   return GetItemLinkRecipeResultItemLink(blueprintLink)
 end
 
----@deprecated will be replaced by API function in the future
+---@deprecated use LibFurnitureCatalogue.API.GetItemId
 ---@see FurC.Internal.GetItemId
-this.GetItemId = LFC.Internal.Format.GetItemId
+this.GetItemId = LFC.API.GetItemId
 
 -- Legacy alias
 FurC.Utils = FurC.Utils or {}

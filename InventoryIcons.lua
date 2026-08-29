@@ -1,6 +1,7 @@
 -- Inventory recipe icons: known/unknown markers on inventory rows
 
 local LFC = LibFurnitureCatalogue
+local getItemId = LFC.API.GetItemId
 
 local wm = WINDOW_MANAGER
 
@@ -18,7 +19,7 @@ local function createIcon(control)
 end
 
 local function getItemKnowledge(itemLink)
-  local itemId = LFC.Internal.Format.GetItemId(itemLink)
+  local itemId = getItemId(itemLink)
   local recipeArray = FurC.Find(itemLink)
   if FurC.GetUseInventoryIconsOnChar() then
     return FurC.CanCraft(itemId, recipeArray)

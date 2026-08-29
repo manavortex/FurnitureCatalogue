@@ -56,14 +56,6 @@ lib.Internal.DBReady = lifecycle.current == lifecycle.State.READY
 FurC = FurC or {}
 FurC.DB = lib.Internal.DB
 
--- DB lifecycle events
-lib.Internal.Callbacks = lib.Internal.Callbacks or ZO_CallbackObject:New()
-lib.Internal.Events = {
-  SCAN_STARTED = "LFC_SCAN_STARTED",
-  SCAN_COMPLETE = "LFC_SCAN_COMPLETE",
-  SCAN_FAILED = "LFC_SCAN_FAILED",
-}
-
 -- Optional LibDebugLogger
 local noop = function() end
 local fallbackLogger = setmetatable({}, {

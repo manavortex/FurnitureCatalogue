@@ -3,7 +3,8 @@
 local async = LibAsync
 local task = async:Create("FurnitureCatalogue_Tooltip")
 local LFC = LibFurnitureCatalogue
-local src = LFC.Internal.Constants.ItemSources
+local src = LFC.API.GetSourceTypes()
+local getItemLink = LFC.API.GetItemLink
 local query = FurC.DBQuery
 
 -- Tooltip source lines: applies user's source blacklist over lib GetRankedSources
@@ -36,9 +37,6 @@ local function getSourceLines(recipeKey, recipeArray, stripColor)
 end
 FurC.GetSourceLines = getSourceLines
 
----@deprecated alias, use FurC.GetSourceLines (presentation, not a DB query)
-query.GetSourceLines = getSourceLines
-
 local function tryColorize(text)
   if not (text and FurC.GetColouredTooltips()) then
     return text
@@ -70,7 +68,7 @@ local function addFolioTooltipData(control, itemId, folioData)
 
   if folioData.contents then
     for _, contentId in ipairs(folioData.contents) do
-      local link = LFC.Internal.Format.GetItemLink(contentId)
+      local link = getItemLink(contentId)
       if link and link ~= "" then
         lines[#lines + 1] = GetItemLinkName(link)
       end
@@ -210,10 +208,10 @@ local function ReturnItemLink(itemLink)
   if FurC.showBlueprints then
     local recipeArray = FurC.Find(itemLink)
     if recipeArray and recipeArray.blueprint then
-      return LFC.Internal.Format.GetItemLink(recipeArray.blueprint)
+      return getItemLink(recipeArray.blueprint)
     end
   end
-  return LFC.Internal.Format.GetItemLink(itemLink)
+  return getItemLink(itemLink)
 end
 
 do

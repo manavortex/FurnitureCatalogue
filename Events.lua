@@ -1,6 +1,6 @@
 -- Reactions to lib scan-lifecycle events
 
-local LFC = LibFurnitureCatalogue
+local api = LibFurnitureCatalogue.API
 
 local function onScanStarted()
   FurC.IsLoading(true)
@@ -13,5 +13,5 @@ local function onScanComplete()
   FurC.UpdateGui()
 end
 
-LFC.Internal.Callbacks:RegisterCallback(LFC.Internal.Events.SCAN_STARTED, onScanStarted)
-LFC.Internal.Callbacks:RegisterCallback(LFC.Internal.Events.SCAN_COMPLETE, onScanComplete)
+api.RegisterCallback(api.Events.SCAN_STARTED, onScanStarted)
+api.RegisterCallback(api.Events.SCAN_COMPLETE, onScanComplete)

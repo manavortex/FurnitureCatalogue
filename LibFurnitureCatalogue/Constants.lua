@@ -24,6 +24,16 @@ local function getNextIdFor(id_type)
   return idCounter[id_type]
 end
 
+-- Public event names, used in Api.lua as LFC.API.Events
+-- here, because DB build fires them and loads before Api.lua
+this.ApiEvents = {
+  CHANGE = "LFC_DATABASE_CHANGED",
+  READY = "LFC_READY",
+  SCAN_STARTED = "LFC_SCAN_STARTED",
+  SCAN_COMPLETE = "LFC_SCAN_COMPLETE",
+  SCAN_FAILED = "LFC_SCAN_FAILED",
+}
+
 -- constants for filtering
 
 -- item sources

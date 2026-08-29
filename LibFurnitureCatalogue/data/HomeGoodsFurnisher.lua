@@ -320,8 +320,9 @@ local homeGoodsFurnisherData = {
   [ver.FALLBAN] = {
     [loc.ALIKR] = {
       [npc.HGF] = {
-        [118168] = rumourSource, -- Block, Carved Stone
-        itemPrice = 500,
+        [118168] = { -- Block, Carved Stone
+          itemPrice = 500,
+        },
       },
     },
   },

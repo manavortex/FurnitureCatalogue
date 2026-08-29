@@ -8,6 +8,7 @@ LFC.Internal.Build = this
 local db = LFC.Internal.DB
 local src = LFC.Internal.Constants.ItemSources
 local SOURCE_PRIORITY = LFC.Internal.Constants.SOURCE_PRIORITY
+local apiEvents = LFC.Internal.Constants.ApiEvents
 local lifecycle = LFC.Internal.Lifecycle
 local state = lifecycle.State
 
@@ -154,10 +155,20 @@ local function setState(value, err)
   LFC.Internal.DBReady = value == state.READY
 end
 
-local function fireInternal(eventName, ...)
-  local ok, err = pcall(LFC.Internal.Callbacks.FireCallbacks, LFC.Internal.Callbacks, eventName, ...)
-  if not ok then
-    logError("Lifecycle callback %s failed: %s", eventName, tostring(err))
+local function publish(eventName, ...)
+  local publisher = LFC.Internal.PublishEvent
+  if publisher then
+    publisher(eventName, ...)
+  end
+end
+
+local function publishLifecycleSuccess(publishedBefore, revision)
+  local publishReady = LFC.Internal.PublishReady
+  if publishReady then
+    publishReady(revision)
+  end
+  if publishedBefore then
+    publish(apiEvents.CHANGE, revision)
   end
 end
 
@@ -215,16 +226,64 @@ end
 this.ParseBlueprint = parseBlueprint
 
 local ver = LFC.Internal.Constants.Versioning
+
+-- Compatibility: released LibPrice prices items through FurC.MiscItemSources[version][source]
+--TODO: Drop this when the switch to api.GetSources is done
+local legacyMirror = {}
+local splitFiles = {}
+local function addSplitFile(dataFile)
+  if nil ~= dataFile then
+    splitFiles[#splitFiles + 1] = dataFile
+  end
+end
+addSplitFile(FurC.CrownStore)
+addSplitFile(FurC.Justice)
+addSplitFile(FurC.Fishing)
+
+for _, splitData in ipairs(splitFiles) do
+  for versionNumber, versionData in pairs(splitData) do
+    local buckets = FurC.MiscItemSources[versionNumber]
+    if nil == buckets then
+      buckets = {}
+      FurC.MiscItemSources[versionNumber] = buckets
+    end
+    for source, items in pairs(versionData) do
+      local existing = buckets[source]
+      local mirrored, covered = {}, true
+      if nil ~= existing then
+        logDebug("legacy mirror: merging split file into MiscItemSources[%s][%s]", versionNumber, source)
+        for itemId, entry in pairs(existing) do
+          mirrored[itemId] = entry
+        end
+        covered = {}
+      end
+      for itemId, entry in pairs(items) do
+        mirrored[itemId] = entry
+        if covered ~= true then
+          covered[itemId] = true
+        end
+      end
+      buckets[source] = mirrored
+      legacyMirror[mirrored] = covered
+    end
+  end
+end
+
 ---@param blocking? boolean scan inline instead of yielding through LibAsync
 local function scanFromFiles(blocking)
   lifecycle.task = lifecycle.task or (LibAsync and LibAsync:Create("LibFurnitureCatalogue_ScanDataFiles"))
   local task = lifecycle.task
   local publishedBefore = lifecycle.everReady
 
+  -- Expects [zone][vendor][itemId]
   local function parseZoneData(zoneName, zoneData, versionNumber, origin)
     for vendorName, vendorData in pairs(zoneData) do
       for itemId in pairs(vendorData) do
-        addDatabaseEntry(itemId, { origin = origin, version = versionNumber })
+        if type(itemId) ~= "number" then
+          logDebug("parseZoneData: %s / %s holds non-numeric key %s", zoneName, vendorName, itemId)
+        else
+          addDatabaseEntry(itemId, { origin = origin, version = versionNumber })
+        end
       end
     end
   end
@@ -318,14 +377,19 @@ local function scanFromFiles(blocking)
   local function scanMiscItemFile()
     for versionNumber, versionData in pairs(FurC.MiscItemSources) do
       for origin, originData in pairs(versionData) do
-        for itemId in pairs(originData) do
-          local itemLink = getItemLink(itemId)
-          if IsItemLinkPlaceableFurniture(itemLink) or GetItemLinkItemType(itemLink) == ITEMTYPE_FURNISHING then
-            addDatabaseEntry(itemId, { origin = origin, version = versionNumber })
-          elseif origin == src.RUMOUR then
-            logDebug("invalid rumour item: %s (%s)", itemId, itemLink)
-          else
-            logDebug("scanMiscItemFile: Error when scanning item ID %s (origin %s)", itemId, origin)
+        local covered = legacyMirror[originData]
+        if covered ~= true then
+          for itemId in pairs(originData) do
+            if not (covered and covered[itemId]) then
+              local itemLink = getItemLink(itemId)
+              if IsItemLinkPlaceableFurniture(itemLink) or GetItemLinkItemType(itemLink) == ITEMTYPE_FURNISHING then
+                addDatabaseEntry(itemId, { origin = origin, version = versionNumber })
+              elseif origin == src.RUMOUR then
+                logDebug("invalid rumour item: %s (%s)", itemId, itemLink)
+              else
+                logDebug("scanMiscItemFile: Error when scanning item ID %s (origin %s)", itemId, origin)
+              end
+            end
           end
         end
       end
@@ -446,10 +510,9 @@ local function scanFromFiles(blocking)
     lifecycle.everReady = true
     logDebug("DB build finished: %d entries in %d ms", NonContiguousCount(db), GetGameTimeMilliseconds() - buildStarted)
     notify(function()
-      if LFC.Internal.PublishLifecycleSuccess then
-        LFC.Internal.PublishLifecycleSuccess(publishedBefore, LFC.Internal.DBRevision)
-      end
-      fireInternal(LFC.Internal.Events.SCAN_COMPLETE)
+      local revision = LFC.Internal.DBRevision
+      publishLifecycleSuccess(publishedBefore, revision)
+      publish(apiEvents.SCAN_COMPLETE, revision)
     end)
   end
 
@@ -457,46 +520,44 @@ local function scanFromFiles(blocking)
     setState(state.FAILED, err)
     logError("DB build failed: %s", tostring(err))
     notify(function()
-      fireInternal(LFC.Internal.Events.SCAN_FAILED, lifecycle.error)
+      publish(apiEvents.SCAN_FAILED, lifecycle.error)
     end)
   end
 
+  local steps = {
+    scanRecipeFile,
+    scanMiscItemFile,
+    scanCrownStore,
+    scanAntiquities,
+    scanJustice,
+    scanFishing,
+    scanVendorFiles,
+    scanRolis,
+    scanFestivalFiles,
+    scanRumours,
+    finish,
+  }
+
   setState(state.BUILDING)
-  fireInternal(LFC.Internal.Events.SCAN_STARTED)
+  publish(apiEvents.SCAN_STARTED)
 
   if nil ~= task and not blocking then
-    task
-      :Call(scanRecipeFile)
-      :Then(scanMiscItemFile)
-      :Then(scanCrownStore)
-      :Then(scanAntiquities)
-      :Then(scanJustice)
-      :Then(scanFishing)
-      :Then(scanVendorFiles)
-      :Then(scanRolis)
-      :Then(scanFestivalFiles)
-      :Then(scanRumours)
-      :Then(finish)
-      :OnError(function(asyncTask)
-        if lifecycle.current ~= state.READY then
-          fail(asyncTask.Error)
-        else
-          logError("Post-build callback failed: %s", tostring(asyncTask.Error))
-        end
-      end)
+    local chain = task:Call(steps[1])
+    for i = 2, #steps do
+      chain = chain:Then(steps[i])
+    end
+    chain:OnError(function(asyncTask)
+      if lifecycle.current ~= state.READY then
+        fail(asyncTask.Error)
+      else
+        logError("Post-build callback failed: %s", tostring(asyncTask.Error))
+      end
+    end)
   else
     local ok, err = pcall(function()
-      scanRecipeFile()
-      scanMiscItemFile()
-      scanCrownStore()
-      scanAntiquities()
-      scanJustice()
-      scanFishing()
-      scanVendorFiles()
-      scanRolis()
-      scanFestivalFiles()
-      scanRumours()
-      finish()
+      for _, step in ipairs(steps) do
+        step()
+      end
     end)
     if not ok then
       if lifecycle.current ~= state.READY then
