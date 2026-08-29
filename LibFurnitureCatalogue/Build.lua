@@ -228,7 +228,7 @@ this.ParseBlueprint = parseBlueprint
 local ver = LFC.Internal.Constants.Versioning
 
 -- Compatibility: released LibPrice prices items through FurC.MiscItemSources[version][source]
---TODO: Drop this when the switch to api.GetSources is done
+--TODO: Drop this when the switch to api.GetSourceDetails is done
 local legacyMirror = {}
 local splitFiles = {}
 local function addSplitFile(dataFile)

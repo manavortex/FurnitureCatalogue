@@ -364,10 +364,10 @@ end
 ---@param sourceIds integer[] from sourcesFor
 ---@return table<integer, table>? info nil when nothing is modelled
 local function sourceInfoFor(itemId, sourceIds)
-  if not api.GetSources then
+  if not api.GetSourceDetails then
     return nil
   end
-  local ok, records = pcall(api.GetSources, itemId)
+  local ok, records = pcall(api.GetSourceDetails, itemId)
   if not ok or type(records) ~= "table" then
     return nil
   end
@@ -398,7 +398,7 @@ local function sourceInfoFor(itemId, sourceIds)
         event = cleanText(rec.source.event),
         lastSeen = rec.availability and rec.availability.lastSeen,
       }
-      local cost = rec.cost and rec.cost[1]
+      local cost = rec.cost
       if cost then
         detail.currency = cost.currency
         detail.amount = cost.amount

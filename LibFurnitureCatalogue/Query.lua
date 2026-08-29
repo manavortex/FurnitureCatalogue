@@ -586,7 +586,7 @@ local function achievementVendorRecord(rec, recipeKey, version)
   rec.source.location = zone
   rec.source.achievement = entry.achievement
   if entry.itemPrice then
-    rec.cost[1] = { currency = entry.currency or CURT_MONEY, amount = entry.itemPrice }
+    rec.cost = { currency = entry.currency or CURT_MONEY, amount = entry.itemPrice }
   end
 end
 
@@ -607,7 +607,7 @@ local function luxuryRecord(rec, recipeKey, version)
   rec.source.vendor = npc.LUXF
   rec.source.location = loc.COLDH
   if itemData.itemPrice then
-    rec.cost[1] = { currency = CURT_MONEY, amount = itemData.itemPrice }
+    rec.cost = { currency = CURT_MONEY, amount = itemData.itemPrice }
   end
   rec.availability.lastSeen = itemData.itemDate
 end
@@ -642,7 +642,7 @@ local function pvpRecord(rec, recipeKey, version)
   rec.source.location = location
   rec.source.achievement = item.achievement
   if item.itemPrice then
-    rec.cost[1] = { currency = item.currency or CURT_ALLIANCE_POINTS, amount = item.itemPrice }
+    rec.cost = { currency = item.currency or CURT_ALLIANCE_POINTS, amount = item.itemPrice }
   end
 end
 
@@ -663,7 +663,7 @@ local function voucherRecord(rec, recipeKey, blueprintId)
             if contentId == recipeKey or contentId == blueprintId then
               rec.source.vendor = npc.FAUSTINA
               rec.source.location = loc.ANY_CAPITAL
-              rec.cost[1] = { currency = CURT_WRIT_VOUCHERS, amount = folioData.price }
+              rec.cost = { currency = CURT_WRIT_VOUCHERS, amount = folioData.price }
               return
             end
           end
@@ -676,7 +676,7 @@ local function voucherRecord(rec, recipeKey, blueprintId)
   rec.source.location = loc.ANY_CAPITAL
   local price = type(entry) == "table" and entry.itemPrice or entry
   if type(price) == "number" then
-    rec.cost[1] = { currency = CURT_WRIT_VOUCHERS, amount = price }
+    rec.cost = { currency = CURT_WRIT_VOUCHERS, amount = price }
   end
 end
 
@@ -684,14 +684,16 @@ local function eventRecord(rec, recipeKey)
   for _, events in pairs(FurC.EventItems) do
     for eventName, sources in pairs(events) do
       for srcName, items in pairs(sources) do
-        local item = items[recipeKey]
+        -- container srcName is itemId, items is value
+        local hasSrcName = type(items) == "table"
+        local item = (hasSrcName and items[recipeKey]) or (srcName == recipeKey and items) or nil
         if nil ~= item then
-          rec.source.vendor = srcName
+          rec.source.vendor = hasSrcName and srcName or nil
           rec.source.event = eventName
           if type(item) == "table" and item.itemPrice then
             rec.source.achievement = item.achievement
-            rec.cost[1] = {
-              currency = item.currency or (srcName == npc.EVENT and CURT_TRADE_BARS or CURT_MONEY),
+            rec.cost = {
+              currency = item.currency or (hasSrcName and srcName == npc.EVENT and CURT_TRADE_BARS or CURT_MONEY),
               amount = item.itemPrice,
             }
           end
@@ -825,7 +827,7 @@ local function getSourceRecords(itemOrLink)
 
   local records = {}
   for i, s in ipairs(ranked) do
-    local rec = { source = { type = s }, cost = {}, availability = { version = recipeArray.version } }
+    local rec = { source = { type = s }, availability = { version = recipeArray.version } }
     local build = RECORD_BUILDERS[s]
     if build then
       build(rec, recipeKey, recipeArray)

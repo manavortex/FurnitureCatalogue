@@ -29,6 +29,7 @@ Taneth("FurC:Regression", function()
       assert.same({
         "Events",
         "GetDBRevision",
+        "GetDataVersions",
         "GetEntry",
         "GetEntryCount",
         "GetIngredients",
@@ -37,8 +38,8 @@ Taneth("FurC:Regression", function()
         "GetItemIds",
         "GetItemLink",
         "GetMiscItemPrice",
+        "GetSourceDetails",
         "GetSourceTypes",
-        "GetSources",
         "GetState",
         "GetVersion",
         "Has",
@@ -228,17 +229,16 @@ Taneth("FurC:Regression", function()
       assert.equals("table", type(entry.sources))
     end)
 
-    it("GetSources returns ranked schema-shaped records", function()
+    it("GetSourceDetails returns ranked schema-shaped records", function()
       FurC.EnsureDB(true)
       local srcEnum = FurC.Constants.ItemSources
 
       -- luxury items produce fully populated records
       assert.is_not_nil(DS.luxItemInDB)
-      local records = api.GetSources(DS.luxItemInDB)
+      local records = api.GetSourceDetails(DS.luxItemInDB)
       assert.is_true(#records > 0)
       for _, rec in ipairs(records) do
         assert.equals("number", type(rec.source.type))
-        assert.equals("table", type(rec.cost))
         assert.equals("table", type(rec.availability))
         assert.equals("number", type(rec.availability.version))
       end
@@ -252,10 +252,10 @@ Taneth("FurC:Regression", function()
       assert.is_not_nil(lux)
       assert.equals("string", type(lux.source.vendor))
       assert.equals("string", type(lux.source.location))
-      assert.equals("number", type(lux.cost[1].amount))
-      assert.equals(CURT_MONEY, lux.cost[1].currency)
+      assert.equals("number", type(lux.cost.amount))
+      assert.equals(CURT_MONEY, lux.cost.currency)
 
-      assert.same({}, api.GetSources(UNKNOWN_ID))
+      assert.same({}, api.GetSourceDetails(UNKNOWN_ID))
     end)
 
     it("endpoints and deprecated aliases keep stable shapes", function()
