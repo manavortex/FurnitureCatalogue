@@ -10,6 +10,101 @@ local rumourSource = GetString(SI_FURC_SRC_RUMOUR_ITEM)
 local dataminedUnclear = GetString(SI_FURC_DATAMINED_UNCLEAR)
 
 -- Season Zero Part 2
+FurC.Rumours[ver.THIEVES] = {
+  [225408] = rumourSource, -- Tapestry, Sanguine
+  [217601] = rumourSource, -- Molag Bal Plaque
+  [225410] = rumourSource, -- Vines, Rose Ivy Curtain
+  [225411] = rumourSource, -- Vines, Rose Ivy Swath
+  [225028] = rumourSource, -- Witches Fest, Plunder Skull Basket
+  [225413] = rumourSource, -- Flowers, Small Rose Ivy Patch
+  [225414] = rumourSource, -- Flowers, Large Rose Ivy Patch
+  [225409] = rumourSource, -- Vines, Verdant Rose Ivy Swath
+  [226738] = rumourSource, -- Dwarven Diving Chamber, Replica
+  [224863] = rumourSource, -- Ichor Splatter
+  [224862] = rumourSource, -- Daedric Cage, Bladed
+  [224861] = rumourSource, -- Ayleid Cage, Spiked
+  [224860] = rumourSource, -- Imperial Brazier, Cold-Flame
+  [224859] = rumourSource, -- Necrom Brazier, Cold-Flame
+  [226760] = rumourSource, -- Pirate Flag, Sea Elf
+  [217650] = rumourSource, -- Argonian Houseboat
+  [226941] = rumourSource, -- School of fish Green
+  [226784] = rumourSource, -- Driftwood Log
+  [226776] = rumourSource, -- Sage Voernet's Tome, Replica
+  [226775] = rumourSource, -- Nexus Orrery Shard, Replica
+  [226774] = rumourSource, -- Nowhere Vault Door, Replica
+  [225337] = rumourSource, -- Freaking Big Boi Butterfly!
+  [226773] = rumourSource, -- Scrying Device, Untuned
+  [226747] = rumourSource, -- Fossil, Giant Sea Beast Tail
+  [226748] = rumourSource, -- Fossil, Giant Sea Beast Head
+  [226749] = rumourSource, -- Fossil, Mudcrab
+  [226750] = rumourSource, -- Fossil, Mud Hopper
+  [225343] = rumourSource, -- Harbingers Door
+  [225344] = rumourSource, -- Harbingers Chandelier
+  [225345] = rumourSource, -- Harbingers Fireplace
+  [225346] = rumourSource, -- Harbingers Candle, Giant
+  [225347] = rumourSource, -- Harbingers Candle, Small
+  [225348] = rumourSource, -- Harbingers Candle, Large
+  [225349] = rumourSource, -- Harbingers Candles, Small Cluster
+  [225350] = rumourSource, -- Harbingers Candles, Large Cluster
+  [225351] = rumourSource, -- Aspect of the Mad God, Fury
+  [225352] = rumourSource, -- Aspect of the Mad God, Dementia
+  [225353] = rumourSource, -- Aspect of the Mad God, Mania
+  [225354] = rumourSource, -- Butterfly Flock, Ephemeral
+  [225355] = rumourSource, -- Target Butterfly, Ephemeral Monarch
+  [225356] = rumourSource, -- Target Butterfly, Ephemeral Mara's Blush
+  [225357] = rumourSource, -- Mushroom, Large Baldcap
+  [225358] = rumourSource, -- Mushroom, Medium Baldcap
+  [225359] = rumourSource, -- Mushroom, Giant Clawcap Cluster
+  [225360] = rumourSource, -- Mushroom, Small Baldcap
+  [226769] = rumourSource, -- Ship Figurehead, Yokudan
+  [226772] = rumourSource, -- Nexus Orrery, Replica
+  [226771] = rumourSource, -- Driftwood Sculpture, Large
+  [225364] = rumourSource, -- Beauty Goddess Blanket
+  [225365] = rumourSource, -- Beauty Goddess Shade
+  [225366] = rumourSource, -- Beauty Goddess Cake
+  [225367] = rumourSource, -- Beauty Goddess Cake Slice
+  [225368] = rumourSource, -- Beauty Goddess Lantern
+  [225369] = rumourSource, -- Beauty Goddess Seat Cushion
+  [225370] = rumourSource, -- Beauty Goddess Picnic Basket
+  [225371] = rumourSource, -- Cherry Blossom Petals, Large Blanket
+  [225372] = rumourSource, -- Cherry Blossom Petals, Small Blanket
+  [225373] = rumourSource, -- Alinor Tree, Cherry Blossom
+  [225374] = rumourSource, -- Alinor Tree, Large Cherry Blossom
+  [225375] = rumourSource, -- Alinor Tree, Cherry Blossom Canopy
+  [224864] = rumourSource, -- Witch's Infernal Hat, Decorative
+  [224865] = rumourSource, -- Yokudan Burial Relief, Noble
+  [224866] = rumourSource, -- Breton Monument, Tall Mossy
+  [224867] = rumourSource, -- Orcish Statue, Blacksmith
+  [224868] = rumourSource, -- Dark Elf Statue, Mage
+  [226765] = rumourSource, -- Ship in a Bottle, Yokudan
+  [226918] = rumourSource, -- Target Kargrym, Trial
+  [226761] = rumourSource, -- Golden King of the Abecean Sea
+  [226759] = rumourSource, -- Book, Ship's Log
+  [226758] = rumourSource, -- Bountiful Treasure Chest
+  [226923] = rumourSource, -- Cheese Stack, Large
+  [226924] = rumourSource, -- Cheese Stack, Medium
+  [226925] = rumourSource, -- Cheese Stack, Small
+  [226926] = rumourSource, -- Hanging Cheese, Long
+  [226927] = rumourSource, -- Hanging Cheese, Medium
+  [226928] = rumourSource, -- Hanging Cheese, Short
+  [226929] = rumourSource, -- Hanging Cheese Stack, Long Aged
+  [226930] = rumourSource, -- Hanging Cheese Stack, Short Aged
+  [226931] = rumourSource, -- Hanging Cheese Stack, Long
+  [226932] = rumourSource, -- Hanging Cheese Stack, Short
+  [226933] = rumourSource, -- Cheese Pile, Massive
+  [226754] = rumourSource, -- Cursed Ship's Bell
+  [226753] = rumourSource, -- Aquarium, Conjured Sphere
+  [226936] = rumourSource, -- School of fish Blue
+  [226752] = rumourSource, -- Fossil, Yaghra
+  [226751] = rumourSource, -- Fossil, Slaughterfish
+  [225412] = rumourSource, -- Vines, Rose Ivy Drape
+  [225404] = rumourSource, -- Carnaval Tent, Enclosed
+  [225405] = rumourSource, -- Carnaval Wall, Long Rectangular Cloth
+  [225406] = rumourSource, -- Carnaval Wagon, Covered
+  [225407] = rumourSource, -- Colovian Throne, Noble
+}
+
+-- Season Zero Part 2
 FurC.Rumours[ver.ZERO2] = {
   [224876] = rumourSource, -- Music Box, A Wish for Fish
   [225184] = rumourSource, -- Pipe, Stately
@@ -28,7 +123,6 @@ FurC.Rumours[ver.ZERO] = {
   [223850] = rumourSource, -- Hearts Week Decor, Long Floral Dangle
   [223851] = rumourSource, -- Hearts Week Wreath, Floral
   [223892] = rumourSource, -- Kelp Tree, Giant
-  [223891] = rumourSource, -- Common Cargo, Floating Waterlogged
   [223841] = rumourSource, -- Hearts Week Banner, Standing
   [223842] = rumourSource, -- Hearts Week Banner, Hanging
   [223843] = rumourSource, -- Hearts Week Banner, Small Standing
@@ -36,9 +130,6 @@ FurC.Rumours[ver.ZERO] = {
   [223845] = rumourSource, -- Hearts Week Garland, Curved Ribbon
   [223846] = rumourSource, -- Hearts Week Garland, Curved Long Ribbon
   [223847] = rumourSource, -- Hearts Week Garland, Curved Floral Dangles
-  [223888] = rumourSource, -- Hedge, Camellia Shrub
-  [223889] = rumourSource, -- Redguard Door, Gilded
-  [223890] = rumourSource, -- Redguard Bridge, Covered
   [223893] = rumourSource, -- Plants, Sunset Pitcher Patch
   [223139] = rumourSource, -- Worm Cult Shrine
   [223141] = rumourSource, -- Coldharbour Sconce
@@ -89,18 +180,6 @@ FurC.Rumours[ver.NECROM] = {
 
 -- 20 Deadlands
 FurC.Rumours[ver.DEADL] = {
-  [178502] = rumourSource, -- An Ode to the Disenfranchised
-  [178501] = rumourSource, -- The Nomads of Nirn
-  [178500] = rumourSource, -- Museum Guild Letter
-  [178499] = rumourSource, -- Goldleaf Acquisitions, Manager's Notes
-  [178497] = rumourSource, -- The Sonnet of Aetherius Art
-  [178476] = rumourSource, -- Guild Banner, Nomads of Nirn
-  [178475] = rumourSource, -- Guild Banner, Museum
-  [178474] = rumourSource, -- Guild Banner, Goldleaf Acquisitions
-  [178473] = rumourSource, -- Guild Banner, The Disenfranchised
-  [178471] = rumourSource, -- Guild Banner, Aetherius Art
-  [178472] = rumourSource, -- Guild Banner, Dauntless Bananas "Given to members of the Dauntless Bananas Guild as part of a 2020 contest"
-  [178498] = rumourSource, -- A Tale of the Dauntless Bananas "Given to members of the Dauntless Bananas Guild as part of a 2020 contest"
   [175578] = rumourSource, -- Banner, Meridia
   [126590] = rumourSource, -- Vvardenfell Mushrooms, Lavaburst
   [126589] = rumourSource, -- Vvardenfell Mushrooms, Bloodtooth
@@ -254,18 +333,6 @@ FurC.Rumours[ver.STONET] = {
   [114414] = rumourSource, -- High Elf Medallion, Winged
   [94160] = rumourSource, -- Imperial Lantern, Imperial City
   [94116] = rumourSource, -- Imperial Cauldron, Pitch-filled
-
-  [153554] = rumourSource, -- Imperial Mirror, Standing,       Imperial City Celebration Event
-  [153562] = rumourSource, -- Daedric Brazier, Standing,       Imperial City Celebration Event
-  [153561] = rumourSource, -- Daedric Chandelier, Ritual,      Imperial City Celebration Event
-  [153557] = rumourSource, -- Imperial Footlocker, Scrollwork, Imperial City Celebration Event
-  [153558] = rumourSource, -- Imperial Wardrobe, Scrollwork,   Imperial City Celebration Event
-  [153553] = rumourSource, -- Imperial Dresser, Scrollwork,    Imperial City Celebration Event
-  [153556] = rumourSource, -- Imperial Divider, Folding,       Imperial City Celebration Event
-  [153555] = rumourSource, -- Imperial Nightstand, Scrollwork, Imperial City Celebration Event
-  [153560] = rumourSource, -- Imperial Shrine of the Bay,      Imperial City Celebration Event
-  [153552] = rumourSource, -- Imperial Tapestry, Akatosh,      Imperial City Celebration Event
-  [153559] = rumourSource, -- Imperial Bed, Canopy,            Imperial City Celebration Event
 }
 
 -- 15 Greymoor
@@ -273,19 +340,6 @@ FurC.Rumours[ver.SKYRIM] = {
   [165995] = rumourSource, -- Antique Map of Cyrodiil
   [163722] = rumourSource, -- Antique Map of Tamriel
   [152258] = rumourSource, -- Banner of Boethiah
-}
-
--- 11 Elsweyr
-FurC.Rumours[ver.KITTY] = {
-  [152149] = rumourSource, -- Orcish Brazier, Pillar,     Orsinium Celebration Event 2019.
-  [152148] = rumourSource, -- Orcish Tapestry, Hunt,      Orsinium Celebration Event 2019.
-  [152146] = rumourSource, -- Orcish Chandelier, Spiked,  Orsinium Celebration Event 2019.
-  [152145] = rumourSource, -- Orcish Tapestry, War,       Orsinium Celebration Event 2019.
-  [152144] = rumourSource, -- Orcish Mirror, Peaked,      Orsinium Celebration Event 2019.
-  [152143] = rumourSource, -- Orcish Sconce, Scrolled,    Orsinium Celebration Event 2019.
-  [152142] = rumourSource, -- Orcish Sconce, Bordered,    Orsinium Celebration Event 2019.
-  [152141] = rumourSource, -- Orcish Brazier, Bordered,   Orsinium Celebration Event 2019.
-  [150774] = rumourSource, -- Banner of Vaermina
 }
 
 -- 10 Wrathstone

@@ -119,6 +119,19 @@ FurC.EventItems[ver.WORMS2] = {
   },
 }
 
+-- 35 Seasons of the Worm Cult (U46)
+FurC.EventItems[ver.WORMS] = {
+  [events.WRITHING] = {
+    [220297] = true, -- Worm Cult Lamp, Jaw
+    [220300] = true, -- Worm Cult Sconce, Jaw
+    [220318] = true, -- Worm Cult Papers, Scattered
+    [220320] = true, -- Worm Cult Brew, Bubbling
+    [220323] = true, -- Worm Cult Scroll, Unfinished
+    [220288] = true, -- Worm Cult Rug, Triangular Sigil
+  },
+}
+
+-- 34 Fallen Banners (U45)
 FurC.EventItems[ver.FALLBAN] = {
   [events.CRIME] = {
     [containers.POUCH] = {
@@ -337,6 +350,24 @@ FurC.EventItems[ver.WAKE] = {
   },
 }
 
+-- 16 Stonethorn U27
+FurC.EventItems[ver.STONET] = {
+  [events.IC] = {
+    [npc.EVENT] = {
+      [153554] = {}, -- Imperial Mirror, Standing
+      [153562] = {}, -- Daedric Brazier, Standing
+      [153561] = {}, -- Daedric Chandelier, Ritual
+      [153557] = {}, -- Imperial Footlocker, Scrollwork
+      [153558] = {}, -- Imperial Wardrobe, Scrollwork
+      [153553] = {}, -- Imperial Dresser, Scrollwork
+      [153556] = {}, -- Imperial Divider, Folding
+      [153555] = {}, -- Imperial Nightstand, Scrollwork
+      [153560] = {}, -- Imperial Shrine of the Bay
+      [153552] = {}, -- Imperial Tapestry, Akatosh
+      [153559] = {}, -- Imperial Bed, Canopy
+    },
+  },
+}
 -- 14 Harrowstorm
 FurC.EventItems[ver.HARROW] = {
   [events.ANNIVERSARY] = { -- 2020-04-02 till 2020-04-14; 2021-04-01 till 2021-04-15
@@ -365,6 +396,23 @@ FurC.EventItems[ver.HARROW] = {
         itemPrice = 300,
         achievement = getCollectibleString(356),
       },
+    },
+  },
+}
+
+-- 12 Scalebreaker
+FurC.EventItems[ver.SCALES] = {
+  [events.ORSINIUM] = {
+    [npc.EVENT] = {
+      [152149] = {}, -- Orcish Brazier, Pillar
+      [152148] = {}, -- Orcish Tapestry, Hunt
+      [152146] = {}, -- Orcish Chandelier, Spiked
+      [152145] = {}, -- Orcish Tapestry, War
+      [152144] = {}, -- Orcish Mirror, Peaked
+      [152143] = {}, -- Orcish Sconce, Scrolled
+      [152142] = {}, -- Orcish Sconce, Bordered
+      [152141] = {}, -- Orcish Brazier, Bordered
+      [150774] = {}, -- Banner of Vaermina
     },
   },
 }

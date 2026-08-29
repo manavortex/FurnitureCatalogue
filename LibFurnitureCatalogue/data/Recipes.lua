@@ -5,6 +5,8 @@ FurC.Recipes = FurC.Recipes or {}
 local LFC = LibFurnitureCatalogue
 local ver = LFC.Internal.Constants.Versioning
 
+FurC.Recipes[ver.ZERO2] = {}
+
 -- Season Zero Part 2
 FurC.Recipes[ver.ZERO2] = {
   225103, -- Blueprint: Completed Bounty, Framed Breton Man

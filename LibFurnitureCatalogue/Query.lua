@@ -345,25 +345,33 @@ local function getEventDropSource(recipeKey, recipeArray)
   for version, events in pairs(FurC.EventItems) do
     for eventName, sources in pairs(events) do
       for srcName, items in pairs(sources) do
-        local item = items[recipeKey]
+        -- No container/coffer level: srcName IS the itemId, items IS the leaf value
+        local item = (type(items) == "table" and items[recipeKey]) or (srcName == recipeKey and items) or nil
+        local hasSrcName = type(items) == "table"
 
         if nil ~= item then -- item found
           local itemType = type(item)
           assert(validEventItemTypes[itemType], "getEventDropSource: invalid item type")
 
           if itemType == "boolean" then -- probably a drop
-            return strGeneric(srcEvent, srcName, "src", eventName)
+            return strGeneric(srcEvent, hasSrcName and srcName or nil, "src", eventName)
           end
 
           if itemType == "string" then -- must be additional source
-            local src1 = strGeneric(srcEvent, srcName, "src", eventName)
+            local src1 = strGeneric(srcEvent, hasSrcName and srcName or nil, "src", eventName)
             local src2 = strSrc("src", item)
             return strMultiple(src1, src2)
           end
 
           if itemType == "table" then -- Schema: must have price, may have currency + achievement
-            local currency = item.currency or (srcName == npc.EVENT and CURT_TRADE_BARS or CURT_MONEY)
-            return strFurnisher(srcName, eventName, item.itemPrice, currency, item.achievement)
+            local currency = item.currency or (hasSrcName and srcName == npc.EVENT and CURT_TRADE_BARS or CURT_MONEY)
+            return strFurnisher(
+              hasSrcName and srcName or eventName,
+              eventName,
+              item.itemPrice,
+              currency,
+              item.achievement
+            )
           end
         end
       end

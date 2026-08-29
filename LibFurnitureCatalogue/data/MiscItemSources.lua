@@ -54,11 +54,6 @@ local daily_ashlander = strGeneric(srcDaily, getItemLink(126030), "loc", loc.VVA
 -- reward box: 145568 Tribal Treasure Crate
 local daily_murk = strGeneric(srcDaily, getItemLink(145568), "loc", loc.MURKMIRE)
 
--- Events
-local ev_blackwood = strEvent(events.BLACKWOOD)
-local ev_hollowjack = strEvent(events.HOLLOWJACK)
-local ev_elsweyr = strEvent(events.ELSWEYR)
-
 local painting_summerset = strGeneric(srcSafe, rarityExtremely, "loc", loc.SUMMERSET)
 local painting_vvardenfell = strGeneric(
   srcDrop,
@@ -559,7 +554,22 @@ FurC.MiscItemSources[ver.BLACKW] = {}
 FurC.MiscItemSources[ver.FLAMES] = {}
 
 -- 17 Markarth
-FurC.MiscItemSources[ver.MARKAT] = {}
+FurC.MiscItemSources[ver.MARKAT] = {
+  [src.DROP] = {
+    [178502] = strEvent("Given to members of the Disenfranchised guild"), -- An Ode to the Disenfranchised
+    [178501] = strEvent("Given to members of the Nomads of Nirn guild"), -- The Nomads of Nirn
+    [178500] = strEvent("Given to members of the Museum guild"), -- Museum Guild Letter
+    [178499] = strEvent("Given to members of the Goldleaf Acquisitions guild"), -- Goldleaf Acquisitions, Manager's Notes
+    [178497] = strEvent("Given to members of the Aetherius Art guild"), -- The Sonnet of Aetherius Art
+    [178476] = strEvent("Given to members of the Nomads of Nirn guild"), -- Guild Banner, Nomads of Nirn
+    [178475] = strEvent("Given to members of the Museum guild"), -- Guild Banner, Museum
+    [178474] = strEvent("Given to members of the Goldleaf Acquisitions guild"), -- Guild Banner, Goldleaf Acquisitions
+    [178473] = strEvent("Given to members of the Disenfranchised guild"), -- Guild Banner, The Disenfranchised
+    [178471] = strEvent("Given to members of the Aetherius Art guild"), -- Guild Banner, Aetherius Art
+    [178472] = strEvent("Given to members of the Dauntless Bananas guild"), -- Guild Banner, Dauntless Bananas
+    [178498] = strEvent("Given to members of the Dauntless Bananas guild"), -- A Tale of the Dauntless Bananas
+  },
+}
 
 -- 16 Stonethorn
 FurC.MiscItemSources[ver.STONET] = {}
@@ -651,6 +661,7 @@ FurC.MiscItemSources[ver.WEREWOLF] = {
 }
 
 -- 8 Murkmire
+FurC.MiscItemSources[ver.SLAVES] = {}
 
 -- 7 Summerset Isles
 FurC.MiscItemSources[ver.ALTMER] = {
@@ -712,6 +723,18 @@ FurC.MiscItemSources[ver.REACH] = {
     [130281] = strGeneric(srcHarvest), -- Coldharbour Glowstalk, Towering
     [130282] = strGeneric(srcHarvest), -- Coldharbour Glowstalk, Strong
     [130067] = strGeneric(srcDrop, strSrc("other", npc.CLASS_DAEDRA, GetString(SI_FURC_SRC_DOLMEN))), -- Daedric Chain Segment
+
+    [130302] = GetString(SI_FURC_LOOT_HARVEST_WOOD), -- Shrub, Burnt Brush
+    [130301] = GetString(SI_FURC_LOOT_HARVEST_WOOD), -- Saplings, Burnt Sparse
+    [130300] = GetString(SI_FURC_LOOT_HARVEST_WOOD), -- Saplings, Burnt Tall
+    [130299] = GetString(SI_FURC_LOOT_HARVEST_WOOD), -- Saplings, Burnt Cluster
+    [130298] = GetString(SI_FURC_LOOT_HARVEST_WOOD), -- Branch, Curved Laurel
+    [130297] = GetString(SI_FURC_LOOT_HARVEST_WOOD), -- Branch, Forked Laurel
+    [130296] = GetString(SI_FURC_LOOT_HARVEST_WOOD), -- Branch, Sturdy Laurel
+    [130295] = GetString(SI_FURC_LOOT_HARVEST_WOOD), -- Branch, Sturdy Burnt
+    [130294] = GetString(SI_FURC_LOOT_HARVEST_WOOD), -- Branch, Forked Burnt
+    [130293] = GetString(SI_FURC_LOOT_HARVEST_WOOD), -- Branch, Curved Burnt
+    [130280] = GetString(SI_FURC_LOOT_HARVEST_WOOD), -- Sapling, Petrified Ashen
   },
 }
 
@@ -782,6 +805,8 @@ FurC.MiscItemSources[ver.MORROWIND] = {
     [125596] = plants_vvardenfell, -- Mushroom, Poison Pax Stool
     [125600] = plants_vvardenfell, -- Mushroom, Spongecap Patch
     [125606] = plants_vvardenfell, -- Mushroom, Young Milkcap
+    [125583] = plants_vvardenfell, -- Mushroom, Cave Bracket
+
     [125608] = plants_vvardenfell, -- Mushrooms, Buttercake Cluster
     [125609] = plants_vvardenfell, -- Mushrooms, Buttercake Stack
     [125613] = plants_vvardenfell, -- Mushrooms, Lavaburst Sprouts

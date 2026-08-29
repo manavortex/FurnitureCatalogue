@@ -299,8 +299,16 @@ local function scanFromFiles(blocking)
     for versionNumber, versionData in pairs(FurC.EventItems) do
       for eventName, eventData in pairs(versionData) do
         for eventItemSource, eventItemData in pairs(eventData) do
-          for itemId in pairs(eventItemData) do
-            addDatabaseEntry(itemId, { origin = src.FESTIVAL_DROP, version = versionNumber, craftable = false })
+          if type(eventItemData) == "table" then
+            for itemId in pairs(eventItemData) do
+              addDatabaseEntry(itemId, { origin = src.FESTIVAL_DROP, version = versionNumber, craftable = false })
+            end
+          else
+            -- No container/coffer level: eventItemSource IS the itemId (e.g. environment drops)
+            addDatabaseEntry(
+              eventItemSource,
+              { origin = src.FESTIVAL_DROP, version = versionNumber, craftable = false }
+            )
           end
         end
       end

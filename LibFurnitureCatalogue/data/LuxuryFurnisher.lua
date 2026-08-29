@@ -23,6 +23,22 @@ FurC.LuxuryFurnisher[ver.THIEVES] = {
     itemPrice = 24000,
     itemDate = "2026-07-31",
   },
+  [223888] = { -- Hedge, Camellia Shrub
+    itemPrice = 2000,
+    itemDate = "2026-08-07",
+  },
+  [223889] = { -- Redguard Door, Gilded
+    itemPrice = 5000,
+    itemDate = "2026-08-14",
+  },
+  [223890] = { -- Redguard Bridge, Covered
+    itemPrice = 4900,
+    itemDate = "2026-08-21",
+  },
+  [223891] = { -- Common Cargo, Floating Waterlogged
+    itemPrice = 10000,
+    itemDate = "2026-08-28",
+  },
 }
 
 -- Season Zero Pt. 2
@@ -167,8 +183,16 @@ FurC.LuxuryFurnisher[ver.SHADOWS] = {
     itemPrice = 4500,
     itemDate = "2026-02-06",
   },
+  [210887] = { -- Alinor Potted Plant, Pink Wisteria
+    itemPrice = 7500,
+    itemDate = "2026-02-06",
+  },
   [218018] = { -- Alinor Harp, Display
     itemPrice = 15000,
+    itemDate = "2026-02-13",
+  },
+  [210888] = { -- Hedge, Camellia Wall
+    itemPrice = 10000,
     itemDate = "2026-02-13",
   },
   [218021] = { -- Amethyst Crystals, Bed
@@ -237,7 +261,7 @@ FurC.LuxuryFurnisher[ver.FALLBAN] = {
   },
   [212573] = { -- Flowers, Sturdy Blue Wisteria
     itemPrice = 2500,
-    itemDate = "2025-07-11",
+    itemDate = "2026-08-07",
   },
   [212577] = { -- Alinor Door, Half
     itemPrice = 450,
@@ -245,15 +269,15 @@ FurC.LuxuryFurnisher[ver.FALLBAN] = {
   },
   [212584] = { -- Redguard Door, Tall
     itemPrice = 10000,
-    itemDate = "2025-07-18",
+    itemDate = "2026-08-14",
   },
   [212585] = { -- Redguard Fence, Short Brass Capped
     itemPrice = 2500,
-    itemDate = "2025-07-25",
+    itemDate = "2026-08-21",
   },
   [212582] = { -- Dock Shed, Wooden
     itemPrice = 10000,
-    itemDate = "2025-08-01",
+    itemDate = "2026-08-28",
   },
   [212583] = { -- Dock Bollard, Metal
     itemPrice = 450,
@@ -330,10 +354,6 @@ FurC.LuxuryFurnisher[ver.BASE44] = {
 }
 -- 32 Home Tours
 FurC.LuxuryFurnisher[ver.BASE43] = {
-  [210887] = { -- Alinor Potted Plant, Pink Wisteria
-    itemPrice = 7500,
-    itemDate = "2026-02-06",
-  },
   [210886] = { -- Orcish Gateway, City
     itemPrice = 4500,
     itemDate = "2026-04-10",
@@ -485,19 +505,19 @@ FurC.LuxuryFurnisher[ver.SCIONS] = {
   },
   [203588] = { -- Alinor Boat, Unfinished
     itemPrice = 4500,
-    itemDate = "2025-08-01",
+    itemDate = "2026-08-28",
   },
   [203587] = { -- Redguard Colonnade, Mosaic
     itemPrice = 80000,
-    itemDate = "2025-07-25",
+    itemDate = "2026-08-21",
   },
   [203586] = { -- Redguard Archway, Brass
     itemPrice = 3000,
-    itemDate = "2025-07-18",
+    itemDate = "2026-08-14",
   },
   [203585] = { -- Alinor Maple, Large Red
     itemPrice = 10000,
-    itemDate = "2025-07-11",
+    itemDate = "2026-08-07",
   },
   [203584] = { -- Altmer Stable, Summerset
     itemPrice = 60000,
@@ -725,11 +745,11 @@ FurC.LuxuryFurnisher[ver.NECROM] = {
 FurC.LuxuryFurnisher[ver.SCRIBE] = {
   [193806] = { -- Redguard Window, Iron Lattice
     itemPrice = 20000,
-    itemDate = "2025-07-25",
+    itemDate = "2026-08-21",
   },
   [193805] = { -- Yokudan Sarcophagus Base, Gilded
     itemPrice = 25000,
-    itemDate = "2025-07-18",
+    itemDate = "2026-08-14",
   },
   [193791] = { -- Palm, Blooming Tropical
     itemPrice = 4500,
@@ -741,7 +761,7 @@ FurC.LuxuryFurnisher[ver.SCRIBE] = {
   },
   [193789] = { -- Gonfalon Bay Dockside Bell
     itemPrice = 18000,
-    itemDate = "2025-08-01",
+    itemDate = "2026-08-28",
   },
   [193792] = { -- Plant, Galen Palm Cluster
     itemPrice = 2000,
@@ -749,7 +769,7 @@ FurC.LuxuryFurnisher[ver.SCRIBE] = {
   },
   [193804] = { -- High Elf Wine Pot
     itemPrice = 18000,
-    itemDate = "2025-07-11",
+    itemDate = "2026-08-07",
   },
   [193803] = { -- Tree, Large Pink Maple
     itemPrice = 13000,
@@ -977,19 +997,19 @@ FurC.LuxuryFurnisher[ver.TIDES] = {
   },
   [184197] = { -- Canopy, Netted
     itemPrice = 4000,
-    itemDate = "2025-08-01",
+    itemDate = "2026-08-28",
   },
   [184196] = { -- Redguard Canopy, Striped
     itemPrice = 5000,
-    itemDate = "2025-07-25",
+    itemDate = "2026-08-21",
   },
   [184195] = { -- Yokudan Sarcophagus Lid, Gilded
     itemPrice = 35000,
-    itemDate = "2025-07-18",
+    itemDate = "2026-08-14",
   },
   [184194] = { -- Alinor Maple, Red
     itemPrice = 4000,
-    itemDate = "2025-07-11",
+    itemDate = "2026-08-07",
   },
   [184193] = { -- Alinor Trellis, Purple Wisteria
     itemPrice = 15000,
@@ -1213,15 +1233,15 @@ FurC.LuxuryFurnisher[ver.FLAMES] = {
   },
   [171822] = { -- Harbor Winch, Treadwheel
     itemPrice = 7000,
-    itemDate = "2025-08-01",
+    itemDate = "2026-08-28",
   },
   [171821] = { -- Redguard Amphora, Golden
     itemPrice = 15000,
-    itemDate = "2025-07-25",
+    itemDate = "2026-08-21",
   },
   [171820] = { -- Redguard Urn, Wrapped Golden
     itemPrice = 12000,
-    itemDate = "2025-07-18",
+    itemDate = "2026-08-14",
   },
   [171831] = { -- Mad Architect's Medallion, Diamond
     itemPrice = 2500,
@@ -1233,7 +1253,7 @@ FurC.LuxuryFurnisher[ver.FLAMES] = {
 FurC.LuxuryFurnisher[ver.MARKAT] = {
   [171424] = { -- Bush, Rhododendron
     itemPrice = 2000,
-    itemDate = "2025-07-11",
+    itemDate = "2026-08-07",
   },
   [171423] = { -- Alinor Trellis, Blue Wisteria
     itemPrice = 15000,
@@ -1469,15 +1489,15 @@ FurC.LuxuryFurnisher[ver.DRAGON2] = {
   },
   [156650] = { -- Platform, Floating Dock
     itemPrice = 3000,
-    itemDate = "2025-08-01",
+    itemDate = "2026-08-28",
   },
   [156649] = { -- Redguard Tent, Rounded Blue
     itemPrice = 100000,
-    itemDate = "2025-07-25",
+    itemDate = "2026-08-21",
   },
   [156648] = { -- Ra Gada Funerary Statue, Miniature Ibis
     itemPrice = 15000,
-    itemDate = "2025-07-18",
+    itemDate = "2026-08-14",
   },
   [156662] = { -- Riekling Banner, Wolf Pelt
     itemPrice = 4000,
@@ -1609,19 +1629,19 @@ FurC.LuxuryFurnisher[ver.KITTY] = {
   },
   [151866] = { -- Alinor Maple, Sinuous
     itemPrice = 15000,
-    itemDate = "2025-07-11",
+    itemDate = "2026-08-07",
   },
   [151865] = { -- Alinor Maple, Purple
     itemPrice = 4000,
-    itemDate = "2025-07-11",
+    itemDate = "2026-08-07",
   },
   [151864] = { -- Alinor Maple, Diminutive
     itemPrice = 4000,
-    itemDate = "2025-07-11",
+    itemDate = "2026-08-07",
   },
   [151863] = { -- Alinor Windmill, Decorative
     itemPrice = 250000,
-    itemDate = "2025-07-11",
+    itemDate = "2026-08-07",
   },
   [151862] = { -- Tree, Blue Wisteria
     itemPrice = 7500,
@@ -1809,7 +1829,7 @@ FurC.LuxuryFurnisher[ver.SLAVES] = {
   },
   [145470] = { -- Redguard Vase, Golden
     itemPrice = 5000,
-    itemDate = "2025-07-18",
+    itemDate = "2026-08-14",
   },
   [145469] = { -- Redguard Gazebo, Palatial Domed
     itemPrice = 75000,
@@ -1861,11 +1881,11 @@ FurC.LuxuryFurnisher[ver.SLAVES] = {
   },
   [145472] = { -- Antler Coral, Crimson
     itemPrice = 50000,
-    itemDate = "2025-08-01",
+    itemDate = "2026-08-28",
   },
   [145471] = { -- Redguard Raincatcher, Golden
     itemPrice = 35000,
-    itemDate = "2025-07-25",
+    itemDate = "2026-08-21",
   },
 }
 
@@ -1992,7 +2012,7 @@ FurC.LuxuryFurnisher[ver.DRAGONS] = {
   },
   [134824] = { -- Redguard Tent, Rounded Silk
     itemPrice = 100000,
-    itemDate = "2025-07-18",
+    itemDate = "2026-08-14",
   },
   [134833] = { -- Gibbet, Hanging Hooked
     itemPrice = 75000,
@@ -2020,15 +2040,15 @@ FurC.LuxuryFurnisher[ver.DRAGONS] = {
   },
   [134827] = { -- Mooring Line, Coiled
     itemPrice = 7500,
-    itemDate = "2025-08-01",
+    itemDate = "2026-08-28",
   },
   [134826] = { -- Mooring Line, Tidy
     itemPrice = 5000,
-    itemDate = "2025-08-01",
+    itemDate = "2026-08-28",
   },
   [134825] = { -- Redguard Tent, Squared Silk
     itemPrice = 100000,
-    itemDate = "2025-07-25",
+    itemDate = "2026-08-21",
   },
 }
 
@@ -2504,15 +2524,15 @@ FurC.LuxuryFurnisher[ver.MORROWIND] = {
 FurC.LuxuryFurnisher[ver.HOMESTEAD] = {
   [121267] = { -- Hew’s Bane Merchant’s Basket
     itemPrice = 2500,
-    itemDate = "2025-07-18",
+    itemDate = "2026-08-14",
   },
   [121266] = { -- Hew’s Bane Lantern
     itemPrice = 5000,
-    itemDate = "2025-07-18",
+    itemDate = "2026-08-14",
   },
   [120803] = { -- Hew’s Bane Bed, Royal
     itemPrice = 20000,
-    itemDate = "2025-07-18",
+    itemDate = "2026-08-14",
   },
   [118298] = { -- Wolf Head, Wall Mount
     itemPrice = 20000,
@@ -2584,15 +2604,15 @@ FurC.LuxuryFurnisher[ver.HOMESTEAD] = {
   },
   [120807] = { -- Hew's Bane Well
     itemPrice = 10000,
-    itemDate = "2025-07-25",
+    itemDate = "2026-08-21",
   },
-  [120806] = { -- Hew'S Bane Candlestick
+  [120806] = { -- Hew's Bane Candlestick
     itemPrice = 2500,
-    itemDate = "2025-07-25",
+    itemDate = "2026-08-21",
   },
   [120805] = { -- Hew's Bane Rug
     itemPrice = 5000,
-    itemDate = "2025-07-25",
+    itemDate = "2026-08-21",
   },
   [120828] = { -- Torture Wheel
     itemPrice = 100000,
@@ -2648,7 +2668,7 @@ FurC.LuxuryFurnisher[ver.HOMESTEAD] = {
   },
   [120846] = { -- Dock Rope Wheel
     itemPrice = 3000,
-    itemDate = "2025-08-01",
+    itemDate = "2026-08-28",
   },
   [120839] = { -- Brotherhood Ledger Stand
     itemPrice = 4000,
@@ -2692,7 +2712,7 @@ FurC.LuxuryFurnisher[ver.HOMESTEAD] = {
   },
   [121268] = { -- Fisher's Catch of the Day Rack
     itemPrice = 5000,
-    itemDate = "2025-08-01",
+    itemDate = "2026-08-28",
   },
   [120889] = { -- Glow Bush, Purple
     itemPrice = 20000,
@@ -2724,7 +2744,7 @@ FurC.LuxuryFurnisher[ver.HOMESTEAD] = {
   },
   [120850] = { -- Harbor Floats
     itemPrice = 5000,
-    itemDate = "2025-08-01",
+    itemDate = "2026-08-28",
   },
   [120849] = { -- Anchor
     itemPrice = 10000,
