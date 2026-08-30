@@ -1,3 +1,11 @@
+7.0.0 (2026-08-30)
+- DB is now in a bundled lib (will be moved into its own AddOn soon)
+- Reverse lookup: search by NPC, zone and more
+- Multi source support: items show more ways how to get them and can be filtered by it
+- New Fishing, Justice and Antiquity filters
+- UI fixes and improved tooltips for recipes and containers
+- Lots of source fixes and cleanup, weekly lux furnishings
+
 6.3.0 (2026-07-05)
 - LibCharacterKnowledge integration
 - updated luxury, crown, and other sourcing
