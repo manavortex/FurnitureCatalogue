@@ -96,12 +96,18 @@ function Test.dbSize()
   return count(FurC.DB)
 end
 
---- Key list of a table, sorted, for snapshot comparisons
-function Test.sortedKeys(tbl)
-  local keys = {}
+function Test.keySet(tbl)
+  local set = {}
   for key in pairs(tbl) do
-    keys[#keys + 1] = key
+    set[key] = true
   end
-  table.sort(keys)
-  return keys
+  return set
+end
+
+function Test.nameSet(names)
+  local set = {}
+  for i = 1, #names do
+    set[names[i]] = true
+  end
+  return set
 end

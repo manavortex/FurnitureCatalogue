@@ -26,30 +26,36 @@ Taneth("FurC:Regression", function()
 
     -- Adding or dropping an endpoint could break third party addons, so we have to check only those endpoints are there
     it("publishes exactly the v1 endpoint and event set", function()
-      assert.same({
-        "Events",
-        "GetDBRevision",
-        "GetDataVersions",
-        "GetEntry",
-        "GetEntryCount",
-        "GetIngredients",
-        "GetItemDescription",
-        "GetItemId",
-        "GetItemIds",
-        "GetItemLink",
-        "GetMiscItemPrice",
-        "GetSourceDetails",
-        "GetSourceTypes",
-        "GetState",
-        "GetVersion",
-        "Has",
-        "IsReady",
-        "OnReady",
-        "RegisterCallback",
-        "State",
-        "UnregisterCallback",
-      }, Test.sortedKeys(api))
-      assert.same({ "CHANGE", "READY", "SCAN_COMPLETE", "SCAN_FAILED", "SCAN_STARTED" }, Test.sortedKeys(api.Events))
+      assert.same(
+        Test.nameSet({
+          "Events",
+          "GetDBRevision",
+          "GetDataVersions",
+          "GetEntry",
+          "GetEntryCount",
+          "GetIngredients",
+          "GetItemDescription",
+          "GetItemId",
+          "GetItemIds",
+          "GetItemLink",
+          "GetMiscItemPrice",
+          "GetSourceDetails",
+          "GetSourceTypes",
+          "GetState",
+          "GetVersion",
+          "Has",
+          "IsReady",
+          "OnReady",
+          "RegisterCallback",
+          "State",
+          "UnregisterCallback",
+        }),
+        Test.keySet(api)
+      )
+      assert.same(
+        Test.nameSet({ "CHANGE", "READY", "SCAN_COMPLETE", "SCAN_FAILED", "SCAN_STARTED" }),
+        Test.keySet(api.Events)
+      )
     end)
 
     it("OnReady calls subscribers immediately", function()
