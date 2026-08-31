@@ -549,7 +549,7 @@ function FurC.SetDropdownChoice(dropdownName, textValue, dropdownIndex)
 
   if
     dropdownName == "Source"
-    and (dropdownIndex == src.CRAFTING or dropdownIndex == src.CRAFTING_KNOWN or dropdownIndex == src.CRAFTING_UNKNOWN)
+    and (FurC.GetSourceFamilyRoot(dropdownIndex) == src.CRAFTING)
   then
     FurC.DropdownChoices["Character"] = FurC.GetDefaultDropdownChoice("Character")
     FurC_DropdownCharacter:GetNamedChild("SelectedItemText"):SetText(FurC.GetDropdownChoiceTextual("Character"))
@@ -568,7 +568,7 @@ function FurC.ApplyDefaultCharacter()
     FurC.RefreshCharacterChoices() -- ensure the list reflects current LCK state
   end
   local source = FurC.GetDropdownChoice("Source")
-  if source ~= src.CRAFTING and source ~= src.CRAFTING_KNOWN and source ~= src.CRAFTING_UNKNOWN then
+  if FurC.GetSourceFamilyRoot(source) ~= src.CRAFTING then
     return
   end
   if FurC.GetDropdownChoice("Character") ~= 1 then
