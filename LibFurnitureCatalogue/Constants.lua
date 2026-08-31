@@ -43,9 +43,9 @@ this.ItemSources = {
   CRAFTING = getNextIdFor("ITEM_SOURCES"), -- 3
   CRAFTING_KNOWN = getNextIdFor("ITEM_SOURCES"), -- 4
   CRAFTING_UNKNOWN = getNextIdFor("ITEM_SOURCES"), -- 5
-  VENDOR = getNextIdFor("ITEM_SOURCES"), -- 6
-  PVP = getNextIdFor("ITEM_SOURCES"), -- 7
-  WRIT_VENDOR = getNextIdFor("ITEM_SOURCES"), -- 8
+  WRIT_VENDOR = getNextIdFor("ITEM_SOURCES"), -- 6
+  VENDOR = getNextIdFor("ITEM_SOURCES"), -- 7
+  PVP = getNextIdFor("ITEM_SOURCES"), -- 8
   CROWN = getNextIdFor("ITEM_SOURCES"), -- 9
   RUMOUR = getNextIdFor("ITEM_SOURCES"), -- 10
   LUXURY = getNextIdFor("ITEM_SOURCES"), -- 11
@@ -141,8 +141,7 @@ this.Versioning = {
   SHADOWS = getNextIdFor("VERSIONING"), -- 36 Feast of Shadows (U47)
   WORMS2 = getNextIdFor("VERSIONING"), -- 37 Seasons of the Worm Cult Part 2 (U48)
   ZERO = getNextIdFor("VERSIONING"), -- 38 Season Zero (U49)
-  ZERO2 = getNextIdFor("VERSIONING"), -- 39 Season Zero Part 2 (U50)
-  THIEVES = getNextIdFor("VERSIONING"), -- 40 Season One (U50)
+  THIEVES = getNextIdFor("VERSIONING"), -- 39 Season One (U50)
 }
 
 this.Versioning.LATEST = this.Versioning.THIEVES
