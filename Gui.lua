@@ -573,18 +573,21 @@ local function createGui()
     end
 
     comboBox:ClearItems()
-    for key, val in pairs(validChoices) do
-      local entry = comboBox:CreateItemEntry(val, OnItemSelect)
-      local tooltipText = choicesTooltips and choicesTooltips[key]
-      if tooltipText then
-        comboBox:SetItemOnEnter(entry, function(entryControl)
-          showEntryTooltip(entryControl, tooltipText)
-        end)
-        comboBox:SetItemOnExit(entry, HideTooltip)
-      end
-      comboBox:AddItem(entry)
-      if val == FurC.GetDropdownChoiceTextual(dropdownName) then
-        comboBox:SetSelectedItem(val)
+    local craftingChildren = { [src.CRAFTING_KNOWN] = true, [src.CRAFTING_UNKNOWN] = true }
+	for key, val in pairs(validChoices) do
+	  if not (dropdownName == "Source" and craftingChildren[key]) then
+        local entry = comboBox:CreateItemEntry(val, OnItemSelect)
+        local tooltipText = choicesTooltips and choicesTooltips[key]
+        if tooltipText then
+          comboBox:SetItemOnEnter(entry, function(entryControl)
+            showEntryTooltip(entryControl, tooltipText)
+          end)
+          comboBox:SetItemOnExit(entry, HideTooltip)
+        end
+        comboBox:AddItem(entry)
+        if val == FurC.GetDropdownChoiceTextual(dropdownName) then
+          comboBox:SetSelectedItem(val)
+        end
       end
     end
 
@@ -609,7 +612,8 @@ local function createGui()
   createQualityFilters()
   createCraftingTypeFilters()
   createCategoryFilters()
-  createInventoryDropdown("Source")
+  FurC.InitSourceMenu(FurC_DropdownSource)
+  FurC.UpdateDropdownChoice("Source")
   createInventoryDropdown("Version")
   createInventoryDropdown("Character")
   FurC.RefreshCharacterDropdown = function()
