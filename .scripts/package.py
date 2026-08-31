@@ -54,6 +54,12 @@ def package_addon(name: str, exclude_filename: str):
   # parse all files mentioned in detected AddOn manifests
   for manifest in found_manifests:
     manifest_data = FU.get_manifest_data(manifest)
+    # Only package what the game can load: needs Title and APIVersion.
+    # Skips test manifests like FurnitureCatalogue_DevUtility/test/headless.txt, which is a fake header for Taneth
+    if manifest_data[FU.PROP_MF_TYPE] == FU.TYPE_MF_ESO and not (
+        manifest_data[FU.PROP_MF_TITLE] and manifest_data.get(FU.PROP_MF_APIVERSION)):
+      print(f"not an AddOn manifest, skipped: {manifest}")
+      continue
     if not addon_version and manifest_data[FU.PROP_MF_TITLE] == addon_name:
       addon_version = manifest_data[FU.PROP_MF_VERSION]
     files_to_copy.extend(manifest_data[FU.PROP_MF_FILES])
