@@ -90,12 +90,12 @@ local function getSourceIndicesKeys()
   sourceIndicesKeys[src.CRAFTING] = "craft_all"
   sourceIndicesKeys[src.CRAFTING_KNOWN] = "craft_known"
   sourceIndicesKeys[src.CRAFTING_UNKNOWN] = "craft_unknown"
+  sourceIndicesKeys[src.WRIT_VENDOR] = "writ_vendor"
   sourceIndicesKeys[src.VENDOR] = "purch_gold"
   sourceIndicesKeys[src.PVP] = "purch_ap"
   sourceIndicesKeys[src.BAZAAR] = "purch_tbars"
   sourceIndicesKeys[src.TELVAR] = "purch_telvar"
   -- sourceIndicesKeys[src.TOMES] = "purch_tomepoints"
-  sourceIndicesKeys[src.WRIT_VENDOR] = "writ_vendor"
   sourceIndicesKeys[src.CROWN] = "crownstore"
   sourceIndicesKeys[src.ANTIQUITY] = "antiquity"
   sourceIndicesKeys[src.RUMOUR] = "rumour"
@@ -119,12 +119,12 @@ local function getChoicesSource()
   choicesSource[src.CRAFTING] = GetString(SI_FURC_FILTER_SRC_CRAFTING)
   choicesSource[src.CRAFTING_KNOWN] = GetString(SI_FURC_FILTER_SRC_CRAFTING_KNOWN)
   choicesSource[src.CRAFTING_UNKNOWN] = GetString(SI_FURC_FILTER_SRC_CRAFTING_UNKNOWN)
+  choicesSource[src.WRIT_VENDOR] = GetString(SI_FURC_FILTER_SRC_SOLD_WRIT)
   choicesSource[src.VENDOR] = GetString(SI_FURC_FILTER_SRC_SOLD_GOLD)
   choicesSource[src.PVP] = GetString(SI_FURC_FILTER_SRC_SOLD_AP)
   choicesSource[src.TELVAR] = GetString(SI_FURC_FILTER_SRC_SOLD_TELVAR)
   choicesSource[src.BAZAAR] = GetString(SI_FURC_FILTER_SRC_SOLD_TBARS)
-  -- choicesSource[src.TOMES] = GetString(SI_FURC_FILTER_SRC_SOLD_TOMEPOINTS)
-  choicesSource[src.WRIT_VENDOR] = GetString(SI_FURC_FILTER_SRC_SOLD_WRIT)
+  -- choicesSource[src.TOMES] = GetString(SI_FURC_FILTER_SRC_SOLD_TOMEPOINTS) 
   choicesSource[src.CROWN] = GetString(SI_FURC_FILTER_SRC_CROWN)
   choicesSource[src.ANTIQUITY] = GetString(SI_FURC_FILTER_SRC_ANTIQUITY)
   choicesSource[src.RUMOUR] = GetString(SI_FURC_FILTER_SRC_RUMOUR)
@@ -148,14 +148,14 @@ local function getTooltipsSource()
   tooltipsSource[src.CRAFTING] = GetString(SI_FURC_FILTER_SRC_CRAFTING_TT)
   tooltipsSource[src.CRAFTING_KNOWN] = GetString(SI_FURC_FILTER_SRC_CRAFTING_KNOWN_TT)
   tooltipsSource[src.CRAFTING_UNKNOWN] = GetString(SI_FURC_FILTER_SRC_CRAFTING_UNKNOWN_TT)
+  tooltipsSource[src.WRIT_VENDOR] = GetString(SI_FURC_FILTER_SRC_SOLD_WRIT_TT)
   tooltipsSource[src.VENDOR] = GetString(SI_FURC_FILTER_SRC_SOLD_GOLD_TT)
   tooltipsSource[src.PVP] = GetString(SI_FURC_FILTER_SRC_SOLD_AP_TT)
   tooltipsSource[src.TELVAR] = GetString(SI_FURC_FILTER_SRC_SOLD_TELVAR_TT)
   tooltipsSource[src.BAZAAR] = GetString(SI_FURC_FILTER_SRC_SOLD_TBARS_TT)
   -- tooltipsSource[src.TOMES] = GetString(SI_FURC_FILTER_SRC_SOLD_TOMEPOINTS_TT)
   tooltipsSource[src.CROWN] = GetString(SI_FURC_FILTER_SRC_CROWN_TT)
-  tooltipsSource[src.ANTIQUITY] = GetString(SI_FURC_FILTER_SRC_ANTIQUITY_TT)
-  tooltipsSource[src.WRIT_VENDOR] = GetString(SI_FURC_FILTER_SRC_SOLD_WRIT_TT)
+  tooltipsSource[src.ANTIQUITY] = GetString(SI_FURC_FILTER_SRC_ANTIQUITY_TT) 
   tooltipsSource[src.RUMOUR] = GetString(SI_FURC_FILTER_SRC_RUMOUR_TT)
   tooltipsSource[src.LUXURY] = GetString(SI_FURC_FILTER_SRC_LUX_TT)
   tooltipsSource[src.OTHER] = GetString(SI_FURC_FILTER_SRC_OTHER_TT)
@@ -177,11 +177,11 @@ local sourceChoiceValues = {
   src.CRAFTING,
   src.CRAFTING_KNOWN,
   src.CRAFTING_UNKNOWN,
+  src.WRIT_VENDOR,
   src.VENDOR,
   src.PVP,
   src.TELVAR,
   src.BAZAAR,
-  src.WRIT_VENDOR,
   src.CROWN,
   src.ANTIQUITY,
   src.RUMOUR,
@@ -252,7 +252,6 @@ this.DropdownData = {
     [ver.SHADOWS] = GetString(SI_FURC_FILTER_VERSION_SHADOWS),
     [ver.WORMS2] = GetString(SI_FURC_FILTER_VERSION_WORMS2),
     [ver.ZERO] = GetString(SI_FURC_FILTER_VERSION_ZERO),
-    [ver.ZERO2] = GetString(SI_FURC_FILTER_VERSION_ZERO2),
     [ver.THIEVES] = GetString(SI_FURC_FILTER_VERSION_THIEVES),
   },
 
@@ -295,7 +294,6 @@ this.DropdownData = {
     [ver.SHADOWS] = GetString(SI_FURC_FILTER_VERSION_SHADOWS_TT),
     [ver.WORMS2] = GetString(SI_FURC_FILTER_VERSION_WORMS2_TT),
     [ver.ZERO] = GetString(SI_FURC_FILTER_VERSION_ZERO_TT),
-    [ver.ZERO2] = GetString(SI_FURC_FILTER_VERSION_ZERO2_TT),
     [ver.THIEVES] = GetString(SI_FURC_FILTER_VERSION_THIEVES_TT),
   },
 
