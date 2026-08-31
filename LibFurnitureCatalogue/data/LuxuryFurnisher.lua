@@ -7,6 +7,22 @@ local ver = LFC.Internal.Constants.Versioning
 
 -- Season One
 FurC.LuxuryFurnisher[ver.THIEVES] = {
+  [223880] = { -- Vampiric Scales, Laboratory
+    itemPrice = 6000,
+    itemDate = "2026-06-12",
+  },
+  [223881] = { -- Argonian Tile, Trap Trigger Display
+    itemPrice = 4000,
+    itemDate = "2026-06-19",
+  },
+  [223882] = { -- Nord Tile, Trap Trigger Display
+    itemPrice = 4000,
+    itemDate = "2026-06-26",
+  },
+  [223883] = { -- Goblin Bedding, Leather
+    itemPrice = 3000,
+    itemDate = "2026-07-03",
+  },
   [223884] = { -- Rock Altar, Spiked
     itemPrice = 4000,
     itemDate = "2026-07-10",
@@ -38,26 +54,6 @@ FurC.LuxuryFurnisher[ver.THIEVES] = {
   [223891] = { -- Common Cargo, Floating Waterlogged
     itemPrice = 10000,
     itemDate = "2026-08-28",
-  },
-}
-
--- Season Zero Pt. 2
-FurC.LuxuryFurnisher[ver.ZERO2] = {
-  [223880] = { -- Vampiric Scales, Laboratory
-    itemPrice = 6000,
-    itemDate = "2026-06-12",
-  },
-  [223881] = { -- Argonian Tile, Trap Trigger Display
-    itemPrice = 4000,
-    itemDate = "2026-06-19",
-  },
-  [223882] = { -- Nord Tile, Trap Trigger Display
-    itemPrice = 4000,
-    itemDate = "2026-06-26",
-  },
-  [223883] = { -- Goblin Bedding, Leather
-    itemPrice = 3000,
-    itemDate = "2026-07-03",
   },
 }
 
