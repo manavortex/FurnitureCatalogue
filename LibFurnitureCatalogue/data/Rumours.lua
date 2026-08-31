@@ -102,10 +102,6 @@ FurC.Rumours[ver.THIEVES] = {
   [225405] = rumourSource, -- Carnaval Wall, Long Rectangular Cloth
   [225406] = rumourSource, -- Carnaval Wagon, Covered
   [225407] = rumourSource, -- Colovian Throne, Noble
-}
-
--- Season Zero Part 2
-FurC.Rumours[ver.ZERO2] = {
   [224876] = rumourSource, -- Music Box, A Wish for Fish
   [225184] = rumourSource, -- Pipe, Stately
   [223844] = rumourSource, -- Hearts Week Decor, Red Bow
