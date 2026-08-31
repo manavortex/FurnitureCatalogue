@@ -117,9 +117,6 @@ end
 -- Season One
 FurC.MiscItemSources[ver.THIEVES] = {}
 
--- Season Zero Part 2
-FurC.MiscItemSources[ver.ZERO2] = {}
-
 -- Season Zero
 FurC.MiscItemSources[ver.ZERO] = {
   [src.BAZAAR] = {
