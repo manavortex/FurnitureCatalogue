@@ -32,6 +32,7 @@ Migrations.lua
 Chat.lua
 SearchIndex.lua
 Filter.lua
+SourceTabs.lua
 Gui.lua
 ContextMenu.lua
 GuiXmlBridge.lua
