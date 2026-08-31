@@ -63,7 +63,7 @@ because this means it's available all the time. List all sources. If even one
 of those sources isn't crowns, IT DOESN'T BELONG IN THIS FILE.]]
 --
 
-FurC.CrownStore[ver.ZERO2] = {
+FurC.CrownStore[ver.THIEVES] = {
   [src.CROWN] = {
     [224739] = strCrate(crates.ANU_PAD), -- Aetherean Rupture, Liminal
     [224843] = strCrate(crates.ANU_PAD), -- Starsong Staircase, Spiral
