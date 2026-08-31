@@ -107,7 +107,7 @@ local miscVendor = merge(merge(merge(structures, boxes), laundry), fishing_trip)
 
 -- ZERO2
 local homeGoodsFurnisherData = {
-  [ver.ZERO2] = {
+  [ver.THIEVES] = {
     [loc.GLENUMBRA] = {
       [npc.HGF] = {
         [225029] = { -- Boulders, Mossy Cluster
