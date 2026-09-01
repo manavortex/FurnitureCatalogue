@@ -5,14 +5,20 @@
 local LFC = LibFurnitureCatalogue
 local src = LFC.API.GetSourceTypes()
 
+-- Prefix marking an entry as a child of the header above it. Workaround for LibCustomMenu hating grandchildren
+local INDENT = "  "
+
 -- Node shapes:
 --   { id = src.X }                      selectable leaf
 --   { id = src.X, children = { ... } }  selectable, with a submenu
---   { key = "name", children = { ... } } group header, not selectable itself
+--   { stringId = SI_X, children = {} }  group header, not selectable itself
+--   { stringId = SI_X }                 label-only row, no filter behind it
+--   { id = src.X, indent = true }       sibling, shown as belonging to the row above
 --   { id = src.X, catchAll = true }     children filled by subtraction, so there are no orphans
 --
--- Labels and tooltips come from DropdownData at build time
+-- Labels and tooltips come from DropdownData at build time, group headers from stringId
 local SOURCE_TREE = {
+  -- TODO: make this stuff a custom menu builder so we can add filter callbacks here more easily?
   { id = src.NONE },
   { id = src.FAVE },
   {
@@ -23,11 +29,18 @@ local SOURCE_TREE = {
     },
   },
   { id = src.WRIT_VENDOR },
-  { id = src.VENDOR },
-  { id = src.PVP },
+  {
+    stringId = SI_FURC_FILTER_SRC_CURRENCY,
+    children = {
+      { id = src.CROWN },
+      { id = FurC.SourceFilters.CROWN_STORE, indent = true },
+      { id = src.EDITOR, indent = true },
+      { id = src.PVP },
+      { id = src.VENDOR },
+      { id = src.BAZAAR },
+    },
+  },
   { id = src.TELVAR },
-  { id = src.BAZAAR },
-  { id = src.CROWN },
   { id = src.ANTIQUITY },
   { id = src.RUMOUR },
   { id = src.LUXURY },
@@ -114,7 +127,7 @@ local function getResolvedTree()
   builtFrom = choices
 
   for _, node in ipairs(SOURCE_TREE) do
-    local copy = { id = node.id, key = node.key, children = node.children }
+    local copy = { id = node.id, stringId = node.stringId, indent = node.indent, children = node.children }
     if node.catchAll then
       local found = collectUngrouped(placed, choices)
       copy.children = #found > 0 and found or nil
@@ -170,21 +183,30 @@ function FurC.InitSourceMenu(control)
     local choices = FurC.DropdownData.ChoicesSource
     local tooltips = FurC.DropdownData.TooltipsSource
 
+    local function labelFor(node)
+      local text = (node.id and choices[node.id]) or (node.stringId and GetString(node.stringId))
+      if text and node.indent then
+        return INDENT .. text
+      end
+      return text
+    end
+
     ClearMenu()
     -- ipairs so it's declaration order, not pairs order
     for _, node in ipairs(getResolvedTree()) do
-      local label = (node.id and choices[node.id]) or (node.key and GetString(node.key))
+      local label = labelFor(node)
       if label then
         if node.children then
           local entries = {}
           for _, child in ipairs(node.children) do
-            if choices[child.id] then
+            local childLabel = labelFor(child)
+            if childLabel then
               entries[#entries + 1] = {
-                label = choices[child.id],
-                tooltip = tooltips and tooltips[child.id],
-                callback = function()
+                label = childLabel,
+                tooltip = child.id and tooltips and tooltips[child.id],
+                callback = child.id and function()
                   selectSource(choices, child.id)
-                end,
+                end or function() end,
               }
             end
           end
@@ -194,10 +216,12 @@ function FurC.InitSourceMenu(control)
             selectSource(choices, node.id)
           end
           AddCustomSubMenuItem(label, entries, nil, nil, nil, nil, onSelect)
-        else
+        elseif node.id then
           AddCustomMenuItem(label, function()
             selectSource(choices, node.id)
           end)
+        else
+          AddCustomMenuItem(label, function() end)
         end
         if node.id and tooltips and tooltips[node.id] then
           AddCustomMenuTooltip(tooltips[node.id])

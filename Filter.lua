@@ -260,6 +260,15 @@ local function matchSourceDropdown()
     return hasSource(src.CROWN) or hasSource(src.EDITOR)
   end
 
+  --TODO: twerkaround, make it pretty later
+  if FurC.SourceFilters.CROWN_STORE == ddSource then
+    return hasSource(src.CROWN)
+  end
+
+  if src.EDITOR == ddSource then
+    return hasSource(src.EDITOR)
+  end
+
   -- direct options: CROWN, RUMOUR, LUXURY, BAZAAR
   return hasSource(ddSource)
 end
