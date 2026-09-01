@@ -574,8 +574,8 @@ local function createGui()
 
     comboBox:ClearItems()
     local craftingChildren = { [src.CRAFTING_KNOWN] = true, [src.CRAFTING_UNKNOWN] = true }
-	for key, val in pairs(validChoices) do
-	  if not (dropdownName == "Source" and craftingChildren[key]) then
+    for key, val in pairs(validChoices) do
+      if not (dropdownName == "Source" and craftingChildren[key]) then
         local entry = comboBox:CreateItemEntry(val, OnItemSelect)
         local tooltipText = choicesTooltips and choicesTooltips[key]
         if tooltipText then

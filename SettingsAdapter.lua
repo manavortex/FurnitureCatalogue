@@ -547,10 +547,7 @@ function FurC.SetDropdownChoice(dropdownName, textValue, dropdownIndex)
 
   FurC.DropdownChoices[dropdownName] = dropdownIndex
 
-  if
-    dropdownName == "Source"
-    and (FurC.GetSourceFamilyRoot(dropdownIndex) == src.CRAFTING)
-  then
+  if dropdownName == "Source" and (FurC.GetSourceFamilyRoot(dropdownIndex) == src.CRAFTING) then
     FurC.DropdownChoices["Character"] = FurC.GetDefaultDropdownChoice("Character")
     FurC_DropdownCharacter:GetNamedChild("SelectedItemText"):SetText(FurC.GetDropdownChoiceTextual("Character"))
   end

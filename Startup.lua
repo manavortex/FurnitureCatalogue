@@ -124,7 +124,7 @@ local function getChoicesSource()
   choicesSource[src.PVP] = GetString(SI_FURC_FILTER_SRC_SOLD_AP)
   choicesSource[src.TELVAR] = GetString(SI_FURC_FILTER_SRC_SOLD_TELVAR)
   choicesSource[src.BAZAAR] = GetString(SI_FURC_FILTER_SRC_SOLD_TBARS)
-  -- choicesSource[src.TOMES] = GetString(SI_FURC_FILTER_SRC_SOLD_TOMEPOINTS) 
+  -- choicesSource[src.TOMES] = GetString(SI_FURC_FILTER_SRC_SOLD_TOMEPOINTS)
   choicesSource[src.CROWN] = GetString(SI_FURC_FILTER_SRC_CROWN)
   choicesSource[src.ANTIQUITY] = GetString(SI_FURC_FILTER_SRC_ANTIQUITY)
   choicesSource[src.RUMOUR] = GetString(SI_FURC_FILTER_SRC_RUMOUR)
@@ -155,7 +155,7 @@ local function getTooltipsSource()
   tooltipsSource[src.BAZAAR] = GetString(SI_FURC_FILTER_SRC_SOLD_TBARS_TT)
   -- tooltipsSource[src.TOMES] = GetString(SI_FURC_FILTER_SRC_SOLD_TOMEPOINTS_TT)
   tooltipsSource[src.CROWN] = GetString(SI_FURC_FILTER_SRC_CROWN_TT)
-  tooltipsSource[src.ANTIQUITY] = GetString(SI_FURC_FILTER_SRC_ANTIQUITY_TT) 
+  tooltipsSource[src.ANTIQUITY] = GetString(SI_FURC_FILTER_SRC_ANTIQUITY_TT)
   tooltipsSource[src.RUMOUR] = GetString(SI_FURC_FILTER_SRC_RUMOUR_TT)
   tooltipsSource[src.LUXURY] = GetString(SI_FURC_FILTER_SRC_LUX_TT)
   tooltipsSource[src.OTHER] = GetString(SI_FURC_FILTER_SRC_OTHER_TT)
@@ -170,43 +170,23 @@ local function getTooltipsSource()
 end
 this.GetTooltipsSource = getTooltipsSource
 
--- Display order of source filter choices
-local sourceChoiceValues = {
-  src.NONE,
-  src.FAVE,
-  src.CRAFTING,
-  src.CRAFTING_KNOWN,
-  src.CRAFTING_UNKNOWN,
-  src.WRIT_VENDOR,
-  src.VENDOR,
-  src.PVP,
-  src.TELVAR,
-  src.BAZAAR,
-  src.CROWN,
-  src.ANTIQUITY,
-  src.RUMOUR,
-  src.LUXURY,
-  src.JUSTICE,
-  src.FISHING,
-  src.OTHER,
-}
-
 ---LAM does not like NonContiguous, so we go gapless
 ---@return string[] choices parallel to GetChoicesSourceValues()
 local function getChoicesSourceList()
   local texts = getChoicesSource()
+  local values = this.GetChoicesSourceValues()
   local list = {}
-  for i = 1, #sourceChoiceValues do
-    list[i] = texts[sourceChoiceValues[i]]
+  for i = 1, #values do
+    list[i] = texts[values[i]]
   end
   return list
 end
 this.GetChoicesSourceList = getChoicesSourceList
 
----Source ids for LAM choicesValues
+---Source ids for choicesValues, display order is declared in SourceTabs.lua
 ---@return integer[] choicesValues
 function this.GetChoicesSourceValues()
-  return sourceChoiceValues
+  return FurC.GetSourceOrder()
 end
 
 -- TODO #REFACTOR Just auto generate those from Constants.Versioning ¯\_(ツ)_/¯
