@@ -33,8 +33,8 @@ local pickpocket_weald = strGeneric(srcPick, nil, "other", loc.WEALD)
 local pickpocket_solstice = strGeneric(srcPick, nil, "other", loc.SOLSTICE)
 local pickpocket_glenumbra = strGeneric(srcPick, nil, "other", loc.GLENUMBRA)
 
--- Season One
-FurC.Justice[ver.THIEVES] = {
+-- Season Zero Part 2
+FurC.Justice[ver.ZERO2] = {
   [src.JUSTICE] = {
     [225017] = pickpocket_glenumbra, -- Keg Spigot, Brass
     [225018] = pickpocket_glenumbra, -- Pin Cushion, Red

@@ -25,14 +25,20 @@ local function strScryWithInfo(pieces, info, ...)
   return _strScry(pieces, info, ...)
 end
 
--- 39 Season One
+-- 40 Season One
 FurC.Antiquities[ver.THIEVES] = {
   [src.ANTIQUITY] = {
-    [224857] = strScry(loc.GLENUMBRA), -- Window of Divinity
-    [224858] = strScry(loc.GLENUMBRA), -- Zenithar Devotional Stele
     [224855] = strScry(loc.GLENUMBRA), -- Fool's Gold Pile
     [224856] = strScry(loc.GLENUMBRA), -- Tapestry of the Prince's Hunt
     [224854] = strScry(5, loc.HEWSBANE), -- Thieves Guild Armory Station
+  },
+}
+
+-- 39 Season Zero Part 2
+FurC.Antiquities[ver.ZERO2] = {
+  [src.ANTIQUITY] = {
+    [224857] = strScry(loc.GLENUMBRA), -- Window of Divinity
+    [224858] = strScry(loc.GLENUMBRA), -- Zenithar Devotional Stele
   },
 }
 
