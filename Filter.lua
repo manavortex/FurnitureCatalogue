@@ -30,6 +30,7 @@ local recipeArray, itemId, itemLink, itemType, sItemType, recipeIndex, recipeLis
 local LFC = LibFurnitureCatalogue
 local src = LFC.API.GetSourceTypes()
 local ver = LFC.Internal.Constants.Versioning
+local npc = LFC.Internal.Constants.NPC
 
 -- Local imports for performance
 local GetItemLinkName = GetItemLinkName
@@ -102,10 +103,10 @@ function FurC.SetFilter(useDefaults, skipRefresh)
   furnSubcategoryFilter = FurC.GetFilterFurnSubcategory()
   hideBooks = FurC.GetHideBooks()
   hideRumours = not FurC.GetShowRumours() and ddSource ~= src.RUMOUR and (FurC.GetHideRumourRecipes())
-  hideCrownStore = not FurC.GetShowCrownstore()
-    and ddSource ~= src.CROWN
-    and ddSource ~= src.EDITOR
-    and (FurC.GetHideCrownStoreItems())
+      hideCrownStore = not FurC.GetShowCrownstore()
+		and ddSource ~= src.CROWN
+		and ddSource ~= src.EDITOR
+		and (FurC.GetHideCrownStoreItems())
   mergeLuxuryAndSales = FurC.GetMergeLuxuryAndSales()
 
   -- ignore filtered items when no dropdown filter is set and there's a text search?
@@ -179,6 +180,36 @@ local function hasSource(s)
   local sources = recipeArray.sources
   return sources ~= nil and sources[s] == true
 end
+
+local function isHomeGoodsFurnisherItem()
+  local versionData = FurC.AchievementVendors[recipeArray.version]
+  if not versionData then
+    return false
+  end
+  for locationName, locationData in pairs(versionData) do
+    local vendorData = locationData[npc.HGF]
+    if vendorData and vendorData[itemId] then
+      return true
+    end
+  end
+  return false
+end
+
+local function isAchievementVendorItem()
+  local versionData = FurC.AchievementVendors[recipeArray.version]
+  if not versionData then
+    return false
+  end
+  for locationName, locationData in pairs(versionData) do
+    for vendorNpc, vendorData in pairs(locationData) do
+      if vendorNpc ~= npc.HGF and vendorData[itemId] then
+        return true
+      end
+    end
+  end
+  return false
+end
+
 -- Source: All, All (craftable), Craftable (known), craftable (unknown), purchasable
 local function matchSourceDropdown()
   -- "All", don't care
@@ -202,8 +233,36 @@ local function matchSourceDropdown()
   if src.VENDOR == ddSource then
     return hasSource(src.VENDOR) or (mergeLuxuryAndSales and hasSource(src.LUXURY))
   end
+  if FurC.SourceFilters.ACHIEVEMENT == ddSource then
+    return hasSource(src.VENDOR) and isAchievementVendorItem()
+  end
+  if FurC.SourceFilters.HOME_GOODS == ddSource then
+    return hasSource(src.VENDOR) and isHomeGoodsFurnisherItem()
+  end
   if src.WRIT_VENDOR == ddSource then
     return hasSource(src.ROLIS)
+  end
+  if src.PVP == ddSource then
+    return hasSource(src.PVP)
+  end
+  if FurC.SourceFilters.ALLIANCE_POINTS == ddSource then
+    if not hasSource(src.PVP) then
+      return false
+    end
+    -- exclude TelVar items from the AP filter
+    local versionData = FurC.PVP[recipeArray.version]
+    if not versionData then
+      return true
+    end
+    for vendorName, vendorData in pairs(versionData) do
+      for locationName, locationData in pairs(vendorData) do
+        local item = locationData[itemId]
+        if item and item.currency == CURT_TELVAR_STONES then
+          return false
+        end
+      end
+    end
+    return true
   end
   if src.TELVAR == ddSource then
     if not hasSource(src.PVP) then
@@ -224,25 +283,25 @@ local function matchSourceDropdown()
     end
     return false
   end
-  if src.PVP == ddSource then
-    if not hasSource(src.PVP) then
+  
+  local function isEventTradeBarItem()
+    local versionData = FurC.EventItems[recipeArray.version]
+    if not versionData then
       return false
     end
-    -- exclude TelVar items from the AP filter
-    local versionData = FurC.PVP[recipeArray.version]
-    if not versionData then
-      return true
-    end
-    for vendorName, vendorData in pairs(versionData) do
-      for locationName, locationData in pairs(vendorData) do
-        local item = locationData[itemId]
-        if item and item.currency == CURT_TELVAR_STONES then
-          return false
+    for eventName, sources in pairs(versionData) do
+      local items = sources[npc.EVENT]
+      local item = items and items[itemId]
+      if item and type(item) == "table" then
+        local currency = item.currency or CURT_TRADE_BARS
+        if currency == CURT_TRADE_BARS then
+          return true
         end
       end
     end
-    return true
+    return false
   end
+
   if src.OTHER == ddSource then
     -- match if sources are part of OTHER too
     local sources = recipeArray.sources
@@ -268,7 +327,11 @@ local function matchSourceDropdown()
   if src.EDITOR == ddSource then
     return hasSource(src.EDITOR)
   end
-
+  
+  if src.BAZAAR == ddSource then
+    return hasSource(src.BAZAAR) or isEventTradeBarItem()
+  end
+  
   -- direct options: CROWN, RUMOUR, LUXURY, BAZAAR
   return hasSource(ddSource)
 end
