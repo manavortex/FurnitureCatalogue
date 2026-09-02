@@ -561,7 +561,7 @@ local function createGui()
 
     function OnItemSelect(control, choiceText, somethingElse)
       local dropdownName = tostring(control.m_name):gsub("FurC_Dropdown", "")
-      FurC.SetDropdownChoice(dropdownName, choiceText)
+      FurC.SetDropdownChoice(dropdownName, choiceText, somethingElse and somethingElse.furcId)
       HideTooltip()
       PlaySound(SOUNDS.POSITIVE_CLICK)
     end
@@ -577,6 +577,7 @@ local function createGui()
     for key, val in pairs(validChoices) do
       if not (dropdownName == "Source" and craftingChildren[key]) then
         local entry = comboBox:CreateItemEntry(val, OnItemSelect)
+        entry.furcId = key
         local tooltipText = choicesTooltips and choicesTooltips[key]
         if tooltipText then
           comboBox:SetItemOnEnter(entry, function(entryControl)

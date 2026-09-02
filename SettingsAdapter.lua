@@ -530,8 +530,9 @@ local function getDropdownIndex(dropdownName, value)
       return listKey
     end
   end
-  dropdown[#dropdown + 1] = value
-  return #dropdown
+  local newKey = #dropdown + 1
+  dropdown[newKey] = value
+  return newKey
 end
 
 local dropdownData = FurC.DropdownData
