@@ -45,7 +45,7 @@
                   <Controls>
                     <!-- FurC_Header_Bar1's children -->
                     <Label name="$(parent)_1" font="$(STONE_TABLET_FONT)|28|soft-shadow-thick"
-                      text="-Furniture Catalogue: ">
+                      text="- Furniture Catalogue: ">
                       <Anchor point="LEFT" relativeTo="$(parent)" relativePoint="LEFT" offsetX="-40" />
                     </Label>
                     <Label name="FurC_RecipeCount" font="$(STONE_TABLET_FONT)|24|soft-shadow-thick"
