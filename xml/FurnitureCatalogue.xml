@@ -118,26 +118,13 @@
               <!-- FurC_Header_Bar2's children -->
               <Controls>
                 <!-- FurC_Header_Bar2's children -->
-               <Control name="FurC_DropdownSource" mouseEnabled="true">
-				  <Anchor point="TOPLEFT" relativeTo="$(parent)" relativePoint="TOPLEFT" offsetX="9"
-					offsetY="10" />
-				  <Dimensions x="230" y="28" />
-				  <OnMouseEnter>FurC.GuiShowTooltip(self, "Filter: Knowledge and source", true)</OnMouseEnter>
-				  <OnMouseExit>FurC.GuiHideTooltip(self)</OnMouseExit>
-				  <Controls>
-					<Backdrop name="$(parent)Bg" inherits="ZO_DefaultBackdrop">
-					  <AnchorFill />
-					</Backdrop>
-					<Label name="$(parent)SelectedItemText" font="ZoFontGame" horizontalAlignment="LEFT" verticalAlignment="CENTER">
-					  <Anchor point="TOPLEFT" offsetX="8" />
-					  <Anchor point="BOTTOMRIGHT" offsetX="-24" />
-					</Label>
-					<Texture name="$(parent)Arrow" textureFile="EsoUI/Art/Buttons/dropbox_arrow_normal.dds">
-					  <Dimensions x="20" y="20" />
-					  <Anchor point="RIGHT" offsetX="-4" />
-					</Texture>
-				  </Controls>
-				</Control>
+               <Control name="FurC_DropdownSource" inherits="ZO_ComboBox" mouseEnabled="true">
+			     <Anchor point="TOPLEFT" relativeTo="$(parent)" relativePoint="TOPLEFT" offsetX="9"
+				   offsetY="10" />
+			     <Dimensions x="230" y="28" />
+			     <OnMouseEnter>FurC.GuiShowTooltip(self, "Filter: Knowledge and source", true)</OnMouseEnter>
+			     <OnMouseExit>FurC.GuiHideTooltip(self)</OnMouseExit>
+			   </Control>
                 <Control name="FurC_QualityFilter" mouseEnabled="true">
                   <Anchor point="TOPLEFT" relativeTo="FurC_DropdownSource" relativePoint="TOPRIGHT"
                     offsetX="58" offsetY="3" />
