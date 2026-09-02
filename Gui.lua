@@ -608,12 +608,79 @@ local function createGui()
 
     return control
   end
+  
+    local function buildSourceEntries(nodes, choices, tooltips, selectSource)
+    local entries = {}
+    for _, node in ipairs(nodes) do
+      local label = (node.id and choices[node.id]) or (node.stringId and GetString(node.stringId))
+      if label then
+        local entry = {
+          label = label,
+          tooltip = node.id and tooltips[node.id],
+        }
+        if node.children then
+          entry.entries = buildSourceEntries(node.children, choices, tooltips, selectSource)
+        end
+        if node.id then
+          local id = node.id
+          entry.callback = function()
+            selectSource(label, id)
+          end
+        end
+        entries[#entries + 1] = entry
+      end
+    end
+    return entries
+  end
+
+  local function createSourceDropdown()
+    local control = FurC_DropdownSource
+    local choices = FurC.DropdownData.ChoicesSource
+    local tooltips = FurC.DropdownData.TooltipsSource
+
+    control.comboBox = control.comboBox or ZO_ComboBox_ObjectFromContainer(control)
+    local comboBox = control.comboBox
+
+    if not control.LSMenuEnabled then
+      AddCustomScrollableComboBoxDropdownMenu(control:GetParent(), control)
+      control.LSMenuEnabled = true
+    end
+
+    local function selectSource(label, id)
+      FurC.SetDropdownChoice("Source", label, id)
+      FurC.UpdateDropdownChoice("Source")
+      PlaySound(SOUNDS.POSITIVE_CLICK)
+    end
+
+    comboBox:SetSortsItems(false)
+    comboBox:ClearItems()
+
+    for _, node in ipairs(FurC.GetResolvedSourceTree()) do
+      local label = (node.id and choices[node.id]) or (node.stringId and GetString(node.stringId))
+      if label then
+        local item = comboBox:CreateItemEntry(label, node.id and function()
+          selectSource(label, node.id)
+        end)
+        item.furcId = node.id
+        item.tooltip = node.id and tooltips[node.id]
+        if node.children then
+          item.entries = buildSourceEntries(node.children, choices, tooltips, selectSource)
+        end
+        comboBox:AddItem(item)
+        if node.id and label == FurC.GetDropdownChoiceTextual("Source") then
+          comboBox:SetSelectedItem(label)
+        end
+      end
+    end
+
+    return control
+  end
 
   createInventoryScroll()
   createQualityFilters()
   createCraftingTypeFilters()
   createCategoryFilters()
-  FurC.InitSourceMenu(FurC_DropdownSource)
+  createSourceDropdown()
   FurC.UpdateDropdownChoice("Source")
   createInventoryDropdown("Version")
   createInventoryDropdown("Character")
