@@ -8,6 +8,7 @@
 ## DependsOn: LibAddonMenu-2.0>=43
 ## DependsOn: LibAsync>=30103
 ## DependsOn: LibCustomMenu>=730
+## DependsOn: LibScrollableMenu>=020405
 ## OptionalDependsOn: LibDebugLogger
 ## OptionalDependsOn: LibDebugViewer
 ## OptionalDependsOn: LibCharacterKnowledge
