@@ -87,6 +87,9 @@ local defaults = {
 -- Negative, so a source from lib never collides with it
 this.SourceFilters = {
   CROWN_STORE = -1,
+  ALLIANCE_POINTS = -2,
+  ACHIEVEMENT = -3,
+  HOME_GOODS = -4,
 }
 local filter = this.SourceFilters
 
@@ -99,7 +102,10 @@ local function getSourceIndicesKeys()
   sourceIndicesKeys[src.CRAFTING_UNKNOWN] = "craft_unknown"
   sourceIndicesKeys[src.WRIT_VENDOR] = "writ_vendor"
   sourceIndicesKeys[src.VENDOR] = "purch_gold"
+  sourceIndicesKeys[filter.ACHIEVEMENT] = "purch_gold_achievement"
+  sourceIndicesKeys[filter.HOME_GOODS] = "purch_gold_homegoods"
   sourceIndicesKeys[src.PVP] = "purch_ap"
+  sourceIndicesKeys[filter.ALLIANCE_POINTS] = "purch_ap_only"
   sourceIndicesKeys[src.BAZAAR] = "purch_tbars"
   sourceIndicesKeys[src.TELVAR] = "purch_telvar"
   -- sourceIndicesKeys[src.TOMES] = "purch_tomepoints"
@@ -130,7 +136,10 @@ local function getChoicesSource()
   choicesSource[src.CRAFTING_UNKNOWN] = GetString(SI_FURC_FILTER_SRC_CRAFTING_UNKNOWN)
   choicesSource[src.WRIT_VENDOR] = GetString(SI_FURC_FILTER_SRC_SOLD_WRIT)
   choicesSource[src.VENDOR] = GetString(SI_FURC_FILTER_SRC_SOLD_GOLD)
-  choicesSource[src.PVP] = GetString(SI_FURC_FILTER_SRC_SOLD_AP)
+  choicesSource[filter.ACHIEVEMENT] = GetString(SI_FURC_FILTER_SRC_ACHIEVEMENT)
+  choicesSource[filter.HOME_GOODS] = GetString(SI_FURC_FILTER_SRC_HOME_GOODS)
+  choicesSource[src.PVP] = GetString(SI_FURC_FILTER_SRC_PVP)
+  choicesSource[filter.ALLIANCE_POINTS] = GetString(SI_FURC_FILTER_SRC_SOLD_AP)
   choicesSource[src.TELVAR] = GetString(SI_FURC_FILTER_SRC_SOLD_TELVAR)
   choicesSource[src.BAZAAR] = GetString(SI_FURC_FILTER_SRC_SOLD_TBARS)
   -- choicesSource[src.TOMES] = GetString(SI_FURC_FILTER_SRC_SOLD_TOMEPOINTS)
@@ -162,7 +171,10 @@ local function getTooltipsSource()
   tooltipsSource[src.CRAFTING_UNKNOWN] = GetString(SI_FURC_FILTER_SRC_CRAFTING_UNKNOWN_TT)
   tooltipsSource[src.WRIT_VENDOR] = GetString(SI_FURC_FILTER_SRC_SOLD_WRIT_TT)
   tooltipsSource[src.VENDOR] = GetString(SI_FURC_FILTER_SRC_SOLD_GOLD_TT)
-  tooltipsSource[src.PVP] = GetString(SI_FURC_FILTER_SRC_SOLD_AP_TT)
+  tooltipsSource[filter.ACHIEVEMENT] = GetString(SI_FURC_FILTER_SRC_ACHIEVEMENT_TT)
+  tooltipsSource[filter.HOME_GOODS] = GetString(SI_FURC_FILTER_SRC_HOME_GOODS_TT)
+  tooltipsSource[src.PVP] = GetString(SI_FURC_FILTER_SRC_PVP_TT)
+  tooltipsSource[filter.ALLIANCE_POINTS] = GetString(SI_FURC_FILTER_SRC_SOLD_AP_TT)
   tooltipsSource[src.TELVAR] = GetString(SI_FURC_FILTER_SRC_SOLD_TELVAR_TT)
   tooltipsSource[src.BAZAAR] = GetString(SI_FURC_FILTER_SRC_SOLD_TBARS_TT)
   -- tooltipsSource[src.TOMES] = GetString(SI_FURC_FILTER_SRC_SOLD_TOMEPOINTS_TT)
