@@ -5,15 +5,11 @@
 local LFC = LibFurnitureCatalogue
 local src = LFC.API.GetSourceTypes()
 
--- Prefix marking an entry as a child of the header above it. Workaround for LibCustomMenu hating grandchildren
-local INDENT = "  "
-
 -- Node shapes:
 --   { id = src.X }                      selectable leaf
 --   { id = src.X, children = { ... } }  selectable, with a submenu
 --   { stringId = SI_X, children = {} }  group header, not selectable itself
 --   { stringId = SI_X }                 label-only row, no filter behind it
---   { id = src.X, indent = true }       sibling, shown as belonging to the row above
 --   { id = src.X, catchAll = true }     children filled by subtraction, so there are no orphans
 --
 -- Labels and tooltips come from DropdownData at build time, group headers from stringId
@@ -32,18 +28,33 @@ local SOURCE_TREE = {
   {
     stringId = SI_FURC_FILTER_SRC_CURRENCY,
     children = {
-      { id = src.CROWN },
-      { id = FurC.SourceFilters.CROWN_STORE, indent = true },
-      { id = src.EDITOR, indent = true },
-      { id = src.PVP },
-      { id = src.VENDOR },
+      {
+        id = src.CROWN,
+        children = {
+          { id = FurC.SourceFilters.CROWN_STORE },
+          { id = src.EDITOR },
+        },
+      },
+      {
+        id = src.VENDOR,
+        children = {
+          { id = FurC.SourceFilters.ACHIEVEMENT },
+          { id = FurC.SourceFilters.HOME_GOODS },
+          { id = src.LUXURY },
+        },
+      },
+	  {
+        id = src.PVP,
+        children = {
+          { id = FurC.SourceFilters.ALLIANCE_POINTS },
+          { id = src.TELVAR },
+        },
+      },
       { id = src.BAZAAR },
     },
   },
-  { id = src.TELVAR },
   { id = src.ANTIQUITY },
   { id = src.RUMOUR },
-  { id = src.LUXURY },
   { id = src.JUSTICE },
   { id = src.FISHING },
   -- Orphans that didn't get a main category are adopted by the all-loving OTHER
@@ -127,7 +138,7 @@ local function getResolvedTree()
   builtFrom = choices
 
   for _, node in ipairs(SOURCE_TREE) do
-    local copy = { id = node.id, stringId = node.stringId, indent = node.indent, children = node.children }
+    local copy = { id = node.id, stringId = node.stringId, children = node.children }
     if node.catchAll then
       local found = collectUngrouped(placed, choices)
       copy.children = #found > 0 and found or nil
@@ -172,72 +183,3 @@ function FurC.ShouldShowCraftingTypeButtons(ddSource)
   return CRAFT_BUTTON_FAMILIES[root] == true
 end
 
-function FurC.InitSourceMenu(control)
-  local function selectSource(choices, id)
-    FurC.SetDropdownChoice("Source", choices[id], id)
-    FurC.UpdateDropdownChoice("Source")
-    PlaySound(SOUNDS.POSITIVE_CLICK)
-  end
-
-  local function buildMenu()
-    local choices = FurC.DropdownData.ChoicesSource
-    local tooltips = FurC.DropdownData.TooltipsSource
-
-    local function labelFor(node)
-      local text = (node.id and choices[node.id]) or (node.stringId and GetString(node.stringId))
-      if text and node.indent then
-        return INDENT .. text
-      end
-      return text
-    end
-
-    ClearMenu()
-    -- ipairs so it's declaration order, not pairs order
-    for _, node in ipairs(getResolvedTree()) do
-      local label = labelFor(node)
-      if label then
-        if node.children then
-          local entries = {}
-          for _, child in ipairs(node.children) do
-            local childLabel = labelFor(child)
-            if childLabel then
-              entries[#entries + 1] = {
-                label = childLabel,
-                tooltip = child.id and tooltips and tooltips[child.id],
-                callback = child.id and function()
-                  selectSource(choices, child.id)
-                end or function() end,
-              }
-            end
-          end
-          --TODO: do we need those or is every parent also a filter?
-          -- Parent without an id has no filter but opens submenu
-          local onSelect = node.id and function()
-            selectSource(choices, node.id)
-          end
-          AddCustomSubMenuItem(label, entries, nil, nil, nil, nil, onSelect)
-        elseif node.id then
-          AddCustomMenuItem(label, function()
-            selectSource(choices, node.id)
-          end)
-        else
-          AddCustomMenuItem(label, function() end)
-        end
-        if node.id and tooltips and tooltips[node.id] then
-          AddCustomMenuTooltip(tooltips[node.id])
-        end
-      end
-    end
-    ShowMenu(control)
-  end
-
-  control:SetHandler("OnMouseUp", function(self, button, upInside)
-    if button == MOUSE_BUTTON_INDEX_LEFT and upInside then
-      if ZO_Menu:IsHidden() then
-        buildMenu()
-      else
-        ClearMenu()
-      end
-    end
-  end)
-end
