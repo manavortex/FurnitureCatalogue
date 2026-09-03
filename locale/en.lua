@@ -1,8 +1,8 @@
--- Auto-synced from locale/en.lua by luaDoc_generateStr.py
--- Edit values between START/END markers
+-- Master file and fallback for all other translations
+-- Please avoid changing the structure of this file, as it's being used to generate and update the other translations
 
 local strings = {
-  -- ////// START : DON'T REMOVE THIS LINE
+
   SI_FURC_ADD_FAVE = " Add Favorite",
   SI_FURC_CONTAINS_BOOKS = "Contains <<1>> books:",
   SI_FURC_DIALOGUE_RESET_DB_BODY = "This will re-create the FurnitureCatalogue database from scratch",
@@ -229,7 +229,6 @@ local strings = {
   SI_FURC_STRING_RECIPESFORCHAR = "recipes for <<1>>",
   SI_FURC_TEXTBOX_FILTER_DEFAULT = "Filter by text search",
   SI_FURC_TOGGLE_SHOPPINGLIST = " Toggle shopping list",
-  -- ////// END   : DON'T REMOVE THIS LINE
 }
 
 for stringId, stringValue in pairs(strings) do

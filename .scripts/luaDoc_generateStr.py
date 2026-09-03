@@ -22,6 +22,8 @@ import sys
 EXIT_FAILURE = -1
 EXIT_SUCCESS = 0
 
+MASTER_SUFFIX = 'locale/en.lua'
+
 def get_file_content(path: str) -> list[str]:
   """Get content of file as a list, empty if doesn't exist"""
   try:
@@ -191,9 +193,9 @@ if __name__ == '__main__':
 
   # Default use case: Generate LuaDoc for all locale masters (main addon + any bundled addon)
   if len(sys.argv) == 1:
-    masters = sorted(p.replace('\\', '/') for p in glob.glob('**/locale/en.lua', recursive=True))
+    masters = sorted(p.replace('\\', '/') for p in glob.glob(f'**/{MASTER_SUFFIX}', recursive=True))
     if not masters:
-      print("Error: no locale/en.lua found — run from the project root.")
+      print(f"Error: no {MASTER_SUFFIX} found — run from the project root.")
       exit(EXIT_FAILURE)
     for master in masters:
       str_map = extract_strings(get_file_content(master))
@@ -210,6 +212,10 @@ if __name__ == '__main__':
 
   if input_file == out_path:
     print("Error: Input and output file are the same.")
+    exit(EXIT_FAILURE)
+
+  if out_path.endswith(MASTER_SUFFIX):
+    print(f"Error: {out_path} is a master file, it is never generated.")
     exit(EXIT_FAILURE)
 
   # Parse input file
