@@ -108,7 +108,7 @@ local function getSourceIndicesKeys()
   sourceIndicesKeys[filter.ALLIANCE_POINTS] = "purch_ap_only"
   sourceIndicesKeys[src.BAZAAR] = "purch_tbars"
   sourceIndicesKeys[src.TELVAR] = "purch_telvar"
-  -- sourceIndicesKeys[src.TOMES] = "purch_tomepoints"
+  sourceIndicesKeys[src.TOMES] = "purch_tomepoints"
   sourceIndicesKeys[src.CROWN] = "crownstore"
   sourceIndicesKeys[filter.CROWN_STORE] = "crown_store"
   sourceIndicesKeys[src.EDITOR] = "housing_editor"
@@ -117,11 +117,17 @@ local function getSourceIndicesKeys()
   sourceIndicesKeys[src.LUXURY] = "luxury"
   sourceIndicesKeys[src.OTHER] = "other"
   --sourceIndicesKeys[src.ROLIS]            = "ROLIS"
-  --sourceIndicesKeys[src.DROP]             = "DROP"
+  sourceIndicesKeys[src.DROP]             = "DROP"
   sourceIndicesKeys[src.JUSTICE] = "justice"
   sourceIndicesKeys[src.FISHING] = "fishing"
   --sourceIndicesKeys[src.GUILDSTORE]       = "GUILDSTORE"
-  --sourceIndicesKeys[src.FESTIVAL_DROP]    = "FESTIVAL_DROP"
+  sourceIndicesKeys[src.DUNGEON] = "dungeon"
+  sourceIndicesKeys[src.HARVEST] = "harvest"
+  sourceIndicesKeys[src.CHEST] = "chests"
+  sourceIndicesKeys[src.QUEST] = "quest"
+  sourceIndicesKeys[src.PICKPOCKET] = "pickpocket"
+  sourceIndicesKeys[src.CONTAINER] = "container"
+  sourceIndicesKeys[src.FESTIVAL_DROP] = "event"
 
   return sourceIndicesKeys
 end
@@ -142,7 +148,7 @@ local function getChoicesSource()
   choicesSource[filter.ALLIANCE_POINTS] = GetString(SI_FURC_FILTER_SRC_SOLD_AP)
   choicesSource[src.TELVAR] = GetString(SI_FURC_FILTER_SRC_SOLD_TELVAR)
   choicesSource[src.BAZAAR] = GetString(SI_FURC_FILTER_SRC_SOLD_TBARS)
-  -- choicesSource[src.TOMES] = GetString(SI_FURC_FILTER_SRC_SOLD_TOMEPOINTS)
+  choicesSource[src.TOMES] = GetString(SI_FURC_FILTER_SRC_SOLD_TOMEPOINTS)
   choicesSource[src.CROWN] = GetString(SI_FURC_FILTER_SRC_CROWNS)
   -- SI_..._SRC_CROWN = crown store, SI_..._SRC_CROWNS = currency above it
   choicesSource[filter.CROWN_STORE] = GetString(SI_FURC_FILTER_SRC_CROWN)
@@ -152,11 +158,17 @@ local function getChoicesSource()
   choicesSource[src.LUXURY] = GetString(SI_FURC_FILTER_SRC_LUX)
   choicesSource[src.OTHER] = GetString(SI_FURC_FILTER_SRC_OTHER)
   --choicesSource[src.ROLIS]            = "ROLIS"
-  --choicesSource[src.DROP]             = "DROP"
+  choicesSource[src.DROP] = GetString(SI_FURC_FILTER_SRC_DROP)
   choicesSource[src.JUSTICE] = GetString(SI_FURC_FILTER_SRC_JUSTICE)
   choicesSource[src.FISHING] = GetString(SI_FURC_FILTER_SRC_FISHING)
   --choicesSource[src.GUILDSTORE]       = "GUILDSTORE"
-  --choicesSource[src.FESTIVAL_DROP]    = "FESTIVAL_DROP"
+  choicesSource[src.FESTIVAL_DROP] = GetString(SI_FURC_FILTER_SRC_EVENT) -- Event
+  choicesSource[src.DUNGEON] = GetString(SI_FURC_FILTER_SRC_DUNGEON)
+  choicesSource[src.HARVEST] = GetString(SI_FURC_FILTER_SRC_HARVEST)
+  choicesSource[src.CHEST] = GetString(SI_FURC_FILTER_SRC_CHEST)
+  choicesSource[src.QUEST] = GetString(SI_FURC_FILTER_SRC_QUEST)
+  choicesSource[src.PICKPOCKET] = GetString(SI_FURC_FILTER_SRC_PICKPOCKET)
+  choicesSource[src.CONTAINER] = GetString(SI_FURC_FILTER_SRC_CONTAINER)
 
   return choicesSource
 end
@@ -177,7 +189,7 @@ local function getTooltipsSource()
   tooltipsSource[filter.ALLIANCE_POINTS] = GetString(SI_FURC_FILTER_SRC_SOLD_AP_TT)
   tooltipsSource[src.TELVAR] = GetString(SI_FURC_FILTER_SRC_SOLD_TELVAR_TT)
   tooltipsSource[src.BAZAAR] = GetString(SI_FURC_FILTER_SRC_SOLD_TBARS_TT)
-  -- tooltipsSource[src.TOMES] = GetString(SI_FURC_FILTER_SRC_SOLD_TOMEPOINTS_TT)
+  tooltipsSource[src.TOMES] = GetString(SI_FURC_FILTER_SRC_SOLD_TOMEPOINTS_TT)
   tooltipsSource[src.CROWN] = GetString(SI_FURC_FILTER_SRC_CROWNS_TT)
   tooltipsSource[filter.CROWN_STORE] = GetString(SI_FURC_FILTER_SRC_CROWN_TT)
   tooltipsSource[src.EDITOR] = GetString(SI_FURC_FILTER_SRC_EDITOR_TT)
@@ -186,11 +198,17 @@ local function getTooltipsSource()
   tooltipsSource[src.LUXURY] = GetString(SI_FURC_FILTER_SRC_LUX_TT)
   tooltipsSource[src.OTHER] = GetString(SI_FURC_FILTER_SRC_OTHER_TT)
   --tooltipsSource[src.ROLIS]            = "ROLIS"
-  --tooltipsSource[src.DROP]             = "DROP"
+  tooltipsSource[src.DROP] = GetString(SI_FURC_FILTER_SRC_DROP)
   tooltipsSource[src.JUSTICE] = GetString(SI_FURC_FILTER_SRC_JUSTICE_TT)
   tooltipsSource[src.FISHING] = GetString(SI_FURC_FILTER_SRC_FISHING_TT)
   --tooltipsSource[src.GUILDSTORE]       = "GUILDSTORE"
-  --tooltipsSource[src.FESTIVAL_DROP]    = "FESTIVAL_DROP"
+  tooltipsSource[src.FESTIVAL_DROP] = GetString(SI_FURC_FILTER_SRC_EVENT) -- Event
+  tooltipsSource[src.DUNGEON] = GetString(SI_FURC_FILTER_SRC_DUNGEON)
+  tooltipsSource[src.HARVEST] = GetString(SI_FURC_FILTER_SRC_HARVEST)
+  tooltipsSource[src.CHEST] = GetString(SI_FURC_FILTER_SRC_CHEST)
+  tooltipsSource[src.QUEST] = GetString(SI_FURC_FILTER_SRC_QUEST)
+  tooltipsSource[src.PICKPOCKET] = GetString(SI_FURC_FILTER_SRC_PICKPOCKET)
+  tooltipsSource[src.CONTAINER] = GetString(SI_FURC_FILTER_SRC_CONTAINER)
 
   return tooltipsSource
 end
