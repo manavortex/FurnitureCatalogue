@@ -168,11 +168,14 @@ local validSourcesForOther = {
   [src.FESTIVAL_DROP] = true,
   [src.DROP] = true,
   [src.FISHING] = true,
-  [src.JUSTICE] = true,
   [src.GUILDSTORE] = true,
-  [src.TOMES] = true,
-  [src.BAZAAR] = true,
   [src.ANTIQUITY] = true,
+  [src.DUNGEON] = true,
+  [src.HARVEST] = true,
+  [src.CHEST] = true,
+  [src.QUEST] = true,
+  [src.PICKPOCKET] = true,
+  [src.CONTAINER] = true,
 }
 
 -- Multi-source: item matches filter if source is in list
@@ -203,6 +206,24 @@ local function isAchievementVendorItem()
   for locationName, locationData in pairs(versionData) do
     for vendorNpc, vendorData in pairs(locationData) do
       if vendorNpc ~= npc.HGF and vendorData[itemId] then
+        return true
+      end
+    end
+  end
+  return false
+end
+
+local function isEventTradeBarItem()
+  local versionData = FurC.EventItems[recipeArray.version]
+  if not versionData then
+    return false
+  end
+  for eventName, sources in pairs(versionData) do
+    local items = sources[npc.EVENT]
+    local item = items and items[itemId]
+    if item and type(item) == "table" and item.itemPrice then
+      local currency = item.currency or CURT_TRADE_BARS
+      if currency == CURT_TRADE_BARS then
         return true
       end
     end
@@ -283,24 +304,6 @@ local function matchSourceDropdown()
     end
     return false
   end
-  
-  local function isEventTradeBarItem()
-    local versionData = FurC.EventItems[recipeArray.version]
-    if not versionData then
-      return false
-    end
-    for eventName, sources in pairs(versionData) do
-      local items = sources[npc.EVENT]
-      local item = items and items[itemId]
-      if item and type(item) == "table" then
-        local currency = item.currency or CURT_TRADE_BARS
-        if currency == CURT_TRADE_BARS then
-          return true
-        end
-      end
-    end
-    return false
-  end
 
   if src.OTHER == ddSource then
     -- match if sources are part of OTHER too
@@ -328,9 +331,20 @@ local function matchSourceDropdown()
     return hasSource(src.EDITOR)
   end
   
+  if src.JUSTICE == ddSource then
+    return hasSource(src.PICKPOCKET) or hasSource(src.CONTAINER)
+  end
+  
   if src.BAZAAR == ddSource then
     return hasSource(src.BAZAAR) or isEventTradeBarItem()
   end
+  
+  if src.DUNGEON == ddSource then return hasSource(src.DUNGEON) end
+  if src.HARVEST == ddSource then return hasSource(src.HARVEST) end
+  if src.CHEST == ddSource then return hasSource(src.CHEST) end
+  if src.QUEST == ddSource then return hasSource(src.QUEST) end
+  if src.PICKPOCKET == ddSource then return hasSource(src.PICKPOCKET) end
+  if src.CONTAINER == ddSource then return hasSource(src.CONTAINER) end
   
   -- direct options: CROWN, RUMOUR, LUXURY, BAZAAR
   return hasSource(ddSource)
