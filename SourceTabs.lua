@@ -5,16 +5,7 @@
 local LFC = LibFurnitureCatalogue
 local src = LFC.API.GetSourceTypes()
 
--- Node shapes:
---   { id = src.X }                      selectable leaf
---   { id = src.X, children = { ... } }  selectable, with a submenu
---   { stringId = SI_X, children = {} }  group header, not selectable itself
---   { stringId = SI_X }                 label-only row, no filter behind it
---   { id = src.X, catchAll = true }     children filled by subtraction, so there are no orphans
---
--- Labels and tooltips come from DropdownData at build time, group headers from stringId
 local SOURCE_TREE = {
-  -- TODO: make this stuff a custom menu builder so we can add filter callbacks here more easily?
   { id = src.NONE },
   { id = src.FAVE },
   {
@@ -43,23 +34,41 @@ local SOURCE_TREE = {
           { id = src.LUXURY },
         },
       },
-	  {
+      {
         id = src.PVP,
         children = {
           { id = FurC.SourceFilters.ALLIANCE_POINTS },
           { id = src.TELVAR },
         },
       },
+	  { id = src.TOMES },
       { id = src.BAZAAR },
     },
   },
-  { id = src.ANTIQUITY },
-  { id = src.RUMOUR },
-  { id = src.JUSTICE },
-  { id = src.FISHING },
-  -- Orphans that didn't get a main category are adopted by the all-loving OTHER
-  { id = src.OTHER, catchAll = true },
+  {
+    id = src.OTHER,
+    children = {
+      { id = src.FISHING },
+      { id = src.ANTIQUITY },
+      {
+        id = src.JUSTICE,
+        children = {
+          { id = src.PICKPOCKET },
+          { id = src.CONTAINER },
+        },
+      },
+      { id = src.DUNGEON },
+      { id = src.HARVEST },
+      { id = src.FESTIVAL_DROP },
+      { id = src.CHEST },
+      { id = src.QUEST },
+      { id = src.DROP },
+    },
+    catchAll = true, -- still adopts anything genuinely unplaced (e.g. GUILDSTORE)
+  },
+    { id = src.RUMOUR },
 }
+
 FurC.SourceTree = SOURCE_TREE
 
 -- Resolved view of the tree (with OTHER auto-filled)
@@ -141,7 +150,12 @@ local function getResolvedTree()
     local copy = { id = node.id, stringId = node.stringId, children = node.children }
     if node.catchAll then
       local found = collectUngrouped(placed, choices)
-      copy.children = #found > 0 and found or nil
+      if #found > 0 then
+        copy.children = copy.children or {}
+        for _, child in ipairs(found) do
+          copy.children[#copy.children + 1] = child
+        end
+      end
     end
     resolved[#resolved + 1] = copy
     indexNode(copy)
@@ -182,4 +196,3 @@ function FurC.ShouldShowCraftingTypeButtons(ddSource)
   local root = FurC.GetSourceFamilyRoot(ddSource) or ddSource
   return CRAFT_BUTTON_FAMILIES[root] == true
 end
-
