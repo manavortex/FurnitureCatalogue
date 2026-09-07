@@ -65,7 +65,10 @@ function FurC.CenterFilterBars()
     end
     local centerX = math.max(minX, math.min((barW - filterW) / 2, maxX))
     FurC_QualityFilter:ClearAnchors()
-    FurC_QualityFilter:SetAnchor(LEFT, bar2, LEFT, centerX)
+    -- anchor to the dropdown itself (not bar2) so LEFT's implicit vertical-center
+    -- lines the icon row up with the dropdown's center, not bar2's taller box center
+    local dropdownOffsetX = FurC_DropdownSource:GetLeft() - bar2:GetLeft()
+    FurC_QualityFilter:SetAnchor(LEFT, FurC_DropdownSource, LEFT, centerX - dropdownOffsetX)
   end
 
   local bar3 = FurCGui_Header_Bar3
@@ -299,7 +302,8 @@ function FurC.SetLineHeight(applyTemplate)
   local matsFont = string.format("$(MEDIUM_FONT)|$(KB_%s)|soft-shadow-thin", size)
 
   local useTinyUi = FurC.GetTinyUi()
-  local lineHeight = size + (useTinyUi and 8 or 20)
+  local singleLineHeight = size + (useTinyUi and 8 or 20)
+  local lineHeight = singleLineHeight + size -- +1 font-size worth of room for the wrapped 2nd description line
 
   for i = 1, #FurCGui_ListHolder.lines do
     curLine = FurCGui_ListHolder.lines[i]
