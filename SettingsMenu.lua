@@ -17,7 +17,7 @@ function FurC.CreateSettings(savedVars, defaults)
     slashCommand = "/furc",
     website = FurC.website,
   }
-  LAM:RegisterAddonPanel("FurC_OptionsPanel", panelData)
+  FurC.OptionsPanel = LAM:RegisterAddonPanel("FurC_OptionsPanel", panelData)
   local optionsData = { -- optionsData
 
     -- first section
