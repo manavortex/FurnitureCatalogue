@@ -73,6 +73,12 @@ function FurC.GUIButtonRefreshOnMouseUp(control, mouseButton)
   end
 end
 
+function FurC.GUIButtonSettingsOnMouseUp()
+  if LAM and FurC.OptionsPanel then
+    LAM:OpenToPanel(FurC.OptionsPanel)
+  end
+end
+
 function FurC.GuiShowTooltip(control, tooltiptext, reAnchor)
   if reAnchor then
     InitializeTooltip(InformationTooltip, control, TOPRIGHT, -10, 0, TOPLEFT)
