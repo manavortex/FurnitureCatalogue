@@ -16,6 +16,8 @@ Does not sanitise user input, so use only with trusted input.
 PACKAGE_DIR = '.package' # package folder, will be deleted if it already exists
 ADDON_NAME = 'FurnitureCatalogue'
 
+EXCLUDE_DIRS = ('test',) # don't package tests
+
 def find_manifests(directory: str, file_ext: ...) -> list[str]:
   """Returns list with potential manifest files"""
   manifests = []
@@ -72,11 +74,15 @@ def package_addon(name: str, exclude_filename: str):
   # copy files
   addon_dir = os.path.normpath(os.path.join(PACKAGE_DIR, addon_name))
   counter = 0
+  excluded = 0
   for source in files_to_copy:
     try:
       # skip excluded filenames
       if os.path.basename(source) == exclude_filename: continue
       source = os.path.normpath(source)
+      if set(os.path.dirname(source).split(os.sep)) & set(EXCLUDE_DIRS):
+        excluded += 1
+        continue
       target = os.path.normpath(os.path.join(addon_dir, source))
       os.makedirs(os.path.dirname(target), exist_ok=True) # Create target directory
       shutil.copy(source, target)
@@ -86,6 +92,8 @@ def package_addon(name: str, exclude_filename: str):
       continue
 
   print(f"added {counter}/{len(files_to_copy)} files")
+  if excluded:
+    print(f"kept out of the package: {excluded} files in {'/, '.join(EXCLUDE_DIRS)}/")
 
   # zip it
   archive = f"{addon_name}-{addon_version}.zip"
