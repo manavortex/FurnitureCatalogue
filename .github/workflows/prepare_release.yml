@@ -196,7 +196,6 @@ jobs:
         run: |
           LUADOC_DEFINITIONS="docs/autocomplete_definitions.lua"
           python .scripts/luaDoc_generateStr.py locale/en.lua
-          python .scripts/luaDoc_generateStr.py LibFurnitureCatalogue/locale/en.lua
           python .scripts/luaDoc_generateGui.py xml/FurnitureCatalogue.xml "$LUADOC_DEFINITIONS"
           python .scripts/luaDoc_generateGui.py FurnitureCatalogue_DevUtility/xml.xml "$LUADOC_DEFINITIONS"
 
@@ -205,11 +204,6 @@ jobs:
           for langfile in locale/*.lua; do
             if [[ "$langfile" != "locale/en.lua" ]]; then
               python .scripts/luaDoc_generateStr.py locale/en.lua "$langfile" --generate-translation
-            fi
-          done
-          for langfile in LibFurnitureCatalogue/locale/*.lua; do
-            if [[ "$langfile" != "LibFurnitureCatalogue/locale/en.lua" ]]; then
-              python .scripts/luaDoc_generateStr.py LibFurnitureCatalogue/locale/en.lua "$langfile" --generate-translation
             fi
           done
 

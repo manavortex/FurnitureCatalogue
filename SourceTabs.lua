@@ -41,7 +41,7 @@ local SOURCE_TREE = {
           { id = src.TELVAR },
         },
       },
-	  { id = src.TOMES },
+      { id = src.TOMES },
       { id = src.BAZAAR },
     },
   },
@@ -66,7 +66,7 @@ local SOURCE_TREE = {
     },
     catchAll = true, -- still adopts anything genuinely unplaced (e.g. GUILDSTORE)
   },
-    { id = src.RUMOUR },
+  { id = src.RUMOUR },
 }
 
 FurC.SourceTree = SOURCE_TREE

@@ -117,7 +117,7 @@ local function getSourceIndicesKeys()
   sourceIndicesKeys[src.LUXURY] = "luxury"
   sourceIndicesKeys[src.OTHER] = "other"
   --sourceIndicesKeys[src.ROLIS]            = "ROLIS"
-  sourceIndicesKeys[src.DROP]             = "DROP"
+  sourceIndicesKeys[src.DROP] = "DROP"
   sourceIndicesKeys[src.JUSTICE] = "justice"
   sourceIndicesKeys[src.FISHING] = "fishing"
   --sourceIndicesKeys[src.GUILDSTORE]       = "GUILDSTORE"

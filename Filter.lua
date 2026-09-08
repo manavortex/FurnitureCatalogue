@@ -103,10 +103,10 @@ function FurC.SetFilter(useDefaults, skipRefresh)
   furnSubcategoryFilter = FurC.GetFilterFurnSubcategory()
   hideBooks = FurC.GetHideBooks()
   hideRumours = not FurC.GetShowRumours() and ddSource ~= src.RUMOUR and (FurC.GetHideRumourRecipes())
-      hideCrownStore = not FurC.GetShowCrownstore()
-		and ddSource ~= src.CROWN
-		and ddSource ~= src.EDITOR
-		and (FurC.GetHideCrownStoreItems())
+  hideCrownStore = not FurC.GetShowCrownstore()
+    and ddSource ~= src.CROWN
+    and ddSource ~= src.EDITOR
+    and (FurC.GetHideCrownStoreItems())
   mergeLuxuryAndSales = FurC.GetMergeLuxuryAndSales()
 
   -- ignore filtered items when no dropdown filter is set and there's a text search?
@@ -330,22 +330,34 @@ local function matchSourceDropdown()
   if src.EDITOR == ddSource then
     return hasSource(src.EDITOR)
   end
-  
+
   if src.JUSTICE == ddSource then
     return hasSource(src.PICKPOCKET) or hasSource(src.CONTAINER)
   end
-  
+
   if src.BAZAAR == ddSource then
     return hasSource(src.BAZAAR) or isEventTradeBarItem()
   end
-  
-  if src.DUNGEON == ddSource then return hasSource(src.DUNGEON) end
-  if src.HARVEST == ddSource then return hasSource(src.HARVEST) end
-  if src.CHEST == ddSource then return hasSource(src.CHEST) end
-  if src.QUEST == ddSource then return hasSource(src.QUEST) end
-  if src.PICKPOCKET == ddSource then return hasSource(src.PICKPOCKET) end
-  if src.CONTAINER == ddSource then return hasSource(src.CONTAINER) end
-  
+
+  if src.DUNGEON == ddSource then
+    return hasSource(src.DUNGEON)
+  end
+  if src.HARVEST == ddSource then
+    return hasSource(src.HARVEST)
+  end
+  if src.CHEST == ddSource then
+    return hasSource(src.CHEST)
+  end
+  if src.QUEST == ddSource then
+    return hasSource(src.QUEST)
+  end
+  if src.PICKPOCKET == ddSource then
+    return hasSource(src.PICKPOCKET)
+  end
+  if src.CONTAINER == ddSource then
+    return hasSource(src.CONTAINER)
+  end
+
   -- direct options: CROWN, RUMOUR, LUXURY, BAZAAR
   return hasSource(ddSource)
 end

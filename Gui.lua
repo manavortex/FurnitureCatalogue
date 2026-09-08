@@ -612,8 +612,8 @@ local function createGui()
 
     return control
   end
-  
-    local function buildSourceEntries(nodes, choices, tooltips, selectSource)
+
+  local function buildSourceEntries(nodes, choices, tooltips, selectSource)
     local entries = {}
     for _, node in ipairs(nodes) do
       local label = (node.id and choices[node.id]) or (node.stringId and GetString(node.stringId))

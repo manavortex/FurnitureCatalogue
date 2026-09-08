@@ -66,10 +66,10 @@ local function loadAddon(manifestPath)
   return true
 end
 
--- LibFurnitureCatalogue tree to test against, standalone repo by default
+-- LibFurnitureCatalogue tree to test against. run_tests.sh resolves and exports LFC_DIR
 local libDir = os.getenv("LFC_DIR")
 if not libDir or libDir == "" then
-  libDir = join(repoRoot, "LibFurnitureCatalogue")
+  error("LFC_DIR is not set - run through .scripts/run_tests.sh, which resolves it")
 end
 
 -- stubs must be loaded first
