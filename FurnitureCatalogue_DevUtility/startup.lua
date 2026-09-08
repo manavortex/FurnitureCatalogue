@@ -14,6 +14,7 @@ this.textbox = FurCDevControlBox
 this.TestSuites = {
   "FurC:Unit",
   "FurC:Regression",
+  "FurC:Lib",
 }
 
 -- find TestSuites (with or without prefix)
@@ -85,12 +86,24 @@ local function handleSlash(args)
     if this.RunAllBenchmarks then
       this.RunAllBenchmarks()
     end
+  -- DB row memory and derive-on-read cost
+  elseif cmd == "row" then
+    if this.RowShape then
+      this.RowShape.Run(rest or "")
+    end
+  -- what the released consumers see through the library
+  elseif cmd == "consumers" then
+    if this.Consumers then
+      this.Consumers.Run(rest or "")
+    end
   else
     d("|cFF3333FurCDev|r: unknown cmd '" .. cmd .. "'.")
     d("Cmds: |cAACCFF/furcdev|r            toggle trader box")
     d("      |cAACCFF/furcdev tests|r      list tests")
     d("      |cAACCFF/furcdev test [id]|r  run test")
     d("      |cAACCFF/furcdev bench|r      run all profiler scenarios in order")
+    d("      |cAACCFF/furcdev row [s]|r    row cost: calib, census, shapes, read, api")
+    d("      |cAACCFF/furcdev consumers|r  what FSL and LibPrice see: fsl, libprice")
   end
 end
 this.HandleSlash = handleSlash

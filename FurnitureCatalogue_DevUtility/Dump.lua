@@ -90,6 +90,33 @@ end
 local src = LFC.Internal.Constants.ItemSources
 local SOURCE_PRIORITY = LFC.Internal.Constants.SOURCE_PRIORITY or {}
 
+-- The library publishes identifiers where it used to publish player-locale text, so
+-- the export resolves them here instead of receiving them ready-rendered. Same
+-- resolvers the library derives its own name tables with, so an exported name and an
+-- in-game name cannot drift apart
+local RESOLVE = LFC.Internal.Constants.Resolvers or {}
+
+---Resolve one identifier to text in the client's language
+---@param resolve fun(id: integer): string? resolver for this field's id space
+---@param value integer|string|nil an id, an already-rendered literal, or nothing
+---@return string? text nil when there is nothing to render
+local function resolveText(resolve, value)
+  if value == nil then
+    return nil
+  end
+  -- a bare literal: the row carried text rather than an id, which `note` allows
+  if type(value) ~= "number" then
+    local text = cleanText(value)
+    return (text ~= "" and text) or nil
+  end
+  local ok, text = pcall(resolve, value)
+  if not ok or type(text) ~= "string" then
+    return nil
+  end
+  text = cleanText(text)
+  return (text ~= "" and text) or nil
+end
+
 local LINK_STYLE = LINK_STYLE_BRACKETS or 1
 
 local VERBOSE_FORMAT = "furniture-export-verbose-v1"
@@ -170,24 +197,10 @@ local function furnitureDataIdFor(itemLink)
   return 0, false
 end
 
--- Enumerate all furniture categories
+-- Category vocabulary comes from the library, which reads the client's own
+-- enumeration; categories and subcategories share one id space
 local function buildTaxonomy()
-  local categories = {}
-  for ci = 1, GetNumFurnitureCategories() do
-    local catId = GetFurnitureCategoryId(ci)
-    if catId and catId ~= 0 and not categories[catId] then
-      local name, parent, _, order = GetFurnitureCategoryInfo(catId)
-      categories[catId] = { name = name or "", parent = parent or 0, order = order or 0 }
-    end
-    for si = 1, GetNumFurnitureSubcategories(ci) do
-      local subId = GetFurnitureSubcategoryId(ci, si)
-      if subId and subId ~= 0 and not categories[subId] then
-        local name, parent, _, order = GetFurnitureCategoryInfo(subId)
-        categories[subId] = { name = name or "", parent = parent or catId or 0, order = order or 0 }
-      end
-    end
-  end
-  return categories
+  return LibFurnitureCatalogue.API.GetFurnitureCategories()
 end
 
 local function buildMeta()
@@ -261,49 +274,24 @@ end
 -- Shapes: verbose and compact
 -------------------------
 
--- Inverted from the enum, so a new source needs no change here
-local SOURCE_KEY = {}
-for name, value in pairs(src) do
-  SOURCE_KEY[value] = name
+-- Source vocabulary comes from the library, so a source added there reaches the
+-- export without an edit here and cannot silently degrade to its raw key
+local SOURCE_INFO = LibFurnitureCatalogue.API.GetSourceTypeInfo()
+
+local function keyFor(sourceId)
+  local info = SOURCE_INFO[sourceId]
+  return (info and info.key) or tostring(sourceId)
 end
-
--- Stable English labels. Not the locale strings, those follow the client
-local SOURCE_LABEL = {
-  [src.NONE] = "Unknown",
-  [src.CRAFTING] = "Crafting",
-  [src.CRAFTING_KNOWN] = "Crafting",
-  [src.CRAFTING_UNKNOWN] = "Crafting",
-  [src.VENDOR] = "Achievement Vendor",
-  [src.PVP] = "PvP Vendor",
-  [src.WRIT_VENDOR] = "Master Writ Vendor",
-  [src.CROWN] = "Crown Store",
-  [src.RUMOUR] = "Datamined, unconfirmed",
-  [src.LUXURY] = "Luxury Furnisher",
-  [src.OTHER] = "Other",
-  [src.ROLIS] = "Rolis Hlaalu",
-  [src.DROP] = "Drop",
-  [src.JUSTICE] = "Justice",
-  [src.FISHING] = "Fishing",
-  [src.GUILDSTORE] = "Guild Store",
-  [src.FESTIVAL_DROP] = "Event",
-  [src.BAZAAR] = "Gold Coast Bazaar",
-  [src.TOMES] = "Tamriel Tomes",
-  [src.TELVAR] = "Tel Var Merchant",
-  [src.COLL_MERCH] = "Collectibles Merchant",
-  [src.EDITOR] = "Housing Editor",
-  [src.ANTIQUITY] = "Antiquity",
-}
-
--- Filter pseudo-sources and the favourites flag are UI state, not provenance
-local NOT_A_SOURCE = {
-  [src.FAVE] = true,
-  [src.CRAFTING_KNOWN] = true,
-  [src.CRAFTING_UNKNOWN] = true,
-}
 
 local function labelFor(sourceId)
-  return SOURCE_LABEL[sourceId] or SOURCE_KEY[sourceId] or ("Source " .. tostring(sourceId))
+  local info = SOURCE_INFO[sourceId]
+  return (info and info.label) or ("Source " .. tostring(sourceId))
 end
+
+-- Filter pseudo-sources and the favourites flag are UI state, not provenance.
+-- Internal rather than an API endpoint: they are on their way out of the enum,
+-- so publishing the distinction would commit the API to a fact with a shelf life
+local NOT_A_SOURCE = LFC.Internal.Constants.NotASource
 
 ---Ranked, de-duplicated real sources for a DB entry
 ---@param entry FurCEntry
@@ -384,18 +372,24 @@ local function sourceInfoFor(itemId, sourceIds)
   for index, sourceId in ipairs(sourceIds) do
     local rec = byType[sourceId]
     if rec then
-      local vendor, fromItem = rec.source.vendor, nil
-      if type(vendor) == "string" and vendor:find("|H", 1, true) then
-        fromItem = fmt.GetItemId(vendor)
-        vendor = nil
+      -- A container rather than an NPC used to arrive as an item link in `vendor`
+      -- and now arrives in `note`, so the container id is recovered from there
+      local note, fromItem = rec.source.note, nil
+      if type(note) == "string" and note:find("|H", 1, true) then
+        fromItem = fmt.GetItemId(note)
+        note = nil
       end
 
       local detail = {
-        vendor = cleanText(vendor),
+        vendor = resolveText(RESOLVE.Npc, rec.source.vendor),
         fromItem = fromItem,
-        location = cleanText(rec.source.location),
+        -- location XOR place: a zone the game knows, or somewhere it has no zone for
+        -- `place` lands in the same column the old prose location did, so the
+        -- artifact keeps its column set: the record split the two meanings, the
+        -- export still has one place to put "where"
+        location = resolveText(RESOLVE.Zone, rec.source.location) or resolveText(RESOLVE.Place, rec.source.place),
         achievement = rec.source.achievement,
-        event = cleanText(rec.source.event),
+        event = resolveText(RESOLVE.Event, rec.source.event),
         lastSeen = rec.availability and rec.availability.lastSeen,
       }
       local cost = rec.cost
@@ -669,7 +663,7 @@ local function sourceVocabulary(records)
   local ids = sortedKeys(used)
   local keys, labels = {}, {}
   for _, sourceId in ipairs(ids) do
-    keys[sourceId] = SOURCE_KEY[sourceId] or tostring(sourceId)
+    keys[sourceId] = keyFor(sourceId)
     labels[sourceId] = labelFor(sourceId)
   end
   return ids, keys, labels

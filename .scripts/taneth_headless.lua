@@ -66,18 +66,28 @@ local function loadAddon(manifestPath)
   return true
 end
 
+-- LibFurnitureCatalogue tree to test against, standalone repo by default
+local libDir = os.getenv("LFC_DIR")
+if not libDir or libDir == "" then
+  libDir = join(repoRoot, "LibFurnitureCatalogue")
+end
+
 -- stubs must be loaded first
 dofile(join(repoRoot, ".scripts", "test_stubs.lua"))
 
 -- AddOn load order matters
 loadAddon(join(tanethDir, "Taneth.txt"))
-loadAddon(join(repoRoot, "LibFurnitureCatalogue", "LibFurnitureCatalogue.txt"))
+loadAddon(join(libDir, "LibFurnitureCatalogue.txt"))
+print(
+  string.format("[lib] %s (AddOnVersion %s)", libDir, tostring(LibFurnitureCatalogue and LibFurnitureCatalogue.version))
+)
 loadAddon(join(repoRoot, "FurnitureCatalogue.txt"))
 loadAddon(join(repoRoot, "FurnitureCatalogue_DevUtility", "FurnitureCatalogue_DevUtility.txt"))
 -- tests that need io and the repo on disk, so the game never loads them
 loadAddon(join(repoRoot, "FurnitureCatalogue_DevUtility", "test", "headless.txt"))
 
 FurCDev.repoRoot = repoRoot
+FurCDev.libRoot = libDir
 
 -- fire EVENT_ADD_ON_LOADED foreach AddOn
 for _, name in ipairs({ "FurnitureCatalogue", "FurnitureCatalogue_DevUtility" }) do

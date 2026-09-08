@@ -11,6 +11,7 @@
 #   ESOLUA       path to esolua executable
 #   ESOUI_SRC    ESOUI source root (libraries/globals/)
 #   TANETH_DIR   dir containing Taneth.txt
+#   LFC_DIR      dir containing LibFurnitureCatalogue.txt
 
 set -euo pipefail
 
@@ -59,9 +60,18 @@ if [[ -z "${TANETH_DIR:-}" ]]; then
     || offer_clone Taneth https://github.com/wookiefriseur/ESO-Taneth.git "$REPO_ROOT/../ESO-Taneth"
 fi
 
+# library under test, standalone repo first and the bundled copy while it still exists
+if [[ -z "${LFC_DIR:-}" ]]; then
+  LFC_DIR="$REPO_ROOT/../LFC/LibFurnitureCatalogue"
+  [[ -f "$LFC_DIR/LibFurnitureCatalogue.txt" ]] || LFC_DIR="$REPO_ROOT/LibFurnitureCatalogue"
+fi
+
 [ -x "$ESOLUA" ] || fail "esolua not found at '$ESOLUA' (set ESOLUA)"
 [ -d "$ESOUI_SRC/libraries/globals" ] || fail "ESOUI source not found at '$ESOUI_SRC' (set ESOUI_SRC)"
 [ -f "$TANETH_DIR/Taneth.txt" ] || fail "Taneth not found at '$TANETH_DIR' (set TANETH_DIR)"
+[ -f "$LFC_DIR/LibFurnitureCatalogue.txt" ] || fail "LibFurnitureCatalogue not found at '$LFC_DIR' (set LFC_DIR)"
+
+export LFC_DIR
 
 exec "$ESOLUA" -s "$ESOUI_SRC" -- \
     "$REPO_ROOT/.scripts/taneth_headless.lua" \

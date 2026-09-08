@@ -15,7 +15,10 @@ startup.lua
 Internal.lua
 Public.lua
 GUI.lua
+Probe.lua
 Benchmark.lua
+RowShape.lua
+Consumers.lua
 
 Datamine.lua
 Dump.lua
@@ -26,6 +29,10 @@ Custom.lua
 test/setup.lua
 test/contract_libprice.lua
 test/contract_api.lua
+test/contract_lib_chat.lua
+test/contract_lib_recipe_sources.lua
+test/contract_lib_row_shape.lua
+test/contract_export_records.lua
 test/contract_furnitureshoppinglist.lua
 test/unit_utils.lua
 test/unit_db_upsert.lua

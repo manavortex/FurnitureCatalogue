@@ -57,10 +57,28 @@ Taneth("FurC:Regression", function()
 
     -- FormatPrice bakes amount as `|c<hex><digits>|r|u...:currency:|u<icon>`
     -- generic "sold by Rolis or Faustina" fallback creates nil here and means price lookup failed
+    -- The client groups thousands in its own language, so the separator is whatever
+    -- that locale uses: take the first coloured run that starts with a digit and keep its digits
     local function voucherAmount(text)
-      local digits = text and text:match("|c%x%x%x%x%x%x([%d,]+)|r")
-      return digits and tonumber((digits:gsub(",", "")))
+      if not text then
+        return nil
+      end
+      for run in text:gmatch("|c%x%x%x%x%x%x(%d[^|]*)|r") do
+        local digits = run:gsub("%D", "")
+        if digits ~= "" then
+          return tonumber(digits)
+        end
+      end
+      return nil
     end
+
+    it("reads a grouped price whatever separator the client uses", function()
+      assert.equals(1100, voucherAmount("|c72DB00Faustina|r : (|cffffff1,100|r|t16:16:x.dds|t)"))
+      assert.equals(1100, voucherAmount("|c72DB00Faustina|r : (|cffffff1.100|r|t16:16:x.dds|t)"))
+      assert.equals(800, voucherAmount("|c72DB00Faustina|r : (|cffffff800|r|t16:16:x.dds|t)"))
+      assert.is_nil(voucherAmount("|c72DB00sold by Rolis or Faustina|r"))
+      assert.is_nil(voucherAmount(nil))
+    end)
 
     it("still finds the voucher price once the key moved to the furnishing", function()
       FurC.EnsureDB()

@@ -64,6 +64,53 @@ Taneth("FurC:Regression", function()
       assert.is_not_nil(FurC.LuxuryFurnisher[DS.luxVersion][DS.luxItem])
     end)
 
+    -- LibPrice.FurCPrice reads the enum as a FIELD and calls the OLD endpoint name,
+    -- then indexes cost[1] on whichever record matches the entry's origin without
+    -- checking cost first. Both names live in the deprecated block for exactly this
+    -- consumer, so a cleanup pass that drops either one breaks furniture pricing.
+    it("LibPrice reaches the enum and the old endpoint the way it actually calls them", function()
+      FurC.EnsureDB(true)
+      local api = LibFurnitureCatalogue.API
+
+      -- a table on the API, not the function that returns one
+      assert.equals("table", type(api.SourceType))
+      for _, key in ipairs({ "CRAFTING", "RUMOUR", "FESTIVAL_DROP" }) do
+        assert.equals("number", type(api.SourceType[key]))
+        assert.equals(api.GetSourceTypes()[key], api.SourceType[key])
+      end
+
+      -- takes an item link, and a miss must stay safe to walk with ipairs
+      assert.equals("table", type(api.GetSources(Test.link(DS.luxItemInDB))))
+      assert.same({}, api.GetSources(Test.link(999999999)))
+
+      -- cost is a LIST here and is never nil, so cost[1] is nil rather than an
+      -- index-nil error on a source that has no price. GetSourceDetails is the
+      -- other shape: cost is the record itself, absent when there is no price.
+      local priced, unpriced = 0, 0
+      for id in pairs(FurC.DB) do
+        if type(id) == "number" then
+          local details, bridged = api.GetSourceDetails(id), api.GetSources(id)
+          assert.equals(#details, #bridged)
+          for i, record in ipairs(bridged) do
+            assert.equals("table", type(record.cost))
+            if details[i].cost then
+              assert.same(details[i].cost, record.cost[1])
+              priced = priced + 1
+            else
+              assert.is_nil(record.cost[1])
+              unpriced = unpriced + 1
+            end
+          end
+        end
+        if priced > 0 and unpriced > 0 then
+          break
+        end
+      end
+      -- both branches were exercised, or the assertions above proved nothing
+      assert.is_true(priced > 0)
+      assert.is_true(unpriced > 0)
+    end)
+
     it("source globals are ints", function()
       for _, k in ipairs({
         "FURC_CRAFTING",

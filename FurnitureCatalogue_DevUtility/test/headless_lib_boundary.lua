@@ -5,10 +5,13 @@ if not Taneth then
   return
 end
 
-Taneth("FurC:Unit", function()
+Taneth("FurC:Lib", function()
   describe("lib/main boundary", function()
-    local function readFile(rel)
-      local fh = io.open(FurCDev.repoRoot .. "/" .. rel, "r")
+    -- the library tree may sit outside the add-on, see LFC_DIR in run_tests.sh
+    local libRoot = FurCDev.libRoot or (FurCDev.repoRoot .. "/LibFurnitureCatalogue")
+
+    local function readFile(rel, base)
+      local fh = io.open((base or FurCDev.repoRoot) .. "/" .. rel, "r")
       if not fh then
         return nil
       end
@@ -18,9 +21,9 @@ Taneth("FurC:Unit", function()
     end
 
     -- manifest .lua entries, path-normalised, $(language) skipped
-    local function manifestFiles(manifestRel, prefix)
+    local function manifestFiles(manifestRel, prefix, base)
       local files = {}
-      local content = readFile(manifestRel) or ""
+      local content = readFile(manifestRel, base) or ""
       for line in (content .. "\n"):gmatch("([^\n]*)\n") do
         local entry = line:gsub("\\", "/"):gsub("%s+$", "")
         local first = entry:sub(1, 1)
@@ -94,9 +97,9 @@ Taneth("FurC:Unit", function()
         return -- run test headless only
       end
       local violations, checked = {}, 0
-      local libFiles = manifestFiles("LibFurnitureCatalogue/LibFurnitureCatalogue.txt", "LibFurnitureCatalogue/")
+      local libFiles = manifestFiles("LibFurnitureCatalogue.txt", "", libRoot)
       for _, rel in ipairs(libFiles) do
-        local src = readFile(rel)
+        local src = readFile(rel, libRoot)
         if src then
           checked = checked + 1
           local n = 0
