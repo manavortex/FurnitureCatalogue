@@ -72,7 +72,7 @@ function FurC.CenterFilterBars()
   end
 
   local bar3 = FurCGui_Header_Bar3
-  if bar3 and FurC_TypeFilter and FurC_DropdownCharacter and FurC_SearchBox and FurC_ShowRumours then
+  if bar3 and FurC_TypeFilter and FurC_DropdownCharacter and FurC_SearchBox then
     local leftEdge = FurC_DropdownCharacter:GetRight() - bar3:GetLeft()
     local rightEdge = FurC_SearchBox:GetLeft() - bar3:GetLeft()
     local filterW = FurC_TypeFilter:GetWidth()
@@ -612,7 +612,7 @@ local function createGui()
 
     return control
   end
-
+  
   local function buildSourceEntries(nodes, choices, tooltips, selectSource)
     local entries = {}
     for _, node in ipairs(nodes) do
@@ -705,30 +705,6 @@ local function createGui()
   FurC.InitFilters()
   FurC.UpdateDropdowns()
 
-  -- reanchor it once
-  FurC.SetHideUIButton(src.RUMOUR, FurC.GetHideUIButton(src.RUMOUR))
-  FurC.UpdateHeader()
-end
-
-function FurC.UpdateHeader()
-  local hideRumourButton = FurC.GetHideUIButton(src.RUMOUR)
-  local showRumours = FurC.GetShowRumours()
-
-  FurC_ShowRumours:SetHidden(hideRumourButton)
-  FurC_ShowRumoursGlow:SetHidden(not showRumours or hideRumourButton)
-
-  if not hideRumourButton then
-    FurC_ShowRumours:SetState((showRumours and BSTATE_PRESSED) or BSTATE_NORMAL, false)
-  end
-
-  local hideCrownButton = FurC.GetHideUIButton(src.CROWN)
-
-  FurC_ShowCrowns:SetHidden(hideCrownButton)
-  if hideCrownButton then
-    return
-  end
-
-  FurC_ShowCrowns:SetState((FurC.GetShowCrownstore() and BSTATE_PRESSED) or BSTATE_NORMAL, false)
 end
 
 function FurnitureCatalogue_Toggle()
