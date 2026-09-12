@@ -13,7 +13,7 @@
 #   - python3 with libs from .scripts/requirements.txt
 #       (pip install -r .scripts/requirements.txt)
 #   - StyLua is auto-fetched (pinned to the CI version) by .scripts/stylua.sh
-#   - Optional .env file in repo root, see env.example
+#   - Optional .env file in script root, see env.example
 
 set -euo pipefail
 

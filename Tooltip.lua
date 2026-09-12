@@ -59,9 +59,12 @@ local function add(t, arg)
 end
 
 local function addFolioTooltipData(control, itemId, folioData)
-  local strPrice = LFC.Internal.Format.FormatPrice(folioData.price, folioData.currency)
-  local strVendor = LFC.Internal.Format.Colourise(folioData.vendor, LFC.Internal.Constants.Colours.Vendor)
-  local strLoc = LFC.Internal.Format.Colourise(folioData.location, LFC.Internal.Constants.Colours.Location)
+  local resolvers = LFC.Internal.Constants.Resolvers
+  local strPrice = LFC.Internal.Format.FormatPrice(folioData.itemPrice, folioData.currency)
+  local strVendor =
+    LFC.Internal.Format.Colourise(resolvers.Npc(folioData.vendor), LFC.Internal.Constants.Colours.Vendor)
+  local strLoc =
+    LFC.Internal.Format.Colourise(resolvers.Place(folioData.place), LFC.Internal.Constants.Colours.Location)
   local header = zo_strformat("<<1>> : <<2>> (<<3>>)", strVendor, strLoc, strPrice)
 
   local lines = { header }

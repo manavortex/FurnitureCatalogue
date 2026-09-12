@@ -10,6 +10,15 @@ local LFC = LibFurnitureCatalogue
 local getItemLink = LFC.API.GetItemLink
 local loc = LFC.Internal.Constants.Locations
 local npc = LFC.Internal.Constants.NPC
+local resolvers = LFC.Internal.Constants.Resolvers
+local isZoneId = LFC.Internal.Constants.IsZoneId
+
+local function resolveLocation(id)
+  if isZoneId[id] then
+    return resolvers.Zone(id)
+  end
+  return resolvers.Place(id)
+end
 
 local lower = LocaleAwareToLower
 local stripTxt = LFC.Internal.Format.stripTxt
@@ -100,11 +109,11 @@ end
 -- PvP: [version][vendor][location]
 local function addVendorTables(add)
   for _, versionData in pairs(FurC.AchievementVendors or {}) do
-    for zoneName, zoneData in pairs(versionData) do
-      for vendorName, vendorData in pairs(zoneData) do
+    for location, locationData in pairs(versionData) do
+      for vendor, vendorData in pairs(locationData) do
         for itemId, entry in pairs(vendorData) do
-          add(itemId, zoneName)
-          add(itemId, vendorName)
+          add(itemId, resolveLocation(location))
+          add(itemId, resolvers.Npc(vendor))
           if type(entry) == "table" then
             add(itemId, getAchievementName(entry.achievement))
           end
@@ -114,11 +123,11 @@ local function addVendorTables(add)
   end
 
   for _, versionData in pairs(FurC.PVP or {}) do
-    for vendorName, vendorData in pairs(versionData) do
-      for locationName, locationData in pairs(vendorData) do
+    for vendorId, vendorData in pairs(versionData) do
+      for zoneId, locationData in pairs(vendorData) do
         for itemId, entry in pairs(locationData) do
-          add(itemId, vendorName)
-          add(itemId, locationName)
+          add(itemId, resolvers.Npc(vendorId))
+          add(itemId, resolvers.Zone(zoneId))
           if type(entry) == "table" then
             add(itemId, getAchievementName(entry.achievement))
           end
@@ -163,8 +172,8 @@ local function addFolios(add)
         local itemId = FurC.DBQuery.ResolveRecipe(contentId)
         if nil ~= itemId then
           add(itemId, folioName)
-          add(itemId, folioData.vendor)
-          add(itemId, folioData.location)
+          add(itemId, resolvers.Npc(folioData.vendor))
+          add(itemId, resolvers.Place(folioData.place))
         end
       end
     end

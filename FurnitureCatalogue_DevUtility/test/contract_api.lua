@@ -339,11 +339,15 @@ Taneth("FurC:Lib", function()
       for key, value in pairs(sourceType) do
         local described = info[value]
         assert.equals("table", type(described), "no info for " .. key)
-        assert.equals(key, described.key)
+        assert.equals(value, sourceType[described.key], "info names no source key: " .. tostring(described.key))
         assert.equals("string", type(described.label))
         assert.is_true(#described.label > 0)
       end
       assert.equals("Luxury Furnisher", info[sourceType.LUXURY].label)
+
+      -- a renamed source keeps its old key as a deprecated alias
+      assert.equals(sourceType.STEAL_CONTAINER, sourceType.CONTAINER)
+      assert.equals("STEAL_CONTAINER", info[sourceType.CONTAINER].key)
 
       -- LATEST shares a value with the update it points at, so the naive inverse
       -- of GetDataVersions loses a name; the endpoint does not

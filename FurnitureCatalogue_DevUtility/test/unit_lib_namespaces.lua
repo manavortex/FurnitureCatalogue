@@ -50,7 +50,6 @@ Taneth("FurC:Lib", function()
           "FormatFurnisher",
           "FormatHouses",
           "FormatPartOf",
-          "FormatPieces",
           "FormatPrice",
           "GetItemId",
           "GetItemLink",

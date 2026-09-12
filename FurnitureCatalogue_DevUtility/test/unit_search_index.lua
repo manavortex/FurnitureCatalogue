@@ -88,9 +88,10 @@ Taneth("FurC:Unit", function()
       FurCDev.Test.ensureDB()
       local bc = FurC.Constants.BookContainers
       local collection = FurC.BookCollections[bc.NOTHING_EYES]
-      local misc = FurC.MiscItemSources[collection.version][FurC.Constants.ItemSources.DROP]
+      local query = LibFurnitureCatalogue.Internal.Query
+      local source = FurC.Constants.ItemSources.VENDOR
       for _, bookId in ipairs(collection.contents) do
-        local sourceText = misc[bookId]
+        local sourceText = query.GetMiscItemSource(bookId, { version = collection.version }, false, source)
         assert.equals("string", type(sourceText))
         assert.is_not_nil(string.find(sourceText, tostring(bc.NOTHING_EYES), 1, true)) -- itemlink of the container
       end
@@ -152,12 +153,15 @@ Taneth("FurC:Unit", function()
       assert.is_not_nil(terms)
 
       -- TODO: change test if we disable search by city name
+      local constants = FurC.Constants
       local indexedCities = {}
       for _, versionData in pairs(FurC.AchievementVendors) do
-        for city, cityData in pairs(versionData) do
-          for _, vendorData in pairs(cityData) do
-            if vendorData[itemId] and string.find(terms, lower(city), 1, true) then
-              indexedCities[city] = true
+        for location, locationData in pairs(versionData) do
+          local name = constants.IsZoneId[location] and constants.Resolvers.Zone(location)
+            or constants.Resolvers.Place(location)
+          for _, vendorData in pairs(locationData) do
+            if vendorData[itemId] and string.find(terms, lower(name), 1, true) then
+              indexedCities[location] = true
             end
           end
         end

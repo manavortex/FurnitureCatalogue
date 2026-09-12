@@ -53,11 +53,10 @@ if not _G.LocalizeString then
     if type(fmt) ~= "string" then
       return tostring(fmt)
     end
-    local args, i = { ... }, 0
-    -- won't work on most substitutions.. just test against english strings if at all
-    return (fmt:gsub("<<%a?%d>>", function()
-      i = i + 1
-      return tostring(args[i])
+    local args = { ... }
+    -- grammar markers are the game's job
+    return (fmt:gsub("<<%a*:?(%d)>>", function(n)
+      return tostring(args[tonumber(n)])
     end))
   end
 end
