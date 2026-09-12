@@ -5,17 +5,34 @@ local getItemId = LFC.API.GetItemId
 
 local wm = WINDOW_MANAGER
 
-local function createIcon(control)
-  local icon
-  icon = wm:CreateControlFromVirtual(control:GetName() .. "FurCIcon", control, "FurC_SlotIconKnownYes")
-  if FurC.settings["showIconOnLeft"] == nil or FurC.settings["showIconOnLeft"] == true then
+-- Row controls are pooled/reused by the game and never destroyed, so an icon's
+-- anchor is only ever set once at creation. Track created icons so a settings
+-- change can re-anchor them live instead of requiring reloadui.
+local knownIcons = {}
+
+local function anchorIcon(icon, control)
+  if FurC.GetShowIconOnLeft() then
     icon:SetAnchor(BOTTOMLEFT, control:GetNamedChild("Button"), BOTTOMLEFT, -15, -10)
   else
     icon:SetAnchor(TOPLEFT, control:GetNamedChild("TraitInfo"), TOPLEFT, 0, 0)
   end
+end
+
+local function createIcon(control)
+  local icon
+  icon = wm:CreateControlFromVirtual(control:GetName() .. "FurCIcon", control, "FurC_SlotIconKnownYes")
+  anchorIcon(icon, control)
   icon:SetHidden(true)
   control.icon = icon
+  knownIcons[icon] = control
   return icon
+end
+
+function FurC.RefreshIconAnchors()
+  for icon, control in pairs(knownIcons) do
+    icon:ClearAnchors()
+    anchorIcon(icon, control)
+  end
 end
 
 local function getItemKnowledge(itemLink)
