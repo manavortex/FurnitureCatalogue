@@ -19,10 +19,7 @@ local furnSubcategoryFilter = {}
 
 local hideBooks = false
 local hideRumours = false
-local hideCrownStore = false
-local mergeLuxuryAndSales = false
 local showAllOnTextSearch = false
-local showAllCrownOnTextSearch = false
 local showAllRumourOnTextSearch = false
 
 local recipeArray, itemId, itemLink, itemType, sItemType, recipeIndex, recipeListIndex
@@ -102,12 +99,7 @@ function FurC.SetFilter(useDefaults, skipRefresh)
   furnCategoryFilter = FurC.GetFilterFurnCategory()
   furnSubcategoryFilter = FurC.GetFilterFurnSubcategory()
   hideBooks = FurC.GetHideBooks()
-  hideRumours = not FurC.GetShowRumours() and ddSource ~= src.RUMOUR and (FurC.GetHideRumourRecipes())
-  hideCrownStore = not FurC.GetShowCrownstore()
-    and ddSource ~= src.CROWN
-    and ddSource ~= src.EDITOR
-    and (FurC.GetHideCrownStoreItems())
-  mergeLuxuryAndSales = FurC.GetMergeLuxuryAndSales()
+  hideRumours = ddSource ~= src.RUMOUR
 
   -- ignore filtered items when no dropdown filter is set and there's a text search?
   showAllOnTextSearch = FurC.GetFilterAllOnText()
@@ -117,7 +109,6 @@ function FurC.SetFilter(useDefaults, skipRefresh)
     and 1 == dropdownChoiceCharacter
 
   showAllRumourOnTextSearch = showAllOnTextSearch and not FurC.GetFilterAllOnTextNoRumour()
-  showAllCrownOnTextSearch = showAllOnTextSearch and not FurC.GetFilterAllOnTextNoCrown()
 
   if skipRefresh then
     return
@@ -252,7 +243,7 @@ local function matchSourceDropdown()
     return matchingDropdownSource == ddSource
   end
   if src.VENDOR == ddSource then
-    return hasSource(src.VENDOR) or (mergeLuxuryAndSales and hasSource(src.LUXURY))
+    return hasSource(src.VENDOR)
   end
   if FurC.SourceFilters.ACHIEVEMENT == ddSource then
     return hasSource(src.VENDOR) and isAchievementVendorItem()
@@ -330,15 +321,15 @@ local function matchSourceDropdown()
   if src.EDITOR == ddSource then
     return hasSource(src.EDITOR)
   end
-
+  
   if src.JUSTICE == ddSource then
     return hasSource(src.PICKPOCKET) or hasSource(src.CONTAINER)
   end
-
+  
   if src.BAZAAR == ddSource then
     return hasSource(src.BAZAAR) or isEventTradeBarItem()
   end
-
+  
   if src.DUNGEON == ddSource then
     return hasSource(src.DUNGEON)
   end
@@ -357,7 +348,7 @@ local function matchSourceDropdown()
   if src.CONTAINER == ddSource then
     return hasSource(src.CONTAINER)
   end
-
+  
   -- direct options: CROWN, RUMOUR, LUXURY, BAZAAR
   return hasSource(ddSource)
 end
@@ -438,18 +429,12 @@ function FurC.MatchFilter(currentItemId, currentRecipeArray)
 
   local origin = recipeArray.origin
 
-  -- Hidden rumours / crown-store bypass filter and only show up through text search override
+  -- Hidden rumours bypass filter and only show up through text search override
   if origin == src.RUMOUR and hideRumours then
     if filterBooks(itemId, recipeArray) then
       return false
     end
     return showAllRumourOnTextSearch and matchSearchString() and isValidItemType()
-  end
-  if (origin == src.CROWN or origin == src.EDITOR) and hideCrownStore then
-    if filterBooks(itemId, recipeArray) then
-      return false
-    end
-    return showAllCrownOnTextSearch and matchSearchString() and isValidItemType()
   end
 
   -- Filter stuff out first before expensive operations
