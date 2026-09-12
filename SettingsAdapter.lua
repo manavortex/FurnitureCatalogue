@@ -19,46 +19,6 @@ function FurC.SetEnableDebug(value)
   end
 end
 
-function FurC.GetHideRumourRecipes()
-  return FurC.settings["hideDoubtfuls"]
-end
-
-function FurC.SetHideRumourRecipes(value)
-  FurC.settings["hideDoubtfuls"] = value
-  FurC.UpdateDropdowns()
-  FurC.UpdateGui()
-end
-
-function FurC.GetHideCrownStoreItems()
-  return FurC.settings["hideCrownstore"]
-end
-
-function FurC.SetHideCrownStoreItems(value)
-  FurC.settings["hideCrownstore"] = value
-  FurC.UpdateDropdowns()
-  FurC.UpdateGui()
-end
-
-function FurC.GetHideUIButton(buttonIdentifier)
-  return FurC.settings.hideUiButtons[buttonIdentifier]
-end
-
-function FurC.SetHideUIButton(buttonIdentifier, value)
-  FurC.settings.hideUiButtons[buttonIdentifier] = value
-  FurC.UpdateHeader()
-  if not buttonIdentifier == src.RUMOUR then
-    return
-  end
-
-  -- reanchor crownstore button
-  FurC_ShowCrowns:ClearAnchors()
-  if value then
-    FurC_ShowCrowns:SetAnchor(RIGHT, FurC_Search, RIGHT, 3, 3)
-  else
-    FurC_ShowCrowns:SetAnchor(RIGHT, FurC_ShowRumours, LEFT, 8, 0)
-  end
-end
-
 function FurC.GetFilterAllOnText()
   return FurC.settings["filterAllOnText"]
 end
@@ -99,15 +59,6 @@ end
 
 function FurC.SetFilterAllOnTextNoBooks(value)
   FurC.settings["filterAllOnTextNoBooks"] = value
-  FurC.UpdateGui()
-end
-
-function FurC.GetFilterAllOnTextNoCrown()
-  return FurC.settings["filterAllOnTextNoCrown"]
-end
-
-function FurC.SetFilterAllOnTextNoCrown(value)
-  FurC.settings["filterAllOnTextNoCrown"] = value
   FurC.UpdateGui()
 end
 
@@ -297,10 +248,6 @@ do
   end
 end
 
----------------------------
--------- /Tooltip ---------
----------------------------
-
 -- Legacy SavedVars cleanup control
 function FurC.BuildMigrationControls()
   local function statusText()
@@ -347,11 +294,10 @@ end
 
 function FurC.SetShowIconOnLeft(value)
   FurC.settings["showIconOnLeft"] = value
+  if FurC.RefreshIconAnchors then
+    FurC.RefreshIconAnchors()
+  end
 end
-
----------------------------
------- /IconDisplay -------
----------------------------
 
 ---------------------------
 --------- Filters ---------
@@ -471,36 +417,6 @@ end
 
 function FurC.SetHideBooks(value)
   FurC.settings["hideBooks"] = value
-  FurC.UpdateGui()
-end
-
-function FurC.GetMergeLuxuryAndSales()
-  return FurC.settings["mergeLuxuryAndSales"]
-end
-
-function FurC.SetMergeLuxuryAndSales(value)
-  FurC.settings["mergeLuxuryAndSales"] = value
-  FurC.UpdateGui()
-end
-
-function FurC.GetShowRumours()
-  return FurC.settings["showRumours"]
-end
-
-function FurC.SetShowRumours(value)
-  FurC.settings["showRumours"] = value
-  FurC_ShowRumours:SetState((value and BSTATE_PRESSED) or BSTATE_DISABLED, false)
-  FurC_ShowRumoursGlow:SetHidden(not value)
-  FurC.UpdateGui()
-end
-
-function FurC.GetShowCrownstore()
-  return FurC.settings["showCrowns"]
-end
-
-function FurC.SetShowCrownstore(value)
-  FurC.settings["showCrowns"] = value
-  FurC_ShowCrowns:SetState((value and BSTATE_PRESSED) or BSTATE_DISABLED, false)
   FurC.UpdateGui()
 end
 
@@ -709,11 +625,6 @@ function FurC.SetFilterFurnSubcategory(subcategoryId)
   FurC.SetFilter()
   FurC.UpdateGui()
 end
-
----------------------------
--------- /Dropdown --------
--------- /Filters  --------
----------------------------
 
 function FurC.GetUseInventoryIcons()
   return FurC.settings["useInventoryIcons"]
