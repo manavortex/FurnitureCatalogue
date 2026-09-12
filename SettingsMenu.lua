@@ -161,7 +161,6 @@ function FurC.CreateSettings(savedVars, defaults)
       setFunc = function(value)
         FurC.SetShowIconOnLeft(value)
       end,
-      requiresReload = true,
     },
     { -- slider: font size
       type = "slider",
@@ -186,7 +185,6 @@ function FurC.CreateSettings(savedVars, defaults)
       setFunc = function(value)
         FurC.SetHideInventoryMenu(value)
       end,
-      requiresReload = true,
     },
     { -- checkbox: use right click menu divider?
       type = "checkbox",
@@ -198,7 +196,6 @@ function FurC.CreateSettings(savedVars, defaults)
       setFunc = function(value)
         FurC.SetSkipDivider(value)
       end,
-      requiresReload = true,
     },
     {
       type = "submenu", -- Default dropdown values
@@ -331,19 +328,7 @@ function FurC.CreateSettings(savedVars, defaults)
               end,
               disabled = not FurC.GetFilterAllOnText(),
             },
-            { -- checkbox: Exclude crown store items from these
-              type = "checkbox",
-              name = GetString(SI_FURC_STRING_MENU_FALL_HIDE_CROWN),
-              tooltip = GetString(SI_FURC_STRING_MENU_FALL_HIDE_CROWN_TT),
-              getFunc = function()
-                return FurC.GetFilterAllOnTextNoCrown()
-              end,
-              setFunc = function(value)
-                FurC.SetFilterAllOnTextNoCrown(value)
-              end,
-              disabled = not FurC.GetFilterAllOnText(),
-            },
-            { -- checkbox: Exclude crown store items from these
+            { -- checkbox: Exclude rumor items from these
               type = "checkbox",
               name = GetString(SI_FURC_STRING_MENU_FALL_HIDE_RUMOUR),
               tooltip = GetString(SI_FURC_STRING_MENU_FALL_HIDE_RUMOUR_TT),
@@ -374,87 +359,6 @@ function FurC.CreateSettings(savedVars, defaults)
           end,
           setFunc = function(value)
             FurC.SetHideBooks(value)
-          end,
-        },
-
-        { -- header: Luxury items
-          type = "header",
-          name = GetString(SI_FURC_STRING_MENU_LUXURY),
-        },
-        { -- checkbox: Hide Mages' guild books
-          type = "checkbox",
-          name = GetString(SI_FURC_STRING_MENU_LUXURY_N),
-          tooltip = GetString(SI_FURC_STRING_MENU_LUXURY_TT),
-          warning = GetString(SI_FURC_STRING_MENU_LUXURY_WARN),
-          getFunc = function()
-            return FurC.GetMergeLuxuryAndSales()
-          end,
-          setFunc = function(value)
-            FurC.SetMergeLuxuryAndSales(value)
-          end,
-        },
-
-        -- ===============================================================================
-        -- header: Rumour Recipes
-        -- ===============================================================================
-        { -- header: rumour recipes
-          type = "header",
-          name = "Rumour Recipes",
-        },
-        { -- checkbox: Hide doubtful recipes
-          type = "description",
-          name = GetString(SI_FURC_STRING_MENU_RUMOUR),
-          text = GetString(SI_FURC_STRING_MENU_RUMOUR_DESC),
-        },
-        { -- checkbox: Hide doubtful recipes
-          type = "checkbox",
-          name = GetString(SI_FURC_STRING_MENU_RUMOUR_N),
-          getFunc = function()
-            return FurC.GetHideRumourRecipes()
-          end,
-          setFunc = function(value)
-            FurC.SetHideRumourRecipes(value)
-          end,
-        },
-
-        { -- checkbox: Show UI button in search box?
-          type = "checkbox",
-          name = GetString(SI_FURC_STRING_MENU_FALL_HIDE_UI_BUTTON),
-          getFunc = function()
-            return FurC.GetHideUIButton(src.RUMOUR)
-          end,
-          setFunc = function(value)
-            FurC.SetHideUIButton(src.RUMOUR, value)
-          end,
-        },
-
-        { -- Crown store items
-          type = "header",
-          name = "Crown store",
-        },
-        { -- The furniture database contains a list of recipes that I have...
-          type = "description",
-          name = GetString(SI_FURC_STRING_MENU_CROWN),
-          text = GetString(SI_FURC_STRING_MENU_CROWN_DESC),
-        },
-        { -- checkbox: Hide crown stuff
-          type = "checkbox",
-          name = GetString(SI_FURC_STRING_MENU_CROWN_N),
-          getFunc = function()
-            return FurC.GetHideCrownStoreItems()
-          end,
-          setFunc = function(value)
-            FurC.SetHideCrownStoreItems(value)
-          end,
-        },
-        { -- checkbox: Show UI button in search box?
-          type = "checkbox",
-          name = GetString(SI_FURC_STRING_MENU_FALL_HIDE_UI_BUTTON),
-          getFunc = function()
-            return FurC.GetHideUIButton(src.CROWN)
-          end,
-          setFunc = function(value)
-            FurC.SetHideUIButton(src.CROWN, value)
           end,
         },
       },
