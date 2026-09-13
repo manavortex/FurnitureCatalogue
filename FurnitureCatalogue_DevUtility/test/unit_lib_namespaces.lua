@@ -61,8 +61,6 @@ Taneth("FurC:Lib", function()
           "JoinSources",
           "MergeTable",
           "STRIP_CONTROL",
-          "SourceSeparator",
-          "SplitFirstSource",
           "stripTxt",
         }),
         FurCDev.Test.keySet(internal.Format)

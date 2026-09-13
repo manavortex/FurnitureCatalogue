@@ -116,5 +116,46 @@ Taneth("FurC:Unit", function()
       assert.is_true(count(store) > 0, "the Crown Store tab keeps nothing")
       assert.is_true(count(editor) > 0, "the Housing Editor tab keeps nothing")
     end)
+
+    it("Home Goods keeps the Home Goods Furnisher's stock", function()
+      FurC.EnsureDB(true)
+      local homeGoods = keptBy(filters.HOME_GOODS)
+      assert.is_true(count(homeGoods) > 0, "the Home Goods tab keeps nothing")
+      assert.is_nil(homeGoods[next(keptBy(filters.ACHIEVEMENT))], "an Achievement item is under Home Goods")
+    end)
+
+    it("Achievement keeps items that require one, and nothing else", function()
+      FurC.EnsureDB(true)
+      local kept = keptBy(filters.ACHIEVEMENT)
+      assert.is_true(count(kept) > 0, "the Achievement tab keeps nothing")
+
+      local gated = {}
+      for _, versionData in pairs(FurC.AchievementVendors) do
+        for _, locationData in pairs(versionData) do
+          for _, vendorData in pairs(locationData) do
+            for itemId, row in pairs(vendorData) do
+              if type(row) == "table" and row.achievement then
+                gated[itemId] = true
+              end
+            end
+          end
+        end
+      end
+      for itemId in pairs(kept) do
+        assert.is_true(
+          gated[itemId] == true,
+          string.format("item %d is shown without requiring an achievement", itemId)
+        )
+      end
+
+      local books = 0
+      for _, versionData in pairs(FurC.Books or {}) do
+        for itemId in pairs(versionData) do
+          books = books + 1
+          assert.is_nil(kept[itemId], string.format("book %d requires no achievement but is shown", itemId))
+        end
+      end
+      assert.is_true(books > 0, "no books in FurC.Books, so their exclusion is untested")
+    end)
   end)
 end)

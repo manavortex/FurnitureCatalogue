@@ -28,6 +28,7 @@ local LFC = LibFurnitureCatalogue
 local src = LFC.API.GetSourceTypes()
 local ver = LFC.Internal.Constants.Versioning
 local npc = LFC.Internal.Constants.NPC
+local npcIds = LFC.Internal.Constants.NpcIds
 
 -- Local imports for performance
 local GetItemLinkName = GetItemLinkName
@@ -181,7 +182,7 @@ local function isHomeGoodsFurnisherItem()
     return false
   end
   for locationName, locationData in pairs(versionData) do
-    local vendorData = locationData[npc.HGF]
+    local vendorData = locationData[npcIds.HGF]
     if vendorData and vendorData[itemId] then
       return true
     end
@@ -189,14 +190,17 @@ local function isHomeGoodsFurnisherItem()
   return false
 end
 
-local function isAchievementVendorItem()
+-- most of those items are achievement-gated, but guild stewards, mystic and the quest rows are not
+-- `achievement = 0` still belongs in here, just means we don't have an achievement ID
+local function isAchievementGatedItem()
   local versionData = FurC.AchievementVendors[recipeArray.version]
   if not versionData then
     return false
   end
   for locationName, locationData in pairs(versionData) do
     for vendorNpc, vendorData in pairs(locationData) do
-      if vendorNpc ~= npc.HGF and vendorData[itemId] then
+      local row = vendorData[itemId]
+      if type(row) == "table" and row.achievement then
         return true
       end
     end
@@ -246,7 +250,7 @@ local function matchSourceDropdown()
     return hasSource(src.VENDOR)
   end
   if FurC.SourceFilters.ACHIEVEMENT == ddSource then
-    return hasSource(src.VENDOR) and isAchievementVendorItem()
+    return hasSource(src.VENDOR) and isAchievementGatedItem()
   end
   if FurC.SourceFilters.HOME_GOODS == ddSource then
     return hasSource(src.VENDOR) and isHomeGoodsFurnisherItem()
