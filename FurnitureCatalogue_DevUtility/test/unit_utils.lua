@@ -8,8 +8,9 @@ if not Taneth then
 end
 
 Taneth("FurC:Unit", function()
-  describe("unit: FurC.Utils.MergeTable", function()
-    local MergeTable = FurC.Utils.MergeTable
+  describe("unit: LFC.Internal.MergeTable", function()
+    -- not a formatter, so it sits on Internal rather than on Internal.Format
+    local MergeTable = LibFurnitureCatalogue.Internal.MergeTable
 
     it("overlapping keys: t2 wins", function()
       local result = MergeTable({ a = "1", b = "3" }, { b = "2" })

@@ -35,6 +35,7 @@ test/contract_lib_vendor_keys.lua
 test/contract_lib_recipe_sources.lua
 test/contract_lib_row_shape.lua
 test/contract_export_records.lua
+test/contract_source_format.lua
 test/contract_furnitureshoppinglist.lua
 test/unit_utils.lua
 test/unit_db_upsert.lua

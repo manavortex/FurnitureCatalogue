@@ -7,7 +7,7 @@ local src = LFC.API.GetSourceTypes()
 local getItemLink = LFC.API.GetItemLink
 local query = FurC.DBQuery
 
--- Tooltip source lines: applies user's source blacklist over lib GetRankedSources
+-- Tooltip source lines: applies user's source blacklist over the composed lines
 -- Always shows at least one line if any non-crafting sources exist
 ---@param recipeKey string|integer item link or id
 ---@param recipeArray? FurCEntry
@@ -15,7 +15,13 @@ local query = FurC.DBQuery
 ---@return string[] lines one per source, ranked (honours tooltip blacklist)
 local function getSourceLines(recipeKey, recipeArray, stripColor)
   recipeArray = recipeArray or query.Find(recipeKey)
-  local ranked = query.GetRankedSources(recipeKey, recipeArray, stripColor, { dateFormat = FurC.GetDateFormat() })
+  local itemId = LFC.API.GetItemId(recipeKey) or recipeKey
+  local ranked = FurC.SourceFormat.FormatItem(itemId, recipeArray, { dateFormat = FurC.GetDateFormat() })
+  if stripColor then
+    for _, entry in ipairs(ranked) do
+      entry.text = LFC.Internal.Format.stripTxt(entry.text)
+    end
+  end
 
   local lines = {}
   for _, entry in ipairs(ranked) do
@@ -101,7 +107,7 @@ local function addBookCollectionTooltipData(control, itemId, collection)
   for i = 1, #collection.contents do
     names[#names + 1] = LFC.Internal.Format.GetItemName(collection.contents[i])
   end
-  lines[#lines + 1] = zo_strformat(GetString(SI_FURC_CONTAINS_BOOKS), #names)
+  lines[#lines + 1] = string.format("%s:", FurC.SourceFormat.FormatContents(itemId))
   lines[#lines + 1] = table.concat(names, ", ")
 
   control:AddVerticalPadding(8)

@@ -59,7 +59,6 @@ Taneth("FurC:Lib", function()
           "GetItemLink",
           "GetItemName",
           "JoinSources",
-          "MergeTable",
           "STRIP_CONTROL",
           "stripTxt",
         }),

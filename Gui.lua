@@ -176,7 +176,8 @@ local function updateLineVisibility()
       curLine.icon:SetAlpha(1)
       local text = string.gsub(curData.itemLink, "H1", "H0")
       curLine.text:SetText(((FurC.IsFavoriteById(curData.itemId) and "* ") or "") .. text)
-      local mats = FurC.GetItemDescription(curData.itemId, curData, nil, { dateFormat = FurC.GetDateFormat() })
+      local mats =
+        FurC.SourceFormat.FormatDescription(curData.itemId, curData, nil, { dateFormat = FurC.GetDateFormat() })
       curLine.mats:SetText(mats)
     end
   end
@@ -663,7 +664,7 @@ local function createGui()
 
     return control
   end
-  
+
   local function buildSourceEntries(nodes, choices, tooltips, selectSource)
     local entries = {}
     for _, node in ipairs(nodes) do
@@ -789,7 +790,6 @@ local function createGui()
   FurC.LoadFrameInfo()
   FurC.InitFilters()
   FurC.UpdateDropdowns()
-
 end
 
 function FurnitureCatalogue_Toggle()

@@ -21,6 +21,7 @@ xml\FurnitureCatalogue.xml
 
 Startup.lua
 Internal.lua
+Format.lua
 Knowledge.lua
 
 SettingsAdapter.lua

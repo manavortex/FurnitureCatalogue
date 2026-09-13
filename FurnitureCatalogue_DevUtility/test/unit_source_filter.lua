@@ -117,6 +117,31 @@ Taneth("FurC:Unit", function()
       assert.is_true(count(editor) > 0, "the Housing Editor tab keeps nothing")
     end)
 
+    it("leaves no item unreachable: every one shows under at least one tab", function()
+      FurC.EnsureDB(true)
+      local ids = LFC.API.GetItemIds()
+      local seen = {}
+      for _, ddSource in ipairs(FurC.GetSourceOrder()) do
+        if ddSource ~= src.NONE and ddSource ~= src.FAVE then
+          for itemId in pairs(keptBy(ddSource)) do
+            seen[itemId] = true
+          end
+        end
+      end
+
+      local unreachable = {}
+      for _, itemId in ipairs(ids) do
+        if not seen[itemId] then
+          unreachable[#unreachable + 1] = itemId
+        end
+      end
+      assert.equals(
+        0,
+        #unreachable,
+        string.format("%d item(s) show under no tab, e.g. %s", #unreachable, tostring(unreachable[1]))
+      )
+    end)
+
     it("Home Goods keeps the Home Goods Furnisher's stock", function()
       FurC.EnsureDB(true)
       local homeGoods = keptBy(filters.HOME_GOODS)

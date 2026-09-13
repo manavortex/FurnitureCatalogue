@@ -50,7 +50,8 @@ function FurC.PrintSource(itemLink, recipeArray)
     return
   end
 
-  local source = FurC.GetItemDescription(getItemId(itemLink), recipeArray, true, { dateFormat = FurC.GetDateFormat() })
+  local source =
+    FurC.SourceFormat.FormatDescription(getItemId(itemLink), recipeArray, true, { dateFormat = FurC.GetDateFormat() })
   local output = string.format("%s: %s", itemLink, source)
   if recipeArray.achievement and recipeArray.achievement ~= "" then
     output = string.format("%s, requires %s", output, recipeArray.achievement)

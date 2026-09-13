@@ -303,31 +303,43 @@ Taneth("FurC:Lib", function()
       FurC.EnsureDB(true)
       local srcEnum = FurC.Constants.ItemSources
 
-      local function recordFor(itemId, sourceType)
+      local function recordsFor(itemId, sourceType)
+        local found = {}
         for _, rec in ipairs(api.GetSourceDetails(itemId)) do
           if rec.source.type == sourceType then
+            found[#found + 1] = rec
+          end
+        end
+        return found
+      end
+
+      local function recordWith(itemId, sourceType, field)
+        for _, rec in ipairs(recordsFor(itemId, sourceType)) do
+          if rec.source[field] ~= nil then
             return rec
           end
         end
       end
 
       -- a crate row: the season, and no price of its own
-      local crate = recordFor(224739, srcEnum.CROWN) -- Aetherean Rupture, Liminal
+      local crate = recordWith(224739, srcEnum.CROWN, "crate") -- Aetherean Rupture, Liminal
       assert.is_not_nil(crate)
       assert.equals(FurC.Constants.CrownCrateIds.ANU_PAD, crate.source.crate)
       assert.is_nil(crate.cost)
 
       -- a pack row: the pack's item id, resolvable to a link
-      local pack = recordFor(224853, srcEnum.CROWN) -- A Hero Strides Forth Painting, Gold
+      local pack = recordWith(224853, srcEnum.CROWN, "packs") -- A Hero Strides Forth Painting, Gold
       assert.is_not_nil(pack)
-      assert.equals(FurC.Constants.ItemPacks.DARIEN, pack.source.pack)
+      assert.same({ FurC.Constants.ItemPacks.DARIEN }, pack.source.packs)
 
-      -- a multi-source row answers with every source it has, on the one record
-      local both = recordFor(223178, srcEnum.EDITOR) -- Worm Cult Winch, Chain
-      assert.is_not_nil(both)
-      assert.equals(CURT_CROWNS, both.cost.currency)
-      assert.equals(2800, both.cost.amount)
-      assert.same({ 13881 }, both.source.houses)
+      -- a row that states a price and a house list: two records, each naming one way
+      local editorRecords = recordsFor(223178, srcEnum.EDITOR) -- Worm Cult Winch, Chain
+      assert.equals(2, #editorRecords)
+      assert.equals(CURT_CROWNS, editorRecords[1].cost.currency)
+      assert.equals(2800, editorRecords[1].cost.amount)
+      assert.is_nil(editorRecords[1].source.houses)
+      assert.is_nil(editorRecords[2].cost)
+      assert.same({ 13881 }, editorRecords[2].source.houses)
     end)
 
     it("endpoints and deprecated aliases keep stable shapes", function()

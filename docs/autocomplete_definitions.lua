@@ -75,9 +75,6 @@ FurC_DropdownVersion = Control
 FurC_DropdownCharacter = Control
 FurC_TypeFilter = Control
 FurC_Search = Control
-FurC_ShowRumours = ButtonControl
-FurC_ShowCrowns = ButtonControl
-FurC_ShowRumoursGlow = TextureControl
 FurC_CategoryFilter = Control
 FurCGui_Header_SortBar_Name = LabelControl
 FurCGui_Header_SortBar_Description = LabelControl
@@ -140,7 +137,7 @@ FurCDevControl_HousesSearch = EditControl
 
 -- ////// START : GENERATED FROM locale/en.lua
 SI_FURC_ADD_FAVE = " Add Favorite"
-SI_FURC_CONTAINS_BOOKS = "Contains <<1>> books:"
+SI_FURC_CONTAINS_BOOKS = "Contains <<1>> books"
 SI_FURC_DIALOGUE_RESET_DB_BODY = "This will re-create the FurnitureCatalogue database from scratch"
 SI_FURC_DIALOGUE_RESET_DB_HEADER = "Really re-create furniture database?"
 SI_FURC_FILTER_CHAR_OFF = "Character filter: off"
@@ -148,7 +145,7 @@ SI_FURC_FILTER_CHAR_OFF_TT = "disables this filter"
 SI_FURC_FILTER_CROWN_HIDE_TT = "Showing crown store. Click to hide."
 SI_FURC_FILTER_RUMOUR_HIDE_TT = "Showing rumour (unconfirmed) items. Click to hide."
 SI_FURC_FILTER_SRC_ACHIEVEMENT = "Achievement"
-SI_FURC_FILTER_SRC_ACHIEVEMENT_TT = "Items purchased from an Achievement Furnisher"
+SI_FURC_FILTER_SRC_ACHIEVEMENT_TT = "Items that require an achievement"
 SI_FURC_FILTER_SRC_ANTIQUITY = "Antiquity"
 SI_FURC_FILTER_SRC_ANTIQUITY_TT = "Shows furnishings recovered via Scrying/Excavation"
 SI_FURC_FILTER_SRC_CHEST = "Treasure Chests"
@@ -314,10 +311,6 @@ SI_FURC_STRING_CONTEXTMENU_INVENTORY_TT =
 SI_FURC_STRING_CRAFTABLE_BY = "Can be crafted by "
 SI_FURC_STRING_MENU_ADD_ITEMS_NAME = "Add items to known/unknown recipes?"
 SI_FURC_STRING_MENU_ADD_ITEMS_TT = "You shouldn't notice any lag"
-SI_FURC_STRING_MENU_CROWN = "Crown store items"
-SI_FURC_STRING_MENU_CROWN_DESC =
-  "The furniture database will update whenever the tooltip shows a furniture item. \nSome items can only be acquired via crown store. \nCheck this box to exclude them from the default filters (you can still see them by selecting 'Crown Store' from source dropdown)."
-SI_FURC_STRING_MENU_CROWN_N = "Hide crown store items?"
 SI_FURC_STRING_MENU_DEBUG = "Enable debug output"
 SI_FURC_STRING_MENU_DEBUG_TT = "Only has an effect if a debug logger is enabled"
 SI_FURC_STRING_MENU_DEFAULT_DD = "Default dropdown values"
@@ -328,15 +321,12 @@ SI_FURC_STRING_MENU_DEFAULT_DD_RESET_TT =
 SI_FURC_STRING_MENU_DEFAULT_DD_SOURCE = "Default source filter"
 SI_FURC_STRING_MENU_DEFAULT_DD_USE = "Will be set on initial launch"
 SI_FURC_STRING_MENU_DEFAULT_DD_USE_TT = "These will not reset if you open and close the UI"
-SI_FURC_STRING_MENU_DEFAULT_DD_VERSION = "default version filter"
+SI_FURC_STRING_MENU_DEFAULT_DD_VERSION = "Default version filter"
 SI_FURC_STRING_MENU_ENABLE_SHOPPINGLIST = "Enable integration?"
 SI_FURC_STRING_MENU_FALL_HIDE_BOOKS = "Hide books anyway"
 SI_FURC_STRING_MENU_FALL_HIDE_BOOKS_TT = "Even when filtering all items, still hide books?"
-SI_FURC_STRING_MENU_FALL_HIDE_CROWN = "Hide crown store items anyway"
-SI_FURC_STRING_MENU_FALL_HIDE_CROWN_TT = "Even when filtering all items, still hide crown store items?"
 SI_FURC_STRING_MENU_FALL_HIDE_RUMOUR = "Hide rumour items anyway"
 SI_FURC_STRING_MENU_FALL_HIDE_RUMOUR_TT = "Even when filtering all items, still hide rumour items?"
-SI_FURC_STRING_MENU_FALL_HIDE_UI_BUTTON = "Hide UI button in search box?"
 SI_FURC_STRING_MENU_FILTERING = "Catalogue filtering"
 SI_FURC_STRING_MENU_FILTER_ALL_ON_TEXT = "Search filtered items when doing a text search with no dropdown filters set?"
 SI_FURC_STRING_MENU_FILTER_ALL_ON_TEXT_TT = "When doing a text search without any dropdown "
@@ -354,27 +344,17 @@ SI_FURC_STRING_MENU_HEADER_ICONS = "Inventory and bank icons"
 SI_FURC_STRING_MENU_IT_THIS_ONLY = "Only for this character?"
 SI_FURC_STRING_MENU_IT_THIS_ONLY_TT = "Will be accountwide otherwise."
 SI_FURC_STRING_MENU_IT_UNKNOWN_NAME = "Only mark unknown recipes?"
-SI_FURC_STRING_MENU_LUXURY = "Luxury Furnishings"
-SI_FURC_STRING_MENU_LUXURY_N = "Treat luxury items as purchasables?"
-SI_FURC_STRING_MENU_LUXURY_TT =
-  "This will show everything that was sold by Zanil Theran under 'purchasable' and deactvates the custom filter"
-SI_FURC_STRING_MENU_LUXURY_WARN =
-  "Hiding the dropdown entry requires UI reload (won't happen automatically for your convenience)"
 SI_FURC_STRING_MENU_REFRESH_CHARS = "Refresh characters"
 SI_FURC_STRING_MENU_REFRESH_CHARS_TT = "Reload the character list from LibCharacterKnowledge"
 SI_FURC_STRING_MENU_RESET_DB_NAME = "|cFF0000Reset database"
 SI_FURC_STRING_MENU_RESET_DB_TT = "This will reset the furniture database."
 SI_FURC_STRING_MENU_RESET_DB_WARNING =
   "All your data will be reset. Only recipe knowledge for this character will be considered."
-SI_FURC_STRING_MENU_RUMOUR = "Rumour recipes"
-SI_FURC_STRING_MENU_RUMOUR_DESC =
-  "The furniture database contains a list of recipes that I have datamined.\nHowever, not all of those have been seen in-game.\nEnable this option to exclude them from the default filters.\nYou can still view them with their own filter, which you can disable below."
-SI_FURC_STRING_MENU_RUMOUR_N = "Hide rumour recipes?"
 SI_FURC_STRING_MENU_SCAN_FILES_NAME = "Scan files"
 SI_FURC_STRING_MENU_SCAN_FILES_TT = "Will run a full scan of the data in Furniture Catalogue's files"
 SI_FURC_STRING_MENU_SHOWICONONLEFT = "Show Known/Unknown icon on left?"
 SI_FURC_STRING_MENU_SHOWICONONLEFT_TT =
-  "Show Green Check/Red X icon on left or right of the inventory item (requires reloadui)"
+  "Show Green Check/Red X icon on left of the inventory item (it will move to the right when off)"
 SI_FURC_STRING_MENU_SKIP_INITIALSCAN = "Skip Initial Scan?"
 SI_FURC_STRING_MENU_SKIP_INITIALSCAN_TT =
   "Check this to not scan your character's recipes on login. \nThanks to votan's awesome LibAsync the lag is gone now in any case.."

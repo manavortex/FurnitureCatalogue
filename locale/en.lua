@@ -4,7 +4,7 @@
 local strings = {
 
   SI_FURC_ADD_FAVE = " Add Favorite",
-  SI_FURC_CONTAINS_BOOKS = "Contains <<1>> books:",
+  SI_FURC_CONTAINS_BOOKS = "Contains <<1>> books",
   SI_FURC_DIALOGUE_RESET_DB_BODY = "This will re-create the FurnitureCatalogue database from scratch",
   SI_FURC_DIALOGUE_RESET_DB_HEADER = "Really re-create furniture database?",
   SI_FURC_FILTER_CHAR_OFF = "Character filter: off",
