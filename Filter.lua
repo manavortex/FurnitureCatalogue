@@ -167,7 +167,7 @@ local validSourcesForOther = {
   [src.CHEST] = true,
   [src.QUEST] = true,
   [src.PICKPOCKET] = true,
-  [src.CONTAINER] = true,
+  [src.STEAL_CONTAINER] = true,
 }
 
 -- Multi-source: item matches filter if source is in list
