@@ -47,6 +47,7 @@ Taneth("FurC:Lib", function()
           "FmtScrying",
           "FmtSources",
           "FormatAchievement",
+          "FormatCollectible",
           "FormatEvent",
           "FormatFurnisher",
           "FormatHouses",

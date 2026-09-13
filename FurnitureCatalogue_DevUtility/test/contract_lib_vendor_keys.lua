@@ -57,6 +57,22 @@ Taneth("FurC:Lib", function()
       assert.is_true(places > 0, "no row is keyed by a place")
     end)
 
+    it("give the Mages Guild mystic the book collections on top of her own stock", function()
+      local books = FurC.Books[constants.Versioning.HOMESTEAD]
+      local bookCount = 0
+      for _ in pairs(books) do
+        bookCount = bookCount + 1
+      end
+      assert.is_true(bookCount > 0, "FurC.Books[HOMESTEAD] is empty")
+
+      FurC.EnsureDB(true)
+      local mages = FurC.AchievementVendors[constants.Versioning.HOMESTEAD][constants.PlaceIds.GUILD_MAGES]
+      local stock = mages[constants.NpcIds.MAGES_MYSTIC]
+      for itemId in pairs(books) do
+        assert.is_not_nil(stock[itemId], string.format("book %d is not in the mystic's stock", itemId))
+      end
+    end)
+
     it("draw zones and places from id spaces that do not overlap", function()
       for key, id in pairs(constants.ZoneIds) do
         assert.is_false(

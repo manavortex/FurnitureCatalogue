@@ -184,7 +184,8 @@ Taneth("FurC:Lib", function()
     end)
 
     it("reports build failures and recovers only on explicit rebuild", function()
-      local originalInit = FurC.InitAchievementVendorList
+      local compat = LibFurnitureCatalogue.Internal.Compat
+      local originalCloseOver = compat.CloseOverAncestors
       local sentinel = "expected lifecycle build failure"
       local completeCalls = 0
       local readyCalls = 0
@@ -203,11 +204,11 @@ Taneth("FurC:Lib", function()
 
       api.RegisterCallback(api.Events.SCAN_COMPLETE, onComplete)
       api.RegisterCallback(api.Events.SCAN_FAILED, onFailed)
-      FurC.InitAchievementVendorList = function()
+      compat.CloseOverAncestors = function()
         error(sentinel)
       end
       local failedOk, failedErr = pcall(FurC.RebuildDB, true)
-      FurC.InitAchievementVendorList = originalInit
+      compat.CloseOverAncestors = originalCloseOver
       api.UnregisterCallback(api.Events.SCAN_FAILED, onFailed)
 
       local failedState, buildError = api.GetState()
