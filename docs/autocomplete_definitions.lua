@@ -859,7 +859,6 @@ LibCharacterKnowledge.EVENT_UPDATE_REFRESH = 2
 
 -- ////// END   : Manual entries and overrides
 -- ////// START : GENERATED FROM LibFurnitureCatalogue/locale/en.lua
-SI_FURC_DATAMINED_UNCLEAR = "This item has been seen in-game, but it's not yet known where you can get it."
 SI_FURC_DB = "The Dark Brotherhood supplies vendor hands these out "
 SI_FURC_DB_EQUIP = "with equipment"
 SI_FURC_DB_POISON = "with poison"

@@ -12,6 +12,7 @@ local loc = LFC.Internal.Constants.Locations
 local npc = LFC.Internal.Constants.NPC
 local resolvers = LFC.Internal.Constants.Resolvers
 local isZoneId = LFC.Internal.Constants.IsZoneId
+local eventDrop = LFC.Internal.Constants.EVENT_DROP
 
 local function resolveLocation(id)
   if isZoneId[id] then
@@ -153,9 +154,7 @@ local function addWritVendors(add)
         if nil ~= itemId then
           add(itemId, vendorName)
           add(itemId, loc.ANY_CAPITAL)
-          if type(entry) == "table" then
-            add(itemId, getAchievementName(entry.info))
-          end
+          add(itemId, getAchievementName(entry.info))
         end
       end
     end
@@ -193,16 +192,14 @@ local function addEvents(add)
   for _, versionData in pairs(FurC.EventItems or {}) do
     for eventName, sources in pairs(versionData) do
       for sourceName, items in pairs(sources) do
-        if type(items) == "table" then
-          -- we expect NPC name or a container link
-          local sourceTerm = (isItemLink(sourceName) and getItemName(sourceName)) or sourceName
-          for itemId in pairs(items) do
-            add(itemId, eventName)
-            add(itemId, sourceTerm)
-          end
-        else
-          -- No container/coffer level: sourceName IS the itemId (e.g. environment drops)
-          add(sourceName, eventName)
+        -- an NPC name or a container link, and EVENT_DROP when the event itself drops it
+        local sourceTerm
+        if sourceName ~= eventDrop then
+          sourceTerm = (isItemLink(sourceName) and getItemName(sourceName)) or sourceName
+        end
+        for itemId in pairs(items) do
+          add(itemId, eventName)
+          add(itemId, sourceTerm)
         end
       end
     end

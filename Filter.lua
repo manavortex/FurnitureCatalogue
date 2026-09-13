@@ -212,7 +212,7 @@ local function isEventTradeBarItem()
   for eventName, sources in pairs(versionData) do
     local items = sources[npc.EVENT]
     local item = items and items[itemId]
-    if item and type(item) == "table" and item.itemPrice then
+    if item and item.itemPrice then
       local currency = item.currency or CURT_TRADE_BARS
       if currency == CURT_TRADE_BARS then
         return true
@@ -321,15 +321,15 @@ local function matchSourceDropdown()
   if src.EDITOR == ddSource then
     return hasSource(src.EDITOR)
   end
-  
+
   if src.JUSTICE == ddSource then
     return hasSource(src.PICKPOCKET) or hasSource(src.CONTAINER)
   end
-  
+
   if src.BAZAAR == ddSource then
     return hasSource(src.BAZAAR) or isEventTradeBarItem()
   end
-  
+
   if src.DUNGEON == ddSource then
     return hasSource(src.DUNGEON)
   end
@@ -348,7 +348,7 @@ local function matchSourceDropdown()
   if src.CONTAINER == ddSource then
     return hasSource(src.CONTAINER)
   end
-  
+
   -- direct options: CROWN, RUMOUR, LUXURY, BAZAAR
   return hasSource(ddSource)
 end

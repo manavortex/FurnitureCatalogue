@@ -298,6 +298,37 @@ Taneth("FurC:Lib", function()
       assert.same({}, api.GetSourceDetails(UNKNOWN_ID))
     end)
 
+    it("GetSourceDetails carries what a crown-store row knows", function()
+      FurC.EnsureDB(true)
+      local srcEnum = FurC.Constants.ItemSources
+
+      local function recordFor(itemId, sourceType)
+        for _, rec in ipairs(api.GetSourceDetails(itemId)) do
+          if rec.source.type == sourceType then
+            return rec
+          end
+        end
+      end
+
+      -- a crate row: the season, and no price of its own
+      local crate = recordFor(224739, srcEnum.CROWN) -- Aetherean Rupture, Liminal
+      assert.is_not_nil(crate)
+      assert.equals(FurC.Constants.CrownCrateIds.ANU_PAD, crate.source.crate)
+      assert.is_nil(crate.cost)
+
+      -- a pack row: the pack's item id, resolvable to a link
+      local pack = recordFor(224853, srcEnum.CROWN) -- A Hero Strides Forth Painting, Gold
+      assert.is_not_nil(pack)
+      assert.equals(FurC.Constants.ItemPacks.DARIEN, pack.source.pack)
+
+      -- a multi-source row answers with every source it has, on the one record
+      local both = recordFor(223178, srcEnum.EDITOR) -- Worm Cult Winch, Chain
+      assert.is_not_nil(both)
+      assert.equals(CURT_CROWNS, both.cost.currency)
+      assert.equals(2800, both.cost.amount)
+      assert.same({ 13881 }, both.source.houses)
+    end)
+
     it("endpoints and deprecated aliases keep stable shapes", function()
       FurC.EnsureDB(true)
       local itemId = DS.dbItem
@@ -375,19 +406,18 @@ Taneth("FurC:Lib", function()
       assert.is_true(api.GetFurnitureCategories()[next(categories)].name ~= "mutated")
     end)
 
-    it("GetMiscItemPrice reads the whole amount out of baked strings, or nothing", function()
+    it("GetMiscItemPrice reads the whole amount off the row, or nothing", function()
       FurC.EnsureDB(true)
       local sourceType = api.GetSourceTypes()
 
-      -- strCrown(2000): colourised and number-grouped
+      -- a single crown-store source: { itemPrice = 2000 }
       local crownCurrency, crownAmount = api.GetMiscItemPrice(134686, 6, sourceType.CROWN) -- Sithis, The Dread Father
       assert.equals(CURT_CROWNS, crownCurrency)
       assert.equals(2000, crownAmount)
 
-      -- price first, txt after: strMultiple(strCrown(65),...)
+      -- the price sits on one source of a list: { { itemPrice = 65 }, { category = ... } }
       local editorCurrency, prefixedAmount = api.GetMiscItemPrice(87709, 2, sourceType.EDITOR) -- Imperial Brazier, Spiked
-      assert.equals(CURT_MONEY, editorCurrency)
-      assert.is_true(editorCurrency ~= crownCurrency)
+      assert.equals(CURT_CROWNS, editorCurrency)
       assert.equals(65, prefixedAmount)
 
       -- strBazaar(2000): txt first, price after
@@ -397,7 +427,7 @@ Taneth("FurC:Lib", function()
       assert.equals(CURT_TRADE_BARS, bazaarCurrency)
       assert.equals(2000, bazaarAmount)
 
-      -- "<<Cal:1>> (Crown Crate^n,from)" carries no price
+      -- a crate is not sold for a price of its own
       local crateCurrency, crateAmount = api.GetMiscItemPrice(125654, 3, sourceType.CROWN) -- Tapestry, Clavicus Vile
       assert.is_nil(crateCurrency)
       assert.is_nil(crateAmount)

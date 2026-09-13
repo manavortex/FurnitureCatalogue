@@ -77,9 +77,12 @@ if not _G.zo_strsplit then
   end
 end
 
--- placeholder name returner
+-- placeholder name returner (id 0 means "nothing of this kind")
 local function name_api(name)
   return function(id)
+    if id == 0 then
+      return ""
+    end
     return name .. "(" .. tostring(id) .. ")"
   end
 end
