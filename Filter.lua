@@ -327,7 +327,7 @@ local function matchSourceDropdown()
   end
 
   if src.JUSTICE == ddSource then
-    return hasSource(src.PICKPOCKET) or hasSource(src.CONTAINER)
+    return hasSource(src.PICKPOCKET) or hasSource(src.STEAL_CONTAINER)
   end
 
   if src.BAZAAR == ddSource then
