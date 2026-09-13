@@ -41,7 +41,7 @@ local SOURCE_TREE = {
           { id = src.TELVAR },
         },
       },
-      { id = src.TOMES },
+	  { id = src.TOMES },
       { id = src.BAZAAR },
     },
   },
@@ -54,7 +54,7 @@ local SOURCE_TREE = {
         id = src.JUSTICE,
         children = {
           { id = src.PICKPOCKET },
-          { id = src.CONTAINER },
+          { id = src.STEAL_CONTAINER },
         },
       },
       { id = src.DUNGEON },
