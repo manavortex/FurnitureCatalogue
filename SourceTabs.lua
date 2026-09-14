@@ -17,7 +17,7 @@ local SOURCE_TREE = {
   },
   { id = src.WRIT_VENDOR },
   {
-    stringId = SI_FURC_FILTER_SRC_CURRENCY,
+    id = FurC.SourceFilters.CURRENCY,
     children = {
       {
         id = src.CROWN,
