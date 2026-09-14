@@ -10,6 +10,10 @@ local this = FurCDev
 local DELAY = 1000 -- ms
 local IDLE_TIMEOUT = 6000 -- ms
 
+-- scroll scenario: pages to step through, and the settle between them
+local SCROLL_PAGES = 10
+local SCROLL_DELAY = 400 -- ms
+
 -- should work in all locales (only tested EN and DE):
 local SEARCH_ITEM_ID = 211366 -- Ayleid Lamp, Ornate Stone
 local SEARCH_LEN = 5 -- "aylei"
@@ -150,15 +154,97 @@ local function prepareSteps(cold)
   return steps
 end
 
-local function setSource(value)
+-- How many rows the current filter left in the list.
+local function resultCount()
+  local dataLines = FurCGui_ListHolder and FurCGui_ListHolder.dataLines
+  return dataLines and #dataLines
+end
+
+-- Skip, in case a filter is gone or renamed
+local function selectOrSkip(tag, dropdownName, value)
+  local choices = FurC.DropdownData["Choices" .. dropdownName]
+  local text = value and choices and choices[value]
+  if not text then
+    mark(string.format("%s SKIPPED %s choice %s not offered", tag, dropdownName, tostring(value)))
+    d(
+      string.format(
+        "|cFF3333FurCDev|r: %s skipped, %s choice %s is no longer offered",
+        tag,
+        dropdownName,
+        tostring(value)
+      )
+    )
+    return false
+  end
+  FurC.SetDropdownChoice(dropdownName, text, value)
+  return true
+end
+
+-- Select one dropdown value, then record what it matched. An empty result is a legitimate outcome
+local function filterSteps(id, dropdownName, value)
   return function()
-    FurC.SetDropdownChoice("Source", FurC.DropdownData.ChoicesSource[value], value)
+    local selected = false
+    return {
+      {
+        fn = function()
+          selected = selectOrSkip(id, dropdownName, value)
+        end,
+        delay = DELAY,
+      },
+      {
+        fn = function()
+          if selected then
+            mark(id .. " result-count=" .. (resultCount() or "unavailable"))
+          end
+        end,
+        delay = 0,
+      },
+    }
   end
 end
 
-local function setVersion(value)
+-- A scenario that selects 1 dropdown value
+local function filterScenario(id, label, dropdownName, value)
+  return {
+    label = label,
+    filter = { dropdown = dropdownName, value = value },
+    steps = filterSteps(id, dropdownName, value),
+  }
+end
+
+-- Scroll the unfiltered list down 1 page at a time. Every page redraws each visible row, and the source line is composed per row per redraw (replicates what a player would experience while scrolling)
+local function scrollSteps(id)
   return function()
-    FurC.SetDropdownChoice("Version", FurC.DropdownData.ChoicesVersion[value], value)
+    local steps = {
+      {
+        fn = function()
+          FurCGui_ListHolder.dataOffset = 0
+          FurC.UpdateInventoryScroll() -- also settles maxLines for the page size
+          mark(
+            string.format("%d scroll rows=%d page-size=%d", id, resultCount() or 0, FurCGui_ListHolder.maxLines or 0)
+          )
+        end,
+        delay = DELAY,
+      },
+    }
+    for page = 1, SCROLL_PAGES do
+      steps[#steps + 1] = {
+        fn = function()
+          local holder = FurCGui_ListHolder
+          local pageSize = holder.maxLines or 0
+          local offset = holder.dataOffset or 0
+          local last = (resultCount() or 0) - pageSize
+          if pageSize <= 0 or offset >= last then
+            mark(string.format("%d scroll page=%d SKIPPED list-exhausted at offset=%d", id, page, offset))
+            return
+          end
+          mark(string.format("%d scroll page=%d offset=%d", id, page, offset))
+          FurC.GuiOnScroll(holder, -pageSize) -- what the mouse wheel does
+        end,
+        delay = SCROLL_DELAY,
+      }
+    end
+    return steps
   end
 end
 
@@ -218,45 +304,20 @@ local function scenarios()
         return { open("open1-cold"), close(), open("open2-warm"), close(), open("open3-warm") }
       end,
     },
-    [2] = {
-      label = "source = Crafting",
-      steps = function()
-        return { { fn = setSource(src.CRAFTING) } }
-      end,
-    },
-    [3] = {
-      label = "source = PVP",
-      steps = function()
-        return { { fn = setSource(src.PVP) } }
-      end,
-    },
-    [4] = {
-      label = "source = TelVar",
-      steps = function()
-        return { { fn = setSource(src.TELVAR) } }
-      end,
-    },
-    [5] = {
-      label = "version = Homestead",
-      steps = function()
-        return {
-          { fn = setVersion(ver.HOMESTEAD) },
-          {
-            fn = function()
-              local dataLines = FurCGui_ListHolder and FurCGui_ListHolder.dataLines
-              mark("5 result-count=" .. (dataLines and #dataLines or "unavailable"))
-            end,
-            delay = 0,
-          },
-        }
-      end,
-    },
+    [2] = filterScenario(2, "source = Crafting", "Source", src.CRAFTING),
+    [3] = filterScenario(3, "source = PVP", "Source", src.PVP),
+    [4] = filterScenario(4, "source = Vendor (gold)", "Source", src.VENDOR),
+    [5] = filterScenario(5, "version = Homestead", "Version", ver.HOMESTEAD),
     [6] = {
       label = "search keystrokes",
       steps = searchSteps,
     },
-    -- Must run last
     [7] = {
+      label = "scroll full list by pages",
+      steps = scrollSteps(7),
+    },
+    -- Must run last
+    [8] = {
       label = "rebuild DB + caches",
       steps = function()
         return {
@@ -264,9 +325,9 @@ local function scenarios()
             fn = function()
               clearCaches()
               FurC.RebuildDB() -- async, exactly as normal use
-              mark("7 onready-request")
+              mark("8 onready-request")
               LibFurnitureCatalogue.API.OnReady(function()
-                mark("7 onready-callback")
+                mark("8 onready-callback")
               end)
             end,
             delay = DELAY,
@@ -403,3 +464,4 @@ local function runAll()
   end)
 end
 this.RunAllBenchmarks = runAll
+this.BenchmarkScenarios = scenarios
