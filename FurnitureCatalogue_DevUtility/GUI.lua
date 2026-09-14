@@ -456,6 +456,23 @@ local searchTabs = {
     matches = {},
     page = 1,
   },
+  quests = {
+    list = "FurCDevControl_QuestsList",
+    pager = "FurCDevControl_QuestsPager",
+    search = "FurCDevControl_QuestsSearch",
+    source = function()
+      return this.Quests
+    end,
+    -- lazy build quests: the table is 10k GetQuestName calls 🤷‍♂️
+    ensure = function()
+      if NonContiguousCount(this.Quests) < 1 then
+        this.Internal.BuildQuestTable()
+      end
+    end,
+    rows = {},
+    matches = {},
+    page = 1,
+  },
   zones = {
     list = "FurCDevControl_ZonesList",
     pager = "FurCDevControl_ZonesPager",
@@ -781,6 +798,7 @@ function this.InitDashboard()
 
   -- Output is a permanent right pane (Scratchpad)
   this.RegisterTab("achievements", "Achievements", FurCDevControl_Achievements, refreshSearchTab("achievements"))
+  this.RegisterTab("quests", "Quests", FurCDevControl_Quests, refreshSearchTab("quests"))
   this.RegisterTab("zones", "Zones", FurCDevControl_Zones, refreshSearchTab("zones"))
   this.RegisterTab("houses", "Houses", FurCDevControl_Houses, refreshSearchTab("houses"))
   if this.BuildDumpTab then
@@ -788,6 +806,7 @@ function this.InitDashboard()
   end
   buildTabButtons()
   buildPager("achievements")
+  buildPager("quests")
   buildPager("zones")
   buildPager("houses")
   this.ClearTabs() -- Start neutral: no tab active
