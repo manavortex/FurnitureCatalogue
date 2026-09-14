@@ -14,6 +14,22 @@ local getItemLink = api.GetItemLink
 local getDBRevision = api.GetDBRevision
 local furcInternal = FurC.Internal
 
+-- Right-click additive Source picks: session-only (never written to FurC.settings),
+-- shared with Filter.lua's matchSourceDropdown() via FurC.AdditiveSources.
+FurC.AdditiveSources = FurC.AdditiveSources or {}
+local additiveSources = FurC.AdditiveSources
+-- Same green LSM uses by default for expandable+selectable rows (LibScrollableMenu_Highlight_Green, 00ff00),
+-- reused as the persistent (non-hover) label color for a right-click pick.
+local ADDITIVE_SOURCE_COLOR = ZO_ColorDef:New("00ff00")
+local ADDITIVE_SOURCE_ICON = "esoui/art/cadwell/check.dds"
+
+local function toggleAdditiveSource(id, control, comboBox)
+  additiveSources[id] = not additiveSources[id] or nil
+  RefreshCustomScrollableMenu(control, LSM_UPDATE_MODE_BOTH, comboBox)
+  FurC.SetFilter()
+  FurC.UpdateGui()
+end
+
 -- LCK char list can change, we might have to manually update list if they don't show up
 function FurC.RefreshCharacterChoices()
   local dd = FurC.DropdownData
@@ -630,6 +646,17 @@ local function createGui()
           entry.callback = function()
             selectSource(label, id)
           end
+          if id ~= src.NONE then
+            entry.contextMenuCallback = function(comboBox, control, data)
+              toggleAdditiveSource(id, control, comboBox)
+            end
+            entry.color = function()
+              return additiveSources[id] and ADDITIVE_SOURCE_COLOR or nil
+            end
+            entry.icon = function()
+              return additiveSources[id] and ADDITIVE_SOURCE_ICON or nil
+            end
+          end
         end
         entries[#entries + 1] = entry
       end
@@ -651,6 +678,9 @@ local function createGui()
     end
 
     local function selectSource(label, id)
+      for extraId in pairs(additiveSources) do
+        additiveSources[extraId] = nil
+      end
       FurC.SetDropdownChoice("Source", label, id)
       FurC.UpdateDropdownChoice("Source")
       PlaySound(SOUNDS.POSITIVE_CLICK)
@@ -667,6 +697,20 @@ local function createGui()
         end)
         item.furcId = node.id
         item.tooltip = node.id and tooltips[node.id]
+        if node.id then
+          local id = node.id
+          if id ~= src.NONE then
+            item.contextMenuCallback = function(comboBox, control, data)
+              toggleAdditiveSource(id, control, comboBox)
+            end
+            item.color = function()
+              return additiveSources[id] and ADDITIVE_SOURCE_COLOR or nil
+            end
+            item.icon = function()
+              return additiveSources[id] and ADDITIVE_SOURCE_ICON or nil
+            end
+          end
+        end
         if node.children then
           item.entries = buildSourceEntries(node.children, choices, tooltips, selectSource)
         end
