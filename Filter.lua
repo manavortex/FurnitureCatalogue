@@ -4,6 +4,12 @@ local query = FurC.DBQuery
 local searchIndex = FurC.SearchIndex
 local furcInternal = FurC.Internal
 
+-- Right-click additive Source picks.
+-- Session-only, so it resets on reload/relog
+-- the same way the left-click Source selection already does.
+FurC.AdditiveSources = FurC.AdditiveSources or {}
+local additiveSources = FurC.AdditiveSources
+
 local searchString = ""
 local searchPattern = ""
 local dropdownChoiceVersion = 1
@@ -227,41 +233,41 @@ local function isEventTradeBarItem()
 end
 
 -- Source: All, All (craftable), Craftable (known), craftable (unknown), purchasable
-local function matchSourceDropdown()
+local function matchesSource(candidate)
   -- "All", don't care
-  if src.NONE == ddSource then
+  if src.NONE == candidate then
     return true
   end
-  if src.FAVE == ddSource then
+  if src.FAVE == candidate then
     return FurC.IsFavoriteById(itemId)
   end
   -- Crafting sub-filters. KNOWN/UNKNOWN from LCK
-  if src.CRAFTING == ddSource then
+  if src.CRAFTING == candidate then
     return hasSource(src.CRAFTING)
   end
-  if src.CRAFTING_KNOWN == ddSource or src.CRAFTING_UNKNOWN == ddSource then
+  if src.CRAFTING_KNOWN == candidate or src.CRAFTING_UNKNOWN == candidate then
     if not hasSource(src.CRAFTING) then
       return false
     end
     local matchingDropdownSource = (isRecipeArrayKnown() and src.CRAFTING_KNOWN) or src.CRAFTING_UNKNOWN
-    return matchingDropdownSource == ddSource
+    return matchingDropdownSource == candidate
   end
-  if src.VENDOR == ddSource then
+  if src.VENDOR == candidate then
     return hasSource(src.VENDOR)
   end
-  if FurC.SourceFilters.ACHIEVEMENT == ddSource then
+  if FurC.SourceFilters.ACHIEVEMENT == candidate then
     return hasSource(src.VENDOR) and isAchievementGatedItem()
   end
-  if FurC.SourceFilters.HOME_GOODS == ddSource then
+  if FurC.SourceFilters.HOME_GOODS == candidate then
     return hasSource(src.VENDOR) and isHomeGoodsFurnisherItem()
   end
-  if src.WRIT_VENDOR == ddSource then
+  if src.WRIT_VENDOR == candidate then
     return hasSource(src.ROLIS)
   end
-  if src.PVP == ddSource then
+  if src.PVP == candidate then
     return hasSource(src.PVP)
   end
-  if FurC.SourceFilters.ALLIANCE_POINTS == ddSource then
+  if FurC.SourceFilters.ALLIANCE_POINTS == candidate then
     if not hasSource(src.PVP) then
       return false
     end
@@ -280,7 +286,7 @@ local function matchSourceDropdown()
     end
     return true
   end
-  if src.TELVAR == ddSource then
+  if src.TELVAR == candidate then
     if not hasSource(src.PVP) then
       return false
     end
@@ -300,7 +306,15 @@ local function matchSourceDropdown()
     return false
   end
 
-  if src.OTHER == ddSource then
+  if FurC.SourceFilters.CURRENCY == candidate then
+    return matchesSource(src.CROWN)
+      or matchesSource(src.VENDOR)
+      or matchesSource(src.PVP)
+      or matchesSource(src.TOMES)
+      or matchesSource(src.BAZAAR)
+  end
+  
+  if src.OTHER == candidate then
     -- match if sources are part of OTHER too
     local sources = recipeArray.sources
     if sources ~= nil then
@@ -313,48 +327,68 @@ local function matchSourceDropdown()
     return false
   end
 
-  if src.CROWN == ddSource then
+  if src.CROWN == candidate then
     return hasSource(src.CROWN) or hasSource(src.EDITOR)
   end
 
   --TODO: twerkaround, make it pretty later
-  if FurC.SourceFilters.CROWN_STORE == ddSource then
+  if FurC.SourceFilters.CROWN_STORE == candidate then
     return hasSource(src.CROWN)
   end
 
-  if src.EDITOR == ddSource then
+  if src.EDITOR == candidate then
     return hasSource(src.EDITOR)
   end
-
-  if src.JUSTICE == ddSource then
+  
+  if src.JUSTICE == candidate then
     return hasSource(src.PICKPOCKET) or hasSource(src.STEAL_CONTAINER)
   end
-
-  if src.BAZAAR == ddSource then
+  
+  if src.BAZAAR == candidate then
     return hasSource(src.BAZAAR) or isEventTradeBarItem()
   end
-
-  if src.DUNGEON == ddSource then
+  
+  if src.DUNGEON == candidate then
     return hasSource(src.DUNGEON)
   end
-  if src.HARVEST == ddSource then
+  if src.HARVEST == candidate then
     return hasSource(src.HARVEST)
   end
-  if src.CHEST == ddSource then
+  if src.CHEST == candidate then
     return hasSource(src.CHEST)
   end
-  if src.QUEST == ddSource then
+  if src.QUEST == candidate then
     return hasSource(src.QUEST)
   end
-  if src.PICKPOCKET == ddSource then
+  if src.PICKPOCKET == candidate then
     return hasSource(src.PICKPOCKET)
   end
-  if src.CONTAINER == ddSource then
+  if src.CONTAINER == candidate then
     return hasSource(src.CONTAINER)
   end
-
+  
   -- direct options: CROWN, RUMOUR, LUXURY, BAZAAR
-  return hasSource(ddSource)
+  return hasSource(candidate)
+end
+
+-- Source: single ddSource selection, unioned with any right-click additive picks
+local function matchSourceDropdown()
+  -- "Off" alone means show everything; but once you've right-clicked in extra
+  -- picks, those become the whole filter instead of being drowned out by NONE's
+  -- unconditional true (mirrors filterFurnCategoryAll/filterQualityAll: nothing
+  -- picked = show all, anything picked = only picks count)
+  local haveAdditivePicks = next(additiveSources) ~= nil
+  if not (src.NONE == ddSource and haveAdditivePicks) and matchesSource(ddSource) then
+    return true
+  end
+  if haveAdditivePicks then
+    for extraId in pairs(additiveSources) do
+      if matchesSource(extraId) then
+        return true
+      end
+    end
+  end
+  return false
 end
 
 local function matchDropdownFilter()
