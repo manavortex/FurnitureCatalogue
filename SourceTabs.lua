@@ -73,6 +73,8 @@ FurC.SourceTree = SOURCE_TREE
 
 -- Resolved view of the tree (with OTHER auto-filled)
 local resolved, familyRoot, nodeById, flatOrder
+local subtreeIds, groupIds -- id -> {self + all descendant ids}; flat list of ids that have children
+local ancestorsOf -- id -> {self, parent, grandparent, ..., root}, for "parent pick covers this leaf" checks
 local builtFrom
 local warnedUnlabelled = false
 
@@ -110,16 +112,35 @@ local function collectUngrouped(placed, choices)
   return ungrouped
 end
 
-local function indexNode(node, rootId)
+local function indexNode(node, rootId, parentChain)
   rootId = rootId or node.id
+  local subtree = {}
+  local ownChain = parentChain
   if node.id then
     familyRoot[node.id] = rootId
     nodeById[node.id] = node
     flatOrder[#flatOrder + 1] = node.id
+    subtree[#subtree + 1] = node.id
+    -- this id, then everything already accumulated above it
+    ownChain = { node.id }
+    for _, ancestorId in ipairs(parentChain or {}) do
+      ownChain[#ownChain + 1] = ancestorId
+    end
+    ancestorsOf[node.id] = ownChain
   end
   for _, child in ipairs(node.children or {}) do
-    indexNode(child, rootId)
+    local childIds = indexNode(child, rootId, ownChain)
+    for _, id in ipairs(childIds) do
+      subtree[#subtree + 1] = id
+    end
   end
+  if node.id then
+    subtreeIds[node.id] = subtree
+    if node.children then
+      groupIds[#groupIds + 1] = node.id
+    end
+  end
+  return subtree
 end
 
 ---@return table[] tree resolved copy, catch-all children filled in
@@ -144,6 +165,7 @@ local function getResolvedTree()
   end
 
   resolved, familyRoot, nodeById, flatOrder = {}, {}, {}, {}
+  subtreeIds, groupIds, ancestorsOf = {}, {}, {}
   builtFrom = choices
 
   for _, node in ipairs(SOURCE_TREE) do
@@ -182,6 +204,57 @@ end
 function FurC.GetSourceTreeNode(srcId)
   getResolvedTree()
   return nodeById[srcId]
+end
+
+---Every node id that has children (i.e. can show a rolled-up right-click count)
+---@return integer[] ids
+function FurC.GetSourceGroupIds()
+  getResolvedTree()
+  return groupIds
+end
+
+---True if srcId itself, or any of its ancestors, is a right-click additive pick -
+---i.e. whether this specific node is functionally included in the current filter,
+---whether or not it was the one actually clicked.
+---@param srcId integer
+---@return boolean covered
+function FurC.IsSourceCovered(srcId)
+  getResolvedTree()
+  local additive = FurC.AdditiveSources
+  if not additive then
+    return false
+  end
+  local chain = ancestorsOf[srcId]
+  if not chain then
+    return additive[srcId] == true
+  end
+  for _, ancestorId in ipairs(chain) do
+    if additive[ancestorId] then
+      return true
+    end
+  end
+  return false
+end
+
+---Count of leaf descendants within a node's own subtree that are covered (see
+---IsSourceCovered) - i.e. picking a parent directly counts as picking all its
+---children. Only leaves are counted; an intermediate group is never its own unit.
+---@param srcId integer
+---@return integer count
+function FurC.GetAdditiveSourceCount(srcId)
+  getResolvedTree()
+  local ids = subtreeIds[srcId]
+  if not ids then
+    return 0
+  end
+  local n = 0
+  for _, id in ipairs(ids) do
+    local node = nodeById[id]
+    if node and not node.children and FurC.IsSourceCovered(id) then
+      n = n + 1
+    end
+  end
+  return n
 end
 
 -- Crafting-profession row: visible under these top-level families.
