@@ -14,7 +14,7 @@ local getItemLink = api.GetItemLink
 local getDBRevision = api.GetDBRevision
 local furcInternal = FurC.Internal
 
--- Right-click additive Source picks: session-only (never written to FurC.settings),
+-- Right-click additive Source picks: session-only,
 -- shared with Filter.lua's matchSourceDropdown() via FurC.AdditiveSources.
 FurC.AdditiveSources = FurC.AdditiveSources or {}
 local additiveSources = FurC.AdditiveSources
@@ -23,9 +23,44 @@ local additiveSources = FurC.AdditiveSources
 local ADDITIVE_SOURCE_COLOR = ZO_ColorDef:New("00ff00")
 local ADDITIVE_SOURCE_ICON = "esoui/art/cadwell/check.dds"
 
+-- id -> the live GUI entry/item table for that Source tree node, so a rolled-up count
+-- can be written into its label after the fact. Rebuilt fresh each createSourceDropdown()
+-- call, since that clears and rebuilds the whole tree.
+local entryById = {}
+
+-- data.label is read as a plain string,
+-- so a live count means literally rewriting the label text and refreshing.
+local function refreshGroupLabel(id)
+  local entry = entryById[id]
+  if not entry or not entry.baseLabel then
+    return
+  end
+  local count = FurC.GetAdditiveSourceCount(id)
+  entry.label = count > 0 and (entry.baseLabel .. " (" .. count .. ")") or entry.baseLabel
+end
+
+-- Small tree (~8 grouping nodes) - cheaper and far more robust to just recompute every
+-- group's label on every toggle than to track exactly which ancestors changed.
+local function refreshAllGroupLabels()
+  for _, groupId in ipairs(FurC.GetSourceGroupIds()) do
+    refreshGroupLabel(groupId)
+  end
+end
+
+local function refreshAncestorPanels(control, comboBox)
+  local ancestor = control
+  while ancestor do
+    RefreshCustomScrollableMenu(ancestor, LSM_UPDATE_MODE_SUBMENU, comboBox)
+    local owner = ancestor.m_owner
+    ancestor = owner and owner.openingControl
+  end
+end
+
 local function toggleAdditiveSource(id, control, comboBox)
   additiveSources[id] = not additiveSources[id] or nil
+  refreshAllGroupLabels()
   RefreshCustomScrollableMenu(control, LSM_UPDATE_MODE_BOTH, comboBox)
+  refreshAncestorPanels(control, comboBox)
   FurC.SetFilter()
   FurC.UpdateGui()
 end
@@ -643,6 +678,8 @@ local function createGui()
         end
         if node.id then
           local id = node.id
+          entry.baseLabel = label
+          entryById[id] = entry
           entry.callback = function()
             selectSource(label, id)
           end
@@ -681,11 +718,13 @@ local function createGui()
       for extraId in pairs(additiveSources) do
         additiveSources[extraId] = nil
       end
+      refreshAllGroupLabels()
       FurC.SetDropdownChoice("Source", label, id)
       FurC.UpdateDropdownChoice("Source")
       PlaySound(SOUNDS.POSITIVE_CLICK)
     end
 
+    entryById = {}
     comboBox:SetSortsItems(false)
     comboBox:ClearItems()
 
@@ -699,6 +738,8 @@ local function createGui()
         item.tooltip = node.id and tooltips[node.id]
         if node.id then
           local id = node.id
+          item.baseLabel = label
+          entryById[id] = item
           if id ~= src.NONE then
             item.contextMenuCallback = function(comboBox, control, data)
               toggleAdditiveSource(id, control, comboBox)
