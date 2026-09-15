@@ -76,31 +76,20 @@ Taneth("FurC:Lib", function()
       assert.equals(resolved, placeDetail.location)
     end)
 
-    it("recovers the container item id from the note it now arrives in", function()
-      -- A festival source that is a container rather than an NPC used to arrive as
-      -- an item link in `vendor`; it arrives in `note` now, and the export still has
-      -- to come out with the container's item id
+    it("exports the container containing the item contained within", function()
       local seen = false
       for itemId, record in pairs(exportRecords()) do
         for index, detail in pairs(record.info or {}) do
           local sourceType = record.sources[index]
           for _, rec in ipairs(api.GetSourceDetails(itemId)) do
-            if
-              rec.source.type == sourceType
-              and type(rec.source.note) == "string"
-              and rec.source.note:find("|H", 1, true)
-            then
+            if rec.source.type == sourceType and rec.source.container then
               seen = true
-              assert.equals("number", type(detail.fromItem))
-              assert.is_true(detail.fromItem > 0)
+              assert.equals(rec.source.container, detail.fromItem)
             end
           end
         end
       end
-      if not seen then
-        -- Stated rather than silently passing: the container case is data-dependent
-        assert.is_true(true)
-      end
+      assert.is_true(seen, "no source in the database carries a container")
     end)
   end)
 end)

@@ -372,17 +372,10 @@ local function sourceInfoFor(itemId, sourceIds)
   for index, sourceId in ipairs(sourceIds) do
     local rec = byType[sourceId]
     if rec then
-      -- A container rather than an NPC used to arrive as an item link in `vendor`
-      -- and now arrives in `note`, so the container id is recovered from there
-      local note, fromItem = rec.source.note, nil
-      if type(note) == "string" and note:find("|H", 1, true) then
-        fromItem = fmt.GetItemId(note)
-        note = nil
-      end
-
       local detail = {
         vendor = resolveText(RESOLVE.Npc, rec.source.vendor),
-        fromItem = fromItem,
+        -- a source that is not an NPC is the container the item comes out of
+        fromItem = rec.source.container,
         -- location XOR place: a zone the game knows, or somewhere it has no zone for
         -- `place` lands in the same column the old prose location did, so the
         -- artifact keeps its column set: the record split the two meanings, the

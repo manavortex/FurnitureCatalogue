@@ -303,12 +303,10 @@ local function fmtGeneric(cat, suffix, srcType, ...)
 end
 
 local fmtAch = GetString(SI_FURC_REQUIRES_ACHIEVEMENT)
-local fmtReward = GetString(SI_FURC_STRING_REWARD_FOR)
 local anyAchievement = sFormat("<<a:1>>", GetString(SI_FURC_ACHIEVEMENT_UNKNOWN))
 ---@param req number|string achievement id, or a description when the data has no id
----@param isReward? boolean the achievement is what hands the item out, rather than what gates it
-local function formatAchievement(req, isReward)
-  local fmt = (isReward and fmtReward) or fmtAch
+local function formatAchievement(req)
+  local fmt = fmtAch
   if type(req) == "string" then
     return sFormat(fmt, req)
   end
@@ -422,7 +420,10 @@ local function addQualifier(parts, value, resolve)
       alternatives[#alternatives + 1] = resolved
     end
   end
-  if #alternatives > 0 then
+  -- 1 alternative means it's just 1 value
+  if #alternatives == 1 then
+    parts[#parts + 1] = fmtSources("src", alternatives[1])
+  elseif #alternatives > 1 then
     parts[#parts + 1] = fmtSources("other", unpack(alternatives))
   end
 end
@@ -474,14 +475,6 @@ local function renderCategory(record)
   local source = record.source
   local cost = record.cost
 
-  if source.reward then
-    return string.format(
-      "%s %s",
-      formatAchievement(source.reward, true),
-      fmtSources("loc", resolveZone(source.location))
-    )
-  end
-
   if source.itemPack then
     return sFormat(GetString(SI_FURC_SRC_TOMESPACK), GetString(source.itemPack))
   end
@@ -503,6 +496,9 @@ local function renderCategory(record)
   addQualifier(notes, source.npcClass, resolveNpcClass)
   addQualifier(notes, source.containerKind, resolveNote)
   addQualifier(notes, source.note, resolveNote)
+  if source.achievement then
+    notes[#notes + 1] = formatAchievement(source.achievement)
+  end
   if source.container then
     notes[#notes + 1] = getItemLink(source.container)
   end
@@ -591,8 +587,8 @@ local function renderEvent(record)
   local source = record.source
   local eventName = source.event and resolveString(source.event)
   local cost = record.cost
-  -- a source that is not an NPC is a container item link, which the record keeps as a note
-  local named = (source.vendor and resolveString(source.vendor)) or (type(source.note) == "string" and source.note)
+  -- a source that is not an NPC is a container
+  local named = (source.vendor and resolveString(source.vendor)) or (source.container and getItemLink(source.container))
 
   if cost or source.vendor then
     return formatFurnisher(

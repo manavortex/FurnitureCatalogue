@@ -154,7 +154,7 @@ local function addWritVendors(add)
         if nil ~= itemId then
           add(itemId, vendorName)
           add(itemId, loc.ANY_CAPITAL)
-          add(itemId, getAchievementName(entry.info))
+          add(itemId, getAchievementName(entry.achievement))
         end
       end
     end
