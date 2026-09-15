@@ -42,7 +42,13 @@ local SOURCE_TREE = {
         },
       },
 	  { id = src.TOMES },
-      { id = src.BAZAAR },
+      {
+        id = src.BAZAAR,
+        children = {
+          { id = FurC.SourceFilters.GOLD_COAST_BAZAAR },
+          { id = FurC.SourceFilters.IMPRESARIO },
+        },
+      },
     },
   },
   {
