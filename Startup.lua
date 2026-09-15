@@ -91,6 +91,8 @@ this.SourceFilters = {
   ACHIEVEMENT = -3,
   HOME_GOODS = -4,
   CURRENCY = -5,
+  GOLD_COAST_BAZAAR = -6,
+  IMPRESARIO = -7,
 }
 local filter = this.SourceFilters
 
@@ -108,6 +110,8 @@ local function getSourceIndicesKeys()
   sourceIndicesKeys[src.PVP] = "purch_ap"
   sourceIndicesKeys[filter.ALLIANCE_POINTS] = "purch_ap_only"
   sourceIndicesKeys[src.BAZAAR] = "purch_tbars"
+  sourceIndicesKeys[filter.GOLD_COAST_BAZAAR] = "purch_tbars_goldcoast"
+  sourceIndicesKeys[filter.IMPRESARIO] = "purch_tbars_impresario"
   sourceIndicesKeys[src.TELVAR] = "purch_telvar"
   sourceIndicesKeys[src.TOMES] = "purch_tomepoints"
   sourceIndicesKeys[filter.CURRENCY] = "currency"
@@ -150,6 +154,8 @@ local function getChoicesSource()
   choicesSource[filter.ALLIANCE_POINTS] = GetString(SI_FURC_FILTER_SRC_SOLD_AP)
   choicesSource[src.TELVAR] = GetString(SI_FURC_FILTER_SRC_SOLD_TELVAR)
   choicesSource[src.BAZAAR] = GetString(SI_FURC_FILTER_SRC_SOLD_TBARS)
+  choicesSource[filter.GOLD_COAST_BAZAAR] = GetString(SI_FURC_FILTER_SRC_GOLD_COAST_BAZAAR)
+  choicesSource[filter.IMPRESARIO] = GetString(SI_FURC_FILTER_SRC_IMPRESARIO)
   choicesSource[src.TOMES] = GetString(SI_FURC_FILTER_SRC_SOLD_TOMEPOINTS)
   choicesSource[filter.CURRENCY] = GetString(SI_FURC_FILTER_SRC_CURRENCY)
   choicesSource[src.CROWN] = GetString(SI_FURC_FILTER_SRC_CROWNS)
