@@ -152,10 +152,8 @@ Taneth("FurC:Lib", function()
     end)
 
     local INTERNAL_REACH_BASELINE = {
-      ["Chat.lua"] = true,
       ["Filter.lua"] = true,
       ["SearchIndex.lua"] = true,
-      ["Startup.lua"] = true,
       ["Tooltip.lua"] = true,
     }
 
@@ -197,7 +195,6 @@ Taneth("FurC:Lib", function()
       ["Internal.lua"] = true,
       ["Knowledge.lua"] = true,
       ["SearchIndex.lua"] = true,
-      ["Tooltip.lua"] = true,
     }
 
     -- we don't want to fall back to the old patterns again
@@ -248,6 +245,29 @@ Taneth("FurC:Lib", function()
       assert.is_true(checked > 5)
       assert.same({}, newcomers)
       assert.same({}, miscounted)
+    end)
+
+    -- The flat alias hands back the library's live row and an empty table on a miss, whereas the API lookup copies and answers nil (this is just a compatibility check for 3rd party AddOns, not for FC)
+    it("no main source looks an item up through the flat alias", function()
+      if not (io and FurCDev.repoRoot) then
+        return -- run test headless only
+      end
+      local callers, checked = {}, 0
+      for _, rel in ipairs(manifestFiles("FurnitureCatalogue.txt", "")) do
+        local src = readFile(rel)
+        if src then
+          checked = checked + 1
+          local n = 0
+          for line in (stripComments(src) .. "\n"):gmatch("([^\n]*)\n") do
+            n = n + 1
+            if line:find("%f[%w]FurC%.Find%f[%W]") or line:find("%f[%w]DBQuery%.Find%f[%W]") then
+              callers[#callers + 1] = rel .. ":" .. n .. ": " .. line:gsub("^%s+", "")
+            end
+          end
+        end
+      end
+      assert.is_true(checked > 5)
+      assert.same({}, callers)
     end)
   end)
 end)

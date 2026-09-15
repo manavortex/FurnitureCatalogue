@@ -4,8 +4,10 @@ local async = LibAsync
 local task = async:Create("FurnitureCatalogue_Tooltip")
 local LFC = LibFurnitureCatalogue
 local src = LFC.API.GetSourceTypes()
+local getEntry = LFC.API.GetEntry
+local getItemId = LFC.API.GetItemId
 local getItemLink = LFC.API.GetItemLink
-local query = FurC.DBQuery
+local sourceFormat = FurC.SourceFormat
 
 -- Tooltip source lines: applies user's source blacklist over the composed lines
 -- Always shows at least one line if any non-crafting sources exist
@@ -14,12 +16,12 @@ local query = FurC.DBQuery
 ---@param stripColor? boolean
 ---@return string[] lines one per source, ranked (honours tooltip blacklist)
 local function getSourceLines(recipeKey, recipeArray, stripColor)
-  recipeArray = recipeArray or query.Find(recipeKey)
-  local itemId = LFC.API.GetItemId(recipeKey) or recipeKey
-  local ranked = FurC.SourceFormat.FormatItem(itemId, recipeArray, { dateFormat = FurC.GetDateFormat() })
+  recipeArray = recipeArray or getEntry(recipeKey)
+  local itemId = getItemId(recipeKey) or recipeKey
+  local ranked = sourceFormat.FormatItem(itemId, recipeArray, { dateFormat = FurC.GetDateFormat() })
   if stripColor then
     for _, entry in ipairs(ranked) do
-      entry.text = LFC.Internal.Format.stripTxt(entry.text)
+      entry.text = sourceFormat.Strip(entry.text)
     end
   end
 
@@ -66,12 +68,12 @@ end
 
 local function addFolioTooltipData(control, itemId, folioData)
   local resolvers = LFC.Internal.Constants.Resolvers
-  local strPrice = LFC.Internal.Format.FormatPrice(folioData.itemPrice, folioData.currency)
-  local strVendor =
-    LFC.Internal.Format.Colourise(resolvers.Npc(folioData.vendor), LFC.Internal.Constants.Colours.Vendor)
-  local strLoc =
-    LFC.Internal.Format.Colourise(resolvers.Place(folioData.place), LFC.Internal.Constants.Colours.Location)
-  local header = zo_strformat("<<1>> : <<2>> (<<3>>)", strVendor, strLoc, strPrice)
+  local header = sourceFormat.Furnisher(
+    resolvers.Npc(folioData.vendor),
+    resolvers.Place(folioData.place),
+    folioData.itemPrice,
+    folioData.currency
+  )
 
   local lines = { header }
 
@@ -94,7 +96,7 @@ end
 local function addBookCollectionTooltipData(control, itemId, collection)
   local lines = {}
 
-  local recipeArray = FurC.Find(itemId)
+  local recipeArray = getEntry(itemId)
   if recipeArray and not FurC.GetHideSource() then
     local sourceLines = FurC.GetSourceLines(itemId, recipeArray, false)
     for i = 1, #sourceLines do
@@ -105,9 +107,9 @@ local function addBookCollectionTooltipData(control, itemId, collection)
   -- book names comma-joined into one block
   local names = {}
   for i = 1, #collection.contents do
-    names[#names + 1] = LFC.Internal.Format.GetItemName(collection.contents[i])
+    names[#names + 1] = sourceFormat.ItemName(collection.contents[i])
   end
-  lines[#lines + 1] = string.format("%s:", FurC.SourceFormat.FormatContents(itemId))
+  lines[#lines + 1] = string.format("%s:", sourceFormat.FormatContents(itemId))
   lines[#lines + 1] = table.concat(names, ", ")
 
   control:AddVerticalPadding(8)
@@ -147,7 +149,7 @@ local function addTooltipData(control, itemLink)
     return
   end
   itemId = GetItemLinkItemId(itemLink)
-  recipeArray = FurC.Find(itemLink)
+  local recipeArray = getEntry(itemLink)
 
   -- |H0:item:118206:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h
 
@@ -171,11 +173,11 @@ local function addTooltipData(control, itemLink)
     end
     -- craftable items show recipe tooltip, if src available
     if isRecipe or recipeArray.blueprint then
-      stringTable = add(stringTable, query.GetRecipeSource(itemId, recipeArray))
+      stringTable = add(stringTable, sourceFormat.RecipeSource(itemId))
     end
     -- check if we should show mats
     if not (FurC.GetHideMats() or isRecipe) then
-      stringTable = add(stringTable, FurC.GetMats(itemLink, recipeArray, true):gsub(", ", "\n"))
+      stringTable = add(stringTable, sourceFormat.FormatMaterials(itemLink, recipeArray):gsub(", ", "\n"))
     end
   end
 
@@ -215,7 +217,7 @@ end
 
 local function ReturnItemLink(itemLink)
   if FurC.showBlueprints then
-    local recipeArray = FurC.Find(itemLink)
+    local recipeArray = getEntry(itemLink)
     if recipeArray and recipeArray.blueprint then
       return getItemLink(recipeArray.blueprint)
     end

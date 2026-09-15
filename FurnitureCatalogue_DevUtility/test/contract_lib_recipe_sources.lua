@@ -103,13 +103,19 @@ Taneth("FurC:Lib", function()
               rendered = entryLine.text
             end
           end
-          -- equality, not "non-empty": an unhandled source falls through to the
-          -- "item source unknown, please re-scan" text, which is also non-empty
-          assert.equals(
-            query.GetRecipeSource(recipeId),
-            rendered,
-            string.format("row %s: item %s does not render its own row", recipeId, itemId)
+          -- an unhandled source falls through to "item source unknown, please re-scan", which is why not-empty check is not enough
+          assert.is_not_nil(rendered, string.format("row %s: item %s renders no line", recipeId, itemId))
+          assert.is_true(
+            rendered ~= GetString(SI_FURC_SRC_EMPTY),
+            string.format("row %s: item %s falls through to the unknown-source text", recipeId, itemId)
           )
+          if row.vendor then
+            local vendorName = constants.Resolvers.Npc(row.vendor)
+            assert.is_true(
+              rendered:find(vendorName, 1, true) ~= nil,
+              string.format("row %s: item %s does not name %s", recipeId, itemId, vendorName)
+            )
+          end
           checked = checked + 1
         end
       end
@@ -133,10 +139,11 @@ Taneth("FurC:Lib", function()
     -- Rendered text is in the client's language, so nothing here pins prose or
     -- formatted numbers - see the thousands-separator defect on the writ-vendor
     -- price test. What is pinned is that the id reached the renderer.
-    it("render to a source line naming the resolved vendor", function()
+    it("reach the crafting line, naming the resolved vendor", function()
+      local crafting = constants.ItemSources.CRAFTING
       local vendorRows, questRows = rowsByShape()
       for itemId, row in pairs(vendorRows) do
-        local line = query.GetRecipeSource(itemId)
+        local line = query.DescribeSource(itemId, nil, crafting, false)
         assert.equals("string", type(line), string.format("row %s rendered %s", itemId, type(line)))
         local vendorName = constants.Resolvers.Npc(row.vendor)
         assert.is_true(
@@ -146,7 +153,7 @@ Taneth("FurC:Lib", function()
       end
 
       for itemId in pairs(questRows) do
-        local line = query.GetRecipeSource(itemId)
+        local line = query.DescribeSource(itemId, nil, crafting, false)
         assert.equals("string", type(line))
         assert.is_true(#line > 0, string.format("row %s rendered empty", itemId))
       end

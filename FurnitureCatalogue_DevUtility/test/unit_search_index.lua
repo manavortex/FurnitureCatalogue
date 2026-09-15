@@ -84,16 +84,19 @@ Taneth("FurC:Unit", function()
       end
     end)
 
-    it("generates a source string for books from their container", function()
+    it("names the container a book comes in, in the book's own record", function()
       FurCDev.Test.ensureDB()
       local bc = FurC.Constants.BookContainers
       local collection = FurC.BookCollections[bc.NOTHING_EYES]
-      local query = LibFurnitureCatalogue.Internal.Query
       local source = FurC.Constants.ItemSources.VENDOR
       for _, bookId in ipairs(collection.contents) do
-        local sourceText = query.GetMiscItemSource(bookId, { version = collection.version }, false, source)
-        assert.equals("string", type(sourceText))
-        assert.is_not_nil(string.find(sourceText, tostring(bc.NOTHING_EYES), 1, true)) -- itemlink of the container
+        local named
+        for _, record in ipairs(LibFurnitureCatalogue.API.GetSourceDetails(bookId)) do
+          if record.source.type == source then
+            named = record.source.partOf
+          end
+        end
+        assert.equals(bc.NOTHING_EYES, named, string.format("book %d does not name its container", bookId))
       end
     end)
 

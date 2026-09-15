@@ -3,6 +3,7 @@
 local this = FurC.Internal
 local LFC = LibFurnitureCatalogue
 
+local getEntry = LFC.API.GetEntry
 local getItemLink = LFC.API.GetItemLink
 
 -- LCK reference, nil when no LCK loaded
@@ -234,7 +235,7 @@ function FurC.GetCrafterList(itemLink, recipeArray)
   if nil == recipeArray and nil == itemLink then
     return
   end
-  recipeArray = recipeArray or FurC.Find(itemLink)
+  recipeArray = recipeArray or getEntry(itemLink)
   if nil == recipeArray then
     return zo_strformat("FurC.GetCrafterList called for a non-craftable")
   end

@@ -22,8 +22,8 @@ local function resolveLocation(id)
 end
 
 local lower = LocaleAwareToLower
-local stripTxt = LFC.Internal.Format.stripTxt
-local STRIP_CONTROL = LFC.Internal.Format.STRIP_CONTROL
+local stripTxt = FurC.SourceFormat.Strip
+local STRIP_CONTROL = FurC.SourceFormat.STRIP_CONTROL
 local concat = table.concat
 local find = string.find
 

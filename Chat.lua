@@ -3,10 +3,34 @@
 local sFormat = zo_strformat
 
 local LFC = LibFurnitureCatalogue
-local stripTxt = LFC.Internal.Format.stripTxt
+local sourceFormat = FurC.SourceFormat
+local stripTxt = sourceFormat.Strip
+local getEntry = LFC.API.GetEntry
 local getItemId = LFC.API.GetItemId
 local getItemLink = LFC.API.GetItemLink
 local query = FurC.DBQuery
+
+-- What the chat input takes. Anything past it is cut off when the message is sent
+local CHAT_LIMIT = 350
+
+---Does this text survive being sent as one chat message
+---@param text string
+---@return boolean
+function FurC.ChatFits(text)
+  return #tostring(text or "") <= CHAT_LIMIT
+end
+
+---An item's material list for the chat input: item links while they fit, plain names when they do not
+---@param itemOrLink string|integer
+---@param entry FurCEntry|nil
+---@return string
+function FurC.MaterialsForChat(itemOrLink, entry)
+  local text = sourceFormat.FormatMaterials(itemOrLink, entry)
+  if FurC.ChatFits(text) then
+    return text
+  end
+  return sourceFormat.FormatMaterials(itemOrLink, entry, true)
+end
 
 function FurC.PrintCraftingStation(itemId, recipeArray)
   local craftingType = query.GetCraftingSkillType(itemId, recipeArray)
@@ -44,14 +68,14 @@ end
 
 function FurC.PrintSource(itemLink, recipeArray)
   if nil == recipeArray then
-    recipeArray = FurC.Find(itemLink)
+    recipeArray = getEntry(itemLink)
   end
   if nil == recipeArray then
     return
   end
 
   local source =
-    FurC.SourceFormat.FormatDescription(getItemId(itemLink), recipeArray, true, { dateFormat = FurC.GetDateFormat() })
+    sourceFormat.FormatDescription(getItemId(itemLink), recipeArray, true, { dateFormat = FurC.GetDateFormat() })
   local output = string.format("%s: %s", itemLink, source)
   if recipeArray.achievement and recipeArray.achievement ~= "" then
     output = string.format("%s, requires %s", output, recipeArray.achievement)

@@ -11,6 +11,9 @@ this.author = "manavortex"
 local defaults = {}
 local src = FurC.Constants.ItemSources
 
+local getEntry = LibFurnitureCatalogue.API.GetEntry
+local fmtMats = FurC.SourceFormat.FormatMaterials
+
 local function getSortTable(tbl)
   local list = {}
   for name, _ in pairs(tbl) do
@@ -38,11 +41,11 @@ function this.Export()
   local exportUnknown = {}
   for _, itemName in pairs(tkeys) do
     local itemLink = itemNames[itemName]
-    local recipeArray = FurC.Find(itemLink)
+    local recipeArray = getEntry(itemLink)
     local known = FurC.IsAccountKnown(itemLink, recipeArray)
 
     local exportArray = (known and exportKnown) or exportUnknown
-    local mats = FurC.GetMats(itemLink, recipeArray, false, true)
+    local mats = fmtMats(itemLink, recipeArray, true)
     local knowledge = (known and (FurC.GetCrafterList(itemLink, recipeArray) .. ": "):gsub("Can be crafted by ", ""))
       or ""
     local exportString = zo_strformat("<<1>><<2>>", knowledge, mats)

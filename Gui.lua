@@ -10,8 +10,10 @@ local otherTask = LibAsync:Create("FurnitureCatalogue_ToggleGui")
 local LFC = LibFurnitureCatalogue
 local api = LFC.API
 local src = api.GetSourceTypes()
+local getEntry = api.GetEntry
 local getItemLink = api.GetItemLink
 local getDBRevision = api.GetDBRevision
+local sourceFormat = FurC.SourceFormat
 local furcInternal = FurC.Internal
 
 -- Right-click additive Source picks: session-only,
@@ -164,8 +166,9 @@ local function updateLineVisibility()
       curLine.text:SetText("")
       curLine.mats:SetText("")
     else
-      local recipeArray = FurC.Find(curData.itemLink)
-      if FurC.showBlueprints and recipeArray and recipeArray.blueprint then
+      -- only the blueprint column needs the row, so the copy is not paid per redraw otherwise
+      local recipeArray = FurC.showBlueprints and getEntry(curData.itemLink)
+      if recipeArray and recipeArray.blueprint then
         curLine.itemLink = getItemLink(recipeArray.blueprint)
       else
         curLine.itemLink = curData.itemLink
@@ -176,8 +179,7 @@ local function updateLineVisibility()
       curLine.icon:SetAlpha(1)
       local text = string.gsub(curData.itemLink, "H1", "H0")
       curLine.text:SetText(((FurC.IsFavoriteById(curData.itemId) and "* ") or "") .. text)
-      local mats =
-        FurC.SourceFormat.FormatDescription(curData.itemId, curData, nil, { dateFormat = FurC.GetDateFormat() })
+      local mats = sourceFormat.FormatDescription(curData.itemId, curData, nil, { dateFormat = FurC.GetDateFormat() })
       curLine.mats:SetText(mats)
     end
   end

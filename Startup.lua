@@ -15,7 +15,7 @@ this.settings = {}
 
 local LFC = LibFurnitureCatalogue
 local src = LFC.API.GetSourceTypes()
-local ver = LFC.Internal.Constants.Versioning
+local ver = LFC.API.GetDataVersions()
 
 -- data from LibFurnitureCatalogue
 this.AchievementVendors = this.AchievementVendors or {}
@@ -223,7 +223,7 @@ function this.GetChoicesSourceValues()
   return FurC.GetSourceOrder()
 end
 
--- TODO #REFACTOR Just auto generate those from Constants.Versioning ¯\_(ツ)_/¯
+-- TODO #REFACTOR Just auto generate those from the published version keys ¯\_(ツ)_/¯
 
 -- [UPGRADING GAME VERSIONS, PTS compatibility]
 this.DropdownData = {

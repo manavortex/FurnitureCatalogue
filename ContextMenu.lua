@@ -10,7 +10,10 @@ local linkStyle = LINK_STYLE_DEFAULT
 local LFC = LibFurnitureCatalogue
 local api = LFC.API
 local src = api.GetSourceTypes()
+local getEntry = api.GetEntry
+local getItemId = api.GetItemId
 local getItemLink = api.GetItemLink
+local sourceFormat = FurC.SourceFormat
 
 local menuEventQueued = false
 
@@ -28,7 +31,7 @@ function AddFurnitureShoppingListMenuEntry(itemId, calledFromFurC)
   end
 
   local itemLink = getItemLink(itemId)
-  if nil == next(FurC.Find(itemLink)) then
+  if nil == getEntry(itemLink) then
     return
   end
   AddCustomMenuItem(FURC_S_SHOPPINGLIST_1, function()
@@ -55,10 +58,8 @@ local function fave()
   FurC.Fave(cachedItemLink)
 end
 local function postItemSource()
-  local itemId = api.GetItemId(cachedItemLink)
-  FurC.ToChat(
-    FurC.SourceFormat.FormatDescription(itemId, cachedRecipeArray, true, { dateFormat = FurC.GetDateFormat() })
-  )
+  local itemId = getItemId(cachedItemLink)
+  FurC.ToChat(sourceFormat.FormatDescription(itemId, cachedRecipeArray, true, { dateFormat = FurC.GetDateFormat() }))
 end
 local function postRecipe()
   FurC.ToChat(getItemLink(cachedRecipeArray.blueprint))
@@ -67,7 +68,7 @@ local function postRecipeResult()
   FurC.ToChat(GetItemLinkRecipeResultItemLink(cachedItemLink))
 end
 local function postMaterial()
-  FurC.ToChat(FurC.GetMats(cachedItemLink, cachedRecipeArray, true, true))
+  FurC.ToChat(FurC.MaterialsForChat(cachedItemLink, cachedRecipeArray))
 end
 
 local function doNothing()
@@ -77,8 +78,8 @@ end
 local S_DIVIDER = "-"
 local function addMenuItems(itemLink, recipeArray, hideSepBar)
   hideSepBar = hideSepBar or false
-  recipeArray = recipeArray or FurC.Find(itemLink)
-  if not recipeArray or nil == next(recipeArray) then
+  recipeArray = recipeArray or getEntry(itemLink)
+  if nil == recipeArray then
     return
   end
 
@@ -128,7 +129,7 @@ function FurC_HandleClickEvent(itemLink, mButton, _, _, linkType, ...)
     if not menuEventQueued then
       menuEventQueued = true
       zo_callLater(function()
-        addMenuItems(itemLink, FurC.Find(itemLink))
+        addMenuItems(itemLink, getEntry(itemLink))
         ShowMenu()
         menuEventQueued = false
       end)
@@ -178,8 +179,8 @@ function FurC_HandleInventoryContextMenu(control)
     itemLink = GetTradingHouseListingItemLink(ZO_Inventory_GetSlotIndex(control), linkStyle)
   end
 
-  local recipeArray = FurC.Find(itemLink)
-  if nil == next(recipeArray) then
+  local recipeArray = getEntry(itemLink)
+  if nil == recipeArray then
     return
   end
 
@@ -206,8 +207,8 @@ function FurC.OnControlMouseUp(control, button)
   if nil == itemLink then
     return
   end
-  local recipeArray = FurC.Find(itemLink)
-  if nil == next(recipeArray) then
+  local recipeArray = getEntry(itemLink)
+  if nil == recipeArray then
     return
   end
 

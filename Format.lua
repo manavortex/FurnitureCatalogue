@@ -17,6 +17,8 @@ local src = api.GetSourceTypes()
 
 local sFormat = zo_strformat
 local getItemLink = api.GetItemLink
+local getIngredients = api.GetIngredients
+local getSourceDetails = api.GetSourceDetails
 
 local this = {}
 FurC.SourceFormat = this
@@ -79,6 +81,8 @@ end
 local function itemName(itemId)
   return stripTxt(GetItemLinkName(getItemLink(itemId)), STRIP_CONTROL)
 end
+this.ItemName = itemName
+this.STRIP_CONTROL = STRIP_CONTROL
 
 --[[_______________________
     |                     |
@@ -356,6 +360,7 @@ local function formatFurnisher(trader, location, price, currency, detail)
   end
   return sFormat("<<1>> : <<2>> (<<3>>, <<4>>)", strVendor, strLoc, strPrice, strDetail)
 end
+this.Furnisher = formatFurnisher
 
 local srcScambox = GetString(SI_FURC_SRC_SCAMBOX)
 local function formatCrownCrate(crateId)
@@ -631,10 +636,85 @@ local function formatRecord(record, itemId, entry, opts)
 end
 this.FormatRecord = formatRecord
 
--- Crafting is the one line LFC still writes: it names where the blueprint comes from, or the material list
--- TODO: deprecated endpoint
+-- What a material list says when the recipe is not in the character's knowledge.
+local strNoMats = "couldn't get material list, please re-scan character knowledge"
+this.NoMaterials = strNoMats
+
+---@param ingredients table<string, integer> ingredient link -> quantity
+---@param plain boolean names instead of links
+---@return string
+local function composeMaterials(ingredients, plain)
+  local links = {}
+  for ingredientLink in pairs(ingredients) do
+    links[#links + 1] = ingredientLink
+  end
+  -- pairs would return them in a different order every session, the link sorts by item id
+  table.sort(links)
+
+  local parts = {}
+  for index, ingredientLink in ipairs(links) do
+    local itemText = ingredientLink
+    if plain then
+      -- ingredient names come lowercased, so we capitalise them ourselves
+      itemText = string.gsub(" " .. GetItemLinkName(ingredientLink), "%W%l", string.upper):sub(2)
+    end
+    parts[index] = sFormat("<<1>>x <<2>>", ingredients[ingredientLink], itemText)
+  end
+  return table.concat(parts, ", ")
+end
+
+---The ingredient list as a player reads it: "2x Rough Oak, 1x Bast, 5x Banana"
+---@param itemOrLink string|integer
+---@param entry FurCEntry|nil
+---@param plain? boolean names instead of links
+---@return string
+local function formatMaterials(itemOrLink, entry, plain)
+  if not entry or (not entry.blueprint and not entry.recipeIndex and not entry.recipeListIndex) then
+    return strNoMats
+  end
+  return composeMaterials(getIngredients(itemOrLink, entry), plain == true)
+end
+this.FormatMaterials = formatMaterials
+
+---Where a craftable's blueprint comes from, from the record the item's crafting source carries
+---@param itemId integer
+---@param opts? { dateFormat?: string }
+---@return string|nil text nil when no row names the blueprint
+local function recipeSource(itemId, opts)
+  for _, record in ipairs(getSourceDetails(itemId)) do
+    local source = record.source
+    if source.type == src.CRAFTING then
+      -- the blueprint's row, in the same shapes every other record takes
+      if source.event and not source.vendor then
+        return renderEvent(record)
+      end
+      if source.vendor then
+        return renderVendor(record, opts)
+      end
+      if source.category then
+        return renderCategory(record)
+      end
+      return
+    end
+  end
+end
+this.RecipeSource = recipeSource
+
+---A craftable's line: where its blueprint comes from, or what it is made of
+---@param itemId integer
+---@param entry FurCEntry|nil
+---@param stripColor? boolean
+---@param opts? { dateFormat?: string }
+---@return string
 local function craftingLine(itemId, entry, stripColor, opts)
-  return api.GetItemDescription(itemId, entry, stripColor, opts)
+  local text = recipeSource(itemId, opts)
+  if not text or text == "" then
+    text = formatMaterials(itemId, entry, stripColor)
+  end
+  if stripColor then
+    return stripTxt(text)
+  end
+  return text
 end
 this.CraftingLine = craftingLine
 
@@ -645,7 +725,7 @@ this.CraftingLine = craftingLine
 ---@return { source: integer, text: string }[]
 local function formatItem(itemId, entry, opts)
   local lines, byType = {}, {}
-  for _, record in ipairs(api.GetSourceDetails(itemId)) do
+  for _, record in ipairs(getSourceDetails(itemId)) do
     local type_ = record.source.type
     local text = (type_ ~= src.CRAFTING) and formatRecord(record, itemId, entry, opts)
     if text and #text > 0 then

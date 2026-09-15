@@ -318,7 +318,7 @@ local function sourcesFor(entry)
   return ids
 end
 
----Resolved source text per source, the same strings the in-game tooltip shows
+---Resolved plain source text (formatted one is inside FC)
 ---@param itemId integer
 ---@param entry FurCEntry
 ---@param sourceIds integer[] from sourcesFor
@@ -330,12 +330,7 @@ local function describeFor(itemId, entry, sourceIds)
 
   local texts
   for index, sourceId in ipairs(sourceIds) do
-    local ok, text
-    if sourceId == src.CRAFTING or sourceId == src.WRIT_VENDOR then
-      ok, text = pcall(query.GetRecipeSource, itemId, entry)
-    else
-      ok, text = pcall(query.DescribeSource, itemId, entry, sourceId, false)
-    end
+    local ok, text = pcall(query.DescribeSource, itemId, entry, sourceId, false)
     if ok and type(text) == "string" and text ~= "" then
       text = cleanText(text)
       if text ~= "" then

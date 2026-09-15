@@ -111,14 +111,15 @@ Taneth("FurC:Lib", function()
       assert.is_true(named, string.format("GetSourceDetails(%d) names no guild", itemId))
     end)
 
-    it("render a line naming the location the key points at", function()
+    it("reach a line naming the location the key points at", function()
       local checked = 0
       for _, found in ipairs(vendorRows()) do
-        local line = query.GetAchievementVendorSource(found.itemId, { version = found.version }, false)
         local name = constants.IsZoneId[found.location] and constants.Resolvers.Zone(found.location)
           or constants.Resolvers.Place(found.location)
-        if line:find(name, 1, true) then
-          checked = checked + 1
+        for _, line in ipairs(FurC.SourceFormat.FormatItem(found.itemId, FurC.Find(found.itemId))) do
+          if line.source == constants.ItemSources.VENDOR and line.text:find(name, 1, true) then
+            checked = checked + 1
+          end
         end
       end
       assert.is_true(checked > 0, "no vendor row renders its location")

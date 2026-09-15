@@ -194,6 +194,40 @@ Taneth("FurC:Lib", function()
       end
     end)
 
+    -- LFC has to return data for every registered item
+    it("answers for every item in the database, and goes empty for none that publishes a record", function()
+      FurC.EnsureDB(true)
+      local query = LFC.Internal.Query
+      local CRAFTING = LFC.Internal.Constants.ItemSources.CRAFTING
+      local silent, answered = {}, 0
+
+      for _, itemId in ipairs(LFC.API.GetItemIds()) do
+        local entry = LFC.API.GetEntry(itemId)
+        local ranked = query.GetRankedSources(itemId, entry, false)
+        local records = 0
+        for _, record in ipairs(LFC.API.GetSourceDetails(itemId)) do
+          if record.source.type ~= CRAFTING then
+            records = records + 1
+          end
+        end
+        if records > 0 and #ranked == 0 and #silent < 10 then
+          silent[#silent + 1] =
+            string.format("%d publishes %d records and the chat command lists none", itemId, records)
+        end
+        for _, line in ipairs(ranked) do
+          assert.equals("string", type(line.text), string.format("%d/%d", itemId, line.source))
+          assert.is_true(#line.text > 0, string.format("%d/%d renders empty", itemId, line.source))
+        end
+        -- the deprecated endpoint answers for the item's own origin
+        local described = query.GetItemDescription(itemId, entry, false)
+        assert.equals("string", type(described), string.format("%d describes as %s", itemId, type(described)))
+        answered = answered + 1
+      end
+
+      assert.is_true(answered > 8000)
+      assert.same({}, silent)
+    end)
+
     it("shows the recipe next to a craftable furnishing", function()
       local entry = DS.craftable and LFC.API.GetEntry(DS.craftable)
       if not entry or not entry.blueprint then

@@ -32,7 +32,7 @@ local recipeArray, itemId, itemLink, itemType, sItemType, recipeIndex, recipeLis
 
 local LFC = LibFurnitureCatalogue
 local src = LFC.API.GetSourceTypes()
-local ver = LFC.Internal.Constants.Versioning
+local ver = LFC.API.GetDataVersions()
 local npc = LFC.Internal.Constants.NPC
 local npcIds = LFC.Internal.Constants.NpcIds
 
@@ -41,6 +41,7 @@ local GetItemLinkName = GetItemLinkName
 local LocaleAwareToLower = LocaleAwareToLower
 local gsub = string.gsub
 local match = string.match
+local getEntry = LFC.API.GetEntry
 local getItemLink = LFC.API.GetItemLink
 
 -- Build item link lazily (only if required and not already cached)
@@ -469,7 +470,8 @@ end
 function FurC.MatchFilter(currentItemId, currentRecipeArray)
   itemId = currentItemId
   itemLink = nil -- built on demand
-  recipeArray = currentRecipeArray or FurC.Find(ensureItemLink())
+  recipeArray = currentRecipeArray or getEntry(ensureItemLink())
+  -- an item the database does not know matches nothing: the checks below all read the row
   if nil == recipeArray then
     return false
   end

@@ -1,5 +1,6 @@
 -- FurCDev GUI (data textbox, context menues etc)
 local this = FurCDev
+local getEntry = LibFurnitureCatalogue.API.GetEntry
 
 FurCDevControl_LinkHandlerBackup_OnLinkMouseUp = nil
 this.textbox = this.textbox or FurCDevControlBox
@@ -266,7 +267,7 @@ function FurCDevControl_HandleInventoryContextMenu(control)
   cachedPrice = price or 0
   cachedCanBuy = meetsRequirementsToBuy
 
-  if not FurC.Find(cachedItemLink) then
+  if not getEntry(cachedItemLink) then
     return
   end
 

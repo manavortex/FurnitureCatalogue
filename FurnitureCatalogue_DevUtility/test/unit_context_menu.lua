@@ -8,8 +8,14 @@ Taneth("FurC:Unit", function()
   -- id far outside any real item range; FurC.Find must miss
   local UNKNOWN_ID = 99999999 -- TODO: or maybe id = 1?
 
-  describe("FurC.Find miss contract", function()
-    it("returns an empty table (never nil) for unknown ids", function()
+  describe("miss contracts", function()
+    it("the published lookup answers nil for an unknown id", function()
+      FurCDev.Test.ensureDB()
+      assert.is_nil(LibFurnitureCatalogue.API.GetEntry(UNKNOWN_ID))
+    end)
+
+    -- TODO: remove this compatibility stuff
+    it("the flat alias still answers with an empty table, never nil", function()
       FurCDev.Test.ensureDB()
       local entry = FurC.Find(UNKNOWN_ID)
       assert.equals("table", type(entry))
