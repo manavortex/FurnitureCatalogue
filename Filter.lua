@@ -344,8 +344,17 @@ local function matchesSource(candidate)
     return hasSource(src.PICKPOCKET) or hasSource(src.STEAL_CONTAINER)
   end
   
+  if FurC.SourceFilters.GOLD_COAST_BAZAAR == candidate then
+    return hasSource(src.BAZAAR)
+  end
+
+  if FurC.SourceFilters.IMPRESARIO == candidate then
+    return isEventTradeBarItem()
+  end
+
   if src.BAZAAR == candidate then
-    return hasSource(src.BAZAAR) or isEventTradeBarItem()
+    return matchesSource(FurC.SourceFilters.GOLD_COAST_BAZAAR)
+      or matchesSource(FurC.SourceFilters.IMPRESARIO)
   end
   
   if src.DUNGEON == candidate then
