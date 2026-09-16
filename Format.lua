@@ -586,6 +586,10 @@ local function renderVendor(record, opts)
   local cost = record.cost
   local detail = (source.type == src.LUXURY and luxuryDetail(record, opts)) or vendorDetail(source)
   local where = (source.location and resolveZone(source.location)) or (source.place and resolveString(source.place))
+  -- a vendor standing in several places names them all
+  if nil == where and source.locations then
+    where = table.concat(placesOf(source), " \\ ")
+  end
   return formatFurnisher(resolveString(source.vendor), where, cost and cost.amount, cost and cost.currency, detail)
 end
 

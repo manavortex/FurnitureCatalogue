@@ -14,18 +14,25 @@ local GetZoneNameById = GetZoneNameById
 local NPC_LUXF = GetString(SI_FURC_TRADERS_LUXF)
 local NPC_ROLIS = GetString(SI_FURC_TRADERS_ROLIS)
 local NPC_FAUSTINA = GetString(SI_FURC_TRADERS_FAUSTINA)
-local PLACE_ANY_CAPITAL = GetString(SI_FURC_LOC_ANY_CAPITAL)
 
 local internalConstants = LFC.Internal.Constants
 local isZoneId = internalConstants.IsZoneId
 local eventDrop = internalConstants.EVENT_DROP
-local ZONE_COLDHARBOUR = GetZoneNameById(internalConstants.ZoneIds.COLDH)
+-- The vendor tables name no location, so the vendor's own default supplies it
+local vendorLocations = internalConstants.VendorLocations
 
 local function resolveLocation(id)
   if isZoneId[id] then
     return GetZoneNameById(id)
   end
   return GetString(id)
+end
+
+---Every place a vendor stands, as search terms
+local function addVendorLocations(add, itemId, vendorId)
+  for _, entry in ipairs(vendorLocations[vendorId] or {}) do
+    add(itemId, resolveLocation(entry.location or entry.place))
+  end
 end
 
 local lower = LocaleAwareToLower
@@ -147,27 +154,27 @@ local function addVendorTables(add)
   for _, versionData in pairs(FurC.LuxuryFurnisher or {}) do
     for itemId in pairs(versionData) do
       add(itemId, NPC_LUXF)
-      add(itemId, ZONE_COLDHARBOUR)
+      addVendorLocations(add, itemId, SI_FURC_TRADERS_LUXF)
     end
   end
 end
 
 -- Master Writ stock stored as blueprint id, has to be resolved
 local function addWritVendors(add)
-  local function addVendorTable(versionedTable, vendorName)
+  local function addVendorTable(versionedTable, vendorName, vendorId)
     for _, versionData in pairs(versionedTable or {}) do
       for id, entry in pairs(versionData) do
         local itemId = FurC.DBQuery.ResolveRecipe(id)
         if nil ~= itemId then
           add(itemId, vendorName)
-          add(itemId, PLACE_ANY_CAPITAL)
+          addVendorLocations(add, itemId, vendorId)
           add(itemId, getAchievementName(entry.achievement))
         end
       end
     end
   end
-  addVendorTable(FurC.Rolis, NPC_ROLIS)
-  addVendorTable(FurC.Faustina, NPC_FAUSTINA)
+  addVendorTable(FurC.Rolis, NPC_ROLIS, SI_FURC_TRADERS_ROLIS)
+  addVendorTable(FurC.Faustina, NPC_FAUSTINA, SI_FURC_TRADERS_FAUSTINA)
 end
 
 local function addFolios(add)
