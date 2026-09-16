@@ -154,10 +154,12 @@ end
 
 local fmtHouse = GetString(SI_FURC_HOUSE)
 local fmtHouseMore = GetString(SI_FURC_HOUSE_MORE)
+local fmtMiscHouse = GetString(SI_FURC_SRC_MISCHOUSE)
 local function formatHouses(houses)
   local count = #houses
+  -- an empty list means it comes furnished with a house the data cannot name
   if count == 0 then
-    return ""
+    return fmtMiscHouse
   end
   local named = {}
   for i = 1, math.min(count, HOUSE_LIMIT) do

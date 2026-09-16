@@ -154,6 +154,15 @@ do
   end
 end
 
+-- Every SI_MONSTERSOCIALCLASS* is nil here and a test then sees no npc class at all, so we apply ids to work around this
+for i = 1, 47 do
+  local name = "SI_MONSTERSOCIALCLASS" .. i
+  if _G[name] == nil then
+    _G[name] = 2000000 + i
+    ZO_CreateStringId(name, "npcClass" .. i)
+  end
+end
+
 -- Just in case those are not available in ESOLUA
 for _, name in ipairs({
   "IsItemLinkFurnitureRecipe",

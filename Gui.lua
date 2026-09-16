@@ -284,6 +284,23 @@ local function ensureSortedIndex()
   return sortedIndex
 end
 
+---One row of the list: the stored row's fields plus what the list draws with
+---
+---the deprecated `origin` is derived through a metatable
+---@param itemId integer
+---@param recipeArray FurCEntry stored row
+---@param itemLink string
+---@return table
+local function buildDisplayRow(itemId, recipeArray, itemLink)
+  local row = ZO_ShallowTableCopy(recipeArray)
+  row.itemId = itemId
+  row.itemLink = itemLink
+  row.itemName = GetItemLinkName(itemLink)
+  row.origin = recipeArray.origin
+  return row
+end
+FurC.BuildDisplayRow = buildDisplayRow
+
 local function updateScrollDataLinesData()
   local dataLines = {}
   local data = FurC.DB
@@ -294,12 +311,7 @@ local function updateScrollDataLinesData()
     if recipeArray and FurC.MatchFilter(itemId, recipeArray) then
       local itemLink = getItemLink(itemId)
       if itemLink then
-        local tempDataLine = ZO_ShallowTableCopy(recipeArray)
-        tempDataLine.itemId = itemId
-        tempDataLine.itemLink = itemLink
-        tempDataLine.blueprint = recipeArray.blueprint
-        tempDataLine.itemName = GetItemLinkName(itemLink)
-        dataLines[#dataLines + 1] = tempDataLine
+        dataLines[#dataLines + 1] = buildDisplayRow(itemId, recipeArray, itemLink)
       end
     end
   end
