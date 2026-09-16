@@ -67,10 +67,9 @@ local function add(t, arg)
 end
 
 local function addFolioTooltipData(control, itemId, folioData)
-  local resolvers = LFC.Internal.Constants.Resolvers
   local header = sourceFormat.Furnisher(
-    resolvers.Npc(folioData.vendor),
-    resolvers.Place(folioData.place),
+    GetString(folioData.vendor),
+    GetString(folioData.place),
     folioData.itemPrice,
     folioData.currency
   )

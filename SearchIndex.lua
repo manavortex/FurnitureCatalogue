@@ -8,17 +8,24 @@ local this = FurC.SearchIndex
 
 local LFC = LibFurnitureCatalogue
 local getItemLink = LFC.API.GetItemLink
-local loc = LFC.Internal.Constants.Locations
-local npc = LFC.Internal.Constants.NPC
-local resolvers = LFC.Internal.Constants.Resolvers
-local isZoneId = LFC.Internal.Constants.IsZoneId
-local eventDrop = LFC.Internal.Constants.EVENT_DROP
+local GetString = GetString
+local GetZoneNameById = GetZoneNameById
+
+local NPC_LUXF = GetString(SI_FURC_TRADERS_LUXF)
+local NPC_ROLIS = GetString(SI_FURC_TRADERS_ROLIS)
+local NPC_FAUSTINA = GetString(SI_FURC_TRADERS_FAUSTINA)
+local PLACE_ANY_CAPITAL = GetString(SI_FURC_LOC_ANY_CAPITAL)
+
+local internalConstants = LFC.Internal.Constants
+local isZoneId = internalConstants.IsZoneId
+local eventDrop = internalConstants.EVENT_DROP
+local ZONE_COLDHARBOUR = GetZoneNameById(internalConstants.ZoneIds.COLDH)
 
 local function resolveLocation(id)
   if isZoneId[id] then
-    return resolvers.Zone(id)
+    return GetZoneNameById(id)
   end
-  return resolvers.Place(id)
+  return GetString(id)
 end
 
 local lower = LocaleAwareToLower
@@ -114,7 +121,7 @@ local function addVendorTables(add)
       for vendor, vendorData in pairs(locationData) do
         for itemId, entry in pairs(vendorData) do
           add(itemId, resolveLocation(location))
-          add(itemId, resolvers.Npc(vendor))
+          add(itemId, GetString(vendor))
           if type(entry) == "table" then
             add(itemId, getAchievementName(entry.achievement))
           end
@@ -127,8 +134,8 @@ local function addVendorTables(add)
     for vendorId, vendorData in pairs(versionData) do
       for zoneId, locationData in pairs(vendorData) do
         for itemId, entry in pairs(locationData) do
-          add(itemId, resolvers.Npc(vendorId))
-          add(itemId, resolvers.Zone(zoneId))
+          add(itemId, GetString(vendorId))
+          add(itemId, GetZoneNameById(zoneId))
           if type(entry) == "table" then
             add(itemId, getAchievementName(entry.achievement))
           end
@@ -139,8 +146,8 @@ local function addVendorTables(add)
 
   for _, versionData in pairs(FurC.LuxuryFurnisher or {}) do
     for itemId in pairs(versionData) do
-      add(itemId, npc.LUXF)
-      add(itemId, loc.COLDH)
+      add(itemId, NPC_LUXF)
+      add(itemId, ZONE_COLDHARBOUR)
     end
   end
 end
@@ -153,14 +160,14 @@ local function addWritVendors(add)
         local itemId = FurC.DBQuery.ResolveRecipe(id)
         if nil ~= itemId then
           add(itemId, vendorName)
-          add(itemId, loc.ANY_CAPITAL)
+          add(itemId, PLACE_ANY_CAPITAL)
           add(itemId, getAchievementName(entry.achievement))
         end
       end
     end
   end
-  addVendorTable(FurC.Rolis, npc.ROLIS)
-  addVendorTable(FurC.Faustina, npc.FAUSTINA)
+  addVendorTable(FurC.Rolis, NPC_ROLIS)
+  addVendorTable(FurC.Faustina, NPC_FAUSTINA)
 end
 
 local function addFolios(add)
@@ -171,8 +178,8 @@ local function addFolios(add)
         local itemId = FurC.DBQuery.ResolveRecipe(contentId)
         if nil ~= itemId then
           add(itemId, folioName)
-          add(itemId, resolvers.Npc(folioData.vendor))
-          add(itemId, resolvers.Place(folioData.place))
+          add(itemId, GetString(folioData.vendor))
+          add(itemId, GetString(folioData.place))
         end
       end
     end

@@ -33,8 +33,7 @@ local recipeArray, itemId, itemLink, itemType, sItemType, recipeIndex, recipeLis
 local LFC = LibFurnitureCatalogue
 local src = LFC.API.GetSourceTypes()
 local ver = LFC.API.GetDataVersions()
-local npc = LFC.Internal.Constants.NPC
-local npcIds = LFC.Internal.Constants.NpcIds
+local NPC_EVENT = GetString(SI_FURC_TRADERS_EVENT)
 
 -- Local imports for performance
 local GetItemLinkName = GetItemLinkName
@@ -189,7 +188,7 @@ local function isHomeGoodsFurnisherItem()
     return false
   end
   for locationName, locationData in pairs(versionData) do
-    local vendorData = locationData[npcIds.HGF]
+    local vendorData = locationData[SI_FURC_TRADERS_HGF]
     if vendorData and vendorData[itemId] then
       return true
     end
@@ -221,7 +220,7 @@ local function isEventTradeBarItem()
     return false
   end
   for eventName, sources in pairs(versionData) do
-    local items = sources[npc.EVENT]
+    local items = sources[NPC_EVENT]
     local item = items and items[itemId]
     if item and item.itemPrice then
       local currency = item.currency or CURT_TRADE_BARS
@@ -314,7 +313,7 @@ local function matchesSource(candidate)
       or matchesSource(src.TOMES)
       or matchesSource(src.BAZAAR)
   end
-  
+
   if src.OTHER == candidate then
     -- match if sources are part of OTHER too
     local sources = recipeArray.sources
@@ -340,11 +339,11 @@ local function matchesSource(candidate)
   if src.EDITOR == candidate then
     return hasSource(src.EDITOR)
   end
-  
+
   if src.JUSTICE == candidate then
     return hasSource(src.PICKPOCKET) or hasSource(src.STEAL_CONTAINER)
   end
-  
+
   if FurC.SourceFilters.GOLD_COAST_BAZAAR == candidate then
     return hasSource(src.BAZAAR)
   end
@@ -354,10 +353,9 @@ local function matchesSource(candidate)
   end
 
   if src.BAZAAR == candidate then
-    return matchesSource(FurC.SourceFilters.GOLD_COAST_BAZAAR)
-      or matchesSource(FurC.SourceFilters.IMPRESARIO)
+    return matchesSource(FurC.SourceFilters.GOLD_COAST_BAZAAR) or matchesSource(FurC.SourceFilters.IMPRESARIO)
   end
-  
+
   if src.DUNGEON == candidate then
     return hasSource(src.DUNGEON)
   end
@@ -376,7 +374,7 @@ local function matchesSource(candidate)
   if src.CONTAINER == candidate then
     return hasSource(src.CONTAINER)
   end
-  
+
   -- direct options: CROWN, RUMOUR, LUXURY, BAZAAR
   return hasSource(candidate)
 end

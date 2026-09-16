@@ -92,13 +92,6 @@ function FurC.GuiHideTooltip(control)
   ClearTooltip(InformationTooltip)
 end
 
-function FurC.GetRumourTooltip()
-  return GetString((FurC.GetShowRumours() and SI_FURC_FILTER_RUMOUR_HIDE_TT) or SI_FURC_SHOW_RUMOUR_TT)
-end
-function FurC.GetCrownTooltip()
-  return GetString((FurC.GetShowCrownstore() and SI_FURC_FILTER_CROWN_HIDE_TT) or SI_FURC_SHOW_CROWN_TT)
-end
-
 function FurC.GuiOnSearchBoxClick(control, mouseButton, doubleClick)
   if mouseButton == 2 or doubleClick then
     control:SetDefaultText("")

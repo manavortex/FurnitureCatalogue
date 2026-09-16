@@ -41,7 +41,7 @@ local SOURCE_TREE = {
           { id = src.TELVAR },
         },
       },
-	  { id = src.TOMES },
+      { id = src.TOMES },
       {
         id = src.BAZAAR,
         children = {

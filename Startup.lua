@@ -199,7 +199,6 @@ local function getTooltipsSource()
   tooltipsSource[src.JUSTICE] = GetString(SI_FURC_FILTER_SRC_JUSTICE_TT)
   --tooltipsSource[src.GUILDSTORE]       = "GUILDSTORE"
 
-
   return tooltipsSource
 end
 this.GetTooltipsSource = getTooltipsSource

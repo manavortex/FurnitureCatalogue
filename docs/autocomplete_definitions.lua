@@ -113,6 +113,7 @@ FurCDevControl_Content_Right_fromTrader = ButtonControl
 FurCDevControl_Content_Right_selectAll = ButtonControl
 FurCDevControl_Content_Right_BoxBg = BackdropControl
 FurCDevControl_Achievements = Control
+FurCDevControl_Quests = Control
 FurCDevControl_Zones = Control
 FurCDevControl_Houses = Control
 ---------- LVL: 09 ----------
@@ -121,6 +122,9 @@ FurCDevControlBox = EditControl
 FurCDevControl_Achievements_SearchBg = BackdropControl
 FurCDevControl_AchievementsPager = Control
 FurCDevControl_AchievementsList = Control
+FurCDevControl_Quests_SearchBg = BackdropControl
+FurCDevControl_QuestsPager = Control
+FurCDevControl_QuestsList = Control
 FurCDevControl_Zones_SearchBg = BackdropControl
 FurCDevControl_ZonesPager = Control
 FurCDevControl_ZonesList = Control
@@ -130,6 +134,7 @@ FurCDevControl_HousesList = Control
 ---------- LVL: 11 ----------
 ---------- LVL: 12 ----------
 FurCDevControl_AchievementsSearch = EditControl
+FurCDevControl_QuestsSearch = EditControl
 FurCDevControl_ZonesSearch = EditControl
 FurCDevControl_HousesSearch = EditControl
 ---------- LVL: 13 ----------
@@ -141,69 +146,51 @@ SI_FURC_CONTAINS_BOOKS = "Contains <<1>> books"
 SI_FURC_DIALOGUE_RESET_DB_BODY = "This will re-create the FurnitureCatalogue database from scratch"
 SI_FURC_DIALOGUE_RESET_DB_HEADER = "Really re-create furniture database?"
 SI_FURC_FILTER_CHAR_OFF = "Character filter: off"
-SI_FURC_FILTER_CHAR_OFF_TT = "disables this filter"
-SI_FURC_FILTER_CROWN_HIDE_TT = "Showing crown store. Click to hide."
-SI_FURC_FILTER_RUMOUR_HIDE_TT = "Showing rumour (unconfirmed) items. Click to hide."
+SI_FURC_FILTER_CHAR_OFF_TT = "Disables this filter"
 SI_FURC_FILTER_SRC_ACHIEVEMENT = "Achievement"
-SI_FURC_FILTER_SRC_ACHIEVEMENT_TT = "Items that require an achievement"
 SI_FURC_FILTER_SRC_ANTIQUITY = "Antiquity"
 SI_FURC_FILTER_SRC_ANTIQUITY_TT = "Shows furnishings recovered via Scrying/Excavation"
 SI_FURC_FILTER_SRC_CHEST = "Treasure Chests"
-SI_FURC_FILTER_SRC_CHEST_TT = "Shows furnishings found in treasure chests"
 SI_FURC_FILTER_SRC_CONTAINER = "Containers"
-SI_FURC_FILTER_SRC_CONTAINER_TT = "Shows furnishings stolen from containers"
 SI_FURC_FILTER_SRC_CRAFTING = "Craftable: All"
 SI_FURC_FILTER_SRC_CRAFTING_KNOWN = "Known"
-SI_FURC_FILTER_SRC_CRAFTING_KNOWN_TT = "Shows only known craftable items"
 SI_FURC_FILTER_SRC_CRAFTING_TT = "Shows all craftable items"
 SI_FURC_FILTER_SRC_CRAFTING_UNKNOWN = "Unknown"
-SI_FURC_FILTER_SRC_CRAFTING_UNKNOWN_TT = "Shows only unknown craftable items"
 SI_FURC_FILTER_SRC_CROWN = "Crown Store"
 SI_FURC_FILTER_SRC_CROWNS = "Crown"
-SI_FURC_FILTER_SRC_CROWNS_TT = "Everything bought with crowns"
-SI_FURC_FILTER_SRC_CROWN_TT = "Shows items that can only be acquired from crown store"
 SI_FURC_FILTER_SRC_CURRENCY = "Currency"
 SI_FURC_FILTER_SRC_CURRENCY_TT = "Items sorted by currency types"
 SI_FURC_FILTER_SRC_DROP = "Drop"
 SI_FURC_FILTER_SRC_DROP_TT = "Shows furnishings dropped by enemies or found in the world"
 SI_FURC_FILTER_SRC_DUNGEON = "Dungeon"
-SI_FURC_FILTER_SRC_DUNGEON_TT = "Shows furnishings dropped in group dungeons"
 SI_FURC_FILTER_SRC_EDITOR = "Housing Editor"
-SI_FURC_FILTER_SRC_EDITOR_TT = "Shows items that can be bought in the housing editor"
 SI_FURC_FILTER_SRC_EVENT = "Event"
 SI_FURC_FILTER_SRC_EVENT_TT = "Shows furnishings obtained during in-game events"
 SI_FURC_FILTER_SRC_FAVE = "Favorites"
 SI_FURC_FILTER_SRC_FAVE_TT = "Shows your favorites"
 SI_FURC_FILTER_SRC_FISHING = "Fishing"
-SI_FURC_FILTER_SRC_FISHING_TT = "Shows furnishings caught while fishing"
+SI_FURC_FILTER_SRC_GOLD_COAST_BAZAAR = "Gold Coast Bazaar"
 SI_FURC_FILTER_SRC_HARVEST = "Harvesting"
-SI_FURC_FILTER_SRC_HARVEST_TT = "Shows furnishings obtained by harvesting resource nodes"
 SI_FURC_FILTER_SRC_HOME_GOODS = "Home Goods"
-SI_FURC_FILTER_SRC_HOME_GOODS_TT = "Items purchased from a Home Goods Furnisher"
+SI_FURC_FILTER_SRC_IMPRESARIO = "Impresario"
 SI_FURC_FILTER_SRC_JUSTICE = "Justice"
 SI_FURC_FILTER_SRC_JUSTICE_TT = "Shows furnishings obtained by pickpocketing or stealing"
 SI_FURC_FILTER_SRC_LUX = "Luxury items"
 SI_FURC_FILTER_SRC_LUX_TT = "Items that at some point were sold by Zanil Theran in Coldharbour and Craglorn"
 SI_FURC_FILTER_SRC_NONE = "Source filter: off"
-SI_FURC_FILTER_SRC_NONE_TT = "Disables this filter"
+SI_FURC_FILTER_SRC_NONE_TT =
+  "Disables this filter. Use this one if you don't want the active filter included when multi-selecting."
 SI_FURC_FILTER_SRC_OTHER = "Other"
 SI_FURC_FILTER_SRC_OTHER_TT = "Shows items from a variety of other sources"
 SI_FURC_FILTER_SRC_PICKPOCKET = "Pickpocketing"
-SI_FURC_FILTER_SRC_PICKPOCKET_TT = "Shows furnishings obtained by pickpocketing NPCs"
 SI_FURC_FILTER_SRC_PVP = "PVP"
-SI_FURC_FILTER_SRC_PVP_TT = "Everything bought with PvP currency"
 SI_FURC_FILTER_SRC_QUEST = "Quest Reward"
-SI_FURC_FILTER_SRC_QUEST_TT = "Shows furnishings received as quest rewards"
 SI_FURC_FILTER_SRC_RUMOUR = "Rumour items"
 SI_FURC_FILTER_SRC_RUMOUR_TT = "Items and recipes that have been datamined, but haven't been confirmed existing"
 SI_FURC_FILTER_SRC_SOLD_AP = "Alliance Points"
-SI_FURC_FILTER_SRC_SOLD_AP_TT = "Items that are sold for alliance points"
 SI_FURC_FILTER_SRC_SOLD_GOLD = "Gold"
-SI_FURC_FILTER_SRC_SOLD_GOLD_TT = "Everything bought with gold"
 SI_FURC_FILTER_SRC_SOLD_TBARS = "Trade Bars"
-SI_FURC_FILTER_SRC_SOLD_TBARS_TT = "Everything bought with trade bars"
 SI_FURC_FILTER_SRC_SOLD_TELVAR = "Tel Var"
-SI_FURC_FILTER_SRC_SOLD_TELVAR_TT = "Items that are sold for tel var stones"
 SI_FURC_FILTER_SRC_SOLD_TOMEPOINTS = "Tome Points"
 SI_FURC_FILTER_SRC_SOLD_TOMEPOINTS_TT = "Obtainable only from Tamriel Tomes during a specific season"
 SI_FURC_FILTER_SRC_SOLD_WRIT = "Master Writ Vendor"
@@ -373,7 +360,7 @@ SI_FURC_STRING_MENU_TOOLTIP_HIDE_UNKNOWN_TT = "Hides 'you cannot craft this yet'
 SI_FURC_STRING_MENU_USETINY = "Use tiny interface?"
 SI_FURC_STRING_MENU_USETINY_TT =
   "Use a smaller interface (Craft Store like). \nYou can toggle this from the UI by clicking the +/- button."
-SI_FURC_STRING_RECIPESFORCHAR = "recipes for <<1>>"
+SI_FURC_STRING_RECIPESFORCHAR = "Recipes for <<1>>"
 SI_FURC_TEXTBOX_FILTER_DEFAULT = "Filter by text search"
 SI_FURC_TOGGLE_SHOPPINGLIST = " Toggle shopping list"
 -- ////// END   : GENERATED FROM locale/en.lua
@@ -585,7 +572,7 @@ end
 ---| 6 # CURT_CROWN_GEMS (Crown Gems)
 ---| 7 # CURT_CROWNS (Crowns)
 ---| 8 # CURT_STYLE_STONES (Style Mimic Stones)
----| 9 # CURT_EVENT_TICKETS (Event Tickets)
+---| 9 # CURT_TRADE_BARS (Trade Bars)
 ---| 10 # CURT_UNDAUNTED_KEYS (Undaunted Keys)
 ---| 11 # CURT_ENDEAVOR_SEALS (Seals of Endeavor)
 ---| 12 # CURT_ARCHIVAL_FORTUNES (Infinite Archive)
@@ -609,7 +596,7 @@ CURT_CROWNS = 7
 ---@type CurrencyType
 CURT_STYLE_STONES = 8
 ---@type CurrencyType
-CURT_EVENT_TICKETS = 9
+CURT_TRADE_BARS = 9
 ---@type CurrencyType
 CURT_UNDAUNTED_KEYS = 10
 ---@type CurrencyType
