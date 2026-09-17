@@ -30,9 +30,9 @@ Taneth("FurC:Unit", function()
             other = true
           end
         end
-        if crafted and not other and row.origin == src.CRAFTING then
+        if crafted and not other then
           picks.craftOnly = picks.craftOnly or itemId
-        elseif crafted and other and row.origin ~= src.CRAFTING and row.origin ~= src.WRIT_VENDOR then
+        elseif crafted and other then
           picks.alsoSold = picks.alsoSold or itemId
         end
       end
@@ -86,19 +86,22 @@ Taneth("FurC:Unit", function()
   end
 
   describe("item list rows", function()
-    it("carry the origin a copy of the stored row cannot", function()
+    -- the row carries only what it stores and a plain copy describes the same
+    it("carry only stored fields, and describe the same as the row they copy", function()
       local itemId = picked().craftOnly
       assert.is_not_nil(itemId)
 
-      -- the defect, pinned: a plain copy of the row has no origin at all
-      assert.is_nil(ZO_ShallowTableCopy(FurC.DB[itemId]).origin)
-      assert.equals(FurC.DB[itemId].origin, displayRow(itemId).origin)
-
-      -- the contrast, and why only origin is restated: blueprint is stored, so
-      -- the copy already carries it
+      local row = displayRow(itemId)
+      assert.is_nil(rawget(row, "origin"))
       assert.is_not_nil(FurC.DB[itemId].blueprint)
-      assert.equals(FurC.DB[itemId].blueprint, ZO_ShallowTableCopy(FurC.DB[itemId]).blueprint)
-      assert.equals(FurC.DB[itemId].blueprint, displayRow(itemId).blueprint)
+      assert.equals(FurC.DB[itemId].blueprint, row.blueprint)
+
+      withIngredients(function()
+        assert.equals(
+          format.FormatDescription(itemId, row),
+          format.FormatDescription(itemId, ZO_ShallowTableCopy(FurC.DB[itemId]))
+        )
+      end)
     end)
 
     it("describe a craft-only furnishing with its material list", function()
@@ -111,8 +114,8 @@ Taneth("FurC:Unit", function()
         assert.are_not.equals("", described)
         assert.equals(format.CraftingLine(itemId, row, false), described)
 
-        -- and the copy the list used to build describes as nothing at all
-        assert.equals("", format.FormatDescription(itemId, ZO_ShallowTableCopy(FurC.DB[itemId])))
+        -- the copy the list builds from describes identically: nothing derived is needed
+        assert.equals(described, format.FormatDescription(itemId, ZO_ShallowTableCopy(FurC.DB[itemId])))
       end)
     end)
 
@@ -123,14 +126,10 @@ Taneth("FurC:Unit", function()
       end
       local row = displayRow(itemId)
 
-      local expected
-      for _, line in ipairs(format.FormatItem(itemId, row)) do
-        if line.source == row.origin then
-          expected = line.text
-        end
-      end
-      assert.is_not_nil(expected)
-      assert.equals(expected, format.FormatDescription(itemId, row))
+      -- the best-ranked line describes the item; nothing consults a derived origin to find it
+      local ranked = format.FormatItem(itemId, row, nil, true)
+      assert.is_true(#ranked > 0)
+      assert.equals(ranked[1].text, format.FormatDescription(itemId, row))
     end)
   end)
 end)

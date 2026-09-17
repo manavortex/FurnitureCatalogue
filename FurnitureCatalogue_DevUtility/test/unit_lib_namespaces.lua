@@ -22,8 +22,10 @@ Taneth("FurC:Lib", function()
           "GetMiscItemPrice",
           "GetRankedSources",
           "GetSourceRecords",
+          "GrantedRecipeIndices",
           "OriginOf",
           "RenderRecord",
+          "ResolveNote",
           "ResolveRecipe",
         }),
         FurCDev.Test.keySet(internal.Query)

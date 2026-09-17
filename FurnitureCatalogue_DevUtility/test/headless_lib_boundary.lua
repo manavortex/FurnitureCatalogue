@@ -153,6 +153,8 @@ Taneth("FurC:Lib", function()
 
     local INTERNAL_REACH_BASELINE = {
       ["Filter.lua"] = true,
+      -- takes the library's note resolver rather than keeping a second copy of the same switch
+      ["Format.lua"] = true,
       ["SearchIndex.lua"] = true,
       ["Tooltip.lua"] = true,
     }

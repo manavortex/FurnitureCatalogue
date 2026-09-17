@@ -55,8 +55,11 @@ function Test.dataset()
     end
   end
 
+  -- the row does not carry a derived origin any more, so ask its sources
+  local build = LibFurnitureCatalogue.Internal.Build
+  local crafting = LibFurnitureCatalogue.Internal.Constants.ItemSources.CRAFTING
   for id, arr in pairs(db or {}) do
-    if type(arr) == "table" and arr.origin == FURC_CRAFTING and arr.blueprint then
+    if type(arr) == "table" and arr.blueprint and build.HasSource(arr.sources, crafting) then
       DS.craftable = id
       break
     end

@@ -14,16 +14,16 @@ Taneth("FurC:Unit", function()
       assert.is_nil(LibFurnitureCatalogue.API.GetEntry(UNKNOWN_ID))
     end)
 
-    -- TODO: remove this compatibility stuff
-    it("the flat alias still answers with an empty table, never nil", function()
+    it("the internal lookup answers an empty table on a miss, never nil", function()
       FurCDev.Test.ensureDB()
-      local entry = FurC.Find(UNKNOWN_ID)
+      local entry = LibFurnitureCatalogue.Internal.Query.Find(UNKNOWN_ID)
       assert.equals("table", type(entry))
       assert.is_nil(next(entry))
+      assert.is_nil(FurC.Find, "the flat alias is still published")
     end)
 
     it("gives an empty description for unknown ids", function()
-      assert.equals("", FurC.GetItemDescription(UNKNOWN_ID))
+      assert.equals("", LibFurnitureCatalogue.API.GetItemDescription(UNKNOWN_ID))
     end)
   end)
 

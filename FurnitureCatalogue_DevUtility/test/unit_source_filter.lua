@@ -58,7 +58,7 @@ Taneth("FurC:Unit", function()
     local ids = {}
     for _, itemId in ipairs(LFC.API.GetItemIds()) do
       local entry = LFC.Internal.Query.Find(itemId)
-      if entry.sources and entry.sources[source] then
+      if LFC.Internal.Build.HasSource(entry.sources, source) then
         ids[itemId] = true
       end
     end
@@ -71,13 +71,15 @@ Taneth("FurC:Unit", function()
       local all = keptBy(src.NONE)
       assert.is_true(count(all) > 0, "All kept nothing, so nothing below means anything")
 
+      -- "only a rumour" is the whole source set being that one bit, which is what the filter tests
+      local onlyRumour = LFC.Internal.Build.SourceMask({ [src.RUMOUR] = true })
       local rumours = 0
       for _, itemId in ipairs(LFC.API.GetItemIds()) do
-        if LFC.Internal.Query.Find(itemId).origin == src.RUMOUR then
+        if LFC.Internal.Query.Find(itemId).sources == onlyRumour then
           rumours = rumours + 1
         end
       end
-      assert.is_true(rumours > 0, "no item has a rumour origin, so the exclusion is untested")
+      assert.is_true(rumours > 0, "no item is only a rumour, so the exclusion is untested")
       assert.equals(LFC.API.GetEntryCount() - rumours, count(all))
     end)
 

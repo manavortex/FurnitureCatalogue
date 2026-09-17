@@ -18,32 +18,28 @@ Taneth("FurC:Regression", function()
     end)
 
     it("GetItemId passes ids and parses them from links", function()
-      assert.equals(DS.dbItem, FurC.GetItemId(DS.dbItem))
-      assert.equals(DS.dbItem, FurC.GetItemId(Test.link(DS.dbItem)))
+      local api = LibFurnitureCatalogue.API
+      assert.equals(DS.dbItem, api.GetItemId(DS.dbItem))
+      assert.equals(DS.dbItem, api.GetItemId(Test.link(DS.dbItem)))
+      local link = api.GetItemLink(DS.dbItem)
+      assert.equals("string", type(link))
+      assert.is_true(#link > 0)
     end)
 
-    -- LibPrice calls deprecated FurC.GetItemLink, just alias now but have to keep it
-    it("FurC.GetItemLink alias exists", function()
-      assert.is_not_nil(FurC.GetItemLink)
-      if type(FurC.GetItemLink) == "function" then
-        local link = FurC.GetItemLink(DS.dbItem)
-        assert.equals("string", type(link))
-        assert.is_true(#link > 0)
-      end
-    end)
-
-    it("Find returns table with origin on hit or empty on miss", function()
-      local hit = FurC.Find(DS.luxItem)
+    -- LibPrice read the row through FurC.Find and took `origin` off it. Both are gone: the entry
+    -- is a copy that answers nil on a miss, and the best source is the first ranked record
+    it("GetEntry answers a copy on a hit and nil on a miss", function()
+      local api = LibFurnitureCatalogue.API
+      local hit = api.GetEntry(DS.luxItem)
       assert.equals("table", type(hit))
-      assert.is_not_nil(hit.origin)
-      local miss = FurC.Find(Test.link(999999999))
-      assert.equals("table", type(miss))
-      assert.is_nil(next(miss))
+      assert.is_not_nil(hit.sources)
+      assert.is_not_nil(api.GetSourceDetails(DS.luxItem)[1])
+      assert.is_nil(api.GetEntry(Test.link(999999999)))
     end)
 
     it("GetItemDescription returns string", function()
-      local arr = FurC.Find(DS.luxItem)
-      assert.equals("string", type(FurC.GetItemDescription(DS.luxItem, arr)))
+      local api = LibFurnitureCatalogue.API
+      assert.equals("string", type(api.GetItemDescription(DS.luxItem, api.GetEntry(DS.luxItem))))
     end)
 
     -- Direct index access like this might turn into an issue for LibPrice if we change DB or globals.
@@ -64,19 +60,14 @@ Taneth("FurC:Regression", function()
       assert.is_not_nil(FurC.LuxuryFurnisher[DS.luxVersion][DS.luxItem])
     end)
 
-    -- LibPrice.FurCPrice reads the enum as a FIELD and calls the OLD endpoint name,
-    -- then indexes cost[1] on whichever record matches the entry's origin without
-    -- checking cost first. Both names live in the deprecated block for exactly this
-    -- consumer, so a cleanup pass that drops either one breaks furniture pricing.
-    it("LibPrice reaches the enum and the old endpoint the way it actually calls them", function()
+    it("the bridged endpoint keeps the shape LibPrice indexes", function()
       FurC.EnsureDB(true)
       local api = LibFurnitureCatalogue.API
 
-      -- a table on the API, not the function that returns one
-      assert.equals("table", type(api.SourceType))
+      assert.is_nil(api.SourceType, "the shared enum table is still published")
+      local types = api.GetSourceTypes()
       for _, key in ipairs({ "CRAFTING", "RUMOUR", "FESTIVAL_DROP" }) do
-        assert.equals("number", type(api.SourceType[key]))
-        assert.equals(api.GetSourceTypes()[key], api.SourceType[key])
+        assert.equals("number", type(types[key]))
       end
 
       -- takes an item link, and a miss must stay safe to walk with ipairs

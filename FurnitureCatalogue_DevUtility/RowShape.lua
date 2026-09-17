@@ -131,8 +131,6 @@ local CENSUS_FIELDS = {
   "craftingSkill",
   "furnCategory",
   "furnSubcategory",
-  "recipeListIndex",
-  "recipeIndex",
 }
 
 local function countKeys(t)
@@ -141,6 +139,17 @@ local function countKeys(t)
     for _ in pairs(t) do
       n = n + 1
     end
+  end
+  return n
+end
+
+local function countSources(sources)
+  if type(sources) ~= "number" then
+    return countKeys(sources)
+  end
+  local n = 0
+  for _ in lib().Internal.Build.EachSource(sources) do
+    n = n + 1
   end
   return n
 end
@@ -161,7 +170,7 @@ local function census()
     end
     keyHistogram[keys] = (keyHistogram[keys] or 0) + 1
 
-    local sources = countKeys(row.sources)
+    local sources = countSources(row.sources)
     sourcesHistogram[sources] = (sourcesHistogram[sources] or 0) + 1
 
     -- the marker is a bitmask now, and was a subtable before it: count either, so a
@@ -251,6 +260,19 @@ local function copySet(set)
   return out
 end
 
+---The live row stores `sources` as a mask
+---@param sources table<integer, boolean>|integer|nil
+---@return table<integer, boolean>|nil
+local function setOf(sources)
+  if sources == nil then
+    return nil
+  end
+  if type(sources) ~= "number" then
+    return copySet(sources)
+  end
+  return lib().Internal.Build.SourceSet(sources)
+end
+
 -- exact for source ids up to 53, so no bit library and no sign boundary at 31
 ---Bitmask of a source set. Passes a mask straight through, so a shape that models
 ---the marker as an integer reads the same whether the live row already stores one
@@ -272,7 +294,7 @@ end
 local function copyAll(row, extraId)
   local out = {}
   for field, value in pairs(row) do
-    if field == "sources" or (field == "compatSources" and type(value) == "table") then
+    if type(value) == "table" and (field == "sources" or field == "compatSources") then
       out[field] = copySet(value)
     else
       out[field] = value
@@ -288,7 +310,7 @@ local function copyWithout(row, dropped, extraId)
   local out = {}
   for field, value in pairs(row) do
     if not dropped[field] then
-      if field == "sources" then
+      if field == "sources" and type(value) == "table" then
         out[field] = copySet(value)
       else
         out[field] = value
@@ -301,9 +323,7 @@ local function copyWithout(row, dropped, extraId)
   return out
 end
 
--- One metatable for every row, so a derived field costs the shared table and not a
--- slot per row. Released consumers index origin off the raw row through FurC.Find,
--- so it has to answer there and not only on a GetEntry copy.
+-- One metatable for every row, so a derived field costs the shared table and not a slot per row
 local ROW_META = {
   __index = function(row, key)
     if key == "origin" then
@@ -370,7 +390,7 @@ local SHAPES = {
     key = "lean3",
     note = "sources, version, blueprint",
     build = function(_, row)
-      return assemble({ "sources", copySet(row.sources) }, { "version", row.version }, { "blueprint", row.blueprint })
+      return assemble({ "sources", setOf(row.sources) }, { "version", row.version }, { "blueprint", row.blueprint })
     end,
   },
   {
@@ -379,7 +399,7 @@ local SHAPES = {
     build = function(itemId, row)
       return assemble(
         { "id", itemId },
-        { "sources", copySet(row.sources) },
+        { "sources", setOf(row.sources) },
         { "version", row.version },
         { "blueprint", row.blueprint }
       )
@@ -408,7 +428,7 @@ local SHAPES = {
     note = "compat-int, minus category and origin, no id",
     build = function(_, row)
       return assemble(
-        { "sources", copySet(row.sources) },
+        { "sources", setOf(row.sources) },
         { "version", row.version },
         { "blueprint", row.blueprint },
         { "compatSources", maskOf(row.compatSources) }
@@ -421,7 +441,7 @@ local SHAPES = {
     build = function(_, row)
       local mask = maskOf(row.compatSources)
       return assemble(
-        { "sources", copySet(row.sources) },
+        { "sources", setOf(row.sources) },
         { "version", row.version },
         { "blueprint", row.blueprint },
         { "compatSources", mask ~= 0 and mask or nil }
@@ -435,7 +455,7 @@ local SHAPES = {
       local mask = maskOf(row.compatSources)
       return assemble(
         { "id", itemId },
-        { "sources", copySet(row.sources) },
+        { "sources", setOf(row.sources) },
         { "version", row.version },
         { "blueprint", row.blueprint },
         { "compatSources", mask ~= 0 and mask or nil }
@@ -449,7 +469,7 @@ local SHAPES = {
       local mask = maskOf(row.compatSources)
       return setmetatable(
         assemble(
-          { "sources", copySet(row.sources) },
+          { "sources", setOf(row.sources) },
           { "version", row.version },
           { "blueprint", row.blueprint },
           { "compatSources", mask ~= 0 and mask or nil }
@@ -519,7 +539,7 @@ rowShape.Shapes = shapes
 
 local function primarySource(sources, priority)
   local best, bestRank
-  for source in pairs(sources or {}) do
+  for source in lib().Internal.Build.EachSource(lib().Internal.Build.SourceMask(sources)) do
     local rank = priority[source] or math.huge
     if not bestRank or rank < bestRank or (rank == bestRank and source < best) then
       best, bestRank = source, rank

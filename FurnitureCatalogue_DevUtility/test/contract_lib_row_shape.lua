@@ -13,8 +13,8 @@ end
 Taneth("FurC:Lib", function()
   local LFC = LibFurnitureCatalogue
   local api = LFC.API
-  local compat = LFC.Internal.Compat
   local src = LFC.Internal.Constants.ItemSources
+  local hasSource, eachSource = LFC.Internal.Build.HasSource, LFC.Internal.Build.EachSource
   local Test = FurCDev.Test
   local DS = Test.dataset()
 
@@ -37,24 +37,24 @@ Taneth("FurC:Lib", function()
 
       -- and what it keeps
       assert.equals(DS.craftable, rawget(row, "id"))
-      assert.equals("table", type(rawget(row, "sources")))
+      assert.equals("number", type(rawget(row, "sources")))
       assert.equals("number", type(rawget(row, "version")))
     end)
 
-    it("answers origin and category off the raw row, which released consumers read", function()
+    it("answers the two category fields off the raw row, which the filter reads", function()
       Test.ensureDB()
-      -- FurC.Find hands back the internal row rather than a copy, and that is what
-      -- FurnitureCatalogue 7.0.0's filter, tooltip and context menu are holding
-      local row = FurC.Find(DS.craftable)
-      assert.is_true(rawequal(row, rawRow(DS.craftable)))
+      local row = rawRow(DS.craftable)
 
-      assert.equals("number", type(row.origin))
-      assert.is_true(row.sources[row.origin] == true)
-
-      -- the category filter reads both and treats nil as 0, which matches nothing,
-      -- so the filter fails closed rather than open if this ever stops answering
+      -- the category filter reads both and treats nil as 0, which matches nothing
       assert.equals("number", type(row.furnCategory))
       assert.equals("number", type(row.furnSubcategory))
+
+      -- which source ranks best is no longer a field at all: ask for the ranked records
+      assert.is_nil(row.origin)
+      local best = LFC.Internal.Query.OriginOf(row)
+      assert.equals("number", type(best))
+      assert.is_true(hasSource(row.sources, best))
+      assert.equals(best, api.GetSourceDetails(DS.craftable)[1].source.type)
 
       -- and the metatable does not invent anything else
       assert.is_nil(row.somethingNobodyStores)
@@ -62,7 +62,7 @@ Taneth("FurC:Lib", function()
 
     it("derives the same category the game does", function()
       Test.ensureDB()
-      local row = FurC.Find(DS.craftable)
+      local row = rawRow(DS.craftable)
       local dataId = GetItemLinkFurnitureDataId(Test.link(DS.craftable))
       if not dataId or dataId == 0 then
         return -- the game knows no furnishing for it, nothing to compare against
@@ -74,12 +74,10 @@ Taneth("FurC:Lib", function()
 
     it("loses the derived fields through a shallow copy, and the renderer survives it", function()
       Test.ensureDB()
-      -- the AddOn's list builds its display rows with a shallow copy and then asks for
-      -- the description off that copy. pairs cannot see a derived field, so the copy
-      -- has no origin and the description path has to derive it again
-      local copy = ZO_ShallowTableCopy(FurC.Find(DS.luxItem))
-      assert.is_nil(rawget(copy, "origin"))
-      assert.is_nil(copy.origin)
+
+      local copy = ZO_ShallowTableCopy(rawRow(DS.luxItem))
+      assert.is_nil(rawget(copy, "furnCategory"))
+      assert.is_nil(copy.furnCategory)
 
       local described = api.GetItemDescription(DS.luxItem, copy, true)
       assert.equals("string", type(described))
@@ -87,57 +85,36 @@ Taneth("FurC:Lib", function()
       assert.equals(api.GetItemDescription(DS.luxItem, api.GetEntry(DS.luxItem), true), described)
     end)
 
-    it("stamps origin onto the copy GetEntry hands out", function()
+    it("hands out a copy carrying only what the row stores", function()
       Test.ensureDB()
       local entry = api.GetEntry(DS.craftable)
-      assert.equals(FurC.Find(DS.craftable).origin, rawget(entry, "origin"))
-      -- not stamped: the game answers these, and an item-category endpoint is the
-      -- intended route rather than a field on every entry
+      -- game answers the categories, and ranked records answer which source is "best"
+      assert.is_nil(rawget(entry, "origin"))
       assert.is_nil(rawget(entry, "furnCategory"))
+      assert.equals(DS.craftable, entry.id)
+      assert.equals("number", type(entry.version))
     end)
 
-    it("marks compat-injected sources with a bitmask, absent when nothing was injected", function()
+    it("carries no marker field, and every source it names has a record", function()
       Test.ensureDB()
-      local withInjection, without
+      local checked = 0
       for id, row in pairs(FurC.DB) do
-        if type(row) == "table" and rawget(row, "sources") then
-          if rawget(row, "compatSources") then
-            withInjection = withInjection or id
-          else
-            without = without or id
+        if type(id) == "number" and type(row) == "table" then
+          assert.is_nil(rawget(row, "compatSources"), id .. " still carries a compat marker")
+          if checked < 200 then
+            local named, described = {}, {}
+            for source in eachSource(rawget(row, "sources")) do
+              named[source] = true
+            end
+            for _, record in ipairs(api.GetSourceDetails(id)) do
+              described[record.source.type] = true
+            end
+            assert.same(named, described)
+            checked = checked + 1
           end
         end
-        if withInjection and without then
-          break
-        end
       end
-
-      assert.is_not_nil(without, "every row carries a compat marker, which is the cost this removed")
-      assert.is_false(compat.IsInjected(rawRow(without).compatSources, src.DROP))
-
-      if not withInjection then
-        return -- no injected source in this data set
-      end
-      local mask = rawRow(withInjection).compatSources
-      assert.equals("number", type(mask))
-      assert.is_true(mask > 0)
-
-      -- the marked members are exactly the ones GetSourceDetails leaves out
-      local injected, described = {}, {}
-      for source in pairs(rawRow(withInjection).sources) do
-        if compat.IsInjected(mask, source) then
-          injected[source] = true
-          -- an injected member is in sources, which is what makes 7.0.0's filter work
-          assert.is_true(rawRow(withInjection).sources[source])
-        end
-      end
-      assert.is_true(next(injected) ~= nil)
-      for _, record in ipairs(api.GetSourceDetails(withInjection)) do
-        described[record.source.type] = true
-      end
-      for source in pairs(injected) do
-        assert.is_nil(described[source], "an injected source got its own record")
-      end
+      assert.is_true(checked > 0)
     end)
   end)
 end)

@@ -26,12 +26,13 @@ Taneth("FurC:Lib", function()
     ---@return table? detail the export's own row for it
     ---@return integer? itemId
     ---@return integer? sourceType
-    local function firstDetailWith(field)
+    ---@param has fun(source: table): boolean
+    local function firstDetailWhere(has)
       for itemId, record in pairs(exportRecords()) do
         for index, detail in pairs(record.info or {}) do
           local sourceType = record.sources[index]
           for _, rec in ipairs(api.GetSourceDetails(itemId)) do
-            if rec.source.type == sourceType and rec.source[field] ~= nil then
+            if rec.source.type == sourceType and has(rec.source) then
               return detail, itemId, sourceType
             end
           end
@@ -39,9 +40,24 @@ Taneth("FurC:Lib", function()
       end
     end
 
+    local function firstDetailWith(field)
+      return firstDetailWhere(function(source)
+        return source[field] ~= nil
+      end)
+    end
+
+    local function firstPlacementDetail(part)
+      return firstDetailWhere(function(source)
+        for _, placement in ipairs(source.locations or {}) do
+          if placement[part] ~= nil then
+            return true
+          end
+        end
+        return false
+      end)
+    end
+
     it("resolves the library's identifiers to text rather than exporting the ids", function()
-      -- The library publishes a locale string id for the vendor and a game zone id
-      -- for the location. Exporting either raw puts a bare number in the artifact's
       -- vendor and location columns, which is the defect this pins
       local vendorDetail = firstDetailWith("vendor")
       assert.is_not_nil(vendorDetail, "no exported record carries a vendor")
@@ -49,7 +65,7 @@ Taneth("FurC:Lib", function()
       assert.is_true(#vendorDetail.vendor > 0)
       assert.is_nil(tonumber(vendorDetail.vendor), "vendor exported as a bare id: " .. tostring(vendorDetail.vendor))
 
-      local zoneDetail = firstDetailWith("location")
+      local zoneDetail = firstPlacementDetail("location")
       assert.is_not_nil(zoneDetail, "no exported record carries a location")
       assert.equals("string", type(zoneDetail.location))
       assert.is_true(#zoneDetail.location > 0)
@@ -57,16 +73,16 @@ Taneth("FurC:Lib", function()
     end)
 
     it("gives a place the same column a zone gets, so the artifact keeps one 'where'", function()
-      -- location and place are exclusive on the record and mean the same thing to a
-      -- reader of the export: somewhere. The row split them; the columns did not
-      local placeDetail, itemId, sourceType = firstDetailWith("place")
+      local placeDetail, itemId, sourceType = firstPlacementDetail("place")
       if not placeDetail then
         return -- no placed source in this data set, nothing to assert
       end
       local placeId
       for _, rec in ipairs(api.GetSourceDetails(itemId)) do
         if rec.source.type == sourceType then
-          placeId = rec.source.place
+          for _, placement in ipairs(rec.source.locations or {}) do
+            placeId = placeId or placement.place
+          end
         end
       end
       assert.is_not_nil(placeId)

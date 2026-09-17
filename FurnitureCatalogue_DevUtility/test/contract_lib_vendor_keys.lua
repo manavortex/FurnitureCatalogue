@@ -116,7 +116,9 @@ Taneth("FurC:Lib", function()
       for _, found in ipairs(vendorRows()) do
         local name = constants.IsZoneId[found.location] and constants.Resolvers.Zone(found.location)
           or constants.Resolvers.Place(found.location)
-        for _, line in ipairs(FurC.SourceFormat.FormatItem(found.itemId, FurC.Find(found.itemId))) do
+        for _, line in
+          ipairs(FurC.SourceFormat.FormatItem(found.itemId, LibFurnitureCatalogue.API.GetEntry(found.itemId)))
+        do
           if line.source == constants.ItemSources.VENDOR and line.text:find(name, 1, true) then
             checked = checked + 1
           end

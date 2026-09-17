@@ -117,6 +117,17 @@ local function resolveText(resolve, value)
   return (text ~= "" and text) or nil
 end
 
+---The first placement's zone, else the place it names
+---@param source table a published record's origin
+---@return string? text
+local function placeText(source)
+  local first = (source.locations or {})[1]
+  if not first then
+    return nil
+  end
+  return resolveText(RESOLVE.Zone, first.location) or resolveText(RESOLVE.Place, first.place)
+end
+
 local LINK_STYLE = LINK_STYLE_BRACKETS or 1
 
 local VERBOSE_FORMAT = "furniture-export-verbose-v1"
@@ -298,8 +309,8 @@ local NOT_A_SOURCE = LFC.Internal.Constants.NotASource
 ---@return integer[] sourceIds
 local function sourcesFor(entry)
   local ids, seen = {}, {}
-  for sourceId in pairs(entry.sources or {}) do
-    if type(sourceId) == "number" and not seen[sourceId] and not NOT_A_SOURCE[sourceId] then
+  for sourceId in build.EachSource(build.SourceMask(entry.sources)) do
+    if not seen[sourceId] and not NOT_A_SOURCE[sourceId] then
       seen[sourceId] = true
       ids[#ids + 1] = sourceId
     end
@@ -371,14 +382,11 @@ local function sourceInfoFor(itemId, sourceIds)
         vendor = resolveText(RESOLVE.Npc, rec.source.vendor),
         -- a source that is not an NPC is the container the item comes out of
         fromItem = rec.source.container,
-        -- location XOR place: a zone the game knows, or somewhere it has no zone for
-        -- `place` lands in the same column the old prose location did, so the
-        -- artifact keeps its column set: the record split the two meanings, the
-        -- export still has one place to put "where"
-        location = resolveText(RESOLVE.Zone, rec.source.location) or resolveText(RESOLVE.Place, rec.source.place),
+        -- the export keeps one "where" column, so the first placement answers for it
+        location = placeText(rec.source),
         achievement = rec.source.achievement,
         event = resolveText(RESOLVE.Event, rec.source.event),
-        lastSeen = rec.availability and rec.availability.lastSeen,
+        lastSeen = rec.lastSeen,
       }
       local cost = rec.cost
       if cost then
@@ -399,7 +407,7 @@ end
 ---@param entry FurCEntry
 ---@return table<integer, integer>? materials nil when the item is not craftable
 local function materialsFor(itemId, entry)
-  if not (entry.blueprint or (entry.recipeListIndex and entry.recipeIndex)) then
+  if not (entry.blueprint or query.GrantedRecipeIndices(entry)) then
     return nil
   end
   local getIngredients, getLink = query.GetIngredients, fmt.GetItemLink

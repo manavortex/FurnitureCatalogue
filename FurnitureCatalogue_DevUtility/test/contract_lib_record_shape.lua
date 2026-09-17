@@ -17,7 +17,21 @@ Taneth("FurC:Lib", function()
   -- `location` beside `locations` is the plural twin the convention forbids
   local PLURAL_TWINS = {
     location = "locations",
+    place = "locations",
   }
+
+  -- A placement names a zone, a place, or both: ONE shape with optional members
+  local PLACEMENT_KEYS = { location = true, place = true }
+  local function isPlacement(value)
+    local named = 0
+    for key in pairs(value) do
+      if not PLACEMENT_KEYS[key] then
+        return false
+      end
+      named = named + 1
+    end
+    return named > 0
+  end
 
   local function shapeOf(value)
     if type(value) ~= "table" then
@@ -29,6 +43,9 @@ Taneth("FurC:Lib", function()
     -- an empty table is the empty-list sentinel, not a record with no tag
     if next(value) == nil then
       return "list[]"
+    end
+    if isPlacement(value) then
+      return "placement"
     end
     return "record{" .. tostring(next(value)) .. "}"
   end
@@ -72,8 +89,8 @@ Taneth("FurC:Lib", function()
           for field, value in pairs(record.cost or {}) do
             note("cost." .. field, value)
           end
-          for field, value in pairs(record.availability or {}) do
-            note("availability." .. field, value)
+          if record.lastSeen ~= nil then
+            note("lastSeen", record.lastSeen)
           end
         end
       end

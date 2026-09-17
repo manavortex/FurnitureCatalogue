@@ -38,6 +38,7 @@ test/contract_lib_vocabulary.lua
 test/contract_lib_record_shape.lua
 test/contract_export_records.lua
 test/contract_source_format.lua
+test/contract_source_places.lua
 test/contract_furnitureshoppinglist.lua
 test/unit_benchmark.lua
 test/unit_utils.lua

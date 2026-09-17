@@ -28,11 +28,14 @@ local hideRumours = false
 local showAllOnTextSearch = false
 local showAllRumourOnTextSearch = false
 
-local recipeArray, itemId, itemLink, itemType, sItemType, recipeIndex, recipeListIndex
+local recipeArray, sourceBits, itemId, itemLink, itemType, sItemType
 
 local LFC = LibFurnitureCatalogue
 local src = LFC.API.GetSourceTypes()
 local ver = LFC.API.GetDataVersions()
+local build = LFC.Internal.Build
+local toSourceMask, maskHasSource, eachSource = build.SourceMask, build.HasSource, build.EachSource
+local ONLY_RUMOUR = build.SourceMask({ [src.RUMOUR] = true })
 local NPC_EVENT = GetString(SI_FURC_TRADERS_EVENT)
 
 -- Local imports for performance
@@ -178,8 +181,7 @@ local validSourcesForOther = {
 
 -- Multi-source: item matches filter if source is in list
 local function hasSource(s)
-  local sources = recipeArray.sources
-  return sources ~= nil and sources[s] == true
+  return maskHasSource(sourceBits, s)
 end
 
 local function isHomeGoodsFurnisherItem()
@@ -316,12 +318,9 @@ local function matchesSource(candidate)
 
   if src.OTHER == candidate then
     -- match if sources are part of OTHER too
-    local sources = recipeArray.sources
-    if sources ~= nil then
-      for s in pairs(sources) do
-        if validSourcesForOther[s] then
-          return true
-        end
+    for s in eachSource(sourceBits) do
+      if validSourcesForOther[s] then
+        return true
       end
     end
     return false
@@ -417,7 +416,7 @@ local function matchSearchString()
 end
 
 local function matchCraftingTypeFilter()
-  if not recipeArray.origin == src.CRAFTING then
+  if not maskHasSource(sourceBits, src.CRAFTING) then
     return false
   end
   local filterType = query.GetCraftingSkillType(itemId, recipeArray)
@@ -473,11 +472,9 @@ function FurC.MatchFilter(currentItemId, currentRecipeArray)
   if nil == recipeArray then
     return false
   end
+  sourceBits = toSourceMask(recipeArray.sources)
 
-  local origin = recipeArray.origin
-
-  -- Hidden rumours bypass filter and only show up through text search override
-  if origin == src.RUMOUR and hideRumours then
+  if sourceBits == ONLY_RUMOUR and hideRumours then
     if filterBooks(itemId, recipeArray) then
       return false
     end

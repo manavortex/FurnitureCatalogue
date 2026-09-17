@@ -15,6 +15,7 @@ Taneth("FurC:Lib", function()
   describe("LibFurnitureCatalogue chat commands", function()
     local LFC = LibFurnitureCatalogue
     local chat = LFC.Internal.Chat
+    local build = LFC.Internal.Build
     local Test = FurCDev.Test
     local DS = Test.dataset()
 
@@ -96,7 +97,7 @@ Taneth("FurC:Lib", function()
     it("raw names the enums instead of numbering them", function()
       local lines = run("raw " .. DS.luxItemInDB)
       assert.is_true(#lines >= 4)
-      assert.is_not_nil(lines[2]:find("origin=%u%u"))
+      assert.is_not_nil(lines[2]:find("primary=%u%u"))
       -- a version value is a sequence position, so it is named, never numbered
       assert.is_not_nil(lines[2]:find("version=%u%u"))
       assert.is_not_nil(lines[3]:find("sources=%u%u"))
@@ -119,7 +120,8 @@ Taneth("FurC:Lib", function()
       local placed
       for _, id in ipairs(LibFurnitureCatalogue.API.GetItemIds()) do
         for _, record in ipairs(LibFurnitureCatalogue.API.GetSourceDetails(id)) do
-          if record.source.place and not record.source.location then
+          local only = (record.source.locations or {})[1]
+          if only and only.place and not only.location then
             placed = id
             break
           end
@@ -174,10 +176,10 @@ Taneth("FurC:Lib", function()
       local craftOnly
       local CRAFTING = LFC.Internal.Constants.ItemSources.CRAFTING
       for id, arr in pairs(FurC.DB) do
-        if type(arr) == "table" and arr.sources and arr.sources[CRAFTING] then
+        if type(arr) == "table" and build.HasSource(arr.sources, CRAFTING) then
           local others = 0
-          for source in pairs(arr.sources) do
-            if source ~= CRAFTING and not LFC.Internal.Compat.IsInjected(arr.compatSources, source) then
+          for source in build.EachSource(arr.sources) do
+            if source ~= CRAFTING then
               others = others + 1
             end
           end
@@ -240,7 +242,7 @@ Taneth("FurC:Lib", function()
     it("reports no mats for an item that is not craftable", function()
       local plain
       for id, arr in pairs(FurC.DB) do
-        if type(arr) == "table" and not (arr.blueprint or (arr.recipeListIndex and arr.recipeIndex)) then
+        if type(arr) == "table" and not (arr.blueprint or LFC.Internal.Query.GrantedRecipeIndices(arr)) then
           plain = id
           break
         end

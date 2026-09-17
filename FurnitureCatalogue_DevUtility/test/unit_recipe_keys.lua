@@ -7,6 +7,7 @@ end
 
 Taneth("FurC:Regression", function()
   local src = FurC.Constants.ItemSources
+  local hasSource = LibFurnitureCatalogue.Internal.Build.HasSource
 
   --- Every recipe the writ vendors sell (including folios)
   local function voucherRecipeIds()
@@ -47,8 +48,8 @@ Taneth("FurC:Regression", function()
           local entry = FurC.DB[itemId]
           assert.is_not_nil(entry)
           assert.equals(recipeId, entry.blueprint)
-          assert.is_true(entry.sources[src.CRAFTING])
-          assert.is_true(entry.sources[src.ROLIS])
+          assert.is_true(hasSource(entry.sources, src.CRAFTING))
+          assert.is_true(hasSource(entry.sources, src.ROLIS))
           checked = checked + 1
         end
       end

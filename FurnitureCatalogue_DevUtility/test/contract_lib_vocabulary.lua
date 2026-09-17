@@ -140,9 +140,15 @@ Taneth("FurC:Lib", function()
       end
 
       for _, found in ipairs(scanned()) do
-        for _, field in ipairs({ "vendor", "place", "category", "event", "bundle", "itemPack", "rarity" }) do
+        for _, field in ipairs({ "vendor", "category", "event", "bundle", "itemPack", "rarity" }) do
           if found.source[field] ~= nil then
             checkString(found.item, field, found.source[field])
+          end
+        end
+        -- a place sits inside a location now, and only some locations name one
+        for _, placement in ipairs(found.source.locations or {}) do
+          if placement.place ~= nil then
+            checkString(found.item, "locations.place", placement.place)
           end
         end
         for _, id in ipairs(elements(found.source.containerKind)) do
@@ -153,7 +159,10 @@ Taneth("FurC:Lib", function()
       assert.equals("", report(problems))
       assert.equals(
         "",
-        unexercised(seen, { "vendor", "place", "category", "event", "bundle", "itemPack", "rarity", "containerKind" })
+        unexercised(
+          seen,
+          { "vendor", "locations.place", "category", "event", "bundle", "itemPack", "rarity", "containerKind" }
+        )
       )
     end)
 
@@ -169,14 +178,13 @@ Taneth("FurC:Lib", function()
 
       for _, found in ipairs(scanned()) do
         local source, item = found.source, found.item
-        if source.location ~= nil then
-          check(item, "location", source.location, zones, "ZoneIds")
-        end
-        for _, zone in ipairs(source.locations or {}) do
-          check(item, "locations", zone, zones, "ZoneIds")
-        end
-        if source.place ~= nil then
-          check(item, "place", source.place, places, "PlaceIds")
+        for _, placement in ipairs(source.locations or {}) do
+          if placement.location ~= nil then
+            check(item, "locations.location", placement.location, zones, "ZoneIds")
+          end
+          if placement.place ~= nil then
+            check(item, "locations.place", placement.place, places, "PlaceIds")
+          end
         end
         if source.vendor ~= nil then
           check(item, "vendor", source.vendor, npcs, "NpcIds")
@@ -223,9 +231,8 @@ Taneth("FurC:Lib", function()
       assert.equals(
         "",
         unexercised(seen, {
-          "location",
-          "locations",
-          "place",
+          "locations.location",
+          "locations.place",
           "vendor",
           "event",
           "bundle",

@@ -6,6 +6,10 @@ end
 
 Taneth("FurC:Unit", function()
   local src = FurC.Constants.ItemSources
+  -- the row stores its sources as a mask; GetEntry is what hands out the set
+  local hasSource = LibFurnitureCatalogue.Internal.Build.HasSource
+  -- the best-ranked source is derived on demand now; the row does not carry it
+  local originOf = LibFurnitureCatalogue.Internal.Query.OriginOf
 
   local TEST_ID = 99000001
   local function clear()
@@ -19,13 +23,13 @@ Taneth("FurC:Unit", function()
   end)
 
   describe("FurC.Upsert", function()
-    it("stores a single source and mirrors it onto origin", function()
+    it("stores a single source, and it ranks as the best one", function()
       clear()
       FurC.Upsert(TEST_ID, { origin = src.VENDOR, version = 1 })
       local e = FurC.DB[TEST_ID]
       assert.is_not_nil(e)
-      assert.is_true(e.sources[src.VENDOR])
-      assert.equals(src.VENDOR, e.origin)
+      assert.is_true(hasSource(e.sources, src.VENDOR))
+      assert.equals(src.VENDOR, originOf(e))
       clear()
     end)
 
@@ -34,16 +38,16 @@ Taneth("FurC:Unit", function()
       FurC.Upsert(TEST_ID, { origin = src.VENDOR })
       FurC.Upsert(TEST_ID, { origin = src.LUXURY })
       local e = FurC.DB[TEST_ID]
-      assert.is_true(e.sources[src.VENDOR])
-      assert.is_true(e.sources[src.LUXURY])
+      assert.is_true(hasSource(e.sources, src.VENDOR))
+      assert.is_true(hasSource(e.sources, src.LUXURY))
       clear()
     end)
 
     it("keeps RUMOUR only as the sole source", function()
       clear()
       FurC.Upsert(TEST_ID, { origin = src.RUMOUR })
-      assert.is_true(FurC.DB[TEST_ID].sources[src.RUMOUR])
-      assert.equals(src.RUMOUR, FurC.DB[TEST_ID].origin)
+      assert.is_true(hasSource(FurC.DB[TEST_ID].sources, src.RUMOUR))
+      assert.equals(src.RUMOUR, originOf(FurC.DB[TEST_ID]))
       clear()
     end)
 
@@ -52,17 +56,17 @@ Taneth("FurC:Unit", function()
       FurC.Upsert(TEST_ID, { origin = src.RUMOUR })
       FurC.Upsert(TEST_ID, { origin = src.VENDOR })
       local e = FurC.DB[TEST_ID]
-      assert.is_nil(e.sources[src.RUMOUR])
-      assert.is_true(e.sources[src.VENDOR])
-      assert.equals(src.VENDOR, e.origin)
+      assert.is_false(hasSource(e.sources, src.RUMOUR))
+      assert.is_true(hasSource(e.sources, src.VENDOR))
+      assert.equals(src.VENDOR, originOf(e))
       clear()
 
       FurC.Upsert(TEST_ID, { origin = src.VENDOR })
       FurC.Upsert(TEST_ID, { origin = src.RUMOUR })
       e = FurC.DB[TEST_ID]
-      assert.is_nil(e.sources[src.RUMOUR])
-      assert.is_true(e.sources[src.VENDOR])
-      assert.equals(src.VENDOR, e.origin)
+      assert.is_false(hasSource(e.sources, src.RUMOUR))
+      assert.is_true(hasSource(e.sources, src.VENDOR))
+      assert.equals(src.VENDOR, originOf(e))
       clear()
     end)
 
@@ -70,9 +74,9 @@ Taneth("FurC:Unit", function()
       clear()
       FurC.Upsert(TEST_ID, { origin = src.RUMOUR }) -- rank 99
       FurC.Upsert(TEST_ID, { origin = src.VENDOR }) -- rank 20 -> wins
-      assert.equals(src.VENDOR, FurC.DB[TEST_ID].origin)
+      assert.equals(src.VENDOR, originOf(FurC.DB[TEST_ID]))
       FurC.Upsert(TEST_ID, { origin = src.CRAFTING }) -- rank 10 -> wins
-      assert.equals(src.CRAFTING, FurC.DB[TEST_ID].origin)
+      assert.equals(src.CRAFTING, originOf(FurC.DB[TEST_ID]))
       clear()
     end)
 
@@ -126,12 +130,13 @@ Taneth("FurC:Unit", function()
     end)
 
     -- find() memoises last lookup, a rebuild clears it
-    it("Find hands out the current row after a rebuild", function()
+    it("the internal lookup hands out the current row after a rebuild", function()
       local id = FurCDev.Test.dataset().dbItem
-      assert.equals(LibFurnitureCatalogue.Internal.DB[id], FurC.Find(id))
+      local find = LibFurnitureCatalogue.Internal.Query.Find
+      assert.equals(LibFurnitureCatalogue.Internal.DB[id], find(id))
       local ok, err = pcall(FurC.RebuildDB, true)
       assert.is_true(ok, tostring(err))
-      assert.equals(LibFurnitureCatalogue.Internal.DB[id], FurC.Find(id))
+      assert.equals(LibFurnitureCatalogue.Internal.DB[id], find(id))
     end)
   end)
 end)

@@ -89,49 +89,18 @@ this.STRIP_CONTROL = STRIP_CONTROL
     |      RESOLVERS      |
     |_____________________|]]
 
---- Game resolved and translated zone names from ids
-local function resolveZone(id)
-  return GetZoneNameById(id)
-end
-
-local function resolveString(id)
-  return GetString(id)
-end
-
+--- The library's resolvers, so an exported name and an in-game name cannot drift apart
+local resolvers = LFC.Internal.Constants.Resolvers
+local resolveZone = resolvers.Zone
+--- Place, npc and event ids are all plain locale strings
+local resolveString = resolvers.Place
 --- Monster social classes are the game's own strings, rendered singular
-local function resolveNpcClass(id)
-  return (id and sFormat("<<1>>", GetString(id))) or ""
-end
+local resolveNpcClass = resolvers.NpcClass
 
---- Groups of enemies are rendered plural
-local function resolveNpcGroup(id)
-  return sFormat("<<m:1>>", GetString(id))
-end
-
---- One note value: a string id, a literal, or a structured table
----@param value string|integer|table
----@return string
-local function resolveNote(value)
-  if type(value) == "table" then
-    if value.npc then
-      return resolveString(value.npc)
-    end
-    if value.npcClass ~= nil then
-      return resolveNpcClass(value.npcClass)
-    end
-    if value.npcGroup then
-      return resolveNpcGroup(value.npcGroup)
-    end
-    if value.item then
-      return itemName(value.item)
-    end
-    return ""
-  end
-  if type(value) == "string" then
-    return value
-  end
-  return GetString(value)
-end
+--- One note value: a string id, a literal, or a structured table.
+local resolveNote = LFC.Internal.Query.ResolveNote
+--- Which crafting-station recipe a row grants
+local grantedRecipeIndices = LFC.Internal.Query.GrantedRecipeIndices
 
 --[[_______________________
     |                     |
@@ -260,13 +229,18 @@ end
 ---@param cat string resolved category word like "dungeon^n,from"
 ---@param suffix string|nil already formatted detail
 ---@param srcType string|nil "loc", "src" or "other", defaults to "loc"
----@param ... string|table resolved location, a table is a zone and a place inside it
+---@param ... string|table one place, either resolved text or a list of its resolved parts
 ---@return string
 local function fmtGeneric(cat, suffix, srcType, ...)
   suffix = suffix or ""
   srcType = srcType or "loc"
 
-  local locations = { ... }
+  -- callers that name one thing pass text; placesOf passes a part list per place
+  local locations = {}
+  for i = 1, select("#", ...) do
+    local place = select(i, ...)
+    locations[i] = (type(place) == "table") and place or { place }
+  end
   local hasSuffix = suffix ~= ""
   if #locations == 0 then
     if hasSuffix then
@@ -275,33 +249,32 @@ local function fmtGeneric(cat, suffix, srcType, ...)
     return sFormat("<<Cal:1>>", cat)
   end
 
-  -- a nested pair is one location, so the prefix stays singular and the parts are joined
-  if #locations == 1 and type(locations[1]) == "table" then
+  ---A place of several parts reads as one location: the parts are joined, not separated
+  local function joinParts(parts)
     local named = {}
-    for i, part in ipairs(locations[1]) do
+    for i, part in ipairs(parts) do
       named[i] = colourise(stripTxt(part, STRIP_CONTROL), colours.Location)
     end
-    local prefix = sFormat("<<t:1>>", cat)
-    local nested = table.concat(named, ", ")
-    if hasSuffix then
-      return string.format("%s: %s (%s)", prefix, nested, suffix)
-    end
-    return string.format("%s: %s", prefix, nested)
+    return table.concat(named, ", ")
   end
 
   if #locations == 1 then
     local prefix = sFormat("<<t:1>>", cat)
+    local only = locations[1]
+    -- one part keeps the grammar the single-location case has always had
+    local text = (#only == 1 and fmtSources(srcType, only[1])) or joinParts(only)
     if hasSuffix then
-      return string.format("%s: %s (%s)", prefix, fmtSources(srcType, locations[1]), suffix)
+      return string.format("%s: %s (%s)", prefix, text, suffix)
     end
-    return string.format("%s: %s", prefix, fmtSources(srcType, locations[1]))
+    return string.format("%s: %s", prefix, text)
   end
 
   local prefix = sFormat("<<tm:1>>", cat)
+  local named = {}
   for i = 1, #locations do
-    locations[i] = colourise(stripTxt(locations[i], STRIP_CONTROL), colours.Location)
+    named[i] = joinParts(locations[i])
   end
-  local joined = table.concat(locations, " \\ ")
+  local joined = table.concat(named, " \\ ")
   if hasSuffix then
     return string.format("%s: %s (%s)", prefix, joined, suffix)
   end
@@ -460,19 +433,20 @@ end
 ---Where a record says the item is, as arguments for fmtGeneric
 local function placesOf(source)
   local places = {}
-  for _, zoneId in ipairs(source.locations or {}) do
-    places[#places + 1] = resolveZone(zoneId)
-  end
-  -- a place is inside the location, so the two go in as one nested location
-  if source.location and source.place then
-    places[#places + 1] = { resolveZone(source.location), resolveString(source.place) }
-  elseif source.location then
-    places[#places + 1] = resolveZone(source.location)
-  elseif source.place then
-    places[#places + 1] = resolveString(source.place)
+  for _, placement in ipairs(source.locations or {}) do
+    local parts = {}
+    if placement.location then
+      parts[#parts + 1] = resolveZone(placement.location)
+    end
+    if placement.place then
+      parts[#parts + 1] = resolveString(placement.place)
+    end
+    if #parts > 0 then
+      places[#places + 1] = parts
+    end
   end
   if source.event then
-    places[#places + 1] = resolveString(source.event)
+    places[#places + 1] = { resolveString(source.event) }
   end
   return places
 end
@@ -533,39 +507,39 @@ end
 ---One crown-store offer
 local function renderCrownOffer(record)
   local source = record.source
+  local parts = {}
   if record.cost then
-    return formatPrice(record.cost.amount, record.cost.currency)
+    parts[#parts + 1] = formatPrice(record.cost.amount, record.cost.currency)
   end
-  if source.packs then
-    local parts = {}
-    for i, packId in ipairs(source.packs) do
-      parts[i] = formatItemPack(packId)
-    end
-    return table.concat(parts, SOURCE_SEPARATOR)
+  for _, packId in ipairs(source.packs or {}) do
+    parts[#parts + 1] = formatItemPack(packId)
   end
   if source.bundle then
-    return formatItemBundle(source.bundle)
+    parts[#parts + 1] = formatItemBundle(source.bundle)
   end
   if source.crate then
-    return formatCrownCrate(source.crate)
+    parts[#parts + 1] = formatCrownCrate(source.crate)
   end
   if source.houses then
-    return formatHouses(source.houses)
+    parts[#parts + 1] = formatHouses(source.houses)
   end
   -- a house purchase with no house named
   if source.note then
-    return GetString(source.note)
+    parts[#parts + 1] = GetString(source.note)
   end
-  -- the row is not a crown-store offer at all (crafted, levelup reward) -- TODO: can this even happen?
+  -- the row is not a crown-store offer at all (crafted, levelup reward)
   if source.category then
-    return fmtGeneric(GetString(source.category))
+    parts[#parts + 1] = fmtGeneric(GetString(source.category))
   end
-  return emptyString
+  if #parts == 0 then
+    return emptyString
+  end
+  return table.concat(parts, SOURCE_SEPARATOR)
 end
 
 local LUXURY_DATE = "(%d+)-(%d+)-(%d+)"
 local function luxuryDetail(record, opts)
-  local lastSeen = record.availability and record.availability.lastSeen
+  local lastSeen = record.lastSeen
   if not lastSeen then
     return ""
   end
@@ -585,10 +559,18 @@ local function renderVendor(record, opts)
   local source = record.source
   local cost = record.cost
   local detail = (source.type == src.LUXURY and luxuryDetail(record, opts)) or vendorDetail(source)
-  local where = (source.location and resolveZone(source.location)) or (source.place and resolveString(source.place))
-  -- a vendor standing in several places names them all
-  if nil == where and source.locations then
-    where = table.concat(placesOf(source), " \\ ")
+  local placements = source.locations
+  local where
+  if placements and #placements == 1 then
+    local only = placements[1]
+    where = (only.location and resolveZone(only.location)) or (only.place and resolveString(only.place))
+  elseif placements then
+    -- a vendor standing in several places names them all
+    local named = {}
+    for i, parts in ipairs(placesOf(source)) do
+      named[i] = table.concat(parts, ", ")
+    end
+    where = table.concat(named, " \\ ")
   end
   return formatFurnisher(resolveString(source.vendor), where, cost and cost.amount, cost and cost.currency, detail)
 end
@@ -675,7 +657,7 @@ end
 ---@param plain? boolean names instead of links
 ---@return string
 local function formatMaterials(itemOrLink, entry, plain)
-  if not entry or (not entry.blueprint and not entry.recipeIndex and not entry.recipeListIndex) then
+  if not entry or not (entry.blueprint or grantedRecipeIndices(entry)) then
     return strNoMats
   end
   return composeMaterials(getIngredients(itemOrLink, entry), plain == true)
@@ -724,16 +706,24 @@ local function craftingLine(itemId, entry, stripColor, opts)
 end
 this.CraftingLine = craftingLine
 
----Every line for one item, ranked, records of one source type joined into one line (except for crafting, which just shows materials)
+---Every line for one item, ranked, records of one source type joined into one line
+---
+---Crafting is left out unless `withCrafting` asks for it, because the tooltip shows the material separately
 ---@param itemId integer
 ---@param entry FurCEntry|nil
 ---@param opts? { dateFormat?: string }
+---@param withCrafting? boolean
 ---@return { source: integer, text: string }[]
-local function formatItem(itemId, entry, opts)
+local function formatItem(itemId, entry, opts, withCrafting)
   local lines, byType = {}, {}
   for _, record in ipairs(getSourceDetails(itemId)) do
     local type_ = record.source.type
-    local text = (type_ ~= src.CRAFTING) and formatRecord(record, itemId, entry, opts)
+    local text
+    if type_ ~= src.CRAFTING then
+      text = formatRecord(record, itemId, entry, opts)
+    elseif withCrafting then
+      text = craftingLine(itemId, entry, false, opts)
+    end
     if text and #text > 0 then
       local line = byType[type_]
       if not line then
@@ -746,7 +736,7 @@ local function formatItem(itemId, entry, opts)
     end
   end
   for _, line in ipairs(lines) do
-    -- only the leading offer is the housing editor's, the rest are other ways to get the same item
+    -- a row's editor offers are one purchase in one record, so the tag marks the whole line
     if line.source == src.EDITOR then
       line.parts[1] = sFormat(strEditorTag, line.parts[1], strEditor)
     end
@@ -775,22 +765,14 @@ this.FormatContents = formatContents
 ---@param opts? { dateFormat?: string }
 ---@return string
 local function formatDescription(itemId, entry, stripColor, opts)
-  local origin = entry and entry.origin
-  local text
-  if origin == src.CRAFTING or origin == src.WRIT_VENDOR then
-    return craftingLine(itemId, entry, stripColor, opts)
-  else
-    for _, line in ipairs(formatItem(itemId, entry, opts)) do
-      if not origin or line.source == origin then
-        text = line.text
-        break
-      end
+  -- the ranked list decides which source describes the item
+  local first = formatItem(itemId, entry, opts, true)[1]
+  local text = (first and first.text) or ""
+  if not (first and first.source == src.CRAFTING) then
+    local contents = formatContents(itemId)
+    if contents then
+      text = (text ~= "" and string.format("%s - %s", text, contents)) or contents
     end
-  end
-  text = text or ""
-  local contents = formatContents(itemId)
-  if contents then
-    text = (text ~= "" and string.format("%s - %s", text, contents)) or contents
   end
   if stripColor then
     return stripTxt(text)

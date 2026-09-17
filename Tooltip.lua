@@ -32,14 +32,9 @@ local function getSourceLines(recipeKey, recipeArray, stripColor)
     end
   end
 
-  -- even if hiding every source: show at least 1 line (the primary origin)
-  if #lines == 0 and recipeArray and recipeArray.origin and recipeArray.origin ~= src.CRAFTING then
-    for _, entry in ipairs(ranked) do
-      if entry.source == recipeArray.origin then
-        lines[1] = entry.text
-        break
-      end
-    end
+  -- even if hiding every source: show at least 1 line. The list is ranked, so the best is first
+  if #lines == 0 and ranked[1] and ranked[1].source ~= src.CRAFTING then
+    lines[1] = ranked[1].text
   end
   return lines
 end

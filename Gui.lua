@@ -285,8 +285,6 @@ local function ensureSortedIndex()
 end
 
 ---One row of the list: the stored row's fields plus what the list draws with
----
----the deprecated `origin` is derived through a metatable
 ---@param itemId integer
 ---@param recipeArray FurCEntry stored row
 ---@param itemLink string
@@ -296,7 +294,6 @@ local function buildDisplayRow(itemId, recipeArray, itemLink)
   row.itemId = itemId
   row.itemLink = itemLink
   row.itemName = GetItemLinkName(itemLink)
-  row.origin = recipeArray.origin
   return row
 end
 FurC.BuildDisplayRow = buildDisplayRow

@@ -107,7 +107,7 @@ local function addMenuItems(itemLink, recipeArray, hideSepBar)
     AddCustomMenuItem(GetString(SI_FURC_POST_ITEM), postRecipeResult, MENU_ADD_OPTION_LABEL)
   end
 
-  if recipeArray.origin ~= src.CRAFTING then
+  if not recipeArray.sources[src.CRAFTING] then
     AddCustomMenuItem(GetString(SI_FURC_POST_ITEMSOURCE), postItemSource, MENU_ADD_OPTION_LABEL)
   else
     -- post material list

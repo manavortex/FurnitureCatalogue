@@ -783,8 +783,6 @@ SI_MONSTERSOCIALCLASS47 = 1066
 ---@field blueprint integer|nil blueprint itemId, when craftable
 ---@field furnCategory integer NOT PROMISED, derived. Furniture category id (0 = no category). Absent from a copy
 ---@field furnSubcategory integer NOT PROMISED, derived. Furniture subcategory id. Absent from a copy
----@field recipeListIndex integer|nil NOT PROMISED. Set only on rows the recipe scan found, pairs with recipeIndex
----@field recipeIndex integer|nil NOT PROMISED. Set only on rows the recipe scan found, pairs with recipeListIndex
 ---@field compatSources integer|nil NOT PROMISED, deprecated. Bitmask of the `sources` members that exist only for deprecated calls, absent when nothing was injected. Use Internal.Compat.IsInjected to check
 FurCEntry = nil
 

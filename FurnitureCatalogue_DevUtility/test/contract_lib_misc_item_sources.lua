@@ -30,18 +30,15 @@ Taneth("FurC:Lib", function()
   end
 
   ---The line the add-on writes for one source of an item. The library writes none any more
-  ---@return string|nil line, boolean mirrored
+  ---@return string|nil line
   local function addonLine(itemId, source)
-    local entry = FurC.Find(itemId)
-    if LFC.Internal.Compat.IsInjected(entry.compatSources, source) then
-      return nil, true
-    end
+    local entry = LFC.API.GetEntry(itemId)
     for _, line in ipairs(FurC.SourceFormat.FormatItem(itemId, entry)) do
       if line.source == source then
-        return line.text, false
+        return line.text
       end
     end
-    return nil, false
+    return nil
   end
 
   ---Every row this file owns, as { version, source, itemId, row }
@@ -120,16 +117,14 @@ Taneth("FurC:Lib", function()
       for _, found in ipairs(ownedRows()) do
         local row = found.row
         if type(row) == "table" and row.location ~= nil then
-          local line, mirrored = addonLine(found.itemId, found.source)
-          if not mirrored then
-            local zoneName = constants.Resolvers.Zone(row.location)
-            assert.is_not_nil(line, string.format("row %s reaches no line", found.itemId))
-            assert.is_true(
-              line:find(zoneName, 1, true) ~= nil,
-              string.format("row %s renders %q, which does not name %s", found.itemId, line, zoneName)
-            )
-            checked = checked + 1
-          end
+          local line = addonLine(found.itemId, found.source)
+          local zoneName = constants.Resolvers.Zone(row.location)
+          assert.is_not_nil(line, string.format("row %s reaches no line", found.itemId))
+          assert.is_true(
+            line:find(zoneName, 1, true) ~= nil,
+            string.format("row %s renders %q, which does not name %s", found.itemId, line, zoneName)
+          )
+          checked = checked + 1
         end
       end
       assert.is_true(checked > 0, "no row carries a location")
@@ -143,17 +138,15 @@ Taneth("FurC:Lib", function()
         local row = found.row
         local alternatives = type(row) == "table" and type(row.note) == "table" and row.note[1] ~= nil
         if alternatives and row.rarity ~= nil then
-          local line, mirrored = addonLine(found.itemId, found.source)
-          if not mirrored then
-            assert.is_not_nil(line, string.format("row %s reaches no line", found.itemId))
-            local where = string.format("row %s renders %q", found.itemId, line)
-            local joinAt = line:find(conjunction, 1, true)
-            local rarityAt = line:find(GetString(row.rarity), 1, true)
-            assert.is_true(joinAt ~= nil, where .. ", which does not join its alternatives")
-            assert.is_true(rarityAt ~= nil, where .. ", which drops the rarity")
-            assert.is_true(joinAt < rarityAt, where .. ", making the rarity one of the alternatives")
-            checked = checked + 1
-          end
+          local line = addonLine(found.itemId, found.source)
+          assert.is_not_nil(line, string.format("row %s reaches no line", found.itemId))
+          local where = string.format("row %s renders %q", found.itemId, line)
+          local joinAt = line:find(conjunction, 1, true)
+          local rarityAt = line:find(GetString(row.rarity), 1, true)
+          assert.is_true(joinAt ~= nil, where .. ", which does not join its alternatives")
+          assert.is_true(rarityAt ~= nil, where .. ", which drops the rarity")
+          assert.is_true(joinAt < rarityAt, where .. ", making the rarity one of the alternatives")
+          checked = checked + 1
         end
       end
       assert.is_true(checked > 0, "no row carries both a list of alternatives and a rarity")
@@ -162,15 +155,13 @@ Taneth("FurC:Lib", function()
     it("reach a line of their own, one per row", function()
       for _, found in ipairs(ownedRows()) do
         if type(found.row) == "table" then
-          local line, mirrored = addonLine(found.itemId, found.source)
-          if not mirrored then
-            assert.equals("string", type(line), string.format("row %s reached %s", found.itemId, type(line)))
-            assert.is_true(#line > 0, string.format("row %s rendered empty", found.itemId))
-            assert.is_true(
-              line ~= GetString(SI_FURC_SRC_EMPTY),
-              string.format("row %s fell through to the unknown-source text", found.itemId)
-            )
-          end
+          local line = addonLine(found.itemId, found.source)
+          assert.equals("string", type(line), string.format("row %s reached %s", found.itemId, type(line)))
+          assert.is_true(#line > 0, string.format("row %s rendered empty", found.itemId))
+          assert.is_true(
+            line ~= GetString(SI_FURC_SRC_EMPTY),
+            string.format("row %s fell through to the unknown-source text", found.itemId)
+          )
         end
       end
     end)

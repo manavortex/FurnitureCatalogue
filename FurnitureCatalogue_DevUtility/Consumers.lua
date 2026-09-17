@@ -69,7 +69,7 @@ local function pricedSample()
       local ok, records = pcall(a.GetSources, itemId)
       if ok then
         for _, rec in ipairs(records) do
-          if rec.source.type == row.origin and rec.cost and rec.cost[1] then
+          if rec.cost and rec.cost[1] then
             return itemId
           end
         end
@@ -102,8 +102,8 @@ end
 -- and puts whatever the second one returns on the list. It reads nothing else.
 local function fslLeg(lines)
   lines[#lines + 1] = "-- FurnitureShoppingList"
-  if not (FurC and FurC.Find and FurC.GetIngredients) then
-    lines[#lines + 1] = "  FurC.Find / FurC.GetIngredients missing - the aliases FSL uses are gone"
+  if not (a and a.GetEntry and a.GetIngredients) then
+    lines[#lines + 1] = "  the API endpoints the ported FSL calls are missing"
     return
   end
   lines[#lines + 1] = "  loaded: " .. tostring(FurnitureShoppingListAdd ~= nil)
@@ -115,11 +115,11 @@ local function fslLeg(lines)
       lines[#lines + 1] = string.format("  %-9s no sample in the DB", label)
     else
       local itemLink = link(itemId)
-      local ok, arr = pcall(FurC.Find, itemLink)
+      local ok, arr = pcall(a.GetEntry, itemLink)
       if not ok then
-        lines[#lines + 1] = string.format("  %-9s %d Find ERRORED: %s", label, itemId, tostring(arr))
+        lines[#lines + 1] = string.format("  %-9s %d GetEntry ERRORED: %s", label, itemId, tostring(arr))
       else
-        local gotMats, mats = pcall(FurC.GetIngredients, itemLink, arr)
+        local gotMats, mats = pcall(a.GetIngredients, itemLink, arr)
         if not gotMats then
           lines[#lines + 1] = string.format("  %-9s %d GetIngredients ERRORED: %s", label, itemId, tostring(mats))
         else
@@ -147,7 +147,7 @@ end
 -- ---------------------------------------------------------------------------
 
 -- The shipped release prices furniture through the library API: the entry, its
--- origin, the description, then the deprecated GetSources whose cost is a list.
+-- the best-ranked record, the description, then the deprecated GetSources whose cost is a list.
 local function libPriceLeg(lines, explicit)
   lines[#lines + 1] = "-- LibPrice"
   local a = api()
@@ -180,26 +180,21 @@ local function libPriceLeg(lines, explicit)
     if itemId then
       local itemLink = link(itemId)
       local entry = a.GetEntry(itemLink)
-      local origin = entry and entry.origin
       local ok, records = pcall(a.GetSources, itemLink)
       if not ok then
         lines[#lines + 1] = string.format("  %d GetSources ERRORED: %s", itemId, tostring(records))
       else
-        local primary
-        for _, rec in ipairs(records) do
-          if rec.source.type == origin then
-            primary = rec
-          end
-        end
+        -- the records arrive ranked, so the best source is simply the first
+        local primary = records[1]
         -- the whole point of the bridge: cost is a list here and indexing [1] is
         -- safe even when the source has no price
         local cost = primary and primary.cost and primary.cost[1]
         lines[#lines + 1] = string.format(
-          "  %d origin=%s records=%d primary=%s cost[1]=%s",
+          "  %d primary=%s records=%d found=%s cost[1]=%s",
           itemId,
-          tostring(origin),
+          tostring(primary and primary.source.type),
           #records,
-          primary and "found" or "none",
+          primary and "yes" or "no",
           cost and (tostring(cost.amount) .. "/" .. tostring(cost.currency)) or "nil"
         )
         -- the raw record values, to compare against whatever note LibPrice builds

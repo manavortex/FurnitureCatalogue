@@ -29,7 +29,7 @@ Taneth("FurC:Lib", function()
       local silent, compared = {}, 0
 
       for _, itemId in ipairs(LFC.API.GetItemIds()) do
-        local entry = FurC.Find(itemId)
+        local entry = LibFurnitureCatalogue.API.GetEntry(itemId)
         local written = {}
         for _, line in ipairs(FurC.SourceFormat.FormatItem(itemId, entry)) do
           written[line.source] = line.text
@@ -58,8 +58,9 @@ Taneth("FurC:Lib", function()
       local silent, compared, fromRecord = {}, 0, 0
 
       for _, itemId in ipairs(LFC.API.GetItemIds()) do
-        local entry = FurC.Find(itemId)
-        if entry.sources and entry.sources[src.CRAFTING] then
+        -- the stored row, because HasSource reads the mask the row keeps
+        local entry = LFC.Internal.Query.Find(itemId)
+        if LFC.Internal.Build.HasSource(entry.sources, src.CRAFTING) then
           compared = compared + 1
           local blueprint = FurC.SourceFormat.RecipeSource(itemId)
           if blueprint then
@@ -80,7 +81,7 @@ Taneth("FurC:Lib", function()
     -- Feeding a recipe in is the only way to see the material half of a crafting line at all
     it("writes the material list as links, and as names when they are not wanted or will not fit", function()
       local craftable = FurCDev.Test.dataset().craftable
-      local entry = FurC.Find(craftable)
+      local entry = LibFurnitureCatalogue.API.GetEntry(craftable)
 
       -- three is enough to see an order and a separator, and already crowds a chat message
       local INGREDIENTS = 3
@@ -147,7 +148,7 @@ Taneth("FurC:Lib", function()
     -- The formatter renders what it is asked for
     it("posts names to chat once the links would not fit one message", function()
       local craftable = FurCDev.Test.dataset().craftable
-      local entry = FurC.Find(craftable)
+      local entry = LibFurnitureCatalogue.API.GetEntry(craftable)
 
       local MANY = 8
       local stubs = {
@@ -204,7 +205,7 @@ Taneth("FurC:Lib", function()
       assert.is_true(next(books) ~= nil)
 
       for bookId, containerId in pairs(books) do
-        local entry = FurC.Find(bookId)
+        local entry = LibFurnitureCatalogue.API.GetEntry(bookId)
         local line
         for _, candidate in ipairs(FurC.SourceFormat.FormatItem(bookId, entry)) do
           if candidate.source == src.VENDOR then
@@ -232,7 +233,7 @@ Taneth("FurC:Lib", function()
           string.format("container %d does not say it holds %d: %s", containerId, #collection.contents, text)
         )
         -- and the count reaches the line the item list shows
-        local entry = FurC.Find(containerId)
+        local entry = LibFurnitureCatalogue.API.GetEntry(containerId)
         local description = FurC.SourceFormat.FormatDescription(containerId, entry)
         assert.is_true(description:find(text, 1, true) ~= nil, description)
       end
