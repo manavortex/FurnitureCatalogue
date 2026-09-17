@@ -468,6 +468,27 @@ local function createGui()
 
     return FurCGui_ListHolder.lines
   end
+  
+  local function setupStaticTooltips()
+    local function wire(control, stringId, reAnchor)
+      control:SetHandler("OnMouseEnter", function(self)
+        FurC.GuiShowTooltip(self, GetString(stringId), reAnchor)
+      end)
+      control:SetHandler("OnMouseExit", function(self)
+        FurC.GuiHideTooltip(self)
+      end)
+    end
+
+    wire(FurCGui_Header_Bar1_Feedback, SI_FURC_TOOLTIP_DONATE)
+    wire(FurCGui_Header_Bar1_Settings, SI_FURC_TOOLTIP_SETTINGS)
+    wire(FurC_RecipeCount, SI_FURC_TOOLTIP_RECIPE_COUNT)
+    wire(FurCGui_Header_Bar1_Hide, SI_FURC_TOOLTIP_HIDE_WINDOW)
+    wire(FurCGui_Header_Bar1_Reload, SI_FURC_TOOLTIP_RESCAN)
+    wire(FurCGui_Header_Bar1_TemplateTiny, SI_FURC_TOOLTIP_TEMPLATE_TOGGLE)
+    wire(FurCGui_Header_Bar1_TemplateLarge, SI_FURC_TOOLTIP_TEMPLATE_TOGGLE)
+    wire(FurC_DropdownSource, SI_FURC_TOOLTIP_FILTER_SOURCE, true)
+    wire(FurC_DropdownVersion, SI_FURC_TOOLTIP_FILTER_VERSION, true)
+  end
 
   local function createQualityFilters()
     local buttons = {}
@@ -675,7 +696,7 @@ local function createGui()
 
     return control
   end
-
+  
   local function buildSourceEntries(nodes, choices, tooltips, selectSource)
     local entries = {}
     for _, node in ipairs(nodes) do
@@ -785,6 +806,7 @@ local function createGui()
   FurC.UpdateDropdownChoice("Source")
   createInventoryDropdown("Version")
   createInventoryDropdown("Character")
+  setupStaticTooltips()
   FurC.RefreshCharacterDropdown = function()
     createInventoryDropdown("Character")
     -- keep the settings default char dropdown in sync
