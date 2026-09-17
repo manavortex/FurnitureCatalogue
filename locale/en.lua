@@ -142,10 +142,7 @@ local strings = {
   SI_FURC_POST_RECIPE = " Post recipe",
   SI_FURC_REMOVE_FAVE = " Remove Favorite",
   SI_FURC_SEEN_IN_GUILDSTORE = "Seen in Guild Store",
-  SI_FURC_SHOW_CROWN_TT = "Hiding crown store. Click to show.",
-  SI_FURC_SHOW_RUMOUR_TT = "Confirmed items only. Click to show rumour items.",
   SI_FURC_FILTER_SRC_ANTIQUITY = "Antiquity",
-  SI_FURC_FILTER_SRC_ANTIQUITY_TT = "Shows furnishings recovered via Scrying/Excavation",
   SI_FURC_STRING_CANNOT_CRAFT = "You cannot craft this yet",
   SI_FURC_STRING_CHARACTER_NEEDS_LCK = "Install LibCharacterKnowledge to filter by character",
   SI_FURC_STRING_CHARACTER_USES_LCK = "Uses LibCharacterKnowledge (current account only). To hide characters from this list, disable them in the LCK settings.",
@@ -214,6 +211,14 @@ local strings = {
   SI_FURC_STRING_RECIPESFORCHAR = "Recipes for <<1>>",
   SI_FURC_TEXTBOX_FILTER_DEFAULT = "Filter by text search",
   SI_FURC_TOGGLE_SHOPPINGLIST = " Toggle shopping list",
+  SI_FURC_TOOLTIP_DONATE = "Click to say thank you:\nLeft: 2k\nRight: 10k\nMiddle: 25k\nYour feedback and/or donation is appreciated!",
+  SI_FURC_TOOLTIP_SETTINGS = "Open settings",
+  SI_FURC_TOOLTIP_RECIPE_COUNT = "Number of recipes below",
+  SI_FURC_TOOLTIP_HIDE_WINDOW = "Hide window",
+  SI_FURC_TOOLTIP_RESCAN = "Click: Re-scan data files\n\nRight-/Middle-click: Re-create database\n(will ask you first)",
+  SI_FURC_TOOLTIP_TEMPLATE_TOGGLE = "Change template",
+  SI_FURC_TOOLTIP_FILTER_SOURCE = "Filter: Knowledge and source. Right-click filters to multi-select.",
+  SI_FURC_TOOLTIP_FILTER_VERSION = "Filter: game version",
 }
 
 for stringId, stringValue in pairs(strings) do
