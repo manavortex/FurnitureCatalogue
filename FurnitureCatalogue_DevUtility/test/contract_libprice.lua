@@ -102,6 +102,33 @@ Taneth("FurC:Regression", function()
       assert.is_true(unpriced > 0)
     end)
 
+    -- LibPrice asks FurC for a price on every furnishing tooltip. Old calls can cause an error when trying to access a non-existing member
+    it("the legacy FurC entry points answer empty instead of erroring", function()
+      local link = Test.link(DS.luxItem)
+
+      assert.same({}, FurC.Find(link))
+      assert.equals("", FurC.GetItemDescription(DS.luxItem, {}, true))
+      assert.same({}, FurC.GetIngredients(link))
+      -- this one rendered the ingredient list as text
+      assert.equals("", FurC.GetMats(link))
+      -- id and link are pure translation, those two still answer
+      assert.equals(DS.luxItem, FurC.GetItemId(link))
+      assert.equals("string", type(FurC.GetItemLink(DS.luxItem)))
+    end)
+
+    -- only runs where the real library is installed
+    it("LibPrice prices a furnishing without erroring", function()
+      if not (LibPrice and LibPrice.FurCPrice) then
+        return
+      end
+      local link = Test.link(DS.luxItem)
+
+      local ok, result = pcall(LibPrice.FurCPrice, link)
+      assert.is_true(ok, "LibPrice.FurCPrice raised: " .. tostring(result))
+      local pricedOk, gold = pcall(LibPrice.ItemLinkToPriceGold, link)
+      assert.is_true(pricedOk, "LibPrice.ItemLinkToPriceGold raised: " .. tostring(gold))
+    end)
+
     it("source globals are ints", function()
       for _, k in ipairs({
         "FURC_CRAFTING",
