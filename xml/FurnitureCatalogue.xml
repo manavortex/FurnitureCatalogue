@@ -9,7 +9,7 @@
       <Anchor point="TOPRIGHT" relativeTo="GUI_ROOT" relativePoint="TOPRIGHT" offsetX="-25"
         offsetY="40" />
       <OnMoveStop>FurC.SaveFrameInfo("onMoveStop")</OnMoveStop>
-      <OnResizeStop>FurC.SaveFrameInfo("onResizeStop")</OnResizeStop>
+      <OnResizeStop>FurC.OnResizeStop("onResizeStop")</OnResizeStop>
       <Controls>
         <Backdrop name="$(parent)_BG" inherits="ZO_DefaultBackdrop">
           <Anchor point="TOPLEFT" relativeTo="$(parent)" relativePoint="TOPLEFT" />

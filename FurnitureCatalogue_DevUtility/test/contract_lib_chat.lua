@@ -289,6 +289,13 @@ Taneth("FurC:Lib", function()
       assert.is_not_nil(lines[1]:find(GetString(SI_FURC_CHAT_USAGE), 1, true))
     end)
 
+    -- the strip patterns are anchored on an opening and closing tag but we don't want to delete everything between those if we have, for instance, 2 blocks
+    it("keeps the text between two segments of the same markup", function()
+      assert.equals("100 gold and 50 silver", chat.Line("100|u0:1:x:|u gold and 50|u0:1:y:|u silver"))
+      assert.equals("one two", chat.Line("one|u0:1:a:|u two"))
+      assert.equals("nothing to strip", chat.Line("nothing to strip"))
+    end)
+
     it("strips line breaks out of a source string that has them", function()
       assert.equals("a b", chat.Line("a\nb"))
       assert.equals("a b", chat.Line("a\r\n  b"))

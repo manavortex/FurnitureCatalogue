@@ -102,6 +102,7 @@ end
 -- and puts whatever the second one returns on the list. It reads nothing else.
 local function fslLeg(lines)
   lines[#lines + 1] = "-- FurnitureShoppingList"
+  local a = api()
   if not (a and a.GetEntry and a.GetIngredients) then
     lines[#lines + 1] = "  the API endpoints the ported FSL calls are missing"
     return

@@ -31,8 +31,8 @@ function FurC.SaveFrameInfo(calledFrom)
   FurC.CenterFilterBars()
 end
 
-function FurC.OnResizeStop()
-  FurC.SaveFrameInfo()
+function FurC.OnResizeStop(calledFrom)
+  FurC.SaveFrameInfo(calledFrom)
   FurC.UpdateLineVisibility()
   FurC.UpdateInventoryScroll()
 end

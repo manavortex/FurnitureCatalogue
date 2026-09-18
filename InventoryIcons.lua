@@ -100,10 +100,13 @@ function FurC.SetupInventoryRecipeIcons(calledRecursively)
   end
 
   local inventories = PLAYER_INVENTORY.inventories
-  if not inventories and not calledRecursively then
-    return zo_callLater(function()
-      FurC.SetupInventoryRecipeIcons(true)
-    end, 1000)
+  if not inventories then
+    if not calledRecursively then
+      zo_callLater(function()
+        FurC.SetupInventoryRecipeIcons(true)
+      end, 1000)
+    end
+    return
   end
   -- ruthlessly stolen from Dryzler's Inventory, then tweaked
   for bagId, inventory in pairs(inventories) do

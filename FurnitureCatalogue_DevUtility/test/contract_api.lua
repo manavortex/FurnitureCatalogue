@@ -113,12 +113,20 @@ Taneth("FurC:Lib", function()
         queuedSelf, queuedRevision = observedSelf, revision
       end
 
+      -- false is a deliberate value and not the same as  "no arg"
+      local falseArgCalls, falseArgSeen, falseArgRevision = 0, "unset", nil
+      local function onFalseArgReady(observedArg, revision)
+        falseArgCalls = falseArgCalls + 1
+        falseArgSeen, falseArgRevision = observedArg, revision
+      end
+
       local function onScanStarted()
         stateDuringBuild = api.GetState()
         readyCallsDuringBuild = readyCalls
         accepted = api.OnReady(onReady)
         duplicateAccepted = api.OnReady(onReady)
         api.OnReady(onQueuedReady, queuedArg)
+        api.OnReady(onFalseArgReady, false)
       end
 
       local badCalls = 0
@@ -176,6 +184,9 @@ Taneth("FurC:Lib", function()
       assert.equals(api.GetDBRevision(), completeRevision)
       assert.equals(queuedArg, queuedSelf)
       assert.equals(api.GetDBRevision(), queuedRevision)
+      assert.equals(1, falseArgCalls)
+      assert.is_false(falseArgSeen)
+      assert.equals(api.GetDBRevision(), falseArgRevision)
       assert.is_true(api.GetDBRevision() > beforeRevision)
       assert.same({ "ready", "bad", "complete", "reentrant" }, sequence)
       assert.is_true(removedBad)
@@ -349,6 +360,38 @@ Taneth("FurC:Lib", function()
       assert.same({ 13881 }, offer.source.houses)
     end)
 
+    -- Naming a furnishing by its blueprint returns the furnishing
+    it("GetItemDescription answers for the furnishing when named by its recipe", function()
+      FurC.EnsureDB(true)
+      -- every craftable item that describes itself, not the first one found
+      local checked, mismatches = 0, {}
+      for _, itemId in ipairs(api.GetItemIds()) do
+        local entry = api.GetEntry(itemId)
+        local byItem = (entry and entry.blueprint and api.GetItemDescription(itemId, entry)) or ""
+        if byItem ~= "" then
+          checked = checked + 1
+          -- with and without the entry, by id and by link, one answer
+          for _, named in ipairs({
+            api.GetItemDescription(entry.blueprint, entry),
+            api.GetItemDescription(entry.blueprint),
+            api.GetItemDescription(Test.link(entry.blueprint), entry),
+          }) do
+            if named ~= byItem and #mismatches < 5 then
+              mismatches[#mismatches + 1] = string.format(
+                "%d named by recipe %d describes as %q, by itself %q",
+                itemId,
+                entry.blueprint,
+                named,
+                byItem
+              )
+            end
+          end
+        end
+      end
+      assert.is_true(checked > 0, "no item in the data set is craftable and describes itself")
+      assert.equals("", table.concat(mismatches, " | "))
+    end)
+
     it("endpoints and deprecated aliases keep stable shapes", function()
       FurC.EnsureDB(true)
       local itemId = DS.dbItem
@@ -448,6 +491,23 @@ Taneth("FurC:Lib", function()
       local crateCurrency, crateAmount = api.GetMiscItemPrice(125654, 3, sourceType.CROWN) -- Tapestry, Clavicus Vile
       assert.is_nil(crateCurrency)
       assert.is_nil(crateAmount)
+    end)
+
+    -- A row lives in one update's file, and the record builders answer for it whatever update you ask about
+    it("GetMiscItemPrice finds a row filed under another update", function()
+      FurC.EnsureDB(true)
+      local sourceType = api.GetSourceTypes()
+      local versions = api.GetDataVersions()
+
+      -- the same crown-store row the test above prices under its own update
+      local currency, amount = api.GetMiscItemPrice(134686, versions.HOMESTEAD, sourceType.CROWN)
+      assert.equals(CURT_CROWNS, currency)
+      assert.equals(2000, amount)
+
+      -- an item with no row at all still answers nothing, whatever update is named
+      local unknownCurrency, unknownAmount = api.GetMiscItemPrice(UNKNOWN_ID, versions.HOMESTEAD, sourceType.CROWN)
+      assert.is_nil(unknownCurrency)
+      assert.is_nil(unknownAmount)
     end)
   end)
 end)

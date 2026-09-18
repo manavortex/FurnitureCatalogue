@@ -53,3 +53,4 @@ test/unit_tooltip_sources.lua
 test/unit_migration.lua
 test/unit_context_menu.lua
 test/unit_lib_namespaces.lua
+test/unit_consumers.lua

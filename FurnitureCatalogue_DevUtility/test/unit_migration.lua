@@ -73,6 +73,43 @@ Taneth("FurC:Unit", function()
       assert.is_true(b.favorites[9]) -- favourites merged per-branch
     end)
 
+    it("GetLegacyKeys names every key a migration removes", function()
+      local declared = {}
+      for _, key in ipairs(FurC.GetLegacyKeys()) do
+        declared[key] = true
+      end
+      -- what the steps actually remove
+      local sv = { favourites = {} }
+      for _, key in ipairs(FurC.GetLegacyKeys()) do
+        sv[key] = sv[key] or {}
+      end
+      sv.hideMats = true
+      FurC.Migrate({ test = sv })
+      for key in pairs(declared) do
+        assert.is_nil(sv[key])
+      end
+      assert.is_true(sv.hideMats)
+      -- the button's count offers the cleanup for any one of them on its own
+      for key in pairs(declared) do
+        local root = { ["@a"] = { ["$AccountWide"] = { [key] = {} } } }
+        assert.equals(1, FurC.GetLegacyStats(root).accounts)
+      end
+      local clean = { ["@a"] = { ["$AccountWide"] = { hideMats = true } } }
+      assert.equals(0, FurC.GetLegacyStats(clean).accounts)
+    end)
+
+    it("no key the migration drops is still a live default", function()
+      local defaults = FurC.settings and FurC.settings.default
+      assert.equals("table", type(defaults))
+      local resurrected = {}
+      for _, key in ipairs(FurC.GetLegacyKeys()) do
+        if defaults[key] ~= nil then
+          resurrected[#resurrected + 1] = key
+        end
+      end
+      assert.equals("", table.concat(resurrected, ", "))
+    end)
+
     it("GetLegacyStats counts stale accounts + DB entries", function()
       local root = {
         ["@a"] = { ["$AccountWide"] = { data = { [1] = {}, [2] = {}, [3] = {} } } },

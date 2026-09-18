@@ -31,5 +31,24 @@ Taneth("FurC:Unit", function()
       assert.is_true(checked > 0)
       assert.same({}, missing)
     end)
+
+    -- The inverse of the check above: a handler the XML never names is dead too
+    it("the window's resize handler is the one that refreshes the rows", function()
+      if not (io and FurCDev.repoRoot) then
+        return -- run test headless only
+      end
+      local fh = io.open(FurCDev.repoRoot .. "/xml/FurnitureCatalogue.xml", "r")
+      assert.is_not_nil(fh)
+      local content = fh:read("*a")
+      fh:close()
+
+      local handler = content:match("<OnResizeStop>%s*(.-)%s*</OnResizeStop>")
+      assert.is_not_nil(handler, "the window declares no OnResizeStop handler")
+      assert.is_not_nil(
+        handler:find("FurC.OnResizeStop", 1, true),
+        "resize calls " .. handler .. ", which skips what FurC.OnResizeStop carries"
+      )
+      assert.equals("function", type(FurC.OnResizeStop))
+    end)
   end)
 end)

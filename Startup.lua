@@ -35,7 +35,6 @@ this.Antiquities = this.Antiquities or {}
 
 local defaults = {
   hideMats = true,
-  dontScanTradingHouse = false,
   enableDebug = false,
   skipInitialScan = true,
 
@@ -71,16 +70,6 @@ local defaults = {
   tooltipHiddenSources = {},
 
   hideBooks = true,
-  hideDoubtfuls = true,
-  hideCrownstore = true,
-  hideRumourEntry = false,
-  hideCrownStoreEntry = false,
-  wipeDatabase = false,
-
-  hideUiButtons = {
-    FURC_RUMOUR = false,
-    FURC_CROWN = false,
-  },
 }
 
 -- Filter selections FC defines itself (no LFC behind it)

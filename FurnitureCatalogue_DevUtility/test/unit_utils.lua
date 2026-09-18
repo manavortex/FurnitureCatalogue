@@ -7,6 +7,9 @@ if not Taneth then
   return
 end
 
+-- Taneth runs every test body in a sandbox where `_G` is the sandbox itself, so the real global table has to be taken here, at file scope, for a stub to reach the add-on
+local GLOBALS = _G
+
 Taneth("FurC:Unit", function()
   describe("unit: LFC.Internal.MergeTable", function()
     -- not a formatter, so it sits on Internal rather than on Internal.Format
@@ -86,6 +89,20 @@ Taneth("FurC:Unit", function()
       for i = 1, #furniture do
         assert.is_true(IsFurniture(furniture[i]))
       end
+    end)
+  end)
+
+  describe("unit: FurC.SetupInventoryRecipeIcons", function()
+    -- The inventories arrive late, so a first attempt that finds none schedules a retry
+    it("survives a retry that still finds no inventories", function()
+      local real = GLOBALS.PLAYER_INVENTORY
+      GLOBALS.PLAYER_INVENTORY = {}
+      local firstOk, firstErr = pcall(FurC.SetupInventoryRecipeIcons)
+      local retryOk, retryErr = pcall(FurC.SetupInventoryRecipeIcons, true)
+      GLOBALS.PLAYER_INVENTORY = real
+
+      assert.is_true(firstOk, tostring(firstErr))
+      assert.is_true(retryOk, tostring(retryErr))
     end)
   end)
 end)

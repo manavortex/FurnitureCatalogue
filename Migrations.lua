@@ -9,9 +9,19 @@ local LEGACY_DROP = {
   "startupSilently", -- not used anymore, debug stuff now
   "visibility", -- window toggled by hotkey or slash cmd now
   "useIconsThisChar", -- renamed -> useInventoryIconsOnChar
+
+  -- settings nothing reads any more
+  "dontScanTradingHouse", -- scanner setting is gone
+  "hideDoubtfuls", -- superseded by source tabs
+  "hideCrownstore", -- superseded by source tabs
+  "hideRumourEntry", -- went extinct with rumour button
+  "hideCrownStoreEntry", -- went extinct with crown button
+  "hideUiButtons", -- both buttons gone
+  "wipeDatabase", -- a button, not a setting
 }
 
----@type { name: string, run: fun(aw: table) }[] aw: account wide
+---`cleans` names the account-wide keys a step removes
+---@type { name: string, run: fun(aw: table), cleans: string[]? }[] aw: account wide
 FurC.Migrations = {
   {
     -- old embedded `data[id].favorite`
@@ -32,6 +42,7 @@ FurC.Migrations = {
   {
     -- `favourites` -> `favorites` (so we don't mix spellings)
     name = "favourites_spelling",
+    cleans = { "favourites" },
     run = function(aw)
       if type(aw.favourites) ~= "table" then
         return
@@ -48,6 +59,7 @@ FurC.Migrations = {
   {
     -- explicitly drop legacy tables
     name = "drop_legacy",
+    cleans = LEGACY_DROP,
     run = function(aw)
       for _, key in ipairs(LEGACY_DROP) do
         aw[key] = nil
@@ -96,13 +108,33 @@ function FurC.Migrate(opts)
   return #targets
 end
 
+---Every key the registered migrations remove
+---@return string[]
+function FurC.GetLegacyKeys()
+  local keys = {}
+  for _, step in ipairs(FurC.Migrations) do
+    for _, key in ipairs(step.cleans or {}) do
+      keys[#keys + 1] = key
+    end
+  end
+  return keys
+end
+
 -- Count stale DB entries across every account
 ---@param test? table injects a source for CI/headless (see FurC.Migrate)
 ---@return { accounts: integer, entries: integer }
 function FurC.GetLegacyStats(test)
+  local keys = FurC.GetLegacyKeys()
   local accounts, entries = 0, 0
   for _, aw in ipairs(accountBranches(test)) do
-    if aw.data ~= nil or aw.accountCharacters ~= nil or aw.excelExport ~= nil then
+    local stale = false
+    for _, key in ipairs(keys) do
+      if aw[key] ~= nil then
+        stale = true
+        break
+      end
+    end
+    if stale then
       accounts = accounts + 1
       if type(aw.data) == "table" then
         entries = entries + NonContiguousCount(aw.data)

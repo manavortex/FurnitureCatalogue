@@ -430,17 +430,23 @@ local function vendorDetail(source)
   end
 end
 
+---One placement resolved into its parts: a zone and a place inside it are one location
+local function partsOf(placement)
+  local parts = {}
+  if placement.location then
+    parts[#parts + 1] = resolveZone(placement.location)
+  end
+  if placement.place then
+    parts[#parts + 1] = resolveString(placement.place)
+  end
+  return parts
+end
+
 ---Where a record says the item is, as arguments for fmtGeneric
 local function placesOf(source)
   local places = {}
   for _, placement in ipairs(source.locations or {}) do
-    local parts = {}
-    if placement.location then
-      parts[#parts + 1] = resolveZone(placement.location)
-    end
-    if placement.place then
-      parts[#parts + 1] = resolveString(placement.place)
-    end
+    local parts = partsOf(placement)
     if #parts > 0 then
       places[#places + 1] = parts
     end
@@ -562,8 +568,8 @@ local function renderVendor(record, opts)
   local placements = source.locations
   local where
   if placements and #placements == 1 then
-    local only = placements[1]
-    where = (only.location and resolveZone(only.location)) or (only.place and resolveString(only.place))
+    local parts = partsOf(placements[1])
+    where = (#parts > 0) and table.concat(parts, ", ") or nil
   elseif placements then
     -- a vendor standing in several places names them all
     local named = {}
