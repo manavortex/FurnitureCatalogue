@@ -121,7 +121,7 @@ local function getSourceIndicesKeys()
   sourceIndicesKeys[src.CHEST] = "chests"
   sourceIndicesKeys[src.QUEST] = "quest"
   sourceIndicesKeys[src.PICKPOCKET] = "pickpocket"
-  sourceIndicesKeys[src.CONTAINER] = "container"
+  sourceIndicesKeys[src.STEAL_CONTAINER] = "container"
   sourceIndicesKeys[src.FESTIVAL_DROP] = "event"
 
   return sourceIndicesKeys
@@ -166,7 +166,7 @@ local function getChoicesSource()
   choicesSource[src.CHEST] = GetString(SI_FURC_FILTER_SRC_CHEST)
   choicesSource[src.QUEST] = GetString(SI_FURC_FILTER_SRC_QUEST)
   choicesSource[src.PICKPOCKET] = GetString(SI_FURC_FILTER_SRC_PICKPOCKET)
-  choicesSource[src.CONTAINER] = GetString(SI_FURC_FILTER_SRC_CONTAINER)
+  choicesSource[src.STEAL_CONTAINER] = GetString(SI_FURC_FILTER_SRC_CONTAINER)
 
   return choicesSource
 end

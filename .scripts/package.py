@@ -73,25 +73,44 @@ def package_addon(name: str, exclude_filename: str):
 
   # copy files
   addon_dir = os.path.normpath(os.path.join(PACKAGE_DIR, addon_name))
-  counter = 0
+  expected = set() # paths that have to end up under addon_dir
+  failures = [] # (source, error) pairs
   excluded = 0
   for source in files_to_copy:
+    # skip excluded filenames
+    if os.path.basename(source) == exclude_filename: continue
+    source = os.path.normpath(source)
+    if set(os.path.dirname(source).split(os.sep)) & set(EXCLUDE_DIRS):
+      excluded += 1
+      continue
+    expected.add(source)
     try:
-      # skip excluded filenames
-      if os.path.basename(source) == exclude_filename: continue
-      source = os.path.normpath(source)
-      if set(os.path.dirname(source).split(os.sep)) & set(EXCLUDE_DIRS):
-        excluded += 1
-        continue
       target = os.path.normpath(os.path.join(addon_dir, source))
       os.makedirs(os.path.dirname(target), exist_ok=True) # Create target directory
       shutil.copy(source, target)
-      counter += 1
-    except Exception as ex: # continue on error
-      print(f"skipped file: {ex}")
-      continue
+    except Exception as ex:
+      failures.append((source, ex))
 
-  print(f"added {counter}/{len(files_to_copy)} files")
+  if failures:
+    for source, ex in failures:
+      print(f"failed to copy: {source}: {ex}")
+    FU.crash_and_burn(f"{len(failures)} file(s) failed to copy, aborting packaging")
+
+  # a copy can report success and land nothing, so compare the tree against the list
+  actual = set()
+  for root, _, files in os.walk(addon_dir):
+    for file in files:
+      actual.add(os.path.normpath(os.path.relpath(os.path.join(root, file), addon_dir)))
+
+  if actual != expected:
+    missing = sorted(expected - actual)
+    extra = sorted(actual - expected)
+    detail = []
+    if missing: detail.append(f"missing from package: {missing}")
+    if extra: detail.append(f"unexpected in package: {extra}")
+    FU.crash_and_burn(f"packaged files do not match what was copied ({'; '.join(detail)})")
+
+  print(f"added {len(expected)}/{len(files_to_copy)} files")
   if excluded:
     print(f"kept out of the package: {excluded} files in {'/, '.join(EXCLUDE_DIRS)}/")
 

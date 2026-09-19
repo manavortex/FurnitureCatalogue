@@ -36,10 +36,14 @@ Taneth("FurC:Regression", function()
       assert.is_nil(next(mats))
     end)
 
-    it("the flat aliases it used to call are gone", function()
-      for _, name in ipairs({ "Find", "GetItemId", "GetItemLink", "GetIngredients", "GetMats" }) do
-        assert.is_nil(FurC[name], "FurC." .. name .. " is still published")
-      end
+    it("the flat aliases it used to call answer empty", function()
+      assert.same({}, FurC.Find(DS.craftable))
+      assert.same({}, FurC.GetIngredients(Test.link(DS.craftable)))
+      assert.equals("", FurC.GetMats(Test.link(DS.craftable)))
+      assert.equals("", FurC.GetItemDescription(DS.craftable, api.GetEntry(DS.craftable), true))
+      -- except id and link translation
+      assert.equals(DS.craftable, FurC.GetItemId(Test.link(DS.craftable)))
+      assert.equals("string", type(FurC.GetItemLink(DS.craftable)))
     end)
   end)
 end)

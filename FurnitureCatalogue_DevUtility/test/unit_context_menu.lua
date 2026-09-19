@@ -19,7 +19,10 @@ Taneth("FurC:Unit", function()
       local entry = LibFurnitureCatalogue.Internal.Query.Find(UNKNOWN_ID)
       assert.equals("table", type(entry))
       assert.is_nil(next(entry))
-      assert.is_nil(FurC.Find, "the flat alias is still published")
+      -- published, and empty: a consumer that never migrated must not call a nil value
+      assert.equals("function", type(FurC.Find), "the landing pad is gone")
+      assert.is_nil(next(FurC.Find(UNKNOWN_ID)), "the landing pad answers data")
+      assert.is_nil(next(FurC.Find(FurCDev.Test.dataset().dbItem)), "the landing pad reads the DB")
     end)
 
     it("gives an empty description for unknown ids", function()

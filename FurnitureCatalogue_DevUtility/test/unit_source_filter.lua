@@ -41,6 +41,18 @@ Taneth("FurC:Unit", function()
     return kept
   end
 
+  ---Can the client make anything of this id? Filter checks isValidItemType() and drops it when the answer is "nothing"
+  ---@param itemId integer
+  ---@return boolean
+  local function clientResolves(itemId)
+    local itemLink = LFC.API.GetItemLink(itemId)
+    if not itemLink or itemLink == "" then
+      return false
+    end
+    local itemType, specializedItemType = GetItemLinkItemType(itemLink)
+    return not (0 == itemType and 0 == specializedItemType)
+  end
+
   ---@param ids table<integer, boolean>
   ---@return integer
   local function count(ids)
@@ -119,11 +131,20 @@ Taneth("FurC:Unit", function()
       assert.is_true(count(editor) > 0, "the Housing Editor tab keeps nothing")
     end)
 
-    it("leaves no item unreachable: every one shows under at least one tab", function()
+    it("leaves no resolvable item unreachable: every one shows under at least one tab", function()
       FurC.EnsureDB(true)
       local ids = LFC.API.GetItemIds()
+      local order = FurC.GetSourceOrder()
+
+      -- The rumour rows are the ones this check most needs
+      local hasRumourTab = false
+      for _, ddSource in ipairs(order) do
+        hasRumourTab = hasRumourTab or ddSource == src.RUMOUR
+      end
+      assert.is_true(hasRumourTab, "no Rumour tab in the tree, so the rumour rows are not covered here")
+
       local seen = {}
-      for _, ddSource in ipairs(FurC.GetSourceOrder()) do
+      for _, ddSource in ipairs(order) do
         if ddSource ~= src.NONE and ddSource ~= src.FAVE then
           for itemId in pairs(keptBy(ddSource)) do
             seen[itemId] = true
@@ -131,16 +152,25 @@ Taneth("FurC:Unit", function()
         end
       end
 
-      local unreachable = {}
+      local unreachable, unresolvable = {}, 0
       for _, itemId in ipairs(ids) do
         if not seen[itemId] then
-          unreachable[#unreachable + 1] = itemId
+          if clientResolves(itemId) then
+            unreachable[#unreachable + 1] = itemId
+          else
+            unresolvable = unresolvable + 1
+          end
         end
       end
+
+      FurCDev.Probe.Say(
+        string.format("source tabs: %d of %d row(s) the client cannot resolve, shown by no tab", unresolvable, #ids)
+      )
+
       assert.equals(
         0,
         #unreachable,
-        string.format("%d item(s) show under no tab, e.g. %s", #unreachable, tostring(unreachable[1]))
+        string.format("%d resolvable item(s) show under no tab, e.g. %s", #unreachable, tostring(unreachable[1]))
       )
     end)
 

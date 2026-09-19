@@ -398,9 +398,14 @@ Taneth("FurC:Lib", function()
       local itemLink = api.GetItemLink(itemId)
       assert.equals("string", type(itemLink))
       assert.is_true(#itemLink > 0)
-      for _, name in ipairs({ "Find", "GetItemId", "GetItemLink", "GetIngredients", "GetMats" }) do
-        assert.is_nil(FurC[name], "FurC." .. name .. " is still published")
-      end
+      -- the flat aliases answer empty, they do not read the DB
+      assert.same({}, FurC.Find(itemId))
+      assert.equals("", FurC.GetItemDescription(itemId, api.GetEntry(itemId), true))
+      assert.same({}, FurC.GetIngredients(itemLink))
+      assert.equals("", FurC.GetMats(itemLink))
+      -- except id and link translation
+      assert.equals(api.GetItemId, FurC.GetItemId)
+      assert.equals(api.GetItemLink, FurC.GetItemLink)
       assert.equals(itemId, api.GetItemId(itemId))
       assert.equals(itemId, api.GetItemId(itemLink))
       assert.equals(itemLink, api.GetItemLink(itemLink))
@@ -413,8 +418,6 @@ Taneth("FurC:Lib", function()
       local entry = api.GetEntry(DS.luxItem)
       assert.equals("string", type(api.GetItemDescription(DS.luxItem, entry)))
       assert.equals("table", type(api.GetIngredients(Test.link(DS.craftable), api.GetEntry(DS.craftable))))
-
-      assert.is_nil(FurC.GetMats, "the flat alias is still published")
 
       local missingCurrency, missingAmount = api.GetMiscItemPrice(UNKNOWN_ID, 1, sourceType.CROWN)
       assert.is_nil(missingCurrency)
@@ -435,10 +438,6 @@ Taneth("FurC:Lib", function()
         assert.is_true(#described.label > 0)
       end
       assert.equals("Luxury Furnisher", info[sourceType.LUXURY].label)
-
-      -- a renamed source keeps its old key as a deprecated alias
-      assert.equals(sourceType.STEAL_CONTAINER, sourceType.CONTAINER)
-      assert.equals("STEAL_CONTAINER", info[sourceType.CONTAINER].key)
 
       -- LATEST shares a value with the update it points at, so the naive inverse
       -- of GetDataVersions loses a name; the endpoint does not

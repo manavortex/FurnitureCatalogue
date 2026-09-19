@@ -42,6 +42,15 @@ Taneth("FurC:Lib", function()
       return src:gsub("%-%-[^\n]*", "")
     end
 
+    -- blank out string literals, so a FurC.* name inside a message is not read as a touch.
+    -- After stripComments, so an apostrophe in prose is already gone
+    local function stripStrings(src)
+      local blank = function(s)
+        return string.rep(" ", #s)
+      end
+      return (src:gsub('"[^"\n]*"', blank):gsub("'[^'\n]*'", blank))
+    end
+
     -- legacy FurC.*: symbols the lib may touch. Everything else on FurC belongs to the main addon and is bad touch.
     --  TODO: Shrink list as we migrate
     local LIB_OWNED = {
@@ -103,7 +112,7 @@ Taneth("FurC:Lib", function()
         if src then
           checked = checked + 1
           local n = 0
-          for line in (stripComments(src) .. "\n"):gmatch("([^\n]*)\n") do
+          for line in (stripStrings(stripComments(src)) .. "\n"):gmatch("([^\n]*)\n") do
             n = n + 1
             for suffix in line:gmatch("%f[%w]FurC(%.?[%w_]*)") do
               local name = suffix:match("^%.([%w_]+)$")

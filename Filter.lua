@@ -370,8 +370,8 @@ local function matchesSource(candidate)
   if src.PICKPOCKET == candidate then
     return hasSource(src.PICKPOCKET)
   end
-  if src.CONTAINER == candidate then
-    return hasSource(src.CONTAINER)
+  if src.STEAL_CONTAINER == candidate then
+    return hasSource(src.STEAL_CONTAINER)
   end
 
   -- direct options: CROWN, RUMOUR, LUXURY, BAZAAR
