@@ -165,20 +165,6 @@ local function matchVersionDropdown()
   return dropdownChoiceVersion == 1 or recipeArray.version == dropdownChoiceVersion
 end
 
-local validSourcesForOther = {
-  [src.FESTIVAL_DROP] = true,
-  [src.DROP] = true,
-  [src.FISHING] = true,
-  [src.GUILDSTORE] = true,
-  [src.ANTIQUITY] = true,
-  [src.DUNGEON] = true,
-  [src.HARVEST] = true,
-  [src.CHEST] = true,
-  [src.QUEST] = true,
-  [src.PICKPOCKET] = true,
-  [src.STEAL_CONTAINER] = true,
-}
-
 -- Multi-source: item matches filter if source is in list
 local function hasSource(s)
   return maskHasSource(sourceBits, s)
@@ -235,6 +221,8 @@ local function isEventTradeBarItem()
 end
 
 -- Source: All, All (craftable), Craftable (known), craftable (unknown), purchasable
+--
+-- A tab that has children matches when its own source or any child's matches (membership is in SourceTabs.lua)
 local function matchesSource(candidate)
   -- "All", don't care
   if src.NONE == candidate then
@@ -243,10 +231,6 @@ local function matchesSource(candidate)
   if src.FAVE == candidate then
     return FurC.IsFavoriteById(itemId)
   end
-  -- Crafting sub-filters. KNOWN/UNKNOWN from LCK
-  if src.CRAFTING == candidate then
-    return hasSource(src.CRAFTING)
-  end
   if src.CRAFTING_KNOWN == candidate or src.CRAFTING_UNKNOWN == candidate then
     if not hasSource(src.CRAFTING) then
       return false
@@ -254,20 +238,15 @@ local function matchesSource(candidate)
     local matchingDropdownSource = (isRecipeArrayKnown() and src.CRAFTING_KNOWN) or src.CRAFTING_UNKNOWN
     return matchingDropdownSource == candidate
   end
-  if src.VENDOR == candidate then
-    return hasSource(src.VENDOR)
-  end
   if FurC.SourceFilters.ACHIEVEMENT == candidate then
     return hasSource(src.VENDOR) and isAchievementGatedItem()
   end
   if FurC.SourceFilters.HOME_GOODS == candidate then
     return hasSource(src.VENDOR) and isHomeGoodsFurnisherItem()
   end
+  -- the writ vendor tab is the vendor's own source under another name
   if src.WRIT_VENDOR == candidate then
     return hasSource(src.ROLIS)
-  end
-  if src.PVP == candidate then
-    return hasSource(src.PVP)
   end
   if FurC.SourceFilters.ALLIANCE_POINTS == candidate then
     if not hasSource(src.PVP) then
@@ -308,39 +287,9 @@ local function matchesSource(candidate)
     return false
   end
 
-  if FurC.SourceFilters.CURRENCY == candidate then
-    return matchesSource(src.CROWN)
-      or matchesSource(src.VENDOR)
-      or matchesSource(src.PVP)
-      or matchesSource(src.TOMES)
-      or matchesSource(src.BAZAAR)
-  end
-
-  if src.OTHER == candidate then
-    -- match if sources are part of OTHER too
-    for s in eachSource(sourceBits) do
-      if validSourcesForOther[s] then
-        return true
-      end
-    end
-    return false
-  end
-
-  if src.CROWN == candidate then
-    return hasSource(src.CROWN) or hasSource(src.EDITOR)
-  end
-
-  --TODO: twerkaround, make it pretty later
+  -- the crown store tab is the crown source alone, without the housing editor beside it
   if FurC.SourceFilters.CROWN_STORE == candidate then
     return hasSource(src.CROWN)
-  end
-
-  if src.EDITOR == candidate then
-    return hasSource(src.EDITOR)
-  end
-
-  if src.JUSTICE == candidate then
-    return hasSource(src.PICKPOCKET) or hasSource(src.STEAL_CONTAINER)
   end
 
   if FurC.SourceFilters.GOLD_COAST_BAZAAR == candidate then
@@ -351,30 +300,21 @@ local function matchesSource(candidate)
     return isEventTradeBarItem()
   end
 
-  if src.BAZAAR == candidate then
-    return matchesSource(FurC.SourceFilters.GOLD_COAST_BAZAAR) or matchesSource(FurC.SourceFilters.IMPRESARIO)
+  -- a tab with children: its own source, or any tab below it
+  local node = FurC.GetSourceTreeNode(candidate)
+  if node and node.children then
+    -- a grouping tab can be a source (Crown Store, Vendor), or exist to just hold children (Currency)
+    if candidate > 0 and hasSource(candidate) then
+      return true
+    end
+    for _, child in ipairs(node.children) do
+      if child.id and matchesSource(child.id) then
+        return true
+      end
+    end
+    return false
   end
 
-  if src.DUNGEON == candidate then
-    return hasSource(src.DUNGEON)
-  end
-  if src.HARVEST == candidate then
-    return hasSource(src.HARVEST)
-  end
-  if src.CHEST == candidate then
-    return hasSource(src.CHEST)
-  end
-  if src.QUEST == candidate then
-    return hasSource(src.QUEST)
-  end
-  if src.PICKPOCKET == candidate then
-    return hasSource(src.PICKPOCKET)
-  end
-  if src.STEAL_CONTAINER == candidate then
-    return hasSource(src.STEAL_CONTAINER)
-  end
-
-  -- direct options: CROWN, RUMOUR, LUXURY, BAZAAR
   return hasSource(candidate)
 end
 

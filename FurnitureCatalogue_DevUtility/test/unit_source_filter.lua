@@ -214,5 +214,114 @@ Taneth("FurC:Unit", function()
       end
       assert.is_true(books > 0, "no books in FurC.Books, so their exclusion is untested")
     end)
+
+    it("a tab keeps everything the tabs below it keep, at every level", function()
+      FurC.EnsureDB(true)
+      local kept = {}
+      for _, ddSource in ipairs(FurC.GetSourceOrder()) do
+        kept[ddSource] = keptBy(ddSource)
+      end
+
+      local groups = FurC.GetSourceGroupIds()
+      assert.is_true(#groups > 0, "no tab has children, so the level rule is untested")
+
+      local pairsChecked = 0
+      for _, groupId in ipairs(groups) do
+        local node = FurC.GetSourceTreeNode(groupId)
+        for _, child in ipairs((node and node.children) or {}) do
+          if child.id and kept[child.id] then
+            for itemId in pairs(kept[child.id]) do
+              assert.is_true(
+                kept[groupId][itemId] == true,
+                string.format("item %d shows under tab %d but not under its group %d", itemId, child.id, groupId)
+              )
+            end
+            pairsChecked = pairsChecked + 1
+          end
+        end
+      end
+      assert.is_true(pairsChecked > 0, "no group/child pair was compared")
+    end)
+
+    it("a multi-source item shows under the tab of each source it carries", function()
+      FurC.EnsureDB(true)
+      local kept = {}
+      for _, ddSource in ipairs(FurC.GetSourceOrder()) do
+        kept[ddSource] = keptBy(ddSource)
+      end
+
+      local checked = 0
+      for _, itemId in ipairs(LFC.API.GetItemIds()) do
+        local entry = LFC.Internal.Query.Find(itemId)
+        local carried = {}
+        for s in LFC.Internal.Build.EachSource(entry.sources) do
+          carried[#carried + 1] = s
+        end
+        if #carried > 1 then
+          for _, s in ipairs(carried) do
+            -- a tab named after a source must keep the rows carrying it (a tab that means something narrower has its own id)
+            if kept[s] then
+              assert.is_true(
+                kept[s][itemId] == true,
+                string.format("item %d carries source %d and is not kept by that tab", itemId, s)
+              )
+              local root = FurC.GetSourceFamilyRoot(s)
+              if root and kept[root] then
+                assert.is_true(
+                  kept[root][itemId] == true,
+                  string.format("item %d carries source %d and is not kept by its top-level tab %d", itemId, s, root)
+                )
+              end
+              checked = checked + 1
+            end
+          end
+        end
+      end
+      assert.is_true(checked > 0, "no multi-source item has a tab of its own, so nothing was checked")
+    end)
+
+    it("every source with a label has a place in the tree, and the tree invents none", function()
+      local choices = FurC.DropdownData.ChoicesSource or {}
+      FurC.GetSourceOrder() -- resolves the tree
+
+      local isSource = {}
+      for _, id in pairs(src) do
+        isSource[id] = true
+      end
+
+      local labelled = 0
+      for name, id in pairs(src) do
+        if choices[id] then
+          labelled = labelled + 1
+          assert.is_not_nil(
+            FurC.GetSourceTreeNode(id),
+            string.format("%s (%d) is offered in the dropdown but sits in no tab", name, id)
+          )
+        end
+      end
+      assert.is_true(labelled > 0, "no source carries a label, so the tree covers nothing")
+
+      -- the other direction: a tab is a source, or one of the filter-only ids
+      for _, ddSource in ipairs(FurC.GetSourceOrder()) do
+        assert.is_true(
+          isSource[ddSource] == true or ddSource < 0,
+          string.format("tab %d is neither a source nor a filter-only id", ddSource)
+        )
+      end
+
+      -- A source with no label cannot be offered at all (label it, or keep it deliberately hidden)
+      local HIDDEN = { ROLIS = true, GUILDSTORE = true, COLL_MERCH = true }
+      for name, id in pairs(src) do
+        if not choices[id] then
+          assert.is_true(
+            HIDDEN[name] == true,
+            string.format("%s (%d) has no label, so no tab can offer it - label it or list it here", name, id)
+          )
+        end
+      end
+      for name in pairs(HIDDEN) do
+        assert.is_nil(choices[src[name]], string.format("%s is listed as hidden but now carries a label", name))
+      end
+    end)
   end)
 end)

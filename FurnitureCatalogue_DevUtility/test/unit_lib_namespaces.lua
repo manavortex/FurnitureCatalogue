@@ -27,6 +27,8 @@ Taneth("FurC:Lib", function()
           "RenderRecord",
           "ResolveNote",
           "ResolveRecipe",
+          "SourceModel",
+          "SourceModelKinds",
         }),
         FurCDev.Test.keySet(internal.Query)
       )
