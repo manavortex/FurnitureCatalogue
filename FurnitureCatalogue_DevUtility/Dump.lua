@@ -228,6 +228,11 @@ local function buildMeta()
       local itemLink = getLink(id)
       local rec = { name = getName(id), quality = GetItemLinkFunctionalQuality(itemLink) or 0 }
 
+      local icon = GetItemLinkIcon(itemLink)
+      if type(icon) == "string" and icon ~= "" then
+        rec.icon = icon
+      end
+
       local dataId, viaRecipe = furnitureDataIdFor(itemLink)
       if dataId ~= 0 then
         rec.cat, rec.sub, rec.theme = GetFurnitureDataInfo(dataId)
@@ -956,7 +961,7 @@ function this.BuildDumpTab()
     panel,
     3,
     "Meta dump",
-    "Names, quality, category and the category tree.\nWrites FurCDev_SavedVariables.meta.\nNeeds a reload to reach disk.",
+    "Names, quality, category, icon path and the category tree.\nWrites FurCDev_SavedVariables.meta.\nNeeds a reload",
     function()
       this.DumpMeta(true)
     end
