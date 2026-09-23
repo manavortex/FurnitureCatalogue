@@ -468,7 +468,7 @@ local function createGui()
 
     return FurCGui_ListHolder.lines
   end
-  
+
   local function setupStaticTooltips()
     local function wire(control, stringId, reAnchor)
       control:SetHandler("OnMouseEnter", function(self)
@@ -696,7 +696,7 @@ local function createGui()
 
     return control
   end
-  
+
   local function buildSourceEntries(nodes, choices, tooltips, selectSource)
     local entries = {}
     for _, node in ipairs(nodes) do

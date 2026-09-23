@@ -357,7 +357,12 @@ Taneth("FurC:Lib", function()
       local offer = editorRecords[1]
       assert.equals(CURT_CROWNS, offer.cost.currency)
       assert.equals(2800, offer.cost.amount)
-      assert.same({ 13881 }, offer.source.houses)
+      assert.is_nil(offer.source.houses)
+
+      -- a house is an ordinary Crown offer
+      local house = recordWith(223178, srcEnum.CROWN, "houses")
+      assert.is_not_nil(house)
+      assert.same({ 13881 }, house.source.houses)
     end)
 
     -- Naming a furnishing by its blueprint returns the furnishing

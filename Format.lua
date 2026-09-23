@@ -371,7 +371,6 @@ local strEditor = GetString(SI_FURC_SRC_EDITOR)
 local strEditorTag = GetString(SI_FURC_SRC_EDITOR_TAG)
 local strAroundDate = GetString(SI_FURC_STRING_WEEKEND_AROUND)
 local strRumourItem = GetString(SI_FURC_SRC_RUMOUR_ITEM)
-local strRumourRecipe = GetString(SI_FURC_SRC_RUMOUR_RECIPE)
 local emptyString = GetString(SI_FURC_SRC_EMPTY)
 
 ---Adds to a suffix: a single value, or a list of alternatives
@@ -538,9 +537,13 @@ local function renderCrownOffer(record)
     parts[#parts + 1] = fmtGeneric(GetString(source.category))
   end
   if #parts == 0 then
+    if source.type == src.EDITOR then
+      return strEditor
+    end
     return emptyString
   end
-  return table.concat(parts, SOURCE_SEPARATOR)
+  local text = table.concat(parts, SOURCE_SEPARATOR)
+  return source.type == src.EDITOR and sFormat(strEditorTag, text, strEditor) or text
 end
 
 local LUXURY_DATE = "(%d+)-(%d+)-(%d+)"
@@ -612,7 +615,7 @@ local function formatRecord(record, itemId, entry, opts)
   local type_ = source.type
 
   if type_ == src.RUMOUR then
-    return (entry and entry.blueprint and strRumourRecipe) or strRumourItem
+    return strRumourItem
   end
   if type_ == src.GUILDSTORE then
     return GetString(SI_FURC_SEEN_IN_GUILDSTORE)
@@ -742,10 +745,6 @@ local function formatItem(itemId, entry, opts, withCrafting)
     end
   end
   for _, line in ipairs(lines) do
-    -- a row's editor offers are one purchase in one record, so the tag marks the whole line
-    if line.source == src.EDITOR then
-      line.parts[1] = sFormat(strEditorTag, line.parts[1], strEditor)
-    end
     line.text = table.concat(line.parts, SOURCE_SEPARATOR)
     line.parts = nil
   end

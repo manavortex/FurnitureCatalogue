@@ -220,13 +220,20 @@ local function buildMeta()
   local getName = FurC.Utils.GetItemName
 
   local meta = {}
-  local stats = { items = 0, furniture = 0, recipesResolved = 0 }
+  local stats = { items = 0, furniture = 0, recipesResolved = 0, blueprints = 0 }
 
-  for id in pairs(FurC.DB or {}) do
+  for id, entry in pairs(FurC.DB or {}) do
     if type(id) == "number" and id > 9999 then
       stats.items = stats.items + 1
       local itemLink = getLink(id)
       local rec = { name = getName(id), quality = GetItemLinkFunctionalQuality(itemLink) or 0 }
+
+      -- The blueprint this furnishing is made from.
+      local blueprint = type(entry) == "table" and entry.blueprint or nil
+      if type(blueprint) == "number" and blueprint > 0 and blueprint ~= id then
+        rec.blueprint = blueprint
+        stats.blueprints = (stats.blueprints or 0) + 1
+      end
 
       local icon = GetItemLinkIcon(itemLink)
       if type(icon) == "string" and icon ~= "" then
@@ -264,19 +271,21 @@ function this.DumpMeta(skipReloadPrompt)
 
   if FurC.Logger then
     FurC.Logger:Info(
-      "|cFF3333FurCDev|r meta dump: %d items, %d furniture, %d categories.",
+      "|cFF3333FurCDev|r meta dump: %d items, %d furniture, %d blueprints, %d categories.",
       stats.items,
       stats.furniture,
+      stats.blueprints,
       numCats
     )
   end
 
   showOutput(
     string.format(
-      "FurCDev meta dump\n  items:      %d\n  furniture:  %d (of which %d resolved via recipe)\n  categories: %d\n\nReload the UI to write SavedVariables to disk.",
+      "FurCDev meta dump\n  items:      %d\n  furniture:  %d (of which %d resolved via recipe)\n  blueprints: %d\n  categories: %d\n\nReload the UI to write SavedVariables to disk.",
       stats.items,
       stats.furniture,
       stats.recipesResolved,
+      stats.blueprints,
       numCats
     )
   )
