@@ -8,7 +8,7 @@
     <TopLevelControl name="FurCDevControl" clampedToScreen="true" movable="true" mouseEnabled="true"
       hidden="true" resizeHandleSize="15">
       <Dimensions x="860" y="520" />
-      <DimensionConstraints minX="560" minY="320" />
+      <DimensionConstraints minX="740" minY="360" />
       <Anchor point="CENTER" relativeTo="GUI_ROOT" relativePoint="CENTER" offsetX="0"
         offsetY="-120" />
       <Controls>

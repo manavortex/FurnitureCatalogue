@@ -139,11 +139,12 @@ local function addTooltipData(control, itemLink)
     return
   end
 
-  if not (isRecipe or IsItemLinkPlaceableFurniture(itemLink)) then
+  local recipeArray = getEntry(itemLink)
+  local ignored = recipeArray and recipeArray.sources and recipeArray.sources[src.IGNORED]
+  if not (ignored or isRecipe or IsItemLinkPlaceableFurniture(itemLink)) then
     return
   end
   itemId = GetItemLinkItemId(itemLink)
-  local recipeArray = getEntry(itemLink)
 
   -- |H0:item:118206:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h
 
@@ -153,7 +154,7 @@ local function addTooltipData(control, itemLink)
 
   local unknown = not FurC.CanCraft(itemId, recipeArray)
   local stringTable = {}
-  local isCraftable = isRecipe or (recipeArray.sources and recipeArray.sources[src.CRAFTING]) or false
+  local isCraftable = not ignored and (isRecipe or (recipeArray.sources and recipeArray.sources[src.CRAFTING])) or false
 
   if isCraftable then
     if unknown and not FurC.GetHideUnknown() or not FurC.GetHideKnowledge() then
@@ -176,8 +177,8 @@ local function addTooltipData(control, itemLink)
   end
 
   -- other sources: every ranked source except crafting, one line each
-  if not isRecipe then
-    if not FurC.GetHideSource() then
+  if ignored or not isRecipe then
+    if ignored or not FurC.GetHideSource() then
       local lines = FurC.GetSourceLines(itemId, recipeArray, false)
       for i = 1, #lines do
         stringTable = add(stringTable, lines[i])

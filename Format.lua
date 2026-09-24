@@ -614,6 +614,9 @@ local function formatRecord(record, itemId, entry, opts)
   local source = record.source
   local type_ = source.type
 
+  if type_ == src.IGNORED then
+    return GetString(SI_FURC_SRC_IGNORED)
+  end
   if type_ == src.RUMOUR then
     return strRumourItem
   end

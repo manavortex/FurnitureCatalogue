@@ -13,13 +13,6 @@ IF not exist "C:\Program Files\SmartGit" (
 	echo Otherwise, please install it from https://www.syntevo.com/smartgit/download/
 )
 
-if not exist "..\..\sidTools" (
-	echo Please install the AddOn "sidTools" from esoui: https://www.esoui.com/downloads/info1210-sidTools.html
-	echo It needs to be in the AddOn directory ^(%USERPROFILE%\Documents\Elder Scrolls Online\live\AddOns^)
-	echo for this script to work.
-	goto :EOF
-)
-
 if not exist "..\..\LibDebugLogger" (
 	echo AddOn LibDebugLogger not found. 
 	echo I strongly recommend installing it: https://www.esoui.com/downloads/info2275-LibDebugLogger.html
@@ -44,12 +37,6 @@ if not exist "..\..\merTorchbug" (
 	echo It helps you run scripts and display variables ingame.
 )
 
-echo.
-echo This file is your playground so you can fuck around and find out. 
-if exist "..\FurnitureCatalogue_DevUtility\Custom.lua" (
-	echo If you overwrite it, you will lose any changes you have made.
-)
-copy /-Y "..\FurnitureCatalogue_DevUtility\Custom.example" "..\FurnitureCatalogue_DevUtility\Custom.lua"
 echo.
 echo Congratulations, you're all set up.
 

@@ -21,11 +21,6 @@ local function join(...)
   return table.concat({ ... }, "/")
 end
 
--- manifest entries that don't have to be loaded
-local optionalEntries = {
-  ["Custom.lua"] = true,
-}
-
 local loadFailures = 0
 
 --- loads each .lua manifest entry except locale\$(language).lua and missing files
@@ -45,12 +40,8 @@ local function loadAddon(manifestPath)
       local path = join(dir, entry)
       local probe = io.open(path, "r")
       if not probe then
-        if optionalEntries[entry] then
-          print("[skip] not present: " .. path)
-        else
-          loadFailures = loadFailures + 1
-          print("[missing] " .. path)
-        end
+        loadFailures = loadFailures + 1
+        print("[missing] " .. path)
       else
         probe:close()
         local ok, err = pcall(dofile, path)

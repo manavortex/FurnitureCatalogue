@@ -92,7 +92,16 @@ Taneth("FurC:Unit", function()
         end
       end
       assert.is_true(rumours > 0, "no item is only a rumour, so the exclusion is untested")
-      assert.equals(LFC.API.GetEntryCount() - rumours, count(all))
+      assert.equals(LFC.API.GetEntryCount() - rumours - count(withSource(src.IGNORED)), count(all))
+    end)
+
+    it("hides ignored items by default but permits an explicit source query", function()
+      FurC.EnsureDB(true)
+      assert.is_nil(keptBy(src.NONE)[191611])
+      assert.is_true(keptBy(src.IGNORED)[191611])
+      for _, id in ipairs(FurC.GetSourceOrder()) do
+        assert.is_false(id == src.IGNORED, "FC must not offer an ignored source tab")
+      end
     end)
 
     it("Housing Editor keeps exactly the items the editor sells", function()
@@ -152,9 +161,10 @@ Taneth("FurC:Unit", function()
         end
       end
 
+      local ignored = withSource(src.IGNORED)
       local unreachable, unresolvable = {}, 0
       for _, itemId in ipairs(ids) do
-        if not seen[itemId] then
+        if not seen[itemId] and not ignored[itemId] then
           if clientResolves(itemId) then
             unreachable[#unreachable + 1] = itemId
           else
@@ -310,7 +320,7 @@ Taneth("FurC:Unit", function()
       end
 
       -- A source with no label cannot be offered at all (label it, or keep it deliberately hidden)
-      local HIDDEN = { ROLIS = true, GUILDSTORE = true, COLL_MERCH = true }
+      local HIDDEN = { IGNORED = true, ROLIS = true, GUILDSTORE = true, COLL_MERCH = true }
       for name, id in pairs(src) do
         if not choices[id] then
           assert.is_true(

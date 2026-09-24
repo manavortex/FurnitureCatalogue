@@ -413,6 +413,9 @@ function FurC.MatchFilter(currentItemId, currentRecipeArray)
     return false
   end
   sourceBits = toSourceMask(recipeArray.sources)
+  if build.HasSource(sourceBits, src.IGNORED) and ddSource ~= src.IGNORED then
+    return false
+  end
 
   if sourceBits == ONLY_RUMOUR and hideRumours then
     if filterBooks(itemId, recipeArray) then

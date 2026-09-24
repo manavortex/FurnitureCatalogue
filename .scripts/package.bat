@@ -20,8 +20,7 @@ SET TARGET_DIRECTORY=""
 SET GITHUB_BRANCH=""
 
 :: Custom filename to be deleted, set to anything but "" to have it automatically removed from the package
-@REM SET DELETE_CUSTOM_FILENAME=""
-SET DELETE_CUSTOM_FILENAME="Custom.lua"
+SET DELETE_CUSTOM_FILENAME=""
 
 :: Path to your 7zip binary
 @REM SET ZIP_PROGRAM_PATH="%ProgramFiles%\7-Zip\7z.exe"

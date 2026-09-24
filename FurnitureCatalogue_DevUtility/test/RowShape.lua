@@ -6,7 +6,7 @@
 --   /furcdev row read     what deriving the dropped fields costs per pass
 --   /furcdev row api      structures assembled through the API, not from the row
 --
--- FurCDev.RowShape.Register adds a structure of your own, from Custom.lua.
+-- FurCDev.RowShape.Register adds a structure from a dev script
 
 if not FurCDev then
   return
@@ -679,7 +679,7 @@ local API_SHAPES = {
 }
 
 --- Adds a candidate structure, so one can be priced without editing this file.
---- Custom.lua is the place for a shape that is being designed rather than shipped.
+--- Call from a dev script for a shape being designed rather than shipped.
 ---@param shape table key, note, and build(itemId, row). Set fromApi to build from
 ---  an item id alone rather than by transforming the stored row.
 local function register(shape)

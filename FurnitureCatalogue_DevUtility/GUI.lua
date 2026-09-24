@@ -1,6 +1,5 @@
 -- FurCDev GUI (data textbox, context menues etc)
 local this = FurCDev
-local getEntry = LibFurnitureCatalogue.API.GetEntry
 
 FurCDevControl_LinkHandlerBackup_OnLinkMouseUp = nil
 this.textbox = this.textbox or FurCDevControlBox
@@ -196,6 +195,15 @@ local S_DIVIDER = "-"
 local function addMenuItems()
   AddCustomMenuItem(S_DIVIDER, doNothing, MENU_ADD_OPTION_LABEL)
   AddCustomMenuItem(S_ADD_TO_BOX, concatToTextbox, MENU_ADD_OPTION_LABEL)
+  if
+    cachedItemLink
+    and (IsItemLinkFurnitureRecipe(cachedItemLink) or GetItemLinkItemType(cachedItemLink) == ITEMTYPE_FURNISHING)
+  then
+    local id = GetItemLinkItemId(cachedItemLink)
+    AddCustomMenuItem("Add JSONL to textbox", function()
+      this.ScanFurniture(id, id)
+    end, MENU_ADD_OPTION_LABEL)
+  end
 end
 
 function FurCDevControl_HandleClickEvent(itemLink, mouseButton, control)
@@ -267,7 +275,10 @@ function FurCDevControl_HandleInventoryContextMenu(control)
   cachedPrice = price or 0
   cachedCanBuy = meetsRequirementsToBuy
 
-  if not getEntry(cachedItemLink) then
+  if
+    not cachedItemLink
+    or not (IsItemLinkFurnitureRecipe(cachedItemLink) or GetItemLinkItemType(cachedItemLink) == ITEMTYPE_FURNISHING)
+  then
     return
   end
 
@@ -402,6 +413,16 @@ function this.SetScanSummary(text)
   this.RefreshHeader()
 end
 
+-- Window can open before async build finishes
+function this.InitHeader()
+  local api = LibFurnitureCatalogue.API
+  api.RegisterCallback(api.Events.SCAN_STARTED, this.RefreshHeader)
+  api.RegisterCallback(api.Events.SCAN_COMPLETE, this.RefreshHeader)
+  api.RegisterCallback(api.Events.SCAN_FAILED, this.RefreshHeader)
+  api.OnReady(this.RefreshHeader)
+  this.RefreshHeader()
+end
+
 -- Fill header bar from game state
 function this.RefreshHeader()
   local label = FurCDevControl_Header
@@ -410,11 +431,12 @@ function this.RefreshHeader()
   end
   local api = (GetAPIVersion and GetAPIVersion()) or 0
   local locale = (GetCVar and GetCVar("Language.2")) or "?"
-  local dbCount = (FurC and FurC.DB and NonContiguousCount(FurC.DB)) or 0
+  local catalogue = LibFurnitureCatalogue.API
+  local dbStatus = catalogue.IsReady() and string.format("%d items", catalogue.GetEntryCount()) or catalogue.GetState()
   local catCount = (GetNumFurnitureCategories and GetNumFurnitureCategories()) or 0
-  local scan = dashboard.lastScan or "no scan yet"
+  local summary = dashboard.lastScan and ("  |  " .. dashboard.lastScan) or ""
   label:SetText(
-    string.format("API %d  |  %s  |  DB %d items  |  %d categories  |  scan: %s", api, locale, dbCount, catCount, scan)
+    string.format("API %d  |  %s  |  Catalogue: %s  |  %d categories%s", api, locale, dbStatus, catCount, summary)
   )
 end
 
@@ -699,6 +721,9 @@ function this.OnSearch(editControl, tabId)
     return a.id < b.id
   end)
   cfg.matches = matches
+  this.SetScanSummary(
+    string.format("%s: %d / %d matches", dashboard.panels[tabId].label, #matches, NonContiguousCount(cfg.source()))
+  )
   cfg.page = 1
   renderPage(cfg)
 end
@@ -802,6 +827,9 @@ function this.InitDashboard()
   this.RegisterTab("quests", "Quests", FurCDevControl_Quests, refreshSearchTab("quests"))
   this.RegisterTab("zones", "Zones", FurCDevControl_Zones, refreshSearchTab("zones"))
   this.RegisterTab("houses", "Houses", FurCDevControl_Houses, refreshSearchTab("houses"))
+  if this.BuildDiscoveryTab then
+    this.BuildDiscoveryTab()
+  end
   if this.BuildDumpTab then
     this.BuildDumpTab() -- Export.lua, registers itself last
   end
@@ -811,5 +839,5 @@ function this.InitDashboard()
   buildPager("zones")
   buildPager("houses")
   this.ClearTabs() -- Start neutral: no tab active
-  this.RefreshHeader()
+  this.InitHeader()
 end

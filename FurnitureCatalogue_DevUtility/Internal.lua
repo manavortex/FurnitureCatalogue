@@ -10,6 +10,15 @@ local zoneTable = {}
 local houseTable = {}
 local houseMeta = {}
 
+-- Display names stay capitalised (search runs on lowercase)
+function internal.FormatName(raw)
+  if not raw or raw == "" then
+    return ""
+  end
+  local text = LibFurnitureCatalogue.Internal.Format.stripTxt(raw or "")
+  return (zo_strformat("<<C:1>>", text):gsub("[%c]", " "))
+end
+
 this.Achievements = achievementTable
 this.Quests = questTable
 this.Zones = zoneTable
@@ -22,10 +31,9 @@ local function addAchievement(id)
   if not id or id == 0 then
     return
   end
-  local achieveName = GetAchievementInfo(id)
+  local achieveName = internal.FormatName(GetAchievementInfo(id))
   if achieveName ~= "" then
-    -- Save gendered and lowercased achievement name
-    achievementTable[id] = LocaleAwareToLower(zo_strformat(achieveName))
+    achievementTable[id] = achieveName
   end
 end
 
@@ -50,7 +58,7 @@ internal.BuildAchievementTable = buildAchievementTable
 local function buildQuestTable()
   local MAX_QUESTS = 10000
   for id = 1, MAX_QUESTS do
-    local questName = GetQuestName(id)
+    local questName = internal.FormatName(GetQuestName(id))
     if questName ~= "" then
       questTable[id] = questName
     end
@@ -62,14 +70,14 @@ internal.BuildQuestTable = buildQuestTable
 local function buildHouseTable()
   for i = 1, GetTotalCollectiblesByCategoryType(COLLECTIBLE_CATEGORY_TYPE_HOUSE) do
     local collectibleId = GetCollectibleIdFromType(COLLECTIBLE_CATEGORY_TYPE_HOUSE, i)
-    local name = GetCollectibleName(collectibleId)
+    local name = internal.FormatName(GetCollectibleName(collectibleId))
     if name ~= "" then
       local houseId = GetCollectibleReferenceId(collectibleId)
       local zoneId = GetHouseZoneId(houseId) -- 0 = invalid
       houseTable[collectibleId] = name
       houseMeta[collectibleId] = {
         houseId = houseId,
-        zone = (zoneId > 0 and GetZoneNameById(zoneId)) or "",
+        zone = (zoneId > 0 and internal.FormatName(GetZoneNameById(zoneId))) or "",
       }
     end
   end
@@ -92,7 +100,7 @@ local function buildZoneTable(iFrom)
   FurC.Logger:Debug("Building Zone Table: %d/%d [%5d...%5d]", NonContiguousCount(this.Zones), NUM_ZONES, iFrom, iTo)
   for id = iFrom, iTo do
     -- do NOT use `GetZoneNameByIndex` as it's a contiguous version of *ById, means the indices change
-    local zoneName = GetZoneNameById(id)
+    local zoneName = internal.FormatName(GetZoneNameById(id))
     if zoneName ~= "" then
       zoneTable[id] = zoneName
     end

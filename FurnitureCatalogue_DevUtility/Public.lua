@@ -14,9 +14,9 @@ local function getAchievementId(achievementName)
   end
 
   -- making sure achievement name is the same like in the lookup table
-  achievementName = LocaleAwareToLower(zo_strformat(achievementName))
+  achievementName = LocaleAwareToLower(internal.FormatName(achievementName))
   for id, name in pairs(this.Achievements) do
-    if name == achievementName then
+    if LocaleAwareToLower(name) == achievementName then
       return id
     end
   end
@@ -33,13 +33,13 @@ local function findAchievement(achievementName)
     return results
   end
 
-  if #this.Achievements < 1 then
+  if NonContiguousCount(this.Achievements) < 1 then
     internal.BuildAchievementTable()
   end
 
-  achievementName = LocaleAwareToLower(zo_strformat(achievementName))
+  achievementName = LocaleAwareToLower(internal.FormatName(achievementName))
   for id, name in pairs(this.Achievements) do
-    if string.find(name, achievementName) then
+    if string.find(LocaleAwareToLower(name), achievementName, 1, true) then
       table.insert(results, zo_strformat("<<1>>: <<2>>", id, name))
     end
   end
@@ -61,9 +61,9 @@ local function findQuest(questName)
     return results
   end
 
-  questName = LocaleAwareToLower(zo_strformat(questName))
+  questName = LocaleAwareToLower(internal.FormatName(questName))
   for id, name in pairs(this.Quests) do
-    if string.find(LocaleAwareToLower(name), questName) then
+    if string.find(LocaleAwareToLower(name), questName, 1, true) then
       results[id] = name
     end
   end
@@ -72,7 +72,7 @@ end
 this.FindQuest = findQuest
 
 ---@param zoneName string part of the zone name
----@return table results list of zones that match the given name (unformatted)
+---@return table results list of zones that match the given name
 local function findZone(zoneName)
   local results = {}
   if not zoneName or zoneName == "" then
@@ -85,9 +85,9 @@ local function findZone(zoneName)
     return results
   end
 
-  zoneName = LocaleAwareToLower(zo_strformat(zoneName))
+  zoneName = LocaleAwareToLower(internal.FormatName(zoneName))
   for id, name in pairs(this.Zones) do
-    if string.find(LocaleAwareToLower(name), zoneName) then
+    if string.find(LocaleAwareToLower(name), zoneName, 1, true) then
       results[id] = name
     end
   end

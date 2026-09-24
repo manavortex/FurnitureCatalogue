@@ -129,7 +129,7 @@ def package_addon(name: str, exclude_filename: str):
 if __name__ == '__main__':
   parser = argparse.ArgumentParser(description="Package AddOn for release")
   parser.add_argument('--name', help='AddOn title for version and zip name', default=ADDON_NAME)
-  parser.add_argument('--exclude_filename', help='Will be excluded from package', default="Custom.lua")
+  parser.add_argument('--exclude_filename', help='Will be excluded from package', default="")
   args = parser.parse_args()
 
   package_addon(args.name, args.exclude_filename)
