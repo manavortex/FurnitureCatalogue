@@ -21,7 +21,7 @@ test/RowShape.lua
 Consumers.lua
 
 Dump.lua
-Discovery.lua
+Datamine.lua
 
 test/setup.lua
 test/contract_libprice.lua

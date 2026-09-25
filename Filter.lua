@@ -170,38 +170,6 @@ local function hasSource(s)
   return maskHasSource(sourceBits, s)
 end
 
-local function isHomeGoodsFurnisherItem()
-  local versionData = FurC.AchievementVendors[recipeArray.version]
-  if not versionData then
-    return false
-  end
-  for locationName, locationData in pairs(versionData) do
-    local vendorData = locationData[SI_FURC_TRADERS_HGF]
-    if vendorData and vendorData[itemId] then
-      return true
-    end
-  end
-  return false
-end
-
--- most of those items are achievement-gated, but guild stewards, mystic and the quest rows are not
--- `achievement = 0` still belongs in here, just means we don't have an achievement ID
-local function isAchievementGatedItem()
-  local versionData = FurC.AchievementVendors[recipeArray.version]
-  if not versionData then
-    return false
-  end
-  for locationName, locationData in pairs(versionData) do
-    for vendorNpc, vendorData in pairs(locationData) do
-      local row = vendorData[itemId]
-      if type(row) == "table" and row.achievement then
-        return true
-      end
-    end
-  end
-  return false
-end
-
 local function isEventTradeBarItem()
   local versionData = FurC.EventItems[recipeArray.version]
   if not versionData then
@@ -239,10 +207,10 @@ local function matchesSource(candidate)
     return matchingDropdownSource == candidate
   end
   if FurC.SourceFilters.ACHIEVEMENT == candidate then
-    return hasSource(src.VENDOR) and isAchievementGatedItem()
+    return hasSource(src.ACHIEVEMENT)
   end
   if FurC.SourceFilters.HOME_GOODS == candidate then
-    return hasSource(src.VENDOR) and isHomeGoodsFurnisherItem()
+    return hasSource(src.HOME_GOODS)
   end
   -- the writ vendor tab is the vendor's own source under another name
   if src.WRIT_VENDOR == candidate then

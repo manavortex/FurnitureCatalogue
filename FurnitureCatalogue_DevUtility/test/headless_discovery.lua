@@ -91,7 +91,7 @@ end
 function GetItemLinkIcon()
   return "/esoui/art/icons/chair.dds"
 end
-dofile("FurnitureCatalogue_DevUtility/Discovery.lua")
+dofile("FurnitureCatalogue_DevUtility/Datamine.lua")
 FurCDev.ScanFurniture(100, 400)
 assert(#pending == 1, "scan must yield between bounded batches")
 assert(output == "", "no partial output")

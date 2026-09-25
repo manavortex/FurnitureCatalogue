@@ -91,7 +91,7 @@ local warnedUnlabelled = false
 local function collectUngrouped(placed, choices)
   local ungrouped, unlabelled = {}, {}
   for _, id in pairs(src) do
-    if id ~= src.IGNORED and not placed[id] then
+    if id ~= src.IGNORED and id ~= src.HOME_GOODS and id ~= src.ACHIEVEMENT and not placed[id] then
       if choices[id] then
         ungrouped[#ungrouped + 1] = { id = id }
       else
