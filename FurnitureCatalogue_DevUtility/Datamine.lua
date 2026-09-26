@@ -88,6 +88,32 @@ function this.DiscoveryLine(id, blueprint)
     .. "}"
 end
 
+---One item's line appended to the output box, whether the catalogue knows it or not: the menu asks about this item, where a scan looks for new ones
+---@param id integer furnishing or blueprint id
+---@return boolean added
+function this.AppendDiscovery(id)
+  local link = FurC.Utils.GetItemLink(id)
+  local blueprint
+  if IsItemLinkFurnitureRecipe(link) then
+    local made = GetItemLinkItemId(GetItemLinkRecipeResultItemLink(link, LINK_STYLE_BRACKETS))
+    if not made or made == 0 then
+      return false
+    end
+    id, blueprint = made, id
+  end
+  local line = this.DiscoveryLine(id, blueprint)
+  local text = this.textbox:GetText() or ""
+  if text:find(line, 1, true) then
+    return false
+  end
+  if text ~= "" and text:sub(-1) ~= "\n" then
+    text = text .. "\n"
+  end
+  this.textbox:SetText(text .. line .. "\n")
+  this.control:SetHidden(false)
+  return true
+end
+
 function this.ShowDiscoveryPage(delta)
   if #pages == 0 then
     return

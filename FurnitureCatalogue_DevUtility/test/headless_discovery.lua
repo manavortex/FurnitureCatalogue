@@ -185,6 +185,24 @@ table.remove(pending, 1)()
 assert(menu["Add JSONL to textbox"], "missing item must have a discovery action")
 menu["Add JSONL to textbox"]()
 assert(output:find('"id":101', 1, true), "context action must produce discovery JSONL")
+-- A catalogued item and a blueprint are added too, after what is already there, and only once.
+local before = output
+GetItemLink = function()
+  return 100
+end
+FurCDevControl_HandleInventoryContextMenu({})
+table.remove(pending, 1)()
+menu["Add JSONL to textbox"]()
+assert(
+  output:sub(1, #before) == before and output:find('"record":{"id":100,"source"', 1, true),
+  "known item must append"
+)
+menu["Add JSONL to textbox"]()
+local _, lines = output:gsub("\n", "")
+assert(lines == 2, "the same item must not be added twice")
+FurCDev.AppendDiscovery(106)
+assert(output:find('"record":{"id":100,"blueprint":106', 1, true), "a blueprint adds its furnishing with the blueprint")
+output = before
 
 -- Build and exercise the actual Datamine controls, without chat commands.
 local widgets = {}

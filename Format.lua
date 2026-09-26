@@ -788,3 +788,45 @@ local function formatDescription(itemId, entry, stripColor, opts)
   return text
 end
 this.FormatDescription = formatDescription
+
+---Every source for the list window, one per line, the selected ones first
+---
+---A material list only fills a row nothing else describes
+---@param itemId integer
+---@param entry FurCEntry|nil
+---@param opts? { dateFormat?: string }
+---@param preferred? table<integer, true> source types the Source filter selects
+---@return string
+local function formatListText(itemId, entry, opts, preferred)
+  preferred = preferred or {}
+  local first, rest, materials = {}, {}, nil
+  for _, line in ipairs(formatItem(itemId, entry, opts, true)) do
+    if line.source == src.CRAFTING and not recipeSource(itemId, opts) then
+      materials = line
+    elseif preferred[line.source] then
+      first[#first + 1] = line
+    else
+      rest[#rest + 1] = line
+    end
+  end
+  local texts, seen = {}, {}
+  for _, group in ipairs({ first, rest }) do
+    for _, line in ipairs(group) do
+      -- a blueprint sold where its furnishing is sold reads the same twice
+      if not seen[line.text] then
+        seen[line.text] = true
+        texts[#texts + 1] = line.text
+      end
+    end
+  end
+  local contents = formatContents(itemId)
+  if contents then
+    -- beside the first line that sells the container, as formatDescription has it
+    texts[1] = texts[1] and string.format("%s - %s", texts[1], contents) or contents
+  end
+  if not texts[1] and materials then
+    texts[1] = materials.text
+  end
+  return table.concat(texts, "\n")
+end
+this.FormatListText = formatListText

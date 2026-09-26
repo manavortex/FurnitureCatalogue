@@ -201,7 +201,7 @@ local function addMenuItems()
   then
     local id = GetItemLinkItemId(cachedItemLink)
     AddCustomMenuItem("Add JSONL to textbox", function()
-      this.ScanFurniture(id, id)
+      this.AppendDiscovery(id)
     end, MENU_ADD_OPTION_LABEL)
   end
 end

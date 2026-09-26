@@ -149,6 +149,140 @@ function this.DumpMeta(skipReloadPrompt)
 end
 
 -------------------------
+-- Shape: names
+-------------------------
+
+-- Id -> name tables the website shows beside the ids in the data. The game needs none of them.
+local NAMES_FORMAT = "furniture-names-v1"
+local PAGE_BYTES = 24000 -- what the output box can hand to the clipboard in one go
+
+---Every zone now, where the search tab builds them over several seconds
+local function buildAllZones()
+  local numZones, found = GetNumZones(), 0
+  for id = 1, numZones * 100 do
+    local name = this.Internal.FormatName(GetZoneNameById(id))
+    if name ~= "" then
+      this.Zones[id] = name
+      found = found + 1
+      if found >= numZones then
+        break
+      end
+    end
+  end
+end
+
+-- builders are looked up when used, so this file does not depend on Internal.lua loading first
+local NAME_KINDS = {
+  { key = "houses", label = "Houses", source = "Houses", build = "BuildHouseTable" },
+  { key = "quests", label = "Quests", source = "Quests", build = "BuildQuestTable" },
+  { key = "achievements", label = "Achievements", source = "Achievements", build = "BuildAchievementTable" },
+  { key = "zones", label = "Zones", source = "Zones", build = buildAllZones },
+}
+
+---@return table<integer, string> names a copy, so a later rebuild cannot change a dump
+local function namesOf(kind)
+  local names = this[kind.source]
+  if NonContiguousCount(names) < 1 or kind.key == "zones" then
+    if type(kind.build) == "function" then
+      kind.build()
+    else
+      this.Internal[kind.build]()
+    end
+  end
+  local copy = {}
+  for id, name in pairs(names) do
+    copy[id] = name
+  end
+  return copy
+end
+
+local namePages, namePage, nameControls = {}, 1, {}
+
+local function refreshNamePager()
+  if not nameControls.page then
+    return
+  end
+  nameControls.prev:SetEnabled(namePage > 1)
+  nameControls.next:SetEnabled(namePage < #namePages)
+  nameControls.page:SetText(#namePages > 0 and string.format("Page %d / %d", namePage, #namePages) or "No output")
+end
+
+local function showNamePage(delta)
+  if #namePages == 0 then
+    return
+  end
+  namePage = math.max(1, math.min(#namePages, namePage + (delta or 0)))
+  showOutput(namePages[namePage])
+  if this.selectAllOutput then
+    this.selectAllOutput()
+  end
+  refreshNamePager()
+end
+
+---One Lua table, split into pages that concatenate back into it
+---@return string[] pages
+function this.NamePages(kind, names, pageBytes)
+  pageBytes = pageBytes or PAGE_BYTES
+  local ids = {}
+  for id in pairs(names) do
+    ids[#ids + 1] = id
+  end
+  table.sort(ids)
+  local lines = {
+    string.format("-- %s, %s, API %s, %d names", kind, currentLocale(), GetAPIVersion and GetAPIVersion() or 0, #ids),
+    kind .. " = {",
+  }
+  for _, id in ipairs(ids) do
+    lines[#lines + 1] = string.format("  [%d] = %q,", id, names[id])
+  end
+  lines[#lines + 1] = "}"
+
+  local pages, chunk, size = {}, {}, 0
+  for _, line in ipairs(lines) do
+    -- room for the page label added below
+    if size + #line + 1 > pageBytes - 64 and #chunk > 0 then
+      pages[#pages + 1] = table.concat(chunk, "\n")
+      chunk, size = {}, 0
+    end
+    chunk[#chunk + 1] = line
+    size = size + #line + 1
+  end
+  pages[#pages + 1] = table.concat(chunk, "\n")
+  -- a page pasted on its own still says which table it belongs to; a comment keeps the joined pages valid Lua
+  for i = 2, #pages do
+    pages[i] = string.format("-- %s, page %d of %d\n%s", kind, i, #pages, pages[i])
+  end
+  return pages
+end
+
+function this.DumpNames(key)
+  for _, kind in ipairs(NAME_KINDS) do
+    if kind.key == key then
+      namePages, namePage = this.NamePages(key, namesOf(kind)), 1
+      showNamePage()
+      return
+    end
+  end
+end
+
+-- One file with all four, for when the pages get too many to copy
+function this.DumpAllNames(skipReloadPrompt)
+  local dump = { format = NAMES_FORMAT, locale = currentLocale(), apiVersion = GetAPIVersion and GetAPIVersion() or 0 }
+  local counts = {}
+  for _, kind in ipairs(NAME_KINDS) do
+    dump[kind.key] = namesOf(kind)
+    counts[#counts + 1] = string.format("  %-13s %d", kind.key .. ":", NonContiguousCount(dump[kind.key]))
+  end
+  savedVars().names = dump
+  showOutput(
+    "FurCDev names dump\n" .. table.concat(counts, "\n") .. "\n\nReload the UI to write SavedVariables to disk."
+  )
+  if not skipReloadPrompt then
+    promptReload()
+  end
+end
+
+-------------------------
 -- Dump tab
 -------------------------
 
@@ -205,5 +339,49 @@ function this.BuildDumpTab()
     end
   )
   addButton(panel, 2, "Reload UI", "Flushes SavedVariables to disk.\nAsks first.", promptReload)
+
+  for i, kind in ipairs(NAME_KINDS) do
+    addButton(
+      panel,
+      3 + i,
+      kind.label .. " names",
+      '[id] = "name" as Lua, shown in the output box.\nCopy it page by page. No reload needed.',
+      function()
+        this.DumpNames(kind.key)
+      end
+    )
+  end
+  local pagerY = (3 + #NAME_KINDS) * ROW_GAP
+  nameControls.prev =
+    WINDOW_MANAGER:CreateControlFromVirtual("FurCDevControl_Dump_NamesPrev", panel, "ZO_DefaultButton")
+  nameControls.prev:SetDimensions(50, BUTTON_HEIGHT)
+  nameControls.prev:SetAnchor(TOPLEFT, panel, TOPLEFT, 0, pagerY)
+  nameControls.prev:SetText("<")
+  nameControls.prev:SetHandler("OnClicked", function()
+    showNamePage(-1)
+  end)
+  nameControls.page = WINDOW_MANAGER:CreateControl("FurCDevControl_Dump_NamesPage", panel, CT_LABEL)
+  nameControls.page:SetFont("ZoFontGame")
+  nameControls.page:SetDimensions(BUTTON_WIDTH - 100, BUTTON_HEIGHT)
+  nameControls.page:SetAnchor(TOPLEFT, panel, TOPLEFT, 50, pagerY + 2)
+  nameControls.page:SetHorizontalAlignment(TEXT_ALIGN_CENTER)
+  nameControls.next =
+    WINDOW_MANAGER:CreateControlFromVirtual("FurCDevControl_Dump_NamesNext", panel, "ZO_DefaultButton")
+  nameControls.next:SetDimensions(50, BUTTON_HEIGHT)
+  nameControls.next:SetAnchor(TOPLEFT, panel, TOPLEFT, BUTTON_WIDTH - 50, pagerY)
+  nameControls.next:SetText(">")
+  nameControls.next:SetHandler("OnClicked", function()
+    showNamePage(1)
+  end)
+  addButton(
+    panel,
+    5 + #NAME_KINDS,
+    "All names to file",
+    "Houses, quests, achievements and zones together.\nWrites FurCDev_SavedVariables.names.\nReload to write it to disk.",
+    function()
+      this.DumpAllNames()
+    end
+  )
+  refreshNamePager()
   this.RegisterTab("dump", "Dump", panel)
 end

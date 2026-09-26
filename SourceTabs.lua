@@ -263,6 +263,41 @@ function FurC.GetAdditiveSourceCount(srcId)
   return n
 end
 
+-- Tabs that are not a library source, by the record type they stand for
+-- TODO: unify this stuff, so we don't have to map it
+local TYPE_OF_TAB = {
+  [src.CRAFTING_KNOWN] = src.CRAFTING,
+  [src.CRAFTING_UNKNOWN] = src.CRAFTING,
+  [src.WRIT_VENDOR] = src.ROLIS,
+  [FurC.SourceFilters.CROWN_STORE] = src.CROWN,
+  [FurC.SourceFilters.ACHIEVEMENT] = src.ACHIEVEMENT,
+  [FurC.SourceFilters.HOME_GOODS] = src.HOME_GOODS,
+  [FurC.SourceFilters.ALLIANCE_POINTS] = src.PVP,
+  [src.TELVAR] = src.PVP,
+  [FurC.SourceFilters.GOLD_COAST_BAZAAR] = src.BAZAAR,
+  [FurC.SourceFilters.IMPRESARIO] = src.FESTIVAL_DROP,
+}
+
+---Record types the Source selection and its right-click picks stand for, a parent tab covering its children
+---@return table<integer, true> types empty for "All" and Favourites
+function FurC.GetSelectedSourceTypes()
+  getResolvedTree()
+  local types = {}
+  local function add(id)
+    if id == src.NONE or id == src.FAVE then
+      return
+    end
+    for _, covered in ipairs(subtreeIds[id] or { id }) do
+      types[TYPE_OF_TAB[covered] or covered] = true
+    end
+  end
+  add(FurC.GetDropdownChoice("Source"))
+  for id in pairs(FurC.AdditiveSources or {}) do
+    add(id)
+  end
+  return types
+end
+
 -- Crafting-profession row: visible under these top-level families.
 local CRAFT_BUTTON_FAMILIES = {
   [src.NONE] = true,

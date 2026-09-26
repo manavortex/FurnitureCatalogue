@@ -147,6 +147,9 @@ function FurC.CenterFilterBars()
 end
 
 local function updateLineVisibility()
+  local listOpts = { dateFormat = FurC.GetDateFormat() }
+  local selectedTypes = FurC.GetSelectedSourceTypes()
+
   local function fillLine(curLine, curData, lineIndex)
     if nil == curLine then
       return
@@ -179,7 +182,7 @@ local function updateLineVisibility()
       curLine.icon:SetAlpha(1)
       local text = string.gsub(curData.itemLink, "H1", "H0")
       curLine.text:SetText(((FurC.IsFavoriteById(curData.itemId) and "* ") or "") .. text)
-      local mats = sourceFormat.FormatDescription(curData.itemId, curData, nil, { dateFormat = FurC.GetDateFormat() })
+      local mats = sourceFormat.FormatListText(curData.itemId, curData, listOpts, selectedTypes)
       curLine.mats:SetText(mats)
     end
   end

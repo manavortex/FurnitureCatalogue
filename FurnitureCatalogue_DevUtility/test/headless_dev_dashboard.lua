@@ -141,4 +141,25 @@ callbacks.failed()
 assert(header:find("Catalogue: failed", 1, true))
 FurCDev.SetScanSummary("Scanning IDs: 250 / 1000")
 assert(header:find("Scanning IDs: 250 / 1000", 1, true))
-print("Dashboard checks passed: formatted names and lifecycle-driven header.")
+
+dofile("FurnitureCatalogue_DevUtility/Dump.lua")
+local shown
+FurCDev.textbox = {
+  SetText = function(_, text)
+    shown = text
+  end,
+}
+FurCDev.control = {
+  SetHidden = function() end,
+  IsHidden = function()
+    return true
+  end,
+}
+FurCDev.DumpNames("quests")
+assert(shown:find("quests = {", 1, true) and shown:find('[12] = "Höhle",', 1, true), shown)
+FurCDev.DumpAllNames(true)
+local names = FurCDev_SavedVariables.names
+assert(names.format == "furniture-names-v1" and names.locale == "en")
+assert(names.houses[13] == "Дом" and names.quests[12] == "Höhle")
+assert(names.achievements[11] == "Élan" and names.zones[1] == "森")
+print("Dashboard checks passed: formatted names, names dump and lifecycle-driven header.")

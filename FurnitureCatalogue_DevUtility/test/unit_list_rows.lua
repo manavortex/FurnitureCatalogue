@@ -23,12 +23,19 @@ Taneth("FurC:Unit", function()
     for itemId, row in pairs(FurC.DB) do
       if type(itemId) == "number" and type(row) == "table" then
         local crafted, other = false, false
+        local types, numTypes = {}, 0
         for _, record in ipairs(api.GetSourceDetails(itemId)) do
           if record.source.type == src.CRAFTING then
             crafted = true
           else
             other = true
+            if not types[record.source.type] then
+              types[record.source.type], numTypes = true, numTypes + 1
+            end
           end
+        end
+        if numTypes >= 2 then
+          picks.multiSource = picks.multiSource or itemId
         end
         if crafted and not other then
           picks.craftOnly = picks.craftOnly or itemId
@@ -36,7 +43,7 @@ Taneth("FurC:Unit", function()
           picks.alsoSold = picks.alsoSold or itemId
         end
       end
-      if picks.craftOnly and picks.alsoSold then
+      if picks.craftOnly and picks.alsoSold and picks.multiSource then
         break
       end
     end
@@ -130,6 +137,54 @@ Taneth("FurC:Unit", function()
       local ranked = format.FormatItem(itemId, row, nil, true)
       assert.is_true(#ranked > 0)
       assert.equals(ranked[1].text, format.FormatDescription(itemId, row))
+    end)
+
+    -- the window shows every source, not only the best one
+    it("list every source of a multi-source item, the selected source first", function()
+      local itemId = picked().multiSource
+      if not itemId then
+        return
+      end
+      local row = displayRow(itemId)
+      local ranked = format.FormatItem(itemId, row, nil, true)
+      local text = format.FormatListText(itemId, row)
+      local lastSource
+      for _, line in ipairs(ranked) do
+        if line.source ~= src.CRAFTING then
+          assert.is_true(text:find(line.text, 1, true) ~= nil)
+          lastSource = line
+        end
+      end
+
+      local preferred = format.FormatListText(itemId, row, nil, { [lastSource.source] = true })
+      assert.equals(1, (preferred:find(lastSource.text, 1, true)))
+    end)
+
+    it("read a parent Source tab as every record type below it", function()
+      local saved = FurC.DropdownChoices["Source"]
+      FurC.DropdownChoices["Source"] = src.VENDOR
+      local types = FurC.GetSelectedSourceTypes()
+      FurC.DropdownChoices["Source"] = src.NONE
+      local none = FurC.GetSelectedSourceTypes()
+      FurC.DropdownChoices["Source"] = saved
+      for _, type_ in ipairs({ src.VENDOR, src.ACHIEVEMENT, src.HOME_GOODS, src.LUXURY }) do
+        assert.is_true(types[type_] == true)
+      end
+      assert.is_nil(types[FurC.SourceFilters.ACHIEVEMENT])
+      assert.is_nil(next(none))
+    end)
+
+    it("show a material list only when nothing else describes the item", function()
+      local p = picked()
+      withIngredients(function()
+        local craftOnly = displayRow(p.craftOnly)
+        assert.equals(format.FormatMaterials(p.craftOnly, craftOnly), format.FormatListText(p.craftOnly, craftOnly))
+        if p.alsoSold then
+          local row = displayRow(p.alsoSold)
+          local text = format.FormatListText(p.alsoSold, row)
+          assert.is_nil(text:find(format.FormatMaterials(p.alsoSold, row), 1, true))
+        end
+      end)
     end)
   end)
 end)
