@@ -12,16 +12,11 @@ Taneth("FurC:Regression", function()
   --- Every recipe the writ vendors sell (including folios)
   local function voucherRecipeIds()
     local ids = {}
-    for _, tbl in ipairs({ FurC.RolisRecipes or {}, FurC.FaustinaRecipes or {} }) do
-      for _, versionData in pairs(tbl) do
-        for id in pairs(versionData) do
-          ids[id] = true
-        end
-      end
-    end
-    for _, folioData in pairs(FurC.FurnishingFolios or {}) do
-      for _, id in ipairs(folioData.contents or {}) do
-        ids[id] = true
+    local api = LibFurnitureCatalogue.API
+    for _, id in ipairs(api.GetItemIds()) do
+      local entry = api.GetEntry(id)
+      if entry.blueprint and entry.sources[src.ROLIS] then
+        ids[entry.blueprint] = true
       end
     end
     return ids

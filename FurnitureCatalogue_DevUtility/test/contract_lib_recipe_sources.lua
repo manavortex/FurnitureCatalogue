@@ -1,162 +1,68 @@
--- FurC.RecipeSources data contract: rows are records of ids, never rendered text
-
 if not Taneth then
   return
 end
 
 Taneth("FurC:Lib", function()
-  local LFC = LibFurnitureCatalogue
-  local constants = LFC.Internal.Constants
-  local query = LFC.Internal.Query
+  local api = LibFurnitureCatalogue.API
+  local src = api.GetSourceTypes()
 
-  -- A vocabulary value is whatever the Ids table holds: an integer in game, a
-  -- string under ESOLua, which defines the SI_* globals as their own text. So
-  -- the contract is membership in the vocabulary, never the Lua type.
-  local function isFrom(idTable, value)
-    for _, id in pairs(idTable) do
-      if id == value then
-        return true
-      end
-    end
-    return false
-  end
-
-  local function rowsByShape()
-    local vendorRows, questRows = {}, {}
-    for itemId, row in pairs(FurC.RecipeSources) do
-      if type(row) ~= "table" then -- reported by the first test
-      elseif row.quest then
-        questRows[itemId] = row
-      else
-        vendorRows[itemId] = row
-      end
-    end
-    return vendorRows, questRows
-  end
-
-  describe("FurC.RecipeSources rows", function()
-    it("are records, not baked source lines", function()
-      local count = 0
-      for itemId, row in pairs(FurC.RecipeSources) do
-        count = count + 1
-        assert.equals("table", type(row), string.format("row %s is %s", itemId, type(row)))
-      end
-      assert.is_true(count > 0)
-    end)
-
-    it("name a vendor from the NPC vocabulary, in a place from a location one", function()
-      local vendorRows = rowsByShape()
-      assert.is_true(NonContiguousCount(vendorRows) > 0)
-
-      for itemId, row in pairs(vendorRows) do
-        local where = string.format("row %s", itemId)
-        assert.is_true(isFrom(constants.NpcIds, row.vendor), where .. ": vendor is not an NpcIds value")
-        assert.is_true(row.location == nil or row.place == nil, where .. ": has both a zone and a place")
-        if row.location ~= nil then
-          assert.is_true(isFrom(constants.ZoneIds, row.location), where .. ": location is not a ZoneIds value")
-        end
-        if row.place ~= nil then
-          assert.is_true(isFrom(constants.PlaceIds, row.place), where .. ": place is not a PlaceIds value")
-        end
-        -- a note is a string id or a literal, never a location
-        if row.note ~= nil then
-          assert.is_false(isFrom(constants.ZoneIds, row.note), where .. ": note holds a zone id")
-        end
-        if row.skillLine ~= nil then
-          assert.is_true(isFrom(constants.SkillLineIds, row.skillLine), where .. ": skillLine is unknown")
-          assert.equals("number", type(row.skillRank), where .. ": skillRank")
-        end
-        for _, field in ipairs({ "itemPrice", "achievement", "partOf" }) do
-          if row[field] ~= nil then
-            assert.equals("number", type(row[field]), where .. ": " .. field)
-          end
-        end
-        -- a row that names a source is scanned into the DB, so it needs a version
-        if row.source ~= nil then
-          assert.is_true(isFrom(constants.ItemSources, row.source), where .. ": source is not an ItemSources value")
-          assert.is_true(isFrom(constants.Versioning, row.version), where .. ": source without a version")
-        end
-      end
-    end)
-
-    -- the point of `source`: without it the item carries CRAFTING alone, and
-    -- GetRankedSources drops CRAFTING, so nothing tells the player where the
-    -- blueprint is sold
-    it("put a row's own source on the item it crafts", function()
-      local resolveRecipe = LFC.Internal.Build.ResolveRecipe
+  describe("blueprint acquisition records", function()
+    it("resolve each confirmed blueprint to its furnishing", function()
       local checked = 0
-      for recipeId, row in pairs(FurC.RecipeSources) do
-        if type(row) == "table" and row.source then
-          local itemId = resolveRecipe(recipeId)
-          local entry = itemId and LFC.API.GetEntry(itemId)
-          assert.equals("table", type(entry), string.format("row %s resolved to no entry", recipeId))
-          assert.is_true(
-            entry.sources[row.source] == true,
-            string.format("row %s: item %s does not carry the row's source", recipeId, itemId)
-          )
-          -- and it has to reach the ranked list, which is what a player reads;
-          -- CRAFTING alone is dropped there, so a row without a source is silent
-          local ranked = LFC.Internal.Query.GetRankedSources(itemId, entry, false)
-          local rendered
-          for _, entryLine in ipairs(ranked) do
-            if entryLine.source == row.source then
-              rendered = entryLine.text
-            end
-          end
-          -- an unhandled source falls through to "item source unknown, please re-scan", which is why not-empty check is not enough
-          assert.is_not_nil(rendered, string.format("row %s: item %s renders no line", recipeId, itemId))
-          assert.is_true(
-            rendered ~= GetString(SI_FURC_SRC_EMPTY),
-            string.format("row %s: item %s falls through to the unknown-source text", recipeId, itemId)
-          )
-          if row.vendor then
-            local vendorName = constants.Resolvers.Npc(row.vendor)
-            assert.is_true(
-              rendered:find(vendorName, 1, true) ~= nil,
-              string.format("row %s: item %s does not name %s", recipeId, itemId, vendorName)
-            )
-          end
+      for _, id in ipairs(api.GetItemIds()) do
+        local entry = api.GetEntry(id)
+        if entry.blueprint and not entry.sources[src.RUMOUR] then
+          assert.equals(id, api.GetEntry(entry.blueprint).id)
+          assert.is_true(entry.sources[src.CRAFTING])
+          assert.same(api.GetSourceDetails(id), api.GetSourceDetails(entry.blueprint))
           checked = checked + 1
         end
       end
-      assert.is_true(checked > 0, "no row names a source")
+      assert.is_true(checked > 0)
     end)
 
-    it("give quest rows a list of zones", function()
-      local _, questRows = rowsByShape()
-      assert.is_true(NonContiguousCount(questRows) > 0)
-
-      for itemId, row in pairs(questRows) do
-        local where = string.format("row %s", itemId)
-        assert.equals("table", type(row.locations), where .. ": locations")
-        assert.is_true(#row.locations > 0, where .. ": no locations")
-        for _, zoneId in ipairs(row.locations) do
-          assert.is_true(isFrom(constants.ZoneIds, zoneId), where .. ": location is not a ZoneIds value")
+    it("keep vendor and quest details on crafting records", function()
+      local vendors, quests = 0, 0
+      for _, id in ipairs(api.GetItemIds()) do
+        local entry = api.GetEntry(id)
+        if entry.blueprint then
+          for _, record in ipairs(api.GetSourceDetails(id)) do
+            local source = record.source
+            if source.type == src.CRAFTING and (source.vendor or source.quest) then
+              local text = LibFurnitureCatalogue.Internal.Query.RenderRecord(record)
+              assert.equals("string", type(text))
+              assert.is_true(#text > 0)
+              assert.is_not_nil(source.locations)
+              if source.vendor then
+                vendors = vendors + 1
+                assert.is_not_nil(
+                  text:find(LibFurnitureCatalogue.Internal.Constants.Resolvers.Npc(source.vendor), 1, true)
+                )
+              else
+                quests = quests + 1
+              end
+            end
+          end
         end
       end
+      assert.is_true(vendors > 0)
+      assert.is_true(quests > 0)
     end)
 
-    -- Rendered text is in the client's language, so nothing here pins prose or
-    -- formatted numbers - see the thousands-separator defect on the writ-vendor
-    -- price test. What is pinned is that the id reached the renderer.
-    it("reach the crafting line, naming the resolved vendor", function()
-      local crafting = constants.ItemSources.CRAFTING
-      local vendorRows, questRows = rowsByShape()
-      for itemId, row in pairs(vendorRows) do
-        local line = query.DescribeSource(itemId, nil, crafting, false)
-        assert.equals("string", type(line), string.format("row %s rendered %s", itemId, type(line)))
-        local vendorName = constants.Resolvers.Npc(row.vendor)
-        assert.is_true(
-          line:find(vendorName, 1, true) ~= nil,
-          string.format("row %s line does not name %s", itemId, vendorName)
-        )
+    it("sell a folio blueprint only through its folio", function()
+      local records = api.GetSourceDetails(139091)
+      local counts = {}
+      for _, record in ipairs(records) do
+        local source = record.source
+        if source.type == src.ROLIS or source.type == src.CRAFTING then
+          counts[source.type] = (counts[source.type] or 0) + 1
+          assert.is_not_nil(source.partOf)
+          assert.is_not_nil(record.cost)
+          assert.equals(CURT_WRIT_VOUCHERS, record.cost.currency)
+        end
       end
-
-      for itemId in pairs(questRows) do
-        local line = query.DescribeSource(itemId, nil, crafting, false)
-        assert.equals("string", type(line))
-        assert.is_true(#line > 0, string.format("row %s rendered empty", itemId))
-      end
+      assert.equals(1, counts[src.ROLIS])
+      assert.equals(1, counts[src.CRAFTING])
     end)
   end)
 end)

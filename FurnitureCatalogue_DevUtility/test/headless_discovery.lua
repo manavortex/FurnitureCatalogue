@@ -1,8 +1,14 @@
 -- Run from the addon root: ../esolua/src/lua FurnitureCatalogue_DevUtility/test/headless_discovery.lua
 local output, pending, messages = "", {}, {}
-local known = { [100] = { version = 1 }, [101] = {}, [102] = { blueprint = 103 }, [110] = { version = 1 } }
+local known = {
+  [100] = { version = 1 },
+  [101] = {},
+  [102] = { blueprint = 103 },
+  [110] = { version = 1, blueprint = 107 },
+  [108] = { version = 1 },
+}
 local furniture = { [100] = true, [101] = true, [102] = true, [105] = true, [110] = true }
-local recipes = { [103] = 102, [104] = 102, [106] = 100, [107] = 110 }
+local recipes = { [103] = 102, [104] = 102, [106] = 100, [107] = 110, [108] = 102 }
 FurCDev = {
   textbox = {
     GetText = function()
@@ -25,6 +31,20 @@ LibFurnitureCatalogue = {
     IsReady = function()
       return true
     end,
+    GetItemIds = function()
+      local ids = {}
+      for id in pairs(known) do
+        ids[#ids + 1] = id
+      end
+      return ids
+    end,
+    GetEntry = function(id)
+      local entry = known[id]
+      if not entry then
+        return
+      end
+      return { version = entry.version, blueprint = entry.blueprint, sources = { [entry.sources or 0] = true } }
+    end,
     GetSourceTypes = function()
       return { IGNORED = 31 }
     end,
@@ -42,7 +62,7 @@ FurC = { Utils = {
   GetItemLink = function(id)
     return id
   end,
-}, Recipes = { [1] = { 107 } } }
+} }
 SLASH_COMMANDS = {}
 ITEMTYPE_FURNISHING = 1
 LINK_STYLE_BRACKETS = 1
@@ -103,6 +123,7 @@ end
 assert(count == 5, "runtime-only items, stations and new recipes for known furnishings must be included")
 assert(output:find('"id":101', 1, true))
 assert(output:find('"id":105', 1, true))
+assert(not output:find('"blueprint":108', 1, true), "bundled rumour blueprint must be skipped")
 assert(not output:find('"blueprint":107', 1, true), "bundled blueprint must be skipped")
 assert(output:find('"blueprint":103', 1, true) and output:find('"blueprint":104', 1, true))
 assert(not output:find('"record":{"id":102,"source"', 1, true), "recipe result must not also become a bare item")

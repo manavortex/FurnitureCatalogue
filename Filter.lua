@@ -36,7 +36,6 @@ local ver = LFC.API.GetDataVersions()
 local build = LFC.Internal.Build
 local toSourceMask, maskHasSource, eachSource = build.SourceMask, build.HasSource, build.EachSource
 local ONLY_RUMOUR = build.SourceMask({ [src.RUMOUR] = true })
-local NPC_EVENT = GetString(SI_FURC_TRADERS_EVENT)
 
 -- Local imports for performance
 local GetItemLinkName = GetItemLinkName
@@ -170,19 +169,35 @@ local function hasSource(s)
   return maskHasSource(sourceBits, s)
 end
 
+local sourceRecords
+local function records()
+  if not sourceRecords then
+    sourceRecords = LFC.API.GetSourceDetails(itemId)
+  end
+  return sourceRecords
+end
+
+local function hasCurrency(source, currency)
+  for _, record in ipairs(records()) do
+    if record.source.type == source and record.cost and record.cost.currency == currency then
+      return true
+    end
+  end
+  return false
+end
+
 local function isEventTradeBarItem()
-  local versionData = FurC.EventItems[recipeArray.version]
-  if not versionData then
+  if not hasSource(src.FESTIVAL_DROP) then
     return false
   end
-  for eventName, sources in pairs(versionData) do
-    local items = sources[NPC_EVENT]
-    local item = items and items[itemId]
-    if item and item.itemPrice then
-      local currency = item.currency or CURT_TRADE_BARS
-      if currency == CURT_TRADE_BARS then
-        return true
-      end
+  for _, record in ipairs(records()) do
+    if
+      record.source.type == src.FESTIVAL_DROP
+      and record.source.vendor == SI_FURC_TRADERS_EVENT
+      and record.cost
+      and record.cost.currency == CURT_TRADE_BARS
+    then
+      return true
     end
   end
   return false
@@ -220,39 +235,10 @@ local function matchesSource(candidate)
     if not hasSource(src.PVP) then
       return false
     end
-    -- exclude TelVar items from the AP filter
-    local versionData = FurC.PVP[recipeArray.version]
-    if not versionData then
-      return true
-    end
-    for vendorName, vendorData in pairs(versionData) do
-      for locationName, locationData in pairs(vendorData) do
-        local item = locationData[itemId]
-        if item and item.currency == CURT_TELVAR_STONES then
-          return false
-        end
-      end
-    end
-    return true
+    return hasCurrency(src.PVP, CURT_ALLIANCE_POINTS)
   end
   if src.TELVAR == candidate then
-    if not hasSource(src.PVP) then
-      return false
-    end
-    -- look up the item in PVP data to check its currency
-    local versionData = FurC.PVP[recipeArray.version]
-    if not versionData then
-      return false
-    end
-    for vendorName, vendorData in pairs(versionData) do
-      for locationName, locationData in pairs(vendorData) do
-        local item = locationData[itemId]
-        if item then
-          return item.currency == CURT_TELVAR_STONES
-        end
-      end
-    end
-    return false
+    return hasSource(src.TELVAR) or (hasSource(src.PVP) and hasCurrency(src.PVP, CURT_TELVAR_STONES))
   end
 
   -- the crown store tab is the crown source alone, without the housing editor beside it
@@ -374,6 +360,7 @@ end
 
 function FurC.MatchFilter(currentItemId, currentRecipeArray)
   itemId = currentItemId
+  sourceRecords = nil
   itemLink = nil -- built on demand
   recipeArray = currentRecipeArray or getEntry(ensureItemLink())
   -- an item the database does not know matches nothing: the checks below all read the row

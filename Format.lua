@@ -409,24 +409,19 @@ end
 
 ---The one detail slot a vendor record fills: what it requires, what it comes with, or a note
 local function vendorDetail(source)
+  local detail
   if source.skillRank then
-    return formatRank(source.skillLine, source.skillRank)
+    detail = formatRank(source.skillLine, source.skillRank)
+  elseif source.quest then
+    detail = formatQuestReq(source.quest)
+  elseif source.achievement then
+    detail = formatAchievement(source.achievement)
+  elseif source.collectible then
+    detail = formatCollectible(source.collectible)
+  elseif source.note then
+    detail = resolveNote(source.note)
   end
-  if source.quest then
-    return formatQuestReq(source.quest)
-  end
-  if source.achievement then
-    return formatAchievement(source.achievement)
-  end
-  if source.collectible then
-    return formatCollectible(source.collectible)
-  end
-  if source.partOf then
-    return formatPartOf(source.partOf)
-  end
-  if source.note then
-    return resolveNote(source.note)
-  end
+  return source.partOf and formatPartOf(source.partOf, detail) or detail
 end
 
 ---One placement resolved into its parts: a zone and a place inside it are one location

@@ -132,24 +132,21 @@ Taneth("FurC:Lib", function()
 
     -- A list inside one qualifier field is alternatives ("A or B"), additional qualifiers are concatenated
     it("render a further qualifier after a list of alternatives, not inside it", function()
-      local conjunction = string.format(" %s ", GetString(SI_FURC_GRAMMAR_CONJ_OR))
-      local checked = 0
-      for _, found in ipairs(ownedRows()) do
-        local row = found.row
-        local alternatives = type(row) == "table" and type(row.note) == "table" and row.note[1] ~= nil
-        if alternatives and row.rarity ~= nil then
-          local line = addonLine(found.itemId, found.source)
-          assert.is_not_nil(line, string.format("row %s reaches no line", found.itemId))
-          local where = string.format("row %s renders %q", found.itemId, line)
-          local joinAt = line:find(conjunction, 1, true)
-          local rarityAt = line:find(GetString(row.rarity), 1, true)
-          assert.is_true(joinAt ~= nil, where .. ", which does not join its alternatives")
-          assert.is_true(rarityAt ~= nil, where .. ", which drops the rarity")
-          assert.is_true(joinAt < rarityAt, where .. ", making the rarity one of the alternatives")
-          checked = checked + 1
-        end
-      end
-      assert.is_true(checked > 0, "no row carries both a list of alternatives and a rarity")
+      local line = FurC.SourceFormat.FormatRecord(
+        {
+          source = {
+            type = src.DROP,
+            note = { SI_FURC_SRC_CHESTS, SI_FURC_SRC_SAFEBOX },
+            rarity = SI_FURC_RARITY_RARE,
+          },
+        },
+        1
+      )
+      local joinAt = line:find(string.format(" %s ", GetString(SI_FURC_GRAMMAR_CONJ_OR)), 1, true)
+      local rarityAt = line:find(GetString(SI_FURC_RARITY_RARE), 1, true)
+      assert.is_not_nil(joinAt)
+      assert.is_not_nil(rarityAt)
+      assert.is_true(joinAt < rarityAt)
     end)
 
     it("reach a line of their own, one per row", function()

@@ -11,30 +11,6 @@ local getItemLink = LFC.API.GetItemLink
 local GetString = GetString
 local GetZoneNameById = GetZoneNameById
 
-local NPC_LUXF = GetString(SI_FURC_TRADERS_LUXF)
-local NPC_ROLIS = GetString(SI_FURC_TRADERS_ROLIS)
-local NPC_FAUSTINA = GetString(SI_FURC_TRADERS_FAUSTINA)
-
-local internalConstants = LFC.Internal.Constants
-local isZoneId = internalConstants.IsZoneId
-local eventDrop = internalConstants.EVENT_DROP
--- The vendor tables name no location, so the vendor's own default supplies it
-local vendorLocations = internalConstants.VendorLocations
-
-local function resolveLocation(id)
-  if isZoneId[id] then
-    return GetZoneNameById(id)
-  end
-  return GetString(id)
-end
-
----Every place a vendor stands, as search terms
-local function addVendorLocations(add, itemId, vendorId)
-  for _, entry in ipairs(vendorLocations[vendorId] or {}) do
-    add(itemId, resolveLocation(entry.location or entry.place))
-  end
-end
-
 local lower = LocaleAwareToLower
 local stripTxt = FurC.SourceFormat.Strip
 local STRIP_CONTROL = FurC.SourceFormat.STRIP_CONTROL
@@ -53,10 +29,6 @@ local function lowered(text)
     loweredCache[text] = cached
   end
   return (#cached > 0 and cached) or nil
-end
-
-local function isItemLink(text)
-  return type(text) == "string" and nil ~= find(text, "|H", 1, true)
 end
 
 ---Achievement name for an id, lowercased, resolved once per id
@@ -120,113 +92,35 @@ local function newBuilder()
   return add, buckets
 end
 
--- Ach: [version][zone][vendor]
--- PvP: [version][vendor][location]
-local function addVendorTables(add)
-  for _, versionData in pairs(FurC.AchievementVendors or {}) do
-    for location, locationData in pairs(versionData) do
-      for vendor, vendorData in pairs(locationData) do
-        for itemId, entry in pairs(vendorData) do
-          add(itemId, resolveLocation(location))
-          add(itemId, GetString(vendor))
-          if type(entry) == "table" then
-            add(itemId, getAchievementName(entry.achievement))
-          end
-        end
-      end
-    end
-  end
-
-  for _, versionData in pairs(FurC.PVP or {}) do
-    for vendorId, vendorData in pairs(versionData) do
-      for zoneId, locationData in pairs(vendorData) do
-        for itemId, entry in pairs(locationData) do
-          add(itemId, GetString(vendorId))
-          add(itemId, GetZoneNameById(zoneId))
-          if type(entry) == "table" then
-            add(itemId, getAchievementName(entry.achievement))
-          end
-        end
-      end
-    end
-  end
-
-  for _, versionData in pairs(FurC.LuxuryFurnisher or {}) do
-    for itemId in pairs(versionData) do
-      add(itemId, NPC_LUXF)
-      addVendorLocations(add, itemId, SI_FURC_TRADERS_LUXF)
-    end
-  end
-end
-
--- Master Writ stock stored as blueprint id, has to be resolved
-local function addWritVendors(add)
-  local function addVendorTable(versionedTable, vendorName, vendorId)
-    for _, versionData in pairs(versionedTable or {}) do
-      for id, entry in pairs(versionData) do
-        local itemId = FurC.DBQuery.ResolveRecipe(id)
-        if nil ~= itemId then
-          add(itemId, vendorName)
-          addVendorLocations(add, itemId, vendorId)
-          add(itemId, getAchievementName(entry.achievement))
-        end
-      end
-    end
-  end
-  addVendorTable(FurC.Rolis, NPC_ROLIS, SI_FURC_TRADERS_ROLIS)
-  addVendorTable(FurC.Faustina, NPC_FAUSTINA, SI_FURC_TRADERS_FAUSTINA)
-end
-
-local function addFolios(add)
-  for folioId, folioData in pairs(FurC.FurnishingFolios or {}) do
-    if folioData.contents then
-      local folioName = getItemName(folioId)
-      for _, contentId in ipairs(folioData.contents) do
-        local itemId = FurC.DBQuery.ResolveRecipe(contentId)
-        if nil ~= itemId then
-          add(itemId, folioName)
-          add(itemId, GetString(folioData.vendor))
-          add(itemId, GetString(folioData.place))
-        end
-      end
-    end
-  end
-end
-
-local function addBookCollections(add)
-  for containerId, collection in pairs(FurC.BookCollections or {}) do
-    local containerName = getItemName(containerId)
-    for _, bookId in ipairs(collection.contents) do
-      add(bookId, containerName)
-    end
-  end
-end
-
-local function addEvents(add)
-  for _, versionData in pairs(FurC.EventItems or {}) do
-    for eventName, sources in pairs(versionData) do
-      for sourceName, items in pairs(sources) do
-        -- an NPC name or a container link, and EVENT_DROP when the event itself drops it
-        local sourceTerm
-        if sourceName ~= eventDrop then
-          sourceTerm = (isItemLink(sourceName) and getItemName(sourceName)) or sourceName
-        end
-        for itemId in pairs(items) do
-          add(itemId, eventName)
-          add(itemId, sourceTerm)
-        end
-      end
-    end
-  end
-end
-
 local function build()
   local add, buckets = newBuilder()
-  addVendorTables(add)
-  addWritVendors(add)
-  addFolios(add)
-  addBookCollections(add)
-  addEvents(add)
+  for _, itemId in ipairs(LFC.API.GetItemIds()) do
+    for _, record in ipairs(LFC.API.GetSourceDetails(itemId)) do
+      local source = record.source
+      for _, field in ipairs({ "vendor", "event", "bundle", "itemPack" }) do
+        if source[field] then
+          add(itemId, GetString(source[field]))
+        end
+      end
+      for _, placement in ipairs(source.locations or {}) do
+        if placement.location then
+          add(itemId, GetZoneNameById(placement.location))
+        end
+        if placement.place then
+          add(itemId, GetString(placement.place))
+        end
+      end
+      add(itemId, getAchievementName(source.achievement))
+      add(itemId, getItemName(source.partOf))
+      add(itemId, getItemName(source.container))
+      for _, pack in ipairs(source.packs or {}) do
+        add(itemId, getItemName(pack))
+      end
+      if source.crate then
+        add(itemId, GetCrownCrateName(source.crate))
+      end
+    end
+  end
 
   terms = {}
   for itemId, bucket in pairs(buckets) do

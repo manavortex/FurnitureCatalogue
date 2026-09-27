@@ -49,7 +49,23 @@ Taneth("FurC:Unit", function()
   describe("FurC.SearchIndex terms", function()
     it("indexes master writ furnishings, not the blueprint", function()
       FurCDev.Test.ensureDB()
-      local blueprintId = next(FurC.FaustinaRecipes[next(FurC.FaustinaRecipes)])
+      local blueprintId
+      local api = LibFurnitureCatalogue.API
+      for _, id in ipairs(api.GetItemIds()) do
+        local entry = api.GetEntry(id)
+        if entry.blueprint then
+          for _, record in ipairs(api.GetSourceDetails(id)) do
+            if record.source.vendor == FurC.Constants.NpcIds.FAUSTINA then
+              blueprintId = entry.blueprint
+              break
+            end
+          end
+        end
+        if blueprintId then
+          break
+        end
+      end
+      assert.is_not_nil(blueprintId)
       local itemId = FurC.DBQuery.ResolveRecipe(blueprintId)
       assert.is_not_nil(itemId)
 
@@ -155,17 +171,13 @@ Taneth("FurC:Unit", function()
       local terms = index.GetTerms(itemId)
       assert.is_not_nil(terms)
 
-      -- TODO: change test if we disable search by city name
-      local constants = FurC.Constants
       local indexedCities = {}
-      for _, versionData in pairs(FurC.AchievementVendors) do
-        for location, locationData in pairs(versionData) do
-          local name = constants.IsZoneId[location] and constants.Resolvers.Zone(location)
-            or constants.Resolvers.Place(location)
-          for _, vendorData in pairs(locationData) do
-            if vendorData[itemId] and string.find(terms, lower(name), 1, true) then
-              indexedCities[location] = true
-            end
+      for _, record in ipairs(LibFurnitureCatalogue.API.GetSourceDetails(itemId)) do
+        for _, placement in ipairs(record.source.locations or {}) do
+          if placement.location then
+            local name = GetZoneNameById(placement.location)
+            assert.is_not_nil(terms:find(lower(name), 1, true))
+            indexedCities[placement.location] = true
           end
         end
       end

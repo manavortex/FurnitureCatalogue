@@ -155,32 +155,15 @@ function this.ScanFurniture(first, last)
   end
   local known, recipes, ignored = {}, {}, {}
   local ignoredSource = LFC.API.GetSourceTypes().IGNORED
-  -- Only bundled rows have a version (that way we don't skip items that may have been resolved but are not part of the DB)
-  for id, entry in pairs(LFC.Internal.DB) do
-    if entry.version ~= nil then
+  for _, id in ipairs(LFC.API.GetItemIds()) do
+    local entry = LFC.API.GetEntry(id)
+    if entry and entry.version ~= nil then
       known[id] = true
-      if LFC.Internal.Build.HasSource(entry.sources, ignoredSource) then
-        ignored[id] = true
+      ignored[id] = entry.sources[ignoredSource] or nil
+      if entry.blueprint then
+        recipes[entry.blueprint] = true
       end
     end
-  end
-  for _, ids in pairs(FurC.Recipes or {}) do
-    for _, id in ipairs(ids) do
-      recipes[id] = true
-    end
-  end
-  for _, name in ipairs({ "RolisRecipes", "FaustinaRecipes", "Rolis", "Faustina" }) do
-    for _, ids in pairs(FurC[name] or {}) do
-      for id in pairs(ids) do
-        recipes[id] = true
-      end
-    end
-  end
-  for id in pairs(FurC.RecipeSources or {}) do
-    recipes[id] = true
-  end
-  for _, id in pairs(FurC.RumourRecipes or {}) do
-    recipes[id] = true
   end
 
   running, cancelled = true, false
@@ -197,7 +180,7 @@ function this.ScanFurniture(first, last)
         local link = FurC.Utils.GetItemLink(id)
         if not ignored[id] and IsItemLinkFurnitureRecipe(link) then
           local result = GetItemLinkRecipeResultItemLink(link, LINK_STYLE_BRACKETS)
-          if result and result ~= "" and IsItemLinkPlaceableFurniture(result) and not recipes[id] then
+          if result and result ~= "" and IsItemLinkPlaceableFurniture(result) and not recipes[id] and not known[id] then
             local made = GetItemLinkItemId(result)
             if made and made > 0 and not ignored[made] then
               blueprints[id] = made
