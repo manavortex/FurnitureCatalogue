@@ -208,7 +208,10 @@ Taneth("FurC:Lib", function()
         local entry = LibFurnitureCatalogue.API.GetEntry(bookId)
         local line
         for _, candidate in ipairs(FurC.SourceFormat.FormatItem(bookId, entry)) do
-          if candidate.source == src.VENDOR then
+          if
+            (candidate.source == src.VENDOR or candidate.source == src.ACHIEVEMENT)
+            and candidate.text:find(tostring(containerId), 1, true)
+          then
             line = candidate.text
           end
         end

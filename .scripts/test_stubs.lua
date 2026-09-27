@@ -266,6 +266,9 @@ FURC_TEST_RESULT_OFFSET = 500000
 
 local recipeIds
 local function isRecipeId(itemId)
+  if LFCGeneratedDatabase then
+    return LFCGeneratedDatabase.blueprints[itemId] ~= nil
+  end
   if nil == itemId then
     return false
   end
@@ -306,6 +309,10 @@ end
 
 _G.GetItemLinkRecipeResultItemLink = function(link)
   local itemId = link_id(link)
+  if LFCGeneratedDatabase then
+    local result = LFCGeneratedDatabase.blueprints[itemId]
+    return result and result ~= 0 and make_link(result) or ""
+  end
   if not isRecipeId(itemId) then
     return ""
   end
@@ -336,7 +343,7 @@ do
     CURT_ENDEAVOR_SEALS = 11,
     CURT_ARCHIVAL_FORTUNES = 12,
     CURT_ENDLESS_DUNGEON = 12, -- deprecated alias of CURT_ARCHIVAL_FORTUNES
-    CURT_TRADE_BARS = 13,
+    CURT_TRADE_BARS = 9,
     CURT_TOME_POINTS = 14,
   }
   for name, id in pairs(currencyTypes) do

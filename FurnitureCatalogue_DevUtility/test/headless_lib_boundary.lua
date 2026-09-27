@@ -84,6 +84,7 @@ Taneth("FurC:Lib", function()
       Justice = true,
       Fishing = true,
       AchievementVendors = true,
+      HomeGoodsFurnisher = true,
       LuxuryFurnisher = true,
       PVP = true,
       Rumours = true,

@@ -146,6 +146,20 @@ function FurC.CenterFilterBars()
   end
 end
 
+-- matches maxLineCount on the Mats label in both slot templates
+local MATS_MAX_LINES = 2
+
+-- Prevent first line of a description from overlapping divider (it's offset when truncated). Instead it gets a box of exactly the lines it draws.
+local function fitMats(line)
+  local mats = line.mats
+  mats:SetVerticalAlignment(TEXT_ALIGN_CENTER)
+  mats:SetHeight(line:GetHeight())
+  if mats:WasTruncated() then
+    mats:SetVerticalAlignment(TEXT_ALIGN_TOP)
+    mats:SetHeight(MATS_MAX_LINES * mats:GetFontHeight())
+  end
+end
+
 local function updateLineVisibility()
   local listOpts = { dateFormat = FurC.GetDateFormat() }
   local selectedTypes = FurC.GetSelectedSourceTypes()
@@ -184,6 +198,7 @@ local function updateLineVisibility()
       curLine.text:SetText(((FurC.IsFavoriteById(curData.itemId) and "* ") or "") .. text)
       local mats = sourceFormat.FormatListText(curData.itemId, curData, listOpts, selectedTypes)
       curLine.mats:SetText(mats)
+      fitMats(curLine)
     end
   end
 

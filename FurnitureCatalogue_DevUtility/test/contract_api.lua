@@ -197,8 +197,9 @@ Taneth("FurC:Lib", function()
     end)
 
     it("reports build failures and recovers only on explicit rebuild", function()
-      local stubbed = "IsItemLinkFurnitureRecipe"
-      local original = GLOBALS[stubbed]
+      local target = LibFurnitureCatalogue.Internal.Generated or GLOBALS
+      local stubbed = LibFurnitureCatalogue.Internal.Generated and "Install" or "IsItemLinkFurnitureRecipe"
+      local original = target[stubbed]
       local sentinel = "expected lifecycle build failure"
       local completeCalls = 0
       local readyCalls = 0
@@ -217,11 +218,11 @@ Taneth("FurC:Lib", function()
 
       api.RegisterCallback(api.Events.SCAN_COMPLETE, onComplete)
       api.RegisterCallback(api.Events.SCAN_FAILED, onFailed)
-      GLOBALS[stubbed] = function()
+      target[stubbed] = function()
         error(sentinel)
       end
       local failedOk, failedErr = pcall(FurC.RebuildDB, true)
-      GLOBALS[stubbed] = original
+      target[stubbed] = original
       api.UnregisterCallback(api.Events.SCAN_FAILED, onFailed)
 
       local failedState, buildError = api.GetState()

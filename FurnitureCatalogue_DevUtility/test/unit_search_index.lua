@@ -92,7 +92,7 @@ Taneth("FurC:Unit", function()
       for _, bookId in ipairs(collection.contents) do
         local named
         for _, record in ipairs(LibFurnitureCatalogue.API.GetSourceDetails(bookId)) do
-          if record.source.type == source then
+          if record.source.type == source or record.source.type == FurC.Constants.ItemSources.ACHIEVEMENT then
             named = record.source.partOf
           end
         end
