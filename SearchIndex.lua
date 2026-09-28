@@ -17,6 +17,9 @@ local STRIP_CONTROL = FurC.SourceFormat.STRIP_CONTROL
 local concat = table.concat
 local find = string.find
 
+-- container tables that still have to be managed and indexed by us (so it is searchable)
+local CONTAINER_TABLES = { "BookCollections", "FurnishingFolios" }
+
 -- lowercase built per string, not per row
 local loweredCache = {}
 local function lowered(text)
@@ -118,6 +121,16 @@ local function build()
       end
       if source.crate then
         add(itemId, GetCrownCrateName(source.crate))
+      end
+    end
+  end
+
+  -- A container's name is a search term for everything it holds. Books already name their container through part_of. Folios only hold recipes, whose source records don't name the folio, we have to supply that name
+  for _, name in ipairs(CONTAINER_TABLES) do
+    for containerId, container in pairs(FurC[name] or {}) do
+      local containerName = getItemName(containerId)
+      for _, contentId in ipairs(container.contents or {}) do
+        add(FurC.DBQuery.ResolveRecipe(contentId), containerName)
       end
     end
   end

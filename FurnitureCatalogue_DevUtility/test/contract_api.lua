@@ -32,6 +32,7 @@ Taneth("FurC:Lib", function()
       assert.same(
         Test.nameSet({
           "Events",
+          "GetContainer",
           "GetDBRevision",
           "GetDataVersionKeys",
           "GetDataVersions",
@@ -260,6 +261,25 @@ Taneth("FurC:Lib", function()
       assert.is_true(acceptedAfterRecovery)
       assert.equals(1, readyCalls)
       assert.equals(1, completeCalls)
+    end)
+
+    it("container contents are sorted snapshots with matching parent records", function()
+      local collection = api.GetContainer(145596)
+      assert.equals("books", collection.kind)
+      assert.is_true(#collection.contents > 0)
+      for i, id in ipairs(collection.contents) do
+        if i > 1 then
+          assert.is_true(collection.contents[i - 1] < id)
+        end
+        local parentFound = false
+        for _, record in ipairs(api.GetSourceDetails(id)) do
+          parentFound = parentFound or record.source.partOf == 145596
+        end
+        assert.is_true(parentFound)
+      end
+      collection.contents[1] = -1
+      assert.is_true(api.GetContainer(145596).contents[1] > 0)
+      assert.is_nil(api.GetContainer(99123456))
     end)
 
     it("GetEntry returns a snapshot, nil on miss", function()

@@ -319,19 +319,35 @@ Taneth("FurC:Unit", function()
         )
       end
 
-      -- A source with no label cannot be offered at all (label it, or keep it deliberately hidden)
-      local HIDDEN =
-        { IGNORED = true, ROLIS = true, GUILDSTORE = true, COLL_MERCH = true, HOME_GOODS = true, ACHIEVEMENT = true } -- TODO: unhide HGF and achievement from test
+      -- A source with no label of its own cannot be offered in the dropdown (either covered by a tab or deliberately hidden: label it, or move it below)
+      FurC.EnsureDB(true)
+      local COVERED_BY_TAB = {
+        ACHIEVEMENT = filters.ACHIEVEMENT,
+        HOME_GOODS = filters.HOME_GOODS,
+        ROLIS = src.WRIT_VENDOR,
+      }
+      local NOT_OFFERED = { IGNORED = true, GUILDSTORE = true, COLL_MERCH = true }
       for name, id in pairs(src) do
         if not choices[id] then
+          local coveringTab = COVERED_BY_TAB[name]
           assert.is_true(
-            HIDDEN[name] == true,
+            coveringTab ~= nil or NOT_OFFERED[name] == true,
             string.format("%s (%d) has no label, so no tab can offer it - label it or list it here", name, id)
           )
+          -- the tab standing in for it has to keep something, otherwise it looks uncovered
+          if coveringTab then
+            assert.is_true(
+              count(keptBy(coveringTab)) > 0,
+              string.format("%s carries no label and its covering tab %d keeps nothing", name, coveringTab)
+            )
+          end
         end
       end
-      for name in pairs(HIDDEN) do
-        assert.is_nil(choices[src[name]], string.format("%s is listed as hidden but now carries a label", name))
+      for name in pairs(COVERED_BY_TAB) do
+        assert.is_nil(choices[src[name]], string.format("%s is covered by a tab but now carries a label", name))
+      end
+      for name in pairs(NOT_OFFERED) do
+        assert.is_nil(choices[src[name]], string.format("%s is listed as not offered but now carries a label", name))
       end
     end)
   end)

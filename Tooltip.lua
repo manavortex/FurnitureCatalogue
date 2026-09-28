@@ -62,14 +62,7 @@ local function add(t, arg)
 end
 
 local function addFolioTooltipData(control, itemId, folioData)
-  local header = sourceFormat.Furnisher(
-    GetString(folioData.vendor),
-    GetString(folioData.place),
-    folioData.itemPrice,
-    folioData.currency
-  )
-
-  local lines = { header }
+  local lines = FurC.GetHideSource() and {} or getSourceLines(itemId, getEntry(itemId), false)
 
   if folioData.contents then
     for _, contentId in ipairs(folioData.contents) do
@@ -124,18 +117,14 @@ local function addTooltipData(control, itemLink)
 
   itemLink = (isRecipe and GetItemLinkRecipeResultItemLink(itemLink)) or itemLink
 
-  -- Check if this is a furnishing folio container
   local itemId = GetItemLinkItemId(itemLink)
-  local folioData = FurC.FurnishingFolios and FurC.FurnishingFolios[itemId]
-  if folioData then
-    addFolioTooltipData(control, itemId, folioData)
-    return
-  end
-
-  -- book containers are not placeable, handle before the furniture check
-  local collection = FurC.BookCollections and FurC.BookCollections[itemId]
-  if collection then
-    addBookCollectionTooltipData(control, itemId, collection)
+  local container = LFC.API.GetContainer(itemId)
+  if container then
+    if container.kind == "folio" then
+      addFolioTooltipData(control, itemId, container)
+    elseif container.kind == "books" then
+      addBookCollectionTooltipData(control, itemId, container)
+    end
     return
   end
 

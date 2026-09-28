@@ -754,8 +754,8 @@ this.FormatItem = formatItem
 ---@param itemId integer
 ---@return string|nil text nil when the item is not a container we know the contents of
 local function formatContents(itemId)
-  local collection = FurC.BookCollections and FurC.BookCollections[itemId]
-  if collection and collection.contents then
+  local collection = LFC.API.GetContainer(itemId)
+  if collection and collection.kind == "books" then
     return sFormat(GetString(SI_FURC_CONTAINS_BOOKS), #collection.contents)
   end
 end
