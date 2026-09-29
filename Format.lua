@@ -476,7 +476,6 @@ local function renderCategory(record)
   end
   addQualifier(notes, source.npcClass, resolveNpcClass)
   addQualifier(notes, source.containerKind, resolveNote)
-  addQualifier(notes, source.note, resolveNote)
   if source.achievement then
     notes[#notes + 1] = formatAchievement(source.achievement)
   end
@@ -486,6 +485,8 @@ local function renderCategory(record)
   if source.rarity then
     notes[#notes + 1] = GetString(source.rarity)
   end
+  -- the optional note should always come last
+  addQualifier(notes, source.note, resolveNote)
   local suffix = table.concat(notes, ", ")
 
   -- the quest names itself first and the rest follows

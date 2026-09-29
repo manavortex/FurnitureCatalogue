@@ -132,21 +132,20 @@ Taneth("FurC:Lib", function()
 
     -- A list inside one qualifier field is alternatives ("A or B"), additional qualifiers are concatenated
     it("render a further qualifier after a list of alternatives, not inside it", function()
-      local line = FurC.SourceFormat.FormatRecord(
-        {
-          source = {
-            type = src.DROP,
-            note = { SI_FURC_SRC_CHESTS, SI_FURC_SRC_SAFEBOX },
-            rarity = SI_FURC_RARITY_RARE,
-          },
+      local line = FurC.SourceFormat.FormatRecord({
+        source = {
+          type = src.DROP,
+          note = { SI_FURC_SRC_CHESTS, SI_FURC_SRC_SAFEBOX },
+          rarity = SI_FURC_RARITY_RARE,
         },
-        1
-      )
-      local joinAt = line:find(string.format(" %s ", GetString(SI_FURC_GRAMMAR_CONJ_OR)), 1, true)
-      local rarityAt = line:find(GetString(SI_FURC_RARITY_RARE), 1, true)
-      assert.is_not_nil(joinAt)
-      assert.is_not_nil(rarityAt)
-      assert.is_true(joinAt < rarityAt)
+      }, 1)
+      local conjunction = string.format(" %s ", GetString(SI_FURC_GRAMMAR_CONJ_OR))
+      local rare = GetString(SI_FURC_RARITY_RARE)
+      assert.is_not_nil(line:find(conjunction, 1, true), line)
+      -- the rarity is its own qualifier, set apart by a comma
+      assert.is_not_nil(line:find(rare .. ", ", 1, true) or line:find(", " .. rare, 1, true), line)
+      assert.is_nil(line:find(conjunction .. rare, 1, true), line)
+      assert.is_nil(line:find(rare .. conjunction, 1, true), line)
     end)
 
     it("reach a line of their own, one per row", function()

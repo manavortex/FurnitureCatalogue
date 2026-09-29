@@ -226,6 +226,17 @@ Taneth("FurC:Lib", function()
       end
     end)
 
+    it("a note comes after every other qualifier of its line", function()
+      local record = { source = { type = src.QUEST, note = GLOBALS.SI_FURC_SRC_LVLUP, achievement = 0 } }
+      local line = FurC.SourceFormat.FormatRecord(record, 87709)
+      local requires = GetString(SI_FURC_REQUIRES_ACHIEVEMENT):match("^(.-)<<")
+      local note = zo_strformat("<<1>>", GetString(SI_FURC_SRC_LVLUP))
+      local atRequires, atNote = line:find(requires, 1, true), line:find(note, 1, true)
+      assert.is_not_nil(atRequires, line)
+      assert.is_not_nil(atNote, line)
+      assert.is_true(atRequires < atNote, line)
+    end)
+
     it("a collection container says how many furnishings it holds", function()
       FurC.EnsureDB(true)
       for containerId, collection in pairs(FurC.BookCollections or {}) do
