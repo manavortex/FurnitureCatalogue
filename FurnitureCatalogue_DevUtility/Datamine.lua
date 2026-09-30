@@ -180,11 +180,16 @@ function this.ScanFurniture(first, last)
         local link = FurC.Utils.GetItemLink(id)
         if not ignored[id] and IsItemLinkFurnitureRecipe(link) then
           local result = GetItemLinkRecipeResultItemLink(link, LINK_STYLE_BRACKETS)
-          if result and result ~= "" and IsItemLinkPlaceableFurniture(result) and not recipes[id] and not known[id] then
+          if result and result ~= "" and IsItemLinkPlaceableFurniture(result) then
             local made = GetItemLinkItemId(result)
-            if made and made > 0 and not ignored[made] then
-              blueprints[id] = made
-              results[made] = true
+            if made and made > 0 then
+              if recipes[id] or known[id] then
+                -- A catalogued blueprint also covers the furnishing it makes (a rumour kept under its blueprint has no entry for that furnishing)
+                results[made] = true
+              elseif not ignored[made] then
+                blueprints[id] = made
+                results[made] = true
+              end
             end
           end
         elseif

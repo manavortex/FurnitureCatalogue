@@ -6,9 +6,11 @@ local known = {
   [102] = { blueprint = 103 },
   [110] = { version = 1, blueprint = 107 },
   [108] = { version = 1 },
+  -- A rumour known only by its blueprint, whose furnishing has no entry of its own
+  [120] = { version = 1 },
 }
-local furniture = { [100] = true, [101] = true, [102] = true, [105] = true, [110] = true }
-local recipes = { [103] = 102, [104] = 102, [106] = 100, [107] = 110, [108] = 102 }
+local furniture = { [100] = true, [101] = true, [102] = true, [105] = true, [110] = true, [121] = true }
+local recipes = { [103] = 102, [104] = 102, [106] = 100, [107] = 110, [108] = 102, [120] = 121 }
 FurCDev = {
   textbox = {
     GetText = function()
@@ -127,6 +129,7 @@ assert(not output:find('"blueprint":108', 1, true), "bundled rumour blueprint mu
 assert(not output:find('"blueprint":107', 1, true), "bundled blueprint must be skipped")
 assert(output:find('"blueprint":103', 1, true) and output:find('"blueprint":104', 1, true))
 assert(not output:find('"record":{"id":102,"source"', 1, true), "recipe result must not also become a bare item")
+assert(not output:find('"id":121', 1, true), "a catalogued blueprint also covers the furnishing it makes")
 assert(
   known[101].version == nil and known[102].blueprint == 103 and known[102].version == nil,
   "discovery must not mutate DB"
