@@ -337,6 +337,24 @@ function NonContiguousCount(t)
   end
   return n
 end
+-- A request from the website lists ids, catalogued or not; a blueprint resolves to its furnishing
+local saved, savedName = output, GetItemLinkName
+function GetItemLinkName(id)
+  return furniture[id] and "Chair" or ""
+end
+output = "100, 106\n999 100 101"
+control("Request").OnClicked()
+local _, requested = output:gsub("\n", "")
+assert(requested == 3, "one line per distinct requested item")
+assert(output:find('"record":{"id":100,"source"', 1, true), "a catalogued item is still emitted")
+assert(output:find('"record":{"id":100,"blueprint":106', 1, true), "a requested blueprint names its furnishing")
+assert(output:find('"record":{"id":101,', 1, true) and not output:find('"id":999', 1, true))
+assert(control("Status").text:find("3 discoveries, 1 id", 1, true))
+output = ""
+control("Request").OnClicked()
+assert(control("Status").text:find("Paste the requested item ids", 1, true))
+output, GetItemLinkName = saved, savedName
+
 dofile("FurnitureCatalogue_DevUtility/Dump.lua")
 FurCDev.BuildDumpTab()
 assert(widgets["FurCDevControl_Dump_Metadump"] and widgets["FurCDevControl_Dump_ReloadUI"])

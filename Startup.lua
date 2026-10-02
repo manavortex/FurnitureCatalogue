@@ -255,7 +255,7 @@ this.DropdownData = {
     [ver.WORMS2] = GetString(SI_FURC_FILTER_VERSION_WORMS2),
     [ver.ZERO] = GetString(SI_FURC_FILTER_VERSION_ZERO),
     [ver.THIEVES] = GetString(SI_FURC_FILTER_VERSION_THIEVES),
-	[ver.ECHOES] = GetString(SI_FURC_FILTER_VERSION_ECHOES),
+    [ver.ECHOES] = GetString(SI_FURC_FILTER_VERSION_ECHOES),
   },
 
   TooltipsVersion = {
@@ -298,7 +298,7 @@ this.DropdownData = {
     [ver.WORMS2] = GetString(SI_FURC_FILTER_VERSION_WORMS2_TT),
     [ver.ZERO] = GetString(SI_FURC_FILTER_VERSION_ZERO_TT),
     [ver.THIEVES] = GetString(SI_FURC_FILTER_VERSION_THIEVES_TT),
-	[ver.ECHOES] = GetString(SI_FURC_FILTER_VERSION_ECHOES_TT),
+    [ver.ECHOES] = GetString(SI_FURC_FILTER_VERSION_ECHOES_TT),
   },
 
   ChoicesCharacter = {

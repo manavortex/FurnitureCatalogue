@@ -6,7 +6,8 @@ local pages, page = {}, 1
 local running = false
 local cancelled = false
 local controls = {}
-local status = "Choose an item ID range, then Scan."
+local status =
+  "Choose an item ID range, then Scan. For a request from the website, paste its ids into the text box, then Item list."
 
 local function refreshControls()
   if not controls.scan then
@@ -15,6 +16,7 @@ local function refreshControls()
   controls.first:SetEditEnabled(not running)
   controls.last:SetEditEnabled(not running)
   controls.scan:SetEnabled(not running)
+  controls.request:SetEnabled(not running)
   controls.cancel:SetEnabled(running and not cancelled)
   controls.prev:SetEnabled(not running and page > 1 and #pages > 0)
   controls.next:SetEnabled(not running and page < #pages)
@@ -131,6 +133,89 @@ function this.ShowDiscoveryPage(delta)
   refreshControls()
 end
 
+-- Pages small enough for the textbox to hold and the clipboard to copy
+local function paginate(lines)
+  local output, chunk, size = {}, {}, 0
+  for _, line in ipairs(lines) do
+    if #line + 1 > PAGE_BYTES then
+      error("a discovery exceeds the copy page limit")
+    end
+    if (size + #line + 1 > PAGE_BYTES or #chunk == 100) and #chunk > 0 then
+      output[#output + 1] = table.concat(chunk, "\n") .. "\n"
+      chunk, size = {}, 0
+    end
+    chunk[#chunk + 1] = line
+    size = size + #line + 1
+  end
+  if #chunk > 0 then
+    output[#output + 1] = table.concat(chunk, "\n") .. "\n"
+  end
+  return output
+end
+
+local function showPages(output)
+  pages, page = output, 1
+  if #pages > 0 then
+    this.ShowDiscoveryPage()
+  else
+    this.textbox:SetText("")
+  end
+end
+
+---A request from the website: discovery lines for exactly the listed ids, catalogued or not, so the website can refresh their names and metadata
+---@param text string item ids separated by anything that is not a digit
+function this.RequestItems(text)
+  if running then
+    report("Discovery is running. Wait for it or Cancel it first.")
+    return
+  end
+  local seen, lines, unknown = {}, {}, 0
+  local built, failure = pcall(function()
+    for number in tostring(text or ""):gmatch("%d+") do
+      local id = tonumber(number)
+      if id > 0 and not seen[id] then
+        seen[id] = true
+        local link = FurC.Utils.GetItemLink(id)
+        local blueprint
+        if IsItemLinkFurnitureRecipe(link) then
+          local made = GetItemLinkItemId(GetItemLinkRecipeResultItemLink(link, LINK_STYLE_BRACKETS))
+          if made and made > 0 then
+            id, blueprint = made, id
+            link = FurC.Utils.GetItemLink(id)
+          end
+        end
+        if GetItemLinkName(link) == "" then
+          unknown = unknown + 1
+        else
+          lines[#lines + 1] = this.DiscoveryLine(id, blueprint)
+        end
+      end
+    end
+  end)
+  if not built then
+    report("Item list failed: " .. tostring(failure))
+    return
+  end
+  local paged, output = pcall(paginate, lines)
+  if not paged then
+    report("Export failed: " .. tostring(output))
+    return
+  end
+  if #lines == 0 and unknown == 0 then
+    report("Paste the requested item ids into the text box first, then Item list.")
+    return
+  end
+  report(
+    string.format(
+      "Item list: %d discoveries, %d id(s) this client does not know. Copy each page into the website.",
+      #lines,
+      unknown
+    ),
+    string.format("Datamine: %d requested items", #lines)
+  )
+  showPages(output)
+end
+
 function this.ScanFurniture(first, last)
   if running then
     report("Discovery is already running. Use Cancel to stop it.")
@@ -229,39 +314,24 @@ function this.ScanFurniture(first, last)
       end
       return (a.blueprint or 0) < (b.blueprint or 0)
     end)
-    local output, chunk, size = {}, {}, 0
+    local output
     local built, failure = pcall(function()
+      local lines = {}
       for _, row in ipairs(rows) do
-        local line = this.DiscoveryLine(row.id, row.blueprint)
-        if #line + 1 > PAGE_BYTES then
-          error("a discovery exceeds the copy page limit")
-        end
-        if (size + #line + 1 > PAGE_BYTES or #chunk == 100) and #chunk > 0 then
-          output[#output + 1] = table.concat(chunk, "\n") .. "\n"
-          chunk, size = {}, 0
-        end
-        chunk[#chunk + 1] = line
-        size = size + #line + 1
+        lines[#lines + 1] = this.DiscoveryLine(row.id, row.blueprint)
       end
-      if #chunk > 0 then
-        output[#output + 1] = table.concat(chunk, "\n") .. "\n"
-      end
+      output = paginate(lines)
     end)
     running = false
     if not built then
       report("Export failed: " .. tostring(failure))
       return
     end
-    pages, page = output, 1
     report(
       string.format("Scanned %d-%d: %d discoveries. Copy each page into the website.", first, last, #rows),
       string.format("Datamine: %d items", #rows)
     )
-    if #pages > 0 then
-      this.ShowDiscoveryPage()
-    else
-      this.textbox:SetText("")
-    end
+    showPages(output)
   end
   this.control:SetHidden(false)
   this.SelectTab("datamine")
@@ -329,7 +399,10 @@ function this.BuildDiscoveryTab()
   controls.next = button("Next", "Next", 196, 106, 80, function()
     this.ShowDiscoveryPage(1)
   end)
-  controls.status = label("Status", status, 0, 146, 276)
+  controls.request = button("Request", "Item list", 0, 146, 276, function()
+    this.RequestItems(this.textbox:GetText())
+  end)
+  controls.status = label("Status", status, 0, 186, 276)
   controls.status:SetHeight(96)
   this.RegisterTab("datamine", "Datamine", panel, function()
     refreshControls()
