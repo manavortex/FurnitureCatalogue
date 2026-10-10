@@ -366,6 +366,7 @@ local MISC_CATEGORY = {
 }
 
 local strEvent = GetString(SI_FURC_EVENT)
+local strCrafting = GetString(SI_FURC_SRC_CRAFTING)
 local strLeads = GetString(SI_FURC_SRC_LEADS)
 local strEditor = GetString(SI_FURC_SRC_EDITOR)
 local strEditorTag = GetString(SI_FURC_SRC_EDITOR_TAG)
@@ -690,6 +691,12 @@ local function recipeSource(itemId, opts)
       if source.category then
         return renderCategory(record)
       end
+      -- a blueprint with only a description, e.g. an antiquity during an event
+      if source.note then
+        local notes = {}
+        addQualifier(notes, source.note, resolveNote)
+        return fmtGeneric(strCrafting, table.concat(notes, ", "))
+      end
       return
     end
   end
@@ -724,19 +731,31 @@ this.CraftingLine = craftingLine
 ---@return { source: integer, text: string }[]
 local function formatItem(itemId, entry, opts, withCrafting)
   local lines, byType = {}, {}
-  for _, record in ipairs(getSourceDetails(itemId)) do
+  local records = getSourceDetails(itemId)
+  -- Bought as well as crafted (writ trader excluded, because that is the only source for blueprints that don't drop from looting)
+  local soldElsewhere, writTrader = false, false
+  for _, record in ipairs(records) do
     local type_ = record.source.type
-    local text
+    soldElsewhere = soldElsewhere or (type_ ~= src.CRAFTING and type_ ~= src.IGNORED and type_ ~= src.RUMOUR)
+    writTrader = writTrader or type_ == src.WRIT_VENDOR or type_ == src.ROLIS
+  end
+  for _, record in ipairs(records) do
+    local type_ = record.source.type
+    local text, materials
     if type_ ~= src.CRAFTING then
       text = formatRecord(record, itemId, entry, opts)
     elseif withCrafting then
-      text = craftingLine(itemId, entry, false, opts)
+      text = recipeSource(itemId, opts)
+      if not text or text == "" then
+        materials = not soldElsewhere or writTrader
+        text = materials and formatMaterials(itemId, entry) or fmtGeneric(strCrafting)
+      end
     end
     if text and #text > 0 then
       local line = byType[type_]
       if not line then
         -- one source type, several ways to obtain it: player reads one line
-        line = { source = type_, parts = {} }
+        line = { source = type_, parts = {}, materials = materials }
         byType[type_] = line
         lines[#lines + 1] = line
       end
@@ -769,8 +788,12 @@ this.FormatContents = formatContents
 ---@param opts? { dateFormat?: string }
 ---@return string
 local function formatDescription(itemId, entry, stripColor, opts)
-  -- the ranked list decides which source describes the item
-  local first = formatItem(itemId, entry, opts, true)[1]
+  -- the ranked list decides which source describes the item; a material list only when nothing else does
+  local ranked = formatItem(itemId, entry, opts, true)
+  local first = ranked[1]
+  if first and first.materials and ranked[2] then
+    first = ranked[2]
+  end
   local text = (first and first.text) or ""
   if not (first and first.source == src.CRAFTING) then
     local contents = formatContents(itemId)
@@ -797,7 +820,7 @@ local function formatListText(itemId, entry, opts, preferred)
   preferred = preferred or {}
   local first, rest, materials = {}, {}, nil
   for _, line in ipairs(formatItem(itemId, entry, opts, true)) do
-    if line.source == src.CRAFTING and not recipeSource(itemId, opts) then
+    if line.materials then
       materials = line
     elseif preferred[line.source] then
       first[#first + 1] = line

@@ -22,12 +22,17 @@ Taneth("FurC:Unit", function()
     picks = {}
     for itemId, row in pairs(FurC.DB) do
       if type(itemId) == "number" and type(row) == "table" then
-        local crafted, other = false, false
+        local crafted, other, writ = false, false, false
         local types, numTypes = {}, 0
         for _, record in ipairs(api.GetSourceDetails(itemId)) do
-          if record.source.type == src.CRAFTING then
+          local s = record.source
+          if s.type == src.CRAFTING then
             crafted = true
+            if s.note and not (s.vendor or s.event or s.category) then
+              picks.noteOnly = picks.noteOnly or itemId
+            end
           else
+            writ = writ or s.type == src.WRIT_VENDOR or s.type == src.ROLIS
             other = true
             if not types[record.source.type] then
               types[record.source.type], numTypes = true, numTypes + 1
@@ -41,9 +46,21 @@ Taneth("FurC:Unit", function()
           picks.craftOnly = picks.craftOnly or itemId
         elseif crafted and other then
           picks.alsoSold = picks.alsoSold or itemId
+          if writ then
+            picks.writSold = picks.writSold or itemId
+          elseif not format.RecipeSource(itemId) then
+            picks.craftedAndSold = picks.craftedAndSold or itemId
+          end
         end
       end
-      if picks.craftOnly and picks.alsoSold and picks.multiSource then
+      if
+        picks.craftOnly
+        and picks.alsoSold
+        and picks.multiSource
+        and picks.writSold
+        and picks.craftedAndSold
+        and picks.noteOnly
+      then
         break
       end
     end
@@ -133,10 +150,51 @@ Taneth("FurC:Unit", function()
       end
       local row = displayRow(itemId)
 
-      -- the best-ranked line describes the item; nothing consults a derived origin to find it
+      -- the best-ranked line describes the item, a material list only when nothing else does; nothing consults a derived origin to find it
       local ranked = format.FormatItem(itemId, row, nil, true)
       assert.is_true(#ranked > 0)
-      assert.equals(ranked[1].text, format.FormatDescription(itemId, row))
+      local best = (ranked[1].materials and ranked[2]) or ranked[1]
+      assert.equals(best.text, format.FormatDescription(itemId, row))
+    end)
+
+    local craftingLabel = zo_strformat("<<Cal:1>>", GetString(SI_FURC_SRC_CRAFTING))
+
+    it("say Crafting, not a material list, for a craftable that is also bought", function()
+      local itemId = picked().craftedAndSold
+      if not itemId then
+        return
+      end
+      local row = displayRow(itemId)
+      local ranked = format.FormatItem(itemId, row, nil, true)
+      assert.equals(src.CRAFTING, ranked[1].source)
+      assert.equals(craftingLabel, ranked[1].text)
+      assert.equals(craftingLabel, format.FormatDescription(itemId, row))
+      assert.equals(1, (format.FormatListText(itemId, row):find(craftingLabel, 1, true)))
+    end)
+
+    it("leave a writ trader's item to the trader", function()
+      local itemId = picked().writSold
+      if not itemId then
+        return
+      end
+      local row = displayRow(itemId)
+      for _, line in ipairs(format.FormatItem(itemId, row, nil, true)) do
+        if line.source == src.CRAFTING then
+          assert.are_not.equals(craftingLabel, line.text)
+        end
+      end
+      assert.are_not.equals(craftingLabel, format.FormatDescription(itemId, row))
+    end)
+
+    it("show a blueprint's own description when it names no vendor or event", function()
+      local itemId = picked().noteOnly
+      if not itemId then
+        return
+      end
+      local text = format.RecipeSource(itemId)
+      assert.is_not_nil(text)
+      assert.equals(1, (text:find(craftingLabel, 1, true)))
+      assert.is_true(#text > #craftingLabel)
     end)
 
     -- the window shows every source, not only the best one
