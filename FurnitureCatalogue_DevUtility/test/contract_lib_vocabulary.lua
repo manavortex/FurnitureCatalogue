@@ -35,7 +35,8 @@ Taneth("FurC:Lib", function()
   }
 
   -- The row contract allows a bare string on `note` only
-  local NOTE_LITERALS = 85
+  -- Temporarily increased max custom notes, move those into their fields, then lower this again
+  local NOTE_LITERALS = 114
 
   local function valueSet(vocabulary)
     local values = {}
