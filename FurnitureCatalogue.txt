@@ -2,9 +2,9 @@
 ## Author: manavortex
 ## Version: 8.0.0
 ## AddOnVersion: 8000000
-## APIVersion: 101050 101051
+## APIVersion: 101051 101052
 ## SavedVariables: FurnitureCatalogue_Settings
-## DependsOn: LibFurnitureCatalogue>=1001000
+## DependsOn: LibFurnitureCatalogue>=1002000
 ## DependsOn: LibAddonMenu-2.0>=43
 ## DependsOn: LibAsync>=30103
 ## DependsOn: LibCustomMenu>=730
