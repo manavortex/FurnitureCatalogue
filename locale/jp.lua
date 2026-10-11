@@ -168,7 +168,7 @@ local strings = {
   SI_FURC_STRING_RECIPESFORCHAR = "<<1>>の為のレシピ",
   SI_FURC_TEXTBOX_FILTER_DEFAULT = "テキスト検索でフィルタする",
   SI_FURC_TOGGLE_SHOPPINGLIST = "買い物リストの切り替え",
-  -- 50 ENTRIES UNTRANSLATED/IDENTICAL
+  -- 52 ENTRIES UNTRANSLATED/IDENTICAL
   SI_FURC_CONTAINS_BOOKS = "Contains <<1>> books",
   SI_FURC_FILTER_SRC_ACHIEVEMENT = "Achievement",
   SI_FURC_FILTER_SRC_ANTIQUITY = "Antiquity",
@@ -197,6 +197,8 @@ local strings = {
   SI_FURC_FILTER_SRC_SOLD_TELVAR = "Tel Var",
   SI_FURC_FILTER_SRC_SOLD_TOMEPOINTS = "Tome Points",
   SI_FURC_FILTER_SRC_SOLD_TOMEPOINTS_TT = "Obtainable only from Tamriel Tomes during a specific season",
+  SI_FURC_FILTER_VERSION_ECHOES = "Season Two",
+  SI_FURC_FILTER_VERSION_ECHOES_TT = "Rumor had it you're finally awake",
   SI_FURC_FILTER_VERSION_THIEVES = "Season One",
   SI_FURC_FILTER_VERSION_THIEVES_TT = "Is Sheogorath joining the Thieves Guild?",
   SI_FURC_FILTER_VERSION_WAKE = "Waking Flame",

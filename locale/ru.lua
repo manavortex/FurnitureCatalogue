@@ -14,7 +14,7 @@ local strings = {
   SI_FURC_STRING_MENU_DEFAULT_DD_VERSION = "default version filter",
   SI_FURC_STRING_MENU_SHOWICONONLEFT_TT = "Show Green Check/Red X icon on left or right of the inventory item (requires reloadui)",
   SI_FURC_STRING_RECIPESFORCHAR = "recipes for <<1>>",
-  -- 204 ENTRIES UNTRANSLATED/IDENTICAL
+  -- 206 ENTRIES UNTRANSLATED/IDENTICAL
   SI_FURC_ADD_FAVE = " Add Favorite",
   SI_FURC_CONTAINS_BOOKS = "Contains <<1>> books",
   SI_FURC_DIALOGUE_RESET_DB_BODY = "This will re-create the FurnitureCatalogue database from scratch",
@@ -88,6 +88,8 @@ local strings = {
   SI_FURC_FILTER_VERSION_DRAGON_TT = "If you got this from Narsis Dren, well...",
   SI_FURC_FILTER_VERSION_DRUID = "Firesong",
   SI_FURC_FILTER_VERSION_DRUID_TT = "Remember when we could block?",
+  SI_FURC_FILTER_VERSION_ECHOES = "Season Two",
+  SI_FURC_FILTER_VERSION_ECHOES_TT = "Rumor had it you're finally awake",
   SI_FURC_FILTER_VERSION_ENDLESS = "Secrets of the Telvanni",
   SI_FURC_FILTER_VERSION_ENDLESS_TT = "This archive is, for legal or other reasons, not endless",
   SI_FURC_FILTER_VERSION_FALLBAN = "Fallen Banners",

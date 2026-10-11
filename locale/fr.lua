@@ -116,7 +116,7 @@ local strings = {
   SI_FURC_STRING_RECIPESFORCHAR = "Recettes pour <<1>>",
   SI_FURC_TEXTBOX_FILTER_DEFAULT = "Filtrer par recherche de texte",
   SI_FURC_TOGGLE_SHOPPINGLIST = " Basculer la liste de courses",
-  -- 102 ENTRIES UNTRANSLATED/IDENTICAL
+  -- 104 ENTRIES UNTRANSLATED/IDENTICAL
   SI_FURC_CONTAINS_BOOKS = "Contains <<1>> books",
   SI_FURC_FILTER_SRC_ACHIEVEMENT = "Achievement",
   SI_FURC_FILTER_SRC_ANTIQUITY = "Antiquity",
@@ -165,6 +165,8 @@ local strings = {
   SI_FURC_FILTER_VERSION_DRAGON2 = "Dragonhold",
   SI_FURC_FILTER_VERSION_DRUID = "Firesong",
   SI_FURC_FILTER_VERSION_DRUID_TT = "Remember when we could block?",
+  SI_FURC_FILTER_VERSION_ECHOES = "Season Two",
+  SI_FURC_FILTER_VERSION_ECHOES_TT = "Rumor had it you're finally awake",
   SI_FURC_FILTER_VERSION_ENDLESS = "Secrets of the Telvanni",
   SI_FURC_FILTER_VERSION_ENDLESS_TT = "This archive is, for legal or other reasons, not endless",
   SI_FURC_FILTER_VERSION_FALLBAN = "Fallen Banners",

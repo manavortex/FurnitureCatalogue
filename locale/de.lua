@@ -136,7 +136,7 @@ local strings = {
   SI_FURC_STRING_RECIPESFORCHAR = "Rezepte für <<1>>",
   SI_FURC_TEXTBOX_FILTER_DEFAULT = "Durch Textsuche filtern",
   SI_FURC_TOGGLE_SHOPPINGLIST = " Einkaufsliste umschalten",
-  -- 82 ENTRIES UNTRANSLATED/IDENTICAL
+  -- 84 ENTRIES UNTRANSLATED/IDENTICAL
   SI_FURC_CONTAINS_BOOKS = "Contains <<1>> books",
   SI_FURC_FILTER_SRC_ACHIEVEMENT = "Achievement",
   SI_FURC_FILTER_SRC_ANTIQUITY = "Antiquity",
@@ -178,6 +178,8 @@ local strings = {
   SI_FURC_FILTER_VERSION_DRAGON = "Dragon Bones",
   SI_FURC_FILTER_VERSION_DRAGON2 = "Dragonhold",
   SI_FURC_FILTER_VERSION_DRUID = "Firesong",
+  SI_FURC_FILTER_VERSION_ECHOES = "Season Two",
+  SI_FURC_FILTER_VERSION_ECHOES_TT = "Rumor had it you're finally awake",
   SI_FURC_FILTER_VERSION_ENDLESS = "Secrets of the Telvanni",
   SI_FURC_FILTER_VERSION_FALLBAN = "Fallen Banners",
   SI_FURC_FILTER_VERSION_FALLBAN_TT = "I've fallen and I can't get up!",
