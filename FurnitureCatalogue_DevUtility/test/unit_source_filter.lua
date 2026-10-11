@@ -350,5 +350,17 @@ Taneth("FurC:Unit", function()
         assert.is_nil(choices[src[name]], string.format("%s is listed as not offered but now carries a label", name))
       end
     end)
+
+    it("lists versions newest first after DLC: off", function()
+      local ver = LibFurnitureCatalogue.API.GetDataVersions()
+      local keys = FurC.GetDropdownOrder("Version", FurC.DropdownData.ChoicesVersion)
+      assert.equals(ver.NONE, keys[1])
+      for i = 2, #keys - 1 do
+        assert.is_true(keys[i] > keys[i + 1])
+      end
+      assert.equals(ver.HOMESTEAD, keys[#keys])
+      local character = FurC.GetDropdownOrder("Character", { [2] = "b", [1] = "a", [3] = "c" })
+      assert.equals("1,2,3", table.concat(character, ","))
+    end)
   end)
 end)

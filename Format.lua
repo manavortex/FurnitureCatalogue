@@ -366,7 +366,7 @@ local MISC_CATEGORY = {
 }
 
 local strEvent = GetString(SI_FURC_EVENT)
-local strCrafting = GetString(SI_FURC_SRC_CRAFTING)
+local strCrafting = sFormat("<<C:1>>", GetString(SI_FURC_SRC_CRAFTING))
 local strLeads = GetString(SI_FURC_SRC_LEADS)
 local strEditor = GetString(SI_FURC_SRC_EDITOR)
 local strEditorTag = GetString(SI_FURC_SRC_EDITOR_TAG)
@@ -695,7 +695,7 @@ local function recipeSource(itemId, opts)
       if source.note then
         local notes = {}
         addQualifier(notes, source.note, resolveNote)
-        return fmtGeneric(strCrafting, table.concat(notes, ", "))
+        return string.format("%s (%s)", strCrafting, table.concat(notes, ", "))
       end
       return
     end
@@ -748,7 +748,7 @@ local function formatItem(itemId, entry, opts, withCrafting)
       text = recipeSource(itemId, opts)
       if not text or text == "" then
         materials = not soldElsewhere or writTrader
-        text = materials and formatMaterials(itemId, entry) or fmtGeneric(strCrafting)
+        text = materials and formatMaterials(itemId, entry) or strCrafting
       end
     end
     if text and #text > 0 then

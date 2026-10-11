@@ -157,7 +157,7 @@ Taneth("FurC:Unit", function()
       assert.equals(best.text, format.FormatDescription(itemId, row))
     end)
 
-    local craftingLabel = zo_strformat("<<Cal:1>>", GetString(SI_FURC_SRC_CRAFTING))
+    local craftingLabel = zo_strformat("<<C:1>>", GetString(SI_FURC_SRC_CRAFTING))
 
     it("say Crafting, not a material list, for a craftable that is also bought", function()
       local itemId = picked().craftedAndSold

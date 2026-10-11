@@ -542,6 +542,28 @@ function FurC.SetResetDropdownChoice(value)
   FurC.settings["resetDropdownChoice"] = value
 end
 
+---Keys of a dropdown's choices in display order: versions newest first (ids grow with each release), anything else by id
+---@param dropdownName string
+---@param choices table<integer, string>
+---@return integer[]
+function FurC.GetDropdownOrder(dropdownName, choices)
+  local keys = {}
+  for key in pairs(choices) do
+    keys[#keys + 1] = key
+  end
+  local noVersion = LFC.API.GetDataVersions().NONE
+  table.sort(keys, function(a, b)
+    if dropdownName ~= "Version" then
+      return a < b
+    end
+    if a == noVersion or b == noVersion then
+      return a == noVersion
+    end
+    return a > b
+  end)
+  return keys
+end
+
 function FurC.GetDropdownChoiceTextual(dropdownName)
   local choices = FurC.DropdownData["Choices" .. dropdownName]
   return choices[FurC.GetDropdownChoice(dropdownName)] or choices[1]

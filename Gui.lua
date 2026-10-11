@@ -680,7 +680,9 @@ local function createGui()
 
     comboBox:ClearItems()
     local craftingChildren = { [src.CRAFTING_KNOWN] = true, [src.CRAFTING_UNKNOWN] = true }
-    for key, val in pairs(validChoices) do
+    local keys = FurC.GetDropdownOrder(dropdownName, validChoices)
+    for _, key in ipairs(keys) do
+      local val = validChoices[key]
       if not (dropdownName == "Source" and craftingChildren[key]) then
         local entry = comboBox:CreateItemEntry(val, OnItemSelect)
         entry.furcId = key

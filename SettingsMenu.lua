@@ -277,7 +277,13 @@ function FurC.CreateSettings(savedVars, defaults)
         { -- dropdown: default version
           type = "dropdown",
           name = GetString(SI_FURC_STRING_MENU_DEFAULT_DD_VERSION),
-          choices = FurC.DropdownData.ChoicesVersion,
+          choices = (function()
+            local texts = {}
+            for i, key in ipairs(FurC.GetDropdownOrder("Version", FurC.DropdownData.ChoicesVersion)) do
+              texts[i] = FurC.DropdownData.ChoicesVersion[key]
+            end
+            return texts
+          end)(),
           getFunc = function()
             return FurC.GetDefaultDropdownChoiceText("Version")
           end,
