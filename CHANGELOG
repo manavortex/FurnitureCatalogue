@@ -1,3 +1,12 @@
+8.0.0 (2026-10-11)
+- NEW source filter dropdown rework (new categories and multi-select via right-click)!
+- larger furnishing pic size, description is 2 lines
+- database reorganization and split (REMOVE BUNDLED LIBRARY!)
+- settings button on the FC window
+- updated sourcing on a large number of items including lux
+- cleaned up settings and removed incorrect flag indicating some settings required a reload, changed another to take effect live instead of needing to reload
+- LibScrollableMenu dependency, API bump
+
 7.0.0 (2026-08-30)
 - DB is now in a bundled lib (will be moved into its own AddOn soon)
 - Reverse lookup: search by NPC, zone and more
