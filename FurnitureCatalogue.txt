@@ -1,7 +1,7 @@
 ## Title: FurnitureCatalogue
 ## Author: manavortex
-## Version: 7.0.0
-## AddOnVersion: 7000000
+## Version: 8.0.0
+## AddOnVersion: 8000000
 ## APIVersion: 101050 101051
 ## SavedVariables: FurnitureCatalogue_Settings
 ## DependsOn: LibFurnitureCatalogue>=1001000
