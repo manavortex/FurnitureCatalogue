@@ -653,7 +653,8 @@ local function composeMaterials(ingredients, plain)
     local itemText = ingredientLink
     if plain then
       -- ingredient names come lowercased, so we capitalise them ourselves
-      itemText = string.gsub(" " .. GetItemLinkName(ingredientLink), "%W%l", string.upper):sub(2)
+      -- ASCII boundaries (don't split multibyte chars)
+      itemText = string.gsub(" " .. GetItemLinkName(ingredientLink), "[%s%p]%l", string.upper):sub(2)
     end
     parts[index] = sFormat("<<1>>x <<2>>", ingredients[ingredientLink], itemText)
   end

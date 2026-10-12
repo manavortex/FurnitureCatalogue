@@ -135,6 +135,15 @@ Taneth("FurC:Lib", function()
         assert.is_nil(named:find("|H", 1, true), named)
         assert.is_true(#named < #linked)
 
+        -- capitalising must not break multibyte chars
+        local itemName = GLOBALS.GetItemLinkName
+        GLOBALS.GetItemLinkName = function()
+          return "molybdän-barren"
+        end
+        local umlaut = FurC.SourceFormat.FormatMaterials(craftable, entry, true)
+        GLOBALS.GetItemLinkName = itemName
+        assert.is_true(umlaut:find("Molybdän-Barren", 1, true) ~= nil, umlaut)
+
         -- an entry that names no recipe at all says so rather than rendering an empty list
         assert.equals(FurC.SourceFormat.NoMaterials, FurC.SourceFormat.FormatMaterials(craftable, {}))
       end)
