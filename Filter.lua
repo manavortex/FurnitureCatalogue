@@ -146,9 +146,9 @@ function FurC.InitFilters()
 end
 
 local function isRecipeArrayKnown()
-  -- Knowledge is LCK-only (grayed out if not available)
+  -- Character dropdown is LCK-only (no LCK: knowledge of current char)
   if not furcInternal.LCKAvailable() then
-    return
+    return FurC.CanCraft(itemId, recipeArray)
   end
   -- LCK tracks the recipe, not the furnishing result
   local recipeItem = recipeArray and recipeArray.blueprint and getItemLink(recipeArray.blueprint)

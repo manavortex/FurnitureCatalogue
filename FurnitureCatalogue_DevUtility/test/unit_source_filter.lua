@@ -184,6 +184,29 @@ Taneth("FurC:Unit", function()
       )
     end)
 
+    it("without LCK, Known and Unknown split the craftables by the current character's knowledge", function()
+      local internal = FurC.Internal
+      local savedAvailable, savedCanCraft = internal.LCKAvailable, FurC.CanCraft
+      internal.LCKAvailable = function()
+        return false
+      end
+      FurC.CanCraft = function(_, entry)
+        return entry ~= nil and entry.blueprint ~= nil and entry.blueprint % 2 == 0
+      end
+      local ok, err = pcall(function()
+        local crafting = keptBy(src.CRAFTING)
+        local known, unknown = keptBy(src.CRAFTING_KNOWN), keptBy(src.CRAFTING_UNKNOWN)
+        assert.is_true(count(known) > 0, "Known is not empty")
+        assert.is_true(count(unknown) > 0, "Unknown is not empty")
+        for itemId in pairs(known) do
+          assert.is_nil(unknown[itemId], "listed as known and unknown: " .. itemId)
+        end
+        assert.equals(count(crafting), count(known) + count(unknown))
+      end)
+      internal.LCKAvailable, FurC.CanCraft = savedAvailable, savedCanCraft
+      assert.equals("ok", (ok and "ok") or tostring(err))
+    end)
+
     it("Home Goods keeps the Home Goods Furnisher's stock", function()
       FurC.EnsureDB(true)
       local homeGoods = keptBy(filters.HOME_GOODS)
