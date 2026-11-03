@@ -34,10 +34,11 @@ end
 
 function FurC.PrintCraftingStation(itemId, recipeArray)
   local craftingType = query.GetCraftingSkillType(itemId, recipeArray)
-  if not craftingType or not GetCraftingSkillName(craftingType) then
+  local skillName = craftingType and GetCraftingSkillName(craftingType)
+  if not skillName or skillName == "" then
     return ""
   end
-  return sFormat(" (<<1>>)", GetCraftingSkillName(craftingType))
+  return sFormat(" (<<1>>)", skillName)
 end
 
 function FurC.ToChat(output, refresh)
