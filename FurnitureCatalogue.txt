@@ -4,7 +4,7 @@
 ## AddOnVersion: 8000001
 ## APIVersion: 101051 101052
 ## SavedVariables: FurnitureCatalogue_Settings
-## DependsOn: LibFurnitureCatalogue>=1002001
+## DependsOn: LibFurnitureCatalogue>=1003000
 ## DependsOn: LibAddonMenu-2.0>=43
 ## DependsOn: LibAsync>=30103
 ## DependsOn: LibCustomMenu>=730
