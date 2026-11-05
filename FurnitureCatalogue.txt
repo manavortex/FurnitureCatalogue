@@ -30,6 +30,8 @@ Events.lua
 InventoryIcons.lua
 
 Favorites.lua
+Transfer.lua
+Lists.lua
 Migrations.lua
 Chat.lua
 SearchIndex.lua
