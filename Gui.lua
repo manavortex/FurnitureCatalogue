@@ -729,6 +729,30 @@ local function createGui()
         if node.children then
           entry.entries = buildSourceEntries(node.children, choices, tooltips, selectSource)
         end
+		-- a list's submenu holds what can be done to it; clicking the list itself still selects it
+        local listId = node.id and FurC.ListIdFromSource(node.id)
+        if listId then
+          entry.entries = {
+            {
+              label = GetString(SI_FURC_LIST_RENAME),
+              callback = function()
+                FurC.PromptRenameList(listId)
+              end,
+            },
+            {
+              label = GetString(SI_FURC_LIST_EXPORT),
+              callback = function()
+                FurC.OpenListExport(listId)
+              end,
+            },
+            {
+              label = GetString(SI_FURC_LIST_DELETE),
+              callback = function()
+                FurC.ConfirmDeleteList(listId)
+              end,
+            },
+          }
+        end
         if node.id then
           local id = node.id
           entry.baseLabel = label
@@ -808,6 +832,30 @@ local function createGui()
         if node.children then
           item.entries = buildSourceEntries(node.children, choices, tooltips, selectSource)
         end
+		if node.id == src.FAVE then
+          -- always a submenu, so the first list can be made from it
+          item.entries = item.entries or {}
+          item.entries[#item.entries + 1] = {
+            label = GetString(SI_FURC_LIST_NEW),
+            callback = function()
+              FurC.PromptNewList()
+            end,
+          }
+          if #FurC.GetLists() > 0 then
+            item.entries[#item.entries + 1] = {
+              label = GetString(SI_FURC_LIST_EXPORT_ALL),
+              callback = function()
+                FurC.OpenListExport()
+              end,
+            }
+          end
+          item.entries[#item.entries + 1] = {
+            label = GetString(SI_FURC_LIST_IMPORT),
+            callback = function()
+              FurC.OpenImport()
+            end,
+          }
+        end
         comboBox:AddItem(item)
         if node.id and label == FurC.GetDropdownChoiceTextual("Source") then
           comboBox:SetSelectedItem(label)
@@ -837,6 +885,11 @@ local function createGui()
         FurC.DropdownData.TooltipsCharacter
       )
     end
+  end
+  -- Lists.lua calls this whenever a list is created, renamed or deleted
+  FurC.RefreshSourceDropdown = function()
+    createSourceDropdown()
+    FurC.UpdateDropdownChoice("Source")
   end
   FurC.ChangeTemplateFromButton(FurC.GetTinyUi())
   FurC.SetFontSize(FurC.GetFontSize())
