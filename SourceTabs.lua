@@ -82,6 +82,7 @@ local resolved, familyRoot, nodeById, flatOrder
 local subtreeIds, groupIds -- id -> {self + all descendant ids}; flat list of ids that have children
 local ancestorsOf -- id -> {self, parent, grandparent, ..., root}, for "parent pick covers this leaf" checks
 local builtFrom
+local builtRevision -- FurC.GetListsRevision() the resolved tree was built for
 local warnedUnlabelled = false
 
 ---Sources not used in a node, but with a label
@@ -129,8 +130,11 @@ local function indexNode(node, rootId, parentChain)
     subtree[#subtree + 1] = node.id
     -- this id, then everything already accumulated above it
     ownChain = { node.id }
-    for _, ancestorId in ipairs(parentChain or {}) do
-      ownChain[#ownChain + 1] = ancestorId
+    -- a list sits under Favorites but is not covered by it (and does not cover it)
+    if not node.noRollup then
+      for _, ancestorId in ipairs(parentChain or {}) do
+        ownChain[#ownChain + 1] = ancestorId
+      end
     end
     ancestorsOf[node.id] = ownChain
   end
@@ -152,7 +156,7 @@ end
 ---@return table[] tree resolved copy, catch-all children filled in
 local function getResolvedTree()
   local choices = FurC.DropdownData.ChoicesSource or {}
-  if resolved and builtFrom == choices then
+  if resolved and builtFrom == choices and builtRevision == FurC.GetListsRevision() then
     return resolved
   end
 
@@ -173,9 +177,15 @@ local function getResolvedTree()
   resolved, familyRoot, nodeById, flatOrder = {}, {}, {}, {}
   subtreeIds, groupIds, ancestorsOf = {}, {}, {}
   builtFrom = choices
+  builtRevision = FurC.GetListsRevision()
 
   for _, node in ipairs(SOURCE_TREE) do
     local copy = { id = node.id, stringId = node.stringId, children = node.children }
+	if node.id == src.FAVE then
+      -- custom lists go into a table of their own, SOURCE_TREE itself stays static
+      local listNodes = FurC.GetListTreeNodes()
+      copy.children = #listNodes > 0 and listNodes or nil
+    end
     if node.catchAll then
       local found = collectUngrouped(placed, choices)
       if #found > 0 then
@@ -284,7 +294,7 @@ function FurC.GetSelectedSourceTypes()
   getResolvedTree()
   local types = {}
   local function add(id)
-    if id == src.NONE or id == src.FAVE then
+    if id == src.NONE or id == src.FAVE or FurC.ListIdFromSource(id) then
       return
     end
     for _, covered in ipairs(subtreeIds[id] or { id }) do
