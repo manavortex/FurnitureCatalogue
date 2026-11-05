@@ -1,5 +1,4 @@
 -- Export/import window, shared by everything that wants to hand the user a string to copy (or take one pasted back).
---
 -- A string is one or more lines. Each line is `<PREFIX>:<payload>`, PREFIX being what a feature registered with
 -- FurC.Transfer.Register (e.g. FURC LIST). Import hands every line to the handler of its prefix, so one paste may
 -- carry several kinds, and a new kind needs no change here.
@@ -70,20 +69,18 @@ local function build()
   window:SetClampedToScreen(true)
   window:SetHidden(true)
 
-  local bg = wm:CreateControl("$(parent)Bg", window, CT_BACKDROP)
-  bg:SetAnchorFill(window)
-  bg:SetCenterColor(0, 0, 0, 0.9)
-  bg:SetEdgeColor(1, 1, 1, 0.25)
-  bg:SetEdgeTexture("", 1, 1, 1)
+  local bg = wm:CreateControlFromVirtual("$(parent)Bg", window, "ZO_DefaultBackdrop")
+  bg:SetAnchor(TOPLEFT, window, TOPLEFT, 0, 0)
+  bg:SetAnchor(BOTTOMRIGHT, window, BOTTOMRIGHT, 0, 0)
 
   titleLabel = wm:CreateControl("$(parent)Title", window, CT_LABEL)
-  titleLabel:SetFont("ZoFontWinH2")
+  titleLabel:SetFont("$(STONE_TABLET_FONT)|26|soft-shadow-thick")
   titleLabel:SetAnchor(TOPLEFT, window, TOPLEFT, 16, 22)
 
   hintLabel = wm:CreateControl("$(parent)Hint", window, CT_LABEL)
   hintLabel:SetFont("ZoFontGame")
-  hintLabel:SetAnchor(TOPLEFT, window, TOPLEFT, 16, 62)
-  hintLabel:SetAnchor(TOPRIGHT, window, TOPRIGHT, -16, 62)
+  hintLabel:SetAnchor(TOPLEFT, window, TOPLEFT, 16, 68)
+  hintLabel:SetAnchor(TOPRIGHT, window, TOPRIGHT, -16, 68)
 
   local editBg = wm:CreateControlFromVirtual("$(parent)EditBg", window, "ZO_MultiLineEditBackdrop_Keyboard")
   editBg:SetAnchor(TOPLEFT, hintLabel, BOTTOMLEFT, 0, 12)
