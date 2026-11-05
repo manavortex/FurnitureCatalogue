@@ -168,6 +168,7 @@ local function getChoicesSource()
   choicesSource[src.PICKPOCKET] = GetString(SI_FURC_FILTER_SRC_PICKPOCKET)
   choicesSource[src.STEAL_CONTAINER] = GetString(SI_FURC_FILTER_SRC_CONTAINER)
 
+this.ApplyListChoices(choicesSource)
   return choicesSource
 end
 this.GetChoicesSource = getChoicesSource
@@ -208,7 +209,14 @@ this.GetChoicesSourceList = getChoicesSourceList
 ---Source ids for choicesValues, display order is declared in SourceTabs.lua
 ---@return integer[] choicesValues
 function this.GetChoicesSourceValues()
-  return FurC.GetSourceOrder()
+  -- lists are runtime-created and change, a settings dropdown built once can't follow them
+  local values = {}
+  for _, id in ipairs(FurC.GetSourceOrder()) do
+    if not FurC.ListIdFromSource(id) then
+      values[#values + 1] = id
+    end
+  end
+  return values
 end
 
 -- TODO #REFACTOR Just auto generate those from the published version keys ¯\_(ツ)_/¯
