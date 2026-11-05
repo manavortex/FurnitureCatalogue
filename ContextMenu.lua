@@ -75,6 +75,31 @@ local function doNothing()
   return
 end
 
+-- Add to list: one checkbox per custom list (an item can sit on several), built when the submenu opens
+local function listMenuEntries()
+  local entries = {}
+  for _, list in ipairs(FurC.GetLists()) do
+    local listId = list.id
+    entries[#entries + 1] = {
+      label = list.name,
+      itemType = MENU_ADD_OPTION_CHECKBOX,
+      checked = function()
+        return FurC.IsItemInList(listId, cachedItemLink)
+      end,
+      callback = function()
+        FurC.ToggleListItem(listId, cachedItemLink)
+      end,
+    }
+  end
+  entries[#entries + 1] = {
+    label = GetString(SI_FURC_LIST_NEW),
+    callback = function()
+      FurC.PromptNewList(cachedItemLink)
+    end,
+  }
+  return entries
+end
+
 local S_DIVIDER = "-"
 local function addMenuItems(itemLink, recipeArray, hideSepBar)
   hideSepBar = hideSepBar or false
@@ -95,6 +120,10 @@ local function addMenuItems(itemLink, recipeArray, hideSepBar)
   local faveText = FurC.IsFavorite(itemLink, recipeArray) and GetString(SI_FURC_REMOVE_FAVE)
     or GetString(SI_FURC_ADD_FAVE)
   AddCustomMenuItem(faveText, fave, MENU_ADD_OPTION_LABEL)
+  -- only once a list exists; the first one is made from the Favorites entry of the Source dropdown
+  if #FurC.GetLists() > 0 then
+    AddCustomSubMenuItem(GetString(SI_FURC_LIST_ADD), listMenuEntries)
+  end
 
   local isRecipe = IsItemLinkFurnitureRecipe(itemLink)
 
