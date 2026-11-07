@@ -13,6 +13,8 @@ local function faveKey(itemLink)
   return getItemId(itemLink)
 end
 
+FurC.FaveKey = faveKey
+
 function FurC.IsFavoriteById(itemId)
   return itemId ~= nil and FurC.settings.favorites[itemId] == true
 end
