@@ -276,19 +276,29 @@ function FurC.ConfirmDeleteList(listId)
 end
 
 --[[ Export / import ]]
--- One line per list: FURC LIST: <name>: <id>,<id>,... (the name runs to the last colon, so it may contain colons)
+-- FURC LIST: <name>: <id>,<id>,... (the name runs to the last colon, so it may contain colons)
+-- FURC FAVES: <id>,<id>,...
+-- Both wrap at FurC.Transfer.IdLines' ids per line
+-- Same name lists merge on import
 
 local LIST_PREFIX = "FURC LIST"
+local FAVES_PREFIX = "FURC FAVES"
 
+---@param set table<integer, true>
 ---@return integer[] itemIds ascending
-function FurC.GetListItemIds(listId)
-  local list = store().byId[listId]
+local function sortedIds(set)
   local ids = {}
-  for itemId in pairs(list and list.items or {}) do
+  for itemId in pairs(set or {}) do
     ids[#ids + 1] = itemId
   end
   table.sort(ids)
   return ids
+end
+
+---@return integer[] itemIds ascending
+function FurC.GetListItemIds(listId)
+  local list = store().byId[listId]
+  return sortedIds(list and list.items)
 end
 
 ---@return integer? listId
@@ -301,79 +311,89 @@ function FurC.FindListByName(name)
   end
 end
 
--- 1000 ids with 6-7 digits plus commas stay under 8000 bytes a line, well inside one Transfer page (20000)
-local IDS_PER_LINE = 1000
-
----A list as export lines, one per IDS_PER_LINE ids
+---A list as export lines
 ---@param name string
 ---@param ids integer[]
 ---@return string[] lines
 function FurC.ListExportLines(name, ids)
-  name = name:gsub("[\r\n]", " ")
-  local lines = {}
-  for first = 1, math.max(#ids, 1), IDS_PER_LINE do
-    local last = math.min(first + IDS_PER_LINE - 1, #ids)
-    lines[#lines + 1] = string.format("%s: %s: %s", LIST_PREFIX, name, table.concat(ids, ",", first, last))
-  end
-  return lines
+  return FurC.Transfer.IdLines(LIST_PREFIX .. ": " .. name:gsub("[\r\n]", " "), ids)
+end
+
+---The favourites as export lines, none when there are none
+---@param ids integer[]
+---@return string[] lines
+function FurC.FavesExportLines(ids)
+  return #ids > 0 and FurC.Transfer.IdLines(FAVES_PREFIX, ids) or {}
 end
 
 ---@param payload string everything after the prefix
 ---@param version integer format version of the line, 1 when it carries none
+---@return FurCTransferResult?, string?
 local function importListLine(payload, version)
   if version ~= 1 then
-    return false, GetString(SI_FURC_LIST_IMPORT_BAD)
+    return nil, GetString(SI_FURC_LIST_IMPORT_BAD)
   end
   local name, idText = payload:match("^(.*):%s*([%d,%s]*)$")
   name = name and zo_strtrim(name)
   if not name or name == "" then
-    return false, GetString(SI_FURC_LIST_IMPORT_BAD)
+    return nil, GetString(SI_FURC_LIST_IMPORT_BAD)
   end
   local listId = FurC.FindListByName(name)
   if not listId then
     local err
     listId, err = FurC.CreateList(name)
     if not listId then
-      return false, err
+      return nil, err
     end
   end
-  local items, added = store().byId[listId].items, 0
-  for idString in idText:gmatch("%d+") do
-    local id = tonumber(idString)
-    if id and id > 0 and not items[id] then
-      items[id] = true
-      added = added + 1
-    end
-  end
-  FurC.UpdateGui()
-  return true, zo_strformat(GetString(SI_FURC_LIST_IMPORTED), store().byId[listId].name, added)
+  local list = store().byId[listId]
+  local added, duplicates, unknown = FurC.AddImportedIds(list.items, idText, FurC.KnownFurnishingId)
+  return { label = list.name, added = added, duplicates = duplicates, unknown = unknown }
 end
 FurC.Transfer.Register(LIST_PREFIX, { import = importListLine })
 
----@param listId integer? nil exports every list, one line each
-function FurC.OpenListExport(listId)
-  local lines = {}
-  for _, list in ipairs(FurC.GetLists()) do
-    if listId == nil or list.id == listId then
-      for _, line in ipairs(FurC.ListExportLines(list.name, FurC.GetListItemIds(list.id))) do
-        lines[#lines + 1] = line
-      end
+---@return FurCTransferResult?, string?
+local function importFavesLine(payload, version)
+  local idText = version == 1 and payload:match("^[%d,%s]*$")
+  if not idText then
+    return nil, GetString(SI_FURC_LIST_IMPORT_BAD)
+  end
+  local added, duplicates, unknown = FurC.AddImportedIds(FurC.settings.favorites, idText, FurC.KnownFurnishingId)
+  return { label = GetString(SI_FURC_FILTER_SRC_FAVE), added = added, duplicates = duplicates, unknown = unknown }
+end
+FurC.Transfer.Register(FAVES_PREFIX, { import = importFavesLine })
+
+---Export lines of a list, the favourites, or (nil) the favourites and every list
+---@param what integer|"faves"|nil
+---@return string text, string title
+local function exportText(what)
+  local lines, title = {}, GetString(SI_FURC_LISTS)
+  local function append(more)
+    for _, line in ipairs(more) do
+      lines[#lines + 1] = line
     end
   end
-  if #lines == 0 then
-    return
+  if what == nil or what == "faves" then
+    append(FurC.FavesExportLines(sortedIds(FurC.settings.favorites)))
+    title = what and GetString(SI_FURC_FILTER_SRC_FAVE) or title
   end
-  FurC.Transfer.Open({
-    title = GetString(SI_FURC_TRANSFER_TITLE_EXPORT),
-    hint = GetString(SI_FURC_TRANSFER_HINT_EXPORT),
-    text = table.concat(lines, "\n"),
-    canImport = false,
-  })
+  for _, list in ipairs(FurC.GetLists()) do
+    if what == nil or list.id == what then
+      append(FurC.ListExportLines(list.name, FurC.GetListItemIds(list.id)))
+      title = what and list.name or title
+    end
+  end
+  return table.concat(lines, "\n"), title
 end
 
-function FurC.OpenImport()
+---Combined toolbox for import and export
+---@param what integer|"faves"|nil a list id, the favourites, or nil for the favourites and every list
+function FurC.OpenListTransfer(what)
+  local _, title = exportText(what)
   FurC.Transfer.Open({
-    title = GetString(SI_FURC_TRANSFER_TITLE_IMPORT),
-    hint = GetString(SI_FURC_TRANSFER_HINT_IMPORT),
+    title = title,
+    getText = function()
+      return (exportText(what))
+    end,
   })
 end

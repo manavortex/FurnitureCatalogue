@@ -79,4 +79,90 @@ Taneth("FurC:Unit", function()
       assert.same({ "FURC LIST: a: " }, FurC.ListExportLines("a", {}))
     end)
   end)
+
+  describe("FurC.FavesExportLines", function()
+    it("writes no line for no favourites and wraps many at 1000 ids", function()
+      assert.same({}, FurC.FavesExportLines({}))
+      assert.same({ "FURC FAVES: 7,9" }, FurC.FavesExportLines({ 7, 9 }))
+      local ids = {}
+      for i = 1, 1001 do
+        ids[i] = 200000 + i
+      end
+      local lines = FurC.FavesExportLines(ids)
+      assert.equals(2, #lines)
+      assert.equals("FURC FAVES: 201001", lines[2])
+    end)
+  end)
+
+  describe("FurC.AddImportedIds", function()
+    -- 1 and 2 are furnishings, 20 is the blueprint of 2, everything else is unknown
+    local function resolve(id)
+      return ({ [1] = 1, [2] = 2, [20] = 2 })[id]
+    end
+
+    it("maps a blueprint to its furnishing, drops unknown ids and counts repeats as duplicates", function()
+      local items = { [1] = true }
+      local added, duplicates, unknown = FurC.AddImportedIds(items, "1, 2,20,99, 2", resolve)
+      assert.same({ [1] = true, [2] = true }, items)
+      assert.equals(1, added)
+      assert.equals(3, duplicates) -- 1 was there, 20 is 2 again, 2 twice
+      assert.equals(1, unknown)
+    end)
+
+    it("counts nothing for text without ids", function()
+      local added, duplicates, unknown = FurC.AddImportedIds({}, "", resolve)
+      assert.equals(0, added + duplicates + unknown)
+    end)
+  end)
+
+  describe("FurC.Transfer.ImportText", function()
+    local PREFIX = "FURC UNITTEST"
+
+    it("adds lines of the same label up to one entry and counts unreadable lines", function()
+      FurC.Transfer.Register(PREFIX, {
+        import = function(payload)
+          local label, n = payload:match("^(%a+) (%d+)$")
+          if not label then
+            return nil, "bad"
+          end
+          return { label = label, added = tonumber(n), duplicates = 1, unknown = 0 }
+        end,
+      })
+      local ok, report = pcall(
+        FurC.Transfer.ImportText,
+        table.concat({
+          PREFIX .. ": a 2",
+          PREFIX .. ": b 5",
+          PREFIX .. ": A 3",
+          "not ids at all",
+          PREFIX .. ": ???",
+          "FURC NOBODY: 1",
+        }, "\n")
+      )
+      FurC.Transfer.Register(PREFIX, nil)
+      assert.is_true(ok, tostring(report))
+      assert.equals(2, #report.entries)
+      assert.equals("a", report.entries[1].label)
+      assert.equals(5, report.entries[1].added)
+      assert.equals(2, report.entries[1].duplicates)
+      assert.equals(5, report.entries[2].added)
+      assert.equals(3, report.unreadable)
+      assert.same({ "bad" }, report.errors)
+    end)
+
+    it("rejoins a line the game broke mid-id, and still refuses a line that is not ids", function()
+      local payloads = {}
+      FurC.Transfer.Register(PREFIX, {
+        import = function(payload)
+          payloads[#payloads + 1] = payload
+          return { label = "x", added = 0, duplicates = 0, unknown = 0 }
+        end,
+      })
+      local ok, report = pcall(FurC.Transfer.ImportText, PREFIX .. ": x: 101,102,10\r\n3,104\r\nhello, world")
+      FurC.Transfer.Register(PREFIX, nil)
+      assert.is_true(ok, tostring(report))
+      assert.same({ "x: 101,102,103,104" }, payloads)
+      assert.equals(1, report.unreadable)
+    end)
+  end)
 end)

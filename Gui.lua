@@ -24,6 +24,8 @@ local additiveSources = FurC.AdditiveSources
 -- reused as the persistent (non-hover) label color for a right-click pick.
 local ADDITIVE_SOURCE_COLOR = ZO_ColorDef:New("00ff00")
 local ADDITIVE_SOURCE_ICON = "esoui/art/cadwell/check.dds"
+local FAVE_ICON = zo_iconFormat("EsoUI/Art/Collections/Favorite_StarOnly.dds", 16, 16) .. " "
+local LSM_DIVIDER = "-" -- LibScrollableMenu label as a separator
 
 -- id -> the live GUI entry/item table for that Source tree node, so a rolled-up count
 -- can be written into its label after the fact. Rebuilt fresh each createSourceDropdown()
@@ -729,7 +731,7 @@ local function createGui()
         if node.children then
           entry.entries = buildSourceEntries(node.children, choices, tooltips, selectSource)
         end
-		-- a list's submenu holds what can be done to it; clicking the list itself still selects it
+        -- a list's submenu holds what can be done to it; clicking the list itself still selects it
         local listId = node.id and FurC.ListIdFromSource(node.id)
         if listId then
           entry.entries = {
@@ -740,9 +742,9 @@ local function createGui()
               end,
             },
             {
-              label = GetString(SI_FURC_LIST_EXPORT),
+              label = GetString(SI_FURC_LIST_TRANSFER),
               callback = function()
-                FurC.OpenListExport(listId)
+                FurC.OpenListTransfer(listId)
               end,
             },
             {
@@ -832,32 +834,40 @@ local function createGui()
         if node.children then
           item.entries = buildSourceEntries(node.children, choices, tooltips, selectSource)
         end
-		if node.id == src.FAVE then
-          -- always a submenu, so the first list can be made from it
-          item.entries = item.entries or {}
+        if node.id == src.FAVE then
+          -- "Lists" drawer holds Favorites first, then the lists
+          local listEntries = item.entries or {}
+          local fave = buildSourceEntries({ { id = src.FAVE } }, choices, tooltips, selectSource)[1]
+          fave.label = FAVE_ICON .. label
+          fave.baseLabel = fave.label
+          fave.entries = {
+            {
+              label = GetString(SI_FURC_LIST_TRANSFER),
+              callback = function()
+                FurC.OpenListTransfer("faves")
+              end,
+            },
+          }
+          item = comboBox:CreateItemEntry(GetString(SI_FURC_LISTS))
+          item.entries = { fave, { label = LSM_DIVIDER } }
+          for _, entry in ipairs(listEntries) do
+            item.entries[#item.entries + 1] = entry
+          end
           item.entries[#item.entries + 1] = {
             label = GetString(SI_FURC_LIST_NEW),
             callback = function()
               FurC.PromptNewList()
             end,
           }
-          if #FurC.GetLists() > 0 then
-            item.entries[#item.entries + 1] = {
-              label = GetString(SI_FURC_LIST_EXPORT_ALL),
-              callback = function()
-                FurC.OpenListExport()
-              end,
-            }
-          end
           item.entries[#item.entries + 1] = {
-            label = GetString(SI_FURC_LIST_IMPORT),
+            label = GetString(SI_FURC_LIST_TRANSFER),
             callback = function()
-              FurC.OpenImport()
+              FurC.OpenListTransfer()
             end,
           }
         end
         comboBox:AddItem(item)
-        if node.id and label == FurC.GetDropdownChoiceTextual("Source") then
+        if item.furcId and label == FurC.GetDropdownChoiceTextual("Source") then
           comboBox:SetSelectedItem(label)
         end
       end

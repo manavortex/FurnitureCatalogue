@@ -75,9 +75,18 @@ local function doNothing()
   return
 end
 
--- Add to list: one checkbox per custom list (an item can sit on several), built when the submenu opens
+-- Add to list: Favorites, then one checkbox per custom list (an item can sit on several), built when the submenu opens
 local function listMenuEntries()
-  local entries = {}
+  local entries = {
+    {
+      label = GetString(SI_FURC_FILTER_SRC_FAVE),
+      itemType = MENU_ADD_OPTION_CHECKBOX,
+      checked = function()
+        return FurC.IsFavorite(cachedItemLink)
+      end,
+      callback = fave,
+    },
+  }
   for _, list in ipairs(FurC.GetLists()) do
     local listId = list.id
     entries[#entries + 1] = {
@@ -120,10 +129,7 @@ local function addMenuItems(itemLink, recipeArray, hideSepBar)
   local faveText = FurC.IsFavorite(itemLink, recipeArray) and GetString(SI_FURC_REMOVE_FAVE)
     or GetString(SI_FURC_ADD_FAVE)
   AddCustomMenuItem(faveText, fave, MENU_ADD_OPTION_LABEL)
-  -- only once a list exists; the first one is made from the Favorites entry of the Source dropdown
-  if #FurC.GetLists() > 0 then
-    AddCustomSubMenuItem(GetString(SI_FURC_LIST_ADD), listMenuEntries)
-  end
+  AddCustomSubMenuItem(GetString(SI_FURC_LIST_ADD), listMenuEntries)
 
   local isRecipe = IsItemLinkFurnitureRecipe(itemLink)
 

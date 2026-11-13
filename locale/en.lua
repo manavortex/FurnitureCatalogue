@@ -150,6 +150,8 @@ local strings = {
   SI_FURC_LIST_NEW = "  New list…",
   SI_FURC_LIST_RENAME = "Rename…",
   SI_FURC_LIST_RENAME_HINT = "Currently: <<1>>",
+  SI_FURC_LIST_TRANSFER = "Import/Export",
+  SI_FURC_LISTS = "Lists",
   SI_FURC_MENU_HEADER = "- |cD3B830Furniture|r:",
   SI_FURC_PLUGIN_SL_ADD_FIVE = "Add 5 to shopping list",
   SI_FURC_PLUGIN_SL_ADD_ONE = "Add 1 to shopping list",
@@ -244,6 +246,10 @@ local strings = {
   SI_FURC_TRANSFER_RESULT = "Imported <<1>> line(s), skipped <<2>>.",
   SI_FURC_TRANSFER_PAGE = "Page <<1>> of <<2>>.",
   SI_FURC_TRANSFER_CAPPED = "Textbox full, so the last part may be cut off",
+  SI_FURC_TRANSFER_LISTS = "<<1>> list(s) imported:",
+  SI_FURC_TRANSFER_ENTRY = "<<1>> +<<2>> (<<3>> duplicate, <<4>> unknown)",
+  SI_FURC_TRANSFER_UNREADABLE = "<<1>> line(s) could not be read.",
+  SI_FURC_TRANSFER_NOTHING = "Nothing to import.",
 }
 
 for stringId, stringValue in pairs(strings) do

@@ -8,10 +8,14 @@ local T = FurC.Transfer
 
 local handlers = {}
 
+-- 1000 ids with 6-7 digits plus commas stay under 8000 bytes a line, well inside one page (20000)
+local IDS_PER_LINE = 1000
+
 -- what the edit box accepts. ~7 characters per furnishing id, so this is well beyond any list
 local MAX_CHARS = 20000
 
----@alias FurCTransferHandler { import: fun(payload: string, version: integer): boolean, string? } returns ok + a line of feedback
+---@alias FurCTransferResult { label: string, added: integer, duplicates: integer, unknown: integer } counts only, never ids
+---@alias FurCTransferHandler { import: fun(payload: string, version: integer): FurCTransferResult?, string? } nil + reason refuses the line
 
 ---@param prefix string e.g. "FURC LIST"; a line may carry a format version after it ("FURC LIST 2"), none means 1
 ---@param handler FurCTransferHandler
@@ -19,38 +23,80 @@ function T.Register(prefix, handler)
   handlers[zo_strtrim(prefix):upper()] = handler
 end
 
----Hand each line of text to the handler of its prefix
+---@param line string trimmed
+---@return FurCTransferHandler? handler, string? payload, integer? version nil when no registered prefix starts the line
+local function parse(line)
+  local prefix, payload = line:match("^(FURC[^:]*):%s*(.*)$")
+  if not prefix then
+    return
+  end
+  -- "FURC LIST 2" is kind "FURC LIST", version 2; without a number it is version 1
+  prefix = zo_strtrim(prefix):gsub("%s+", " "):upper()
+  local kind, number = prefix:match("^(.-) (%d+)$")
+  local handler = handlers[kind or prefix]
+  return handler, handler and payload, handler and (tonumber(number) or 1)
+end
+
+---Hand each line of text to the handler of its prefix. Lines with the same label (one list in several lines) add up
+---to one entry
 ---@param text string
----@return integer imported, integer skipped, string[] messages
+---@return { entries: FurCTransferResult[], unreadable: integer, errors: string[] } report
 function T.ImportText(text)
-  local imported, skipped, messages = 0, 0, {}
+  -- The game breaks a pasted line after 9996 characters with a line break and loses nothing (measured 2026-11-13:
+  -- 16722 characters arrived as 16724). So a prefix-less line of ids continues the prefixed line before it.
+  local lines, last = {}, nil
   for rawLine in tostring(text or ""):gmatch("[^\r\n]+") do
     local line = zo_strtrim(rawLine)
     if line ~= "" then
-      local prefix, payload = line:match("^(FURC[^:]*):%s*(.*)$")
-      local handler, version
-      if prefix then
-        -- "FURC LIST 2" is kind "FURC LIST", version 2; without a number it is version 1
-        prefix = zo_strtrim(prefix):gsub("%s+", " "):upper()
-        local kind, number = prefix:match("^(.-) (%d+)$")
-        handler = handlers[kind or prefix]
-        version = tonumber(number) or 1
-      end
-      local ok, message = false, nil
-      if handler then
-        ok, message = handler.import(payload, version)
-      end
-      if ok then
-        imported = imported + 1
+      if last and not parse(line) and line:match("^[%d,%s]+$") then
+        lines[last] = lines[last] .. line
       else
-        skipped = skipped + 1
-      end
-      if message then
-        messages[#messages + 1] = message
+        lines[#lines + 1] = line
+        last = parse(line) and #lines or nil
       end
     end
   end
-  return imported, skipped, messages
+
+  local report, byLabel, seenError = { entries = {}, unreadable = 0, errors = {} }, {}, {}
+  for _, line in ipairs(lines) do
+    local handler, payload, version = parse(line)
+    local result, err
+    if handler then
+      result, err = handler.import(payload, version)
+    end
+    if result then
+      local key = LocaleAwareToLower(result.label)
+      local entry = byLabel[key]
+      if entry then
+        entry.added = entry.added + result.added
+        entry.duplicates = entry.duplicates + result.duplicates
+        entry.unknown = entry.unknown + result.unknown
+      else
+        byLabel[key] = result
+        report.entries[#report.entries + 1] = result
+      end
+    else
+      report.unreadable = report.unreadable + 1
+      if err and not seenError[err] then
+        seenError[err] = true
+        report.errors[#report.errors + 1] = err
+      end
+    end
+  end
+  return report
+end
+
+---Furnishing ids as export lines under one header, at most IDS_PER_LINE ids each
+---@param header string e.g. "FURC FAVES" or "FURC LIST: <name>"
+---@param ids integer[]
+---@return string[] lines at least one, so an empty set still names itself
+function T.IdLines(header, ids)
+  local lines = {}
+  for first = 1, math.max(#ids, 1), IDS_PER_LINE do
+    local last = math.min(first + IDS_PER_LINE - 1, #ids)
+    lines[#lines + 1] = string.format("%s: %s", header, table.concat(ids, ",", first, last))
+  end
+  return lines
 end
 
 ---Pack lines into pages for the edit box, splitting only between lines
@@ -82,13 +128,61 @@ end
 -- Only part of this file that touches controls. Virtual templates used (not in the addon's own XML, so worth
 -- checking against ESOUI): ZO_MultiLineEditBackdrop_Keyboard, ZO_DefaultEditMultiLineForBackdrop, ZO_DefaultButton
 
-local window, editBox, titleLabel, hintLabel, statusLabel, importButton, prevButton, nextButton
+local window, editBox, titleLabel, hintLabel, statusLabel, prevButton, nextButton, importButton, selectAllButton
+local exportTab, importTab
 local pages, page = {}, 1
+local getText -- the export text of what the window was opened for, read again on every switch to Export
 
-local function showPage(delta)
+-- one line, cut with an ellipsis so it never runs into the buttons; the whole text is its tooltip
+local function setStatus(text)
+  statusLabel:SetText(text)
+  statusLabel.fullText = text
+end
+
+---@param report table T.ImportText's
+---@return string
+local function formatReport(report)
+  local parts = {}
+  if #report.entries > 0 then
+    local entries = {}
+    for i, e in ipairs(report.entries) do
+      entries[i] = zo_strformat(GetString(SI_FURC_TRANSFER_ENTRY), e.label, e.added, e.duplicates, e.unknown)
+    end
+    parts[1] = zo_strformat(GetString(SI_FURC_TRANSFER_LISTS), #entries) .. " " .. table.concat(entries, "; ")
+  end
+  if report.unreadable > 0 then
+    parts[#parts + 1] = zo_strformat(GetString(SI_FURC_TRANSFER_UNREADABLE), report.unreadable)
+  end
+  for _, err in ipairs(report.errors) do
+    parts[#parts + 1] = err
+  end
+  return #parts > 0 and table.concat(parts, " ") or GetString(SI_FURC_TRANSFER_NOTHING)
+end
+
+local showPage
+
+---@param export boolean true: the paged export, false: an empty box to paste into
+local function showTab(export)
+  exportTab:SetEnabled(not export)
+  importTab:SetEnabled(export)
+  importButton:SetHidden(export)
+  selectAllButton:SetHidden(not export)
+  hintLabel:SetText(GetString(export and SI_FURC_TRANSFER_HINT_EXPORT or SI_FURC_TRANSFER_HINT_IMPORT))
+  local lines = {}
+  if export then
+    for line in tostring(getText() or ""):gmatch("[^\r\n]+") do
+      lines[#lines + 1] = line
+    end
+  end
+  pages = T.Paginate(lines, editBox:GetMaxInputChars())
+  page = 1
+  showPage(0)
+end
+
+function showPage(delta)
   page = math.max(1, math.min(#pages, page + delta))
   editBox:SetText(pages[page] or "")
-  statusLabel:SetText(#pages > 1 and zo_strformat(GetString(SI_FURC_TRANSFER_PAGE), page, #pages) or "")
+  setStatus(#pages > 1 and zo_strformat(GetString(SI_FURC_TRANSFER_PAGE), page, #pages) or "")
   prevButton:SetHidden(#pages < 2)
   nextButton:SetHidden(#pages < 2)
   editBox:TakeFocus()
@@ -98,7 +192,7 @@ end
 local function build()
   local wm = WINDOW_MANAGER
   window = wm:CreateTopLevelWindow("FurC_TransferWindow")
-  window:SetDimensions(540, 430)
+  window:SetDimensions(640, 430) -- room for Select all, <, Import, >, Close in one row
   window:SetAnchor(CENTER, GuiRoot, CENTER, 0, 0)
   window:SetMovable(true)
   window:SetMouseEnabled(true)
@@ -112,6 +206,9 @@ local function build()
   titleLabel = wm:CreateControl("$(parent)Title", window, CT_LABEL)
   titleLabel:SetFont("$(STONE_TABLET_FONT)|26|soft-shadow-thick")
   titleLabel:SetAnchor(TOPLEFT, window, TOPLEFT, 16, 22)
+  titleLabel:SetAnchor(TOPRIGHT, window, TOPRIGHT, -320, 22) -- clear of the tabs; a long list name ends in "..."
+  titleLabel:SetMaxLineCount(1)
+  titleLabel:SetWrapMode(TEXT_WRAP_MODE_ELLIPSIS)
 
   hintLabel = wm:CreateControl("$(parent)Hint", window, CT_LABEL)
   hintLabel:SetFont("ZoFontGame")
@@ -131,38 +228,68 @@ local function build()
   statusLabel:SetFont("ZoFontGame")
   statusLabel:SetAnchor(TOPLEFT, editBg, BOTTOMLEFT, 0, 8)
   statusLabel:SetAnchor(TOPRIGHT, editBg, BOTTOMRIGHT, 0, 8)
+  statusLabel:SetMaxLineCount(1)
+  statusLabel:SetWrapMode(TEXT_WRAP_MODE_ELLIPSIS)
+  statusLabel:SetMouseEnabled(true)
+  statusLabel:SetHandler("OnMouseEnter", function(control)
+    if control.fullText and control.fullText ~= "" then
+      InitializeTooltip(InformationTooltip, control, BOTTOM, 0, -4, TOP)
+      SetTooltipText(InformationTooltip, control.fullText)
+    end
+  end)
+  statusLabel:SetHandler("OnMouseExit", function()
+    ClearTooltip(InformationTooltip)
+  end)
 
-  local function button(name, text, anchorPoint, offsetX, onClick)
+  local function button(name, text, anchorPoint, offsetX, onClick, offsetY)
     local b = wm:CreateControlFromVirtual("$(parent)" .. name, window, "ZO_DefaultButton")
     b:SetText(text)
     b:SetDimensions(140, 28)
-    b:SetAnchor(anchorPoint, window, anchorPoint, offsetX, -16)
+    b:SetAnchor(anchorPoint, window, anchorPoint, offsetX, offsetY or -16)
     b:SetHandler("OnClicked", onClick)
     return b
   end
 
-  button("SelectAll", GetString(SI_FURC_TRANSFER_SELECT_ALL), BOTTOMLEFT, 16, function()
+  -- tabs: two buttons, the one showing is disabled
+  exportTab = button("ExportTab", GetString(SI_FURC_TRANSFER_TITLE_EXPORT), TOPRIGHT, -164, function()
+    showTab(true)
+  end, 22)
+  importTab = button("ImportTab", GetString(SI_FURC_TRANSFER_TITLE_IMPORT), TOPRIGHT, -16, function()
+    showTab(false)
+  end, 22)
+
+  selectAllButton = button("SelectAll", GetString(SI_FURC_TRANSFER_SELECT_ALL), BOTTOMLEFT, 16, function()
     editBox:TakeFocus()
     editBox:SelectAll()
   end)
   importButton = button("Import", GetString(SI_FURC_TRANSFER_IMPORT), BOTTOM, 0, function()
+    -- an id is known only once the catalogue is built; before that every id would read as unknown
+    if not LibFurnitureCatalogue.API.IsReady() then
+      FurC.EnsureDB()
+      setStatus(GetString(SI_FURC_CHAT_BUILDING))
+      return
+    end
     local text = editBox:GetText()
     -- a long-ass paste may be cut-off
     local capped = ZoUTF8StringLength(text) >= editBox:GetMaxInputChars()
     if capped then
       text = text:match("^(.*)\n") or ""
     end
-    local imported, skipped, messages = T.ImportText(text)
-    local summary = zo_strformat(GetString(SI_FURC_TRANSFER_RESULT), imported, skipped)
+    local report = T.ImportText(text)
     if capped then
-      table.insert(messages, 1, GetString(SI_FURC_TRANSFER_CAPPED))
+      table.insert(report.errors, 1, GetString(SI_FURC_TRANSFER_CAPPED))
     end
-    statusLabel:SetText(#messages > 0 and (summary .. " " .. table.concat(messages, " ")) or summary)
+    if #report.entries > 0 then
+      -- imported: the paste goes, so pressing Import again cannot count it twice
+      editBox:SetText("")
+      FurC.UpdateGui()
+    end
+    setStatus(formatReport(report))
   end)
-  prevButton = button("Prev", "<", BOTTOM, -40, function()
+  prevButton = button("Prev", "<", BOTTOM, -120, function()
     showPage(-1)
   end)
-  nextButton = button("Next", ">", BOTTOM, 40, function()
+  nextButton = button("Next", ">", BOTTOM, 120, function()
     showPage(1)
   end)
   prevButton:SetDimensions(60, 28)
@@ -180,22 +307,15 @@ function T.Close()
   end
 end
 
----@param opts { title: string, text?: string, hint?: string, canImport?: boolean }
+---Export tab: the text to copy, paged. Import tab: a box to paste into. Opens on Export
+---@param opts { title: string, getText: fun(): string }
 function T.Open(opts)
   if not window then
     build()
   end
   titleLabel:SetText(opts.title or "")
-  hintLabel:SetText(opts.hint or "")
-  importButton:SetHidden(opts.canImport == false)
+  getText = opts.getText
   SCENE_MANAGER:ShowTopLevel(window)
   window:BringWindowToTop()
-
-  local lines = {}
-  for line in tostring(opts.text or ""):gmatch("[^\r\n]+") do
-    lines[#lines + 1] = line
-  end
-  pages = T.Paginate(lines, editBox:GetMaxInputChars())
-  page = 1
-  showPage(0)
+  showTab(true)
 end
