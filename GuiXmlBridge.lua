@@ -106,6 +106,11 @@ function FurC.GuiOnScroll(control, delta)
     return
   end
 
+  local holder = FurCGui_ListHolder
+  if not (holder.dataOffset and holder.dataLines and holder.maxLines) then
+    return -- list state not built (yet)
+  end
+
   local slider = FurCGui_ListHolder_Slider
   --  slider.locked = true
   -- negative delta means scrolling down
@@ -129,7 +134,7 @@ function FurC.GuiOnScroll(control, delta)
 end
 
 function FurC.GuiOnSliderUpdate(slider, value)
-  if not value or slider and slider.locked then
+  if not value or slider and slider.locked or not FurCGui_ListHolder.dataOffset then
     return
   end
   local relativeValue = math.floor(FurCGui_ListHolder.dataOffset - value)

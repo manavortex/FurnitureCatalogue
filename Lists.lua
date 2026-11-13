@@ -301,15 +301,21 @@ function FurC.FindListByName(name)
   end
 end
 
----@param listId integer
----@return string? line nil if the list does not exist
-function FurC.GetListExportLine(listId)
-  local list = store().byId[listId]
-  if not list then
-    return
+-- 1000 ids with 6-7 digits plus commas stay under 8000 bytes a line, well inside one Transfer page (20000)
+local IDS_PER_LINE = 1000
+
+---A list as export lines, one per IDS_PER_LINE ids
+---@param name string
+---@param ids integer[]
+---@return string[] lines
+function FurC.ListExportLines(name, ids)
+  name = name:gsub("[\r\n]", " ")
+  local lines = {}
+  for first = 1, math.max(#ids, 1), IDS_PER_LINE do
+    local last = math.min(first + IDS_PER_LINE - 1, #ids)
+    lines[#lines + 1] = string.format("%s: %s: %s", LIST_PREFIX, name, table.concat(ids, ",", first, last))
   end
-  local name = list.name:gsub("[\r\n]", " ")
-  return string.format("%s: %s: %s", LIST_PREFIX, name, table.concat(FurC.GetListItemIds(listId), ","))
+  return lines
 end
 
 ---@param payload string everything after the prefix
@@ -349,7 +355,9 @@ function FurC.OpenListExport(listId)
   local lines = {}
   for _, list in ipairs(FurC.GetLists()) do
     if listId == nil or list.id == listId then
-      lines[#lines + 1] = FurC.GetListExportLine(list.id)
+      for _, line in ipairs(FurC.ListExportLines(list.name, FurC.GetListItemIds(list.id))) do
+        lines[#lines + 1] = line
+      end
     end
   end
   if #lines == 0 then

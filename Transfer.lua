@@ -53,11 +53,47 @@ function T.ImportText(text)
   return imported, skipped, messages
 end
 
+---Pack lines into pages for the edit box, splitting only between lines
+---@param lines string[]
+---@param maxBytes integer bytes: a page within it is within any character limit of the same size
+---@return string[] pages lines joined by "\n", each at most maxBytes
+function T.Paginate(lines, maxBytes)
+  local pages, chunk, size = {}, {}, 0
+  local function add(line)
+    local separator = #chunk > 0 and 1 or 0
+    if #chunk > 0 and size + separator + #line > maxBytes then
+      pages[#pages + 1] = table.concat(chunk, "\n")
+      chunk, size, separator = {}, 0, 0
+    end
+    chunk[#chunk + 1] = line
+    size = size + separator + #line
+  end
+  for _, line in ipairs(lines) do
+    -- a line over maxBytes gets a page of its own and the box will cut it
+    add(line)
+  end
+  if #chunk > 0 then
+    pages[#pages + 1] = table.concat(chunk, "\n")
+  end
+  return pages
+end
+
 --[[ Window ]]
 -- Only part of this file that touches controls. Virtual templates used (not in the addon's own XML, so worth
 -- checking against ESOUI): ZO_MultiLineEditBackdrop_Keyboard, ZO_DefaultEditMultiLineForBackdrop, ZO_DefaultButton
 
-local window, editBox, titleLabel, hintLabel, statusLabel, importButton
+local window, editBox, titleLabel, hintLabel, statusLabel, importButton, prevButton, nextButton
+local pages, page = {}, 1
+
+local function showPage(delta)
+  page = math.max(1, math.min(#pages, page + delta))
+  editBox:SetText(pages[page] or "")
+  statusLabel:SetText(#pages > 1 and zo_strformat(GetString(SI_FURC_TRANSFER_PAGE), page, #pages) or "")
+  prevButton:SetHidden(#pages < 2)
+  nextButton:SetHidden(#pages < 2)
+  editBox:TakeFocus()
+  editBox:SelectAll()
+end
 
 local function build()
   local wm = WINDOW_MANAGER
@@ -96,25 +132,42 @@ local function build()
   statusLabel:SetAnchor(TOPLEFT, editBg, BOTTOMLEFT, 0, 8)
   statusLabel:SetAnchor(TOPRIGHT, editBg, BOTTOMRIGHT, 0, 8)
 
-  local function button(name, stringId, anchorPoint, offsetX, onClick)
+  local function button(name, text, anchorPoint, offsetX, onClick)
     local b = wm:CreateControlFromVirtual("$(parent)" .. name, window, "ZO_DefaultButton")
-    b:SetText(GetString(stringId))
+    b:SetText(text)
     b:SetDimensions(140, 28)
     b:SetAnchor(anchorPoint, window, anchorPoint, offsetX, -16)
     b:SetHandler("OnClicked", onClick)
     return b
   end
 
-  button("SelectAll", SI_FURC_TRANSFER_SELECT_ALL, BOTTOMLEFT, 16, function()
+  button("SelectAll", GetString(SI_FURC_TRANSFER_SELECT_ALL), BOTTOMLEFT, 16, function()
     editBox:TakeFocus()
     editBox:SelectAll()
   end)
-  importButton = button("Import", SI_FURC_TRANSFER_IMPORT, BOTTOM, 0, function()
-    local imported, skipped, messages = T.ImportText(editBox:GetText())
+  importButton = button("Import", GetString(SI_FURC_TRANSFER_IMPORT), BOTTOM, 0, function()
+    local text = editBox:GetText()
+    -- a long-ass paste may be cut-off
+    local capped = ZoUTF8StringLength(text) >= editBox:GetMaxInputChars()
+    if capped then
+      text = text:match("^(.*)\n") or ""
+    end
+    local imported, skipped, messages = T.ImportText(text)
     local summary = zo_strformat(GetString(SI_FURC_TRANSFER_RESULT), imported, skipped)
+    if capped then
+      table.insert(messages, 1, GetString(SI_FURC_TRANSFER_CAPPED))
+    end
     statusLabel:SetText(#messages > 0 and (summary .. " " .. table.concat(messages, " ")) or summary)
   end)
-  button("Close", SI_DIALOG_CLOSE, BOTTOMRIGHT, -16, function()
+  prevButton = button("Prev", "<", BOTTOM, -40, function()
+    showPage(-1)
+  end)
+  nextButton = button("Next", ">", BOTTOM, 40, function()
+    showPage(1)
+  end)
+  prevButton:SetDimensions(60, 28)
+  nextButton:SetDimensions(60, 28)
+  button("Close", GetString(SI_DIALOG_CLOSE), BOTTOMRIGHT, -16, function()
     T.Close()
   end)
 
@@ -134,12 +187,15 @@ function T.Open(opts)
   end
   titleLabel:SetText(opts.title or "")
   hintLabel:SetText(opts.hint or "")
-  editBox:SetText(opts.text or "")
-  statusLabel:SetText("")
   importButton:SetHidden(opts.canImport == false)
   SCENE_MANAGER:ShowTopLevel(window)
-  editBox:TakeFocus()
-  if opts.text and opts.text ~= "" then
-    editBox:SelectAll()
+  window:BringWindowToTop()
+
+  local lines = {}
+  for line in tostring(opts.text or ""):gmatch("[^\r\n]+") do
+    lines[#lines + 1] = line
   end
+  pages = T.Paginate(lines, editBox:GetMaxInputChars())
+  page = 1
+  showPage(0)
 end

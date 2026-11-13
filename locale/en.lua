@@ -235,13 +235,15 @@ local strings = {
   SI_FURC_TOOLTIP_TEMPLATE_TOGGLE = "Change template",
   SI_FURC_TOOLTIP_FILTER_SOURCE = "Filter: Knowledge and source. Right-click filters to multi-select.",
   SI_FURC_TOOLTIP_FILTER_VERSION = "Filter: game version",
-  SI_FURC_TRANSFER_TITLE_EXPORT	= "Export",
-  SI_FURC_TRANSFER_TITLE_IMPORT	= "Import",
-  SI_FURC_TRANSFER_HINT_EXPORT	= "Select all, then copy with Ctrl+C.",
-  SI_FURC_TRANSFER_HINT_IMPORT	= "Paste an export string, then press Import.",
-  SI_FURC_TRANSFER_SELECT_ALL	= "Select all",
-  SI_FURC_TRANSFER_IMPORT	= "Import",
-  SI_FURC_TRANSFER_RESULT	= "Imported <<1>> line(s), skipped <<2>>.",
+  SI_FURC_TRANSFER_TITLE_EXPORT = "Export",
+  SI_FURC_TRANSFER_TITLE_IMPORT = "Import",
+  SI_FURC_TRANSFER_HINT_EXPORT = "Select all, then copy with Ctrl+C.",
+  SI_FURC_TRANSFER_HINT_IMPORT = "Paste an export string, then press Import.",
+  SI_FURC_TRANSFER_SELECT_ALL = "Select all",
+  SI_FURC_TRANSFER_IMPORT = "Import",
+  SI_FURC_TRANSFER_RESULT = "Imported <<1>> line(s), skipped <<2>>.",
+  SI_FURC_TRANSFER_PAGE = "Page <<1>> of <<2>>.",
+  SI_FURC_TRANSFER_CAPPED = "Textbox full, so the last part may be cut off",
 }
 
 for stringId, stringValue in pairs(strings) do
