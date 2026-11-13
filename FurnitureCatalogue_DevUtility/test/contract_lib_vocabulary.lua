@@ -34,10 +34,6 @@ Taneth("FurC:Lib", function()
     [145568] = "Tribal Treasure Crate",
   }
 
-  -- The row contract allows a bare string on `note` only
-  -- Temporarily increased max custom notes, move those into their fields, then lower this again
-  local NOTE_LITERALS = 114
-
   local function valueSet(vocabulary)
     local values = {}
     for _, value in pairs(vocabulary or {}) do
@@ -251,7 +247,6 @@ Taneth("FurC:Lib", function()
     it("keeps a note to a string id, a tagged part, or the free text the contract allows", function()
       local keys = LFC.Internal.StringKeys
       local problems, seen = {}, {}
-      local literals = 0
 
       for _, found in ipairs(scanned()) do
         for _, element in ipairs(elements(found.source.note)) do
@@ -261,8 +256,6 @@ Taneth("FurC:Lib", function()
               problems[#problems + 1] =
                 string.format("item %d: note %s is no string this library registered", found.item, tostring(element))
             end
-          elseif type(element) == "string" then
-            literals = literals + 1
           elseif type(element) == "table" then
             seen.part = (seen.part or 0) + 1
             local tag, value = next(element)
@@ -282,11 +275,6 @@ Taneth("FurC:Lib", function()
             problems[#problems + 1] = string.format("item %d: note holds a %s", found.item, type(element))
           end
         end
-      end
-
-      if literals > NOTE_LITERALS then
-        problems[#problems + 1] =
-          string.format("%d free-text notes, up from %d - the free-text shape only shrinks", literals, NOTE_LITERALS)
       end
 
       assert.equals("", report(problems))

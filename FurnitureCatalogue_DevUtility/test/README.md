@@ -9,7 +9,7 @@ Runs two ways:
   - `/furcdev tests` - list the FurC suites
   - `/furcdev test` - run all FurC suites
   - `/furcdev test unit` - run one suite (`FurC:` prefix is optional)
-- **Headless** — `.scripts/run_tests.sh` uses [ESOLua](https://github.com/sirinsidiator/esolua), no game client
+- **Headless** — `.scripts/run_tests.sh` uses [ESOLua](https://codeberg.org/sirinsidiator/ESOLua), no game client
 
 Prefer `/furcdev test` over `/taneth`: in `/taneth` it's easy to run every test of all AddOns at the same time by mistake. `/furcdev` only runs FurC suites.
 

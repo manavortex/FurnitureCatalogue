@@ -41,7 +41,7 @@ if [[ -z "${ESOLUA:-}" ]]; then
       command -v "$tool" >/dev/null || fail "building esolua needs $tool — install it or set ESOLUA"
     done
     [[ -d "$REPO_ROOT/../esolua" ]] \
-      || offer_clone esolua https://github.com/sirinsidiator/ESOLua.git "$REPO_ROOT/../esolua"
+      || offer_clone esolua https://codeberg.org/sirinsidiator/ESOLua.git "$REPO_ROOT/../esolua"
     make -C "$REPO_ROOT/../esolua" posix # posix is 1 dependency less
   fi
 fi
