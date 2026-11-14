@@ -6,13 +6,6 @@ this.textbox = this.textbox or FurCDevControlBox
 local textbox = this.textbox
 
 local cachedItemLink
-local cachedAchName
-local cachedName
-local cachedPrice
-local cachedCanBuy
-local cachedIsLetter
-
-local cachedItemIds = {}
 
 local function onOpened()
   if this.ApplyPaneSplit then
@@ -38,17 +31,15 @@ function this.ToggleEditBox()
   end
 end
 
-local function showTextbox()
-  if not this.control:IsHidden() then
-    return
-  end
+---Show the window and raise it, so a message or result never lands in a hidden or buried window. Unlike
+---ToggleEditBox it skips onOpened: refreshing the current tab could replace the output that is being shown
+function this.ShowWindow()
   this.control:SetHidden(false)
-  onOpened()
+  this.control:BringWindowToTop()
 end
 
 function this.clearControl()
   this.textbox:Clear()
-  cachedItemIds = {}
 end
 
 function this.selectAllOutput()
@@ -72,135 +63,14 @@ function this.onTextboxTextChanged()
   this.clearControl()
 end
 
-local indent = "  "
-local s_default = "[%d] = strCrown(99), -- %s"
-local s_letter = "[%d] = rumourSource, -- %s"
-local s_withPrice = "[%d] = { -- %s\n" .. indent .. "itemPrice = %d,\n},"
-local s_withAchievement = "[%d] = { -- %s\n" .. indent .. "itemPrice = %d,\n" .. indent .. "achievement = %d, -- %s\n},"
-local s_forRecipe = "%d, -- %s"
-
-local function makeOutput()
-  if not cachedItemLink then
-    return
-  end
-
-  local isRecipe = IsItemLinkFurnitureRecipe(cachedItemLink)
-  local debugString = (isRecipe and s_forRecipe) or s_default
-
-  cachedName = cachedName or GetItemLinkName(cachedItemLink)
-  cachedPrice = cachedPrice or 0
-
-  if 0 < cachedPrice then
-    debugString = s_withPrice
-  end
-  if cachedAchName and "" ~= cachedAchName then
-    debugString = s_withAchievement
-  end
-
-  local achievementId = this.GetAchievementId(cachedAchName)
-
-  if cachedIsLetter then
-    debugString = s_letter
-  end
-
-  return string.format(
-    debugString .. "\n",
-    tonumber(GetItemLinkItemId(cachedItemLink)),
-    cachedName,
-    tonumber(cachedPrice),
-    tonumber(achievementId),
-    cachedAchName
-  )
-end
-
-local function isItemIdCached()
-  local itemId = GetItemLinkItemId(cachedItemLink)
-  if not itemId then
-    return
-  end
-  if cachedItemIds[itemId] then
-    return true
-  end
-
-  cachedItemIds[itemId] = true
-  return false
-end
-
-local function concatToTextbox()
-  if isItemIdCached() then
-    return
-  end
-
-  local textSoFar = this.textbox:GetText() or ""
-  this.textbox:SetText(textSoFar .. makeOutput())
-  showTextbox()
-end
-
-function this.concatToTextbox(itemId)
-  if itemId then
-    cachedItemLink = FurC.Utils.GetItemLink(itemId)
-    cachedName = GetItemLinkName(cachedItemLink)
-    cachedPrice = 0
-    concatToTextbox()
-  end
-end
-
--- Returns true if a new line was added
-local function addStoreEntry(storeIndex)
-  local itemLink = GetStoreItemLink(storeIndex, LINK_STYLE_DEFAULT)
-  if not itemLink or #itemLink == 0 or not FurC.Utils.IsFurniture(itemLink) then
-    return false
-  end
-
-  local _, name, _, price, _, _, _, _, _, currencyType1, currencyQuantity1, _, _, _, _, buyErrorStringId =
-    GetStoreEntryInfo(storeIndex)
-
-  local success, errorMsg = pcall(GetErrorString, buyErrorStringId)
-  cachedAchName = (success and errorMsg) or ""
-  local matchWithoutQuotes = string.match(cachedAchName, "Requires (.+) Achievement to purchase%.")
-  cachedAchName = matchWithoutQuotes or string.match(cachedAchName, ".+ %„(.+)%“.+")
-
-  cachedItemLink = itemLink
-  cachedName = zo_strformat("<<1>>", name)
-  cachedPrice = (price and price > 0 and price) or currencyQuantity1 or 0
-  cachedIsLetter = false
-
-  local before = #(this.textbox:GetText() or "")
-  concatToTextbox()
-  return #(this.textbox:GetText() or "") > before
-end
-
--- Dump every furnishing/recipe from currently open trader into box
-function this.AddAllFromTrader()
-  if IsStoreEmpty() then
-    FurC.Logger:Info("|cFF3333FurCDev|r: no store open, or trader has no items.")
-    return
-  end
-
-  local numItems = GetNumStoreItems()
-  local added = 0
-  for i = 1, numItems do
-    if addStoreEntry(i) then
-      added = added + 1
-    end
-  end
-  showTextbox()
-  FurC.Logger:Info("|cFF3333FurCDev|r: added %d of %d store items.", added, numItems)
-end
-
 local function doNothing() end
 
-local S_ADD_TO_BOX = "Add data to textbox"
 local S_DIVIDER = "-"
 local function addMenuItems()
-  AddCustomMenuItem(S_DIVIDER, doNothing, MENU_ADD_OPTION_LABEL)
-  AddCustomMenuItem(S_ADD_TO_BOX, concatToTextbox, MENU_ADD_OPTION_LABEL)
-  if
-    cachedItemLink
-    and (IsItemLinkFurnitureRecipe(cachedItemLink) or GetItemLinkItemType(cachedItemLink) == ITEMTYPE_FURNISHING)
-  then
+  if cachedItemLink and (IsItemLinkFurnitureRecipe(cachedItemLink) or IsItemLinkPlaceableFurniture(cachedItemLink)) then
     local id = GetItemLinkItemId(cachedItemLink)
-    AddCustomMenuItem("Add JSONL to textbox", function()
+    AddCustomMenuItem(S_DIVIDER, doNothing, MENU_ADD_OPTION_LABEL)
+    AddCustomMenuItem("Add item to textbox", function()
       this.AppendDiscovery(id)
     end, MENU_ADD_OPTION_LABEL)
   end
@@ -208,11 +78,7 @@ end
 
 function FurCDevControl_HandleClickEvent(itemLink, mouseButton, control)
   if type(itemLink) == "string" and #itemLink > 0 then
-    local currentSceneName = SCENE_MANAGER:GetCurrentScene().name
-    cachedCanBuy = currentSceneName == "store"
-    cachedIsLetter = currentSceneName == "mailInbox"
     cachedItemLink = itemLink
-    cachedName = GetItemLinkName(cachedItemLink)
 
     local handled = LINK_HANDLER:FireCallbacks(
       LINK_HANDLER.LINK_MOUSE_UP_EVENT,
@@ -238,8 +104,6 @@ function FurCDevControl_HandleInventoryContextMenu(control)
     return
   end
 
-  local icon, name, stack, price, sellPrice, meetsRequirementsToBuy, meetsRequirementsToEquip, quality, questNameColor, currencyType1, currencyQuantity1, currencyType2, currencyQuantity2, entryType, buyStoreFailure, buyErrorStringId
-
   local st = ZO_InventorySlot_GetType(control)
   cachedItemLink = nil
   if
@@ -250,34 +114,13 @@ function FurCDevControl_HandleInventoryContextMenu(control)
   then
     local bagId, slotId = ZO_Inventory_GetBagAndIndex(control)
     cachedItemLink = GetItemLink(bagId, slotId, LINK_STYLE_DEFAULT)
-    name = GetItemLinkName(cachedItemLink)
-    price = 0
-    local canBuy = true
   elseif st == SLOT_TYPE_STORE_BUY then
-    local storeEntryIndex = control.index or 0
-
-    icon, name, stack, price, sellPrice, meetsRequirementsToBuy, meetsRequirementsToEquip, quality, questNameColor, currencyType1, currencyQuantity1, currencyType2, currencyQuantity2, entryType, buyStoreFailure, buyErrorStringId =
-      GetStoreEntryInfo(storeEntryIndex)
-
-    local success, errorMsg = pcall(GetErrorString, buyErrorStringId)
-
-    cachedAchName = (success and errorMsg) or ""
-    -- Different tooltip formatting depending on locale
-    -- DE: Benötigt die Errungenschaft „Sieger von Bal Sunnar“.
-    -- EN: Requires Bal Sunnar Vanquisher to purchase.
-    local matchWithoutQuotes = string.match(cachedAchName, "Requires (.+) Achievement to purchase%.")
-    cachedAchName = matchWithoutQuotes or string.match(cachedAchName, ".+ %„(.+)%“.+")
-
-    cachedItemLink = GetStoreItemLink(storeEntryIndex)
+    cachedItemLink = GetStoreItemLink(control.index or 0)
   end
-
-  cachedName = name
-  cachedPrice = price or 0
-  cachedCanBuy = meetsRequirementsToBuy
 
   if
     not cachedItemLink
-    or not (IsItemLinkFurnitureRecipe(cachedItemLink) or GetItemLinkItemType(cachedItemLink) == ITEMTYPE_FURNISHING)
+    or not (IsItemLinkFurnitureRecipe(cachedItemLink) or IsItemLinkPlaceableFurniture(cachedItemLink))
   then
     return
   end
@@ -298,7 +141,6 @@ function this.OnControlMouseUp(control, mouseButton)
   end
 
   cachedItemLink = control.itemLink
-  local cachedHasAchievement = ItemTooltip and ItemTooltip:GetNamedChild("Condition")
 
   zo_callLater(function()
     ItemTooltip:SetHidden(true)
