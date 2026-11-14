@@ -15,13 +15,18 @@ local function getAchievementId(achievementName)
 
   -- making sure achievement name is the same like in the lookup table
   achievementName = LocaleAwareToLower(internal.FormatName(achievementName))
+  local found = 0
   for id, name in pairs(this.Achievements) do
     if LocaleAwareToLower(name) == achievementName then
-      return id
+      -- two achievements share this name (EN has a few): no id beats a guessed one, a missing gate strips nothing
+      if found ~= 0 then
+        return 0
+      end
+      found = id
     end
   end
 
-  return 0
+  return found
 end
 this.GetAchievementId = getAchievementId
 
