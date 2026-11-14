@@ -31,7 +31,7 @@ Taneth("FurC:Unit", function()
     it("FSL reaches the library instead of reporting it missing", function()
       local text = table.concat(capture("fsl"), "\n")
       assert.is_true(#text > 0)
-      assert.is_nil(text:find("the API endpoints the ported FSL calls are missing", 1, true), text)
+      assert.is_nil(text:find("endpoints FSL calls", 1, true), text)
       -- it got far enough to name the samples it walked
       assert.is_not_nil(text:find("craftable", 1, true), text)
       assert.is_not_nil(text:find("plain", 1, true), text)

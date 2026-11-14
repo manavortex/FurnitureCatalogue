@@ -1,6 +1,6 @@
 -- What the released consumers see, run against whatever library is loaded
 --   /furcdev consumers          both, read-only
---   /furcdev consumers fsl      FurnitureShoppingList's two calls
+--   /furcdev consumers fsl      FurnitureShoppingList's calls
 --   /furcdev consumers libprice LibPrice's furniture price path
 --
 -- Each leg walks the same calls the shipped add-on makes, in the same order, so a
@@ -98,16 +98,23 @@ end
 -- FurnitureShoppingList
 -- ---------------------------------------------------------------------------
 
--- FSL calls exactly these two, in this order, in both its add and its remove path,
--- and puts whatever the second one returns on the list. It reads nothing else.
+-- FSL waits for IsReady (or queues itself with OnReady), then for an item or its blueprint calls GetEntry and
+-- GetIngredients(entry.id, entry). It stores entry.id - the furnishing, so a blueprint lands as what it makes - and
+-- refuses an item whose ingredient map is empty. OnReady is only checked for, not called: it would queue a callback.
 local function fslLeg(lines)
   lines[#lines + 1] = "-- FurnitureShoppingList"
   local a = api()
-  if not (a and a.GetEntry and a.GetIngredients) then
-    lines[#lines + 1] = "  the API endpoints the ported FSL calls are missing"
+  if not (a and a.IsReady and a.OnReady and a.GetEntry and a.GetIngredients) then
+    lines[#lines + 1] = "  the API endpoints FSL calls (IsReady, OnReady, GetEntry, GetIngredients) are missing"
     return
   end
-  lines[#lines + 1] = "  loaded: " .. tostring(FurnitureShoppingListAdd ~= nil)
+  local fsl = FurnitureShoppingList
+  lines[#lines + 1] = string.format(
+    "  loaded: %s  version: %s  ready: %s",
+    tostring(FurnitureShoppingListAdd ~= nil),
+    tostring(type(fsl) == "table" and fsl.version or "none"),
+    tostring(a.IsReady())
+  )
 
   local craftable, plain = samples()
   for _, case in ipairs({ { "craftable", craftable, true }, { "plain", plain, false } }) do
@@ -116,23 +123,23 @@ local function fslLeg(lines)
       lines[#lines + 1] = string.format("  %-9s no sample in the DB", label)
     else
       local itemLink = link(itemId)
-      local ok, arr = pcall(a.GetEntry, itemLink)
+      local ok, entry = pcall(a.GetEntry, itemLink)
       if not ok then
-        lines[#lines + 1] = string.format("  %-9s %d GetEntry ERRORED: %s", label, itemId, tostring(arr))
+        lines[#lines + 1] = string.format("  %-9s %d GetEntry ERRORED: %s", label, itemId, tostring(entry))
       else
-        local gotMats, mats = pcall(a.GetIngredients, itemLink, arr)
+        local id = entry and entry.id
+        local gotMats, mats = pcall(a.GetIngredients, id, entry)
         if not gotMats then
           lines[#lines + 1] = string.format("  %-9s %d GetIngredients ERRORED: %s", label, itemId, tostring(mats))
         else
           local count = countPairs(mats)
-          -- FSL refuses an item whose ingredient map is empty, which is how a
-          -- non-craftable is meant to be rejected rather than listed with nothing
-          local verdict = (count > 0) == wantMats and "as expected" or "UNEXPECTED"
+          local verdict = (count > 0) == wantMats and id == itemId and "as expected" or "UNEXPECTED"
           lines[#lines + 1] = string.format(
-            "  %-9s %d  find=%s mats=%d  %s (FSL would %s)",
+            "  %-9s %d  entry=%s id=%s mats=%d  %s (FSL would %s)",
             label,
             itemId,
-            (arr and next(arr) ~= nil) and "hit" or "empty",
+            entry and "hit" or "nil",
+            tostring(id),
             count,
             verdict,
             count > 0 and "list it" or "refuse it"

@@ -11,6 +11,21 @@ Taneth("FurC:Regression", function()
   local DS = Test.dataset()
 
   describe("contract: FurnitureShoppingList", function()
+    -- FSL waits for the catalogue with these two before any lookup
+    it("IsReady answers a boolean and OnReady exists", function()
+      assert.equals("boolean", type(api.IsReady()))
+      assert.equals("function", type(api.OnReady))
+    end)
+
+    -- FSL stores entry.id and passes it to GetIngredients, so a blueprint is listed as the furnishing it makes
+    it("an entry carries the furnishing id, also when looked up by its blueprint", function()
+      local entry = api.GetEntry(DS.craftable)
+      assert.equals(DS.craftable, entry.id)
+      assert.equals(DS.craftable, api.GetEntry(entry.blueprint).id)
+      -- by id, as FSL calls it (headless stubs know no recipe ingredients, so only the shape is checked here)
+      assert.equals("table", type(api.GetIngredients(entry.id, entry)))
+    end)
+
     it("GetEntry on a craftable answers with its stored fields", function()
       local entry = api.GetEntry(DS.craftable)
       assert.equals("table", type(entry))
