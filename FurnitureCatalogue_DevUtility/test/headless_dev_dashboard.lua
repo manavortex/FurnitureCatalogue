@@ -85,6 +85,9 @@ end
 dofile("FurnitureCatalogue_DevUtility/Public.lua")
 assert(FurCDev.GetAchievementId("élan^m") == 11, "formatted names must still resolve from vendor requirements")
 assert(FurCDev.GetAchievementId("ÉLAN") == 11)
+FurCDev.Achievements[14] = "Élan"
+assert(FurCDev.GetAchievementId("Élan") == 0, "a name two achievements share resolves to no id")
+FurCDev.Achievements[14] = nil
 assert(FurCDev.FindAchievement("é")[1] == "11: Élan")
 assert(FurCDev.FindQuest("HÖHLE")[12] == "Höhle")
 assert(FurCDev.FindZone("森")[1] == "森")
@@ -151,6 +154,7 @@ FurCDev.textbox = {
 }
 FurCDev.control = {
   SetHidden = function() end,
+  BringWindowToTop = function() end,
   IsHidden = function()
     return true
   end,

@@ -35,7 +35,7 @@ end
 local function showOutput(text)
   if this.textbox and this.control then
     this.textbox:SetText(text .. "\n")
-    this.control:SetHidden(false)
+    this.ShowWindow()
   else
     d(text)
   end

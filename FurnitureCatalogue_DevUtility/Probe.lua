@@ -162,7 +162,7 @@ local function showOutput(text, append)
   end
   local existing = (append and this.textbox:GetText()) or ""
   this.textbox:SetText(existing .. text)
-  this.control:SetHidden(false)
+  this.ShowWindow()
   return true
 end
 probe.ShowOutput = showOutput
