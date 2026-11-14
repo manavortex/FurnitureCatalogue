@@ -31,9 +31,14 @@ Taneth("FurC:Unit", function()
   end)
 
   describe("shopping list menu entries", function()
+    -- Taneth sandboxes tests (env._G = env), so we stub via the real global table. Resolved here, at describe level:
+    -- inside an it() _G is that test's own sandbox, one level further away
+    local function realGlobals()
+      return getmetatable(_G).__index
+    end
+
     local function countMenuEntries(itemId)
-      -- Taneth sandboxes tests (env._G = env), so we stub via the real global table
-      local realG = getmetatable(_G).__index
+      local realG = realGlobals()
       local added = 0
       local orig = realG.AddCustomMenuItem
       realG.AddCustomMenuItem = function()
@@ -50,11 +55,40 @@ Taneth("FurC:Unit", function()
       assert.equals(0, countMenuEntries(UNKNOWN_ID))
     end)
 
-    it("adds entries for a known catalogue item", function()
+    it("adds one entry for a known catalogue item", function()
       FurCDev.Test.ensureDB()
       local knownId = next(FurC.DB)
       assert.is_not_nil(knownId)
-      assert.is_true(countMenuEntries(knownId) > 0)
+      assert.equals(1, countMenuEntries(knownId))
+    end)
+
+    it("asks FSL for a quantity when it can, else adds one through the legacy global", function()
+      FurCDev.Test.ensureDB()
+      local knownId = next(FurC.DB)
+      local realG = realGlobals()
+      local saved = { realG.AddCustomMenuItem, realG.FurnitureShoppingList, realG.FurnitureShoppingListAdd }
+      local callback
+      local prompted, legacy = 0, 0
+      realG.AddCustomMenuItem = function(_, fn)
+        callback = fn
+      end
+      realG.FurnitureShoppingListAdd = function()
+        legacy = legacy + 1
+      end
+      local added = pcall(AddFurnitureShoppingListMenuEntry, knownId)
+      realG.FurnitureShoppingList = {
+        PromptAdd = function()
+          prompted = prompted + 1
+        end,
+      }
+      local viaPrompt = added and pcall(callback)
+      realG.FurnitureShoppingList = nil
+      local viaLegacy = added and pcall(callback)
+      realG.AddCustomMenuItem, realG.FurnitureShoppingList, realG.FurnitureShoppingListAdd =
+        saved[1], saved[2], saved[3]
+      assert.is_true(added and viaPrompt and viaLegacy)
+      assert.equals(1, prompted)
+      assert.equals(1, legacy)
     end)
   end)
 end)

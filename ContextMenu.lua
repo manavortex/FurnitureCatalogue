@@ -2,9 +2,7 @@
 
 FurC_LinkHandlerBackup_OnLinkMouseUp = nil
 
-local FURC_S_SHOPPINGLIST_1 = GetString(SI_FURC_PLUGIN_SL_ADD_ONE)
-local FURC_S_SHOPPINGLIST_5 = GetString(SI_FURC_PLUGIN_SL_ADD_FIVE)
-local FURC_S_TOGGLE_SL = GetString(SI_FURC_TOGGLE_SHOPPINGLIST)
+local FURC_S_SHOPPINGLIST = GetString(SI_FURC_PLUGIN_SL_ADD)
 
 local linkStyle = LINK_STYLE_DEFAULT
 local LFC = LibFurnitureCatalogue
@@ -22,7 +20,8 @@ function AddFurnitureShoppingListMenuEntry(itemId, calledFromFurC)
     if not FurC.GetEnableShoppingList() then
       return
     end
-    if (nil == moc()) or (nil == FurnitureShoppingListAdd) then
+    local installed = FurnitureShoppingListAdd or (FurnitureShoppingList and FurnitureShoppingList.PromptAdd)
+    if (nil == moc()) or not installed then
       return
     end
     if nil == moc():GetName():match("_ListItem_") then
@@ -34,18 +33,14 @@ function AddFurnitureShoppingListMenuEntry(itemId, calledFromFurC)
   if nil == getEntry(itemLink) then
     return
   end
-  AddCustomMenuItem(FURC_S_SHOPPINGLIST_1, function()
-    FurnitureShoppingListAdd(itemLink)
-  end, MENU_ADD_OPTION_LABEL)
-  AddCustomMenuItem(FURC_S_SHOPPINGLIST_5, function()
-    FurnitureShoppingListAdd(itemLink)
-    FurnitureShoppingListAdd(itemLink)
-    FurnitureShoppingListAdd(itemLink)
-    FurnitureShoppingListAdd(itemLink)
-    FurnitureShoppingListAdd(itemLink)
-  end, MENU_ADD_OPTION_LABEL)
-  AddCustomMenuItem(FURC_S_TOGGLE_SL, function()
-    FurnitureShoppingListWindow_Toggle()
+  AddCustomMenuItem(FURC_S_SHOPPINGLIST, function()
+    -- a current FSL asks for the quantity; an older one only knows its legacy add-one global
+    local fsl = FurnitureShoppingList
+    if type(fsl) == "table" and fsl.PromptAdd then
+      fsl.PromptAdd(itemLink)
+    else
+      FurnitureShoppingListAdd(itemLink)
+    end
   end, MENU_ADD_OPTION_LABEL)
 end
 
@@ -125,10 +120,6 @@ local function addMenuItems(itemLink, recipeArray, hideSepBar)
   end
 
   AddCustomMenuItem(GetString(SI_FURC_MENU_HEADER), toChat, MENU_ADD_OPTION_LABEL)
-
-  local faveText = FurC.IsFavorite(itemLink, recipeArray) and GetString(SI_FURC_REMOVE_FAVE)
-    or GetString(SI_FURC_ADD_FAVE)
-  AddCustomMenuItem(faveText, fave, MENU_ADD_OPTION_LABEL)
   AddCustomSubMenuItem(GetString(SI_FURC_LIST_ADD), listMenuEntries)
 
   local isRecipe = IsItemLinkFurnitureRecipe(itemLink)
