@@ -19,8 +19,12 @@ FurC.FaveKey = faveKey
 ---@param id integer
 ---@return integer? itemId furnishing id the catalogue knows, nil if unknown
 function FurC.KnownFurnishingId(id)
-  local itemId = id and id > 0 and faveKey(LibFurnitureCatalogue.API.GetItemLink(id))
-  return itemId and LibFurnitureCatalogue.API.Has(itemId) and itemId or nil
+  local api = LibFurnitureCatalogue.API
+  local itemId = id and id > 0 and faveKey(api.GetItemLink(id))
+  local entry = itemId and api.GetEntry(itemId)
+  -- an ignored item shows in no list, so it is dropped like an id the catalogue lacks
+  local ignored = entry and entry.sources and entry.sources[api.GetSourceTypes().IGNORED]
+  return entry and not ignored and itemId or nil
 end
 
 ---Merge imported ids into a set (a list's items, the favourites); never removes anything

@@ -115,6 +115,14 @@ Taneth("FurC:Unit", function()
     end)
   end)
 
+  describe("FurC.KnownFurnishingId", function()
+    it("knows a catalogued furnishing and drops an ignored one, which no list would show", function()
+      assert.equals(115647, FurC.KnownFurnishingId(115647))
+      assert.is_nil(FurC.KnownFurnishingId(119706)) -- attuned crafting station, ignored on purpose
+      assert.is_nil(FurC.KnownFurnishingId(990001))
+    end)
+  end)
+
   describe("FurC.Transfer.ImportText", function()
     local PREFIX = "FURC UNITTEST"
 
