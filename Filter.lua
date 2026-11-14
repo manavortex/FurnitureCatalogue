@@ -110,7 +110,14 @@ function FurC.SetFilter(useDefaults, skipRefresh)
   furnCategoryFilter = FurC.GetFilterFurnCategory()
   furnSubcategoryFilter = FurC.GetFilterFurnSubcategory()
   hideBooks = FurC.GetHideBooks()
-  hideRumours = ddSource ~= src.RUMOUR
+  -- Rumour items show when rumour filter is picked or a list holds one
+  local function holdsRumours(id)
+    return id == src.RUMOUR or id == src.FAVE or listIdFromSource(id) ~= nil
+  end
+  hideRumours = not holdsRumours(ddSource)
+  for extraId in pairs(additiveSources) do
+    hideRumours = hideRumours and not holdsRumours(extraId)
+  end
 
   -- ignore filtered items when no dropdown filter is set and there's a text search?
   showAllOnTextSearch = FurC.GetFilterAllOnText()

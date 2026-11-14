@@ -26,23 +26,32 @@
               <!-- FurC_Header_Bar1's children -->
               <Controls>
                 <!-- FurC_Header_Bar1's children -->
-                <Button name="$(parent)_Feedback">
+                <Button name="$(parent)_Settings">
                   <Anchor point="TOPLEFT" relativeTo="$(parent)" relativePoint="TOPLEFT"
-                    offsetX="20" offsetY="10" />
+                    offsetX="20" offsetY="12" />
+                  <OnMouseUp>FurC.GUIButtonSettingsOnMouseUp()</OnMouseUp>
+                  <Dimensions x="35" y="35" />
+                  <Textures normal="/esoui/art/treeicons/achievements_indexicon_summary_up.dds"
+                    pressed="/esoui/art/treeicons/achievements_indexicon_summary_down.dds"
+                    mouseOver="/esoui/art/treeicons/achievements_indexicon_summary_over.dds" />
+                </Button>
+                <Button name="$(parent)_Feedback">
+                  <Anchor point="TOPLEFT" relativeTo="$(parent)_Settings" relativePoint="TOPRIGHT"
+                    offsetX="7" offsetY="-2" />
                   <OnMouseUp>FurC.Donate(self, button)</OnMouseUp>
                   <Dimensions x="40" y="40" />
                   <Textures normal="esoui/art/mail/mail_tabicon_compose_up.dds"
                     pressed="esoui/art/mail/mail_tabicon_compose_down.dds"
                     mouseOver="esoui/art/mail/mail_tabicon_compose_over.dds" />
                 </Button>
-                <Button name="$(parent)_Settings">
+                <Button name="$(parent)_Transfer">
                   <Anchor point="TOPLEFT" relativeTo="$(parent)_Feedback" relativePoint="TOPRIGHT"
                     offsetX="7" offsetY="2" />
-                  <OnMouseUp>FurC.GUIButtonSettingsOnMouseUp()</OnMouseUp>
+                  <OnMouseUp>FurC.OpenListTransfer()</OnMouseUp>
                   <Dimensions x="35" y="35" />
-                  <Textures normal="/esoui/art/treeicons/achievements_indexicon_summary_up.dds"
-                    pressed="/esoui/art/treeicons/achievements_indexicon_summary_down.dds"
-                    mouseOver="/esoui/art/treeicons/achievements_indexicon_summary_over.dds" />
+                  <Textures normal="esoui/art/tradinghouse/tradinghouse_listings_tabicon_up.dds"
+                    pressed="esoui/art/tradinghouse/tradinghouse_listings_tabicon_down.dds"
+                    mouseOver="esoui/art/tradinghouse/tradinghouse_listings_tabicon_over.dds" />
                 </Button>
                 <Control name="FurC_Label" resizeToFitDescendents="true">
                   <Anchor point="TOP" relativeTo="$(parent)" relativePoint="TOP" offsetX="0"

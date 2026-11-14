@@ -501,6 +501,7 @@ local function createGui()
 
     wire(FurCGui_Header_Bar1_Feedback, SI_FURC_TOOLTIP_DONATE)
     wire(FurCGui_Header_Bar1_Settings, SI_FURC_TOOLTIP_SETTINGS)
+    wire(FurCGui_Header_Bar1_Transfer, SI_FURC_LIST_TRANSFER)
     wire(FurC_RecipeCount, SI_FURC_TOOLTIP_RECIPE_COUNT)
     wire(FurCGui_Header_Bar1_Hide, SI_FURC_TOOLTIP_HIDE_WINDOW)
     wire(FurCGui_Header_Bar1_Reload, SI_FURC_TOOLTIP_RESCAN)
@@ -919,6 +920,24 @@ function FurnitureCatalogue_Toggle()
   zo_callLater(function()
     FurC.UpdateGui(FurC.GetResetDropdownChoice())
   end, 500)
+end
+
+---Show the window with one source selected
+---@param sourceId integer
+function FurC.ShowSource(sourceId)
+  if not FurC.guiInitialized then
+    return
+  end
+  for extraId in pairs(additiveSources) do
+    additiveSources[extraId] = nil
+  end
+  refreshAllGroupLabels()
+  FurC.EnsureDB()
+  SCENE_MANAGER:ShowTopLevel(FurCGui)
+  FurCGui:BringWindowToTop()
+  -- refreshes the list once the window shows
+  FurC.SetDropdownChoice("Source", FurC.DropdownData.ChoicesSource[sourceId], sourceId)
+  FurC.UpdateDropdownChoice("Source")
 end
 
 function FurnitureCatalogue_ToggleRecipeDisplay()
