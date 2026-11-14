@@ -78,6 +78,9 @@ local function changed()
   if FurC.RefreshSourceDropdown then
     FurC.RefreshSourceDropdown()
   end
+  if FurC.ListManager then
+    FurC.ListManager.Refresh()
+  end
 end
 
 ---@param name string
@@ -366,7 +369,7 @@ FurC.Transfer.Register(FAVES_PREFIX, { import = importFavesLine })
 ---Export lines of a list, the favourites, or (nil) the favourites and every list
 ---@param what integer|"faves"|nil
 ---@return string text, string title
-local function exportText(what)
+function FurC.ListExportText(what)
   local lines, title = {}, GetString(SI_FURC_LISTS)
   local function append(more)
     for _, line in ipairs(more) do
@@ -386,14 +389,8 @@ local function exportText(what)
   return table.concat(lines, "\n"), title
 end
 
----Combined toolbox for import and export
----@param what integer|"faves"|nil a list id, the favourites, or nil for the favourites and every list
+---The list manager, with this entry selected
+---@param what integer|"faves"|nil a list id, the favourites, or nil for "All"
 function FurC.OpenListTransfer(what)
-  local _, title = exportText(what)
-  FurC.Transfer.Open({
-    title = title,
-    getText = function()
-      return (exportText(what))
-    end,
-  })
+  FurC.ListManager.Open(what or "all")
 end

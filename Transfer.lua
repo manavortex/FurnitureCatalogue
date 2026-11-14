@@ -126,12 +126,15 @@ end
 
 --[[ Window ]]
 -- Only part of this file that touches controls. Virtual templates used (not in the addon's own XML, so worth
--- checking against ESOUI): ZO_MultiLineEditBackdrop_Keyboard, ZO_DefaultEditMultiLineForBackdrop, ZO_DefaultButton
+-- checking against ESOUI): ZO_MultiLineEditBackdrop_Keyboard, ZO_DefaultEditMultiLineForBackdrop, ZO_DefaultButton,
+-- ZO_ButtonBehaviorClickSound
+-- One box for both directions: it shows the export, and whatever is in it when Import is pressed gets imported.
 
-local window, editBox, titleLabel, hintLabel, statusLabel, prevButton, nextButton, importButton, selectAllButton
-local exportTab, importTab
+local window, editBox, titleLabel, hintLabel, statusLabel, prevButton, nextButton
+local editBg, side
+local SIDE_WIDTH = 220
 local pages, page = {}, 1
-local getText -- the export text of what the window was opened for, read again on every switch to Export
+local getText, onImport -- what the window was opened with; the export is read again after every import
 
 -- one line, cut with an ellipsis so it never runs into the buttons; the whole text is its tooltip
 local function setStatus(text)
@@ -159,27 +162,7 @@ local function formatReport(report)
   return #parts > 0 and table.concat(parts, " ") or GetString(SI_FURC_TRANSFER_NOTHING)
 end
 
-local showPage
-
----@param export boolean true: the paged export, false: an empty box to paste into
-local function showTab(export)
-  exportTab:SetEnabled(not export)
-  importTab:SetEnabled(export)
-  importButton:SetHidden(export)
-  selectAllButton:SetHidden(not export)
-  hintLabel:SetText(GetString(export and SI_FURC_TRANSFER_HINT_EXPORT or SI_FURC_TRANSFER_HINT_IMPORT))
-  local lines = {}
-  if export then
-    for line in tostring(getText() or ""):gmatch("[^\r\n]+") do
-      lines[#lines + 1] = line
-    end
-  end
-  pages = T.Paginate(lines, editBox:GetMaxInputChars())
-  page = 1
-  showPage(0)
-end
-
-function showPage(delta)
+local function showPage(delta)
   page = math.max(1, math.min(#pages, page + delta))
   editBox:SetText(pages[page] or "")
   setStatus(#pages > 1 and zo_strformat(GetString(SI_FURC_TRANSFER_PAGE), page, #pages) or "")
@@ -189,10 +172,49 @@ function showPage(delta)
   editBox:SelectAll()
 end
 
+-- the export, paged, from its first page
+local function showExport()
+  local lines = {}
+  for line in tostring(getText() or ""):gmatch("[^\r\n]+") do
+    lines[#lines + 1] = line
+  end
+  pages = T.Paginate(lines, editBox:GetMaxInputChars())
+  page = 1
+  showPage(0)
+end
+
+local function import()
+  -- an id is known only once the catalogue is built; before that every id would read as unknown
+  if not LibFurnitureCatalogue.API.IsReady() then
+    FurC.EnsureDB()
+    setStatus(GetString(SI_FURC_CHAT_BUILDING))
+    return
+  end
+  local text = editBox:GetText()
+  -- a long-ass paste may be cut-off
+  local capped = ZoUTF8StringLength(text) >= editBox:GetMaxInputChars()
+  if capped then
+    text = text:match("^(.*)\n") or ""
+  end
+  local report = T.ImportText(text)
+  if capped then
+    table.insert(report.errors, 1, GetString(SI_FURC_TRANSFER_CAPPED))
+  end
+  if #report.entries > 0 then
+    -- the paste goes for the fresh export, so pressing Import again cannot count it twice
+    FurC.UpdateGui()
+    if onImport then
+      onImport()
+    end
+    showExport()
+  end
+  setStatus(formatReport(report))
+end
+
 local function build()
   local wm = WINDOW_MANAGER
   window = wm:CreateTopLevelWindow("FurC_TransferWindow")
-  window:SetDimensions(640, 430) -- room for Select all, <, Import, >, Close in one row
+  window:SetDimensions(640, 430)
   window:SetAnchor(CENTER, GuiRoot, CENTER, 0, 0)
   window:SetMovable(true)
   window:SetMouseEnabled(true)
@@ -206,18 +228,24 @@ local function build()
   titleLabel = wm:CreateControl("$(parent)Title", window, CT_LABEL)
   titleLabel:SetFont("$(STONE_TABLET_FONT)|26|soft-shadow-thick")
   titleLabel:SetAnchor(TOPLEFT, window, TOPLEFT, 16, 22)
-  titleLabel:SetAnchor(TOPRIGHT, window, TOPRIGHT, -320, 22) -- clear of the tabs; a long list name ends in "..."
+  titleLabel:SetAnchor(TOPRIGHT, window, TOPRIGHT, -16, 22)
   titleLabel:SetMaxLineCount(1)
   titleLabel:SetWrapMode(TEXT_WRAP_MODE_ELLIPSIS)
 
   hintLabel = wm:CreateControl("$(parent)Hint", window, CT_LABEL)
   hintLabel:SetFont("ZoFontGame")
   hintLabel:SetAnchor(TOPLEFT, window, TOPLEFT, 16, 68)
-  hintLabel:SetAnchor(TOPRIGHT, window, TOPRIGHT, -16, 68)
+  hintLabel:SetAnchor(TOPRIGHT, window, TOPRIGHT, -88, 68) -- clear of Select all and Clear
+  hintLabel:SetText(GetString(SI_FURC_TRANSFER_HINT))
 
-  local editBg = wm:CreateControlFromVirtual("$(parent)EditBg", window, "ZO_MultiLineEditBackdrop_Keyboard")
-  editBg:SetAnchor(TOPLEFT, hintLabel, BOTTOMLEFT, 0, 12)
-  editBg:SetAnchor(BOTTOMRIGHT, window, BOTTOMRIGHT, -16, -82)
+  -- a column left of the box for whoever opens the window with side = true (the list manager); empty otherwise
+  side = wm:CreateControl("$(parent)Side", window, CT_CONTROL)
+  side:SetAnchor(TOPLEFT, hintLabel, BOTTOMLEFT, 0, 12)
+  side:SetAnchor(BOTTOMLEFT, window, BOTTOMLEFT, 16, -56)
+  side:SetWidth(SIDE_WIDTH)
+  side:SetHidden(true)
+
+  editBg = wm:CreateControlFromVirtual("$(parent)EditBg", window, "ZO_MultiLineEditBackdrop_Keyboard")
 
   editBox = wm:CreateControlFromVirtual("$(parent)Edit", editBg, "ZO_DefaultEditMultiLineForBackdrop")
   editBox:SetAnchor(TOPLEFT, editBg, TOPLEFT, 4, 4)
@@ -241,59 +269,62 @@ local function build()
     ClearTooltip(InformationTooltip)
   end)
 
-  local function button(name, text, anchorPoint, offsetX, onClick, offsetY)
+  -- icon buttons on the box's top edge, as in the FurCDev window
+  local function iconButton(name, texture, tooltip, anchorTo, onClick)
+    local b = wm:CreateControlFromVirtual("$(parent)" .. name, window, "ZO_ButtonBehaviorClickSound")
+    b:SetDimensions(28, 28)
+    b:SetNormalTexture(texture .. "_up.dds")
+    b:SetPressedTexture(texture .. "_down.dds")
+    b:SetMouseOverTexture(texture .. "_over.dds")
+    if anchorTo then
+      b:SetAnchor(RIGHT, anchorTo, LEFT, -8, 0)
+    else
+      b:SetAnchor(BOTTOMRIGHT, editBg, TOPRIGHT, 0, -4)
+    end
+    b:SetHandler("OnClicked", onClick)
+    b:SetHandler("OnMouseEnter", function(control)
+      InitializeTooltip(InformationTooltip, control, TOP, 0, 5, BOTTOM)
+      SetTooltipText(InformationTooltip, tooltip)
+    end)
+    b:SetHandler("OnMouseExit", function()
+      ClearTooltip(InformationTooltip)
+    end)
+    return b
+  end
+  local clearButton = iconButton(
+    "Clear",
+    "EsoUI/Art/Dye/dyes_toolIcon_erase",
+    GetString(SI_FURC_TRANSFER_CLEAR),
+    nil,
+    function()
+      editBox:SetText("")
+      editBox:TakeFocus()
+    end
+  )
+  iconButton("SelectAll", "EsoUI/Art/Buttons/edit", GetString(SI_FURC_TRANSFER_SELECT_ALL), clearButton, function()
+    editBox:TakeFocus()
+    editBox:SelectAll()
+  end)
+
+  local function button(name, text, anchorPoint, offsetX, onClick)
     local b = wm:CreateControlFromVirtual("$(parent)" .. name, window, "ZO_DefaultButton")
     b:SetText(text)
     b:SetDimensions(140, 28)
-    b:SetAnchor(anchorPoint, window, anchorPoint, offsetX, offsetY or -16)
+    b:SetAnchor(anchorPoint, window, anchorPoint, offsetX, -16)
     b:SetHandler("OnClicked", onClick)
     return b
   end
 
-  -- tabs: two buttons, the one showing is disabled
-  exportTab = button("ExportTab", GetString(SI_FURC_TRANSFER_TITLE_EXPORT), TOPRIGHT, -164, function()
-    showTab(true)
-  end, 22)
-  importTab = button("ImportTab", GetString(SI_FURC_TRANSFER_TITLE_IMPORT), TOPRIGHT, -16, function()
-    showTab(false)
-  end, 22)
-
-  selectAllButton = button("SelectAll", GetString(SI_FURC_TRANSFER_SELECT_ALL), BOTTOMLEFT, 16, function()
-    editBox:TakeFocus()
-    editBox:SelectAll()
-  end)
-  importButton = button("Import", GetString(SI_FURC_TRANSFER_IMPORT), BOTTOM, 0, function()
-    -- an id is known only once the catalogue is built; before that every id would read as unknown
-    if not LibFurnitureCatalogue.API.IsReady() then
-      FurC.EnsureDB()
-      setStatus(GetString(SI_FURC_CHAT_BUILDING))
-      return
-    end
-    local text = editBox:GetText()
-    -- a long-ass paste may be cut-off
-    local capped = ZoUTF8StringLength(text) >= editBox:GetMaxInputChars()
-    if capped then
-      text = text:match("^(.*)\n") or ""
-    end
-    local report = T.ImportText(text)
-    if capped then
-      table.insert(report.errors, 1, GetString(SI_FURC_TRANSFER_CAPPED))
-    end
-    if #report.entries > 0 then
-      -- imported: the paste goes, so pressing Import again cannot count it twice
-      editBox:SetText("")
-      FurC.UpdateGui()
-    end
-    setStatus(formatReport(report))
-  end)
-  prevButton = button("Prev", "<", BOTTOM, -120, function()
+  -- bottom row: < > on the left, Import and Close on the right
+  prevButton = button("Prev", "<", BOTTOMLEFT, 16, function()
     showPage(-1)
   end)
-  nextButton = button("Next", ">", BOTTOM, 120, function()
+  nextButton = button("Next", ">", BOTTOMLEFT, 84, function()
     showPage(1)
   end)
   prevButton:SetDimensions(60, 28)
   nextButton:SetDimensions(60, 28)
+  button("Import", GetString(SI_FURC_TRANSFER_IMPORT), BOTTOMRIGHT, -164, import)
   button("Close", GetString(SI_DIALOG_CLOSE), BOTTOMRIGHT, -16, function()
     T.Close()
   end)
@@ -307,15 +338,38 @@ function T.Close()
   end
 end
 
----Export tab: the text to copy, paged. Import tab: a box to paste into. Opens on Export
----@param opts { title: string, getText: fun(): string }
+---The column left of the box, for a caller to fill; shown when T.Open is called with side = true
+---@return Control
+function T.SidePanel()
+  if not window then
+    build()
+  end
+  return side
+end
+
+---@return boolean
+function T.IsOpen()
+  return window ~= nil and not window:IsHidden()
+end
+
+---Show getText's export in the box, paged; Import reads whatever the box holds then
+---@param opts { title: string, getText: fun(): string, side: boolean?, onImport: fun()? }
 function T.Open(opts)
   if not window then
     build()
   end
+  side:SetHidden(not opts.side)
+  window:SetDimensions(opts.side and 640 + SIDE_WIDTH + 12 or 640, opts.side and 520 or 430)
+  editBg:ClearAnchors()
+  if opts.side then
+    editBg:SetAnchor(TOPLEFT, side, TOPRIGHT, 12, 0)
+  else
+    editBg:SetAnchor(TOPLEFT, hintLabel, BOTTOMLEFT, 0, 12)
+  end
+  editBg:SetAnchor(BOTTOMRIGHT, window, BOTTOMRIGHT, -16, -82)
   titleLabel:SetText(opts.title or "")
-  getText = opts.getText
+  getText, onImport = opts.getText, opts.onImport
   SCENE_MANAGER:ShowTopLevel(window)
   window:BringWindowToTop()
-  showTab(true)
+  showExport()
 end

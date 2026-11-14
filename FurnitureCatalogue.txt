@@ -32,6 +32,7 @@ InventoryIcons.lua
 Favorites.lua
 Transfer.lua
 Lists.lua
+ListManager.lua
 Migrations.lua
 Chat.lua
 SearchIndex.lua
