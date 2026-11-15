@@ -6,7 +6,7 @@
 ## SavedVariables: FurnitureCatalogue_Settings
 ## DependsOn: LibFurnitureCatalogue>=1003000
 ## DependsOn: LibAddonMenu-2.0>=43
-## DependsOn: LibAsync>=30103
+## DependsOn: LibAsync>=30106
 ## DependsOn: LibCustomMenu>=730
 ## DependsOn: LibScrollableMenu>=020408
 ## OptionalDependsOn: LibDebugLogger
