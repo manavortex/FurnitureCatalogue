@@ -284,8 +284,8 @@ end
 -- Both wrap at FurC.Transfer.IdLines' ids per line
 -- Same name lists merge on import
 
-local LIST_PREFIX = "[FURC LIST]"
-local FAVES_PREFIX = "[FURC FAVES]"
+local LIST_PREFIX = "FURC LIST"
+local FAVES_PREFIX = "FURC FAVES"
 
 ---@param set table<integer, true>
 ---@return integer[] itemIds ascending
