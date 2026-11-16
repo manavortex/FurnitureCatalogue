@@ -124,12 +124,9 @@ function T.Paginate(lines, maxBytes)
   return pages
 end
 
---[[ Window ]]
--- Only part of this file that touches controls. Virtual templates used (not in the addon's own XML, so worth
--- checking against ESOUI): ZO_MultiLineEditBackdrop_Keyboard, ZO_DefaultEditMultiLineForBackdrop, ZO_DefaultButton,
--- ZO_ButtonBehaviorClickSound
+-- Window
+-- Only part of this file that touches controls.
 -- One box for both directions: it shows the export, and whatever is in it when Import is pressed gets imported.
-
 local window, editBox, titleLabel, helpButton, statusLabel, prevButton, nextButton
 local editBg, side
 local SIDE_WIDTH = 220
