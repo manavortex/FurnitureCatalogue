@@ -130,9 +130,12 @@ end
 -- ZO_ButtonBehaviorClickSound
 -- One box for both directions: it shows the export, and whatever is in it when Import is pressed gets imported.
 
-local window, editBox, titleLabel, hintLabel, statusLabel, prevButton, nextButton
+local window, editBox, titleLabel, helpButton, statusLabel, prevButton, nextButton
 local editBg, side
 local SIDE_WIDTH = 220
+local BOX_TOP = 62 -- below the title
+local SIZE = { [false] = { 640, 430, 480, 300 }, [true] = { 640 + SIDE_WIDTH + 12, 520, 700, 400 } }
+local savedFrame, onResize -- the caller's, see T.Open
 local pages, page = {}, 1
 local getText, onImport -- what the window was opened with; the export is read again after every import
 
@@ -228,19 +231,33 @@ local function build()
   titleLabel = wm:CreateControl("$(parent)Title", window, CT_LABEL)
   titleLabel:SetFont("$(STONE_TABLET_FONT)|26|soft-shadow-thick")
   titleLabel:SetAnchor(TOPLEFT, window, TOPLEFT, 16, 22)
-  titleLabel:SetAnchor(TOPRIGHT, window, TOPRIGHT, -16, 22)
+  titleLabel:SetAnchor(TOPRIGHT, window, TOPRIGHT, -124, 22) -- clear of the icon buttons
   titleLabel:SetMaxLineCount(1)
   titleLabel:SetWrapMode(TEXT_WRAP_MODE_ELLIPSIS)
 
-  hintLabel = wm:CreateControl("$(parent)Hint", window, CT_LABEL)
-  hintLabel:SetFont("ZoFontGame")
-  hintLabel:SetAnchor(TOPLEFT, window, TOPLEFT, 16, 68)
-  hintLabel:SetAnchor(TOPRIGHT, window, TOPRIGHT, -88, 68) -- clear of Select all and Clear
-  hintLabel:SetText(GetString(SI_FURC_TRANSFER_HINT))
+  local function saveFrame()
+    if savedFrame then
+      savedFrame.left, savedFrame.top = window:GetLeft(), window:GetTop()
+      savedFrame.width, savedFrame.height = window:GetDimensions()
+    end
+  end
+  window:SetResizeHandleSize(10)
+  window:SetHandler("OnMoveStop", saveFrame)
+  -- hide text during resize, so your CPU doesn't explode
+  window:SetHandler("OnResizeStart", function()
+    editBox:SetHidden(true)
+  end)
+  window:SetHandler("OnResizeStop", function()
+    editBox:SetHidden(false)
+    saveFrame() -- dragging left or top edge moves it too
+    if onResize then
+      onResize()
+    end
+  end)
 
   -- a column left of the box for whoever opens the window with side = true (the list manager); empty otherwise
   side = wm:CreateControl("$(parent)Side", window, CT_CONTROL)
-  side:SetAnchor(TOPLEFT, hintLabel, BOTTOMLEFT, 0, 12)
+  side:SetAnchor(TOPLEFT, window, TOPLEFT, 16, BOX_TOP)
   side:SetAnchor(BOTTOMLEFT, window, BOTTOMLEFT, 16, -56)
   side:SetWidth(SIDE_WIDTH)
   side:SetHidden(true)
@@ -284,11 +301,12 @@ local function build()
     b:SetHandler("OnClicked", onClick)
     b:SetHandler("OnMouseEnter", function(control)
       InitializeTooltip(InformationTooltip, control, TOP, 0, 5, BOTTOM)
-      SetTooltipText(InformationTooltip, tooltip)
+      SetTooltipText(InformationTooltip, control.tooltip)
     end)
     b:SetHandler("OnMouseExit", function()
       ClearTooltip(InformationTooltip)
     end)
+    b.tooltip = tooltip
     return b
   end
   local clearButton = iconButton(
@@ -301,10 +319,18 @@ local function build()
       editBox:TakeFocus()
     end
   )
-  iconButton("SelectAll", "EsoUI/Art/Buttons/edit", GetString(SI_FURC_TRANSFER_SELECT_ALL), clearButton, function()
-    editBox:TakeFocus()
-    editBox:SelectAll()
-  end)
+  local selectAllButton = iconButton(
+    "SelectAll",
+    "EsoUI/Art/Buttons/edit",
+    GetString(SI_FURC_TRANSFER_SELECT_ALL),
+    clearButton,
+    function()
+      editBox:TakeFocus()
+      editBox:SelectAll()
+    end
+  )
+  -- Instruction tooltip on how to use the manager
+  helpButton = iconButton("Help", "EsoUI/Art/MenuBar/menuBar_help", "", selectAllButton, function() end)
 
   local function button(name, text, anchorPoint, offsetX, onClick)
     local b = wm:CreateControlFromVirtual("$(parent)" .. name, window, "ZO_DefaultButton")
@@ -315,15 +341,18 @@ local function build()
     return b
   end
 
-  -- bottom row: < > on the left, Import and Close on the right
+  -- bottom row with pagination
   prevButton = button("Prev", "<", BOTTOMLEFT, 16, function()
     showPage(-1)
   end)
   nextButton = button("Next", ">", BOTTOMLEFT, 84, function()
     showPage(1)
   end)
-  prevButton:SetDimensions(60, 28)
-  nextButton:SetDimensions(60, 28)
+  for i, b in ipairs({ prevButton, nextButton }) do
+    b:SetDimensions(60, 28)
+    b:ClearAnchors()
+    b:SetAnchor(TOPLEFT, editBg, BOTTOMLEFT, (i - 1) * 68, 38) -- 82 - 38 - 28 = the 16 of the other buttons
+  end
   button("Import", GetString(SI_FURC_TRANSFER_IMPORT), BOTTOMRIGHT, -164, import)
   button("Close", GetString(SI_DIALOG_CLOSE), BOTTOMRIGHT, -16, function()
     T.Close()
@@ -353,21 +382,32 @@ function T.IsOpen()
 end
 
 ---Show getText's export in the box, paged; Import reads whatever the box holds then
----@param opts { title: string, getText: fun(): string, side: boolean?, onImport: fun()? }
+---@param opts { title: string, getText: fun(): string, side: boolean?, onImport: fun()?, hint: string?, frame: table?, onResize: fun()? }
+---hint: additional text for help icon's tooltip
+---frame: window dimensions and position (saved vars)
 function T.Open(opts)
   if not window then
     build()
   end
   side:SetHidden(not opts.side)
-  window:SetDimensions(opts.side and 640 + SIDE_WIDTH + 12 or 640, opts.side and 520 or 430)
+  local width, height, minWidth, minHeight = unpack(SIZE[opts.side == true])
+  savedFrame, onResize = opts.frame, opts.onResize
+  local frame = savedFrame or {}
+  window:SetDimensionConstraints(minWidth, minHeight)
+  window:SetDimensions(math.max(minWidth, frame.width or width), math.max(minHeight, frame.height or height))
+  if frame.left and frame.top then
+    window:ClearAnchors()
+    window:SetAnchor(TOPLEFT, GuiRoot, TOPLEFT, frame.left, frame.top)
+  end
   editBg:ClearAnchors()
   if opts.side then
     editBg:SetAnchor(TOPLEFT, side, TOPRIGHT, 12, 0)
   else
-    editBg:SetAnchor(TOPLEFT, hintLabel, BOTTOMLEFT, 0, 12)
+    editBg:SetAnchor(TOPLEFT, window, TOPLEFT, 16, BOX_TOP)
   end
   editBg:SetAnchor(BOTTOMRIGHT, window, BOTTOMRIGHT, -16, -82)
   titleLabel:SetText(opts.title or "")
+  helpButton.tooltip = GetString(SI_FURC_TRANSFER_HINT) .. (opts.hint and "\n" .. opts.hint or "")
   getText, onImport = opts.getText, opts.onImport
   SCENE_MANAGER:ShowTopLevel(window)
   window:BringWindowToTop()

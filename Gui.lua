@@ -854,6 +854,9 @@ local function createGui()
           for _, entry in ipairs(listEntries) do
             item.entries[#item.entries + 1] = entry
           end
+          if #listEntries > 0 then
+            item.entries[#item.entries + 1] = { label = LSM_DIVIDER }
+          end
           item.entries[#item.entries + 1] = {
             label = GetString(SI_FURC_LIST_NEW),
             callback = function()

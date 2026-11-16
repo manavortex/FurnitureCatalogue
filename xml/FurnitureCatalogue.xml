@@ -274,6 +274,18 @@
         </Control>
       </Controls>
     </TopLevelControl>
+    <!-- line between groups of rows in the list manager -->
+    <Control name="FurC_ListManagerDivider" virtual="true">
+      <Dimensions y="10" />
+      <Controls>
+        <Texture name="$(parent)Line" color="55FFFFFF">
+          <Anchor point="LEFT" offsetX="2" />
+          <Anchor point="RIGHT" offsetX="-24" />
+          <Dimensions y="1" />
+        </Texture>
+      </Controls>
+    </Control>
+
     <Button name="FurC_QualityFilterButton" virtual="true">
       <Dimensions x="35" y="35" />
       <OnMouseEnter>FurC.GuiVirtualMouseOver(self)  </OnMouseEnter>

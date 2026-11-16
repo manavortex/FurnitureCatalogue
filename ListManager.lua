@@ -5,26 +5,32 @@
 FurC.ListManager = FurC.ListManager or {}
 local M = FurC.ListManager
 
-local ROW = 1
+local ROW, DIVIDER = 1, 2
 local FAVE_ICON = zo_iconFormat("EsoUI/Art/Collections/Favorite_StarOnly.dds", 16, 16) .. " "
 local CRAFT_ICON = zo_iconFormat("EsoUI/Art/Inventory/inventory_tabIcon_crafting_up.dds", 20, 20) .. " "
+-- #lists does nothing yet, it's there for later, pls leave in
+local WEB_URL = "https://wookiefriseur.github.io/LFC/#lists"
+local WEB_COLOR, WEB_HOVER_COLOR = ZO_ColorDef:New("5FB4FF"), ZO_ColorDef:New("FFFFFF")
 
--- the account's crafting knowledge: read-only rows after the lists; value = whether the row holds the known ones
+-- account's crafting knowledge: read-only rows after lists; true = holds the known ones
 local CRAFT_KEYS = { craft_unknown = false, craft_known = true }
 
 local list, renameButton, deleteButton, saveButton
 local selected = "all" -- "all", "faves", a list id or a key of CRAFT_KEYS
 local shownTitle
 
----@return { key: integer|string, label: string }[]
+---@return { key: integer|string|nil, label: string? }[] a row without key is a divider
 local function entries()
+  -- "all" is the favourites and every list, so it stands apart from them, as do the crafting rows
   local rows = {
     { key = "all", label = GetString(SI_FURC_LIST_ALL) },
+    {},
     { key = "faves", label = FAVE_ICON .. GetString(SI_FURC_FILTER_SRC_FAVE) },
   }
   for _, l in ipairs(FurC.GetLists()) do
     rows[#rows + 1] = { key = l.id, label = l.name }
   end
+  rows[#rows + 1] = {}
   for _, key in ipairs({ "craft_unknown", "craft_known" }) do
     rows[#rows + 1] = { key = key, label = CRAFT_ICON .. FurC.CraftingExport.ListName(CRAFT_KEYS[key]) }
   end
@@ -49,12 +55,27 @@ local function titleOf(key)
   return title
 end
 
+local highlight
+
+---@return table frame place and size of the window, kept in the saved variables
+local function frameSettings()
+  local gui = FurC.settings.gui
+  gui.listManager = gui.listManager or {}
+  return gui.listManager
+end
+
 local function show(key)
   selected = key
   shownTitle = titleOf(key)
   FurC.Transfer.Open({
     title = GetString(SI_FURC_LISTS),
+    hint = GetString(SI_FURC_LIST_MANAGER_HINT),
     side = true,
+    frame = frameSettings(),
+    onResize = function()
+      ZO_ScrollList_Commit(list) -- more or fewer rows fit
+      highlight()
+    end,
     getText = function()
       return export(key)
     end,
@@ -79,7 +100,7 @@ local function confirmSaveToFile()
   end
 end
 
-local function highlight()
+function highlight()
   for _, entry in ipairs(ZO_ScrollList_GetDataList(list)) do
     if entry.data.key == selected then
       ZO_ScrollList_SelectData(list, entry.data)
@@ -116,11 +137,12 @@ local function build()
       end
     end)
   end)
+  ZO_ScrollList_AddDataType(list, DIVIDER, "FurC_ListManagerDivider", 10, function() end)
   ZO_ScrollList_EnableSelection(list, "ZO_ThinListHighlight")
 
   local function button(name, stringId, offsetY, onClick)
     local b = wm:CreateControlFromVirtual("$(parent)" .. name, side, "ZO_DefaultButton")
-    b:SetText(zo_strtrim(GetString(stringId)))
+    b:SetText(GetString(stringId))
     b:SetAnchor(BOTTOMLEFT, side, BOTTOMLEFT, 0, offsetY)
     b:SetAnchor(BOTTOMRIGHT, side, BOTTOMRIGHT, 0, offsetY)
     b:SetHeight(28)
@@ -138,6 +160,31 @@ local function build()
   end)
   saveButton = button("Save", SI_FURC_CRAFT_SAVE, 0, confirmSaveToFile)
   saveButton:SetHidden(true)
+
+  local web = wm:CreateControl("$(parent)Web", side, CT_LABEL)
+  web:SetFont("ZoFontGameBold")
+  web:SetText(GetString(SI_FURC_LIST_WEB))
+  web:SetColor(WEB_COLOR:UnpackRGBA())
+  web:SetHorizontalAlignment(TEXT_ALIGN_CENTER)
+  web:SetVerticalAlignment(TEXT_ALIGN_CENTER)
+  web:SetAnchor(BOTTOMLEFT, side, BOTTOMLEFT, 0, 40)
+  web:SetAnchor(BOTTOMRIGHT, side, BOTTOMRIGHT, 0, 40)
+  web:SetHeight(28)
+  web:SetMouseEnabled(true)
+  web:SetHandler("OnMouseUp", function(_, mouseButton, upInside)
+    if upInside and mouseButton == MOUSE_BUTTON_INDEX_LEFT then
+      RequestOpenUnsafeURL(WEB_URL)
+    end
+  end)
+  web:SetHandler("OnMouseEnter", function(control)
+    control:SetColor(WEB_HOVER_COLOR:UnpackRGBA())
+    InitializeTooltip(InformationTooltip, control, TOP, 0, 5, BOTTOM)
+    SetTooltipText(InformationTooltip, GetString(SI_FURC_LIST_WEB_TOOLTIP))
+  end)
+  web:SetHandler("OnMouseExit", function(control)
+    control:SetColor(WEB_COLOR:UnpackRGBA())
+    ClearTooltip(InformationTooltip)
+  end)
 end
 
 ---Rebuild the column; Lists.lua calls it whenever a list is created, renamed or deleted
@@ -148,7 +195,7 @@ function M.Refresh()
   ZO_ScrollList_Clear(list)
   local data, stillThere = ZO_ScrollList_GetDataList(list), false
   for _, row in ipairs(entries()) do
-    data[#data + 1] = ZO_ScrollList_CreateDataEntry(ROW, row)
+    data[#data + 1] = ZO_ScrollList_CreateDataEntry(row.key and ROW or DIVIDER, row)
     stillThere = stillThere or row.key == selected
   end
   ZO_ScrollList_Commit(list)
