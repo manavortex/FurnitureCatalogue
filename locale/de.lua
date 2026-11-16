@@ -3,6 +3,9 @@
 local strings = {
   -- ////// START : DON'T REMOVE THIS LINE
   SI_FURC_CONTAINS_BOOKS = "Enthält Bücher: <<1>>",
+  SI_FURC_CRAFT_LIST = "Herstellbar (<<1>>)",
+  SI_FURC_CRAFT_SAVE = "In Datei speichern",
+  SI_FURC_CRAFT_SAVE_BODY = "Schreibt bekannte und unbekannte Herstellbare nach SavedVariables/FurnitureCatalogue.lua (FurnitureCatalogue_Export) und lädt die Benutzeroberfläche neu.",
   SI_FURC_DIALOGUE_RESET_DB_BODY = "Dadurch wird die 'Furniture Catalogue'-Datenbank von Grund auf neu erstellt.",
   SI_FURC_DIALOGUE_RESET_DB_HEADER = "Die 'Furniture Catalogue'-Datenbank wirklich neu erstellen?", 
   SI_FURC_FILTER_CHAR_OFF = "Charakter: aus",

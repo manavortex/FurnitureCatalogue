@@ -2,6 +2,9 @@
 -- Please avoid changing the structure of this file, as it's being used to generate and update the other translations
 local strings = {
   SI_FURC_CONTAINS_BOOKS = "Contains <<1>> books",
+  SI_FURC_CRAFT_LIST = "Craftable (<<1>>)",
+  SI_FURC_CRAFT_SAVE = "Save to file",
+  SI_FURC_CRAFT_SAVE_BODY = "Writes the known and unknown craftables to SavedVariables/FurnitureCatalogue.lua (FurnitureCatalogue_Export) and reloads the UI.",
   SI_FURC_DIALOGUE_RESET_DB_BODY = "This will re-create the FurnitureCatalogue database from scratch",
   SI_FURC_DIALOGUE_RESET_DB_HEADER = "Really re-create furniture database?",
   SI_FURC_FILTER_CHAR_OFF = "Character filter: off",

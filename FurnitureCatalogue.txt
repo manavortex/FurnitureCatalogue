@@ -3,7 +3,7 @@
 ## Version: 8.1.0
 ## AddOnVersion: 8001000
 ## APIVersion: 101051 101052
-## SavedVariables: FurnitureCatalogue_Settings
+## SavedVariables: FurnitureCatalogue_Settings FurnitureCatalogue_Export
 ## DependsOn: LibFurnitureCatalogue>=1003000
 ## DependsOn: LibAddonMenu-2.0>=43
 ## DependsOn: LibAsync>=30106
@@ -32,6 +32,7 @@ InventoryIcons.lua
 Favorites.lua
 Transfer.lua
 Lists.lua
+CraftingExport.lua
 ListManager.lua
 Migrations.lua
 Chat.lua
