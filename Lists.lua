@@ -278,14 +278,14 @@ function FurC.ConfirmDeleteList(listId)
   )
 end
 
---[[ Export / import ]]
+-- Export / import
 -- FURC LIST: <name>: <id>,<id>,... (the name runs to the last colon, so it may contain colons)
 -- FURC FAVES: <id>,<id>,...
 -- Both wrap at FurC.Transfer.IdLines' ids per line
 -- Same name lists merge on import
 
-local LIST_PREFIX = "FURC LIST"
-local FAVES_PREFIX = "FURC FAVES"
+local LIST_PREFIX = "[FURC LIST]"
+local FAVES_PREFIX = "[FURC FAVES]"
 
 ---@param set table<integer, true>
 ---@return integer[] itemIds ascending
@@ -319,7 +319,7 @@ end
 ---@param ids integer[]
 ---@return string[] lines
 function FurC.ListExportLines(name, ids)
-  return FurC.Transfer.IdLines(LIST_PREFIX .. ": " .. name:gsub("[\r\n]", " "), ids)
+  return FurC.Transfer.IdLines(LIST_PREFIX .. " " .. name:gsub("[\r\n]", " "), ids)
 end
 
 ---The favourites as export lines, none when there are none
