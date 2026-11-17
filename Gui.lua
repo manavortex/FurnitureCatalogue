@@ -725,17 +725,19 @@ local function createGui()
     for _, node in ipairs(nodes) do
       local label = (node.id and choices[node.id]) or (node.stringId and GetString(node.stringId))
       if label then
+        -- a list's label is its whole path
+        local listInfo = node.id and FurC.GetListInfo(FurC.ListIdFromSource(node.id))
         local entry = {
-          label = label,
+          label = listInfo and listInfo.leaf or label,
           tooltip = node.id and tooltips[node.id],
         }
         if node.children then
           entry.entries = buildSourceEntries(node.children, choices, tooltips, selectSource)
         end
-        -- a list's submenu holds what can be done to it; clicking the list itself still selects it
-        local listId = node.id and FurC.ListIdFromSource(node.id)
-        if listId then
-          entry.entries = {
+        -- a list's submenu holds its sublists and what can be done to it
+        if listInfo then
+          local listId = listInfo.id
+          local actions = {
             {
               label = GetString(SI_FURC_LIST_RENAME),
               callback = function()
@@ -755,10 +757,26 @@ local function createGui()
               end,
             },
           }
+          if listInfo.depth < 3 then
+            table.insert(actions, 1, {
+              label = GetString(SI_FURC_LIST_NEW_SUB),
+              callback = function()
+                FurC.PromptNewList(nil, listId)
+              end,
+            })
+          end
+          if entry.entries then
+            entry.entries[#entry.entries + 1] = { label = LSM_DIVIDER }
+          else
+            entry.entries = {}
+          end
+          for _, action in ipairs(actions) do
+            entry.entries[#entry.entries + 1] = action
+          end
         end
         if node.id then
           local id = node.id
-          entry.baseLabel = label
+          entry.baseLabel = entry.label
           entryById[id] = entry
           entry.callback = function()
             selectSource(label, id)
@@ -871,7 +889,8 @@ local function createGui()
           }
         end
         comboBox:AddItem(item)
-        if item.furcId and label == FurC.GetDropdownChoiceTextual("Source") then
+        -- by id: a list may carry the label of a filter
+        if item.furcId and item.furcId == FurC.GetDropdownChoice("Source") then
           comboBox:SetSelectedItem(label)
         end
       end

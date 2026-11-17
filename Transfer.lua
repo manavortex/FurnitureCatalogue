@@ -1,5 +1,5 @@
 -- Export/import window, shared by everything that wants to hand the user a string to copy (or take one pasted back).
--- A string is one or more lines. Each line is `<PREFIX>:<payload>`, PREFIX being what a feature registered with
+-- A string is one or more lines. Each line is `<PREFIX> <payload>`, PREFIX being what a feature registered with
 -- FurC.Transfer.Register (e.g. FURC LIST). Import hands every line to the handler of its prefix, so one paste may
 -- carry several kinds, and a new kind needs no change here.
 
@@ -15,54 +15,101 @@ local IDS_PER_LINE = 1000
 local MAX_CHARS = 20000
 
 ---@alias FurCTransferResult { label: string, added: integer, duplicates: integer, unknown: integer } counts only, never ids
----@alias FurCTransferHandler { import: fun(payload: string, version: integer): FurCTransferResult?, string? } nil + reason refuses the line
+---@alias FurCTransferHandler { import: fun(payload: string): FurCTransferResult?, string? } nil: not a line of this kind (counted as unreadable); nil + reason: refused (the reason is reported)
 
----@param prefix string e.g. "FURC LIST"; a line may carry a format version after it ("FURC LIST 2"), none means 1
+---@param prefix string e.g. "FURC LIST". A line carries no version, so an incompatible format takes a new prefix
 ---@param handler FurCTransferHandler
 function T.Register(prefix, handler)
   handlers[zo_strtrim(prefix):upper()] = handler
 end
 
 ---@param line string trimmed
----@return FurCTransferHandler? handler, string? payload, integer? version nil when no registered prefix starts the line
+---@param kind string a registered prefix
+---@return string? rest what follows the prefix, written in any case and spacing; nil when the line starts otherwise
+local function restAfter(line, kind)
+  local pos = 1
+  for word in kind:gmatch("%S+") do
+    local at = line:find("%S", pos)
+    if not at or (pos > 1 and at == pos) or line:sub(at, at + #word - 1):upper() ~= word then
+      return
+    end
+    pos = at + #word
+  end
+  local rest = line:sub(pos)
+  if rest == "" or rest:match("^[%s:]") then
+    return rest
+  end
+end
+
+-- The spellings from before the format was settled are still read: "FURC LIST: name: ids", "[FURC LIST] name: ids"
+-- and a version 1 before the colon ("FURC LIST 1: name: ids"). Any other version is not ours to read.
+---@param line string trimmed
+---@return FurCTransferHandler? handler, string? payload nil when no registered prefix starts the line
 local function parse(line)
-  local prefix, payload = line:match("^(FURC[^:]*):%s*(.*)$")
-  if not prefix then
+  local inner, after = line:match("^%[%s*(.-)%s*%]%s*:?%s*(.*)$")
+  if inner then
+    local kind = inner:gsub("%s+", " "):upper()
+    local base, number = kind:match("^(.-) (%d+)$")
+    local handler = handlers[base or kind]
+    if handler and (number or "1") == "1" then
+      return handler, after
+    end
     return
   end
-  -- "FURC LIST 2" is kind "FURC LIST", version 2; without a number it is version 1
-  prefix = zo_strtrim(prefix):gsub("%s+", " "):upper()
-  local kind, number = prefix:match("^(.-) (%d+)$")
-  local handler = handlers[kind or prefix]
-  return handler, handler and payload, handler and (tonumber(number) or 1)
+  for kind, handler in pairs(handlers) do
+    local rest = restAfter(line, kind)
+    if rest then
+      -- a number is the version only right before the colon: "FURC LIST 2 chairs: ..." is a list called "2 chairs"
+      local number, versioned = rest:match("^%s+(%d+)%s*:%s*(.*)$")
+      if number then
+        if number == "1" then
+          return handler, versioned
+        end
+        return
+      end
+      return handler, (rest:gsub("^%s*:?%s*", ""))
+    end
+  end
 end
 
 ---Hand each line of text to the handler of its prefix. Lines with the same label (one list in several lines) add up
 ---to one entry
 ---@param text string
+---@param importBare? fun(idText: string): FurCTransferResult?, string? takes a line of ids that names no list
 ---@return { entries: FurCTransferResult[], unreadable: integer, errors: string[] } report
-function T.ImportText(text)
+function T.ImportText(text, importBare)
   -- The game breaks a pasted line after 9996 characters with a line break and loses nothing (measured 2026-11-13:
-  -- 16722 characters arrived as 16724). So a prefix-less line of ids continues the prefixed line before it.
-  local lines, last = {}, nil
-  for rawLine in tostring(text or ""):gmatch("[^\r\n]+") do
+  -- 16722 characters arrived as 16724), also in the middle of an id. So a line of ids directly below another line
+  -- continues it, joined as it stands. A blank line ends that: ids after it stand alone.
+  local lines, open = {}, nil
+  for rawLine in (tostring(text or ""):gsub("\r\n?", "\n") .. "\n"):gmatch("(.-)\n") do
     local line = zo_strtrim(rawLine)
-    if line ~= "" then
-      if last and not parse(line) and line:match("^[%d,%s]+$") then
-        lines[last] = lines[last] .. line
-      else
-        lines[#lines + 1] = line
-        last = parse(line) and #lines or nil
+    local bare = line:match("^[%d,%s]*%d[%d,%s]*$") ~= nil
+    if line == "" then
+      open = nil
+    elseif bare and open then
+      open.text = open.text .. line
+    else
+      open = { text = line, bare = bare }
+      lines[#lines + 1] = open
+      if not bare and not parse(line) then
+        open = nil
       end
     end
   end
 
   local report, byLabel, seenError = { entries = {}, unreadable = 0, errors = {} }, {}, {}
   for _, line in ipairs(lines) do
-    local handler, payload, version = parse(line)
     local result, err
-    if handler then
-      result, err = handler.import(payload, version)
+    if line.bare then
+      if importBare then
+        result, err = importBare(line.text)
+      end
+    else
+      local handler, payload = parse(line.text)
+      if handler then
+        result, err = handler.import(payload)
+      end
     end
     if result then
       local key = LocaleAwareToLower(result.label)
@@ -75,26 +122,26 @@ function T.ImportText(text)
         byLabel[key] = result
         report.entries[#report.entries + 1] = result
       end
-    else
+    elseif not err then
       report.unreadable = report.unreadable + 1
-      if err and not seenError[err] then
-        seenError[err] = true
-        report.errors[#report.errors + 1] = err
-      end
+    elseif not seenError[err] then
+      seenError[err] = true
+      report.errors[#report.errors + 1] = err
     end
   end
   return report
 end
 
 ---Furnishing ids as export lines under one header, at most IDS_PER_LINE ids each
----@param header string e.g. "FURC FAVES" or "FURC LIST: <name>"
+---@param header string e.g. "FURC FAVES" or "FURC LIST <name>"
 ---@param ids integer[]
----@return string[] lines at least one, so an empty set still names itself
+---@return string[] lines at least one, so an empty set still names itself ("FURC LIST <name>:")
 function T.IdLines(header, ids)
   local lines = {}
   for first = 1, math.max(#ids, 1), IDS_PER_LINE do
     local last = math.min(first + IDS_PER_LINE - 1, #ids)
-    lines[#lines + 1] = string.format("%s: %s", header, table.concat(ids, ",", first, last))
+    local idText = table.concat(ids, ",", first, last)
+    lines[#lines + 1] = header .. ":" .. (idText ~= "" and " " .. idText or "")
   end
   return lines
 end
@@ -134,7 +181,7 @@ local BOX_TOP = 62 -- below the title
 local SIZE = { [false] = { 640, 430, 480, 300 }, [true] = { 640 + SIDE_WIDTH + 12, 520, 700, 400 } }
 local savedFrame, onResize -- the caller's, see T.Open
 local pages, page = {}, 1
-local getText, onImport -- what the window was opened with; the export is read again after every import
+local getText, onImport, importBare -- what the window was opened with; the export is read again after every import
 
 -- one line, cut with an ellipsis so it never runs into the buttons; the whole text is its tooltip
 local function setStatus(text)
@@ -196,7 +243,7 @@ local function import()
   if capped then
     text = text:match("^(.*)\n") or ""
   end
-  local report = T.ImportText(text)
+  local report = T.ImportText(text, importBare)
   if capped then
     table.insert(report.errors, 1, GetString(SI_FURC_TRANSFER_CAPPED))
   end
@@ -379,7 +426,8 @@ function T.IsOpen()
 end
 
 ---Show getText's export in the box, paged; Import reads whatever the box holds then
----@param opts { title: string, getText: fun(): string, side: boolean?, onImport: fun()?, hint: string?, frame: table?, onResize: fun()? }
+---@param opts { title: string, getText: fun(): string, side: boolean?, onImport: fun()?, importBare: (fun(idText: string): FurCTransferResult?, string?)?, hint: string?, frame: table?, onResize: fun()? }
+---importBare: see T.ImportText
 ---hint: additional text for help icon's tooltip
 ---frame: window dimensions and position (saved vars)
 function T.Open(opts)
@@ -405,7 +453,7 @@ function T.Open(opts)
   editBg:SetAnchor(BOTTOMRIGHT, window, BOTTOMRIGHT, -16, -82)
   titleLabel:SetText(opts.title or "")
   helpButton.tooltip = GetString(SI_FURC_TRANSFER_HINT) .. (opts.hint and "\n" .. opts.hint or "")
-  getText, onImport = opts.getText, opts.onImport
+  getText, onImport, importBare = opts.getText, opts.onImport, opts.importBare
   SCENE_MANAGER:ShowTopLevel(window)
   window:BringWindowToTop()
   showExport()

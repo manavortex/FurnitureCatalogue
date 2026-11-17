@@ -44,7 +44,7 @@ Taneth("FurC:Unit", function()
 
     local function idSet(text)
       local set = {}
-      -- one line per 1000 ids, each after its own "FURC LIST: <name>: "
+      -- one line per 1000 ids, each after its own "FURC LIST <name>: "
       for line in text:gmatch("[^\n]+") do
         for id in line:match(": ([%d,]*)$"):gmatch("%d+") do
           set[tonumber(id)] = true
@@ -56,9 +56,9 @@ Taneth("FurC:Unit", function()
     it("exports known and unknown craftables as one list each, in the list format", function()
       local knownId, unknownId, otherId = pick()
       knowingOnly(knownId, function()
-        assert.equals("FURC LIST: " .. C.ListName(true) .. ": " .. knownId, C.ExportText(true))
+        assert.equals("FURC LIST " .. C.ListName(true) .. ": " .. knownId, C.ExportText(true))
         local unknown = C.ExportText(false)
-        assert.equals(1, (unknown:find("FURC LIST: " .. C.ListName(false) .. ": ", 1, true)))
+        assert.equals(1, (unknown:find("FURC LIST " .. C.ListName(false) .. ": ", 1, true)))
         local ids = idSet(unknown)
         assert.is_true(ids[unknownId], "a craftable without its plan is unknown")
         assert.is_nil(ids[knownId])

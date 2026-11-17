@@ -20,14 +20,14 @@ Taneth("FurC:Unit", function()
 
   describe("FurC.Transfer.Paginate", function()
     it("keeps text that fits on one page unchanged", function()
-      local pages = paginate({ "FURC LIST: a: 1,2", "FURC LIST: b: 3" }, 100)
-      assert.same({ "FURC LIST: a: 1,2\nFURC LIST: b: 3" }, pages)
+      local pages = paginate({ "FURC LIST a: 1,2", "FURC LIST b: 3" }, 100)
+      assert.same({ "FURC LIST a: 1,2\nFURC LIST b: 3" }, pages)
     end)
 
     it("splits only between lines, every line on exactly one page, no page over the limit", function()
       local lines = {}
       for i = 1, 50 do
-        lines[i] = string.format("FURC LIST: list %d: %s", i, string.rep("123456,", i % 7 + 1))
+        lines[i] = string.format("FURC LIST list %d: %s", i, string.rep("123456,", i % 7 + 1))
       end
       local limit = 90
       local pages = paginate(lines, limit)
@@ -45,8 +45,8 @@ Taneth("FurC:Unit", function()
 
     it("gives a line longer than a page a page of its own instead of dropping it", function()
       local long = string.rep("1", 50)
-      local pages = paginate({ "FURC LIST: a: 1", long, "FURC LIST: b: 2" }, 40)
-      assert.same({ "FURC LIST: a: 1", long, "FURC LIST: b: 2" }, pages)
+      local pages = paginate({ "FURC LIST a: 1", long, "FURC LIST b: 2" }, 40)
+      assert.same({ "FURC LIST a: 1", long, "FURC LIST b: 2" }, pages)
     end)
 
     it("returns no page for no lines", function()
@@ -65,7 +65,7 @@ Taneth("FurC:Unit", function()
       local seen = {}
       for _, line in ipairs(lines) do
         assert.is_true(#line < 8000, "line over its budget: " .. #line)
-        local idText = line:match("^FURC LIST: Big: list: ([%d,]+)$")
+        local idText = line:match("^FURC LIST Big: list: ([%d,]+)$")
         assert.is_not_nil(idText, "not a line of the same list: " .. line:sub(1, 40))
         for id in idText:gmatch("%d+") do
           seen[#seen + 1] = tonumber(id)
@@ -75,8 +75,8 @@ Taneth("FurC:Unit", function()
     end)
 
     it("keeps a short list on one line, and an empty one still names the list", function()
-      assert.same({ "FURC LIST: a: 1,2" }, FurC.ListExportLines("a", { 1, 2 }))
-      assert.same({ "FURC LIST: a: " }, FurC.ListExportLines("a", {}))
+      assert.same({ "FURC LIST a: 1,2" }, FurC.ListExportLines("a", { 1, 2 }))
+      assert.same({ "FURC LIST a:" }, FurC.ListExportLines("a", {}))
     end)
   end)
 
@@ -126,7 +126,7 @@ Taneth("FurC:Unit", function()
   describe("FurC.Transfer.ImportText", function()
     local PREFIX = "FURC UNITTEST"
 
-    it("adds lines of the same label up to one entry and counts unreadable lines", function()
+    it("adds lines of the same label up to one entry, counts unreadable lines and reports a refusal once", function()
       FurC.Transfer.Register(PREFIX, {
         import = function(payload)
           local label, n = payload:match("^(%a+) (%d+)$")
@@ -144,6 +144,7 @@ Taneth("FurC:Unit", function()
           PREFIX .. ": A 3",
           "not ids at all",
           PREFIX .. ": ???",
+          PREFIX .. ": !!!",
           "FURC NOBODY: 1",
         }, "\n")
       )
@@ -154,9 +155,67 @@ Taneth("FurC:Unit", function()
       assert.equals(5, report.entries[1].added)
       assert.equals(2, report.entries[1].duplicates)
       assert.equals(5, report.entries[2].added)
-      assert.equals(3, report.unreadable)
+      assert.equals(2, report.unreadable) -- a refused line is reported, not counted
       assert.same({ "bad" }, report.errors)
     end)
+
+    it("reads the prefix in every spelling there has been, and no version but 1", function()
+      local seen = {}
+      FurC.Transfer.Register(PREFIX, {
+        import = function(payload)
+          seen[#seen + 1] = payload
+          return { label = tostring(#seen), added = 0, duplicates = 0, unknown = 0 }
+        end,
+      })
+      local ok, report = pcall(
+        FurC.Transfer.ImportText,
+        table.concat({
+          PREFIX .. " My List: 1,2",
+          PREFIX .. ": My List: 1,2",
+          "furc   unittest My List: 1,2",
+          "[" .. PREFIX .. "] My List: 1,2",
+          PREFIX .. " 1: My List: 1,2",
+          PREFIX .. " 2 chairs: 1,2",
+          PREFIX .. " 2: My List: 1,2",
+          PREFIX .. "ED: 1,2",
+          "[" .. PREFIX .. " 2] My List: 1,2",
+        }, "\n")
+      )
+      FurC.Transfer.Register(PREFIX, nil)
+      assert.is_true(ok, tostring(report))
+      assert.same(
+        { "My List: 1,2", "My List: 1,2", "My List: 1,2", "My List: 1,2", "My List: 1,2", "2 chairs: 1,2" },
+        seen
+      )
+      assert.equals(3, report.unreadable)
+    end)
+
+    it(
+      "hands a line of ids alone to importBare, continues one only directly below a line, never past a blank",
+      function()
+        local payloads, bare = {}, {}
+        FurC.Transfer.Register(PREFIX, {
+          import = function(payload)
+            payloads[#payloads + 1] = payload
+            return { label = "x", added = 0, duplicates = 0, unknown = 0 }
+          end,
+        })
+        local text = "7,8\n9\n" .. PREFIX .. " x: 1,2\n3\n\n4,5\nwords"
+        local ok, report = pcall(FurC.Transfer.ImportText, text, function(idText)
+          bare[#bare + 1] = idText
+          return { label = "selected", added = 0, duplicates = 0, unknown = 0 }
+        end)
+        local okNone, reportNone = pcall(FurC.Transfer.ImportText, "4,5")
+        FurC.Transfer.Register(PREFIX, nil)
+        assert.is_true(ok, tostring(report))
+        assert.same({ "x: 1,23" }, payloads)
+        assert.same({ "7,89", "4,5" }, bare)
+        assert.equals(2, #report.entries)
+        assert.equals(1, report.unreadable)
+        assert.is_true(okNone, tostring(reportNone))
+        assert.equals(1, reportNone.unreadable)
+      end
+    )
 
     it("rejoins a line the game broke mid-id, and still refuses a line that is not ids", function()
       local payloads = {}

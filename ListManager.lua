@@ -1,6 +1,6 @@
 -- List manager: "All", Favorites, every list and the crafting knowledge in a column beside the Transfer window's
--- box. Picking an entry shows its export; right-click opens it in the catalogue. New, Rename and Delete reuse the
--- prompts in Lists.lua.
+-- box, a sublist indented below its parent. Picking an entry shows its export; right-click opens it in the catalogue.
+-- New, New sublist, Rename and Delete reuse the prompts; the arrows move a list among its siblings.
 
 FurC.ListManager = FurC.ListManager or {}
 local M = FurC.ListManager
@@ -15,7 +15,8 @@ local WEB_COLOR, WEB_HOVER_COLOR = ZO_ColorDef:New("5FB4FF"), ZO_ColorDef:New("F
 -- account's crafting knowledge: read-only rows after lists; true = holds the known ones
 local CRAFT_KEYS = { craft_unknown = false, craft_known = true }
 
-local list, renameButton, deleteButton, saveButton
+local list, subButton, renameButton, upButton, downButton, deleteButton, saveButton
+local MAX_DEPTH = 3
 local selected = "all" -- "all", "faves", a list id or a key of CRAFT_KEYS
 local shownTitle
 
@@ -28,7 +29,7 @@ local function entries()
     { key = "faves", label = FAVE_ICON .. GetString(SI_FURC_FILTER_SRC_FAVE) },
   }
   for _, l in ipairs(FurC.GetLists()) do
-    rows[#rows + 1] = { key = l.id, label = l.name }
+    rows[#rows + 1] = { key = l.id, label = string.rep("    ", l.depth - 1) .. l.leaf }
   end
   rows[#rows + 1] = {}
   for _, key in ipairs({ "craft_unknown", "craft_known" }) do
@@ -64,6 +65,20 @@ local function frameSettings()
   return gui.listManager
 end
 
+-- what can be done to the selection
+local function updateButtons()
+  local info = type(selected) == "number" and FurC.GetListInfo(selected) or nil
+  local isList, isCraft = info ~= nil, CRAFT_KEYS[selected] ~= nil
+  subButton:SetEnabled(isList and info.depth < MAX_DEPTH)
+  renameButton:SetEnabled(isList)
+  upButton:SetEnabled(isList and FurC.CanMoveList(selected, -1))
+  downButton:SetEnabled(isList and FurC.CanMoveList(selected, 1))
+  deleteButton:SetEnabled(isList)
+  -- a crafting row can be neither renamed nor deleted
+  deleteButton:SetHidden(isCraft)
+  saveButton:SetHidden(not isCraft)
+end
+
 local function show(key)
   selected = key
   shownTitle = titleOf(key)
@@ -80,13 +95,11 @@ local function show(key)
       return export(key)
     end,
     onImport = M.Refresh,
+    importBare = function(idText)
+      return FurC.ImportBareIds(key, idText)
+    end,
   })
-  local isList, isCraft = type(key) == "number", CRAFT_KEYS[key] ~= nil
-  renameButton:SetEnabled(isList)
-  deleteButton:SetEnabled(isList)
-  -- a crafting row can be neither renamed nor deleted; Delete's place holds its dump to the saved variables
-  deleteButton:SetHidden(isCraft)
-  saveButton:SetHidden(not isCraft)
+  updateButtons()
 end
 
 local function confirmSaveToFile()
@@ -115,7 +128,7 @@ local function build()
 
   list = wm:CreateControlFromVirtual("$(parent)Lists", side, "ZO_ScrollList")
   list:SetAnchor(TOPLEFT, side, TOPLEFT, 0, 0)
-  list:SetAnchor(BOTTOMRIGHT, side, BOTTOMRIGHT, 0, -104)
+  list:SetAnchor(BOTTOMRIGHT, side, BOTTOMRIGHT, 0, -138)
   ZO_ScrollList_AddDataType(list, ROW, "ZO_SelectableLabel", 26, function(control, data)
     control:SetFont("ZoFontGame")
     control:SetWidth(side:GetWidth() - 20) -- clear of the scroll bar
@@ -149,12 +162,34 @@ local function build()
     b:SetHandler("OnClicked", onClick)
     return b
   end
-  button("New", SI_FURC_LIST_NEW, -68, function()
+  button("New", SI_FURC_LIST_NEW, -102, function()
     FurC.PromptNewList()
+  end)
+  subButton = button("NewSub", SI_FURC_LIST_NEW_SUB, -68, function()
+    FurC.PromptNewList(nil, selected)
   end)
   renameButton = button("Rename", SI_FURC_LIST_RENAME, -34, function()
     FurC.PromptRenameList(selected)
   end)
+  -- Rename shares its row with the arrows that move the selected list up and down among its siblings
+  renameButton:ClearAnchors()
+  renameButton:SetAnchor(BOTTOMLEFT, side, BOTTOMLEFT, 0, -34)
+  renameButton:SetAnchor(BOTTOMRIGHT, side, BOTTOMRIGHT, -60, -34)
+  local function arrow(name, texture, offsetX, delta)
+    local b = wm:CreateControlFromVirtual("$(parent)" .. name, side, "ZO_ButtonBehaviorClickSound")
+    b:SetDimensions(28, 28)
+    b:SetNormalTexture(texture .. "_up.dds")
+    b:SetPressedTexture(texture .. "_down.dds")
+    b:SetMouseOverTexture(texture .. "_over.dds")
+    b:SetDisabledTexture(texture .. "_up_disabled.dds")
+    b:SetAnchor(BOTTOMRIGHT, side, BOTTOMRIGHT, offsetX, -34)
+    b:SetHandler("OnClicked", function()
+      FurC.MoveList(selected, delta)
+    end)
+    return b
+  end
+  upButton = arrow("Up", "EsoUI/Art/Buttons/scrollbox_upArrow", -30, -1)
+  downButton = arrow("Down", "EsoUI/Art/Buttons/scrollbox_downArrow", 0, 1)
   deleteButton = button("Delete", SI_FURC_LIST_DELETE, 0, function()
     FurC.ConfirmDeleteList(selected)
   end)
@@ -187,8 +222,9 @@ local function build()
   end)
 end
 
----Rebuild the column; Lists.lua calls it whenever a list is created, renamed or deleted
-function M.Refresh()
+---Rebuild the column; Lists.lua calls it whenever a list is created, renamed, moved or deleted
+---@param reshow? boolean show the selection's export anew although its title is the same (it was emptied)
+function M.Refresh(reshow)
   if not list then
     return
   end
@@ -201,10 +237,11 @@ function M.Refresh()
   ZO_ScrollList_Commit(list)
   if FurC.Transfer.IsOpen() then
     -- re-show only when what is shown changed (deleted or renamed), so an import's report stays on screen
-    if not stillThere or titleOf(selected) ~= shownTitle then
+    if reshow or not stillThere or titleOf(selected) ~= shownTitle then
       show(stillThere and selected or "all")
     end
   end
+  updateButtons()
   highlight()
 end
 
