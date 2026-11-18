@@ -261,6 +261,18 @@ local function rootTaken(root)
   return RESERVED[wanted] == true or wanted == lower(GetString(SI_FURC_FILTER_SRC_FAVE))
 end
 
+---Give a list a new path, and everything below it the new prefix
+local function repath(s, listId, path)
+  local old = s.byId[listId].name
+  for _, otherId in ipairs(s.order) do
+    local other = s.byId[otherId]
+    if isUnder(other.name, old) then
+      other.name = path .. other.name:sub(#old + 1)
+    end
+  end
+  s.byId[listId].name = path
+end
+
 ---A name with ">" in it makes the sublist and every missing list above it: "Guildhall > Entrance" makes two
 ---@param name string a name or a path
 ---@return integer? listId, string? errorText
@@ -298,13 +310,7 @@ function FurC.RenameList(listId, name)
   if (takenBy and takenBy ~= listId) or (#parts == 1 and lower(path) ~= lower(old) and rootTaken(path)) then
     return false, GetString(SI_FURC_LIST_ERR_TAKEN)
   end
-  for _, otherId in ipairs(s.order) do
-    local other = s.byId[otherId]
-    if isUnder(other.name, old) then
-      other.name = path .. other.name:sub(#old + 1)
-    end
-  end
-  list.name = path
+  repath(s, listId, path)
   changed()
   return true
 end
@@ -376,6 +382,17 @@ function FurC.CanMoveList(listId, delta)
   return moveSpan(store(), listId, delta) ~= nil
 end
 
+---@param to integer where the span starts once it has been taken out
+local function moveOrder(s, from, count, to)
+  local span = {}
+  for _ = 1, count do
+    span[#span + 1] = table.remove(s.order, from)
+  end
+  for k = #span, 1, -1 do
+    table.insert(s.order, to, span[k])
+  end
+end
+
 ---Move a list among its siblings and its sublists along with it
 ---@param delta integer -1 up, +1 down
 ---@return boolean moved
@@ -385,13 +402,80 @@ function FurC.MoveList(listId, delta)
   if not from then
     return false
   end
-  local span = {}
-  for _ = 1, count do
-    span[#span + 1] = table.remove(s.order, from)
+  moveOrder(s, from, count, to)
+  changed()
+  return true
+end
+
+---Where moving a list out of its parent (-1) or into the sibling above it (+1) takes it, with everything below it.
+---Out of the parent it goes after the parent's whole subtree; into the sibling it becomes its last sublist, in place
+---@return string? path the list's new path, integer|string|nil from the span to move, or the reason when refused for
+---something the tree does not show, integer? count, integer? to as moveOrder takes them
+local function shiftPlan(s, listId, delta)
+  local i = indexOf(s, listId)
+  if not i then
+    return
   end
-  for k = #span, 1, -1 do
-    table.insert(s.order, to, span[k])
+  local parts, stop = partsOf(s.byId[listId].name), subtreeEnd(s, i)
+  local depth = #parts
+  local path, to
+  if delta < 0 then
+    if depth == 1 then
+      return
+    end
+    local parent = i - 1
+    while depthAt(s, parent) >= depth do
+      parent = parent - 1
+    end
+    table.remove(parts, depth - 1)
+    path = table.concat(parts, SEP)
+    to = subtreeEnd(s, parent) - (stop - i)
+  else
+    local j = i - 1
+    while j >= 1 and depthAt(s, j) > depth do
+      j = j - 1
+    end
+    if j < 1 or depthAt(s, j) < depth then
+      return
+    end
+    for k = i, stop - 1 do
+      if depthAt(s, k) >= MAX_DEPTH then
+        return
+      end
+    end
+    path = s.byId[s.order[j]].name .. SEP .. parts[depth]
+    to = i
   end
+  if findByPath(path) then
+    return nil, zo_strformat(GetString(SI_FURC_LIST_SHIFT_TAKEN), path)
+  end
+  if depth == 2 and delta < 0 and rootTaken(path) then
+    return nil, zo_strformat(GetString(SI_FURC_LIST_SHIFT_RESERVED), path)
+  end
+  return path, i, stop - i, to
+end
+
+---@param delta integer -1 out of the parent, +1 into the sibling above
+---@return boolean canShift, string? reason when the new path is taken or reserved
+function FurC.CanShiftList(listId, delta)
+  local path, reason = shiftPlan(store(), listId, delta)
+  if path then
+    return true
+  end
+  return false, reason
+end
+
+---Move a list out of its parent or into the sibling above it, its sublists along with it. Its id stays
+---@param delta integer -1 out of the parent, +1 into the sibling above
+---@return boolean shifted
+function FurC.ShiftList(listId, delta)
+  local s = store()
+  local path, from, count, to = shiftPlan(s, listId, delta)
+  if not path then
+    return false
+  end
+  repath(s, listId, path)
+  moveOrder(s, from, count, to)
   changed()
   return true
 end

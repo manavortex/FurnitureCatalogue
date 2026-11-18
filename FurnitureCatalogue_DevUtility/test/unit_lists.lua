@@ -187,6 +187,63 @@ Taneth("FurC:Unit", function()
       end)
     end)
 
+    local function createAll(list)
+      for _, name in ipairs(list) do
+        FurC.CreateList(name)
+      end
+    end
+
+    it("moves a root list into the list above as its last sublist, and out again to where it was", function()
+      withEmptyStore(function()
+        local start = { "A", "A > X", "B", "B > Sub", "C" }
+        createAll(start)
+        local b, sub = idOf("B"), idOf("B > Sub")
+        FurC.ImportBareIds(b, "87709,94091")
+        FurC.ImportBareIds(sub, "94092")
+        assert.is_true(FurC.CanShiftList(b, 1))
+        assert.is_true(FurC.ShiftList(b, 1))
+        assert.same({ "A", "A > X", "A > B", "A > B > Sub", "C" }, names())
+        assert.equals(b, idOf("A > B"))
+        assert.equals(sub, idOf("A > B > Sub"))
+        assert.equals(2, FurC.GetListCount(b))
+        assert.equals(1, FurC.GetListCount(sub))
+        assert.is_true(FurC.ShiftList(b, -1))
+        assert.same(start, names())
+        assert.equals(b, idOf("B"))
+        assert.is_true(FurC.IsInListById(sub, 94092))
+      end)
+    end)
+
+    it("moves a middle sublist out after its parent's whole subtree, the later sublists staying", function()
+      withEmptyStore(function()
+        createAll({ "P", "P > One", "P > Two", "P > Two > Deep", "P > Three", "P > Three > Low", "Q" })
+        local two = idOf("P > Two")
+        assert.is_true(FurC.ShiftList(two, -1))
+        assert.same({ "P", "P > One", "P > Three", "P > Three > Low", "Two", "Two > Deep", "Q" }, names())
+        assert.equals(two, idOf("Two"))
+      end)
+    end)
+
+    it("refuses a shift with nothing to shift into or out of, a fourth level, or a taken or reserved path", function()
+      withEmptyStore(function()
+        createAll({ "A", "A > b", "B", "C", "C > Sub", "C > Sub > Deep", "H > Favorites" })
+        local before = names()
+        local function refused(name, delta, reason)
+          local ok, why = FurC.CanShiftList(idOf(name), delta)
+          assert.is_false(ok, name .. " " .. delta)
+          assert.equals(reason, why, name .. " " .. delta)
+          assert.is_false(FurC.ShiftList(idOf(name), delta))
+          assert.same(before, names())
+        end
+        refused("A", -1) -- a root list
+        refused("A", 1) -- nothing above
+        refused("A > b", 1) -- its parent is above, no sibling
+        refused("C", 1) -- B is above, but Deep would land on a fourth level
+        refused("B", 1, zo_strformat(GetString(SI_FURC_LIST_SHIFT_TAKEN), "A > B")) -- "A > b", without case
+        refused("H > Favorites", -1, zo_strformat(GetString(SI_FURC_LIST_SHIFT_RESERVED), "Favorites"))
+      end)
+    end)
+
     it("groups a store from before sublists, keeping the ids of its lists", function()
       withEmptyStore(function()
         FurC.settings.customLists = {

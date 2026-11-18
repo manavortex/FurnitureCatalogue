@@ -1,6 +1,6 @@
 -- List manager: "All", Favorites, every list and the crafting knowledge in a column beside the Transfer window's
 -- box, a sublist indented below its parent. Picking an entry shows its export; right-click opens it in the catalogue.
--- New, New sublist, Rename and Delete reuse the prompts; the arrows move a list among its siblings.
+-- New, New sublist, Rename and Delete reuse the prompts; the arrows move a list among its siblings, out of its parent or into the list above.
 
 FurC.ListManager = FurC.ListManager or {}
 local M = FurC.ListManager
@@ -15,7 +15,7 @@ local WEB_COLOR, WEB_HOVER_COLOR = ZO_ColorDef:New("5FB4FF"), ZO_ColorDef:New("F
 -- account's crafting knowledge: read-only rows after lists; true = holds the known ones
 local CRAFT_KEYS = { craft_unknown = false, craft_known = true }
 
-local list, subButton, renameButton, upButton, downButton, deleteButton, saveButton
+local list, subButton, renameButton, upButton, downButton, outButton, inButton, deleteButton, saveButton
 local MAX_DEPTH = 3
 local selected = "all" -- "all", "faves", a list id or a key of CRAFT_KEYS
 local shownTitle
@@ -73,6 +73,14 @@ local function updateButtons()
   renameButton:SetEnabled(isList)
   upButton:SetEnabled(isList and FurC.CanMoveList(selected, -1))
   downButton:SetEnabled(isList and FurC.CanMoveList(selected, 1))
+  for _, b in ipairs({ outButton, inButton }) do
+    local ok, reason = false, nil
+    if isList then
+      ok, reason = FurC.CanShiftList(selected, b.delta)
+    end
+    b:SetEnabled(ok)
+    b.reason = reason
+  end
   deleteButton:SetEnabled(isList)
   -- a crafting row can be neither renamed nor deleted
   deleteButton:SetHidden(isCraft)
@@ -128,7 +136,7 @@ local function build()
 
   list = wm:CreateControlFromVirtual("$(parent)Lists", side, "ZO_ScrollList")
   list:SetAnchor(TOPLEFT, side, TOPLEFT, 0, 0)
-  list:SetAnchor(BOTTOMRIGHT, side, BOTTOMRIGHT, 0, -138)
+  list:SetAnchor(BOTTOMRIGHT, side, BOTTOMRIGHT, 0, -172)
   ZO_ScrollList_AddDataType(list, ROW, "ZO_SelectableLabel", 26, function(control, data)
     control:SetFont("ZoFontGame")
     control:SetWidth(side:GetWidth() - 20) -- clear of the scroll bar
@@ -171,25 +179,40 @@ local function build()
   renameButton = button("Rename", SI_FURC_LIST_RENAME, -34, function()
     FurC.PromptRenameList(selected)
   end)
-  -- Rename shares its row with the arrows that move the selected list up and down among its siblings
-  renameButton:ClearAnchors()
-  renameButton:SetAnchor(BOTTOMLEFT, side, BOTTOMLEFT, 0, -34)
-  renameButton:SetAnchor(BOTTOMRIGHT, side, BOTTOMRIGHT, -60, -34)
-  local function arrow(name, texture, offsetX, delta)
+  -- a row of its own below the list: out of the parent, up, down, into the list above
+  local function arrow(name, texture, disabled, offsetX, onClick)
     local b = wm:CreateControlFromVirtual("$(parent)" .. name, side, "ZO_ButtonBehaviorClickSound")
     b:SetDimensions(28, 28)
     b:SetNormalTexture(texture .. "_up.dds")
     b:SetPressedTexture(texture .. "_down.dds")
     b:SetMouseOverTexture(texture .. "_over.dds")
-    b:SetDisabledTexture(texture .. "_up_disabled.dds")
-    b:SetAnchor(BOTTOMRIGHT, side, BOTTOMRIGHT, offsetX, -34)
-    b:SetHandler("OnClicked", function()
-      FurC.MoveList(selected, delta)
+    b:SetDisabledTexture(texture .. disabled)
+    b:SetAnchor(BOTTOM, side, BOTTOM, offsetX, -136)
+    b:SetHandler("OnClicked", onClick)
+    return b
+  end
+  local function shiftArrow(name, texture, offsetX, delta, tooltip)
+    local b = arrow(name, texture, "_disabled.dds", offsetX, function()
+      FurC.ShiftList(selected, delta)
+    end)
+    b.delta = delta
+    b:SetHandler("OnMouseEnter", function(control)
+      InitializeTooltip(InformationTooltip, control, TOP, 0, 5, BOTTOM)
+      SetTooltipText(InformationTooltip, GetString(tooltip) .. (control.reason and "\n" .. control.reason or ""))
+    end)
+    b:SetHandler("OnMouseExit", function()
+      ClearTooltip(InformationTooltip)
     end)
     return b
   end
-  upButton = arrow("Up", "EsoUI/Art/Buttons/scrollbox_upArrow", -30, -1)
-  downButton = arrow("Down", "EsoUI/Art/Buttons/scrollbox_downArrow", 0, 1)
+  outButton = shiftArrow("Out", "EsoUI/Art/Buttons/large_leftArrow", -51, -1, SI_FURC_LIST_OUTDENT)
+  upButton = arrow("Up", "EsoUI/Art/Buttons/scrollbox_upArrow", "_up_disabled.dds", -17, function()
+    FurC.MoveList(selected, -1)
+  end)
+  downButton = arrow("Down", "EsoUI/Art/Buttons/scrollbox_downArrow", "_up_disabled.dds", 17, function()
+    FurC.MoveList(selected, 1)
+  end)
+  inButton = shiftArrow("In", "EsoUI/Art/Buttons/large_rightArrow", 51, 1, SI_FURC_LIST_INDENT)
   deleteButton = button("Delete", SI_FURC_LIST_DELETE, 0, function()
     FurC.ConfirmDeleteList(selected)
   end)
