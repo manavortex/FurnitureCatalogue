@@ -668,7 +668,7 @@ local function createGui()
       InformationTooltipTopLevel:BringWindowToTop()
     end
 
-    function OnItemSelect(control, choiceText, somethingElse)
+    local function OnItemSelect(control, choiceText, somethingElse)
       local dropdownName = tostring(control.m_name):gsub("FurC_Dropdown", "")
       FurC.SetDropdownChoice(dropdownName, choiceText, somethingElse and somethingElse.furcId)
       HideTooltip()
