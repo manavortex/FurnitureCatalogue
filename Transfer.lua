@@ -44,7 +44,8 @@ end
 -- The spellings from before the format was settled are still read: "FURC LIST: name: ids", "[FURC LIST] name: ids"
 -- and a version 1 before the colon ("FURC LIST 1: name: ids"). Any other version is not ours to read.
 ---@param line string trimmed
----@return FurCTransferHandler? handler, string? payload nil when no registered prefix starts the line
+---@return FurCTransferHandler? handler nil when no registered prefix starts the line
+---@return string? payload what follows the prefix and version
 local function parse(line)
   local inner, after = line:match("^%[%s*(.-)%s*%]%s*:?%s*(.*)$")
   if inner then

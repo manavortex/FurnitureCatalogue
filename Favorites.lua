@@ -31,7 +31,9 @@ end
 ---@param items table<integer, true> changed in place
 ---@param idText string ids separated by anything that is not a digit
 ---@param resolve fun(id: integer): integer? FurC.KnownFurnishingId, or a stand-in for tests
----@return integer added, integer duplicates, integer unknown
+---@return integer added
+---@return integer duplicates already in the set
+---@return integer unknown ids the catalogue does not know
 function FurC.AddImportedIds(items, idText, resolve)
   local added, duplicates, unknown = 0, 0, 0
   for idString in tostring(idText or ""):gmatch("%d+") do

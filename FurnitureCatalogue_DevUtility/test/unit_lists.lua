@@ -244,6 +244,33 @@ Taneth("FurC:Unit", function()
       end)
     end)
 
+    it("deletes every list and leaves the favourites, with nothing pointing at a list any more", function()
+      local savedSource, additive = FurC.DropdownChoices["Source"], FurC.AdditiveSources
+      local savedAdditive = ZO_ShallowTableCopy(additive)
+      local src = LibFurnitureCatalogue.API.GetSourceTypes()
+      local ok, err = pcall(withEmptyStore, function()
+        createAll({ "A", "A > One", "A > One > Deep", "B" })
+        FurC.ImportBareIds(idOf("A > One"), "87709")
+        FurC.ImportBareIds("faves", "94091,94092")
+        local deep = FurC.ListSourceId(idOf("A > One > Deep"))
+        FurC.DropdownChoices["Source"] = deep
+        additive[deep], additive[src.FAVE] = true, true
+        FurC.DeleteAllLists()
+        assert.same({}, names())
+        assert.same({ [94091] = true, [94092] = true }, FurC.settings.favorites)
+        assert.equals(src.NONE, FurC.GetDropdownChoice("Source"))
+        assert.is_nil(additive[deep])
+        assert.is_true(additive[src.FAVE]) -- not a list
+        assert.is_not_nil(FurC.CreateList("A")) -- the name is free again
+      end)
+      FurC.DropdownChoices["Source"] = savedSource
+      ZO_ClearTable(additive)
+      ZO_ShallowTableCopy(savedAdditive, additive)
+      if not ok then
+        error(err, 0)
+      end
+    end)
+
     it("groups a store from before sublists, keeping the ids of its lists", function()
       withEmptyStore(function()
         FurC.settings.customLists = {

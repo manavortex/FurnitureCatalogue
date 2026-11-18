@@ -275,7 +275,8 @@ end
 
 ---A name with ">" in it makes the sublist and every missing list above it: "Guildhall > Entrance" makes two
 ---@param name string a name or a path
----@return integer? listId, string? errorText
+---@return integer? listId nil when refused
+---@return string? errorText why
 function FurC.CreateList(name)
   local path = normPath(name)
   if path == "" then
@@ -291,7 +292,8 @@ function FurC.CreateList(name)
 end
 
 ---Changes the last part of the list's path, for everything below it as well. ">" in the name becomes "/"
----@return boolean ok, string? errorText
+---@return boolean ok
+---@return string? errorText why, when refused for a reason to report
 function FurC.RenameList(listId, name)
   local s = store()
   local list = s.byId[listId]
@@ -322,6 +324,13 @@ function FurC.ListHasSublists(listId)
   return i ~= nil and subtreeEnd(s, i) > i + 1
 end
 
+-- for a Source selection whose list is gone
+local function selectNoSource()
+  local src = LibFurnitureCatalogue.API.GetSourceTypes()
+  FurC.SetDropdownChoice("Source", FurC.DropdownData.ChoicesSource[src.NONE], src.NONE)
+  FurC.UpdateDropdownChoice("Source")
+end
+
 ---A list with sublists is emptied and stays, as their parent; it goes once they are gone
 function FurC.DeleteList(listId)
   local s = store()
@@ -348,15 +357,34 @@ function FurC.DeleteList(listId)
   local selectionGone = FurC.GetDropdownChoice("Source") == sourceId
   changed()
   if selectionGone then
-    local src = LibFurnitureCatalogue.API.GetSourceTypes()
-    FurC.SetDropdownChoice("Source", FurC.DropdownData.ChoicesSource[src.NONE], src.NONE)
-    FurC.UpdateDropdownChoice("Source")
+    selectNoSource()
+  end
+  FurC.UpdateGui()
+end
+
+---Remove every list. The favourites are no list and stay; ids are not handed out again
+function FurC.DeleteAllLists()
+  local s = store()
+  if FurC.AdditiveSources then
+    for sourceId in pairs(FurC.AdditiveSources) do
+      if FurC.ListIdFromSource(sourceId) then
+        FurC.AdditiveSources[sourceId] = nil
+      end
+    end
+  end
+  local selectionGone = FurC.ListIdFromSource(FurC.GetDropdownChoice("Source")) ~= nil
+  s.order, s.byId = {}, {}
+  changed()
+  if selectionGone then
+    selectNoSource()
   end
   FurC.UpdateGui()
 end
 
 ---What moving a list, with everything below it, past the sibling before (-1) or after (+1) it comes to
----@return integer? from, integer? count, integer? to the span to take out and where it goes; nil at either end
+---@return integer? from where the span to take out starts; nil at either end
+---@return integer? count lists in the span
+---@return integer? to where it goes, as moveOrder takes it
 local function moveSpan(s, listId, delta)
   local i = indexOf(s, listId)
   if not i then
@@ -409,8 +437,10 @@ end
 
 ---Where moving a list out of its parent (-1) or into the sibling above it (+1) takes it, with everything below it.
 ---Out of the parent it goes after the parent's whole subtree; into the sibling it becomes its last sublist, in place
----@return string? path the list's new path, integer|string|nil from the span to move, or the reason when refused for
----something the tree does not show, integer? count, integer? to as moveOrder takes them
+---@return string? path the list's new path; nil when refused
+---@return integer|string|nil fromOrReason start of the span; when refused, the reason (nil if the tree shows it)
+---@return integer? count lists in the span
+---@return integer? to where it goes, as moveOrder takes it
 local function shiftPlan(s, listId, delta)
   local i = indexOf(s, listId)
   if not i then
@@ -456,7 +486,8 @@ local function shiftPlan(s, listId, delta)
 end
 
 ---@param delta integer -1 out of the parent, +1 into the sibling above
----@return boolean canShift, string? reason when the new path is taken or reserved
+---@return boolean canShift
+---@return string? reason when the new path is taken or reserved
 function FurC.CanShiftList(listId, delta)
   local path, reason = shiftPlan(store(), listId, delta)
   if path then
@@ -656,7 +687,8 @@ local function importInto(items, label, idText)
 end
 
 ---@param payload string everything after the prefix
----@return FurCTransferResult?, string?
+---@return FurCTransferResult? result nil when not a list line or refused
+---@return string? errorText why it was refused
 local function importListLine(payload)
   local name, idText = payload:match("^(.*):%s*([%d,%s]*)$")
   -- brought into its written form first, so an over-long or over-deep path merges into the list it became
@@ -687,7 +719,8 @@ FurC.Transfer.Register(FAVES_PREFIX, { import = importFavesLine })
 ---A line of ids that names no list goes into the selected one
 ---@param what any the list manager's selection: a list id, "faves", or something that holds no ids
 ---@param idText string
----@return FurCTransferResult?, string?
+---@return FurCTransferResult? result nil when no list is selected
+---@return string? errorText why
 function FurC.ImportBareIds(what, idText)
   if what == "faves" then
     return importInto(FurC.settings.favorites, GetString(SI_FURC_FILTER_SRC_FAVE), idText)
@@ -702,7 +735,8 @@ end
 ---Export lines of a list (its own, not those of its sublists), the favourites, or (nil) the favourites and every
 ---list in display order
 ---@param what integer|"faves"|nil
----@return string text, string title
+---@return string text
+---@return string title the list's name, the favourites, or "Lists" for all
 function FurC.ListExportText(what)
   local lines, title = {}, GetString(SI_FURC_LISTS)
   local function append(more)

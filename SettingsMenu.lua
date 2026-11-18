@@ -42,6 +42,16 @@ function FurC.CreateSettings(savedVars, defaults)
         FurC.WipeDatabase()
       end,
     },
+    { -- button: Delete all lists
+      type = "button",
+      name = GetString(SI_FURC_LIST_DELETE_ALL),
+      tooltip = GetString(SI_FURC_LIST_DELETE_ALL_TT),
+      warning = GetString(SI_FURC_LIST_DELETE_ALL_WARNING),
+      isDangerous = true,
+      func = function()
+        FurC.DeleteAllLists()
+      end,
+    },
     { -- button: Re-scan data
       type = "button",
       name = GetString(SI_FURC_STRING_MENU_SCAN_FILES_NAME),
