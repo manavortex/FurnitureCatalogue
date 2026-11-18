@@ -4,6 +4,7 @@ local strings = {
   -- ////// START : DON'T REMOVE THIS LINE
   SI_FURC_CONTAINS_BOOKS = "本を<<1>>冊含む",
   SI_FURC_CRAFT_LIST = "作成可能 (<<1>>)",
+  SI_FURC_CRAFT_NOT_IMPORTED = "製作の知識はゲームから取得されるため、インポートされません。",
   SI_FURC_CRAFT_SAVE = "ファイルに保存",
   SI_FURC_CRAFT_SAVE_BODY = "既知・未知の作成可能な家具を SavedVariables/FurnitureCatalogue.lua (FurnitureCatalogue_Export) に書き込み、UIを再読み込みします。",
   SI_FURC_DIALOGUE_RESET_DB_BODY = "FurnitureCatalogueのデータベースを一から再作成します",

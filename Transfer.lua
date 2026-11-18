@@ -12,7 +12,7 @@ local handlers = {}
 local IDS_PER_LINE = 1000
 
 -- what the edit box accepts. ~7 characters per furnishing id, so this is well beyond any list
-local MAX_CHARS = 20000
+T.MAX_CHARS = 20000
 
 ---@alias FurCTransferResult { label: string, added: integer, duplicates: integer, unknown: integer } counts only, never ids
 ---@alias FurCTransferHandler { import: fun(payload: string): FurCTransferResult?, string? } nil: not a line of this kind (counted as unreadable); nil + reason: refused (the reason is reported)
@@ -311,7 +311,7 @@ local function build()
   editBox = wm:CreateControlFromVirtual("$(parent)Edit", editBg, "ZO_DefaultEditMultiLineForBackdrop")
   editBox:SetAnchor(TOPLEFT, editBg, TOPLEFT, 4, 4)
   editBox:SetAnchor(BOTTOMRIGHT, editBg, BOTTOMRIGHT, -4, -4)
-  editBox:SetMaxInputChars(MAX_CHARS)
+  editBox:SetMaxInputChars(T.MAX_CHARS)
 
   statusLabel = wm:CreateControl("$(parent)Status", window, CT_LABEL)
   statusLabel:SetFont("ZoFontGame")

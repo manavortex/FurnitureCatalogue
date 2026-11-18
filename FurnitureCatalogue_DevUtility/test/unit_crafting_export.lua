@@ -1,4 +1,4 @@
--- Crafting knowledge: craftables split into known and unknown, as list lines and as the saved-variables dump
+-- Crafting knowledge: craftables split into known and unknown, as export lines of their own and as the saved-variables dump
 
 if not Taneth then
   return
@@ -44,26 +44,59 @@ Taneth("FurC:Unit", function()
 
     local function idSet(text)
       local set = {}
-      -- one line per 1000 ids, each after its own "FURC LIST <name>: "
+      -- one line per 1000 ids, each after its own "FURC KNOWN p/n: "
       for line in text:gmatch("[^\n]+") do
-        for id in line:match(": ([%d,]*)$"):gmatch("%d+") do
+        for id in line:match(":%s*([%d,]*)$"):gmatch("%d+") do
           set[tonumber(id)] = true
         end
       end
       return set
     end
 
-    it("exports known and unknown craftables as one list each, in the list format", function()
+    it("exports known and unknown craftables under their own fixed prefix, each line with its page", function()
       local knownId, unknownId, otherId = pick()
       knowingOnly(knownId, function()
-        assert.equals("FURC LIST " .. C.ListName(true) .. ": " .. knownId, C.ExportText(true))
+        assert.equals("FURC KNOWN 1/1: " .. knownId, C.ExportText(true))
         local unknown = C.ExportText(false)
-        assert.equals(1, (unknown:find("FURC LIST " .. C.ListName(false) .. ": ", 1, true)))
+        for line in unknown:gmatch("[^\n]+") do
+          assert.is_true(line:match("^FURC UNKNOWN %d/%d: [%d,]+$") ~= nil, line:sub(1, 40))
+        end
         local ids = idSet(unknown)
         assert.is_true(ids[unknownId], "a craftable without its plan is unknown")
         assert.is_nil(ids[knownId])
         assert.is_nil(ids[otherId], "a furnishing that cannot be crafted is on neither list")
       end)
+    end)
+
+    it("still writes one line for an empty set", function()
+      knowingOnly(nil, function()
+        assert.equals("FURC KNOWN 1/1:", C.ExportText(true))
+      end)
+    end)
+
+    it("numbers the lines with the pages the export window splits them into", function()
+      knowingOnly(nil, function()
+        local lines = {}
+        for line in C.ExportText(false):gmatch("[^\n]+") do
+          lines[#lines + 1] = line
+        end
+        local pages = FurC.Transfer.Paginate(lines, FurC.Transfer.MAX_CHARS)
+        assert.is_true(#pages > 1, "every craftable unknown should need more than one page")
+        for page, text in ipairs(pages) do
+          for line in text:gmatch("[^\n]+") do
+            assert.equals("FURC UNKNOWN " .. page .. "/" .. #pages .. ":", line:match("^[^:]+:"))
+          end
+        end
+      end)
+    end)
+
+    it("refuses to import knowledge, changes no list and says why once", function()
+      local before = FurC.ListExportText()
+      local report = FurC.Transfer.ImportText("FURC KNOWN 1/2: 123,456\nFURC KNOWN 2/2: 789\nFURC UNKNOWN 1/1:")
+      assert.same({}, report.entries)
+      assert.equals(0, report.unreadable)
+      assert.same({ GetString(SI_FURC_CRAFT_NOT_IMPORTED) }, report.errors)
+      assert.equals(before, FurC.ListExportText())
     end)
 
     it("writes known and unknown by name to the saved variables, then reloads", function()

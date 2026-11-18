@@ -3,6 +3,7 @@
 local strings = {
   SI_FURC_CONTAINS_BOOKS = "Contains <<1>> books",
   SI_FURC_CRAFT_LIST = "Craftable (<<1>>)",
+  SI_FURC_CRAFT_NOT_IMPORTED = "Crafting knowledge comes from the game and is not imported.",
   SI_FURC_CRAFT_SAVE = "Save to file",
   SI_FURC_CRAFT_SAVE_BODY = "Writes the known and unknown craftables to SavedVariables/FurnitureCatalogue.lua (FurnitureCatalogue_Export) and reloads the UI.",
   SI_FURC_DIALOGUE_RESET_DB_BODY = "This will re-create the FurnitureCatalogue database from scratch",

@@ -1,10 +1,11 @@
--- Crafting knowledge of the account, for the list manager and /furcexport: craftables are split into known and unknown, shown as two lists in the shared list format, can be written to the saved variables (what the FurnitureCatalogue_Export AddOn did)
+-- Crafting knowledge of the account, for the list manager and /furcexport: craftables are split into known and unknown, shown in list manager and exported as their own line kinds, can be written to the saved variables (what the FurnitureCatalogue_Export AddOn did)
 
 FurC.CraftingExport = FurC.CraftingExport or {}
 local C = FurC.CraftingExport
 
 local api = LibFurnitureCatalogue.API
 local SAVED_VARS = "FurnitureCatalogue_Export"
+local KNOWN_PREFIX, UNKNOWN_PREFIX = "FURC KNOWN", "FURC UNKNOWN"
 
 ---@return table<integer, boolean>? knownById every craftable furnishing id, true when the account knows its plan;
 ---nil while the catalogue is still building (which this starts)
@@ -46,7 +47,13 @@ function C.ExportText(known)
     end
   end
   table.sort(ids)
-  return table.concat(FurC.ListExportLines(C.ListName(known), ids), "\n")
+  -- Every line names its page of the export window ("1/2")
+  local header = (known and KNOWN_PREFIX or UNKNOWN_PREFIX) .. " "
+  local pages = FurC.Transfer.Paginate(FurC.Transfer.IdLines(header .. "0/0", ids), FurC.Transfer.MAX_CHARS)
+  for page, text in ipairs(pages) do
+    pages[page] = text:gsub(header .. "0/0:", header .. page .. "/" .. #pages .. ":")
+  end
+  return table.concat(pages, "\n")
 end
 
 ---Write { known = { [name] = "crafters: materials" }, unknown = { [name] = "materials" } } to the saved variables
@@ -80,3 +87,10 @@ end
 SLASH_COMMANDS["/furcexport"] = function()
   FurC.ListManager.Open("craft_unknown")
 end
+
+-- game knows knowledge better than whatever is imported
+local function refuseImport()
+  return nil, GetString(SI_FURC_CRAFT_NOT_IMPORTED)
+end
+FurC.Transfer.Register(KNOWN_PREFIX, { import = refuseImport })
+FurC.Transfer.Register(UNKNOWN_PREFIX, { import = refuseImport })

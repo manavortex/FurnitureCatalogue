@@ -4,6 +4,7 @@ local strings = {
   -- ////// START : DON'T REMOVE THIS LINE
   SI_FURC_CONTAINS_BOOKS = "Содержит книг: <<1>>",
   SI_FURC_CRAFT_LIST = "Можно создать (<<1>>)",
+  SI_FURC_CRAFT_NOT_IMPORTED = "Знания ремесла берутся из игры и не импортируются.",
   SI_FURC_CRAFT_SAVE = "Сохранить в файл",
   SI_FURC_CRAFT_SAVE_BODY = "Записывает известные и неизвестные создаваемые предметы в SavedVariables/FurnitureCatalogue.lua (FurnitureCatalogue_Export) и перезагружает интерфейс.",
   SI_FURC_DIALOGUE_RESET_DB_BODY = "Это пересоздаст базу данных FurnitureCatalogue с нуля",
