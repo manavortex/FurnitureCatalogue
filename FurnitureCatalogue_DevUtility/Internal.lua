@@ -27,13 +27,19 @@ this.Houses = houseTable
 --- [collectibleId] -> { houseId, zone } (for travel Link)
 this.HouseMeta = houseMeta
 
+-- The category tree lists one step of an achievement line, and which one depends on the character's progress
 local function addAchievement(id)
   if not id or id == 0 then
     return
   end
-  local achieveName = internal.FormatName(GetAchievementInfo(id))
-  if achieveName ~= "" then
-    achievementTable[id] = achieveName
+  local first = GetFirstAchievementInLine(id)
+  id = first ~= 0 and first or id
+  while id ~= 0 do
+    local achieveName = internal.FormatName(GetAchievementInfo(id))
+    if achieveName ~= "" then
+      achievementTable[id] = achieveName
+    end
+    id = GetNextAchievementInLine(id)
   end
 end
 

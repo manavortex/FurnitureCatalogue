@@ -38,6 +38,12 @@ end
 function GetAchievementId()
   return 11
 end
+function GetFirstAchievementInLine()
+  return 0
+end
+function GetNextAchievementInLine()
+  return 0
+end
 function GetAchievementInfo()
   return "|c00ff00élan^m|r"
 end
@@ -161,9 +167,17 @@ FurCDev.control = {
 }
 FurCDev.DumpNames("quests")
 assert(shown:find("quests = {", 1, true) and shown:find('[12] = "Höhle",', 1, true), shown)
+FurC.EnsureDB = function() end
+FurC.DB = { [120000] = { blueprint = 130000 } }
+FurC.Utils = {
+  GetItemName = function(id)
+    return id == 130000 and "Skizze: Stuhl" or "Stuhl"
+  end,
+}
 FurCDev.DumpAllNames(true)
 local names = FurCDev_SavedVariables.names
 assert(names.format == "furniture-names-v1" and names.locale == "en")
 assert(names.houses[13] == "Дом" and names.quests[12] == "Höhle")
 assert(names.achievements[11] == "Élan" and names.zones[1] == "森")
+assert(names.items[120000] == "Stuhl" and names.items[130000] == "Skizze: Stuhl")
 print("Dashboard checks passed: formatted names, names dump and lifecycle-driven header.")

@@ -171,8 +171,27 @@ local function buildAllZones()
   end
 end
 
+--- [itemId] -> item name in the client language, every catalogued id (blueprints too)
+this.Items = {}
+local function buildItems()
+  FurC.EnsureDB(true)
+  local function add(id)
+    if type(id) == "number" and id > 9999 then
+      local name = FurC.Utils.GetItemName(id)
+      if type(name) == "string" and name ~= "" then
+        this.Items[id] = name
+      end
+    end
+  end
+  for id, row in pairs(FurC.DB or {}) do
+    add(id)
+    add(type(row) == "table" and row.blueprint)
+  end
+end
+
 -- builders are looked up when used, so this file does not depend on Internal.lua loading first
 local NAME_KINDS = {
+  { key = "items", label = "Item", source = "Items", build = buildItems },
   { key = "houses", label = "Houses", source = "Houses", build = "BuildHouseTable" },
   { key = "quests", label = "Quests", source = "Quests", build = "BuildQuestTable" },
   { key = "achievements", label = "Achievements", source = "Achievements", build = "BuildAchievementTable" },
@@ -377,7 +396,7 @@ function this.BuildDumpTab()
     panel,
     5 + #NAME_KINDS,
     "All names to file",
-    "Houses, quests, achievements and zones together.\nWrites FurCDev_SavedVariables.names.\nReload to write it to disk.",
+    "Items, houses, quests, achievements and zones together.\nWrites FurCDev_SavedVariables.names.\nReload to write it to disk.",
     function()
       this.DumpAllNames()
     end

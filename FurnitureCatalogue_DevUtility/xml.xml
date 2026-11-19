@@ -83,6 +83,22 @@
                     mouseOver="/esoui/art/dye/dyes_toolicon_erase_over.dds"
                   />
                 </Button>
+                <Button name="$(parent)_selectAll" inherits="ZO_ButtonBehaviorClickSound">
+                  <OnClicked>FurCDev.selectAllOutput()</OnClicked>
+                  <OnMouseEnter>
+                    InitializeTooltip(InformationTooltip, self, TOP, 0, 5, BOTTOM)
+                    SetTooltipText(InformationTooltip, "Select all text")
+                  </OnMouseEnter>
+                  <OnMouseExit>ClearTooltip(InformationTooltip)</OnMouseExit>
+                  <Dimensions x="36" y="36" />
+                  <Anchor point="RIGHT" relativeTo="$(parent)_clear" relativePoint="LEFT"
+                    offsetX="-8" offsetY="0" />
+                  <Textures
+                    normal="/esoui/art/buttons/edit_up.dds"
+                    pressed="/esoui/art/buttons/edit_down.dds"
+                    mouseOver="/esoui/art/buttons/edit_over.dds"
+                  />
+                </Button>
                 <Button name="$(parent)_fromTrader" inherits="ZO_ButtonBehaviorClickSound">
                   <OnClicked>FurCDev.AddAllFromTrader()</OnClicked>
                   <OnMouseEnter>
@@ -91,7 +107,7 @@
                   </OnMouseEnter>
                   <OnMouseExit>ClearTooltip(InformationTooltip)</OnMouseExit>
                   <Dimensions x="36" y="36" />
-                  <Anchor point="RIGHT" relativeTo="$(parent)_clear" relativePoint="LEFT"
+                  <Anchor point="RIGHT" relativeTo="$(parent)_selectAll" relativePoint="LEFT"
                     offsetX="-8" offsetY="0" />
                   <Textures
                     normal="/esoui/art/buttons/plus_up.dds"
@@ -113,22 +129,6 @@
                     normal="/esoui/art/inventory/inventory_tabicon_items_up.dds"
                     pressed="/esoui/art/inventory/inventory_tabicon_items_down.dds"
                     mouseOver="/esoui/art/inventory/inventory_tabicon_items_over.dds"
-                  />
-                </Button>
-                <Button name="$(parent)_selectAll" inherits="ZO_ButtonBehaviorClickSound">
-                  <OnClicked>FurCDev.selectAllOutput()</OnClicked>
-                  <OnMouseEnter>
-                    InitializeTooltip(InformationTooltip, self, TOP, 0, 5, BOTTOM)
-                    SetTooltipText(InformationTooltip, "Select all text")
-                  </OnMouseEnter>
-                  <OnMouseExit>ClearTooltip(InformationTooltip)</OnMouseExit>
-                  <Dimensions x="36" y="36" />
-                  <Anchor point="RIGHT" relativeTo="$(parent)_fromBag" relativePoint="LEFT"
-                    offsetX="-8" offsetY="0" />
-                  <Textures
-                    normal="/esoui/art/buttons/edit_up.dds"
-                    pressed="/esoui/art/buttons/edit_down.dds"
-                    mouseOver="/esoui/art/buttons/edit_over.dds"
                   />
                 </Button>
                 <!-- Background for scratchpad -->
