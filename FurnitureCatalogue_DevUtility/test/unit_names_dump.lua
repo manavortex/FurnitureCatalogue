@@ -64,6 +64,11 @@ Taneth("FurC:Unit", function()
       end
     end)
 
+    it("cleans control characters out of a name and leaves UTF-8 bytes alone", function()
+      -- の ends in byte 0x81, which Windows counts as a control character
+      assert.equals("狂気の 地下室", FurCDev.Internal.FormatName("狂気の\t地下室"))
+    end)
+
     it("orders the lines by id", function()
       local text = FurCDev.NamePages("houses", { [30] = "c", [10] = "a", [20] = "b" })[1]
       local first, second, third = text:find("%[10%]"), text:find("%[20%]"), text:find("%[30%]")

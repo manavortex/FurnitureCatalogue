@@ -16,7 +16,8 @@ function internal.FormatName(raw)
     return ""
   end
   local text = LibFurnitureCatalogue.Internal.Format.stripTxt(raw or "")
-  return (zo_strformat("<<C:1>>", text):gsub("[%c]", " "))
+  -- ASCII control bytes only so we don't break multibyte
+  return (zo_strformat("<<C:1>>", text):gsub("[%z\1-\31\127]", " "))
 end
 
 this.Achievements = achievementTable
