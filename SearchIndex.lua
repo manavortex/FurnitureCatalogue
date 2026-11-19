@@ -20,6 +20,14 @@ local find = string.find
 -- container tables that still have to be managed and indexed by us (so it is searchable)
 local CONTAINER_TABLES = { "BookCollections", "FurnishingFolios" }
 
+---Lowercase, and a no-break space (RU+FR)
+---@param text string
+---@return string
+local function fold(text)
+  return lower((text:gsub("\194\160", " ")))
+end
+this.Fold = fold
+
 -- lowercase built per string, not per row
 local loweredCache = {}
 local function lowered(text)
@@ -28,7 +36,7 @@ local function lowered(text)
   end
   local cached = loweredCache[text]
   if nil == cached then
-    cached = lower(stripTxt(text, STRIP_CONTROL))
+    cached = fold(stripTxt(text, STRIP_CONTROL))
     loweredCache[text] = cached
   end
   return (#cached > 0 and cached) or nil

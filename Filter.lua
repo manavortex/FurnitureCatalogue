@@ -11,7 +11,7 @@ FurC.AdditiveSources = FurC.AdditiveSources or {}
 local additiveSources = FurC.AdditiveSources
 
 local searchString = ""
-local searchPattern = ""
+local searchNeedle = ""
 local dropdownChoiceVersion = 1
 local dropdownTextVersion = "All"
 local ddSource = 1
@@ -40,8 +40,7 @@ local ONLY_RUMOUR = build.SourceMask({ [src.RUMOUR] = true })
 -- Local imports for performance
 local GetItemLinkName = GetItemLinkName
 local LocaleAwareToLower = LocaleAwareToLower
-local gsub = string.gsub
-local match = string.match
+local find = string.find
 local getEntry = LFC.API.GetEntry
 local getItemLink = LFC.API.GetItemLink
 local listIdFromSource = FurC.ListIdFromSource
@@ -75,7 +74,7 @@ local searchNameCache = {}
 local function getSearchName()
   local n = searchNameCache[itemId]
   if nil == n then
-    n = LocaleAwareToLower(GetItemLinkName(ensureItemLink()))
+    n = searchIndex.Fold(GetItemLinkName(ensureItemLink()))
     searchNameCache[itemId] = n
   end
   return n
@@ -90,7 +89,7 @@ end
 function FurC.SetFilter(useDefaults, skipRefresh)
   ClearTooltip(InformationTooltip)
   searchString = FurC.GetSearchFilter()
-  searchPattern = gsub(LocaleAwareToLower(searchString), "-", "%%-")
+  searchNeedle = searchIndex.Fold(searchString)
 
   if useDefaults then
     dropdownChoiceVersion = FurC.GetDefaultDropdownChoice("Version")
@@ -314,13 +313,13 @@ local function matchSearchString()
   if #searchString == 0 then
     return true
   end
-  if match(getSearchName(), searchPattern) then -- name first
+  if find(getSearchName(), searchNeedle, 1, true) then
     return true
   end
 
   -- vendor, zone, event, container, folio and achievement names second
   local terms = searchIndex.GetTerms(itemId)
-  return nil ~= terms and nil ~= match(terms, searchPattern)
+  return nil ~= terms and nil ~= find(terms, searchNeedle, 1, true)
 end
 
 local function matchCraftingTypeFilter()

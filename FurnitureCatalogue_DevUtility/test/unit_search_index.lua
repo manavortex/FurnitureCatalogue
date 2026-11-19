@@ -46,6 +46,17 @@ Taneth("FurC:Unit", function()
     end)
   end)
 
+  describe("FurC.SearchIndex.Fold", function()
+    it("reads a no-break space as the space a player types", function()
+      assert.equals("стул (из планок)", FurC.SearchIndex.Fold("стул (из\194\160планок)"))
+    end)
+
+    it("is searched as plain text, so an open bracket is no pattern", function()
+      local name = FurC.SearchIndex.Fold("Имперское знамя (Кин)")
+      assert.is_not_nil(name:find(FurC.SearchIndex.Fold("знамя (Кин"), 1, true))
+    end)
+  end)
+
   describe("FurC.SearchIndex terms", function()
     it("indexes master writ furnishings, not the blueprint", function()
       FurCDev.Test.ensureDB()
