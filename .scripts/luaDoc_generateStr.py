@@ -19,10 +19,10 @@ import glob
 import re
 import sys
 
+MASTER_SUFFIX = 'locale/en.lua'
+
 EXIT_FAILURE = -1
 EXIT_SUCCESS = 0
-
-MASTER_SUFFIX = 'locale/en.lua'
 
 def get_file_content(path: str) -> list[str]:
   """Get content of file as a list, empty if doesn't exist"""
@@ -36,12 +36,6 @@ def get_file_content(path: str) -> list[str]:
 
 def extract_strings(lines: list) -> dict:
   """Collects valid string definition pairs.
-      Caveats:
-        - includes quotation
-        - drops trailing commas
-        - drops comments
-        - does not include newlines
-
   Args:
       lines (list): Raw file content
 
@@ -50,7 +44,11 @@ def extract_strings(lines: list) -> dict:
   """
 
   # SI_FURC_STRING_WASSOLDBY = "Was sold by <<1>> in <<2>> (<<3>>) <<4>>",
-  RE_STRING_PAIR = re.compile(r'^\s*(?P<KEY>[A-Z][A-Z0-9_]*)\s*=\s*(?P<VAL>.+?)\s*,?(\s*--.+)?\s*$')
+  # A quoted value is taken whole, or a `--` inside it reads as the start of a trailing Lua comment and the rest of the string is dropped
+  RE_STRING_PAIR = re.compile(
+    r'^\s*(?P<KEY>[A-Z][A-Z0-9_]*)\s*=\s*'
+    r'(?P<VAL>"(?:[^"\\]|\\.)*"|.+?)'
+    r'\s*,?(\s*--.+)?\s*$')
 
   str_map = {}
   for line in lines:
@@ -64,45 +62,43 @@ def extract_strings(lines: list) -> dict:
 
 def merge_translation(curlang_map: dict, reflang_map: dict) -> tuple[dict,dict,dict]:
   """
-  Generates a combined map from the reference and the translations.
+  Sorts a translation against the reference. A translation file holds only what was translated (missing falls back to English)
 
   Args:
     curlang_map (dict): Map of the current translation (ex 'de.lua')
-    reflang_map (dict): Reference language map, used to fill in missing keys in curlang_map.
+    reflang_map (dict): Reference language map
 
   Returns:
-    tuple[dict,dict,dict]: Merged map, leftover map, untranslated map
-      - merged map: combination of base lang and translation
+    tuple[dict,dict,dict]: Translated map, leftover map, untranslated map
+      - translated map: what the translation defines, a identical string included (two languages may use the same word)
       - leftover map: definitions in translation but not in base
-      - untranslated map: strings that are the same in both (does not necessarily mean that the translation is missing, if 2 languages use the same word)
+      - untranslated map: reference strings the translation does not define; just reported, not stored
   """
-
-  # Save leftover variables from translated file (not in reference language anymore)
-  leftovers = {key: curlang_map[key] for key in (list(set(curlang_map.keys()) - set(reflang_map.keys())))}
-
-  # Remove leftovers from translations
-  for key in leftovers.keys():
-    del curlang_map[key]
-
-  merged = {**reflang_map, **curlang_map}
-  untranslated = {}
-
-  # Check for untranslated variables
-  for key, val in merged.items():
-    if key in reflang_map and key in curlang_map and reflang_map[key] == curlang_map[key]:
-      untranslated[key] = val
-    elif not key in curlang_map:
-      untranslated[key] = val
-
-  # Remove untranslated variables from merged map
-  for key in untranslated.keys():
-    del merged[key]
-
-  return (merged, leftovers, untranslated)
+  leftovers = {key: val for key, val in curlang_map.items() if key not in reflang_map}
+  translated = {key: val for key, val in curlang_map.items() if key in reflang_map}
+  untranslated = {key: val for key, val in reflang_map.items() if key not in curlang_map}
+  return (translated, leftovers, untranslated)
 
 # markers to identify the region that will be overwritten in translation files
 TRANSL_START_MARKER  = "-- ////// START : DON'T REMOVE THIS LINE"
 TRANSL_END_MARKER    = "-- ////// END   : DON'T REMOVE THIS LINE"
+
+# What the strings table is handed to at the end of a locale file
+REGISTER_STRINGS = """for stringId, stringValue in pairs(strings) do
+  ZO_CreateStringId(stringId, stringValue)
+  SafeAddVersion(stringId, 1)
+end"""
+
+NEW_TRANSLATION_FILE = f"""-- Auto-synced from locale/en.lua by luaDoc_generateStr.py
+-- (translated strings only, copy missing ones from en.lua)
+-- Edit values between START/END markers
+local strings = {{
+  {TRANSL_START_MARKER}
+  {TRANSL_END_MARKER}
+}}
+
+{REGISTER_STRINGS}
+"""
 
 def write_translation_file(out_path: str, merged: tuple[dict,dict,dict]):
   """(Re)writes the translation file with the merged map.
@@ -115,28 +111,16 @@ def write_translation_file(out_path: str, merged: tuple[dict,dict,dict]):
   """
   current_langfile = get_file_content(out_path)
   if not current_langfile:
-    current_langfile.extend(f"""
-  local strings = {{
-    {TRANSL_START_MARKER}
-    {TRANSL_END_MARKER}
-  }}
-
-  for stringId, stringValue in pairs(strings) do
-    ZO_CreateStringId(stringId, stringValue)
-    SafeAddVersion(stringId, 1)
-  end
-
-  """.splitlines(keepends=True))
+    current_langfile.extend(NEW_TRANSLATION_FILE.splitlines(keepends=True))
 
   # just abort if the region markers are missing
   if not TRANSL_START_MARKER in (item.strip() for item in current_langfile):
     print(f"Error: Missing region marker in {out_path}")
-    exit(EXIT_FAILURE)
+    sys.exit(EXIT_FAILURE)
 
   # Extract string pairs from the maps
   str_list = [f"{key} = {val},\n" for key, val in merged[0].items()]
   leftover_list = [f"{key} = {val},\n" for key, val in merged[1].items()]
-  untranslated_list = [f"{key} = {val},\n" for key, val in merged[2].items()]
 
   # Get the region that will be replaced
   start_index = next(i for i, item in enumerate(current_langfile) if item.strip() == TRANSL_START_MARKER)
@@ -147,12 +131,7 @@ def write_translation_file(out_path: str, merged: tuple[dict,dict,dict]):
   current_langfile[start_index + 1:end_index] = str_list
   end_index = start_index + 1 + len(str_list)
 
-  # 2. Insert any untranslated items
-  if untranslated_list:
-    untranslated_list.sort()
-    current_langfile[end_index:end_index] = untranslated_list
-    current_langfile.insert(end_index, f"-- {len(untranslated_list)} ENTRIES UNTRANSLATED/IDENTICAL\n")
-    end_index += len(untranslated_list) + 1
+  # 2. Untranslated strings are not written: the game falls back to the reference text
 
   # 3. Insert any leftovers
   if leftover_list:
@@ -196,13 +175,13 @@ if __name__ == '__main__':
     masters = sorted(p.replace('\\', '/') for p in glob.glob(f'**/{MASTER_SUFFIX}', recursive=True))
     if not masters:
       print(f"Error: no {MASTER_SUFFIX} found — run from the project root.")
-      exit(EXIT_FAILURE)
+      sys.exit(EXIT_FAILURE)
     for master in masters:
       str_map = extract_strings(get_file_content(master))
       write_lua_doc(master, out_path, str_map)
       print(f"Wrote {master} to {out_path}")
 
-    exit(EXIT_SUCCESS)
+    sys.exit(EXIT_SUCCESS)
 
   # Clean up paths
   if len(sys.argv) > 1:
@@ -212,11 +191,11 @@ if __name__ == '__main__':
 
   if input_file == out_path:
     print("Error: Input and output file are the same.")
-    exit(EXIT_FAILURE)
+    sys.exit(EXIT_FAILURE)
 
   if out_path.endswith(MASTER_SUFFIX):
     print(f"Error: {out_path} is a master file, it is never generated.")
-    exit(EXIT_FAILURE)
+    sys.exit(EXIT_FAILURE)
 
   # Parse input file
   str_map = extract_strings(get_file_content(input_file))
@@ -230,8 +209,9 @@ if __name__ == '__main__':
     curlang_map = extract_strings(get_file_content(out_path))
     merged = merge_translation(curlang_map, reflang_map)
     write_translation_file(out_path, merged)
+    print(f"{len(merged[2])} untranslated in {out_path}" + (": " + ", ".join(sorted(merged[2])) if merged[2] else ""))
   else:
     write_lua_doc(input_file, out_path, str_map)
 
   print(f"Wrote {input_file} to {out_path}")
-  exit(EXIT_SUCCESS)
+  sys.exit(EXIT_SUCCESS)
