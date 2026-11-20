@@ -55,24 +55,27 @@ Taneth("FurC:Unit", function()
   end)
 
   describe("FurC.ListExportLines", function()
-    it("wraps a long list into lines of the same name, every id once and in order", function()
-      local ids = {}
-      for i = 1, 2500 do
-        ids[i] = 100000 + i
-      end
-      local lines = FurC.ListExportLines("Big: list", ids)
-      assert.equals(3, #lines)
-      local seen = {}
-      for _, line in ipairs(lines) do
-        assert.is_true(#line < 8000, "line over its budget: " .. #line)
-        local idText = line:match("^FURC LIST Big: list: ([%d,]+)$")
-        assert.is_not_nil(idText, "not a line of the same list: " .. line:sub(1, 40))
-        for id in idText:gmatch("%d+") do
-          seen[#seen + 1] = tonumber(id)
+    it(
+      "wraps a long list into lines of the same name, add lines after the first, every id once and in order",
+      function()
+        local ids = {}
+        for i = 1, 2500 do
+          ids[i] = 100000 + i
         end
+        local lines = FurC.ListExportLines("Big: list", ids)
+        assert.equals(3, #lines)
+        local seen = {}
+        for i, line in ipairs(lines) do
+          assert.is_true(#line < 8000, "line over its budget: " .. #line)
+          local idText = line:match(i == 1 and "^FURC LIST Big: list: ([%d,]+)$" or "^FURC LIST%+ Big: list: ([%d,]+)$")
+          assert.is_not_nil(idText, "not a line of the same list: " .. line:sub(1, 40))
+          for id in idText:gmatch("%d+") do
+            seen[#seen + 1] = tonumber(id)
+          end
+        end
+        assert.same(ids, seen)
       end
-      assert.same(ids, seen)
-    end)
+    )
 
     it("keeps a short list on one line, and an empty one still names the list", function()
       assert.same({ "FURC LIST a: 1,2" }, FurC.ListExportLines("a", { 1, 2 }))
@@ -90,7 +93,7 @@ Taneth("FurC:Unit", function()
       end
       local lines = FurC.FavesExportLines(ids)
       assert.equals(2, #lines)
-      assert.equals("FURC FAVES: 201001", lines[2])
+      assert.equals("FURC FAVES+: 201001", lines[2])
     end)
   end)
 

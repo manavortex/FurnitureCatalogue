@@ -47,7 +47,7 @@
                 <Button name="$(parent)_Transfer">
                   <Anchor point="TOPLEFT" relativeTo="$(parent)_Feedback" relativePoint="TOPRIGHT"
                     offsetX="7" offsetY="2" />
-                  <OnMouseUp>FurC.OpenListTransfer()</OnMouseUp>
+                  <OnMouseUp>FurC.ToggleListTransfer()</OnMouseUp>
                   <Dimensions x="35" y="35" />
                   <Textures normal="esoui/art/tradinghouse/tradinghouse_listings_tabicon_up.dds"
                     pressed="esoui/art/tradinghouse/tradinghouse_listings_tabicon_down.dds"

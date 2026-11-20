@@ -14,8 +14,9 @@ local IDS_PER_LINE = 1000
 -- what the edit box accepts. ~7 characters per furnishing id, so this is well beyond any list
 T.MAX_CHARS = 20000
 
----@alias FurCTransferResult { label: string, added: integer, duplicates: integer, unknown: integer } counts only, never ids
----@alias FurCTransferHandler { import: fun(payload: string): FurCTransferResult?, string? } nil: not a line of this kind (counted as unreadable); nil + reason: refused (the reason is reported)
+---@alias FurCTransferResult { label: string, added: integer, duplicates: integer, unknown: integer, removed: integer? } counts only, never ids
+---@alias FurCTransferContext { check: boolean?, merge: boolean?, work: table, replaced: table, finish: function[] } one import: check counts without changing anything, merge never removes; the rest is the handlers' to keep
+---@alias FurCTransferHandler { import: fun(payload: string, ctx: FurCTransferContext): FurCTransferResult?, string? } nil: not a line of this kind (counted as unreadable); nil + reason: refused (the reason is reported)
 
 ---@param prefix string e.g. "FURC LIST". A line carries no version, so an incompatible format takes a new prefix
 ---@param handler FurCTransferHandler
@@ -76,12 +77,12 @@ end
 ---Hand each line of text to the handler of its prefix. Lines with the same label (one list in several lines) add up
 ---to one entry
 ---@param text string
----@param importBare? fun(idText: string): FurCTransferResult?, string? takes a line of ids that names no list
----@return { entries: FurCTransferResult[], unreadable: integer, errors: string[] } report
-function T.ImportText(text, importBare)
-  -- The game breaks a pasted line after 9996 characters with a line break and loses nothing (measured 2026-11-13:
-  -- 16722 characters arrived as 16724), also in the middle of an id. So a line of ids directly below another line
-  -- continues it, joined as it stands. A blank line ends that: ids after it stand alone.
+---@param importBare? fun(idText: string, ctx: FurCTransferContext): FurCTransferResult?, string? takes a line of ids that names no list
+---@param mode? { check: boolean?, merge: boolean? } check: count only, change nothing; merge: add, never remove
+---@return { entries: FurCTransferResult[], unreadable: integer, errors: string[], removed: integer } report
+function T.ImportText(text, importBare, mode)
+  local ctx = { check = mode and mode.check, merge = mode and mode.merge, work = {}, replaced = {}, finish = {} }
+  -- The game breaks a pasted line after 9996, also in the middle of an id. That's why we split into safe chunks
   local lines, open = {}, nil
   for rawLine in (tostring(text or ""):gsub("\r\n?", "\n") .. "\n"):gmatch("(.-)\n") do
     local line = zo_strtrim(rawLine)
@@ -99,30 +100,22 @@ function T.ImportText(text, importBare)
     end
   end
 
-  local report, byLabel, seenError = { entries = {}, unreadable = 0, errors = {} }, {}, {}
+  local report, byLabel, seenError = { entries = {}, unreadable = 0, errors = {}, removed = 0 }, {}, {}
+  local results = {}
   for _, line in ipairs(lines) do
     local result, err
     if line.bare then
       if importBare then
-        result, err = importBare(line.text)
+        result, err = importBare(line.text, ctx)
       end
     else
       local handler, payload = parse(line.text)
       if handler then
-        result, err = handler.import(payload)
+        result, err = handler.import(payload, ctx)
       end
     end
     if result then
-      local key = LocaleAwareToLower(result.label)
-      local entry = byLabel[key]
-      if entry then
-        entry.added = entry.added + result.added
-        entry.duplicates = entry.duplicates + result.duplicates
-        entry.unknown = entry.unknown + result.unknown
-      else
-        byLabel[key] = result
-        report.entries[#report.entries + 1] = result
-      end
+      results[#results + 1] = result
     elseif not err then
       report.unreadable = report.unreadable + 1
     elseif not seenError[err] then
@@ -130,19 +123,40 @@ function T.ImportText(text, importBare)
       report.errors[#report.errors + 1] = err
     end
   end
+  -- what a replaced set lost is only known after its last line
+  for _, finish in ipairs(ctx.finish) do
+    finish()
+  end
+  for _, result in ipairs(results) do
+    local key = LocaleAwareToLower(result.label)
+    local entry = byLabel[key]
+    if entry then
+      entry.added = entry.added + result.added
+      entry.duplicates = entry.duplicates + result.duplicates
+      entry.unknown = entry.unknown + result.unknown
+      entry.removed = (entry.removed or 0) + (result.removed or 0)
+    else
+      byLabel[key] = result
+      report.entries[#report.entries + 1] = result
+    end
+    report.removed = report.removed + (result.removed or 0)
+  end
   return report
 end
 
 ---Furnishing ids as export lines under one header, at most IDS_PER_LINE ids each
 ---@param header string e.g. "FURC FAVES" or "FURC LIST <name>"
 ---@param ids integer[]
+---@param moreHeader string? header of every line after the first, e.g. "FURC LIST+ <name>"; default: header
+---@param perLine integer? ids a line; default 1000, which the game's box takes pasted without breaking the line
 ---@return string[] lines at least one, so an empty set still names itself ("FURC LIST <name>:")
-function T.IdLines(header, ids)
+function T.IdLines(header, ids, moreHeader, perLine)
+  perLine = perLine or IDS_PER_LINE
   local lines = {}
-  for first = 1, math.max(#ids, 1), IDS_PER_LINE do
-    local last = math.min(first + IDS_PER_LINE - 1, #ids)
+  for first = 1, math.max(#ids, 1), perLine do
+    local last = math.min(first + perLine - 1, #ids)
     local idText = table.concat(ids, ",", first, last)
-    lines[#lines + 1] = header .. ":" .. (idText ~= "" and " " .. idText or "")
+    lines[#lines + 1] = (first == 1 and header or moreHeader or header) .. ":" .. (idText ~= "" and " " .. idText or "")
   end
   return lines
 end
@@ -176,6 +190,8 @@ end
 -- Only part of this file that touches controls.
 -- One box for both directions: it shows the export, and whatever is in it when Import is pressed gets imported.
 local window, editBox, titleLabel, helpButton, statusLabel, prevButton, nextButton
+local importButton, addOnlyButton, closeButton
+local pending -- a paste that would remove items, until Replace, Add only or Cancel is pressed: { text, capped }
 local editBg, side
 local SIDE_WIDTH = 220
 local BOX_TOP = 62 -- below the title
@@ -198,6 +214,9 @@ local function formatReport(report)
     local entries = {}
     for i, e in ipairs(report.entries) do
       entries[i] = zo_strformat(GetString(SI_FURC_TRANSFER_ENTRY), e.label, e.added, e.duplicates, e.unknown)
+      if (e.removed or 0) > 0 then
+        entries[i] = entries[i] .. " " .. zo_strformat(GetString(SI_FURC_TRANSFER_REMOVED), e.removed)
+      end
     end
     parts[1] = zo_strformat(GetString(SI_FURC_TRANSFER_LISTS), #entries) .. " " .. table.concat(entries, "; ")
   end
@@ -210,7 +229,19 @@ local function formatReport(report)
   return #parts > 0 and table.concat(parts, " ") or GetString(SI_FURC_TRANSFER_NOTHING)
 end
 
+-- the bottom row asks Replace / Add only / Cancel while a paste waits for that answer
+local function setPending(waiting)
+  pending = waiting
+  importButton:SetText(GetString(waiting and SI_FURC_TRANSFER_REPLACE or SI_FURC_TRANSFER_IMPORT))
+  closeButton:SetText(GetString(waiting and SI_DIALOG_CANCEL or SI_DIALOG_CLOSE))
+  addOnlyButton:SetHidden(not waiting)
+  -- the page buttons would sit under the third button in a narrow window
+  prevButton:SetHidden(waiting ~= nil or #pages < 2)
+  nextButton:SetHidden(waiting ~= nil or #pages < 2)
+end
+
 local function showPage(delta)
+  setPending(nil)
   page = math.max(1, math.min(#pages, page + delta))
   editBox:SetText(pages[page] or "")
   setStatus(#pages > 1 and zo_strformat(GetString(SI_FURC_TRANSFER_PAGE), page, #pages) or "")
@@ -231,7 +262,28 @@ local function showExport()
   showPage(0)
 end
 
+---@param merge boolean? add only, remove nothing
+local function runImport(text, capped, merge)
+  local report = T.ImportText(text, importBare, { merge = merge })
+  if capped then
+    table.insert(report.errors, 1, GetString(SI_FURC_TRANSFER_CAPPED))
+  end
+  if #report.entries > 0 then
+    -- the paste goes for the fresh export, so pressing Import again cannot count it twice
+    FurC.UpdateGui()
+    if onImport then
+      onImport()
+    end
+    showExport()
+  end
+  setPending(nil)
+  setStatus(formatReport(report))
+end
+
 local function import()
+  if pending then
+    return runImport(pending.text, pending.capped)
+  end
   -- an id is known only once the catalogue is built; before that every id would read as unknown
   if not LibFurnitureCatalogue.API.IsReady() then
     FurC.EnsureDB()
@@ -244,19 +296,14 @@ local function import()
   if capped then
     text = text:match("^(.*)\n") or ""
   end
-  local report = T.ImportText(text, importBare)
-  if capped then
-    table.insert(report.errors, 1, GetString(SI_FURC_TRANSFER_CAPPED))
+  -- replacing a list is only asked about when it would lose items
+  local removed = T.ImportText(text, importBare, { check = true }).removed
+  if removed > 0 then
+    setPending({ text = text, capped = capped })
+    setStatus(zo_strformat(GetString(SI_FURC_TRANSFER_CONFIRM), removed))
+    return
   end
-  if #report.entries > 0 then
-    -- the paste goes for the fresh export, so pressing Import again cannot count it twice
-    FurC.UpdateGui()
-    if onImport then
-      onImport()
-    end
-    showExport()
-  end
-  setStatus(formatReport(report))
+  runImport(text, capped)
 end
 
 local function build()
@@ -398,9 +445,20 @@ local function build()
     b:ClearAnchors()
     b:SetAnchor(TOPLEFT, editBg, BOTTOMLEFT, (i - 1) * 68, 38) -- 82 - 38 - 28 = the 16 of the other buttons
   end
-  button("Import", GetString(SI_FURC_TRANSFER_IMPORT), BOTTOMRIGHT, -164, import)
-  button("Close", GetString(SI_DIALOG_CLOSE), BOTTOMRIGHT, -16, function()
-    T.Close()
+  addOnlyButton = button("AddOnly", GetString(SI_FURC_TRANSFER_ADD_ONLY), BOTTOMRIGHT, -312, function()
+    if pending then
+      runImport(pending.text, pending.capped, true)
+    end
+  end)
+  addOnlyButton:SetHidden(true)
+  importButton = button("Import", GetString(SI_FURC_TRANSFER_IMPORT), BOTTOMRIGHT, -164, import)
+  closeButton = button("Close", GetString(SI_DIALOG_CLOSE), BOTTOMRIGHT, -16, function()
+    if pending then
+      setPending(nil)
+      setStatus("")
+    else
+      T.Close()
+    end
   end)
 
   SCENE_MANAGER:RegisterTopLevel(window, false)

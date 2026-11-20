@@ -357,6 +357,48 @@ Taneth("FurC:Unit", function()
       end
     )
 
+    it("replaces a list by its line, adds by an add line or a line of ids, and leaves unnamed lists alone", function()
+      withEmptyStore(function()
+        local import = FurC.Transfer.ImportText
+        import("FURC LIST Hall: 87709,94091,94092\nFURC LIST Kitchen: 94100\nFURC FAVES: 94104,94105")
+        local hall = idOf("Hall")
+        local bare = function(idText, ctx)
+          return FurC.ImportBareIds(hall, idText, ctx)
+        end
+
+        -- a check counts and changes nothing, also for a list that does not exist yet
+        local check = import("FURC LIST Hall: 94091,94093\nFURC LIST New: 94094", bare, { check = true })
+        assert.equals(2, check.removed)
+        assert.same({ 87709, 94091, 94092 }, FurC.GetListItemIds(hall))
+        assert.is_nil(FurC.FindListByName("New"))
+
+        local report = import("FURC LIST Hall: 94091,94093\nFURC LIST+ Hall: 94094\nFURC LIST Hall: 94095")
+        assert.same({ 94091, 94093, 94094, 94095 }, FurC.GetListItemIds(hall))
+        local entry = report.entries[1]
+        -- 94091 stayed, so it is no addition
+        assert.same({ 3, 1, 2 }, { entry.added, entry.duplicates, entry.removed })
+        assert.equals(2, report.removed)
+        assert.same({ 94100 }, FurC.GetListItemIds(idOf("Kitchen")))
+        assert.is_true(FurC.settings.favorites[94104])
+
+        -- an add line, a line of ids and a merging import remove nothing
+        assert.equals(0, import("FURC LIST+ Hall: 94096\nFURC FAVES+: 94106\n\n94097", bare).removed)
+        assert.equals(0, import("FURC LIST Hall: 94098\nFURC FAVES: 94107", bare, { merge = true }).removed)
+        assert.same({ 94091, 94093, 94094, 94095, 94096, 94097, 94098 }, FurC.GetListItemIds(hall))
+        assert.is_true(
+          FurC.settings.favorites[94104] and FurC.settings.favorites[94106] and FurC.settings.favorites[94107]
+        )
+
+        -- the plus belongs to the prefix: apart from it, it starts the list's name
+        import("FURC LIST + odd: 94099")
+        assert.same({ 94099 }, FurC.GetListItemIds(idOf("+ odd")))
+        assert.same({ 94091, 94093, 94094, 94095, 94096, 94097, 94098 }, FurC.GetListItemIds(hall))
+
+        assert.equals(3, import("FURC FAVES: 94104").removed)
+        assert.is_nil(FurC.settings.favorites[94106])
+      end)
+    end)
+
     it("puts a line of ids alone into the selected list or the favourites", function()
       withEmptyStore(function()
         local listId = FurC.CreateList("Guildhall > Entrance")

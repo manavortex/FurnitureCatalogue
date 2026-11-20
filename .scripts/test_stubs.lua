@@ -64,17 +64,20 @@ _G.GetDisplayName = _G.GetDisplayName or function()
   return "@EatsYourBugs"
 end
 
-if not _G.zo_strsplit then
-  _G.zo_strsplit = function(sep, str)
-    if type(str) ~= "string" then
-      return str
-    end
-    local parts, pat = {}, "(.-)" .. sep:gsub("(%p)", "%%%1")
-    for piece in (str .. sep):gmatch(pat) do
-      parts[#parts + 1] = piece
-    end
-    return unpack(parts)
+-- Ingame is fine with nil, ESOLua is not. That's why we fake it here to behave like it does ingame.
+local nativeSplit = _G.zo_strsplit
+_G.zo_strsplit = function(sep, str)
+  if type(str) ~= "string" then
+    return
   end
+  if nativeSplit then
+    return nativeSplit(sep, str)
+  end
+  local parts, pat = {}, "(.-)" .. sep:gsub("(%p)", "%%%1")
+  for piece in (str .. sep):gmatch(pat) do
+    parts[#parts + 1] = piece
+  end
+  return unpack(parts)
 end
 
 -- placeholder name returner (id 0 means "nothing of this kind")

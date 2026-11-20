@@ -669,27 +669,54 @@ end
 ---@param ids integer[]
 ---@return string[] lines
 function FurC.ListExportLines(name, ids)
-  return FurC.Transfer.IdLines(LIST_PREFIX .. " " .. name:gsub("[\r\n]", " "), ids)
+  name = name:gsub("[\r\n]", " ")
+  return FurC.Transfer.IdLines(LIST_PREFIX .. " " .. name, ids, LIST_PREFIX .. "+ " .. name)
 end
 
 ---The favourites as export lines, none when there are none
 ---@param ids integer[]
 ---@return string[] lines
 function FurC.FavesExportLines(ids)
-  return #ids > 0 and FurC.Transfer.IdLines(FAVES_PREFIX, ids) or {}
+  return #ids > 0 and FurC.Transfer.IdLines(FAVES_PREFIX, ids, FAVES_PREFIX .. "+") or {}
 end
 
+---Decided per line. An add line ("FURC LIST+") always adds. A plain line ("FURC LIST") replaces. An import that only merges deletes nothing.
 ---@param items table<integer, true> a list's items or the favourites
+---@param ctx FurCTransferContext? none: add
+---@param add boolean? an add line
 ---@return FurCTransferResult
-local function importInto(items, label, idText)
-  local added, duplicates, unknown = FurC.AddImportedIds(items, idText, FurC.KnownFurnishingId)
-  return { label = label, added = added, duplicates = duplicates, unknown = unknown }
+local function importInto(items, label, idText, ctx, add)
+  local result = { label = label, added = 0, duplicates = 0, unknown = 0, removed = 0 }
+  local work = items
+  if ctx then
+    ctx.work[items] = ctx.work[items] or (ctx.check and ZO_ShallowTableCopy(items) or items)
+    work = ctx.work[items]
+    if not add and not ctx.merge and not ctx.replaced[items] then
+      ctx.replaced[items] = true
+      local before = ZO_ShallowTableCopy(work)
+      ZO_ClearTable(work)
+      ctx.finish[#ctx.finish + 1] = function()
+        for itemId in pairs(before) do
+          if work[itemId] then
+            -- was there and stays: not an addition
+            result.added, result.duplicates = result.added - 1, result.duplicates + 1
+          else
+            result.removed = result.removed + 1
+          end
+        end
+      end
+    end
+  end
+  result.added, result.duplicates, result.unknown = FurC.AddImportedIds(work, idText, FurC.KnownFurnishingId)
+  return result
 end
 
 ---@param payload string everything after the prefix
+---@param ctx FurCTransferContext?
+---@param add boolean? an add line
 ---@return FurCTransferResult? result nil when not a list line or refused
 ---@return string? errorText why it was refused
-local function importListLine(payload)
+local function importListLine(payload, ctx, add)
   local name, idText = payload:match("^(.*):%s*([%d,%s]*)$")
   -- brought into its written form first, so an over-long or over-deep path merges into the list it became
   local path = name and normPath(name)
@@ -697,6 +724,9 @@ local function importListLine(payload)
     return
   end
   local listId = findByPath(path)
+  if not listId and ctx and ctx.check then
+    return { label = path, added = 0, duplicates = 0, unknown = 0, removed = 0 } -- a new list loses nothing
+  end
   if not listId then
     local err
     listId, err = FurC.CreateList(path)
@@ -705,31 +735,40 @@ local function importListLine(payload)
     end
   end
   local list = store().byId[listId]
-  return importInto(list.items, list.name, idText)
+  return importInto(list.items, list.name, idText, ctx, add)
 end
-FurC.Transfer.Register(LIST_PREFIX, { import = importListLine })
 
 ---@return FurCTransferResult?
-local function importFavesLine(payload)
+local function importFavesLine(payload, ctx, add)
   local idText = payload:match("^[%d,%s]*$")
-  return idText and importInto(FurC.settings.favorites, GetString(SI_FURC_FILTER_SRC_FAVE), idText)
+  return idText and importInto(FurC.settings.favorites, GetString(SI_FURC_FILTER_SRC_FAVE), idText, ctx, add)
 end
-FurC.Transfer.Register(FAVES_PREFIX, { import = importFavesLine })
+
+-- "FURC LIST name: ids" is the whole list, "FURC LIST+ name: ids" adds to it; the favourites alike
+for prefix, importLine in pairs({ [LIST_PREFIX] = importListLine, [FAVES_PREFIX] = importFavesLine }) do
+  FurC.Transfer.Register(prefix, { import = importLine })
+  FurC.Transfer.Register(prefix .. "+", {
+    import = function(payload, ctx)
+      return importLine(payload, ctx, true)
+    end,
+  })
+end
 
 ---A line of ids that names no list goes into the selected one
 ---@param what any the list manager's selection: a list id, "faves", or something that holds no ids
 ---@param idText string
+---@param ctx FurCTransferContext?
 ---@return FurCTransferResult? result nil when no list is selected
 ---@return string? errorText why
-function FurC.ImportBareIds(what, idText)
+function FurC.ImportBareIds(what, idText, ctx)
   if what == "faves" then
-    return importInto(FurC.settings.favorites, GetString(SI_FURC_FILTER_SRC_FAVE), idText)
+    return importInto(FurC.settings.favorites, GetString(SI_FURC_FILTER_SRC_FAVE), idText, ctx, true)
   end
   local list = type(what) == "number" and store().byId[what]
   if not list then
     return nil, GetString(SI_FURC_LIST_IMPORT_NO_TARGET)
   end
-  return importInto(list.items, list.name, idText)
+  return importInto(list.items, list.name, idText, ctx, true)
 end
 
 ---Export lines of a list (its own, not those of its sublists), the favourites, or (nil) the favourites and every
@@ -761,4 +800,13 @@ end
 ---@param what integer|"faves"|nil a list id, the favourites, or nil for "All"
 function FurC.OpenListTransfer(what)
   FurC.ListManager.Open(what or "all")
+end
+
+---The main window's button: closes the list manager when it is open
+function FurC.ToggleListTransfer()
+  if FurC.Transfer.IsOpen() then
+    FurC.Transfer.Close()
+  else
+    FurC.OpenListTransfer()
+  end
 end

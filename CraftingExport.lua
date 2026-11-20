@@ -47,13 +47,13 @@ function C.ExportText(known)
     end
   end
   table.sort(ids)
-  -- Every line names its page of the export window ("1/2")
+  -- One line a page of the export window, each naming its part ("1/2")
   local header = (known and KNOWN_PREFIX or UNKNOWN_PREFIX) .. " "
-  local pages = FurC.Transfer.Paginate(FurC.Transfer.IdLines(header .. "0/0", ids), FurC.Transfer.MAX_CHARS)
-  for page, text in ipairs(pages) do
-    pages[page] = text:gsub(header .. "0/0:", header .. page .. "/" .. #pages .. ":")
+  local lines = FurC.Transfer.IdLines(header .. "0/0", ids, nil, zo_floor((FurC.Transfer.MAX_CHARS - 40) / 8))
+  for part, line in ipairs(lines) do
+    lines[part] = line:gsub(header .. "0/0:", header .. part .. "/" .. #lines .. ":")
   end
-  return table.concat(pages, "\n")
+  return table.concat(lines, "\n")
 end
 
 ---Write { known = { [name] = "crafters: materials" }, unknown = { [name] = "materials" } } to the saved variables

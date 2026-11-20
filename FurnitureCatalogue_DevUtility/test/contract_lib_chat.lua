@@ -79,10 +79,12 @@ Taneth("FurC:Lib", function()
     end)
 
     it("names the item and its sources", function()
-      local lines = run(tostring(DS.dbItem))
+      -- dbItem is whatever the DB yields first and may be crafting-only (which lists mats instead of sources).
+      -- A luxury item always has a source line to print
+      local lines = run(tostring(DS.luxItemInDB))
       assert.is_true(#lines >= 2)
       -- a hit reads "<id>: <link>", so the id is readable and the link clickable
-      assert.is_not_nil(lines[1]:find(DS.dbItem .. ": ", 1, true))
+      assert.is_not_nil(lines[1]:find(DS.luxItemInDB .. ": ", 1, true))
       assert.is_not_nil(lines[1]:find("|H", 1, true))
     end)
 

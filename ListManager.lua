@@ -103,8 +103,8 @@ local function show(key)
       return export(key)
     end,
     onImport = M.Refresh,
-    importBare = function(idText)
-      return FurC.ImportBareIds(key, idText)
+    importBare = function(idText, ctx)
+      return FurC.ImportBareIds(key, idText, ctx)
     end,
   })
   updateButtons()
