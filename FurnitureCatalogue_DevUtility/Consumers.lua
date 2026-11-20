@@ -111,7 +111,7 @@ local function fslLeg(lines)
   local fsl = FurnitureShoppingList
   lines[#lines + 1] = string.format(
     "  loaded: %s  version: %s  ready: %s",
-    tostring(FurnitureShoppingListAdd ~= nil),
+    tostring(type(fsl) == "table"),
     tostring(type(fsl) == "table" and fsl.version or "none"),
     tostring(a.IsReady())
   )
