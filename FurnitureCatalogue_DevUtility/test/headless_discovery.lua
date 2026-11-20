@@ -384,6 +384,28 @@ output = FurCDev.DiscoveryLine(100) .. "\n"
 local discoveryOutput = output
 control("Request").OnClicked()
 assert(output == discoveryOutput and control("Status").text:find("holds discovery output", 1, true))
+-- Detect deleted: catalogued ids, blueprints and ignored ids the client has no name for, as a named plain list
+known[130] = { version = 1, blueprint = 131 }
+known[132] = { version = 1, sources = 31 }
+known[133] = { version = 1, sources = 31 }
+furniture[133] = true
+function GetItemLinkName(id)
+  return (furniture[id] or recipes[id] or id == 108) and "Chair" or ""
+end
+control("Missing").OnClicked()
+assert(output == "furniture-missing-ids-v1\n130\n131\n132\n", "missing ids, sorted, under the list name: " .. output)
+assert(control("Status").text:find("3 of 12 catalogued", 1, true), control("Status").text)
+assert(control("Page").text == "Page 1 / 1")
+-- the list is not a request: Item list must not ask the client for the ids it just reported missing
+local missingOutput = output
+control("Request").OnClicked()
+assert(output == missingOutput and control("Status").text:find("not item ids", 1, true))
+function GetItemLinkName()
+  return "Chair"
+end
+control("Missing").OnClicked()
+assert(output == "" and control("Status").text:find("0 of 12 catalogued", 1, true))
+known[130], known[132], known[133], furniture[133] = nil, nil, nil, nil
 output, GetItemLinkName = saved, savedName
 
 dofile("FurnitureCatalogue_DevUtility/Dump.lua")

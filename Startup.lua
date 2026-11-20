@@ -168,7 +168,7 @@ local function getChoicesSource()
   choicesSource[src.PICKPOCKET] = GetString(SI_FURC_FILTER_SRC_PICKPOCKET)
   choicesSource[src.STEAL_CONTAINER] = GetString(SI_FURC_FILTER_SRC_CONTAINER)
 
-this.ApplyListChoices(choicesSource)
+  this.ApplyListChoices(choicesSource)
   return choicesSource
 end
 this.GetChoicesSource = getChoicesSource
@@ -186,6 +186,7 @@ local function getTooltipsSource()
   tooltipsSource[src.OTHER] = GetString(SI_FURC_FILTER_SRC_OTHER_TT)
   --tooltipsSource[src.ROLIS]            = "ROLIS"
   tooltipsSource[src.DROP] = GetString(SI_FURC_FILTER_SRC_DROP_TT)
+  tooltipsSource[src.FESTIVAL_DROP] = GetString(SI_FURC_FILTER_SRC_EVENT_TT)
   tooltipsSource[src.JUSTICE] = GetString(SI_FURC_FILTER_SRC_JUSTICE_TT)
   --tooltipsSource[src.GUILDSTORE]       = "GUILDSTORE"
 

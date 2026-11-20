@@ -2,6 +2,8 @@
 local this = FurCDev
 local LFC = LibFurnitureCatalogue
 local PAGE_BYTES = 24000
+-- First line of every page of a "Detect deleted" list; the webui needs it
+local MISSING_HEADER = "furniture-missing-ids-v1"
 local pages, page = {}, 1
 local running = false
 local cancelled = false
@@ -17,6 +19,7 @@ local function refreshControls()
   controls.last:SetEditEnabled(not running)
   controls.scan:SetEnabled(not running)
   controls.request:SetEnabled(not running)
+  controls.missing:SetEnabled(not running)
   controls.cancel:SetEnabled(running and not cancelled)
   controls.prev:SetEnabled(not running and page > 1 and #pages > 0)
   controls.next:SetEnabled(not running and page < #pages)
@@ -350,7 +353,7 @@ function this.RequestItems(text)
     return
   end
   -- every number in the box counts as an id, so stray numbers from a dump would turn into ids
-  if tostring(text or ""):find('[{}"]') then
+  if tostring(text or ""):find('[{}"]') or tostring(text or ""):find(MISSING_HEADER, 1, true) then
     report("The text box holds discovery output, not item ids. Clear it, paste the requested ids, then Item list.")
     return
   end
@@ -384,8 +387,65 @@ function this.RequestItems(text)
     return
   end
   report(
-    string.format("Item list: %d new discoveries. Copy each page into the website.", #lines, unknown),
+    string.format(
+      "Item list: %d discoveries, %d id(s) this client does not know. Copy each page into the website.",
+      #lines,
+      unknown
+    ),
     string.format("Datamine: %d requested items", #lines)
+  )
+  showPages(output)
+end
+
+---Every catalogued id (furnishings, their blueprints, ignored ids) whose name this client does not know, as a plain
+---list for the website. Nothing is removed here
+function this.DetectDeleted()
+  if running then
+    report("Discovery is running. Wait for it or Cancel it first.")
+    return
+  end
+  if not LFC.API.IsReady() then
+    LFC.Internal.Build.EnsureDB()
+    report("Catalogue is not ready. Wait for it to load, then Detect deleted again.")
+    return
+  end
+  local seen, ids, missing = {}, {}, {}
+  local function add(id)
+    if type(id) == "number" and not seen[id] then
+      seen[id] = true
+      ids[#ids + 1] = id
+    end
+  end
+  local checked, failure = pcall(function()
+    for _, id in ipairs(LFC.API.GetItemIds()) do
+      local entry = LFC.API.GetEntry(id)
+      add(id)
+      add(entry and entry.blueprint)
+    end
+    table.sort(ids)
+    for _, id in ipairs(ids) do
+      if GetItemLinkName(FurC.Utils.GetItemLink(id)) == "" then
+        missing[#missing + 1] = tostring(id)
+      end
+    end
+  end)
+  if not checked then
+    report("Detect deleted failed: " .. tostring(failure))
+    return
+  end
+  -- each page is pasted on its own, so each one names the list
+  local output = paginate(missing)
+  for index, text in ipairs(output) do
+    output[index] = MISSING_HEADER .. "\n" .. text
+  end
+  report(
+    string.format(
+      "Detect deleted: %d of %d catalogued id(s) this client does not know.%s",
+      #missing,
+      #ids,
+      #missing > 0 and " Copy each page into the website." or ""
+    ),
+    string.format("Datamine: %d missing ids", #missing)
   )
   showPages(output)
 end
@@ -572,7 +632,8 @@ function this.BuildDiscoveryTab()
   controls.request = button("Request", "Item list", 0, 146, 276, function()
     this.RequestItems(this.textbox:GetText())
   end)
-  controls.status = label("Status", status, 0, 186, 276)
+  controls.missing = button("Missing", "Detect deleted", 0, 186, 276, this.DetectDeleted)
+  controls.status = label("Status", status, 0, 226, 276)
   controls.status:SetHeight(96)
   this.RegisterTab("datamine", "Datamine", panel, function()
     refreshControls()

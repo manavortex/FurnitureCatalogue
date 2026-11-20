@@ -85,14 +85,29 @@ Taneth("FurC:Unit", function()
 
       -- "only a rumour" is the whole source set being that one bit, which is what the filter tests
       local onlyRumour = LFC.Internal.Build.SourceMask({ [src.RUMOUR] = true })
-      local rumours = 0
+      local ignored = withSource(src.IGNORED)
+      local rumours, missing, extra = 0, {}, {}
       for _, itemId in ipairs(LFC.API.GetItemIds()) do
-        if LFC.Internal.Query.Find(itemId).sources == onlyRumour then
-          rumours = rumours + 1
+        local onlyARumour = LFC.Internal.Query.Find(itemId).sources == onlyRumour
+        rumours = rumours + (onlyARumour and 1 or 0)
+        -- compared per id, not by count: the live client drops ids it no longer knows, and the failure should name them
+        local expected = not onlyARumour and not ignored[itemId] and clientResolves(itemId)
+        if expected ~= (all[itemId] == true) then
+          local list = expected and missing or extra
+          list[#list + 1] = itemId
         end
       end
       assert.is_true(rumours > 0, "no item is only a rumour, so the exclusion is untested")
-      assert.equals(LFC.API.GetEntryCount() - rumours - count(withSource(src.IGNORED)), count(all))
+      assert.equals(
+        0,
+        #missing,
+        string.format("All hides %d item(s) it should show, e.g. %s", #missing, tostring(missing[1]))
+      )
+      assert.equals(
+        0,
+        #extra,
+        string.format("All shows %d item(s) it should hide, e.g. %s", #extra, tostring(extra[1]))
+      )
     end)
 
     it("hides ignored items by default but permits an explicit source query", function()
