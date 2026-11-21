@@ -296,7 +296,7 @@ SI_FURC_LIST_ERR_TAKEN = "That name is already used by another list or filter."
 SI_FURC_LIST_IMPORT_NO_TARGET = "Ids without a list name need a selected list."
 SI_FURC_LIST_INDENT = "Move into the list above"
 SI_FURC_LIST_MANAGER_HINT =
-  "Right-click an entry: show it in the catalogue.\nA name with > makes a sublist:\nGuildhall > Entrance.\nA line without a prefix (just ids) goes into the selected list.\nAn imported list replaces the one of that name; a line starting with FURC LIST+ only adds."
+  "Right-click an entry: show it in the catalogue.\nA name with > makes a sublist:\nGuildhall > Entrance.\nA line without a prefix (just ids) goes into the selected list.\nAn imported list replaces the one of the same name (shows choice first)\nA line starting with FURC LIST+ instead only adds."
 SI_FURC_LIST_NEW = "New list"
 SI_FURC_LIST_NEW_SUB = "New sublist"
 SI_FURC_LIST_OUTDENT = "Move out of the parent list"
@@ -340,6 +340,8 @@ SI_FURC_STRING_MENU_DEFAULT_DD_USE = "Will be set on initial launch"
 SI_FURC_STRING_MENU_DEFAULT_DD_USE_TT = "These will not reset if you open and close the UI"
 SI_FURC_STRING_MENU_DEFAULT_DD_VERSION = "Default version filter"
 SI_FURC_STRING_MENU_ENABLE_SHOPPINGLIST = "Enable integration?"
+SI_FURC_STRING_MENU_ENABLE_SHOPPINGLIST_TT =
+  'Adds "Add to shopping list" to the context menu of craftable items in the catalogue window. Needs FurnitureShoppingList.'
 SI_FURC_STRING_MENU_FALL_HIDE_BOOKS = "Hide books anyway"
 SI_FURC_STRING_MENU_FALL_HIDE_BOOKS_TT =
   "Even when filtering all items, still hide books? \n(It seems the vanished books have turned into Tome Shells and returned to Apocrypha.)"
@@ -370,12 +372,10 @@ SI_FURC_STRING_MENU_RESET_DB_WARNING =
   "All your data will be reset. Only recipe knowledge for this character will be considered."
 SI_FURC_STRING_MENU_SCAN_FILES_NAME = "Scan files"
 SI_FURC_STRING_MENU_SCAN_FILES_TT = "Will run a full scan of the data in Furniture Catalogue's files"
+SI_FURC_STRING_MENU_SHOPPINGLIST_LINK = "Get it on ESOUI"
 SI_FURC_STRING_MENU_SHOWICONONLEFT = "Show Known/Unknown icon on left?"
 SI_FURC_STRING_MENU_SHOWICONONLEFT_TT =
   "Show Green Check/Red X icon on left of the inventory item (it will move to the right when off)"
-SI_FURC_STRING_MENU_SKIP_INITIALSCAN = "Skip Initial Scan?"
-SI_FURC_STRING_MENU_SKIP_INITIALSCAN_TT =
-  "Check this to not scan your character's recipes on login. \nThanks to votan's awesome LibAsync the lag is gone now in any case."
 SI_FURC_STRING_MENU_TOOLTIP = "Enable tooltips?"
 SI_FURC_STRING_MENU_TOOLTIP_COLOR = "Colorize tooltips for clarity?"
 SI_FURC_STRING_MENU_TOOLTIP_COLOR_TT = "Will colour 'can' and 'cannot'"
@@ -405,8 +405,7 @@ SI_FURC_TOOLTIP_TEMPLATE_TOGGLE = "Change template"
 SI_FURC_TRANSFER_ADD_ONLY = "Add only"
 SI_FURC_TRANSFER_CAPPED = "Textbox full, so the last part may be cut off"
 SI_FURC_TRANSFER_CLEAR = "Clear"
-SI_FURC_TRANSFER_CONFIRM =
-  "Replacing removes <<1>> item(s) that the pasted text does not hold. Replace, or only add what is new?"
+SI_FURC_TRANSFER_CONFIRM = "Replacing removes <<1>> item(s). Replace list, or only add what is new?"
 SI_FURC_TRANSFER_ENTRY = "<<1>> +<<2>> (<<3>> duplicate, <<4>> unknown)"
 SI_FURC_TRANSFER_HINT = "Copy with Ctrl+C, or paste export lines and press Import."
 SI_FURC_TRANSFER_IMPORT = "Import"

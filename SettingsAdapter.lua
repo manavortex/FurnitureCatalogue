@@ -111,9 +111,9 @@ end
 function FurC.GetDateFormatChoices()
   return {
     choices = {
-      [1] = "2012-12-31", -- ISO
-      [2] = "31.12.2012",
-      [3] = "12/31/2012",
+      [1] = "2014-03-30", -- ISO
+      [2] = "30.03.2014",
+      [3] = "03/30/2014",
     },
     values = {
       [1] = "YYYY-MM-DD",
@@ -567,14 +567,6 @@ end
 function FurC.GetDropdownChoiceTextual(dropdownName)
   local choices = FurC.DropdownData["Choices" .. dropdownName]
   return choices[FurC.GetDropdownChoice(dropdownName)] or choices[1]
-end
-
-function FurC.GetSkipInitialScan()
-  return FurC.settings["skipInitialScan"]
-end
-
-function FurC.SetSkipInitialScan(value)
-  FurC.settings["skipInitialScan"] = value
 end
 
 ---------------------------------

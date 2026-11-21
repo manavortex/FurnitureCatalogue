@@ -18,6 +18,7 @@ local LEGACY_DROP = {
   "hideCrownStoreEntry", -- went extinct with crown button
   "hideUiButtons", -- both buttons gone
   "wipeDatabase", -- a button, not a setting
+  "skipInitialScan", -- DB is always built on first use
 }
 
 ---`cleans` names the account-wide keys a step removes

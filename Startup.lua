@@ -36,7 +36,6 @@ this.Antiquities = this.Antiquities or {}
 local defaults = {
   hideMats = true,
   enableDebug = false,
-  skipInitialScan = true,
 
   favorites = {},
   filterCraftingType = {},
@@ -419,10 +418,6 @@ local function initialise(eventCode, addOnName)
 
   this.Migrate()
 
-  -- DB is built lazily on first use
-  if not this.GetSkipInitialScan() then
-    this.EnsureDB()
-  end
   this.SetFilter(true)
 
   EVENT_MANAGER:UnregisterForEvent(this.name, EVENT_ADD_ON_LOADED)
