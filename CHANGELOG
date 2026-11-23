@@ -1,3 +1,12 @@
+9.0.0 (2026-11-23)
+- better language support
+- improved import/export (export craftable (known/unknown) items without UI reload and other changes)
+- Better Furniture Shopping List integration
+- NEW multiple editable favorites lists: dd as many as you want, rename/delete the lists, export/import to LFC's github repo's web UI (linked on the export window) for offline planning, and your lists can have lists! Even export your crafting knowledge for planning assistance.
+- UI improvements
+- fixed search to use plain text instead of patterns (crashed when typing parentheses)
+- show character knowledge for current character, even when LCK is missing
+
 8.1.0 (2026-11-04)
 - datamined furnishings with a source, but without a version will not show now
 - some code cleanup
