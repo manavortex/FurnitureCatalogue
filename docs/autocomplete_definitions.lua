@@ -28,6 +28,7 @@ It should not include:
 ---------- LVL: 01 ----------
 ---------- LVL: 02 ----------
 FurCGui = Control
+FurC_ListManagerDivider = Control
 FurC_QualityFilterButton = ButtonControl
 FurC_CraftingTypeFilterButton = ButtonControl
 FurC_CategoryFilterButton = ButtonControl
@@ -42,6 +43,7 @@ FurCGui_Header = Control
 FurCGui_Wait = LabelControl
 FurCGui_Empty = LabelControl
 FurCGui_ListHolder = Control
+FurC_ListManagerDividerLine = TextureControl
 FurC_SlotTemplateBg = TextureControl
 FurC_SlotTemplateDivider = TextureControl
 FurC_SlotTemplateButton = ButtonControl
@@ -62,8 +64,9 @@ FurCGui_Header_SortBar = Control
 FurCGui_ListHolder_Slider = SliderControl
 ---------- LVL: 07 ----------
 ---------- LVL: 08 ----------
-FurCGui_Header_Bar1_Feedback = ButtonControl
 FurCGui_Header_Bar1_Settings = ButtonControl
+FurCGui_Header_Bar1_Feedback = ButtonControl
+FurCGui_Header_Bar1_Transfer = ButtonControl
 FurC_Label = Control
 FurCGui_Header_Bar1_Hide = ButtonControl
 FurCGui_Header_Bar1_Reload = ButtonControl
@@ -109,8 +112,9 @@ FurCDevControl_Content_Left = Control
 ---------- LVL: 07 ----------
 ---------- LVL: 08 ----------
 FurCDevControl_Content_Right_clear = ButtonControl
-FurCDevControl_Content_Right_fromTrader = ButtonControl
 FurCDevControl_Content_Right_selectAll = ButtonControl
+FurCDevControl_Content_Right_fromTrader = ButtonControl
+FurCDevControl_Content_Right_fromBag = ButtonControl
 FurCDevControl_Content_Right_BoxBg = BackdropControl
 FurCDevControl_Achievements = Control
 FurCDevControl_Quests = Control
