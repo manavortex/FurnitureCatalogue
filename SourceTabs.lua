@@ -181,7 +181,7 @@ local function getResolvedTree()
 
   for _, node in ipairs(SOURCE_TREE) do
     local copy = { id = node.id, stringId = node.stringId, children = node.children }
-	if node.id == src.FAVE then
+    if node.id == src.FAVE then
       -- custom lists go into a table of their own, SOURCE_TREE itself stays static
       local listNodes = FurC.GetListTreeNodes()
       copy.children = #listNodes > 0 and listNodes or nil
