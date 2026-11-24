@@ -440,6 +440,21 @@ Taneth("FurC:Lib", function()
       assert.equals("number", type(sourceType.CROWN))
       assert.equals(FurC.Constants.ItemSources.CROWN, sourceType.CROWN)
       assert.is_nil(api.SourceType, "the shared enum table is still published")
+      -- old source constants, documented as supported for migration
+      for _, key in ipairs({
+        "CRAFTING",
+        "VENDOR",
+        "PVP",
+        "CROWN",
+        "LUXURY",
+        "ROLIS",
+        "DROP",
+        "JUSTICE",
+        "RUMOUR",
+        "FESTIVAL_DROP",
+      }) do
+        assert.equals(sourceType[key], _G["FURC_" .. key], "FURC_" .. key)
+      end
 
       local entry = api.GetEntry(DS.luxItem)
       assert.equals("string", type(api.GetItemDescription(DS.luxItem, entry)))

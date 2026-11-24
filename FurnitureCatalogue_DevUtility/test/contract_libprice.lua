@@ -1,5 +1,4 @@
 -- Check if we're still compatible with ESO-LibPrice
--- we need some stuff from the DB here
 
 if not Taneth then
   return
@@ -14,135 +13,97 @@ Taneth("FurC:Regression", function()
       assert.is_not_nil(DS.dbItem)
       assert.is_not_nil(DS.craftable)
       assert.is_not_nil(DS.luxItem)
-      assert.is_not_nil(DS.rolisItem)
     end)
 
-    it("GetItemId passes ids and parses them from links", function()
-      local api = LibFurnitureCatalogue.API
-      assert.equals(DS.dbItem, api.GetItemId(DS.dbItem))
-      assert.equals(DS.dbItem, api.GetItemId(Test.link(DS.dbItem)))
-      local link = api.GetItemLink(DS.dbItem)
-      assert.equals("string", type(link))
-      assert.is_true(#link > 0)
+    -- CanFurCPrice just checks if API table exists, so it must be there without waiting for readiness
+    it("publishes the API table LibPrice checks", function()
+      assert.equals("table", type(LibFurnitureCatalogue.API))
     end)
 
-    -- LibPrice read the row through FurC.Find and took `origin` off it. Both are gone: the entry
-    -- is a copy that answers nil on a miss, and the best source is the first ranked record
-    it("GetEntry answers a copy on a hit and nil on a miss", function()
+    -- GetEntry: nil means "not a furnishing", anything else goes on to pricing
+    it("GetEntry answers a table for a link and nil on a miss", function()
       local api = LibFurnitureCatalogue.API
-      local hit = api.GetEntry(DS.luxItem)
-      assert.equals("table", type(hit))
-      assert.is_not_nil(hit.sources)
-      assert.is_not_nil(api.GetSourceDetails(DS.luxItem)[1])
+      assert.equals("table", type(api.GetEntry(Test.link(DS.luxItem))))
       assert.is_nil(api.GetEntry(Test.link(999999999)))
     end)
 
-    it("GetItemDescription returns string", function()
-      local api = LibFurnitureCatalogue.API
-      assert.equals("string", type(api.GetItemDescription(DS.luxItem, api.GetEntry(DS.luxItem))))
+    it("GetSourceTypes has the two keys LibPrice branches on", function()
+      local types = LibFurnitureCatalogue.API.GetSourceTypes()
+      assert.equals("number", type(types.CRAFTING))
+      assert.equals("number", type(types.IGNORED))
     end)
 
-    -- Direct index access like this might turn into an issue for LibPrice if we change DB or globals.
-    -- But have to support it for now.
-
-    it("raw data tables exist and can be queried by version", function()
-      for _, name in ipairs({
-        "Rolis",
-        "Faustina",
-        "LuxuryFurnisher",
-        "AchievementVendors",
-        "PVP",
-        "MiscItemSources",
-      }) do
-        assert.equals("table", type(FurC[name]))
-      end
-      assert.equals("table", type(FurC.LuxuryFurnisher[DS.luxVersion]))
-      assert.is_not_nil(FurC.LuxuryFurnisher[DS.luxVersion][DS.luxItem])
-    end)
-
-    it("the bridged endpoint keeps the shape LibPrice indexes", function()
+    -- LibPrice takes records[1] as the preferred source
+    it("source records keep the fields LibPrice reads", function()
       FurC.EnsureDB(true)
       local api = LibFurnitureCatalogue.API
-
-      assert.is_nil(api.SourceType, "the shared enum table is still published")
-      local types = api.GetSourceTypes()
-      for _, key in ipairs({ "CRAFTING", "RUMOUR", "FESTIVAL_DROP" }) do
-        assert.equals("number", type(types[key]))
+      local function optionalNumber(value)
+        return value == nil or type(value) == "number"
       end
 
-      -- takes an item link, and a miss must stay safe to walk with ipairs
-      assert.equals("table", type(api.GetSources(Test.link(DS.luxItemInDB))))
-      assert.same({}, api.GetSources(Test.link(999999999)))
-
-      -- cost is a LIST here and is never nil, so cost[1] is nil rather than an
-      -- index-nil error on a source that has no price. GetSourceDetails is the
-      -- other shape: cost is the record itself, absent when there is no price.
-      local priced, unpriced = 0, 0
+      local priced, unpriced, placed = 0, 0, 0
       for id in pairs(FurC.DB) do
         if type(id) == "number" then
-          local details, bridged = api.GetSourceDetails(id), api.GetSources(id)
-          assert.equals(#details, #bridged)
-          for i, record in ipairs(bridged) do
-            assert.equals("table", type(record.cost))
-            if details[i].cost then
-              assert.same(details[i].cost, record.cost[1])
+          local records = api.GetSourceDetails(Test.link(id))
+          assert.equals("table", type(records))
+          for _, record in ipairs(records) do
+            local source = record.source
+            assert.equals("table", type(source))
+            assert.equals("number", type(source.type))
+            assert.is_true(optionalNumber(source.vendor), "vendor is not a string id on " .. id)
+            if source.locations then
+              local placement = source.locations[1]
+              assert.equals("table", type(placement))
+              assert.is_true(optionalNumber(placement.location), "location is not a zone id on " .. id)
+              assert.is_true(optionalNumber(placement.place), "place is not a string id on " .. id)
+              placed = placed + 1
+            end
+            if record.cost then
+              assert.equals("number", type(record.cost.currency))
+              assert.equals("number", type(record.cost.amount))
               priced = priced + 1
             else
-              assert.is_nil(record.cost[1])
               unpriced = unpriced + 1
             end
           end
         end
-        if priced > 0 and unpriced > 0 then
+        if priced > 0 and unpriced > 0 and placed > 0 then
           break
         end
       end
-      -- both branches were exercised, or the assertions above proved nothing
+      -- every branch was exercised, or the assertions above proved nothing
       assert.is_true(priced > 0)
       assert.is_true(unpriced > 0)
+      assert.is_true(placed > 0)
+      assert.same({}, api.GetSourceDetails(Test.link(999999999)))
     end)
 
-    -- LibPrice asks FurC for a price on every furnishing tooltip. Old calls can cause an error when trying to access a non-existing member
-    it("the legacy FurC entry points answer empty instead of erroring", function()
-      local link = Test.link(DS.luxItem)
-
-      assert.same({}, FurC.Find(link))
-      assert.equals("", FurC.GetItemDescription(DS.luxItem, {}, true))
-      assert.same({}, FurC.GetIngredients(link))
-      -- this one rendered the ingredient list as text
-      assert.equals("", FurC.GetMats(link))
-      -- id and link are pure translation, those two still answer
-      assert.equals(DS.luxItem, FurC.GetItemId(link))
-      assert.equals("string", type(FurC.GetItemLink(DS.luxItem)))
+    -- the crafting branch passes the GetEntry result as the second argument and sums the map.
+    -- Quantities come from the game's recipe data, so the map is empty headless and filled in-game
+    it("GetIngredients takes the entry and answers link -> quantity", function()
+      local api = LibFurnitureCatalogue.API
+      local link = Test.link(DS.craftable)
+      local ingredients = api.GetIngredients(link, api.GetEntry(link))
+      assert.equals("table", type(ingredients))
+      for ingredientLink, quantity in pairs(ingredients) do
+        assert.equals("string", type(ingredientLink))
+        assert.equals("number", type(quantity))
+        assert.is_true(quantity >= 1)
+      end
     end)
 
     -- only runs where the real library is installed
-    it("LibPrice prices a furnishing without erroring", function()
+    it("LibPrice prices furnishings without erroring", function()
       if not (LibPrice and LibPrice.FurCPrice) then
         return
       end
-      local link = Test.link(DS.luxItem)
-
-      local ok, result = pcall(LibPrice.FurCPrice, link)
-      assert.is_true(ok, "LibPrice.FurCPrice raised: " .. tostring(result))
-      local pricedOk, gold = pcall(LibPrice.ItemLinkToPriceGold, link)
-      assert.is_true(pricedOk, "LibPrice.ItemLinkToPriceGold raised: " .. tostring(gold))
-    end)
-
-    it("source globals are ints", function()
-      for _, k in ipairs({
-        "FURC_CRAFTING",
-        "FURC_VENDOR",
-        "FURC_PVP",
-        "FURC_CROWN",
-        "FURC_LUXURY",
-        "FURC_ROLIS",
-        "FURC_DROP",
-        "FURC_JUSTICE",
-        "FURC_RUMOUR",
-        "FURC_FESTIVAL_DROP",
-      }) do
-        assert.equals("number", type(_G[k]))
+      for _, id in ipairs({ DS.luxItem, DS.craftable }) do
+        local link = Test.link(id)
+        local ok, result = pcall(LibPrice.FurCPrice, link)
+        assert.is_true(ok, "LibPrice.FurCPrice raised: " .. tostring(result))
+        assert.equals("table", type(result), "LibPrice found no FurC price for " .. id)
+        local pricedOk, gold = pcall(LibPrice.ItemLinkToPriceGold, link)
+        assert.is_true(pricedOk, "LibPrice.ItemLinkToPriceGold raised: " .. tostring(gold))
       end
     end)
   end)
