@@ -18,7 +18,7 @@ Feel free to send us a message (here or in game) with the item info for timely u
 ### Check the [screenshots](https://www.esoui.com/downloads/info1617-FurnitureCatalogue.html#info)!
 
 - **User-Interface**: _toggleable either via **keybind** or via **slash command** /fur_
-- [FurnitureShoppingList](https://www.esoui.com/downloads/info1865-FurnitureShoppingListFurC2.0patch.html): Fully integrated
+- [FurnitureShoppingList](https://www.esoui.com/downloads/info1865-FurnitureShoppingListpatched.html): Fully integrated
 - **Compact/Full view**: Check the +/- button
 - **Item database**: Holds a list of all available furniture blueprints (source: manavortex datamined most of them! `^_^`)
 - **Filters**: All filters can be combined - check first screenshot
