@@ -25,9 +25,19 @@ local function promptReload()
 end
 this.PromptReload = promptReload
 
----Fresh SavedVariables root: one export per file, no leftovers
+local reloadButton
+local clearedThisSession = false
+
+---SavedVariables root for a dump. First dump of a session drops what earlier sessions left, later ones add
 local function savedVars()
-  FurCDev_SavedVariables = {}
+  if not clearedThisSession then
+    clearedThisSession = true
+    local old = FurCDev_SavedVariables
+    FurCDev_SavedVariables = { probe = type(old) == "table" and old.probe or nil }
+  end
+  if reloadButton then
+    reloadButton:SetEnabled(true)
+  end
   return FurCDev_SavedVariables
 end
 
@@ -408,23 +418,12 @@ function this.BuildDumpTab()
   panel:SetAnchorFill(parent)
   panel:SetHidden(true)
 
-  addButton(
-    panel,
-    1,
-    "Meta dump",
-    "Names, quality, category, icon path and the category tree.\nWrites FurCDev_SavedVariables.meta.\nReload to write it to disk.",
-    function()
-      this.DumpMeta(true)
-    end
-  )
-  addButton(panel, 2, "Reload UI", "Flushes SavedVariables to disk.\nAsks first.", promptReload)
-
-  -- one page dump per kind, two to a row
+  -- utils: one page dump per kind, two to a row, copied out of the output box
   local nameRows = math.ceil(#NAME_KINDS / 2)
   for i, kind in ipairs(NAME_KINDS) do
     addButton(
       panel,
-      3 + math.ceil(i / 2),
+      math.ceil(i / 2),
       kind.label,
       kind.label .. ' names: [id] = "name" as Lua, shown in the output box.\nCopy it page by page. No reload needed.',
       function()
@@ -433,7 +432,7 @@ function this.BuildDumpTab()
       2 - i % 2
     )
   end
-  local pagerY = (3 + nameRows) * ROW_GAP
+  local pagerY = nameRows * ROW_GAP
   nameControls.prev =
     WINDOW_MANAGER:CreateControlFromVirtual("FurCDevControl_Dump_NamesPrev", panel, "ZO_DefaultButton")
   nameControls.prev:SetDimensions(50, BUTTON_HEIGHT)
@@ -455,15 +454,34 @@ function this.BuildDumpTab()
   nameControls.next:SetHandler("OnClicked", function()
     showNamePage(1)
   end)
+
+  -- all game data for the import scripts: AddOn doesn't know what the webui already knows, so we can't do a diff dump like with datamine or deletion detection
   addButton(
     panel,
-    5 + nameRows,
-    "All names to file",
-    "Items, houses, quests, achievements, zones, furnishing categories, themes and crafting skills together,\nplus which skill crafts which furnishing.\nWrites FurCDev_SavedVariables.names.\nReload to write it to disk.",
+    nameRows + 3,
+    "Names dump",
+    "Items, houses, quests, achievements, zones, furnishing categories, themes and crafting skills together,\nplus which skill crafts which furnishing.\nWrites FurCDev_SavedVariables.names.\nReload UI writes it to disk.",
     function()
-      this.DumpAllNames()
+      this.DumpAllNames(true)
     end
   )
+  addButton(
+    panel,
+    nameRows + 4,
+    "Meta dump",
+    "Quality, category, theme, icon path and the category tree of every catalogued item.\nWrites FurCDev_SavedVariables.meta.\nReload UI writes it to disk.",
+    function()
+      this.DumpMeta(true)
+    end
+  )
+  reloadButton = addButton(
+    panel,
+    nameRows + 5,
+    "Reload UI",
+    "Writes the names and/or meta dumps to disk.\nAsks first.",
+    promptReload
+  )
+  reloadButton:SetEnabled(false)
   refreshNamePager()
   this.RegisterTab("dump", "Dump", panel)
 end

@@ -406,14 +406,69 @@ end
 control("Missing").OnClicked()
 assert(output == "" and control("Status").text:find("0 of 12 catalogued", 1, true))
 known[130], known[132], known[133], furniture[133] = nil, nil, nil, nil
+local logged
+FurC.Logger = {
+  Info = function(_, fmt, ...)
+    logged = fmt:format(...)
+  end,
+}
+BAG_BACKPACK = 1
+local slots = {}
+for slot = 1, 300 do
+  furniture[1000 + slot] = true
+  slots[slot] = 1000 + slot
+end
+slots[301], slots[302] = 1001, 1002
+function ZO_IterateBagSlots()
+  local slot = 0
+  return function()
+    slot = slot + 1
+    return slots[slot] and slot or nil
+  end
+end
+function GetItemLink(_, slot)
+  return slots[slot]
+end
+function GetItemLinkName(id)
+  return furniture[id] and string.rep("Chair ", 40) or ""
+end
+FurCDev.AddAllFromBag()
+local pageCount = tonumber(control("Page").text:match("Page 1 / (%d+)"))
+assert(pageCount and pageCount > 1, "a full bag must span several pages: " .. tostring(control("Page").text))
+local dumped, seenIds = 0, {}
+for index = 1, pageCount do
+  assert(#output < 24000, "every page fits one copy")
+  for id in output:gmatch('"record":{"id":(%d+)') do
+    assert(not seenIds[id], "furnishing " .. id .. " written twice")
+    seenIds[id] = true
+    dumped = dumped + 1
+  end
+  if index < pageCount then
+    FurCDev.ShowDiscoveryPage(1)
+  end
+end
+assert(dumped == 300, "every furnishing of the bag is on a page: " .. dumped)
+assert(logged:find("300 furnishing(s) in the backpack, " .. pageCount .. " page(s)", 1, true), logged)
+for slot = 1, 300 do
+  furniture[1000 + slot] = nil
+end
 output, GetItemLinkName = saved, savedName
 
 dofile("FurnitureCatalogue_DevUtility/Dump.lua")
 FurCDev.BuildDumpTab()
-assert(widgets["FurCDevControl_Dump_Metadump"] and widgets["FurCDevControl_Dump_ReloadUI"])
+assert(widgets["FurCDevControl_Dump_Metadump"] and widgets["FurCDevControl_Dump_Namesdump"])
 assert(not widgets["FurCDevControl_Dump_Discoveritems"] and not widgets["FurCDevControl_Dump_Verbosedump"])
-FurCDev_SavedVariables = { verbose = "old export" }
+assert(not widgets["FurCDevControl_Dump_Allnamestofile"])
+local reload = widgets["FurCDevControl_Dump_ReloadUI"]
+assert(reload and reload.enabled == false, "nothing to write yet, so no reload")
+FurCDev_SavedVariables = { verbose = "old export", probe = { "kept" } }
 widgets["FurCDevControl_Dump_Metadump"].OnClicked()
+assert(reload.enabled, "a dump waits for the reload that writes it")
+assert(FurCDev_SavedVariables.probe[1] == "kept", "probe results collect across sessions")
+-- a second dump in the same session adds its key instead of starting a new file
+FurCDev_SavedVariables.names = { format = "furniture-names-v1" }
+widgets["FurCDevControl_Dump_Metadump"].OnClicked()
+assert(FurCDev_SavedVariables.names and FurCDev_SavedVariables.meta, "names and meta reach disk with one reload")
 local meta = FurCDev_SavedVariables.meta
 assert(meta.format == "furniture-meta-v1" and meta.locale == "en" and meta.apiVersion == 101051)
 assert(meta.items[200001].blueprint == 200002 and meta.items[200001].name == "Meta chair")

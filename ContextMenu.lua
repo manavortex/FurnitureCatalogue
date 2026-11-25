@@ -20,7 +20,7 @@ function AddFurnitureShoppingListMenuEntry(itemId, calledFromFurC)
     if not FurC.GetEnableShoppingList() then
       return
     end
-    local installed = FurnitureShoppingListAdd or (FurnitureShoppingList and FurnitureShoppingList.PromptAdd)
+    local installed = FurnitureShoppingList and FurnitureShoppingList.PromptAdd
     if (nil == moc()) or not installed then
       return
     end
@@ -34,13 +34,7 @@ function AddFurnitureShoppingListMenuEntry(itemId, calledFromFurC)
     return
   end
   AddCustomMenuItem(FURC_S_SHOPPINGLIST, function()
-    -- a current FSL asks for the quantity; an older one only knows its legacy add-one global
-    local fsl = FurnitureShoppingList
-    if type(fsl) == "table" and fsl.PromptAdd then
-      fsl.PromptAdd(itemLink)
-    else
-      FurnitureShoppingListAdd(itemLink)
-    end
+    FurnitureShoppingList.PromptAdd(itemLink)
   end, MENU_ADD_OPTION_LABEL)
 end
 

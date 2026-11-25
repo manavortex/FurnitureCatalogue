@@ -92,10 +92,31 @@ Taneth("FurC:Lib", function()
       RecipeSources = true,
       Books = true,
       BookCollections = true,
-      -- functions still defined in data files
-      InitAchievementVendorList = true,
-      InitHomeGoodsFurnisherList = true,
     }
+
+    -- lib-owned names only the legacy file scan fills; the generated install never writes them
+    local NOT_PRODUCED = {
+      RecipeSources = true,
+      Rumours = true,
+    }
+
+    it("every lib-owned FurC.* symbol exists after a DB build", function()
+      FurCDev.Test.ensureDB()
+      local missing, stale = {}, {}
+      for name in pairs(LIB_OWNED) do
+        if NOT_PRODUCED[name] then
+          if FurC[name] ~= nil then
+            stale[#stale + 1] = name
+          end
+        elseif FurC[name] == nil then
+          missing[#missing + 1] = name
+        end
+      end
+      table.sort(missing)
+      table.sort(stale)
+      assert.same({}, missing)
+      assert.same({}, stale)
+    end)
 
     local function isGlobalInit(line)
       return line:match("^%s*local%s+FurC%s*=%s*FurC%s*or%s*{%s*}%s*$") ~= nil

@@ -149,6 +149,63 @@ local function appendLines(lines)
   return added
 end
 
+-- Pages small enough for the textbox to hold and the clipboard to copy
+local function paginate(lines)
+  local output, chunk, size = {}, {}, 0
+  for _, line in ipairs(lines) do
+    if #line + 1 > PAGE_BYTES then
+      error("a discovery exceeds the copy page limit")
+    end
+    if (size + #line + 1 > PAGE_BYTES or #chunk == 100) and #chunk > 0 then
+      output[#output + 1] = table.concat(chunk, "\n") .. "\n"
+      chunk, size = {}, 0
+    end
+    chunk[#chunk + 1] = line
+    size = size + #line + 1
+  end
+  if #chunk > 0 then
+    output[#output + 1] = table.concat(chunk, "\n") .. "\n"
+  end
+  return output
+end
+
+local function showPages(output)
+  pages, page = output, 1
+  if #pages > 0 then
+    this.ShowDiscoveryPage()
+  else
+    this.textbox:SetText("")
+  end
+end
+
+---A bag or trader dump, paged like the other outputs: a full bank or vault is more than one copy holds.
+---Repeated stacks give the same line, so each is kept once
+---@param lines string[]
+---@return integer? distinct nil when nothing was shown
+local function showDump(lines)
+  if running then
+    report("Discovery is running. Wait for it or Cancel it first.")
+    return
+  end
+  local seen, distinct = {}, {}
+  for _, line in ipairs(lines) do
+    if not seen[line] then
+      seen[line] = true
+      distinct[#distinct + 1] = line
+    end
+  end
+  if #distinct == 0 then
+    return 0
+  end
+  local paged, output = pcall(paginate, distinct)
+  if not paged then
+    report("Export failed: " .. tostring(output))
+    return
+  end
+  showPages(output)
+  return #distinct
+end
+
 local currencyKeys
 ---The library's currency vocabulary key for a game currency. EVENT_TICKETS is left out: the library maps it to the
 ---same game currency as TRADE_BARS, so a store price in that currency reads as TRADE_BARS
@@ -242,12 +299,15 @@ function this.AddAllFromTrader()
       end
     end
   end
-  local added = appendLines(lines)
+  local distinct = showDump(lines)
+  if not distinct then
+    return
+  end
   FurC.Logger:Info(
-    "|cFF3333FurCDev|r: %d furnishing(s) of %d store item(s), %d new; %d without offer (currency has no key).",
-    #lines,
+    "|cFF3333FurCDev|r: %d furnishing(s) of %d store item(s), %d page(s); %d without offer (currency has no key).",
+    distinct,
     count,
-    added,
+    distinct > 0 and #pages or 0,
     noKey
   )
 end
@@ -286,8 +346,16 @@ function this.AddAllFromBag()
       end
     end
   end
-  local added = appendLines(lines)
-  FurC.Logger:Info("|cFF3333FurCDev|r: %d furnishing(s) in the %s, %d new.", #lines, name, added)
+  local distinct = showDump(lines)
+  if not distinct then
+    return
+  end
+  FurC.Logger:Info(
+    "|cFF3333FurCDev|r: %d furnishing(s) in the %s, %d page(s).",
+    distinct,
+    name,
+    distinct > 0 and #pages or 0
+  )
 end
 
 ---One item's line appended to the output box, whether the catalogue knows it or not: the menu asks about this item, where a scan looks for new ones
@@ -314,35 +382,6 @@ function this.ShowDiscoveryPage(delta)
   this.ShowWindow()
   this.selectAllOutput()
   refreshControls()
-end
-
--- Pages small enough for the textbox to hold and the clipboard to copy
-local function paginate(lines)
-  local output, chunk, size = {}, {}, 0
-  for _, line in ipairs(lines) do
-    if #line + 1 > PAGE_BYTES then
-      error("a discovery exceeds the copy page limit")
-    end
-    if (size + #line + 1 > PAGE_BYTES or #chunk == 100) and #chunk > 0 then
-      output[#output + 1] = table.concat(chunk, "\n") .. "\n"
-      chunk, size = {}, 0
-    end
-    chunk[#chunk + 1] = line
-    size = size + #line + 1
-  end
-  if #chunk > 0 then
-    output[#output + 1] = table.concat(chunk, "\n") .. "\n"
-  end
-  return output
-end
-
-local function showPages(output)
-  pages, page = output, 1
-  if #pages > 0 then
-    this.ShowDiscoveryPage()
-  else
-    this.textbox:SetText("")
-  end
 end
 
 ---A request from the website: discovery lines for exactly the listed ids, catalogued or not, so the website can refresh their names and metadata

@@ -88,6 +88,25 @@ Taneth("FurC:Lib", function()
       assert.is_not_nil(lines[1]:find("|H", 1, true))
     end)
 
+    -- an id the catalogue holds but the client cannot name: deleted from the game, or not in this client yet
+    it("says when the game client does not know a catalogued item", function()
+      local note = GetString(SI_FURC_CHAT_NOT_IN_CLIENT)
+      local id = DS.luxItemInDB
+      assert.is_nil(run(tostring(id))[1]:find(note, 1, true))
+      local realName = GLOBALS.GetItemLinkName
+      GLOBALS.GetItemLinkName = function(link)
+        return GetItemLinkItemId(link) == id and "" or realName(link)
+      end
+      local ok, plain, raw = pcall(function()
+        return run(tostring(id)), run("raw " .. id)
+      end)
+      GLOBALS.GetItemLinkName = realName
+      assert.is_true(ok, plain)
+      for _, lines in ipairs({ plain, raw }) do
+        assert.is_not_nil(lines[1]:find(id .. " (" .. note .. ")", 1, true), lines[1])
+      end
+    end)
+
     it("reports database status without needing an item", function()
       local lines = run("db")
       assert.equals(1, #lines)

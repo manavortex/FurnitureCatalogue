@@ -62,33 +62,26 @@ Taneth("FurC:Unit", function()
       assert.equals(1, countMenuEntries(knownId))
     end)
 
-    it("asks FSL for a quantity when it can, else adds one through the legacy global", function()
+    it("asks FSL for a quantity", function()
       FurCDev.Test.ensureDB()
       local knownId = next(FurC.DB)
       local realG = realGlobals()
-      local saved = { realG.AddCustomMenuItem, realG.FurnitureShoppingList, realG.FurnitureShoppingListAdd }
+      local saved = { realG.AddCustomMenuItem, realG.FurnitureShoppingList }
       local callback
-      local prompted, legacy = 0, 0
+      local prompted = 0
       realG.AddCustomMenuItem = function(_, fn)
         callback = fn
       end
-      realG.FurnitureShoppingListAdd = function()
-        legacy = legacy + 1
-      end
-      local added = pcall(AddFurnitureShoppingListMenuEntry, knownId)
       realG.FurnitureShoppingList = {
         PromptAdd = function()
           prompted = prompted + 1
         end,
       }
+      local added = pcall(AddFurnitureShoppingListMenuEntry, knownId)
       local viaPrompt = added and pcall(callback)
-      realG.FurnitureShoppingList = nil
-      local viaLegacy = added and pcall(callback)
-      realG.AddCustomMenuItem, realG.FurnitureShoppingList, realG.FurnitureShoppingListAdd =
-        saved[1], saved[2], saved[3]
-      assert.is_true(added and viaPrompt and viaLegacy)
+      realG.AddCustomMenuItem, realG.FurnitureShoppingList = saved[1], saved[2]
+      assert.is_true(added and viaPrompt)
       assert.equals(1, prompted)
-      assert.equals(1, legacy)
     end)
   end)
 end)

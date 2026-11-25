@@ -14,51 +14,6 @@ local getItemLink = LFC.API.GetItemLink
 
 local sFormat = zo_strformat
 
--- ruthlessly stolen from TextureIt
---- Sorts table by given key
---- @return table sortedTable
-function this.SortTable(tTable, sortKey, SortOrderUp)
-  --[[
-    TODO #REFACTOR:
-      - expect function instead of boolean "SortOrderUp"
-      - ZO_TableOrderingFunction
-      - make generic, not itemlink dependant
-  ]]
-
-  local keys = {}
-  for k in pairs(tTable) do
-    table.insert(keys, k)
-  end
-  table.sort(keys, function(a, b)
-    if nil == tTable[a] or nil == tTable[b] then
-    elseif nil == tTable[a][sortKey] then
-      return false
-    elseif nil == tTable[b][sortKey] then
-      return true
-    else
-      if SortOrderUp then
-        return tTable[a][sortKey] > tTable[b][sortKey]
-      else
-        return tTable[a][sortKey] < tTable[b][sortKey]
-      end
-    end
-    return tTable
-  end)
-
-  local ret = {}
-  local scannedLinks = {}
-  for _, k in ipairs(keys) do
-    local entry = tTable[k]
-    local itemLink = entry["itemLink"]
-    local ingredients = entry["ingredients"]
-    local index = scannedLinks[itemLink] or k
-
-    table.insert(ret, entry)
-  end
-
-  return ret
-end
-
 local currentChar
 ---Get the current character name in desired format
 ---@return string
@@ -105,7 +60,6 @@ this.GetItemId = LFC.API.GetItemId
 
 -- Legacy alias
 FurC.Utils = FurC.Utils or {}
-FurC.Utils.SortTable = this.SortTable
 FurC.Utils.GetCurrentChar = this.GetCurrentChar
 FurC.Utils.IsFurniture = this.IsFurniture
 FurC.Utils.GetBlueprintForItem = this.GetBlueprintForItem
