@@ -19,7 +19,6 @@ Taneth("FurC:Lib", function()
           "GetIngredients",
           "GetItemDescription",
           "GetMats",
-          "GetMiscItemPrice",
           "GetRankedSources",
           "GetSourceRecords",
           "GrantedRecipeIndices",

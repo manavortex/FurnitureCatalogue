@@ -44,11 +44,9 @@ Taneth("FurC:Lib", function()
           "GetItemId",
           "GetItemIds",
           "GetItemLink",
-          "GetMiscItemPrice",
           "GetSourceDetails",
           "GetSourceTypeInfo",
           "GetSourceTypes",
-          "GetSources",
           "GetState",
           "GetVersion",
           "Has",
@@ -440,29 +438,10 @@ Taneth("FurC:Lib", function()
       assert.equals("number", type(sourceType.CROWN))
       assert.equals(FurC.Constants.ItemSources.CROWN, sourceType.CROWN)
       assert.is_nil(api.SourceType, "the shared enum table is still published")
-      -- old source constants, documented as supported for migration
-      for _, key in ipairs({
-        "CRAFTING",
-        "VENDOR",
-        "PVP",
-        "CROWN",
-        "LUXURY",
-        "ROLIS",
-        "DROP",
-        "JUSTICE",
-        "RUMOUR",
-        "FESTIVAL_DROP",
-      }) do
-        assert.equals(sourceType[key], _G["FURC_" .. key], "FURC_" .. key)
-      end
 
       local entry = api.GetEntry(DS.luxItem)
       assert.equals("string", type(api.GetItemDescription(DS.luxItem, entry)))
       assert.equals("table", type(api.GetIngredients(Test.link(DS.craftable), api.GetEntry(DS.craftable))))
-
-      local missingCurrency, missingAmount = api.GetMiscItemPrice(UNKNOWN_ID, 1, sourceType.CROWN)
-      assert.is_nil(missingCurrency)
-      assert.is_nil(missingAmount)
     end)
 
     it("enumerates its vocabularies so a consumer never transcribes one", function()
@@ -485,10 +464,10 @@ Taneth("FurC:Lib", function()
       local versions = api.GetDataVersions()
       local versionKeys = api.GetDataVersionKeys()
       assert.equals("string", type(versionKeys[versions.ALTMER]))
-      -- LATEST and ZERO2 are aliases sharing a value, so the key comes back as the
+      -- LATEST and SLAVES are aliases sharing a value, so the key comes back as the
       -- update itself; naming the update here would need editing every release
       local latestKey = versionKeys[versions.LATEST]
-      assert.is_true(latestKey ~= "LATEST" and latestKey ~= "ZERO2", "alias won the inverse: " .. tostring(latestKey))
+      assert.is_true(latestKey ~= "LATEST" and latestKey ~= "SLAVES", "alias won the inverse: " .. tostring(latestKey))
       assert.equals(versions.LATEST, versions[latestKey])
 
       -- categories come from the client, so a consumer filters without an id
@@ -506,48 +485,34 @@ Taneth("FurC:Lib", function()
       assert.is_true(api.GetFurnitureCategories()[next(categories)].name ~= "mutated")
     end)
 
-    it("GetMiscItemPrice reads the whole amount off the row, or nothing", function()
+    -- prices come only from the records now; these rows used to be read back out of baked strings
+    it("GetSourceDetails carries the whole price on the record, or none", function()
       FurC.EnsureDB(true)
       local sourceType = api.GetSourceTypes()
+      local function costOf(itemId, source)
+        for _, record in ipairs(api.GetSourceDetails(itemId)) do
+          if record.source.type == source and record.cost then
+            return record.cost.currency, record.cost.amount
+          end
+        end
+      end
 
-      -- a single crown-store source: { itemPrice = 2000 }
-      local crownCurrency, crownAmount = api.GetMiscItemPrice(134686, 6, sourceType.CROWN) -- Sithis, The Dread Father
+      -- a single crown-store source
+      local crownCurrency, crownAmount = costOf(134686, sourceType.CROWN) -- Sithis, The Dread Father
       assert.equals(CURT_CROWNS, crownCurrency)
       assert.equals(2000, crownAmount)
 
       -- the price sits on one source of a list: { { itemPrice = 65 }, { category = ... } }
-      local editorCurrency, prefixedAmount = api.GetMiscItemPrice(87709, 2, sourceType.EDITOR) -- Imperial Brazier, Spiked
+      local editorCurrency, editorAmount = costOf(87709, sourceType.EDITOR) -- Imperial Brazier, Spiked
       assert.equals(CURT_CROWNS, editorCurrency)
-      assert.equals(65, prefixedAmount)
+      assert.equals(65, editorAmount)
 
-      -- strBazaar(2000): txt first, price after
-      -- `<label>: |c<hex><amount>|r|u...:currency:|u<icon>`
-      local bazaarCurrency, bazaarAmount =
-        api.GetMiscItemPrice(212186, FurC.Constants.Versioning.BASE44, sourceType.BAZAAR) -- Statue, Breton Hero
+      local bazaarCurrency, bazaarAmount = costOf(212186, sourceType.BAZAAR) -- Statue, Breton Hero
       assert.equals(CURT_TRADE_BARS, bazaarCurrency)
       assert.equals(2000, bazaarAmount)
 
       -- a crate is not sold for a price of its own
-      local crateCurrency, crateAmount = api.GetMiscItemPrice(125654, 3, sourceType.CROWN) -- Tapestry, Clavicus Vile
-      assert.is_nil(crateCurrency)
-      assert.is_nil(crateAmount)
-    end)
-
-    -- A row lives in one update's file, and the record builders answer for it whatever update you ask about
-    it("GetMiscItemPrice finds a row filed under another update", function()
-      FurC.EnsureDB(true)
-      local sourceType = api.GetSourceTypes()
-      local versions = api.GetDataVersions()
-
-      -- the same crown-store row the test above prices under its own update
-      local currency, amount = api.GetMiscItemPrice(134686, versions.HOMESTEAD, sourceType.CROWN)
-      assert.equals(CURT_CROWNS, currency)
-      assert.equals(2000, amount)
-
-      -- an item with no row at all still answers nothing, whatever update is named
-      local unknownCurrency, unknownAmount = api.GetMiscItemPrice(UNKNOWN_ID, versions.HOMESTEAD, sourceType.CROWN)
-      assert.is_nil(unknownCurrency)
-      assert.is_nil(unknownAmount)
+      assert.is_nil(costOf(125654, sourceType.CROWN)) -- Tapestry, Clavicus Vile
     end)
   end)
 end)

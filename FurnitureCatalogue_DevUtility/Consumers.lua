@@ -66,10 +66,10 @@ local function pricedSample()
   for itemId, row in pairs(probe.Database()) do
     if type(row) == "table" then
       seen = seen + 1
-      local ok, records = pcall(a.GetSources, itemId)
+      local ok, records = pcall(a.GetSourceDetails, itemId)
       if ok then
         for _, rec in ipairs(records) do
-          if rec.cost and rec.cost[1] then
+          if rec.cost then
             return itemId
           end
         end
@@ -154,8 +154,7 @@ end
 -- LibPrice
 -- ---------------------------------------------------------------------------
 
--- The shipped release prices furniture through the library API: the entry, its
--- the best-ranked record, the description, then the deprecated GetSources whose cost is a list.
+-- LibPrice checks GetEntry for miss, GetSourceDetails[1] record as the preferred source, GetIngredients for the crafting branch.
 local function libPriceLeg(lines, explicit)
   lines[#lines + 1] = "-- LibPrice"
   local a = api()
@@ -166,12 +165,10 @@ local function libPriceLeg(lines, explicit)
 
   local missing = {}
   for _, name in ipairs({
-    "SourceType",
     "GetEntry",
-    "GetItemId",
-    "GetItemDescription",
-    "GetSources",
-    "GetMiscItemPrice",
+    "GetSourceDetails",
+    "GetSourceTypes",
+    "GetIngredients",
   }) do
     if a[name] == nil then
       missing[#missing + 1] = name
@@ -179,7 +176,6 @@ local function libPriceLeg(lines, explicit)
   end
   lines[#lines + 1] = "  endpoints it calls: "
     .. (#missing == 0 and "all present" or ("MISSING " .. table.concat(missing, ", ")))
-  lines[#lines + 1] = "  SourceType is a " .. type(a.SourceType) .. " (it indexes it, so a function would break it)"
   lines[#lines + 1] = "  installed: " .. tostring(LibPrice ~= nil)
 
   local craftable, plain = samples()
@@ -188,17 +184,16 @@ local function libPriceLeg(lines, explicit)
     if itemId then
       local itemLink = link(itemId)
       local entry = a.GetEntry(itemLink)
-      local ok, records = pcall(a.GetSources, itemLink)
+      local ok, records = pcall(a.GetSourceDetails, itemLink)
       if not ok then
-        lines[#lines + 1] = string.format("  %d GetSources ERRORED: %s", itemId, tostring(records))
+        lines[#lines + 1] = string.format("  %d GetSourceDetails ERRORED: %s", itemId, tostring(records))
       else
         -- the records arrive ranked, so the best source is simply the first
         local primary = records[1]
-        -- the whole point of the bridge: cost is a list here and indexing [1] is
-        -- safe even when the source has no price
-        local cost = primary and primary.cost and primary.cost[1]
+        -- one table or nil, LibPrice checks it before reading
+        local cost = primary and primary.cost
         lines[#lines + 1] = string.format(
-          "  %d primary=%s records=%d found=%s cost[1]=%s",
+          "  %d primary=%s records=%d found=%s cost=%s",
           itemId,
           tostring(primary and primary.source.type),
           #records,
