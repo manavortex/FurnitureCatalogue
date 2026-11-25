@@ -400,6 +400,13 @@ assert(control("Page").text == "Page 1 / 1")
 local missingOutput = output
 control("Request").OnClicked()
 assert(output == missingOutput and control("Status").text:find("not item ids", 1, true))
+-- a blueprint the catalogue dropped from its item is still reported, from the generated data
+LFCGeneratedDatabase = { blueprints = { [134] = 130 } }
+control("Missing").OnClicked()
+assert(output == "furniture-missing-ids-v1\n130\n131\n132\n134\n", "dropped blueprint is reported: " .. output)
+LFCGeneratedDatabase = nil
+control("Missing").OnClicked()
+assert(output == missingOutput)
 function GetItemLinkName()
   return "Chair"
 end

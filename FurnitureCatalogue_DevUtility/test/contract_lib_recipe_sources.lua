@@ -65,4 +65,90 @@ Taneth("FurC:Lib", function()
       assert.equals(1, counts[src.CRAFTING])
     end)
   end)
+
+  -- An item the game knows never disappears: without a blueprint or a source it is still a rumour
+  describe("rumours and blueprints this client does not have", function()
+    local lib = LibFurnitureCatalogue
+    local build, data = lib.Internal.Build, LFCGeneratedDatabase
+
+    -- rebuild while this client lacks the given blueprints, then rebuild the real catalogue
+    local function withoutBlueprints(dead, check)
+      local real = build.ResolveRecipe
+      build.ResolveRecipe = function(id)
+        if dead[id] then
+          return nil, nil
+        end
+        return real(id)
+      end
+      local ok, err = pcall(function()
+        FurC.RebuildDB(true)
+        check()
+      end)
+      build.ResolveRecipe = real
+      FurC.RebuildDB(true)
+      if not ok then
+        error(err, 0)
+      end
+    end
+
+    local rumourBlueprint, rumourFurnishing
+    for blueprint in pairs(data.rumours) do
+      local furnishing = data.blueprints[blueprint]
+      if furnishing and furnishing ~= 0 then
+        rumourBlueprint, rumourFurnishing = blueprint, furnishing
+        break
+      end
+    end
+
+    it("list a rumour recipe under its furnishing, with the blueprint", function()
+      assert.is_not_nil(rumourBlueprint)
+      local entry = api.GetEntry(rumourFurnishing)
+      assert.is_true(entry.sources[src.RUMOUR])
+      assert.equals(rumourBlueprint, entry.blueprint)
+      assert.equals(rumourFurnishing, api.GetEntry(rumourBlueprint).id)
+      assert.is_nil(lib.Internal.DB[rumourBlueprint])
+    end)
+
+    it("keep a rumour furnishing when its blueprint points at nothing", function()
+      withoutBlueprints({ [rumourBlueprint] = true }, function()
+        local entry = api.GetEntry(rumourFurnishing)
+        assert.is_not_nil(entry)
+        assert.is_true(entry.sources[src.RUMOUR])
+        assert.is_nil(entry.blueprint)
+        assert.is_nil(lib.Internal.DB[rumourBlueprint])
+      end)
+    end)
+
+    it("keep a crafted item whose blueprint this client lacks, as a rumour if nothing else is left", function()
+      local crafted, blueprint
+      for _, id in ipairs(api.GetItemIds()) do
+        local entry = api.GetEntry(id)
+        if entry.blueprint and entry.sources[src.CRAFTING] and next(entry.sources, next(entry.sources)) == nil then
+          crafted, blueprint = id, entry.blueprint
+          break
+        end
+      end
+      assert.is_not_nil(crafted)
+      withoutBlueprints({ [blueprint] = true }, function()
+        local entry = api.GetEntry(crafted)
+        assert.is_not_nil(entry)
+        assert.is_true(entry.sources[src.RUMOUR])
+        assert.is_nil(entry.blueprint)
+      end)
+    end)
+
+    it("keep a rumour that names only a blueprint", function()
+      local orphan = 999001
+      data.rumours[orphan], data.blueprints[orphan] = data.rumours[rumourBlueprint], 0
+      local ok, err = pcall(function()
+        FurC.RebuildDB(true)
+        assert.is_true(lib.Internal.DB[orphan].sources ~= nil)
+      end)
+      data.rumours[orphan], data.blueprints[orphan] = nil, nil
+      FurC.RebuildDB(true)
+      if not ok then
+        error(err, 0)
+      end
+    end)
+  end)
 end)

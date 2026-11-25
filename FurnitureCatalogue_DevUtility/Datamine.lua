@@ -461,6 +461,10 @@ function this.DetectDeleted()
       add(id)
       add(entry and entry.blueprint)
     end
+    local generated = LFCGeneratedDatabase
+    for blueprint in pairs(type(generated) == "table" and generated.blueprints or {}) do
+      add(blueprint)
+    end
     table.sort(ids)
     for _, id in ipairs(ids) do
       if GetItemLinkName(FurC.Utils.GetItemLink(id)) == "" then
